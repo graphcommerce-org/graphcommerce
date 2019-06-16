@@ -1,0 +1,37 @@
+union RecentPublications = Post | Comment
+
+type User {
+  id: ID!
+  avatar(width: Int!, height: Int!): Media!
+  firstName: String!
+  lastName: String!
+  posts: [Post!]!
+  comments: [Comment!]!
+  recentPublication: [RecentPublications!]
+}
+
+type Media {
+  id: ID!
+  url: String!
+}
+
+type Post {
+  id: ID!
+  image: Media!
+  title: String!
+  author: User!
+  body: String!
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID!
+  title: String!
+  body: String!
+  author: User!
+}
+
+type Query {
+  me: User
+  post(id: ID!): Post
+}

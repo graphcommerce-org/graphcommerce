@@ -1,0 +1,11 @@
+fragment ProfileAvatar on User
+  @argumentDefinitions(
+    width: { type: "Int", defaultValue: 50 }
+    height: { type: "Int", defaultValue: 50 }
+  ) {
+  id
+  avatar(width: $width, height: $height) {
+    id
+    url
+  }
+}

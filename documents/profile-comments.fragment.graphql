@@ -1,0 +1,7 @@
+fragment ProfileComments on User {
+  id
+  comments {
+    id
+    title
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "codegen-relay-transform-experiments",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "n1ru4l <laurinquast@googlemail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.2.1",
+    "@graphql-codegen/typescript": "1.2.1",
+    "@graphql-codegen/typescript-operations": "1.2.1",
+    "@graphql-codegen/typescript-react-apollo": "1.2.1",
+    "graphql": "14.3.1",
+    "relay-compiler": "5.0.0"
+  },
+  "scripts": {
+    "generate:types": "gql-gen --config codegen.yml"
+  }
+}
