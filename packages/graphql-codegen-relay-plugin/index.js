@@ -201,9 +201,15 @@ export const create${title}FragmentContainer = <
   documents.splice(0, documents.length);
   documents.push(...newDocuments);
 
+  const prepend = [];
+
+  if (config.withFragmentContainer) {
+    prepend.push("import { filter } from 'graphql-anywhere';");
+  }
+
   return {
     content: "",
     append: fragmentOutput,
-    prepend: ["import { filter } from 'graphql-anywhere';"]
+    prepend
   };
 };
