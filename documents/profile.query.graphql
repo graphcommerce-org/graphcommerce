@@ -1,9 +1,0 @@
-#import "./profile-comments.fragment.graphql"
-#import "./profile-avatar.fragment.graphql"
-query profile {
-  me {
-    id
-    ...ProfileComments
-    ...ProfileAvatar @arguments(width: 10, height: 10)
-  }
-}

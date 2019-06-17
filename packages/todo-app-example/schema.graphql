@@ -34,4 +34,5 @@ type Comment {
 type Query {
   me: User
   post(id: ID!): Post
+  manyMe: [User!]!
 }

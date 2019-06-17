@@ -1,18 +1,21 @@
 {
-  "name": "codegen-relay-transform-experiments",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "n1ru4l <laurinquast@googlemail.com>",
+  "private": true,
   "license": "MIT",
-  "devDependencies": {
-    "@graphql-codegen/cli": "1.2.1",
-    "@graphql-codegen/typescript": "1.2.1",
-    "@graphql-codegen/typescript-operations": "1.2.1",
-    "@graphql-codegen/typescript-react-apollo": "1.2.1",
-    "graphql": "14.3.1",
-    "relay-compiler": "5.0.0"
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "*.{js,json,css,md,ts,tsx}": [
+      "prettier --write",
+      "git add -f"
+    ]
   },
   "scripts": {
-    "generate:types": "gql-gen --config codegen.yml"
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "husky": "2.4.1",
+    "lint-staged": "8.2.1",
+    "prettier": "1.18.2"
   }
 }

@@ -1,4 +1,4 @@
-fragment ProfileAvatar on User
+fragment Profile_Avatar on User
   @argumentDefinitions(
     width: { type: "Int", defaultValue: 50 }
     height: { type: "Int", defaultValue: 50 }

@@ -1,0 +1,12 @@
+#import "./profile-comments.fragment.graphql"
+#import "./profile-avatar.fragment.graphql"
+query Profile {
+  me {
+    id
+    ...Profile_Comments
+    ...Profile_Avatar @arguments(width: 10, height: 10)
+  }
+  manyMe {
+    ...Profile_ManyMe
+  }
+}

@@ -1,0 +1,5 @@
+# TODO: use @relay(plural: true) directive
+fragment Profile_ManyMe on User {
+  id
+  lastName
+}

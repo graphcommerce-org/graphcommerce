@@ -1,0 +1,15 @@
+{
+  "name": "graphql-codegen-relay-optimizer-plugin",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Laurin Quast",
+    "email": "laurinquast@googlemail.com",
+    "url": "https://github.com/n1ru4l"
+  },
+  "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
+  "dependencies": {
+    "graphql": "14.3.1",
+    "relay-compiler": "5.0.0"
+  }
+}

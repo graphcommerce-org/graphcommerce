@@ -1,4 +1,4 @@
-fragment ProfileComments on User {
+fragment Profile_Comments on User {
   id
   comments {
     id

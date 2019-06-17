@@ -1,14 +1,14 @@
 overwrite: true
 schema: schema.graphql
 generates:
-  dist/generated-types.tsx:
-    documents: "documents/**/*.graphql"
+  src/generated-types.tsx:
+    documents: "src/documents/**/*.graphql"
     config:
       withHOC: true
       withComponent: true
       withHooks: true
     plugins:
       - "typescript"
-      - ./relay-optimizer-plugin/index.js
+      - "graphql-codegen-relay-optimizer-plugin"
       - "typescript-operations"
       - "typescript-react-apollo"
