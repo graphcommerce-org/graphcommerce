@@ -7,6 +7,10 @@
     "email": "laurinquast@googlemail.com",
     "url": "https://github.com/n1ru4l"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n1ru4l/codegen-relay-transform-experiments"
+  },
   "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
   "dependencies": {
     "graphql": "14.3.1",
