@@ -1,7 +1,6 @@
 "use strict";
 
 const { parse, visit, BREAK } = require("graphql/language");
-const { printSchema } = require("graphql/utilities");
 const { GraphQLCompilerContext } = require("relay-compiler");
 const InlineFragmentsTransform = require("relay-compiler/lib/InlineFragmentsTransform");
 const SkipRedundantNodesTransform = require("relay-compiler/lib/SkipRedundantNodesTransform");
@@ -9,6 +8,7 @@ const RelayApplyFragmentArgumentTransform = require("relay-compiler/lib/RelayApp
 const FlattenTransform = require("relay-compiler/lib/FlattenTransform");
 const RelayParser = require("relay-compiler/lib/RelayParser");
 const GraphQLIRPrinter = require("relay-compiler/lib/GraphQLIRPrinter");
+const { transformASTSchema } = require("relay-compiler/lib/ASTConvert");
 
 const defaultConfig = {
   /**
@@ -39,15 +39,27 @@ module.exports.plugin = (schema, documents, config) => {
     ...config
   };
 
+  // @TODO way for users to define directives they use, otherwise relay will throw an unknown directive error
+  // Maybe we can scan the queries and add them dynamically without users having to do some extra stuff
+  // transformASTSchema creates a new schema instance instead of mutating the old one
+  const adjustedSchema = transformASTSchema(schema, [
+    `
+  directive @connection(
+    key: String!
+  ) on FIELD
+  directive @client on FIELD
+  `
+  ]);
+
   const documentAsts = documents.reduce((prev, v) => {
     return [...prev, ...v.content.definitions];
   }, []);
 
-  const relayDocuments = RelayParser.transform(schema, documentAsts);
+  const relayDocuments = RelayParser.transform(adjustedSchema, documentAsts);
 
-  const fragmentCompilerContext = new GraphQLCompilerContext(schema).addAll(
-    relayDocuments
-  );
+  const fragmentCompilerContext = new GraphQLCompilerContext(
+    adjustedSchema
+  ).addAll(relayDocuments);
 
   const fragmentDocuments = fragmentCompilerContext
     .documents()
@@ -62,7 +74,7 @@ module.exports.plugin = (schema, documents, config) => {
     .documents()
     .filter(doc => doc.kind === "Root" && doc.operation === "query");
 
-  const queryCompilerContext = new GraphQLCompilerContext(schema)
+  const queryCompilerContext = new GraphQLCompilerContext(adjustedSchema)
     .addAll(relayDocuments)
     .applyTransforms([
       RelayApplyFragmentArgumentTransform.transform,

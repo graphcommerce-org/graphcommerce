@@ -6,7 +6,7 @@ query Profile {
     ...Profile_Comments
     ...Profile_Avatar @arguments(width: 10, height: 10)
   }
-  manyMe {
+  manyMe @connection(key: "ayay") {
     ...Profile_ManyMe
   }
 }
