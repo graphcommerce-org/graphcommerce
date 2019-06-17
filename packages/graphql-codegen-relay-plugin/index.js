@@ -10,7 +10,35 @@ const FlattenTransform = require("relay-compiler/lib/FlattenTransform");
 const RelayParser = require("relay-compiler/lib/RelayParser");
 const GraphQLIRPrinter = require("relay-compiler/lib/GraphQLIRPrinter");
 
-module.exports.plugin = (schema, documents) => {
+const defaultConfig = {
+  /**
+   * @name withFragmentContainer
+   * @type boolean
+   * @description Whether you wnat to generate fragment containers or not.
+   * @default false
+   *
+   * @example
+   * ```yml
+   * generates:
+   * path/to/file.ts:
+   *  plugins:
+   *    - "typescript"
+   *    - "graphql-codegen-relay-optimizer-plugin"
+   *    - "typescript-operations"
+   *    - "typescript-react-apollo"
+   *  config:
+   *    withFragmentContainer: true
+   * ```
+   */
+  withFragmentContainer: false
+};
+
+module.exports.plugin = (schema, documents, config) => {
+  config = {
+    ...defaultConfig,
+    ...config
+  };
+
   const documentAsts = documents.reduce((prev, v) => {
     return [...prev, ...v.content.definitions];
   }, []);
@@ -49,6 +77,9 @@ module.exports.plugin = (schema, documents) => {
   }));
 
   const fragmentOutput = fragmentDocuments.map(doc => {
+    if (!config.withFragmentContainer) {
+      return "";
+    }
     let queryName = doc.name.split("_")[0];
     if (!queryName) {
       return "";

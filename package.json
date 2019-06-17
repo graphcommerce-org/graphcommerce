@@ -2,7 +2,8 @@
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "packages/graphql-codegen-relay-plugin",
+    "packages/todo-app-example"
   ],
   "lint-staged": {
     "*.{js,json,css,md,ts,tsx}": [

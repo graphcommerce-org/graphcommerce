@@ -41,7 +41,7 @@
     "@graphql-codegen/typescript": "1.2.1",
     "@graphql-codegen/typescript-operations": "1.2.1",
     "@graphql-codegen/typescript-react-apollo": "1.2.1",
-    "graphql-codegen-relay-optimizer-plugin": "*",
+    "@n1ru4l/graphql-codegen-relay-plugin": "0.0.1-alpha.1",
     "@types/jest": "24.0.15",
     "@types/node": "12.0.8",
     "@types/react": "16.8.20",
