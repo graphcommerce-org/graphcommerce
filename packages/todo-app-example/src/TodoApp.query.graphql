@@ -1,0 +1,5 @@
+query appQuery($userId: String) {
+  user(id: $userId) {
+    ...TodoApp_user
+  }
+}

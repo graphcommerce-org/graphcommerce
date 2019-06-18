@@ -1,0 +1,12 @@
+mutation MarkAllTodosMutation($input: MarkAllTodosInput!) {
+  markAllTodos(input: $input) {
+    changedTodos {
+      id
+      complete
+    }
+    user {
+      id
+      completedCount
+    }
+  }
+}

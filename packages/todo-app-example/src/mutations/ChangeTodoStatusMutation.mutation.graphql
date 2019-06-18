@@ -1,0 +1,12 @@
+mutation ChangeTodoStatusMutation($input: ChangeTodoStatusInput!) {
+  changeTodoStatus(input: $input) {
+    todo {
+      id
+      complete
+    }
+    user {
+      id
+      completedCount
+    }
+  }
+}

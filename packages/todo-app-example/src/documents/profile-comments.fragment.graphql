@@ -1,7 +1,0 @@
-fragment Profile_Comments on User {
-  id
-  comments {
-    id
-    title
-  }
-}

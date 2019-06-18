@@ -1,0 +1,8 @@
+mutation RenameTodoMutation($input: RenameTodoInput!) {
+  renameTodo(input: $input) {
+    todo {
+      id
+      text
+    }
+  }
+}

@@ -1,0 +1,6 @@
+fragment Todo_user on User {
+  id
+  userId
+  totalCount
+  completedCount
+}

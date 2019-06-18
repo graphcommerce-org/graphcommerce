@@ -1,8 +1,8 @@
 overwrite: true
-schema: schema.graphql
+schema: server/data/schema.graphql
 generates:
   src/generated-types.tsx:
-    documents: "src/documents/**/*.graphql"
+    documents: "src/**/*.graphql"
     config:
       withHOC: true
       withComponent: true

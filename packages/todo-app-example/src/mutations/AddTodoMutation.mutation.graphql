@@ -1,0 +1,17 @@
+mutation AddTodoMutation($input: AddTodoInput!) {
+  addTodo(input: $input) {
+    todoEdge {
+      __typename
+      cursor
+      node {
+        complete
+        id
+        text
+      }
+    }
+    user {
+      id
+      totalCount
+    }
+  }
+}

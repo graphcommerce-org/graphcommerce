@@ -6,6 +6,7 @@
     "apollo-cache-inmemory": "1.6.2",
     "apollo-client": "2.6.2",
     "apollo-link-http": "1.5.15",
+    "classnames": "2.2.6",
     "express": "4.17.1",
     "express-graphql": "0.8.0",
     "graphql": "14.3.1",
@@ -51,11 +52,14 @@
     "@graphql-codegen/typescript": "1.2.1",
     "@graphql-codegen/typescript-operations": "1.2.1",
     "@graphql-codegen/typescript-react-apollo": "1.2.1",
-    "@n1ru4l/graphql-codegen-relay-plugin": "0.0.1-alpha.1",
+    "@n1ru4l/graphql-codegen-relay-plugin": "0.0.1-alpha.3",
+    "@types/classnames": "2.2.8",
     "@types/jest": "24.0.15",
     "@types/node": "12.0.8",
     "@types/react": "16.8.20",
     "@types/react-dom": "16.8.4",
+    "idx.macro": "4.0.0",
     "typescript": "3.5.2"
-  }
+  },
+  "proxy": "http://localhost:3001/graphql"
 }

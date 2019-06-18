@@ -1,0 +1,10 @@
+mutation RemoveCompletedTodosMutation($input: RemoveCompletedTodosInput!) {
+  removeCompletedTodos(input: $input) {
+    deletedTodoIds
+    user {
+      id
+      completedCount
+      totalCount
+    }
+  }
+}

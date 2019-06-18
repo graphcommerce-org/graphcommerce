@@ -1,0 +1,7 @@
+fragment TodoApp_user on User {
+  id
+  userId
+  totalCount
+  ...TodoListFooter_user
+  ...TodoList_user
+}

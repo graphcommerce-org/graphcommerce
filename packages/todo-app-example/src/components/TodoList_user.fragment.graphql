@@ -1,0 +1,18 @@
+fragment TodoList_user on User {
+  todos(
+    first: 2147483647 # max GraphQLInt
+  ) @connection(key: "TodoList_todos") {
+    edges {
+      node {
+        id
+        complete
+        ...Todo_todo
+      }
+    }
+  }
+  id
+  userId
+  totalCount
+  completedCount
+  ...Todo_user
+}
