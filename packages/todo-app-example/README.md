@@ -9,3 +9,9 @@ Frontend code is also based on [Relay TodoMVC](https://github.com/relayjs/relay-
 - `yarn server`
 - `yarn start`
 - Visit TODO MVC App on `localhost:3000`
+
+## Development Info
+
+- Frontend uses `create-react-app`.
+- GraphQL Server uns on port `3001`
+- Types are generated with the command `yarn generate:types`

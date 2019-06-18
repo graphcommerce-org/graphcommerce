@@ -4,8 +4,8 @@ generates:
   src/generated-types.tsx:
     documents: "src/**/*.graphql"
     config:
-      withHOC: true
-      withComponent: true
+      withHOC: false
+      withComponent: false
       withHooks: true
       withFragmentContainer: false
     plugins:
