@@ -1,4 +1,4 @@
-# @n1ru4l/graphql-codegen-relay-optimizer-plugin
+# @n1ru4l/graphql-codegen-relay-optimizer-plugin [![CircleCI](https://circleci.com/gh/n1ru4l/graphql-codegen-relay-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/n1ru4l/graphql-codegen-relay-plugins/tree/master)
 
 ## Description
 
