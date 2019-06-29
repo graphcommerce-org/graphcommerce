@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "plugins": ["jest"],
+  "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
+  "rules": {
+    "prefer-const": ["error"],
+    "no-var": ["error"],
+    "eqeqeq": ["error"],
+    "camelcase": ["error"],
+    "no-console": ["off"],
+    "no-unused-vars": ["error"]
+  },
+  "overrides": [
+    {
+      "files": "__tests__/**/*.spec.js",
+      "env": {
+        "jest/globals": true
+      }
+    }
+  ]
+}

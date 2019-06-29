@@ -1,0 +1,10 @@
+{
+  "extends": "../../.eslintrc.json",
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "script"
+  }
+}

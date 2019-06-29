@@ -2,19 +2,29 @@
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "packages/graphql-codegen-relay-plugin",
+    "packages/graphql-codegen-relay-optimizer-plugin",
     "packages/todo-app-example"
   ],
   "lint-staged": {
+    "*.{js}": [
+      "eslint",
+      "git add -f"
+    ],
     "*.{js,json,css,md,ts,tsx}": [
       "prettier --write",
       "git add -f"
     ]
   },
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "eslint": "eslint --ext .ts,.js,.tsx ."
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "1.11.0",
+    "@typescript-eslint/parser": "1.11.0",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "5.0.0",
+    "eslint-plugin-jest": "22.7.1",
     "husky": "2.4.1",
     "lint-staged": "8.2.1",
     "prettier": "1.18.2"

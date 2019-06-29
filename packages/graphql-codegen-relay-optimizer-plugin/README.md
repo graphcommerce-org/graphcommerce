@@ -1,14 +1,12 @@
-# @n1ru4l/graphql-codegen-relay-plugin
-
-**This is alpha software, use it at your own risk, functionality might change!**
+# @n1ru4l/graphql-codegen-relay-optimizer-plugin
 
 ## Description
 
-[GraphQL Codegen Plugin](https://github.com/dotansimha/graphql-code-generator) for bringing the benefits of relay to react-apollo.
+[GraphQL Codegen Plugin](https://github.com/dotansimha/graphql-code-generator) for bringing the benefits of Relay to GraphQL Codegen.
 
 ### Current List of Features
 
-- [Optimize Queries](https://relay.dev/docs/en/compiler-architecture#transforms)
+- [Optimize Queries](https://relay.dev/docs/en/compiler-architecture#transforms) TL;DR: reduce query size
   - Inline Fragments
   - Flatten Transform
   - Skip Redundant Node Transform
@@ -18,7 +16,7 @@
 
 ## Install Instructions
 
-`yarn add -D -E @n1ru4l/graphql-codegen-relay-plugin`
+`yarn add -D -E @n1ru4l/graphql-codegen-relay-optimizer-plugin`
 
 ## Usage Instructions
 
@@ -30,11 +28,6 @@ schema: schema.graphql
 generates:
   src/generated-types.tsx:
     documents: "src/documents/**/*.graphql"
-    config:
-      withHOC: true
-      withComponent: true
-      withHooks: true
-      withFragmentContainer: true
     plugins:
       - "typescript"
       - "@n1ru4l/graphql-codegen-relay-plugin"
