@@ -21,6 +21,7 @@
     "jest": "24.7.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "echo ok"
   }
 }

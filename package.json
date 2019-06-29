@@ -17,6 +17,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
+    "postinstall": "yarn workspaces run build",
     "eslint": "eslint --ext .ts,.js,.tsx ."
   },
   "devDependencies": {
