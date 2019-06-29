@@ -14,7 +14,7 @@
   - [`@argumentsDefinition`](https://relay.dev/docs/en/graphql-in-relay#argumentdefinitions)
   - [`@arguments`](https://relay.dev/docs/en/graphql-in-relay#arguments)
 
-## Install Instructions
+## Install Instructions [![npm](https://img.shields.io/npm/dm/@n1ru4l/graphql-codegen-relay-optimizer-plugin.svg)](https://www.npmjs.com/package/@n1ru4l/graphql-codegen-relay-optimizer-plugin)
 
 `yarn add -D -E @n1ru4l/graphql-codegen-relay-optimizer-plugin`
 

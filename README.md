@@ -11,7 +11,7 @@ Benefits:
 
 # Packages [![CircleCI](https://circleci.com/gh/n1ru4l/graphql-codegen-relay-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/n1ru4l/graphql-codegen-relay-plugins/tree/master)
 
-## [`@n1ru4l/graphql-codegen-relay-optimizer-plugin`](packages/graphql-codegen-relay-optimizer-plugin) [![npm](https://img.shields.io/npm/dm/@n1ru4l/graphql-codegen-relay-optimizer-plugin.svg)](https://www.npmjs.com/package/@n1ru4l/graphql-codegen-relay-optimizer-plugin)
+## [`@n1ru4l/graphql-codegen-relay-optimizer-plugin`](packages/graphql-codegen-relay-optimizer-plugin)
 
 Use the relay-compiler foroptimizing your GraphQL Queries.
 
