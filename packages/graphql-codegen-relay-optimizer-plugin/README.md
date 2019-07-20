@@ -30,7 +30,7 @@ generates:
     documents: "src/documents/**/*.graphql"
     plugins:
       - "typescript"
-      - "@n1ru4l/graphql-codegen-relay-plugin"
+      - "@n1ru4l/graphql-codegen-relay-optimizer-plugin"
       - "typescript-operations"
       - "typescript-react-apollo"
 ```
