@@ -1,1 +1,3 @@
 packages/todo-app-example/server/**/*
+dist
+node_modules

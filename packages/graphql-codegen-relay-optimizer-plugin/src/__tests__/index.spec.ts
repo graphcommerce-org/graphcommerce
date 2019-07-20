@@ -1,6 +1,8 @@
-require("@graphql-codegen/testing");
-const { buildSchema, parse, print } = require("graphql");
-const { plugin } = require("..");
+import "@graphql-codegen/testing";
+
+import { buildSchema, parse, print } from "graphql";
+import { plugin } from "..";
+import { Types } from "@graphql-codegen/plugin-helpers";
 
 const testSchema = buildSchema(/* GraphQL */ `
   type Avatar {
@@ -28,7 +30,7 @@ it("can be called", async () => {
       }
     }
   `);
-  await plugin(testSchema, [{ path: "lel", content: testDocument }]);
+  await plugin(testSchema, [{ filePath: "lel", content: testDocument }], {});
 });
 
 it("can be called with queries that include connection fragments", async () => {
@@ -39,7 +41,7 @@ it("can be called with queries that include connection fragments", async () => {
       }
     }
   `);
-  await plugin(testSchema, [{ path: "lel", content: testDocument }]);
+  await plugin(testSchema, [{ filePath: "lel", content: testDocument }], {});
 });
 
 it("can inline @argumentDefinitions/@arguments annotated fragments", async () => {
@@ -64,16 +66,17 @@ it("can inline @argumentDefinitions/@arguments annotated fragments", async () =>
       }
     }
   `);
-  const input = [
-    { path: "fragment", content: fragmentDocument },
-    { path: "query", content: queryDocument }
+  const input: Types.DocumentFile[] = [
+    { filePath: "fragment", content: fragmentDocument },
+    { filePath: "query", content: queryDocument }
   ];
-  await plugin(testSchema, input);
+  await plugin(testSchema, input, {});
   const queryDoc = input.find(
     doc => doc.content.definitions[0].kind === "OperationDefinition"
   );
 
   expect(queryDoc).toBeDefined();
+  // @ts-ignore
   expect(print(queryDoc.content)).toBeSimilarStringTo(/* GraphQL */ `
     query user {
       users {

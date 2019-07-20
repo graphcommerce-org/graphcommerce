@@ -1,16 +1,25 @@
-"use strict";
+import { parse, GraphQLSchema, DefinitionNode } from "graphql";
+import { Types, PluginFunction } from "@graphql-codegen/plugin-helpers";
 
-const { parse } = require("graphql/language");
-const { GraphQLCompilerContext } = require("relay-compiler");
-const InlineFragmentsTransform = require("relay-compiler/lib/InlineFragmentsTransform");
-const SkipRedundantNodesTransform = require("relay-compiler/lib/SkipRedundantNodesTransform");
-const RelayApplyFragmentArgumentTransform = require("relay-compiler/lib/RelayApplyFragmentArgumentTransform");
-const FlattenTransform = require("relay-compiler/lib/FlattenTransform");
-const RelayParser = require("relay-compiler/lib/RelayParser");
-const GraphQLIRPrinter = require("relay-compiler/lib/GraphQLIRPrinter");
-const { transformASTSchema } = require("relay-compiler/lib/ASTConvert");
+import {
+  GraphQLCompilerContext,
+  transformASTSchema,
+  Parser as RelayParser,
+  Printer as GraphQLIRPrinter
+} from "relay-compiler";
 
-module.exports.plugin = (schema, documents) => {
+import * as InlineFragmentsTransform from "relay-compiler/lib/InlineFragmentsTransform";
+import * as SkipRedundantNodesTransform from "relay-compiler/lib/SkipRedundantNodesTransform";
+import * as RelayApplyFragmentArgumentTransform from "relay-compiler/lib/RelayApplyFragmentArgumentTransform";
+import * as FlattenTransform from "relay-compiler/lib/FlattenTransform";
+
+export interface RelayOptimizerPluginConfig {}
+
+export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
+  schema: GraphQLSchema,
+  documents: Types.DocumentFile[],
+  config: RelayOptimizerPluginConfig
+) => {
   // @TODO way for users to define directives they use, otherwise relay will throw an unknown directive error
   // Maybe we can scan the queries and add them dynamically without users having to do some extra stuff
   // transformASTSchema creates a new schema instance instead of mutating the old one
@@ -22,9 +31,12 @@ module.exports.plugin = (schema, documents) => {
   directive @client on FIELD
   `
   ]);
-  const documentAsts = documents.reduce((prev, v) => {
-    return [...prev, ...v.content.definitions];
-  }, []);
+  const documentAsts = documents.reduce(
+    (prev, v) => {
+      return [...prev, ...v.content.definitions];
+    },
+    [] as DefinitionNode[]
+  );
 
   const relayDocuments = RelayParser.transform(adjustedSchema, documentAsts);
 
