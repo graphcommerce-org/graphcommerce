@@ -13,11 +13,13 @@ import * as SkipRedundantNodesTransform from "relay-compiler/lib/SkipRedundantNo
 import * as RelayApplyFragmentArgumentTransform from "relay-compiler/lib/RelayApplyFragmentArgumentTransform";
 import * as FlattenTransform from "relay-compiler/lib/FlattenTransform";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RelayOptimizerPluginConfig {}
 
 export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   schema: GraphQLSchema,
   documents: Types.DocumentFile[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   config: RelayOptimizerPluginConfig
 ) => {
   // @TODO way for users to define directives they use, otherwise relay will throw an unknown directive error

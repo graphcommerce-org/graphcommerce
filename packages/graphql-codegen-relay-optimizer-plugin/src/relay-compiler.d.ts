@@ -160,12 +160,12 @@ declare module "relay-compiler/lib/GraphQLIR" {
     typeCondition: GraphQLCompositeType;
   }
 
-  export type Handle = {
+  export interface Handle {
     name: string;
     key: string;
     dynamicKey: Variable | null;
     filters?: Readonly<string>;
-  };
+  }
 
   export interface ClientExtension {
     kind: "ClientExtension";
@@ -287,6 +287,7 @@ declare module "relay-compiler/lib/GraphQLIR" {
   }
 
   // workaround for circular reference
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface ScalarFieldTypeGraphQLList
     extends GraphQLList<ScalarFieldType> {}
 
@@ -359,31 +360,34 @@ declare module "relay-compiler/lib/GraphQLCompilerContext" {
   export type CompilerContextDocument = Fragment | Root | SplitOperation;
 
   export class GraphQLCompilerContext {
-    constructor(serverSchema: GraphQLSchema, clientSchema?: GraphQLSchema);
-    documents(): ReadonlyArray<CompilerContextDocument>;
-    forEachDocument(fn: (doc: CompilerContextDocument) => void): void;
-    replace(node: CompilerContextDocument): GraphQLCompilerContext;
-    add(node: CompilerContextDocument): GraphQLCompilerContext;
-    addAll(
+    public constructor(
+      serverSchema: GraphQLSchema,
+      clientSchema?: GraphQLSchema
+    );
+    public documents(): ReadonlyArray<CompilerContextDocument>;
+    public forEachDocument(fn: (doc: CompilerContextDocument) => void): void;
+    public replace(node: CompilerContextDocument): GraphQLCompilerContext;
+    public add(node: CompilerContextDocument): GraphQLCompilerContext;
+    public addAll(
       nodes: ReadonlyArray<CompilerContextDocument>
     ): GraphQLCompilerContext;
-    applyTransforms(
+    public applyTransforms(
       transforms: ReadonlyArray<IRTransform>,
       reporter?: GraphQLReporter
     ): GraphQLCompilerContext;
-    applyTransform(
+    public applyTransform(
       transform: IRTransform,
       reporter?: GraphQLReporter
     ): GraphQLCompilerContext;
-    applyValidations(
+    public applyValidations(
       validations: ReadonlyArray<IRValidation>,
       reporter?: GraphQLReporter
     ): void;
-    get(name: string): CompilerContextDocument | undefined;
-    getFragment(name: string, referencedFrom?: Location): Fragment;
-    getRoot(name: string): Root;
-    remove(name: string): GraphQLCompilerContext;
-    withMutations(
+    public get(name: string): CompilerContextDocument | undefined;
+    public getFragment(name: string, referencedFrom?: Location): Fragment;
+    public getRoot(name: string): Root;
+    public remove(name: string): GraphQLCompilerContext;
+    public withMutations(
       fn: (context: GraphQLCompilerContext) => GraphQLCompilerContext
     ): GraphQLCompilerContext;
   }
@@ -458,9 +462,9 @@ declare module "relay-compiler/lib/RelayApplyFragmentArgumentTransform" {
 declare module "relay-compiler/lib/FlattenTransform" {
   import { GraphQLCompilerContext } from "relay-compiler";
 
-  export type FlattenOptions = {
+  export interface FlattenOptions {
     flattenAbstractTypes?: boolean;
-  };
+  }
 
   export function transformWithOptions(
     options: FlattenOptions
@@ -483,17 +487,17 @@ declare module "relay-compiler/lib/GraphQLReporter" {
 declare module "relay-compiler/lib/GraphQLMultiReporter" {
   import { GraphQLReporter } from "relay-compiler/lib/GraphQLReporter";
   export default class GraphQLMultiReporter implements GraphQLReporter {
-    reportMessage(message: string): void;
-    reportTime(name: string, ms: number): void;
-    reportError(caughtLocation: string, error: Error): void;
+    public reportMessage(message: string): void;
+    public reportTime(name: string, ms: number): void;
+    public reportError(caughtLocation: string, error: Error): void;
   }
 }
 
 declare module "relay-compiler/lib/GraphQLConsoleReporter" {
   import { GraphQLReporter } from "relay-compiler/lib/GraphQLReporter";
   export default class GraphQLMultiReporter implements GraphQLReporter {
-    reportMessage(message: string): void;
-    reportTime(name: string, ms: number): void;
-    reportError(caughtLocation: string, error: Error): void;
+    public reportMessage(message: string): void;
+    public reportTime(name: string, ms: number): void;
+    public reportError(caughtLocation: string, error: Error): void;
   }
 }
