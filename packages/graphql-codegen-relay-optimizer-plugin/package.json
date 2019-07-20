@@ -42,5 +42,10 @@
     "build:module": "tsc --target es2017 --outDir dist/module",
     "build:main": "tsc --target es5 --outDir dist/main",
     "build": "yarn build:module && yarn build:main"
-  }
+  },
+  "files": [
+    "dist/**/*",
+    "LICENSE",
+    "README.md"
+  ]
 }
