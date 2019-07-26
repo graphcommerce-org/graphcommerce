@@ -55,7 +55,7 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     .applyTransforms([
       RelayApplyFragmentArgumentTransform.transform,
       InlineFragmentsTransform.transform,
-      FlattenTransform.transformWithOptions({ flattenAbstractTypes: true }),
+      FlattenTransform.transformWithOptions({ flattenAbstractTypes: false }),
       SkipRedundantNodesTransform.transform
     ]);
 
