@@ -24,15 +24,18 @@
     "plugin",
     "relay"
   ],
+  "peerDependencies": {
+    "graphql": "14.x.x"
+  },
   "dependencies": {
     "@graphql-codegen/plugin-helpers": "1.4.0",
-    "graphql": "14.4.2",
     "relay-compiler": "5.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/testing": "1.4.0",
     "@types/graphql": "14.2.3",
     "@types/jest": "24.0.17",
+    "graphql": "14.4.2",
     "jest": "24.7.1",
     "ts-jest": "24.0.2",
     "typescript": "3.4.5"
