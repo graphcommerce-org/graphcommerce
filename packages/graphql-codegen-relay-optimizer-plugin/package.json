@@ -26,12 +26,12 @@
   ],
   "dependencies": {
     "@graphql-codegen/plugin-helpers": "1.4.0",
-    "graphql": "14.3.1",
+    "graphql": "14.4.2",
     "relay-compiler": "5.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/testing": "1.4.0",
-    "@types/graphql": "14.2.2",
+    "@types/graphql": "14.2.3",
     "@types/jest": "24.0.17",
     "jest": "24.7.1",
     "ts-jest": "24.0.2",
