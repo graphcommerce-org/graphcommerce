@@ -13,7 +13,7 @@ Benefits:
 
 ## [`@n1ru4l/graphql-codegen-relay-optimizer-plugin`](packages/graphql-codegen-relay-optimizer-plugin)
 
-Use the relay-compiler foroptimizing your GraphQL Queries.
+Use the relay-compiler foro ptimizing your GraphQL Queries.
 
 ## [`todo-app-example`](packages/todo-app-example)
 
