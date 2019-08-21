@@ -13,10 +13,10 @@
     "graphql-anywhere": "4.2.4",
     "graphql-relay": "0.6.0",
     "graphql-tag": "2.10.1",
-    "react": "16.8.6",
+    "react": "16.9.0",
     "react-apollo": "2.5.8",
     "react-apollo-hooks": "0.4.5",
-    "react-dom": "16.8.6",
+    "react-dom": "16.9.0",
     "react-scripts": "3.0.1",
     "todomvc-app-css": "2.2.0",
     "todomvc-common": "1.0.5"
