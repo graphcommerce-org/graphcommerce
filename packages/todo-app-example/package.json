@@ -8,7 +8,7 @@
     "apollo-link-http": "1.5.15",
     "classnames": "2.2.6",
     "express": "4.17.1",
-    "express-graphql": "0.8.0",
+    "express-graphql": "0.9.0",
     "graphql": "14.4.2",
     "graphql-anywhere": "4.2.4",
     "graphql-relay": "0.6.0",
