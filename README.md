@@ -9,6 +9,10 @@ Benefits:
   - Fragment Arguments
   - Data Masking
 
+Read the introduction and setup guide over here: [Optimizing your Apollo Client Operations with GraphQL Code Generator and the Relay Compiler](https://medium.com/the-guild/optimizing-queries-with-the-graphql-code-generator-b8c37d692857)
+
+Checkout the example app here: [`todo-app-example`](packages/todo-app-example)
+
 # Packages [![CircleCI](https://circleci.com/gh/n1ru4l/graphql-codegen-relay-plugins/tree/master.svg?style=svg)](https://circleci.com/gh/n1ru4l/graphql-codegen-relay-plugins/tree/master)
 
 ## [`@n1ru4l/graphql-codegen-relay-optimizer-plugin`](packages/graphql-codegen-relay-optimizer-plugin)
