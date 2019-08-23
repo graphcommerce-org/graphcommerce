@@ -31,7 +31,7 @@ const createOptimisticResponse = (
 });
 
 export const useChangeTodoStatusMutation = () => {
-  const mutate = useChangeTodoStatusMutationMutation();
+  const [mutate] = useChangeTodoStatusMutationMutation();
 
   return useCallback(
     (complete: boolean, todo: Todo_TodoFragment, user: Todo_UserFragment) => {

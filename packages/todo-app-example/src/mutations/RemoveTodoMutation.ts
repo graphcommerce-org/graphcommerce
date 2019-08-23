@@ -4,11 +4,11 @@ import {
   Todo_UserFragment,
   Todo_TodoFragment,
   RemoveTodoInput,
-  TodoList_userFragmentDoc,
+  TodoList_UserFragmentDoc,
   TodoList_UserFragment
 } from "../generated-types";
 import { useCallback } from "react";
-import { MutationUpdaterFn } from "react-apollo";
+import { MutationUpdaterFn } from "apollo-client";
 import idx from "idx.macro";
 
 function emptyEdgeFilter<TValue>(
@@ -44,7 +44,7 @@ const update: MutationUpdaterFn<RemoveTodoMutationMutation> = (
     return;
   }
   const data = dataProxy.readFragment<TodoList_UserFragment>({
-    fragment: TodoList_userFragmentDoc,
+    fragment: TodoList_UserFragmentDoc,
     fragmentName: "TodoList_user",
     id: `User:${userId}`
   });
@@ -55,7 +55,7 @@ const update: MutationUpdaterFn<RemoveTodoMutationMutation> = (
     .filter(emptyEdgeFilter)
     .filter(edge => (edge.node ? edge.node.id !== removedItemId : true));
   dataProxy.writeFragment<TodoList_UserFragment>({
-    fragment: TodoList_userFragmentDoc,
+    fragment: TodoList_UserFragmentDoc,
     fragmentName: "TodoList_user",
     id: `User:${userId}`,
     data
@@ -63,7 +63,7 @@ const update: MutationUpdaterFn<RemoveTodoMutationMutation> = (
 };
 
 export const useRemoveTodoMutation = () => {
-  const mutate = useRemoveTodoMutationMutation();
+  const [mutate] = useRemoveTodoMutationMutation();
 
   return useCallback(
     (todo: Todo_TodoFragment, user: Todo_UserFragment) => {

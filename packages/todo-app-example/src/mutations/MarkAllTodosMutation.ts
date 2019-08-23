@@ -53,7 +53,7 @@ const createOptimisticResponse = (
 };
 
 export const useMarkAllTodosMutation = () => {
-  const mutate = useMarkAllTodosMutationMutation();
+  const [mutate] = useMarkAllTodosMutationMutation();
   return useCallback(
     (complete: boolean, todos: Todos, user: TodoList_UserFragment) => {
       const input: MarkAllTodosInput = {

@@ -3,13 +3,13 @@ import {
   AddTodoInput,
   TodoApp_UserFragment,
   AddTodoMutationMutation,
-  TodoList_userFragmentDoc,
+  TodoList_UserFragmentDoc,
   TodoList_UserFragment
 } from "../generated-types";
-import { FetchResult } from "react-apollo";
+import { FetchResult } from "apollo-link";
 import idx from "idx.macro";
 import { useCallback } from "react";
-import { MutationUpdaterFn } from "react-apollo";
+import { MutationUpdaterFn } from "apollo-client";
 
 let tempID = 0;
 
@@ -46,7 +46,7 @@ const update: MutationUpdaterFn<AddTodoMutationMutation> = (proxy, result) => {
     return;
   }
   const data = proxy.readFragment<TodoList_UserFragment>({
-    fragment: TodoList_userFragmentDoc,
+    fragment: TodoList_UserFragmentDoc,
     fragmentName: "TodoList_user",
     id: `User:${userId}`
   });
@@ -60,7 +60,7 @@ const update: MutationUpdaterFn<AddTodoMutationMutation> = (proxy, result) => {
   }
   edges.push(addTodo.todoEdge);
   proxy.writeFragment<TodoList_UserFragment>({
-    fragment: TodoList_userFragmentDoc,
+    fragment: TodoList_UserFragmentDoc,
     fragmentName: "TodoList_user",
     id: `User:${userId}`,
     data
@@ -74,7 +74,7 @@ type AddTodoMutationFetchResult = FetchResult<
 >;
 
 export const useAddTodoMutation = () => {
-  const mutate = useAddTodoMutationMutation();
+  const [mutate] = useAddTodoMutationMutation();
 
   return useCallback(
     (text: string, user: TodoApp_UserFragment) => {
