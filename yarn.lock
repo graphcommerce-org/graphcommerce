@@ -1504,7 +1504,7 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/graphql@*", "@types/graphql@14.2.3":
+"@types/graphql@14.2.3":
   version "14.2.3"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.2.3.tgz#cfc6420a67eb20420786f90112357921974593b9"
   integrity sha512-UoCovaxbJIxagCvVfalfK7YaNhmxj3BQFRQ2RHQKLiu+9wNXhJnlbspsLHt/YQM99IaLUUFJNzCwzc6W0ypMeQ==
@@ -1611,12 +1611,12 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/relay-compiler@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-5.0.0.tgz#936db7514bb367c3696baf55ca7d659443d8ccf5"
-  integrity sha512-S0+9d/nFYrVHtuTqF4/W4dYimbq+4TUtA9qPmQEM5hsKsAhkogaxYnJyEh4NSdnH9UaXymqwGxu8Ti46qQBhbg==
+"@types/relay-compiler@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-5.0.1.tgz#722466b0b07fdb03e56f5686002e74524f4e86a0"
+  integrity sha512-j/AqXCNqv/SFBQdff5Ppt8YeOra9aR06u+jf8X0/Wa0DMni2tuufbyAOg9e9bPOTeapjJQoUX6ORg2SsmXJkew==
   dependencies:
-    "@types/graphql" "*"
+    graphql "14.5.0"
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -5322,6 +5322,13 @@ graphql@14.4.2:
   version "14.4.2"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.4.2.tgz#553a7d546d524663eda49ed6df77577be3203ae3"
   integrity sha512-6uQadiRgnpnSS56hdZUSvFrVcQ6OF9y6wkxJfKquFtHlnl7+KSuWwSJsdwiK1vybm1HgcdbpGkCpvhvsVQ0UZQ==
+  dependencies:
+    iterall "^1.2.2"
+
+graphql@14.5.0:
+  version "14.5.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.0.tgz#4801e6460942c9c591944617f6dd224a9e531520"
+  integrity sha512-wnGcTD181L2xPnIwHHjx/moV4ulxA2Kms9zcUY+B/SIrK+2N+iOC6WNgnR2zVTmg1Z8P+CZq5KXibTnatg3WUw==
   dependencies:
     iterall "^1.2.2"
 
