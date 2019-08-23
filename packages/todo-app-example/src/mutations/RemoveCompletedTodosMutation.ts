@@ -3,11 +3,11 @@ import {
   useRemoveCompletedTodosMutationMutation,
   TodoListFooter_UserFragment,
   RemoveCompletedTodosMutationMutation,
-  TodoListFooter_userFragmentDoc
+  TodoListFooter_UserFragmentDoc
 } from "../generated-types";
 import { useCallback } from "react";
 import idx from "idx.macro";
-import { MutationUpdaterFn } from "react-apollo";
+import { MutationUpdaterFn } from "apollo-client";
 
 type Todos = Exclude<TodoListFooter_UserFragment, null>["todos"];
 
@@ -50,7 +50,7 @@ const update: MutationUpdaterFn<RemoveCompletedTodosMutationMutation> = (
 
   const data = dataProxy.readFragment<TodoListFooter_UserFragment>({
     id: `User:${userId}`,
-    fragment: TodoListFooter_userFragmentDoc,
+    fragment: TodoListFooter_UserFragmentDoc,
     fragmentName: "TodoListFooter_user"
   });
   if (!data || !data.todos || !data.todos.edges) {
@@ -65,14 +65,14 @@ const update: MutationUpdaterFn<RemoveCompletedTodosMutationMutation> = (
   });
   dataProxy.writeFragment<TodoListFooter_UserFragment>({
     id: `User:${userId}`,
-    fragment: TodoListFooter_userFragmentDoc,
+    fragment: TodoListFooter_UserFragmentDoc,
     fragmentName: "TodoListFooter_user",
     data
   });
 };
 
 export const useRemoveComletedTodosMutation = () => {
-  const mutate = useRemoveCompletedTodosMutationMutation();
+  const [mutate] = useRemoveCompletedTodosMutationMutation();
 
   return useCallback(
     (todos: Todos, user: TodoListFooter_UserFragment) => {

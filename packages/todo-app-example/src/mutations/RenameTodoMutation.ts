@@ -22,7 +22,7 @@ const createOptimisticResponse = (
 });
 
 export const useRenameTodoMutation = () => {
-  const mutate = useRenameTodoMutationMutation();
+  const [mutate] = useRenameTodoMutationMutation();
 
   return useCallback(
     (text: string, todo: Todo_TodoFragment) => {

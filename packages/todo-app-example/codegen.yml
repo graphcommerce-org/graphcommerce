@@ -7,7 +7,6 @@ generates:
       withHOC: false
       withComponent: false
       withHooks: true
-      withFragmentContainer: false
     plugins:
       - "typescript"
       - "@n1ru4l/graphql-codegen-relay-optimizer-plugin"

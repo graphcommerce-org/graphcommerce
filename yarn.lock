@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@apollo/react-common@^3.0.1":
+"@apollo/react-common@3.0.1", "@apollo/react-common@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@apollo/react-common/-/react-common-3.0.1.tgz#9c8f1433ddaddf80e471259126a76f1738dd4273"
   integrity sha512-7SC4qqPFo/41AhaQKCRovIshKkm4JLEGXyRHi+NPsaNJyk2J/HrWREnlHVqoPzYeIyq33f1L6j/NAkKn1NOnnQ==
@@ -32,7 +32,7 @@
     ts-invariant "^0.4.4"
     tslib "^1.10.0"
 
-"@apollo/react-hooks@^3.0.1":
+"@apollo/react-hooks@3.0.1", "@apollo/react-hooks@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@apollo/react-hooks/-/react-hooks-3.0.1.tgz#83869beddcbb06cba05d50ccf05097191d245a9c"
   integrity sha512-Boai/T+2z3m23Gy82m1pB+FOlrhkBJ//EIYa3pqX9sUsvgRWMKC+3NxpeHEUYqsf0qzFiM1dO4Pn9OxCFstM8g==
@@ -1339,14 +1339,6 @@
   dependencies:
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
-
-"@n1ru4l/graphql-codegen-relay-optimizer-plugin@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@n1ru4l/graphql-codegen-relay-optimizer-plugin/-/graphql-codegen-relay-optimizer-plugin-1.0.0.tgz#a0efeee89977869c1c6aada1e9f35fd4009012b2"
-  integrity sha512-dktY5F9kHd8vLlAzCwmWbGeDVB81tMiX+73QAutKQt/phV9KO0Ue/BIsG4WZ9WXVCUZX8KFn4fM2VGdDjG7mDA==
-  dependencies:
-    graphql "14.3.1"
-    relay-compiler "5.0.0"
 
 "@nodelib/fs.scandir@2.1.1":
   version "2.1.1"
@@ -5337,13 +5329,6 @@ graphql.macro@1.4.2:
     babel-literal-to-ast "^2.1.0"
     babel-plugin-macros "^2.5.0"
     graphql-tag "^2.10.1"
-
-graphql@14.3.1:
-  version "14.3.1"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.3.1.tgz#b3aa50e61a841ada3c1f9ccda101c483f8e8c807"
-  integrity sha512-FZm7kAa3FqKdXy8YSSpAoTtyDFMIYSpCDOr+3EqlI1bxmtHu+Vv/I2vrSeT1sBOEnEniX3uo4wFhFdS/8XN6gA==
-  dependencies:
-    iterall "^1.2.2"
 
 graphql@14.4.2:
   version "14.4.2"
@@ -9459,13 +9444,6 @@ rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
-
-react-apollo-hooks@0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/react-apollo-hooks/-/react-apollo-hooks-0.4.5.tgz#7fe6a8ddfdc92df2da664d399ea77a0da4a10bad"
-  integrity sha512-fq04h88hg4ONtlzxYInmv7Okqqstzk3UCp55jHWOlIO2lFKoZPhQrtCz7A+TrcRu8GGwtG1SsioRKN8kIQaAOQ==
-  dependencies:
-    lodash "^4.17.11"
 
 react-apollo@3.0.1:
   version "3.0.1"
