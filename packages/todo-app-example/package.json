@@ -60,7 +60,7 @@
     "@types/react-dom": "16.9.0",
     "graphql.macro": "1.4.2",
     "idx.macro": "4.0.0",
-    "typescript": "3.5.3"
+    "typescript": "3.6.2"
   },
   "proxy": "http://localhost:3001/graphql"
 }
