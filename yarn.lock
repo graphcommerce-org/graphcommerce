@@ -1048,6 +1048,16 @@
     graphql-toolkit "0.5.11"
     tslib "1.10.0"
 
+"@graphql-codegen/plugin-helpers@1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.6.1.tgz#406fb6a2b64f536be5612edf9b04c901f474f113"
+  integrity sha512-rgmt3wIXEgv1vCMN43ZPB51b1FuxmQ07CEv1WIFDakZ8cvVNq/c/uZ1mVWt4es1cK5l0QlnJFiZMYv5cor9nSQ==
+  dependencies:
+    change-case "3.1.0"
+    common-tags "1.8.0"
+    import-from "3.0.0"
+    tslib "1.10.0"
+
 "@graphql-codegen/plugin-helpers@1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.7.0.tgz#b1870a166cf34b2c67c053f2a9ec77823f78ac2d"
@@ -1309,6 +1319,14 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@n1ru4l/graphql-codegen-relay-optimizer-plugin@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@n1ru4l/graphql-codegen-relay-optimizer-plugin/-/graphql-codegen-relay-optimizer-plugin-3.0.0.tgz#09806bd6b5412d6351ca2acaad1227050e2185fe"
+  integrity sha512-jgpbkeKp9hi94AcZguCttP+kKcUHFlWZ2wqnnc99Xsrc2+lQaieF99IG285tPiZFdnHxPIrfZMW7RYO1vbTwNg==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.6.1"
+    relay-compiler "5.0.0"
+
 "@nodelib/fs.scandir@2.1.1":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.1.tgz#7fa8fed654939e1a39753d286b48b4836d00e0eb"
@@ -1563,10 +1581,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.10.tgz#51babf9c7deadd5343620055fc8aff7995c8b031"
   integrity sha512-LcsGbPomWsad6wmMNv7nBLw7YYYyfdYcz6xryKYQhx89c3XXan+8Q6AJ43G5XDIaklaVkK3mE4fCb0SBvMiPSQ==
 
-"@types/node@12.7.3":
-  version "12.7.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.3.tgz#27b3f40addaf2f580459fdb405222685542f907a"
-  integrity sha512-3SiLAIBkDWDg6vFo0+5YJyHPWU9uwu40Qe+v+0MH8wRKYBimHvvAOyk3EzMrD/TrIlLYfXrqDqrg913PynrMJQ==
+"@types/node@12.7.4":
+  version "12.7.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.4.tgz#64db61e0359eb5a8d99b55e05c729f130a678b04"
+  integrity sha512-W0+n1Y+gK/8G2P/piTkBBN38Qc5Q1ZSO6B5H3QmPCUewaiXOo2GCAWZ4ElZCcNhjJuBSUSLGFUJnmlCn5+nxOQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
