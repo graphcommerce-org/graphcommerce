@@ -45,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/node": "7.5.5",
+    "@babel/node": "7.6.1",
     "@babel/preset-flow": "7.0.0",
     "@graphql-codegen/cli": "1.7.0",
     "@graphql-codegen/plugin-helpers": "1.7.0",
