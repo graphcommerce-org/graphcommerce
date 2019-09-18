@@ -8,10 +8,10 @@ import {
   Printer as GraphQLIRPrinter
 } from "relay-compiler";
 
-import * as InlineFragmentsTransform from "relay-compiler/lib/InlineFragmentsTransform";
-import * as SkipRedundantNodesTransform from "relay-compiler/lib/SkipRedundantNodesTransform";
-import * as RelayApplyFragmentArgumentTransform from "relay-compiler/lib/RelayApplyFragmentArgumentTransform";
-import * as FlattenTransform from "relay-compiler/lib/FlattenTransform";
+import * as InlineFragmentsTransform from "relay-compiler/lib/transforms/InlineFragmentsTransform";
+import * as SkipRedundantNodesTransform from "relay-compiler/lib/transforms/SkipRedundantNodesTransform";
+import * as RelayApplyFragmentArgumentTransform from "relay-compiler/lib/transforms/RelayApplyFragmentArgumentTransform";
+import * as FlattenTransform from "relay-compiler/lib/transforms/FlattenTransform";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RelayOptimizerPluginConfig {}
