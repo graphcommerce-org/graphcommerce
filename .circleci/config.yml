@@ -1,12 +1,20 @@
 version: 2
+
+references:
+  js_deps_cache_key: &js_deps_cache_key v8-dependency-js-deps-{{ checksum "yarn.lock" }}
+  js_deps_backup_cache_key: &js_deps_backup_cache_key v8-dependency-js-deps
+
 jobs:
   build:
     docker:
       - image: circleci/node:12.10.0
+    working_directory: /tmp/workspace
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          keys:
+            - *js_deps_cache_key
+            - *js_deps_backup_cache_key
       - run:
           name: Install dependencies
           command: yarn --pure-lockfile
@@ -23,3 +31,9 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
