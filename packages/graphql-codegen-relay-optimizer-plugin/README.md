@@ -28,9 +28,11 @@ schema: schema.graphql
 generates:
   src/generated-types.tsx:
     documents: "src/documents/**/*.graphql"
+    config:
+      skipDocumentsValidation: true
     plugins:
-      - "typescript"
       - "@n1ru4l/graphql-codegen-relay-optimizer-plugin"
+      - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"
 ```

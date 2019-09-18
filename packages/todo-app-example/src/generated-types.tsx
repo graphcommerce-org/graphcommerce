@@ -468,6 +468,22 @@ export const AppQueryDocument = gql`
   }
 `;
 
+/**
+ * __useAppQueryQuery__
+ *
+ * To run a query within a React component, call `useAppQueryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAppQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAppQueryQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
 export function useAppQueryQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
     AppQueryQuery,
@@ -490,8 +506,10 @@ export function useAppQueryLazyQuery(
     baseOptions
   );
 }
-
 export type AppQueryQueryHookResult = ReturnType<typeof useAppQueryQuery>;
+export type AppQueryLazyQueryHookResult = ReturnType<
+  typeof useAppQueryLazyQuery
+>;
 export type AppQueryQueryResult = ApolloReactCommon.QueryResult<
   AppQueryQuery,
   AppQueryQueryVariables
@@ -520,6 +538,23 @@ export type AddTodoMutationMutationFn = ApolloReactCommon.MutationFunction<
   AddTodoMutationMutationVariables
 >;
 
+/**
+ * __useAddTodoMutationMutation__
+ *
+ * To run a mutation, you first call `useAddTodoMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddTodoMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addTodoMutationMutation, { data, loading, error }] = useAddTodoMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useAddTodoMutationMutation(
   baseOptions?: ApolloReactHooks.MutationHookOptions<
     AddTodoMutationMutation,
@@ -560,6 +595,23 @@ export type ChangeTodoStatusMutationMutationFn = ApolloReactCommon.MutationFunct
   ChangeTodoStatusMutationMutationVariables
 >;
 
+/**
+ * __useChangeTodoStatusMutationMutation__
+ *
+ * To run a mutation, you first call `useChangeTodoStatusMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangeTodoStatusMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changeTodoStatusMutationMutation, { data, loading, error }] = useChangeTodoStatusMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useChangeTodoStatusMutationMutation(
   baseOptions?: ApolloReactHooks.MutationHookOptions<
     ChangeTodoStatusMutationMutation,
@@ -600,6 +652,23 @@ export type MarkAllTodosMutationMutationFn = ApolloReactCommon.MutationFunction<
   MarkAllTodosMutationMutationVariables
 >;
 
+/**
+ * __useMarkAllTodosMutationMutation__
+ *
+ * To run a mutation, you first call `useMarkAllTodosMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMarkAllTodosMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [markAllTodosMutationMutation, { data, loading, error }] = useMarkAllTodosMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useMarkAllTodosMutationMutation(
   baseOptions?: ApolloReactHooks.MutationHookOptions<
     MarkAllTodosMutationMutation,
@@ -638,6 +707,23 @@ export type RemoveCompletedTodosMutationMutationFn = ApolloReactCommon.MutationF
   RemoveCompletedTodosMutationMutationVariables
 >;
 
+/**
+ * __useRemoveCompletedTodosMutationMutation__
+ *
+ * To run a mutation, you first call `useRemoveCompletedTodosMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveCompletedTodosMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeCompletedTodosMutationMutation, { data, loading, error }] = useRemoveCompletedTodosMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useRemoveCompletedTodosMutationMutation(
   baseOptions?: ApolloReactHooks.MutationHookOptions<
     RemoveCompletedTodosMutationMutation,
@@ -676,6 +762,23 @@ export type RemoveTodoMutationMutationFn = ApolloReactCommon.MutationFunction<
   RemoveTodoMutationMutationVariables
 >;
 
+/**
+ * __useRemoveTodoMutationMutation__
+ *
+ * To run a mutation, you first call `useRemoveTodoMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveTodoMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeTodoMutationMutation, { data, loading, error }] = useRemoveTodoMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useRemoveTodoMutationMutation(
   baseOptions?: ApolloReactHooks.MutationHookOptions<
     RemoveTodoMutationMutation,
@@ -712,6 +815,23 @@ export type RenameTodoMutationMutationFn = ApolloReactCommon.MutationFunction<
   RenameTodoMutationMutationVariables
 >;
 
+/**
+ * __useRenameTodoMutationMutation__
+ *
+ * To run a mutation, you first call `useRenameTodoMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRenameTodoMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [renameTodoMutationMutation, { data, loading, error }] = useRenameTodoMutationMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useRenameTodoMutationMutation(
   baseOptions?: ApolloReactHooks.MutationHookOptions<
     RenameTodoMutationMutation,

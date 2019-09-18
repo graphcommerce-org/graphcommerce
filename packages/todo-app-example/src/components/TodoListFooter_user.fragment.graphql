@@ -1,10 +1,9 @@
-fragment TodoListFooter_user on User {
+fragment TodoListFooter_user on User
+  @argumentDefinitions(first: { type: "Int", defaultValue: 2147483647 }) {
   id
   userId
   completedCount
-  todos(
-    first: 2147483647 # max GraphQLInt
-  ) @connection(key: "TodoList_todos") {
+  todos(first: $first) @connection(key: "TodoList_todos") {
     edges {
       node {
         id

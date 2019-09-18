@@ -4,11 +4,12 @@ generates:
   src/generated-types.tsx:
     documents: "src/**/*.graphql"
     config:
+      skipDocumentsValidation: true
       withHOC: false
       withComponent: false
       withHooks: true
     plugins:
-      - "typescript"
       - "@n1ru4l/graphql-codegen-relay-optimizer-plugin"
+      - "typescript"
       - "typescript-operations"
       - "typescript-react-apollo"

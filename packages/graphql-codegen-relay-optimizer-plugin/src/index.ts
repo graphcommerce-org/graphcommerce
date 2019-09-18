@@ -47,6 +47,11 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   ).addAll(relayDocuments);
 
   const fragmentDocuments = fragmentCompilerContext
+    .applyTransforms([
+      RelayApplyFragmentArgumentTransform.transform,
+      FlattenTransform.transformWithOptions({ flattenAbstractTypes: false }),
+      SkipRedundantNodesTransform.transform
+    ])
     .documents()
     .filter(doc => doc.kind === "Fragment");
 
