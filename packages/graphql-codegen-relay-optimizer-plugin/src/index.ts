@@ -26,12 +26,10 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   // Maybe we can scan the queries and add them dynamically without users having to do some extra stuff
   // transformASTSchema creates a new schema instance instead of mutating the old one
   const adjustedSchema = transformASTSchema(schema, [
+    /* GraphQL */ `
+      directive @connection(key: String!) on FIELD
+      directive @client on FIELD
     `
-  directive @connection(
-    key: String!
-  ) on FIELD
-  directive @client on FIELD
-  `
   ]);
   const documentAsts = documents.reduce(
     (prev, v) => {
