@@ -1,0 +1,19 @@
+overwrite: true
+schema: 'https://api-euwest.graphcms.com/v1/cjioidxbu01mw01efuxenx5rs/master'
+documents: '**/*.graphql'
+generates:
+  generated/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+      # - 'typescript-document-nodes'
+      # - 'fragment-matcher'
+    config:
+      withHOC: false
+      withHooks: true
+      withComponent: false
+hooks:
+  afterAllFileWrite:
+    - eslint --fix
+    - prettier --write
