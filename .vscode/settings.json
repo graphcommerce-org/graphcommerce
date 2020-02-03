@@ -1,0 +1,11 @@
+{
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.formatOnSave": true,
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "editor.tabSize": 2,
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

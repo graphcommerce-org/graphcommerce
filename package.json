@@ -11,5 +11,44 @@
     "next": "9.2.1",
     "react": "16.12.0",
     "react-dom": "16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "@types/react": "^16.9.19",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^4.2.1",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "typescript": "^3.7.5"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "printWidth": 100,
+    "proseWrap": "always",
+    "overrides": [
+      {
+        "files": "*.md",
+        "options": {
+          "printWidth": 80
+        }
+      }
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
