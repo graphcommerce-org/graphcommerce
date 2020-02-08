@@ -2,10 +2,16 @@ overwrite: true
 schema: 'https://api-euwest.graphcms.com/v1/cjioidxbu01mw01efuxenx5rs/dev'
 documents: '**/*.graphql'
 generates:
-  # graphql/generated.json:
-  #   plugins:
-  #     - 'fragment-matcher'
-  graphql/generated.ts:
+  generated/fragments.json:
+    plugins:
+      - 'fragment-matcher'
+  generated/schema.graphql:
+    plugins:
+      - schema-ast
+    config:
+      includeDirectives: true
+      commentDescriptions: true
+  generated/graphql.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
@@ -15,7 +21,7 @@ generates:
       withHooks: true
       withComponent: false
       typesPrefix: GQL
-hooks:
-  afterAllFileWrite:
-    - eslint --fix
-    - prettier --write
+    hooks:
+      afterAllFileWrite:
+        - eslint --fix
+        - prettier --write

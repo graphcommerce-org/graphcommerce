@@ -30,6 +30,7 @@
     "@graphql-codegen/cli": "^1.12.1",
     "@graphql-codegen/fragment-matcher": "1.12.1",
     "@graphql-codegen/introspection": "1.12.1",
+    "@graphql-codegen/schema-ast": "^1.12.2",
     "@graphql-codegen/typescript": "1.12.1",
     "@graphql-codegen/typescript-document-nodes": "1.12.1",
     "@graphql-codegen/typescript-graphql-files-modules": "1.12.1",

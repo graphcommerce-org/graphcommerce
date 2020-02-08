@@ -1,0 +1,60 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "Node",
+        "possibleTypes": [
+          {
+            "name": "Asset"
+          },
+          {
+            "name": "ContactForm"
+          },
+          {
+            "name": "Ecosystem"
+          },
+          {
+            "name": "StructuredPage"
+          },
+          {
+            "name": "Block"
+          },
+          {
+            "name": "Page"
+          },
+          {
+            "name": "BlogPost"
+          },
+          {
+            "name": "Employee"
+          },
+          {
+            "name": "JobListing"
+          },
+          {
+            "name": "Comment"
+          },
+          {
+            "name": "SingularPage"
+          },
+          {
+            "name": "Document"
+          },
+          {
+            "name": "Module"
+          },
+          {
+            "name": "Quote"
+          },
+          {
+            "name": "StartProjectForm"
+          },
+          {
+            "name": "MailchimpForm"
+          }
+        ]
+      }
+    ]
+  }
+}
