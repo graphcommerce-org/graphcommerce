@@ -10,5 +10,8 @@ module.exports = withBundleAnalyzer({
   },
   experimental: {
     modern: true,
+    rewrites() {
+      return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
+    },
   },
 })

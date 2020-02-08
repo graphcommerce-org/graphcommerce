@@ -24,7 +24,7 @@ import {
 export const getStaticPaths: (
   baseUrl: string,
   locale: GQLLocale,
-) => Promise<Array<string | ParsedUrlQuery>> = async (baseUrl, locale) => {
+) => Promise<Array<string>> = async (baseUrl, locale) => {
   const apolloClient = initApolloClient()
 
   let queryResult: ApolloQueryResult<GQLGetStaticPathsNlQuery | GQLGetStaticPathsEnQuery>
@@ -33,26 +33,31 @@ export const getStaticPaths: (
       queryResult = await apolloClient.query<
         GQLGetStaticPathsNlQuery,
         GQLGetStaticPathsNlQueryVariables
-      >({ query: GetStaticPathsNlDocument, variables: { startsWith: `${baseUrl}/` } })
+      >({ query: GetStaticPathsNlDocument, variables: { startsWith: `${baseUrl}` } })
       break
     case GQLLocale.En:
       queryResult = await apolloClient.query<
         GQLGetStaticPathsEnQuery,
         GQLGetStaticPathsEnQueryVariables
-      >({ query: GetStaticPathsEnDocument, variables: { startsWith: `${baseUrl}/` } })
+      >({ query: GetStaticPathsEnDocument, variables: { startsWith: `${baseUrl}` } })
       break
   }
 
-  return queryResult.data.pages.filter(page => page?.url).map(page => `/${page!.url!}`)
+  return queryResult.data.pages
+    .filter(page => page?.url)
+    .map(page => {
+      return `${page!.url! === '/' ? '' : '/'}${page!.url!}`
+    })
 }
 
-export type GetStaticProps = (context: {
+export type GraphCmsStaticProps = (context: {
   params: ParsedUrlQuery
 }) => Promise<{ props: GraphCmsPage }>
 
-export const createGetStaticProps = (baseUrl: string, locale: GQLLocale): GetStaticProps => async ({
-  params,
-}) => {
+export const createGetStaticProps = (
+  baseUrl: string,
+  locale: GQLLocale,
+): GraphCmsStaticProps => async ({ params }) => {
   const apolloClient = initApolloClient()
 
   let queryResult: ApolloQueryResult<GQLGetPageNlQuery | GQLGetPageEnQuery>

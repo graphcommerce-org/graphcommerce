@@ -24,7 +24,8 @@
     "react-dom": "16.12.0",
     "react-schemaorg": "^1.0.0",
     "remarkable": "^2.0.0",
-    "schema-dts": "^0.5.1"
+    "schema-dts": "^0.5.1",
+    "sitemap": "^5.1.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.12.1",
