@@ -11,7 +11,7 @@ import {
   GQLLocale,
   GQLGetStaticPathsNlQuery,
   GQLGetStaticPathsEnQueryVariables,
-} from '../generated/graphql'
+} from '../graphql/generated'
 
 export type GraphCmsPage = {
   slug: string

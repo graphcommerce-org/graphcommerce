@@ -13,8 +13,8 @@ query GetPageNL($url: String!) {
         url
         handle
       }
-      title
-      content
+      title(locale: NL)
+      content(locale: NL)
       author {
         firstName
         lastName
@@ -39,8 +39,8 @@ query GetPageEN($url: String!) {
         url
         handle
       }
-      title
-      content
+      title(locale: EN)
+      content(locale: EN)
       author {
         firstName
         lastName

@@ -18,14 +18,14 @@ const Page: React.FC<GraphCmsPage> = ({ page, language, slug }) => {
         item={{
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
-          headline: page.blogPost?.title,
-          image: page.blogPost?.image?.url,
-          datePublished: page.blogPost?.publicPublishedAt,
+          headline: page.blogPost.title!,
+          image: page.blogPost.image?.url,
+          datePublished: page.blogPost.publicPublishedAt,
         }}
       />
       <h1>
-        <GraphCmsLink page={page}>{page?.blogPost?.title}</GraphCmsLink>
-        <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content }} />
+        <GraphCmsLink page={page}>{page.blogPost.title}</GraphCmsLink>
+        <div dangerouslySetInnerHTML={{ __html: page.blogPost.content! }} />
       </h1>
     </div>
   )

@@ -7841,8 +7841,8 @@ export const GetPageNlDocument = gql`
           url
           handle
         }
-        title
-        content
+        title(locale: NL)
+        content(locale: NL)
         author {
           firstName
           lastName
@@ -7910,8 +7910,8 @@ export const GetPageEnDocument = gql`
           url
           handle
         }
-        title
-        content
+        title(locale: EN)
+        content(locale: EN)
         author {
           firstName
           lastName

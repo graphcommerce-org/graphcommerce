@@ -2,13 +2,14 @@ overwrite: true
 schema: 'https://api-euwest.graphcms.com/v1/cjioidxbu01mw01efuxenx5rs/dev'
 documents: '**/*.graphql'
 generates:
-  generated/graphql.ts:
+  # graphql/generated.json:
+  #   plugins:
+  #     - 'fragment-matcher'
+  graphql/generated.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
-      # - 'typescript-document-nodes'
-      # - 'fragment-matcher'
     config:
       withHOC: false
       withHooks: true
