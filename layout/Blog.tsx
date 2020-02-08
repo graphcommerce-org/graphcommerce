@@ -5,8 +5,8 @@ import Error from 'next/error'
 import { GraphCmsLink, GraphCmsPage, GraphCmsPageHead } from '../graphcms'
 
 const BlogLayout: React.FC<GraphCmsPage> = ({ page, locale }) => {
-  if (!page?.blogPost) {
-    return <Error statusCode={404} />
+  if (!page.blogPost) {
+    return <Error statusCode={404} title='page.blogPost not found.' />
   }
 
   return (

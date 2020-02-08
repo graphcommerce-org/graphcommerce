@@ -7,7 +7,7 @@ export default BlogLayout
 // eslint-disable-next-line @typescript-eslint/camelcase
 export const unstable_getStaticPaths = async () => {
   const { getStaticPaths } = await import('../../graphcms/ssg')
-  return getStaticPaths('blog/', GQLLocale.Nl)
+  return getStaticPaths('blog', GQLLocale.Nl)
 }
 // eslint-disable-next-line @typescript-eslint/camelcase
 export const unstable_getStaticProps: GraphCmsStaticProps = async ctx => {

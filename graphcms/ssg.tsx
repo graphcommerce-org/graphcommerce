@@ -21,6 +21,8 @@ import {
   GetStaticPathsNlDocument,
 } from '../generated/graphql'
 
+export const handleRootUrl = (url: string) => (url === '/' ? url : `/${url}`)
+
 export const getStaticPaths: (
   baseUrl: string,
   locale: GQLLocale,
@@ -43,11 +45,7 @@ export const getStaticPaths: (
       break
   }
 
-  return queryResult.data.pages
-    .filter(page => page?.url)
-    .map(page => {
-      return `${page!.url! === '/' ? '' : '/'}${page!.url!}`
-    })
+  return queryResult.data.pages.map(page => handleRootUrl(page!.url!))
 }
 
 export type GraphCmsStaticProps = (context: {

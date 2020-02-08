@@ -7755,33 +7755,6 @@ export type GQLStructuredPageWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type GQLGetPageNlQueryVariables = {
-  url: Scalars['String']
-}
-
-export type GQLGetPageNlQuery = { __typename?: 'Query' } & {
-  page: Maybe<
-    { __typename?: 'Page' } & Pick<
-      GQLPage,
-      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
-    > & { urlEN: GQLPage['url'] } & {
-        blogPost: Maybe<
-          { __typename?: 'BlogPost' } & Pick<
-            GQLBlogPost,
-            'publicPublishedAt' | 'title' | 'content'
-          > & {
-              image: Maybe<
-                { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
-              >
-              author: Maybe<
-                { __typename?: 'Employee' } & Pick<GQLEmployee, 'firstName' | 'lastName' | 'email'>
-              >
-            }
-        >
-      }
-  >
-}
-
 export type GQLGetPageEnQueryVariables = {
   url: Scalars['String']
 }
@@ -7809,12 +7782,31 @@ export type GQLGetPageEnQuery = { __typename?: 'Query' } & {
   >
 }
 
-export type GQLGetStaticPathsNlQueryVariables = {
-  startsWith: Scalars['String']
+export type GQLGetPageNlQueryVariables = {
+  url: Scalars['String']
 }
 
-export type GQLGetStaticPathsNlQuery = { __typename?: 'Query' } & {
-  pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'>>>
+export type GQLGetPageNlQuery = { __typename?: 'Query' } & {
+  page: Maybe<
+    { __typename?: 'Page' } & Pick<
+      GQLPage,
+      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
+    > & { urlEN: GQLPage['url'] } & {
+        blogPost: Maybe<
+          { __typename?: 'BlogPost' } & Pick<
+            GQLBlogPost,
+            'publicPublishedAt' | 'title' | 'content'
+          > & {
+              image: Maybe<
+                { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
+              >
+              author: Maybe<
+                { __typename?: 'Employee' } & Pick<GQLEmployee, 'firstName' | 'lastName' | 'email'>
+              >
+            }
+        >
+      }
+  >
 }
 
 export type GQLGetStaticPathsEnQueryVariables = {
@@ -7822,78 +7814,17 @@ export type GQLGetStaticPathsEnQueryVariables = {
 }
 
 export type GQLGetStaticPathsEnQuery = { __typename?: 'Query' } & {
-  pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'>>>
+  pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'> & { urlNL: GQLPage['url'] }>>
 }
 
-export const GetPageNlDocument = gql`
-  query GetPageNL($url: String!) {
-    page(where: { urlNL: $url }) {
-      metaTitle(locale: NL)
-      metaDescription(locale: NL)
-      metaRobots
-      url(locale: NL)
-      urlEN: url(locale: EN)
-      blogPost {
-        publicPublishedAt
-        image {
-          height
-          width
-          url
-          handle
-        }
-        title(locale: NL)
-        content(locale: NL)
-        author {
-          firstName
-          lastName
-          email
-        }
-      }
-    }
-  }
-`
+export type GQLGetStaticPathsNlQueryVariables = {
+  startsWith: Scalars['String']
+}
 
-/**
- * __useGetPageNlQuery__
- *
- * To run a query within a React component, call `useGetPageNlQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPageNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPageNlQuery({
- *   variables: {
- *      url: // value for 'url'
- *   },
- * });
- */
-export function useGetPageNlQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>,
-) {
-  return ApolloReactHooks.useQuery<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>(
-    GetPageNlDocument,
-    baseOptions,
-  )
+export type GQLGetStaticPathsNlQuery = { __typename?: 'Query' } & {
+  pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'> & { urlEN: GQLPage['url'] }>>
 }
-export function useGetPageNlLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetPageNlQuery,
-    GQLGetPageNlQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>(
-    GetPageNlDocument,
-    baseOptions,
-  )
-}
-export type GetPageNlQueryHookResult = ReturnType<typeof useGetPageNlQuery>
-export type GetPageNlLazyQueryHookResult = ReturnType<typeof useGetPageNlLazyQuery>
-export type GetPageNlQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetPageNlQuery,
-  GQLGetPageNlQueryVariables
->
+
 export const GetPageEnDocument = gql`
   query GetPageEN($url: String!) {
     page(where: { urlEN: $url }) {
@@ -7963,62 +7894,80 @@ export type GetPageEnQueryResult = ApolloReactCommon.QueryResult<
   GQLGetPageEnQuery,
   GQLGetPageEnQueryVariables
 >
-export const GetStaticPathsNlDocument = gql`
-  query GetStaticPathsNL($startsWith: String!) {
-    pages(where: { urlNL_starts_with: $startsWith }) {
+export const GetPageNlDocument = gql`
+  query GetPageNL($url: String!) {
+    page(where: { urlNL: $url }) {
+      metaTitle(locale: NL)
+      metaDescription(locale: NL)
+      metaRobots
       url(locale: NL)
+      urlEN: url(locale: EN)
+      blogPost {
+        publicPublishedAt
+        image {
+          height
+          width
+          url
+          handle
+        }
+        title(locale: NL)
+        content(locale: NL)
+        author {
+          firstName
+          lastName
+          email
+        }
+      }
     }
   }
 `
 
 /**
- * __useGetStaticPathsNlQuery__
+ * __useGetPageNlQuery__
  *
- * To run a query within a React component, call `useGetStaticPathsNlQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStaticPathsNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetPageNlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPageNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetStaticPathsNlQuery({
+ * const { data, loading, error } = useGetPageNlQuery({
  *   variables: {
- *      startsWith: // value for 'startsWith'
+ *      url: // value for 'url'
  *   },
  * });
  */
-export function useGetStaticPathsNlQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetStaticPathsNlQuery,
-    GQLGetStaticPathsNlQueryVariables
-  >,
+export function useGetPageNlQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>,
 ) {
-  return ApolloReactHooks.useQuery<GQLGetStaticPathsNlQuery, GQLGetStaticPathsNlQueryVariables>(
-    GetStaticPathsNlDocument,
+  return ApolloReactHooks.useQuery<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>(
+    GetPageNlDocument,
     baseOptions,
   )
 }
-export function useGetStaticPathsNlLazyQuery(
+export function useGetPageNlLazyQuery(
   baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetStaticPathsNlQuery,
-    GQLGetStaticPathsNlQueryVariables
+    GQLGetPageNlQuery,
+    GQLGetPageNlQueryVariables
   >,
 ) {
-  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsNlQuery, GQLGetStaticPathsNlQueryVariables>(
-    GetStaticPathsNlDocument,
+  return ApolloReactHooks.useLazyQuery<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>(
+    GetPageNlDocument,
     baseOptions,
   )
 }
-export type GetStaticPathsNlQueryHookResult = ReturnType<typeof useGetStaticPathsNlQuery>
-export type GetStaticPathsNlLazyQueryHookResult = ReturnType<typeof useGetStaticPathsNlLazyQuery>
-export type GetStaticPathsNlQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetStaticPathsNlQuery,
-  GQLGetStaticPathsNlQueryVariables
+export type GetPageNlQueryHookResult = ReturnType<typeof useGetPageNlQuery>
+export type GetPageNlLazyQueryHookResult = ReturnType<typeof useGetPageNlLazyQuery>
+export type GetPageNlQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetPageNlQuery,
+  GQLGetPageNlQueryVariables
 >
 export const GetStaticPathsEnDocument = gql`
   query GetStaticPathsEN($startsWith: String!) {
     pages(where: { urlEN_starts_with: $startsWith }) {
       url(locale: EN)
+      urlNL: url(locale: NL)
     }
   }
 `
@@ -8066,4 +8015,57 @@ export type GetStaticPathsEnLazyQueryHookResult = ReturnType<typeof useGetStatic
 export type GetStaticPathsEnQueryResult = ApolloReactCommon.QueryResult<
   GQLGetStaticPathsEnQuery,
   GQLGetStaticPathsEnQueryVariables
+>
+export const GetStaticPathsNlDocument = gql`
+  query GetStaticPathsNL($startsWith: String!) {
+    pages(where: { urlNL_starts_with: $startsWith }) {
+      url(locale: NL)
+      urlEN: url(locale: EN)
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsNlQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsNlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsNlQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *   },
+ * });
+ */
+export function useGetStaticPathsNlQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsNlQuery,
+    GQLGetStaticPathsNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsNlQuery, GQLGetStaticPathsNlQueryVariables>(
+    GetStaticPathsNlDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsNlLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsNlQuery,
+    GQLGetStaticPathsNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsNlQuery, GQLGetStaticPathsNlQueryVariables>(
+    GetStaticPathsNlDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsNlQueryHookResult = ReturnType<typeof useGetStaticPathsNlQuery>
+export type GetStaticPathsNlLazyQueryHookResult = ReturnType<typeof useGetStaticPathsNlLazyQuery>
+export type GetStaticPathsNlQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsNlQuery,
+  GQLGetStaticPathsNlQueryVariables
 >

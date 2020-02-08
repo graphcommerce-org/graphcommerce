@@ -1,8 +1,15 @@
-import { createGzip } from 'zlib'
 import { Sitemap, ISitemapItemOptionsLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getStaticPaths } from '../../graphcms/ssg'
-import { GQLLocale } from '../../generated/graphql'
+import { handleRootUrl } from '../../graphcms/ssg'
+import {
+  GQLGetStaticPathsNlQuery,
+  GQLGetStaticPathsNlQueryVariables,
+  GetStaticPathsNlDocument,
+  GQLGetStaticPathsEnQuery,
+  GQLGetStaticPathsEnQueryVariables,
+  GetStaticPathsEnDocument,
+} from '../../generated/graphql'
+import { initApolloClient } from '../../lib/apollo'
 
 function getProtocol(req: NextApiRequest) {
   // @ts-ignore
@@ -24,10 +31,35 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       xslUrl: '/sitemap.xsl',
     })
 
-    const paths = await getStaticPaths('', GQLLocale.Nl)
-    paths.forEach(url => {
-      sm.add({ url })
+    const apolloClient = initApolloClient()
+    const { data: resultNl } = await apolloClient.query<
+      GQLGetStaticPathsNlQuery,
+      GQLGetStaticPathsNlQueryVariables
+    >({ query: GetStaticPathsNlDocument, variables: { startsWith: '' } })
+
+    const { data: resultEn } = await apolloClient.query<
+      GQLGetStaticPathsEnQuery,
+      GQLGetStaticPathsEnQueryVariables
+    >({ query: GetStaticPathsEnDocument, variables: { startsWith: '' } })
+
+    // Add NL Pages with hreflang alternative
+    resultNl.pages.forEach(page => {
+      const item: ISitemapItemOptionsLoose = {
+        url: handleRootUrl(page!.url!),
+      }
+      if (page!.urlEN) item.links = [{ url: handleRootUrl(page!.urlEN), lang: 'en' }]
+      sm.add(item)
+
+      resultEn.pages = resultEn.pages.filter(pageEN => pageEN?.url !== page?.urlEN)
     })
+
+    // Add other EN pages
+    resultEn.pages.forEach(page => {
+      sm.add({
+        url: handleRootUrl(page!.url!),
+      })
+    })
+
     res.send(sm.toGzip())
   } catch (e) {
     console.error(e)
