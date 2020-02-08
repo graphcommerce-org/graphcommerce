@@ -7,12 +7,14 @@ import { HttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
 import { NextComponentType } from 'next'
 
-let globalApolloClient = null
+let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
 /**
  * Creates and configures the ApolloClient
  */
-function createApolloClient(initialState: NormalizedCacheObject = {}) {
+function createApolloClient(
+  initialState: NormalizedCacheObject = {},
+): ApolloClient<NormalizedCacheObject> {
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
@@ -32,7 +34,9 @@ function createApolloClient(initialState: NormalizedCacheObject = {}) {
  * Always creates a new apollo client on the server
  * Creates or reuses apollo client in the browser.
  */
-function initApolloClient(initialState: NormalizedCacheObject = {}) {
+export function initApolloClient(
+  initialState: NormalizedCacheObject = {},
+): ApolloClient<NormalizedCacheObject> {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {
@@ -53,6 +57,7 @@ function initApolloClient(initialState: NormalizedCacheObject = {}) {
  * your PageComponent via HOC pattern.
  */
 export function withApollo(PageComponent: NextComponentType, { ssr = true } = {}) {
+  // @ts-ignore
   const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
     const client = apolloClient || initApolloClient(apolloState)
     return (
@@ -74,6 +79,7 @@ export function withApollo(PageComponent: NextComponentType, { ssr = true } = {}
   }
 
   if (ssr || PageComponent.getInitialProps) {
+    // @ts-ignore
     WithApollo.getInitialProps = async ctx => {
       const { AppTree } = ctx
 

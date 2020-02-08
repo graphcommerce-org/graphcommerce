@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://api-euwest.graphcms.com/v1/cjioidxbu01mw01efuxenx5rs/master'
+schema: 'https://api-euwest.graphcms.com/v1/cjioidxbu01mw01efuxenx5rs/dev'
 documents: '**/*.graphql'
 generates:
   generated/graphql.ts:
@@ -13,6 +13,7 @@ generates:
       withHOC: false
       withHooks: true
       withComponent: false
+      typesPrefix: GQL
 hooks:
   afterAllFileWrite:
     - eslint --fix

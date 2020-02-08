@@ -15,99 +15,89 @@ export type Scalars = {
   Long: any
 }
 
-export type AggregateAsset = {
+export type GQLAggregateAsset = {
   __typename?: 'AggregateAsset'
   count: Scalars['Int']
 }
 
-export type AggregateBlock = {
+export type GQLAggregateBlock = {
   __typename?: 'AggregateBlock'
   count: Scalars['Int']
 }
 
-export type AggregateBlogPost = {
+export type GQLAggregateBlogPost = {
   __typename?: 'AggregateBlogPost'
   count: Scalars['Int']
 }
 
-export type AggregateComment = {
+export type GQLAggregateComment = {
   __typename?: 'AggregateComment'
   count: Scalars['Int']
 }
 
-export type AggregateContactForm = {
+export type GQLAggregateContactForm = {
   __typename?: 'AggregateContactForm'
   count: Scalars['Int']
 }
 
-export type AggregateDocument = {
+export type GQLAggregateDocument = {
   __typename?: 'AggregateDocument'
   count: Scalars['Int']
 }
 
-export type AggregateEcosystem = {
+export type GQLAggregateEcosystem = {
   __typename?: 'AggregateEcosystem'
   count: Scalars['Int']
 }
 
-export type AggregateEmployee = {
+export type GQLAggregateEmployee = {
   __typename?: 'AggregateEmployee'
   count: Scalars['Int']
 }
 
-export type AggregateJobListing = {
+export type GQLAggregateJobListing = {
   __typename?: 'AggregateJobListing'
   count: Scalars['Int']
 }
 
-export type AggregateMailchimpForm = {
+export type GQLAggregateMailchimpForm = {
   __typename?: 'AggregateMailchimpForm'
   count: Scalars['Int']
 }
 
-export type AggregateModule = {
+export type GQLAggregateModule = {
   __typename?: 'AggregateModule'
   count: Scalars['Int']
 }
 
-export type AggregatePage = {
+export type GQLAggregatePage = {
   __typename?: 'AggregatePage'
   count: Scalars['Int']
 }
 
-export type AggregatePdpPagina = {
-  __typename?: 'AggregatePdpPagina'
-  count: Scalars['Int']
-}
-
-export type AggregateQuote = {
+export type GQLAggregateQuote = {
   __typename?: 'AggregateQuote'
   count: Scalars['Int']
 }
 
-export type AggregateSingularPage = {
+export type GQLAggregateSingularPage = {
   __typename?: 'AggregateSingularPage'
   count: Scalars['Int']
 }
 
-export type AggregateStartProjectForm = {
+export type GQLAggregateStartProjectForm = {
   __typename?: 'AggregateStartProjectForm'
   count: Scalars['Int']
 }
 
-export type AggregateStructuredPage = {
+export type GQLAggregateStructuredPage = {
   __typename?: 'AggregateStructuredPage'
   count: Scalars['Int']
 }
 
-export type AggregateTag = {
-  __typename?: 'AggregateTag'
-  count: Scalars['Int']
-}
-
-export type Asset = Node & {
+export type GQLAsset = GQLNode & {
   __typename?: 'Asset'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -117,21 +107,21 @@ export type Asset = Node & {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<Array<ContactForm>>
-  imageEcosystem?: Maybe<Array<Ecosystem>>
-  imageStructuredPage?: Maybe<Array<StructuredPage>>
-  imageEmployee?: Maybe<Array<Employee>>
-  fileDocument?: Maybe<Array<Document>>
-  downloadJobListing?: Maybe<Array<JobListing>>
-  imageSingularPage?: Maybe<Array<SingularPage>>
-  imageBlogPost?: Maybe<Array<BlogPost>>
-  downloadBlogPost?: Maybe<Array<BlogPost>>
+  attachmentContactForm?: Maybe<Array<GQLContactForm>>
+  imageEcosystem?: Maybe<Array<GQLEcosystem>>
+  imageStructuredPage?: Maybe<Array<GQLStructuredPage>>
+  imageEmployee?: Maybe<Array<GQLEmployee>>
+  fileDocument?: Maybe<Array<GQLDocument>>
+  downloadJobListing?: Maybe<Array<GQLJobListing>>
+  imageSingularPage?: Maybe<Array<GQLSingularPage>>
+  imageBlogPost?: Maybe<Array<GQLBlogPost>>
+  downloadBlogPost?: Maybe<Array<GQLBlogPost>>
   url: Scalars['String']
 }
 
-export type AssetAttachmentContactFormArgs = {
-  where?: Maybe<ContactFormWhereInput>
-  orderBy?: Maybe<ContactFormOrderByInput>
+export type GQLAssetAttachmentContactFormArgs = {
+  where?: Maybe<GQLContactFormWhereInput>
+  orderBy?: Maybe<GQLContactFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -139,9 +129,9 @@ export type AssetAttachmentContactFormArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetImageEcosystemArgs = {
-  where?: Maybe<EcosystemWhereInput>
-  orderBy?: Maybe<EcosystemOrderByInput>
+export type GQLAssetImageEcosystemArgs = {
+  where?: Maybe<GQLEcosystemWhereInput>
+  orderBy?: Maybe<GQLEcosystemOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -149,9 +139,9 @@ export type AssetImageEcosystemArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetImageStructuredPageArgs = {
-  where?: Maybe<StructuredPageWhereInput>
-  orderBy?: Maybe<StructuredPageOrderByInput>
+export type GQLAssetImageStructuredPageArgs = {
+  where?: Maybe<GQLStructuredPageWhereInput>
+  orderBy?: Maybe<GQLStructuredPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -159,9 +149,9 @@ export type AssetImageStructuredPageArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetImageEmployeeArgs = {
-  where?: Maybe<EmployeeWhereInput>
-  orderBy?: Maybe<EmployeeOrderByInput>
+export type GQLAssetImageEmployeeArgs = {
+  where?: Maybe<GQLEmployeeWhereInput>
+  orderBy?: Maybe<GQLEmployeeOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -169,9 +159,9 @@ export type AssetImageEmployeeArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetFileDocumentArgs = {
-  where?: Maybe<DocumentWhereInput>
-  orderBy?: Maybe<DocumentOrderByInput>
+export type GQLAssetFileDocumentArgs = {
+  where?: Maybe<GQLDocumentWhereInput>
+  orderBy?: Maybe<GQLDocumentOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -179,9 +169,9 @@ export type AssetFileDocumentArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetDownloadJobListingArgs = {
-  where?: Maybe<JobListingWhereInput>
-  orderBy?: Maybe<JobListingOrderByInput>
+export type GQLAssetDownloadJobListingArgs = {
+  where?: Maybe<GQLJobListingWhereInput>
+  orderBy?: Maybe<GQLJobListingOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -189,9 +179,9 @@ export type AssetDownloadJobListingArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetImageSingularPageArgs = {
-  where?: Maybe<SingularPageWhereInput>
-  orderBy?: Maybe<SingularPageOrderByInput>
+export type GQLAssetImageSingularPageArgs = {
+  where?: Maybe<GQLSingularPageWhereInput>
+  orderBy?: Maybe<GQLSingularPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -199,9 +189,9 @@ export type AssetImageSingularPageArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetImageBlogPostArgs = {
-  where?: Maybe<BlogPostWhereInput>
-  orderBy?: Maybe<BlogPostOrderByInput>
+export type GQLAssetImageBlogPostArgs = {
+  where?: Maybe<GQLBlogPostWhereInput>
+  orderBy?: Maybe<GQLBlogPostOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -209,9 +199,9 @@ export type AssetImageBlogPostArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetDownloadBlogPostArgs = {
-  where?: Maybe<BlogPostWhereInput>
-  orderBy?: Maybe<BlogPostOrderByInput>
+export type GQLAssetDownloadBlogPostArgs = {
+  where?: Maybe<GQLBlogPostWhereInput>
+  orderBy?: Maybe<GQLBlogPostOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -219,259 +209,259 @@ export type AssetDownloadBlogPostArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type AssetUrlArgs = {
-  transformation?: Maybe<AssetTransformationInput>
+export type GQLAssetUrlArgs = {
+  transformation?: Maybe<GQLAssetTransformationInput>
 }
 
-export type AssetConnection = {
+export type GQLAssetConnection = {
   __typename?: 'AssetConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<AssetEdge>>
-  aggregate: AggregateAsset
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLAssetEdge>>
+  aggregate: GQLAggregateAsset
 }
 
-export type AssetCreateInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateOneWithoutAttachmentContactFormInput = {
-  upload?: Maybe<AssetUploadWithoutAttachmentContactFormInput>
-  create?: Maybe<AssetCreateWithoutAttachmentContactFormInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutAttachmentContactFormInput = {
+  upload?: Maybe<GQLAssetUploadWithoutAttachmentContactFormInput>
+  create?: Maybe<GQLAssetCreateWithoutAttachmentContactFormInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutDownloadBlogPostInput = {
-  upload?: Maybe<AssetUploadWithoutDownloadBlogPostInput>
-  create?: Maybe<AssetCreateWithoutDownloadBlogPostInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutDownloadBlogPostInput = {
+  upload?: Maybe<GQLAssetUploadWithoutDownloadBlogPostInput>
+  create?: Maybe<GQLAssetCreateWithoutDownloadBlogPostInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutDownloadJobListingInput = {
-  upload?: Maybe<AssetUploadWithoutDownloadJobListingInput>
-  create?: Maybe<AssetCreateWithoutDownloadJobListingInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutDownloadJobListingInput = {
+  upload?: Maybe<GQLAssetUploadWithoutDownloadJobListingInput>
+  create?: Maybe<GQLAssetCreateWithoutDownloadJobListingInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutFileDocumentInput = {
-  upload?: Maybe<AssetUploadWithoutFileDocumentInput>
-  create?: Maybe<AssetCreateWithoutFileDocumentInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutFileDocumentInput = {
+  upload?: Maybe<GQLAssetUploadWithoutFileDocumentInput>
+  create?: Maybe<GQLAssetCreateWithoutFileDocumentInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutImageBlogPostInput = {
-  upload?: Maybe<AssetUploadWithoutImageBlogPostInput>
-  create?: Maybe<AssetCreateWithoutImageBlogPostInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutImageBlogPostInput = {
+  upload?: Maybe<GQLAssetUploadWithoutImageBlogPostInput>
+  create?: Maybe<GQLAssetCreateWithoutImageBlogPostInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutImageEcosystemInput = {
-  upload?: Maybe<AssetUploadWithoutImageEcosystemInput>
-  create?: Maybe<AssetCreateWithoutImageEcosystemInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutImageEcosystemInput = {
+  upload?: Maybe<GQLAssetUploadWithoutImageEcosystemInput>
+  create?: Maybe<GQLAssetCreateWithoutImageEcosystemInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutImageEmployeeInput = {
-  upload?: Maybe<AssetUploadWithoutImageEmployeeInput>
-  create?: Maybe<AssetCreateWithoutImageEmployeeInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutImageEmployeeInput = {
+  upload?: Maybe<GQLAssetUploadWithoutImageEmployeeInput>
+  create?: Maybe<GQLAssetCreateWithoutImageEmployeeInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutImageSingularPageInput = {
-  upload?: Maybe<AssetUploadWithoutImageSingularPageInput>
-  create?: Maybe<AssetCreateWithoutImageSingularPageInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutImageSingularPageInput = {
+  upload?: Maybe<GQLAssetUploadWithoutImageSingularPageInput>
+  create?: Maybe<GQLAssetCreateWithoutImageSingularPageInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateOneWithoutImageStructuredPageInput = {
-  upload?: Maybe<AssetUploadWithoutImageStructuredPageInput>
-  create?: Maybe<AssetCreateWithoutImageStructuredPageInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetCreateOneWithoutImageStructuredPageInput = {
+  upload?: Maybe<GQLAssetUploadWithoutImageStructuredPageInput>
+  create?: Maybe<GQLAssetCreateWithoutImageStructuredPageInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
 }
 
-export type AssetCreateWithoutAttachmentContactFormInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutAttachmentContactFormInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutDownloadBlogPostInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutDownloadBlogPostInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
 }
 
-export type AssetCreateWithoutDownloadJobListingInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutDownloadJobListingInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutFileDocumentInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutFileDocumentInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutImageBlogPostInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutImageBlogPostInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutImageEcosystemInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutImageEcosystemInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutImageEmployeeInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutImageEmployeeInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutImageSingularPageInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutImageSingularPageInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetCreateWithoutImageStructuredPageInput = {
-  status?: Maybe<Status>
+export type GQLAssetCreateWithoutImageStructuredPageInput = {
+  status?: Maybe<GQLStatus>
   handle: Scalars['String']
   fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetEdge = {
+export type GQLAssetEdge = {
   __typename?: 'AssetEdge'
-  node: Asset
+  node: GQLAsset
   cursor: Scalars['String']
 }
 
-export enum AssetOrderByInput {
+export enum GQLAssetOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -494,9 +484,9 @@ export enum AssetOrderByInput {
   MimeTypeDesc = 'mimeType_DESC',
 }
 
-export type AssetPreviousValues = {
+export type GQLAssetPreviousValues = {
   __typename?: 'AssetPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -508,52 +498,52 @@ export type AssetPreviousValues = {
   mimeType?: Maybe<Scalars['String']>
 }
 
-export type AssetSubscriptionPayload = {
+export type GQLAssetSubscriptionPayload = {
   __typename?: 'AssetSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Asset>
+  mutation: GQLMutationType
+  node?: Maybe<GQLAsset>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<AssetPreviousValues>
+  previousValues?: Maybe<GQLAssetPreviousValues>
 }
 
-export type AssetSubscriptionWhereInput = {
-  AND?: Maybe<Array<AssetSubscriptionWhereInput>>
-  OR?: Maybe<Array<AssetSubscriptionWhereInput>>
-  NOT?: Maybe<Array<AssetSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLAssetSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLAssetSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLAssetSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLAssetSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<AssetWhereInput>
+  node?: Maybe<GQLAssetWhereInput>
 }
 
-export type AssetTransformationInput = {
-  image?: Maybe<ImageTransformationInput>
-  document?: Maybe<DocumentTransformationInput>
+export type GQLAssetTransformationInput = {
+  image?: Maybe<GQLImageTransformationInput>
+  document?: Maybe<GQLDocumentTransformationInput>
   validateOptions?: Maybe<Scalars['Boolean']>
 }
 
-export type AssetUpdateInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
@@ -562,434 +552,434 @@ export type AssetUpdateManyMutationInput = {
   mimeType?: Maybe<Scalars['String']>
 }
 
-export type AssetUpdateOneWithoutAttachmentContactFormInput = {
-  create?: Maybe<AssetCreateWithoutAttachmentContactFormInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutAttachmentContactFormInput = {
+  create?: Maybe<GQLAssetCreateWithoutAttachmentContactFormInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutAttachmentContactFormDataInput>
-  upsert?: Maybe<AssetUpsertWithoutAttachmentContactFormInput>
+  update?: Maybe<GQLAssetUpdateWithoutAttachmentContactFormDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutAttachmentContactFormInput>
 }
 
-export type AssetUpdateOneWithoutDownloadBlogPostInput = {
-  create?: Maybe<AssetCreateWithoutDownloadBlogPostInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutDownloadBlogPostInput = {
+  create?: Maybe<GQLAssetCreateWithoutDownloadBlogPostInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutDownloadBlogPostDataInput>
-  upsert?: Maybe<AssetUpsertWithoutDownloadBlogPostInput>
+  update?: Maybe<GQLAssetUpdateWithoutDownloadBlogPostDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutDownloadBlogPostInput>
 }
 
-export type AssetUpdateOneWithoutDownloadJobListingInput = {
-  create?: Maybe<AssetCreateWithoutDownloadJobListingInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutDownloadJobListingInput = {
+  create?: Maybe<GQLAssetCreateWithoutDownloadJobListingInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutDownloadJobListingDataInput>
-  upsert?: Maybe<AssetUpsertWithoutDownloadJobListingInput>
+  update?: Maybe<GQLAssetUpdateWithoutDownloadJobListingDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutDownloadJobListingInput>
 }
 
-export type AssetUpdateOneWithoutFileDocumentInput = {
-  create?: Maybe<AssetCreateWithoutFileDocumentInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutFileDocumentInput = {
+  create?: Maybe<GQLAssetCreateWithoutFileDocumentInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutFileDocumentDataInput>
-  upsert?: Maybe<AssetUpsertWithoutFileDocumentInput>
+  update?: Maybe<GQLAssetUpdateWithoutFileDocumentDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutFileDocumentInput>
 }
 
-export type AssetUpdateOneWithoutImageBlogPostInput = {
-  create?: Maybe<AssetCreateWithoutImageBlogPostInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutImageBlogPostInput = {
+  create?: Maybe<GQLAssetCreateWithoutImageBlogPostInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutImageBlogPostDataInput>
-  upsert?: Maybe<AssetUpsertWithoutImageBlogPostInput>
+  update?: Maybe<GQLAssetUpdateWithoutImageBlogPostDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutImageBlogPostInput>
 }
 
-export type AssetUpdateOneWithoutImageEcosystemInput = {
-  create?: Maybe<AssetCreateWithoutImageEcosystemInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutImageEcosystemInput = {
+  create?: Maybe<GQLAssetCreateWithoutImageEcosystemInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutImageEcosystemDataInput>
-  upsert?: Maybe<AssetUpsertWithoutImageEcosystemInput>
+  update?: Maybe<GQLAssetUpdateWithoutImageEcosystemDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutImageEcosystemInput>
 }
 
-export type AssetUpdateOneWithoutImageEmployeeInput = {
-  create?: Maybe<AssetCreateWithoutImageEmployeeInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutImageEmployeeInput = {
+  create?: Maybe<GQLAssetCreateWithoutImageEmployeeInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutImageEmployeeDataInput>
-  upsert?: Maybe<AssetUpsertWithoutImageEmployeeInput>
+  update?: Maybe<GQLAssetUpdateWithoutImageEmployeeDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutImageEmployeeInput>
 }
 
-export type AssetUpdateOneWithoutImageSingularPageInput = {
-  create?: Maybe<AssetCreateWithoutImageSingularPageInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutImageSingularPageInput = {
+  create?: Maybe<GQLAssetCreateWithoutImageSingularPageInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutImageSingularPageDataInput>
-  upsert?: Maybe<AssetUpsertWithoutImageSingularPageInput>
+  update?: Maybe<GQLAssetUpdateWithoutImageSingularPageDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutImageSingularPageInput>
 }
 
-export type AssetUpdateOneWithoutImageStructuredPageInput = {
-  create?: Maybe<AssetCreateWithoutImageStructuredPageInput>
-  connect?: Maybe<AssetWhereUniqueInput>
+export type GQLAssetUpdateOneWithoutImageStructuredPageInput = {
+  create?: Maybe<GQLAssetCreateWithoutImageStructuredPageInput>
+  connect?: Maybe<GQLAssetWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<AssetUpdateWithoutImageStructuredPageDataInput>
-  upsert?: Maybe<AssetUpsertWithoutImageStructuredPageInput>
+  update?: Maybe<GQLAssetUpdateWithoutImageStructuredPageDataInput>
+  upsert?: Maybe<GQLAssetUpsertWithoutImageStructuredPageInput>
 }
 
-export type AssetUpdateWithoutAttachmentContactFormDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutAttachmentContactFormDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutDownloadBlogPostDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutDownloadBlogPostDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
 }
 
-export type AssetUpdateWithoutDownloadJobListingDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutDownloadJobListingDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutFileDocumentDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutFileDocumentDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutImageBlogPostDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutImageBlogPostDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutImageEcosystemDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutImageEcosystemDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutImageEmployeeDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutImageEmployeeDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutImageSingularPageDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutImageSingularPageDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUpdateWithoutImageStructuredPageDataInput = {
-  status?: Maybe<Status>
+export type GQLAssetUpdateWithoutImageStructuredPageDataInput = {
+  status?: Maybe<GQLStatus>
   handle?: Maybe<Scalars['String']>
   fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  attachmentContactForm?: Maybe<ContactFormUpdateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemUpdateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeUpdateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentUpdateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingUpdateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageUpdateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostUpdateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostUpdateManyWithoutDownloadInput>
+  attachmentContactForm?: Maybe<GQLContactFormUpdateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemUpdateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeUpdateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentUpdateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingUpdateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageUpdateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostUpdateManyWithoutDownloadInput>
 }
 
-export type AssetUploadInput = {
+export type GQLAssetUploadInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutAttachmentContactFormInput = {
+export type GQLAssetUploadWithoutAttachmentContactFormInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutDownloadBlogPostInput = {
+export type GQLAssetUploadWithoutDownloadBlogPostInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
 }
 
-export type AssetUploadWithoutDownloadJobListingInput = {
+export type GQLAssetUploadWithoutDownloadJobListingInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutFileDocumentInput = {
+export type GQLAssetUploadWithoutFileDocumentInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutImageBlogPostInput = {
+export type GQLAssetUploadWithoutImageBlogPostInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutImageEcosystemInput = {
+export type GQLAssetUploadWithoutImageEcosystemInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutImageEmployeeInput = {
+export type GQLAssetUploadWithoutImageEmployeeInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutImageSingularPageInput = {
+export type GQLAssetUploadWithoutImageSingularPageInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageStructuredPage?: Maybe<StructuredPageCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageStructuredPage?: Maybe<GQLStructuredPageCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUploadWithoutImageStructuredPageInput = {
+export type GQLAssetUploadWithoutImageStructuredPageInput = {
   url: Scalars['String']
-  status?: Maybe<Status>
-  attachmentContactForm?: Maybe<ContactFormCreateManyWithoutAttachmentInput>
-  imageEcosystem?: Maybe<EcosystemCreateManyWithoutImageInput>
-  imageEmployee?: Maybe<EmployeeCreateManyWithoutImageInput>
-  fileDocument?: Maybe<DocumentCreateManyWithoutFileInput>
-  downloadJobListing?: Maybe<JobListingCreateManyWithoutDownloadInput>
-  imageSingularPage?: Maybe<SingularPageCreateManyWithoutImageInput>
-  imageBlogPost?: Maybe<BlogPostCreateManyWithoutImageInput>
-  downloadBlogPost?: Maybe<BlogPostCreateManyWithoutDownloadInput>
+  status?: Maybe<GQLStatus>
+  attachmentContactForm?: Maybe<GQLContactFormCreateManyWithoutAttachmentInput>
+  imageEcosystem?: Maybe<GQLEcosystemCreateManyWithoutImageInput>
+  imageEmployee?: Maybe<GQLEmployeeCreateManyWithoutImageInput>
+  fileDocument?: Maybe<GQLDocumentCreateManyWithoutFileInput>
+  downloadJobListing?: Maybe<GQLJobListingCreateManyWithoutDownloadInput>
+  imageSingularPage?: Maybe<GQLSingularPageCreateManyWithoutImageInput>
+  imageBlogPost?: Maybe<GQLBlogPostCreateManyWithoutImageInput>
+  downloadBlogPost?: Maybe<GQLBlogPostCreateManyWithoutDownloadInput>
 }
 
-export type AssetUpsertWithoutAttachmentContactFormInput = {
-  update: AssetUpdateWithoutAttachmentContactFormDataInput
-  create: AssetCreateWithoutAttachmentContactFormInput
+export type GQLAssetUpsertWithoutAttachmentContactFormInput = {
+  update: GQLAssetUpdateWithoutAttachmentContactFormDataInput
+  create: GQLAssetCreateWithoutAttachmentContactFormInput
 }
 
-export type AssetUpsertWithoutDownloadBlogPostInput = {
-  update: AssetUpdateWithoutDownloadBlogPostDataInput
-  create: AssetCreateWithoutDownloadBlogPostInput
+export type GQLAssetUpsertWithoutDownloadBlogPostInput = {
+  update: GQLAssetUpdateWithoutDownloadBlogPostDataInput
+  create: GQLAssetCreateWithoutDownloadBlogPostInput
 }
 
-export type AssetUpsertWithoutDownloadJobListingInput = {
-  update: AssetUpdateWithoutDownloadJobListingDataInput
-  create: AssetCreateWithoutDownloadJobListingInput
+export type GQLAssetUpsertWithoutDownloadJobListingInput = {
+  update: GQLAssetUpdateWithoutDownloadJobListingDataInput
+  create: GQLAssetCreateWithoutDownloadJobListingInput
 }
 
-export type AssetUpsertWithoutFileDocumentInput = {
-  update: AssetUpdateWithoutFileDocumentDataInput
-  create: AssetCreateWithoutFileDocumentInput
+export type GQLAssetUpsertWithoutFileDocumentInput = {
+  update: GQLAssetUpdateWithoutFileDocumentDataInput
+  create: GQLAssetCreateWithoutFileDocumentInput
 }
 
-export type AssetUpsertWithoutImageBlogPostInput = {
-  update: AssetUpdateWithoutImageBlogPostDataInput
-  create: AssetCreateWithoutImageBlogPostInput
+export type GQLAssetUpsertWithoutImageBlogPostInput = {
+  update: GQLAssetUpdateWithoutImageBlogPostDataInput
+  create: GQLAssetCreateWithoutImageBlogPostInput
 }
 
-export type AssetUpsertWithoutImageEcosystemInput = {
-  update: AssetUpdateWithoutImageEcosystemDataInput
-  create: AssetCreateWithoutImageEcosystemInput
+export type GQLAssetUpsertWithoutImageEcosystemInput = {
+  update: GQLAssetUpdateWithoutImageEcosystemDataInput
+  create: GQLAssetCreateWithoutImageEcosystemInput
 }
 
-export type AssetUpsertWithoutImageEmployeeInput = {
-  update: AssetUpdateWithoutImageEmployeeDataInput
-  create: AssetCreateWithoutImageEmployeeInput
+export type GQLAssetUpsertWithoutImageEmployeeInput = {
+  update: GQLAssetUpdateWithoutImageEmployeeDataInput
+  create: GQLAssetCreateWithoutImageEmployeeInput
 }
 
-export type AssetUpsertWithoutImageSingularPageInput = {
-  update: AssetUpdateWithoutImageSingularPageDataInput
-  create: AssetCreateWithoutImageSingularPageInput
+export type GQLAssetUpsertWithoutImageSingularPageInput = {
+  update: GQLAssetUpdateWithoutImageSingularPageDataInput
+  create: GQLAssetCreateWithoutImageSingularPageInput
 }
 
-export type AssetUpsertWithoutImageStructuredPageInput = {
-  update: AssetUpdateWithoutImageStructuredPageDataInput
-  create: AssetCreateWithoutImageStructuredPageInput
+export type GQLAssetUpsertWithoutImageStructuredPageInput = {
+  update: GQLAssetUpdateWithoutImageStructuredPageDataInput
+  create: GQLAssetCreateWithoutImageStructuredPageInput
 }
 
-export type AssetWhereInput = {
+export type GQLAssetWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<AssetWhereInput>>
-  OR?: Maybe<Array<AssetWhereInput>>
-  NOT?: Maybe<Array<AssetWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLAssetWhereInput>>
+  OR?: Maybe<Array<GQLAssetWhereInput>>
+  NOT?: Maybe<Array<GQLAssetWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -1086,48 +1076,48 @@ export type AssetWhereInput = {
   mimeType_not_starts_with?: Maybe<Scalars['String']>
   mimeType_ends_with?: Maybe<Scalars['String']>
   mimeType_not_ends_with?: Maybe<Scalars['String']>
-  attachmentContactForm_every?: Maybe<ContactFormWhereInput>
-  attachmentContactForm_some?: Maybe<ContactFormWhereInput>
-  attachmentContactForm_none?: Maybe<ContactFormWhereInput>
-  imageEcosystem_every?: Maybe<EcosystemWhereInput>
-  imageEcosystem_some?: Maybe<EcosystemWhereInput>
-  imageEcosystem_none?: Maybe<EcosystemWhereInput>
-  imageStructuredPage_every?: Maybe<StructuredPageWhereInput>
-  imageStructuredPage_some?: Maybe<StructuredPageWhereInput>
-  imageStructuredPage_none?: Maybe<StructuredPageWhereInput>
-  imageEmployee_every?: Maybe<EmployeeWhereInput>
-  imageEmployee_some?: Maybe<EmployeeWhereInput>
-  imageEmployee_none?: Maybe<EmployeeWhereInput>
-  fileDocument_every?: Maybe<DocumentWhereInput>
-  fileDocument_some?: Maybe<DocumentWhereInput>
-  fileDocument_none?: Maybe<DocumentWhereInput>
-  downloadJobListing_every?: Maybe<JobListingWhereInput>
-  downloadJobListing_some?: Maybe<JobListingWhereInput>
-  downloadJobListing_none?: Maybe<JobListingWhereInput>
-  imageSingularPage_every?: Maybe<SingularPageWhereInput>
-  imageSingularPage_some?: Maybe<SingularPageWhereInput>
-  imageSingularPage_none?: Maybe<SingularPageWhereInput>
-  imageBlogPost_every?: Maybe<BlogPostWhereInput>
-  imageBlogPost_some?: Maybe<BlogPostWhereInput>
-  imageBlogPost_none?: Maybe<BlogPostWhereInput>
-  downloadBlogPost_every?: Maybe<BlogPostWhereInput>
-  downloadBlogPost_some?: Maybe<BlogPostWhereInput>
-  downloadBlogPost_none?: Maybe<BlogPostWhereInput>
+  attachmentContactForm_every?: Maybe<GQLContactFormWhereInput>
+  attachmentContactForm_some?: Maybe<GQLContactFormWhereInput>
+  attachmentContactForm_none?: Maybe<GQLContactFormWhereInput>
+  imageEcosystem_every?: Maybe<GQLEcosystemWhereInput>
+  imageEcosystem_some?: Maybe<GQLEcosystemWhereInput>
+  imageEcosystem_none?: Maybe<GQLEcosystemWhereInput>
+  imageStructuredPage_every?: Maybe<GQLStructuredPageWhereInput>
+  imageStructuredPage_some?: Maybe<GQLStructuredPageWhereInput>
+  imageStructuredPage_none?: Maybe<GQLStructuredPageWhereInput>
+  imageEmployee_every?: Maybe<GQLEmployeeWhereInput>
+  imageEmployee_some?: Maybe<GQLEmployeeWhereInput>
+  imageEmployee_none?: Maybe<GQLEmployeeWhereInput>
+  fileDocument_every?: Maybe<GQLDocumentWhereInput>
+  fileDocument_some?: Maybe<GQLDocumentWhereInput>
+  fileDocument_none?: Maybe<GQLDocumentWhereInput>
+  downloadJobListing_every?: Maybe<GQLJobListingWhereInput>
+  downloadJobListing_some?: Maybe<GQLJobListingWhereInput>
+  downloadJobListing_none?: Maybe<GQLJobListingWhereInput>
+  imageSingularPage_every?: Maybe<GQLSingularPageWhereInput>
+  imageSingularPage_some?: Maybe<GQLSingularPageWhereInput>
+  imageSingularPage_none?: Maybe<GQLSingularPageWhereInput>
+  imageBlogPost_every?: Maybe<GQLBlogPostWhereInput>
+  imageBlogPost_some?: Maybe<GQLBlogPostWhereInput>
+  imageBlogPost_none?: Maybe<GQLBlogPostWhereInput>
+  downloadBlogPost_every?: Maybe<GQLBlogPostWhereInput>
+  downloadBlogPost_some?: Maybe<GQLBlogPostWhereInput>
+  downloadBlogPost_none?: Maybe<GQLBlogPostWhereInput>
 }
 
-export type AssetWhereUniqueInput = {
+export type GQLAssetWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
   handle?: Maybe<Scalars['String']>
 }
 
-export type BatchPayload = {
+export type GQLBatchPayload = {
   __typename?: 'BatchPayload'
   count: Scalars['Long']
 }
 
-export type Block = Node & {
+export type GQLBlock = GQLNode & {
   __typename?: 'Block'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -1140,15 +1130,15 @@ export type Block = Node & {
   content: Scalars['String']
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo: Array<BrandLogoProperties>
-  childBlocks?: Maybe<Array<Block>>
-  parentBlock?: Maybe<Block>
-  page?: Maybe<StructuredPage>
+  brandLogo: Array<GQLBrandLogoProperties>
+  childBlocks?: Maybe<Array<GQLBlock>>
+  parentBlock?: Maybe<GQLBlock>
+  page?: Maybe<GQLStructuredPage>
 }
 
-export type BlockChildBlocksArgs = {
-  where?: Maybe<BlockWhereInput>
-  orderBy?: Maybe<BlockOrderByInput>
+export type GQLBlockChildBlocksArgs = {
+  where?: Maybe<GQLBlockWhereInput>
+  orderBy?: Maybe<GQLBlockOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -1156,19 +1146,19 @@ export type BlockChildBlocksArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type BlockConnection = {
+export type GQLBlockConnection = {
   __typename?: 'BlockConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<BlockEdge>>
-  aggregate: AggregateBlock
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLBlockEdge>>
+  aggregate: GQLAggregateBlock
 }
 
-export type BlockCreatebrandLogoInput = {
-  set?: Maybe<Array<BrandLogoProperties>>
+export type GQLBlockCreatebrandLogoInput = {
+  set?: Maybe<Array<GQLBrandLogoProperties>>
 }
 
-export type BlockCreateInput = {
-  status?: Maybe<Status>
+export type GQLBlockCreateInput = {
+  status?: Maybe<GQLStatus>
   title: Scalars['String']
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1178,29 +1168,29 @@ export type BlockCreateInput = {
   content: Scalars['String']
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockCreatebrandLogoInput>
-  childBlocks?: Maybe<BlockCreateManyWithoutParentBlockInput>
-  parentBlock?: Maybe<BlockCreateOneWithoutChildBlocksInput>
-  page?: Maybe<StructuredPageCreateOneWithoutBlocksInput>
+  brandLogo?: Maybe<GQLBlockCreatebrandLogoInput>
+  childBlocks?: Maybe<GQLBlockCreateManyWithoutParentBlockInput>
+  parentBlock?: Maybe<GQLBlockCreateOneWithoutChildBlocksInput>
+  page?: Maybe<GQLStructuredPageCreateOneWithoutBlocksInput>
 }
 
-export type BlockCreateManyWithoutPageInput = {
-  create?: Maybe<Array<BlockCreateWithoutPageInput>>
-  connect?: Maybe<Array<BlockWhereUniqueInput>>
+export type GQLBlockCreateManyWithoutPageInput = {
+  create?: Maybe<Array<GQLBlockCreateWithoutPageInput>>
+  connect?: Maybe<Array<GQLBlockWhereUniqueInput>>
 }
 
-export type BlockCreateManyWithoutParentBlockInput = {
-  create?: Maybe<Array<BlockCreateWithoutParentBlockInput>>
-  connect?: Maybe<Array<BlockWhereUniqueInput>>
+export type GQLBlockCreateManyWithoutParentBlockInput = {
+  create?: Maybe<Array<GQLBlockCreateWithoutParentBlockInput>>
+  connect?: Maybe<Array<GQLBlockWhereUniqueInput>>
 }
 
-export type BlockCreateOneWithoutChildBlocksInput = {
-  create?: Maybe<BlockCreateWithoutChildBlocksInput>
-  connect?: Maybe<BlockWhereUniqueInput>
+export type GQLBlockCreateOneWithoutChildBlocksInput = {
+  create?: Maybe<GQLBlockCreateWithoutChildBlocksInput>
+  connect?: Maybe<GQLBlockWhereUniqueInput>
 }
 
-export type BlockCreateWithoutChildBlocksInput = {
-  status?: Maybe<Status>
+export type GQLBlockCreateWithoutChildBlocksInput = {
+  status?: Maybe<GQLStatus>
   title: Scalars['String']
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1210,13 +1200,13 @@ export type BlockCreateWithoutChildBlocksInput = {
   content: Scalars['String']
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockCreatebrandLogoInput>
-  parentBlock?: Maybe<BlockCreateOneWithoutChildBlocksInput>
-  page?: Maybe<StructuredPageCreateOneWithoutBlocksInput>
+  brandLogo?: Maybe<GQLBlockCreatebrandLogoInput>
+  parentBlock?: Maybe<GQLBlockCreateOneWithoutChildBlocksInput>
+  page?: Maybe<GQLStructuredPageCreateOneWithoutBlocksInput>
 }
 
-export type BlockCreateWithoutPageInput = {
-  status?: Maybe<Status>
+export type GQLBlockCreateWithoutPageInput = {
+  status?: Maybe<GQLStatus>
   title: Scalars['String']
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1226,13 +1216,13 @@ export type BlockCreateWithoutPageInput = {
   content: Scalars['String']
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockCreatebrandLogoInput>
-  childBlocks?: Maybe<BlockCreateManyWithoutParentBlockInput>
-  parentBlock?: Maybe<BlockCreateOneWithoutChildBlocksInput>
+  brandLogo?: Maybe<GQLBlockCreatebrandLogoInput>
+  childBlocks?: Maybe<GQLBlockCreateManyWithoutParentBlockInput>
+  parentBlock?: Maybe<GQLBlockCreateOneWithoutChildBlocksInput>
 }
 
-export type BlockCreateWithoutParentBlockInput = {
-  status?: Maybe<Status>
+export type GQLBlockCreateWithoutParentBlockInput = {
+  status?: Maybe<GQLStatus>
   title: Scalars['String']
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1242,18 +1232,18 @@ export type BlockCreateWithoutParentBlockInput = {
   content: Scalars['String']
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockCreatebrandLogoInput>
-  childBlocks?: Maybe<BlockCreateManyWithoutParentBlockInput>
-  page?: Maybe<StructuredPageCreateOneWithoutBlocksInput>
+  brandLogo?: Maybe<GQLBlockCreatebrandLogoInput>
+  childBlocks?: Maybe<GQLBlockCreateManyWithoutParentBlockInput>
+  page?: Maybe<GQLStructuredPageCreateOneWithoutBlocksInput>
 }
 
-export type BlockEdge = {
+export type GQLBlockEdge = {
   __typename?: 'BlockEdge'
-  node: Block
+  node: GQLBlock
   cursor: Scalars['String']
 }
 
-export enum BlockOrderByInput {
+export enum GQLBlockOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -1282,9 +1272,9 @@ export enum BlockOrderByInput {
   RaisedDesc = 'raised_DESC',
 }
 
-export type BlockPreviousValues = {
+export type GQLBlockPreviousValues = {
   __typename?: 'BlockPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -1297,18 +1287,18 @@ export type BlockPreviousValues = {
   content: Scalars['String']
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo: Array<BrandLogoProperties>
+  brandLogo: Array<GQLBrandLogoProperties>
 }
 
-export type BlockScalarWhereInput = {
+export type GQLBlockScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<BlockScalarWhereInput>>
-  OR?: Maybe<Array<BlockScalarWhereInput>>
-  NOT?: Maybe<Array<BlockScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLBlockScalarWhereInput>>
+  OR?: Maybe<Array<GQLBlockScalarWhereInput>>
+  NOT?: Maybe<Array<GQLBlockScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -1389,31 +1379,31 @@ export type BlockScalarWhereInput = {
   raised_not?: Maybe<Scalars['Boolean']>
 }
 
-export type BlockSubscriptionPayload = {
+export type GQLBlockSubscriptionPayload = {
   __typename?: 'BlockSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Block>
+  mutation: GQLMutationType
+  node?: Maybe<GQLBlock>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<BlockPreviousValues>
+  previousValues?: Maybe<GQLBlockPreviousValues>
 }
 
-export type BlockSubscriptionWhereInput = {
-  AND?: Maybe<Array<BlockSubscriptionWhereInput>>
-  OR?: Maybe<Array<BlockSubscriptionWhereInput>>
-  NOT?: Maybe<Array<BlockSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLBlockSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLBlockSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLBlockSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLBlockSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<BlockWhereInput>
+  node?: Maybe<GQLBlockWhereInput>
 }
 
-export type BlockUpdatebrandLogoInput = {
-  set?: Maybe<Array<BrandLogoProperties>>
+export type GQLBlockUpdatebrandLogoInput = {
+  set?: Maybe<Array<GQLBrandLogoProperties>>
 }
 
-export type BlockUpdateInput = {
-  status?: Maybe<Status>
+export type GQLBlockUpdateInput = {
+  status?: Maybe<GQLStatus>
   title?: Maybe<Scalars['String']>
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1423,14 +1413,14 @@ export type BlockUpdateInput = {
   content?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockUpdatebrandLogoInput>
-  childBlocks?: Maybe<BlockUpdateManyWithoutParentBlockInput>
-  parentBlock?: Maybe<BlockUpdateOneWithoutChildBlocksInput>
-  page?: Maybe<StructuredPageUpdateOneWithoutBlocksInput>
+  brandLogo?: Maybe<GQLBlockUpdatebrandLogoInput>
+  childBlocks?: Maybe<GQLBlockUpdateManyWithoutParentBlockInput>
+  parentBlock?: Maybe<GQLBlockUpdateOneWithoutChildBlocksInput>
+  page?: Maybe<GQLStructuredPageUpdateOneWithoutBlocksInput>
 }
 
-export type BlockUpdateManyDataInput = {
-  status?: Maybe<Status>
+export type GQLBlockUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   title?: Maybe<Scalars['String']>
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1440,11 +1430,11 @@ export type BlockUpdateManyDataInput = {
   content?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockUpdatebrandLogoInput>
+  brandLogo?: Maybe<GQLBlockUpdatebrandLogoInput>
 }
 
-export type BlockUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLBlockUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   title?: Maybe<Scalars['String']>
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1454,49 +1444,49 @@ export type BlockUpdateManyMutationInput = {
   content?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockUpdatebrandLogoInput>
+  brandLogo?: Maybe<GQLBlockUpdatebrandLogoInput>
 }
 
-export type BlockUpdateManyWithoutPageInput = {
-  create?: Maybe<Array<BlockCreateWithoutPageInput>>
-  connect?: Maybe<Array<BlockWhereUniqueInput>>
-  set?: Maybe<Array<BlockWhereUniqueInput>>
-  disconnect?: Maybe<Array<BlockWhereUniqueInput>>
-  delete?: Maybe<Array<BlockWhereUniqueInput>>
-  update?: Maybe<Array<BlockUpdateWithWhereUniqueWithoutPageInput>>
-  updateMany?: Maybe<Array<BlockUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<BlockScalarWhereInput>>
-  upsert?: Maybe<Array<BlockUpsertWithWhereUniqueWithoutPageInput>>
+export type GQLBlockUpdateManyWithoutPageInput = {
+  create?: Maybe<Array<GQLBlockCreateWithoutPageInput>>
+  connect?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  set?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  delete?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  update?: Maybe<Array<GQLBlockUpdateWithWhereUniqueWithoutPageInput>>
+  updateMany?: Maybe<Array<GQLBlockUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLBlockScalarWhereInput>>
+  upsert?: Maybe<Array<GQLBlockUpsertWithWhereUniqueWithoutPageInput>>
 }
 
-export type BlockUpdateManyWithoutParentBlockInput = {
-  create?: Maybe<Array<BlockCreateWithoutParentBlockInput>>
-  connect?: Maybe<Array<BlockWhereUniqueInput>>
-  set?: Maybe<Array<BlockWhereUniqueInput>>
-  disconnect?: Maybe<Array<BlockWhereUniqueInput>>
-  delete?: Maybe<Array<BlockWhereUniqueInput>>
-  update?: Maybe<Array<BlockUpdateWithWhereUniqueWithoutParentBlockInput>>
-  updateMany?: Maybe<Array<BlockUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<BlockScalarWhereInput>>
-  upsert?: Maybe<Array<BlockUpsertWithWhereUniqueWithoutParentBlockInput>>
+export type GQLBlockUpdateManyWithoutParentBlockInput = {
+  create?: Maybe<Array<GQLBlockCreateWithoutParentBlockInput>>
+  connect?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  set?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  delete?: Maybe<Array<GQLBlockWhereUniqueInput>>
+  update?: Maybe<Array<GQLBlockUpdateWithWhereUniqueWithoutParentBlockInput>>
+  updateMany?: Maybe<Array<GQLBlockUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLBlockScalarWhereInput>>
+  upsert?: Maybe<Array<GQLBlockUpsertWithWhereUniqueWithoutParentBlockInput>>
 }
 
-export type BlockUpdateManyWithWhereNestedInput = {
-  where: BlockScalarWhereInput
-  data: BlockUpdateManyDataInput
+export type GQLBlockUpdateManyWithWhereNestedInput = {
+  where: GQLBlockScalarWhereInput
+  data: GQLBlockUpdateManyDataInput
 }
 
-export type BlockUpdateOneWithoutChildBlocksInput = {
-  create?: Maybe<BlockCreateWithoutChildBlocksInput>
-  connect?: Maybe<BlockWhereUniqueInput>
+export type GQLBlockUpdateOneWithoutChildBlocksInput = {
+  create?: Maybe<GQLBlockCreateWithoutChildBlocksInput>
+  connect?: Maybe<GQLBlockWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<BlockUpdateWithoutChildBlocksDataInput>
-  upsert?: Maybe<BlockUpsertWithoutChildBlocksInput>
+  update?: Maybe<GQLBlockUpdateWithoutChildBlocksDataInput>
+  upsert?: Maybe<GQLBlockUpsertWithoutChildBlocksInput>
 }
 
-export type BlockUpdateWithoutChildBlocksDataInput = {
-  status?: Maybe<Status>
+export type GQLBlockUpdateWithoutChildBlocksDataInput = {
+  status?: Maybe<GQLStatus>
   title?: Maybe<Scalars['String']>
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1506,13 +1496,13 @@ export type BlockUpdateWithoutChildBlocksDataInput = {
   content?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockUpdatebrandLogoInput>
-  parentBlock?: Maybe<BlockUpdateOneWithoutChildBlocksInput>
-  page?: Maybe<StructuredPageUpdateOneWithoutBlocksInput>
+  brandLogo?: Maybe<GQLBlockUpdatebrandLogoInput>
+  parentBlock?: Maybe<GQLBlockUpdateOneWithoutChildBlocksInput>
+  page?: Maybe<GQLStructuredPageUpdateOneWithoutBlocksInput>
 }
 
-export type BlockUpdateWithoutPageDataInput = {
-  status?: Maybe<Status>
+export type GQLBlockUpdateWithoutPageDataInput = {
+  status?: Maybe<GQLStatus>
   title?: Maybe<Scalars['String']>
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1522,13 +1512,13 @@ export type BlockUpdateWithoutPageDataInput = {
   content?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockUpdatebrandLogoInput>
-  childBlocks?: Maybe<BlockUpdateManyWithoutParentBlockInput>
-  parentBlock?: Maybe<BlockUpdateOneWithoutChildBlocksInput>
+  brandLogo?: Maybe<GQLBlockUpdatebrandLogoInput>
+  childBlocks?: Maybe<GQLBlockUpdateManyWithoutParentBlockInput>
+  parentBlock?: Maybe<GQLBlockUpdateOneWithoutChildBlocksInput>
 }
 
-export type BlockUpdateWithoutParentBlockDataInput = {
-  status?: Maybe<Status>
+export type GQLBlockUpdateWithoutParentBlockDataInput = {
+  status?: Maybe<GQLStatus>
   title?: Maybe<Scalars['String']>
   extended?: Maybe<Scalars['Boolean']>
   order?: Maybe<Scalars['Int']>
@@ -1538,47 +1528,47 @@ export type BlockUpdateWithoutParentBlockDataInput = {
   content?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
-  brandLogo?: Maybe<BlockUpdatebrandLogoInput>
-  childBlocks?: Maybe<BlockUpdateManyWithoutParentBlockInput>
-  page?: Maybe<StructuredPageUpdateOneWithoutBlocksInput>
+  brandLogo?: Maybe<GQLBlockUpdatebrandLogoInput>
+  childBlocks?: Maybe<GQLBlockUpdateManyWithoutParentBlockInput>
+  page?: Maybe<GQLStructuredPageUpdateOneWithoutBlocksInput>
 }
 
-export type BlockUpdateWithWhereUniqueWithoutPageInput = {
-  where: BlockWhereUniqueInput
-  data: BlockUpdateWithoutPageDataInput
+export type GQLBlockUpdateWithWhereUniqueWithoutPageInput = {
+  where: GQLBlockWhereUniqueInput
+  data: GQLBlockUpdateWithoutPageDataInput
 }
 
-export type BlockUpdateWithWhereUniqueWithoutParentBlockInput = {
-  where: BlockWhereUniqueInput
-  data: BlockUpdateWithoutParentBlockDataInput
+export type GQLBlockUpdateWithWhereUniqueWithoutParentBlockInput = {
+  where: GQLBlockWhereUniqueInput
+  data: GQLBlockUpdateWithoutParentBlockDataInput
 }
 
-export type BlockUpsertWithoutChildBlocksInput = {
-  update: BlockUpdateWithoutChildBlocksDataInput
-  create: BlockCreateWithoutChildBlocksInput
+export type GQLBlockUpsertWithoutChildBlocksInput = {
+  update: GQLBlockUpdateWithoutChildBlocksDataInput
+  create: GQLBlockCreateWithoutChildBlocksInput
 }
 
-export type BlockUpsertWithWhereUniqueWithoutPageInput = {
-  where: BlockWhereUniqueInput
-  update: BlockUpdateWithoutPageDataInput
-  create: BlockCreateWithoutPageInput
+export type GQLBlockUpsertWithWhereUniqueWithoutPageInput = {
+  where: GQLBlockWhereUniqueInput
+  update: GQLBlockUpdateWithoutPageDataInput
+  create: GQLBlockCreateWithoutPageInput
 }
 
-export type BlockUpsertWithWhereUniqueWithoutParentBlockInput = {
-  where: BlockWhereUniqueInput
-  update: BlockUpdateWithoutParentBlockDataInput
-  create: BlockCreateWithoutParentBlockInput
+export type GQLBlockUpsertWithWhereUniqueWithoutParentBlockInput = {
+  where: GQLBlockWhereUniqueInput
+  update: GQLBlockUpdateWithoutParentBlockDataInput
+  create: GQLBlockCreateWithoutParentBlockInput
 }
 
-export type BlockWhereInput = {
+export type GQLBlockWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<BlockWhereInput>>
-  OR?: Maybe<Array<BlockWhereInput>>
-  NOT?: Maybe<Array<BlockWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLBlockWhereInput>>
+  OR?: Maybe<Array<GQLBlockWhereInput>>
+  NOT?: Maybe<Array<GQLBlockWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -1657,129 +1647,135 @@ export type BlockWhereInput = {
   featured_not?: Maybe<Scalars['Boolean']>
   raised?: Maybe<Scalars['Boolean']>
   raised_not?: Maybe<Scalars['Boolean']>
-  childBlocks_every?: Maybe<BlockWhereInput>
-  childBlocks_some?: Maybe<BlockWhereInput>
-  childBlocks_none?: Maybe<BlockWhereInput>
-  parentBlock?: Maybe<BlockWhereInput>
-  page?: Maybe<StructuredPageWhereInput>
+  childBlocks_every?: Maybe<GQLBlockWhereInput>
+  childBlocks_some?: Maybe<GQLBlockWhereInput>
+  childBlocks_none?: Maybe<GQLBlockWhereInput>
+  parentBlock?: Maybe<GQLBlockWhereInput>
+  page?: Maybe<GQLStructuredPageWhereInput>
 }
 
-export type BlockWhereUniqueInput = {
+export type GQLBlockWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type BlogPost = Node & {
+export type GQLBlogPost = GQLNode & {
   __typename?: 'BlogPost'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<Asset>
-  download?: Maybe<Asset>
-  employee?: Maybe<Employee>
-  page?: Maybe<Page>
+  image?: Maybe<GQLAsset>
+  download?: Maybe<GQLAsset>
+  author?: Maybe<GQLEmployee>
+  page?: Maybe<GQLPage>
+  title?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
 }
 
-export type BlogPostConnection = {
+export type GQLBlogPostTitleArgs = {
+  locale?: Maybe<GQLLocale>
+}
+
+export type GQLBlogPostContentArgs = {
+  locale?: Maybe<GQLLocale>
+}
+
+export type GQLBlogPostConnection = {
   __typename?: 'BlogPostConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<BlogPostEdge>>
-  aggregate: AggregateBlogPost
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLBlogPostEdge>>
+  aggregate: GQLAggregateBlogPost
 }
 
-export type BlogPostCreateInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostCreateInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageBlogPostInput>
-  download?: Maybe<AssetCreateOneWithoutDownloadBlogPostInput>
-  employee?: Maybe<EmployeeCreateOneWithoutBlogPostsInput>
-  page?: Maybe<PageCreateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetCreateOneWithoutImageBlogPostInput>
+  download?: Maybe<GQLAssetCreateOneWithoutDownloadBlogPostInput>
+  author?: Maybe<GQLEmployeeCreateOneWithoutBlogPostsInput>
+  page?: Maybe<GQLPageCreateOneWithoutBlogPostInput>
 }
 
-export type BlogPostCreateManyWithoutDownloadInput = {
-  create?: Maybe<Array<BlogPostCreateWithoutDownloadInput>>
-  connect?: Maybe<Array<BlogPostWhereUniqueInput>>
+export type GQLBlogPostCreateManyWithoutAuthorInput = {
+  create?: Maybe<Array<GQLBlogPostCreateWithoutAuthorInput>>
+  connect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
 }
 
-export type BlogPostCreateManyWithoutEmployeeInput = {
-  create?: Maybe<Array<BlogPostCreateWithoutEmployeeInput>>
-  connect?: Maybe<Array<BlogPostWhereUniqueInput>>
+export type GQLBlogPostCreateManyWithoutDownloadInput = {
+  create?: Maybe<Array<GQLBlogPostCreateWithoutDownloadInput>>
+  connect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
 }
 
-export type BlogPostCreateManyWithoutImageInput = {
-  create?: Maybe<Array<BlogPostCreateWithoutImageInput>>
-  connect?: Maybe<Array<BlogPostWhereUniqueInput>>
+export type GQLBlogPostCreateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLBlogPostCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
 }
 
-export type BlogPostCreateOneWithoutPageInput = {
-  create?: Maybe<BlogPostCreateWithoutPageInput>
-  connect?: Maybe<BlogPostWhereUniqueInput>
+export type GQLBlogPostCreateOneWithoutPageInput = {
+  create?: Maybe<GQLBlogPostCreateWithoutPageInput>
+  connect?: Maybe<GQLBlogPostWhereUniqueInput>
 }
 
-export type BlogPostCreateWithoutDownloadInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostCreateWithoutAuthorInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageBlogPostInput>
-  employee?: Maybe<EmployeeCreateOneWithoutBlogPostsInput>
-  page?: Maybe<PageCreateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetCreateOneWithoutImageBlogPostInput>
+  download?: Maybe<GQLAssetCreateOneWithoutDownloadBlogPostInput>
+  page?: Maybe<GQLPageCreateOneWithoutBlogPostInput>
 }
 
-export type BlogPostCreateWithoutEmployeeInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostCreateWithoutDownloadInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageBlogPostInput>
-  download?: Maybe<AssetCreateOneWithoutDownloadBlogPostInput>
-  page?: Maybe<PageCreateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetCreateOneWithoutImageBlogPostInput>
+  author?: Maybe<GQLEmployeeCreateOneWithoutBlogPostsInput>
+  page?: Maybe<GQLPageCreateOneWithoutBlogPostInput>
 }
 
-export type BlogPostCreateWithoutImageInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostCreateWithoutImageInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
-  download?: Maybe<AssetCreateOneWithoutDownloadBlogPostInput>
-  employee?: Maybe<EmployeeCreateOneWithoutBlogPostsInput>
-  page?: Maybe<PageCreateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  download?: Maybe<GQLAssetCreateOneWithoutDownloadBlogPostInput>
+  author?: Maybe<GQLEmployeeCreateOneWithoutBlogPostsInput>
+  page?: Maybe<GQLPageCreateOneWithoutBlogPostInput>
 }
 
-export type BlogPostCreateWithoutPageInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostCreateWithoutPageInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageBlogPostInput>
-  download?: Maybe<AssetCreateOneWithoutDownloadBlogPostInput>
-  employee?: Maybe<EmployeeCreateOneWithoutBlogPostsInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetCreateOneWithoutImageBlogPostInput>
+  download?: Maybe<GQLAssetCreateOneWithoutDownloadBlogPostInput>
+  author?: Maybe<GQLEmployeeCreateOneWithoutBlogPostsInput>
 }
 
-export type BlogPostEdge = {
+export type GQLBlogPostEdge = {
   __typename?: 'BlogPostEdge'
-  node: BlogPost
+  node: GQLBlogPost
   cursor: Scalars['String']
 }
 
-export enum BlogPostOrderByInput {
+export enum GQLBlogPostOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -1790,38 +1786,38 @@ export enum BlogPostOrderByInput {
   IdDesc = 'id_DESC',
   PublicPublishedAtAsc = 'publicPublishedAt_ASC',
   PublicPublishedAtDesc = 'publicPublishedAt_DESC',
-  PublicCreatedAtAsc = 'publicCreatedAt_ASC',
-  PublicCreatedAtDesc = 'publicCreatedAt_DESC',
-  ContentAsc = 'content_ASC',
-  ContentDesc = 'content_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  ExcerptAsc = 'excerpt_ASC',
-  ExcerptDesc = 'excerpt_DESC',
+  ContentEnAsc = 'contentEN_ASC',
+  ContentEnDesc = 'contentEN_DESC',
+  ContentNlAsc = 'contentNL_ASC',
+  ContentNlDesc = 'contentNL_DESC',
+  TitleEnAsc = 'titleEN_ASC',
+  TitleEnDesc = 'titleEN_DESC',
+  TitleNlAsc = 'titleNL_ASC',
+  TitleNlDesc = 'titleNL_DESC',
 }
 
-export type BlogPostPreviousValues = {
+export type GQLBlogPostPreviousValues = {
   __typename?: 'BlogPostPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['String']
-  title: Scalars['String']
-  excerpt?: Maybe<Scalars['String']>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
 }
 
-export type BlogPostScalarWhereInput = {
+export type GQLBlogPostScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<BlogPostScalarWhereInput>>
-  OR?: Maybe<Array<BlogPostScalarWhereInput>>
-  NOT?: Maybe<Array<BlogPostScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLBlogPostScalarWhereInput>>
+  OR?: Maybe<Array<GQLBlogPostScalarWhereInput>>
+  NOT?: Maybe<Array<GQLBlogPostScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -1860,253 +1856,259 @@ export type BlogPostScalarWhereInput = {
   publicPublishedAt_lte?: Maybe<Scalars['DateTime']>
   publicPublishedAt_gt?: Maybe<Scalars['DateTime']>
   publicPublishedAt_gte?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_not?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  publicCreatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  publicCreatedAt_lt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_lte?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_gt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_gte?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  content_not?: Maybe<Scalars['String']>
-  content_in?: Maybe<Array<Scalars['String']>>
-  content_not_in?: Maybe<Array<Scalars['String']>>
-  content_lt?: Maybe<Scalars['String']>
-  content_lte?: Maybe<Scalars['String']>
-  content_gt?: Maybe<Scalars['String']>
-  content_gte?: Maybe<Scalars['String']>
-  content_contains?: Maybe<Scalars['String']>
-  content_not_contains?: Maybe<Scalars['String']>
-  content_starts_with?: Maybe<Scalars['String']>
-  content_not_starts_with?: Maybe<Scalars['String']>
-  content_ends_with?: Maybe<Scalars['String']>
-  content_not_ends_with?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  title_not?: Maybe<Scalars['String']>
-  title_in?: Maybe<Array<Scalars['String']>>
-  title_not_in?: Maybe<Array<Scalars['String']>>
-  title_lt?: Maybe<Scalars['String']>
-  title_lte?: Maybe<Scalars['String']>
-  title_gt?: Maybe<Scalars['String']>
-  title_gte?: Maybe<Scalars['String']>
-  title_contains?: Maybe<Scalars['String']>
-  title_not_contains?: Maybe<Scalars['String']>
-  title_starts_with?: Maybe<Scalars['String']>
-  title_not_starts_with?: Maybe<Scalars['String']>
-  title_ends_with?: Maybe<Scalars['String']>
-  title_not_ends_with?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  excerpt_not?: Maybe<Scalars['String']>
-  excerpt_in?: Maybe<Array<Scalars['String']>>
-  excerpt_not_in?: Maybe<Array<Scalars['String']>>
-  excerpt_lt?: Maybe<Scalars['String']>
-  excerpt_lte?: Maybe<Scalars['String']>
-  excerpt_gt?: Maybe<Scalars['String']>
-  excerpt_gte?: Maybe<Scalars['String']>
-  excerpt_contains?: Maybe<Scalars['String']>
-  excerpt_not_contains?: Maybe<Scalars['String']>
-  excerpt_starts_with?: Maybe<Scalars['String']>
-  excerpt_not_starts_with?: Maybe<Scalars['String']>
-  excerpt_ends_with?: Maybe<Scalars['String']>
-  excerpt_not_ends_with?: Maybe<Scalars['String']>
+  contentEN?: Maybe<Scalars['String']>
+  contentEN_not?: Maybe<Scalars['String']>
+  contentEN_in?: Maybe<Array<Scalars['String']>>
+  contentEN_not_in?: Maybe<Array<Scalars['String']>>
+  contentEN_lt?: Maybe<Scalars['String']>
+  contentEN_lte?: Maybe<Scalars['String']>
+  contentEN_gt?: Maybe<Scalars['String']>
+  contentEN_gte?: Maybe<Scalars['String']>
+  contentEN_contains?: Maybe<Scalars['String']>
+  contentEN_not_contains?: Maybe<Scalars['String']>
+  contentEN_starts_with?: Maybe<Scalars['String']>
+  contentEN_not_starts_with?: Maybe<Scalars['String']>
+  contentEN_ends_with?: Maybe<Scalars['String']>
+  contentEN_not_ends_with?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  contentNL_not?: Maybe<Scalars['String']>
+  contentNL_in?: Maybe<Array<Scalars['String']>>
+  contentNL_not_in?: Maybe<Array<Scalars['String']>>
+  contentNL_lt?: Maybe<Scalars['String']>
+  contentNL_lte?: Maybe<Scalars['String']>
+  contentNL_gt?: Maybe<Scalars['String']>
+  contentNL_gte?: Maybe<Scalars['String']>
+  contentNL_contains?: Maybe<Scalars['String']>
+  contentNL_not_contains?: Maybe<Scalars['String']>
+  contentNL_starts_with?: Maybe<Scalars['String']>
+  contentNL_not_starts_with?: Maybe<Scalars['String']>
+  contentNL_ends_with?: Maybe<Scalars['String']>
+  contentNL_not_ends_with?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleEN_not?: Maybe<Scalars['String']>
+  titleEN_in?: Maybe<Array<Scalars['String']>>
+  titleEN_not_in?: Maybe<Array<Scalars['String']>>
+  titleEN_lt?: Maybe<Scalars['String']>
+  titleEN_lte?: Maybe<Scalars['String']>
+  titleEN_gt?: Maybe<Scalars['String']>
+  titleEN_gte?: Maybe<Scalars['String']>
+  titleEN_contains?: Maybe<Scalars['String']>
+  titleEN_not_contains?: Maybe<Scalars['String']>
+  titleEN_starts_with?: Maybe<Scalars['String']>
+  titleEN_not_starts_with?: Maybe<Scalars['String']>
+  titleEN_ends_with?: Maybe<Scalars['String']>
+  titleEN_not_ends_with?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  titleNL_not?: Maybe<Scalars['String']>
+  titleNL_in?: Maybe<Array<Scalars['String']>>
+  titleNL_not_in?: Maybe<Array<Scalars['String']>>
+  titleNL_lt?: Maybe<Scalars['String']>
+  titleNL_lte?: Maybe<Scalars['String']>
+  titleNL_gt?: Maybe<Scalars['String']>
+  titleNL_gte?: Maybe<Scalars['String']>
+  titleNL_contains?: Maybe<Scalars['String']>
+  titleNL_not_contains?: Maybe<Scalars['String']>
+  titleNL_starts_with?: Maybe<Scalars['String']>
+  titleNL_not_starts_with?: Maybe<Scalars['String']>
+  titleNL_ends_with?: Maybe<Scalars['String']>
+  titleNL_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type BlogPostSubscriptionPayload = {
+export type GQLBlogPostSubscriptionPayload = {
   __typename?: 'BlogPostSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<BlogPost>
+  mutation: GQLMutationType
+  node?: Maybe<GQLBlogPost>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<BlogPostPreviousValues>
+  previousValues?: Maybe<GQLBlogPostPreviousValues>
 }
 
-export type BlogPostSubscriptionWhereInput = {
-  AND?: Maybe<Array<BlogPostSubscriptionWhereInput>>
-  OR?: Maybe<Array<BlogPostSubscriptionWhereInput>>
-  NOT?: Maybe<Array<BlogPostSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLBlogPostSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLBlogPostSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLBlogPostSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLBlogPostSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<BlogPostWhereInput>
+  node?: Maybe<GQLBlogPostWhereInput>
 }
 
-export type BlogPostUpdateInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageBlogPostInput>
-  download?: Maybe<AssetUpdateOneWithoutDownloadBlogPostInput>
-  employee?: Maybe<EmployeeUpdateOneWithoutBlogPostsInput>
-  page?: Maybe<PageUpdateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageBlogPostInput>
+  download?: Maybe<GQLAssetUpdateOneWithoutDownloadBlogPostInput>
+  author?: Maybe<GQLEmployeeUpdateOneWithoutBlogPostsInput>
+  page?: Maybe<GQLPageUpdateOneWithoutBlogPostInput>
 }
 
-export type BlogPostUpdateManyDataInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
 }
 
-export type BlogPostUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
 }
 
-export type BlogPostUpdateManyWithoutDownloadInput = {
-  create?: Maybe<Array<BlogPostCreateWithoutDownloadInput>>
-  connect?: Maybe<Array<BlogPostWhereUniqueInput>>
-  set?: Maybe<Array<BlogPostWhereUniqueInput>>
-  disconnect?: Maybe<Array<BlogPostWhereUniqueInput>>
-  delete?: Maybe<Array<BlogPostWhereUniqueInput>>
-  update?: Maybe<Array<BlogPostUpdateWithWhereUniqueWithoutDownloadInput>>
-  updateMany?: Maybe<Array<BlogPostUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<BlogPostScalarWhereInput>>
-  upsert?: Maybe<Array<BlogPostUpsertWithWhereUniqueWithoutDownloadInput>>
+export type GQLBlogPostUpdateManyWithoutAuthorInput = {
+  create?: Maybe<Array<GQLBlogPostCreateWithoutAuthorInput>>
+  connect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  set?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  delete?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  update?: Maybe<Array<GQLBlogPostUpdateWithWhereUniqueWithoutAuthorInput>>
+  updateMany?: Maybe<Array<GQLBlogPostUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLBlogPostScalarWhereInput>>
+  upsert?: Maybe<Array<GQLBlogPostUpsertWithWhereUniqueWithoutAuthorInput>>
 }
 
-export type BlogPostUpdateManyWithoutEmployeeInput = {
-  create?: Maybe<Array<BlogPostCreateWithoutEmployeeInput>>
-  connect?: Maybe<Array<BlogPostWhereUniqueInput>>
-  set?: Maybe<Array<BlogPostWhereUniqueInput>>
-  disconnect?: Maybe<Array<BlogPostWhereUniqueInput>>
-  delete?: Maybe<Array<BlogPostWhereUniqueInput>>
-  update?: Maybe<Array<BlogPostUpdateWithWhereUniqueWithoutEmployeeInput>>
-  updateMany?: Maybe<Array<BlogPostUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<BlogPostScalarWhereInput>>
-  upsert?: Maybe<Array<BlogPostUpsertWithWhereUniqueWithoutEmployeeInput>>
+export type GQLBlogPostUpdateManyWithoutDownloadInput = {
+  create?: Maybe<Array<GQLBlogPostCreateWithoutDownloadInput>>
+  connect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  set?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  delete?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  update?: Maybe<Array<GQLBlogPostUpdateWithWhereUniqueWithoutDownloadInput>>
+  updateMany?: Maybe<Array<GQLBlogPostUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLBlogPostScalarWhereInput>>
+  upsert?: Maybe<Array<GQLBlogPostUpsertWithWhereUniqueWithoutDownloadInput>>
 }
 
-export type BlogPostUpdateManyWithoutImageInput = {
-  create?: Maybe<Array<BlogPostCreateWithoutImageInput>>
-  connect?: Maybe<Array<BlogPostWhereUniqueInput>>
-  set?: Maybe<Array<BlogPostWhereUniqueInput>>
-  disconnect?: Maybe<Array<BlogPostWhereUniqueInput>>
-  delete?: Maybe<Array<BlogPostWhereUniqueInput>>
-  update?: Maybe<Array<BlogPostUpdateWithWhereUniqueWithoutImageInput>>
-  updateMany?: Maybe<Array<BlogPostUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<BlogPostScalarWhereInput>>
-  upsert?: Maybe<Array<BlogPostUpsertWithWhereUniqueWithoutImageInput>>
+export type GQLBlogPostUpdateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLBlogPostCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  set?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  delete?: Maybe<Array<GQLBlogPostWhereUniqueInput>>
+  update?: Maybe<Array<GQLBlogPostUpdateWithWhereUniqueWithoutImageInput>>
+  updateMany?: Maybe<Array<GQLBlogPostUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLBlogPostScalarWhereInput>>
+  upsert?: Maybe<Array<GQLBlogPostUpsertWithWhereUniqueWithoutImageInput>>
 }
 
-export type BlogPostUpdateManyWithWhereNestedInput = {
-  where: BlogPostScalarWhereInput
-  data: BlogPostUpdateManyDataInput
+export type GQLBlogPostUpdateManyWithWhereNestedInput = {
+  where: GQLBlogPostScalarWhereInput
+  data: GQLBlogPostUpdateManyDataInput
 }
 
-export type BlogPostUpdateOneWithoutPageInput = {
-  create?: Maybe<BlogPostCreateWithoutPageInput>
-  connect?: Maybe<BlogPostWhereUniqueInput>
+export type GQLBlogPostUpdateOneWithoutPageInput = {
+  create?: Maybe<GQLBlogPostCreateWithoutPageInput>
+  connect?: Maybe<GQLBlogPostWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<BlogPostUpdateWithoutPageDataInput>
-  upsert?: Maybe<BlogPostUpsertWithoutPageInput>
+  update?: Maybe<GQLBlogPostUpdateWithoutPageDataInput>
+  upsert?: Maybe<GQLBlogPostUpsertWithoutPageInput>
 }
 
-export type BlogPostUpdateWithoutDownloadDataInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateWithoutAuthorDataInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageBlogPostInput>
-  employee?: Maybe<EmployeeUpdateOneWithoutBlogPostsInput>
-  page?: Maybe<PageUpdateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageBlogPostInput>
+  download?: Maybe<GQLAssetUpdateOneWithoutDownloadBlogPostInput>
+  page?: Maybe<GQLPageUpdateOneWithoutBlogPostInput>
 }
 
-export type BlogPostUpdateWithoutEmployeeDataInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateWithoutDownloadDataInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageBlogPostInput>
-  download?: Maybe<AssetUpdateOneWithoutDownloadBlogPostInput>
-  page?: Maybe<PageUpdateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageBlogPostInput>
+  author?: Maybe<GQLEmployeeUpdateOneWithoutBlogPostsInput>
+  page?: Maybe<GQLPageUpdateOneWithoutBlogPostInput>
 }
 
-export type BlogPostUpdateWithoutImageDataInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateWithoutImageDataInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  download?: Maybe<AssetUpdateOneWithoutDownloadBlogPostInput>
-  employee?: Maybe<EmployeeUpdateOneWithoutBlogPostsInput>
-  page?: Maybe<PageUpdateOneWithoutBlogPostInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  download?: Maybe<GQLAssetUpdateOneWithoutDownloadBlogPostInput>
+  author?: Maybe<GQLEmployeeUpdateOneWithoutBlogPostsInput>
+  page?: Maybe<GQLPageUpdateOneWithoutBlogPostInput>
 }
 
-export type BlogPostUpdateWithoutPageDataInput = {
-  status?: Maybe<Status>
+export type GQLBlogPostUpdateWithoutPageDataInput = {
+  status?: Maybe<GQLStatus>
   publicPublishedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageBlogPostInput>
-  download?: Maybe<AssetUpdateOneWithoutDownloadBlogPostInput>
-  employee?: Maybe<EmployeeUpdateOneWithoutBlogPostsInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageBlogPostInput>
+  download?: Maybe<GQLAssetUpdateOneWithoutDownloadBlogPostInput>
+  author?: Maybe<GQLEmployeeUpdateOneWithoutBlogPostsInput>
 }
 
-export type BlogPostUpdateWithWhereUniqueWithoutDownloadInput = {
-  where: BlogPostWhereUniqueInput
-  data: BlogPostUpdateWithoutDownloadDataInput
+export type GQLBlogPostUpdateWithWhereUniqueWithoutAuthorInput = {
+  where: GQLBlogPostWhereUniqueInput
+  data: GQLBlogPostUpdateWithoutAuthorDataInput
 }
 
-export type BlogPostUpdateWithWhereUniqueWithoutEmployeeInput = {
-  where: BlogPostWhereUniqueInput
-  data: BlogPostUpdateWithoutEmployeeDataInput
+export type GQLBlogPostUpdateWithWhereUniqueWithoutDownloadInput = {
+  where: GQLBlogPostWhereUniqueInput
+  data: GQLBlogPostUpdateWithoutDownloadDataInput
 }
 
-export type BlogPostUpdateWithWhereUniqueWithoutImageInput = {
-  where: BlogPostWhereUniqueInput
-  data: BlogPostUpdateWithoutImageDataInput
+export type GQLBlogPostUpdateWithWhereUniqueWithoutImageInput = {
+  where: GQLBlogPostWhereUniqueInput
+  data: GQLBlogPostUpdateWithoutImageDataInput
 }
 
-export type BlogPostUpsertWithoutPageInput = {
-  update: BlogPostUpdateWithoutPageDataInput
-  create: BlogPostCreateWithoutPageInput
+export type GQLBlogPostUpsertWithoutPageInput = {
+  update: GQLBlogPostUpdateWithoutPageDataInput
+  create: GQLBlogPostCreateWithoutPageInput
 }
 
-export type BlogPostUpsertWithWhereUniqueWithoutDownloadInput = {
-  where: BlogPostWhereUniqueInput
-  update: BlogPostUpdateWithoutDownloadDataInput
-  create: BlogPostCreateWithoutDownloadInput
+export type GQLBlogPostUpsertWithWhereUniqueWithoutAuthorInput = {
+  where: GQLBlogPostWhereUniqueInput
+  update: GQLBlogPostUpdateWithoutAuthorDataInput
+  create: GQLBlogPostCreateWithoutAuthorInput
 }
 
-export type BlogPostUpsertWithWhereUniqueWithoutEmployeeInput = {
-  where: BlogPostWhereUniqueInput
-  update: BlogPostUpdateWithoutEmployeeDataInput
-  create: BlogPostCreateWithoutEmployeeInput
+export type GQLBlogPostUpsertWithWhereUniqueWithoutDownloadInput = {
+  where: GQLBlogPostWhereUniqueInput
+  update: GQLBlogPostUpdateWithoutDownloadDataInput
+  create: GQLBlogPostCreateWithoutDownloadInput
 }
 
-export type BlogPostUpsertWithWhereUniqueWithoutImageInput = {
-  where: BlogPostWhereUniqueInput
-  update: BlogPostUpdateWithoutImageDataInput
-  create: BlogPostCreateWithoutImageInput
+export type GQLBlogPostUpsertWithWhereUniqueWithoutImageInput = {
+  where: GQLBlogPostWhereUniqueInput
+  update: GQLBlogPostUpdateWithoutImageDataInput
+  create: GQLBlogPostCreateWithoutImageInput
 }
 
-export type BlogPostWhereInput = {
+export type GQLBlogPostWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<BlogPostWhereInput>>
-  OR?: Maybe<Array<BlogPostWhereInput>>
-  NOT?: Maybe<Array<BlogPostWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLBlogPostWhereInput>>
+  OR?: Maybe<Array<GQLBlogPostWhereInput>>
+  NOT?: Maybe<Array<GQLBlogPostWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -2145,76 +2147,83 @@ export type BlogPostWhereInput = {
   publicPublishedAt_lte?: Maybe<Scalars['DateTime']>
   publicPublishedAt_gt?: Maybe<Scalars['DateTime']>
   publicPublishedAt_gte?: Maybe<Scalars['DateTime']>
-  publicCreatedAt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_not?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  publicCreatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  publicCreatedAt_lt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_lte?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_gt?: Maybe<Scalars['DateTime']>
-  publicCreatedAt_gte?: Maybe<Scalars['DateTime']>
-  content?: Maybe<Scalars['String']>
-  content_not?: Maybe<Scalars['String']>
-  content_in?: Maybe<Array<Scalars['String']>>
-  content_not_in?: Maybe<Array<Scalars['String']>>
-  content_lt?: Maybe<Scalars['String']>
-  content_lte?: Maybe<Scalars['String']>
-  content_gt?: Maybe<Scalars['String']>
-  content_gte?: Maybe<Scalars['String']>
-  content_contains?: Maybe<Scalars['String']>
-  content_not_contains?: Maybe<Scalars['String']>
-  content_starts_with?: Maybe<Scalars['String']>
-  content_not_starts_with?: Maybe<Scalars['String']>
-  content_ends_with?: Maybe<Scalars['String']>
-  content_not_ends_with?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  title_not?: Maybe<Scalars['String']>
-  title_in?: Maybe<Array<Scalars['String']>>
-  title_not_in?: Maybe<Array<Scalars['String']>>
-  title_lt?: Maybe<Scalars['String']>
-  title_lte?: Maybe<Scalars['String']>
-  title_gt?: Maybe<Scalars['String']>
-  title_gte?: Maybe<Scalars['String']>
-  title_contains?: Maybe<Scalars['String']>
-  title_not_contains?: Maybe<Scalars['String']>
-  title_starts_with?: Maybe<Scalars['String']>
-  title_not_starts_with?: Maybe<Scalars['String']>
-  title_ends_with?: Maybe<Scalars['String']>
-  title_not_ends_with?: Maybe<Scalars['String']>
-  excerpt?: Maybe<Scalars['String']>
-  excerpt_not?: Maybe<Scalars['String']>
-  excerpt_in?: Maybe<Array<Scalars['String']>>
-  excerpt_not_in?: Maybe<Array<Scalars['String']>>
-  excerpt_lt?: Maybe<Scalars['String']>
-  excerpt_lte?: Maybe<Scalars['String']>
-  excerpt_gt?: Maybe<Scalars['String']>
-  excerpt_gte?: Maybe<Scalars['String']>
-  excerpt_contains?: Maybe<Scalars['String']>
-  excerpt_not_contains?: Maybe<Scalars['String']>
-  excerpt_starts_with?: Maybe<Scalars['String']>
-  excerpt_not_starts_with?: Maybe<Scalars['String']>
-  excerpt_ends_with?: Maybe<Scalars['String']>
-  excerpt_not_ends_with?: Maybe<Scalars['String']>
-  image?: Maybe<AssetWhereInput>
-  download?: Maybe<AssetWhereInput>
-  employee?: Maybe<EmployeeWhereInput>
-  page?: Maybe<PageWhereInput>
+  contentEN?: Maybe<Scalars['String']>
+  contentEN_not?: Maybe<Scalars['String']>
+  contentEN_in?: Maybe<Array<Scalars['String']>>
+  contentEN_not_in?: Maybe<Array<Scalars['String']>>
+  contentEN_lt?: Maybe<Scalars['String']>
+  contentEN_lte?: Maybe<Scalars['String']>
+  contentEN_gt?: Maybe<Scalars['String']>
+  contentEN_gte?: Maybe<Scalars['String']>
+  contentEN_contains?: Maybe<Scalars['String']>
+  contentEN_not_contains?: Maybe<Scalars['String']>
+  contentEN_starts_with?: Maybe<Scalars['String']>
+  contentEN_not_starts_with?: Maybe<Scalars['String']>
+  contentEN_ends_with?: Maybe<Scalars['String']>
+  contentEN_not_ends_with?: Maybe<Scalars['String']>
+  contentNL?: Maybe<Scalars['String']>
+  contentNL_not?: Maybe<Scalars['String']>
+  contentNL_in?: Maybe<Array<Scalars['String']>>
+  contentNL_not_in?: Maybe<Array<Scalars['String']>>
+  contentNL_lt?: Maybe<Scalars['String']>
+  contentNL_lte?: Maybe<Scalars['String']>
+  contentNL_gt?: Maybe<Scalars['String']>
+  contentNL_gte?: Maybe<Scalars['String']>
+  contentNL_contains?: Maybe<Scalars['String']>
+  contentNL_not_contains?: Maybe<Scalars['String']>
+  contentNL_starts_with?: Maybe<Scalars['String']>
+  contentNL_not_starts_with?: Maybe<Scalars['String']>
+  contentNL_ends_with?: Maybe<Scalars['String']>
+  contentNL_not_ends_with?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleEN_not?: Maybe<Scalars['String']>
+  titleEN_in?: Maybe<Array<Scalars['String']>>
+  titleEN_not_in?: Maybe<Array<Scalars['String']>>
+  titleEN_lt?: Maybe<Scalars['String']>
+  titleEN_lte?: Maybe<Scalars['String']>
+  titleEN_gt?: Maybe<Scalars['String']>
+  titleEN_gte?: Maybe<Scalars['String']>
+  titleEN_contains?: Maybe<Scalars['String']>
+  titleEN_not_contains?: Maybe<Scalars['String']>
+  titleEN_starts_with?: Maybe<Scalars['String']>
+  titleEN_not_starts_with?: Maybe<Scalars['String']>
+  titleEN_ends_with?: Maybe<Scalars['String']>
+  titleEN_not_ends_with?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  titleNL_not?: Maybe<Scalars['String']>
+  titleNL_in?: Maybe<Array<Scalars['String']>>
+  titleNL_not_in?: Maybe<Array<Scalars['String']>>
+  titleNL_lt?: Maybe<Scalars['String']>
+  titleNL_lte?: Maybe<Scalars['String']>
+  titleNL_gt?: Maybe<Scalars['String']>
+  titleNL_gte?: Maybe<Scalars['String']>
+  titleNL_contains?: Maybe<Scalars['String']>
+  titleNL_not_contains?: Maybe<Scalars['String']>
+  titleNL_starts_with?: Maybe<Scalars['String']>
+  titleNL_not_starts_with?: Maybe<Scalars['String']>
+  titleNL_ends_with?: Maybe<Scalars['String']>
+  titleNL_not_ends_with?: Maybe<Scalars['String']>
+  image?: Maybe<GQLAssetWhereInput>
+  download?: Maybe<GQLAssetWhereInput>
+  author?: Maybe<GQLEmployeeWhereInput>
+  page?: Maybe<GQLPageWhereInput>
 }
 
-export type BlogPostWhereUniqueInput = {
+export type GQLBlogPostWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
-  title?: Maybe<Scalars['String']>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
 }
 
-export enum BrandLogoProperties {
+export enum GQLBrandLogoProperties {
   BottomLeft = 'BOTTOM_LEFT',
   BottomRight = 'BOTTOM_RIGHT',
   Solid = 'SOLID',
 }
 
-export type Comment = Node & {
+export type GQLComment = GQLNode & {
   __typename?: 'Comment'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -2222,14 +2231,14 @@ export type Comment = Node & {
   email: Scalars['String']
   upvotes: Scalars['Int']
   content: Scalars['String']
-  page?: Maybe<Page>
-  parentComment?: Maybe<Comment>
-  childComments?: Maybe<Array<Comment>>
+  page?: Maybe<GQLPage>
+  parentComment?: Maybe<GQLComment>
+  childComments?: Maybe<Array<GQLComment>>
 }
 
-export type CommentChildCommentsArgs = {
-  where?: Maybe<CommentWhereInput>
-  orderBy?: Maybe<CommentOrderByInput>
+export type GQLCommentChildCommentsArgs = {
+  where?: Maybe<GQLCommentWhereInput>
+  orderBy?: Maybe<GQLCommentOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -2237,76 +2246,76 @@ export type CommentChildCommentsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type CommentConnection = {
+export type GQLCommentConnection = {
   __typename?: 'CommentConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<CommentEdge>>
-  aggregate: AggregateComment
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLCommentEdge>>
+  aggregate: GQLAggregateComment
 }
 
-export type CommentCreateInput = {
-  status?: Maybe<Status>
+export type GQLCommentCreateInput = {
+  status?: Maybe<GQLStatus>
   displayName: Scalars['String']
   email: Scalars['String']
   upvotes: Scalars['Int']
   content: Scalars['String']
-  page?: Maybe<PageCreateOneWithoutCommentInput>
-  parentComment?: Maybe<CommentCreateOneWithoutChildCommentsInput>
-  childComments?: Maybe<CommentCreateManyWithoutParentCommentInput>
+  page?: Maybe<GQLPageCreateOneWithoutCommentInput>
+  parentComment?: Maybe<GQLCommentCreateOneWithoutChildCommentsInput>
+  childComments?: Maybe<GQLCommentCreateManyWithoutParentCommentInput>
 }
 
-export type CommentCreateManyWithoutParentCommentInput = {
-  create?: Maybe<Array<CommentCreateWithoutParentCommentInput>>
-  connect?: Maybe<Array<CommentWhereUniqueInput>>
+export type GQLCommentCreateManyWithoutParentCommentInput = {
+  create?: Maybe<Array<GQLCommentCreateWithoutParentCommentInput>>
+  connect?: Maybe<Array<GQLCommentWhereUniqueInput>>
 }
 
-export type CommentCreateOneWithoutChildCommentsInput = {
-  create?: Maybe<CommentCreateWithoutChildCommentsInput>
-  connect?: Maybe<CommentWhereUniqueInput>
+export type GQLCommentCreateOneWithoutChildCommentsInput = {
+  create?: Maybe<GQLCommentCreateWithoutChildCommentsInput>
+  connect?: Maybe<GQLCommentWhereUniqueInput>
 }
 
-export type CommentCreateOneWithoutPageInput = {
-  create?: Maybe<CommentCreateWithoutPageInput>
-  connect?: Maybe<CommentWhereUniqueInput>
+export type GQLCommentCreateOneWithoutPageInput = {
+  create?: Maybe<GQLCommentCreateWithoutPageInput>
+  connect?: Maybe<GQLCommentWhereUniqueInput>
 }
 
-export type CommentCreateWithoutChildCommentsInput = {
-  status?: Maybe<Status>
+export type GQLCommentCreateWithoutChildCommentsInput = {
+  status?: Maybe<GQLStatus>
   displayName: Scalars['String']
   email: Scalars['String']
   upvotes: Scalars['Int']
   content: Scalars['String']
-  page?: Maybe<PageCreateOneWithoutCommentInput>
-  parentComment?: Maybe<CommentCreateOneWithoutChildCommentsInput>
+  page?: Maybe<GQLPageCreateOneWithoutCommentInput>
+  parentComment?: Maybe<GQLCommentCreateOneWithoutChildCommentsInput>
 }
 
-export type CommentCreateWithoutPageInput = {
-  status?: Maybe<Status>
+export type GQLCommentCreateWithoutPageInput = {
+  status?: Maybe<GQLStatus>
   displayName: Scalars['String']
   email: Scalars['String']
   upvotes: Scalars['Int']
   content: Scalars['String']
-  parentComment?: Maybe<CommentCreateOneWithoutChildCommentsInput>
-  childComments?: Maybe<CommentCreateManyWithoutParentCommentInput>
+  parentComment?: Maybe<GQLCommentCreateOneWithoutChildCommentsInput>
+  childComments?: Maybe<GQLCommentCreateManyWithoutParentCommentInput>
 }
 
-export type CommentCreateWithoutParentCommentInput = {
-  status?: Maybe<Status>
+export type GQLCommentCreateWithoutParentCommentInput = {
+  status?: Maybe<GQLStatus>
   displayName: Scalars['String']
   email: Scalars['String']
   upvotes: Scalars['Int']
   content: Scalars['String']
-  page?: Maybe<PageCreateOneWithoutCommentInput>
-  childComments?: Maybe<CommentCreateManyWithoutParentCommentInput>
+  page?: Maybe<GQLPageCreateOneWithoutCommentInput>
+  childComments?: Maybe<GQLCommentCreateManyWithoutParentCommentInput>
 }
 
-export type CommentEdge = {
+export type GQLCommentEdge = {
   __typename?: 'CommentEdge'
-  node: Comment
+  node: GQLComment
   cursor: Scalars['String']
 }
 
-export enum CommentOrderByInput {
+export enum GQLCommentOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -2325,9 +2334,9 @@ export enum CommentOrderByInput {
   ContentDesc = 'content_DESC',
 }
 
-export type CommentPreviousValues = {
+export type GQLCommentPreviousValues = {
   __typename?: 'CommentPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -2337,15 +2346,15 @@ export type CommentPreviousValues = {
   content: Scalars['String']
 }
 
-export type CommentScalarWhereInput = {
+export type GQLCommentScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<CommentScalarWhereInput>>
-  OR?: Maybe<Array<CommentScalarWhereInput>>
-  NOT?: Maybe<Array<CommentScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLCommentScalarWhereInput>>
+  OR?: Maybe<Array<GQLCommentScalarWhereInput>>
+  NOT?: Maybe<Array<GQLCommentScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -2428,147 +2437,147 @@ export type CommentScalarWhereInput = {
   content_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type CommentSubscriptionPayload = {
+export type GQLCommentSubscriptionPayload = {
   __typename?: 'CommentSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Comment>
+  mutation: GQLMutationType
+  node?: Maybe<GQLComment>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<CommentPreviousValues>
+  previousValues?: Maybe<GQLCommentPreviousValues>
 }
 
-export type CommentSubscriptionWhereInput = {
-  AND?: Maybe<Array<CommentSubscriptionWhereInput>>
-  OR?: Maybe<Array<CommentSubscriptionWhereInput>>
-  NOT?: Maybe<Array<CommentSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLCommentSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLCommentSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLCommentSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLCommentSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<CommentWhereInput>
+  node?: Maybe<GQLCommentWhereInput>
 }
 
-export type CommentUpdateInput = {
-  status?: Maybe<Status>
+export type GQLCommentUpdateInput = {
+  status?: Maybe<GQLStatus>
   displayName?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   upvotes?: Maybe<Scalars['Int']>
   content?: Maybe<Scalars['String']>
-  page?: Maybe<PageUpdateOneWithoutCommentInput>
-  parentComment?: Maybe<CommentUpdateOneWithoutChildCommentsInput>
-  childComments?: Maybe<CommentUpdateManyWithoutParentCommentInput>
+  page?: Maybe<GQLPageUpdateOneWithoutCommentInput>
+  parentComment?: Maybe<GQLCommentUpdateOneWithoutChildCommentsInput>
+  childComments?: Maybe<GQLCommentUpdateManyWithoutParentCommentInput>
 }
 
-export type CommentUpdateManyDataInput = {
-  status?: Maybe<Status>
-  displayName?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  upvotes?: Maybe<Scalars['Int']>
-  content?: Maybe<Scalars['String']>
-}
-
-export type CommentUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLCommentUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   displayName?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   upvotes?: Maybe<Scalars['Int']>
   content?: Maybe<Scalars['String']>
 }
 
-export type CommentUpdateManyWithoutParentCommentInput = {
-  create?: Maybe<Array<CommentCreateWithoutParentCommentInput>>
-  connect?: Maybe<Array<CommentWhereUniqueInput>>
-  set?: Maybe<Array<CommentWhereUniqueInput>>
-  disconnect?: Maybe<Array<CommentWhereUniqueInput>>
-  delete?: Maybe<Array<CommentWhereUniqueInput>>
-  update?: Maybe<Array<CommentUpdateWithWhereUniqueWithoutParentCommentInput>>
-  updateMany?: Maybe<Array<CommentUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<CommentScalarWhereInput>>
-  upsert?: Maybe<Array<CommentUpsertWithWhereUniqueWithoutParentCommentInput>>
+export type GQLCommentUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
+  displayName?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  upvotes?: Maybe<Scalars['Int']>
+  content?: Maybe<Scalars['String']>
 }
 
-export type CommentUpdateManyWithWhereNestedInput = {
-  where: CommentScalarWhereInput
-  data: CommentUpdateManyDataInput
+export type GQLCommentUpdateManyWithoutParentCommentInput = {
+  create?: Maybe<Array<GQLCommentCreateWithoutParentCommentInput>>
+  connect?: Maybe<Array<GQLCommentWhereUniqueInput>>
+  set?: Maybe<Array<GQLCommentWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLCommentWhereUniqueInput>>
+  delete?: Maybe<Array<GQLCommentWhereUniqueInput>>
+  update?: Maybe<Array<GQLCommentUpdateWithWhereUniqueWithoutParentCommentInput>>
+  updateMany?: Maybe<Array<GQLCommentUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLCommentScalarWhereInput>>
+  upsert?: Maybe<Array<GQLCommentUpsertWithWhereUniqueWithoutParentCommentInput>>
 }
 
-export type CommentUpdateOneWithoutChildCommentsInput = {
-  create?: Maybe<CommentCreateWithoutChildCommentsInput>
-  connect?: Maybe<CommentWhereUniqueInput>
+export type GQLCommentUpdateManyWithWhereNestedInput = {
+  where: GQLCommentScalarWhereInput
+  data: GQLCommentUpdateManyDataInput
+}
+
+export type GQLCommentUpdateOneWithoutChildCommentsInput = {
+  create?: Maybe<GQLCommentCreateWithoutChildCommentsInput>
+  connect?: Maybe<GQLCommentWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<CommentUpdateWithoutChildCommentsDataInput>
-  upsert?: Maybe<CommentUpsertWithoutChildCommentsInput>
+  update?: Maybe<GQLCommentUpdateWithoutChildCommentsDataInput>
+  upsert?: Maybe<GQLCommentUpsertWithoutChildCommentsInput>
 }
 
-export type CommentUpdateOneWithoutPageInput = {
-  create?: Maybe<CommentCreateWithoutPageInput>
-  connect?: Maybe<CommentWhereUniqueInput>
+export type GQLCommentUpdateOneWithoutPageInput = {
+  create?: Maybe<GQLCommentCreateWithoutPageInput>
+  connect?: Maybe<GQLCommentWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<CommentUpdateWithoutPageDataInput>
-  upsert?: Maybe<CommentUpsertWithoutPageInput>
+  update?: Maybe<GQLCommentUpdateWithoutPageDataInput>
+  upsert?: Maybe<GQLCommentUpsertWithoutPageInput>
 }
 
-export type CommentUpdateWithoutChildCommentsDataInput = {
-  status?: Maybe<Status>
+export type GQLCommentUpdateWithoutChildCommentsDataInput = {
+  status?: Maybe<GQLStatus>
   displayName?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   upvotes?: Maybe<Scalars['Int']>
   content?: Maybe<Scalars['String']>
-  page?: Maybe<PageUpdateOneWithoutCommentInput>
-  parentComment?: Maybe<CommentUpdateOneWithoutChildCommentsInput>
+  page?: Maybe<GQLPageUpdateOneWithoutCommentInput>
+  parentComment?: Maybe<GQLCommentUpdateOneWithoutChildCommentsInput>
 }
 
-export type CommentUpdateWithoutPageDataInput = {
-  status?: Maybe<Status>
+export type GQLCommentUpdateWithoutPageDataInput = {
+  status?: Maybe<GQLStatus>
   displayName?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   upvotes?: Maybe<Scalars['Int']>
   content?: Maybe<Scalars['String']>
-  parentComment?: Maybe<CommentUpdateOneWithoutChildCommentsInput>
-  childComments?: Maybe<CommentUpdateManyWithoutParentCommentInput>
+  parentComment?: Maybe<GQLCommentUpdateOneWithoutChildCommentsInput>
+  childComments?: Maybe<GQLCommentUpdateManyWithoutParentCommentInput>
 }
 
-export type CommentUpdateWithoutParentCommentDataInput = {
-  status?: Maybe<Status>
+export type GQLCommentUpdateWithoutParentCommentDataInput = {
+  status?: Maybe<GQLStatus>
   displayName?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   upvotes?: Maybe<Scalars['Int']>
   content?: Maybe<Scalars['String']>
-  page?: Maybe<PageUpdateOneWithoutCommentInput>
-  childComments?: Maybe<CommentUpdateManyWithoutParentCommentInput>
+  page?: Maybe<GQLPageUpdateOneWithoutCommentInput>
+  childComments?: Maybe<GQLCommentUpdateManyWithoutParentCommentInput>
 }
 
-export type CommentUpdateWithWhereUniqueWithoutParentCommentInput = {
-  where: CommentWhereUniqueInput
-  data: CommentUpdateWithoutParentCommentDataInput
+export type GQLCommentUpdateWithWhereUniqueWithoutParentCommentInput = {
+  where: GQLCommentWhereUniqueInput
+  data: GQLCommentUpdateWithoutParentCommentDataInput
 }
 
-export type CommentUpsertWithoutChildCommentsInput = {
-  update: CommentUpdateWithoutChildCommentsDataInput
-  create: CommentCreateWithoutChildCommentsInput
+export type GQLCommentUpsertWithoutChildCommentsInput = {
+  update: GQLCommentUpdateWithoutChildCommentsDataInput
+  create: GQLCommentCreateWithoutChildCommentsInput
 }
 
-export type CommentUpsertWithoutPageInput = {
-  update: CommentUpdateWithoutPageDataInput
-  create: CommentCreateWithoutPageInput
+export type GQLCommentUpsertWithoutPageInput = {
+  update: GQLCommentUpdateWithoutPageDataInput
+  create: GQLCommentCreateWithoutPageInput
 }
 
-export type CommentUpsertWithWhereUniqueWithoutParentCommentInput = {
-  where: CommentWhereUniqueInput
-  update: CommentUpdateWithoutParentCommentDataInput
-  create: CommentCreateWithoutParentCommentInput
+export type GQLCommentUpsertWithWhereUniqueWithoutParentCommentInput = {
+  where: GQLCommentWhereUniqueInput
+  update: GQLCommentUpdateWithoutParentCommentDataInput
+  create: GQLCommentCreateWithoutParentCommentInput
 }
 
-export type CommentWhereInput = {
+export type GQLCommentWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<CommentWhereInput>>
-  OR?: Maybe<Array<CommentWhereInput>>
-  NOT?: Maybe<Array<CommentWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLCommentWhereInput>>
+  OR?: Maybe<Array<GQLCommentWhereInput>>
+  NOT?: Maybe<Array<GQLCommentWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -2649,20 +2658,20 @@ export type CommentWhereInput = {
   content_not_starts_with?: Maybe<Scalars['String']>
   content_ends_with?: Maybe<Scalars['String']>
   content_not_ends_with?: Maybe<Scalars['String']>
-  page?: Maybe<PageWhereInput>
-  parentComment?: Maybe<CommentWhereInput>
-  childComments_every?: Maybe<CommentWhereInput>
-  childComments_some?: Maybe<CommentWhereInput>
-  childComments_none?: Maybe<CommentWhereInput>
+  page?: Maybe<GQLPageWhereInput>
+  parentComment?: Maybe<GQLCommentWhereInput>
+  childComments_every?: Maybe<GQLCommentWhereInput>
+  childComments_some?: Maybe<GQLCommentWhereInput>
+  childComments_none?: Maybe<GQLCommentWhereInput>
 }
 
-export type CommentWhereUniqueInput = {
+export type GQLCommentWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type ContactForm = Node & {
+export type GQLContactForm = GQLNode & {
   __typename?: 'ContactForm'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -2671,33 +2680,33 @@ export type ContactForm = Node & {
   phone?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   name: Scalars['String']
-  attachment?: Maybe<Asset>
+  attachment?: Maybe<GQLAsset>
 }
 
-export type ContactFormConnection = {
+export type GQLContactFormConnection = {
   __typename?: 'ContactFormConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<ContactFormEdge>>
-  aggregate: AggregateContactForm
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLContactFormEdge>>
+  aggregate: GQLAggregateContactForm
 }
 
-export type ContactFormCreateInput = {
-  status?: Maybe<Status>
+export type GQLContactFormCreateInput = {
+  status?: Maybe<GQLStatus>
   subject: Scalars['String']
   message?: Maybe<Scalars['String']>
   phone?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   name: Scalars['String']
-  attachment?: Maybe<AssetCreateOneWithoutAttachmentContactFormInput>
+  attachment?: Maybe<GQLAssetCreateOneWithoutAttachmentContactFormInput>
 }
 
-export type ContactFormCreateManyWithoutAttachmentInput = {
-  create?: Maybe<Array<ContactFormCreateWithoutAttachmentInput>>
-  connect?: Maybe<Array<ContactFormWhereUniqueInput>>
+export type GQLContactFormCreateManyWithoutAttachmentInput = {
+  create?: Maybe<Array<GQLContactFormCreateWithoutAttachmentInput>>
+  connect?: Maybe<Array<GQLContactFormWhereUniqueInput>>
 }
 
-export type ContactFormCreateWithoutAttachmentInput = {
-  status?: Maybe<Status>
+export type GQLContactFormCreateWithoutAttachmentInput = {
+  status?: Maybe<GQLStatus>
   subject: Scalars['String']
   message?: Maybe<Scalars['String']>
   phone?: Maybe<Scalars['String']>
@@ -2705,13 +2714,13 @@ export type ContactFormCreateWithoutAttachmentInput = {
   name: Scalars['String']
 }
 
-export type ContactFormEdge = {
+export type GQLContactFormEdge = {
   __typename?: 'ContactFormEdge'
-  node: ContactForm
+  node: GQLContactForm
   cursor: Scalars['String']
 }
 
-export enum ContactFormOrderByInput {
+export enum GQLContactFormOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -2732,9 +2741,9 @@ export enum ContactFormOrderByInput {
   NameDesc = 'name_DESC',
 }
 
-export type ContactFormPreviousValues = {
+export type GQLContactFormPreviousValues = {
   __typename?: 'ContactFormPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -2745,15 +2754,15 @@ export type ContactFormPreviousValues = {
   name: Scalars['String']
 }
 
-export type ContactFormScalarWhereInput = {
+export type GQLContactFormScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<ContactFormScalarWhereInput>>
-  OR?: Maybe<Array<ContactFormScalarWhereInput>>
-  NOT?: Maybe<Array<ContactFormScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLContactFormScalarWhereInput>>
+  OR?: Maybe<Array<GQLContactFormScalarWhereInput>>
+  NOT?: Maybe<Array<GQLContactFormScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -2856,46 +2865,37 @@ export type ContactFormScalarWhereInput = {
   name_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type ContactFormSubscriptionPayload = {
+export type GQLContactFormSubscriptionPayload = {
   __typename?: 'ContactFormSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<ContactForm>
+  mutation: GQLMutationType
+  node?: Maybe<GQLContactForm>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<ContactFormPreviousValues>
+  previousValues?: Maybe<GQLContactFormPreviousValues>
 }
 
-export type ContactFormSubscriptionWhereInput = {
-  AND?: Maybe<Array<ContactFormSubscriptionWhereInput>>
-  OR?: Maybe<Array<ContactFormSubscriptionWhereInput>>
-  NOT?: Maybe<Array<ContactFormSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLContactFormSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLContactFormSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLContactFormSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLContactFormSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<ContactFormWhereInput>
+  node?: Maybe<GQLContactFormWhereInput>
 }
 
-export type ContactFormUpdateInput = {
-  status?: Maybe<Status>
+export type GQLContactFormUpdateInput = {
+  status?: Maybe<GQLStatus>
   subject?: Maybe<Scalars['String']>
   message?: Maybe<Scalars['String']>
   phone?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
-  attachment?: Maybe<AssetUpdateOneWithoutAttachmentContactFormInput>
+  attachment?: Maybe<GQLAssetUpdateOneWithoutAttachmentContactFormInput>
 }
 
-export type ContactFormUpdateManyDataInput = {
-  status?: Maybe<Status>
-  subject?: Maybe<Scalars['String']>
-  message?: Maybe<Scalars['String']>
-  phone?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  name?: Maybe<Scalars['String']>
-}
-
-export type ContactFormUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLContactFormUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   subject?: Maybe<Scalars['String']>
   message?: Maybe<Scalars['String']>
   phone?: Maybe<Scalars['String']>
@@ -2903,25 +2903,8 @@ export type ContactFormUpdateManyMutationInput = {
   name?: Maybe<Scalars['String']>
 }
 
-export type ContactFormUpdateManyWithoutAttachmentInput = {
-  create?: Maybe<Array<ContactFormCreateWithoutAttachmentInput>>
-  connect?: Maybe<Array<ContactFormWhereUniqueInput>>
-  set?: Maybe<Array<ContactFormWhereUniqueInput>>
-  disconnect?: Maybe<Array<ContactFormWhereUniqueInput>>
-  delete?: Maybe<Array<ContactFormWhereUniqueInput>>
-  update?: Maybe<Array<ContactFormUpdateWithWhereUniqueWithoutAttachmentInput>>
-  updateMany?: Maybe<Array<ContactFormUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<ContactFormScalarWhereInput>>
-  upsert?: Maybe<Array<ContactFormUpsertWithWhereUniqueWithoutAttachmentInput>>
-}
-
-export type ContactFormUpdateManyWithWhereNestedInput = {
-  where: ContactFormScalarWhereInput
-  data: ContactFormUpdateManyDataInput
-}
-
-export type ContactFormUpdateWithoutAttachmentDataInput = {
-  status?: Maybe<Status>
+export type GQLContactFormUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   subject?: Maybe<Scalars['String']>
   message?: Maybe<Scalars['String']>
   phone?: Maybe<Scalars['String']>
@@ -2929,26 +2912,52 @@ export type ContactFormUpdateWithoutAttachmentDataInput = {
   name?: Maybe<Scalars['String']>
 }
 
-export type ContactFormUpdateWithWhereUniqueWithoutAttachmentInput = {
-  where: ContactFormWhereUniqueInput
-  data: ContactFormUpdateWithoutAttachmentDataInput
+export type GQLContactFormUpdateManyWithoutAttachmentInput = {
+  create?: Maybe<Array<GQLContactFormCreateWithoutAttachmentInput>>
+  connect?: Maybe<Array<GQLContactFormWhereUniqueInput>>
+  set?: Maybe<Array<GQLContactFormWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLContactFormWhereUniqueInput>>
+  delete?: Maybe<Array<GQLContactFormWhereUniqueInput>>
+  update?: Maybe<Array<GQLContactFormUpdateWithWhereUniqueWithoutAttachmentInput>>
+  updateMany?: Maybe<Array<GQLContactFormUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLContactFormScalarWhereInput>>
+  upsert?: Maybe<Array<GQLContactFormUpsertWithWhereUniqueWithoutAttachmentInput>>
 }
 
-export type ContactFormUpsertWithWhereUniqueWithoutAttachmentInput = {
-  where: ContactFormWhereUniqueInput
-  update: ContactFormUpdateWithoutAttachmentDataInput
-  create: ContactFormCreateWithoutAttachmentInput
+export type GQLContactFormUpdateManyWithWhereNestedInput = {
+  where: GQLContactFormScalarWhereInput
+  data: GQLContactFormUpdateManyDataInput
 }
 
-export type ContactFormWhereInput = {
+export type GQLContactFormUpdateWithoutAttachmentDataInput = {
+  status?: Maybe<GQLStatus>
+  subject?: Maybe<Scalars['String']>
+  message?: Maybe<Scalars['String']>
+  phone?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+}
+
+export type GQLContactFormUpdateWithWhereUniqueWithoutAttachmentInput = {
+  where: GQLContactFormWhereUniqueInput
+  data: GQLContactFormUpdateWithoutAttachmentDataInput
+}
+
+export type GQLContactFormUpsertWithWhereUniqueWithoutAttachmentInput = {
+  where: GQLContactFormWhereUniqueInput
+  update: GQLContactFormUpdateWithoutAttachmentDataInput
+  create: GQLContactFormCreateWithoutAttachmentInput
+}
+
+export type GQLContactFormWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<ContactFormWhereInput>>
-  OR?: Maybe<Array<ContactFormWhereInput>>
-  NOT?: Maybe<Array<ContactFormWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLContactFormWhereInput>>
+  OR?: Maybe<Array<GQLContactFormWhereInput>>
+  NOT?: Maybe<Array<GQLContactFormWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3049,53 +3058,53 @@ export type ContactFormWhereInput = {
   name_not_starts_with?: Maybe<Scalars['String']>
   name_ends_with?: Maybe<Scalars['String']>
   name_not_ends_with?: Maybe<Scalars['String']>
-  attachment?: Maybe<AssetWhereInput>
+  attachment?: Maybe<GQLAssetWhereInput>
 }
 
-export type ContactFormWhereUniqueInput = {
+export type GQLContactFormWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type Document = Node & {
+export type GQLDocument = GQLNode & {
   __typename?: 'Document'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
-  file?: Maybe<Asset>
+  file?: Maybe<GQLAsset>
   name?: Maybe<Scalars['String']>
 }
 
-export type DocumentConnection = {
+export type GQLDocumentConnection = {
   __typename?: 'DocumentConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<DocumentEdge>>
-  aggregate: AggregateDocument
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLDocumentEdge>>
+  aggregate: GQLAggregateDocument
 }
 
-export type DocumentCreateInput = {
-  status?: Maybe<Status>
+export type GQLDocumentCreateInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
-  file?: Maybe<AssetCreateOneWithoutFileDocumentInput>
+  file?: Maybe<GQLAssetCreateOneWithoutFileDocumentInput>
 }
 
-export type DocumentCreateManyWithoutFileInput = {
-  create?: Maybe<Array<DocumentCreateWithoutFileInput>>
-  connect?: Maybe<Array<DocumentWhereUniqueInput>>
+export type GQLDocumentCreateManyWithoutFileInput = {
+  create?: Maybe<Array<GQLDocumentCreateWithoutFileInput>>
+  connect?: Maybe<Array<GQLDocumentWhereUniqueInput>>
 }
 
-export type DocumentCreateWithoutFileInput = {
-  status?: Maybe<Status>
+export type GQLDocumentCreateWithoutFileInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
 }
 
-export type DocumentEdge = {
+export type GQLDocumentEdge = {
   __typename?: 'DocumentEdge'
-  node: Document
+  node: GQLDocument
   cursor: Scalars['String']
 }
 
-export enum DocumentFileTypes {
+export enum GQLDocumentFileTypes {
   Jpg = 'jpg',
   Odp = 'odp',
   Ods = 'ods',
@@ -3114,7 +3123,7 @@ export enum DocumentFileTypes {
   Ppt = 'ppt',
 }
 
-export enum DocumentOrderByInput {
+export enum GQLDocumentOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -3127,28 +3136,28 @@ export enum DocumentOrderByInput {
   NameDesc = 'name_DESC',
 }
 
-export type DocumentOutputInput = {
-  format?: Maybe<DocumentFileTypes>
+export type GQLDocumentOutputInput = {
+  format?: Maybe<GQLDocumentFileTypes>
 }
 
-export type DocumentPreviousValues = {
+export type GQLDocumentPreviousValues = {
   __typename?: 'DocumentPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   name?: Maybe<Scalars['String']>
 }
 
-export type DocumentScalarWhereInput = {
+export type GQLDocumentScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<DocumentScalarWhereInput>>
-  OR?: Maybe<Array<DocumentScalarWhereInput>>
-  NOT?: Maybe<Array<DocumentScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLDocumentScalarWhereInput>>
+  OR?: Maybe<Array<GQLDocumentScalarWhereInput>>
+  NOT?: Maybe<Array<GQLDocumentScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3195,87 +3204,87 @@ export type DocumentScalarWhereInput = {
   name_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type DocumentSubscriptionPayload = {
+export type GQLDocumentSubscriptionPayload = {
   __typename?: 'DocumentSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Document>
+  mutation: GQLMutationType
+  node?: Maybe<GQLDocument>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<DocumentPreviousValues>
+  previousValues?: Maybe<GQLDocumentPreviousValues>
 }
 
-export type DocumentSubscriptionWhereInput = {
-  AND?: Maybe<Array<DocumentSubscriptionWhereInput>>
-  OR?: Maybe<Array<DocumentSubscriptionWhereInput>>
-  NOT?: Maybe<Array<DocumentSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLDocumentSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLDocumentSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLDocumentSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLDocumentSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<DocumentWhereInput>
+  node?: Maybe<GQLDocumentWhereInput>
 }
 
-export type DocumentTransformationInput = {
-  output?: Maybe<DocumentOutputInput>
+export type GQLDocumentTransformationInput = {
+  output?: Maybe<GQLDocumentOutputInput>
 }
 
-export type DocumentUpdateInput = {
-  status?: Maybe<Status>
+export type GQLDocumentUpdateInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
-  file?: Maybe<AssetUpdateOneWithoutFileDocumentInput>
+  file?: Maybe<GQLAssetUpdateOneWithoutFileDocumentInput>
 }
 
-export type DocumentUpdateManyDataInput = {
-  status?: Maybe<Status>
-  name?: Maybe<Scalars['String']>
-}
-
-export type DocumentUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLDocumentUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
 }
 
-export type DocumentUpdateManyWithoutFileInput = {
-  create?: Maybe<Array<DocumentCreateWithoutFileInput>>
-  connect?: Maybe<Array<DocumentWhereUniqueInput>>
-  set?: Maybe<Array<DocumentWhereUniqueInput>>
-  disconnect?: Maybe<Array<DocumentWhereUniqueInput>>
-  delete?: Maybe<Array<DocumentWhereUniqueInput>>
-  update?: Maybe<Array<DocumentUpdateWithWhereUniqueWithoutFileInput>>
-  updateMany?: Maybe<Array<DocumentUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<DocumentScalarWhereInput>>
-  upsert?: Maybe<Array<DocumentUpsertWithWhereUniqueWithoutFileInput>>
-}
-
-export type DocumentUpdateManyWithWhereNestedInput = {
-  where: DocumentScalarWhereInput
-  data: DocumentUpdateManyDataInput
-}
-
-export type DocumentUpdateWithoutFileDataInput = {
-  status?: Maybe<Status>
+export type GQLDocumentUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
 }
 
-export type DocumentUpdateWithWhereUniqueWithoutFileInput = {
-  where: DocumentWhereUniqueInput
-  data: DocumentUpdateWithoutFileDataInput
+export type GQLDocumentUpdateManyWithoutFileInput = {
+  create?: Maybe<Array<GQLDocumentCreateWithoutFileInput>>
+  connect?: Maybe<Array<GQLDocumentWhereUniqueInput>>
+  set?: Maybe<Array<GQLDocumentWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLDocumentWhereUniqueInput>>
+  delete?: Maybe<Array<GQLDocumentWhereUniqueInput>>
+  update?: Maybe<Array<GQLDocumentUpdateWithWhereUniqueWithoutFileInput>>
+  updateMany?: Maybe<Array<GQLDocumentUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLDocumentScalarWhereInput>>
+  upsert?: Maybe<Array<GQLDocumentUpsertWithWhereUniqueWithoutFileInput>>
 }
 
-export type DocumentUpsertWithWhereUniqueWithoutFileInput = {
-  where: DocumentWhereUniqueInput
-  update: DocumentUpdateWithoutFileDataInput
-  create: DocumentCreateWithoutFileInput
+export type GQLDocumentUpdateManyWithWhereNestedInput = {
+  where: GQLDocumentScalarWhereInput
+  data: GQLDocumentUpdateManyDataInput
 }
 
-export type DocumentWhereInput = {
+export type GQLDocumentUpdateWithoutFileDataInput = {
+  status?: Maybe<GQLStatus>
+  name?: Maybe<Scalars['String']>
+}
+
+export type GQLDocumentUpdateWithWhereUniqueWithoutFileInput = {
+  where: GQLDocumentWhereUniqueInput
+  data: GQLDocumentUpdateWithoutFileDataInput
+}
+
+export type GQLDocumentUpsertWithWhereUniqueWithoutFileInput = {
+  where: GQLDocumentWhereUniqueInput
+  update: GQLDocumentUpdateWithoutFileDataInput
+  create: GQLDocumentCreateWithoutFileInput
+}
+
+export type GQLDocumentWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<DocumentWhereInput>>
-  OR?: Maybe<Array<DocumentWhereInput>>
-  NOT?: Maybe<Array<DocumentWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLDocumentWhereInput>>
+  OR?: Maybe<Array<GQLDocumentWhereInput>>
+  NOT?: Maybe<Array<GQLDocumentWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3320,50 +3329,50 @@ export type DocumentWhereInput = {
   name_not_starts_with?: Maybe<Scalars['String']>
   name_ends_with?: Maybe<Scalars['String']>
   name_not_ends_with?: Maybe<Scalars['String']>
-  file?: Maybe<AssetWhereInput>
+  file?: Maybe<GQLAssetWhereInput>
 }
 
-export type DocumentWhereUniqueInput = {
+export type GQLDocumentWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type Ecosystem = Node & {
+export type GQLEcosystem = GQLNode & {
   __typename?: 'Ecosystem'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
-  image?: Maybe<Asset>
+  image?: Maybe<GQLAsset>
 }
 
-export type EcosystemConnection = {
+export type GQLEcosystemConnection = {
   __typename?: 'EcosystemConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<EcosystemEdge>>
-  aggregate: AggregateEcosystem
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLEcosystemEdge>>
+  aggregate: GQLAggregateEcosystem
 }
 
-export type EcosystemCreateInput = {
-  status?: Maybe<Status>
-  image?: Maybe<AssetCreateOneWithoutImageEcosystemInput>
+export type GQLEcosystemCreateInput = {
+  status?: Maybe<GQLStatus>
+  image?: Maybe<GQLAssetCreateOneWithoutImageEcosystemInput>
 }
 
-export type EcosystemCreateManyWithoutImageInput = {
-  create?: Maybe<Array<EcosystemCreateWithoutImageInput>>
-  connect?: Maybe<Array<EcosystemWhereUniqueInput>>
+export type GQLEcosystemCreateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLEcosystemCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLEcosystemWhereUniqueInput>>
 }
 
-export type EcosystemCreateWithoutImageInput = {
-  status?: Maybe<Status>
+export type GQLEcosystemCreateWithoutImageInput = {
+  status?: Maybe<GQLStatus>
 }
 
-export type EcosystemEdge = {
+export type GQLEcosystemEdge = {
   __typename?: 'EcosystemEdge'
-  node: Ecosystem
+  node: GQLEcosystem
   cursor: Scalars['String']
 }
 
-export enum EcosystemOrderByInput {
+export enum GQLEcosystemOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -3374,23 +3383,23 @@ export enum EcosystemOrderByInput {
   IdDesc = 'id_DESC',
 }
 
-export type EcosystemPreviousValues = {
+export type GQLEcosystemPreviousValues = {
   __typename?: 'EcosystemPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
 }
 
-export type EcosystemScalarWhereInput = {
+export type GQLEcosystemScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<EcosystemScalarWhereInput>>
-  OR?: Maybe<Array<EcosystemScalarWhereInput>>
-  NOT?: Maybe<Array<EcosystemScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLEcosystemScalarWhereInput>>
+  OR?: Maybe<Array<GQLEcosystemScalarWhereInput>>
+  NOT?: Maybe<Array<GQLEcosystemScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3423,79 +3432,79 @@ export type EcosystemScalarWhereInput = {
   id_not_ends_with?: Maybe<Scalars['ID']>
 }
 
-export type EcosystemSubscriptionPayload = {
+export type GQLEcosystemSubscriptionPayload = {
   __typename?: 'EcosystemSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Ecosystem>
+  mutation: GQLMutationType
+  node?: Maybe<GQLEcosystem>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<EcosystemPreviousValues>
+  previousValues?: Maybe<GQLEcosystemPreviousValues>
 }
 
-export type EcosystemSubscriptionWhereInput = {
-  AND?: Maybe<Array<EcosystemSubscriptionWhereInput>>
-  OR?: Maybe<Array<EcosystemSubscriptionWhereInput>>
-  NOT?: Maybe<Array<EcosystemSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLEcosystemSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLEcosystemSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLEcosystemSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLEcosystemSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<EcosystemWhereInput>
+  node?: Maybe<GQLEcosystemWhereInput>
 }
 
-export type EcosystemUpdateInput = {
-  status?: Maybe<Status>
-  image?: Maybe<AssetUpdateOneWithoutImageEcosystemInput>
+export type GQLEcosystemUpdateInput = {
+  status?: Maybe<GQLStatus>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageEcosystemInput>
 }
 
-export type EcosystemUpdateManyDataInput = {
-  status?: Maybe<Status>
+export type GQLEcosystemUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
 }
 
-export type EcosystemUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLEcosystemUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
 }
 
-export type EcosystemUpdateManyWithoutImageInput = {
-  create?: Maybe<Array<EcosystemCreateWithoutImageInput>>
-  connect?: Maybe<Array<EcosystemWhereUniqueInput>>
-  set?: Maybe<Array<EcosystemWhereUniqueInput>>
-  disconnect?: Maybe<Array<EcosystemWhereUniqueInput>>
-  delete?: Maybe<Array<EcosystemWhereUniqueInput>>
-  update?: Maybe<Array<EcosystemUpdateWithWhereUniqueWithoutImageInput>>
-  updateMany?: Maybe<Array<EcosystemUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<EcosystemScalarWhereInput>>
-  upsert?: Maybe<Array<EcosystemUpsertWithWhereUniqueWithoutImageInput>>
+export type GQLEcosystemUpdateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLEcosystemCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLEcosystemWhereUniqueInput>>
+  set?: Maybe<Array<GQLEcosystemWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLEcosystemWhereUniqueInput>>
+  delete?: Maybe<Array<GQLEcosystemWhereUniqueInput>>
+  update?: Maybe<Array<GQLEcosystemUpdateWithWhereUniqueWithoutImageInput>>
+  updateMany?: Maybe<Array<GQLEcosystemUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLEcosystemScalarWhereInput>>
+  upsert?: Maybe<Array<GQLEcosystemUpsertWithWhereUniqueWithoutImageInput>>
 }
 
-export type EcosystemUpdateManyWithWhereNestedInput = {
-  where: EcosystemScalarWhereInput
-  data: EcosystemUpdateManyDataInput
+export type GQLEcosystemUpdateManyWithWhereNestedInput = {
+  where: GQLEcosystemScalarWhereInput
+  data: GQLEcosystemUpdateManyDataInput
 }
 
-export type EcosystemUpdateWithoutImageDataInput = {
-  status?: Maybe<Status>
+export type GQLEcosystemUpdateWithoutImageDataInput = {
+  status?: Maybe<GQLStatus>
 }
 
-export type EcosystemUpdateWithWhereUniqueWithoutImageInput = {
-  where: EcosystemWhereUniqueInput
-  data: EcosystemUpdateWithoutImageDataInput
+export type GQLEcosystemUpdateWithWhereUniqueWithoutImageInput = {
+  where: GQLEcosystemWhereUniqueInput
+  data: GQLEcosystemUpdateWithoutImageDataInput
 }
 
-export type EcosystemUpsertWithWhereUniqueWithoutImageInput = {
-  where: EcosystemWhereUniqueInput
-  update: EcosystemUpdateWithoutImageDataInput
-  create: EcosystemCreateWithoutImageInput
+export type GQLEcosystemUpsertWithWhereUniqueWithoutImageInput = {
+  where: GQLEcosystemWhereUniqueInput
+  update: GQLEcosystemUpdateWithoutImageDataInput
+  create: GQLEcosystemCreateWithoutImageInput
 }
 
-export type EcosystemWhereInput = {
+export type GQLEcosystemWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<EcosystemWhereInput>>
-  OR?: Maybe<Array<EcosystemWhereInput>>
-  NOT?: Maybe<Array<EcosystemWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLEcosystemWhereInput>>
+  OR?: Maybe<Array<GQLEcosystemWhereInput>>
+  NOT?: Maybe<Array<GQLEcosystemWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3526,16 +3535,16 @@ export type EcosystemWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>
   id_ends_with?: Maybe<Scalars['ID']>
   id_not_ends_with?: Maybe<Scalars['ID']>
-  image?: Maybe<AssetWhereInput>
+  image?: Maybe<GQLAssetWhereInput>
 }
 
-export type EcosystemWhereUniqueInput = {
+export type GQLEcosystemWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type Employee = Node & {
+export type GQLEmployee = GQLNode & {
   __typename?: 'Employee'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -3544,13 +3553,13 @@ export type Employee = Node & {
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  image?: Maybe<Asset>
-  blogPosts?: Maybe<Array<BlogPost>>
+  image?: Maybe<GQLAsset>
+  blogPosts?: Maybe<Array<GQLBlogPost>>
 }
 
-export type EmployeeBlogPostsArgs = {
-  where?: Maybe<BlogPostWhereInput>
-  orderBy?: Maybe<BlogPostOrderByInput>
+export type GQLEmployeeBlogPostsArgs = {
+  where?: Maybe<GQLBlogPostWhereInput>
+  orderBy?: Maybe<GQLBlogPostOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -3558,61 +3567,61 @@ export type EmployeeBlogPostsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type EmployeeConnection = {
+export type GQLEmployeeConnection = {
   __typename?: 'EmployeeConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<EmployeeEdge>>
-  aggregate: AggregateEmployee
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLEmployeeEdge>>
+  aggregate: GQLAggregateEmployee
 }
 
-export type EmployeeCreateInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeCreateInput = {
+  status?: Maybe<GQLStatus>
   firstName: Scalars['String']
   lastName: Scalars['String']
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageEmployeeInput>
-  blogPosts?: Maybe<BlogPostCreateManyWithoutEmployeeInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageEmployeeInput>
+  blogPosts?: Maybe<GQLBlogPostCreateManyWithoutAuthorInput>
 }
 
-export type EmployeeCreateManyWithoutImageInput = {
-  create?: Maybe<Array<EmployeeCreateWithoutImageInput>>
-  connect?: Maybe<Array<EmployeeWhereUniqueInput>>
+export type GQLEmployeeCreateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLEmployeeCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLEmployeeWhereUniqueInput>>
 }
 
-export type EmployeeCreateOneWithoutBlogPostsInput = {
-  create?: Maybe<EmployeeCreateWithoutBlogPostsInput>
-  connect?: Maybe<EmployeeWhereUniqueInput>
+export type GQLEmployeeCreateOneWithoutBlogPostsInput = {
+  create?: Maybe<GQLEmployeeCreateWithoutBlogPostsInput>
+  connect?: Maybe<GQLEmployeeWhereUniqueInput>
 }
 
-export type EmployeeCreateWithoutBlogPostsInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeCreateWithoutBlogPostsInput = {
+  status?: Maybe<GQLStatus>
   firstName: Scalars['String']
   lastName: Scalars['String']
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageEmployeeInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageEmployeeInput>
 }
 
-export type EmployeeCreateWithoutImageInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeCreateWithoutImageInput = {
+  status?: Maybe<GQLStatus>
   firstName: Scalars['String']
   lastName: Scalars['String']
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  blogPosts?: Maybe<BlogPostCreateManyWithoutEmployeeInput>
+  blogPosts?: Maybe<GQLBlogPostCreateManyWithoutAuthorInput>
 }
 
-export type EmployeeEdge = {
+export type GQLEmployeeEdge = {
   __typename?: 'EmployeeEdge'
-  node: Employee
+  node: GQLEmployee
   cursor: Scalars['String']
 }
 
-export enum EmployeeOrderByInput {
+export enum GQLEmployeeOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -3633,9 +3642,9 @@ export enum EmployeeOrderByInput {
   EmailDesc = 'email_DESC',
 }
 
-export type EmployeePreviousValues = {
+export type GQLEmployeePreviousValues = {
   __typename?: 'EmployeePreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -3646,15 +3655,15 @@ export type EmployeePreviousValues = {
   email?: Maybe<Scalars['String']>
 }
 
-export type EmployeeScalarWhereInput = {
+export type GQLEmployeeScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<EmployeeScalarWhereInput>>
-  OR?: Maybe<Array<EmployeeScalarWhereInput>>
-  NOT?: Maybe<Array<EmployeeScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLEmployeeScalarWhereInput>>
+  OR?: Maybe<Array<GQLEmployeeScalarWhereInput>>
+  NOT?: Maybe<Array<GQLEmployeeScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3757,47 +3766,38 @@ export type EmployeeScalarWhereInput = {
   email_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type EmployeeSubscriptionPayload = {
+export type GQLEmployeeSubscriptionPayload = {
   __typename?: 'EmployeeSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Employee>
+  mutation: GQLMutationType
+  node?: Maybe<GQLEmployee>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<EmployeePreviousValues>
+  previousValues?: Maybe<GQLEmployeePreviousValues>
 }
 
-export type EmployeeSubscriptionWhereInput = {
-  AND?: Maybe<Array<EmployeeSubscriptionWhereInput>>
-  OR?: Maybe<Array<EmployeeSubscriptionWhereInput>>
-  NOT?: Maybe<Array<EmployeeSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLEmployeeSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLEmployeeSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLEmployeeSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLEmployeeSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<EmployeeWhereInput>
+  node?: Maybe<GQLEmployeeWhereInput>
 }
 
-export type EmployeeUpdateInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeUpdateInput = {
+  status?: Maybe<GQLStatus>
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageEmployeeInput>
-  blogPosts?: Maybe<BlogPostUpdateManyWithoutEmployeeInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageEmployeeInput>
+  blogPosts?: Maybe<GQLBlogPostUpdateManyWithoutAuthorInput>
 }
 
-export type EmployeeUpdateManyDataInput = {
-  status?: Maybe<Status>
-  firstName?: Maybe<Scalars['String']>
-  lastName?: Maybe<Scalars['String']>
-  jobTitle?: Maybe<Scalars['String']>
-  slackId?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-}
-
-export type EmployeeUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   jobTitle?: Maybe<Scalars['String']>
@@ -3805,77 +3805,86 @@ export type EmployeeUpdateManyMutationInput = {
   email?: Maybe<Scalars['String']>
 }
 
-export type EmployeeUpdateManyWithoutImageInput = {
-  create?: Maybe<Array<EmployeeCreateWithoutImageInput>>
-  connect?: Maybe<Array<EmployeeWhereUniqueInput>>
-  set?: Maybe<Array<EmployeeWhereUniqueInput>>
-  disconnect?: Maybe<Array<EmployeeWhereUniqueInput>>
-  delete?: Maybe<Array<EmployeeWhereUniqueInput>>
-  update?: Maybe<Array<EmployeeUpdateWithWhereUniqueWithoutImageInput>>
-  updateMany?: Maybe<Array<EmployeeUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<EmployeeScalarWhereInput>>
-  upsert?: Maybe<Array<EmployeeUpsertWithWhereUniqueWithoutImageInput>>
+export type GQLEmployeeUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
+  firstName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  jobTitle?: Maybe<Scalars['String']>
+  slackId?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
 }
 
-export type EmployeeUpdateManyWithWhereNestedInput = {
-  where: EmployeeScalarWhereInput
-  data: EmployeeUpdateManyDataInput
+export type GQLEmployeeUpdateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLEmployeeCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLEmployeeWhereUniqueInput>>
+  set?: Maybe<Array<GQLEmployeeWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLEmployeeWhereUniqueInput>>
+  delete?: Maybe<Array<GQLEmployeeWhereUniqueInput>>
+  update?: Maybe<Array<GQLEmployeeUpdateWithWhereUniqueWithoutImageInput>>
+  updateMany?: Maybe<Array<GQLEmployeeUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLEmployeeScalarWhereInput>>
+  upsert?: Maybe<Array<GQLEmployeeUpsertWithWhereUniqueWithoutImageInput>>
 }
 
-export type EmployeeUpdateOneWithoutBlogPostsInput = {
-  create?: Maybe<EmployeeCreateWithoutBlogPostsInput>
-  connect?: Maybe<EmployeeWhereUniqueInput>
+export type GQLEmployeeUpdateManyWithWhereNestedInput = {
+  where: GQLEmployeeScalarWhereInput
+  data: GQLEmployeeUpdateManyDataInput
+}
+
+export type GQLEmployeeUpdateOneWithoutBlogPostsInput = {
+  create?: Maybe<GQLEmployeeCreateWithoutBlogPostsInput>
+  connect?: Maybe<GQLEmployeeWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<EmployeeUpdateWithoutBlogPostsDataInput>
-  upsert?: Maybe<EmployeeUpsertWithoutBlogPostsInput>
+  update?: Maybe<GQLEmployeeUpdateWithoutBlogPostsDataInput>
+  upsert?: Maybe<GQLEmployeeUpsertWithoutBlogPostsInput>
 }
 
-export type EmployeeUpdateWithoutBlogPostsDataInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeUpdateWithoutBlogPostsDataInput = {
+  status?: Maybe<GQLStatus>
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageEmployeeInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageEmployeeInput>
 }
 
-export type EmployeeUpdateWithoutImageDataInput = {
-  status?: Maybe<Status>
+export type GQLEmployeeUpdateWithoutImageDataInput = {
+  status?: Maybe<GQLStatus>
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   jobTitle?: Maybe<Scalars['String']>
   slackId?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
-  blogPosts?: Maybe<BlogPostUpdateManyWithoutEmployeeInput>
+  blogPosts?: Maybe<GQLBlogPostUpdateManyWithoutAuthorInput>
 }
 
-export type EmployeeUpdateWithWhereUniqueWithoutImageInput = {
-  where: EmployeeWhereUniqueInput
-  data: EmployeeUpdateWithoutImageDataInput
+export type GQLEmployeeUpdateWithWhereUniqueWithoutImageInput = {
+  where: GQLEmployeeWhereUniqueInput
+  data: GQLEmployeeUpdateWithoutImageDataInput
 }
 
-export type EmployeeUpsertWithoutBlogPostsInput = {
-  update: EmployeeUpdateWithoutBlogPostsDataInput
-  create: EmployeeCreateWithoutBlogPostsInput
+export type GQLEmployeeUpsertWithoutBlogPostsInput = {
+  update: GQLEmployeeUpdateWithoutBlogPostsDataInput
+  create: GQLEmployeeCreateWithoutBlogPostsInput
 }
 
-export type EmployeeUpsertWithWhereUniqueWithoutImageInput = {
-  where: EmployeeWhereUniqueInput
-  update: EmployeeUpdateWithoutImageDataInput
-  create: EmployeeCreateWithoutImageInput
+export type GQLEmployeeUpsertWithWhereUniqueWithoutImageInput = {
+  where: GQLEmployeeWhereUniqueInput
+  update: GQLEmployeeUpdateWithoutImageDataInput
+  create: GQLEmployeeCreateWithoutImageInput
 }
 
-export type EmployeeWhereInput = {
+export type GQLEmployeeWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<EmployeeWhereInput>>
-  OR?: Maybe<Array<EmployeeWhereInput>>
-  NOT?: Maybe<Array<EmployeeWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLEmployeeWhereInput>>
+  OR?: Maybe<Array<GQLEmployeeWhereInput>>
+  NOT?: Maybe<Array<GQLEmployeeWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -3976,103 +3985,103 @@ export type EmployeeWhereInput = {
   email_not_starts_with?: Maybe<Scalars['String']>
   email_ends_with?: Maybe<Scalars['String']>
   email_not_ends_with?: Maybe<Scalars['String']>
-  image?: Maybe<AssetWhereInput>
-  blogPosts_every?: Maybe<BlogPostWhereInput>
-  blogPosts_some?: Maybe<BlogPostWhereInput>
-  blogPosts_none?: Maybe<BlogPostWhereInput>
+  image?: Maybe<GQLAssetWhereInput>
+  blogPosts_every?: Maybe<GQLBlogPostWhereInput>
+  blogPosts_some?: Maybe<GQLBlogPostWhereInput>
+  blogPosts_none?: Maybe<GQLBlogPostWhereInput>
 }
 
-export type EmployeeWhereUniqueInput = {
+export type GQLEmployeeWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export enum ImageFit {
+export enum GQLImageFit {
   Clip = 'clip',
   Crop = 'crop',
   Scale = 'scale',
   Max = 'max',
 }
 
-export type ImageResizeInput = {
+export type GQLImageResizeInput = {
   width?: Maybe<Scalars['Int']>
   height?: Maybe<Scalars['Int']>
-  fit?: Maybe<ImageFit>
+  fit?: Maybe<GQLImageFit>
 }
 
-export type ImageTransformationInput = {
-  resize?: Maybe<ImageResizeInput>
+export type GQLImageTransformationInput = {
+  resize?: Maybe<GQLImageResizeInput>
 }
 
-export type JobListing = Node & {
+export type GQLJobListing = GQLNode & {
   __typename?: 'JobListing'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
-  download?: Maybe<Asset>
+  download?: Maybe<GQLAsset>
   title: Scalars['String']
   content?: Maybe<Scalars['String']>
-  page?: Maybe<Page>
+  page?: Maybe<GQLPage>
   displayOrder?: Maybe<Scalars['Int']>
 }
 
-export type JobListingConnection = {
+export type GQLJobListingConnection = {
   __typename?: 'JobListingConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<JobListingEdge>>
-  aggregate: AggregateJobListing
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLJobListingEdge>>
+  aggregate: GQLAggregateJobListing
 }
 
-export type JobListingCreateInput = {
-  status?: Maybe<Status>
+export type GQLJobListingCreateInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title: Scalars['String']
   content?: Maybe<Scalars['String']>
   displayOrder?: Maybe<Scalars['Int']>
-  download?: Maybe<AssetCreateOneWithoutDownloadJobListingInput>
-  page?: Maybe<PageCreateOneWithoutJobListingInput>
+  download?: Maybe<GQLAssetCreateOneWithoutDownloadJobListingInput>
+  page?: Maybe<GQLPageCreateOneWithoutJobListingInput>
 }
 
-export type JobListingCreateManyWithoutDownloadInput = {
-  create?: Maybe<Array<JobListingCreateWithoutDownloadInput>>
-  connect?: Maybe<Array<JobListingWhereUniqueInput>>
+export type GQLJobListingCreateManyWithoutDownloadInput = {
+  create?: Maybe<Array<GQLJobListingCreateWithoutDownloadInput>>
+  connect?: Maybe<Array<GQLJobListingWhereUniqueInput>>
 }
 
-export type JobListingCreateOneWithoutPageInput = {
-  create?: Maybe<JobListingCreateWithoutPageInput>
-  connect?: Maybe<JobListingWhereUniqueInput>
+export type GQLJobListingCreateOneWithoutPageInput = {
+  create?: Maybe<GQLJobListingCreateWithoutPageInput>
+  connect?: Maybe<GQLJobListingWhereUniqueInput>
 }
 
-export type JobListingCreateWithoutDownloadInput = {
-  status?: Maybe<Status>
+export type GQLJobListingCreateWithoutDownloadInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title: Scalars['String']
   content?: Maybe<Scalars['String']>
   displayOrder?: Maybe<Scalars['Int']>
-  page?: Maybe<PageCreateOneWithoutJobListingInput>
+  page?: Maybe<GQLPageCreateOneWithoutJobListingInput>
 }
 
-export type JobListingCreateWithoutPageInput = {
-  status?: Maybe<Status>
+export type GQLJobListingCreateWithoutPageInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title: Scalars['String']
   content?: Maybe<Scalars['String']>
   displayOrder?: Maybe<Scalars['Int']>
-  download?: Maybe<AssetCreateOneWithoutDownloadJobListingInput>
+  download?: Maybe<GQLAssetCreateOneWithoutDownloadJobListingInput>
 }
 
-export type JobListingEdge = {
+export type GQLJobListingEdge = {
   __typename?: 'JobListingEdge'
-  node: JobListing
+  node: GQLJobListing
   cursor: Scalars['String']
 }
 
-export enum JobListingOrderByInput {
+export enum GQLJobListingOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -4093,9 +4102,9 @@ export enum JobListingOrderByInput {
   DisplayOrderDesc = 'displayOrder_DESC',
 }
 
-export type JobListingPreviousValues = {
+export type GQLJobListingPreviousValues = {
   __typename?: 'JobListingPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -4106,15 +4115,15 @@ export type JobListingPreviousValues = {
   displayOrder?: Maybe<Scalars['Int']>
 }
 
-export type JobListingScalarWhereInput = {
+export type GQLJobListingScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<JobListingScalarWhereInput>>
-  OR?: Maybe<Array<JobListingScalarWhereInput>>
-  NOT?: Maybe<Array<JobListingScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLJobListingScalarWhereInput>>
+  OR?: Maybe<Array<GQLJobListingScalarWhereInput>>
+  NOT?: Maybe<Array<GQLJobListingScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -4211,47 +4220,38 @@ export type JobListingScalarWhereInput = {
   displayOrder_gte?: Maybe<Scalars['Int']>
 }
 
-export type JobListingSubscriptionPayload = {
+export type GQLJobListingSubscriptionPayload = {
   __typename?: 'JobListingSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<JobListing>
+  mutation: GQLMutationType
+  node?: Maybe<GQLJobListing>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<JobListingPreviousValues>
+  previousValues?: Maybe<GQLJobListingPreviousValues>
 }
 
-export type JobListingSubscriptionWhereInput = {
-  AND?: Maybe<Array<JobListingSubscriptionWhereInput>>
-  OR?: Maybe<Array<JobListingSubscriptionWhereInput>>
-  NOT?: Maybe<Array<JobListingSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLJobListingSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLJobListingSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLJobListingSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLJobListingSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<JobListingWhereInput>
+  node?: Maybe<GQLJobListingWhereInput>
 }
 
-export type JobListingUpdateInput = {
-  status?: Maybe<Status>
+export type GQLJobListingUpdateInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   content?: Maybe<Scalars['String']>
   displayOrder?: Maybe<Scalars['Int']>
-  download?: Maybe<AssetUpdateOneWithoutDownloadJobListingInput>
-  page?: Maybe<PageUpdateOneWithoutJobListingInput>
+  download?: Maybe<GQLAssetUpdateOneWithoutDownloadJobListingInput>
+  page?: Maybe<GQLPageUpdateOneWithoutJobListingInput>
 }
 
-export type JobListingUpdateManyDataInput = {
-  status?: Maybe<Status>
-  jobPerks?: Maybe<Scalars['String']>
-  label?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  content?: Maybe<Scalars['String']>
-  displayOrder?: Maybe<Scalars['Int']>
-}
-
-export type JobListingUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLJobListingUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
@@ -4259,77 +4259,86 @@ export type JobListingUpdateManyMutationInput = {
   displayOrder?: Maybe<Scalars['Int']>
 }
 
-export type JobListingUpdateManyWithoutDownloadInput = {
-  create?: Maybe<Array<JobListingCreateWithoutDownloadInput>>
-  connect?: Maybe<Array<JobListingWhereUniqueInput>>
-  set?: Maybe<Array<JobListingWhereUniqueInput>>
-  disconnect?: Maybe<Array<JobListingWhereUniqueInput>>
-  delete?: Maybe<Array<JobListingWhereUniqueInput>>
-  update?: Maybe<Array<JobListingUpdateWithWhereUniqueWithoutDownloadInput>>
-  updateMany?: Maybe<Array<JobListingUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<JobListingScalarWhereInput>>
-  upsert?: Maybe<Array<JobListingUpsertWithWhereUniqueWithoutDownloadInput>>
+export type GQLJobListingUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
+  jobPerks?: Maybe<Scalars['String']>
+  label?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  content?: Maybe<Scalars['String']>
+  displayOrder?: Maybe<Scalars['Int']>
 }
 
-export type JobListingUpdateManyWithWhereNestedInput = {
-  where: JobListingScalarWhereInput
-  data: JobListingUpdateManyDataInput
+export type GQLJobListingUpdateManyWithoutDownloadInput = {
+  create?: Maybe<Array<GQLJobListingCreateWithoutDownloadInput>>
+  connect?: Maybe<Array<GQLJobListingWhereUniqueInput>>
+  set?: Maybe<Array<GQLJobListingWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLJobListingWhereUniqueInput>>
+  delete?: Maybe<Array<GQLJobListingWhereUniqueInput>>
+  update?: Maybe<Array<GQLJobListingUpdateWithWhereUniqueWithoutDownloadInput>>
+  updateMany?: Maybe<Array<GQLJobListingUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLJobListingScalarWhereInput>>
+  upsert?: Maybe<Array<GQLJobListingUpsertWithWhereUniqueWithoutDownloadInput>>
 }
 
-export type JobListingUpdateOneWithoutPageInput = {
-  create?: Maybe<JobListingCreateWithoutPageInput>
-  connect?: Maybe<JobListingWhereUniqueInput>
+export type GQLJobListingUpdateManyWithWhereNestedInput = {
+  where: GQLJobListingScalarWhereInput
+  data: GQLJobListingUpdateManyDataInput
+}
+
+export type GQLJobListingUpdateOneWithoutPageInput = {
+  create?: Maybe<GQLJobListingCreateWithoutPageInput>
+  connect?: Maybe<GQLJobListingWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<JobListingUpdateWithoutPageDataInput>
-  upsert?: Maybe<JobListingUpsertWithoutPageInput>
+  update?: Maybe<GQLJobListingUpdateWithoutPageDataInput>
+  upsert?: Maybe<GQLJobListingUpsertWithoutPageInput>
 }
 
-export type JobListingUpdateWithoutDownloadDataInput = {
-  status?: Maybe<Status>
+export type GQLJobListingUpdateWithoutDownloadDataInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   content?: Maybe<Scalars['String']>
   displayOrder?: Maybe<Scalars['Int']>
-  page?: Maybe<PageUpdateOneWithoutJobListingInput>
+  page?: Maybe<GQLPageUpdateOneWithoutJobListingInput>
 }
 
-export type JobListingUpdateWithoutPageDataInput = {
-  status?: Maybe<Status>
+export type GQLJobListingUpdateWithoutPageDataInput = {
+  status?: Maybe<GQLStatus>
   jobPerks?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   content?: Maybe<Scalars['String']>
   displayOrder?: Maybe<Scalars['Int']>
-  download?: Maybe<AssetUpdateOneWithoutDownloadJobListingInput>
+  download?: Maybe<GQLAssetUpdateOneWithoutDownloadJobListingInput>
 }
 
-export type JobListingUpdateWithWhereUniqueWithoutDownloadInput = {
-  where: JobListingWhereUniqueInput
-  data: JobListingUpdateWithoutDownloadDataInput
+export type GQLJobListingUpdateWithWhereUniqueWithoutDownloadInput = {
+  where: GQLJobListingWhereUniqueInput
+  data: GQLJobListingUpdateWithoutDownloadDataInput
 }
 
-export type JobListingUpsertWithoutPageInput = {
-  update: JobListingUpdateWithoutPageDataInput
-  create: JobListingCreateWithoutPageInput
+export type GQLJobListingUpsertWithoutPageInput = {
+  update: GQLJobListingUpdateWithoutPageDataInput
+  create: GQLJobListingCreateWithoutPageInput
 }
 
-export type JobListingUpsertWithWhereUniqueWithoutDownloadInput = {
-  where: JobListingWhereUniqueInput
-  update: JobListingUpdateWithoutDownloadDataInput
-  create: JobListingCreateWithoutDownloadInput
+export type GQLJobListingUpsertWithWhereUniqueWithoutDownloadInput = {
+  where: GQLJobListingWhereUniqueInput
+  update: GQLJobListingUpdateWithoutDownloadDataInput
+  create: GQLJobListingCreateWithoutDownloadInput
 }
 
-export type JobListingWhereInput = {
+export type GQLJobListingWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<JobListingWhereInput>>
-  OR?: Maybe<Array<JobListingWhereInput>>
-  NOT?: Maybe<Array<JobListingWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLJobListingWhereInput>>
+  OR?: Maybe<Array<GQLJobListingWhereInput>>
+  NOT?: Maybe<Array<GQLJobListingWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -4424,53 +4433,47 @@ export type JobListingWhereInput = {
   displayOrder_lte?: Maybe<Scalars['Int']>
   displayOrder_gt?: Maybe<Scalars['Int']>
   displayOrder_gte?: Maybe<Scalars['Int']>
-  download?: Maybe<AssetWhereInput>
-  page?: Maybe<PageWhereInput>
+  download?: Maybe<GQLAssetWhereInput>
+  page?: Maybe<GQLPageWhereInput>
 }
 
-export type JobListingWhereUniqueInput = {
+export type GQLJobListingWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export enum Language {
+export enum GQLLocale {
+  En = 'EN',
   Nl = 'NL',
-  En = 'EN',
-  De = 'DE',
-  Fr = 'FR',
 }
 
-export enum Locale {
-  En = 'EN',
-}
-
-export type MailchimpForm = Node & {
+export type GQLMailchimpForm = GQLNode & {
   __typename?: 'MailchimpForm'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   email: Scalars['String']
 }
 
-export type MailchimpFormConnection = {
+export type GQLMailchimpFormConnection = {
   __typename?: 'MailchimpFormConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<MailchimpFormEdge>>
-  aggregate: AggregateMailchimpForm
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLMailchimpFormEdge>>
+  aggregate: GQLAggregateMailchimpForm
 }
 
-export type MailchimpFormCreateInput = {
-  status?: Maybe<Status>
+export type GQLMailchimpFormCreateInput = {
+  status?: Maybe<GQLStatus>
   email: Scalars['String']
 }
 
-export type MailchimpFormEdge = {
+export type GQLMailchimpFormEdge = {
   __typename?: 'MailchimpFormEdge'
-  node: MailchimpForm
+  node: GQLMailchimpForm
   cursor: Scalars['String']
 }
 
-export enum MailchimpFormOrderByInput {
+export enum GQLMailchimpFormOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -4483,53 +4486,53 @@ export enum MailchimpFormOrderByInput {
   EmailDesc = 'email_DESC',
 }
 
-export type MailchimpFormPreviousValues = {
+export type GQLMailchimpFormPreviousValues = {
   __typename?: 'MailchimpFormPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   email: Scalars['String']
 }
 
-export type MailchimpFormSubscriptionPayload = {
+export type GQLMailchimpFormSubscriptionPayload = {
   __typename?: 'MailchimpFormSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<MailchimpForm>
+  mutation: GQLMutationType
+  node?: Maybe<GQLMailchimpForm>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<MailchimpFormPreviousValues>
+  previousValues?: Maybe<GQLMailchimpFormPreviousValues>
 }
 
-export type MailchimpFormSubscriptionWhereInput = {
-  AND?: Maybe<Array<MailchimpFormSubscriptionWhereInput>>
-  OR?: Maybe<Array<MailchimpFormSubscriptionWhereInput>>
-  NOT?: Maybe<Array<MailchimpFormSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLMailchimpFormSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLMailchimpFormSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLMailchimpFormSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLMailchimpFormSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<MailchimpFormWhereInput>
+  node?: Maybe<GQLMailchimpFormWhereInput>
 }
 
-export type MailchimpFormUpdateInput = {
-  status?: Maybe<Status>
+export type GQLMailchimpFormUpdateInput = {
+  status?: Maybe<GQLStatus>
   email?: Maybe<Scalars['String']>
 }
 
-export type MailchimpFormUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLMailchimpFormUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   email?: Maybe<Scalars['String']>
 }
 
-export type MailchimpFormWhereInput = {
+export type GQLMailchimpFormWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<MailchimpFormWhereInput>>
-  OR?: Maybe<Array<MailchimpFormWhereInput>>
-  NOT?: Maybe<Array<MailchimpFormWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLMailchimpFormWhereInput>>
+  OR?: Maybe<Array<GQLMailchimpFormWhereInput>>
+  NOT?: Maybe<Array<GQLMailchimpFormWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -4576,20 +4579,20 @@ export type MailchimpFormWhereInput = {
   email_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type MailchimpFormWhereUniqueInput = {
+export type GQLMailchimpFormWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export enum MetaRobots {
+export enum GQLMetaRobots {
   IndexFollow = 'INDEX_FOLLOW',
   IndexNofollow = 'INDEX_NOFOLLOW',
   NoindexFollow = 'NOINDEX_FOLLOW',
   NoindexNofollow = 'NOINDEX_NOFOLLOW',
 }
 
-export type Module = Node & {
+export type GQLModule = GQLNode & {
   __typename?: 'Module'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -4597,32 +4600,32 @@ export type Module = Node & {
   order?: Maybe<Scalars['Int']>
   repoUrl?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  type: ModuleType
+  type: GQLModuleType
 }
 
-export type ModuleConnection = {
+export type GQLModuleConnection = {
   __typename?: 'ModuleConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<ModuleEdge>>
-  aggregate: AggregateModule
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLModuleEdge>>
+  aggregate: GQLAggregateModule
 }
 
-export type ModuleCreateInput = {
-  status?: Maybe<Status>
+export type GQLModuleCreateInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
   order?: Maybe<Scalars['Int']>
   repoUrl?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  type: ModuleType
+  type: GQLModuleType
 }
 
-export type ModuleEdge = {
+export type GQLModuleEdge = {
   __typename?: 'ModuleEdge'
-  node: Module
+  node: GQLModule
   cursor: Scalars['String']
 }
 
-export enum ModuleOrderByInput {
+export enum GQLModuleOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -4643,9 +4646,9 @@ export enum ModuleOrderByInput {
   TypeDesc = 'type_DESC',
 }
 
-export type ModulePreviousValues = {
+export type GQLModulePreviousValues = {
   __typename?: 'ModulePreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -4653,61 +4656,61 @@ export type ModulePreviousValues = {
   order?: Maybe<Scalars['Int']>
   repoUrl?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  type: ModuleType
+  type: GQLModuleType
 }
 
-export type ModuleSubscriptionPayload = {
+export type GQLModuleSubscriptionPayload = {
   __typename?: 'ModuleSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Module>
+  mutation: GQLMutationType
+  node?: Maybe<GQLModule>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<ModulePreviousValues>
+  previousValues?: Maybe<GQLModulePreviousValues>
 }
 
-export type ModuleSubscriptionWhereInput = {
-  AND?: Maybe<Array<ModuleSubscriptionWhereInput>>
-  OR?: Maybe<Array<ModuleSubscriptionWhereInput>>
-  NOT?: Maybe<Array<ModuleSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLModuleSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLModuleSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLModuleSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLModuleSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<ModuleWhereInput>
+  node?: Maybe<GQLModuleWhereInput>
 }
 
-export enum ModuleType {
+export enum GQLModuleType {
   Publiccustomer = 'PUBLICCUSTOMER',
   Publicown = 'PUBLICOWN',
   Private = 'PRIVATE',
 }
 
-export type ModuleUpdateInput = {
-  status?: Maybe<Status>
+export type GQLModuleUpdateInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
   order?: Maybe<Scalars['Int']>
   repoUrl?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  type?: Maybe<ModuleType>
+  type?: Maybe<GQLModuleType>
 }
 
-export type ModuleUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLModuleUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   name?: Maybe<Scalars['String']>
   order?: Maybe<Scalars['Int']>
   repoUrl?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
-  type?: Maybe<ModuleType>
+  type?: Maybe<GQLModuleType>
 }
 
-export type ModuleWhereInput = {
+export type GQLModuleWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<ModuleWhereInput>>
-  OR?: Maybe<Array<ModuleWhereInput>>
-  NOT?: Maybe<Array<ModuleWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLModuleWhereInput>>
+  OR?: Maybe<Array<GQLModuleWhereInput>>
+  NOT?: Maybe<Array<GQLModuleWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -4788,1021 +4791,738 @@ export type ModuleWhereInput = {
   description_not_starts_with?: Maybe<Scalars['String']>
   description_ends_with?: Maybe<Scalars['String']>
   description_not_ends_with?: Maybe<Scalars['String']>
-  type?: Maybe<ModuleType>
-  type_not?: Maybe<ModuleType>
-  type_in?: Maybe<Array<ModuleType>>
-  type_not_in?: Maybe<Array<ModuleType>>
+  type?: Maybe<GQLModuleType>
+  type_not?: Maybe<GQLModuleType>
+  type_in?: Maybe<Array<GQLModuleType>>
+  type_not_in?: Maybe<Array<GQLModuleType>>
 }
 
-export type ModuleWhereUniqueInput = {
+export type GQLModuleWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type Mutation = {
+export type GQLMutation = {
   __typename?: 'Mutation'
-  createAsset: Asset
-  uploadAsset: Asset
-  createContactForm: ContactForm
-  createEcosystem: Ecosystem
-  createBlock: Block
-  createTag: Tag
-  createModule: Module
-  createStructuredPage: StructuredPage
-  createEmployee: Employee
-  createQuote: Quote
-  createDocument: Document
-  createStartProjectForm: StartProjectForm
-  createJobListing: JobListing
-  createMailchimpForm: MailchimpForm
-  createSingularPage: SingularPage
-  createBlogPost: BlogPost
-  createComment: Comment
-  createPage: Page
-  createPdpPagina: PdpPagina
-  updateAsset?: Maybe<Asset>
-  updateContactForm?: Maybe<ContactForm>
-  updateEcosystem?: Maybe<Ecosystem>
-  updateBlock?: Maybe<Block>
-  updateTag?: Maybe<Tag>
-  updateModule?: Maybe<Module>
-  updateStructuredPage?: Maybe<StructuredPage>
-  updateEmployee?: Maybe<Employee>
-  updateQuote?: Maybe<Quote>
-  updateDocument?: Maybe<Document>
-  updateStartProjectForm?: Maybe<StartProjectForm>
-  updateJobListing?: Maybe<JobListing>
-  updateMailchimpForm?: Maybe<MailchimpForm>
-  updateSingularPage?: Maybe<SingularPage>
-  updateBlogPost?: Maybe<BlogPost>
-  updateComment?: Maybe<Comment>
-  updatePage?: Maybe<Page>
-  updatePdpPagina?: Maybe<PdpPagina>
-  deleteAsset?: Maybe<Asset>
-  deleteContactForm?: Maybe<ContactForm>
-  deleteEcosystem?: Maybe<Ecosystem>
-  deleteBlock?: Maybe<Block>
-  deleteTag?: Maybe<Tag>
-  deleteModule?: Maybe<Module>
-  deleteStructuredPage?: Maybe<StructuredPage>
-  deleteEmployee?: Maybe<Employee>
-  deleteQuote?: Maybe<Quote>
-  deleteDocument?: Maybe<Document>
-  deleteStartProjectForm?: Maybe<StartProjectForm>
-  deleteJobListing?: Maybe<JobListing>
-  deleteMailchimpForm?: Maybe<MailchimpForm>
-  deleteSingularPage?: Maybe<SingularPage>
-  deleteBlogPost?: Maybe<BlogPost>
-  deleteComment?: Maybe<Comment>
-  deletePage?: Maybe<Page>
-  deletePdpPagina?: Maybe<PdpPagina>
-  upsertAsset: Asset
-  upsertContactForm: ContactForm
-  upsertEcosystem: Ecosystem
-  upsertBlock: Block
-  upsertTag: Tag
-  upsertModule: Module
-  upsertStructuredPage: StructuredPage
-  upsertEmployee: Employee
-  upsertQuote: Quote
-  upsertDocument: Document
-  upsertStartProjectForm: StartProjectForm
-  upsertJobListing: JobListing
-  upsertMailchimpForm: MailchimpForm
-  upsertSingularPage: SingularPage
-  upsertBlogPost: BlogPost
-  upsertComment: Comment
-  upsertPage: Page
-  upsertPdpPagina: PdpPagina
-  updateManyAssets: BatchPayload
-  updateManyContactForms: BatchPayload
-  updateManyEcosystems: BatchPayload
-  updateManyBlocks: BatchPayload
-  updateManyTags: BatchPayload
-  updateManyModules: BatchPayload
-  updateManyStructuredPages: BatchPayload
-  updateManyEmployees: BatchPayload
-  updateManyQuotes: BatchPayload
-  updateManyDocuments: BatchPayload
-  updateManyStartProjectForms: BatchPayload
-  updateManyJobListings: BatchPayload
-  updateManyMailchimpForms: BatchPayload
-  updateManySingularPages: BatchPayload
-  updateManyBlogPosts: BatchPayload
-  updateManyComments: BatchPayload
-  updateManyPages: BatchPayload
-  updateManyPdpPaginas: BatchPayload
-  deleteManyAssets: BatchPayload
-  deleteManyContactForms: BatchPayload
-  deleteManyEcosystems: BatchPayload
-  deleteManyBlocks: BatchPayload
-  deleteManyTags: BatchPayload
-  deleteManyModules: BatchPayload
-  deleteManyStructuredPages: BatchPayload
-  deleteManyEmployees: BatchPayload
-  deleteManyQuotes: BatchPayload
-  deleteManyDocuments: BatchPayload
-  deleteManyStartProjectForms: BatchPayload
-  deleteManyJobListings: BatchPayload
-  deleteManyMailchimpForms: BatchPayload
-  deleteManySingularPages: BatchPayload
-  deleteManyBlogPosts: BatchPayload
-  deleteManyComments: BatchPayload
-  deleteManyPages: BatchPayload
-  deleteManyPdpPaginas: BatchPayload
+  createAsset: GQLAsset
+  uploadAsset: GQLAsset
+  createContactForm: GQLContactForm
+  createEcosystem: GQLEcosystem
+  createBlock: GQLBlock
+  createModule: GQLModule
+  createStructuredPage: GQLStructuredPage
+  createEmployee: GQLEmployee
+  createQuote: GQLQuote
+  createDocument: GQLDocument
+  createStartProjectForm: GQLStartProjectForm
+  createJobListing: GQLJobListing
+  createMailchimpForm: GQLMailchimpForm
+  createSingularPage: GQLSingularPage
+  createBlogPost: GQLBlogPost
+  createComment: GQLComment
+  createPage: GQLPage
+  updateAsset?: Maybe<GQLAsset>
+  updateContactForm?: Maybe<GQLContactForm>
+  updateEcosystem?: Maybe<GQLEcosystem>
+  updateBlock?: Maybe<GQLBlock>
+  updateModule?: Maybe<GQLModule>
+  updateStructuredPage?: Maybe<GQLStructuredPage>
+  updateEmployee?: Maybe<GQLEmployee>
+  updateQuote?: Maybe<GQLQuote>
+  updateDocument?: Maybe<GQLDocument>
+  updateStartProjectForm?: Maybe<GQLStartProjectForm>
+  updateJobListing?: Maybe<GQLJobListing>
+  updateMailchimpForm?: Maybe<GQLMailchimpForm>
+  updateSingularPage?: Maybe<GQLSingularPage>
+  updateBlogPost?: Maybe<GQLBlogPost>
+  updateComment?: Maybe<GQLComment>
+  updatePage?: Maybe<GQLPage>
+  deleteAsset?: Maybe<GQLAsset>
+  deleteContactForm?: Maybe<GQLContactForm>
+  deleteEcosystem?: Maybe<GQLEcosystem>
+  deleteBlock?: Maybe<GQLBlock>
+  deleteModule?: Maybe<GQLModule>
+  deleteStructuredPage?: Maybe<GQLStructuredPage>
+  deleteEmployee?: Maybe<GQLEmployee>
+  deleteQuote?: Maybe<GQLQuote>
+  deleteDocument?: Maybe<GQLDocument>
+  deleteStartProjectForm?: Maybe<GQLStartProjectForm>
+  deleteJobListing?: Maybe<GQLJobListing>
+  deleteMailchimpForm?: Maybe<GQLMailchimpForm>
+  deleteSingularPage?: Maybe<GQLSingularPage>
+  deleteBlogPost?: Maybe<GQLBlogPost>
+  deleteComment?: Maybe<GQLComment>
+  deletePage?: Maybe<GQLPage>
+  upsertAsset: GQLAsset
+  upsertContactForm: GQLContactForm
+  upsertEcosystem: GQLEcosystem
+  upsertBlock: GQLBlock
+  upsertModule: GQLModule
+  upsertStructuredPage: GQLStructuredPage
+  upsertEmployee: GQLEmployee
+  upsertQuote: GQLQuote
+  upsertDocument: GQLDocument
+  upsertStartProjectForm: GQLStartProjectForm
+  upsertJobListing: GQLJobListing
+  upsertMailchimpForm: GQLMailchimpForm
+  upsertSingularPage: GQLSingularPage
+  upsertBlogPost: GQLBlogPost
+  upsertComment: GQLComment
+  upsertPage: GQLPage
+  updateManyAssets: GQLBatchPayload
+  updateManyContactForms: GQLBatchPayload
+  updateManyEcosystems: GQLBatchPayload
+  updateManyBlocks: GQLBatchPayload
+  updateManyModules: GQLBatchPayload
+  updateManyStructuredPages: GQLBatchPayload
+  updateManyEmployees: GQLBatchPayload
+  updateManyQuotes: GQLBatchPayload
+  updateManyDocuments: GQLBatchPayload
+  updateManyStartProjectForms: GQLBatchPayload
+  updateManyJobListings: GQLBatchPayload
+  updateManyMailchimpForms: GQLBatchPayload
+  updateManySingularPages: GQLBatchPayload
+  updateManyBlogPosts: GQLBatchPayload
+  updateManyComments: GQLBatchPayload
+  updateManyPages: GQLBatchPayload
+  deleteManyAssets: GQLBatchPayload
+  deleteManyContactForms: GQLBatchPayload
+  deleteManyEcosystems: GQLBatchPayload
+  deleteManyBlocks: GQLBatchPayload
+  deleteManyModules: GQLBatchPayload
+  deleteManyStructuredPages: GQLBatchPayload
+  deleteManyEmployees: GQLBatchPayload
+  deleteManyQuotes: GQLBatchPayload
+  deleteManyDocuments: GQLBatchPayload
+  deleteManyStartProjectForms: GQLBatchPayload
+  deleteManyJobListings: GQLBatchPayload
+  deleteManyMailchimpForms: GQLBatchPayload
+  deleteManySingularPages: GQLBatchPayload
+  deleteManyBlogPosts: GQLBatchPayload
+  deleteManyComments: GQLBatchPayload
+  deleteManyPages: GQLBatchPayload
+}
+
+export type GQLMutationCreateAssetArgs = {
+  data: GQLAssetCreateInput
 }
 
-export type MutationCreateAssetArgs = {
-  data: AssetCreateInput
+export type GQLMutationUploadAssetArgs = {
+  data: GQLAssetUploadInput
 }
 
-export type MutationUploadAssetArgs = {
-  data: AssetUploadInput
+export type GQLMutationCreateContactFormArgs = {
+  data: GQLContactFormCreateInput
 }
 
-export type MutationCreateContactFormArgs = {
-  data: ContactFormCreateInput
+export type GQLMutationCreateEcosystemArgs = {
+  data: GQLEcosystemCreateInput
 }
 
-export type MutationCreateEcosystemArgs = {
-  data: EcosystemCreateInput
+export type GQLMutationCreateBlockArgs = {
+  data: GQLBlockCreateInput
 }
 
-export type MutationCreateBlockArgs = {
-  data: BlockCreateInput
+export type GQLMutationCreateModuleArgs = {
+  data: GQLModuleCreateInput
 }
 
-export type MutationCreateTagArgs = {
-  data: TagCreateInput
+export type GQLMutationCreateStructuredPageArgs = {
+  data: GQLStructuredPageCreateInput
 }
 
-export type MutationCreateModuleArgs = {
-  data: ModuleCreateInput
+export type GQLMutationCreateEmployeeArgs = {
+  data: GQLEmployeeCreateInput
 }
 
-export type MutationCreateStructuredPageArgs = {
-  data: StructuredPageCreateInput
+export type GQLMutationCreateQuoteArgs = {
+  data: GQLQuoteCreateInput
 }
 
-export type MutationCreateEmployeeArgs = {
-  data: EmployeeCreateInput
+export type GQLMutationCreateDocumentArgs = {
+  data: GQLDocumentCreateInput
 }
 
-export type MutationCreateQuoteArgs = {
-  data: QuoteCreateInput
+export type GQLMutationCreateStartProjectFormArgs = {
+  data: GQLStartProjectFormCreateInput
 }
 
-export type MutationCreateDocumentArgs = {
-  data: DocumentCreateInput
+export type GQLMutationCreateJobListingArgs = {
+  data: GQLJobListingCreateInput
 }
 
-export type MutationCreateStartProjectFormArgs = {
-  data: StartProjectFormCreateInput
+export type GQLMutationCreateMailchimpFormArgs = {
+  data: GQLMailchimpFormCreateInput
 }
 
-export type MutationCreateJobListingArgs = {
-  data: JobListingCreateInput
+export type GQLMutationCreateSingularPageArgs = {
+  data: GQLSingularPageCreateInput
 }
 
-export type MutationCreateMailchimpFormArgs = {
-  data: MailchimpFormCreateInput
+export type GQLMutationCreateBlogPostArgs = {
+  data: GQLBlogPostCreateInput
 }
 
-export type MutationCreateSingularPageArgs = {
-  data: SingularPageCreateInput
+export type GQLMutationCreateCommentArgs = {
+  data: GQLCommentCreateInput
 }
 
-export type MutationCreateBlogPostArgs = {
-  data: BlogPostCreateInput
+export type GQLMutationCreatePageArgs = {
+  data: GQLPageCreateInput
 }
 
-export type MutationCreateCommentArgs = {
-  data: CommentCreateInput
+export type GQLMutationUpdateAssetArgs = {
+  data: GQLAssetUpdateInput
+  where: GQLAssetWhereUniqueInput
 }
 
-export type MutationCreatePageArgs = {
-  data: PageCreateInput
+export type GQLMutationUpdateContactFormArgs = {
+  data: GQLContactFormUpdateInput
+  where: GQLContactFormWhereUniqueInput
 }
 
-export type MutationCreatePdpPaginaArgs = {
-  data: PdpPaginaCreateInput
+export type GQLMutationUpdateEcosystemArgs = {
+  data: GQLEcosystemUpdateInput
+  where: GQLEcosystemWhereUniqueInput
 }
 
-export type MutationUpdateAssetArgs = {
-  data: AssetUpdateInput
-  where: AssetWhereUniqueInput
+export type GQLMutationUpdateBlockArgs = {
+  data: GQLBlockUpdateInput
+  where: GQLBlockWhereUniqueInput
 }
 
-export type MutationUpdateContactFormArgs = {
-  data: ContactFormUpdateInput
-  where: ContactFormWhereUniqueInput
+export type GQLMutationUpdateModuleArgs = {
+  data: GQLModuleUpdateInput
+  where: GQLModuleWhereUniqueInput
 }
 
-export type MutationUpdateEcosystemArgs = {
-  data: EcosystemUpdateInput
-  where: EcosystemWhereUniqueInput
+export type GQLMutationUpdateStructuredPageArgs = {
+  data: GQLStructuredPageUpdateInput
+  where: GQLStructuredPageWhereUniqueInput
 }
 
-export type MutationUpdateBlockArgs = {
-  data: BlockUpdateInput
-  where: BlockWhereUniqueInput
+export type GQLMutationUpdateEmployeeArgs = {
+  data: GQLEmployeeUpdateInput
+  where: GQLEmployeeWhereUniqueInput
 }
 
-export type MutationUpdateTagArgs = {
-  data: TagUpdateInput
-  where: TagWhereUniqueInput
+export type GQLMutationUpdateQuoteArgs = {
+  data: GQLQuoteUpdateInput
+  where: GQLQuoteWhereUniqueInput
 }
 
-export type MutationUpdateModuleArgs = {
-  data: ModuleUpdateInput
-  where: ModuleWhereUniqueInput
+export type GQLMutationUpdateDocumentArgs = {
+  data: GQLDocumentUpdateInput
+  where: GQLDocumentWhereUniqueInput
 }
 
-export type MutationUpdateStructuredPageArgs = {
-  data: StructuredPageUpdateInput
-  where: StructuredPageWhereUniqueInput
+export type GQLMutationUpdateStartProjectFormArgs = {
+  data: GQLStartProjectFormUpdateInput
+  where: GQLStartProjectFormWhereUniqueInput
 }
 
-export type MutationUpdateEmployeeArgs = {
-  data: EmployeeUpdateInput
-  where: EmployeeWhereUniqueInput
+export type GQLMutationUpdateJobListingArgs = {
+  data: GQLJobListingUpdateInput
+  where: GQLJobListingWhereUniqueInput
 }
 
-export type MutationUpdateQuoteArgs = {
-  data: QuoteUpdateInput
-  where: QuoteWhereUniqueInput
+export type GQLMutationUpdateMailchimpFormArgs = {
+  data: GQLMailchimpFormUpdateInput
+  where: GQLMailchimpFormWhereUniqueInput
 }
 
-export type MutationUpdateDocumentArgs = {
-  data: DocumentUpdateInput
-  where: DocumentWhereUniqueInput
+export type GQLMutationUpdateSingularPageArgs = {
+  data: GQLSingularPageUpdateInput
+  where: GQLSingularPageWhereUniqueInput
 }
 
-export type MutationUpdateStartProjectFormArgs = {
-  data: StartProjectFormUpdateInput
-  where: StartProjectFormWhereUniqueInput
+export type GQLMutationUpdateBlogPostArgs = {
+  data: GQLBlogPostUpdateInput
+  where: GQLBlogPostWhereUniqueInput
 }
 
-export type MutationUpdateJobListingArgs = {
-  data: JobListingUpdateInput
-  where: JobListingWhereUniqueInput
+export type GQLMutationUpdateCommentArgs = {
+  data: GQLCommentUpdateInput
+  where: GQLCommentWhereUniqueInput
 }
 
-export type MutationUpdateMailchimpFormArgs = {
-  data: MailchimpFormUpdateInput
-  where: MailchimpFormWhereUniqueInput
+export type GQLMutationUpdatePageArgs = {
+  data: GQLPageUpdateInput
+  where: GQLPageWhereUniqueInput
 }
 
-export type MutationUpdateSingularPageArgs = {
-  data: SingularPageUpdateInput
-  where: SingularPageWhereUniqueInput
+export type GQLMutationDeleteAssetArgs = {
+  where: GQLAssetWhereUniqueInput
 }
 
-export type MutationUpdateBlogPostArgs = {
-  data: BlogPostUpdateInput
-  where: BlogPostWhereUniqueInput
+export type GQLMutationDeleteContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
 }
 
-export type MutationUpdateCommentArgs = {
-  data: CommentUpdateInput
-  where: CommentWhereUniqueInput
+export type GQLMutationDeleteEcosystemArgs = {
+  where: GQLEcosystemWhereUniqueInput
 }
 
-export type MutationUpdatePageArgs = {
-  data: PageUpdateInput
-  where: PageWhereUniqueInput
+export type GQLMutationDeleteBlockArgs = {
+  where: GQLBlockWhereUniqueInput
 }
 
-export type MutationUpdatePdpPaginaArgs = {
-  data: PdpPaginaUpdateInput
-  where: PdpPaginaWhereUniqueInput
+export type GQLMutationDeleteModuleArgs = {
+  where: GQLModuleWhereUniqueInput
 }
 
-export type MutationDeleteAssetArgs = {
-  where: AssetWhereUniqueInput
+export type GQLMutationDeleteStructuredPageArgs = {
+  where: GQLStructuredPageWhereUniqueInput
 }
 
-export type MutationDeleteContactFormArgs = {
-  where: ContactFormWhereUniqueInput
+export type GQLMutationDeleteEmployeeArgs = {
+  where: GQLEmployeeWhereUniqueInput
 }
 
-export type MutationDeleteEcosystemArgs = {
-  where: EcosystemWhereUniqueInput
+export type GQLMutationDeleteQuoteArgs = {
+  where: GQLQuoteWhereUniqueInput
 }
 
-export type MutationDeleteBlockArgs = {
-  where: BlockWhereUniqueInput
+export type GQLMutationDeleteDocumentArgs = {
+  where: GQLDocumentWhereUniqueInput
 }
 
-export type MutationDeleteTagArgs = {
-  where: TagWhereUniqueInput
+export type GQLMutationDeleteStartProjectFormArgs = {
+  where: GQLStartProjectFormWhereUniqueInput
 }
 
-export type MutationDeleteModuleArgs = {
-  where: ModuleWhereUniqueInput
+export type GQLMutationDeleteJobListingArgs = {
+  where: GQLJobListingWhereUniqueInput
 }
 
-export type MutationDeleteStructuredPageArgs = {
-  where: StructuredPageWhereUniqueInput
+export type GQLMutationDeleteMailchimpFormArgs = {
+  where: GQLMailchimpFormWhereUniqueInput
 }
 
-export type MutationDeleteEmployeeArgs = {
-  where: EmployeeWhereUniqueInput
+export type GQLMutationDeleteSingularPageArgs = {
+  where: GQLSingularPageWhereUniqueInput
 }
 
-export type MutationDeleteQuoteArgs = {
-  where: QuoteWhereUniqueInput
+export type GQLMutationDeleteBlogPostArgs = {
+  where: GQLBlogPostWhereUniqueInput
 }
 
-export type MutationDeleteDocumentArgs = {
-  where: DocumentWhereUniqueInput
+export type GQLMutationDeleteCommentArgs = {
+  where: GQLCommentWhereUniqueInput
 }
 
-export type MutationDeleteStartProjectFormArgs = {
-  where: StartProjectFormWhereUniqueInput
+export type GQLMutationDeletePageArgs = {
+  where: GQLPageWhereUniqueInput
 }
 
-export type MutationDeleteJobListingArgs = {
-  where: JobListingWhereUniqueInput
+export type GQLMutationUpsertAssetArgs = {
+  where: GQLAssetWhereUniqueInput
+  create: GQLAssetCreateInput
+  update: GQLAssetUpdateInput
 }
 
-export type MutationDeleteMailchimpFormArgs = {
-  where: MailchimpFormWhereUniqueInput
+export type GQLMutationUpsertContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+  create: GQLContactFormCreateInput
+  update: GQLContactFormUpdateInput
 }
 
-export type MutationDeleteSingularPageArgs = {
-  where: SingularPageWhereUniqueInput
+export type GQLMutationUpsertEcosystemArgs = {
+  where: GQLEcosystemWhereUniqueInput
+  create: GQLEcosystemCreateInput
+  update: GQLEcosystemUpdateInput
 }
 
-export type MutationDeleteBlogPostArgs = {
-  where: BlogPostWhereUniqueInput
+export type GQLMutationUpsertBlockArgs = {
+  where: GQLBlockWhereUniqueInput
+  create: GQLBlockCreateInput
+  update: GQLBlockUpdateInput
 }
 
-export type MutationDeleteCommentArgs = {
-  where: CommentWhereUniqueInput
+export type GQLMutationUpsertModuleArgs = {
+  where: GQLModuleWhereUniqueInput
+  create: GQLModuleCreateInput
+  update: GQLModuleUpdateInput
 }
 
-export type MutationDeletePageArgs = {
-  where: PageWhereUniqueInput
+export type GQLMutationUpsertStructuredPageArgs = {
+  where: GQLStructuredPageWhereUniqueInput
+  create: GQLStructuredPageCreateInput
+  update: GQLStructuredPageUpdateInput
 }
 
-export type MutationDeletePdpPaginaArgs = {
-  where: PdpPaginaWhereUniqueInput
+export type GQLMutationUpsertEmployeeArgs = {
+  where: GQLEmployeeWhereUniqueInput
+  create: GQLEmployeeCreateInput
+  update: GQLEmployeeUpdateInput
 }
 
-export type MutationUpsertAssetArgs = {
-  where: AssetWhereUniqueInput
-  create: AssetCreateInput
-  update: AssetUpdateInput
+export type GQLMutationUpsertQuoteArgs = {
+  where: GQLQuoteWhereUniqueInput
+  create: GQLQuoteCreateInput
+  update: GQLQuoteUpdateInput
 }
 
-export type MutationUpsertContactFormArgs = {
-  where: ContactFormWhereUniqueInput
-  create: ContactFormCreateInput
-  update: ContactFormUpdateInput
+export type GQLMutationUpsertDocumentArgs = {
+  where: GQLDocumentWhereUniqueInput
+  create: GQLDocumentCreateInput
+  update: GQLDocumentUpdateInput
 }
 
-export type MutationUpsertEcosystemArgs = {
-  where: EcosystemWhereUniqueInput
-  create: EcosystemCreateInput
-  update: EcosystemUpdateInput
+export type GQLMutationUpsertStartProjectFormArgs = {
+  where: GQLStartProjectFormWhereUniqueInput
+  create: GQLStartProjectFormCreateInput
+  update: GQLStartProjectFormUpdateInput
 }
 
-export type MutationUpsertBlockArgs = {
-  where: BlockWhereUniqueInput
-  create: BlockCreateInput
-  update: BlockUpdateInput
+export type GQLMutationUpsertJobListingArgs = {
+  where: GQLJobListingWhereUniqueInput
+  create: GQLJobListingCreateInput
+  update: GQLJobListingUpdateInput
 }
 
-export type MutationUpsertTagArgs = {
-  where: TagWhereUniqueInput
-  create: TagCreateInput
-  update: TagUpdateInput
+export type GQLMutationUpsertMailchimpFormArgs = {
+  where: GQLMailchimpFormWhereUniqueInput
+  create: GQLMailchimpFormCreateInput
+  update: GQLMailchimpFormUpdateInput
 }
 
-export type MutationUpsertModuleArgs = {
-  where: ModuleWhereUniqueInput
-  create: ModuleCreateInput
-  update: ModuleUpdateInput
+export type GQLMutationUpsertSingularPageArgs = {
+  where: GQLSingularPageWhereUniqueInput
+  create: GQLSingularPageCreateInput
+  update: GQLSingularPageUpdateInput
 }
 
-export type MutationUpsertStructuredPageArgs = {
-  where: StructuredPageWhereUniqueInput
-  create: StructuredPageCreateInput
-  update: StructuredPageUpdateInput
+export type GQLMutationUpsertBlogPostArgs = {
+  where: GQLBlogPostWhereUniqueInput
+  create: GQLBlogPostCreateInput
+  update: GQLBlogPostUpdateInput
 }
 
-export type MutationUpsertEmployeeArgs = {
-  where: EmployeeWhereUniqueInput
-  create: EmployeeCreateInput
-  update: EmployeeUpdateInput
+export type GQLMutationUpsertCommentArgs = {
+  where: GQLCommentWhereUniqueInput
+  create: GQLCommentCreateInput
+  update: GQLCommentUpdateInput
 }
 
-export type MutationUpsertQuoteArgs = {
-  where: QuoteWhereUniqueInput
-  create: QuoteCreateInput
-  update: QuoteUpdateInput
+export type GQLMutationUpsertPageArgs = {
+  where: GQLPageWhereUniqueInput
+  create: GQLPageCreateInput
+  update: GQLPageUpdateInput
 }
 
-export type MutationUpsertDocumentArgs = {
-  where: DocumentWhereUniqueInput
-  create: DocumentCreateInput
-  update: DocumentUpdateInput
+export type GQLMutationUpdateManyAssetsArgs = {
+  data: GQLAssetUpdateManyMutationInput
+  where?: Maybe<GQLAssetWhereInput>
 }
 
-export type MutationUpsertStartProjectFormArgs = {
-  where: StartProjectFormWhereUniqueInput
-  create: StartProjectFormCreateInput
-  update: StartProjectFormUpdateInput
+export type GQLMutationUpdateManyContactFormsArgs = {
+  data: GQLContactFormUpdateManyMutationInput
+  where?: Maybe<GQLContactFormWhereInput>
 }
 
-export type MutationUpsertJobListingArgs = {
-  where: JobListingWhereUniqueInput
-  create: JobListingCreateInput
-  update: JobListingUpdateInput
+export type GQLMutationUpdateManyEcosystemsArgs = {
+  data: GQLEcosystemUpdateManyMutationInput
+  where?: Maybe<GQLEcosystemWhereInput>
 }
 
-export type MutationUpsertMailchimpFormArgs = {
-  where: MailchimpFormWhereUniqueInput
-  create: MailchimpFormCreateInput
-  update: MailchimpFormUpdateInput
+export type GQLMutationUpdateManyBlocksArgs = {
+  data: GQLBlockUpdateManyMutationInput
+  where?: Maybe<GQLBlockWhereInput>
 }
 
-export type MutationUpsertSingularPageArgs = {
-  where: SingularPageWhereUniqueInput
-  create: SingularPageCreateInput
-  update: SingularPageUpdateInput
+export type GQLMutationUpdateManyModulesArgs = {
+  data: GQLModuleUpdateManyMutationInput
+  where?: Maybe<GQLModuleWhereInput>
 }
 
-export type MutationUpsertBlogPostArgs = {
-  where: BlogPostWhereUniqueInput
-  create: BlogPostCreateInput
-  update: BlogPostUpdateInput
+export type GQLMutationUpdateManyStructuredPagesArgs = {
+  data: GQLStructuredPageUpdateManyMutationInput
+  where?: Maybe<GQLStructuredPageWhereInput>
 }
 
-export type MutationUpsertCommentArgs = {
-  where: CommentWhereUniqueInput
-  create: CommentCreateInput
-  update: CommentUpdateInput
+export type GQLMutationUpdateManyEmployeesArgs = {
+  data: GQLEmployeeUpdateManyMutationInput
+  where?: Maybe<GQLEmployeeWhereInput>
 }
 
-export type MutationUpsertPageArgs = {
-  where: PageWhereUniqueInput
-  create: PageCreateInput
-  update: PageUpdateInput
+export type GQLMutationUpdateManyQuotesArgs = {
+  data: GQLQuoteUpdateManyMutationInput
+  where?: Maybe<GQLQuoteWhereInput>
 }
 
-export type MutationUpsertPdpPaginaArgs = {
-  where: PdpPaginaWhereUniqueInput
-  create: PdpPaginaCreateInput
-  update: PdpPaginaUpdateInput
+export type GQLMutationUpdateManyDocumentsArgs = {
+  data: GQLDocumentUpdateManyMutationInput
+  where?: Maybe<GQLDocumentWhereInput>
 }
 
-export type MutationUpdateManyAssetsArgs = {
-  data: AssetUpdateManyMutationInput
-  where?: Maybe<AssetWhereInput>
+export type GQLMutationUpdateManyStartProjectFormsArgs = {
+  data: GQLStartProjectFormUpdateManyMutationInput
+  where?: Maybe<GQLStartProjectFormWhereInput>
 }
 
-export type MutationUpdateManyContactFormsArgs = {
-  data: ContactFormUpdateManyMutationInput
-  where?: Maybe<ContactFormWhereInput>
+export type GQLMutationUpdateManyJobListingsArgs = {
+  data: GQLJobListingUpdateManyMutationInput
+  where?: Maybe<GQLJobListingWhereInput>
 }
 
-export type MutationUpdateManyEcosystemsArgs = {
-  data: EcosystemUpdateManyMutationInput
-  where?: Maybe<EcosystemWhereInput>
+export type GQLMutationUpdateManyMailchimpFormsArgs = {
+  data: GQLMailchimpFormUpdateManyMutationInput
+  where?: Maybe<GQLMailchimpFormWhereInput>
 }
 
-export type MutationUpdateManyBlocksArgs = {
-  data: BlockUpdateManyMutationInput
-  where?: Maybe<BlockWhereInput>
+export type GQLMutationUpdateManySingularPagesArgs = {
+  data: GQLSingularPageUpdateManyMutationInput
+  where?: Maybe<GQLSingularPageWhereInput>
 }
 
-export type MutationUpdateManyTagsArgs = {
-  data: TagUpdateManyMutationInput
-  where?: Maybe<TagWhereInput>
+export type GQLMutationUpdateManyBlogPostsArgs = {
+  data: GQLBlogPostUpdateManyMutationInput
+  where?: Maybe<GQLBlogPostWhereInput>
 }
 
-export type MutationUpdateManyModulesArgs = {
-  data: ModuleUpdateManyMutationInput
-  where?: Maybe<ModuleWhereInput>
+export type GQLMutationUpdateManyCommentsArgs = {
+  data: GQLCommentUpdateManyMutationInput
+  where?: Maybe<GQLCommentWhereInput>
 }
 
-export type MutationUpdateManyStructuredPagesArgs = {
-  data: StructuredPageUpdateManyMutationInput
-  where?: Maybe<StructuredPageWhereInput>
+export type GQLMutationUpdateManyPagesArgs = {
+  data: GQLPageUpdateManyMutationInput
+  where?: Maybe<GQLPageWhereInput>
 }
 
-export type MutationUpdateManyEmployeesArgs = {
-  data: EmployeeUpdateManyMutationInput
-  where?: Maybe<EmployeeWhereInput>
+export type GQLMutationDeleteManyAssetsArgs = {
+  where?: Maybe<GQLAssetWhereInput>
 }
 
-export type MutationUpdateManyQuotesArgs = {
-  data: QuoteUpdateManyMutationInput
-  where?: Maybe<QuoteWhereInput>
+export type GQLMutationDeleteManyContactFormsArgs = {
+  where?: Maybe<GQLContactFormWhereInput>
 }
 
-export type MutationUpdateManyDocumentsArgs = {
-  data: DocumentUpdateManyMutationInput
-  where?: Maybe<DocumentWhereInput>
+export type GQLMutationDeleteManyEcosystemsArgs = {
+  where?: Maybe<GQLEcosystemWhereInput>
 }
 
-export type MutationUpdateManyStartProjectFormsArgs = {
-  data: StartProjectFormUpdateManyMutationInput
-  where?: Maybe<StartProjectFormWhereInput>
+export type GQLMutationDeleteManyBlocksArgs = {
+  where?: Maybe<GQLBlockWhereInput>
 }
 
-export type MutationUpdateManyJobListingsArgs = {
-  data: JobListingUpdateManyMutationInput
-  where?: Maybe<JobListingWhereInput>
+export type GQLMutationDeleteManyModulesArgs = {
+  where?: Maybe<GQLModuleWhereInput>
 }
 
-export type MutationUpdateManyMailchimpFormsArgs = {
-  data: MailchimpFormUpdateManyMutationInput
-  where?: Maybe<MailchimpFormWhereInput>
+export type GQLMutationDeleteManyStructuredPagesArgs = {
+  where?: Maybe<GQLStructuredPageWhereInput>
 }
 
-export type MutationUpdateManySingularPagesArgs = {
-  data: SingularPageUpdateManyMutationInput
-  where?: Maybe<SingularPageWhereInput>
+export type GQLMutationDeleteManyEmployeesArgs = {
+  where?: Maybe<GQLEmployeeWhereInput>
 }
 
-export type MutationUpdateManyBlogPostsArgs = {
-  data: BlogPostUpdateManyMutationInput
-  where?: Maybe<BlogPostWhereInput>
+export type GQLMutationDeleteManyQuotesArgs = {
+  where?: Maybe<GQLQuoteWhereInput>
 }
 
-export type MutationUpdateManyCommentsArgs = {
-  data: CommentUpdateManyMutationInput
-  where?: Maybe<CommentWhereInput>
+export type GQLMutationDeleteManyDocumentsArgs = {
+  where?: Maybe<GQLDocumentWhereInput>
 }
 
-export type MutationUpdateManyPagesArgs = {
-  data: PageUpdateManyMutationInput
-  where?: Maybe<PageWhereInput>
+export type GQLMutationDeleteManyStartProjectFormsArgs = {
+  where?: Maybe<GQLStartProjectFormWhereInput>
 }
 
-export type MutationUpdateManyPdpPaginasArgs = {
-  data: PdpPaginaUpdateManyMutationInput
-  where?: Maybe<PdpPaginaWhereInput>
+export type GQLMutationDeleteManyJobListingsArgs = {
+  where?: Maybe<GQLJobListingWhereInput>
 }
 
-export type MutationDeleteManyAssetsArgs = {
-  where?: Maybe<AssetWhereInput>
+export type GQLMutationDeleteManyMailchimpFormsArgs = {
+  where?: Maybe<GQLMailchimpFormWhereInput>
 }
 
-export type MutationDeleteManyContactFormsArgs = {
-  where?: Maybe<ContactFormWhereInput>
+export type GQLMutationDeleteManySingularPagesArgs = {
+  where?: Maybe<GQLSingularPageWhereInput>
 }
 
-export type MutationDeleteManyEcosystemsArgs = {
-  where?: Maybe<EcosystemWhereInput>
+export type GQLMutationDeleteManyBlogPostsArgs = {
+  where?: Maybe<GQLBlogPostWhereInput>
 }
 
-export type MutationDeleteManyBlocksArgs = {
-  where?: Maybe<BlockWhereInput>
+export type GQLMutationDeleteManyCommentsArgs = {
+  where?: Maybe<GQLCommentWhereInput>
 }
 
-export type MutationDeleteManyTagsArgs = {
-  where?: Maybe<TagWhereInput>
+export type GQLMutationDeleteManyPagesArgs = {
+  where?: Maybe<GQLPageWhereInput>
 }
 
-export type MutationDeleteManyModulesArgs = {
-  where?: Maybe<ModuleWhereInput>
-}
-
-export type MutationDeleteManyStructuredPagesArgs = {
-  where?: Maybe<StructuredPageWhereInput>
-}
-
-export type MutationDeleteManyEmployeesArgs = {
-  where?: Maybe<EmployeeWhereInput>
-}
-
-export type MutationDeleteManyQuotesArgs = {
-  where?: Maybe<QuoteWhereInput>
-}
-
-export type MutationDeleteManyDocumentsArgs = {
-  where?: Maybe<DocumentWhereInput>
-}
-
-export type MutationDeleteManyStartProjectFormsArgs = {
-  where?: Maybe<StartProjectFormWhereInput>
-}
-
-export type MutationDeleteManyJobListingsArgs = {
-  where?: Maybe<JobListingWhereInput>
-}
-
-export type MutationDeleteManyMailchimpFormsArgs = {
-  where?: Maybe<MailchimpFormWhereInput>
-}
-
-export type MutationDeleteManySingularPagesArgs = {
-  where?: Maybe<SingularPageWhereInput>
-}
-
-export type MutationDeleteManyBlogPostsArgs = {
-  where?: Maybe<BlogPostWhereInput>
-}
-
-export type MutationDeleteManyCommentsArgs = {
-  where?: Maybe<CommentWhereInput>
-}
-
-export type MutationDeleteManyPagesArgs = {
-  where?: Maybe<PageWhereInput>
-}
-
-export type MutationDeleteManyPdpPaginasArgs = {
-  where?: Maybe<PdpPaginaWhereInput>
-}
-
-export enum MutationType {
+export enum GQLMutationType {
   Created = 'CREATED',
   Updated = 'UPDATED',
   Deleted = 'DELETED',
 }
 
-export type Node = {
+export type GQLNode = {
   id: Scalars['ID']
 }
 
-export type Page = Node & {
+export type GQLPage = GQLNode & {
   __typename?: 'Page'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
+  metaRobots: GQLMetaRobots
+  structuredPage?: Maybe<GQLStructuredPage>
+  blogPost?: Maybe<GQLBlogPost>
+  jobListing?: Maybe<GQLJobListing>
+  comment?: Maybe<GQLComment>
+  singularPage?: Maybe<GQLSingularPage>
+  metaTitle?: Maybe<Scalars['String']>
   metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  parent?: Maybe<Page>
-  children?: Maybe<Array<Page>>
-  tags?: Maybe<Array<Tag>>
-  structuredPage?: Maybe<StructuredPage>
-  blogPost?: Maybe<BlogPost>
-  jobListing?: Maybe<JobListing>
-  comment?: Maybe<Comment>
-  singularPage?: Maybe<SingularPage>
-  translationFrom?: Maybe<Array<Page>>
-  translationTo?: Maybe<Array<Page>>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
+  url?: Maybe<Scalars['String']>
 }
 
-export type PageChildrenArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
+export type GQLPageMetaTitleArgs = {
+  locale?: Maybe<GQLLocale>
 }
 
-export type PageTagsArgs = {
-  where?: Maybe<TagWhereInput>
-  orderBy?: Maybe<TagOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
+export type GQLPageMetaDescriptionArgs = {
+  locale?: Maybe<GQLLocale>
 }
 
-export type PageTranslationFromArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
+export type GQLPageUrlArgs = {
+  locale?: Maybe<GQLLocale>
 }
 
-export type PageTranslationToArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type PageConnection = {
+export type GQLPageConnection = {
   __typename?: 'PageConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<PageEdge>>
-  aggregate: AggregatePage
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLPageEdge>>
+  aggregate: GQLAggregatePage
 }
 
-export type PageCreateInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
+export type GQLPageCreateInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
+  structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageCreateOneWithoutPageInput>
 }
 
-export type PageCreateManyWithoutParentInput = {
-  create?: Maybe<Array<PageCreateWithoutParentInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
+export type GQLPageCreateOneWithoutBlogPostInput = {
+  create?: Maybe<GQLPageCreateWithoutBlogPostInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
 }
 
-export type PageCreateManyWithoutTagsInput = {
-  create?: Maybe<Array<PageCreateWithoutTagsInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
+export type GQLPageCreateOneWithoutCommentInput = {
+  create?: Maybe<GQLPageCreateWithoutCommentInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
 }
 
-export type PageCreateManyWithoutTranslationFromInput = {
-  create?: Maybe<Array<PageCreateWithoutTranslationFromInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
+export type GQLPageCreateOneWithoutJobListingInput = {
+  create?: Maybe<GQLPageCreateWithoutJobListingInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
 }
 
-export type PageCreateManyWithoutTranslationToInput = {
-  create?: Maybe<Array<PageCreateWithoutTranslationToInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
+export type GQLPageCreateOneWithoutSingularPageInput = {
+  create?: Maybe<GQLPageCreateWithoutSingularPageInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
 }
 
-export type PageCreateOneWithoutBlogPostInput = {
-  create?: Maybe<PageCreateWithoutBlogPostInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageCreateOneWithoutStructuredPageInput = {
+  create?: Maybe<GQLPageCreateWithoutStructuredPageInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
 }
 
-export type PageCreateOneWithoutChildrenInput = {
-  create?: Maybe<PageCreateWithoutChildrenInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageCreateWithoutBlogPostInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
+  structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageCreateOneWithoutPageInput>
 }
 
-export type PageCreateOneWithoutCommentInput = {
-  create?: Maybe<PageCreateWithoutCommentInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageCreateWithoutCommentInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
+  structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageCreateOneWithoutPageInput>
 }
 
-export type PageCreateOneWithoutJobListingInput = {
-  create?: Maybe<PageCreateWithoutJobListingInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageCreateWithoutJobListingInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
+  structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageCreateOneWithoutPageInput>
 }
 
-export type PageCreateOneWithoutSingularPageInput = {
-  create?: Maybe<PageCreateWithoutSingularPageInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageCreateWithoutSingularPageInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
+  structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
 }
 
-export type PageCreateOneWithoutStructuredPageInput = {
-  create?: Maybe<PageCreateWithoutStructuredPageInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageCreateWithoutStructuredPageInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
+  blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageCreateOneWithoutPageInput>
 }
 
-export type PageCreateWithoutBlogPostInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutChildrenInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutCommentInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutJobListingInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutParentInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutSingularPageInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutStructuredPageInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutTagsInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutTranslationFromInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationTo?: Maybe<PageCreateManyWithoutTranslationFromInput>
-}
-
-export type PageCreateWithoutTranslationToInput = {
-  status?: Maybe<Status>
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageCreateOneWithoutChildrenInput>
-  children?: Maybe<PageCreateManyWithoutParentInput>
-  tags?: Maybe<TagCreateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageCreateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostCreateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingCreateOneWithoutPageInput>
-  comment?: Maybe<CommentCreateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageCreateOneWithoutPageInput>
-  translationFrom?: Maybe<PageCreateManyWithoutTranslationToInput>
-}
-
-export type PageEdge = {
+export type GQLPageEdge = {
   __typename?: 'PageEdge'
-  node: Page
+  node: GQLPage
   cursor: Scalars['String']
 }
 
-export type PageInfo = {
+export type GQLPageInfo = {
   __typename?: 'PageInfo'
   hasNextPage: Scalars['Boolean']
   hasPreviousPage: Scalars['Boolean']
@@ -5810,7 +5530,7 @@ export type PageInfo = {
   endCursor?: Maybe<Scalars['String']>
 }
 
-export enum PageOrderByInput {
+export enum GQLPageOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -5819,658 +5539,237 @@ export enum PageOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
-  UrlKeyAsc = 'urlKey_ASC',
-  UrlKeyDesc = 'urlKey_DESC',
-  MetaTitleAsc = 'metaTitle_ASC',
-  MetaTitleDesc = 'metaTitle_DESC',
-  MetaDescriptionAsc = 'metaDescription_ASC',
-  MetaDescriptionDesc = 'metaDescription_DESC',
-  StatusCodeAsc = 'statusCode_ASC',
-  StatusCodeDesc = 'statusCode_DESC',
+  UrlEnAsc = 'urlEN_ASC',
+  UrlEnDesc = 'urlEN_DESC',
+  UrlNlAsc = 'urlNL_ASC',
+  UrlNlDesc = 'urlNL_DESC',
+  MetaTitleEnAsc = 'metaTitleEN_ASC',
+  MetaTitleEnDesc = 'metaTitleEN_DESC',
+  MetaTitleNlAsc = 'metaTitleNL_ASC',
+  MetaTitleNlDesc = 'metaTitleNL_DESC',
+  MetaDescriptionEnAsc = 'metaDescriptionEN_ASC',
+  MetaDescriptionEnDesc = 'metaDescriptionEN_DESC',
+  MetaDescriptionNlAsc = 'metaDescriptionNL_ASC',
+  MetaDescriptionNlDesc = 'metaDescriptionNL_DESC',
   MetaRobotsAsc = 'metaRobots_ASC',
   MetaRobotsDesc = 'metaRobots_DESC',
-  FooterkeywordAsc = 'footerkeyword_ASC',
-  FooterkeywordDesc = 'footerkeyword_DESC',
-  FootertitleAsc = 'footertitle_ASC',
-  FootertitleDesc = 'footertitle_DESC',
-  LanguageAsc = 'language_ASC',
-  LanguageDesc = 'language_DESC',
-  UrlkeynewAsc = 'urlkeynew_ASC',
-  UrlkeynewDesc = 'urlkeynew_DESC',
 }
 
-export type PagePreviousValues = {
+export type GQLPagePreviousValues = {
   __typename?: 'PagePreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
-  urlKey: Scalars['String']
-  metaTitle: Scalars['String']
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode: StatusCode
-  metaRobots: MetaRobots
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots: GQLMetaRobots
 }
 
-export type PageScalarWhereInput = {
-  _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<PageScalarWhereInput>>
-  OR?: Maybe<Array<PageScalarWhereInput>>
-  NOT?: Maybe<Array<PageScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  id?: Maybe<Scalars['ID']>
-  id_not?: Maybe<Scalars['ID']>
-  id_in?: Maybe<Array<Scalars['ID']>>
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  id_lt?: Maybe<Scalars['ID']>
-  id_lte?: Maybe<Scalars['ID']>
-  id_gt?: Maybe<Scalars['ID']>
-  id_gte?: Maybe<Scalars['ID']>
-  id_contains?: Maybe<Scalars['ID']>
-  id_not_contains?: Maybe<Scalars['ID']>
-  id_starts_with?: Maybe<Scalars['ID']>
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  id_ends_with?: Maybe<Scalars['ID']>
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  urlKey?: Maybe<Scalars['String']>
-  urlKey_not?: Maybe<Scalars['String']>
-  urlKey_in?: Maybe<Array<Scalars['String']>>
-  urlKey_not_in?: Maybe<Array<Scalars['String']>>
-  urlKey_lt?: Maybe<Scalars['String']>
-  urlKey_lte?: Maybe<Scalars['String']>
-  urlKey_gt?: Maybe<Scalars['String']>
-  urlKey_gte?: Maybe<Scalars['String']>
-  urlKey_contains?: Maybe<Scalars['String']>
-  urlKey_not_contains?: Maybe<Scalars['String']>
-  urlKey_starts_with?: Maybe<Scalars['String']>
-  urlKey_not_starts_with?: Maybe<Scalars['String']>
-  urlKey_ends_with?: Maybe<Scalars['String']>
-  urlKey_not_ends_with?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaTitle_not?: Maybe<Scalars['String']>
-  metaTitle_in?: Maybe<Array<Scalars['String']>>
-  metaTitle_not_in?: Maybe<Array<Scalars['String']>>
-  metaTitle_lt?: Maybe<Scalars['String']>
-  metaTitle_lte?: Maybe<Scalars['String']>
-  metaTitle_gt?: Maybe<Scalars['String']>
-  metaTitle_gte?: Maybe<Scalars['String']>
-  metaTitle_contains?: Maybe<Scalars['String']>
-  metaTitle_not_contains?: Maybe<Scalars['String']>
-  metaTitle_starts_with?: Maybe<Scalars['String']>
-  metaTitle_not_starts_with?: Maybe<Scalars['String']>
-  metaTitle_ends_with?: Maybe<Scalars['String']>
-  metaTitle_not_ends_with?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  metaDescription_not?: Maybe<Scalars['String']>
-  metaDescription_in?: Maybe<Array<Scalars['String']>>
-  metaDescription_not_in?: Maybe<Array<Scalars['String']>>
-  metaDescription_lt?: Maybe<Scalars['String']>
-  metaDescription_lte?: Maybe<Scalars['String']>
-  metaDescription_gt?: Maybe<Scalars['String']>
-  metaDescription_gte?: Maybe<Scalars['String']>
-  metaDescription_contains?: Maybe<Scalars['String']>
-  metaDescription_not_contains?: Maybe<Scalars['String']>
-  metaDescription_starts_with?: Maybe<Scalars['String']>
-  metaDescription_not_starts_with?: Maybe<Scalars['String']>
-  metaDescription_ends_with?: Maybe<Scalars['String']>
-  metaDescription_not_ends_with?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  statusCode_not?: Maybe<StatusCode>
-  statusCode_in?: Maybe<Array<StatusCode>>
-  statusCode_not_in?: Maybe<Array<StatusCode>>
-  metaRobots?: Maybe<MetaRobots>
-  metaRobots_not?: Maybe<MetaRobots>
-  metaRobots_in?: Maybe<Array<MetaRobots>>
-  metaRobots_not_in?: Maybe<Array<MetaRobots>>
-  footerkeyword?: Maybe<Scalars['String']>
-  footerkeyword_not?: Maybe<Scalars['String']>
-  footerkeyword_in?: Maybe<Array<Scalars['String']>>
-  footerkeyword_not_in?: Maybe<Array<Scalars['String']>>
-  footerkeyword_lt?: Maybe<Scalars['String']>
-  footerkeyword_lte?: Maybe<Scalars['String']>
-  footerkeyword_gt?: Maybe<Scalars['String']>
-  footerkeyword_gte?: Maybe<Scalars['String']>
-  footerkeyword_contains?: Maybe<Scalars['String']>
-  footerkeyword_not_contains?: Maybe<Scalars['String']>
-  footerkeyword_starts_with?: Maybe<Scalars['String']>
-  footerkeyword_not_starts_with?: Maybe<Scalars['String']>
-  footerkeyword_ends_with?: Maybe<Scalars['String']>
-  footerkeyword_not_ends_with?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  footertitle_not?: Maybe<Scalars['String']>
-  footertitle_in?: Maybe<Array<Scalars['String']>>
-  footertitle_not_in?: Maybe<Array<Scalars['String']>>
-  footertitle_lt?: Maybe<Scalars['String']>
-  footertitle_lte?: Maybe<Scalars['String']>
-  footertitle_gt?: Maybe<Scalars['String']>
-  footertitle_gte?: Maybe<Scalars['String']>
-  footertitle_contains?: Maybe<Scalars['String']>
-  footertitle_not_contains?: Maybe<Scalars['String']>
-  footertitle_starts_with?: Maybe<Scalars['String']>
-  footertitle_not_starts_with?: Maybe<Scalars['String']>
-  footertitle_ends_with?: Maybe<Scalars['String']>
-  footertitle_not_ends_with?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  language_not?: Maybe<Language>
-  language_in?: Maybe<Array<Language>>
-  language_not_in?: Maybe<Array<Language>>
-  urlkeynew?: Maybe<Scalars['String']>
-  urlkeynew_not?: Maybe<Scalars['String']>
-  urlkeynew_in?: Maybe<Array<Scalars['String']>>
-  urlkeynew_not_in?: Maybe<Array<Scalars['String']>>
-  urlkeynew_lt?: Maybe<Scalars['String']>
-  urlkeynew_lte?: Maybe<Scalars['String']>
-  urlkeynew_gt?: Maybe<Scalars['String']>
-  urlkeynew_gte?: Maybe<Scalars['String']>
-  urlkeynew_contains?: Maybe<Scalars['String']>
-  urlkeynew_not_contains?: Maybe<Scalars['String']>
-  urlkeynew_starts_with?: Maybe<Scalars['String']>
-  urlkeynew_not_starts_with?: Maybe<Scalars['String']>
-  urlkeynew_ends_with?: Maybe<Scalars['String']>
-  urlkeynew_not_ends_with?: Maybe<Scalars['String']>
-}
-
-export type PageSubscriptionPayload = {
+export type GQLPageSubscriptionPayload = {
   __typename?: 'PageSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Page>
+  mutation: GQLMutationType
+  node?: Maybe<GQLPage>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<PagePreviousValues>
+  previousValues?: Maybe<GQLPagePreviousValues>
 }
 
-export type PageSubscriptionWhereInput = {
-  AND?: Maybe<Array<PageSubscriptionWhereInput>>
-  OR?: Maybe<Array<PageSubscriptionWhereInput>>
-  NOT?: Maybe<Array<PageSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLPageSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLPageSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLPageSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLPageSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<PageWhereInput>
+  node?: Maybe<GQLPageWhereInput>
 }
 
-export type PageUpdateInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpdateInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageUpdateOneWithoutPageInput>
 }
 
-export type PageUpdateManyDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
+export type GQLPageUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
 }
 
-export type PageUpdateManyMutationInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-}
-
-export type PageUpdateManyWithoutParentInput = {
-  create?: Maybe<Array<PageCreateWithoutParentInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
-  set?: Maybe<Array<PageWhereUniqueInput>>
-  disconnect?: Maybe<Array<PageWhereUniqueInput>>
-  delete?: Maybe<Array<PageWhereUniqueInput>>
-  update?: Maybe<Array<PageUpdateWithWhereUniqueWithoutParentInput>>
-  updateMany?: Maybe<Array<PageUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<PageScalarWhereInput>>
-  upsert?: Maybe<Array<PageUpsertWithWhereUniqueWithoutParentInput>>
-}
-
-export type PageUpdateManyWithoutTagsInput = {
-  create?: Maybe<Array<PageCreateWithoutTagsInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
-  set?: Maybe<Array<PageWhereUniqueInput>>
-  disconnect?: Maybe<Array<PageWhereUniqueInput>>
-  delete?: Maybe<Array<PageWhereUniqueInput>>
-  update?: Maybe<Array<PageUpdateWithWhereUniqueWithoutTagsInput>>
-  updateMany?: Maybe<Array<PageUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<PageScalarWhereInput>>
-  upsert?: Maybe<Array<PageUpsertWithWhereUniqueWithoutTagsInput>>
-}
-
-export type PageUpdateManyWithoutTranslationFromInput = {
-  create?: Maybe<Array<PageCreateWithoutTranslationFromInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
-  set?: Maybe<Array<PageWhereUniqueInput>>
-  disconnect?: Maybe<Array<PageWhereUniqueInput>>
-  delete?: Maybe<Array<PageWhereUniqueInput>>
-  update?: Maybe<Array<PageUpdateWithWhereUniqueWithoutTranslationFromInput>>
-  updateMany?: Maybe<Array<PageUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<PageScalarWhereInput>>
-  upsert?: Maybe<Array<PageUpsertWithWhereUniqueWithoutTranslationFromInput>>
-}
-
-export type PageUpdateManyWithoutTranslationToInput = {
-  create?: Maybe<Array<PageCreateWithoutTranslationToInput>>
-  connect?: Maybe<Array<PageWhereUniqueInput>>
-  set?: Maybe<Array<PageWhereUniqueInput>>
-  disconnect?: Maybe<Array<PageWhereUniqueInput>>
-  delete?: Maybe<Array<PageWhereUniqueInput>>
-  update?: Maybe<Array<PageUpdateWithWhereUniqueWithoutTranslationToInput>>
-  updateMany?: Maybe<Array<PageUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<PageScalarWhereInput>>
-  upsert?: Maybe<Array<PageUpsertWithWhereUniqueWithoutTranslationToInput>>
-}
-
-export type PageUpdateManyWithWhereNestedInput = {
-  where: PageScalarWhereInput
-  data: PageUpdateManyDataInput
-}
-
-export type PageUpdateOneWithoutBlogPostInput = {
-  create?: Maybe<PageCreateWithoutBlogPostInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageUpdateOneWithoutBlogPostInput = {
+  create?: Maybe<GQLPageCreateWithoutBlogPostInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<PageUpdateWithoutBlogPostDataInput>
-  upsert?: Maybe<PageUpsertWithoutBlogPostInput>
+  update?: Maybe<GQLPageUpdateWithoutBlogPostDataInput>
+  upsert?: Maybe<GQLPageUpsertWithoutBlogPostInput>
 }
 
-export type PageUpdateOneWithoutChildrenInput = {
-  create?: Maybe<PageCreateWithoutChildrenInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageUpdateOneWithoutCommentInput = {
+  create?: Maybe<GQLPageCreateWithoutCommentInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<PageUpdateWithoutChildrenDataInput>
-  upsert?: Maybe<PageUpsertWithoutChildrenInput>
+  update?: Maybe<GQLPageUpdateWithoutCommentDataInput>
+  upsert?: Maybe<GQLPageUpsertWithoutCommentInput>
 }
 
-export type PageUpdateOneWithoutCommentInput = {
-  create?: Maybe<PageCreateWithoutCommentInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageUpdateOneWithoutJobListingInput = {
+  create?: Maybe<GQLPageCreateWithoutJobListingInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<PageUpdateWithoutCommentDataInput>
-  upsert?: Maybe<PageUpsertWithoutCommentInput>
+  update?: Maybe<GQLPageUpdateWithoutJobListingDataInput>
+  upsert?: Maybe<GQLPageUpsertWithoutJobListingInput>
 }
 
-export type PageUpdateOneWithoutJobListingInput = {
-  create?: Maybe<PageCreateWithoutJobListingInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageUpdateOneWithoutSingularPageInput = {
+  create?: Maybe<GQLPageCreateWithoutSingularPageInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<PageUpdateWithoutJobListingDataInput>
-  upsert?: Maybe<PageUpsertWithoutJobListingInput>
+  update?: Maybe<GQLPageUpdateWithoutSingularPageDataInput>
+  upsert?: Maybe<GQLPageUpsertWithoutSingularPageInput>
 }
 
-export type PageUpdateOneWithoutSingularPageInput = {
-  create?: Maybe<PageCreateWithoutSingularPageInput>
-  connect?: Maybe<PageWhereUniqueInput>
+export type GQLPageUpdateOneWithoutStructuredPageInput = {
+  create?: Maybe<GQLPageCreateWithoutStructuredPageInput>
+  connect?: Maybe<GQLPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<PageUpdateWithoutSingularPageDataInput>
-  upsert?: Maybe<PageUpsertWithoutSingularPageInput>
+  update?: Maybe<GQLPageUpdateWithoutStructuredPageDataInput>
+  upsert?: Maybe<GQLPageUpsertWithoutStructuredPageInput>
 }
 
-export type PageUpdateOneWithoutStructuredPageInput = {
-  create?: Maybe<PageCreateWithoutStructuredPageInput>
-  connect?: Maybe<PageWhereUniqueInput>
-  disconnect?: Maybe<Scalars['Boolean']>
-  delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<PageUpdateWithoutStructuredPageDataInput>
-  upsert?: Maybe<PageUpsertWithoutStructuredPageInput>
+export type GQLPageUpdateWithoutBlogPostDataInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageUpdateOneWithoutPageInput>
 }
 
-export type PageUpdateWithoutBlogPostDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpdateWithoutCommentDataInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageUpdateOneWithoutPageInput>
 }
 
-export type PageUpdateWithoutChildrenDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpdateWithoutJobListingDataInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageUpdateOneWithoutPageInput>
 }
 
-export type PageUpdateWithoutCommentDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpdateWithoutSingularPageDataInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
+  blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
 }
 
-export type PageUpdateWithoutJobListingDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpdateWithoutStructuredPageDataInput = {
+  status?: Maybe<GQLStatus>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
+  jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
+  comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
+  singularPage?: Maybe<GQLSingularPageUpdateOneWithoutPageInput>
 }
 
-export type PageUpdateWithoutParentDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpsertWithoutBlogPostInput = {
+  update: GQLPageUpdateWithoutBlogPostDataInput
+  create: GQLPageCreateWithoutBlogPostInput
 }
 
-export type PageUpdateWithoutSingularPageDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpsertWithoutCommentInput = {
+  update: GQLPageUpdateWithoutCommentDataInput
+  create: GQLPageCreateWithoutCommentInput
 }
 
-export type PageUpdateWithoutStructuredPageDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpsertWithoutJobListingInput = {
+  update: GQLPageUpdateWithoutJobListingDataInput
+  create: GQLPageCreateWithoutJobListingInput
 }
 
-export type PageUpdateWithoutTagsDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpsertWithoutSingularPageInput = {
+  update: GQLPageUpdateWithoutSingularPageDataInput
+  create: GQLPageCreateWithoutSingularPageInput
 }
 
-export type PageUpdateWithoutTranslationFromDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationTo?: Maybe<PageUpdateManyWithoutTranslationFromInput>
+export type GQLPageUpsertWithoutStructuredPageInput = {
+  update: GQLPageUpdateWithoutStructuredPageDataInput
+  create: GQLPageCreateWithoutStructuredPageInput
 }
 
-export type PageUpdateWithoutTranslationToDataInput = {
-  status?: Maybe<Status>
-  urlKey?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  metaRobots?: Maybe<MetaRobots>
-  footerkeyword?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  urlkeynew?: Maybe<Scalars['String']>
-  parent?: Maybe<PageUpdateOneWithoutChildrenInput>
-  children?: Maybe<PageUpdateManyWithoutParentInput>
-  tags?: Maybe<TagUpdateManyWithoutPagesInput>
-  structuredPage?: Maybe<StructuredPageUpdateOneWithoutPageInput>
-  blogPost?: Maybe<BlogPostUpdateOneWithoutPageInput>
-  jobListing?: Maybe<JobListingUpdateOneWithoutPageInput>
-  comment?: Maybe<CommentUpdateOneWithoutPageInput>
-  singularPage?: Maybe<SingularPageUpdateOneWithoutPageInput>
-  translationFrom?: Maybe<PageUpdateManyWithoutTranslationToInput>
-}
-
-export type PageUpdateWithWhereUniqueWithoutParentInput = {
-  where: PageWhereUniqueInput
-  data: PageUpdateWithoutParentDataInput
-}
-
-export type PageUpdateWithWhereUniqueWithoutTagsInput = {
-  where: PageWhereUniqueInput
-  data: PageUpdateWithoutTagsDataInput
-}
-
-export type PageUpdateWithWhereUniqueWithoutTranslationFromInput = {
-  where: PageWhereUniqueInput
-  data: PageUpdateWithoutTranslationFromDataInput
-}
-
-export type PageUpdateWithWhereUniqueWithoutTranslationToInput = {
-  where: PageWhereUniqueInput
-  data: PageUpdateWithoutTranslationToDataInput
-}
-
-export type PageUpsertWithoutBlogPostInput = {
-  update: PageUpdateWithoutBlogPostDataInput
-  create: PageCreateWithoutBlogPostInput
-}
-
-export type PageUpsertWithoutChildrenInput = {
-  update: PageUpdateWithoutChildrenDataInput
-  create: PageCreateWithoutChildrenInput
-}
-
-export type PageUpsertWithoutCommentInput = {
-  update: PageUpdateWithoutCommentDataInput
-  create: PageCreateWithoutCommentInput
-}
-
-export type PageUpsertWithoutJobListingInput = {
-  update: PageUpdateWithoutJobListingDataInput
-  create: PageCreateWithoutJobListingInput
-}
-
-export type PageUpsertWithoutSingularPageInput = {
-  update: PageUpdateWithoutSingularPageDataInput
-  create: PageCreateWithoutSingularPageInput
-}
-
-export type PageUpsertWithoutStructuredPageInput = {
-  update: PageUpdateWithoutStructuredPageDataInput
-  create: PageCreateWithoutStructuredPageInput
-}
-
-export type PageUpsertWithWhereUniqueWithoutParentInput = {
-  where: PageWhereUniqueInput
-  update: PageUpdateWithoutParentDataInput
-  create: PageCreateWithoutParentInput
-}
-
-export type PageUpsertWithWhereUniqueWithoutTagsInput = {
-  where: PageWhereUniqueInput
-  update: PageUpdateWithoutTagsDataInput
-  create: PageCreateWithoutTagsInput
-}
-
-export type PageUpsertWithWhereUniqueWithoutTranslationFromInput = {
-  where: PageWhereUniqueInput
-  update: PageUpdateWithoutTranslationFromDataInput
-  create: PageCreateWithoutTranslationFromInput
-}
-
-export type PageUpsertWithWhereUniqueWithoutTranslationToInput = {
-  where: PageWhereUniqueInput
-  update: PageUpdateWithoutTranslationToDataInput
-  create: PageCreateWithoutTranslationToInput
-}
-
-export type PageWhereInput = {
+export type GQLPageWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<PageWhereInput>>
-  OR?: Maybe<Array<PageWhereInput>>
-  NOT?: Maybe<Array<PageWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLPageWhereInput>>
+  OR?: Maybe<Array<GQLPageWhereInput>>
+  NOT?: Maybe<Array<GQLPageWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -6501,331 +5800,163 @@ export type PageWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>
   id_ends_with?: Maybe<Scalars['ID']>
   id_not_ends_with?: Maybe<Scalars['ID']>
-  urlKey?: Maybe<Scalars['String']>
-  urlKey_not?: Maybe<Scalars['String']>
-  urlKey_in?: Maybe<Array<Scalars['String']>>
-  urlKey_not_in?: Maybe<Array<Scalars['String']>>
-  urlKey_lt?: Maybe<Scalars['String']>
-  urlKey_lte?: Maybe<Scalars['String']>
-  urlKey_gt?: Maybe<Scalars['String']>
-  urlKey_gte?: Maybe<Scalars['String']>
-  urlKey_contains?: Maybe<Scalars['String']>
-  urlKey_not_contains?: Maybe<Scalars['String']>
-  urlKey_starts_with?: Maybe<Scalars['String']>
-  urlKey_not_starts_with?: Maybe<Scalars['String']>
-  urlKey_ends_with?: Maybe<Scalars['String']>
-  urlKey_not_ends_with?: Maybe<Scalars['String']>
-  metaTitle?: Maybe<Scalars['String']>
-  metaTitle_not?: Maybe<Scalars['String']>
-  metaTitle_in?: Maybe<Array<Scalars['String']>>
-  metaTitle_not_in?: Maybe<Array<Scalars['String']>>
-  metaTitle_lt?: Maybe<Scalars['String']>
-  metaTitle_lte?: Maybe<Scalars['String']>
-  metaTitle_gt?: Maybe<Scalars['String']>
-  metaTitle_gte?: Maybe<Scalars['String']>
-  metaTitle_contains?: Maybe<Scalars['String']>
-  metaTitle_not_contains?: Maybe<Scalars['String']>
-  metaTitle_starts_with?: Maybe<Scalars['String']>
-  metaTitle_not_starts_with?: Maybe<Scalars['String']>
-  metaTitle_ends_with?: Maybe<Scalars['String']>
-  metaTitle_not_ends_with?: Maybe<Scalars['String']>
-  metaDescription?: Maybe<Scalars['String']>
-  metaDescription_not?: Maybe<Scalars['String']>
-  metaDescription_in?: Maybe<Array<Scalars['String']>>
-  metaDescription_not_in?: Maybe<Array<Scalars['String']>>
-  metaDescription_lt?: Maybe<Scalars['String']>
-  metaDescription_lte?: Maybe<Scalars['String']>
-  metaDescription_gt?: Maybe<Scalars['String']>
-  metaDescription_gte?: Maybe<Scalars['String']>
-  metaDescription_contains?: Maybe<Scalars['String']>
-  metaDescription_not_contains?: Maybe<Scalars['String']>
-  metaDescription_starts_with?: Maybe<Scalars['String']>
-  metaDescription_not_starts_with?: Maybe<Scalars['String']>
-  metaDescription_ends_with?: Maybe<Scalars['String']>
-  metaDescription_not_ends_with?: Maybe<Scalars['String']>
-  statusCode?: Maybe<StatusCode>
-  statusCode_not?: Maybe<StatusCode>
-  statusCode_in?: Maybe<Array<StatusCode>>
-  statusCode_not_in?: Maybe<Array<StatusCode>>
-  metaRobots?: Maybe<MetaRobots>
-  metaRobots_not?: Maybe<MetaRobots>
-  metaRobots_in?: Maybe<Array<MetaRobots>>
-  metaRobots_not_in?: Maybe<Array<MetaRobots>>
-  footerkeyword?: Maybe<Scalars['String']>
-  footerkeyword_not?: Maybe<Scalars['String']>
-  footerkeyword_in?: Maybe<Array<Scalars['String']>>
-  footerkeyword_not_in?: Maybe<Array<Scalars['String']>>
-  footerkeyword_lt?: Maybe<Scalars['String']>
-  footerkeyword_lte?: Maybe<Scalars['String']>
-  footerkeyword_gt?: Maybe<Scalars['String']>
-  footerkeyword_gte?: Maybe<Scalars['String']>
-  footerkeyword_contains?: Maybe<Scalars['String']>
-  footerkeyword_not_contains?: Maybe<Scalars['String']>
-  footerkeyword_starts_with?: Maybe<Scalars['String']>
-  footerkeyword_not_starts_with?: Maybe<Scalars['String']>
-  footerkeyword_ends_with?: Maybe<Scalars['String']>
-  footerkeyword_not_ends_with?: Maybe<Scalars['String']>
-  footertitle?: Maybe<Scalars['String']>
-  footertitle_not?: Maybe<Scalars['String']>
-  footertitle_in?: Maybe<Array<Scalars['String']>>
-  footertitle_not_in?: Maybe<Array<Scalars['String']>>
-  footertitle_lt?: Maybe<Scalars['String']>
-  footertitle_lte?: Maybe<Scalars['String']>
-  footertitle_gt?: Maybe<Scalars['String']>
-  footertitle_gte?: Maybe<Scalars['String']>
-  footertitle_contains?: Maybe<Scalars['String']>
-  footertitle_not_contains?: Maybe<Scalars['String']>
-  footertitle_starts_with?: Maybe<Scalars['String']>
-  footertitle_not_starts_with?: Maybe<Scalars['String']>
-  footertitle_ends_with?: Maybe<Scalars['String']>
-  footertitle_not_ends_with?: Maybe<Scalars['String']>
-  language?: Maybe<Language>
-  language_not?: Maybe<Language>
-  language_in?: Maybe<Array<Language>>
-  language_not_in?: Maybe<Array<Language>>
-  urlkeynew?: Maybe<Scalars['String']>
-  urlkeynew_not?: Maybe<Scalars['String']>
-  urlkeynew_in?: Maybe<Array<Scalars['String']>>
-  urlkeynew_not_in?: Maybe<Array<Scalars['String']>>
-  urlkeynew_lt?: Maybe<Scalars['String']>
-  urlkeynew_lte?: Maybe<Scalars['String']>
-  urlkeynew_gt?: Maybe<Scalars['String']>
-  urlkeynew_gte?: Maybe<Scalars['String']>
-  urlkeynew_contains?: Maybe<Scalars['String']>
-  urlkeynew_not_contains?: Maybe<Scalars['String']>
-  urlkeynew_starts_with?: Maybe<Scalars['String']>
-  urlkeynew_not_starts_with?: Maybe<Scalars['String']>
-  urlkeynew_ends_with?: Maybe<Scalars['String']>
-  urlkeynew_not_ends_with?: Maybe<Scalars['String']>
-  parent?: Maybe<PageWhereInput>
-  children_every?: Maybe<PageWhereInput>
-  children_some?: Maybe<PageWhereInput>
-  children_none?: Maybe<PageWhereInput>
-  tags_every?: Maybe<TagWhereInput>
-  tags_some?: Maybe<TagWhereInput>
-  tags_none?: Maybe<TagWhereInput>
-  structuredPage?: Maybe<StructuredPageWhereInput>
-  blogPost?: Maybe<BlogPostWhereInput>
-  jobListing?: Maybe<JobListingWhereInput>
-  comment?: Maybe<CommentWhereInput>
-  singularPage?: Maybe<SingularPageWhereInput>
-  translationFrom_every?: Maybe<PageWhereInput>
-  translationFrom_some?: Maybe<PageWhereInput>
-  translationFrom_none?: Maybe<PageWhereInput>
-  translationTo_every?: Maybe<PageWhereInput>
-  translationTo_some?: Maybe<PageWhereInput>
-  translationTo_none?: Maybe<PageWhereInput>
+  urlEN?: Maybe<Scalars['String']>
+  urlEN_not?: Maybe<Scalars['String']>
+  urlEN_in?: Maybe<Array<Scalars['String']>>
+  urlEN_not_in?: Maybe<Array<Scalars['String']>>
+  urlEN_lt?: Maybe<Scalars['String']>
+  urlEN_lte?: Maybe<Scalars['String']>
+  urlEN_gt?: Maybe<Scalars['String']>
+  urlEN_gte?: Maybe<Scalars['String']>
+  urlEN_contains?: Maybe<Scalars['String']>
+  urlEN_not_contains?: Maybe<Scalars['String']>
+  urlEN_starts_with?: Maybe<Scalars['String']>
+  urlEN_not_starts_with?: Maybe<Scalars['String']>
+  urlEN_ends_with?: Maybe<Scalars['String']>
+  urlEN_not_ends_with?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
+  urlNL_not?: Maybe<Scalars['String']>
+  urlNL_in?: Maybe<Array<Scalars['String']>>
+  urlNL_not_in?: Maybe<Array<Scalars['String']>>
+  urlNL_lt?: Maybe<Scalars['String']>
+  urlNL_lte?: Maybe<Scalars['String']>
+  urlNL_gt?: Maybe<Scalars['String']>
+  urlNL_gte?: Maybe<Scalars['String']>
+  urlNL_contains?: Maybe<Scalars['String']>
+  urlNL_not_contains?: Maybe<Scalars['String']>
+  urlNL_starts_with?: Maybe<Scalars['String']>
+  urlNL_not_starts_with?: Maybe<Scalars['String']>
+  urlNL_ends_with?: Maybe<Scalars['String']>
+  urlNL_not_ends_with?: Maybe<Scalars['String']>
+  metaTitleEN?: Maybe<Scalars['String']>
+  metaTitleEN_not?: Maybe<Scalars['String']>
+  metaTitleEN_in?: Maybe<Array<Scalars['String']>>
+  metaTitleEN_not_in?: Maybe<Array<Scalars['String']>>
+  metaTitleEN_lt?: Maybe<Scalars['String']>
+  metaTitleEN_lte?: Maybe<Scalars['String']>
+  metaTitleEN_gt?: Maybe<Scalars['String']>
+  metaTitleEN_gte?: Maybe<Scalars['String']>
+  metaTitleEN_contains?: Maybe<Scalars['String']>
+  metaTitleEN_not_contains?: Maybe<Scalars['String']>
+  metaTitleEN_starts_with?: Maybe<Scalars['String']>
+  metaTitleEN_not_starts_with?: Maybe<Scalars['String']>
+  metaTitleEN_ends_with?: Maybe<Scalars['String']>
+  metaTitleEN_not_ends_with?: Maybe<Scalars['String']>
+  metaTitleNL?: Maybe<Scalars['String']>
+  metaTitleNL_not?: Maybe<Scalars['String']>
+  metaTitleNL_in?: Maybe<Array<Scalars['String']>>
+  metaTitleNL_not_in?: Maybe<Array<Scalars['String']>>
+  metaTitleNL_lt?: Maybe<Scalars['String']>
+  metaTitleNL_lte?: Maybe<Scalars['String']>
+  metaTitleNL_gt?: Maybe<Scalars['String']>
+  metaTitleNL_gte?: Maybe<Scalars['String']>
+  metaTitleNL_contains?: Maybe<Scalars['String']>
+  metaTitleNL_not_contains?: Maybe<Scalars['String']>
+  metaTitleNL_starts_with?: Maybe<Scalars['String']>
+  metaTitleNL_not_starts_with?: Maybe<Scalars['String']>
+  metaTitleNL_ends_with?: Maybe<Scalars['String']>
+  metaTitleNL_not_ends_with?: Maybe<Scalars['String']>
+  metaDescriptionEN?: Maybe<Scalars['String']>
+  metaDescriptionEN_not?: Maybe<Scalars['String']>
+  metaDescriptionEN_in?: Maybe<Array<Scalars['String']>>
+  metaDescriptionEN_not_in?: Maybe<Array<Scalars['String']>>
+  metaDescriptionEN_lt?: Maybe<Scalars['String']>
+  metaDescriptionEN_lte?: Maybe<Scalars['String']>
+  metaDescriptionEN_gt?: Maybe<Scalars['String']>
+  metaDescriptionEN_gte?: Maybe<Scalars['String']>
+  metaDescriptionEN_contains?: Maybe<Scalars['String']>
+  metaDescriptionEN_not_contains?: Maybe<Scalars['String']>
+  metaDescriptionEN_starts_with?: Maybe<Scalars['String']>
+  metaDescriptionEN_not_starts_with?: Maybe<Scalars['String']>
+  metaDescriptionEN_ends_with?: Maybe<Scalars['String']>
+  metaDescriptionEN_not_ends_with?: Maybe<Scalars['String']>
+  metaDescriptionNL?: Maybe<Scalars['String']>
+  metaDescriptionNL_not?: Maybe<Scalars['String']>
+  metaDescriptionNL_in?: Maybe<Array<Scalars['String']>>
+  metaDescriptionNL_not_in?: Maybe<Array<Scalars['String']>>
+  metaDescriptionNL_lt?: Maybe<Scalars['String']>
+  metaDescriptionNL_lte?: Maybe<Scalars['String']>
+  metaDescriptionNL_gt?: Maybe<Scalars['String']>
+  metaDescriptionNL_gte?: Maybe<Scalars['String']>
+  metaDescriptionNL_contains?: Maybe<Scalars['String']>
+  metaDescriptionNL_not_contains?: Maybe<Scalars['String']>
+  metaDescriptionNL_starts_with?: Maybe<Scalars['String']>
+  metaDescriptionNL_not_starts_with?: Maybe<Scalars['String']>
+  metaDescriptionNL_ends_with?: Maybe<Scalars['String']>
+  metaDescriptionNL_not_ends_with?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<GQLMetaRobots>
+  metaRobots_not?: Maybe<GQLMetaRobots>
+  metaRobots_in?: Maybe<Array<GQLMetaRobots>>
+  metaRobots_not_in?: Maybe<Array<GQLMetaRobots>>
+  structuredPage?: Maybe<GQLStructuredPageWhereInput>
+  blogPost?: Maybe<GQLBlogPostWhereInput>
+  jobListing?: Maybe<GQLJobListingWhereInput>
+  comment?: Maybe<GQLCommentWhereInput>
+  singularPage?: Maybe<GQLSingularPageWhereInput>
 }
 
-export type PageWhereUniqueInput = {
+export type GQLPageWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
-  urlKey?: Maybe<Scalars['String']>
+  urlEN?: Maybe<Scalars['String']>
+  urlNL?: Maybe<Scalars['String']>
 }
 
-export type PdpPagina = Node & {
-  __typename?: 'PdpPagina'
-  status: Status
-  updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  id: Scalars['ID']
-  bikeName?: Maybe<Scalars['String']>
-}
-
-export type PdpPaginaBikeNameArgs = {
-  locale?: Maybe<Locale>
-}
-
-export type PdpPaginaConnection = {
-  __typename?: 'PdpPaginaConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<PdpPaginaEdge>>
-  aggregate: AggregatePdpPagina
-}
-
-export type PdpPaginaCreateInput = {
-  status?: Maybe<Status>
-  bikeNameEN?: Maybe<Scalars['String']>
-}
-
-export type PdpPaginaEdge = {
-  __typename?: 'PdpPaginaEdge'
-  node: PdpPagina
-  cursor: Scalars['String']
-}
-
-export enum PdpPaginaOrderByInput {
-  StatusAsc = 'status_ASC',
-  StatusDesc = 'status_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  BikeNameEnAsc = 'bikeNameEN_ASC',
-  BikeNameEnDesc = 'bikeNameEN_DESC',
-}
-
-export type PdpPaginaPreviousValues = {
-  __typename?: 'PdpPaginaPreviousValues'
-  status: Status
-  updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  id: Scalars['ID']
-  bikeNameEN?: Maybe<Scalars['String']>
-}
-
-export type PdpPaginaSubscriptionPayload = {
-  __typename?: 'PdpPaginaSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<PdpPagina>
-  updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<PdpPaginaPreviousValues>
-}
-
-export type PdpPaginaSubscriptionWhereInput = {
-  AND?: Maybe<Array<PdpPaginaSubscriptionWhereInput>>
-  OR?: Maybe<Array<PdpPaginaSubscriptionWhereInput>>
-  NOT?: Maybe<Array<PdpPaginaSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
-  updatedFields_contains?: Maybe<Scalars['String']>
-  updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
-  updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<PdpPaginaWhereInput>
-}
-
-export type PdpPaginaUpdateInput = {
-  status?: Maybe<Status>
-  bikeNameEN?: Maybe<Scalars['String']>
-}
-
-export type PdpPaginaUpdateManyMutationInput = {
-  status?: Maybe<Status>
-  bikeNameEN?: Maybe<Scalars['String']>
-}
-
-export type PdpPaginaWhereInput = {
-  _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<PdpPaginaWhereInput>>
-  OR?: Maybe<Array<PdpPaginaWhereInput>>
-  NOT?: Maybe<Array<PdpPaginaWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  id?: Maybe<Scalars['ID']>
-  id_not?: Maybe<Scalars['ID']>
-  id_in?: Maybe<Array<Scalars['ID']>>
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  id_lt?: Maybe<Scalars['ID']>
-  id_lte?: Maybe<Scalars['ID']>
-  id_gt?: Maybe<Scalars['ID']>
-  id_gte?: Maybe<Scalars['ID']>
-  id_contains?: Maybe<Scalars['ID']>
-  id_not_contains?: Maybe<Scalars['ID']>
-  id_starts_with?: Maybe<Scalars['ID']>
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  id_ends_with?: Maybe<Scalars['ID']>
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  bikeNameEN?: Maybe<Scalars['String']>
-  bikeNameEN_not?: Maybe<Scalars['String']>
-  bikeNameEN_in?: Maybe<Array<Scalars['String']>>
-  bikeNameEN_not_in?: Maybe<Array<Scalars['String']>>
-  bikeNameEN_lt?: Maybe<Scalars['String']>
-  bikeNameEN_lte?: Maybe<Scalars['String']>
-  bikeNameEN_gt?: Maybe<Scalars['String']>
-  bikeNameEN_gte?: Maybe<Scalars['String']>
-  bikeNameEN_contains?: Maybe<Scalars['String']>
-  bikeNameEN_not_contains?: Maybe<Scalars['String']>
-  bikeNameEN_starts_with?: Maybe<Scalars['String']>
-  bikeNameEN_not_starts_with?: Maybe<Scalars['String']>
-  bikeNameEN_ends_with?: Maybe<Scalars['String']>
-  bikeNameEN_not_ends_with?: Maybe<Scalars['String']>
-}
-
-export type PdpPaginaWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  bikeNameEN?: Maybe<Scalars['String']>
-}
-
-export type Query = {
+export type GQLQuery = {
   __typename?: 'Query'
-  assets: Array<Maybe<Asset>>
-  contactForms: Array<Maybe<ContactForm>>
-  ecosystems: Array<Maybe<Ecosystem>>
-  blocks: Array<Maybe<Block>>
-  tags: Array<Maybe<Tag>>
-  modules: Array<Maybe<Module>>
-  structuredPages: Array<Maybe<StructuredPage>>
-  employees: Array<Maybe<Employee>>
-  quotes: Array<Maybe<Quote>>
-  documents: Array<Maybe<Document>>
-  startProjectForms: Array<Maybe<StartProjectForm>>
-  jobListings: Array<Maybe<JobListing>>
-  mailchimpForms: Array<Maybe<MailchimpForm>>
-  singularPages: Array<Maybe<SingularPage>>
-  blogPosts: Array<Maybe<BlogPost>>
-  comments: Array<Maybe<Comment>>
-  pages: Array<Maybe<Page>>
-  pdpPaginas: Array<Maybe<PdpPagina>>
-  asset?: Maybe<Asset>
-  contactForm?: Maybe<ContactForm>
-  ecosystem?: Maybe<Ecosystem>
-  block?: Maybe<Block>
-  tag?: Maybe<Tag>
-  module?: Maybe<Module>
-  structuredPage?: Maybe<StructuredPage>
-  employee?: Maybe<Employee>
-  quote?: Maybe<Quote>
-  document?: Maybe<Document>
-  startProjectForm?: Maybe<StartProjectForm>
-  jobListing?: Maybe<JobListing>
-  mailchimpForm?: Maybe<MailchimpForm>
-  singularPage?: Maybe<SingularPage>
-  blogPost?: Maybe<BlogPost>
-  comment?: Maybe<Comment>
-  page?: Maybe<Page>
-  pdpPagina?: Maybe<PdpPagina>
-  assetsConnection: AssetConnection
-  contactFormsConnection: ContactFormConnection
-  ecosystemsConnection: EcosystemConnection
-  blocksConnection: BlockConnection
-  tagsConnection: TagConnection
-  modulesConnection: ModuleConnection
-  structuredPagesConnection: StructuredPageConnection
-  employeesConnection: EmployeeConnection
-  quotesConnection: QuoteConnection
-  documentsConnection: DocumentConnection
-  startProjectFormsConnection: StartProjectFormConnection
-  jobListingsConnection: JobListingConnection
-  mailchimpFormsConnection: MailchimpFormConnection
-  singularPagesConnection: SingularPageConnection
-  blogPostsConnection: BlogPostConnection
-  commentsConnection: CommentConnection
-  pagesConnection: PageConnection
-  pdpPaginasConnection: PdpPaginaConnection
-  node?: Maybe<Node>
+  assets: Array<Maybe<GQLAsset>>
+  contactForms: Array<Maybe<GQLContactForm>>
+  ecosystems: Array<Maybe<GQLEcosystem>>
+  blocks: Array<Maybe<GQLBlock>>
+  modules: Array<Maybe<GQLModule>>
+  structuredPages: Array<Maybe<GQLStructuredPage>>
+  employees: Array<Maybe<GQLEmployee>>
+  quotes: Array<Maybe<GQLQuote>>
+  documents: Array<Maybe<GQLDocument>>
+  startProjectForms: Array<Maybe<GQLStartProjectForm>>
+  jobListings: Array<Maybe<GQLJobListing>>
+  mailchimpForms: Array<Maybe<GQLMailchimpForm>>
+  singularPages: Array<Maybe<GQLSingularPage>>
+  blogPosts: Array<Maybe<GQLBlogPost>>
+  comments: Array<Maybe<GQLComment>>
+  pages: Array<Maybe<GQLPage>>
+  asset?: Maybe<GQLAsset>
+  contactForm?: Maybe<GQLContactForm>
+  ecosystem?: Maybe<GQLEcosystem>
+  block?: Maybe<GQLBlock>
+  module?: Maybe<GQLModule>
+  structuredPage?: Maybe<GQLStructuredPage>
+  employee?: Maybe<GQLEmployee>
+  quote?: Maybe<GQLQuote>
+  document?: Maybe<GQLDocument>
+  startProjectForm?: Maybe<GQLStartProjectForm>
+  jobListing?: Maybe<GQLJobListing>
+  mailchimpForm?: Maybe<GQLMailchimpForm>
+  singularPage?: Maybe<GQLSingularPage>
+  blogPost?: Maybe<GQLBlogPost>
+  comment?: Maybe<GQLComment>
+  page?: Maybe<GQLPage>
+  assetsConnection: GQLAssetConnection
+  contactFormsConnection: GQLContactFormConnection
+  ecosystemsConnection: GQLEcosystemConnection
+  blocksConnection: GQLBlockConnection
+  modulesConnection: GQLModuleConnection
+  structuredPagesConnection: GQLStructuredPageConnection
+  employeesConnection: GQLEmployeeConnection
+  quotesConnection: GQLQuoteConnection
+  documentsConnection: GQLDocumentConnection
+  startProjectFormsConnection: GQLStartProjectFormConnection
+  jobListingsConnection: GQLJobListingConnection
+  mailchimpFormsConnection: GQLMailchimpFormConnection
+  singularPagesConnection: GQLSingularPageConnection
+  blogPostsConnection: GQLBlogPostConnection
+  commentsConnection: GQLCommentConnection
+  pagesConnection: GQLPageConnection
+  node?: Maybe<GQLNode>
 }
 
-export type QueryAssetsArgs = {
-  where?: Maybe<AssetWhereInput>
-  orderBy?: Maybe<AssetOrderByInput>
+export type GQLQueryAssetsArgs = {
+  where?: Maybe<GQLAssetWhereInput>
+  orderBy?: Maybe<GQLAssetOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6833,9 +5964,9 @@ export type QueryAssetsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryContactFormsArgs = {
-  where?: Maybe<ContactFormWhereInput>
-  orderBy?: Maybe<ContactFormOrderByInput>
+export type GQLQueryContactFormsArgs = {
+  where?: Maybe<GQLContactFormWhereInput>
+  orderBy?: Maybe<GQLContactFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6843,9 +5974,9 @@ export type QueryContactFormsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryEcosystemsArgs = {
-  where?: Maybe<EcosystemWhereInput>
-  orderBy?: Maybe<EcosystemOrderByInput>
+export type GQLQueryEcosystemsArgs = {
+  where?: Maybe<GQLEcosystemWhereInput>
+  orderBy?: Maybe<GQLEcosystemOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6853,9 +5984,9 @@ export type QueryEcosystemsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryBlocksArgs = {
-  where?: Maybe<BlockWhereInput>
-  orderBy?: Maybe<BlockOrderByInput>
+export type GQLQueryBlocksArgs = {
+  where?: Maybe<GQLBlockWhereInput>
+  orderBy?: Maybe<GQLBlockOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6863,9 +5994,9 @@ export type QueryBlocksArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryTagsArgs = {
-  where?: Maybe<TagWhereInput>
-  orderBy?: Maybe<TagOrderByInput>
+export type GQLQueryModulesArgs = {
+  where?: Maybe<GQLModuleWhereInput>
+  orderBy?: Maybe<GQLModuleOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6873,9 +6004,9 @@ export type QueryTagsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryModulesArgs = {
-  where?: Maybe<ModuleWhereInput>
-  orderBy?: Maybe<ModuleOrderByInput>
+export type GQLQueryStructuredPagesArgs = {
+  where?: Maybe<GQLStructuredPageWhereInput>
+  orderBy?: Maybe<GQLStructuredPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6883,9 +6014,9 @@ export type QueryModulesArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryStructuredPagesArgs = {
-  where?: Maybe<StructuredPageWhereInput>
-  orderBy?: Maybe<StructuredPageOrderByInput>
+export type GQLQueryEmployeesArgs = {
+  where?: Maybe<GQLEmployeeWhereInput>
+  orderBy?: Maybe<GQLEmployeeOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6893,9 +6024,9 @@ export type QueryStructuredPagesArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryEmployeesArgs = {
-  where?: Maybe<EmployeeWhereInput>
-  orderBy?: Maybe<EmployeeOrderByInput>
+export type GQLQueryQuotesArgs = {
+  where?: Maybe<GQLQuoteWhereInput>
+  orderBy?: Maybe<GQLQuoteOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6903,9 +6034,9 @@ export type QueryEmployeesArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryQuotesArgs = {
-  where?: Maybe<QuoteWhereInput>
-  orderBy?: Maybe<QuoteOrderByInput>
+export type GQLQueryDocumentsArgs = {
+  where?: Maybe<GQLDocumentWhereInput>
+  orderBy?: Maybe<GQLDocumentOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6913,9 +6044,9 @@ export type QueryQuotesArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryDocumentsArgs = {
-  where?: Maybe<DocumentWhereInput>
-  orderBy?: Maybe<DocumentOrderByInput>
+export type GQLQueryStartProjectFormsArgs = {
+  where?: Maybe<GQLStartProjectFormWhereInput>
+  orderBy?: Maybe<GQLStartProjectFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6923,9 +6054,9 @@ export type QueryDocumentsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryStartProjectFormsArgs = {
-  where?: Maybe<StartProjectFormWhereInput>
-  orderBy?: Maybe<StartProjectFormOrderByInput>
+export type GQLQueryJobListingsArgs = {
+  where?: Maybe<GQLJobListingWhereInput>
+  orderBy?: Maybe<GQLJobListingOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6933,9 +6064,9 @@ export type QueryStartProjectFormsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryJobListingsArgs = {
-  where?: Maybe<JobListingWhereInput>
-  orderBy?: Maybe<JobListingOrderByInput>
+export type GQLQueryMailchimpFormsArgs = {
+  where?: Maybe<GQLMailchimpFormWhereInput>
+  orderBy?: Maybe<GQLMailchimpFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6943,9 +6074,9 @@ export type QueryJobListingsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryMailchimpFormsArgs = {
-  where?: Maybe<MailchimpFormWhereInput>
-  orderBy?: Maybe<MailchimpFormOrderByInput>
+export type GQLQuerySingularPagesArgs = {
+  where?: Maybe<GQLSingularPageWhereInput>
+  orderBy?: Maybe<GQLSingularPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6953,9 +6084,9 @@ export type QueryMailchimpFormsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QuerySingularPagesArgs = {
-  where?: Maybe<SingularPageWhereInput>
-  orderBy?: Maybe<SingularPageOrderByInput>
+export type GQLQueryBlogPostsArgs = {
+  where?: Maybe<GQLBlogPostWhereInput>
+  orderBy?: Maybe<GQLBlogPostOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6963,9 +6094,9 @@ export type QuerySingularPagesArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryBlogPostsArgs = {
-  where?: Maybe<BlogPostWhereInput>
-  orderBy?: Maybe<BlogPostOrderByInput>
+export type GQLQueryCommentsArgs = {
+  where?: Maybe<GQLCommentWhereInput>
+  orderBy?: Maybe<GQLCommentOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6973,9 +6104,9 @@ export type QueryBlogPostsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryCommentsArgs = {
-  where?: Maybe<CommentWhereInput>
-  orderBy?: Maybe<CommentOrderByInput>
+export type GQLQueryPagesArgs = {
+  where?: Maybe<GQLPageWhereInput>
+  orderBy?: Maybe<GQLPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6983,9 +6114,73 @@ export type QueryCommentsArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryPagesArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
+export type GQLQueryAssetArgs = {
+  where: GQLAssetWhereUniqueInput
+}
+
+export type GQLQueryContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+}
+
+export type GQLQueryEcosystemArgs = {
+  where: GQLEcosystemWhereUniqueInput
+}
+
+export type GQLQueryBlockArgs = {
+  where: GQLBlockWhereUniqueInput
+}
+
+export type GQLQueryModuleArgs = {
+  where: GQLModuleWhereUniqueInput
+}
+
+export type GQLQueryStructuredPageArgs = {
+  where: GQLStructuredPageWhereUniqueInput
+}
+
+export type GQLQueryEmployeeArgs = {
+  where: GQLEmployeeWhereUniqueInput
+}
+
+export type GQLQueryQuoteArgs = {
+  where: GQLQuoteWhereUniqueInput
+}
+
+export type GQLQueryDocumentArgs = {
+  where: GQLDocumentWhereUniqueInput
+}
+
+export type GQLQueryStartProjectFormArgs = {
+  where: GQLStartProjectFormWhereUniqueInput
+}
+
+export type GQLQueryJobListingArgs = {
+  where: GQLJobListingWhereUniqueInput
+}
+
+export type GQLQueryMailchimpFormArgs = {
+  where: GQLMailchimpFormWhereUniqueInput
+}
+
+export type GQLQuerySingularPageArgs = {
+  where: GQLSingularPageWhereUniqueInput
+}
+
+export type GQLQueryBlogPostArgs = {
+  where: GQLBlogPostWhereUniqueInput
+}
+
+export type GQLQueryCommentArgs = {
+  where: GQLCommentWhereUniqueInput
+}
+
+export type GQLQueryPageArgs = {
+  where: GQLPageWhereUniqueInput
+}
+
+export type GQLQueryAssetsConnectionArgs = {
+  where?: Maybe<GQLAssetWhereInput>
+  orderBy?: Maybe<GQLAssetOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6993,9 +6188,9 @@ export type QueryPagesArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryPdpPaginasArgs = {
-  where?: Maybe<PdpPaginaWhereInput>
-  orderBy?: Maybe<PdpPaginaOrderByInput>
+export type GQLQueryContactFormsConnectionArgs = {
+  where?: Maybe<GQLContactFormWhereInput>
+  orderBy?: Maybe<GQLContactFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7003,81 +6198,9 @@ export type QueryPdpPaginasArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryAssetArgs = {
-  where: AssetWhereUniqueInput
-}
-
-export type QueryContactFormArgs = {
-  where: ContactFormWhereUniqueInput
-}
-
-export type QueryEcosystemArgs = {
-  where: EcosystemWhereUniqueInput
-}
-
-export type QueryBlockArgs = {
-  where: BlockWhereUniqueInput
-}
-
-export type QueryTagArgs = {
-  where: TagWhereUniqueInput
-}
-
-export type QueryModuleArgs = {
-  where: ModuleWhereUniqueInput
-}
-
-export type QueryStructuredPageArgs = {
-  where: StructuredPageWhereUniqueInput
-}
-
-export type QueryEmployeeArgs = {
-  where: EmployeeWhereUniqueInput
-}
-
-export type QueryQuoteArgs = {
-  where: QuoteWhereUniqueInput
-}
-
-export type QueryDocumentArgs = {
-  where: DocumentWhereUniqueInput
-}
-
-export type QueryStartProjectFormArgs = {
-  where: StartProjectFormWhereUniqueInput
-}
-
-export type QueryJobListingArgs = {
-  where: JobListingWhereUniqueInput
-}
-
-export type QueryMailchimpFormArgs = {
-  where: MailchimpFormWhereUniqueInput
-}
-
-export type QuerySingularPageArgs = {
-  where: SingularPageWhereUniqueInput
-}
-
-export type QueryBlogPostArgs = {
-  where: BlogPostWhereUniqueInput
-}
-
-export type QueryCommentArgs = {
-  where: CommentWhereUniqueInput
-}
-
-export type QueryPageArgs = {
-  where: PageWhereUniqueInput
-}
-
-export type QueryPdpPaginaArgs = {
-  where: PdpPaginaWhereUniqueInput
-}
-
-export type QueryAssetsConnectionArgs = {
-  where?: Maybe<AssetWhereInput>
-  orderBy?: Maybe<AssetOrderByInput>
+export type GQLQueryEcosystemsConnectionArgs = {
+  where?: Maybe<GQLEcosystemWhereInput>
+  orderBy?: Maybe<GQLEcosystemOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7085,9 +6208,9 @@ export type QueryAssetsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryContactFormsConnectionArgs = {
-  where?: Maybe<ContactFormWhereInput>
-  orderBy?: Maybe<ContactFormOrderByInput>
+export type GQLQueryBlocksConnectionArgs = {
+  where?: Maybe<GQLBlockWhereInput>
+  orderBy?: Maybe<GQLBlockOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7095,9 +6218,9 @@ export type QueryContactFormsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryEcosystemsConnectionArgs = {
-  where?: Maybe<EcosystemWhereInput>
-  orderBy?: Maybe<EcosystemOrderByInput>
+export type GQLQueryModulesConnectionArgs = {
+  where?: Maybe<GQLModuleWhereInput>
+  orderBy?: Maybe<GQLModuleOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7105,9 +6228,9 @@ export type QueryEcosystemsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryBlocksConnectionArgs = {
-  where?: Maybe<BlockWhereInput>
-  orderBy?: Maybe<BlockOrderByInput>
+export type GQLQueryStructuredPagesConnectionArgs = {
+  where?: Maybe<GQLStructuredPageWhereInput>
+  orderBy?: Maybe<GQLStructuredPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7115,9 +6238,9 @@ export type QueryBlocksConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryTagsConnectionArgs = {
-  where?: Maybe<TagWhereInput>
-  orderBy?: Maybe<TagOrderByInput>
+export type GQLQueryEmployeesConnectionArgs = {
+  where?: Maybe<GQLEmployeeWhereInput>
+  orderBy?: Maybe<GQLEmployeeOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7125,9 +6248,9 @@ export type QueryTagsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryModulesConnectionArgs = {
-  where?: Maybe<ModuleWhereInput>
-  orderBy?: Maybe<ModuleOrderByInput>
+export type GQLQueryQuotesConnectionArgs = {
+  where?: Maybe<GQLQuoteWhereInput>
+  orderBy?: Maybe<GQLQuoteOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7135,9 +6258,9 @@ export type QueryModulesConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryStructuredPagesConnectionArgs = {
-  where?: Maybe<StructuredPageWhereInput>
-  orderBy?: Maybe<StructuredPageOrderByInput>
+export type GQLQueryDocumentsConnectionArgs = {
+  where?: Maybe<GQLDocumentWhereInput>
+  orderBy?: Maybe<GQLDocumentOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7145,9 +6268,9 @@ export type QueryStructuredPagesConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryEmployeesConnectionArgs = {
-  where?: Maybe<EmployeeWhereInput>
-  orderBy?: Maybe<EmployeeOrderByInput>
+export type GQLQueryStartProjectFormsConnectionArgs = {
+  where?: Maybe<GQLStartProjectFormWhereInput>
+  orderBy?: Maybe<GQLStartProjectFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7155,9 +6278,9 @@ export type QueryEmployeesConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryQuotesConnectionArgs = {
-  where?: Maybe<QuoteWhereInput>
-  orderBy?: Maybe<QuoteOrderByInput>
+export type GQLQueryJobListingsConnectionArgs = {
+  where?: Maybe<GQLJobListingWhereInput>
+  orderBy?: Maybe<GQLJobListingOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7165,9 +6288,9 @@ export type QueryQuotesConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryDocumentsConnectionArgs = {
-  where?: Maybe<DocumentWhereInput>
-  orderBy?: Maybe<DocumentOrderByInput>
+export type GQLQueryMailchimpFormsConnectionArgs = {
+  where?: Maybe<GQLMailchimpFormWhereInput>
+  orderBy?: Maybe<GQLMailchimpFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7175,9 +6298,9 @@ export type QueryDocumentsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryStartProjectFormsConnectionArgs = {
-  where?: Maybe<StartProjectFormWhereInput>
-  orderBy?: Maybe<StartProjectFormOrderByInput>
+export type GQLQuerySingularPagesConnectionArgs = {
+  where?: Maybe<GQLSingularPageWhereInput>
+  orderBy?: Maybe<GQLSingularPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7185,9 +6308,9 @@ export type QueryStartProjectFormsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryJobListingsConnectionArgs = {
-  where?: Maybe<JobListingWhereInput>
-  orderBy?: Maybe<JobListingOrderByInput>
+export type GQLQueryBlogPostsConnectionArgs = {
+  where?: Maybe<GQLBlogPostWhereInput>
+  orderBy?: Maybe<GQLBlogPostOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7195,9 +6318,9 @@ export type QueryJobListingsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryMailchimpFormsConnectionArgs = {
-  where?: Maybe<MailchimpFormWhereInput>
-  orderBy?: Maybe<MailchimpFormOrderByInput>
+export type GQLQueryCommentsConnectionArgs = {
+  where?: Maybe<GQLCommentWhereInput>
+  orderBy?: Maybe<GQLCommentOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7205,9 +6328,9 @@ export type QueryMailchimpFormsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QuerySingularPagesConnectionArgs = {
-  where?: Maybe<SingularPageWhereInput>
-  orderBy?: Maybe<SingularPageOrderByInput>
+export type GQLQueryPagesConnectionArgs = {
+  where?: Maybe<GQLPageWhereInput>
+  orderBy?: Maybe<GQLPageOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -7215,53 +6338,13 @@ export type QuerySingularPagesConnectionArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type QueryBlogPostsConnectionArgs = {
-  where?: Maybe<BlogPostWhereInput>
-  orderBy?: Maybe<BlogPostOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryCommentsConnectionArgs = {
-  where?: Maybe<CommentWhereInput>
-  orderBy?: Maybe<CommentOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryPagesConnectionArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryPdpPaginasConnectionArgs = {
-  where?: Maybe<PdpPaginaWhereInput>
-  orderBy?: Maybe<PdpPaginaOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryNodeArgs = {
+export type GQLQueryNodeArgs = {
   id: Scalars['ID']
 }
 
-export type Quote = Node & {
+export type GQLQuote = GQLNode & {
   __typename?: 'Quote'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -7272,15 +6355,15 @@ export type Quote = Node & {
   text?: Maybe<Scalars['String']>
 }
 
-export type QuoteConnection = {
+export type GQLQuoteConnection = {
   __typename?: 'QuoteConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<QuoteEdge>>
-  aggregate: AggregateQuote
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLQuoteEdge>>
+  aggregate: GQLAggregateQuote
 }
 
-export type QuoteCreateInput = {
-  status?: Maybe<Status>
+export type GQLQuoteCreateInput = {
+  status?: Maybe<GQLStatus>
   authorName?: Maybe<Scalars['String']>
   authorTitle?: Maybe<Scalars['String']>
   asideTitle?: Maybe<Scalars['String']>
@@ -7288,13 +6371,13 @@ export type QuoteCreateInput = {
   text?: Maybe<Scalars['String']>
 }
 
-export type QuoteEdge = {
+export type GQLQuoteEdge = {
   __typename?: 'QuoteEdge'
-  node: Quote
+  node: GQLQuote
   cursor: Scalars['String']
 }
 
-export enum QuoteOrderByInput {
+export enum GQLQuoteOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -7315,9 +6398,9 @@ export enum QuoteOrderByInput {
   TextDesc = 'text_DESC',
 }
 
-export type QuotePreviousValues = {
+export type GQLQuotePreviousValues = {
   __typename?: 'QuotePreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -7328,27 +6411,27 @@ export type QuotePreviousValues = {
   text?: Maybe<Scalars['String']>
 }
 
-export type QuoteSubscriptionPayload = {
+export type GQLQuoteSubscriptionPayload = {
   __typename?: 'QuoteSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Quote>
+  mutation: GQLMutationType
+  node?: Maybe<GQLQuote>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<QuotePreviousValues>
+  previousValues?: Maybe<GQLQuotePreviousValues>
 }
 
-export type QuoteSubscriptionWhereInput = {
-  AND?: Maybe<Array<QuoteSubscriptionWhereInput>>
-  OR?: Maybe<Array<QuoteSubscriptionWhereInput>>
-  NOT?: Maybe<Array<QuoteSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLQuoteSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLQuoteSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLQuoteSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLQuoteSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<QuoteWhereInput>
+  node?: Maybe<GQLQuoteWhereInput>
 }
 
-export type QuoteUpdateInput = {
-  status?: Maybe<Status>
+export type GQLQuoteUpdateInput = {
+  status?: Maybe<GQLStatus>
   authorName?: Maybe<Scalars['String']>
   authorTitle?: Maybe<Scalars['String']>
   asideTitle?: Maybe<Scalars['String']>
@@ -7356,8 +6439,8 @@ export type QuoteUpdateInput = {
   text?: Maybe<Scalars['String']>
 }
 
-export type QuoteUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLQuoteUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   authorName?: Maybe<Scalars['String']>
   authorTitle?: Maybe<Scalars['String']>
   asideTitle?: Maybe<Scalars['String']>
@@ -7365,15 +6448,15 @@ export type QuoteUpdateManyMutationInput = {
   text?: Maybe<Scalars['String']>
 }
 
-export type QuoteWhereInput = {
+export type GQLQuoteWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<QuoteWhereInput>>
-  OR?: Maybe<Array<QuoteWhereInput>>
-  NOT?: Maybe<Array<QuoteWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLQuoteWhereInput>>
+  OR?: Maybe<Array<GQLQuoteWhereInput>>
+  NOT?: Maybe<Array<GQLQuoteWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -7476,72 +6559,72 @@ export type QuoteWhereInput = {
   text_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type QuoteWhereUniqueInput = {
+export type GQLQuoteWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type SingularPage = Node & {
+export type GQLSingularPage = GQLNode & {
   __typename?: 'SingularPage'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   content: Scalars['String']
   title: Scalars['String']
-  image?: Maybe<Asset>
+  image?: Maybe<GQLAsset>
   releaseDate?: Maybe<Scalars['DateTime']>
-  page?: Maybe<Page>
+  page?: Maybe<GQLPage>
 }
 
-export type SingularPageConnection = {
+export type GQLSingularPageConnection = {
   __typename?: 'SingularPageConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<SingularPageEdge>>
-  aggregate: AggregateSingularPage
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLSingularPageEdge>>
+  aggregate: GQLAggregateSingularPage
 }
 
-export type SingularPageCreateInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageCreateInput = {
+  status?: Maybe<GQLStatus>
   content: Scalars['String']
   title: Scalars['String']
   releaseDate?: Maybe<Scalars['DateTime']>
-  image?: Maybe<AssetCreateOneWithoutImageSingularPageInput>
-  page?: Maybe<PageCreateOneWithoutSingularPageInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageSingularPageInput>
+  page?: Maybe<GQLPageCreateOneWithoutSingularPageInput>
 }
 
-export type SingularPageCreateManyWithoutImageInput = {
-  create?: Maybe<Array<SingularPageCreateWithoutImageInput>>
-  connect?: Maybe<Array<SingularPageWhereUniqueInput>>
+export type GQLSingularPageCreateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLSingularPageCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLSingularPageWhereUniqueInput>>
 }
 
-export type SingularPageCreateOneWithoutPageInput = {
-  create?: Maybe<SingularPageCreateWithoutPageInput>
-  connect?: Maybe<SingularPageWhereUniqueInput>
+export type GQLSingularPageCreateOneWithoutPageInput = {
+  create?: Maybe<GQLSingularPageCreateWithoutPageInput>
+  connect?: Maybe<GQLSingularPageWhereUniqueInput>
 }
 
-export type SingularPageCreateWithoutImageInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageCreateWithoutImageInput = {
+  status?: Maybe<GQLStatus>
   content: Scalars['String']
   title: Scalars['String']
   releaseDate?: Maybe<Scalars['DateTime']>
-  page?: Maybe<PageCreateOneWithoutSingularPageInput>
+  page?: Maybe<GQLPageCreateOneWithoutSingularPageInput>
 }
 
-export type SingularPageCreateWithoutPageInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageCreateWithoutPageInput = {
+  status?: Maybe<GQLStatus>
   content: Scalars['String']
   title: Scalars['String']
   releaseDate?: Maybe<Scalars['DateTime']>
-  image?: Maybe<AssetCreateOneWithoutImageSingularPageInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageSingularPageInput>
 }
 
-export type SingularPageEdge = {
+export type GQLSingularPageEdge = {
   __typename?: 'SingularPageEdge'
-  node: SingularPage
+  node: GQLSingularPage
   cursor: Scalars['String']
 }
 
-export enum SingularPageOrderByInput {
+export enum GQLSingularPageOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -7558,9 +6641,9 @@ export enum SingularPageOrderByInput {
   ReleaseDateDesc = 'releaseDate_DESC',
 }
 
-export type SingularPagePreviousValues = {
+export type GQLSingularPagePreviousValues = {
   __typename?: 'SingularPagePreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -7569,15 +6652,15 @@ export type SingularPagePreviousValues = {
   releaseDate?: Maybe<Scalars['DateTime']>
 }
 
-export type SingularPageScalarWhereInput = {
+export type GQLSingularPageScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<SingularPageScalarWhereInput>>
-  OR?: Maybe<Array<SingularPageScalarWhereInput>>
-  NOT?: Maybe<Array<SingularPageScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLSingularPageScalarWhereInput>>
+  OR?: Maybe<Array<GQLSingularPageScalarWhereInput>>
+  NOT?: Maybe<Array<GQLSingularPageScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -7646,115 +6729,115 @@ export type SingularPageScalarWhereInput = {
   releaseDate_gte?: Maybe<Scalars['DateTime']>
 }
 
-export type SingularPageSubscriptionPayload = {
+export type GQLSingularPageSubscriptionPayload = {
   __typename?: 'SingularPageSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<SingularPage>
+  mutation: GQLMutationType
+  node?: Maybe<GQLSingularPage>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<SingularPagePreviousValues>
+  previousValues?: Maybe<GQLSingularPagePreviousValues>
 }
 
-export type SingularPageSubscriptionWhereInput = {
-  AND?: Maybe<Array<SingularPageSubscriptionWhereInput>>
-  OR?: Maybe<Array<SingularPageSubscriptionWhereInput>>
-  NOT?: Maybe<Array<SingularPageSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLSingularPageSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLSingularPageSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLSingularPageSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLSingularPageSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<SingularPageWhereInput>
+  node?: Maybe<GQLSingularPageWhereInput>
 }
 
-export type SingularPageUpdateInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageUpdateInput = {
+  status?: Maybe<GQLStatus>
   content?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   releaseDate?: Maybe<Scalars['DateTime']>
-  image?: Maybe<AssetUpdateOneWithoutImageSingularPageInput>
-  page?: Maybe<PageUpdateOneWithoutSingularPageInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageSingularPageInput>
+  page?: Maybe<GQLPageUpdateOneWithoutSingularPageInput>
 }
 
-export type SingularPageUpdateManyDataInput = {
-  status?: Maybe<Status>
-  content?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-  releaseDate?: Maybe<Scalars['DateTime']>
-}
-
-export type SingularPageUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   content?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   releaseDate?: Maybe<Scalars['DateTime']>
 }
 
-export type SingularPageUpdateManyWithoutImageInput = {
-  create?: Maybe<Array<SingularPageCreateWithoutImageInput>>
-  connect?: Maybe<Array<SingularPageWhereUniqueInput>>
-  set?: Maybe<Array<SingularPageWhereUniqueInput>>
-  disconnect?: Maybe<Array<SingularPageWhereUniqueInput>>
-  delete?: Maybe<Array<SingularPageWhereUniqueInput>>
-  update?: Maybe<Array<SingularPageUpdateWithWhereUniqueWithoutImageInput>>
-  updateMany?: Maybe<Array<SingularPageUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<SingularPageScalarWhereInput>>
-  upsert?: Maybe<Array<SingularPageUpsertWithWhereUniqueWithoutImageInput>>
+export type GQLSingularPageUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
+  content?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  releaseDate?: Maybe<Scalars['DateTime']>
 }
 
-export type SingularPageUpdateManyWithWhereNestedInput = {
-  where: SingularPageScalarWhereInput
-  data: SingularPageUpdateManyDataInput
+export type GQLSingularPageUpdateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLSingularPageCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLSingularPageWhereUniqueInput>>
+  set?: Maybe<Array<GQLSingularPageWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLSingularPageWhereUniqueInput>>
+  delete?: Maybe<Array<GQLSingularPageWhereUniqueInput>>
+  update?: Maybe<Array<GQLSingularPageUpdateWithWhereUniqueWithoutImageInput>>
+  updateMany?: Maybe<Array<GQLSingularPageUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLSingularPageScalarWhereInput>>
+  upsert?: Maybe<Array<GQLSingularPageUpsertWithWhereUniqueWithoutImageInput>>
 }
 
-export type SingularPageUpdateOneWithoutPageInput = {
-  create?: Maybe<SingularPageCreateWithoutPageInput>
-  connect?: Maybe<SingularPageWhereUniqueInput>
+export type GQLSingularPageUpdateManyWithWhereNestedInput = {
+  where: GQLSingularPageScalarWhereInput
+  data: GQLSingularPageUpdateManyDataInput
+}
+
+export type GQLSingularPageUpdateOneWithoutPageInput = {
+  create?: Maybe<GQLSingularPageCreateWithoutPageInput>
+  connect?: Maybe<GQLSingularPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<SingularPageUpdateWithoutPageDataInput>
-  upsert?: Maybe<SingularPageUpsertWithoutPageInput>
+  update?: Maybe<GQLSingularPageUpdateWithoutPageDataInput>
+  upsert?: Maybe<GQLSingularPageUpsertWithoutPageInput>
 }
 
-export type SingularPageUpdateWithoutImageDataInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageUpdateWithoutImageDataInput = {
+  status?: Maybe<GQLStatus>
   content?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   releaseDate?: Maybe<Scalars['DateTime']>
-  page?: Maybe<PageUpdateOneWithoutSingularPageInput>
+  page?: Maybe<GQLPageUpdateOneWithoutSingularPageInput>
 }
 
-export type SingularPageUpdateWithoutPageDataInput = {
-  status?: Maybe<Status>
+export type GQLSingularPageUpdateWithoutPageDataInput = {
+  status?: Maybe<GQLStatus>
   content?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   releaseDate?: Maybe<Scalars['DateTime']>
-  image?: Maybe<AssetUpdateOneWithoutImageSingularPageInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageSingularPageInput>
 }
 
-export type SingularPageUpdateWithWhereUniqueWithoutImageInput = {
-  where: SingularPageWhereUniqueInput
-  data: SingularPageUpdateWithoutImageDataInput
+export type GQLSingularPageUpdateWithWhereUniqueWithoutImageInput = {
+  where: GQLSingularPageWhereUniqueInput
+  data: GQLSingularPageUpdateWithoutImageDataInput
 }
 
-export type SingularPageUpsertWithoutPageInput = {
-  update: SingularPageUpdateWithoutPageDataInput
-  create: SingularPageCreateWithoutPageInput
+export type GQLSingularPageUpsertWithoutPageInput = {
+  update: GQLSingularPageUpdateWithoutPageDataInput
+  create: GQLSingularPageCreateWithoutPageInput
 }
 
-export type SingularPageUpsertWithWhereUniqueWithoutImageInput = {
-  where: SingularPageWhereUniqueInput
-  update: SingularPageUpdateWithoutImageDataInput
-  create: SingularPageCreateWithoutImageInput
+export type GQLSingularPageUpsertWithWhereUniqueWithoutImageInput = {
+  where: GQLSingularPageWhereUniqueInput
+  update: GQLSingularPageUpdateWithoutImageDataInput
+  create: GQLSingularPageCreateWithoutImageInput
 }
 
-export type SingularPageWhereInput = {
+export type GQLSingularPageWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<SingularPageWhereInput>>
-  OR?: Maybe<Array<SingularPageWhereInput>>
-  NOT?: Maybe<Array<SingularPageWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLSingularPageWhereInput>>
+  OR?: Maybe<Array<GQLSingularPageWhereInput>>
+  NOT?: Maybe<Array<GQLSingularPageWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -7821,17 +6904,17 @@ export type SingularPageWhereInput = {
   releaseDate_lte?: Maybe<Scalars['DateTime']>
   releaseDate_gt?: Maybe<Scalars['DateTime']>
   releaseDate_gte?: Maybe<Scalars['DateTime']>
-  image?: Maybe<AssetWhereInput>
-  page?: Maybe<PageWhereInput>
+  image?: Maybe<GQLAssetWhereInput>
+  page?: Maybe<GQLPageWhereInput>
 }
 
-export type SingularPageWhereUniqueInput = {
+export type GQLSingularPageWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type StartProjectForm = Node & {
+export type GQLStartProjectForm = GQLNode & {
   __typename?: 'StartProjectForm'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -7854,15 +6937,15 @@ export type StartProjectForm = Node & {
   marketingBudget?: Maybe<Scalars['String']>
 }
 
-export type StartProjectFormConnection = {
+export type GQLStartProjectFormConnection = {
   __typename?: 'StartProjectFormConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<StartProjectFormEdge>>
-  aggregate: AggregateStartProjectForm
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLStartProjectFormEdge>>
+  aggregate: GQLAggregateStartProjectForm
 }
 
-export type StartProjectFormCreateInput = {
-  status?: Maybe<Status>
+export type GQLStartProjectFormCreateInput = {
+  status?: Maybe<GQLStatus>
   currentUrl: Scalars['String']
   currentSoftware: Scalars['String']
   monthlyVisitors: Scalars['String']
@@ -7882,13 +6965,13 @@ export type StartProjectFormCreateInput = {
   marketingBudget?: Maybe<Scalars['String']>
 }
 
-export type StartProjectFormEdge = {
+export type GQLStartProjectFormEdge = {
   __typename?: 'StartProjectFormEdge'
-  node: StartProjectForm
+  node: GQLStartProjectForm
   cursor: Scalars['String']
 }
 
-export enum StartProjectFormOrderByInput {
+export enum GQLStartProjectFormOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -7933,9 +7016,9 @@ export enum StartProjectFormOrderByInput {
   MarketingBudgetDesc = 'marketingBudget_DESC',
 }
 
-export type StartProjectFormPreviousValues = {
+export type GQLStartProjectFormPreviousValues = {
   __typename?: 'StartProjectFormPreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -7958,27 +7041,27 @@ export type StartProjectFormPreviousValues = {
   marketingBudget?: Maybe<Scalars['String']>
 }
 
-export type StartProjectFormSubscriptionPayload = {
+export type GQLStartProjectFormSubscriptionPayload = {
   __typename?: 'StartProjectFormSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<StartProjectForm>
+  mutation: GQLMutationType
+  node?: Maybe<GQLStartProjectForm>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<StartProjectFormPreviousValues>
+  previousValues?: Maybe<GQLStartProjectFormPreviousValues>
 }
 
-export type StartProjectFormSubscriptionWhereInput = {
-  AND?: Maybe<Array<StartProjectFormSubscriptionWhereInput>>
-  OR?: Maybe<Array<StartProjectFormSubscriptionWhereInput>>
-  NOT?: Maybe<Array<StartProjectFormSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLStartProjectFormSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLStartProjectFormSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLStartProjectFormSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLStartProjectFormSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<StartProjectFormWhereInput>
+  node?: Maybe<GQLStartProjectFormWhereInput>
 }
 
-export type StartProjectFormUpdateInput = {
-  status?: Maybe<Status>
+export type GQLStartProjectFormUpdateInput = {
+  status?: Maybe<GQLStatus>
   currentUrl?: Maybe<Scalars['String']>
   currentSoftware?: Maybe<Scalars['String']>
   monthlyVisitors?: Maybe<Scalars['String']>
@@ -7998,8 +7081,8 @@ export type StartProjectFormUpdateInput = {
   marketingBudget?: Maybe<Scalars['String']>
 }
 
-export type StartProjectFormUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLStartProjectFormUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
   currentUrl?: Maybe<Scalars['String']>
   currentSoftware?: Maybe<Scalars['String']>
   monthlyVisitors?: Maybe<Scalars['String']>
@@ -8019,15 +7102,15 @@ export type StartProjectFormUpdateManyMutationInput = {
   marketingBudget?: Maybe<Scalars['String']>
 }
 
-export type StartProjectFormWhereInput = {
+export type GQLStartProjectFormWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<StartProjectFormWhereInput>>
-  OR?: Maybe<Array<StartProjectFormWhereInput>>
-  NOT?: Maybe<Array<StartProjectFormWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLStartProjectFormWhereInput>>
+  OR?: Maybe<Array<GQLStartProjectFormWhereInput>>
+  NOT?: Maybe<Array<GQLStartProjectFormWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -8256,38 +7339,33 @@ export type StartProjectFormWhereInput = {
   marketingBudget_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type StartProjectFormWhereUniqueInput = {
+export type GQLStartProjectFormWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export enum Status {
+export enum GQLStatus {
   Draft = 'DRAFT',
   Published = 'PUBLISHED',
   Archived = 'ARCHIVED',
 }
 
-export enum StatusCode {
-  Code_404 = 'CODE_404',
-  Code_200 = 'CODE_200',
-}
-
-export type StructuredPage = Node & {
+export type GQLStructuredPage = GQLNode & {
   __typename?: 'StructuredPage'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
   order?: Maybe<Scalars['Int']>
   description: Scalars['String']
   title?: Maybe<Scalars['String']>
-  image?: Maybe<Asset>
-  blocks?: Maybe<Array<Block>>
-  page?: Maybe<Page>
+  image?: Maybe<GQLAsset>
+  blocks?: Maybe<Array<GQLBlock>>
+  page?: Maybe<GQLPage>
 }
 
-export type StructuredPageBlocksArgs = {
-  where?: Maybe<BlockWhereInput>
-  orderBy?: Maybe<BlockOrderByInput>
+export type GQLStructuredPageBlocksArgs = {
+  where?: Maybe<GQLBlockWhereInput>
+  orderBy?: Maybe<GQLBlockOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -8295,72 +7373,72 @@ export type StructuredPageBlocksArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type StructuredPageConnection = {
+export type GQLStructuredPageConnection = {
   __typename?: 'StructuredPageConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<StructuredPageEdge>>
-  aggregate: AggregateStructuredPage
+  pageInfo: GQLPageInfo
+  edges: Array<Maybe<GQLStructuredPageEdge>>
+  aggregate: GQLAggregateStructuredPage
 }
 
-export type StructuredPageCreateInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageCreateInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description: Scalars['String']
   title?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageStructuredPageInput>
-  blocks?: Maybe<BlockCreateManyWithoutPageInput>
-  page?: Maybe<PageCreateOneWithoutStructuredPageInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageStructuredPageInput>
+  blocks?: Maybe<GQLBlockCreateManyWithoutPageInput>
+  page?: Maybe<GQLPageCreateOneWithoutStructuredPageInput>
 }
 
-export type StructuredPageCreateManyWithoutImageInput = {
-  create?: Maybe<Array<StructuredPageCreateWithoutImageInput>>
-  connect?: Maybe<Array<StructuredPageWhereUniqueInput>>
+export type GQLStructuredPageCreateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLStructuredPageCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLStructuredPageWhereUniqueInput>>
 }
 
-export type StructuredPageCreateOneWithoutBlocksInput = {
-  create?: Maybe<StructuredPageCreateWithoutBlocksInput>
-  connect?: Maybe<StructuredPageWhereUniqueInput>
+export type GQLStructuredPageCreateOneWithoutBlocksInput = {
+  create?: Maybe<GQLStructuredPageCreateWithoutBlocksInput>
+  connect?: Maybe<GQLStructuredPageWhereUniqueInput>
 }
 
-export type StructuredPageCreateOneWithoutPageInput = {
-  create?: Maybe<StructuredPageCreateWithoutPageInput>
-  connect?: Maybe<StructuredPageWhereUniqueInput>
+export type GQLStructuredPageCreateOneWithoutPageInput = {
+  create?: Maybe<GQLStructuredPageCreateWithoutPageInput>
+  connect?: Maybe<GQLStructuredPageWhereUniqueInput>
 }
 
-export type StructuredPageCreateWithoutBlocksInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageCreateWithoutBlocksInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description: Scalars['String']
   title?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageStructuredPageInput>
-  page?: Maybe<PageCreateOneWithoutStructuredPageInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageStructuredPageInput>
+  page?: Maybe<GQLPageCreateOneWithoutStructuredPageInput>
 }
 
-export type StructuredPageCreateWithoutImageInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageCreateWithoutImageInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description: Scalars['String']
   title?: Maybe<Scalars['String']>
-  blocks?: Maybe<BlockCreateManyWithoutPageInput>
-  page?: Maybe<PageCreateOneWithoutStructuredPageInput>
+  blocks?: Maybe<GQLBlockCreateManyWithoutPageInput>
+  page?: Maybe<GQLPageCreateOneWithoutStructuredPageInput>
 }
 
-export type StructuredPageCreateWithoutPageInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageCreateWithoutPageInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description: Scalars['String']
   title?: Maybe<Scalars['String']>
-  image?: Maybe<AssetCreateOneWithoutImageStructuredPageInput>
-  blocks?: Maybe<BlockCreateManyWithoutPageInput>
+  image?: Maybe<GQLAssetCreateOneWithoutImageStructuredPageInput>
+  blocks?: Maybe<GQLBlockCreateManyWithoutPageInput>
 }
 
-export type StructuredPageEdge = {
+export type GQLStructuredPageEdge = {
   __typename?: 'StructuredPageEdge'
-  node: StructuredPage
+  node: GQLStructuredPage
   cursor: Scalars['String']
 }
 
-export enum StructuredPageOrderByInput {
+export enum GQLStructuredPageOrderByInput {
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
@@ -8377,9 +7455,9 @@ export enum StructuredPageOrderByInput {
   TitleDesc = 'title_DESC',
 }
 
-export type StructuredPagePreviousValues = {
+export type GQLStructuredPagePreviousValues = {
   __typename?: 'StructuredPagePreviousValues'
-  status: Status
+  status: GQLStatus
   updatedAt: Scalars['DateTime']
   createdAt: Scalars['DateTime']
   id: Scalars['ID']
@@ -8388,15 +7466,15 @@ export type StructuredPagePreviousValues = {
   title?: Maybe<Scalars['String']>
 }
 
-export type StructuredPageScalarWhereInput = {
+export type GQLStructuredPageScalarWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<StructuredPageScalarWhereInput>>
-  OR?: Maybe<Array<StructuredPageScalarWhereInput>>
-  NOT?: Maybe<Array<StructuredPageScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLStructuredPageScalarWhereInput>>
+  OR?: Maybe<Array<GQLStructuredPageScalarWhereInput>>
+  NOT?: Maybe<Array<GQLStructuredPageScalarWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -8465,141 +7543,141 @@ export type StructuredPageScalarWhereInput = {
   title_not_ends_with?: Maybe<Scalars['String']>
 }
 
-export type StructuredPageSubscriptionPayload = {
+export type GQLStructuredPageSubscriptionPayload = {
   __typename?: 'StructuredPageSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<StructuredPage>
+  mutation: GQLMutationType
+  node?: Maybe<GQLStructuredPage>
   updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<StructuredPagePreviousValues>
+  previousValues?: Maybe<GQLStructuredPagePreviousValues>
 }
 
-export type StructuredPageSubscriptionWhereInput = {
-  AND?: Maybe<Array<StructuredPageSubscriptionWhereInput>>
-  OR?: Maybe<Array<StructuredPageSubscriptionWhereInput>>
-  NOT?: Maybe<Array<StructuredPageSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
+export type GQLStructuredPageSubscriptionWhereInput = {
+  AND?: Maybe<Array<GQLStructuredPageSubscriptionWhereInput>>
+  OR?: Maybe<Array<GQLStructuredPageSubscriptionWhereInput>>
+  NOT?: Maybe<Array<GQLStructuredPageSubscriptionWhereInput>>
+  mutation_in?: Maybe<Array<GQLMutationType>>
   updatedFields_contains?: Maybe<Scalars['String']>
   updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
   updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<StructuredPageWhereInput>
+  node?: Maybe<GQLStructuredPageWhereInput>
 }
 
-export type StructuredPageUpdateInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageUpdateInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageStructuredPageInput>
-  blocks?: Maybe<BlockUpdateManyWithoutPageInput>
-  page?: Maybe<PageUpdateOneWithoutStructuredPageInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageStructuredPageInput>
+  blocks?: Maybe<GQLBlockUpdateManyWithoutPageInput>
+  page?: Maybe<GQLPageUpdateOneWithoutStructuredPageInput>
 }
 
-export type StructuredPageUpdateManyDataInput = {
-  status?: Maybe<Status>
-  order?: Maybe<Scalars['Int']>
-  description?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
-}
-
-export type StructuredPageUpdateManyMutationInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageUpdateManyDataInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
 }
 
-export type StructuredPageUpdateManyWithoutImageInput = {
-  create?: Maybe<Array<StructuredPageCreateWithoutImageInput>>
-  connect?: Maybe<Array<StructuredPageWhereUniqueInput>>
-  set?: Maybe<Array<StructuredPageWhereUniqueInput>>
-  disconnect?: Maybe<Array<StructuredPageWhereUniqueInput>>
-  delete?: Maybe<Array<StructuredPageWhereUniqueInput>>
-  update?: Maybe<Array<StructuredPageUpdateWithWhereUniqueWithoutImageInput>>
-  updateMany?: Maybe<Array<StructuredPageUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<StructuredPageScalarWhereInput>>
-  upsert?: Maybe<Array<StructuredPageUpsertWithWhereUniqueWithoutImageInput>>
+export type GQLStructuredPageUpdateManyMutationInput = {
+  status?: Maybe<GQLStatus>
+  order?: Maybe<Scalars['Int']>
+  description?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
 }
 
-export type StructuredPageUpdateManyWithWhereNestedInput = {
-  where: StructuredPageScalarWhereInput
-  data: StructuredPageUpdateManyDataInput
+export type GQLStructuredPageUpdateManyWithoutImageInput = {
+  create?: Maybe<Array<GQLStructuredPageCreateWithoutImageInput>>
+  connect?: Maybe<Array<GQLStructuredPageWhereUniqueInput>>
+  set?: Maybe<Array<GQLStructuredPageWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLStructuredPageWhereUniqueInput>>
+  delete?: Maybe<Array<GQLStructuredPageWhereUniqueInput>>
+  update?: Maybe<Array<GQLStructuredPageUpdateWithWhereUniqueWithoutImageInput>>
+  updateMany?: Maybe<Array<GQLStructuredPageUpdateManyWithWhereNestedInput>>
+  deleteMany?: Maybe<Array<GQLStructuredPageScalarWhereInput>>
+  upsert?: Maybe<Array<GQLStructuredPageUpsertWithWhereUniqueWithoutImageInput>>
 }
 
-export type StructuredPageUpdateOneWithoutBlocksInput = {
-  create?: Maybe<StructuredPageCreateWithoutBlocksInput>
-  connect?: Maybe<StructuredPageWhereUniqueInput>
+export type GQLStructuredPageUpdateManyWithWhereNestedInput = {
+  where: GQLStructuredPageScalarWhereInput
+  data: GQLStructuredPageUpdateManyDataInput
+}
+
+export type GQLStructuredPageUpdateOneWithoutBlocksInput = {
+  create?: Maybe<GQLStructuredPageCreateWithoutBlocksInput>
+  connect?: Maybe<GQLStructuredPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<StructuredPageUpdateWithoutBlocksDataInput>
-  upsert?: Maybe<StructuredPageUpsertWithoutBlocksInput>
+  update?: Maybe<GQLStructuredPageUpdateWithoutBlocksDataInput>
+  upsert?: Maybe<GQLStructuredPageUpsertWithoutBlocksInput>
 }
 
-export type StructuredPageUpdateOneWithoutPageInput = {
-  create?: Maybe<StructuredPageCreateWithoutPageInput>
-  connect?: Maybe<StructuredPageWhereUniqueInput>
+export type GQLStructuredPageUpdateOneWithoutPageInput = {
+  create?: Maybe<GQLStructuredPageCreateWithoutPageInput>
+  connect?: Maybe<GQLStructuredPageWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<StructuredPageUpdateWithoutPageDataInput>
-  upsert?: Maybe<StructuredPageUpsertWithoutPageInput>
+  update?: Maybe<GQLStructuredPageUpdateWithoutPageDataInput>
+  upsert?: Maybe<GQLStructuredPageUpsertWithoutPageInput>
 }
 
-export type StructuredPageUpdateWithoutBlocksDataInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageUpdateWithoutBlocksDataInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageStructuredPageInput>
-  page?: Maybe<PageUpdateOneWithoutStructuredPageInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageStructuredPageInput>
+  page?: Maybe<GQLPageUpdateOneWithoutStructuredPageInput>
 }
 
-export type StructuredPageUpdateWithoutImageDataInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageUpdateWithoutImageDataInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
-  blocks?: Maybe<BlockUpdateManyWithoutPageInput>
-  page?: Maybe<PageUpdateOneWithoutStructuredPageInput>
+  blocks?: Maybe<GQLBlockUpdateManyWithoutPageInput>
+  page?: Maybe<GQLPageUpdateOneWithoutStructuredPageInput>
 }
 
-export type StructuredPageUpdateWithoutPageDataInput = {
-  status?: Maybe<Status>
+export type GQLStructuredPageUpdateWithoutPageDataInput = {
+  status?: Maybe<GQLStatus>
   order?: Maybe<Scalars['Int']>
   description?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
-  image?: Maybe<AssetUpdateOneWithoutImageStructuredPageInput>
-  blocks?: Maybe<BlockUpdateManyWithoutPageInput>
+  image?: Maybe<GQLAssetUpdateOneWithoutImageStructuredPageInput>
+  blocks?: Maybe<GQLBlockUpdateManyWithoutPageInput>
 }
 
-export type StructuredPageUpdateWithWhereUniqueWithoutImageInput = {
-  where: StructuredPageWhereUniqueInput
-  data: StructuredPageUpdateWithoutImageDataInput
+export type GQLStructuredPageUpdateWithWhereUniqueWithoutImageInput = {
+  where: GQLStructuredPageWhereUniqueInput
+  data: GQLStructuredPageUpdateWithoutImageDataInput
 }
 
-export type StructuredPageUpsertWithoutBlocksInput = {
-  update: StructuredPageUpdateWithoutBlocksDataInput
-  create: StructuredPageCreateWithoutBlocksInput
+export type GQLStructuredPageUpsertWithoutBlocksInput = {
+  update: GQLStructuredPageUpdateWithoutBlocksDataInput
+  create: GQLStructuredPageCreateWithoutBlocksInput
 }
 
-export type StructuredPageUpsertWithoutPageInput = {
-  update: StructuredPageUpdateWithoutPageDataInput
-  create: StructuredPageCreateWithoutPageInput
+export type GQLStructuredPageUpsertWithoutPageInput = {
+  update: GQLStructuredPageUpdateWithoutPageDataInput
+  create: GQLStructuredPageCreateWithoutPageInput
 }
 
-export type StructuredPageUpsertWithWhereUniqueWithoutImageInput = {
-  where: StructuredPageWhereUniqueInput
-  update: StructuredPageUpdateWithoutImageDataInput
-  create: StructuredPageCreateWithoutImageInput
+export type GQLStructuredPageUpsertWithWhereUniqueWithoutImageInput = {
+  where: GQLStructuredPageWhereUniqueInput
+  update: GQLStructuredPageUpdateWithoutImageDataInput
+  create: GQLStructuredPageCreateWithoutImageInput
 }
 
-export type StructuredPageWhereInput = {
+export type GQLStructuredPageWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<StructuredPageWhereInput>>
-  OR?: Maybe<Array<StructuredPageWhereInput>>
-  NOT?: Maybe<Array<StructuredPageWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
+  AND?: Maybe<Array<GQLStructuredPageWhereInput>>
+  OR?: Maybe<Array<GQLStructuredPageWhereInput>>
+  NOT?: Maybe<Array<GQLStructuredPageWhereInput>>
+  status?: Maybe<GQLStatus>
+  status_not?: Maybe<GQLStatus>
+  status_in?: Maybe<Array<GQLStatus>>
+  status_not_in?: Maybe<Array<GQLStatus>>
   updatedAt?: Maybe<Scalars['DateTime']>
   updatedAt_not?: Maybe<Scalars['DateTime']>
   updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
@@ -8666,360 +7744,109 @@ export type StructuredPageWhereInput = {
   title_not_starts_with?: Maybe<Scalars['String']>
   title_ends_with?: Maybe<Scalars['String']>
   title_not_ends_with?: Maybe<Scalars['String']>
-  image?: Maybe<AssetWhereInput>
-  blocks_every?: Maybe<BlockWhereInput>
-  blocks_some?: Maybe<BlockWhereInput>
-  blocks_none?: Maybe<BlockWhereInput>
-  page?: Maybe<PageWhereInput>
+  image?: Maybe<GQLAssetWhereInput>
+  blocks_every?: Maybe<GQLBlockWhereInput>
+  blocks_some?: Maybe<GQLBlockWhereInput>
+  blocks_none?: Maybe<GQLBlockWhereInput>
+  page?: Maybe<GQLPageWhereInput>
 }
 
-export type StructuredPageWhereUniqueInput = {
+export type GQLStructuredPageWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type Tag = Node & {
-  __typename?: 'Tag'
-  status: Status
-  updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  id: Scalars['ID']
-  name: Scalars['String']
-  pages?: Maybe<Array<Page>>
+export type GQLGetPageNlQueryVariables = {
+  url: Scalars['String']
 }
 
-export type TagPagesArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type TagConnection = {
-  __typename?: 'TagConnection'
-  pageInfo: PageInfo
-  edges: Array<Maybe<TagEdge>>
-  aggregate: AggregateTag
-}
-
-export type TagCreateInput = {
-  status?: Maybe<Status>
-  name: Scalars['String']
-  pages?: Maybe<PageCreateManyWithoutTagsInput>
-}
-
-export type TagCreateManyWithoutPagesInput = {
-  create?: Maybe<Array<TagCreateWithoutPagesInput>>
-  connect?: Maybe<Array<TagWhereUniqueInput>>
-}
-
-export type TagCreateWithoutPagesInput = {
-  status?: Maybe<Status>
-  name: Scalars['String']
-}
-
-export type TagEdge = {
-  __typename?: 'TagEdge'
-  node: Tag
-  cursor: Scalars['String']
-}
-
-export enum TagOrderByInput {
-  StatusAsc = 'status_ASC',
-  StatusDesc = 'status_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-}
-
-export type TagPreviousValues = {
-  __typename?: 'TagPreviousValues'
-  status: Status
-  updatedAt: Scalars['DateTime']
-  createdAt: Scalars['DateTime']
-  id: Scalars['ID']
-  name: Scalars['String']
-}
-
-export type TagScalarWhereInput = {
-  _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<TagScalarWhereInput>>
-  OR?: Maybe<Array<TagScalarWhereInput>>
-  NOT?: Maybe<Array<TagScalarWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  id?: Maybe<Scalars['ID']>
-  id_not?: Maybe<Scalars['ID']>
-  id_in?: Maybe<Array<Scalars['ID']>>
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  id_lt?: Maybe<Scalars['ID']>
-  id_lte?: Maybe<Scalars['ID']>
-  id_gt?: Maybe<Scalars['ID']>
-  id_gte?: Maybe<Scalars['ID']>
-  id_contains?: Maybe<Scalars['ID']>
-  id_not_contains?: Maybe<Scalars['ID']>
-  id_starts_with?: Maybe<Scalars['ID']>
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  id_ends_with?: Maybe<Scalars['ID']>
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  name?: Maybe<Scalars['String']>
-  name_not?: Maybe<Scalars['String']>
-  name_in?: Maybe<Array<Scalars['String']>>
-  name_not_in?: Maybe<Array<Scalars['String']>>
-  name_lt?: Maybe<Scalars['String']>
-  name_lte?: Maybe<Scalars['String']>
-  name_gt?: Maybe<Scalars['String']>
-  name_gte?: Maybe<Scalars['String']>
-  name_contains?: Maybe<Scalars['String']>
-  name_not_contains?: Maybe<Scalars['String']>
-  name_starts_with?: Maybe<Scalars['String']>
-  name_not_starts_with?: Maybe<Scalars['String']>
-  name_ends_with?: Maybe<Scalars['String']>
-  name_not_ends_with?: Maybe<Scalars['String']>
-}
-
-export type TagSubscriptionPayload = {
-  __typename?: 'TagSubscriptionPayload'
-  mutation: MutationType
-  node?: Maybe<Tag>
-  updatedFields?: Maybe<Array<Scalars['String']>>
-  previousValues?: Maybe<TagPreviousValues>
-}
-
-export type TagSubscriptionWhereInput = {
-  AND?: Maybe<Array<TagSubscriptionWhereInput>>
-  OR?: Maybe<Array<TagSubscriptionWhereInput>>
-  NOT?: Maybe<Array<TagSubscriptionWhereInput>>
-  mutation_in?: Maybe<Array<MutationType>>
-  updatedFields_contains?: Maybe<Scalars['String']>
-  updatedFields_contains_every?: Maybe<Array<Scalars['String']>>
-  updatedFields_contains_some?: Maybe<Array<Scalars['String']>>
-  node?: Maybe<TagWhereInput>
-}
-
-export type TagUpdateInput = {
-  status?: Maybe<Status>
-  name?: Maybe<Scalars['String']>
-  pages?: Maybe<PageUpdateManyWithoutTagsInput>
-}
-
-export type TagUpdateManyDataInput = {
-  status?: Maybe<Status>
-  name?: Maybe<Scalars['String']>
-}
-
-export type TagUpdateManyMutationInput = {
-  status?: Maybe<Status>
-  name?: Maybe<Scalars['String']>
-}
-
-export type TagUpdateManyWithoutPagesInput = {
-  create?: Maybe<Array<TagCreateWithoutPagesInput>>
-  connect?: Maybe<Array<TagWhereUniqueInput>>
-  set?: Maybe<Array<TagWhereUniqueInput>>
-  disconnect?: Maybe<Array<TagWhereUniqueInput>>
-  delete?: Maybe<Array<TagWhereUniqueInput>>
-  update?: Maybe<Array<TagUpdateWithWhereUniqueWithoutPagesInput>>
-  updateMany?: Maybe<Array<TagUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<TagScalarWhereInput>>
-  upsert?: Maybe<Array<TagUpsertWithWhereUniqueWithoutPagesInput>>
-}
-
-export type TagUpdateManyWithWhereNestedInput = {
-  where: TagScalarWhereInput
-  data: TagUpdateManyDataInput
-}
-
-export type TagUpdateWithoutPagesDataInput = {
-  status?: Maybe<Status>
-  name?: Maybe<Scalars['String']>
-}
-
-export type TagUpdateWithWhereUniqueWithoutPagesInput = {
-  where: TagWhereUniqueInput
-  data: TagUpdateWithoutPagesDataInput
-}
-
-export type TagUpsertWithWhereUniqueWithoutPagesInput = {
-  where: TagWhereUniqueInput
-  update: TagUpdateWithoutPagesDataInput
-  create: TagCreateWithoutPagesInput
-}
-
-export type TagWhereInput = {
-  _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<TagWhereInput>>
-  OR?: Maybe<Array<TagWhereInput>>
-  NOT?: Maybe<Array<TagWhereInput>>
-  status?: Maybe<Status>
-  status_not?: Maybe<Status>
-  status_in?: Maybe<Array<Status>>
-  status_not_in?: Maybe<Array<Status>>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  id?: Maybe<Scalars['ID']>
-  id_not?: Maybe<Scalars['ID']>
-  id_in?: Maybe<Array<Scalars['ID']>>
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  id_lt?: Maybe<Scalars['ID']>
-  id_lte?: Maybe<Scalars['ID']>
-  id_gt?: Maybe<Scalars['ID']>
-  id_gte?: Maybe<Scalars['ID']>
-  id_contains?: Maybe<Scalars['ID']>
-  id_not_contains?: Maybe<Scalars['ID']>
-  id_starts_with?: Maybe<Scalars['ID']>
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  id_ends_with?: Maybe<Scalars['ID']>
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  name?: Maybe<Scalars['String']>
-  name_not?: Maybe<Scalars['String']>
-  name_in?: Maybe<Array<Scalars['String']>>
-  name_not_in?: Maybe<Array<Scalars['String']>>
-  name_lt?: Maybe<Scalars['String']>
-  name_lte?: Maybe<Scalars['String']>
-  name_gt?: Maybe<Scalars['String']>
-  name_gte?: Maybe<Scalars['String']>
-  name_contains?: Maybe<Scalars['String']>
-  name_not_contains?: Maybe<Scalars['String']>
-  name_starts_with?: Maybe<Scalars['String']>
-  name_not_starts_with?: Maybe<Scalars['String']>
-  name_ends_with?: Maybe<Scalars['String']>
-  name_not_ends_with?: Maybe<Scalars['String']>
-  pages_every?: Maybe<PageWhereInput>
-  pages_some?: Maybe<PageWhereInput>
-  pages_none?: Maybe<PageWhereInput>
-}
-
-export type TagWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  name?: Maybe<Scalars['String']>
-}
-
-export type GetBlogPostsQueryVariables = {
-  limit: Scalars['Int']
-  exclude?: Maybe<Scalars['ID']>
-  after: Scalars['DateTime']
-  parentId: Scalars['ID']
-}
-
-export type GetBlogPostsQuery = { __typename?: 'Query' } & {
-  blogPosts: Array<
-    Maybe<
-      { __typename?: 'BlogPost' } & Pick<BlogPost, 'id' | 'title' | 'publicPublishedAt'> & {
-          image: Maybe<{ __typename?: 'Asset' } & Pick<Asset, 'id' | 'handle' | 'url' | 'mimeType'>>
-          page: Maybe<
-            { __typename?: 'Page' } & Pick<Page, 'id' | 'metaTitle' | 'urlkeynew'> & {
-                parent: Maybe<
-                  { __typename?: 'Page' } & Pick<Page, 'id' | 'metaTitle' | 'urlkeynew'> & {
-                      parent: Maybe<
-                        { __typename?: 'Page' } & Pick<Page, 'id' | 'metaTitle' | 'urlkeynew'> & {
-                            parent: Maybe<
-                              { __typename?: 'Page' } & Pick<
-                                Page,
-                                'id' | 'metaTitle' | 'urlkeynew'
-                              > & {
-                                  parent: Maybe<
-                                    { __typename?: 'Page' } & Pick<
-                                      Page,
-                                      'id' | 'metaTitle' | 'urlkeynew'
-                                    >
-                                  >
-                                }
-                            >
-                          }
-                      >
-                    }
-                >
-              }
-          >
-        }
-    >
+export type GQLGetPageNlQuery = { __typename?: 'Query' } & {
+  page: Maybe<
+    { __typename?: 'Page' } & Pick<
+      GQLPage,
+      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
+    > & { urlEN: GQLPage['url'] } & {
+        blogPost: Maybe<
+          { __typename?: 'BlogPost' } & Pick<
+            GQLBlogPost,
+            'publicPublishedAt' | 'title' | 'content'
+          > & {
+              image: Maybe<
+                { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
+              >
+              author: Maybe<
+                { __typename?: 'Employee' } & Pick<GQLEmployee, 'firstName' | 'lastName' | 'email'>
+              >
+            }
+        >
+      }
   >
 }
 
-export const GetBlogPostsDocument = gql`
-  query GetBlogPosts($limit: Int!, $exclude: ID, $after: DateTime!, $parentId: ID!) {
-    blogPosts: blogPosts(
-      where: {
-        id_not: $exclude
-        publicPublishedAt_gte: $after
-        status: PUBLISHED
-        page: { parent: { id: $parentId } }
-      }
-      first: $limit
-      orderBy: publicPublishedAt_DESC
-    ) {
-      id
-      title
-      publicPublishedAt
-      image {
-        id
-        handle
-        url
-        mimeType
-      }
-      page {
-        id
-        metaTitle
-        urlkeynew
-        parent {
-          id
-          metaTitle
-          urlkeynew
-          parent {
-            id
-            metaTitle
-            urlkeynew
-            parent {
-              id
-              metaTitle
-              urlkeynew
-              parent {
-                id
-                metaTitle
-                urlkeynew
-              }
+export type GQLGetPageEnQueryVariables = {
+  url: Scalars['String']
+}
+
+export type GQLGetPageEnQuery = { __typename?: 'Query' } & {
+  page: Maybe<
+    { __typename?: 'Page' } & Pick<
+      GQLPage,
+      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
+    > & { urlNL: GQLPage['url'] } & {
+        blogPost: Maybe<
+          { __typename?: 'BlogPost' } & Pick<
+            GQLBlogPost,
+            'publicPublishedAt' | 'title' | 'content'
+          > & {
+              image: Maybe<
+                { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
+              >
+              author: Maybe<
+                { __typename?: 'Employee' } & Pick<GQLEmployee, 'firstName' | 'lastName' | 'email'>
+              >
             }
-          }
+        >
+      }
+  >
+}
+
+export type GQLGetStaticPathsNlQueryVariables = {
+  startsWith: Scalars['String']
+}
+
+export type GQLGetStaticPathsNlQuery = { __typename?: 'Query' } & {
+  pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'>>>
+}
+
+export type GQLGetStaticPathsEnQueryVariables = {
+  startsWith: Scalars['String']
+}
+
+export type GQLGetStaticPathsEnQuery = { __typename?: 'Query' } & {
+  pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'>>>
+}
+
+export const GetPageNlDocument = gql`
+  query GetPageNL($url: String!) {
+    page(where: { urlNL: $url }) {
+      metaTitle(locale: NL)
+      metaDescription(locale: NL)
+      metaRobots
+      url(locale: NL)
+      urlEN: url(locale: EN)
+      blogPost {
+        publicPublishedAt
+        image {
+          height
+          width
+          url
+          handle
+        }
+        title
+        content
+        author {
+          firstName
+          lastName
+          email
         }
       }
     }
@@ -9027,46 +7854,216 @@ export const GetBlogPostsDocument = gql`
 `
 
 /**
- * __useGetBlogPostsQuery__
+ * __useGetPageNlQuery__
  *
- * To run a query within a React component, call `useGetBlogPostsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBlogPostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetPageNlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPageNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetBlogPostsQuery({
+ * const { data, loading, error } = useGetPageNlQuery({
  *   variables: {
- *      limit: // value for 'limit'
- *      exclude: // value for 'exclude'
- *      after: // value for 'after'
- *      parentId: // value for 'parentId'
+ *      url: // value for 'url'
  *   },
  * });
  */
-export function useGetBlogPostsQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<GetBlogPostsQuery, GetBlogPostsQueryVariables>,
+export function useGetPageNlQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>,
 ) {
-  return ApolloReactHooks.useQuery<GetBlogPostsQuery, GetBlogPostsQueryVariables>(
-    GetBlogPostsDocument,
+  return ApolloReactHooks.useQuery<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>(
+    GetPageNlDocument,
     baseOptions,
   )
 }
-export function useGetBlogPostsLazyQuery(
+export function useGetPageNlLazyQuery(
   baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GetBlogPostsQuery,
-    GetBlogPostsQueryVariables
+    GQLGetPageNlQuery,
+    GQLGetPageNlQueryVariables
   >,
 ) {
-  return ApolloReactHooks.useLazyQuery<GetBlogPostsQuery, GetBlogPostsQueryVariables>(
-    GetBlogPostsDocument,
+  return ApolloReactHooks.useLazyQuery<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>(
+    GetPageNlDocument,
     baseOptions,
   )
 }
-export type GetBlogPostsQueryHookResult = ReturnType<typeof useGetBlogPostsQuery>
-export type GetBlogPostsLazyQueryHookResult = ReturnType<typeof useGetBlogPostsLazyQuery>
-export type GetBlogPostsQueryResult = ApolloReactCommon.QueryResult<
-  GetBlogPostsQuery,
-  GetBlogPostsQueryVariables
+export type GetPageNlQueryHookResult = ReturnType<typeof useGetPageNlQuery>
+export type GetPageNlLazyQueryHookResult = ReturnType<typeof useGetPageNlLazyQuery>
+export type GetPageNlQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetPageNlQuery,
+  GQLGetPageNlQueryVariables
+>
+export const GetPageEnDocument = gql`
+  query GetPageEN($url: String!) {
+    page(where: { urlEN: $url }) {
+      metaTitle(locale: EN)
+      metaDescription(locale: EN)
+      metaRobots
+      url(locale: EN)
+      urlNL: url(locale: NL)
+      blogPost {
+        publicPublishedAt
+        image {
+          height
+          width
+          url
+          handle
+        }
+        title
+        content
+        author {
+          firstName
+          lastName
+          email
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetPageEnQuery__
+ *
+ * To run a query within a React component, call `useGetPageEnQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPageEnQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPageEnQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *   },
+ * });
+ */
+export function useGetPageEnQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<GQLGetPageEnQuery, GQLGetPageEnQueryVariables>,
+) {
+  return ApolloReactHooks.useQuery<GQLGetPageEnQuery, GQLGetPageEnQueryVariables>(
+    GetPageEnDocument,
+    baseOptions,
+  )
+}
+export function useGetPageEnLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetPageEnQuery,
+    GQLGetPageEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetPageEnQuery, GQLGetPageEnQueryVariables>(
+    GetPageEnDocument,
+    baseOptions,
+  )
+}
+export type GetPageEnQueryHookResult = ReturnType<typeof useGetPageEnQuery>
+export type GetPageEnLazyQueryHookResult = ReturnType<typeof useGetPageEnLazyQuery>
+export type GetPageEnQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetPageEnQuery,
+  GQLGetPageEnQueryVariables
+>
+export const GetStaticPathsNlDocument = gql`
+  query GetStaticPathsNL($startsWith: String!) {
+    pages(where: { urlNL_starts_with: $startsWith }) {
+      url(locale: NL)
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsNlQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsNlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsNlQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *   },
+ * });
+ */
+export function useGetStaticPathsNlQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsNlQuery,
+    GQLGetStaticPathsNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsNlQuery, GQLGetStaticPathsNlQueryVariables>(
+    GetStaticPathsNlDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsNlLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsNlQuery,
+    GQLGetStaticPathsNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsNlQuery, GQLGetStaticPathsNlQueryVariables>(
+    GetStaticPathsNlDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsNlQueryHookResult = ReturnType<typeof useGetStaticPathsNlQuery>
+export type GetStaticPathsNlLazyQueryHookResult = ReturnType<typeof useGetStaticPathsNlLazyQuery>
+export type GetStaticPathsNlQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsNlQuery,
+  GQLGetStaticPathsNlQueryVariables
+>
+export const GetStaticPathsEnDocument = gql`
+  query GetStaticPathsEN($startsWith: String!) {
+    pages(where: { urlEN_starts_with: $startsWith }) {
+      url(locale: EN)
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsEnQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsEnQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsEnQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsEnQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *   },
+ * });
+ */
+export function useGetStaticPathsEnQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsEnQuery,
+    GQLGetStaticPathsEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsEnQuery, GQLGetStaticPathsEnQueryVariables>(
+    GetStaticPathsEnDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsEnLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsEnQuery,
+    GQLGetStaticPathsEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsEnQuery, GQLGetStaticPathsEnQueryVariables>(
+    GetStaticPathsEnDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsEnQueryHookResult = ReturnType<typeof useGetStaticPathsEnQuery>
+export type GetStaticPathsEnLazyQueryHookResult = ReturnType<typeof useGetStaticPathsEnLazyQuery>
+export type GetStaticPathsEnQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsEnQuery,
+  GQLGetStaticPathsEnQueryVariables
 >

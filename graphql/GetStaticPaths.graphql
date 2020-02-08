@@ -1,0 +1,11 @@
+query GetStaticPathsNL($startsWith: String!) {
+  pages(where: { urlNL_starts_with: $startsWith }) {
+    url(locale: NL)
+  }
+}
+
+query GetStaticPathsEN($startsWith: String!) {
+  pages(where: { urlEN_starts_with: $startsWith }) {
+    url(locale: EN)
+  }
+}
