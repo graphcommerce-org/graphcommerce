@@ -1,0 +1,25 @@
+query GetPageNL($url: String!) {
+  page(where: { urlNL: $url }) {
+    metaTitle(locale: NL)
+    metaDescription(locale: NL)
+    metaRobots
+    url(locale: NL)
+    urlEN: url(locale: EN)
+    blogPost {
+      publicPublishedAt
+      image {
+        height
+        width
+        url
+        handle
+      }
+      title(locale: NL)
+      content(locale: NL)
+      author {
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+}
