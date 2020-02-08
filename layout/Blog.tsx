@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/no-danger */
+
 import { BlogPosting } from 'schema-dts'
 import { JsonLd } from 'react-schemaorg'
 import Error from 'next/error'
-import { GraphCmsLink, GraphCmsPage, GraphCmsPageHead } from '../graphcms'
+import { GraphCmsPage, PageHead, Link, isPageNlHasEn, isPageEnHasNl } from '../graphcms'
 
 const BlogLayout: React.FC<GraphCmsPage> = ({ page, locale }) => {
   if (!page.blogPost) {
@@ -11,7 +13,7 @@ const BlogLayout: React.FC<GraphCmsPage> = ({ page, locale }) => {
 
   return (
     <div>
-      <GraphCmsPageHead locale={locale} page={page} />
+      <PageHead locale={locale} page={page} />
       <JsonLd<BlogPosting>
         item={{
           '@context': 'https://schema.org',
@@ -22,11 +24,22 @@ const BlogLayout: React.FC<GraphCmsPage> = ({ page, locale }) => {
         }}
       />
       <h1>
-        <GraphCmsLink page={page} locale={locale}>
+        <Link metaRobots={page.metaRobots} url={page.url!}>
           {page.blogPost.title}
-        </GraphCmsLink>
+        </Link>
       </h1>
-      <div dangerouslySetInnerHTML={{ __html: page.blogPost.content! }} />
+      {isPageNlHasEn(page) && (
+        <Link metaRobots={page.metaRobots} url={page.urlEN!}>
+          Read in English
+        </Link>
+      )}
+      {isPageEnHasNl(page) && (
+        <Link metaRobots={page.metaRobots} url={page.urlNL!}>
+          Read in Dutch
+        </Link>
+      )}
+
+      <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content! }} />
     </div>
   )
 }

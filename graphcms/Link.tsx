@@ -1,38 +1,35 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
 import Link from 'next/link'
 import { GQLMetaRobots } from '../generated/graphql'
-import { GraphCmsPage } from './GraphCmsPage'
 
-export function getCanonical(page: GraphCmsPage['page']) {
-  return `/${page.url}`
+export function getCanonical(url: string) {
+  return `/${url}`
 }
 
-export function getPagePath(page: GraphCmsPage['page']) {
-  if (!page.url) {
-    throw new Error("Page doesn't have url")
-  }
-  const url = page.url.split('/')
-  if (url[0] === 'blog') url[1] = '[slug]'
-  return `/${url.join('/')}`
+// Generate the path from theh URL
+// todo(paales) We should probably do something with the router to regex the routes.
+export function getPagePath(url: string) {
+  const urlParts = url.split('/')
+  if (urlParts[0] === 'blog') urlParts[1] = '[slug]'
+  if (urlParts[1] === 'blog') urlParts[2] = '[slug]'
+  return `/${urlParts.join('/')}`
 }
 
-/**
- * Generate a next/link from a GraphCms Page. If no children are passed use the metaTitle as text.
- */
-const GraphCmsLink: React.FC<GraphCmsPage> = ({ page, children }) => {
+// Generate a next/link from a GraphCms Page.
+const GraphCmsLink: React.FC<{ url: string; metaRobots: GQLMetaRobots }> = ({
+  url,
+  metaRobots,
+  children,
+}) => {
   const aProps: React.HTMLProps<HTMLAnchorElement> = {}
-  if (
-    page.metaRobots === GQLMetaRobots.IndexNofollow ||
-    page.metaRobots === GQLMetaRobots.NoindexNofollow
-  ) {
-    aProps.rel = 'nofollow'
-  }
+  if (metaRobots.includes('NOINDEX')) aProps.rel = 'nofollow'
 
   return (
-    <Link href={getPagePath(page)} as={getCanonical(page)}>
-      <a {...aProps}>{children ?? page.metaTitle}</a>
+    <Link href={getPagePath(url)} as={getCanonical(url)}>
+      <a {...aProps}>{children}</a>
     </Link>
   )
 }
 
-export { GraphCmsLink }
+export { GraphCmsLink as Link }
