@@ -11,7 +11,7 @@ const BlogLayout: React.FC<GraphCmsPage> = ({ page, locale }) => {
 
   return (
     <div>
-      <GraphCmsPageHead page={page} />
+      <GraphCmsPageHead locale={locale} page={page} />
       <JsonLd<BlogPosting>
         item={{
           '@context': 'https://schema.org',
@@ -22,7 +22,9 @@ const BlogLayout: React.FC<GraphCmsPage> = ({ page, locale }) => {
         }}
       />
       <h1>
-        <GraphCmsLink page={page}>{page.blogPost.title}</GraphCmsLink>
+        <GraphCmsLink page={page} locale={locale}>
+          {page.blogPost.title}
+        </GraphCmsLink>
       </h1>
       <div dangerouslySetInnerHTML={{ __html: page.blogPost.content! }} />
     </div>

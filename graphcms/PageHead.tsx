@@ -1,14 +1,26 @@
 import Head from 'next/head'
-import { getCanonical, PageUrl } from './Link'
-import { GQLPage } from '../generated/graphql'
+import { GraphCmsPage, isPageNl, isPageEn } from './GraphCmsPage'
+import { getCanonical } from './Link'
 
-export type PageHead = Pick<GQLPage, 'metaDescription' | 'metaRobots' | 'metaTitle'>
-
-const GraphCmsPageHead: React.FC<{ page: PageHead & PageUrl }> = ({ page }) => {
-  // useEffect(() => {
-  //   // todo(paales) This should be implemented in _document, because this will not work with SSR.
-  //   document.documentElement.lang = language
-  // }, [language])
+const GraphCmsPageHead: React.FC<GraphCmsPage> = ({ page }) => {
+  let hrefLang
+  if (isPageNl(page)) {
+    hrefLang = (
+      <>
+        <link rel='alternate' hrefLang='nl' href={getCanonical(page)} />
+        <link rel='alternate' hrefLang='en' href={`/${page.urlEN}`} />
+        <link rel='alternate' hrefLang='x-default' href={getCanonical(page)} />
+      </>
+    )
+  } else if (isPageEn(page)) {
+    hrefLang = (
+      <>
+        <link rel='alternate' hrefLang='en' href={getCanonical(page)} />
+        <link rel='alternate' hrefLang='nl' href={`/${page.urlNL}`} />
+        <link rel='alternate' hrefLang='x-default' href={`/${page.urlNL}`} />
+      </>
+    )
+  }
 
   return (
     <Head>
@@ -16,6 +28,7 @@ const GraphCmsPageHead: React.FC<{ page: PageHead & PageUrl }> = ({ page }) => {
       <meta name='description' content={page.metaDescription || ''} />
       <meta name='robots' content={page.metaRobots} />
       <link rel='canonical' href={getCanonical(page)} />
+      {hrefLang}
     </Head>
   )
 }

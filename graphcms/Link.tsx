@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link'
-import { GQLMetaRobots, GQLPage } from '../generated/graphql'
+import { GQLMetaRobots } from '../generated/graphql'
+import { GraphCmsPage } from './GraphCmsPage'
 
-export type PageUrl = Pick<GQLPage, 'url' | 'metaRobots' | 'metaTitle'>
-
-export function getCanonical(page: PageUrl) {
+export function getCanonical(page: GraphCmsPage['page']) {
   return `/${page.url}`
 }
 
-export function getPagePath(page: PageUrl) {
+export function getPagePath(page: GraphCmsPage['page']) {
   if (!page.url) {
     throw new Error("Page doesn't have url")
   }
@@ -20,7 +19,7 @@ export function getPagePath(page: PageUrl) {
 /**
  * Generate a next/link from a GraphCms Page. If no children are passed use the metaTitle as text.
  */
-const GraphCmsLink: React.FC<{ page: PageUrl }> = ({ page, children }) => {
+const GraphCmsLink: React.FC<GraphCmsPage> = ({ page, children }) => {
   const aProps: React.HTMLProps<HTMLAnchorElement> = {}
   if (
     page.metaRobots === GQLMetaRobots.IndexNofollow ||
