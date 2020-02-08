@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { getCanonical, PageUrl } from './Link'
-import { GQLPage } from '../../generated/graphql'
+import { GQLPage } from '../generated/graphql'
 
 export type PageHead = Pick<GQLPage, 'metaDescription' | 'metaRobots' | 'metaTitle'>
 

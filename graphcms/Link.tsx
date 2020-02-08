@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link'
-import { GQLMetaRobots, GQLPage } from '../../generated/graphql'
+import { GQLMetaRobots, GQLPage } from '../generated/graphql'
 
 export type PageUrl = Pick<GQLPage, 'url' | 'metaRobots' | 'metaTitle'>
 
