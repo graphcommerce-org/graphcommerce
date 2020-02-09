@@ -8,11 +8,11 @@ export type GraphCmsPage = {
 export function isPageNlHasEn(
   pet: GraphCmsPage['page'],
 ): pet is NonNullable<GQLGetPageNlQuery['page']> {
-  return (pet as NonNullable<GQLGetPageNlQuery['page']>).urlEN !== undefined
+  return !!(pet as NonNullable<GQLGetPageNlQuery['page']>).urlEN
 }
 
 export function isPageEnHasNl(
   pet: GraphCmsPage['page'],
 ): pet is NonNullable<GQLGetPageEnQuery['page']> {
-  return (pet as NonNullable<GQLGetPageEnQuery['page']>).urlNL !== undefined
+  return !!(pet as NonNullable<GQLGetPageEnQuery['page']>).urlNL
 }
