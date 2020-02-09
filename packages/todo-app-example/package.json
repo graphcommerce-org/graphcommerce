@@ -57,7 +57,7 @@
     "@types/jest": "24.0.18",
     "@types/node": "12.12.26",
     "@types/react": "16.9.9",
-    "@types/react-dom": "16.9.2",
+    "@types/react-dom": "16.9.5",
     "graphql.macro": "1.4.2",
     "idx.macro": "4.0.0",
     "typescript": "3.7.5"
