@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "eslint": "5.16.0",
-    "eslint-config-prettier": "6.3.0",
+    "eslint-config-prettier": "6.10.0",
     "eslint-plugin-jest": "22.17.0",
     "husky": "3.0.9",
     "lint-staged": "9.4.2",
