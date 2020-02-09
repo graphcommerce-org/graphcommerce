@@ -48,34 +48,28 @@ export const getStaticPaths: (
   return queryResult.data.pages.map(page => handleRootUrl(page!.url!))
 }
 
-export type GraphCmsStaticProps = (context: {
-  params: ParsedUrlQuery
-}) => Promise<{ props: GraphCmsPage }>
-
-export const createGetStaticProps = (
-  baseUrl: string,
-  locale: GQLLocale,
-): GraphCmsStaticProps => async ({ params }) => {
+export const getProps = async (url: string, locale: GQLLocale) => {
   const apolloClient = initApolloClient()
 
   let queryResult: ApolloQueryResult<GQLGetPageNlQuery | GQLGetPageEnQuery>
+  // Fetch data per locale
   switch (locale) {
     case GQLLocale.Nl:
       queryResult = await apolloClient.query<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>({
         query: GetPageNlDocument,
-        variables: { url: `${baseUrl}/${params.slug}` },
+        variables: { url },
       })
       break
     case GQLLocale.En:
       queryResult = await apolloClient.query<GQLGetPageEnQuery, GQLGetPageEnQueryVariables>({
         query: GetPageEnDocument,
-        variables: { url: `${baseUrl}/${params.slug}` },
+        variables: { url },
       })
       break
   }
 
   // Generate the result object.
-  const result = {
+  const result: { props: GraphCmsPage } = {
     props: { locale, page: queryResult.data.page! },
   }
 
