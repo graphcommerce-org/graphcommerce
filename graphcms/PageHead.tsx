@@ -9,7 +9,7 @@ const PageHead: React.FC<GraphCmsPage> = ({ page }) => {
       <>
         <link rel='alternate' hrefLang='nl' href={getCanonical(page.url!)} />
         <link rel='alternate' hrefLang='en' href={getCanonical(page.urlEN!)} />
-        <link rel='alternate' hrefLang='x-default' href={getCanonical(page.urlEN!)} />
+        <link rel='alternate' hrefLang='x-default' href={getCanonical(page.url!)} />
       </>
     )
   } else if (isPageEnHasNl(page)) {
