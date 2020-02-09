@@ -19,6 +19,7 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "jsx-a11y/anchor-is-valid": ["error", { "components": ["Link"] }],
     "default-case": "off",
     "@typescript-eslint/indent": "off",
     "react/react-in-jsx-scope": "off",

@@ -1,7 +1,17 @@
-import { GQLLocale, GQLGetPageNlQuery, GQLGetPageEnQuery } from '../generated/graphql'
+import {
+  GQLLocale,
+  GQLGetPageNlQuery,
+  GQLGetPageEnQuery,
+  GQLGetBreadcrumbEnQuery,
+  GQLGetBreadcrumbNlQuery,
+  GQLGetChildrenNlQuery,
+  GQLGetChildrenEnQuery,
+} from '../generated/graphql'
 
 export type GraphCmsPage = {
-  page: NonNullable<GQLGetPageNlQuery['page']> | NonNullable<GQLGetPageEnQuery['page']>
+  page: GQLGetPageNlQuery['page'] | GQLGetPageEnQuery['page']
+  breadcrumbs: Array<GQLGetBreadcrumbNlQuery['page']> | Array<GQLGetBreadcrumbEnQuery['page']>
+  childs: GQLGetChildrenNlQuery['pages'] | GQLGetChildrenEnQuery['pages']
   locale: GQLLocale
 }
 

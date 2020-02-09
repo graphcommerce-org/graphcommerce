@@ -1,0 +1,8 @@
+query GetBreadcrumbEn($url: String!) {
+  page(where: { urlEN: $url }) {
+    metaTitle(locale: EN)
+    metaRobots
+    url(locale: EN)
+    title(locale: EN)
+  }
+}

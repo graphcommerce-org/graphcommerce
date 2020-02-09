@@ -1,3 +1,3 @@
 export * from './GraphCmsPage'
 export * from './Link'
-export * from './PageHead'
+export * from './PageMeta'

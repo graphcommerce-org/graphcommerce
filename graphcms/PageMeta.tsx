@@ -2,7 +2,9 @@ import Head from 'next/head'
 import { GraphCmsPage, isPageNlHasEn, isPageEnHasNl } from './GraphCmsPage'
 import { getCanonical } from './Link'
 
-const PageHead: React.FC<GraphCmsPage> = ({ page }) => {
+const PageMeta: React.FC<GraphCmsPage> = ({ page }) => {
+  if (!page) return <></>
+
   let hrefLang
   if (isPageNlHasEn(page)) {
     hrefLang = (
@@ -23,14 +25,16 @@ const PageHead: React.FC<GraphCmsPage> = ({ page }) => {
   }
 
   return (
-    <Head>
-      <title>{page.metaTitle}</title>
-      <meta name='description' content={page.metaDescription || ''} />
-      <meta name='robots' content={page.metaRobots} />
-      <link rel='canonical' href={getCanonical(page.url!)} />
-      {hrefLang}
-    </Head>
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name='description' content={page.metaDescription || ''} />
+        <meta name='robots' content={page.metaRobots} />
+        <link rel='canonical' href={getCanonical(page.url!)} />
+        {hrefLang}
+      </Head>
+    </>
   )
 }
 
-export { PageHead }
+export { PageMeta }

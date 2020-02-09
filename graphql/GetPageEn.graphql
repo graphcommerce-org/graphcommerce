@@ -5,6 +5,8 @@ query GetPageEN($url: String!) {
     metaRobots
     url(locale: EN)
     urlNL: url(locale: NL)
+    title(locale: EN)
+    titleNL: title(locale: EN)
     blogPost {
       publicPublishedAt
       image {
@@ -13,7 +15,6 @@ query GetPageEN($url: String!) {
         url
         handle
       }
-      title(locale: EN)
       content(locale: EN)
       author {
         firstName

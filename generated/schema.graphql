@@ -901,6 +901,34 @@ input PageWhereInput {
   metaRobots_not: MetaRobots
   metaRobots_in: [MetaRobots!]
   metaRobots_not_in: [MetaRobots!]
+  titleEN: String
+  titleEN_not: String
+  titleEN_in: [String!]
+  titleEN_not_in: [String!]
+  titleEN_lt: String
+  titleEN_lte: String
+  titleEN_gt: String
+  titleEN_gte: String
+  titleEN_contains: String
+  titleEN_not_contains: String
+  titleEN_starts_with: String
+  titleEN_not_starts_with: String
+  titleEN_ends_with: String
+  titleEN_not_ends_with: String
+  titleNL: String
+  titleNL_not: String
+  titleNL_in: [String!]
+  titleNL_not_in: [String!]
+  titleNL_lt: String
+  titleNL_lte: String
+  titleNL_gt: String
+  titleNL_gte: String
+  titleNL_contains: String
+  titleNL_not_contains: String
+  titleNL_starts_with: String
+  titleNL_not_starts_with: String
+  titleNL_ends_with: String
+  titleNL_not_ends_with: String
   structuredPage: StructuredPageWhereInput
   blogPost: BlogPostWhereInput
   jobListing: JobListingWhereInput
@@ -1747,6 +1775,7 @@ type Page implements Node {
   metaTitle(locale: Locale): String
   metaDescription(locale: Locale): String
   url(locale: Locale): String
+  title(locale: Locale): String
 }
 type BlogPost implements Node {
   status: Status!
@@ -2659,6 +2688,10 @@ enum PageOrderByInput {
   metaDescriptionNL_DESC
   metaRobots_ASC
   metaRobots_DESC
+  titleEN_ASC
+  titleEN_DESC
+  titleNL_ASC
+  titleNL_DESC
 }
 input AssetWhereUniqueInput {
   id: ID
@@ -3314,6 +3347,8 @@ input PageCreateWithoutJobListingInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageCreateOneWithoutPageInput
   blogPost: BlogPostCreateOneWithoutPageInput
   comment: CommentCreateOneWithoutPageInput
@@ -3387,6 +3422,8 @@ input PageCreateWithoutSingularPageInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageCreateOneWithoutPageInput
   blogPost: BlogPostCreateOneWithoutPageInput
   jobListing: JobListingCreateOneWithoutPageInput
@@ -3495,6 +3532,8 @@ input PageCreateWithoutBlogPostInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageCreateOneWithoutPageInput
   jobListing: JobListingCreateOneWithoutPageInput
   comment: CommentCreateOneWithoutPageInput
@@ -3539,6 +3578,8 @@ input PageCreateWithoutCommentInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageCreateOneWithoutPageInput
   blogPost: BlogPostCreateOneWithoutPageInput
   jobListing: JobListingCreateOneWithoutPageInput
@@ -3700,6 +3741,8 @@ input PageCreateWithoutStructuredPageInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
   blogPost: BlogPostCreateOneWithoutPageInput
   jobListing: JobListingCreateOneWithoutPageInput
   comment: CommentCreateOneWithoutPageInput
@@ -3981,6 +4024,8 @@ input PageCreateInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageCreateOneWithoutPageInput
   blogPost: BlogPostCreateOneWithoutPageInput
   jobListing: JobListingCreateOneWithoutPageInput
@@ -4554,6 +4599,8 @@ input PageUpdateWithoutJobListingDataInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageUpdateOneWithoutPageInput
   blogPost: BlogPostUpdateOneWithoutPageInput
   comment: CommentUpdateOneWithoutPageInput
@@ -4662,6 +4709,8 @@ input PageUpdateWithoutSingularPageDataInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageUpdateOneWithoutPageInput
   blogPost: BlogPostUpdateOneWithoutPageInput
   jobListing: JobListingUpdateOneWithoutPageInput
@@ -4820,6 +4869,8 @@ input PageUpdateWithoutBlogPostDataInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageUpdateOneWithoutPageInput
   jobListing: JobListingUpdateOneWithoutPageInput
   comment: CommentUpdateOneWithoutPageInput
@@ -4876,6 +4927,8 @@ input PageUpdateWithoutCommentDataInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageUpdateOneWithoutPageInput
   blogPost: BlogPostUpdateOneWithoutPageInput
   jobListing: JobListingUpdateOneWithoutPageInput
@@ -5602,6 +5655,8 @@ input PageUpdateWithoutStructuredPageDataInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
   blogPost: BlogPostUpdateOneWithoutPageInput
   jobListing: JobListingUpdateOneWithoutPageInput
   comment: CommentUpdateOneWithoutPageInput
@@ -6077,6 +6132,8 @@ input PageUpdateInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
   structuredPage: StructuredPageUpdateOneWithoutPageInput
   blogPost: BlogPostUpdateOneWithoutPageInput
   jobListing: JobListingUpdateOneWithoutPageInput
@@ -6216,6 +6273,8 @@ input PageUpdateManyMutationInput {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots
+  titleEN: String
+  titleNL: String
 }
 input AssetSubscriptionWhereInput {
   AND: [AssetSubscriptionWhereInput!]
@@ -6655,4 +6714,6 @@ type PagePreviousValues {
   metaDescriptionEN: String
   metaDescriptionNL: String
   metaRobots: MetaRobots!
+  titleEN: String
+  titleNL: String
 }

@@ -5379,6 +5379,7 @@ export type GQLPage = GQLNode & {
   metaTitle?: Maybe<Scalars['String']>
   metaDescription?: Maybe<Scalars['String']>
   url?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
 }
 
 export type GQLPageMetaTitleArgs = {
@@ -5390,6 +5391,10 @@ export type GQLPageMetaDescriptionArgs = {
 }
 
 export type GQLPageUrlArgs = {
+  locale?: Maybe<GQLLocale>
+}
+
+export type GQLPageTitleArgs = {
   locale?: Maybe<GQLLocale>
 }
 
@@ -5409,6 +5414,8 @@ export type GQLPageCreateInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
@@ -5450,6 +5457,8 @@ export type GQLPageCreateWithoutBlogPostInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
   comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
@@ -5465,6 +5474,8 @@ export type GQLPageCreateWithoutCommentInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
@@ -5480,6 +5491,8 @@ export type GQLPageCreateWithoutJobListingInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
   comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
@@ -5495,6 +5508,8 @@ export type GQLPageCreateWithoutSingularPageInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageCreateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
@@ -5510,6 +5525,8 @@ export type GQLPageCreateWithoutStructuredPageInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   blogPost?: Maybe<GQLBlogPostCreateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingCreateOneWithoutPageInput>
   comment?: Maybe<GQLCommentCreateOneWithoutPageInput>
@@ -5553,6 +5570,10 @@ export enum GQLPageOrderByInput {
   MetaDescriptionNlDesc = 'metaDescriptionNL_DESC',
   MetaRobotsAsc = 'metaRobots_ASC',
   MetaRobotsDesc = 'metaRobots_DESC',
+  TitleEnAsc = 'titleEN_ASC',
+  TitleEnDesc = 'titleEN_DESC',
+  TitleNlAsc = 'titleNL_ASC',
+  TitleNlDesc = 'titleNL_DESC',
 }
 
 export type GQLPagePreviousValues = {
@@ -5568,6 +5589,8 @@ export type GQLPagePreviousValues = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots: GQLMetaRobots
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
 }
 
 export type GQLPageSubscriptionPayload = {
@@ -5598,6 +5621,8 @@ export type GQLPageUpdateInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
@@ -5614,6 +5639,8 @@ export type GQLPageUpdateManyMutationInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
 }
 
 export type GQLPageUpdateOneWithoutBlogPostInput = {
@@ -5670,6 +5697,8 @@ export type GQLPageUpdateWithoutBlogPostDataInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
   comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
@@ -5685,6 +5714,8 @@ export type GQLPageUpdateWithoutCommentDataInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
@@ -5700,6 +5731,8 @@ export type GQLPageUpdateWithoutJobListingDataInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
   comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
@@ -5715,6 +5748,8 @@ export type GQLPageUpdateWithoutSingularPageDataInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageUpdateOneWithoutPageInput>
   blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
@@ -5730,6 +5765,8 @@ export type GQLPageUpdateWithoutStructuredPageDataInput = {
   metaDescriptionEN?: Maybe<Scalars['String']>
   metaDescriptionNL?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
+  titleEN?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
   blogPost?: Maybe<GQLBlogPostUpdateOneWithoutPageInput>
   jobListing?: Maybe<GQLJobListingUpdateOneWithoutPageInput>
   comment?: Maybe<GQLCommentUpdateOneWithoutPageInput>
@@ -5888,6 +5925,34 @@ export type GQLPageWhereInput = {
   metaRobots_not?: Maybe<GQLMetaRobots>
   metaRobots_in?: Maybe<Array<GQLMetaRobots>>
   metaRobots_not_in?: Maybe<Array<GQLMetaRobots>>
+  titleEN?: Maybe<Scalars['String']>
+  titleEN_not?: Maybe<Scalars['String']>
+  titleEN_in?: Maybe<Array<Scalars['String']>>
+  titleEN_not_in?: Maybe<Array<Scalars['String']>>
+  titleEN_lt?: Maybe<Scalars['String']>
+  titleEN_lte?: Maybe<Scalars['String']>
+  titleEN_gt?: Maybe<Scalars['String']>
+  titleEN_gte?: Maybe<Scalars['String']>
+  titleEN_contains?: Maybe<Scalars['String']>
+  titleEN_not_contains?: Maybe<Scalars['String']>
+  titleEN_starts_with?: Maybe<Scalars['String']>
+  titleEN_not_starts_with?: Maybe<Scalars['String']>
+  titleEN_ends_with?: Maybe<Scalars['String']>
+  titleEN_not_ends_with?: Maybe<Scalars['String']>
+  titleNL?: Maybe<Scalars['String']>
+  titleNL_not?: Maybe<Scalars['String']>
+  titleNL_in?: Maybe<Array<Scalars['String']>>
+  titleNL_not_in?: Maybe<Array<Scalars['String']>>
+  titleNL_lt?: Maybe<Scalars['String']>
+  titleNL_lte?: Maybe<Scalars['String']>
+  titleNL_gt?: Maybe<Scalars['String']>
+  titleNL_gte?: Maybe<Scalars['String']>
+  titleNL_contains?: Maybe<Scalars['String']>
+  titleNL_not_contains?: Maybe<Scalars['String']>
+  titleNL_starts_with?: Maybe<Scalars['String']>
+  titleNL_not_starts_with?: Maybe<Scalars['String']>
+  titleNL_ends_with?: Maybe<Scalars['String']>
+  titleNL_not_ends_with?: Maybe<Scalars['String']>
   structuredPage?: Maybe<GQLStructuredPageWhereInput>
   blogPost?: Maybe<GQLBlogPostWhereInput>
   jobListing?: Maybe<GQLJobListingWhereInput>
@@ -7755,6 +7820,62 @@ export type GQLStructuredPageWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
+export type GQLGetBreadcrumbEnQueryVariables = {
+  url: Scalars['String']
+}
+
+export type GQLGetBreadcrumbEnQuery = { __typename?: 'Query' } & {
+  page: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'metaTitle' | 'metaRobots' | 'url' | 'title'>>
+}
+
+export type GQLGetBreadcrumbNlQueryVariables = {
+  url: Scalars['String']
+}
+
+export type GQLGetBreadcrumbNlQuery = { __typename?: 'Query' } & {
+  page: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'metaTitle' | 'metaRobots' | 'url' | 'title'>>
+}
+
+export type GQLGetChildrenEnQueryVariables = {
+  startsWith: Scalars['String']
+}
+
+export type GQLGetChildrenEnQuery = { __typename?: 'Query' } & {
+  pages: Array<
+    Maybe<
+      { __typename?: 'Page' } & Pick<GQLPage, 'metaRobots' | 'url' | 'title'> & {
+          blogPost: Maybe<
+            { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt'> & {
+                image: Maybe<
+                  { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
+                >
+              }
+          >
+        }
+    >
+  >
+}
+
+export type GQLGetChildrenNlQueryVariables = {
+  startsWith: Scalars['String']
+}
+
+export type GQLGetChildrenNlQuery = { __typename?: 'Query' } & {
+  pages: Array<
+    Maybe<
+      { __typename?: 'Page' } & Pick<GQLPage, 'metaRobots' | 'url' | 'title'> & {
+          blogPost: Maybe<
+            { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt'> & {
+                image: Maybe<
+                  { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
+                >
+              }
+          >
+        }
+    >
+  >
+}
+
 export type GQLGetPageEnQueryVariables = {
   url: Scalars['String']
 }
@@ -7763,13 +7884,10 @@ export type GQLGetPageEnQuery = { __typename?: 'Query' } & {
   page: Maybe<
     { __typename?: 'Page' } & Pick<
       GQLPage,
-      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
-    > & { urlNL: GQLPage['url'] } & {
+      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'title'
+    > & { urlNL: GQLPage['url']; titleNL: GQLPage['title'] } & {
         blogPost: Maybe<
-          { __typename?: 'BlogPost' } & Pick<
-            GQLBlogPost,
-            'publicPublishedAt' | 'title' | 'content'
-          > & {
+          { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt' | 'content'> & {
               image: Maybe<
                 { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
               >
@@ -7790,13 +7908,10 @@ export type GQLGetPageNlQuery = { __typename?: 'Query' } & {
   page: Maybe<
     { __typename?: 'Page' } & Pick<
       GQLPage,
-      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
-    > & { urlEN: GQLPage['url'] } & {
+      'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'title'
+    > & { urlEN: GQLPage['url']; titleEN: GQLPage['title'] } & {
         blogPost: Maybe<
-          { __typename?: 'BlogPost' } & Pick<
-            GQLBlogPost,
-            'publicPublishedAt' | 'title' | 'content'
-          > & {
+          { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt' | 'content'> & {
               image: Maybe<
                 { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
               >
@@ -7825,14 +7940,122 @@ export type GQLGetStaticPathsNlQuery = { __typename?: 'Query' } & {
   pages: Array<Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'url'> & { urlEN: GQLPage['url'] }>>
 }
 
-export const GetPageEnDocument = gql`
-  query GetPageEN($url: String!) {
+export const GetBreadcrumbEnDocument = gql`
+  query GetBreadcrumbEn($url: String!) {
     page(where: { urlEN: $url }) {
       metaTitle(locale: EN)
-      metaDescription(locale: EN)
       metaRobots
       url(locale: EN)
-      urlNL: url(locale: NL)
+      title(locale: EN)
+    }
+  }
+`
+
+/**
+ * __useGetBreadcrumbEnQuery__
+ *
+ * To run a query within a React component, call `useGetBreadcrumbEnQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBreadcrumbEnQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBreadcrumbEnQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *   },
+ * });
+ */
+export function useGetBreadcrumbEnQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetBreadcrumbEnQuery,
+    GQLGetBreadcrumbEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetBreadcrumbEnQuery, GQLGetBreadcrumbEnQueryVariables>(
+    GetBreadcrumbEnDocument,
+    baseOptions,
+  )
+}
+export function useGetBreadcrumbEnLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetBreadcrumbEnQuery,
+    GQLGetBreadcrumbEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetBreadcrumbEnQuery, GQLGetBreadcrumbEnQueryVariables>(
+    GetBreadcrumbEnDocument,
+    baseOptions,
+  )
+}
+export type GetBreadcrumbEnQueryHookResult = ReturnType<typeof useGetBreadcrumbEnQuery>
+export type GetBreadcrumbEnLazyQueryHookResult = ReturnType<typeof useGetBreadcrumbEnLazyQuery>
+export type GetBreadcrumbEnQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetBreadcrumbEnQuery,
+  GQLGetBreadcrumbEnQueryVariables
+>
+export const GetBreadcrumbNlDocument = gql`
+  query GetBreadcrumbNl($url: String!) {
+    page(where: { urlNL: $url }) {
+      metaTitle(locale: NL)
+      metaRobots
+      url(locale: NL)
+      title(locale: NL)
+    }
+  }
+`
+
+/**
+ * __useGetBreadcrumbNlQuery__
+ *
+ * To run a query within a React component, call `useGetBreadcrumbNlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBreadcrumbNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBreadcrumbNlQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *   },
+ * });
+ */
+export function useGetBreadcrumbNlQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetBreadcrumbNlQuery,
+    GQLGetBreadcrumbNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetBreadcrumbNlQuery, GQLGetBreadcrumbNlQueryVariables>(
+    GetBreadcrumbNlDocument,
+    baseOptions,
+  )
+}
+export function useGetBreadcrumbNlLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetBreadcrumbNlQuery,
+    GQLGetBreadcrumbNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetBreadcrumbNlQuery, GQLGetBreadcrumbNlQueryVariables>(
+    GetBreadcrumbNlDocument,
+    baseOptions,
+  )
+}
+export type GetBreadcrumbNlQueryHookResult = ReturnType<typeof useGetBreadcrumbNlQuery>
+export type GetBreadcrumbNlLazyQueryHookResult = ReturnType<typeof useGetBreadcrumbNlLazyQuery>
+export type GetBreadcrumbNlQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetBreadcrumbNlQuery,
+  GQLGetBreadcrumbNlQueryVariables
+>
+export const GetChildrenEnDocument = gql`
+  query GetChildrenEn($startsWith: String!) {
+    pages(where: { urlEN_starts_with: $startsWith }) {
+      metaRobots
+      url(locale: EN)
+      title(locale: EN)
       blogPost {
         publicPublishedAt
         image {
@@ -7841,7 +8064,136 @@ export const GetPageEnDocument = gql`
           url
           handle
         }
-        title(locale: EN)
+      }
+    }
+  }
+`
+
+/**
+ * __useGetChildrenEnQuery__
+ *
+ * To run a query within a React component, call `useGetChildrenEnQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetChildrenEnQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetChildrenEnQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *   },
+ * });
+ */
+export function useGetChildrenEnQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetChildrenEnQuery,
+    GQLGetChildrenEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetChildrenEnQuery, GQLGetChildrenEnQueryVariables>(
+    GetChildrenEnDocument,
+    baseOptions,
+  )
+}
+export function useGetChildrenEnLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetChildrenEnQuery,
+    GQLGetChildrenEnQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetChildrenEnQuery, GQLGetChildrenEnQueryVariables>(
+    GetChildrenEnDocument,
+    baseOptions,
+  )
+}
+export type GetChildrenEnQueryHookResult = ReturnType<typeof useGetChildrenEnQuery>
+export type GetChildrenEnLazyQueryHookResult = ReturnType<typeof useGetChildrenEnLazyQuery>
+export type GetChildrenEnQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetChildrenEnQuery,
+  GQLGetChildrenEnQueryVariables
+>
+export const GetChildrenNlDocument = gql`
+  query GetChildrenNl($startsWith: String!) {
+    pages(where: { urlNL_starts_with: $startsWith }) {
+      metaRobots
+      url(locale: NL)
+      title(locale: NL)
+      blogPost {
+        publicPublishedAt
+        image {
+          height
+          width
+          url
+          handle
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useGetChildrenNlQuery__
+ *
+ * To run a query within a React component, call `useGetChildrenNlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetChildrenNlQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetChildrenNlQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *   },
+ * });
+ */
+export function useGetChildrenNlQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetChildrenNlQuery,
+    GQLGetChildrenNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetChildrenNlQuery, GQLGetChildrenNlQueryVariables>(
+    GetChildrenNlDocument,
+    baseOptions,
+  )
+}
+export function useGetChildrenNlLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetChildrenNlQuery,
+    GQLGetChildrenNlQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetChildrenNlQuery, GQLGetChildrenNlQueryVariables>(
+    GetChildrenNlDocument,
+    baseOptions,
+  )
+}
+export type GetChildrenNlQueryHookResult = ReturnType<typeof useGetChildrenNlQuery>
+export type GetChildrenNlLazyQueryHookResult = ReturnType<typeof useGetChildrenNlLazyQuery>
+export type GetChildrenNlQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetChildrenNlQuery,
+  GQLGetChildrenNlQueryVariables
+>
+export const GetPageEnDocument = gql`
+  query GetPageEN($url: String!) {
+    page(where: { urlEN: $url }) {
+      metaTitle(locale: EN)
+      metaDescription(locale: EN)
+      metaRobots
+      url(locale: EN)
+      urlNL: url(locale: NL)
+      title(locale: EN)
+      titleNL: title(locale: EN)
+      blogPost {
+        publicPublishedAt
+        image {
+          height
+          width
+          url
+          handle
+        }
         content(locale: EN)
         author {
           firstName
@@ -7902,6 +8254,8 @@ export const GetPageNlDocument = gql`
       metaRobots
       url(locale: NL)
       urlEN: url(locale: EN)
+      title(locale: NL)
+      titleEN: title(locale: EN)
       blogPost {
         publicPublishedAt
         image {
@@ -7910,7 +8264,6 @@ export const GetPageNlDocument = gql`
           url
           handle
         }
-        title(locale: NL)
         content(locale: NL)
         author {
           firstName

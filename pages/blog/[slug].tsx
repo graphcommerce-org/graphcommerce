@@ -1,46 +1,47 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import { BlogPosting } from 'schema-dts'
 import { JsonLd } from 'react-schemaorg'
 import Error from 'next/error'
 import { ParsedUrlQuery } from 'querystring'
 import { GQLLocale } from '../../generated/graphql'
-import { GraphCmsPage, PageHead, Link, isPageNlHasEn, isPageEnHasNl } from '../../graphcms'
+import { GraphCmsPage, PageMeta, Link, isPageNlHasEn, isPageEnHasNl } from '../../graphcms'
+import { Breadcrumbs } from '../../graphcms/Breadcrumbs'
 
-const BlogSlug: React.FC<GraphCmsPage> = ({ page, locale }) => {
-  if (!page.blogPost) {
+const BlogSlug: React.FC<GraphCmsPage> = graphCmsPage => {
+  const { page } = graphCmsPage
+  if (!page || !page.blogPost) {
     return <Error statusCode={404} title='page.blogPost not found.' />
   }
 
   return (
     <div>
-      <PageHead locale={locale} page={page} />
+      <PageMeta {...graphCmsPage} />
+      <Breadcrumbs {...graphCmsPage} />
       <JsonLd<BlogPosting>
         item={{
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
-          headline: page.blogPost.title!,
+          headline: page.title!,
           image: page.blogPost.image?.url,
           datePublished: page.blogPost.publicPublishedAt,
         }}
       />
       <h1>
-        <Link metaRobots={page.metaRobots} url={page.url!}>
-          {page.blogPost.title}
+        <Link metaRobots={page.metaRobots} href={page.url!}>
+          {page.title}
         </Link>
       </h1>
       {isPageNlHasEn(page) && (
-        <Link metaRobots={page.metaRobots} url={page.urlEN!}>
+        <Link metaRobots={page.metaRobots} href={page.urlEN!}>
           Read in English
         </Link>
       )}
       {isPageEnHasNl(page) && (
-        <Link metaRobots={page.metaRobots} url={page.urlNL!}>
+        <Link metaRobots={page.metaRobots} href={page.urlNL!}>
           Read in Dutch
         </Link>
       )}
 
+      {/* eslint-disable react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content! }} />
     </div>
   )

@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import Link from 'next/link'
 import { GQLMetaRobots } from '../generated/graphql'
 
@@ -11,14 +9,14 @@ export function getCanonical(url: string) {
 // todo(paales) We should probably do something with the router to regex the routes.
 export function getPagePath(url: string) {
   const urlParts = url.split('/')
-  if (urlParts[0] === 'blog') urlParts[1] = '[slug]'
-  if (urlParts[1] === 'blog') urlParts[2] = '[slug]'
+  if (urlParts[0] === 'blog' && urlParts[1]) urlParts[1] = '[slug]'
+  if (urlParts[1] === 'blog' && urlParts[2]) urlParts[2] = '[slug]'
   return `/${urlParts.join('/')}`
 }
 
 // Generate a next/link from a GraphCms Page.
-const GraphCmsLink: React.FC<{ url: string; metaRobots: GQLMetaRobots }> = ({
-  url,
+const GraphCmsLink: React.FC<{ href: string; metaRobots: GQLMetaRobots }> = ({
+  href: url,
   metaRobots,
   children,
 }) => {
