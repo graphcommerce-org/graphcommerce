@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 import * as ApolloReactCommon from '@apollo/react-common'
 import * as ApolloReactHooks from '@apollo/react-hooks'
 
-export type Maybe<T> = T | null
+export type Maybe<T> = T
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -7838,6 +7838,7 @@ export type GQLGetBreadcrumbNlQuery = { __typename?: 'Query' } & {
 
 export type GQLGetChildrenEnQueryVariables = {
   startsWith: Scalars['String']
+  notStartsWith: Scalars['String']
 }
 
 export type GQLGetChildrenEnQuery = { __typename?: 'Query' } & {
@@ -7858,6 +7859,7 @@ export type GQLGetChildrenEnQuery = { __typename?: 'Query' } & {
 
 export type GQLGetChildrenNlQueryVariables = {
   startsWith: Scalars['String']
+  notStartsWith: Scalars['String']
 }
 
 export type GQLGetChildrenNlQuery = { __typename?: 'Query' } & {
@@ -8051,8 +8053,11 @@ export type GetBreadcrumbNlQueryResult = ApolloReactCommon.QueryResult<
   GQLGetBreadcrumbNlQueryVariables
 >
 export const GetChildrenEnDocument = gql`
-  query GetChildrenEn($startsWith: String!) {
-    pages(where: { urlEN_starts_with: $startsWith }) {
+  query GetChildrenEn($startsWith: String!, $notStartsWith: String!) {
+    pages(
+      where: { urlEN_starts_with: $startsWith, urlEN_not_starts_with: $notStartsWith }
+      orderBy: urlEN_ASC
+    ) {
       metaRobots
       url(locale: EN)
       title(locale: EN)
@@ -8082,6 +8087,7 @@ export const GetChildrenEnDocument = gql`
  * const { data, loading, error } = useGetChildrenEnQuery({
  *   variables: {
  *      startsWith: // value for 'startsWith'
+ *      notStartsWith: // value for 'notStartsWith'
  *   },
  * });
  */
@@ -8114,8 +8120,15 @@ export type GetChildrenEnQueryResult = ApolloReactCommon.QueryResult<
   GQLGetChildrenEnQueryVariables
 >
 export const GetChildrenNlDocument = gql`
-  query GetChildrenNl($startsWith: String!) {
-    pages(where: { urlNL_starts_with: $startsWith }) {
+  query GetChildrenNl($startsWith: String!, $notStartsWith: String!) {
+    pages(
+      where: {
+        urlNL_starts_with: $startsWith
+        urlNL_not: "/"
+        urlNL_not_starts_with: $notStartsWith
+      }
+      orderBy: urlNL_ASC
+    ) {
       metaRobots
       url(locale: NL)
       title(locale: NL)
@@ -8145,6 +8158,7 @@ export const GetChildrenNlDocument = gql`
  * const { data, loading, error } = useGetChildrenNlQuery({
  *   variables: {
  *      startsWith: // value for 'startsWith'
+ *      notStartsWith: // value for 'notStartsWith'
  *   },
  * });
  */
@@ -8318,7 +8332,7 @@ export type GetPageNlQueryResult = ApolloReactCommon.QueryResult<
 >
 export const GetStaticPathsEnDocument = gql`
   query GetStaticPathsEN($startsWith: String!) {
-    pages(where: { urlEN_starts_with: $startsWith }) {
+    pages(where: { urlEN_starts_with: $startsWith }, orderBy: urlEN_ASC) {
       url(locale: EN)
       urlNL: url(locale: NL)
     }
@@ -8371,7 +8385,7 @@ export type GetStaticPathsEnQueryResult = ApolloReactCommon.QueryResult<
 >
 export const GetStaticPathsNlDocument = gql`
   query GetStaticPathsNL($startsWith: String!) {
-    pages(where: { urlNL_starts_with: $startsWith }) {
+    pages(where: { urlNL_starts_with: $startsWith }, orderBy: urlNL_ASC) {
       url(locale: NL)
       urlEN: url(locale: EN)
     }

@@ -5,12 +5,18 @@ generates:
   generated/fragments.json:
     plugins:
       - 'fragment-matcher'
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
   generated/schema.graphql:
     plugins:
       - schema-ast
     config:
       includeDirectives: true
       commentDescriptions: true
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
   generated/graphql.ts:
     plugins:
       - 'typescript'
@@ -21,7 +27,8 @@ generates:
       withHooks: true
       withComponent: false
       typesPrefix: GQL
+      maybeValue: T
     hooks:
-      afterAllFileWrite:
+      afterOneFileWrite:
         - eslint --fix
         - prettier --write

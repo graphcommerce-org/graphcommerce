@@ -1,6 +1,5 @@
 import { Sitemap, ISitemapItemOptionsLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { handleRootUrl } from '../../graphcms/ssg'
 import {
   GQLGetStaticPathsNlQuery,
   GQLGetStaticPathsNlQueryVariables,
@@ -44,10 +43,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Add NL Pages with hreflang alternative
     resultNl.pages.forEach(page => {
-      const item: ISitemapItemOptionsLoose = {
-        url: handleRootUrl(page!.url!),
-      }
-      if (page!.urlEN) item.links = [{ url: handleRootUrl(page!.urlEN), lang: 'en' }]
+      const item: ISitemapItemOptionsLoose = { url: page!.url! }
+      if (page!.urlEN) item.links = [{ url: page!.urlEN, lang: 'en' }]
       sm.add(item)
 
       resultEn.pages = resultEn.pages.filter(pageEN => pageEN?.url !== page?.urlEN)
@@ -55,15 +52,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Add other EN pages
     resultEn.pages.forEach(page => {
-      sm.add({
-        url: handleRootUrl(page!.url!),
-      })
+      sm.add({ url: page!.url! })
     })
 
     res.send(sm.toGzip())
   } catch (e) {
     console.error(e)
     res.status(500).end()
-    return Promise.resolve()
   }
+
+  return Promise.resolve()
 }

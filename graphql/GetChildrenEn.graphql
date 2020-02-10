@@ -1,6 +1,8 @@
-query GetChildrenEn($startsWith: String!) {
-  # todo(paales) How can we handle SubSub pages? Because now it will return every child page.
-  pages(where: { urlEN_starts_with: $startsWith }) {
+query GetChildrenEn($startsWith: String!, $notStartsWith: String!) {
+  pages(
+    where: { urlEN_starts_with: $startsWith, urlEN_not_starts_with: $notStartsWith }
+    orderBy: urlEN_ASC
+  ) {
     metaRobots
     url(locale: EN)
     title(locale: EN)

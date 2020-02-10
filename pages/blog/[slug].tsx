@@ -5,17 +5,19 @@ import { ParsedUrlQuery } from 'querystring'
 import { GQLLocale } from '../../generated/graphql'
 import { GraphCmsPage, PageMeta, Link, isPageNlHasEn, isPageEnHasNl } from '../../graphcms'
 import { Breadcrumbs } from '../../graphcms/Breadcrumbs'
+import { Language } from '../../graphcms/Language'
 
-const BlogSlug: React.FC<GraphCmsPage> = graphCmsPage => {
-  const { page } = graphCmsPage
+const BlogSlug: React.FC<GraphCmsPage> = props => {
+  const { page } = props
   if (!page || !page.blogPost) {
     return <Error statusCode={404} title='page.blogPost not found.' />
   }
 
   return (
     <div>
-      <PageMeta {...graphCmsPage} />
-      <Breadcrumbs {...graphCmsPage} />
+      <PageMeta {...props} />
+      <Breadcrumbs {...props} />
+      <Language {...props} />
       <JsonLd<BlogPosting>
         item={{
           '@context': 'https://schema.org',
@@ -30,16 +32,6 @@ const BlogSlug: React.FC<GraphCmsPage> = graphCmsPage => {
           {page.title}
         </Link>
       </h1>
-      {isPageNlHasEn(page) && (
-        <Link metaRobots={page.metaRobots} href={page.urlEN!}>
-          Read in English
-        </Link>
-      )}
-      {isPageEnHasNl(page) && (
-        <Link metaRobots={page.metaRobots} href={page.urlNL!}>
-          Read in Dutch
-        </Link>
-      )}
 
       {/* eslint-disable react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content! }} />
@@ -52,11 +44,11 @@ export default BlogSlug
 // eslint-disable-next-line @typescript-eslint/camelcase
 export const unstable_getStaticPaths = async () => {
   const { getStaticPaths } = await import('../../graphcms/ssg')
-  return getStaticPaths('blog', GQLLocale.Nl)
+  return getStaticPaths('/blog', GQLLocale.Nl)
 }
 
 // eslint-disable-next-line @typescript-eslint/camelcase
 export const unstable_getStaticProps = async (ctx: { params: ParsedUrlQuery }) => {
   const { getProps } = await import('../../graphcms/ssg')
-  return getProps(`blog/${ctx.params.slug}`, GQLLocale.Nl)
+  return getProps(`/blog/${ctx.params.slug}`, GQLLocale.Nl)
 }
