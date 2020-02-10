@@ -1,15 +1,10 @@
 import { GQLLocale } from '../generated/graphql'
-import { GraphCmsPage, PageMeta, Link } from '../graphcms'
-import { Breadcrumbs } from '../graphcms/Breadcrumbs'
-import { Language } from '../graphcms/Language'
+import { GraphCmsPage, Link } from '../graphcms'
 
 const Blog: React.FC<GraphCmsPage> = props => {
   const { page, childs } = props
   return (
     <>
-      <PageMeta {...props} />
-      <Breadcrumbs {...props} />
-      <Language {...props} />
       <h1>{page?.title}</h1>
       <div>
         {childs.map(child => (

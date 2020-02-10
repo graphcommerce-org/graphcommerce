@@ -1,3 +1,5 @@
 export * from './GraphCmsPage'
 export * from './Link'
 export * from './PageMeta'
+export * from './Language'
+export * from './Breadcrumbs'

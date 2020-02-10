@@ -15,6 +15,10 @@ export type GraphCmsPage = {
   locale: GQLLocale
 }
 
+export function isPage(props: GraphCmsPage): props is GraphCmsPage {
+  return props.page !== undefined
+}
+
 export function isPageNlHasEn(
   pet: GraphCmsPage['page'],
 ): pet is NonNullable<GQLGetPageNlQuery['page']> {

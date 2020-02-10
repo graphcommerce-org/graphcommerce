@@ -3,9 +3,7 @@ import { JsonLd } from 'react-schemaorg'
 import Error from 'next/error'
 import { ParsedUrlQuery } from 'querystring'
 import { GQLLocale } from '../../generated/graphql'
-import { GraphCmsPage, PageMeta, Link, isPageNlHasEn, isPageEnHasNl } from '../../graphcms'
-import { Breadcrumbs } from '../../graphcms/Breadcrumbs'
-import { Language } from '../../graphcms/Language'
+import { GraphCmsPage, Link } from '../../graphcms'
 
 const BlogSlug: React.FC<GraphCmsPage> = props => {
   const { page } = props
@@ -15,9 +13,6 @@ const BlogSlug: React.FC<GraphCmsPage> = props => {
 
   return (
     <div>
-      <PageMeta {...props} />
-      <Breadcrumbs {...props} />
-      <Language {...props} />
       <JsonLd<BlogPosting>
         item={{
           '@context': 'https://schema.org',
