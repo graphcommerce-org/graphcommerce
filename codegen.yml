@@ -27,7 +27,6 @@ generates:
       withHooks: true
       withComponent: false
       typesPrefix: GQL
-      maybeValue: T
     hooks:
       afterOneFileWrite:
         - eslint --fix
