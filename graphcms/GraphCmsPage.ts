@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import {
   GQLLocale,
   GQLGetPageNlQuery,
@@ -8,25 +9,29 @@ import {
   GQLGetChildrenEnQuery,
 } from '../generated/graphql'
 
-export type GraphCmsPage = {
+export type GraphCmsPage = NextPage & {
+  getLayout?: (page: GraphCmsPage) => GraphCmsPage
+}
+
+export interface GraphCmsPageProps {
   page: GQLGetPageNlQuery['page'] | GQLGetPageEnQuery['page']
   breadcrumbs: Array<GQLGetBreadcrumbNlQuery['page']> | Array<GQLGetBreadcrumbEnQuery['page']>
   childs: GQLGetChildrenNlQuery['pages'] | GQLGetChildrenEnQuery['pages']
   locale: GQLLocale
 }
 
-export function isPage(props: GraphCmsPage): props is GraphCmsPage {
+export function isPage(props: GraphCmsPageProps): props is GraphCmsPageProps {
   return props.page !== undefined
 }
 
 export function isPageNlHasEn(
-  pet: GraphCmsPage['page'],
+  pet: GraphCmsPageProps['page'],
 ): pet is NonNullable<GQLGetPageNlQuery['page']> {
   return !!(pet as NonNullable<GQLGetPageNlQuery['page']>).urlEN
 }
 
 export function isPageEnHasNl(
-  pet: GraphCmsPage['page'],
+  pet: GraphCmsPageProps['page'],
 ): pet is NonNullable<GQLGetPageEnQuery['page']> {
   return !!(pet as NonNullable<GQLGetPageEnQuery['page']>).urlNL
 }

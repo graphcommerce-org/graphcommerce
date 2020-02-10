@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import { GraphCmsPage, isPageNlHasEn, isPageEnHasNl } from './GraphCmsPage'
+import { GraphCmsPageProps, isPageNlHasEn, isPageEnHasNl } from './GraphCmsPage'
 import { getCanonical } from './Link'
 
-const PageMeta: React.FC<GraphCmsPage> = ({ page }) => {
+const PageMeta: React.FC<GraphCmsPageProps> = ({ page }) => {
   if (!page) return <></>
 
   let hrefLang

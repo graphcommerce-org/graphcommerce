@@ -1,20 +1,37 @@
+import { GridList, GridListTile, makeStyles } from '@material-ui/core'
 import { GQLLocale } from '../generated/graphql'
-import { GraphCmsPage, Link } from '../graphcms'
+import { GraphCmsPageProps, Link } from '../graphcms'
 
-const Blog: React.FC<GraphCmsPage> = props => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+  },
+}))
+
+const Blog: React.FC<GraphCmsPageProps> = props => {
+  const classes = useStyles()
+
   const { page, childs } = props
   return (
     <>
       <h1>{page?.title}</h1>
-      <div>
+      <GridList cellHeight={160} className={classes.gridList} cols={3}>
         {childs.map(child => (
-          <div key={child!.url!}>
+          <GridListTile key={child!.url!} cols={1}>
             <Link href={child!.url!} metaRobots={child!.metaRobots}>
               {child?.title}
             </Link>
-          </div>
+          </GridListTile>
         ))}
-      </div>
+      </GridList>
     </>
   )
 }
@@ -22,7 +39,7 @@ const Blog: React.FC<GraphCmsPage> = props => {
 export default Blog
 
 // eslint-disable-next-line @typescript-eslint/camelcase
-export const unstable_getStaticProps = async (): Promise<{ props: GraphCmsPage }> => {
+export const unstable_getStaticProps = async (): Promise<{ props: GraphCmsPageProps }> => {
   const { getProps } = await import('../graphcms/ssg')
   return getProps('/blog', GQLLocale.Nl)
 }

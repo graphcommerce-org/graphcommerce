@@ -3,7 +3,7 @@ import { ApolloQueryResult } from 'apollo-client'
 // @ts-ignore
 import { Remarkable } from 'remarkable'
 import { initApolloClient } from '../lib/apollo'
-import { GraphCmsPage } from '.'
+import { GraphCmsPageProps } from '.'
 import {
   GQLLocale,
   GQLGetStaticPathsNlQuery,
@@ -123,7 +123,7 @@ export const getProps = async (url: string, locale: GQLLocale) => {
   )
 
   // Generate the result object.
-  const result: { props: GraphCmsPage } = {
+  const result: { props: GraphCmsPageProps } = {
     props: { locale, page, breadcrumbs, childs },
   }
 

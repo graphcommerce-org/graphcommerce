@@ -1,7 +1,7 @@
-import { GraphCmsPage, isPageNlHasEn, isPageEnHasNl } from './GraphCmsPage'
+import { GraphCmsPageProps, isPageNlHasEn, isPageEnHasNl } from './GraphCmsPage'
 import { Link } from './Link'
 
-const Language: React.FC<GraphCmsPage> = ({ page }) => (
+const Language: React.FC<GraphCmsPageProps> = ({ page }) => (
   <>
     {isPageNlHasEn(page) && (
       <Link metaRobots={page.metaRobots} href={page.urlEN!}>

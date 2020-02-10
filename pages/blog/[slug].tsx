@@ -3,9 +3,9 @@ import { JsonLd } from 'react-schemaorg'
 import Error from 'next/error'
 import { ParsedUrlQuery } from 'querystring'
 import { GQLLocale } from '../../generated/graphql'
-import { GraphCmsPage, Link } from '../../graphcms'
+import { GraphCmsPageProps, Link } from '../../graphcms'
 
-const BlogSlug: React.FC<GraphCmsPage> = props => {
+const BlogSlug: React.FC<GraphCmsPageProps> = props => {
   const { page } = props
   if (!page || !page.blogPost) {
     return <Error statusCode={404} title='page.blogPost not found.' />

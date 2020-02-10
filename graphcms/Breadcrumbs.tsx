@@ -1,11 +1,11 @@
 import { JsonLd } from 'react-schemaorg'
 import { BreadcrumbList, WithContext, ListItem } from 'schema-dts'
-import { GraphCmsPage } from './GraphCmsPage'
+import { GraphCmsPageProps } from './GraphCmsPage'
 import { Link, getCanonical } from './Link'
 
 function breadcrumbList(
-  page: GraphCmsPage['page'],
-  breadcrumbs: GraphCmsPage['breadcrumbs'],
+  page: GraphCmsPageProps['page'],
+  breadcrumbs: GraphCmsPageProps['breadcrumbs'],
 ): WithContext<BreadcrumbList> {
   let position = 1
   const itemListElement: ListItem[] = breadcrumbs
@@ -39,7 +39,7 @@ function breadcrumbList(
   }
 }
 
-const Breadcrumbs: React.FC<GraphCmsPage> = ({ breadcrumbs, page }) => {
+const Breadcrumbs: React.FC<GraphCmsPageProps> = ({ breadcrumbs, page }) => {
   return (
     <>
       <JsonLd<BreadcrumbList> item={breadcrumbList(page, breadcrumbs)} />
