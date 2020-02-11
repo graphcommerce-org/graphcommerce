@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, GraphCmsPage } from '../graphcms'
 import { GQLLocale } from '../generated/graphql'
-import { WebsiteLayout } from '../layout'
+import { FullLayout } from '../layout'
 
 const Home: GraphCmsPage = props => {
   const { childs } = props
@@ -21,7 +21,7 @@ const Home: GraphCmsPage = props => {
   )
 }
 
-Home.getLayout = WebsiteLayout
+Home.getLayout = FullLayout
 
 export default Home
 

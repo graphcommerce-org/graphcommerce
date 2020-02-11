@@ -1,7 +1,7 @@
 import { GridList, GridListTile, makeStyles } from '@material-ui/core'
 import { GQLLocale } from '../generated/graphql'
 import { Link, GraphCmsPage } from '../graphcms'
-import { WebsiteLayout } from '../layout'
+import { FullLayout } from '../layout'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,7 +37,7 @@ const Blog: GraphCmsPage = props => {
   )
 }
 
-Blog.getLayout = WebsiteLayout
+Blog.getLayout = FullLayout
 
 export default Blog
 

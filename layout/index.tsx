@@ -1,1 +1,1 @@
-export * from './WebsiteLayout'
+export * from './FullLayout'
