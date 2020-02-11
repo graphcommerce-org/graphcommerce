@@ -9,19 +9,23 @@ import {
   GQLGetChildrenEnQuery,
 } from '../generated/graphql'
 
-export type GraphCmsPage = NextPage & {
-  getLayout?: (page: GraphCmsPage) => GraphCmsPage
+type DeepNonNullable<T> = {
+  [P in keyof T]-?: NonNullable<T[P]>
 }
 
-export interface GraphCmsPageProps {
+export function hasLayout(Component: any): Component is DeepNonNullable<GraphCmsPage> {
+  return Component.getLayout !== undefined
+}
+
+export type GraphCmsPage = NextPage<GraphCmsPageProps> & {
+  getLayout?: (page: GraphCmsPage, props: GraphCmsPageProps) => JSX.Element
+}
+
+export type GraphCmsPageProps = {
   page: GQLGetPageNlQuery['page'] | GQLGetPageEnQuery['page']
   breadcrumbs: Array<GQLGetBreadcrumbNlQuery['page']> | Array<GQLGetBreadcrumbEnQuery['page']>
   childs: GQLGetChildrenNlQuery['pages'] | GQLGetChildrenEnQuery['pages']
   locale: GQLLocale
-}
-
-export function isPage(props: GraphCmsPageProps): props is GraphCmsPageProps {
-  return props.page !== undefined
 }
 
 export function isPageNlHasEn(

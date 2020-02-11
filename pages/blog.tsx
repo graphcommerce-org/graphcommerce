@@ -1,6 +1,7 @@
 import { GridList, GridListTile, makeStyles } from '@material-ui/core'
 import { GQLLocale } from '../generated/graphql'
-import { GraphCmsPageProps, Link } from '../graphcms'
+import { Link, GraphCmsPage } from '../graphcms'
+import { WebsiteLayout } from '../layout'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Blog: React.FC<GraphCmsPageProps> = props => {
+const Blog: GraphCmsPage = props => {
   const classes = useStyles()
 
   const { page, childs } = props
@@ -36,10 +37,12 @@ const Blog: React.FC<GraphCmsPageProps> = props => {
   )
 }
 
+Blog.getLayout = WebsiteLayout
+
 export default Blog
 
 // eslint-disable-next-line @typescript-eslint/camelcase
-export const unstable_getStaticProps = async (): Promise<{ props: GraphCmsPageProps }> => {
+export const unstable_getStaticProps = async () => {
   const { getProps } = await import('../graphcms/ssg')
   return getProps('/blog', GQLLocale.Nl)
 }

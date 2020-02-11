@@ -1,8 +1,9 @@
 import React from 'react'
-import { GraphCmsPageProps, Link } from '../graphcms'
+import { Link, GraphCmsPage } from '../graphcms'
 import { GQLLocale } from '../generated/graphql'
+import { WebsiteLayout } from '../layout'
 
-const Home: React.FC<GraphCmsPageProps> = props => {
+const Home: GraphCmsPage = props => {
   const { childs } = props
   return (
     <>
@@ -20,10 +21,12 @@ const Home: React.FC<GraphCmsPageProps> = props => {
   )
 }
 
+Home.getLayout = WebsiteLayout
+
 export default Home
 
 // eslint-disable-next-line @typescript-eslint/camelcase
-export const unstable_getStaticProps = async (): Promise<{ props: GraphCmsPageProps }> => {
+export const unstable_getStaticProps = async () => {
   const { getProps } = await import('../graphcms/ssg')
   return getProps('/', GQLLocale.Nl)
 }
