@@ -8,7 +8,7 @@ const Home: GraphCmsPage = props => {
   return (
     <>
       <div>
-        Children:
+        Test Change Children:
         {childs.map(child => (
           <div key={child!.url!}>
             <Link href={child!.url!} metaRobots={child!.metaRobots}>
