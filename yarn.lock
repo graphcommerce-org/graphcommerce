@@ -95,7 +95,7 @@
     source-map "^0.5.0"
     trim-right "^1.0.1"
 
-"@babel/generator@^7.8.4":
+"@babel/generator@^7.5.0", "@babel/generator@^7.8.4":
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.8.4.tgz#35bbc74486956fe4251829f9f6c48330e8d0985e"
   integrity sha512-PwhclGdRpNAf3IxZb0YVuITPZmmrXz9zf6fH8lT4XbrmfQKr6ryBzhv593P5C6poJRciFCL/eHGW2NuGrgEyxA==
@@ -2203,13 +2203,14 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/relay-compiler@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-6.0.1.tgz#c33dace63e70d33ecf932bfe6abe911b71c9839c"
-  integrity sha512-to0ntZAGmgQanFpBQHOuvpULJFATD5z7We+H2gM7QPNzK/0P4jScweBmTGKSd8idnFfemPdXbVNEfKL9Mjd26g==
+"@types/relay-compiler@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@types/relay-compiler/-/relay-compiler-8.0.0.tgz#98961b923555145067d3895f8774f3024f14e6fa"
+  integrity sha512-rSR62gfhm2ZZp888RK93/jODOCA1j2MpWr5ibZEyYprmVG1G9KE5TfNUERCcc9z58F4d8tMIX00ZpBOU1sWcDA==
   dependencies:
     "@types/relay-runtime" "*"
     graphql "^14.5.3"
+    typescript "^3.0.0"
 
 "@types/relay-runtime@*":
   version "6.0.0"
@@ -3168,6 +3169,39 @@ babel-preset-fbjs@^3.1.2:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/babel-preset-fbjs/-/babel-preset-fbjs-3.2.0.tgz#c0e6347d3e0379ed84b3c2434d3467567aa05297"
   integrity sha512-5Jo+JeWiVz2wHUUyAlvb/sSYnXNig9r+HqGAOSfh5Fzxp7SnAaR/tEGRJ1ZX7C77kfk82658w6R5Z+uPATTD9g==
+  dependencies:
+    "@babel/plugin-proposal-class-properties" "^7.0.0"
+    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
+    "@babel/plugin-syntax-class-properties" "^7.0.0"
+    "@babel/plugin-syntax-flow" "^7.0.0"
+    "@babel/plugin-syntax-jsx" "^7.0.0"
+    "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
+    "@babel/plugin-transform-arrow-functions" "^7.0.0"
+    "@babel/plugin-transform-block-scoped-functions" "^7.0.0"
+    "@babel/plugin-transform-block-scoping" "^7.0.0"
+    "@babel/plugin-transform-classes" "^7.0.0"
+    "@babel/plugin-transform-computed-properties" "^7.0.0"
+    "@babel/plugin-transform-destructuring" "^7.0.0"
+    "@babel/plugin-transform-flow-strip-types" "^7.0.0"
+    "@babel/plugin-transform-for-of" "^7.0.0"
+    "@babel/plugin-transform-function-name" "^7.0.0"
+    "@babel/plugin-transform-literals" "^7.0.0"
+    "@babel/plugin-transform-member-expression-literals" "^7.0.0"
+    "@babel/plugin-transform-modules-commonjs" "^7.0.0"
+    "@babel/plugin-transform-object-super" "^7.0.0"
+    "@babel/plugin-transform-parameters" "^7.0.0"
+    "@babel/plugin-transform-property-literals" "^7.0.0"
+    "@babel/plugin-transform-react-display-name" "^7.0.0"
+    "@babel/plugin-transform-react-jsx" "^7.0.0"
+    "@babel/plugin-transform-shorthand-properties" "^7.0.0"
+    "@babel/plugin-transform-spread" "^7.0.0"
+    "@babel/plugin-transform-template-literals" "^7.0.0"
+    babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
+
+babel-preset-fbjs@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-fbjs/-/babel-preset-fbjs-3.3.0.tgz#a6024764ea86c8e06a22d794ca8b69534d263541"
+  integrity sha512-7QTLTCd2gwB2qGoi5epSULMHugSVgpcVt5YAeiFO9ABLrutDQzKfGwzxgZHLpugq8qMdg/DhRZDZ5CLKxBkEbw==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.0.0"
     "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
@@ -9324,7 +9358,7 @@ nth-check@^1.0.2, nth-check@~1.0.1:
   dependencies:
     boolbase "~1.0.0"
 
-nullthrows@^1.1.0:
+nullthrows@^1.1.0, nullthrows@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/nullthrows/-/nullthrows-1.1.1.tgz#7818258843856ae971eae4208ad7d7eb19a431b1"
   integrity sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw==
@@ -11308,27 +11342,27 @@ relay-compiler@5.0.0:
     signedsource "^1.0.0"
     yargs "^9.0.0"
 
-relay-compiler@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-6.0.0.tgz#a70ecb39b59dea507261aeda704c071326d69d5e"
-  integrity sha512-8K8cCwrOTqu3usF8GXQ+JEgxcTxJ5qVFqfNpfMYrRpMraXrBmykcLRpj38p2MxtcjyqkE2ZnUe5huW5/469obA==
+relay-compiler@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-8.0.0.tgz#567edebc857db5748142b57a78d197f976b5e3ac"
+  integrity sha512-JrS3Bv6+6S0KloHmXUyTcrdFRpI3NxWdiVQC146vD5jgay9EM464lyf9bEUsCol3na4JUrad4aQ/r+4wWxG1kw==
   dependencies:
     "@babel/core" "^7.0.0"
-    "@babel/generator" "^7.0.0"
+    "@babel/generator" "^7.5.0"
     "@babel/parser" "^7.0.0"
     "@babel/runtime" "^7.0.0"
     "@babel/traverse" "^7.0.0"
     "@babel/types" "^7.0.0"
-    babel-preset-fbjs "^3.1.2"
+    babel-preset-fbjs "^3.3.0"
     chalk "^2.4.1"
     fast-glob "^2.2.2"
     fb-watchman "^2.0.0"
     fbjs "^1.0.0"
     immutable "~3.7.6"
-    nullthrows "^1.1.0"
-    relay-runtime "6.0.0"
+    nullthrows "^1.1.1"
+    relay-runtime "8.0.0"
     signedsource "^1.0.0"
-    yargs "^9.0.0"
+    yargs "^14.2.0"
 
 relay-runtime@5.0.0:
   version "5.0.0"
@@ -11338,10 +11372,10 @@ relay-runtime@5.0.0:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
 
-relay-runtime@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-6.0.0.tgz#073ec2408f41a28c3a7310d71dd5f42f8e4e4bf3"
-  integrity sha512-zIXQqFfe0zBCVzKbMGEPMvKFxfbE3pY2RbZsKBvHAr/vMDj6OX9E+f4R4udE5xvMbI7g+baYFHi2I9NDEydGaQ==
+relay-runtime@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-8.0.0.tgz#52585a7bf04a710bd1bc664bfb0a60dbff3ce6e1"
+  integrity sha512-lOaZ7K/weTuCIt3pWHkxUG8s7iohI4IyYj65YV4sB9iX6W0uMvt626BFJ4GvNXFmd+OrgNnXcvx1mqRFqJaV8A==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
@@ -12835,7 +12869,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.7.5:
+typescript@3.7.5, typescript@^3.0.0:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
   integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
@@ -13619,6 +13653,14 @@ yargs-parser@^13.1.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
+yargs-parser@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-15.0.0.tgz#cdd7a97490ec836195f59f3f4dbe5ea9e8f75f08"
+  integrity sha512-xLTUnCMc4JhxrPEPUYD5IBR1mWCK/aT6+RJ/K29JY2y1vD+FhtgKK0AXRWvI262q3QSffAQuTouFIKUuHX89wQ==
+  dependencies:
+    camelcase "^5.0.0"
+    decamelize "^1.2.0"
+
 yargs-parser@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-7.0.0.tgz#8d0ac42f16ea55debd332caf4c4038b3e3f5dfd9"
@@ -13659,6 +13701,23 @@ yargs@^13.3.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.1"
+
+yargs@^14.2.0:
+  version "14.2.2"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-14.2.2.tgz#2769564379009ff8597cdd38fba09da9b493c4b5"
+  integrity sha512-/4ld+4VV5RnrynMhPZJ/ZpOCGSCeghMykZ3BhdFBDa9Wy/RH6uEGNWDJog+aUlq+9OM1CFTgtYRW5Is1Po9NOA==
+  dependencies:
+    cliui "^5.0.0"
+    decamelize "^1.2.0"
+    find-up "^3.0.0"
+    get-caller-file "^2.0.1"
+    require-directory "^2.1.1"
+    require-main-filename "^2.0.0"
+    set-blocking "^2.0.0"
+    string-width "^3.0.0"
+    which-module "^2.0.0"
+    y18n "^4.0.0"
+    yargs-parser "^15.0.0"
 
 yargs@^9.0.0:
   version "9.0.1"
