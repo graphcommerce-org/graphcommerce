@@ -7,12 +7,10 @@
   ],
   "lint-staged": {
     "*.{js}": [
-      "eslint",
-      "git add -f"
+      "eslint"
     ],
     "*.{js,json,css,md,ts,tsx}": [
-      "prettier --write",
-      "git add -f"
+      "prettier --write"
     ]
   },
   "scripts": {
@@ -27,7 +25,7 @@
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-jest": "22.21.0",
     "husky": "4.2.3",
-    "lint-staged": "9.5.0",
+    "lint-staged": "10.0.7",
     "prettier": "1.19.1"
   },
   "version": "0.0.0"
