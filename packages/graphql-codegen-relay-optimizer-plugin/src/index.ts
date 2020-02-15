@@ -27,7 +27,7 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   // transformASTSchema creates a new schema instance instead of mutating the old one
   const adjustedSchema = transformASTSchema(schema, [
     /* GraphQL */ `
-      directive @connection(key: String!) on FIELD
+      directive @connection(key: String! filter: [String!]) on FIELD
       directive @client on FIELD
     `
   ]);
