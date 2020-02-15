@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import "@graphql-codegen/testing";
 
 import { buildSchema, parse, print } from "graphql";
