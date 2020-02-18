@@ -19,6 +19,11 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.test.js", "**/*.stories.tsx"] }
+    ],
+    "no-param-reassign": ["error", { "props": false }],
     "jsx-a11y/anchor-is-valid": ["error", { "components": ["Link"] }],
     "default-case": "off",
     "@typescript-eslint/indent": "off",
