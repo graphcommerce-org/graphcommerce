@@ -37,7 +37,7 @@
     "@types/relay-compiler": "8.0.0",
     "graphql": "14.6.0",
     "jest": "24.7.1",
-    "ts-jest": "24.3.0",
+    "ts-jest": "25.2.1",
     "typescript": "3.7.5"
   },
   "scripts": {
