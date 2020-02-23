@@ -4,7 +4,7 @@ import Error from 'next/error'
 import { ParsedUrlQuery } from 'querystring'
 import { GQLLocale } from '../../generated/graphql'
 import { Link, GraphCmsPage } from '../../graphcms'
-import { FullLayout } from '../../layout'
+import { FullLayout } from '../../layout/FullLayout'
 
 const BlogSlug: GraphCmsPage = props => {
   const { page } = props
@@ -35,7 +35,7 @@ const BlogSlug: GraphCmsPage = props => {
   )
 }
 
-BlogSlug.getLayout = FullLayout
+BlogSlug.layout = FullLayout
 
 export default BlogSlug
 

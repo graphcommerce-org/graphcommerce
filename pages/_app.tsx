@@ -1,6 +1,5 @@
-import React from 'react'
 import App from 'next/app'
-import { hasLayout, GraphCmsPage } from '../graphcms'
+import { renderLayout } from '../lib/layout'
 
 export default class extends App {
   componentDidMount() {
@@ -13,13 +12,6 @@ export default class extends App {
 
   render() {
     const { Component, pageProps } = this.props
-
-    const LayoutComponent = hasLayout(Component) ? (
-      Component.getLayout(((<Component {...pageProps} />) as unknown) as GraphCmsPage, pageProps)
-    ) : (
-      <Component {...pageProps} />
-    )
-
-    return LayoutComponent
+    return renderLayout(Component, pageProps)
   }
 }

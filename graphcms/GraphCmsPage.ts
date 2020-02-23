@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import {
   GQLLocale,
   GQLGetPageNlQuery,
@@ -8,18 +7,9 @@ import {
   GQLGetChildrenNlQuery,
   GQLGetChildrenEnQuery,
 } from '../generated/graphql'
+import { LayoutPage } from '../lib/layout'
 
-type DeepNonNullable<T> = {
-  [P in keyof T]-?: NonNullable<T[P]>
-}
-
-export function hasLayout(Component: any): Component is DeepNonNullable<GraphCmsPage> {
-  return Component.getLayout !== undefined
-}
-
-export type GraphCmsPage = NextPage<GraphCmsPageProps> & {
-  getLayout?: (page: GraphCmsPage, props: GraphCmsPageProps) => JSX.Element
-}
+export type GraphCmsPage = LayoutPage<GraphCmsPageProps>
 
 export type GraphCmsPageProps = {
   page: GQLGetPageNlQuery['page'] | GQLGetPageEnQuery['page']
