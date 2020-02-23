@@ -2,7 +2,6 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-const aliases = require('./next.config-alias')
 
 module.exports = withBundleAnalyzer({
   env: {
@@ -15,13 +14,5 @@ module.exports = withBundleAnalyzer({
     rewrites() {
       return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
     },
-  },
-  webpack(config) {
-    const { alias } = config.resolve
-    config.resolve.alias = {
-      ...alias,
-      ...aliases,
-    }
-    return config
   },
 })
