@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { GraphCmsPage, PageMeta, Breadcrumbs, Language } from '../graphcms'
 import theme from '../theme'
 
-const FullLayout: GraphCmsPage['getLayout'] = (page, props) => {
+const FullLayout: GraphCmsPage['layout'] = ({ children, ...props }) => {
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -19,7 +19,7 @@ const FullLayout: GraphCmsPage['getLayout'] = (page, props) => {
         <PageMeta {...props} />
         <Breadcrumbs {...props} />
         <Language {...props} />
-        {page}
+        {children}
       </ThemeProvider>
     </>
   )

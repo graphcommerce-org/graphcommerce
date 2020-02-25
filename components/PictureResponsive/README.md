@@ -1,3 +1,9 @@
+# ReachDigital React Picture Responsive
+
+Depends on
+[useResizeObserver](https://www.npmjs.com/package/use-resize-observer) (so you
+might want to install polyfills)
+
 ## Goals
 
 - Load images that are in the viewport as fast as native images.
@@ -36,50 +42,67 @@ connections.. [Benchmark?]
 We expect Safari support to be implemented hopefull soonish, because a patch
 already exists: https://bugs.webkit.org/show_bug.cgi?id=196698
 
-(Since we stated that we dont allow user sniffing, we can't "send custom HTML
-for Safari" or something)
+## Intersection Observer
 
-## Correct image size
+The Chrome implementation is a native implementation of the
+`IntersectionObserver`. For browsers that don't support loading=lazy we've
+implemented the IntersectionObserver manually.
 
-2.
+## Usage
 
-### SSR HTML Output
-
-```html
-<picture>
-  <noscript>
-    <source media="(min-width: 40em)" srcset="simpleimage.huge.jpg" />
-    <!-- Research required: is it better to simply send a second <img> tag?, how dumb are bots? -->
-  </noscript>
-  <img
-    src="image-expected-render-size-on-a-phone-400px-wide"
-    loading="lazy"
-    decoding="async"
-  />
-</picture>
+```tsx
+<PictureResponsive
+  srcSets={{
+    'image/webp':
+      'https://media.graphcms.com/resize=fit:max,w:400/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 400w, https://media.graphcms.com/resize=fit:max,w:600/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 600w, https://media.graphcms.com/resize=fit:max,w:800/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 800w, https://media.graphcms.com/resize=fit:max,w:1000/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1000w, https://media.graphcms.com/resize=fit:max,w:1200/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1200w, https://media.graphcms.com/resize=fit:max,w:1400/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1400w, https://media.graphcms.com/resize=fit:max,w:1600/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1600w',
+    'image/jpeg':
+      'https://media.graphcms.com/resize=fit:max,w:400/Fm8jSWwxTgaWs6JDAV3w 400w, https://media.graphcms.com/resize=fit:max,w:600/Fm8jSWwxTgaWs6JDAV3w 600w, https://media.graphcms.com/resize=fit:max,w:800/Fm8jSWwxTgaWs6JDAV3w 800w, https://media.graphcms.com/resize=fit:max,w:1000/Fm8jSWwxTgaWs6JDAV3w 1000w, https://media.graphcms.com/resize=fit:max,w:1200/Fm8jSWwxTgaWs6JDAV3w 1200w, https://media.graphcms.com/resize=fit:max,w:1400/Fm8jSWwxTgaWs6JDAV3w 1400w, https://media.graphcms.com/resize=fit:max,w:1600/Fm8jSWwxTgaWs6JDAV3w 1600w',
+  }}
+  alt='img'
+  width={400} // Rendered width on Nexus5X
+  height={257} //This value should have the aspect ratio set.
+  style={{
+    width: '100%', // Required, but can be any value
+    height: 'auto', // Required, should be auto
+    objectFit: 'cover', // cover or contain?
+  }}
+/>
 ```
 
-### Client upgrade
+## Output
 
 ```html
 <picture
   ><source
+    type="image/webp"
+    srcset="
+      https://media.graphcms.com/resize=fit:max,w:400/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w   400w,
+      https://media.graphcms.com/resize=fit:max,w:600/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w   600w,
+      https://media.graphcms.com/resize=fit:max,w:800/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w   800w,
+      https://media.graphcms.com/resize=fit:max,w:1000/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1000w,
+      https://media.graphcms.com/resize=fit:max,w:1200/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1200w,
+      https://media.graphcms.com/resize=fit:max,w:1400/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1400w,
+      https://media.graphcms.com/resize=fit:max,w:1600/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1600w
+    "
+    sizes="400px"/>
+  <source
     type="image/jpeg"
     srcset="
-      https://picsum.photos/id/1/400/400    400w,
-      https://picsum.photos/id/1/600/600    600w,
-      https://picsum.photos/id/1/800/800    800w,
-      https://picsum.photos/id/1/1000/1000 1000w,
-      https://picsum.photos/id/1/1200/1200 1200w,
-      https://picsum.photos/id/1/1400/1400 1400w,
-      https://picsum.photos/id/1/1600/1600 1600w
+      https://media.graphcms.com/resize=fit:max,w:400/Fm8jSWwxTgaWs6JDAV3w   400w,
+      https://media.graphcms.com/resize=fit:max,w:600/Fm8jSWwxTgaWs6JDAV3w   600w,
+      https://media.graphcms.com/resize=fit:max,w:800/Fm8jSWwxTgaWs6JDAV3w   800w,
+      https://media.graphcms.com/resize=fit:max,w:1000/Fm8jSWwxTgaWs6JDAV3w 1000w,
+      https://media.graphcms.com/resize=fit:max,w:1200/Fm8jSWwxTgaWs6JDAV3w 1200w,
+      https://media.graphcms.com/resize=fit:max,w:1400/Fm8jSWwxTgaWs6JDAV3w 1400w,
+      https://media.graphcms.com/resize=fit:max,w:1600/Fm8jSWwxTgaWs6JDAV3w 1600w
     "
-    sizes="269px"/>
+    sizes="400px"/>
   <img
-    src="https://picsum.photos/id/1/400/400"
+    alt="img"
+    width="1019"
+    height="654"
     loading="lazy"
-    decoding="async"
-    style="width: 400px; max-height: 400px; object-fit: contain;"
+    style="width: 100%; height: auto; object-fit: cover;"
 /></picture>
 ```
 
@@ -153,5 +176,3 @@ Tips:
 Alternatives:
 
 - https://github.com/aFarkas/lazysizes
-
-/

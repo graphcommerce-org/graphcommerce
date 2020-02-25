@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
-import { useViewportScale } from './useViewportScale'
 
-type Size = [number, number]
 export type ISources = Array<['image/webp' | 'image/jpeg', string]>
-type Props = Omit<JSX.IntrinsicElements['img'], 'src'> & {
+type Props = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
   srcSets?: { [index: string]: string }
+  width: number
+  height: number
 }
 
 function isInViewport(elem: HTMLImageElement): boolean {
@@ -15,11 +15,6 @@ function isInViewport(elem: HTMLImageElement): boolean {
 
 function requestUpgrade(img: HTMLImageElement) {
   return new Promise(resolve => {
-    // An outside-viewport image will have it's space reserved, but it will show a white background.
-    // If the image is outside the viewport, we can directly start upgrading the image.
-
-    // If an image is not upgraded yet it will download the initial image which is ok.
-
     const inViewport = isInViewport(img)
 
     if (inViewport && !img.complete) {
@@ -49,6 +44,8 @@ function requestUpgrade(img: HTMLImageElement) {
             })
         },
         { rootMargin: '3000px' },
+        // Uses the lowest value used in Chrome natively:
+        // https://cs.chromium.org/chromium/src/third_party/blink/renderer/core/frame/settings.json5?l=971-1003&rcl=e8f3cf0bbe085fee0d1b468e84395aad3ebb2cad
       )
       intersectionObserver.observe(img)
     } else if (!inViewport) {
@@ -59,45 +56,20 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-// TODO This looks rather brittle, maybe we should add some tests here an there.
-function effectiveImgSize(
-  img: HTMLImageElement,
-  renderSize: { width: number; height: number },
-): Size {
-  const contains = img.style.objectFit === 'contain'
-  console.log(img.style.objectFit)
-
-  const intrinsicRatio = img.width / img.height
-  const imgRatio = renderSize.width / renderSize.height
-
-  if (contains ? intrinsicRatio > imgRatio : intrinsicRatio < imgRatio) {
-    return [renderSize.width, renderSize.width / intrinsicRatio]
-  }
-  const useHeight = renderSize.height * intrinsicRatio < renderSize.width
-  return useHeight
-    ? [renderSize.height * intrinsicRatio, renderSize.height]
-    : [renderSize.width, renderSize.width / intrinsicRatio]
-}
-
 export const PictureResponsive: React.FC<Props> = ({ srcSets = {}, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
-  const scale = useViewportScale()
-  const renderSize = useResizeObserver<HTMLImageElement>({ ref })
+  const { width } = useResizeObserver<HTMLImageElement>({ ref })
 
   const [upgraded, setUpgraded] = useState<boolean>(false)
 
-  // console.log(intersection)
-  const size = upgraded === false || renderSize.width === undefined ? 1 : renderSize.width
+  const size = upgraded === false || !width ? imgProps.width : width
 
   useEffect(() => {
     // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
     const img = ref.current
-    if (!img || !renderSize.width || !renderSize.height) return
-
-    // const effectiveSize = effectiveImgSize(img, renderSize as { width: number; height: number })
-    // console.log(effectiveSize)
+    if (!img || !width) return
     requestUpgrade(img).then(() => setUpgraded(true))
-  }, [ref.current, scale, renderSize])
+  }, [ref.current, width])
 
   return (
     <>
