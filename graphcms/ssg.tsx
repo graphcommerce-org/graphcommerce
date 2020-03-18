@@ -73,7 +73,7 @@ export const getPaths: (
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   }
 }
 
