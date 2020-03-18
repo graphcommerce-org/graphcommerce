@@ -39,14 +39,12 @@ BlogSlug.layout = FullLayout
 
 export default BlogSlug
 
-// eslint-disable-next-line @typescript-eslint/camelcase
-// export const unstable_getStaticPaths = async () => {
-//   const { getStaticPaths } = await import('../../graphcms/ssg')
-//   return getStaticPaths('/blog', GQLLocale.Nl)
-// }
+export const getStaticPaths = async () => {
+  const { getPaths } = await import('../../graphcms/ssg')
+  return getPaths('/blog/', GQLLocale.Nl)
+}
 
-// eslint-disable-next-line @typescript-eslint/camelcase
-export const unstable_getStaticProps = async (ctx: { params: ParsedUrlQuery }) => {
+export const getStaticProps = async (ctx: { params: ParsedUrlQuery }) => {
   const { getProps } = await import('../../graphcms/ssg')
   return getProps(`/blog/${ctx.params.slug}`, GQLLocale.Nl)
 }

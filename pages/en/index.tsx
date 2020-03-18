@@ -4,8 +4,7 @@ import Home from '..'
 
 export default Home
 
-// eslint-disable-next-line @typescript-eslint/camelcase
-export const unstable_getStaticProps = async (): Promise<{ props: GraphCmsPageProps }> => {
+export const getStaticProps = async (): Promise<{ props: GraphCmsPageProps }> => {
   const { getProps } = await import('../../graphcms/ssg')
   return getProps('/en', GQLLocale.En)
 }
