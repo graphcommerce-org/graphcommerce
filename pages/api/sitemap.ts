@@ -1,5 +1,6 @@
-import { Sitemap, ISitemapItemOptionsLoose } from 'sitemap'
+import { SitemapStream, SitemapItemLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { createGzip } from 'zlib'
 import {
   GQLGetStaticPathsNlQuery,
   GQLGetStaticPathsNlQueryVariables,
@@ -20,15 +21,13 @@ function getProtocol(req: NextApiRequest) {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/xml')
-  res.setHeader('Content-Encoding', 'gzip')
-  res.status(200)
 
   try {
-    const sm = new Sitemap({
+    const sm = new SitemapStream({
       hostname: `${getProtocol(req)}://${req.headers.host}`,
-      // @ts-ignore
-      xslUrl: '/sitemap.xsl',
+      xslUrl: `${getProtocol(req)}://${req.headers.host}/sitemap.xsl`,
     })
+    const pipeline = sm.pipe(createGzip())
 
     const apolloClient = initApolloClient()
     const { data: resultNl } = await apolloClient.query<
@@ -43,19 +42,26 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Add NL Pages with hreflang alternative
     resultNl.pages.forEach(page => {
-      const item: ISitemapItemOptionsLoose = { url: page!.url! }
+      const item: SitemapItemLoose = { url: page!.url! }
       if (page!.urlEN) item.links = [{ url: page!.urlEN, lang: 'en' }]
-      sm.add(item)
+
+      sm.write(item)
 
       resultEn.pages = resultEn.pages.filter(pageEN => pageEN?.url !== page?.urlEN)
     })
 
     // Add other EN pages
     resultEn.pages.forEach(page => {
-      sm.add({ url: page!.url! })
+      sm.write({ url: page!.url! })
     })
 
-    res.send(sm.toGzip())
+    sm.end()
+
+    res.status(200)
+    res.setHeader('Content-Encoding', 'gzip')
+    pipeline.pipe(res).on('error', e => {
+      throw e
+    })
   } catch (e) {
     console.error(e)
     res.status(500).end()
