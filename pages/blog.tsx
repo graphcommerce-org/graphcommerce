@@ -41,8 +41,7 @@ Blog.layout = FullLayout
 
 export default Blog
 
-// eslint-disable-next-line @typescript-eslint/camelcase
-export const unstable_getStaticProps = async () => {
+export const getStaticProps = async () => {
   const { getProps } = await import('../graphcms/ssg')
   return getProps('/blog', GQLLocale.Nl)
 }

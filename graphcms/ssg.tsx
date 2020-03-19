@@ -43,11 +43,13 @@ function parentUrls(url: string, locale: GQLLocale): string[] {
   return parents.reverse()
 }
 
-export const getStaticPaths: (
+export const getPaths: (
   baseUrl: string,
   locale: GQLLocale,
-) => Promise<Array<string>> = async (baseUrl, locale) => {
+) => Promise<{ paths: string[]; fallback: boolean }> = async (baseUrl, locale) => {
   const apolloClient = initApolloClient()
+
+  let paths: string[]
 
   let queryResult
   switch (locale) {
@@ -57,14 +59,21 @@ export const getStaticPaths: (
         GQLGetStaticPathsNlQueryVariables
       >({ query: GetStaticPathsNlDocument, variables: { startsWith: `${baseUrl}` } })
 
-      return queryResult.data.pages.map(page => page!.url!)
+      paths = queryResult.data.pages.map(page => page!.url!)
+      break
     case GQLLocale.En:
       queryResult = await apolloClient.query<
         GQLGetStaticPathsEnQuery,
         GQLGetStaticPathsEnQueryVariables
       >({ query: GetStaticPathsEnDocument, variables: { startsWith: `${baseUrl}` } })
 
-      return queryResult.data.pages.map(page => page!.url!)
+      paths = queryResult.data.pages.map(page => page!.url!)
+      break
+  }
+
+  return {
+    paths,
+    fallback: false,
   }
 }
 
