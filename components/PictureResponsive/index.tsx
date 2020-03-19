@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
+import { useNetworkStatus } from '../../hooks/useNetworkStatus'
 
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 export type ImageTypes =
@@ -70,10 +71,13 @@ function requestUpgrade(img: HTMLImageElement) {
 export const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
   const { width } = useResizeObserver<HTMLImageElement>({ ref })
+  const { effectiveConnectionType } = useNetworkStatus('4g')
+  const scaleDown = effectiveConnectionType === '4g' ? 1 : window.devicePixelRatio
 
   const [upgraded, setUpgraded] = useState<boolean>(false)
 
-  const size = upgraded === false || !width ? imgProps.width : width
+  const size =
+    upgraded === false || width === undefined ? imgProps.width / scaleDown : width / scaleDown
 
   useEffect(() => {
     // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
