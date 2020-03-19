@@ -8,16 +8,17 @@ export type FilestackPictureProps = Omit<PictureResonsiveProps, 'srcSets'> & {
   type: ImageTypes
 
   // Override compression from source type
-  resize?: 'lossy' | 'lossless' | 'none'
+  compression?: 'lossy' | 'lossless' | 'none'
 }
 
-const detectResize = (type: ImageTypes): NonNullable<FilestackPictureProps['resize']> => {
+const detectResize = (type: ImageTypes): NonNullable<FilestackPictureProps['compression']> => {
   switch (type) {
-    case 'image/apng':
     case 'image/png':
-    case 'image/gif':
+    case 'image/bmp':
+    case 'image/tiff':
       return 'lossless'
     case 'image/svg+xml':
+    case 'image/gif':
       return 'none'
     default:
       return 'lossy'
@@ -27,7 +28,7 @@ const detectResize = (type: ImageTypes): NonNullable<FilestackPictureProps['resi
 export const FilestackPicture: React.FC<FilestackPictureProps> = ({
   src,
   type,
-  resize,
+  compression: resize,
   ...imgProps
 }) => {
   const url = new URL(src)
@@ -55,12 +56,14 @@ export const FilestackPicture: React.FC<FilestackPictureProps> = ({
           return `${url.toString()} ${width}w`
         })
         .join(', ')
-      srcSets['image/jpeg'] = widths
+
+      srcSets[type] = widths
         .map(width => {
           url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:jpg,quality:100,t:true/${handle}`
           return `${url.toString()} ${width}w`
         })
         .join(', ')
+
       break
     case 'lossless':
       srcSets['image/png'] = widths
