@@ -11,9 +11,7 @@
 # next.js
 /.next/
 /out/
-
-# production
-/build
+/public/storybook/
 
 # misc
 .DS_Store

@@ -7,11 +7,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "build-storybook -o public/storybook && next build",
     "start": "next start",
     "codegen": "graphql-codegen --config codegen.yml",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.3",
