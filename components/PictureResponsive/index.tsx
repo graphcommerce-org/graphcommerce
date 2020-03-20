@@ -1,12 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
+import { useNetworkStatus } from '../../hooks/useNetworkStatus'
 
-export type ISources = Array<['image/webp' | 'image/jpeg', string]>
-type Props = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
-  srcSets?: { [index: string]: string }
+// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+export type ImageTypes =
+  | 'image/apng'
+  | 'image/bmp'
+  | 'image/gif'
+  | 'image/x-icon'
+  | 'image/jpeg'
+  | 'image/png'
+  | 'image/svg+xml'
+  | 'image/tiff'
+  | 'image/webp'
+
+export type PictureResonsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
+  srcSets: Partial<Record<ImageTypes, string>>
   width: number
   height: number
 }
+
+// todo(paales) Height is not properly set on initial page load?
 
 function isInViewport(elem: HTMLImageElement): boolean {
   const { top, right, bottom, left } = elem.getBoundingClientRect()
@@ -20,10 +34,8 @@ function requestUpgrade(img: HTMLImageElement) {
     if (inViewport && !img.complete) {
       // Wait for the in-viewport image to be loaded before start upgrading the image.
       // Because if the initial image hasn't loaded it will cancel the download and restart a new
-      // download..
-      img.onload = () => {
-        resolve()
-      }
+      // download causing a FOUC
+      img.onload = () => resolve()
     } else if (inViewport) {
       // Image in the viewport is loaded, we can directly start upgrading it to enhance the experience
       // as soon as possible.
@@ -56,13 +68,16 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-export const PictureResponsive: React.FC<Props> = ({ srcSets = {}, ...imgProps }) => {
+export const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
   const { width } = useResizeObserver<HTMLImageElement>({ ref })
+  const { effectiveConnectionType } = useNetworkStatus('4g')
+  const scaleDown = effectiveConnectionType === '4g' ? 1 : window.devicePixelRatio
 
   const [upgraded, setUpgraded] = useState<boolean>(false)
 
-  const size = upgraded === false || !width ? imgProps.width : width
+  const size =
+    upgraded === false || width === undefined ? imgProps.width / scaleDown : width / scaleDown
 
   useEffect(() => {
     // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
@@ -74,9 +89,9 @@ export const PictureResponsive: React.FC<Props> = ({ srcSets = {}, ...imgProps }
   return (
     <>
       <picture>
-        {Object.keys(srcSets).map(type => {
-          return <source key={type} type={type} srcSet={srcSets[type]} sizes={`${size}px`} />
-        })}
+        {Object.entries(srcSets).map(([type, srcSet]) => (
+          <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
+        ))}
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img ref={ref} {...imgProps} loading='lazy' />
       </picture>
