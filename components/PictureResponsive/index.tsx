@@ -89,9 +89,9 @@ export const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ..
   return (
     <>
       <picture>
-        {Object.keys(srcSets).map(type => {
-          return <source key={type} type={type} srcSet={srcSets[type]} sizes={`${size}px`} />
-        })}
+        {Object.entries(srcSets).map(([type, srcSet]) => (
+          <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
+        ))}
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img ref={ref} {...imgProps} loading='lazy' />
       </picture>
