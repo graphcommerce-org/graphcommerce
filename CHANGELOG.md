@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v1.1.0...v1.1.1) (2020-03-22)
+
+### Bug Fixes
+
+- **semantic-release:** move commitlint config to package.json
+  ([030cb3a](https://github.com/ho-nl/project-reachdigital.nl/commit/030cb3ae1b473f1e1196e55d31de5cf74592cc65))
+- **semantic-release:** remove canary, update package.json version
+  ([edebad8](https://github.com/ho-nl/project-reachdigital.nl/commit/edebad848245281496af2d45d5a6dbfb6850378e))
+
 # [1.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v1.0.0...v1.1.0) (2020-03-22)
 
 ### Bug Fixes
