@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - canary
 jobs:
   release:
     name: Release
