@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://api-euwest.graphcms.com/v1/cjioidxbu01mw01efuxenx5rs/dev'
+schema: ${GRAPHQL}
 documents: '**/*.graphql'
 generates:
   generated/fragments.json:

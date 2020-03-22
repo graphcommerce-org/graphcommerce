@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "build-storybook -o public/storybook && next build",
     "start": "next start",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen --config codegen.yml -r dotenv/config",
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
@@ -53,7 +53,7 @@
     "@storybook/addon-info": "^5.3.13",
     "@storybook/addon-knobs": "^5.3.13",
     "@storybook/addon-links": "^5.3.13",
-    "@storybook/addon-storysource": "^5.3.13",
+    "@storybook/addon-storysource": "^5.3.17",
     "@storybook/addons": "^5.3.13",
     "@storybook/core": "^5.3.13",
     "@storybook/preset-typescript": "^2.1.0",
@@ -78,6 +78,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.15.1",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "fork-ts-checker-webpack-plugin": "^4.1.0",
     "husky": "^4.2.1",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
