@@ -7825,7 +7825,9 @@ export type GQLGetBreadcrumbEnQueryVariables = {
 }
 
 export type GQLGetBreadcrumbEnQuery = { __typename?: 'Query' } & {
-  page: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'metaTitle' | 'metaRobots' | 'url' | 'title'>>
+  page?: Maybe<
+    { __typename?: 'Page' } & Pick<GQLPage, 'metaTitle' | 'metaRobots' | 'url' | 'title'>
+  >
 }
 
 export type GQLGetBreadcrumbNlQueryVariables = {
@@ -7833,7 +7835,9 @@ export type GQLGetBreadcrumbNlQueryVariables = {
 }
 
 export type GQLGetBreadcrumbNlQuery = { __typename?: 'Query' } & {
-  page: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'metaTitle' | 'metaRobots' | 'url' | 'title'>>
+  page?: Maybe<
+    { __typename?: 'Page' } & Pick<GQLPage, 'metaTitle' | 'metaRobots' | 'url' | 'title'>
+  >
 }
 
 export type GQLGetChildrenEnQueryVariables = {
@@ -7845,9 +7849,9 @@ export type GQLGetChildrenEnQuery = { __typename?: 'Query' } & {
   pages: Array<
     Maybe<
       { __typename?: 'Page' } & Pick<GQLPage, 'metaRobots' | 'url' | 'title'> & {
-          blogPost: Maybe<
+          blogPost?: Maybe<
             { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt'> & {
-                image: Maybe<
+                image?: Maybe<
                   { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
                 >
               }
@@ -7866,9 +7870,9 @@ export type GQLGetChildrenNlQuery = { __typename?: 'Query' } & {
   pages: Array<
     Maybe<
       { __typename?: 'Page' } & Pick<GQLPage, 'metaRobots' | 'url' | 'title'> & {
-          blogPost: Maybe<
+          blogPost?: Maybe<
             { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt'> & {
-                image: Maybe<
+                image?: Maybe<
                   { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
                 >
               }
@@ -7883,17 +7887,17 @@ export type GQLGetPageEnQueryVariables = {
 }
 
 export type GQLGetPageEnQuery = { __typename?: 'Query' } & {
-  page: Maybe<
+  page?: Maybe<
     { __typename?: 'Page' } & Pick<
       GQLPage,
       'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'title'
     > & { urlNL: GQLPage['url']; titleNL: GQLPage['title'] } & {
-        blogPost: Maybe<
+        blogPost?: Maybe<
           { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt' | 'content'> & {
-              image: Maybe<
+              image?: Maybe<
                 { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
               >
-              author: Maybe<
+              author?: Maybe<
                 { __typename?: 'Employee' } & Pick<GQLEmployee, 'firstName' | 'lastName' | 'email'>
               >
             }
@@ -7907,17 +7911,17 @@ export type GQLGetPageNlQueryVariables = {
 }
 
 export type GQLGetPageNlQuery = { __typename?: 'Query' } & {
-  page: Maybe<
+  page?: Maybe<
     { __typename?: 'Page' } & Pick<
       GQLPage,
       'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'title'
     > & { urlEN: GQLPage['url']; titleEN: GQLPage['title'] } & {
-        blogPost: Maybe<
+        blogPost?: Maybe<
           { __typename?: 'BlogPost' } & Pick<GQLBlogPost, 'publicPublishedAt' | 'content'> & {
-              image: Maybe<
+              image?: Maybe<
                 { __typename?: 'Asset' } & Pick<GQLAsset, 'height' | 'width' | 'url' | 'handle'>
               >
-              author: Maybe<
+              author?: Maybe<
                 { __typename?: 'Employee' } & Pick<GQLEmployee, 'firstName' | 'lastName' | 'email'>
               >
             }

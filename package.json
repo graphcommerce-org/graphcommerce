@@ -6,11 +6,12 @@
     "node": "12.x"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently yarn:dev-* --kill-others",
+    "dev-next": "next dev",
+    "dev-codegen": "graphql-codegen -r dotenv/config -w",
+    "dev-storybook": "start-storybook --quiet",
     "build": "build-storybook -o public/storybook && next build",
-    "start": "next start",
-    "codegen": "graphql-codegen --config codegen.yml -r dotenv/config",
-    "storybook": "start-storybook -p 6006"
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.3",
@@ -69,6 +70,7 @@
     "@typescript-eslint/parser": "^2.19.0",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.1.1",
+    "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-typescript": "^7.2.0",
