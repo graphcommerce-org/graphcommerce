@@ -21,6 +21,9 @@ Site:
 
 Commits are validated with https://github.com/conventional-changelog/commitlint
 
+Gittower: Gittower doesn't properly read your PATH variable and thus commit
+validation doesn't work. Use `gittower .` to open this repo.
+
 # Releases
 
 Using https://semantic-release.gitbook.io/.
