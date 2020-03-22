@@ -148,6 +148,11 @@
       }
     ]
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "publishConfig": {
     "access": "restricted"
   }
