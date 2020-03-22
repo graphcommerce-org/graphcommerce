@@ -28,7 +28,7 @@ validation doesn't work. Use `gittower .` to open this repo.
 
 Using https://semantic-release.gitbook.io/.
 
-- Dry-run `GH_TOKEN="bla" yarn semantic-release`
+- Dry-run `GH_TOKEN="bla" SLACK_WEBHOOK="bla" yarn semantic-release`
 
 # Deploy
 
