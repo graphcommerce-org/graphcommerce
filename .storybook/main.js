@@ -25,14 +25,6 @@ module.exports = {
 
     config.resolve.alias['~'] = path.resolve(__dirname, '..')
 
-    // config.plugins.push(
-    //   new ForkTsCheckerWebpackPlugin({
-    //     async: false,
-    //     checkSyntacticErrors: true,
-    //     formatter: require('react-dev-utils/typescriptFormatter'),
-    //   })
-    // )
-
     config.module.rules.push({
       test: /\.stories\.tsx?$/,
       loaders: [
