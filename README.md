@@ -32,4 +32,6 @@ Using https://semantic-release.gitbook.io/.
 
 # Deploy
 
-Push branch to master
+- To deploy a testbranch, create a new branch and it will automatically be
+  pushed.
+- To deploy a release, push commits to master.
