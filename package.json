@@ -1,5 +1,5 @@
 {
-  "name": "reachdigital-next",
+  "name": "project-reachdigital.nl",
   "version": "0.0.0-development",
   "private": true,
   "engines": {
@@ -130,6 +130,7 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
+      "@semantic-release/npm",
       "@semantic-release/git",
       "@semantic-release/github",
       [
@@ -144,11 +145,6 @@
     "branches": [
       {
         "name": "master"
-      },
-      {
-        "name": "canary",
-        "channel": "canary",
-        "prerelease": "canary"
       }
     ]
   },
