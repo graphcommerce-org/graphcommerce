@@ -128,7 +128,36 @@
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "docs",
+                "section": "Documentation"
+              },
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "perf",
+                "section": "Performance Improvements"
+              },
+              {
+                "type": "build",
+                "section": "Build"
+              }
+            ]
+          }
+        }
+      ],
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
