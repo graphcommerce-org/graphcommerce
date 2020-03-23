@@ -1,3 +1,15 @@
+## [2.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.0.1...v2.1.0) (2020-03-23)
+
+### Features
+
+- **semantic-release:** added better sorting of commits
+  ([a7ec176](https://github.com/ho-nl/project-reachdigital.nl/commit/a7ec1769c2a623a32da42678bbd4862b23e1f1d9))
+
+### Bug Fixes
+
+- change name to honor namespace
+  ([d9a90e5](https://github.com/ho-nl/project-reachdigital.nl/commit/d9a90e50536037b2b13e490d7fff7ae1fd649f0e))
+
 ## [2.0.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.0.0...v2.0.1) (2020-03-23)
 
 ### Reverts
