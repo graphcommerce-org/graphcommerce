@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.0.0...v2.0.1) (2020-03-23)
+
+### Reverts
+
+- Revert "feat(semantic-release): added support for adding notes in release
+  notes"
+  ([04a5626](https://github.com/ho-nl/project-reachdigital.nl/commit/04a562662db7cd34eaea4d899f45c84a8e5769d8))
+
 # [2.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v1.1.1...v2.0.0) (2020-03-23)
 
 ### Bug Fixes
