@@ -1,3 +1,21 @@
+# [2.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v1.1.1...v2.0.0) (2020-03-23)
+
+### Bug Fixes
+
+- **seo:** simplified head tag
+  ([44c6057](https://github.com/ho-nl/project-reachdigital.nl/commit/44c6057f4068e87bf7ef6c4e655a2ebdb5dbfc9f))
+
+### Features
+
+- **semantic-release:** added support for adding notes in release notes
+  ([91b6737](https://github.com/ho-nl/project-reachdigital.nl/commit/91b67373a35ca8bffce595b607f2145b95ccb94b))
+
+### BREAKING CHANGES
+
+- **semantic-release:** With this new version we’re introducing the ability to
+  add human written notes. Simply write `Note:` to add notes to the top of the
+  document.
+
 ## [1.1.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v1.1.0...v1.1.1) (2020-03-22)
 
 ### Bug Fixes
