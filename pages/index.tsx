@@ -8,9 +8,9 @@ const Home: GraphCmsPage = props => {
     <>
       <div>
         {childs.map(child => (
-          <div key={child!.url!}>
-            <Link href={child!.url!} metaRobots={child!.metaRobots}>
-              {child?.title}
+          <div key={child.url}>
+            <Link href={child.url} metaRobots={child.metaRobots!}>
+              {child.title}
             </Link>
           </div>
         ))}

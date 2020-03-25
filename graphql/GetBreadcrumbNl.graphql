@@ -1,8 +1,0 @@
-query GetBreadcrumbNl($url: String!) {
-  page(where: { urlNL: $url }) {
-    metaTitle(locale: NL)
-    metaRobots
-    url(locale: NL)
-    title(locale: NL)
-  }
-}

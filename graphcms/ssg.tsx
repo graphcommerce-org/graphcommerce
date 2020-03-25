@@ -1,35 +1,19 @@
-/* eslint-disable react/no-danger */
-import { ApolloQueryResult } from 'apollo-client'
-// @ts-ignore
-import { Remarkable } from 'remarkable'
 import { initApolloClient } from '../lib/apollo'
 import { GraphCmsPageProps } from '.'
 import {
   GQLLocale,
-  GQLGetStaticPathsNlQuery,
-  GQLGetStaticPathsEnQuery,
-  GQLGetStaticPathsNlQueryVariables,
-  GetStaticPathsNlDocument,
-  GQLGetStaticPathsEnQueryVariables,
-  GetStaticPathsEnDocument,
-  GQLGetPageNlQuery,
-  GQLGetPageEnQuery,
-  GQLGetChildrenNlQuery,
-  GQLGetChildrenEnQuery,
-  GQLGetBreadcrumbNlQuery,
-  GQLGetBreadcrumbEnQuery,
-  GQLGetPageNlQueryVariables,
-  GetPageNlDocument,
-  GQLGetChildrenNlQueryVariables,
-  GetChildrenNlDocument,
-  GQLGetBreadcrumbNlQueryVariables,
-  GetBreadcrumbNlDocument,
-  GQLGetPageEnQueryVariables,
-  GetPageEnDocument,
-  GQLGetChildrenEnQueryVariables,
-  GetChildrenEnDocument,
-  GQLGetBreadcrumbEnQueryVariables,
-  GetBreadcrumbEnDocument,
+  GQLGetStaticPathsQuery,
+  GQLGetStaticPathsQueryVariables,
+  GetStaticPathsDocument,
+  GQLGetPageQuery,
+  GQLGetChildrenQuery,
+  GQLGetBreadcrumbQuery,
+  GQLGetPageQueryVariables,
+  GetPageDocument,
+  GQLGetChildrenQueryVariables,
+  GetChildrenDocument,
+  GQLGetBreadcrumbQueryVariables,
+  GetBreadcrumbDocument,
 } from '../generated/graphql'
 
 function parentUrls(url: string, locale: GQLLocale): string[] {
@@ -49,27 +33,15 @@ export const getPaths: (
 ) => Promise<{ paths: string[]; fallback: boolean }> = async (baseUrl, locale) => {
   const apolloClient = initApolloClient()
 
-  let paths: string[]
+  const queryResult = await apolloClient.query<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >({
+    query: GetStaticPathsDocument,
+    variables: { startsWith: `${baseUrl}`, locale },
+  })
 
-  let queryResult
-  switch (locale) {
-    case GQLLocale.Nl:
-      queryResult = await apolloClient.query<
-        GQLGetStaticPathsNlQuery,
-        GQLGetStaticPathsNlQueryVariables
-      >({ query: GetStaticPathsNlDocument, variables: { startsWith: `${baseUrl}` } })
-
-      paths = queryResult.data.pages.map(page => page!.url!)
-      break
-    case GQLLocale.En:
-      queryResult = await apolloClient.query<
-        GQLGetStaticPathsEnQuery,
-        GQLGetStaticPathsEnQueryVariables
-      >({ query: GetStaticPathsEnDocument, variables: { startsWith: `${baseUrl}` } })
-
-      paths = queryResult.data.pages.map(page => page!.url!)
-      break
-  }
+  const paths = queryResult.data.pages.map(page => page!.url!)
 
   return {
     paths,
@@ -80,66 +52,32 @@ export const getPaths: (
 export const getProps = async (url: string, locale: GQLLocale) => {
   const apolloClient = initApolloClient()
 
-  let pageQuery: Promise<ApolloQueryResult<GQLGetPageNlQuery | GQLGetPageEnQuery>>
-  let childrenQuery: Promise<ApolloQueryResult<GQLGetChildrenNlQuery | GQLGetChildrenEnQuery>>
-  let breadcrumbQueries: Array<Promise<
-    ApolloQueryResult<GQLGetBreadcrumbNlQuery | GQLGetBreadcrumbEnQuery>
-  >>
-
-  const startsWith = url === '/' ? url : `${url}/`
+  const startsWith = url === '/' ? '/_%' : `${url}/`
   const notStartsWith = `${startsWith}%/`
 
-  // Fetch data per locale
-  switch (locale) {
-    case GQLLocale.Nl:
-      pageQuery = apolloClient.query<GQLGetPageNlQuery, GQLGetPageNlQueryVariables>({
-        query: GetPageNlDocument,
-        variables: { url },
-      })
-      childrenQuery = apolloClient.query<GQLGetChildrenNlQuery, GQLGetChildrenNlQueryVariables>({
-        query: GetChildrenNlDocument,
-        variables: { startsWith, notStartsWith },
-      })
-      breadcrumbQueries = parentUrls(url, locale).map(parentUrl => {
-        return apolloClient.query<GQLGetBreadcrumbNlQuery, GQLGetBreadcrumbNlQueryVariables>({
-          query: GetBreadcrumbNlDocument,
-          variables: { url: parentUrl },
-        })
-      })
-      break
-    case GQLLocale.En:
-      pageQuery = apolloClient.query<GQLGetPageEnQuery, GQLGetPageEnQueryVariables>({
-        query: GetPageEnDocument,
-        variables: { url },
-      })
-      childrenQuery = apolloClient.query<GQLGetChildrenEnQuery, GQLGetChildrenEnQueryVariables>({
-        query: GetChildrenEnDocument,
-        variables: { startsWith, notStartsWith },
-      })
-      breadcrumbQueries = parentUrls(url, locale).map(parentUrl => {
-        return apolloClient.query<GQLGetBreadcrumbEnQuery, GQLGetBreadcrumbEnQueryVariables>({
-          query: GetBreadcrumbEnDocument,
-          variables: { url: parentUrl },
-        })
-      })
-      break
-  }
+  const pageQuery = apolloClient.query<GQLGetPageQuery, GQLGetPageQueryVariables>({
+    query: GetPageDocument,
+    variables: { url, locale },
+  })
+  const childrenQuery = apolloClient.query<GQLGetChildrenQuery, GQLGetChildrenQueryVariables>({
+    query: GetChildrenDocument,
+    variables: { startsWith, notStartsWith, locale },
+  })
 
-  const { page } = (await pageQuery).data
+  const breadcrumbQueries = parentUrls(url, locale).map(parentUrl => {
+    return apolloClient.query<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>({
+      query: GetBreadcrumbDocument,
+      variables: { url: parentUrl, locale },
+    })
+  })
+
+  const page = (await pageQuery).data.pages.pop()!
   const childs = (await childrenQuery).data.pages
-  const breadcrumbs = (await Promise.all(breadcrumbQueries)).map(
-    breadcrumbQuery => breadcrumbQuery.data.page,
-  )
+  const breadcrumbs = (await Promise.all(breadcrumbQueries)).map(bq => bq.data.pages.pop()!)
 
   // Generate the result object.
   const result: { props: GraphCmsPageProps } = {
     props: { locale, page, breadcrumbs, childs },
-  }
-
-  // Render markdown content when required
-  if (result.props.page?.blogPost?.content) {
-    const md = new Remarkable({ html: true })
-    result.props.page.blogPost.content = md.render(result.props.page.blogPost.content)
   }
 
   return result

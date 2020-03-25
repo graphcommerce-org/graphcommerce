@@ -1,0 +1,19 @@
+query GetPage($url: String!, $locale: Locale!) {
+  pages(where: { url: $url }, locales: [$locale]) {
+    locale
+    metaTitle
+    metaDescription
+    metaRobots
+    url
+    title
+    localizations {
+      url
+      locale
+      metaRobots
+    }
+    content {
+      __typename
+      ...HeroBannerFragment
+    }
+  }
+}

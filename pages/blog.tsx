@@ -23,12 +23,12 @@ const Blog: GraphCmsPage = props => {
   const { page, childs } = props
   return (
     <>
-      <h1>{page?.title}</h1>
+      <h1>{page.metaTitle}</h1>
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
         {childs.map(child => (
-          <GridListTile key={child!.url!} cols={1}>
-            <Link href={child!.url!} metaRobots={child!.metaRobots}>
-              {child?.title}
+          <GridListTile key={child.url} cols={1}>
+            <Link href={child.url} metaRobots={child.metaRobots}>
+              {child.title}
             </Link>
           </GridListTile>
         ))}

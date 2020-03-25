@@ -18,14 +18,14 @@ const BlogSlug: GraphCmsPage = props => {
         item={{
           '@context': 'https://schema.org',
           '@type': 'BlogPosting',
-          headline: page.title!,
+          headline: page.metaTitle!,
           image: page.blogPost.image?.url,
           datePublished: page.blogPost.publicPublishedAt,
         }}
       />
       <h1>
-        <Link metaRobots={page.metaRobots} href={page.url!}>
-          {page.title}
+        <Link metaRobots={page.metaRobots!} href={page.url!}>
+          {page.breadcrumbTitle}
         </Link>
       </h1>
 

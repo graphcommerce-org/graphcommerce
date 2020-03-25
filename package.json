@@ -34,7 +34,6 @@
     "react-dom": "16.13.0",
     "react-schemaorg": "^1.0.0",
     "regenerator-runtime": "^0.13.3",
-    "remarkable": "^2.0.0",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.5.1",
     "sitemap": "^6.1.0",
