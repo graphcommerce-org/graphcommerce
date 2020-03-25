@@ -8,31 +8,33 @@ import { FullLayout } from '../../layout/FullLayout'
 
 const BlogSlug: GraphCmsPage = props => {
   const { page } = props
-  if (!page || !page.blogPost) {
-    return <Error statusCode={404} title='page.blogPost not found.' />
-  }
 
-  return (
-    <div>
-      <JsonLd<BlogPosting>
-        item={{
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          headline: page.title!,
-          image: page.blogPost.image?.url,
-          datePublished: page.blogPost.publicPublishedAt,
-        }}
-      />
-      <h1>
-        <Link metaRobots={page.metaRobots} href={page.url!}>
-          {page.title}
-        </Link>
-      </h1>
+  return <div>Not yet implemented {page.title}</div>
+  // if (!page || !page.blogPost) {
+  //   return <Error statusCode={404} title='page.blogPost not found.' />
+  // }
 
-      {/* eslint-disable react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content! }} />
-    </div>
-  )
+  // return (
+  //   <div>
+  //     <JsonLd<BlogPosting>
+  //       item={{
+  //         '@context': 'https://schema.org',
+  //         '@type': 'BlogPosting',
+  //         headline: page.metaTitle!,
+  //         image: page.blogPost.image?.url,
+  //         datePublished: page.blogPost.publicPublishedAt,
+  //       }}
+  //     />
+  //     <h1>
+  //       <Link metaRobots={page.metaRobots!} href={page.url!}>
+  //         {page.breadcrumbTitle}
+  //       </Link>
+  //     </h1>
+
+  //     {/* eslint-disable react/no-danger */}
+  //     <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content! }} />
+  //   </div>
+  // )
 }
 
 BlogSlug.layout = FullLayout

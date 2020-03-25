@@ -20,9 +20,9 @@ function createApolloClient(
     ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
       uri: process.env.GRAPHQL, // Server URL (must be absolute)
-      headers: {
-        Authorization: process.env.GRAPHQL_BEARER,
-      },
+      // headers: {
+      //   Authorization: process.env.GRAPHQL_BEARER,
+      // },
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch,
     }),

@@ -1,0 +1,11 @@
+query GetChildren($startsWith: String!, $notStartsWith: String!, $locale: Locale!) {
+  pages(
+    where: { url_starts_with: $startsWith, url_not_starts_with: $notStartsWith }
+    orderBy: url_ASC
+    locales: [$locale]
+  ) {
+    metaRobots
+    url
+    title
+  }
+}

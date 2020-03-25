@@ -2,12 +2,10 @@ import { SitemapStream, SitemapItemLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { createGzip } from 'zlib'
 import {
-  GQLGetStaticPathsNlQuery,
-  GQLGetStaticPathsNlQueryVariables,
-  GetStaticPathsNlDocument,
-  GQLGetStaticPathsEnQuery,
-  GQLGetStaticPathsEnQueryVariables,
-  GetStaticPathsEnDocument,
+  GQLGetStaticPathsQuery,
+  GQLGetStaticPathsQueryVariables,
+  GetStaticPathsDocument,
+  GQLLocale,
 } from '../../generated/graphql'
 import { initApolloClient } from '../../lib/apollo'
 
@@ -31,23 +29,31 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const apolloClient = initApolloClient()
     const { data: resultNl } = await apolloClient.query<
-      GQLGetStaticPathsNlQuery,
-      GQLGetStaticPathsNlQueryVariables
-    >({ query: GetStaticPathsNlDocument, variables: { startsWith: '' } })
+      GQLGetStaticPathsQuery,
+      GQLGetStaticPathsQueryVariables
+    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: GQLLocale.Nl } })
 
     const { data: resultEn } = await apolloClient.query<
-      GQLGetStaticPathsEnQuery,
-      GQLGetStaticPathsEnQueryVariables
-    >({ query: GetStaticPathsEnDocument, variables: { startsWith: '' } })
+      GQLGetStaticPathsQuery,
+      GQLGetStaticPathsQueryVariables
+    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: GQLLocale.En } })
 
     // Add NL Pages with hreflang alternative
     resultNl.pages.forEach(page => {
-      const item: SitemapItemLoose = { url: page!.url! }
-      if (page!.urlEN) item.links = [{ url: page!.urlEN, lang: 'en' }]
+      const item: SitemapItemLoose = { url: page!.url!, links: [] }
+
+      page.localizations.forEach(localization => {
+        if (item.links) {
+          item.links.push({
+            url: localization.url,
+            lang: localization.locale,
+          })
+
+          resultEn.pages = resultEn.pages.filter(pageEn => pageEn.url !== localization.url)
+        }
+      })
 
       sm.write(item)
-
-      resultEn.pages = resultEn.pages.filter(pageEN => pageEN?.url !== page?.urlEN)
     })
 
     // Add other EN pages

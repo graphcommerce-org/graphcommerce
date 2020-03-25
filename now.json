@@ -2,8 +2,7 @@
   "build": {
     "env": {
       "GRAPHQL": "@graphql",
-      "GRAPHQL_BEARER": "@graphql_bearer",
-      "NPM_ONLY_PRODUCTION": "1"
+      "GRAPHQL_BEARER": "@graphql_bearer"
     }
   }
 }

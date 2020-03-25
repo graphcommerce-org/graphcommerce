@@ -1,18 +1,13 @@
-import { GraphCmsPageProps, isPageNlHasEn, isPageEnHasNl } from './GraphCmsPage'
+import { GraphCmsPageProps } from './GraphCmsPage'
 import { Link } from './Link'
 
 const Language: React.FC<GraphCmsPageProps> = ({ page }) => (
   <>
-    {isPageNlHasEn(page) && (
-      <Link metaRobots={page.metaRobots} href={page.urlEN!}>
-        Read in English
+    {page?.localizations.map(localization => (
+      <Link metaRobots={localization.metaRobots!} href={localization.url} key={localization.url}>
+        Read in {localization.locale}
       </Link>
-    )}
-    {isPageEnHasNl(page) && (
-      <Link metaRobots={page.metaRobots} href={page.urlNL!}>
-        Read in Dutch
-      </Link>
-    )}
+    ))}
   </>
 )
 

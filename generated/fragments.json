@@ -9,49 +9,52 @@
             "name": "Asset"
           },
           {
-            "name": "ContactForm"
+            "name": "HeroBanner"
           },
           {
-            "name": "Ecosystem"
-          },
-          {
-            "name": "StructuredPage"
-          },
-          {
-            "name": "Block"
+            "name": "List"
           },
           {
             "name": "Page"
           },
           {
-            "name": "BlogPost"
+            "name": "Link"
           },
           {
-            "name": "Employee"
+            "name": "Person"
           },
           {
-            "name": "JobListing"
+            "name": "Company"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ListItems",
+        "possibleTypes": [
+          {
+            "name": "Page"
           },
           {
-            "name": "Comment"
+            "name": "Person"
           },
           {
-            "name": "SingularPage"
+            "name": "Company"
           },
           {
-            "name": "Document"
+            "name": "HeroBanner"
           },
           {
-            "name": "Module"
-          },
+            "name": "Link"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "PageContent",
+        "possibleTypes": [
           {
-            "name": "Quote"
-          },
-          {
-            "name": "StartProjectForm"
-          },
-          {
-            "name": "MailchimpForm"
+            "name": "HeroBanner"
           }
         ]
       }
