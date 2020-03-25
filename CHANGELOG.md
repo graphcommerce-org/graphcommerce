@@ -1,3 +1,23 @@
+## [2.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.1.0...v2.2.0) (2020-03-25)
+
+### Features
+
+- **graphcms:** added ContentRenderer component
+  ([f4cb990](https://github.com/ho-nl/project-reachdigital.nl/commit/f4cb9906bb7f45ae71b3510666feb7e4c7288890))
+- **graphcms:** migrated to next.graphcms.com
+  ([a5e24a1](https://github.com/ho-nl/project-reachdigital.nl/commit/a5e24a19712e1457895cac96287aab78a872bb2a))
+
+### Bug Fixes
+
+- **graphcms:** fix build issue where build-storybook couldn’t be found
+  ([7fdd4df](https://github.com/ho-nl/project-reachdigital.nl/commit/7fdd4dfde6d8bb33b52c1228e3b79adb9a5e7be0))
+- **graphcms:** fix build, blog not yet implemented
+  ([2fad799](https://github.com/ho-nl/project-reachdigital.nl/commit/2fad79943b26ab9c3ce370022fde020deec30222))
+- **graphcms:** fix deploy, again
+  ([05d7888](https://github.com/ho-nl/project-reachdigital.nl/commit/05d78880ebe0b42397780d4942a064ce5c9957c4))
+- **graphcms:** temporarily disable build-storybook to fix build
+  ([2c0bb2e](https://github.com/ho-nl/project-reachdigital.nl/commit/2c0bb2e113584f89aa59458db1da937ba797567b))
+
 ## [2.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.0.1...v2.1.0) (2020-03-23)
 
 ### Features
