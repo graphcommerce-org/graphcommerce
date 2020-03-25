@@ -48,6 +48,7 @@ module.exports = {
         markers: ['/'],
       },
     ],
+    'no-underscore-dangle': ['error', { allow: ['__typename'] }],
   },
   overrides: [
     {

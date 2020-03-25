@@ -27,7 +27,7 @@ const Blog: GraphCmsPage = props => {
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
         {childs.map(child => (
           <GridListTile key={child.url} cols={1}>
-            <Link href={child.url} metaRobots={child.metaRobots}>
+            <Link href={child.url} metaRobots={child.metaRobots!}>
               {child.title}
             </Link>
           </GridListTile>

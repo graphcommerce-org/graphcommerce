@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  Date: any
-  Json: any
+  RGBATransparency: any
   Hex: any
   RGBAHue: any
-  RGBATransparency: any
+  Json: any
+  Date: any
 }
 
 export enum GQL_FilterKind {
@@ -3017,10 +3017,11 @@ export type GQLUnpublishLocaleInput = {
   stages: Array<GQLStage>
 }
 
-export type GQLHeroBannerFragmentFragment = { __typename: 'HeroBanner' } & Pick<
-  GQLHeroBanner,
-  'id'
-> & {
+export type GQLContentRendererFragment = { __typename?: 'Page' } & {
+  content: Array<{ __typename: 'HeroBanner' } & GQLHeroBannerFragment>
+}
+
+export type GQLHeroBannerFragment = { __typename: 'HeroBanner' } & Pick<GQLHeroBanner, 'id'> & {
     video?: Maybe<{ __typename?: 'Asset' } & Pick<GQLAsset, 'url' | 'mimeType'>>
     content: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
     title: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
@@ -3061,8 +3062,7 @@ export type GQLGetPageQuery = { __typename?: 'Query' } & {
         localizations: Array<
           { __typename?: 'Page' } & Pick<GQLPage, 'url' | 'locale' | 'metaRobots'>
         >
-        content: Array<{ __typename: 'HeroBanner' } & GQLHeroBannerFragmentFragment>
-      }
+      } & GQLContentRendererFragment
   >
 }
 
@@ -3079,8 +3079,8 @@ export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
   >
 }
 
-export const HeroBannerFragmentFragmentDoc = gql`
-  fragment HeroBannerFragment on HeroBanner {
+export const HeroBannerFragmentDoc = gql`
+  fragment HeroBanner on HeroBanner {
     __typename
     id
     video {
@@ -3094,6 +3094,15 @@ export const HeroBannerFragmentFragmentDoc = gql`
       html
     }
   }
+`
+export const ContentRendererFragmentDoc = gql`
+  fragment ContentRenderer on Page {
+    content {
+      __typename
+      ...HeroBanner
+    }
+  }
+  ${HeroBannerFragmentDoc}
 `
 export const GetBreadcrumbDocument = gql`
   query GetBreadcrumb($url: String!, $locale: Locale!) {
@@ -3225,13 +3234,10 @@ export const GetPageDocument = gql`
         locale
         metaRobots
       }
-      content {
-        __typename
-        ...HeroBannerFragment
-      }
+      ...ContentRenderer
     }
   }
-  ${HeroBannerFragmentFragmentDoc}
+  ${ContentRendererFragmentDoc}
 `
 
 /**

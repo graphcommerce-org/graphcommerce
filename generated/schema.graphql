@@ -2009,9 +2009,13 @@ input PersonUpdateManyInput {
   updatedAt: DateTime
   name: String
 }
-input PageUpdateManyWithNestedWhereInput {
-  where: PageWhereInput!
-  data: PageUpdateManyInput!
+input AssetUpdateManyWithNestedWhereInput {
+  where: AssetWhereInput!
+  data: AssetUpdateManyInput!
+}
+input ListUpdateManyWithNestedWhereInput {
+  where: ListWhereInput!
+  data: ListUpdateManyInput!
 }
 input ColorInput {
   hex: Hex
@@ -2026,6 +2030,163 @@ input RGBAInput {
 }
 scalar RGBAHue
 scalar RGBATransparency
+enum _MutationInputFieldKind {
+  scalar
+  richText
+  enum
+  relation
+  union
+  virtual
+}
+enum _RelationInputCardinality {
+  one
+  many
+}
+scalar Date
+enum _OrderDirection {
+  asc
+  desc
+}
+input HeroBannerUpdateManyWithNestedWhereInput {
+  where: HeroBannerWhereInput!
+  data: HeroBannerUpdateManyInput!
+}
+input PageUpdateManyWithNestedWhereInput {
+  where: PageWhereInput!
+  data: PageUpdateManyInput!
+}
+input ListItemsWhereInput {
+  Page: PageWhereInput
+  Person: PersonWhereInput
+  Company: CompanyWhereInput
+  HeroBanner: HeroBannerWhereInput
+  Link: LinkWhereInput
+}
+input LinkCreateOneInlineInput {
+  create: LinkCreateInput
+  connect: LinkWhereUniqueInput
+}
+type Location {
+  latitude: Float!
+  longitude: Float!
+  distance(from: LocationInput!): Float!
+}
+input LocationInput {
+  latitude: Float!
+  longitude: Float!
+}
+input ListItemsCreateOneInlineInput {
+  create: ListItemsCreateInput
+  connect: ListItemsWhereUniqueInput
+}
+input CompanyUpdateOneInlineInput {
+  create: CompanyCreateInput
+  update: CompanyUpdateWithNestedWhereUniqueInput
+  upsert: CompanyUpsertWithNestedWhereUniqueInput
+  connect: CompanyWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input LinkUpdateManyWithNestedWhereInput {
+  where: LinkWhereInput!
+  data: LinkUpdateManyInput!
+}
+input PageContentCreateOneInlineInput {
+  create: PageContentCreateInput
+  connect: PageContentWhereUniqueInput
+}
+input PublishLocaleInput {
+  locale: Locale!
+  stages: [Stage!]!
+}
+input ListCreateOneInlineInput {
+  create: ListCreateInput
+  connect: ListWhereUniqueInput
+}
+enum _MutationKind {
+  create
+  publish
+  unpublish
+  update
+  upsert
+  delete
+  updateMany
+  publishMany
+  unpublishMany
+  deleteMany
+}
+input CompanyUpdateManyWithNestedWhereInput {
+  where: CompanyWhereInput!
+  data: CompanyUpdateManyInput!
+}
+input PersonUpdateOneInlineInput {
+  create: PersonCreateInput
+  update: PersonUpdateWithNestedWhereUniqueInput
+  upsert: PersonUpsertWithNestedWhereUniqueInput
+  connect: PersonWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input PageUpdateOneInlineInput {
+  create: PageCreateInput
+  update: PageUpdateWithNestedWhereUniqueInput
+  upsert: PageUpsertWithNestedWhereUniqueInput
+  connect: PageWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input ListItemsUpdateManyWithNestedWhereInput {
+  Page: PageUpdateManyWithNestedWhereInput
+  Person: PersonUpdateManyWithNestedWhereInput
+  Company: CompanyUpdateManyWithNestedWhereInput
+  HeroBanner: HeroBannerUpdateManyWithNestedWhereInput
+  Link: LinkUpdateManyWithNestedWhereInput
+}
+input PersonUpdateManyWithNestedWhereInput {
+  where: PersonWhereInput!
+  data: PersonUpdateManyInput!
+}
+input AssetConnectInput {
+  where: AssetWhereUniqueInput!
+  position: ConnectPositionInput
+}
+scalar Json
+input AssetCreateManyInlineInput {
+  create: [AssetCreateInput!]
+  connect: [AssetWhereUniqueInput!]
+}
+input PageContentUpdateInput {
+  HeroBanner: HeroBannerUpdateInput
+}
+input PageContentUpdateManyWithNestedWhereInput {
+  HeroBanner: HeroBannerUpdateManyWithNestedWhereInput
+}
+type Color {
+  hex: Hex!
+  rgba: RGBA!
+  css: String!
+}
+type RGBA {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
+}
+input LinkUpdateOneInlineInput {
+  create: LinkCreateInput
+  update: LinkUpdateWithNestedWhereUniqueInput
+  upsert: LinkUpsertWithNestedWhereUniqueInput
+  connect: LinkWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+enum _RelationInputKind {
+  create
+  update
+}
+input PageContentWhereInput {
+  HeroBanner: HeroBannerWhereInput
+}
 enum _FilterKind {
   search
   AND
@@ -2053,58 +2214,33 @@ enum _FilterKind {
   relational_some
   relational_none
 }
-input PageContentUpdateOneInlineInput {
-  create: PageContentCreateInput
-  update: PageContentUpdateWithNestedWhereUniqueInput
-  upsert: PageContentUpsertWithNestedWhereUniqueInput
-  connect: PageContentWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-type RGBA {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
-}
-input LinkCreateOneInlineInput {
-  create: LinkCreateInput
-  connect: LinkWhereUniqueInput
-}
-input LinkUpdateManyWithNestedWhereInput {
-  where: LinkWhereInput!
-  data: LinkUpdateManyInput!
-}
-enum _RelationInputKind {
-  create
-  update
-}
 input UnpublishLocaleInput {
   locale: Locale!
   stages: [Stage!]!
 }
-input AssetUpdateManyWithNestedWhereInput {
-  where: AssetWhereInput!
-  data: AssetUpdateManyInput!
-}
-input CompanyUpdateManyWithNestedWhereInput {
-  where: CompanyWhereInput!
-  data: CompanyUpdateManyInput!
-}
-input PageContentUpdateInput {
-  HeroBanner: HeroBannerUpdateInput
-}
-input AssetCreateManyInlineInput {
-  create: [AssetCreateInput!]
-  connect: [AssetWhereUniqueInput!]
-}
-input PersonUpdateOneInlineInput {
-  create: PersonCreateInput
-  update: PersonUpdateWithNestedWhereUniqueInput
-  upsert: PersonUpsertWithNestedWhereUniqueInput
-  connect: PersonWhereUniqueInput
+input ListItemsUpdateOneInlineInput {
+  create: ListItemsCreateInput
+  update: ListItemsUpdateWithNestedWhereUniqueInput
+  upsert: ListItemsUpsertWithNestedWhereUniqueInput
+  connect: ListItemsWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
+}
+enum _RelationKind {
+  regular
+  union
+}
+input HeroBannerUpdateOneInlineInput {
+  create: HeroBannerCreateInput
+  update: HeroBannerUpdateWithNestedWhereUniqueInput
+  upsert: HeroBannerUpsertWithNestedWhereUniqueInput
+  connect: HeroBannerWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input PersonCreateOneInlineInput {
+  create: PersonCreateInput
+  connect: PersonWhereUniqueInput
 }
 input ListUpdateOneInlineInput {
   create: ListCreateInput
@@ -2114,29 +2250,12 @@ input ListUpdateOneInlineInput {
   disconnect: Boolean
   delete: Boolean
 }
-input PersonUpdateManyWithNestedWhereInput {
-  where: PersonWhereInput!
-  data: PersonUpdateManyInput!
-}
-input LocationInput {
-  latitude: Float!
-  longitude: Float!
-}
-input ListUpdateManyWithNestedWhereInput {
-  where: ListWhereInput!
-  data: ListUpdateManyInput!
-}
-input CompanyCreateOneInlineInput {
-  create: CompanyCreateInput
-  connect: CompanyWhereUniqueInput
-}
-input LinkUpdateOneInlineInput {
-  create: LinkCreateInput
-  update: LinkUpdateWithNestedWhereUniqueInput
-  upsert: LinkUpsertWithNestedWhereUniqueInput
-  connect: LinkWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
+input ListItemsUpdateInput {
+  Page: PageUpdateInput
+  Person: PersonUpdateInput
+  Company: CompanyUpdateInput
+  HeroBanner: HeroBannerUpdateInput
+  Link: LinkUpdateInput
 }
 input AssetUpdateManyInlineInput {
   create: [AssetCreateInput!]
@@ -2147,142 +2266,23 @@ input AssetUpdateManyInlineInput {
   disconnect: [AssetWhereUniqueInput!]
   delete: [AssetWhereUniqueInput!]
 }
-input AssetConnectInput {
-  where: AssetWhereUniqueInput!
-  position: ConnectPositionInput
+input CompanyCreateOneInlineInput {
+  create: CompanyCreateInput
+  connect: CompanyWhereUniqueInput
 }
-input HeroBannerUpdateManyWithNestedWhereInput {
-  where: HeroBannerWhereInput!
-  data: HeroBannerUpdateManyInput!
-}
-input ListItemsUpdateManyWithNestedWhereInput {
-  Page: PageUpdateManyWithNestedWhereInput
-  Person: PersonUpdateManyWithNestedWhereInput
-  Company: CompanyUpdateManyWithNestedWhereInput
-  HeroBanner: HeroBannerUpdateManyWithNestedWhereInput
-  Link: LinkUpdateManyWithNestedWhereInput
+input PageContentUpdateOneInlineInput {
+  create: PageContentCreateInput
+  update: PageContentUpdateWithNestedWhereUniqueInput
+  upsert: PageContentUpsertWithNestedWhereUniqueInput
+  connect: PageContentWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
 }
 input HeroBannerCreateOneInlineInput {
   create: HeroBannerCreateInput
   connect: HeroBannerWhereUniqueInput
 }
-enum _OrderDirection {
-  asc
-  desc
-}
-input ListItemsUpdateOneInlineInput {
-  create: ListItemsCreateInput
-  update: ListItemsUpdateWithNestedWhereUniqueInput
-  upsert: ListItemsUpsertWithNestedWhereUniqueInput
-  connect: ListItemsWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input HeroBannerUpdateOneInlineInput {
-  create: HeroBannerCreateInput
-  update: HeroBannerUpdateWithNestedWhereUniqueInput
-  upsert: HeroBannerUpsertWithNestedWhereUniqueInput
-  connect: HeroBannerWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input PageContentCreateOneInlineInput {
-  create: PageContentCreateInput
-  connect: PageContentWhereUniqueInput
-}
-input PersonCreateOneInlineInput {
-  create: PersonCreateInput
-  connect: PersonWhereUniqueInput
-}
 input PageCreateOneInlineInput {
   create: PageCreateInput
   connect: PageWhereUniqueInput
-}
-enum _MutationKind {
-  create
-  publish
-  unpublish
-  update
-  upsert
-  delete
-  updateMany
-  publishMany
-  unpublishMany
-  deleteMany
-}
-scalar Json
-scalar Date
-input PageContentUpdateManyWithNestedWhereInput {
-  HeroBanner: HeroBannerUpdateManyWithNestedWhereInput
-}
-input PublishLocaleInput {
-  locale: Locale!
-  stages: [Stage!]!
-}
-input ListCreateOneInlineInput {
-  create: ListCreateInput
-  connect: ListWhereUniqueInput
-}
-type Location {
-  latitude: Float!
-  longitude: Float!
-  distance(from: LocationInput!): Float!
-}
-input PageUpdateOneInlineInput {
-  create: PageCreateInput
-  update: PageUpdateWithNestedWhereUniqueInput
-  upsert: PageUpsertWithNestedWhereUniqueInput
-  connect: PageWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-enum _RelationKind {
-  regular
-  union
-}
-input ListItemsCreateOneInlineInput {
-  create: ListItemsCreateInput
-  connect: ListItemsWhereUniqueInput
-}
-input CompanyUpdateOneInlineInput {
-  create: CompanyCreateInput
-  update: CompanyUpdateWithNestedWhereUniqueInput
-  upsert: CompanyUpsertWithNestedWhereUniqueInput
-  connect: CompanyWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input ListItemsWhereInput {
-  Page: PageWhereInput
-  Person: PersonWhereInput
-  Company: CompanyWhereInput
-  HeroBanner: HeroBannerWhereInput
-  Link: LinkWhereInput
-}
-input PageContentWhereInput {
-  HeroBanner: HeroBannerWhereInput
-}
-enum _RelationInputCardinality {
-  one
-  many
-}
-input ListItemsUpdateInput {
-  Page: PageUpdateInput
-  Person: PersonUpdateInput
-  Company: CompanyUpdateInput
-  HeroBanner: HeroBannerUpdateInput
-  Link: LinkUpdateInput
-}
-enum _MutationInputFieldKind {
-  scalar
-  richText
-  enum
-  relation
-  union
-  virtual
-}
-type Color {
-  hex: Hex!
-  rgba: RGBA!
-  css: String!
 }

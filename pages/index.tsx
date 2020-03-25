@@ -1,9 +1,10 @@
 import { Link, GraphCmsPage } from '../graphcms'
 import { GQLLocale } from '../generated/graphql'
 import { FullLayout } from '../layout/FullLayout'
+import { ContentRenderer } from '../components/ContentRenderer'
 
 const Home: GraphCmsPage = props => {
-  const { childs } = props
+  const { childs, page } = props
   return (
     <>
       <div>
@@ -15,6 +16,8 @@ const Home: GraphCmsPage = props => {
           </div>
         ))}
       </div>
+
+      <ContentRenderer content={page.content} />
     </>
   )
 }
