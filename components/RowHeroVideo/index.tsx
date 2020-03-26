@@ -1,6 +1,7 @@
 import { GQLRowHeroVideoFragment } from '../../generated/graphql'
 import { LinkInternal } from '../LinkInternal/LinkInternal'
 import { LinkExternal } from '../LinkExternal/LinkExternal'
+import styles from './RowHeroVideo.module.css'
 
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer
@@ -12,12 +13,12 @@ import { LinkExternal } from '../LinkExternal/LinkExternal'
  */
 const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links }) => {
   return (
-    <div>
+    <div className={styles.row}>
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: content.html }} />
 
       {video && (
-        <video autoPlay loop muted playsinline id='video' style={{ height: '200px' }}>
+        <video autoPlay loop muted playsinline id='video'>
           <source src={video.url} type={video.mimeType!} />
         </video>
       )}
