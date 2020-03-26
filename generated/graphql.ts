@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
+  Hex: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
-  Date: any
   Json: any
+  Date: any
 }
 
 export enum GQL_FilterKind {
@@ -941,30 +941,34 @@ export type GQLImageTransformationInput = {
   resize?: Maybe<GQLImageResizeInput>
 }
 
-export type GQLLink = GQLNode & {
-  __typename?: 'Link'
+export type GQLLinkExternal = GQLNode & {
+  __typename?: 'LinkExternal'
   stage: GQLStage
-  documentInStages: Array<GQLLink>
+  locale: GQLLocale
+  localizations: Array<GQLLinkExternal>
+  documentInStages: Array<GQLLinkExternal>
   id: Scalars['ID']
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
-  list: Array<GQLZzDeleteList>
-  page: Array<GQLPage>
-  title?: Maybe<Scalars['String']>
   description?: Maybe<GQLRichText>
-  heroBanner: Array<GQLRowHeroVideo>
-  rowPeopleWithText: Array<GQLRowPeopleWithText>
-  rowServicesWithText: Array<GQLRowServicesWithText>
+  rowHeroVideo: Array<GQLRowHeroVideo>
+  url: Scalars['String']
+  title: Scalars['String']
 }
 
-export type GQLLinkDocumentInStagesArgs = {
+export type GQLLinkExternalLocalizationsArgs = {
+  locales?: Array<GQLLocale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type GQLLinkExternalDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
 }
 
-export type GQLLinkListArgs = {
+export type GQLLinkExternalRowHeroVideoArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -972,91 +976,66 @@ export type GQLLinkListArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type GQLLinkPageArgs = {
-  where?: Maybe<GQLPageWhereInput>
-  orderBy?: Maybe<GQLPageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type GQLLinkHeroBannerArgs = {
-  where?: Maybe<GQLRowHeroVideoWhereInput>
-  orderBy?: Maybe<GQLRowHeroVideoOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type GQLLinkRowPeopleWithTextArgs = {
-  where?: Maybe<GQLRowPeopleWithTextWhereInput>
-  orderBy?: Maybe<GQLRowPeopleWithTextOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type GQLLinkRowServicesWithTextArgs = {
-  where?: Maybe<GQLRowServicesWithTextWhereInput>
-  orderBy?: Maybe<GQLRowServicesWithTextOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type GQLLinkConnectInput = {
-  where: GQLLinkWhereUniqueInput
+export type GQLLinkExternalConnectInput = {
+  where: GQLLinkExternalWhereUniqueInput
   position?: Maybe<GQLConnectPositionInput>
 }
 
-export type GQLLinkConnection = {
-  __typename?: 'LinkConnection'
+export type GQLLinkExternalConnection = {
+  __typename?: 'LinkExternalConnection'
   pageInfo: GQLPageInfo
-  edges: Array<GQLLinkEdge>
+  edges: Array<GQLLinkExternalEdge>
   aggregate: GQLAggregate
 }
 
-export type GQLLinkCreateInput = {
+export type GQLLinkExternalCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
-  page?: Maybe<GQLPageCreateManyInlineInput>
-  title?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['RichTextAST']>
-  heroBanner?: Maybe<GQLRowHeroVideoCreateManyInlineInput>
-  rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
-  rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroVideoCreateManyInlineInput>
+  url: Scalars['String']
+  title: Scalars['String']
+  localizations?: Maybe<GQLLinkExternalCreateLocalizationsInput>
 }
 
-export type GQLLinkCreateManyInlineInput = {
-  create?: Maybe<Array<GQLLinkCreateInput>>
-  connect?: Maybe<Array<GQLLinkWhereUniqueInput>>
+export type GQLLinkExternalCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  description?: Maybe<Scalars['RichTextAST']>
+  url: Scalars['String']
+  title: Scalars['String']
 }
 
-export type GQLLinkCreateOneInlineInput = {
-  create?: Maybe<GQLLinkCreateInput>
-  connect?: Maybe<GQLLinkWhereUniqueInput>
+export type GQLLinkExternalCreateLocalizationInput = {
+  data: GQLLinkExternalCreateLocalizationDataInput
+  locale: GQLLocale
 }
 
-export type GQLLinkEdge = {
-  __typename?: 'LinkEdge'
-  node: GQLLink
+export type GQLLinkExternalCreateLocalizationsInput = {
+  create?: Maybe<Array<GQLLinkExternalCreateLocalizationInput>>
+}
+
+export type GQLLinkExternalCreateManyInlineInput = {
+  create?: Maybe<Array<GQLLinkExternalCreateInput>>
+  connect?: Maybe<Array<GQLLinkExternalWhereUniqueInput>>
+}
+
+export type GQLLinkExternalCreateOneInlineInput = {
+  create?: Maybe<GQLLinkExternalCreateInput>
+  connect?: Maybe<GQLLinkExternalWhereUniqueInput>
+}
+
+export type GQLLinkExternalEdge = {
+  __typename?: 'LinkExternalEdge'
+  node: GQLLinkExternal
   cursor: Scalars['String']
 }
 
-export type GQLLinkManyWhereInput = {
+export type GQLLinkExternalManyWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<GQLLinkWhereInput>>
-  OR?: Maybe<Array<GQLLinkWhereInput>>
-  NOT?: Maybe<Array<GQLLinkWhereInput>>
+  AND?: Maybe<Array<GQLLinkExternalWhereInput>>
+  OR?: Maybe<Array<GQLLinkExternalWhereInput>>
+  NOT?: Maybe<Array<GQLLinkExternalWhereInput>>
   id?: Maybe<Scalars['ID']>
   id_not?: Maybe<Scalars['ID']>
   id_in?: Maybe<Array<Scalars['ID']>>
@@ -1091,9 +1070,155 @@ export type GQLLinkManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  page_every?: Maybe<GQLPageWhereInput>
-  page_some?: Maybe<GQLPageWhereInput>
-  page_none?: Maybe<GQLPageWhereInput>
+}
+
+export enum GQLLinkExternalOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+}
+
+export type GQLLinkExternalUpdateInput = {
+  description?: Maybe<Scalars['RichTextAST']>
+  rowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyInlineInput>
+  url?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  localizations?: Maybe<GQLLinkExternalUpdateLocalizationsInput>
+}
+
+export type GQLLinkExternalUpdateLocalizationDataInput = {
+  description?: Maybe<Scalars['RichTextAST']>
+  url: Scalars['String']
+  title: Scalars['String']
+}
+
+export type GQLLinkExternalUpdateLocalizationInput = {
+  data: GQLLinkExternalUpdateLocalizationDataInput
+  locale: GQLLocale
+}
+
+export type GQLLinkExternalUpdateLocalizationsInput = {
+  create?: Maybe<Array<GQLLinkExternalCreateLocalizationInput>>
+  update?: Maybe<Array<GQLLinkExternalUpdateLocalizationInput>>
+  upsert?: Maybe<Array<GQLLinkExternalUpsertLocalizationInput>>
+  delete?: Maybe<Array<GQLLocale>>
+}
+
+export type GQLLinkExternalUpdateManyInlineInput = {
+  create?: Maybe<Array<GQLLinkExternalCreateInput>>
+  connect?: Maybe<Array<GQLLinkExternalConnectInput>>
+  set?: Maybe<Array<GQLLinkExternalWhereUniqueInput>>
+  update?: Maybe<Array<GQLLinkExternalUpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLLinkExternalUpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLLinkExternalWhereUniqueInput>>
+  delete?: Maybe<Array<GQLLinkExternalWhereUniqueInput>>
+}
+
+export type GQLLinkExternalUpdateManyInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  localizations?: Maybe<Array<GQLLinkExternalUpdateManyLocalizationInput>>
+}
+
+export type GQLLinkExternalUpdateManyLocalizationInput = {
+  description?: Maybe<Scalars['RichTextAST']>
+  url: Scalars['String']
+  title: Scalars['String']
+}
+
+export type GQLLinkExternalUpdateManyWithNestedWhereInput = {
+  where: GQLLinkExternalWhereInput
+  data: GQLLinkExternalUpdateManyInput
+}
+
+export type GQLLinkExternalUpdateOneInlineInput = {
+  create?: Maybe<GQLLinkExternalCreateInput>
+  update?: Maybe<GQLLinkExternalUpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLLinkExternalUpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLLinkExternalWhereUniqueInput>
+  disconnect?: Maybe<Scalars['Boolean']>
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLLinkExternalUpdateWithNestedWhereUniqueInput = {
+  where: GQLLinkExternalWhereUniqueInput
+  data: GQLLinkExternalUpdateInput
+}
+
+export type GQLLinkExternalUpsertInput = {
+  create: GQLLinkExternalCreateInput
+  update: GQLLinkExternalUpdateInput
+}
+
+export type GQLLinkExternalUpsertLocalizationInput = {
+  update: GQLLinkExternalUpdateLocalizationDataInput
+  create: GQLLinkExternalCreateLocalizationDataInput
+  locale: GQLLocale
+}
+
+export type GQLLinkExternalUpsertWithNestedWhereUniqueInput = {
+  where: GQLLinkExternalWhereUniqueInput
+  data: GQLLinkExternalUpsertInput
+}
+
+export type GQLLinkExternalWhereInput = {
+  _search?: Maybe<Scalars['String']>
+  AND?: Maybe<Array<GQLLinkExternalWhereInput>>
+  OR?: Maybe<Array<GQLLinkExternalWhereInput>>
+  NOT?: Maybe<Array<GQLLinkExternalWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  url?: Maybe<Scalars['String']>
+  url_not?: Maybe<Scalars['String']>
+  url_in?: Maybe<Array<Scalars['String']>>
+  url_not_in?: Maybe<Array<Scalars['String']>>
+  url_contains?: Maybe<Scalars['String']>
+  url_not_contains?: Maybe<Scalars['String']>
+  url_starts_with?: Maybe<Scalars['String']>
+  url_not_starts_with?: Maybe<Scalars['String']>
+  url_ends_with?: Maybe<Scalars['String']>
+  url_not_ends_with?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   title_not?: Maybe<Scalars['String']>
   title_in?: Maybe<Array<Scalars['String']>>
@@ -1104,9 +1229,174 @@ export type GQLLinkManyWhereInput = {
   title_not_starts_with?: Maybe<Scalars['String']>
   title_ends_with?: Maybe<Scalars['String']>
   title_not_ends_with?: Maybe<Scalars['String']>
-  heroBanner_every?: Maybe<GQLRowHeroVideoWhereInput>
-  heroBanner_some?: Maybe<GQLRowHeroVideoWhereInput>
-  heroBanner_none?: Maybe<GQLRowHeroVideoWhereInput>
+}
+
+export type GQLLinkExternalWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+}
+
+export type GQLLinkInternal = GQLNode & {
+  __typename?: 'LinkInternal'
+  stage: GQLStage
+  locale: GQLLocale
+  localizations: Array<GQLLinkInternal>
+  documentInStages: Array<GQLLinkInternal>
+  id: Scalars['ID']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  publishedAt?: Maybe<Scalars['DateTime']>
+  title?: Maybe<Scalars['String']>
+  list: Array<GQLZzDeleteList>
+  description?: Maybe<GQLRichText>
+  page?: Maybe<GQLPage>
+  rowPeopleWithText: Array<GQLRowPeopleWithText>
+  rowServicesWithText: Array<GQLRowServicesWithText>
+  rowHeroVideo: Array<GQLRowHeroVideo>
+}
+
+export type GQLLinkInternalLocalizationsArgs = {
+  locales?: Array<GQLLocale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type GQLLinkInternalDocumentInStagesArgs = {
+  stages?: Array<GQLStage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type GQLLinkInternalListArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLLinkInternalRowPeopleWithTextArgs = {
+  where?: Maybe<GQLRowPeopleWithTextWhereInput>
+  orderBy?: Maybe<GQLRowPeopleWithTextOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLLinkInternalRowServicesWithTextArgs = {
+  where?: Maybe<GQLRowServicesWithTextWhereInput>
+  orderBy?: Maybe<GQLRowServicesWithTextOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLLinkInternalRowHeroVideoArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLLinkInternalConnectInput = {
+  where: GQLLinkInternalWhereUniqueInput
+  position?: Maybe<GQLConnectPositionInput>
+}
+
+export type GQLLinkInternalConnection = {
+  __typename?: 'LinkInternalConnection'
+  pageInfo: GQLPageInfo
+  edges: Array<GQLLinkInternalEdge>
+  aggregate: GQLAggregate
+}
+
+export type GQLLinkInternalCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  title?: Maybe<Scalars['String']>
+  list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
+  description?: Maybe<Scalars['RichTextAST']>
+  page?: Maybe<GQLPageCreateOneInlineInput>
+  rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
+  rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroVideoCreateManyInlineInput>
+  localizations?: Maybe<GQLLinkInternalCreateLocalizationsInput>
+}
+
+export type GQLLinkInternalCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  title?: Maybe<Scalars['String']>
+}
+
+export type GQLLinkInternalCreateLocalizationInput = {
+  data: GQLLinkInternalCreateLocalizationDataInput
+  locale: GQLLocale
+}
+
+export type GQLLinkInternalCreateLocalizationsInput = {
+  create?: Maybe<Array<GQLLinkInternalCreateLocalizationInput>>
+}
+
+export type GQLLinkInternalCreateManyInlineInput = {
+  create?: Maybe<Array<GQLLinkInternalCreateInput>>
+  connect?: Maybe<Array<GQLLinkInternalWhereUniqueInput>>
+}
+
+export type GQLLinkInternalCreateOneInlineInput = {
+  create?: Maybe<GQLLinkInternalCreateInput>
+  connect?: Maybe<GQLLinkInternalWhereUniqueInput>
+}
+
+export type GQLLinkInternalEdge = {
+  __typename?: 'LinkInternalEdge'
+  node: GQLLinkInternal
+  cursor: Scalars['String']
+}
+
+export type GQLLinkInternalManyWhereInput = {
+  _search?: Maybe<Scalars['String']>
+  AND?: Maybe<Array<GQLLinkInternalWhereInput>>
+  OR?: Maybe<Array<GQLLinkInternalWhereInput>>
+  NOT?: Maybe<Array<GQLLinkInternalWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  page?: Maybe<GQLPageWhereInput>
   rowPeopleWithText_every?: Maybe<GQLRowPeopleWithTextWhereInput>
   rowPeopleWithText_some?: Maybe<GQLRowPeopleWithTextWhereInput>
   rowPeopleWithText_none?: Maybe<GQLRowPeopleWithTextWhereInput>
@@ -1115,7 +1405,7 @@ export type GQLLinkManyWhereInput = {
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
 }
 
-export enum GQLLinkOrderByInput {
+export enum GQLLinkInternalOrderByInput {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   CreatedAtAsc = 'createdAt_ASC',
@@ -1128,67 +1418,94 @@ export enum GQLLinkOrderByInput {
   TitleDesc = 'title_DESC',
 }
 
-export type GQLLinkUpdateInput = {
-  list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
-  page?: Maybe<GQLPageUpdateManyInlineInput>
+export type GQLLinkInternalUpdateInput = {
   title?: Maybe<Scalars['String']>
+  list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   description?: Maybe<Scalars['RichTextAST']>
-  heroBanner?: Maybe<GQLRowHeroVideoUpdateManyInlineInput>
+  page?: Maybe<GQLPageUpdateOneInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyInlineInput>
+  localizations?: Maybe<GQLLinkInternalUpdateLocalizationsInput>
 }
 
-export type GQLLinkUpdateManyInlineInput = {
-  create?: Maybe<Array<GQLLinkCreateInput>>
-  connect?: Maybe<Array<GQLLinkConnectInput>>
-  set?: Maybe<Array<GQLLinkWhereUniqueInput>>
-  update?: Maybe<Array<GQLLinkUpdateWithNestedWhereUniqueInput>>
-  upsert?: Maybe<Array<GQLLinkUpsertWithNestedWhereUniqueInput>>
-  disconnect?: Maybe<Array<GQLLinkWhereUniqueInput>>
-  delete?: Maybe<Array<GQLLinkWhereUniqueInput>>
+export type GQLLinkInternalUpdateLocalizationDataInput = {
+  title?: Maybe<Scalars['String']>
 }
 
-export type GQLLinkUpdateManyInput = {
+export type GQLLinkInternalUpdateLocalizationInput = {
+  data: GQLLinkInternalUpdateLocalizationDataInput
+  locale: GQLLocale
+}
+
+export type GQLLinkInternalUpdateLocalizationsInput = {
+  create?: Maybe<Array<GQLLinkInternalCreateLocalizationInput>>
+  update?: Maybe<Array<GQLLinkInternalUpdateLocalizationInput>>
+  upsert?: Maybe<Array<GQLLinkInternalUpsertLocalizationInput>>
+  delete?: Maybe<Array<GQLLocale>>
+}
+
+export type GQLLinkInternalUpdateManyInlineInput = {
+  create?: Maybe<Array<GQLLinkInternalCreateInput>>
+  connect?: Maybe<Array<GQLLinkInternalConnectInput>>
+  set?: Maybe<Array<GQLLinkInternalWhereUniqueInput>>
+  update?: Maybe<Array<GQLLinkInternalUpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLLinkInternalUpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLLinkInternalWhereUniqueInput>>
+  delete?: Maybe<Array<GQLLinkInternalWhereUniqueInput>>
+}
+
+export type GQLLinkInternalUpdateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  title?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['RichTextAST']>
+  localizations?: Maybe<Array<GQLLinkInternalUpdateManyLocalizationInput>>
 }
 
-export type GQLLinkUpdateManyWithNestedWhereInput = {
-  where: GQLLinkWhereInput
-  data: GQLLinkUpdateManyInput
+export type GQLLinkInternalUpdateManyLocalizationInput = {
+  title?: Maybe<Scalars['String']>
 }
 
-export type GQLLinkUpdateOneInlineInput = {
-  create?: Maybe<GQLLinkCreateInput>
-  update?: Maybe<GQLLinkUpdateWithNestedWhereUniqueInput>
-  upsert?: Maybe<GQLLinkUpsertWithNestedWhereUniqueInput>
-  connect?: Maybe<GQLLinkWhereUniqueInput>
+export type GQLLinkInternalUpdateManyWithNestedWhereInput = {
+  where: GQLLinkInternalWhereInput
+  data: GQLLinkInternalUpdateManyInput
+}
+
+export type GQLLinkInternalUpdateOneInlineInput = {
+  create?: Maybe<GQLLinkInternalCreateInput>
+  update?: Maybe<GQLLinkInternalUpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLLinkInternalUpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLLinkInternalWhereUniqueInput>
   disconnect?: Maybe<Scalars['Boolean']>
   delete?: Maybe<Scalars['Boolean']>
 }
 
-export type GQLLinkUpdateWithNestedWhereUniqueInput = {
-  where: GQLLinkWhereUniqueInput
-  data: GQLLinkUpdateInput
+export type GQLLinkInternalUpdateWithNestedWhereUniqueInput = {
+  where: GQLLinkInternalWhereUniqueInput
+  data: GQLLinkInternalUpdateInput
 }
 
-export type GQLLinkUpsertInput = {
-  create: GQLLinkCreateInput
-  update: GQLLinkUpdateInput
+export type GQLLinkInternalUpsertInput = {
+  create: GQLLinkInternalCreateInput
+  update: GQLLinkInternalUpdateInput
 }
 
-export type GQLLinkUpsertWithNestedWhereUniqueInput = {
-  where: GQLLinkWhereUniqueInput
-  data: GQLLinkUpsertInput
+export type GQLLinkInternalUpsertLocalizationInput = {
+  update: GQLLinkInternalUpdateLocalizationDataInput
+  create: GQLLinkInternalCreateLocalizationDataInput
+  locale: GQLLocale
 }
 
-export type GQLLinkWhereInput = {
+export type GQLLinkInternalUpsertWithNestedWhereUniqueInput = {
+  where: GQLLinkInternalWhereUniqueInput
+  data: GQLLinkInternalUpsertInput
+}
+
+export type GQLLinkInternalWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<GQLLinkWhereInput>>
-  OR?: Maybe<Array<GQLLinkWhereInput>>
-  NOT?: Maybe<Array<GQLLinkWhereInput>>
+  AND?: Maybe<Array<GQLLinkInternalWhereInput>>
+  OR?: Maybe<Array<GQLLinkInternalWhereInput>>
+  NOT?: Maybe<Array<GQLLinkInternalWhereInput>>
   id?: Maybe<Scalars['ID']>
   id_not?: Maybe<Scalars['ID']>
   id_in?: Maybe<Array<Scalars['ID']>>
@@ -1223,9 +1540,6 @@ export type GQLLinkWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  page_every?: Maybe<GQLPageWhereInput>
-  page_some?: Maybe<GQLPageWhereInput>
-  page_none?: Maybe<GQLPageWhereInput>
   title?: Maybe<Scalars['String']>
   title_not?: Maybe<Scalars['String']>
   title_in?: Maybe<Array<Scalars['String']>>
@@ -1236,9 +1550,7 @@ export type GQLLinkWhereInput = {
   title_not_starts_with?: Maybe<Scalars['String']>
   title_ends_with?: Maybe<Scalars['String']>
   title_not_ends_with?: Maybe<Scalars['String']>
-  heroBanner_every?: Maybe<GQLRowHeroVideoWhereInput>
-  heroBanner_some?: Maybe<GQLRowHeroVideoWhereInput>
-  heroBanner_none?: Maybe<GQLRowHeroVideoWhereInput>
+  page?: Maybe<GQLPageWhereInput>
   rowPeopleWithText_every?: Maybe<GQLRowPeopleWithTextWhereInput>
   rowPeopleWithText_some?: Maybe<GQLRowPeopleWithTextWhereInput>
   rowPeopleWithText_none?: Maybe<GQLRowPeopleWithTextWhereInput>
@@ -1247,18 +1559,18 @@ export type GQLLinkWhereInput = {
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
 }
 
-export type GQLLinkWhereUniqueInput = {
+export type GQLLinkInternalWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type GQLListItems = GQLPage | GQLPerson | GQLCompany | GQLRowHeroVideo | GQLLink
+export type GQLListItems = GQLPage | GQLPerson | GQLCompany | GQLRowHeroVideo | GQLLinkInternal
 
 export type GQLListItemsConnectInput = {
   Page?: Maybe<GQLPageConnectInput>
   Person?: Maybe<GQLPersonConnectInput>
   Company?: Maybe<GQLCompanyConnectInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoConnectInput>
-  Link?: Maybe<GQLLinkConnectInput>
+  LinkInternal?: Maybe<GQLLinkInternalConnectInput>
 }
 
 export type GQLListItemsCreateInput = {
@@ -1266,7 +1578,7 @@ export type GQLListItemsCreateInput = {
   Person?: Maybe<GQLPersonCreateInput>
   Company?: Maybe<GQLCompanyCreateInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoCreateInput>
-  Link?: Maybe<GQLLinkCreateInput>
+  LinkInternal?: Maybe<GQLLinkInternalCreateInput>
 }
 
 export type GQLListItemsCreateManyInlineInput = {
@@ -1284,7 +1596,7 @@ export type GQLListItemsUpdateInput = {
   Person?: Maybe<GQLPersonUpdateInput>
   Company?: Maybe<GQLCompanyUpdateInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateInput>
-  Link?: Maybe<GQLLinkUpdateInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpdateInput>
 }
 
 export type GQLListItemsUpdateManyInlineInput = {
@@ -1302,7 +1614,7 @@ export type GQLListItemsUpdateManyWithNestedWhereInput = {
   Person?: Maybe<GQLPersonUpdateManyWithNestedWhereInput>
   Company?: Maybe<GQLCompanyUpdateManyWithNestedWhereInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyWithNestedWhereInput>
-  Link?: Maybe<GQLLinkUpdateManyWithNestedWhereInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpdateManyWithNestedWhereInput>
 }
 
 export type GQLListItemsUpdateOneInlineInput = {
@@ -1319,7 +1631,7 @@ export type GQLListItemsUpdateWithNestedWhereUniqueInput = {
   Person?: Maybe<GQLPersonUpdateWithNestedWhereUniqueInput>
   Company?: Maybe<GQLCompanyUpdateWithNestedWhereUniqueInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateWithNestedWhereUniqueInput>
-  Link?: Maybe<GQLLinkUpdateWithNestedWhereUniqueInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpdateWithNestedWhereUniqueInput>
 }
 
 export type GQLListItemsUpsertWithNestedWhereUniqueInput = {
@@ -1327,7 +1639,7 @@ export type GQLListItemsUpsertWithNestedWhereUniqueInput = {
   Person?: Maybe<GQLPersonUpsertWithNestedWhereUniqueInput>
   Company?: Maybe<GQLCompanyUpsertWithNestedWhereUniqueInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoUpsertWithNestedWhereUniqueInput>
-  Link?: Maybe<GQLLinkUpsertWithNestedWhereUniqueInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpsertWithNestedWhereUniqueInput>
 }
 
 export type GQLListItemsWhereInput = {
@@ -1335,7 +1647,7 @@ export type GQLListItemsWhereInput = {
   Person?: Maybe<GQLPersonWhereInput>
   Company?: Maybe<GQLCompanyWhereInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoWhereInput>
-  Link?: Maybe<GQLLinkWhereInput>
+  LinkInternal?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export type GQLListItemsWhereUniqueInput = {
@@ -1343,7 +1655,7 @@ export type GQLListItemsWhereUniqueInput = {
   Person?: Maybe<GQLPersonWhereUniqueInput>
   Company?: Maybe<GQLCompanyWhereUniqueInput>
   RowHeroVideo?: Maybe<GQLRowHeroVideoWhereUniqueInput>
-  Link?: Maybe<GQLLinkWhereUniqueInput>
+  LinkInternal?: Maybe<GQLLinkInternalWhereUniqueInput>
 }
 
 export enum GQLLocale {
@@ -1397,16 +1709,26 @@ export type GQLMutation = {
   deleteManyCompanies: GQLBatchPayload
   publishManyCompanies: GQLBatchPayload
   unpublishManyCompanies: GQLBatchPayload
-  createLink?: Maybe<GQLLink>
-  updateLink?: Maybe<GQLLink>
-  deleteLink?: Maybe<GQLLink>
-  upsertLink?: Maybe<GQLLink>
-  publishLink?: Maybe<GQLLink>
-  unpublishLink?: Maybe<GQLLink>
-  updateManyLinks: GQLBatchPayload
-  deleteManyLinks: GQLBatchPayload
-  publishManyLinks: GQLBatchPayload
-  unpublishManyLinks: GQLBatchPayload
+  createLinkExternal?: Maybe<GQLLinkExternal>
+  updateLinkExternal?: Maybe<GQLLinkExternal>
+  deleteLinkExternal?: Maybe<GQLLinkExternal>
+  upsertLinkExternal?: Maybe<GQLLinkExternal>
+  publishLinkExternal?: Maybe<GQLLinkExternal>
+  unpublishLinkExternal?: Maybe<GQLLinkExternal>
+  updateManyLinkExternals: GQLBatchPayload
+  deleteManyLinkExternals: GQLBatchPayload
+  publishManyLinkExternals: GQLBatchPayload
+  unpublishManyLinkExternals: GQLBatchPayload
+  createLinkInternal?: Maybe<GQLLinkInternal>
+  updateLinkInternal?: Maybe<GQLLinkInternal>
+  deleteLinkInternal?: Maybe<GQLLinkInternal>
+  upsertLinkInternal?: Maybe<GQLLinkInternal>
+  publishLinkInternal?: Maybe<GQLLinkInternal>
+  unpublishLinkInternal?: Maybe<GQLLinkInternal>
+  updateManyLinkInternals: GQLBatchPayload
+  deleteManyLinkInternals: GQLBatchPayload
+  publishManyLinkInternals: GQLBatchPayload
+  unpublishManyLinkInternals: GQLBatchPayload
   createPage?: Maybe<GQLPage>
   updatePage?: Maybe<GQLPage>
   deletePage?: Maybe<GQLPage>
@@ -1556,7 +1878,7 @@ export type GQLMutationPublishAssetArgs = {
 
 export type GQLMutationUnpublishAssetArgs = {
   where: GQLAssetWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1571,15 +1893,15 @@ export type GQLMutationDeleteManyAssetsArgs = {
 }
 
 export type GQLMutationPublishManyAssetsArgs = {
-  where: GQLAssetManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLAssetManyWhereInput>
+  to?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   publishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationUnpublishManyAssetsArgs = {
-  where: GQLAssetManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLAssetManyWhereInput>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1609,7 +1931,7 @@ export type GQLMutationPublishCompanyArgs = {
 
 export type GQLMutationUnpublishCompanyArgs = {
   where: GQLCompanyWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyCompaniesArgs = {
@@ -1622,60 +1944,123 @@ export type GQLMutationDeleteManyCompaniesArgs = {
 }
 
 export type GQLMutationPublishManyCompaniesArgs = {
-  where: GQLCompanyManyWhereInput
-  to: Array<GQLStage>
-}
-
-export type GQLMutationUnpublishManyCompaniesArgs = {
-  where: GQLCompanyManyWhereInput
-  from: Array<GQLStage>
-}
-
-export type GQLMutationCreateLinkArgs = {
-  data: GQLLinkCreateInput
-}
-
-export type GQLMutationUpdateLinkArgs = {
-  where: GQLLinkWhereUniqueInput
-  data: GQLLinkUpdateInput
-}
-
-export type GQLMutationDeleteLinkArgs = {
-  where: GQLLinkWhereUniqueInput
-}
-
-export type GQLMutationUpsertLinkArgs = {
-  where: GQLLinkWhereUniqueInput
-  upsert: GQLLinkUpsertInput
-}
-
-export type GQLMutationPublishLinkArgs = {
-  where: GQLLinkWhereUniqueInput
+  where?: Maybe<GQLCompanyManyWhereInput>
   to?: Array<GQLStage>
 }
 
-export type GQLMutationUnpublishLinkArgs = {
-  where: GQLLinkWhereUniqueInput
-  from: Array<GQLStage>
+export type GQLMutationUnpublishManyCompaniesArgs = {
+  where?: Maybe<GQLCompanyManyWhereInput>
+  from?: Array<GQLStage>
 }
 
-export type GQLMutationUpdateManyLinksArgs = {
-  where?: Maybe<GQLLinkManyWhereInput>
-  data: GQLLinkUpdateManyInput
+export type GQLMutationCreateLinkExternalArgs = {
+  data: GQLLinkExternalCreateInput
 }
 
-export type GQLMutationDeleteManyLinksArgs = {
-  where?: Maybe<GQLLinkManyWhereInput>
+export type GQLMutationUpdateLinkExternalArgs = {
+  where: GQLLinkExternalWhereUniqueInput
+  data: GQLLinkExternalUpdateInput
 }
 
-export type GQLMutationPublishManyLinksArgs = {
-  where: GQLLinkManyWhereInput
-  to: Array<GQLStage>
+export type GQLMutationDeleteLinkExternalArgs = {
+  where: GQLLinkExternalWhereUniqueInput
 }
 
-export type GQLMutationUnpublishManyLinksArgs = {
-  where: GQLLinkManyWhereInput
-  from: Array<GQLStage>
+export type GQLMutationUpsertLinkExternalArgs = {
+  where: GQLLinkExternalWhereUniqueInput
+  upsert: GQLLinkExternalUpsertInput
+}
+
+export type GQLMutationPublishLinkExternalArgs = {
+  where: GQLLinkExternalWhereUniqueInput
+  locales?: Maybe<Array<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
+  to?: Array<GQLStage>
+}
+
+export type GQLMutationUnpublishLinkExternalArgs = {
+  where: GQLLinkExternalWhereUniqueInput
+  from?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMutationUpdateManyLinkExternalsArgs = {
+  where?: Maybe<GQLLinkExternalManyWhereInput>
+  data: GQLLinkExternalUpdateManyInput
+}
+
+export type GQLMutationDeleteManyLinkExternalsArgs = {
+  where?: Maybe<GQLLinkExternalManyWhereInput>
+}
+
+export type GQLMutationPublishManyLinkExternalsArgs = {
+  where?: Maybe<GQLLinkExternalManyWhereInput>
+  to?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMutationUnpublishManyLinkExternalsArgs = {
+  where?: Maybe<GQLLinkExternalManyWhereInput>
+  from?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMutationCreateLinkInternalArgs = {
+  data: GQLLinkInternalCreateInput
+}
+
+export type GQLMutationUpdateLinkInternalArgs = {
+  where: GQLLinkInternalWhereUniqueInput
+  data: GQLLinkInternalUpdateInput
+}
+
+export type GQLMutationDeleteLinkInternalArgs = {
+  where: GQLLinkInternalWhereUniqueInput
+}
+
+export type GQLMutationUpsertLinkInternalArgs = {
+  where: GQLLinkInternalWhereUniqueInput
+  upsert: GQLLinkInternalUpsertInput
+}
+
+export type GQLMutationPublishLinkInternalArgs = {
+  where: GQLLinkInternalWhereUniqueInput
+  locales?: Maybe<Array<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
+  to?: Array<GQLStage>
+}
+
+export type GQLMutationUnpublishLinkInternalArgs = {
+  where: GQLLinkInternalWhereUniqueInput
+  from?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMutationUpdateManyLinkInternalsArgs = {
+  where?: Maybe<GQLLinkInternalManyWhereInput>
+  data: GQLLinkInternalUpdateManyInput
+}
+
+export type GQLMutationDeleteManyLinkInternalsArgs = {
+  where?: Maybe<GQLLinkInternalManyWhereInput>
+}
+
+export type GQLMutationPublishManyLinkInternalsArgs = {
+  where?: Maybe<GQLLinkInternalManyWhereInput>
+  to?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMutationUnpublishManyLinkInternalsArgs = {
+  where?: Maybe<GQLLinkInternalManyWhereInput>
+  from?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationCreatePageArgs = {
@@ -1705,7 +2090,7 @@ export type GQLMutationPublishPageArgs = {
 
 export type GQLMutationUnpublishPageArgs = {
   where: GQLPageWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1720,15 +2105,15 @@ export type GQLMutationDeleteManyPagesArgs = {
 }
 
 export type GQLMutationPublishManyPagesArgs = {
-  where: GQLPageManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLPageManyWhereInput>
+  to?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   publishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationUnpublishManyPagesArgs = {
-  where: GQLPageManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLPageManyWhereInput>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1758,7 +2143,7 @@ export type GQLMutationPublishPersonArgs = {
 
 export type GQLMutationUnpublishPersonArgs = {
   where: GQLPersonWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyPeopleArgs = {
@@ -1771,13 +2156,13 @@ export type GQLMutationDeleteManyPeopleArgs = {
 }
 
 export type GQLMutationPublishManyPeopleArgs = {
-  where: GQLPersonManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLPersonManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyPeopleArgs = {
-  where: GQLPersonManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLPersonManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreatePersonListArgs = {
@@ -1805,7 +2190,7 @@ export type GQLMutationPublishPersonListArgs = {
 
 export type GQLMutationUnpublishPersonListArgs = {
   where: GQLPersonListWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyPersonListsArgs = {
@@ -1818,13 +2203,13 @@ export type GQLMutationDeleteManyPersonListsArgs = {
 }
 
 export type GQLMutationPublishManyPersonListsArgs = {
-  where: GQLPersonListManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLPersonListManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyPersonListsArgs = {
-  where: GQLPersonListManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLPersonListManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreateRowColumnOneArgs = {
@@ -1852,7 +2237,7 @@ export type GQLMutationPublishRowColumnOneArgs = {
 
 export type GQLMutationUnpublishRowColumnOneArgs = {
   where: GQLRowColumnOneWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyRowColumnOnesArgs = {
@@ -1865,13 +2250,13 @@ export type GQLMutationDeleteManyRowColumnOnesArgs = {
 }
 
 export type GQLMutationPublishManyRowColumnOnesArgs = {
-  where: GQLRowColumnOneManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowColumnOneManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyRowColumnOnesArgs = {
-  where: GQLRowColumnOneManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowColumnOneManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreateRowColumnThreeArgs = {
@@ -1901,7 +2286,7 @@ export type GQLMutationPublishRowColumnThreeArgs = {
 
 export type GQLMutationUnpublishRowColumnThreeArgs = {
   where: GQLRowColumnThreeWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1916,15 +2301,15 @@ export type GQLMutationDeleteManyRowColumnThreesArgs = {
 }
 
 export type GQLMutationPublishManyRowColumnThreesArgs = {
-  where: GQLRowColumnThreeManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowColumnThreeManyWhereInput>
+  to?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   publishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationUnpublishManyRowColumnThreesArgs = {
-  where: GQLRowColumnThreeManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowColumnThreeManyWhereInput>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1956,7 +2341,7 @@ export type GQLMutationPublishRowColumnTwoArgs = {
 
 export type GQLMutationUnpublishRowColumnTwoArgs = {
   where: GQLRowColumnTwoWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -1971,15 +2356,15 @@ export type GQLMutationDeleteManyRowColumnTwosArgs = {
 }
 
 export type GQLMutationPublishManyRowColumnTwosArgs = {
-  where: GQLRowColumnTwoManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowColumnTwoManyWhereInput>
+  to?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   publishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationUnpublishManyRowColumnTwosArgs = {
-  where: GQLRowColumnTwoManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowColumnTwoManyWhereInput>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -2009,7 +2394,7 @@ export type GQLMutationPublishRowCompanySliderArgs = {
 
 export type GQLMutationUnpublishRowCompanySliderArgs = {
   where: GQLRowCompanySliderWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyRowCompanySlidersArgs = {
@@ -2022,13 +2407,13 @@ export type GQLMutationDeleteManyRowCompanySlidersArgs = {
 }
 
 export type GQLMutationPublishManyRowCompanySlidersArgs = {
-  where: GQLRowCompanySliderManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowCompanySliderManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyRowCompanySlidersArgs = {
-  where: GQLRowCompanySliderManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowCompanySliderManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreateRowHeroVideoArgs = {
@@ -2056,7 +2441,7 @@ export type GQLMutationPublishRowHeroVideoArgs = {
 
 export type GQLMutationUnpublishRowHeroVideoArgs = {
   where: GQLRowHeroVideoWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyRowHeroVideosArgs = {
@@ -2069,13 +2454,13 @@ export type GQLMutationDeleteManyRowHeroVideosArgs = {
 }
 
 export type GQLMutationPublishManyRowHeroVideosArgs = {
-  where: GQLRowHeroVideoManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowHeroVideoManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyRowHeroVideosArgs = {
-  where: GQLRowHeroVideoManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowHeroVideoManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreateRowPeopleWithTextArgs = {
@@ -2105,7 +2490,7 @@ export type GQLMutationPublishRowPeopleWithTextArgs = {
 
 export type GQLMutationUnpublishRowPeopleWithTextArgs = {
   where: GQLRowPeopleWithTextWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -2120,15 +2505,15 @@ export type GQLMutationDeleteManyRowPeopleWithTextsArgs = {
 }
 
 export type GQLMutationPublishManyRowPeopleWithTextsArgs = {
-  where: GQLRowPeopleWithTextManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowPeopleWithTextManyWhereInput>
+  to?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   publishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationUnpublishManyRowPeopleWithTextsArgs = {
-  where: GQLRowPeopleWithTextManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowPeopleWithTextManyWhereInput>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -2158,7 +2543,7 @@ export type GQLMutationPublishRowRecentBlogPostArgs = {
 
 export type GQLMutationUnpublishRowRecentBlogPostArgs = {
   where: GQLRowRecentBlogPostWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyRowRecentBlogPostsArgs = {
@@ -2171,13 +2556,13 @@ export type GQLMutationDeleteManyRowRecentBlogPostsArgs = {
 }
 
 export type GQLMutationPublishManyRowRecentBlogPostsArgs = {
-  where: GQLRowRecentBlogPostManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowRecentBlogPostManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyRowRecentBlogPostsArgs = {
-  where: GQLRowRecentBlogPostManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowRecentBlogPostManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreateRowServicesWithTextArgs = {
@@ -2207,7 +2592,7 @@ export type GQLMutationPublishRowServicesWithTextArgs = {
 
 export type GQLMutationUnpublishRowServicesWithTextArgs = {
   where: GQLRowServicesWithTextWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -2222,15 +2607,15 @@ export type GQLMutationDeleteManyRowServicesWithTextsArgs = {
 }
 
 export type GQLMutationPublishManyRowServicesWithTextsArgs = {
-  where: GQLRowServicesWithTextManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLRowServicesWithTextManyWhereInput>
+  to?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   publishBase?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLMutationUnpublishManyRowServicesWithTextsArgs = {
-  where: GQLRowServicesWithTextManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLRowServicesWithTextManyWhereInput>
+  from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
@@ -2260,7 +2645,7 @@ export type GQLMutationPublishZzDeleteListArgs = {
 
 export type GQLMutationUnpublishZzDeleteListArgs = {
   where: GQLZzDeleteListWhereUniqueInput
-  from: Array<GQLStage>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationUpdateManyZzDeleteListsArgs = {
@@ -2273,13 +2658,13 @@ export type GQLMutationDeleteManyZzDeleteListsArgs = {
 }
 
 export type GQLMutationPublishManyZzDeleteListsArgs = {
-  where: GQLZzDeleteListManyWhereInput
-  to: Array<GQLStage>
+  where?: Maybe<GQLZzDeleteListManyWhereInput>
+  to?: Array<GQLStage>
 }
 
 export type GQLMutationUnpublishManyZzDeleteListsArgs = {
-  where: GQLZzDeleteListManyWhereInput
-  from: Array<GQLStage>
+  where?: Maybe<GQLZzDeleteListManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLNode = {
@@ -2304,7 +2689,7 @@ export type GQLPage = GQLNode & {
   content: Array<GQLPageContent>
   metaRobots?: Maybe<GQLMetaRobots>
   list: Array<GQLZzDeleteList>
-  link: Array<GQLLink>
+  internalLink: Array<GQLLinkInternal>
 }
 
 export type GQLPageLocalizationsArgs = {
@@ -2334,9 +2719,9 @@ export type GQLPageListArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type GQLPageLinkArgs = {
-  where?: Maybe<GQLLinkWhereInput>
-  orderBy?: Maybe<GQLLinkOrderByInput>
+export type GQLPageInternalLinkArgs = {
+  where?: Maybe<GQLLinkInternalWhereInput>
+  orderBy?: Maybe<GQLLinkInternalOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -2429,7 +2814,7 @@ export type GQLPageCreateInput = {
   content?: Maybe<GQLPageContentCreateManyInlineInput>
   metaRobots?: Maybe<GQLMetaRobots>
   list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
-  link?: Maybe<GQLLinkCreateManyInlineInput>
+  internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
   localizations?: Maybe<GQLPageCreateLocalizationsInput>
 }
 
@@ -2518,9 +2903,9 @@ export type GQLPageManyWhereInput = {
   metaRobots_not?: Maybe<GQLMetaRobots>
   metaRobots_in?: Maybe<Array<GQLMetaRobots>>
   metaRobots_not_in?: Maybe<Array<GQLMetaRobots>>
-  link_every?: Maybe<GQLLinkWhereInput>
-  link_some?: Maybe<GQLLinkWhereInput>
-  link_none?: Maybe<GQLLinkWhereInput>
+  internalLink_every?: Maybe<GQLLinkInternalWhereInput>
+  internalLink_some?: Maybe<GQLLinkInternalWhereInput>
+  internalLink_none?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export enum GQLPageOrderByInput {
@@ -2552,7 +2937,7 @@ export type GQLPageUpdateInput = {
   content?: Maybe<GQLPageContentUpdateManyInlineInput>
   metaRobots?: Maybe<GQLMetaRobots>
   list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
-  link?: Maybe<GQLLinkUpdateManyInlineInput>
+  internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   localizations?: Maybe<GQLPageUpdateLocalizationsInput>
 }
 
@@ -2716,9 +3101,9 @@ export type GQLPageWhereInput = {
   metaRobots_not?: Maybe<GQLMetaRobots>
   metaRobots_in?: Maybe<Array<GQLMetaRobots>>
   metaRobots_not_in?: Maybe<Array<GQLMetaRobots>>
-  link_every?: Maybe<GQLLinkWhereInput>
-  link_some?: Maybe<GQLLinkWhereInput>
-  link_none?: Maybe<GQLLinkWhereInput>
+  internalLink_every?: Maybe<GQLLinkInternalWhereInput>
+  internalLink_some?: Maybe<GQLLinkInternalWhereInput>
+  internalLink_none?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export type GQLPageWhereUniqueInput = {
@@ -3205,9 +3590,12 @@ export type GQLQuery = {
   companies: Array<GQLCompany>
   company?: Maybe<GQLCompany>
   companiesConnection: GQLCompanyConnection
-  links: Array<GQLLink>
-  link?: Maybe<GQLLink>
-  linksConnection: GQLLinkConnection
+  linkExternals: Array<GQLLinkExternal>
+  linkExternal?: Maybe<GQLLinkExternal>
+  linkExternalsConnection: GQLLinkExternalConnection
+  linkInternals: Array<GQLLinkInternal>
+  linkInternal?: Maybe<GQLLinkInternal>
+  linkInternalsConnection: GQLLinkInternalConnection
   pages: Array<GQLPage>
   page?: Maybe<GQLPage>
   pagesConnection: GQLPageConnection
@@ -3309,31 +3697,64 @@ export type GQLQueryCompaniesConnectionArgs = {
   stage?: GQLStage
 }
 
-export type GQLQueryLinksArgs = {
-  where?: Maybe<GQLLinkWhereInput>
-  orderBy?: Maybe<GQLLinkOrderByInput>
+export type GQLQueryLinkExternalsArgs = {
+  where?: Maybe<GQLLinkExternalWhereInput>
+  orderBy?: Maybe<GQLLinkExternalOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
   first?: Maybe<Scalars['Int']>
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
+  locales?: Array<GQLLocale>
 }
 
-export type GQLQueryLinkArgs = {
-  where: GQLLinkWhereUniqueInput
+export type GQLQueryLinkExternalArgs = {
+  where: GQLLinkExternalWhereUniqueInput
   stage?: GQLStage
+  locales?: Array<GQLLocale>
 }
 
-export type GQLQueryLinksConnectionArgs = {
-  where?: Maybe<GQLLinkWhereInput>
-  orderBy?: Maybe<GQLLinkOrderByInput>
+export type GQLQueryLinkExternalsConnectionArgs = {
+  where?: Maybe<GQLLinkExternalWhereInput>
+  orderBy?: Maybe<GQLLinkExternalOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
   first?: Maybe<Scalars['Int']>
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
+  locales?: Array<GQLLocale>
+}
+
+export type GQLQueryLinkInternalsArgs = {
+  where?: Maybe<GQLLinkInternalWhereInput>
+  orderBy?: Maybe<GQLLinkInternalOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+  locales?: Array<GQLLocale>
+}
+
+export type GQLQueryLinkInternalArgs = {
+  where: GQLLinkInternalWhereUniqueInput
+  stage?: GQLStage
+  locales?: Array<GQLLocale>
+}
+
+export type GQLQueryLinkInternalsConnectionArgs = {
+  where?: Maybe<GQLLinkInternalWhereInput>
+  orderBy?: Maybe<GQLLinkInternalOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+  locales?: Array<GQLLocale>
 }
 
 export type GQLQueryPagesArgs = {
@@ -4660,7 +5081,7 @@ export type GQLRowHeroVideo = GQLNode & {
   content: GQLRichText
   title: GQLRichText
   video?: Maybe<GQLAsset>
-  link: Array<GQLLink>
+  links: Array<GQLRowHeroVideoLinks>
   page: Array<GQLPage>
   list: Array<GQLZzDeleteList>
 }
@@ -4671,9 +5092,7 @@ export type GQLRowHeroVideoDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean']
 }
 
-export type GQLRowHeroVideoLinkArgs = {
-  where?: Maybe<GQLLinkWhereInput>
-  orderBy?: Maybe<GQLLinkOrderByInput>
+export type GQLRowHeroVideoLinksArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -4715,7 +5134,7 @@ export type GQLRowHeroVideoCreateInput = {
   content: Scalars['RichTextAST']
   title: Scalars['RichTextAST']
   video?: Maybe<GQLAssetCreateOneInlineInput>
-  link?: Maybe<GQLLinkCreateManyInlineInput>
+  links?: Maybe<GQLRowHeroVideoLinksCreateManyInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
   list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
 }
@@ -4734,6 +5153,77 @@ export type GQLRowHeroVideoEdge = {
   __typename?: 'RowHeroVideoEdge'
   node: GQLRowHeroVideo
   cursor: Scalars['String']
+}
+
+export type GQLRowHeroVideoLinks = GQLLinkExternal | GQLLinkInternal
+
+export type GQLRowHeroVideoLinksConnectInput = {
+  LinkExternal?: Maybe<GQLLinkExternalConnectInput>
+  LinkInternal?: Maybe<GQLLinkInternalConnectInput>
+}
+
+export type GQLRowHeroVideoLinksCreateInput = {
+  LinkExternal?: Maybe<GQLLinkExternalCreateInput>
+  LinkInternal?: Maybe<GQLLinkInternalCreateInput>
+}
+
+export type GQLRowHeroVideoLinksCreateManyInlineInput = {
+  create?: Maybe<Array<GQLRowHeroVideoLinksCreateInput>>
+  connect?: Maybe<Array<GQLRowHeroVideoLinksWhereUniqueInput>>
+}
+
+export type GQLRowHeroVideoLinksCreateOneInlineInput = {
+  create?: Maybe<GQLRowHeroVideoLinksCreateInput>
+  connect?: Maybe<GQLRowHeroVideoLinksWhereUniqueInput>
+}
+
+export type GQLRowHeroVideoLinksUpdateInput = {
+  LinkExternal?: Maybe<GQLLinkExternalUpdateInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpdateInput>
+}
+
+export type GQLRowHeroVideoLinksUpdateManyInlineInput = {
+  create?: Maybe<Array<GQLRowHeroVideoLinksCreateInput>>
+  connect?: Maybe<Array<GQLRowHeroVideoLinksConnectInput>>
+  set?: Maybe<Array<GQLRowHeroVideoLinksWhereUniqueInput>>
+  update?: Maybe<Array<GQLRowHeroVideoLinksUpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLRowHeroVideoLinksUpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLRowHeroVideoLinksWhereUniqueInput>>
+  delete?: Maybe<Array<GQLRowHeroVideoLinksWhereUniqueInput>>
+}
+
+export type GQLRowHeroVideoLinksUpdateManyWithNestedWhereInput = {
+  LinkExternal?: Maybe<GQLLinkExternalUpdateManyWithNestedWhereInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpdateManyWithNestedWhereInput>
+}
+
+export type GQLRowHeroVideoLinksUpdateOneInlineInput = {
+  create?: Maybe<GQLRowHeroVideoLinksCreateInput>
+  update?: Maybe<GQLRowHeroVideoLinksUpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLRowHeroVideoLinksUpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLRowHeroVideoLinksWhereUniqueInput>
+  disconnect?: Maybe<Scalars['Boolean']>
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLRowHeroVideoLinksUpdateWithNestedWhereUniqueInput = {
+  LinkExternal?: Maybe<GQLLinkExternalUpdateWithNestedWhereUniqueInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpdateWithNestedWhereUniqueInput>
+}
+
+export type GQLRowHeroVideoLinksUpsertWithNestedWhereUniqueInput = {
+  LinkExternal?: Maybe<GQLLinkExternalUpsertWithNestedWhereUniqueInput>
+  LinkInternal?: Maybe<GQLLinkInternalUpsertWithNestedWhereUniqueInput>
+}
+
+export type GQLRowHeroVideoLinksWhereInput = {
+  LinkExternal?: Maybe<GQLLinkExternalWhereInput>
+  LinkInternal?: Maybe<GQLLinkInternalWhereInput>
+}
+
+export type GQLRowHeroVideoLinksWhereUniqueInput = {
+  LinkExternal?: Maybe<GQLLinkExternalWhereUniqueInput>
+  LinkInternal?: Maybe<GQLLinkInternalWhereUniqueInput>
 }
 
 export type GQLRowHeroVideoManyWhereInput = {
@@ -4776,9 +5266,6 @@ export type GQLRowHeroVideoManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
   video?: Maybe<GQLAssetWhereInput>
-  link_every?: Maybe<GQLLinkWhereInput>
-  link_some?: Maybe<GQLLinkWhereInput>
-  link_none?: Maybe<GQLLinkWhereInput>
 }
 
 export enum GQLRowHeroVideoOrderByInput {
@@ -4796,7 +5283,7 @@ export type GQLRowHeroVideoUpdateInput = {
   content?: Maybe<Scalars['RichTextAST']>
   title?: Maybe<Scalars['RichTextAST']>
   video?: Maybe<GQLAssetUpdateOneInlineInput>
-  link?: Maybe<GQLLinkUpdateManyInlineInput>
+  links?: Maybe<GQLRowHeroVideoLinksUpdateManyInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
   list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
 }
@@ -4887,9 +5374,6 @@ export type GQLRowHeroVideoWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
   video?: Maybe<GQLAssetWhereInput>
-  link_every?: Maybe<GQLLinkWhereInput>
-  link_some?: Maybe<GQLLinkWhereInput>
-  link_none?: Maybe<GQLLinkWhereInput>
 }
 
 export type GQLRowHeroVideoWhereUniqueInput = {
@@ -4907,7 +5391,7 @@ export type GQLRowPeopleWithText = GQLNode & {
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
   text: GQLRichText
-  links: Array<GQLLink>
+  links: Array<GQLLinkInternal>
 }
 
 export type GQLRowPeopleWithTextLocalizationsArgs = {
@@ -4922,8 +5406,8 @@ export type GQLRowPeopleWithTextDocumentInStagesArgs = {
 }
 
 export type GQLRowPeopleWithTextLinksArgs = {
-  where?: Maybe<GQLLinkWhereInput>
-  orderBy?: Maybe<GQLLinkOrderByInput>
+  where?: Maybe<GQLLinkInternalWhereInput>
+  orderBy?: Maybe<GQLLinkInternalOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -4947,7 +5431,7 @@ export type GQLRowPeopleWithTextCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   text: Scalars['RichTextAST']
-  links?: Maybe<GQLLinkCreateManyInlineInput>
+  links?: Maybe<GQLLinkInternalCreateManyInlineInput>
   localizations?: Maybe<GQLRowPeopleWithTextCreateLocalizationsInput>
 }
 
@@ -5021,9 +5505,9 @@ export type GQLRowPeopleWithTextManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  links_every?: Maybe<GQLLinkWhereInput>
-  links_some?: Maybe<GQLLinkWhereInput>
-  links_none?: Maybe<GQLLinkWhereInput>
+  links_every?: Maybe<GQLLinkInternalWhereInput>
+  links_some?: Maybe<GQLLinkInternalWhereInput>
+  links_none?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export enum GQLRowPeopleWithTextOrderByInput {
@@ -5039,7 +5523,7 @@ export enum GQLRowPeopleWithTextOrderByInput {
 
 export type GQLRowPeopleWithTextUpdateInput = {
   text?: Maybe<Scalars['RichTextAST']>
-  links?: Maybe<GQLLinkUpdateManyInlineInput>
+  links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   localizations?: Maybe<GQLRowPeopleWithTextUpdateLocalizationsInput>
 }
 
@@ -5153,9 +5637,9 @@ export type GQLRowPeopleWithTextWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  links_every?: Maybe<GQLLinkWhereInput>
-  links_some?: Maybe<GQLLinkWhereInput>
-  links_none?: Maybe<GQLLinkWhereInput>
+  links_every?: Maybe<GQLLinkInternalWhereInput>
+  links_some?: Maybe<GQLLinkInternalWhereInput>
+  links_none?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export type GQLRowPeopleWithTextWhereUniqueInput = {
@@ -5354,7 +5838,7 @@ export type GQLRowServicesWithText = GQLNode & {
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
   text: Scalars['String']
-  links: Array<GQLLink>
+  links: Array<GQLLinkInternal>
 }
 
 export type GQLRowServicesWithTextLocalizationsArgs = {
@@ -5369,8 +5853,8 @@ export type GQLRowServicesWithTextDocumentInStagesArgs = {
 }
 
 export type GQLRowServicesWithTextLinksArgs = {
-  where?: Maybe<GQLLinkWhereInput>
-  orderBy?: Maybe<GQLLinkOrderByInput>
+  where?: Maybe<GQLLinkInternalWhereInput>
+  orderBy?: Maybe<GQLLinkInternalOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5394,7 +5878,7 @@ export type GQLRowServicesWithTextCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   text: Scalars['String']
-  links?: Maybe<GQLLinkCreateManyInlineInput>
+  links?: Maybe<GQLLinkInternalCreateManyInlineInput>
   localizations?: Maybe<GQLRowServicesWithTextCreateLocalizationsInput>
 }
 
@@ -5468,9 +5952,9 @@ export type GQLRowServicesWithTextManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  links_every?: Maybe<GQLLinkWhereInput>
-  links_some?: Maybe<GQLLinkWhereInput>
-  links_none?: Maybe<GQLLinkWhereInput>
+  links_every?: Maybe<GQLLinkInternalWhereInput>
+  links_some?: Maybe<GQLLinkInternalWhereInput>
+  links_none?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export enum GQLRowServicesWithTextOrderByInput {
@@ -5488,7 +5972,7 @@ export enum GQLRowServicesWithTextOrderByInput {
 
 export type GQLRowServicesWithTextUpdateInput = {
   text?: Maybe<Scalars['String']>
-  links?: Maybe<GQLLinkUpdateManyInlineInput>
+  links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   localizations?: Maybe<GQLRowServicesWithTextUpdateLocalizationsInput>
 }
 
@@ -5612,9 +6096,9 @@ export type GQLRowServicesWithTextWhereInput = {
   text_not_starts_with?: Maybe<Scalars['String']>
   text_ends_with?: Maybe<Scalars['String']>
   text_not_ends_with?: Maybe<Scalars['String']>
-  links_every?: Maybe<GQLLinkWhereInput>
-  links_some?: Maybe<GQLLinkWhereInput>
-  links_none?: Maybe<GQLLinkWhereInput>
+  links_every?: Maybe<GQLLinkInternalWhereInput>
+  links_some?: Maybe<GQLLinkInternalWhereInput>
+  links_none?: Maybe<GQLLinkInternalWhereInput>
 }
 
 export type GQLRowServicesWithTextWhereUniqueInput = {
@@ -5865,12 +6349,33 @@ export type GQLContentRendererFragment = { __typename?: 'Page' } & {
   content: Array<{ __typename: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
 }
 
+export type GQLLinkExternalFragment = { __typename: 'LinkExternal' } & Pick<
+  GQLLinkExternal,
+  'id' | 'url'
+> & { exTitle: GQLLinkExternal['title'] } & {
+    description?: Maybe<{ __typename?: 'RichText' } & Pick<GQLRichText, 'html'>>
+  }
+
+export type GQLLinkInternalFragment = { __typename: 'LinkInternal' } & Pick<
+  GQLLinkInternal,
+  'id' | 'title'
+> & {
+    description?: Maybe<{ __typename?: 'RichText' } & Pick<GQLRichText, 'html'>>
+    page?: Maybe<
+      { __typename?: 'Page' } & Pick<GQLPage, 'title' | 'metaRobots' | 'metaTitle' | 'url'>
+    >
+  }
+
 export type GQLRowHeroVideoFragment = { __typename: 'RowHeroVideo' } & Pick<
   GQLRowHeroVideo,
   'id'
 > & {
     video?: Maybe<{ __typename?: 'Asset' } & Pick<GQLAsset, 'url' | 'mimeType'>>
     content: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
+    links: Array<
+      | ({ __typename?: 'LinkExternal' } & GQLLinkExternalFragment)
+      | ({ __typename?: 'LinkInternal' } & GQLLinkInternalFragment)
+    >
   }
 
 export type GQLGetBreadcrumbQueryVariables = {
@@ -5925,6 +6430,33 @@ export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
   >
 }
 
+export const LinkInternalFragmentDoc = gql`
+  fragment LinkInternal on LinkInternal {
+    id
+    __typename
+    title
+    description {
+      html
+    }
+    page {
+      title
+      metaRobots
+      metaTitle
+      url
+    }
+  }
+`
+export const LinkExternalFragmentDoc = gql`
+  fragment LinkExternal on LinkExternal {
+    id
+    __typename
+    exTitle: title
+    description {
+      html
+    }
+    url
+  }
+`
 export const RowHeroVideoFragmentDoc = gql`
   fragment RowHeroVideo on RowHeroVideo {
     __typename
@@ -5936,7 +6468,13 @@ export const RowHeroVideoFragmentDoc = gql`
     content {
       html
     }
+    links {
+      ...LinkInternal
+      ...LinkExternal
+    }
   }
+  ${LinkInternalFragmentDoc}
+  ${LinkExternalFragmentDoc}
 `
 export const ContentRendererFragmentDoc = gql`
   fragment ContentRenderer on Page {

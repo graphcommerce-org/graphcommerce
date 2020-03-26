@@ -10,4 +10,8 @@ fragment RowHeroVideo on RowHeroVideo {
   content {
     html
   }
+  links {
+    ...LinkInternal
+    ...LinkExternal
+  }
 }

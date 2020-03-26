@@ -12,7 +12,10 @@
             "name": "RowHeroVideo"
           },
           {
-            "name": "Link"
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
           },
           {
             "name": "ZzDeleteList"
@@ -54,6 +57,18 @@
       },
       {
         "kind": "UNION",
+        "name": "RowHeroVideoLinks",
+        "possibleTypes": [
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
         "name": "ListItems",
         "possibleTypes": [
           {
@@ -69,7 +84,7 @@
             "name": "RowHeroVideo"
           },
           {
-            "name": "Link"
+            "name": "LinkInternal"
           }
         ]
       },

@@ -2,10 +2,15 @@ import React from 'react'
 import Head from 'next/head'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { ApolloClient } from 'apollo-client'
-import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
+import {
+  InMemoryCache,
+  NormalizedCacheObject,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
 import { NextComponentType } from 'next'
+import introspectionQueryResultData from '../generated/fragments.json'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
@@ -26,7 +31,11 @@ function createApolloClient(
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       fetch,
     }),
-    cache: new InMemoryCache().restore(initialState),
+    cache: new InMemoryCache({
+      fragmentMatcher: new IntrospectionFragmentMatcher({
+        introspectionQueryResultData,
+      }),
+    }).restore(initialState),
   })
 }
 
