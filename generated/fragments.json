@@ -9,22 +9,61 @@
             "name": "Asset"
           },
           {
-            "name": "HeroBanner"
+            "name": "RowHeroVideo"
           },
           {
-            "name": "List"
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
+          },
+          {
+            "name": "ZzDeleteList"
           },
           {
             "name": "Page"
           },
           {
-            "name": "Link"
-          },
-          {
             "name": "Person"
           },
           {
+            "name": "PersonList"
+          },
+          {
             "name": "Company"
+          },
+          {
+            "name": "RowCompanySlider"
+          },
+          {
+            "name": "RowPeopleWithText"
+          },
+          {
+            "name": "RowServicesWithText"
+          },
+          {
+            "name": "RowColumnTwo"
+          },
+          {
+            "name": "RowColumnThree"
+          },
+          {
+            "name": "RowColumnOne"
+          },
+          {
+            "name": "RowRecentBlogPost"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "RowHeroVideoLinks",
+        "possibleTypes": [
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
           }
         ]
       },
@@ -42,10 +81,10 @@
             "name": "Company"
           },
           {
-            "name": "HeroBanner"
+            "name": "RowHeroVideo"
           },
           {
-            "name": "Link"
+            "name": "LinkInternal"
           }
         ]
       },
@@ -54,7 +93,7 @@
         "name": "PageContent",
         "possibleTypes": [
           {
-            "name": "HeroBanner"
+            "name": "RowHeroVideo"
           }
         ]
       }

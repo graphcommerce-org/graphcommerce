@@ -1,0 +1,14 @@
+fragment LinkInternal on LinkInternal {
+  id
+  __typename
+  title
+  description {
+    html
+  }
+  page {
+    title
+    metaRobots
+    metaTitle
+    url
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "plugins": ["stylelint-no-unsupported-browser-features"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "plugin/no-unsupported-browser-features": [true],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignore": ["custom-elements"]
+      }
+    ]
+  }
+}
