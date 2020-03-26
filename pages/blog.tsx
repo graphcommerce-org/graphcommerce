@@ -1,38 +1,22 @@
-import { GridList, GridListTile, makeStyles } from '@material-ui/core'
 import { GQLLocale } from '../generated/graphql'
 import { Link, GraphCmsPage } from '../graphcms'
 import { FullLayout } from '../layout/FullLayout'
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-}))
+import styles from './blog.module.css'
 
 const Blog: GraphCmsPage = props => {
-  const classes = useStyles()
-
   const { page, childs } = props
   return (
     <>
       <h1>{page.metaTitle}</h1>
-      <GridList cellHeight={160} className={classes.gridList} cols={3}>
+      <div className={styles.gridList}>
         {childs.map(child => (
-          <GridListTile key={child.url} cols={1}>
+          <div key={child.url}>
             <Link href={child.url} metaRobots={child.metaRobots!}>
               {child.title}
             </Link>
-          </GridListTile>
+          </div>
         ))}
-      </GridList>
+      </div>
     </>
   )
 }

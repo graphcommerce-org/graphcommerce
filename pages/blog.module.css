@@ -1,0 +1,12 @@
+.page {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  justify-content: 'space-around';
+  overflow: 'hidden';
+  background-color: #efefef;
+}
+
+.gridList {
+  width: 500;
+  height: 450;
+}
