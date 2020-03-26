@@ -23,16 +23,18 @@ const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links
         </video>
       )}
 
-      {links.map(link => {
-        switch (link.__typename) {
-          case 'LinkInternal':
-            return <LinkInternal {...link} key={link.id} />
-          case 'LinkExternal':
-            return <LinkExternal {...link} key={link.id} />
-          default:
-            return <></>
-        }
-      })}
+      <div>
+        {links.map(link => {
+          switch (link.__typename) {
+            case 'LinkInternal':
+              return <LinkInternal {...link} key={link.id} />
+            case 'LinkExternal':
+              return <LinkExternal {...link} key={link.id} />
+            default:
+              return <></>
+          }
+        })}
+      </div>
     </div>
   )
 }

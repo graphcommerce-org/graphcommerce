@@ -13,9 +13,9 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
+  RGBATransparency: any
   Hex: any
   RGBAHue: any
-  RGBATransparency: any
   Json: any
   Date: any
 }
