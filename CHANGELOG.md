@@ -1,3 +1,28 @@
+## [3.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.2.0...v3.0.0) (2020-03-26)
+
+### ⚠ BREAKING CHANGES
+
+- **graphcms:** Removed support for material/ui, reverting to CSS modules for
+  now until alternative has been found.
+
+### Features
+
+- added stylelint to lint css files
+  ([810b666](https://github.com/ho-nl/project-reachdigital.nl/commit/810b66689ffa1080ef34b9cd69f47588f33f1bf1))
+- **graphcm:** added LinkInternal, LinkExternal components
+  ([e0f9b83](https://github.com/ho-nl/project-reachdigital.nl/commit/e0f9b832b2366d07f2e0c5e922039b08f1472583))
+- **graphcms:** css module added for RowHeroVideo
+  ([c961041](https://github.com/ho-nl/project-reachdigital.nl/commit/c96104109cdf3be67040eb31ecafd5715a7ae9d9))
+- **graphcms:** removed material/ui
+  ([cf39903](https://github.com/ho-nl/project-reachdigital.nl/commit/cf39903e1e347dda62d6d9ce68ef33149bbf843e))
+
+### Bug Fixes
+
+- clearer RowHeroVideo links
+  ([6d5f644](https://github.com/ho-nl/project-reachdigital.nl/commit/6d5f64409f72b1823ce4d7a25769c6925129ab11))
+- **graphcms:** renamed HeroBanner to RowHeroVideo
+  ([d730f60](https://github.com/ho-nl/project-reachdigital.nl/commit/d730f60b94f629170bb16f60fb385b5c7e1c78ff))
+
 ## [2.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.1.0...v2.2.0) (2020-03-25)
 
 ### Features
