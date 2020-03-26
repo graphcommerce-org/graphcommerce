@@ -1,6 +1,6 @@
 # In this file we register the data requirements for the component.
 # Autocomplete should work here, else you can look it up in GraphCMS
-fragment HeroBanner on HeroBanner {
+fragment RowHeroVideo on RowHeroVideo {
   __typename
   id
   video {
@@ -8,9 +8,6 @@ fragment HeroBanner on HeroBanner {
     mimeType
   }
   content {
-    html
-  }
-  title {
     html
   }
 }

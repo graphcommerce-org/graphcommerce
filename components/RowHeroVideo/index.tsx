@@ -1,4 +1,4 @@
-import { GQLHeroBannerFragment } from '../../generated/graphql'
+import { GQLRowHeroVideoFragment } from '../../generated/graphql'
 
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer
@@ -8,14 +8,11 @@ import { GQLHeroBannerFragment } from '../../generated/graphql'
  * ../ContentRenderer/ContentRenderer.graphql
  * ../ContentRenderer/defaultRenderer.tsx
  */
-const HeroBanner: React.FC<GQLHeroBannerFragment> = ({ title, content, video }) => {
+const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video }) => {
   return (
     <div>
       {/* eslint-disable-next-line react/no-danger */}
-      <span dangerouslySetInnerHTML={{ __html: title.html }} />
-
-      {/* eslint-disable-next-line react/no-danger */}
-      <span dangerouslySetInnerHTML={{ __html: content.html }} />
+      <div dangerouslySetInnerHTML={{ __html: content.html }} />
 
       {video && (
         <video autoPlay loop muted playsinline id='video' style={{ height: '200px' }}>
@@ -26,4 +23,4 @@ const HeroBanner: React.FC<GQLHeroBannerFragment> = ({ title, content, video }) 
   )
 }
 
-export default HeroBanner
+export default RowHeroVideo
