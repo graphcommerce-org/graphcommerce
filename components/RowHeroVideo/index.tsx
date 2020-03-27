@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled } from '@material-ui/core'
 import { GQLRowHeroVideoFragment } from '../../generated/graphql'
 import { LinkInternal } from '../LinkInternal/LinkInternal'

@@ -1,3 +1,4 @@
+import React from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
 import { GraphCmsPage, PageMeta, Breadcrumbs, Language } from '../graphcms'
