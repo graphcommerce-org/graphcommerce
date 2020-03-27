@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-knobs/register',
     '@storybook/addon-actions/register',
     '@storybook/addon-storysource',
+    '@harelpls/storybook-addon-materialui',
   ],
   webpackFinal: async config => {
     config.module.rules.push({

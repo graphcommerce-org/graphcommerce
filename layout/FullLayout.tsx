@@ -6,7 +6,7 @@ import { red } from '@material-ui/core/colors'
 import { GraphCmsPage, PageMeta, Breadcrumbs, Language } from '../graphcms'
 
 // Create a theme instance.
-const theme = createMuiTheme({
+export const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#556cd6',

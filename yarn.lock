@@ -2047,6 +2047,11 @@
     tslib "1.11.1"
     valid-url "1.0.9"
 
+"@harelpls/storybook-addon-materialui@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@harelpls/storybook-addon-materialui/-/storybook-addon-materialui-1.0.2.tgz#2bc6835c7890bb0cb2953b15d23964375816c1fc"
+  integrity sha512-/00MOei8xAqIlALrHjuvzJ5WjB5DBfM7mHLg++Q0LiZ3gGQq/uGiVW0LSqPRVU1y56zmuBFD7X4KYKQxG+j7Pg==
+
 "@iarna/cli@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@iarna/cli/-/cli-1.2.0.tgz#0f7af5e851afe895104583c4ca07377a8094d641"
