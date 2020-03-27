@@ -1,3 +1,12 @@
+### [3.0.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.0.1...v3.0.2) (2020-03-27)
+
+### Bug Fixes
+
+- **graphcms:** fix react capitalization issues with playsinline attr
+  ([607bc95](https://github.com/ho-nl/project-reachdigital.nl/commit/607bc9507a2c91453cad7363ab3e523cd7628faa))
+- **storybook:** made components compatible with storybook
+  ([aa5ee2f](https://github.com/ho-nl/project-reachdigital.nl/commit/aa5ee2f5b3769fa20cfc5d5e9a1739090bc6fcf6))
+
 ### [3.0.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.0.0...v3.0.1) (2020-03-27)
 
 ### Bug Fixes
