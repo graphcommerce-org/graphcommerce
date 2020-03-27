@@ -1,7 +1,16 @@
+import { styled } from '@material-ui/core'
 import { GQLRowHeroVideoFragment } from '../../generated/graphql'
 import { LinkInternal } from '../LinkInternal/LinkInternal'
 import { LinkExternal } from '../LinkExternal/LinkExternal'
-import styles from './RowHeroVideo.module.css'
+
+// Using https://cssinjs.org/styled-jss?v=v2.2.3#default-styled-function
+const Container = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}))
+const Video = styled('video')({
+  width: 200,
+  display: 'block',
+})
 
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer
@@ -13,29 +22,24 @@ import styles from './RowHeroVideo.module.css'
  */
 const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links }) => {
   return (
-    <div className={styles.row}>
+    <Container>
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: content.html }} />
 
       {video && (
-        <video autoPlay loop muted playsinline id='video'>
+        <Video autoPlay loop muted playsinline id='video'>
           <source src={video.url} type={video.mimeType!} />
-        </video>
+        </Video>
       )}
 
       <div>
         {links.map(link => {
-          switch (link.__typename) {
-            case 'LinkInternal':
-              return <LinkInternal {...link} key={link.id} />
-            case 'LinkExternal':
-              return <LinkExternal {...link} key={link.id} />
-            default:
-              return <></>
-          }
+          if (link.__typename === 'LinkInternal') return <LinkInternal {...link} key={link.id} />
+          if (link.__typename === 'LinkExternal') return <LinkExternal {...link} key={link.id} />
+          return <></>
         })}
       </div>
-    </div>
+    </Container>
   )
 }
 
