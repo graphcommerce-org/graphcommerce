@@ -13,8 +13,7 @@ export const LinkInternal: React.FC<GQLLinkInternalFragment> = ({
 
   const GraphCmsLink = (
     <Link href={page.url} metaRobots={page.metaRobots!}>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <a>{title ?? page.title}</a>
+      {title ?? page.title}
     </Link>
   )
 

@@ -1,6 +1,5 @@
 fragment LinkExternal on LinkExternal {
   id
-  __typename
   exTitle: title
   description {
     html
