@@ -40,7 +40,7 @@
     "use-resize-observer": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@graphql-codegen/cli": "^1.12.1",
