@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link, GraphCmsPage } from '../graphcms'
 import { GQLLocale } from '../generated/graphql'
 import { FullLayout } from '../layout/FullLayout'

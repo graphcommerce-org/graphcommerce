@@ -13,10 +13,10 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  RGBATransparency: any
-  Hex: any
   RGBAHue: any
+  RGBATransparency: any
   Json: any
+  Hex: any
   Date: any
 }
 
@@ -6349,14 +6349,14 @@ export type GQLContentRendererFragment = { __typename?: 'Page' } & {
   content: Array<{ __typename: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
 }
 
-export type GQLLinkExternalFragment = { __typename: 'LinkExternal' } & Pick<
+export type GQLLinkExternalFragment = { __typename?: 'LinkExternal' } & Pick<
   GQLLinkExternal,
   'id' | 'url'
 > & { exTitle: GQLLinkExternal['title'] } & {
     description?: Maybe<{ __typename?: 'RichText' } & Pick<GQLRichText, 'html'>>
   }
 
-export type GQLLinkInternalFragment = { __typename: 'LinkInternal' } & Pick<
+export type GQLLinkInternalFragment = { __typename?: 'LinkInternal' } & Pick<
   GQLLinkInternal,
   'id' | 'title'
 > & {
@@ -6366,7 +6366,15 @@ export type GQLLinkInternalFragment = { __typename: 'LinkInternal' } & Pick<
     >
   }
 
-export type GQLRowHeroVideoFragment = { __typename: 'RowHeroVideo' } & Pick<
+export type GQLGetAllRowHeroVideosQueryVariables = {
+  skip: Scalars['Int']
+}
+
+export type GQLGetAllRowHeroVideosQuery = { __typename?: 'Query' } & {
+  rowHeroVideos: Array<{ __typename?: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
+}
+
+export type GQLRowHeroVideoFragment = { __typename?: 'RowHeroVideo' } & Pick<
   GQLRowHeroVideo,
   'id'
 > & {
@@ -6433,7 +6441,6 @@ export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
 export const LinkInternalFragmentDoc = gql`
   fragment LinkInternal on LinkInternal {
     id
-    __typename
     title
     description {
       html
@@ -6449,7 +6456,6 @@ export const LinkInternalFragmentDoc = gql`
 export const LinkExternalFragmentDoc = gql`
   fragment LinkExternal on LinkExternal {
     id
-    __typename
     exTitle: title
     description {
       html
@@ -6459,7 +6465,6 @@ export const LinkExternalFragmentDoc = gql`
 `
 export const RowHeroVideoFragmentDoc = gql`
   fragment RowHeroVideo on RowHeroVideo {
-    __typename
     id
     video {
       url
@@ -6485,6 +6490,61 @@ export const ContentRendererFragmentDoc = gql`
   }
   ${RowHeroVideoFragmentDoc}
 `
+export const GetAllRowHeroVideosDocument = gql`
+  query GetAllRowHeroVideos($skip: Int!) {
+    rowHeroVideos(first: 1, skip: $skip) {
+      ...RowHeroVideo
+    }
+  }
+  ${RowHeroVideoFragmentDoc}
+`
+
+/**
+ * __useGetAllRowHeroVideosQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowHeroVideosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowHeroVideosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowHeroVideosQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowHeroVideosQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowHeroVideosQuery,
+    GQLGetAllRowHeroVideosQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetAllRowHeroVideosQuery,
+    GQLGetAllRowHeroVideosQueryVariables
+  >(GetAllRowHeroVideosDocument, baseOptions)
+}
+export function useGetAllRowHeroVideosLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowHeroVideosQuery,
+    GQLGetAllRowHeroVideosQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowHeroVideosQuery,
+    GQLGetAllRowHeroVideosQueryVariables
+  >(GetAllRowHeroVideosDocument, baseOptions)
+}
+export type GetAllRowHeroVideosQueryHookResult = ReturnType<typeof useGetAllRowHeroVideosQuery>
+export type GetAllRowHeroVideosLazyQueryHookResult = ReturnType<
+  typeof useGetAllRowHeroVideosLazyQuery
+>
+export type GetAllRowHeroVideosQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowHeroVideosQuery,
+  GQLGetAllRowHeroVideosQueryVariables
+>
 export const GetBreadcrumbDocument = gql`
   query GetBreadcrumb($url: String!, $locale: Locale!) {
     pages(where: { url: $url }, locales: [$locale]) {

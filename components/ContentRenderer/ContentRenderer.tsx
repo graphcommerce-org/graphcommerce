@@ -1,3 +1,4 @@
+import React from 'react'
 import { GQLGetPageQuery } from '../../generated/graphql'
 
 type TypeNames = GQLGetPageQuery['pages'][0]['content'][0]['__typename']

@@ -1,3 +1,4 @@
+import React from 'react'
 import { JsonLd } from 'react-schemaorg'
 import { BreadcrumbList, WithContext, ListItem } from 'schema-dts'
 import { GraphCmsPageProps } from './GraphCmsPage'

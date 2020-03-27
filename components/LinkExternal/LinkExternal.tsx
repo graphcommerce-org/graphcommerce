@@ -1,3 +1,4 @@
+import React from 'react'
 import { GQLLinkExternalFragment } from '../../generated/graphql'
 
 export const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, description }) => {

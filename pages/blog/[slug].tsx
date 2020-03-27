@@ -1,3 +1,4 @@
+import React from 'react'
 import { BlogPosting } from 'schema-dts'
 import { JsonLd } from 'react-schemaorg'
 import Error from 'next/error'

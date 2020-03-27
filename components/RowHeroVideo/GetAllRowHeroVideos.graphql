@@ -1,0 +1,5 @@
+query GetAllRowHeroVideos($skip: Int!) {
+  rowHeroVideos(first: 1, skip: $skip) {
+    ...RowHeroVideo
+  }
+}

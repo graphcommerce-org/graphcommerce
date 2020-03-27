@@ -1,3 +1,4 @@
+import React from 'react'
 import { GraphCmsPageProps } from './GraphCmsPage'
 import { Link } from './Link'
 

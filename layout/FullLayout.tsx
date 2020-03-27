@@ -1,7 +1,27 @@
+import React from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { red } from '@material-ui/core/colors'
 import { GraphCmsPage, PageMeta, Breadcrumbs, Language } from '../graphcms'
-import theme from '../theme'
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: '#fff',
+    },
+  },
+})
 
 const FullLayout: GraphCmsPage['layout'] = ({ children, ...props }) => {
   return (
@@ -24,4 +44,5 @@ const FullLayout: GraphCmsPage['layout'] = ({ children, ...props }) => {
     </>
   )
 }
+
 export { FullLayout }

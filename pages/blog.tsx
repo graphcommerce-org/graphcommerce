@@ -1,3 +1,4 @@
+import React from 'react'
 import { GridList, GridListTile, makeStyles } from '@material-ui/core'
 import { GQLLocale } from '../generated/graphql'
 import { Link, GraphCmsPage } from '../graphcms'

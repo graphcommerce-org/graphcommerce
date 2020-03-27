@@ -1,3 +1,4 @@
+import React from 'react'
 import { styled } from '@material-ui/core'
 import { GQLRowHeroVideoFragment } from '../../generated/graphql'
 import { LinkInternal } from '../LinkInternal/LinkInternal'
@@ -27,7 +28,7 @@ const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links
       <div dangerouslySetInnerHTML={{ __html: content.html }} />
 
       {video && (
-        <Video autoPlay loop muted playsinline id='video'>
+        <Video autoPlay loop muted playsInline id='video'>
           <source src={video.url} type={video.mimeType!} />
         </Video>
       )}

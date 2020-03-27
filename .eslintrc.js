@@ -29,7 +29,6 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'] }],
     'default-case': 'off',
     '@typescript-eslint/indent': 'off',
-    'react/react-in-jsx-scope': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',

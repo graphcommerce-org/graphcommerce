@@ -1,3 +1,4 @@
+import React from 'react'
 import { GQLLinkInternalFragment } from '../../generated/graphql'
 import { Link } from '../../graphcms'
 
