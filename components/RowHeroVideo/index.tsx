@@ -28,7 +28,7 @@ const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links
       <div dangerouslySetInnerHTML={{ __html: content.html }} />
 
       {video && (
-        <Video autoPlay loop muted playsinline id='video'>
+        <Video autoPlay loop muted playsInline id='video'>
           <source src={video.url} type={video.mimeType!} />
         </Video>
       )}
