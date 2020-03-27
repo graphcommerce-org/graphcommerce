@@ -1,3 +1,14 @@
+### [3.0.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.0.0...v3.0.1) (2020-03-27)
+
+### Bug Fixes
+
+- **graphcms:** a Link already includes the anchor tag
+  ([21c7b10](https://github.com/ho-nl/project-reachdigital.nl/commit/21c7b10e74420941383514d8e541a20257db47af))
+- **graphcms:** moved RowHeroVideo styling to JSS instead of css modules
+  ([77f0eef](https://github.com/ho-nl/project-reachdigital.nl/commit/77f0eef0a6e7718ef102a7333074201739cef136))
+- **graphcms:** remove redundant \_\_typename from queries
+  ([c7313ba](https://github.com/ho-nl/project-reachdigital.nl/commit/c7313ba6deb8c2d9a6e2bdf89e2d38ce00e3b36c))
+
 ## [3.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v2.2.0...v3.0.0) (2020-03-26)
 
 ### ⚠ BREAKING CHANGES
