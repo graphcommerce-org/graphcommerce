@@ -89,7 +89,7 @@
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "react-docgen-typescript-loader": "^3.6.0",
+    "react-docgen-typescript-loader": "^3.7.2",
     "semantic-release": "^17.0.4",
     "semantic-release-slack-bot": "^1.5.0",
     "stylelint": "^13.2.1",
