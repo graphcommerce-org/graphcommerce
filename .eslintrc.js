@@ -48,6 +48,7 @@ module.exports = {
       },
     ],
     'no-underscore-dangle': ['error', { allow: ['__typename'] }],
+    'react/jsx-key': ['error', { checkFragmentShorthand: true }],
   },
   overrides: [
     {

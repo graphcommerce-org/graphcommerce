@@ -13,9 +13,9 @@ export const ContentRenderer: React.FC<{
       {content.map(item => {
         const Component = renderers[item.__typename]
         return Component ? (
-          <Component {...item} />
+          <Component key={item.id} {...item} />
         ) : (
-          <div>Content block with type {item.__typename} not implemented/loading</div>
+          <div key={item.id}>Content block with type {item.__typename} not implemented/loading</div>
         )
       })}
     </>
