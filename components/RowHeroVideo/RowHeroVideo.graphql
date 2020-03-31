@@ -3,8 +3,7 @@
 fragment RowHeroVideo on RowHeroVideo {
   id
   video {
-    url
-    mimeType
+    ...Asset
   }
   content {
     html

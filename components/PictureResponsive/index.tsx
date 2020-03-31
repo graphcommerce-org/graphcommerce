@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
+import { createStyles } from '@material-ui/core'
 import { useNetworkStatus } from '../../hooks/useNetworkStatus'
 
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
-export type ImageTypes =
+export type MimeTypes =
   | 'image/apng'
   | 'image/bmp'
   | 'image/gif'
@@ -15,7 +16,7 @@ export type ImageTypes =
   | 'image/webp'
 
 export type PictureResonsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
-  srcSets: Partial<Record<ImageTypes, string>>
+  srcSets: Partial<Record<MimeTypes, string>>
   width: number
   height: number
 }

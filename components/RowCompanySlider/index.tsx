@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from '@material-ui/core'
 import { GQLRowCompanySliderFragment } from '../../generated/graphql'
 import { FilestackPicture } from '../FilestackPicture'
-import { ImageTypes } from '../PictureResponsive'
+import { MimeTypes } from '../PictureResponsive'
 import { ScrollSnapSlider } from '../ScrollSnapSlider'
 import Container from '../Container'
 
@@ -16,7 +16,7 @@ const RowCompanySlider: React.FC<GQLRowCompanySliderFragment> = ({ companies }) 
             width={Math.round((company.logo.width! / company.logo.height!) * 100)}
             height={100}
             src={company.logo.url}
-            type={(company.logo.mimeType as ImageTypes) ?? 'image/png'}
+            type={(company.logo.mimeType as MimeTypes) ?? 'image/png'}
           />
         ))}
       </ScrollSnapSlider>

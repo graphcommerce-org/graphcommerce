@@ -1,0 +1,14 @@
+fragment RowPeopleWithText on RowPeopleWithText {
+  id
+  text {
+    html
+  }
+  links {
+    ...LinkInternal
+  }
+  personList {
+    people {
+      ...Person
+    }
+  }
+}

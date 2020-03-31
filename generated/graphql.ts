@@ -15,9 +15,9 @@ export type Scalars = {
   Long: any
   RGBAHue: any
   RGBATransparency: any
-  Json: any
   Hex: any
   Date: any
+  Json: any
 }
 
 export enum GQL_FilterKind {
@@ -3193,7 +3193,8 @@ export type GQLPersonList = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
-  persons: Array<GQLPerson>
+  people: Array<GQLPerson>
+  rowPeopleWithText: Array<GQLRowPeopleWithText>
 }
 
 export type GQLPersonListDocumentInStagesArgs = {
@@ -3202,9 +3203,19 @@ export type GQLPersonListDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean']
 }
 
-export type GQLPersonListPersonsArgs = {
+export type GQLPersonListPeopleArgs = {
   where?: Maybe<GQLPersonWhereInput>
   orderBy?: Maybe<GQLPersonOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLPersonListRowPeopleWithTextArgs = {
+  where?: Maybe<GQLRowPeopleWithTextWhereInput>
+  orderBy?: Maybe<GQLRowPeopleWithTextOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -3227,7 +3238,8 @@ export type GQLPersonListConnection = {
 export type GQLPersonListCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  persons?: Maybe<GQLPersonCreateManyInlineInput>
+  people?: Maybe<GQLPersonCreateManyInlineInput>
+  rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
 }
 
 export type GQLPersonListCreateManyInlineInput = {
@@ -3285,9 +3297,12 @@ export type GQLPersonListManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  persons_every?: Maybe<GQLPersonWhereInput>
-  persons_some?: Maybe<GQLPersonWhereInput>
-  persons_none?: Maybe<GQLPersonWhereInput>
+  people_every?: Maybe<GQLPersonWhereInput>
+  people_some?: Maybe<GQLPersonWhereInput>
+  people_none?: Maybe<GQLPersonWhereInput>
+  rowPeopleWithText_every?: Maybe<GQLRowPeopleWithTextWhereInput>
+  rowPeopleWithText_some?: Maybe<GQLRowPeopleWithTextWhereInput>
+  rowPeopleWithText_none?: Maybe<GQLRowPeopleWithTextWhereInput>
 }
 
 export enum GQLPersonListOrderByInput {
@@ -3302,7 +3317,8 @@ export enum GQLPersonListOrderByInput {
 }
 
 export type GQLPersonListUpdateInput = {
-  persons?: Maybe<GQLPersonUpdateManyInlineInput>
+  people?: Maybe<GQLPersonUpdateManyInlineInput>
+  rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
 }
 
 export type GQLPersonListUpdateManyInlineInput = {
@@ -3388,9 +3404,12 @@ export type GQLPersonListWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  persons_every?: Maybe<GQLPersonWhereInput>
-  persons_some?: Maybe<GQLPersonWhereInput>
-  persons_none?: Maybe<GQLPersonWhereInput>
+  people_every?: Maybe<GQLPersonWhereInput>
+  people_some?: Maybe<GQLPersonWhereInput>
+  people_none?: Maybe<GQLPersonWhereInput>
+  rowPeopleWithText_every?: Maybe<GQLRowPeopleWithTextWhereInput>
+  rowPeopleWithText_some?: Maybe<GQLRowPeopleWithTextWhereInput>
+  rowPeopleWithText_none?: Maybe<GQLRowPeopleWithTextWhereInput>
 }
 
 export type GQLPersonListWhereUniqueInput = {
@@ -5392,6 +5411,7 @@ export type GQLRowPeopleWithText = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   text: GQLRichText
   links: Array<GQLLinkInternal>
+  personList?: Maybe<GQLPersonList>
 }
 
 export type GQLRowPeopleWithTextLocalizationsArgs = {
@@ -5432,6 +5452,7 @@ export type GQLRowPeopleWithTextCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   text: Scalars['RichTextAST']
   links?: Maybe<GQLLinkInternalCreateManyInlineInput>
+  personList?: Maybe<GQLPersonListCreateOneInlineInput>
   localizations?: Maybe<GQLRowPeopleWithTextCreateLocalizationsInput>
 }
 
@@ -5508,6 +5529,7 @@ export type GQLRowPeopleWithTextManyWhereInput = {
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
+  personList?: Maybe<GQLPersonListWhereInput>
 }
 
 export enum GQLRowPeopleWithTextOrderByInput {
@@ -5524,6 +5546,7 @@ export enum GQLRowPeopleWithTextOrderByInput {
 export type GQLRowPeopleWithTextUpdateInput = {
   text?: Maybe<Scalars['RichTextAST']>
   links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
+  personList?: Maybe<GQLPersonListUpdateOneInlineInput>
   localizations?: Maybe<GQLRowPeopleWithTextUpdateLocalizationsInput>
 }
 
@@ -5640,6 +5663,7 @@ export type GQLRowPeopleWithTextWhereInput = {
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
+  personList?: Maybe<GQLPersonListWhereInput>
 }
 
 export type GQLRowPeopleWithTextWhereUniqueInput = {
@@ -6345,6 +6369,11 @@ export type GQLZzDeleteListWhereUniqueInput = {
   identifier?: Maybe<Scalars['String']>
 }
 
+export type GQLAssetFragment = { __typename?: 'Asset' } & Pick<
+  GQLAsset,
+  'id' | 'url' | 'width' | 'height' | 'mimeType'
+>
+
 export type GQLContentRendererFragment = { __typename?: 'Page' } & {
   content: Array<{ __typename: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
 }
@@ -6366,6 +6395,29 @@ export type GQLLinkInternalFragment = { __typename?: 'LinkInternal' } & Pick<
     >
   }
 
+export type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'name'> & {
+    avatar: { __typename?: 'Asset' } & GQLAssetFragment
+  }
+
+export type GQLGetAllRowCompanySlidersQueryVariables = {
+  skip: Scalars['Int']
+}
+
+export type GQLGetAllRowCompanySlidersQuery = { __typename?: 'Query' } & {
+  rowCompanySliders: Array<{ __typename?: 'RowCompanySlider' } & GQLRowCompanySliderFragment>
+}
+
+export type GQLRowCompanySliderFragment = { __typename?: 'RowCompanySlider' } & Pick<
+  GQLRowCompanySlider,
+  'id'
+> & {
+    companies: Array<
+      { __typename?: 'Company' } & Pick<GQLCompany, 'id'> & {
+          logo: { __typename?: 'Asset' } & Pick<GQLAsset, 'mimeType' | 'url' | 'width' | 'height'>
+        }
+    >
+  }
+
 export type GQLGetAllRowHeroVideosQueryVariables = {
   skip: Scalars['Int']
 }
@@ -6378,11 +6430,32 @@ export type GQLRowHeroVideoFragment = { __typename?: 'RowHeroVideo' } & Pick<
   GQLRowHeroVideo,
   'id'
 > & {
-    video?: Maybe<{ __typename?: 'Asset' } & Pick<GQLAsset, 'url' | 'mimeType'>>
+    video?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
     content: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
     links: Array<
       | ({ __typename?: 'LinkExternal' } & GQLLinkExternalFragment)
       | ({ __typename?: 'LinkInternal' } & GQLLinkInternalFragment)
+    >
+  }
+
+export type GQLGetRowPeopleWithTextsQueryVariables = {
+  skip: Scalars['Int']
+}
+
+export type GQLGetRowPeopleWithTextsQuery = { __typename?: 'Query' } & {
+  rowPeopleWithTexts: Array<{ __typename?: 'RowPeopleWithText' } & GQLRowPeopleWithTextFragment>
+}
+
+export type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } & Pick<
+  GQLRowPeopleWithText,
+  'id'
+> & {
+    text: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
+    links: Array<{ __typename?: 'LinkInternal' } & GQLLinkInternalFragment>
+    personList?: Maybe<
+      { __typename?: 'PersonList' } & {
+        people: Array<{ __typename?: 'Person' } & GQLPersonFragment>
+      }
     >
   }
 
@@ -6438,6 +6511,15 @@ export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
   >
 }
 
+export const AssetFragmentDoc = gql`
+  fragment Asset on Asset {
+    id
+    url
+    width
+    height
+    mimeType
+  }
+`
 export const LinkInternalFragmentDoc = gql`
   fragment LinkInternal on LinkInternal {
     id
@@ -6467,8 +6549,7 @@ export const RowHeroVideoFragmentDoc = gql`
   fragment RowHeroVideo on RowHeroVideo {
     id
     video {
-      url
-      mimeType
+      ...Asset
     }
     content {
       html
@@ -6478,6 +6559,7 @@ export const RowHeroVideoFragmentDoc = gql`
       ...LinkExternal
     }
   }
+  ${AssetFragmentDoc}
   ${LinkInternalFragmentDoc}
   ${LinkExternalFragmentDoc}
 `
@@ -6490,6 +6572,104 @@ export const ContentRendererFragmentDoc = gql`
   }
   ${RowHeroVideoFragmentDoc}
 `
+export const RowCompanySliderFragmentDoc = gql`
+  fragment RowCompanySlider on RowCompanySlider {
+    id
+    companies {
+      id
+      logo {
+        mimeType
+        url
+        width
+        height
+      }
+    }
+  }
+`
+export const PersonFragmentDoc = gql`
+  fragment Person on Person {
+    name
+    avatar {
+      ...Asset
+    }
+  }
+  ${AssetFragmentDoc}
+`
+export const RowPeopleWithTextFragmentDoc = gql`
+  fragment RowPeopleWithText on RowPeopleWithText {
+    id
+    text {
+      html
+    }
+    links {
+      ...LinkInternal
+    }
+    personList {
+      people {
+        ...Person
+      }
+    }
+  }
+  ${LinkInternalFragmentDoc}
+  ${PersonFragmentDoc}
+`
+export const GetAllRowCompanySlidersDocument = gql`
+  query GetAllRowCompanySliders($skip: Int!) {
+    rowCompanySliders(first: 1, skip: $skip) {
+      ...RowCompanySlider
+    }
+  }
+  ${RowCompanySliderFragmentDoc}
+`
+
+/**
+ * __useGetAllRowCompanySlidersQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowCompanySlidersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowCompanySlidersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowCompanySlidersQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowCompanySlidersQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >(GetAllRowCompanySlidersDocument, baseOptions)
+}
+export function useGetAllRowCompanySlidersLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >(GetAllRowCompanySlidersDocument, baseOptions)
+}
+export type GetAllRowCompanySlidersQueryHookResult = ReturnType<
+  typeof useGetAllRowCompanySlidersQuery
+>
+export type GetAllRowCompanySlidersLazyQueryHookResult = ReturnType<
+  typeof useGetAllRowCompanySlidersLazyQuery
+>
+export type GetAllRowCompanySlidersQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowCompanySlidersQuery,
+  GQLGetAllRowCompanySlidersQueryVariables
+>
 export const GetAllRowHeroVideosDocument = gql`
   query GetAllRowHeroVideos($skip: Int!) {
     rowHeroVideos(first: 1, skip: $skip) {
@@ -6544,6 +6724,61 @@ export type GetAllRowHeroVideosLazyQueryHookResult = ReturnType<
 export type GetAllRowHeroVideosQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowHeroVideosQuery,
   GQLGetAllRowHeroVideosQueryVariables
+>
+export const GetRowPeopleWithTextsDocument = gql`
+  query GetRowPeopleWithTexts($skip: Int!) {
+    rowPeopleWithTexts(first: 1, skip: $skip) {
+      ...RowPeopleWithText
+    }
+  }
+  ${RowPeopleWithTextFragmentDoc}
+`
+
+/**
+ * __useGetRowPeopleWithTextsQuery__
+ *
+ * To run a query within a React component, call `useGetRowPeopleWithTextsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRowPeopleWithTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRowPeopleWithTextsQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetRowPeopleWithTextsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >(GetRowPeopleWithTextsDocument, baseOptions)
+}
+export function useGetRowPeopleWithTextsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >(GetRowPeopleWithTextsDocument, baseOptions)
+}
+export type GetRowPeopleWithTextsQueryHookResult = ReturnType<typeof useGetRowPeopleWithTextsQuery>
+export type GetRowPeopleWithTextsLazyQueryHookResult = ReturnType<
+  typeof useGetRowPeopleWithTextsLazyQuery
+>
+export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetRowPeopleWithTextsQuery,
+  GQLGetRowPeopleWithTextsQueryVariables
 >
 export const GetBreadcrumbDocument = gql`
   query GetBreadcrumb($url: String!, $locale: Locale!) {

@@ -30,13 +30,13 @@
             "name": "PersonList"
           },
           {
+            "name": "RowPeopleWithText"
+          },
+          {
             "name": "Company"
           },
           {
             "name": "RowCompanySlider"
-          },
-          {
-            "name": "RowPeopleWithText"
           },
           {
             "name": "RowServicesWithText"

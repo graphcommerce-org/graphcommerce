@@ -1,0 +1,7 @@
+fragment Asset on Asset {
+  id
+  url
+  width
+  height
+  mimeType
+}

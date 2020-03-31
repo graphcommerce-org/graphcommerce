@@ -37,7 +37,7 @@ const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links
         {links.map(link => {
           if (link.__typename === 'LinkInternal') return <LinkInternal {...link} key={link.id} />
           if (link.__typename === 'LinkExternal') return <LinkExternal {...link} key={link.id} />
-          return <></>
+          return undefined
         })}
       </div>
     </Container>

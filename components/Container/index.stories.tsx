@@ -1,13 +1,13 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
-import Container, { Styles } from '.'
+import Container, { ContainerStyles } from '.'
 
 export default {
   title: 'row|Container',
   component: Container,
 }
 
-const useStyles = makeStyles<Theme, Styles>((theme: Theme) => ({
+const useStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => ({
   left: { backgroundColor: theme.palette.secondary.main },
   right: { backgroundColor: theme.palette.primary.main },
   container: {},
