@@ -1,3 +1,36 @@
+## [3.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.0.2...v3.1.0) (2020-03-31)
+
+### Features
+
+- **container:** new container component added based on sleep21
+  ([faa8778](https://github.com/ho-nl/project-reachdigital.nl/commit/faa87785996eb61969b738d985f927903f5f89f0))
+- **graphcms:** created ScrollSnapSlider for basic slider functionality
+  ([b48318d](https://github.com/ho-nl/project-reachdigital.nl/commit/b48318df5ec81332fec8acac878264098ad4d2e6))
+- **rowpeople:** added RowPeopleWithText
+  ([92d8714](https://github.com/ho-nl/project-reachdigital.nl/commit/92d8714cd96c405538bbd9f3029abbb56fc29b87))
+- added ScrollSnapSlider scale animations
+  ([35a0f32](https://github.com/ho-nl/project-reachdigital.nl/commit/35a0f3201657efa41e95660a120904119cffeab7))
+- **storybook:** material-ui theming support in storybook
+  ([c5c018f](https://github.com/ho-nl/project-reachdigital.nl/commit/c5c018fbd5c8fe1a69ea8910d41567a8fc512dbe))
+
+### Bug Fixes
+
+- **container:** @material-ui/styles required as dependency
+  ([89b2aa2](https://github.com/ho-nl/project-reachdigital.nl/commit/89b2aa2650d6e4b48877078fa3351cf8ecd8d068))
+- **container:** optional classes property added
+  ([6a11d95](https://github.com/ho-nl/project-reachdigital.nl/commit/6a11d954ad24d3c5824cdadbe83a20997a1d20c4))
+- **linkinternal:** correctly render description
+  ([eff070d](https://github.com/ho-nl/project-reachdigital.nl/commit/eff070d8abc9beada2157379977e8ccd57f81e82))
+- **rowcompanyslider:** using container for center align
+  ([1a20bfc](https://github.com/ho-nl/project-reachdigital.nl/commit/1a20bfc5d9604738462fe5fcdb2b3c2122280af7))
+- **scrollsnapslider:** prev/next visible until element is fully visible
+  ([ece3c5e](https://github.com/ho-nl/project-reachdigital.nl/commit/ece3c5eb948333a10bd256c0084df7b3b8147408))
+
+### Build
+
+- fixed some typescript types
+  ([2a0d2b1](https://github.com/ho-nl/project-reachdigital.nl/commit/2a0d2b134370c9cdd4b2fc87f71c0b81f1542845))
+
 ### [3.0.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.0.1...v3.0.2) (2020-03-27)
 
 ### Bug Fixes
