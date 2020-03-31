@@ -21,7 +21,8 @@ export const LinkInternal: React.FC<GQLLinkInternalFragment> = ({
   if (description) {
     return (
       <div>
-        <div>{description}</div>
+        {/* eslint-disable-next-line react/no-danger */}
+        <div dangerouslySetInnerHTML={{ __html: description.html }} />
         {GraphCmsLink}
       </div>
     )
