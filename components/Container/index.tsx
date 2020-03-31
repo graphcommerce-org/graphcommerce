@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react'
-import { WithStyles, Theme, makeStyles } from '@material-ui/core'
+import { Theme, makeStyles } from '@material-ui/core'
+import { ClassNameMap, ClassKeyOfStyles } from '@material-ui/styles/withStyles'
 
 export type ContainerProps = {
-  left: ReactNode
-  right: ReactNode
+  left?: ReactNode
+  right?: ReactNode
   size?: 'md' | 'lg' | 'xl'
   stretch?: 'left' | 'right' | 'both'
   // stretchSize?: 'xlarge'
@@ -88,9 +89,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   }),
 }))
 
-export type Styles = keyof ReturnType<typeof useStyles>
+type WithOptionalStyles = {
+  classes?: ClassNameMap<ClassKeyOfStyles<keyof ReturnType<typeof useStyles>>>
+}
 
-const Container: React.FC<ContainerProps & WithStyles<Styles>> = props => {
+const Container: React.FC<ContainerProps & WithOptionalStyles> = props => {
   const classes = useStyles(props)
   const { left, right, children } = props
 
