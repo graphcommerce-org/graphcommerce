@@ -54,7 +54,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   scrollbar = false,
 }) => {
   const scroller = useRef<HTMLDivElement>(null)
-  const [intersects, setIntersects] = useState<boolean[]>([])
+  const [intersects, setIntersects] = useState<number[]>([])
   const [styleProps, setStyleProps] = useState<StyleProps>({
     scrolling: false,
     pagination,
@@ -69,14 +69,14 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
     onRest: () => setStyleProps({ ...styleProps, scrolling: false }),
   }))
   const prevAnim = useSpring({
-    opacity: intersects[0] ? 0 : 1,
-    transform: `scale(${intersects[0] ? 0 : 1})`,
+    opacity: intersects[0] > 0.9 ? 0 : 1,
+    transform: `scale(${intersects[0] > 0.9 ? 0 : 1})`,
     from: { transform: 'scale(0)', opacity: 0 },
     config: config.stiff,
   })
   const nextAnim = useSpring({
-    opacity: intersects[intersects.length - 1] ? 0 : 1,
-    transform: `scale(${intersects[intersects.length - 1] ? 0 : 1})`,
+    opacity: intersects[intersects.length - 1] > 0.9 ? 0 : 1,
+    transform: `scale(${intersects[intersects.length - 1] > 0.9 ? 0 : 1})`,
     from: { transform: 'scale(0)', opacity: 0 },
     config: config.stiff,
   })
@@ -106,17 +106,17 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   useEffect(() => {
     if (scroller.current === null) return () => {}
     const childElements = Array.from(scroller.current.children)
-    const newIntersects: boolean[] = new Array<boolean>(childElements.length).fill(false)
+    const newIntersects: number[] = new Array<number>(childElements.length).fill(0)
     setIntersects(newIntersects)
 
     const observer = new IntersectionObserver(
       entries =>
         entries.forEach(entry => {
           const idx = childElements.indexOf(entry.target)
-          newIntersects[idx] = entry.isIntersecting
+          newIntersects[idx] = entry.intersectionRatio
           setIntersects([...newIntersects])
         }),
-      { root: scroller.current },
+      { root: scroller.current, threshold: [0, 0.1, 0.9, 1] },
     )
 
     childElements.forEach(child => observer.observe(child))
