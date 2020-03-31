@@ -71,7 +71,7 @@
     "@types/use-resize-observer": "^6.0.0",
     "@types/webpack": "^4.41.8",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
-    "@typescript-eslint/parser": "^2.19.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.1.1",
     "concurrently": "^5.1.0",
