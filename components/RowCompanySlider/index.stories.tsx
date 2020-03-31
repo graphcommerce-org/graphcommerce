@@ -1,16 +1,13 @@
 import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
-// @ts-ignore
-import { withMuiTheme } from '@harelpls/storybook-addon-materialui'
 import { initApolloClient } from '../../lib/apollo'
 import { useGetAllRowCompanySlidersQuery } from '../../generated/graphql'
-import { theme } from '../../layout/FullLayout'
 import RowCompanySlider from '.'
 
 export default {
   title: 'row|RowCompanySlider',
   component: RowCompanySlider,
-  decorators: [withKnobs, withMuiTheme({ Default: theme })],
+  decorators: [withKnobs],
 }
 
 export const GraphCMS = () => {

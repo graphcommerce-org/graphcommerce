@@ -1,14 +1,10 @@
 import React from 'react'
-import { number, withKnobs } from '@storybook/addon-knobs'
-import { withMuiTheme } from '@harelpls/storybook-addon-materialui'
 import { makeStyles, Theme } from '@material-ui/core'
 import Container, { Styles } from '.'
-import { theme as importTheme } from '../../layout/FullLayout'
 
 export default {
   title: 'row|Container',
   component: Container,
-  decorators: [withKnobs, withMuiTheme({ Default: importTheme })],
 }
 
 const useStyles = makeStyles<Theme, Styles>((theme: Theme) => ({
