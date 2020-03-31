@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled, makeStyles, Theme, Paper } from '@material-ui/core'
+import { makeStyles, Theme, Paper } from '@material-ui/core'
 import { GQLRowPeopleWithTextFragment } from '../../generated/graphql'
 import { FilestackPicture } from '../FilestackPicture'
 import Container, { ContainerStyles } from '../Container'

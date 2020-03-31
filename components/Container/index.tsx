@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export type ContainerStyles = keyof ReturnType<typeof useStyles>
 
 type WithOptionalStyles = {
-  classes?: ClassNameMap<ClassKeyOfStyles<Styles>>
+  classes?: ClassNameMap<ClassKeyOfStyles<ContainerStyles>>
 }
 
 const Container: React.FC<ContainerProps & WithOptionalStyles> = props => {
