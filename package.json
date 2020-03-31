@@ -104,7 +104,7 @@
     "ts-jest": "^25.3.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
-    "webpack": "^4.41.6"
+    "webpack": "^4.42.1"
   },
   "prettier": {
     "trailingComma": "all",
