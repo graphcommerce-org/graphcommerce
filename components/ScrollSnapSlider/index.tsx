@@ -2,7 +2,7 @@ import React, { ReactNode, useRef, useEffect, useState } from 'react'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import { Fab, makeStyles, createStyles, Theme } from '@material-ui/core'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring, config } from 'react-spring'
 
 type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
 type StyleProps = { scrolling: boolean } & ScrollSnapSliderProps
@@ -18,20 +18,16 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
       display: 'flex',
       willChange: 'transform', // Solce issue with repaints
       overscrollBehavior: 'contain', // https://developers.google.com/web/updates/2017/11/overscroll-behavior
-      ...(scrollbar
-        ? {}
-        : {
-            scrollbarWidth: 'none',
-            '-ms-overflow-style': 'none',
-            '&::-webkit-scrollbar': { display: 'none' },
-          }),
+      ...(!scrollbar && {
+        scrollbarWidth: 'none',
+        '-ms-overflow-style': 'none',
+        '&::-webkit-scrollbar': { display: 'none' },
+      }),
       // We disable the scroll-snap-align when we're animating because it causes animation jank
-      ...(scrolling
-        ? {}
-        : {
-            scrollSnapType: 'both proximity',
-            '& > *': { scrollSnapAlign: 'center' },
-          }),
+      ...(!scrolling && {
+        scrollSnapType: 'both proximity',
+        '& > *': { scrollSnapAlign: 'center' },
+      }),
     }),
     prevFab: {
       position: 'absolute',
@@ -52,15 +48,13 @@ const useStyles = makeStyles<Theme, StyleProps>(() =>
   }),
 )
 
-type Intersects = boolean[]
-
 const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = ({
   children,
   pagination = false,
   scrollbar = false,
 }) => {
   const scroller = useRef<HTMLDivElement>(null)
-  const [intersects, setIntersects] = useState<Intersects>([])
+  const [intersects, setIntersects] = useState<boolean[]>([])
   const [styleProps, setStyleProps] = useState<StyleProps>({
     scrolling: false,
     pagination,
@@ -74,8 +68,18 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
     onStart: () => setStyleProps({ ...styleProps, scrolling: true }),
     onRest: () => setStyleProps({ ...styleProps, scrolling: false }),
   }))
-  const prevAnim = useSpring({ opacity: intersects[0] ? 0 : 1 })
-  const nextAnim = useSpring({ opacity: intersects[intersects.length - 1] ? 0 : 1 })
+  const prevAnim = useSpring({
+    opacity: intersects[0] ? 0 : 1,
+    transform: `scale(${intersects[0] ? 0 : 1})`,
+    from: { transform: 'scale(0)', opacity: 0 },
+    config: config.stiff,
+  })
+  const nextAnim = useSpring({
+    opacity: intersects[intersects.length - 1] ? 0 : 1,
+    transform: `scale(${intersects[intersects.length - 1] ? 0 : 1})`,
+    from: { transform: 'scale(0)', opacity: 0 },
+    config: config.stiff,
+  })
 
   const onPrev = () => {
     if (scroller.current === null) return
@@ -102,7 +106,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   useEffect(() => {
     if (scroller.current === null) return () => {}
     const childElements = Array.from(scroller.current.children)
-    const newIntersects: Intersects = new Array<boolean>(childElements.length).fill(false)
+    const newIntersects: boolean[] = new Array<boolean>(childElements.length).fill(false)
     setIntersects(newIntersects)
 
     const observer = new IntersectionObserver(
