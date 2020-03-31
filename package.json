@@ -91,7 +91,7 @@
     "pretty-quick": "^2.0.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "semantic-release": "^17.0.4",
-    "semantic-release-slack-bot": "^1.5.0",
+    "semantic-release-slack-bot": "^1.6.1",
     "stylelint": "^13.2.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-rational-order": "^0.1.2",
