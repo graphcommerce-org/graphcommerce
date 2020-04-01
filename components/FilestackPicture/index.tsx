@@ -35,13 +35,13 @@ export const FilestackPicture: React.FC<FilestackPictureProps> = ({
   const handle = url.pathname.substr(1)
 
   if (handle.includes('/')) {
-    throw new Error('Please provide a bare Filestack compatible URL')
+    throw new Error(`Please provide a bare Filestack compatible URL: ${src}`)
   }
 
   const srcSets: PictureResonsiveProps['srcSets'] = {}
 
   // The smallest possible image is the supplied img size, remove smaller sizes.
-  const widths = possibleWidths.filter(width => imgProps.width < width - 20)
+  const widths = possibleWidths.filter((width) => imgProps.width < width - 20)
   widths.unshift(imgProps.width)
 
   switch (resize || detectResize(type)) {
@@ -51,14 +51,14 @@ export const FilestackPicture: React.FC<FilestackPictureProps> = ({
     case 'lossy':
       // Generate webp + jpeg for all lossy images.
       srcSets['image/webp'] = widths
-        .map(width => {
+        .map((width) => {
           url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:webp,quality:100,t:true/${handle}`
           return `${url.toString()} ${width}w`
         })
         .join(', ')
 
       srcSets[type] = widths
-        .map(width => {
+        .map((width) => {
           url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:jpg,quality:100,t:true/${handle}`
           return `${url.toString()} ${width}w`
         })
@@ -67,7 +67,7 @@ export const FilestackPicture: React.FC<FilestackPictureProps> = ({
       break
     case 'lossless':
       srcSets['image/png'] = widths
-        .map(width => {
+        .map((width) => {
           url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:png,t:true/${handle}`
           return `${url.toString()} ${width}w`
         })

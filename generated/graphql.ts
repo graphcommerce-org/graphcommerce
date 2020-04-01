@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  Hex: any
-  RGBAHue: any
   RGBATransparency: any
-  Date: any
   Json: any
+  Hex: any
+  Date: any
+  RGBAHue: any
 }
 
 export enum GQL_FilterKind {

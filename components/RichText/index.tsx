@@ -81,7 +81,7 @@ interface LinkJSON {
   }
 }
 
-const RenderInline: React.FC<InlineJSON> = inline => {
+const RenderInline: React.FC<InlineJSON> = (inline) => {
   const childNodes = <RenderNodes nodes={inline.nodes} />
 
   switch (inline.type) {
@@ -98,7 +98,7 @@ const RenderInline: React.FC<InlineJSON> = inline => {
   }
 }
 
-const RenderText: React.FC<TextJSON> = text => {
+const RenderText: React.FC<TextJSON> = (text) => {
   const result = text.marks.reduce(
     (val, mark) => <RenderMark {...mark}>{val}</RenderMark>,
     <>{text.text}</>,
@@ -106,7 +106,7 @@ const RenderText: React.FC<TextJSON> = text => {
   return <>{result}</>
 }
 
-const RenderMark: React.FC<Mark> = mark => {
+const RenderMark: React.FC<Mark> = (mark) => {
   switch (mark.type) {
     case 'bold':
       return <strong>{mark.children}</strong>
@@ -122,7 +122,7 @@ const RenderMark: React.FC<Mark> = mark => {
   }
 }
 
-const RenderBlock: React.FC<BlockJSON | IframeJSON | ImageJSON> = block => {
+const RenderBlock: React.FC<BlockJSON | IframeJSON | ImageJSON> = (block) => {
   const childNodes = <RenderNodes nodes={block.nodes} />
 
   switch (block.type) {
@@ -157,7 +157,10 @@ const RenderBlock: React.FC<BlockJSON | IframeJSON | ImageJSON> = block => {
     case 'image':
       return (
         <FilestackPicture
-          src={block.data.src}
+          src={[
+            ...block.data.src.split('/').slice(0, 3),
+            ...block.data.src.split('/').slice(-1),
+          ].join('/')}
           type={block.data.mimeType}
           width={block.data.width}
           height={block.data.height}
@@ -180,7 +183,7 @@ const RenderNodes: React.FC<{ nodes: NodeJSON[] }> = ({ nodes }) => {
   )
 }
 
-const RenderNode: React.FC<NodeJSON> = node => {
+const RenderNode: React.FC<NodeJSON> = (node) => {
   switch (node.object) {
     case 'block':
       return <RenderBlock {...node} />
@@ -196,7 +199,7 @@ const RenderNode: React.FC<NodeJSON> = node => {
   }
 }
 
-const RenderDocument: React.FC<DocumentJSON> = props => <RenderNodes {...props} />
+const RenderDocument: React.FC<DocumentJSON> = (props) => <RenderNodes {...props} />
 
 const RichText: React.FC<{ raw: ValueJSON }> = ({ raw }) => <RenderDocument {...raw.document} />
 

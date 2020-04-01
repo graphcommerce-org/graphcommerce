@@ -10,7 +10,7 @@
     "dev-next": "next dev",
     "dev-codegen": "graphql-codegen -r dotenv/config -w",
     "dev-storybook": "start-storybook --quiet -p 6006",
-    "build": "build-storybook -o public/storybook && next build",
+    "build": "next build",
     "start": "next start",
     "semantic-release": "semantic-release"
   },
@@ -30,13 +30,13 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.3",
+    "next": "9.3.4",
     "next-fonts": "^1.0.3",
     "now": "^17.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-schemaorg": "^1.0.0",
-    "react-spring": "^8.0.27",
+    "react-spring": "^9.0.0-beta.34",
     "regenerator-runtime": "^0.13.3",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.5.1",
@@ -44,6 +44,7 @@
     "use-resize-observer": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/compat-data": "^7.9.0",
     "@babel/core": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
