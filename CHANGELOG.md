@@ -1,3 +1,10 @@
+### [3.2.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.2.0...v3.2.1) (2020-04-01)
+
+### Performance Improvements
+
+- remove roboto from header, since its not used
+  ([7290ffb](https://github.com/ho-nl/project-reachdigital.nl/commit/7290ffbd5c2d7c58f045ed6756626cf1ea0b117c))
+
 ## [3.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.1.0...v3.2.0) (2020-04-01)
 
 ### Features
