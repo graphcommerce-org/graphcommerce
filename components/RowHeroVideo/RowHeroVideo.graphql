@@ -6,7 +6,7 @@ fragment RowHeroVideo on RowHeroVideo {
     ...Asset
   }
   content {
-    html
+    ...RichText
   }
   links {
     ...LinkInternal

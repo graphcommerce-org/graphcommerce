@@ -1,3 +1,4 @@
+import React from 'react'
 import { NextPage, NextComponentType, NextPageContext } from 'next'
 
 function isLayoutPage<P = {}, IP = P>(Component: any): Component is LayoutPage<P, IP> {

@@ -2,7 +2,7 @@ fragment LinkExternal on LinkExternal {
   id
   exTitle: title
   description {
-    html
+    ...RichText
   }
   url
 }

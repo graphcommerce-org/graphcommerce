@@ -2,7 +2,7 @@ fragment LinkInternal on LinkInternal {
   id
   title
   description {
-    html
+    ...RichText
   }
   page {
     title

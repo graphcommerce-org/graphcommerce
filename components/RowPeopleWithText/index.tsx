@@ -6,6 +6,7 @@ import Container, { ContainerStyles } from '../Container'
 import { LinkInternal } from '../LinkInternal/LinkInternal'
 import { MimeTypes } from '../PictureResponsive'
 import { vpCalc } from '../../layout/FullLayout'
+import RichText from '../RichText'
 
 type StyleProps = { scrolling: boolean } & GQLRowPeopleWithTextFragment
 
@@ -43,8 +44,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
 
   const Left = () => (
     <>
-      {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: text.html }} />
+      <RichText {...text} />
 
       {links.map(link => (
         <LinkInternal {...link} key={link.id} />
@@ -58,8 +58,9 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
         <FilestackPicture
           src={avatar.url}
           type={(avatar.mimeType as MimeTypes) ?? 'image/png'}
-          width={120}
-          height={((avatar.width || 1) / (avatar.height || 1)) * 120}
+          width={83}
+          height={((avatar.width || 1) / (avatar.height || 1)) * 83}
+          key={avatar.id}
         />
       ))}
     </Paper>

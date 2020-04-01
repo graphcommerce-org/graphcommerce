@@ -1,7 +1,7 @@
 fragment RowPeopleWithText on RowPeopleWithText {
   id
   text {
-    html
+    ...RichText
   }
   links {
     ...LinkInternal

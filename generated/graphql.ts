@@ -13,9 +13,9 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
+  Hex: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
   Date: any
   Json: any
 }
@@ -6382,22 +6382,24 @@ export type GQLLinkExternalFragment = { __typename?: 'LinkExternal' } & Pick<
   GQLLinkExternal,
   'id' | 'url'
 > & { exTitle: GQLLinkExternal['title'] } & {
-    description?: Maybe<{ __typename?: 'RichText' } & Pick<GQLRichText, 'html'>>
+    description?: Maybe<{ __typename?: 'RichText' } & GQLRichTextFragment>
   }
 
 export type GQLLinkInternalFragment = { __typename?: 'LinkInternal' } & Pick<
   GQLLinkInternal,
   'id' | 'title'
 > & {
-    description?: Maybe<{ __typename?: 'RichText' } & Pick<GQLRichText, 'html'>>
+    description?: Maybe<{ __typename?: 'RichText' } & GQLRichTextFragment>
     page?: Maybe<
       { __typename?: 'Page' } & Pick<GQLPage, 'title' | 'metaRobots' | 'metaTitle' | 'url'>
     >
   }
 
-export type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'name'> & {
+export type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'name'> & {
     avatar: { __typename?: 'Asset' } & GQLAssetFragment
   }
+
+export type GQLRichTextFragment = { __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
 
 export type GQLGetAllRowCompanySlidersQueryVariables = {
   skip: Scalars['Int']
@@ -6431,7 +6433,7 @@ export type GQLRowHeroVideoFragment = { __typename?: 'RowHeroVideo' } & Pick<
   'id'
 > & {
     video?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-    content: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
+    content: { __typename?: 'RichText' } & GQLRichTextFragment
     links: Array<
       | ({ __typename?: 'LinkExternal' } & GQLLinkExternalFragment)
       | ({ __typename?: 'LinkInternal' } & GQLLinkInternalFragment)
@@ -6450,7 +6452,7 @@ export type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } 
   GQLRowPeopleWithText,
   'id'
 > & {
-    text: { __typename?: 'RichText' } & Pick<GQLRichText, 'html'>
+    text: { __typename?: 'RichText' } & GQLRichTextFragment
     links: Array<{ __typename?: 'LinkInternal' } & GQLLinkInternalFragment>
     personList?: Maybe<
       { __typename?: 'PersonList' } & {
@@ -6520,12 +6522,17 @@ export const AssetFragmentDoc = gql`
     mimeType
   }
 `
+export const RichTextFragmentDoc = gql`
+  fragment RichText on RichText {
+    raw
+  }
+`
 export const LinkInternalFragmentDoc = gql`
   fragment LinkInternal on LinkInternal {
     id
     title
     description {
-      html
+      ...RichText
     }
     page {
       title
@@ -6534,16 +6541,18 @@ export const LinkInternalFragmentDoc = gql`
       url
     }
   }
+  ${RichTextFragmentDoc}
 `
 export const LinkExternalFragmentDoc = gql`
   fragment LinkExternal on LinkExternal {
     id
     exTitle: title
     description {
-      html
+      ...RichText
     }
     url
   }
+  ${RichTextFragmentDoc}
 `
 export const RowHeroVideoFragmentDoc = gql`
   fragment RowHeroVideo on RowHeroVideo {
@@ -6552,7 +6561,7 @@ export const RowHeroVideoFragmentDoc = gql`
       ...Asset
     }
     content {
-      html
+      ...RichText
     }
     links {
       ...LinkInternal
@@ -6560,6 +6569,7 @@ export const RowHeroVideoFragmentDoc = gql`
     }
   }
   ${AssetFragmentDoc}
+  ${RichTextFragmentDoc}
   ${LinkInternalFragmentDoc}
   ${LinkExternalFragmentDoc}
 `
@@ -6588,6 +6598,7 @@ export const RowCompanySliderFragmentDoc = gql`
 `
 export const PersonFragmentDoc = gql`
   fragment Person on Person {
+    id
     name
     avatar {
       ...Asset
@@ -6599,7 +6610,7 @@ export const RowPeopleWithTextFragmentDoc = gql`
   fragment RowPeopleWithText on RowPeopleWithText {
     id
     text {
-      html
+      ...RichText
     }
     links {
       ...LinkInternal
@@ -6610,6 +6621,7 @@ export const RowPeopleWithTextFragmentDoc = gql`
       }
     }
   }
+  ${RichTextFragmentDoc}
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
 `
