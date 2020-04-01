@@ -3,6 +3,7 @@ import { styled } from '@material-ui/core'
 import { GQLRowHeroVideoFragment } from '../../generated/graphql'
 import { LinkInternal } from '../LinkInternal/LinkInternal'
 import { LinkExternal } from '../LinkExternal/LinkExternal'
+import RichText from '../RichText'
 
 // Using https://cssinjs.org/styled-jss?v=v2.2.3#default-styled-function
 const Container = styled('div')(({ theme }) => ({
@@ -24,8 +25,7 @@ const Video = styled('video')({
 const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links }) => {
   return (
     <Container>
-      {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: content.html }} />
+      <RichText {...content} />
 
       {video && (
         <Video autoPlay loop muted playsInline id='video'>

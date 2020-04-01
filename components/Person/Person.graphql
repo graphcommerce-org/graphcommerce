@@ -1,4 +1,5 @@
 fragment Person on Person {
+  id
   name
   avatar {
     ...Asset

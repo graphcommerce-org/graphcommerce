@@ -1,6 +1,7 @@
 import React from 'react'
 import { GQLLinkInternalFragment } from '../../generated/graphql'
 import { Link } from '../../graphcms'
+import RichText from '../RichText'
 
 export const LinkInternal: React.FC<GQLLinkInternalFragment> = ({
   page,
@@ -21,8 +22,7 @@ export const LinkInternal: React.FC<GQLLinkInternalFragment> = ({
   if (description) {
     return (
       <div>
-        {/* eslint-disable-next-line react/no-danger */}
-        <div dangerouslySetInnerHTML={{ __html: description.html }} />
+        <RichText {...description} />
         {GraphCmsLink}
       </div>
     )
