@@ -1,3 +1,17 @@
+## [3.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.1.0...v3.2.0) (2020-04-01)
+
+### Features
+
+- **graphcms:** added RichText renderer for GraphCMS fields
+  ([1b22331](https://github.com/ho-nl/project-reachdigital.nl/commit/1b2233183a022757f93a85be046830728863f46b))
+- added Graphik font
+  ([06d3bf8](https://github.com/ho-nl/project-reachdigital.nl/commit/06d3bf8ebdf81826a5e075a85bc5995d6811a2ab))
+
+### Bug Fixes
+
+- **graphcms:** add updated graphql schema
+  ([5624b75](https://github.com/ho-nl/project-reachdigital.nl/commit/5624b75f5a21042d8e0cb1a85f4190a1372705e3))
+
 ## [3.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.0.2...v3.1.0) (2020-03-31)
 
 ### Features
