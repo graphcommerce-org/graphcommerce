@@ -93,7 +93,7 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "fork-ts-checker-webpack-plugin": "^4.1.2",
     "husky": "^4.2.1",
-    "jest": "^25.2.4",
+    "jest": "^25.2.6",
     "prettier": "^2.0.2",
     "pretty-quick": "^2.0.1",
     "react-docgen-typescript-loader": "^3.7.2",
