@@ -1,93 +1,93 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core'
 import { ClassNameMap, ClassKeyOfStyles } from '@material-ui/styles/withStyles'
+import { vpCalc } from '../../layout/FullLayout'
 
 export type ContainerProps = {
-  left?: ReactNode
-  right?: ReactNode
+  before?: React.ReactNode
+  left?: React.ReactNode
+  right?: React.ReactNode
+  children?: React.ReactNode
   size?: 'md' | 'lg' | 'xl'
   stretch?: 'left' | 'right' | 'both'
-  // stretchSize?: 'xlarge'
+  spaceBetween?: true
   leftWidth?: number
-  wrapperHeight?: number
-  equalHeight?: true
 }
 
 // const useStyles = makeStyles<Theme, ContainerProps>(theme => ({
-const useStyles = makeStyles((theme: Theme) => ({
-  container: ({ leftWidth = 0.61, stretch, size = 'lg' }: ContainerProps) => {
-    // TODO make value responsive..
-    const containerPadding = 20
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: ({ leftWidth = 0.618, stretch, size = 'lg', spaceBetween }: ContainerProps) => {
+      const spacing = vpCalc(18, 60)
+      const spacingBetween = spaceBetween ? vpCalc(27, 90) : '0px'
+      const breakpoint = theme.breakpoints.values[size]
 
-    return {
-      width: '100%',
-      display: 'grid',
-      gridTemplateAreas: `
-          'marginleft left left marginright'
-          'marginleft right right marginright'
-          'marginleft spread spread marginright'`,
-      gridTemplateColumns: `
-        ${containerPadding}px
-        minmax(0, ${leftWidth}fr)
-        minmax(0, ${1 - leftWidth}fr)
-        ${containerPadding}px`,
-
-      [theme.breakpoints.up('sm')]: {
+      return {
+        width: '100%',
+        display: 'grid',
+        justifyContent: 'stretch',
         gridTemplateAreas: `
-          'marginleft left right marginright'
-          'marginleft spread spread marginright'`,
-        ...(stretch === 'left' && {
-          gridTemplateAreas: `
-          'left left right marginright'
-          'spread spread spread marginright'`,
-        }),
-        ...(stretch === 'right' && {
-          gridTemplateAreas: `
-          'marginleft left right right'
-          'marginleft spread spread spread'`,
-        }),
-        ...(stretch === 'both' && {
-          gridTemplateAreas: `
-          'left left right right'
-          'spread spread spread spread'`,
-        }),
-      },
-      [theme.breakpoints.up(size)]: {
+          'spaceleft before before before spaceright'
+          'spaceleft left left left spaceright'
+          'spaceleft spacebetween spacebetween spacebetween spaceright'
+          'spaceleft right right right spaceright'
+          'spaceleft after after after spaceright'`,
+        gridTemplateRows: `auto auto ${spacingBetween} auto auto`,
         gridTemplateColumns: `
-          minmax(${containerPadding}px, 1fr)
-          ${leftWidth * (theme.breakpoints.values[size] - containerPadding * 2)}px
-          ${(1 - leftWidth) * (theme.breakpoints.values[size] - containerPadding * 2)}px
-          minmax(${containerPadding}px, 1fr);`,
-      },
-    }
-  },
-  left: ({ stretch, wrapperHeight, equalHeight }: ContainerProps) => ({
-    gridArea: 'left',
-    ...(wrapperHeight && { height: `${wrapperHeight}px` }),
-    ...(equalHeight && { height: '100%' }),
-    // ...(stretch === 'left' &&
-    //   stretchSize === 'xlarge' && {
-    //     paddingLeft: `calc(100vw - ${theme.breakpoints.values.xl}) / 2)`,
-    //   }),
+          ${spacing}
+          minmax(0, ${leftWidth}fr)
+          ${spacingBetween}
+          minmax(0, ${1 - leftWidth}fr)
+          ${spacing}`,
+
+        [theme.breakpoints.up('sm')]: {
+          gridTemplateRows: '1fr auto 1fr',
+          gridTemplateAreas: `
+            'spaceleft before before before spaceright'
+            'spaceleft left spacebetween right spaceright'
+            'spaceleft after after after after'`,
+          ...(stretch === 'left' && {
+            gridTemplateAreas: `
+              'before before before before spaceright'
+              'left left spacebetween right spaceright'
+              'before before before before spaceright'`,
+          }),
+          ...(stretch === 'right' && {
+            gridTemplateAreas: `
+              'spaceleft before before before before'
+              'spaceleft left spacebetween right right'
+              'spaceleft after after after after'`,
+          }),
+          ...(stretch === 'both' && {
+            gridTemplateAreas: `
+              'before before before before before'
+              'left left spacebetween right right'
+              'after after after after after'`,
+          }),
+        },
+        [theme.breakpoints.up(size)]: {
+          gridTemplateColumns: `
+          auto
+          calc(${leftWidth} * (${breakpoint}px - ${spacing} * 2 - ${spacingBetween}))
+          ${spacingBetween}
+          calc(${1 - leftWidth} * (${breakpoint}px - ${spacing} * 2 - ${spacingBetween}))
+          auto`,
+        },
+      }
+    },
+    left: { gridArea: 'left' },
+    right: { gridArea: 'right' },
+    before: {
+      gridArea: 'before',
+      alignSelf: 'stretch',
+    },
+    after: {
+      gridArea: 'after',
+      alignSelf: 'stretch',
+    },
   }),
-  right: ({ stretch, wrapperHeight, equalHeight }: ContainerProps) => ({
-    gridArea: 'right',
-    ...(wrapperHeight && { height: `${wrapperHeight}px` }),
-    ...(equalHeight && { height: '100%' }),
-    // ...(stretch === 'right' &&
-    //   stretchSize === 'xlarge' && {
-    //     paddingRight: `calc(100vw - ${theme.breakpoints.values.xl}) / 2)`,
-    //   }),
-  }),
-  spread: ({ stretch }: ContainerProps) => ({
-    gridArea: 'spread',
-    // ...(stretch === 'left' &&
-    //   stretchSize === 'xlarge' && {
-    //     paddingLeft: `calc(100vw - ${theme.breakpoints.values.xl}) / 2)`,
-    //     paddingRight: `calc(100vw - ${theme.breakpoints.values.xl}) / 2)`,
-    //   }),
-  }),
-}))
+  { name: 'Container' },
+)
 
 export type ContainerStyles = keyof ReturnType<typeof useStyles>
 
@@ -95,17 +95,21 @@ type WithOptionalStyles = {
   classes?: ClassNameMap<ClassKeyOfStyles<ContainerStyles>>
 }
 
-const Container: React.FC<ContainerProps & WithOptionalStyles> = props => {
+const Container: React.ForwardRefRenderFunction<
+  HTMLDivElement,
+  ContainerProps & WithOptionalStyles
+> = (props, ref) => {
   const classes = useStyles(props)
-  const { left, right, children } = props
+  const { before, left, right, children } = props
 
   return (
-    <div className={classes.container}>
-      {left && <div className={classes.left}>{left}</div>}
-      {right && <div className={classes.right}>{right}</div>}
-      {children && <div className={classes.spread}>{children}</div>}
+    <div className={classes.root} ref={ref}>
+      <div className={classes.before}>{before}</div>
+      <div className={classes.left}>{left}</div>
+      <div className={classes.right}>{right}</div>
+      <div className={classes.after}>{children}</div>
     </div>
   )
 }
 
-export default Container
+export default React.forwardRef(Container)

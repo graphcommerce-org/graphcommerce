@@ -5,21 +5,17 @@ import { createMuiTheme } from '@material-ui/core/styles'
 import { red } from '@material-ui/core/colors'
 import { GraphCmsPage, PageMeta, Breadcrumbs, Language } from '../graphcms'
 
-export const vpCalc = (
-  min: number,
-  max: number,
-  fallback: boolean = false,
-  maxBreakpoint: number = 1280,
-): string => {
+export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
   const round = (x: number, n: number) => Math.round(x * 10 ** n) / 10 ** n
 
-  const minBreakpoint = 320
+  const minBreakpoint = axis === 'vw' ? 320 : 560
+  const maxBreakpoint = axis === 'vw' ? 1280 : 720
   const growth = (max - min) / (maxBreakpoint - minBreakpoint)
   const base = round(min - growth * minBreakpoint, 2)
   const vsize = round(growth * 100, 2)
 
-  const calc = `calc(${base}px + ${vsize}vw)`
-  return fallback ? calc : `max(${min}px, min(${calc}, ${max}px))`
+  const calc = `calc(${base}px + ${vsize}${axis})`
+  return `max(${min}px, min(${calc}, ${max}px))`
 }
 
 const fonts: Array<[
@@ -54,13 +50,22 @@ export const theme = createMuiTheme({
       main: '#13e4ad',
     },
     secondary: {
-      main: '#19857b',
+      main: '#fffe00',
     },
     error: {
       main: red.A400,
     },
     background: {
       default: '#fff',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1500,
+      xl: 1920,
     },
   },
   typography: {
@@ -70,14 +75,31 @@ export const theme = createMuiTheme({
     body2: { fontSize: vpCalc(15, 20) },
     subtitle1: {},
     subtitle2: {},
-    h1: { fontSize: vpCalc(36, 74) },
-    h2: { fontSize: vpCalc(24, 48) },
-    h3: { fontSize: vpCalc(22, 30) },
-    h4: { fontSize: vpCalc(18, 25) },
+    h1: {
+      fontSize: vpCalc(36, 74),
+      fontWeight: 400,
+      letterSpacing: '-0.0375em',
+    },
+    h2: {
+      fontSize: vpCalc(24, 48),
+      fontWeight: 600,
+      letterSpacing: '-0.0375em',
+    },
+    h3: {
+      fontSize: vpCalc(22, 30),
+      fontWeight: 400,
+      letterSpacing: '-0.0375em',
+    },
+    h4: {
+      fontSize: vpCalc(18, 25),
+      fontWeight: 400,
+      letterSpacing: '-0.0375em',
+    },
     h5: {},
     h6: {},
+    fontWeightBold: 600,
   },
-  spacing: (factor): string => vpCalc(factor * 4, factor * 8),
+  spacing: (factor): string => vpCalc(factor * 4, factor * 8)[1],
   overrides: {
     MuiCssBaseline: {
       '@global': {
@@ -86,8 +108,7 @@ export const theme = createMuiTheme({
           fontWeight,
           fontStyle,
           fontDisplay: 'swap',
-          src: `url('/fonts/${font}.woff2') format('woff2'),
-                url('/fonts/${font}.woff') format('woff')`,
+          src: `url('/fonts/${font}.woff2') format('woff2'), url('/fonts/${font}.woff') format('woff')`,
         })),
       },
     },
