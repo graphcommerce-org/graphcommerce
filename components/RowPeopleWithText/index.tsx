@@ -10,25 +10,19 @@ import RichText from '../RichText'
 
 type StyleProps = { scrolling: boolean } & GQLRowPeopleWithTextFragment
 
-const useContainerStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => ({
-  left: {},
-  right: {},
-  container: {},
-  spread: { backgroundColor: theme.palette.grey[300] },
+const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
+  after: { backgroundColor: theme.palette.grey[300] },
 }))
 
-const useStyles = makeStyles<Theme>(theme => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   paper: {
     backgroundColor: theme.palette.primary.main,
     display: 'grid',
     padding: vpCalc(16, 64),
-    gridRowGap: theme.spacing(4),
-    gridColumnGap: theme.spacing(3),
+    gridRowGap: vpCalc(8, 32),
+    gridColumnGap: vpCalc(8, 32),
     justifyContent: 'space-around',
     gridTemplateColumns: `repeat(auto-fill, ${vpCalc(80, 120)})`,
-    fallbacks: {
-      gridTemplateColumns: `repeat(auto-fill, ${vpCalc(80, 120, true)})`,
-    },
     '& img': {
       width: vpCalc(80, 120),
       height: 'auto',
@@ -46,7 +40,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
     <>
       <RichText {...text} />
 
-      {links.map(link => (
+      {links.map((link) => (
         <LinkInternal {...link} key={link.id} />
       ))}
     </>
@@ -66,7 +60,9 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
     </Paper>
   )
 
-  return <Container left={<Left />} right={<Right />} leftWidth={0.5} classes={container} />
+  return (
+    <Container left={<Left />} right={<Right />} leftWidth={0.5} classes={container} spaceBetween />
+  )
 }
 
 export default RowPeopleWithText
