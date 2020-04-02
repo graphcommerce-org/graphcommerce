@@ -7,11 +7,10 @@ export default {
   component: Container,
 }
 
-const useStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => ({
+const useStyles = makeStyles<Theme>((theme: Theme) => ({
   left: { backgroundColor: theme.palette.secondary.main },
   right: { backgroundColor: theme.palette.primary.main },
-  container: {},
-  spread: { backgroundColor: theme.palette.grey[300] },
+  bottom: { backgroundColor: theme.palette.grey[300] },
 }))
 
 export const Default = () => {
