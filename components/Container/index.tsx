@@ -32,7 +32,7 @@ const useStyles = makeStyles(
           'spaceleft spacebetween spacebetween spacebetween spaceright'
           'spaceleft right right right spaceright'
           'spaceleft after after after spaceright'`,
-        gridTemplateRows: `1fr auto ${spacingBetween} auto 1fr`,
+        gridTemplateRows: `auto auto ${spacingBetween} auto auto`,
         gridTemplateColumns: `
           ${spacing}
           minmax(0, ${leftWidth}fr)
@@ -41,7 +41,7 @@ const useStyles = makeStyles(
           ${spacing}`,
 
         [theme.breakpoints.up('sm')]: {
-          gridTemplateRows: 'auto auto 1fr',
+          gridTemplateRows: '1fr auto 1fr',
           gridTemplateAreas: `
             'spaceleft before before before spaceright'
             'spaceleft left spacebetween right spaceright'
