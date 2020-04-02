@@ -1,3 +1,23 @@
+## [3.3.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.2.1...v3.3.0) (2020-04-02)
+
+### Features
+
+- **container:** added before area, spaceBetween option
+  ([61809ac](https://github.com/ho-nl/project-reachdigital.nl/commit/61809ac017633ae2194a2e05ebe458c19872ce81))
+- **rowherovideo:** added gradient, spacing en sizing
+  ([4845dd2](https://github.com/ho-nl/project-reachdigital.nl/commit/4845dd2390b2a2ae108717fc65cfada00595845e))
+- added svg loader to include svg’s
+  ([797f289](https://github.com/ho-nl/project-reachdigital.nl/commit/797f2895e1e6f497764ea70cdbb56bdd6a481cb6))
+
+### Build
+
+- fix issue in storybook container
+  ([0794d54](https://github.com/ho-nl/project-reachdigital.nl/commit/0794d547aebd52a8d237103c1ea3eedff075abff))
+- re-enabled storybook build, now works
+  ([381464d](https://github.com/ho-nl/project-reachdigital.nl/commit/381464d53cf5773b385f038c05311de2629cfa83))
+- solve build issues
+  ([fa77fc4](https://github.com/ho-nl/project-reachdigital.nl/commit/fa77fc46af92314d72957c65e245c211f33d8eb5))
+
 ### [3.2.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.2.0...v3.2.1) (2020-04-01)
 
 ### Performance Improvements
