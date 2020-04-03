@@ -16,5 +16,5 @@ export const GraphCMS = () => {
     variables: { skip: number('GraphCMS Entry #', 0) },
   })
   if (!data) return null
-  return data.rowHeroVideos.map(props => <RowHeroVideo {...props} key={props.id} />)
+  return data.rowHeroVideos.map((props) => <RowHeroVideo {...props} key={props.id} />)
 }

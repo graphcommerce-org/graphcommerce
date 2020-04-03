@@ -108,8 +108,8 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
     setIntersects(newIntersects)
 
     const observer = new IntersectionObserver(
-      entries =>
-        entries.forEach(entry => {
+      (entries) =>
+        entries.forEach((entry) => {
           const idx = childElements.indexOf(entry.target)
           newIntersects[idx] = entry.intersectionRatio
           setIntersects([...newIntersects])
@@ -117,7 +117,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
       { root: scroller.current, threshold: [0, 0.1, 0.9, 1] },
     )
 
-    childElements.forEach(child => observer.observe(child))
+    childElements.forEach((child) => observer.observe(child))
 
     return () => observer.disconnect()
   }, [scroller, children])

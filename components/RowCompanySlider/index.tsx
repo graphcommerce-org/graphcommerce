@@ -10,7 +10,7 @@ const RowCompanySlider: React.FC<GQLRowCompanySliderFragment> = ({ companies }) 
   return (
     <Container>
       <ScrollSnapSlider>
-        {companies.map(company => (
+        {companies.map((company) => (
           <FilestackPicture
             key={company.id}
             width={Math.round((company.logo.width! / company.logo.height!) * 100)}

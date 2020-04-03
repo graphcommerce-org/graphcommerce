@@ -4,12 +4,12 @@ import { GQLLocale } from '../generated/graphql'
 import { FullLayout } from '../layout/FullLayout'
 import { ContentRenderer } from '../components/ContentRenderer'
 
-const Home: GraphCmsPage = props => {
+const Home: GraphCmsPage = (props) => {
   const { childs, page } = props
   return (
     <>
       <div>
-        {childs.map(child => (
+        {childs.map((child) => (
           <div key={child.url}>
             <Link href={child.url} metaRobots={child.metaRobots!}>
               {child.title}

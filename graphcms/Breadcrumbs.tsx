@@ -10,14 +10,14 @@ function breadcrumbList(
 ): WithContext<BreadcrumbList> {
   let position = 1
   const itemListElement: ListItem[] = breadcrumbs
-    .filter(breadcrumb => {
+    .filter((breadcrumb) => {
       if (!breadcrumb.title || !breadcrumb.url) {
         console.error('Breadcrumb should have a title and url set.', breadcrumb)
         return false
       }
       return true
     })
-    .map(breadcrumb => {
+    .map((breadcrumb) => {
       const item: ListItem = {
         '@type': 'ListItem',
         position,
@@ -45,7 +45,7 @@ const Breadcrumbs: React.FC<GraphCmsPageProps> = ({ breadcrumbs, page }) => {
     <>
       <JsonLd<BreadcrumbList> item={breadcrumbList(page, breadcrumbs)} />
       <ul>
-        {breadcrumbs.map(breadcrumb => (
+        {breadcrumbs.map((breadcrumb) => (
           <li key={breadcrumb.url!}>
             <Link href={breadcrumb.url!} metaRobots={breadcrumb.metaRobots!}>
               {breadcrumb.title}

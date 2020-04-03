@@ -7,7 +7,7 @@ import { GQLLocale } from '../../generated/graphql'
 import { Link, GraphCmsPage } from '../../graphcms'
 import { FullLayout } from '../../layout/FullLayout'
 
-const BlogSlug: GraphCmsPage = props => {
+const BlogSlug: GraphCmsPage = (props) => {
   const { page } = props
 
   return <div>Not yet implemented {page.title}</div>

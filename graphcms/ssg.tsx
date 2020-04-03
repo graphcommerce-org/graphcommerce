@@ -41,7 +41,7 @@ export const getPaths: (
     variables: { startsWith: `${baseUrl}`, locale },
   })
 
-  const paths = queryResult.data.pages.map(page => page!.url!)
+  const paths = queryResult.data.pages.map((page) => page!.url!)
 
   return {
     paths,
@@ -64,7 +64,7 @@ export const getProps = async (url: string, locale: GQLLocale) => {
     variables: { startsWith, notStartsWith, locale },
   })
 
-  const breadcrumbQueries = parentUrls(url, locale).map(parentUrl => {
+  const breadcrumbQueries = parentUrls(url, locale).map((parentUrl) => {
     return apolloClient.query<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>({
       query: GetBreadcrumbDocument,
       variables: { url: parentUrl, locale },
@@ -73,7 +73,7 @@ export const getProps = async (url: string, locale: GQLLocale) => {
 
   const page = (await pageQuery).data.pages.pop()!
   const childs = (await childrenQuery).data.pages
-  const breadcrumbs = (await Promise.all(breadcrumbQueries)).map(bq => bq.data.pages.pop()!)
+  const breadcrumbs = (await Promise.all(breadcrumbQueries)).map((bq) => bq.data.pages.pop()!)
 
   // Generate the result object.
   const result: { props: GraphCmsPageProps } = {

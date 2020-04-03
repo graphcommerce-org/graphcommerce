@@ -10,7 +10,7 @@ export const ContentRenderer: React.FC<{
 }> = ({ content }) => {
   return (
     <>
-      {content.map(item => {
+      {content.map((item) => {
         const Component = renderers[item.__typename]
         return Component ? (
           <Component key={item.id} {...item} />

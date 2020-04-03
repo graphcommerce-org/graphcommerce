@@ -4,7 +4,7 @@ import { GQLLocale } from '../generated/graphql'
 import { Link, GraphCmsPage } from '../graphcms'
 import { FullLayout } from '../layout/FullLayout'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Blog: GraphCmsPage = props => {
+const Blog: GraphCmsPage = (props) => {
   const classes = useStyles()
 
   const { page, childs } = props
@@ -26,7 +26,7 @@ const Blog: GraphCmsPage = props => {
     <>
       <h1>{page.metaTitle}</h1>
       <GridList cellHeight={160} className={classes.gridList} cols={3}>
-        {childs.map(child => (
+        {childs.map((child) => (
           <GridListTile key={child.url} cols={1}>
             <Link href={child.url} metaRobots={child.metaRobots!}>
               {child.title}

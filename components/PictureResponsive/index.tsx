@@ -29,7 +29,7 @@ function isInViewport(elem: HTMLImageElement): boolean {
 }
 
 function requestUpgrade(img: HTMLImageElement) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const inViewport = isInViewport(img)
 
     if (inViewport && !img.complete) {
@@ -50,8 +50,8 @@ function requestUpgrade(img: HTMLImageElement) {
       const intersectionObserver = new IntersectionObserver(
         (entries: IntersectionObserverEntry[]) => {
           entries
-            .filter(entry => entry.isIntersecting === undefined || entry.isIntersecting)
-            .forEach(_ => {
+            .filter((entry) => entry.isIntersecting === undefined || entry.isIntersecting)
+            .forEach((_) => {
               intersectionObserver.unobserve(img)
               resolve()
             })
