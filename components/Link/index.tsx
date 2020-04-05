@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { GQLMetaRobots } from '../generated/graphql'
+import { Link as MaterialLink, LinkProps } from '@material-ui/core'
+import { GQLMetaRobots } from '../../generated/graphql'
 
 export function getCanonical(url: string) {
   return url
@@ -16,19 +17,23 @@ export function getPagePath(url: string) {
 }
 
 // Generate a next/link from a GraphCms Page.
-const GraphCmsLink: React.FC<{ href: string; metaRobots: GQLMetaRobots }> = ({
+const GraphCmsLink: React.FC<{ href: string; metaRobots: GQLMetaRobots } & LinkProps> = ({
   href: url,
   metaRobots,
   children,
+  ...linkProps
 }) => {
-  const aProps: React.HTMLProps<HTMLAnchorElement> = {}
-  if (metaRobots.includes('NOINDEX')) aProps.rel = 'nofollow'
+  const materialLinkProps: LinkProps = {
+    ...linkProps,
+    ...(metaRobots.includes('NOFOLLOW') && {
+      rel: 'nofollow',
+    }),
+  }
 
   return (
-    <Link href={getPagePath(url)} as={getCanonical(url)}>
-      <a {...aProps}>{children}</a>
+    <Link href={getPagePath(url)} as={getCanonical(url)} passHref>
+      <MaterialLink {...materialLinkProps}>{children}</MaterialLink>
     </Link>
   )
 }
-
-export { GraphCmsLink as Link }
+export default GraphCmsLink

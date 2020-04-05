@@ -1,10 +1,37 @@
-import { GraphCmsPageProps } from '../../graphcms'
+import React from 'react'
 import { GQLLocale } from '../../generated/graphql'
-import Home from '..'
+import LayoutFull, {
+  getStaticProps as getPageLayoutData,
+  PageLayoutProps,
+} from '../../components/PageLayout'
+import { getStaticProps as getBreadcrumbData } from '../../components/Breadcrumb'
+import ContentRenderer from '../../components/ContentRenderer'
+import { GetStaticProps } from '../../lib/getStaticProps'
+import { LayoutPage } from '../../lib/layout'
+
+const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
+  return <ContentRenderer content={pages[0].content} />
+}
+
+Home.layout = LayoutFull
 
 export default Home
 
-export const getStaticProps = async (): Promise<{ props: GraphCmsPageProps }> => {
-  const { getProps } = await import('../../graphcms/ssg')
-  return getProps('/en', GQLLocale.En)
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
+  // todo(paales): Make generic, currently I don't know how to merge the types
+  // The objects are generic and I want props to become PageLayoutProps
+  const data = await Promise.all([
+    getPageLayoutData().then((obj) =>
+      obj.default({
+        params: { url: '/en', locale: GQLLocale.En },
+      }),
+    ),
+    getBreadcrumbData().then((obj) =>
+      obj.default({
+        params: { url: '/en', locale: GQLLocale.En },
+      }),
+    ),
+  ])
+
+  return { props: { ...data[0].props, ...data[1].props } }
 }

@@ -30,7 +30,6 @@ module.exports = {
     'default-case': 'off',
     '@typescript-eslint/indent': 'off',
     'react/jsx-one-expression-per-line': 'off',
-    'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-console': [

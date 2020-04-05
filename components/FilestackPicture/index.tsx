@@ -1,5 +1,5 @@
 import React from 'react'
-import { PictureResonsiveProps, PictureResponsive, MimeTypes } from '../PictureResponsive'
+import PictureResponsive, { PictureResonsiveProps, MimeTypes } from '../PictureResponsive'
 
 const possibleWidths = [25, 50, 75, 100, 200, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
@@ -25,7 +25,7 @@ const detectResize = (type: MimeTypes): NonNullable<FilestackPictureProps['compr
   }
 }
 
-export const FilestackPicture: React.FC<FilestackPictureProps> = ({
+const FilestackPicture: React.FC<FilestackPictureProps> = ({
   src,
   type,
   compression: resize,
@@ -76,3 +76,5 @@ export const FilestackPicture: React.FC<FilestackPictureProps> = ({
 
   return <PictureResponsive {...imgProps} srcSets={srcSets} />
 }
+
+export default FilestackPicture

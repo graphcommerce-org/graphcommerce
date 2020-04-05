@@ -1,8 +1,7 @@
+import { GetStaticProps } from 'next'
 import { GQLLocale } from '../../generated/graphql'
-import { getStaticProps as getPageLayoutData, PageLayoutProps } from '../../components/PageLayout'
-import { getStaticProps as getBreadcrumbData } from '../../components/Breadcrumb'
-import { GetStaticProps } from '../../lib/getStaticProps'
-import Blog from '../blog'
+import Blog from '../../pages/blog'
+import { PageLayoutProps } from '../../components/PageLayout'
 
 export default Blog
 
@@ -12,12 +11,12 @@ export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
   const data = await Promise.all([
     getPageLayoutData().then((obj) =>
       obj.default({
-        params: { url: '/en/blog', locale: GQLLocale.En },
+        params: { url: '/', locale: GQLLocale.Nl },
       }),
     ),
     getBreadcrumbData().then((obj) =>
       obj.default({
-        params: { url: '/en/blog', locale: GQLLocale.En },
+        params: { url: '/', locale: GQLLocale.Nl },
       }),
     ),
   ])

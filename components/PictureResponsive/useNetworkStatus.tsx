@@ -55,4 +55,4 @@ const useNetworkStatus = (
   return { ...networkStatus }
 }
 
-export { useNetworkStatus }
+export default useNetworkStatus

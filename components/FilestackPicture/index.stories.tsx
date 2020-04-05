@@ -1,5 +1,5 @@
 import React from 'react'
-import { FilestackPicture } from '.'
+import FilestackPicture from '.'
 
 export default {
   title: 'components|FilestackPicture',

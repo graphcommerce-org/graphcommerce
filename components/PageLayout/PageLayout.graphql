@@ -1,0 +1,5 @@
+fragment PageLayout on Page {
+  ...PageMeta
+  ...Localization
+  ...ContentRenderer
+}

@@ -1,7 +1,9 @@
 import React, { ReactNode, useRef, useEffect, useState } from 'react'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
-import { Fab, makeStyles, createStyles, Theme } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
+import makeStyles from '@material-ui/styles/makeStyles'
+import Fab from '@material-ui/core/Fab'
 import { animated, useSpring, config } from 'react-spring'
 
 type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
@@ -15,7 +17,7 @@ const useStyles = makeStyles<Theme, StyleProps>(() => ({
     overflow: 'auto',
     '-webkit-overflow-scrolling': 'touch',
     display: 'flex',
-    willChange: 'transform', // Solce issue with repaints
+    willChange: 'transform', // Solve issue with repaints
     overscrollBehavior: 'contain', // https://developers.google.com/web/updates/2017/11/overscroll-behavior
     ...(!scrollbar && {
       scrollbarWidth: 'none',
@@ -148,4 +150,4 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   )
 }
 
-export { ScrollSnapSlider }
+export default ScrollSnapSlider

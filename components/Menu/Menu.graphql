@@ -1,0 +1,9 @@
+fragment Menu on Menu {
+  pages {
+    locale
+    id
+    title
+    metaRobots
+    url
+  }
+}

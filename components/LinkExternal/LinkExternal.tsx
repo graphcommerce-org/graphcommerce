@@ -2,7 +2,7 @@ import React from 'react'
 import { GQLLinkExternalFragment } from '../../generated/graphql'
 import RichText from '../RichText'
 
-export const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, description }) => {
+const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, description }) => {
   if (description) {
     return (
       <div>
@@ -22,3 +22,5 @@ export const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, 
     </a>
   )
 }
+
+export default LinkExternal

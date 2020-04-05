@@ -1,9 +1,8 @@
 import React from 'react'
-import { styled } from '@material-ui/core'
 import { GQLRowCompanySliderFragment } from '../../generated/graphql'
-import { FilestackPicture } from '../FilestackPicture'
+import FilestackPicture from '../FilestackPicture'
 import { MimeTypes } from '../PictureResponsive'
-import { ScrollSnapSlider } from '../ScrollSnapSlider'
+import ScrollSnapSlider from '../ScrollSnapSlider'
 import Container from '../Container'
 
 const RowCompanySlider: React.FC<GQLRowCompanySliderFragment> = ({ companies }) => {

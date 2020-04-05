@@ -1,14 +1,14 @@
 import React from 'react'
-import { makeStyles, Theme, Paper } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
+import makeStyles from '@material-ui/styles/makeStyles'
+import Paper from '@material-ui/core/Paper'
 import { GQLRowPeopleWithTextFragment } from '../../generated/graphql'
-import { FilestackPicture } from '../FilestackPicture'
-import Container, { ContainerStyles } from '../Container'
-import { LinkInternal } from '../LinkInternal/LinkInternal'
+import FilestackPicture from '../FilestackPicture'
+import Container from '../Container'
+import LinkInternal from '../LinkInternal/LinkInternal'
 import { MimeTypes } from '../PictureResponsive'
-import { vpCalc } from '../../layout/FullLayout'
+import { vpCalc } from '../Theme'
 import RichText from '../RichText'
-
-type StyleProps = { scrolling: boolean } & GQLRowPeopleWithTextFragment
 
 const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   after: { backgroundColor: theme.palette.grey[300] },
