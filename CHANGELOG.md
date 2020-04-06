@@ -1,3 +1,20 @@
+## [4.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.3.0...v4.0.0) (2020-04-06)
+
+### ⚠ BREAKING CHANGES
+
+- complete restructure of compoments to achieve better locality of data
+  requirements and expect graphql fragments for pure components.
+
+### Bug Fixes
+
+- **storybook:** can not load theme
+  ([890b496](https://github.com/ho-nl/project-reachdigital.nl/commit/890b4960b7be5e6d58042752664aad1e39b7c50c))
+
+### refactor
+
+- restructured application (in progress)
+  ([79c3abb](https://github.com/ho-nl/project-reachdigital.nl/commit/79c3abb5b7df9cde14bb741b4b2bb5239a97b866))
+
 ## [3.3.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.2.1...v3.3.0) (2020-04-02)
 
 ### Features
