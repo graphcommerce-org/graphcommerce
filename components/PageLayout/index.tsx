@@ -34,6 +34,4 @@ const Layout: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu }) => 
   )
 }
 
-export const getStaticProps = () => import('./server/getStaticProps')
-
 export default Layout

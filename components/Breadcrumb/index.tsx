@@ -55,5 +55,3 @@ const Breadcrumb: React.FC<{ breadcrumbs: GQLBreadcrumbFragment[] }> = ({ breadc
 }
 
 export default Breadcrumb
-
-export const getStaticProps = () => import('./server/getStaticProps')
