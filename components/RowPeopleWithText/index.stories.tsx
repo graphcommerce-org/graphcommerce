@@ -1,6 +1,6 @@
 import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
-import { initApolloClient } from '../../lib/apollo'
+import initApolloClient from '../../lib/apollo'
 import { useGetRowPeopleWithTextsQuery } from '../../generated/graphql'
 import RowPeopleWithText from '.'
 

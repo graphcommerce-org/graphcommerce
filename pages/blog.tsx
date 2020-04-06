@@ -26,19 +26,12 @@ Blog.layout = LayoutFull
 export default Blog
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
+  const params = { url: '/blog', locale: GQLLocale.Nl }
   // todo(paales): Make generic, currently I don't know how to merge the types
   // The objects are generic and I want props to become PageLayoutProps
   const data = await Promise.all([
-    getPageLayoutData().then((obj) =>
-      obj.default({
-        params: { url: '/blog', locale: GQLLocale.Nl },
-      }),
-    ),
-    getBreadcrumbData().then((obj) =>
-      obj.default({
-        params: { url: '/blog', locale: GQLLocale.Nl },
-      }),
-    ),
+    getPageLayoutData().then((obj) => obj.default({ params })),
+    getBreadcrumbData().then((obj) => obj.default({ params })),
   ])
 
   return { props: { ...data[0].props, ...data[1].props } }

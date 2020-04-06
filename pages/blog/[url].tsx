@@ -58,20 +58,14 @@ export default BlogView
 
 export const getStaticPaths = getStaticPathsFactory('/blog/', GQLLocale.Nl)
 
-export const getStaticProps: GetStaticProps<PageLayoutProps> = async ({ params }) => {
-  if (!params) throw new Error('Params not defined for blog view')
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async (ctx) => {
+  if (!ctx.params) throw new Error('Params not defined for blog view')
+
+  const params = { url: `/blog/${ctx.params.url}`, locale: GQLLocale.Nl }
 
   const data = await Promise.all([
-    getPageLayoutData().then((obj) =>
-      obj.default({
-        params: { url: `/blog/${params.url}`, locale: GQLLocale.Nl },
-      }),
-    ),
-    getBreadcrumbData().then((obj) =>
-      obj.default({
-        params: { url: `/blog/${params.url}`, locale: GQLLocale.Nl },
-      }),
-    ),
+    getPageLayoutData().then((obj) => obj.default({ params })),
+    getBreadcrumbData().then((obj) => obj.default({ params })),
   ])
 
   return { props: { ...data[0].props, ...data[1].props } }

@@ -5,7 +5,7 @@ import {
   GQLGetStaticPathsQueryVariables,
   GetStaticPathsDocument,
 } from '../../../generated/graphql'
-import { initApolloClient } from '../../../lib/apollo'
+import initApolloClient from '../../../lib/apollo'
 
 const getStaticPathsFactory: (baseUrl: string, locale: GQLLocale) => GetStaticPaths = (
   baseUrl,

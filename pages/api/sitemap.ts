@@ -7,7 +7,7 @@ import {
   GetStaticPathsDocument,
   GQLLocale,
 } from '../../generated/graphql'
-import { initApolloClient } from '../../lib/apollo'
+import initApolloClient from '../../lib/apollo'
 
 function getProtocol(req: NextApiRequest) {
   // @ts-ignore

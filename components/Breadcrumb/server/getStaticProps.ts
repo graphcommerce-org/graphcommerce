@@ -3,7 +3,7 @@ import {
   GQLGetBreadcrumbQueryVariables,
   GetBreadcrumbDocument,
 } from '../../../generated/graphql'
-import { initApolloClient } from '../../../lib/apollo'
+import initApolloClient from '../../../lib/apollo'
 import { GetStaticProps } from '../../../lib/getStaticProps'
 import parentUrls from '../parentUrls'
 

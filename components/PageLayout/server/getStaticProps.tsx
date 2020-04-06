@@ -3,7 +3,7 @@ import {
   GQLGetPageLayoutQuery,
   GetPageLayoutDocument,
 } from '../../../generated/graphql'
-import { initApolloClient } from '../../../lib/apollo'
+import initApolloClient from '../../../lib/apollo'
 import { GetStaticProps } from '../../../lib/getStaticProps'
 
 const getStaticProps: GetStaticProps<GQLGetPageLayoutQuery> = async ({ params }) => {
