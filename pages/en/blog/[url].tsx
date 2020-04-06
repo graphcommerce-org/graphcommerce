@@ -10,7 +10,7 @@ import BlogView from '../../blog/[url]'
 
 export default BlogView
 
-export const getStaticPaths = getStaticPathsFactory('/blog/', GQLLocale.Nl)
+export const getStaticPaths = getStaticPathsFactory('/en/blog/', GQLLocale.En)
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async (ctx) => {
   if (!ctx.params) throw new Error('Params not defined for blog view')

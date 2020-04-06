@@ -1,6 +1,6 @@
 import React from 'react'
 import { number } from '@storybook/addon-knobs'
-import { PictureResponsive } from '.'
+import PictureResponsive from '.'
 
 export default {
   title: 'components|PictureResponsive',

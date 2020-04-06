@@ -11,8 +11,8 @@ export function getCanonical(url: string) {
 // todo(paales) We should probably do something with the router to regex the routes.
 export function getPagePath(url: string) {
   const urlParts = url.split('/')
-  if (urlParts[1] === 'blog' && urlParts[2]) urlParts[2] = '[slug]'
-  if (urlParts[2] === 'blog' && urlParts[3]) urlParts[3] = '[slug]'
+  if (urlParts[1] === 'blog' && urlParts[2]) urlParts[2] = '[url]'
+  if (urlParts[2] === 'blog' && urlParts[3]) urlParts[3] = '[url]'
   return `${urlParts.join('/')}`
 }
 

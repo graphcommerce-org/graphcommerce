@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { GraphCMS } from '../../components/RowPeopleWithText/index.stories'
-import { theme } from '../../components/PageLayout'
+import { theme } from '../../components/Theme'
 
 const Page = () => {
   return (
