@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  Json: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
+  Json: any
   Date: any
+  Hex: any
 }
 
 export enum GQL_FilterKind {
@@ -6864,16 +6864,6 @@ export type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } 
     >
   }
 
-export type GQLGetChildrenQueryVariables = {
-  startsWith: Scalars['String']
-  notStartsWith: Scalars['String']
-  locale: GQLLocale
-}
-
-export type GQLGetChildrenQuery = { __typename?: 'Query' } & {
-  pages: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'metaRobots' | 'url' | 'title'>>
-}
-
 export const BreadcrumbFragmentDoc = gql`
   fragment Breadcrumb on Page {
     id
@@ -7372,64 +7362,4 @@ export type GetRowPeopleWithTextsLazyQueryHookResult = ReturnType<
 export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetRowPeopleWithTextsQuery,
   GQLGetRowPeopleWithTextsQueryVariables
->
-export const GetChildrenDocument = gql`
-  query GetChildren($startsWith: String!, $notStartsWith: String!, $locale: Locale!) {
-    pages(
-      where: { url_starts_with: $startsWith, url_not_starts_with: $notStartsWith }
-      orderBy: url_ASC
-      locales: [$locale]
-    ) {
-      metaRobots
-      url
-      title
-    }
-  }
-`
-
-/**
- * __useGetChildrenQuery__
- *
- * To run a query within a React component, call `useGetChildrenQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetChildrenQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetChildrenQuery({
- *   variables: {
- *      startsWith: // value for 'startsWith'
- *      notStartsWith: // value for 'notStartsWith'
- *      locale: // value for 'locale'
- *   },
- * });
- */
-export function useGetChildrenQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetChildrenQuery,
-    GQLGetChildrenQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useQuery<GQLGetChildrenQuery, GQLGetChildrenQueryVariables>(
-    GetChildrenDocument,
-    baseOptions,
-  )
-}
-export function useGetChildrenLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetChildrenQuery,
-    GQLGetChildrenQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetChildrenQuery, GQLGetChildrenQueryVariables>(
-    GetChildrenDocument,
-    baseOptions,
-  )
-}
-export type GetChildrenQueryHookResult = ReturnType<typeof useGetChildrenQuery>
-export type GetChildrenLazyQueryHookResult = ReturnType<typeof useGetChildrenLazyQuery>
-export type GetChildrenQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetChildrenQuery,
-  GQLGetChildrenQueryVariables
 >
