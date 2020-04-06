@@ -1,0 +1,8 @@
+fragment Localization on Page {
+  localizations {
+    url
+    title
+    locale
+    metaRobots
+  }
+}

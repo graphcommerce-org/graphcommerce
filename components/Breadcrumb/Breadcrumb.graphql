@@ -1,0 +1,7 @@
+fragment Breadcrumb on Page {
+  id
+  title
+  metaRobots
+  metaTitle
+  url
+}

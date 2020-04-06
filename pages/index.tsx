@@ -1,33 +1,29 @@
 import React from 'react'
-import { Link, GraphCmsPage } from '../graphcms'
 import { GQLLocale } from '../generated/graphql'
-import { FullLayout } from '../layout/FullLayout'
-import { ContentRenderer } from '../components/ContentRenderer'
+import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
+import ContentRenderer from '../components/ContentRenderer'
+import { GetStaticProps } from '../lib/getStaticProps'
+import { LayoutPage } from '../lib/layout'
 
-const Home: GraphCmsPage = props => {
-  const { childs, page } = props
-  return (
-    <>
-      <div>
-        {childs.map(child => (
-          <div key={child.url}>
-            <Link href={child.url} metaRobots={child.metaRobots!}>
-              {child.title}
-            </Link>
-          </div>
-        ))}
-      </div>
-
-      <ContentRenderer content={page.content} />
-    </>
-  )
+const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
+  return <ContentRenderer content={pages[0].content} />
 }
 
-Home.layout = FullLayout
+Home.layout = LayoutFull
 
 export default Home
 
-export const getStaticProps = async () => {
-  const { getProps } = await import('../graphcms/ssg')
-  return getProps('/', GQLLocale.Nl)
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
+  const params = { url: '/', locale: GQLLocale.Nl }
+
+  const data = await Promise.all([
+    import('../components/PageLayout/server/getStaticProps').then((module) =>
+      module.default({ params }),
+    ),
+    import('../components/Breadcrumb/server/getStaticProps').then((module) =>
+      module.default({ params }),
+    ),
+  ])
+
+  return { props: { ...data[0].props, ...data[1].props } }
 }

@@ -7,7 +7,7 @@ import {
   GetStaticPathsDocument,
   GQLLocale,
 } from '../../generated/graphql'
-import { initApolloClient } from '../../lib/apollo'
+import initApolloClient from '../../lib/apollo'
 
 function getProtocol(req: NextApiRequest) {
   // @ts-ignore
@@ -39,17 +39,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: GQLLocale.En } })
 
     // Add NL Pages with hreflang alternative
-    resultNl.pages.forEach(page => {
+    resultNl.pages.forEach((page) => {
       const item: SitemapItemLoose = { url: page!.url!, links: [] }
 
-      page.localizations.forEach(localization => {
+      page.localizations.forEach((localization) => {
         if (item.links) {
           item.links.push({
             url: localization.url,
             lang: localization.locale,
           })
 
-          resultEn.pages = resultEn.pages.filter(pageEn => pageEn.url !== localization.url)
+          resultEn.pages = resultEn.pages.filter((pageEn) => pageEn.url !== localization.url)
         }
       })
 
@@ -57,7 +57,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     // Add other EN pages
-    resultEn.pages.forEach(page => {
+    resultEn.pages.forEach((page) => {
       sm.write({ url: page!.url! })
     })
 
@@ -65,7 +65,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200)
     res.setHeader('Content-Encoding', 'gzip')
-    pipeline.pipe(res).on('error', e => {
+    pipeline.pipe(res).on('error', (e) => {
       throw e
     })
   } catch (e) {

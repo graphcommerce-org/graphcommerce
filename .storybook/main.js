@@ -8,7 +8,7 @@ module.exports = {
     '@storybook/addon-storysource',
     '@harelpls/storybook-addon-materialui',
   ],
-  webpackFinal: async config => {
+  webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
       use: [

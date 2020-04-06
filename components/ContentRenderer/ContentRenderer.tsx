@@ -1,16 +1,14 @@
 import React from 'react'
-import { GQLGetPageQuery } from '../../generated/graphql'
+import { GQLContentRendererFragment } from '../../generated/graphql'
 
-type TypeNames = GQLGetPageQuery['pages'][0]['content'][0]['__typename']
+type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
 export type Renderers = { [T in TypeNames]?: React.ComponentType<any> }
 export const renderers: Renderers = {}
 
-export const ContentRenderer: React.FC<{
-  content: GQLGetPageQuery['pages'][0]['content']
-}> = ({ content }) => {
+const ContentRenderer: React.FC<GQLContentRendererFragment> = ({ content }) => {
   return (
     <>
-      {content.map(item => {
+      {content.map((item) => {
         const Component = renderers[item.__typename]
         return Component ? (
           <Component key={item.id} {...item} />
@@ -21,3 +19,5 @@ export const ContentRenderer: React.FC<{
     </>
   )
 }
+
+export default ContentRenderer

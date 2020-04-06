@@ -1,6 +1,6 @@
 import React from 'react'
 import { number } from '@storybook/addon-knobs'
-import { PictureResponsive } from '.'
+import PictureResponsive from '.'
 
 export default {
   title: 'components|PictureResponsive',
@@ -99,7 +99,7 @@ export const stressTest = () => {
         Please note: Storybook doesn&apos;t do SSR so the loading experience is different when
         implemented with a proper SSR solution.
       </p>
-      {images.map(num => {
+      {images.map((num) => {
         const image = num + seed
         return (
           <PictureResponsive

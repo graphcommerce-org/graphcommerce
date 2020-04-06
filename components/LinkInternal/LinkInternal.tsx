@@ -1,14 +1,9 @@
 import React from 'react'
 import { GQLLinkInternalFragment } from '../../generated/graphql'
-import { Link } from '../../graphcms'
 import RichText from '../RichText'
+import Link from '../Link'
 
-export const LinkInternal: React.FC<GQLLinkInternalFragment> = ({
-  page,
-  id,
-  title,
-  description,
-}) => {
+const LinkInternal: React.FC<GQLLinkInternalFragment> = ({ page, id, title, description }) => {
   if (!page) {
     return <div>InternalLink (id: {id}) doesn&apos;t have a page assigned..</div>
   }
@@ -30,3 +25,5 @@ export const LinkInternal: React.FC<GQLLinkInternalFragment> = ({
 
   return GraphCmsLink
 }
+
+export default LinkInternal

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core'
 import { ClassNameMap, ClassKeyOfStyles } from '@material-ui/styles/withStyles'
-import { vpCalc } from '../../layout/FullLayout'
+import { vpCalc } from '../Theme'
 
 export type ContainerProps = {
   before?: React.ReactNode

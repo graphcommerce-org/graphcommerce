@@ -1,8 +1,0 @@
-query GetBreadcrumb($url: String!, $locale: Locale!) {
-  pages(where: { url: $url }, locales: [$locale]) {
-    title
-    metaRobots
-    metaTitle
-    url
-  }
-}

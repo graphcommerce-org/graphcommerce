@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
-import { createStyles } from '@material-ui/core'
-import { useNetworkStatus } from '../../hooks/useNetworkStatus'
+import useNetworkStatus from './useNetworkStatus'
 
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 export type MimeTypes =
@@ -29,7 +28,7 @@ function isInViewport(elem: HTMLImageElement): boolean {
 }
 
 function requestUpgrade(img: HTMLImageElement) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const inViewport = isInViewport(img)
 
     if (inViewport && !img.complete) {
@@ -50,8 +49,8 @@ function requestUpgrade(img: HTMLImageElement) {
       const intersectionObserver = new IntersectionObserver(
         (entries: IntersectionObserverEntry[]) => {
           entries
-            .filter(entry => entry.isIntersecting === undefined || entry.isIntersecting)
-            .forEach(_ => {
+            .filter((entry) => entry.isIntersecting === undefined || entry.isIntersecting)
+            .forEach((_) => {
               intersectionObserver.unobserve(img)
               resolve()
             })
@@ -69,7 +68,7 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-export const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ...imgProps }) => {
+const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
   const { width } = useResizeObserver<HTMLImageElement>({ ref })
   const { effectiveConnectionType } = useNetworkStatus('4g')
@@ -99,3 +98,5 @@ export const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ..
     </>
   )
 }
+
+export default PictureResponsive

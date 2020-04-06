@@ -1,6 +1,8 @@
-import { renderers } from './ContentRenderer'
-import { registerDefaultRenderer } from './defaultRenderer'
-
-export * from './ContentRenderer'
+import ContentRenderer, { renderers, Renderers } from './ContentRenderer'
+import registerDefaultRenderer from './defaultRenderer'
 
 registerDefaultRenderer(renderers)
+
+export default ContentRenderer
+export { renderers }
+export type { Renderers }

@@ -1,9 +1,6 @@
 import React from 'react'
-import { CssBaseline, ThemeProvider } from '@material-ui/core'
-import Head from 'next/head'
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { red } from '@material-ui/core/colors'
-import { GraphCmsPage, PageMeta, Breadcrumbs, Language } from '../graphcms'
 
 export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
   const round = (x: number, n: number) => Math.round(x * 10 ** n) / 10 ** n
@@ -115,20 +112,5 @@ export const theme = createMuiTheme({
   },
 })
 
-const FullLayout: GraphCmsPage['layout'] = ({ children, ...props }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <meta name='theme-color' content={theme.palette.primary.main} />
-        <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-      </Head>
-      <CssBaseline />
-      <PageMeta {...props} />
-      <Breadcrumbs {...props} />
-      <Language {...props} />
-      {children}
-    </ThemeProvider>
-  )
-}
-
-export { FullLayout }
+const Theme: React.FC = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>
+export default Theme

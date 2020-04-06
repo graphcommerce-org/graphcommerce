@@ -1,12 +1,11 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 import { GQLRowHeroVideoFragment } from '../../generated/graphql'
-import { LinkInternal } from '../LinkInternal/LinkInternal'
-import { LinkExternal } from '../LinkExternal/LinkExternal'
+import LinkInternal from '../LinkInternal/LinkInternal'
+import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
 import Container, { ContainerStyles } from '../Container'
 import logoReachBgShadow from '../../public/images/logo-reach-bg-shadow-secondary.svg'
-import { vpCalc } from '../../layout/FullLayout'
 
 const useContainerStyles = makeStyles<Theme, ContainerStyles>(
   (theme: Theme) => ({

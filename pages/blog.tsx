@@ -1,48 +1,38 @@
 import React from 'react'
-import { GridList, GridListTile, makeStyles } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
 import { GQLLocale } from '../generated/graphql'
-import { Link, GraphCmsPage } from '../graphcms'
-import { FullLayout } from '../layout/FullLayout'
+import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
+import { GetStaticProps } from '../lib/getStaticProps'
+import { LayoutPage } from '../lib/layout'
+import ContentRenderer from '../components/ContentRenderer'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-}))
+const Blog: LayoutPage<PageLayoutProps> = ({ pages }) => {
+  if (!pages[0]) return <></>
 
-const Blog: GraphCmsPage = props => {
-  const classes = useStyles()
-
-  const { page, childs } = props
   return (
     <>
-      <h1>{page.metaTitle}</h1>
-      <GridList cellHeight={160} className={classes.gridList} cols={3}>
-        {childs.map(child => (
-          <GridListTile key={child.url} cols={1}>
-            <Link href={child.url} metaRobots={child.metaRobots!}>
-              {child.title}
-            </Link>
-          </GridListTile>
-        ))}
-      </GridList>
+      <Typography variant='h1'>{pages[0].title}</Typography>
+      <ContentRenderer content={pages[0].content} />
     </>
   )
 }
 
-Blog.layout = FullLayout
+Blog.layout = LayoutFull
 
 export default Blog
 
-export const getStaticProps = async () => {
-  const { getProps } = await import('../graphcms/ssg')
-  return getProps('/blog', GQLLocale.Nl)
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
+  const params = { url: '/blog', locale: GQLLocale.Nl }
+  // todo(paales): Make generic, currently I don't know how to merge the types
+  // The objects are generic and I want props to become PageLayoutProps
+  const data = await Promise.all([
+    import('../components/PageLayout/server/getStaticProps').then((module) =>
+      module.default({ params }),
+    ),
+    import('../components/Breadcrumb/server/getStaticProps').then((module) =>
+      module.default({ params }),
+    ),
+  ])
+
+  return { props: { ...data[0].props, ...data[1].props } }
 }

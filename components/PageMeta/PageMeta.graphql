@@ -1,0 +1,8 @@
+fragment PageMeta on Page {
+  title
+  metaTitle
+  metaDescription
+  metaRobots
+  url
+  ...Localization
+}

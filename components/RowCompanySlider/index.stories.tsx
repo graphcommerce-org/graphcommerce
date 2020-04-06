@@ -1,6 +1,6 @@
 import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
-import { initApolloClient } from '../../lib/apollo'
+import initApolloClient from '../../lib/apollo'
 import { useGetAllRowCompanySlidersQuery } from '../../generated/graphql'
 import RowCompanySlider from '.'
 
@@ -16,5 +16,5 @@ export const GraphCMS = () => {
     variables: { skip: number('GraphCMS Entry #', 0) },
   })
   if (!data) return null
-  return data.rowCompanySliders.map(props => <RowCompanySlider {...props} key={props.id} />)
+  return data.rowCompanySliders.map((props) => <RowCompanySlider {...props} key={props.id} />)
 }

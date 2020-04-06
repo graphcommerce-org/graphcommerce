@@ -1,9 +1,9 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
-import { Link } from '../../graphcms'
+import Typography from '@material-ui/core/Typography'
 import { GQLMetaRobots } from '../../generated/graphql'
 import { MimeTypes } from '../PictureResponsive'
-import { FilestackPicture } from '../FilestackPicture'
+import FilestackPicture from '../FilestackPicture'
+import Link from '../Link'
 
 interface ValueJSON {
   document: DocumentJSON

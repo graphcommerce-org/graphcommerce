@@ -1,0 +1,8 @@
+query GetPageLayout($url: String!, $locale: Locale!) {
+  pages(where: { url: $url }, locales: [$locale]) {
+    ...PageLayout
+  }
+  mainMenu: menu(where: { identity: "main" }) {
+    ...Menu
+  }
+}

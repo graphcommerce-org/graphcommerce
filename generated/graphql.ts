@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  RGBATransparency: any
   Json: any
+  RGBAHue: any
+  RGBATransparency: any
   Hex: any
   Date: any
-  RGBAHue: any
 }
 
 export enum GQL_FilterKind {
@@ -1679,6 +1679,244 @@ export type GQLLocationInput = {
   longitude: Scalars['Float']
 }
 
+export type GQLMenu = GQLNode & {
+  __typename?: 'Menu'
+  stage: GQLStage
+  documentInStages: Array<GQLMenu>
+  id: Scalars['ID']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+  publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  pages: Array<GQLPage>
+}
+
+export type GQLMenuDocumentInStagesArgs = {
+  stages?: Array<GQLStage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type GQLMenuPagesArgs = {
+  where?: Maybe<GQLPageWhereInput>
+  orderBy?: Maybe<GQLPageOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLMenuConnectInput = {
+  where: GQLMenuWhereUniqueInput
+  position?: Maybe<GQLConnectPositionInput>
+}
+
+export type GQLMenuConnection = {
+  __typename?: 'MenuConnection'
+  pageInfo: GQLPageInfo
+  edges: Array<GQLMenuEdge>
+  aggregate: GQLAggregate
+}
+
+export type GQLMenuCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  pages?: Maybe<GQLPageCreateManyInlineInput>
+}
+
+export type GQLMenuCreateManyInlineInput = {
+  create?: Maybe<Array<GQLMenuCreateInput>>
+  connect?: Maybe<Array<GQLMenuWhereUniqueInput>>
+}
+
+export type GQLMenuCreateOneInlineInput = {
+  create?: Maybe<GQLMenuCreateInput>
+  connect?: Maybe<GQLMenuWhereUniqueInput>
+}
+
+export type GQLMenuEdge = {
+  __typename?: 'MenuEdge'
+  node: GQLMenu
+  cursor: Scalars['String']
+}
+
+export type GQLMenuManyWhereInput = {
+  _search?: Maybe<Scalars['String']>
+  AND?: Maybe<Array<GQLMenuWhereInput>>
+  OR?: Maybe<Array<GQLMenuWhereInput>>
+  NOT?: Maybe<Array<GQLMenuWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  pages_every?: Maybe<GQLPageWhereInput>
+  pages_some?: Maybe<GQLPageWhereInput>
+  pages_none?: Maybe<GQLPageWhereInput>
+}
+
+export enum GQLMenuOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
+}
+
+export type GQLMenuUpdateInput = {
+  identity?: Maybe<Scalars['String']>
+  pages?: Maybe<GQLPageUpdateManyInlineInput>
+}
+
+export type GQLMenuUpdateManyInlineInput = {
+  create?: Maybe<Array<GQLMenuCreateInput>>
+  connect?: Maybe<Array<GQLMenuConnectInput>>
+  set?: Maybe<Array<GQLMenuWhereUniqueInput>>
+  update?: Maybe<Array<GQLMenuUpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLMenuUpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLMenuWhereUniqueInput>>
+  delete?: Maybe<Array<GQLMenuWhereUniqueInput>>
+}
+
+export type GQLMenuUpdateManyInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type GQLMenuUpdateManyWithNestedWhereInput = {
+  where: GQLMenuWhereInput
+  data: GQLMenuUpdateManyInput
+}
+
+export type GQLMenuUpdateOneInlineInput = {
+  create?: Maybe<GQLMenuCreateInput>
+  update?: Maybe<GQLMenuUpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLMenuUpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLMenuWhereUniqueInput>
+  disconnect?: Maybe<Scalars['Boolean']>
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMenuUpdateWithNestedWhereUniqueInput = {
+  where: GQLMenuWhereUniqueInput
+  data: GQLMenuUpdateInput
+}
+
+export type GQLMenuUpsertInput = {
+  create: GQLMenuCreateInput
+  update: GQLMenuUpdateInput
+}
+
+export type GQLMenuUpsertWithNestedWhereUniqueInput = {
+  where: GQLMenuWhereUniqueInput
+  data: GQLMenuUpsertInput
+}
+
+export type GQLMenuWhereInput = {
+  _search?: Maybe<Scalars['String']>
+  AND?: Maybe<Array<GQLMenuWhereInput>>
+  OR?: Maybe<Array<GQLMenuWhereInput>>
+  NOT?: Maybe<Array<GQLMenuWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  pages_every?: Maybe<GQLPageWhereInput>
+  pages_some?: Maybe<GQLPageWhereInput>
+  pages_none?: Maybe<GQLPageWhereInput>
+}
+
+export type GQLMenuWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
+}
+
 export enum GQLMetaRobots {
   IndexFollow = 'INDEX_FOLLOW',
   IndexNofollow = 'INDEX_NOFOLLOW',
@@ -1729,6 +1967,16 @@ export type GQLMutation = {
   deleteManyLinkInternals: GQLBatchPayload
   publishManyLinkInternals: GQLBatchPayload
   unpublishManyLinkInternals: GQLBatchPayload
+  createMenu?: Maybe<GQLMenu>
+  updateMenu?: Maybe<GQLMenu>
+  deleteMenu?: Maybe<GQLMenu>
+  upsertMenu?: Maybe<GQLMenu>
+  publishMenu?: Maybe<GQLMenu>
+  unpublishMenu?: Maybe<GQLMenu>
+  updateManyMenus: GQLBatchPayload
+  deleteManyMenus: GQLBatchPayload
+  publishManyMenus: GQLBatchPayload
+  unpublishManyMenus: GQLBatchPayload
   createPage?: Maybe<GQLPage>
   updatePage?: Maybe<GQLPage>
   deletePage?: Maybe<GQLPage>
@@ -2061,6 +2309,53 @@ export type GQLMutationUnpublishManyLinkInternalsArgs = {
   from?: Array<GQLStage>
   locales?: Maybe<Array<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLMutationCreateMenuArgs = {
+  data: GQLMenuCreateInput
+}
+
+export type GQLMutationUpdateMenuArgs = {
+  where: GQLMenuWhereUniqueInput
+  data: GQLMenuUpdateInput
+}
+
+export type GQLMutationDeleteMenuArgs = {
+  where: GQLMenuWhereUniqueInput
+}
+
+export type GQLMutationUpsertMenuArgs = {
+  where: GQLMenuWhereUniqueInput
+  upsert: GQLMenuUpsertInput
+}
+
+export type GQLMutationPublishMenuArgs = {
+  where: GQLMenuWhereUniqueInput
+  to?: Array<GQLStage>
+}
+
+export type GQLMutationUnpublishMenuArgs = {
+  where: GQLMenuWhereUniqueInput
+  from?: Array<GQLStage>
+}
+
+export type GQLMutationUpdateManyMenusArgs = {
+  where?: Maybe<GQLMenuManyWhereInput>
+  data: GQLMenuUpdateManyInput
+}
+
+export type GQLMutationDeleteManyMenusArgs = {
+  where?: Maybe<GQLMenuManyWhereInput>
+}
+
+export type GQLMutationPublishManyMenusArgs = {
+  where?: Maybe<GQLMenuManyWhereInput>
+  to?: Array<GQLStage>
+}
+
+export type GQLMutationUnpublishManyMenusArgs = {
+  where?: Maybe<GQLMenuManyWhereInput>
+  from?: Array<GQLStage>
 }
 
 export type GQLMutationCreatePageArgs = {
@@ -2690,6 +2985,7 @@ export type GQLPage = GQLNode & {
   metaRobots?: Maybe<GQLMetaRobots>
   list: Array<GQLZzDeleteList>
   internalLink: Array<GQLLinkInternal>
+  menu: Array<GQLMenu>
 }
 
 export type GQLPageLocalizationsArgs = {
@@ -2722,6 +3018,16 @@ export type GQLPageListArgs = {
 export type GQLPageInternalLinkArgs = {
   where?: Maybe<GQLLinkInternalWhereInput>
   orderBy?: Maybe<GQLLinkInternalOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLPageMenuArgs = {
+  where?: Maybe<GQLMenuWhereInput>
+  orderBy?: Maybe<GQLMenuOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -2815,6 +3121,7 @@ export type GQLPageCreateInput = {
   metaRobots?: Maybe<GQLMetaRobots>
   list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
   internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
+  menu?: Maybe<GQLMenuCreateManyInlineInput>
   localizations?: Maybe<GQLPageCreateLocalizationsInput>
 }
 
@@ -2906,6 +3213,9 @@ export type GQLPageManyWhereInput = {
   internalLink_every?: Maybe<GQLLinkInternalWhereInput>
   internalLink_some?: Maybe<GQLLinkInternalWhereInput>
   internalLink_none?: Maybe<GQLLinkInternalWhereInput>
+  menu_every?: Maybe<GQLMenuWhereInput>
+  menu_some?: Maybe<GQLMenuWhereInput>
+  menu_none?: Maybe<GQLMenuWhereInput>
 }
 
 export enum GQLPageOrderByInput {
@@ -2938,6 +3248,7 @@ export type GQLPageUpdateInput = {
   metaRobots?: Maybe<GQLMetaRobots>
   list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
+  menu?: Maybe<GQLMenuUpdateManyInlineInput>
   localizations?: Maybe<GQLPageUpdateLocalizationsInput>
 }
 
@@ -3104,6 +3415,9 @@ export type GQLPageWhereInput = {
   internalLink_every?: Maybe<GQLLinkInternalWhereInput>
   internalLink_some?: Maybe<GQLLinkInternalWhereInput>
   internalLink_none?: Maybe<GQLLinkInternalWhereInput>
+  menu_every?: Maybe<GQLMenuWhereInput>
+  menu_some?: Maybe<GQLMenuWhereInput>
+  menu_none?: Maybe<GQLMenuWhereInput>
 }
 
 export type GQLPageWhereUniqueInput = {
@@ -3615,6 +3929,9 @@ export type GQLQuery = {
   linkInternals: Array<GQLLinkInternal>
   linkInternal?: Maybe<GQLLinkInternal>
   linkInternalsConnection: GQLLinkInternalConnection
+  menus: Array<GQLMenu>
+  menu?: Maybe<GQLMenu>
+  menusConnection: GQLMenuConnection
   pages: Array<GQLPage>
   page?: Maybe<GQLPage>
   pagesConnection: GQLPageConnection
@@ -3774,6 +4091,33 @@ export type GQLQueryLinkInternalsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
   locales?: Array<GQLLocale>
+}
+
+export type GQLQueryMenusArgs = {
+  where?: Maybe<GQLMenuWhereInput>
+  orderBy?: Maybe<GQLMenuOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+}
+
+export type GQLQueryMenuArgs = {
+  where: GQLMenuWhereUniqueInput
+  stage?: GQLStage
+}
+
+export type GQLQueryMenusConnectionArgs = {
+  where?: Maybe<GQLMenuWhereInput>
+  orderBy?: Maybe<GQLMenuOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
 }
 
 export type GQLQueryPagesArgs = {
@@ -6374,6 +6718,20 @@ export type GQLAssetFragment = { __typename?: 'Asset' } & Pick<
   'id' | 'url' | 'width' | 'height' | 'mimeType'
 >
 
+export type GQLBreadcrumbFragment = { __typename?: 'Page' } & Pick<
+  GQLPage,
+  'id' | 'title' | 'metaRobots' | 'metaTitle' | 'url'
+>
+
+export type GQLGetBreadcrumbQueryVariables = {
+  urls: Array<Scalars['String']>
+  locale: GQLLocale
+}
+
+export type GQLGetBreadcrumbQuery = { __typename?: 'Query' } & {
+  breadcrumbs: Array<{ __typename?: 'Page' } & GQLBreadcrumbFragment>
+}
+
 export type GQLContentRendererFragment = { __typename?: 'Page' } & {
   content: Array<{ __typename: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
 }
@@ -6394,6 +6752,51 @@ export type GQLLinkInternalFragment = { __typename?: 'LinkInternal' } & Pick<
       { __typename?: 'Page' } & Pick<GQLPage, 'title' | 'metaRobots' | 'metaTitle' | 'url'>
     >
   }
+
+export type GQLLocalizationFragment = { __typename?: 'Page' } & {
+  localizations: Array<
+    { __typename?: 'Page' } & Pick<GQLPage, 'url' | 'title' | 'locale' | 'metaRobots'>
+  >
+}
+
+export type GQLMenuFragment = { __typename?: 'Menu' } & {
+  pages: Array<
+    { __typename?: 'Page' } & Pick<GQLPage, 'locale' | 'id' | 'title' | 'metaRobots' | 'url'>
+  >
+}
+
+export type GQLPageLayoutFragment = { __typename?: 'Page' } & GQLPageMetaFragment &
+  GQLLocalizationFragment &
+  GQLContentRendererFragment
+
+export type GQLGetPageLayoutQueryVariables = {
+  url: Scalars['String']
+  locale: GQLLocale
+}
+
+export type GQLGetPageLayoutQuery = { __typename?: 'Query' } & {
+  pages: Array<{ __typename?: 'Page' } & GQLPageLayoutFragment>
+  mainMenu?: Maybe<{ __typename?: 'Menu' } & GQLMenuFragment>
+}
+
+export type GQLGetStaticPathsQueryVariables = {
+  startsWith: Scalars['String']
+  locale: GQLLocale
+}
+
+export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
+  pages: Array<
+    { __typename?: 'Page' } & Pick<GQLPage, 'url'> & {
+        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'url' | 'locale'>>
+      }
+  >
+}
+
+export type GQLPageMetaFragment = { __typename?: 'Page' } & Pick<
+  GQLPage,
+  'title' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
+> &
+  GQLLocalizationFragment
 
 export type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'name'> & {
     avatar: { __typename?: 'Asset' } & GQLAssetFragment
@@ -6461,17 +6864,6 @@ export type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } 
     >
   }
 
-export type GQLGetBreadcrumbQueryVariables = {
-  url: Scalars['String']
-  locale: GQLLocale
-}
-
-export type GQLGetBreadcrumbQuery = { __typename?: 'Query' } & {
-  pages: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'title' | 'metaRobots' | 'metaTitle' | 'url'>
-  >
-}
-
 export type GQLGetChildrenQueryVariables = {
   startsWith: Scalars['String']
   notStartsWith: Scalars['String']
@@ -6482,37 +6874,47 @@ export type GQLGetChildrenQuery = { __typename?: 'Query' } & {
   pages: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'metaRobots' | 'url' | 'title'>>
 }
 
-export type GQLGetPageQueryVariables = {
-  url: Scalars['String']
-  locale: GQLLocale
-}
-
-export type GQLGetPageQuery = { __typename?: 'Query' } & {
-  pages: Array<
-    { __typename?: 'Page' } & Pick<
-      GQLPage,
-      'locale' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'title'
-    > & {
-        localizations: Array<
-          { __typename?: 'Page' } & Pick<GQLPage, 'url' | 'locale' | 'metaRobots'>
-        >
-      } & GQLContentRendererFragment
-  >
-}
-
-export type GQLGetStaticPathsQueryVariables = {
-  startsWith: Scalars['String']
-  locale: GQLLocale
-}
-
-export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
-  pages: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'url'> & {
-        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'url' | 'locale'>>
-      }
-  >
-}
-
+export const BreadcrumbFragmentDoc = gql`
+  fragment Breadcrumb on Page {
+    id
+    title
+    metaRobots
+    metaTitle
+    url
+  }
+`
+export const MenuFragmentDoc = gql`
+  fragment Menu on Menu {
+    pages {
+      locale
+      id
+      title
+      metaRobots
+      url
+    }
+  }
+`
+export const LocalizationFragmentDoc = gql`
+  fragment Localization on Page {
+    localizations {
+      url
+      title
+      locale
+      metaRobots
+    }
+  }
+`
+export const PageMetaFragmentDoc = gql`
+  fragment PageMeta on Page {
+    title
+    metaTitle
+    metaDescription
+    metaRobots
+    url
+    ...Localization
+  }
+  ${LocalizationFragmentDoc}
+`
 export const AssetFragmentDoc = gql`
   fragment Asset on Asset {
     id
@@ -6582,6 +6984,16 @@ export const ContentRendererFragmentDoc = gql`
   }
   ${RowHeroVideoFragmentDoc}
 `
+export const PageLayoutFragmentDoc = gql`
+  fragment PageLayout on Page {
+    ...PageMeta
+    ...Localization
+    ...ContentRenderer
+  }
+  ${PageMetaFragmentDoc}
+  ${LocalizationFragmentDoc}
+  ${ContentRendererFragmentDoc}
+`
 export const RowCompanySliderFragmentDoc = gql`
   fragment RowCompanySlider on RowCompanySlider {
     id
@@ -6625,6 +7037,175 @@ export const RowPeopleWithTextFragmentDoc = gql`
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
 `
+export const GetBreadcrumbDocument = gql`
+  query GetBreadcrumb($urls: [String!]!, $locale: Locale!) {
+    breadcrumbs: pages(where: { url_in: $urls }, locales: [$locale]) {
+      ...Breadcrumb
+    }
+  }
+  ${BreadcrumbFragmentDoc}
+`
+
+/**
+ * __useGetBreadcrumbQuery__
+ *
+ * To run a query within a React component, call `useGetBreadcrumbQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBreadcrumbQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBreadcrumbQuery({
+ *   variables: {
+ *      urls: // value for 'urls'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetBreadcrumbQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetBreadcrumbQuery,
+    GQLGetBreadcrumbQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>(
+    GetBreadcrumbDocument,
+    baseOptions,
+  )
+}
+export function useGetBreadcrumbLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetBreadcrumbQuery,
+    GQLGetBreadcrumbQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>(
+    GetBreadcrumbDocument,
+    baseOptions,
+  )
+}
+export type GetBreadcrumbQueryHookResult = ReturnType<typeof useGetBreadcrumbQuery>
+export type GetBreadcrumbLazyQueryHookResult = ReturnType<typeof useGetBreadcrumbLazyQuery>
+export type GetBreadcrumbQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetBreadcrumbQuery,
+  GQLGetBreadcrumbQueryVariables
+>
+export const GetPageLayoutDocument = gql`
+  query GetPageLayout($url: String!, $locale: Locale!) {
+    pages(where: { url: $url }, locales: [$locale]) {
+      ...PageLayout
+    }
+    mainMenu: menu(where: { identity: "main" }) {
+      ...Menu
+    }
+  }
+  ${PageLayoutFragmentDoc}
+  ${MenuFragmentDoc}
+`
+
+/**
+ * __useGetPageLayoutQuery__
+ *
+ * To run a query within a React component, call `useGetPageLayoutQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPageLayoutQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPageLayoutQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetPageLayoutQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetPageLayoutQuery,
+    GQLGetPageLayoutQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetPageLayoutQuery, GQLGetPageLayoutQueryVariables>(
+    GetPageLayoutDocument,
+    baseOptions,
+  )
+}
+export function useGetPageLayoutLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetPageLayoutQuery,
+    GQLGetPageLayoutQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetPageLayoutQuery, GQLGetPageLayoutQueryVariables>(
+    GetPageLayoutDocument,
+    baseOptions,
+  )
+}
+export type GetPageLayoutQueryHookResult = ReturnType<typeof useGetPageLayoutQuery>
+export type GetPageLayoutLazyQueryHookResult = ReturnType<typeof useGetPageLayoutLazyQuery>
+export type GetPageLayoutQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetPageLayoutQuery,
+  GQLGetPageLayoutQueryVariables
+>
+export const GetStaticPathsDocument = gql`
+  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
+    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
+      url
+      localizations {
+        url
+        locale
+      }
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetStaticPathsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
+export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
+export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsQuery,
+  GQLGetStaticPathsQueryVariables
+>
 export const GetAllRowCompanySlidersDocument = gql`
   query GetAllRowCompanySliders($skip: Int!) {
     rowCompanySliders(first: 1, skip: $skip) {
@@ -6792,62 +7373,6 @@ export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetRowPeopleWithTextsQuery,
   GQLGetRowPeopleWithTextsQueryVariables
 >
-export const GetBreadcrumbDocument = gql`
-  query GetBreadcrumb($url: String!, $locale: Locale!) {
-    pages(where: { url: $url }, locales: [$locale]) {
-      title
-      metaRobots
-      metaTitle
-      url
-    }
-  }
-`
-
-/**
- * __useGetBreadcrumbQuery__
- *
- * To run a query within a React component, call `useGetBreadcrumbQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetBreadcrumbQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetBreadcrumbQuery({
- *   variables: {
- *      url: // value for 'url'
- *      locale: // value for 'locale'
- *   },
- * });
- */
-export function useGetBreadcrumbQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetBreadcrumbQuery,
-    GQLGetBreadcrumbQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useQuery<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>(
-    GetBreadcrumbDocument,
-    baseOptions,
-  )
-}
-export function useGetBreadcrumbLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetBreadcrumbQuery,
-    GQLGetBreadcrumbQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>(
-    GetBreadcrumbDocument,
-    baseOptions,
-  )
-}
-export type GetBreadcrumbQueryHookResult = ReturnType<typeof useGetBreadcrumbQuery>
-export type GetBreadcrumbLazyQueryHookResult = ReturnType<typeof useGetBreadcrumbLazyQuery>
-export type GetBreadcrumbQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetBreadcrumbQuery,
-  GQLGetBreadcrumbQueryVariables
->
 export const GetChildrenDocument = gql`
   query GetChildren($startsWith: String!, $notStartsWith: String!, $locale: Locale!) {
     pages(
@@ -6907,120 +7432,4 @@ export type GetChildrenLazyQueryHookResult = ReturnType<typeof useGetChildrenLaz
 export type GetChildrenQueryResult = ApolloReactCommon.QueryResult<
   GQLGetChildrenQuery,
   GQLGetChildrenQueryVariables
->
-export const GetPageDocument = gql`
-  query GetPage($url: String!, $locale: Locale!) {
-    pages(where: { url: $url }, locales: [$locale]) {
-      locale
-      metaTitle
-      metaDescription
-      metaRobots
-      url
-      title
-      localizations {
-        url
-        locale
-        metaRobots
-      }
-      ...ContentRenderer
-    }
-  }
-  ${ContentRendererFragmentDoc}
-`
-
-/**
- * __useGetPageQuery__
- *
- * To run a query within a React component, call `useGetPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPageQuery({
- *   variables: {
- *      url: // value for 'url'
- *      locale: // value for 'locale'
- *   },
- * });
- */
-export function useGetPageQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<GQLGetPageQuery, GQLGetPageQueryVariables>,
-) {
-  return ApolloReactHooks.useQuery<GQLGetPageQuery, GQLGetPageQueryVariables>(
-    GetPageDocument,
-    baseOptions,
-  )
-}
-export function useGetPageLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GQLGetPageQuery, GQLGetPageQueryVariables>,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetPageQuery, GQLGetPageQueryVariables>(
-    GetPageDocument,
-    baseOptions,
-  )
-}
-export type GetPageQueryHookResult = ReturnType<typeof useGetPageQuery>
-export type GetPageLazyQueryHookResult = ReturnType<typeof useGetPageLazyQuery>
-export type GetPageQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetPageQuery,
-  GQLGetPageQueryVariables
->
-export const GetStaticPathsDocument = gql`
-  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
-    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
-      url
-      localizations {
-        url
-        locale
-      }
-    }
-  }
-`
-
-/**
- * __useGetStaticPathsQuery__
- *
- * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetStaticPathsQuery({
- *   variables: {
- *      startsWith: // value for 'startsWith'
- *      locale: // value for 'locale'
- *   },
- * });
- */
-export function useGetStaticPathsQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
-    GetStaticPathsDocument,
-    baseOptions,
-  )
-}
-export function useGetStaticPathsLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
-    GetStaticPathsDocument,
-    baseOptions,
-  )
-}
-export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
-export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
-export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetStaticPathsQuery,
-  GQLGetStaticPathsQueryVariables
 >

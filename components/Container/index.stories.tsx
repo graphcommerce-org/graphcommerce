@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
-import Container, { ContainerStyles } from '.'
+import Container from '.'
 
 export default {
   title: 'row|Container',
