@@ -44,7 +44,7 @@ const useStyles = makeStyles(
     },
     logo: {
       position: 'absolute',
-      maxHeight: '100%',
+      height: '100%',
       maxWidth: '92%',
       bottom: 0,
       right: 0,

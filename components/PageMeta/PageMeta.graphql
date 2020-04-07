@@ -4,5 +4,12 @@ fragment PageMeta on Page {
   metaDescription
   metaRobots
   url
-  ...Localization
+  locale
+  localizations {
+    id
+    url
+    title
+    locale
+    metaRobots
+  }
 }

@@ -40,21 +40,52 @@ const fonts: Array<[
   ['Graphik-SuperItalic', 900, 'italic'],
 ]
 
+declare module '@material-ui/core/styles/createPalette' {
+  interface PaletteOptions {
+    tertiary: PaletteColorOptions
+  }
+  interface Palette {
+    tertiary: PaletteColor
+  }
+}
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    gridSpacing: {
+      row: string
+      column: string
+      gutter: string
+    }
+  }
+  interface ThemeOptions {
+    gridSpacing: {
+      row: string
+      column: string
+      gutter: string
+    }
+  }
+}
+
 // Create a theme instance.
 export const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#13e4ad',
+      contrastText: '#000',
     },
     secondary: {
       main: '#fffe00',
+      contrastText: '#000',
     },
-    error: {
-      main: red.A400,
+    tertiary: {
+      main: '#2b153d',
+      light: '#463058',
+      '100': '#9f89b1',
+      contrastText: '#fff',
     },
     background: {
       default: '#fff',
     },
+    divider: '#fff',
   },
   breakpoints: {
     values: {
@@ -69,7 +100,7 @@ export const theme = createMuiTheme({
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     fontSize: 18,
     body1: { fontSize: vpCalc(18, 20) },
-    body2: { fontSize: vpCalc(15, 20) },
+    body2: { fontSize: vpCalc(13, 15) },
     subtitle1: {},
     subtitle2: {},
     h1: {
@@ -96,7 +127,11 @@ export const theme = createMuiTheme({
     h6: {},
     fontWeightBold: 600,
   },
-  spacing: (factor): string => vpCalc(factor * 4, factor * 8)[1],
+  gridSpacing: {
+    column: vpCalc(18, 60),
+    row: vpCalc(12, 40),
+    gutter: vpCalc(27, 90),
+  },
   overrides: {
     MuiCssBaseline: {
       '@global': {
@@ -112,5 +147,7 @@ export const theme = createMuiTheme({
   },
 })
 
-const Theme: React.FC = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>
-export default Theme
+const ThemedProvider: React.FC = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+)
+export default ThemedProvider

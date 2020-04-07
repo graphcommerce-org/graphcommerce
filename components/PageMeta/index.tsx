@@ -1,24 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { getCanonical } from '../Link'
-import { GQLPageMetaFragment } from '../../generated/graphql'
+import { GQLPageMetaFragment, GQLLocale } from '../../generated/graphql'
 
 const PageMeta: React.FC<GQLPageMetaFragment> = ({
   metaTitle,
   metaDescription,
   metaRobots,
   url,
+  locale,
+  localizations,
 }) => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') document.documentElement.lang = locale
+  })
+
   return (
     <Head>
       <title>{metaTitle}</title>
       <meta name='description' content={metaDescription} />
       <meta name='robots' content={metaRobots!} />
       <link rel='canonical' href={getCanonical(url)} />
-      {/* {page.locale === GQLLocale.Nl && [
-        <link rel='alternate' hrefLang='nl' href={getCanonical(page.url!)} />,
-        <link rel='alternate' hrefLang='x-default' href={getCanonical(page.url!)} />,
-      ]} */}
+
+      {localizations.map((localization) => (
+        <link
+          key={localization.id}
+          rel='alternate'
+          hrefLang={localization.locale === GQLLocale.Nl ? 'x-default' : localization.locale}
+          href={getCanonical(localization.url!)}
+        />
+      ))}
     </Head>
   )
 }

@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
+  Hex: any
   RGBAHue: any
   RGBATransparency: any
   Json: any
   Date: any
-  Hex: any
 }
 
 export enum GQL_FilterKind {
@@ -6753,12 +6753,6 @@ export type GQLLinkInternalFragment = { __typename?: 'LinkInternal' } & Pick<
     >
   }
 
-export type GQLLocalizationFragment = { __typename?: 'Page' } & {
-  localizations: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'url' | 'title' | 'locale' | 'metaRobots'>
-  >
-}
-
 export type GQLMenuFragment = { __typename?: 'Menu' } & {
   pages: Array<
     { __typename?: 'Page' } & Pick<GQLPage, 'locale' | 'id' | 'title' | 'metaRobots' | 'url'>
@@ -6766,7 +6760,6 @@ export type GQLMenuFragment = { __typename?: 'Menu' } & {
 }
 
 export type GQLPageLayoutFragment = { __typename?: 'Page' } & GQLPageMetaFragment &
-  GQLLocalizationFragment &
   GQLContentRendererFragment
 
 export type GQLGetPageLayoutQueryVariables = {
@@ -6794,9 +6787,12 @@ export type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
 
 export type GQLPageMetaFragment = { __typename?: 'Page' } & Pick<
   GQLPage,
-  'title' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'
-> &
-  GQLLocalizationFragment
+  'title' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'locale'
+> & {
+    localizations: Array<
+      { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'url' | 'title' | 'locale' | 'metaRobots'>
+    >
+  }
 
 export type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'name'> & {
     avatar: { __typename?: 'Asset' } & GQLAssetFragment
@@ -6884,16 +6880,6 @@ export const MenuFragmentDoc = gql`
     }
   }
 `
-export const LocalizationFragmentDoc = gql`
-  fragment Localization on Page {
-    localizations {
-      url
-      title
-      locale
-      metaRobots
-    }
-  }
-`
 export const PageMetaFragmentDoc = gql`
   fragment PageMeta on Page {
     title
@@ -6901,9 +6887,15 @@ export const PageMetaFragmentDoc = gql`
     metaDescription
     metaRobots
     url
-    ...Localization
+    locale
+    localizations {
+      id
+      url
+      title
+      locale
+      metaRobots
+    }
   }
-  ${LocalizationFragmentDoc}
 `
 export const AssetFragmentDoc = gql`
   fragment Asset on Asset {
@@ -6977,11 +6969,9 @@ export const ContentRendererFragmentDoc = gql`
 export const PageLayoutFragmentDoc = gql`
   fragment PageLayout on Page {
     ...PageMeta
-    ...Localization
     ...ContentRenderer
   }
   ${PageMetaFragmentDoc}
-  ${LocalizationFragmentDoc}
   ${ContentRendererFragmentDoc}
 `
 export const RowCompanySliderFragmentDoc = gql`

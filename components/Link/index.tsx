@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Link as MaterialLink, LinkProps } from '@material-ui/core'
+import MaterialLink, { LinkProps } from '@material-ui/core/Link'
 import { GQLMetaRobots } from '../../generated/graphql'
 
 export function getCanonical(url: string) {
@@ -36,4 +36,5 @@ const GraphCmsLink: React.FC<{ href: string; metaRobots: GQLMetaRobots } & LinkP
     </Link>
   )
 }
+
 export default GraphCmsLink
