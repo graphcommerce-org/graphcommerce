@@ -5,4 +5,7 @@ query GetPageLayout($url: String!, $locale: Locale!) {
   mainMenu: menu(where: { identity: "main" }) {
     ...Menu
   }
+  team: people(first: 1) {
+    ...Person
+  }
 }

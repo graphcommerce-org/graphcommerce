@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  Hex: any
   RGBAHue: any
   RGBATransparency: any
-  Json: any
+  Hex: any
   Date: any
+  Json: any
 }
 
 export enum GQL_FilterKind {
@@ -3432,10 +3432,10 @@ export type GQLPerson = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
-  list: Array<GQLZzDeleteList>
-  name?: Maybe<Scalars['String']>
   avatar: GQLAsset
+  name: Scalars['String']
   personList: Array<GQLPersonList>
+  list: Array<GQLZzDeleteList>
 }
 
 export type GQLPersonDocumentInStagesArgs = {
@@ -3444,7 +3444,9 @@ export type GQLPersonDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean']
 }
 
-export type GQLPersonListArgs = {
+export type GQLPersonPersonListArgs = {
+  where?: Maybe<GQLPersonListWhereInput>
+  orderBy?: Maybe<GQLPersonListOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -3452,9 +3454,7 @@ export type GQLPersonListArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type GQLPersonPersonListArgs = {
-  where?: Maybe<GQLPersonListWhereInput>
-  orderBy?: Maybe<GQLPersonListOrderByInput>
+export type GQLPersonListArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -3477,10 +3477,10 @@ export type GQLPersonConnection = {
 export type GQLPersonCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
-  name?: Maybe<Scalars['String']>
   avatar: GQLAssetCreateOneInlineInput
+  name: Scalars['String']
   personList?: Maybe<GQLPersonListCreateManyInlineInput>
+  list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
 }
 
 export type GQLPersonCreateManyInlineInput = {
@@ -3769,6 +3769,7 @@ export type GQLPersonManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  avatar?: Maybe<GQLAssetWhereInput>
   name?: Maybe<Scalars['String']>
   name_not?: Maybe<Scalars['String']>
   name_in?: Maybe<Array<Scalars['String']>>
@@ -3779,7 +3780,6 @@ export type GQLPersonManyWhereInput = {
   name_not_starts_with?: Maybe<Scalars['String']>
   name_ends_with?: Maybe<Scalars['String']>
   name_not_ends_with?: Maybe<Scalars['String']>
-  avatar?: Maybe<GQLAssetWhereInput>
   personList_every?: Maybe<GQLPersonListWhereInput>
   personList_some?: Maybe<GQLPersonListWhereInput>
   personList_none?: Maybe<GQLPersonListWhereInput>
@@ -3799,10 +3799,10 @@ export enum GQLPersonOrderByInput {
 }
 
 export type GQLPersonUpdateInput = {
-  list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
-  name?: Maybe<Scalars['String']>
   avatar?: Maybe<GQLAssetUpdateOneInlineInput>
+  name?: Maybe<Scalars['String']>
   personList?: Maybe<GQLPersonListUpdateManyInlineInput>
+  list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
 }
 
 export type GQLPersonUpdateManyInlineInput = {
@@ -3818,7 +3818,7 @@ export type GQLPersonUpdateManyInlineInput = {
 export type GQLPersonUpdateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  name?: Maybe<Scalars['String']>
+  name: Scalars['String']
 }
 
 export type GQLPersonUpdateManyWithNestedWhereInput = {
@@ -3889,6 +3889,7 @@ export type GQLPersonWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  avatar?: Maybe<GQLAssetWhereInput>
   name?: Maybe<Scalars['String']>
   name_not?: Maybe<Scalars['String']>
   name_in?: Maybe<Array<Scalars['String']>>
@@ -3899,7 +3900,6 @@ export type GQLPersonWhereInput = {
   name_not_starts_with?: Maybe<Scalars['String']>
   name_ends_with?: Maybe<Scalars['String']>
   name_not_ends_with?: Maybe<Scalars['String']>
-  avatar?: Maybe<GQLAssetWhereInput>
   personList_every?: Maybe<GQLPersonListWhereInput>
   personList_some?: Maybe<GQLPersonListWhereInput>
   personList_none?: Maybe<GQLPersonListWhereInput>
@@ -6770,6 +6770,7 @@ export type GQLGetPageLayoutQueryVariables = {
 export type GQLGetPageLayoutQuery = { __typename?: 'Query' } & {
   pages: Array<{ __typename?: 'Page' } & GQLPageLayoutFragment>
   mainMenu?: Maybe<{ __typename?: 'Menu' } & GQLMenuFragment>
+  team: Array<{ __typename?: 'Person' } & GQLPersonFragment>
 }
 
 export type GQLGetStaticPathsQueryVariables = {
@@ -7079,9 +7080,13 @@ export const GetPageLayoutDocument = gql`
     mainMenu: menu(where: { identity: "main" }) {
       ...Menu
     }
+    team: people(first: 1) {
+      ...Person
+    }
   }
   ${PageLayoutFragmentDoc}
   ${MenuFragmentDoc}
+  ${PersonFragmentDoc}
 `
 
 /**

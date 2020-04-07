@@ -2,7 +2,6 @@ import React from 'react'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
 import MaterialMenu from '@material-ui/core/Menu'
-import zIndex from '@material-ui/core/styles/zIndex'
 import Router from 'next/router'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Fab from '@material-ui/core/Fab'
@@ -19,10 +18,6 @@ import Link from '../Link'
 import { vpCalc } from '../Theme'
 
 type TreePage = GQLMenuFragment['pages'][0] & { children: TreePage[]; parent?: TreePage }
-type MenuProps = {
-  mainMenu: GQLMenuFragment
-  page: GQLPageMetaFragment
-}
 
 const extractRoots = (mainMenu: GQLMenuFragment) => {
   const treePages: TreePage[] = mainMenu.pages.map((p) => ({ ...p, children: [] }))
@@ -46,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   menu: {
     backgroundColor: theme.palette.tertiary.main,
     color: theme.palette.tertiary.contrastText,
-    minWidth: 200,
+    minWidth: vpCalc(200, 280),
   },
   menuClose: {
     marginLeft: 16,
@@ -83,7 +78,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const Menu: React.FC<MenuProps> = ({ mainMenu, page }) => {
+const Menu: React.FC<{
+  menu: GQLMenuFragment
+  page: GQLPageMetaFragment
+}> = ({ menu: mainMenu, page }) => {
   const classes = useStyles()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -94,7 +92,7 @@ const Menu: React.FC<MenuProps> = ({ mainMenu, page }) => {
     <>
       <Fab
         color='primary'
-        aria-label='add'
+        aria-label='Open Menu'
         size='medium'
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuOpen}
