@@ -48,6 +48,22 @@ declare module '@material-ui/core/styles/createPalette' {
     tertiary: PaletteColor
   }
 }
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    gridSpacing: {
+      row: string
+      column: string
+      gutter: string
+    }
+  }
+  interface ThemeOptions {
+    gridSpacing: {
+      row: string
+      column: string
+      gutter: string
+    }
+  }
+}
 
 // Create a theme instance.
 export const theme = createMuiTheme({
@@ -110,6 +126,11 @@ export const theme = createMuiTheme({
     h5: {},
     h6: {},
     fontWeightBold: 600,
+  },
+  gridSpacing: {
+    column: vpCalc(18, 60),
+    row: vpCalc(12, 40),
+    gutter: vpCalc(27, 90),
   },
   overrides: {
     MuiCssBaseline: {

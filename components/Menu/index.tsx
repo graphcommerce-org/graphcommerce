@@ -38,10 +38,10 @@ const extractRoots = (mainMenu: GQLMenuFragment) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   menuOpen: {
-    position: 'fixed',
-    left: vpCalc(18, 60),
-    top: vpCalc(18, 60),
-    zIndex: zIndex.appBar,
+    // position: 'fixed',
+    // left: vpCalc(18, 60),
+    // top: vpCalc(18, 60),
+    // zIndex: zIndex.appBar,
   },
   menu: {
     backgroundColor: theme.palette.tertiary.main,
@@ -108,6 +108,7 @@ const Menu: React.FC<MenuProps> = ({ mainMenu, page }) => {
         onClose={() => setOpenEl(null)}
         keepMounted
         getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
+        // todo(paales) positioning isn't correct on mobile at it reserves space on the sides, should probably measure the position
         anchorOrigin={{ horizontal: -16, vertical: -16 }}
         variant='menu'
         classes={{ paper: classes.menu }}

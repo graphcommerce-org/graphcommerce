@@ -8,6 +8,7 @@ import PageMeta from '../PageMeta'
 import ThemedProvider, { theme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
 import { GQLGetBreadcrumbQuery, GQLGetPageLayoutQuery } from '../../generated/graphql'
+import Header from '../Header'
 
 export type PageLayoutProps = GQLGetPageLayoutQuery & GQLGetBreadcrumbQuery
 type LayoutComponent = LayoutPage<PageLayoutProps>['layout']
@@ -25,8 +26,10 @@ const Layout: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu }) => 
       </Head>
       <CssBaseline />
       <PageMeta {...page} />
-      <Menu mainMenu={mainMenu} page={page} />
-      <Breadcrumb breadcrumbs={breadcrumbs} />
+      <Header>
+        <Menu mainMenu={mainMenu} page={page} />
+      </Header>
+      {/* <Breadcrumb breadcrumbs={breadcrumbs} /> */}
       {children}
     </ThemedProvider>
   )

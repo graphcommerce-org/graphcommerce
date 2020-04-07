@@ -16,11 +16,10 @@ export type ContainerProps = {
 
 // const useStyles = makeStyles<Theme, ContainerProps>(theme => ({
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  ({ breakpoints, gridSpacing }: Theme) => ({
     root: ({ leftWidth = 0.618, stretch, size = 'lg', spaceBetween }: ContainerProps) => {
-      const spacing = vpCalc(18, 60)
-      const spacingBetween = spaceBetween ? vpCalc(27, 90) : '0px'
-      const breakpoint = theme.breakpoints.values[size]
+      const spacingBetween = spaceBetween ? gridSpacing.gutter : '0px'
+      const breakpoint = breakpoints.values[size]
 
       return {
         width: '100%',
@@ -35,13 +34,13 @@ const useStyles = makeStyles(
           'spaceleft after after after spaceright'`,
         gridTemplateRows: `auto auto ${spacingBetween} auto auto`,
         gridTemplateColumns: `
-          ${spacing}
+          ${gridSpacing.column}
           minmax(0, ${leftWidth}fr)
           ${spacingBetween}
           minmax(0, ${1 - leftWidth}fr)
-          ${spacing}`,
+          ${gridSpacing.column}`,
 
-        [theme.breakpoints.up('sm')]: {
+        [breakpoints.up('sm')]: {
           gridTemplateRows: '1fr auto 1fr',
           gridTemplateAreas: `
             'spaceleft before before before spaceright'
@@ -66,12 +65,12 @@ const useStyles = makeStyles(
               'after after after after after'`,
           }),
         },
-        [theme.breakpoints.up(size)]: {
+        [breakpoints.up(size)]: {
           gridTemplateColumns: `
           auto
-          calc(${leftWidth} * (${breakpoint}px - ${spacing} * 2 - ${spacingBetween}))
+          calc(${leftWidth} * (${breakpoint}px - ${gridSpacing.column} * 2 - ${spacingBetween}))
           ${spacingBetween}
-          calc(${1 - leftWidth} * (${breakpoint}px - ${spacing} * 2 - ${spacingBetween}))
+          calc(${1 - leftWidth} * (${breakpoint}px - ${gridSpacing.column} * 2 - ${spacingBetween}))
           auto`,
         },
       }
