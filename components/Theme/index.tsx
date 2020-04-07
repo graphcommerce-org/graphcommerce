@@ -28,7 +28,7 @@ const fonts: Array<[
   ['Graphik-LightItalic', 300, 'italic'],
   ['Graphik-Regular', 400, 'normal'],
   ['Graphik-RegularItalic', 400, 'italic'],
-  ['Graphik-Mediumlight', 500, 'normal'],
+  ['Graphik-Medium', 500, 'normal'],
   ['Graphik-MediumItalic', 500, 'italic'],
   ['Graphik-Semibold', 600, 'normal'],
   ['Graphik-SemiboldItalic', 600, 'italic'],
