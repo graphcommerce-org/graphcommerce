@@ -40,17 +40,31 @@ const fonts: Array<[
   ['Graphik-SuperItalic', 900, 'italic'],
 ]
 
+declare module '@material-ui/core/styles/createPalette' {
+  interface PaletteOptions {
+    tertiary: PaletteColorOptions
+  }
+  interface Palette {
+    tertiary: PaletteColor
+  }
+}
+
 // Create a theme instance.
 export const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#13e4ad',
+      contrastText: '#000',
     },
     secondary: {
       main: '#fffe00',
+      contrastText: '#000',
     },
-    error: {
-      main: red.A400,
+    tertiary: {
+      main: '#2b153d',
+      light: '#463058',
+      '100': '#9f89b1',
+      contrastText: '#fff',
     },
     background: {
       default: '#fff',
@@ -112,5 +126,7 @@ export const theme = createMuiTheme({
   },
 })
 
-const Theme: React.FC = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>
-export default Theme
+const ThemedProvider: React.FC = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+)
+export default ThemedProvider
