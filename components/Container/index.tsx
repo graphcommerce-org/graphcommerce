@@ -26,6 +26,7 @@ const useStyles = makeStyles(
         width: '100%',
         display: 'grid',
         justifyContent: 'stretch',
+        alignItems: 'center',
         gridTemplateAreas: `
           'spaceleft before before before spaceright'
           'spaceleft left left left spaceright'
@@ -91,8 +92,12 @@ const useStyles = makeStyles(
 
 export type ContainerStyles = keyof ReturnType<typeof useStyles>
 
+type PartialRecord<K extends keyof any, T> = {
+  [P in K]?: T
+}
+
 type WithOptionalStyles = {
-  classes?: ClassNameMap<ClassKeyOfStyles<ContainerStyles>>
+  classes?: PartialRecord<ClassKeyOfStyles<ContainerStyles>, string>
 }
 
 const Container: React.ForwardRefRenderFunction<
@@ -104,10 +109,10 @@ const Container: React.ForwardRefRenderFunction<
 
   return (
     <div className={classes.root} ref={ref}>
-      <div className={classes.before}>{before}</div>
-      <div className={classes.left}>{left}</div>
-      <div className={classes.right}>{right}</div>
-      <div className={classes.after}>{children}</div>
+      {before && <div className={classes.before}>{before}</div>}
+      {left && <div className={classes.left}>{left}</div>}
+      {right && <div className={classes.right}>{right}</div>}
+      {children && <div className={classes.after}>{children}</div>}
     </div>
   )
 }
