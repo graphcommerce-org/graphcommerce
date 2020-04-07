@@ -1,3 +1,25 @@
+## [4.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v4.0.0...v4.1.0) (2020-04-07)
+
+### Features
+
+- **header:** created header with menu / logo
+  ([53d988d](https://github.com/ho-nl/project-reachdigital.nl/commit/53d988d646eb2109712cf27ec8dbdf0a709acfdf))
+- **menu:** add localization to menu
+  ([570deb1](https://github.com/ho-nl/project-reachdigital.nl/commit/570deb1d0f201bc63031aefb860eb5abd20fe503))
+- **menu:** created mobile menu component
+  ([abcfd59](https://github.com/ho-nl/project-reachdigital.nl/commit/abcfd594747a8b5f03463644ff2aff6b965909ca))
+- **meta:** added hreflang attributes to header
+  ([77b291a](https://github.com/ho-nl/project-reachdigital.nl/commit/77b291a671acfa6297c735759b4918974e75d1b2))
+- **theme:** add tertiary purple styles to theme
+  ([e0f6322](https://github.com/ho-nl/project-reachdigital.nl/commit/e0f6322076677ccf84735918a69a05b934554165))
+
+### Bug Fixes
+
+- **container:** align contents in middle
+  ([3bc353e](https://github.com/ho-nl/project-reachdigital.nl/commit/3bc353e7b38a8286a87853588d684dc4a748c47e))
+- **stylelint:** removed stylelint as it causes linting errors
+  ([942a285](https://github.com/ho-nl/project-reachdigital.nl/commit/942a285e038cd44f130f48bebc56745471864d2c))
+
 ## [4.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v3.3.0...v4.0.0) (2020-04-06)
 
 ### ⚠ BREAKING CHANGES
