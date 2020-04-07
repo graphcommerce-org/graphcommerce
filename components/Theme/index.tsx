@@ -69,6 +69,7 @@ export const theme = createMuiTheme({
     background: {
       default: '#fff',
     },
+    divider: '#fff',
   },
   breakpoints: {
     values: {
@@ -83,7 +84,7 @@ export const theme = createMuiTheme({
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     fontSize: 18,
     body1: { fontSize: vpCalc(18, 20) },
-    body2: { fontSize: vpCalc(15, 20) },
+    body2: { fontSize: vpCalc(13, 15) },
     subtitle1: {},
     subtitle2: {},
     h1: {
@@ -110,7 +111,6 @@ export const theme = createMuiTheme({
     h6: {},
     fontWeightBold: 600,
   },
-  spacing: (factor): string => vpCalc(factor * 4, factor * 8)[1],
   overrides: {
     MuiCssBaseline: {
       '@global': {

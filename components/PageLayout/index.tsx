@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Error from 'next/error'
 import Menu from '../Menu'
 import Breadcrumb from '../Breadcrumb'
-import Language from '../Localization'
 import PageMeta from '../PageMeta'
 import ThemedProvider, { theme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
@@ -28,7 +27,6 @@ const Layout: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu }) => 
       <PageMeta {...page} />
       <Menu mainMenu={mainMenu} page={page} />
       <Breadcrumb breadcrumbs={breadcrumbs} />
-      <Language {...page} />
       {children}
     </ThemedProvider>
   )

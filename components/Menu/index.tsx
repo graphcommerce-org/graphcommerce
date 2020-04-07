@@ -8,13 +8,22 @@ import makeStyles from '@material-ui/core/styles/makeStyles'
 import Fab from '@material-ui/core/Fab'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import { Theme } from '@material-ui/core'
-import { GQLMenuFragment, GQLPageMetaFragment, GQLMetaRobots } from '../../generated/graphql'
+import { Theme, Divider, ListSubheader } from '@material-ui/core'
+import {
+  GQLMenuFragment,
+  GQLPageMetaFragment,
+  GQLMetaRobots,
+  GQLLocalizationFragment,
+  GQLLocale,
+} from '../../generated/graphql'
 import Link from '../Link'
 import { vpCalc } from '../Theme'
 
 type TreePage = GQLMenuFragment['pages'][0] & { children: TreePage[]; parent?: TreePage }
-export type MenuProps = { mainMenu: GQLMenuFragment; page: GQLPageMetaFragment }
+type MenuProps = {
+  mainMenu: GQLMenuFragment
+  page: GQLLocalizationFragment & GQLPageMetaFragment
+}
 
 const extractRoots = (mainMenu: GQLMenuFragment) => {
   const treePages: TreePage[] = mainMenu.pages.map((p) => ({ ...p, children: [] }))
@@ -65,6 +74,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundColor: theme.palette.tertiary.light,
     },
   },
+
+  menuItemTextSmall: {
+    fontWeight: 600,
+  },
+  menuSubheader: {
+    paddingTop: 16,
+    ...theme.typography.body2,
+  },
 }))
 
 const Menu: React.FC<MenuProps> = ({ mainMenu, page }) => {
@@ -105,7 +122,6 @@ const Menu: React.FC<MenuProps> = ({ mainMenu, page }) => {
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-
         <Link
           href='/'
           metaRobots={GQLMetaRobots.IndexFollow}
@@ -124,13 +140,28 @@ const Menu: React.FC<MenuProps> = ({ mainMenu, page }) => {
             color='inherit'
             className={classes.menuLink}
           >
-            <ListItem
-              button
-              key={root.id}
-              selected={page.url === root.url}
-              classes={{ root: classes.menuItem }}
-            >
+            <ListItem button selected={page.url === root.url} classes={{ root: classes.menuItem }}>
               <ListItemText classes={{ primary: classes.menuItemText }}>{root.title}</ListItemText>
+            </ListItem>
+          </Link>
+        ))}
+        <Divider variant='middle' light />
+        <ListSubheader color='inherit' disableSticky classes={{ root: classes.menuSubheader }}>
+          Switch to
+        </ListSubheader>
+        {page.localizations.map((localization) => (
+          <Link
+            key={localization.url}
+            href={localization.url}
+            metaRobots={localization.metaRobots!}
+            color='inherit'
+            className={classes.menuLink}
+          >
+            <ListItem button classes={{ root: classes.menuItem }}>
+              <ListItemText classes={{ primary: classes.menuItemTextSmall }}>
+                {localization.locale === GQLLocale.En && 'English'}
+                {localization.locale === GQLLocale.Nl && 'Nederlands'}
+              </ListItemText>
             </ListItem>
           </Link>
         ))}
