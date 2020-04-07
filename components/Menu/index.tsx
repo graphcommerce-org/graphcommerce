@@ -13,7 +13,6 @@ import {
   GQLMenuFragment,
   GQLPageMetaFragment,
   GQLMetaRobots,
-  GQLLocalizationFragment,
   GQLLocale,
 } from '../../generated/graphql'
 import Link from '../Link'
@@ -22,7 +21,7 @@ import { vpCalc } from '../Theme'
 type TreePage = GQLMenuFragment['pages'][0] & { children: TreePage[]; parent?: TreePage }
 type MenuProps = {
   mainMenu: GQLMenuFragment
-  page: GQLLocalizationFragment & GQLPageMetaFragment
+  page: GQLPageMetaFragment
 }
 
 const extractRoots = (mainMenu: GQLMenuFragment) => {
