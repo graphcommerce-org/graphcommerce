@@ -1,6 +1,7 @@
 import React from 'react'
 import { Theme, makeStyles, Avatar, Badge, Fab } from '@material-ui/core'
 import PhoneIcon from '@material-ui/icons/Phone'
+import zIndex from '@material-ui/core/styles/zIndex'
 import logo from '../../public/images/magento-webshop-reach-digital.svg'
 import { vpCalc } from '../Theme'
 import {
@@ -29,6 +30,7 @@ const useStyles = makeStyles(({ gridSpacing, palette }: Theme) => ({
     width: '100%',
   },
   logo: {
+    zIndex: zIndex.appBar,
     gridArea: 'logo',
     '& img': {
       maxHeight: vpCalc(46, 72),
