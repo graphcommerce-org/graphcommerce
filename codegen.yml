@@ -1,6 +1,9 @@
 overwrite: true
 schema: ${GRAPHQL}
-documents: '**/*.graphql'
+documents:
+  - '**/*.graphql'
+  - '!generated/*.graphql'
+  - '!node_modules/**'
 generates:
   generated/fragments.json:
     plugins:
