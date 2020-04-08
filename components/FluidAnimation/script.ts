@@ -7,6 +7,7 @@
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
+import ditheringPng from './LDR_LLL1_0.png'
 
 /*
 MIT License
@@ -874,7 +875,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   let sunrays: FrameBuffer
   let sunraysTemp: FrameBuffer
 
-  const ditheringTexture: Texture = createTextureAsync('LDR_LLL1_0.png')
+  const ditheringTexture: Texture = createTextureAsync(ditheringPng)
 
   const blurProgram = new Program(blurVertexShader, blurShader)
   const copyProgram = new Program(baseVertexShader, copyShader)
