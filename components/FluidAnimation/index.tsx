@@ -1,30 +1,26 @@
 import React, { useRef, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core'
-import start from './script'
-import { vpCalc } from '../Theme'
+import start, { FluidConfigProps } from './script'
 
 const useStyles = makeStyles({
   canvas: {
     width: '100%',
     height: '100vh',
-    marginTop: '-115px',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: -1,
   },
 })
 
-const FluidAnimation: React.FC = () => {
+const FluidAnimation: React.FC<FluidConfigProps> = (config) => {
   const classes = useStyles()
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    if (!ref.current) return
-    start(ref.current, {
-      SIM_RESOLUTION: 256,
-      DYE_RESOLUTION: 1024,
-      COLORFUL: false,
-      // BACK_COLOR: { r: 255, g: 255, b: 0 },
-      // BLOOM: false,
-    })
-  }, [ref])
+    if (!ref.current) return undefined
+    return start(ref.current, config)
+  }, [ref, config])
 
   return <canvas ref={ref} className={classes.canvas} />
 }

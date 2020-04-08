@@ -63,62 +63,65 @@ type Texture = {
 }
 
 type Config = {
-  SIM_RESOLUTION: 32 | 64 | 128 | 256
-  DYE_RESOLUTION: 128 | 256 | 512 | 1024
-  DENSITY_DISSIPATION: number // Between 0 and 1
-  VELOCITY_DISSIPATION: number
-  PRESSURE: number
-  PRESSURE_ITERATIONS: number
-  CURL: number
-  SPLAT_RADIUS: number
-  SPLAT_FORCE: number
-  SHADING: boolean
-  COLORFUL: boolean
-  COLOR_UPDATE_SPEED: number
-  PAUSED: boolean
-  BACK_COLOR: ColorRGB
-  TRANSPARENT: boolean
-  BLOOM: boolean
-  BLOOM_ITERATIONS: number
-  BLOOM_RESOLUTION: number
-  BLOOM_INTENSITY: number
-  BLOOM_THRESHOLD: number
-  BLOOM_SOFT_KNEE: number
-  SUNRAYS: boolean
-  SUNRAYS_RESOLUTION: number
-  SUNRAYS_WEIGHT: number
+  simResolution: 32 | 64 | 128 | 256 | 512 | 1024
+  dyeResolution: number
+  densityDissipation: number // Between 0 and 1
+  velocityDissipation: number
+  pressure: number
+  pressureIterations: number
+  curl: number
+  splatRadius: number
+  splatForce: number
+  shading: boolean
+  colorful: boolean
+  colorUpdateSpeed: number
+  paused: boolean
+  backColor: ColorRGB
+  transparent: boolean
+  checkerboard: boolean
+  bloom: boolean
+  bloomIterations: number
+  bloomResolution: number
+  bloomIntensity: number
+  bloomThreshold: number
+  bloomSoftKnee: number
+  sunrays: boolean
+  sunraysResolution: number
+  sunraysWeight: number
 }
+export type FluidConfigProps = Partial<Config>
 
 const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) => {
   // Simulation code
   resizeCanvas()
 
   // eslint-disable-next-line no-param-reassign
-  const config = {
-    SIM_RESOLUTION: 128,
-    DYE_RESOLUTION: 1024,
-    DENSITY_DISSIPATION: 1,
-    VELOCITY_DISSIPATION: 0.2,
-    PRESSURE: 0.8,
-    PRESSURE_ITERATIONS: 20,
-    CURL: 30,
-    SPLAT_RADIUS: 0.25,
-    SPLAT_FORCE: 6000,
-    SHADING: true,
-    COLORFUL: true,
-    COLOR_UPDATE_SPEED: 10,
-    PAUSED: false,
-    BACK_COLOR: { r: 0, g: 0, b: 0 },
-    TRANSPARENT: false,
-    BLOOM: true,
-    BLOOM_ITERATIONS: 8,
-    BLOOM_RESOLUTION: 256,
-    BLOOM_INTENSITY: 0.8,
-    BLOOM_THRESHOLD: 0.6,
-    BLOOM_SOFT_KNEE: 0.7,
-    SUNRAYS: true,
-    SUNRAYS_RESOLUTION: 196,
-    SUNRAYS_WEIGHT: 1.0,
+  const config: Config = {
+    simResolution: 128,
+    dyeResolution: 1024,
+    densityDissipation: 1,
+    velocityDissipation: 0.2,
+    pressure: 0.8,
+    pressureIterations: 20,
+    curl: 30,
+    splatRadius: 0.25,
+    splatForce: 6000,
+    shading: true,
+    colorful: true,
+    colorUpdateSpeed: 10,
+    paused: false,
+    backColor: { r: 0, g: 0, b: 0 },
+    transparent: false,
+    checkerboard: false,
+    bloom: true,
+    bloomIterations: 8,
+    bloomResolution: 256,
+    bloomIntensity: 0.8,
+    bloomThreshold: 0.6,
+    bloomSoftKnee: 0.7,
+    sunrays: true,
+    sunraysResolution: 196,
+    sunraysWeight: 1.0,
     ...configPartial,
   }
 
@@ -142,13 +145,13 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   const { gl, ext } = getWebGLContext(canvas)
 
   if (isMobile()) {
-    config.DYE_RESOLUTION = 512
+    config.dyeResolution = 512
   }
   if (!ext.supportLinearFiltering) {
-    config.DYE_RESOLUTION = 512
-    config.SHADING = false
-    config.BLOOM = false
-    config.SUNRAYS = false
+    config.dyeResolution = 512
+    config.shading = false
+    config.bloom = false
+    config.sunrays = false
   }
 
   function getWebGLContext(canvas: HTMLCanvasElement) {
@@ -898,8 +901,8 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   const displayMaterial = new Material(baseVertexShader, displayShaderSource)
 
   function initFramebuffers() {
-    const simRes = getResolution(config.SIM_RESOLUTION)
-    const dyeRes = getResolution(config.DYE_RESOLUTION)
+    const simRes = getResolution(config.simResolution)
+    const dyeRes = getResolution(config.dyeResolution)
 
     const texType = ext.halfFloatTexType
     const rgba = ext.formatRGBA
@@ -970,7 +973,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function initBloomFramebuffers() {
-    const res = getResolution(config.BLOOM_RESOLUTION)
+    const res = getResolution(config.bloomResolution)
 
     const texType = ext.halfFloatTexType
     const rgba = ext.formatRGBA
@@ -979,7 +982,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     bloom = createFBO(res.width, res.height, rgba.internalFormat, rgba.format, texType, filtering)
 
     bloomFramebuffers.length = 0
-    for (let i = 0; i < config.BLOOM_ITERATIONS; i++) {
+    for (let i = 0; i < config.bloomIterations; i++) {
       const width = res.width >> (i + 1)
       const height = res.height >> (i + 1)
 
@@ -991,7 +994,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function initSunraysFramebuffers() {
-    const res = getResolution(config.SUNRAYS_RESOLUTION)
+    const res = getResolution(config.sunraysResolution)
 
     const texType = ext.halfFloatTexType
     const r = ext.formatR
@@ -1079,14 +1082,14 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
   function resizeFBO(
     target: FrameBuffer,
-    w: number,
-    h: number,
+    width: number,
+    height: number,
     internalFormat: number,
     format: number,
     type: number,
     param: number,
   ) {
-    const newFBO = createFBO(w, h, internalFormat, format, type, param)
+    const newFBO = createFBO(width, height, internalFormat, format, type, param)
     copyProgram.bind()
     gl.uniform1i(copyProgram.uniforms.uTexture, target.attach(0))
     blit(newFBO.fbo)
@@ -1095,20 +1098,20 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
   function resizeDoubleFBO(
     target: DoubleFrameBuffer,
-    w: number,
-    h: number,
+    width: number,
+    height: number,
     internalFormat: number,
     format: number,
     type: number,
     param: number,
   ) {
-    if (target.width === w && target.height === h) return target
-    target.read = resizeFBO(target.read, w, h, internalFormat, format, type, param)
-    target.write = createFBO(w, h, internalFormat, format, type, param)
-    target.width = w
-    target.height = h
-    target.texelSizeX = 1.0 / w
-    target.texelSizeY = 1.0 / h
+    if (target.width === width && target.height === height) return target
+    target.read = resizeFBO(target.read, width, height, internalFormat, format, type, param)
+    target.write = createFBO(width, height, internalFormat, format, type, param)
+    target.width = width
+    target.height = height
+    target.texelSizeX = 1.0 / width
+    target.texelSizeY = 1.0 / height
     return target
   }
 
@@ -1156,9 +1159,9 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
   function updateKeywords() {
     const displayKeywords = []
-    if (config.SHADING) displayKeywords.push('SHADING')
-    if (config.BLOOM) displayKeywords.push('BLOOM')
-    if (config.SUNRAYS) displayKeywords.push('SUNRAYS')
+    if (config.shading) displayKeywords.push('SHADING')
+    if (config.bloom) displayKeywords.push('BLOOM')
+    if (config.sunrays) displayKeywords.push('SUNRAYS')
     displayMaterial.setKeywords(displayKeywords)
   }
 
@@ -1175,7 +1178,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     if (resizeCanvas()) initFramebuffers()
     updateColors(dt)
     applyInputs()
-    if (!config.PAUSED) step(dt)
+    if (!config.paused) step(dt)
     render(null)
     requestAnimationFrame(update)
   }
@@ -1200,9 +1203,9 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function updateColors(dt: number) {
-    if (!config.COLORFUL) return
+    if (!config.colorful) return
 
-    colorUpdateTimer += dt * config.COLOR_UPDATE_SPEED
+    colorUpdateTimer += dt * config.colorUpdateSpeed
     if (colorUpdateTimer >= 1) {
       colorUpdateTimer = wrap(colorUpdateTimer, 0, 1)
       pointers.forEach((p) => {
@@ -1235,7 +1238,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     gl.uniform2f(vorticityProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY)
     gl.uniform1i(vorticityProgram.uniforms.uVelocity, velocity.read.attach(0))
     gl.uniform1i(vorticityProgram.uniforms.uCurl, curl.attach(1))
-    gl.uniform1f(vorticityProgram.uniforms.curl, config.CURL)
+    gl.uniform1f(vorticityProgram.uniforms.curl, config.curl)
     gl.uniform1f(vorticityProgram.uniforms.dt, dt)
     blit(velocity.write.fbo)
     velocity.swap()
@@ -1247,14 +1250,14 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
     clearProgram.bind()
     gl.uniform1i(clearProgram.uniforms.uTexture, pressure.read.attach(0))
-    gl.uniform1f(clearProgram.uniforms.value, config.PRESSURE)
+    gl.uniform1f(clearProgram.uniforms.value, config.pressure)
     blit(pressure.write.fbo)
     pressure.swap()
 
     pressureProgram.bind()
     gl.uniform2f(pressureProgram.uniforms.texelSize, velocity.texelSizeX, velocity.texelSizeY)
     gl.uniform1i(pressureProgram.uniforms.uDivergence, divergence.attach(0))
-    for (let i = 0; i < config.PRESSURE_ITERATIONS; i++) {
+    for (let i = 0; i < config.pressureIterations; i++) {
       gl.uniform1i(pressureProgram.uniforms.uPressure, pressure.read.attach(1))
       blit(pressure.write.fbo)
       pressure.swap()
@@ -1279,7 +1282,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     gl.uniform1i(advectionProgram.uniforms.uVelocity, velocityId)
     gl.uniform1i(advectionProgram.uniforms.uSource, velocityId)
     gl.uniform1f(advectionProgram.uniforms.dt, dt)
-    gl.uniform1f(advectionProgram.uniforms.dissipation, config.VELOCITY_DISSIPATION)
+    gl.uniform1f(advectionProgram.uniforms.dissipation, config.velocityDissipation)
     blit(velocity.write.fbo)
     velocity.swap()
 
@@ -1289,19 +1292,19 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
       gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, dye.texelSizeX, dye.texelSizeY)
     gl.uniform1i(advectionProgram.uniforms.uVelocity, velocity.read.attach(0))
     gl.uniform1i(advectionProgram.uniforms.uSource, dye.read.attach(1))
-    gl.uniform1f(advectionProgram.uniforms.dissipation, config.DENSITY_DISSIPATION)
+    gl.uniform1f(advectionProgram.uniforms.dissipation, config.densityDissipation)
     blit(dye.write.fbo)
     dye.swap()
   }
 
   function render(target: FrameBuffer | null) {
-    if (config.BLOOM) applyBloom(dye.read, bloom)
-    if (config.SUNRAYS) {
+    if (config.bloom) applyBloom(dye.read, bloom)
+    if (config.sunrays) {
       applySunrays(dye.read, dye.write, sunrays)
       blur(sunrays, sunraysTemp, 1)
     }
 
-    if (target == null || !config.TRANSPARENT) {
+    if (target == null || !config.transparent) {
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
       gl.enable(gl.BLEND)
     } else {
@@ -1313,8 +1316,8 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     gl.viewport(0, 0, width, height)
 
     const fbo = target == null ? null : target.fbo
-    if (!config.TRANSPARENT) drawColor(fbo, normalizeColor(config.BACK_COLOR))
-    if (target == null && config.TRANSPARENT) drawCheckerboard(fbo)
+    if (!config.transparent) drawColor(fbo, normalizeColor(config.backColor))
+    if (target == null && config.checkerboard) drawCheckerboard(fbo)
     drawDisplay(fbo, width, height)
   }
 
@@ -1332,15 +1335,15 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
   function drawDisplay(fbo: WebGLFramebuffer | null, width: number, height: number) {
     displayMaterial.bind()
-    if (config.SHADING) gl.uniform2f(displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height)
+    if (config.shading) gl.uniform2f(displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height)
     gl.uniform1i(displayMaterial.uniforms.uTexture, dye.read.attach(0))
-    if (config.BLOOM) {
+    if (config.bloom) {
       gl.uniform1i(displayMaterial.uniforms.uBloom, bloom.attach(1))
       gl.uniform1i(displayMaterial.uniforms.uDithering, ditheringTexture.attach(2))
       const scale = getTextureScale(ditheringTexture, width, height)
       gl.uniform2f(displayMaterial.uniforms.ditherScale, scale.x, scale.y)
     }
-    if (config.SUNRAYS) gl.uniform1i(displayMaterial.uniforms.uSunrays, sunrays.attach(3))
+    if (config.sunrays) gl.uniform1i(displayMaterial.uniforms.uSunrays, sunrays.attach(3))
     blit(fbo)
   }
 
@@ -1351,12 +1354,12 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
     gl.disable(gl.BLEND)
     bloomPrefilterProgram.bind()
-    const knee = config.BLOOM_THRESHOLD * config.BLOOM_SOFT_KNEE + 0.0001
-    const curve0 = config.BLOOM_THRESHOLD - knee
+    const knee = config.bloomThreshold * config.bloomSoftKnee + 0.0001
+    const curve0 = config.bloomThreshold - knee
     const curve1 = knee * 2
     const curve2 = 0.25 / knee
     gl.uniform3f(bloomPrefilterProgram.uniforms.curve, curve0, curve1, curve2)
-    gl.uniform1f(bloomPrefilterProgram.uniforms.threshold, config.BLOOM_THRESHOLD)
+    gl.uniform1f(bloomPrefilterProgram.uniforms.threshold, config.bloomThreshold)
     gl.uniform1i(bloomPrefilterProgram.uniforms.uTexture, source.attach(0))
     gl.viewport(0, 0, last.width, last.height)
     blit(last.fbo)
@@ -1387,7 +1390,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     bloomFinalProgram.bind()
     gl.uniform2f(bloomFinalProgram.uniforms.texelSize, last.texelSizeX, last.texelSizeY)
     gl.uniform1i(bloomFinalProgram.uniforms.uTexture, last.attach(0))
-    gl.uniform1f(bloomFinalProgram.uniforms.intensity, config.BLOOM_INTENSITY)
+    gl.uniform1f(bloomFinalProgram.uniforms.intensity, config.bloomIntensity)
     gl.viewport(0, 0, destination.width, destination.height)
     blit(destination.fbo)
   }
@@ -1400,7 +1403,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     blit(mask.fbo)
 
     sunraysProgram.bind()
-    gl.uniform1f(sunraysProgram.uniforms.weight, config.SUNRAYS_WEIGHT)
+    gl.uniform1f(sunraysProgram.uniforms.weight, config.sunraysWeight)
     gl.uniform1i(sunraysProgram.uniforms.uTexture, mask.attach(0))
     gl.viewport(0, 0, destination.width, destination.height)
     blit(destination.fbo)
@@ -1420,8 +1423,8 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function splatPointer(pointer: Pointer) {
-    const dx = pointer.deltaX * config.SPLAT_FORCE
-    const dy = pointer.deltaY * config.SPLAT_FORCE
+    const dx = pointer.deltaX * config.splatForce
+    const dy = pointer.deltaY * config.splatForce
     splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color)
   }
 
@@ -1446,7 +1449,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height)
     gl.uniform2f(splatProgram.uniforms.point, x, y)
     gl.uniform3f(splatProgram.uniforms.color, dx, dy, 0.0)
-    gl.uniform1f(splatProgram.uniforms.radius, correctRadius(config.SPLAT_RADIUS / 100.0))
+    gl.uniform1f(splatProgram.uniforms.radius, correctRadius(config.splatRadius / 100.0))
     blit(velocity.write.fbo)
     velocity.swap()
 
@@ -1521,7 +1524,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   })
 
   window.addEventListener('keydown', (e) => {
-    if (e.code === 'KeyP') config.PAUSED = !config.PAUSED
+    if (e.code === 'KeyP') config.paused = !config.paused
     if (e.key === ' ') splatStack.push(Math.round(Math.random() * 20) + 5)
   })
 
@@ -1671,6 +1674,10 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
       hash |= 0 // Convert to 32bit integer
     }
     return hash
+  }
+
+  return () => {
+    config.paused = true
   }
 }
 

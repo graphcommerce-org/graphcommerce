@@ -18,7 +18,6 @@ import Link from '../Link'
 
 const useStyles = makeStyles(({ gridSpacing, palette }: Theme) => ({
   root: {
-    backgroundColor: palette.background.paper,
     display: 'grid',
     gridTemplateAreas: `
       'spaceleft before before before spaceright'
