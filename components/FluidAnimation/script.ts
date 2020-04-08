@@ -4,10 +4,10 @@
 /* eslint-disable lines-between-class-members */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable max-classes-per-file */
-// @ts-nocheck
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
+
 /*
 MIT License
 
@@ -32,6 +32,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+type ColorRGB = { r: number; g: number; b: number }
+
+type FrameBuffer = {
+  texture: WebGLTexture
+  fbo: WebGLFramebuffer
+  width: number
+  height: number
+  texelSizeX: number
+  texelSizeY: number
+  attach: (id: number) => number
+}
+
+type DoubleFrameBuffer = {
+  width: number
+  height: number
+  texelSizeX: number
+  texelSizeY: number
+  read: FrameBuffer
+  write: FrameBuffer
+  swap(): void
+}
+
+type Texture = {
+  texture: WebGLTexture | null
+  width: number
+  height: number
+  attach(id: number): number
+}
+
 type Config = {
   SIM_RESOLUTION: 32 | 64 | 128 | 256
   DYE_RESOLUTION: 128 | 256 | 512 | 1024
@@ -46,7 +75,7 @@ type Config = {
   COLORFUL: boolean
   COLOR_UPDATE_SPEED: number
   PAUSED: boolean
-  BACK_COLOR: { r: number; g: number; b: number }
+  BACK_COLOR: ColorRGB
   TRANSPARENT: boolean
   BLOOM: boolean
   BLOOM_ITERATIONS: number
@@ -102,7 +131,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     deltaY: number = 0
     down: boolean = false
     moved: boolean = false
-    color: [number, number, number] = [30, 0, 300]
+    color: ColorRGB = { r: 30, g: 0, b: 300 }
   }
 
   const pointers: Pointer[] = []
@@ -233,7 +262,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   class Program {
-    uniforms: {}
+    uniforms: { [index: string]: WebGLUniformLocation } = {}
     program: WebGLProgram | null
 
     constructor(vertexShader: WebGLShader, fragmentShader: WebGLShader) {
@@ -829,23 +858,23 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0)
     gl.enableVertexAttribArray(0)
 
-    return (destination) => {
+    return (destination: WebGLFramebuffer | null) => {
       gl.bindFramebuffer(gl.FRAMEBUFFER, destination)
       gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0)
     }
   })()
 
-  let dye
-  let velocity
-  let divergence
-  let curl
-  let pressure
-  let bloom
-  const bloomFramebuffers = []
-  let sunrays
-  let sunraysTemp
+  let dye: DoubleFrameBuffer
+  let velocity: DoubleFrameBuffer
+  let divergence: FrameBuffer
+  let curl: FrameBuffer
+  let pressure: DoubleFrameBuffer
+  let bloom: FrameBuffer
+  const bloomFramebuffers: FrameBuffer[] = []
+  let sunrays: FrameBuffer
+  let sunraysTemp: FrameBuffer
 
-  const ditheringTexture = createTextureAsync('LDR_LLL1_0.png')
+  const ditheringTexture: Texture = createTextureAsync('LDR_LLL1_0.png')
 
   const blurProgram = new Program(blurVertexShader, blurShader)
   const copyProgram = new Program(baseVertexShader, copyShader)
@@ -971,33 +1000,40 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     sunraysTemp = createFBO(res.width, res.height, r.internalFormat, r.format, texType, filtering)
   }
 
-  function createFBO(w, h, internalFormat, format, type, param) {
+  function createFBO(
+    width: number,
+    height: number,
+    internalFormat: number,
+    format: number,
+    type: number,
+    param: number,
+  ): FrameBuffer {
     gl.activeTexture(gl.TEXTURE0)
-    const texture = gl.createTexture()
+    const texture = gl.createTexture()!
     gl.bindTexture(gl.TEXTURE_2D, texture)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, param)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, param)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
-    gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, w, h, 0, format, type, null)
+    gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, null)
 
-    const fbo = gl.createFramebuffer()
+    const fbo = gl.createFramebuffer()!
     gl.bindFramebuffer(gl.FRAMEBUFFER, fbo)
     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0)
-    gl.viewport(0, 0, w, h)
+    gl.viewport(0, 0, width, height)
     gl.clear(gl.COLOR_BUFFER_BIT)
 
-    const texelSizeX = 1.0 / w
-    const texelSizeY = 1.0 / h
+    const texelSizeX = 1.0 / width
+    const texelSizeY = 1.0 / height
 
     return {
       texture,
       fbo,
-      width: w,
-      height: h,
+      width,
+      height,
       texelSizeX,
       texelSizeY,
-      attach(id) {
+      attach(id: number) {
         gl.activeTexture(gl.TEXTURE0 + id)
         gl.bindTexture(gl.TEXTURE_2D, texture)
         return id
@@ -1006,19 +1042,19 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function createDoubleFBO(
-    w: number,
-    h: number,
-    internalFormat: number,
-    format: number,
-    type,
-    param,
-  ) {
-    let fbo1 = createFBO(w, h, internalFormat, format, type, param)
-    let fbo2 = createFBO(w, h, internalFormat, format, type, param)
+    width: number,
+    height: number,
+    internalFormat: GLenum,
+    format: GLenum,
+    type: GLenum,
+    param: GLenum,
+  ): DoubleFrameBuffer {
+    let fbo1 = createFBO(width, height, internalFormat, format, type, param)
+    let fbo2 = createFBO(width, height, internalFormat, format, type, param)
 
     return {
-      width: w,
-      height: h,
+      width,
+      height,
       texelSizeX: fbo1.texelSizeX,
       texelSizeY: fbo1.texelSizeY,
       get read() {
@@ -1034,14 +1070,21 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
         fbo2 = value
       },
       swap() {
-        const temp = fbo1
-        fbo1 = fbo2
-        fbo2 = temp
+        // eslint-disable-next-line @typescript-eslint/no-extra-semi
+        ;[fbo2, fbo1] = [fbo1, fbo2]
       },
     }
   }
 
-  function resizeFBO(target, w, h, internalFormat, format, type, param) {
+  function resizeFBO(
+    target: FrameBuffer,
+    w: number,
+    h: number,
+    internalFormat: number,
+    format: number,
+    type: number,
+    param: number,
+  ) {
     const newFBO = createFBO(w, h, internalFormat, format, type, param)
     copyProgram.bind()
     gl.uniform1i(copyProgram.uniforms.uTexture, target.attach(0))
@@ -1049,7 +1092,15 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     return newFBO
   }
 
-  function resizeDoubleFBO(target, w, h, internalFormat, format, type, param) {
+  function resizeDoubleFBO(
+    target: DoubleFrameBuffer,
+    w: number,
+    h: number,
+    internalFormat: number,
+    format: number,
+    type: number,
+    param: number,
+  ) {
     if (target.width === w && target.height === h) return target
     target.read = resizeFBO(target.read, w, h, internalFormat, format, type, param)
     target.write = createFBO(w, h, internalFormat, format, type, param)
@@ -1060,7 +1111,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     return target
   }
 
-  function createTextureAsync(url) {
+  function createTextureAsync(url: string): Texture {
     const texture = gl.createTexture()
     gl.bindTexture(gl.TEXTURE_2D, texture)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
@@ -1083,7 +1134,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
       texture,
       width: 1,
       height: 1,
-      attach(id) {
+      attach(id: number) {
         gl.activeTexture(gl.TEXTURE0 + id)
         gl.bindTexture(gl.TEXTURE_2D, texture)
         return id
@@ -1147,7 +1198,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     return false
   }
 
-  function updateColors(dt) {
+  function updateColors(dt: number) {
     if (!config.COLORFUL) return
 
     colorUpdateTimer += dt * config.COLOR_UPDATE_SPEED
@@ -1160,7 +1211,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function applyInputs() {
-    if (splatStack.length > 0) multipleSplats(splatStack.pop())
+    if (splatStack) multipleSplats(splatStack.pop()!)
 
     pointers.forEach((p) => {
       if (p.moved) {
@@ -1170,7 +1221,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     })
   }
 
-  function step(dt) {
+  function step(dt: number) {
     gl.disable(gl.BLEND)
     gl.viewport(0, 0, velocity.width, velocity.height)
 
@@ -1242,7 +1293,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     dye.swap()
   }
 
-  function render(target) {
+  function render(target: FrameBuffer | null) {
     if (config.BLOOM) applyBloom(dye.read, bloom)
     if (config.SUNRAYS) {
       applySunrays(dye.read, dye.write, sunrays)
@@ -1266,19 +1317,19 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     drawDisplay(fbo, width, height)
   }
 
-  function drawColor(fbo, color) {
+  function drawColor(fbo: WebGLFramebuffer | null, color: ColorRGB) {
     colorProgram.bind()
     gl.uniform4f(colorProgram.uniforms.color, color.r, color.g, color.b, 1)
     blit(fbo)
   }
 
-  function drawCheckerboard(fbo) {
+  function drawCheckerboard(fbo: WebGLFramebuffer | null) {
     checkerboardProgram.bind()
     gl.uniform1f(checkerboardProgram.uniforms.aspectRatio, canvas.width / canvas.height)
     blit(fbo)
   }
 
-  function drawDisplay(fbo, width, height) {
+  function drawDisplay(fbo: WebGLFramebuffer | null, width: number, height: number) {
     displayMaterial.bind()
     if (config.SHADING) gl.uniform2f(displayMaterial.uniforms.texelSize, 1.0 / width, 1.0 / height)
     gl.uniform1i(displayMaterial.uniforms.uTexture, dye.read.attach(0))
@@ -1292,7 +1343,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     blit(fbo)
   }
 
-  function applyBloom(source, destination) {
+  function applyBloom(source: FrameBuffer, destination: FrameBuffer) {
     if (bloomFramebuffers.length < 2) return
 
     let last = destination
@@ -1340,7 +1391,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     blit(destination.fbo)
   }
 
-  function applySunrays(source, mask, destination) {
+  function applySunrays(source: FrameBuffer, mask: FrameBuffer, destination: FrameBuffer) {
     gl.disable(gl.BLEND)
     sunraysMaskProgram.bind()
     gl.uniform1i(sunraysMaskProgram.uniforms.uTexture, source.attach(0))
@@ -1354,7 +1405,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     blit(destination.fbo)
   }
 
-  function blur(target, temp, iterations) {
+  function blur(target: FrameBuffer, temp: FrameBuffer, iterations: number) {
     blurProgram.bind()
     for (let i = 0; i < iterations; i++) {
       gl.uniform2f(blurProgram.uniforms.texelSize, target.texelSizeX, 0.0)
@@ -1367,13 +1418,13 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     }
   }
 
-  function splatPointer(pointer) {
+  function splatPointer(pointer: Pointer) {
     const dx = pointer.deltaX * config.SPLAT_FORCE
     const dy = pointer.deltaY * config.SPLAT_FORCE
     splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color)
   }
 
-  function multipleSplats(amount) {
+  function multipleSplats(amount: number) {
     for (let i = 0; i < amount; i++) {
       const color = generateColor()
       color.r *= 10.0
@@ -1387,7 +1438,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     }
   }
 
-  function splat(x, y, dx, dy, color) {
+  function splat(x: number, y: number, dx: number, dy: number, color: ColorRGB) {
     gl.viewport(0, 0, velocity.width, velocity.height)
     splatProgram.bind()
     gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0))
@@ -1405,7 +1456,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     dye.swap()
   }
 
-  function correctRadius(radius) {
+  function correctRadius(radius: number) {
     const aspectRatio = canvas.width / canvas.height
     // eslint-disable-next-line no-param-reassign
     if (aspectRatio > 1) radius *= aspectRatio
@@ -1470,10 +1521,10 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
   window.addEventListener('keydown', (e) => {
     if (e.code === 'KeyP') config.PAUSED = !config.PAUSED
-    if (e.key === ' ') splatStack.push(parseInt(Math.random() * 20, 10) + 5)
+    if (e.key === ' ') splatStack.push(Math.round(Math.random() * 20) + 5)
   })
 
-  function updatePointerDownData(pointer, id, posX, posY) {
+  function updatePointerDownData(pointer: Pointer, id: number, posX: number, posY: number) {
     pointer.id = id
     pointer.down = true
     pointer.moved = false
@@ -1486,7 +1537,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     pointer.color = generateColor()
   }
 
-  function updatePointerMoveData(pointer, posX, posY) {
+  function updatePointerMoveData(pointer: Pointer, posX: number, posY: number) {
     pointer.prevTexcoordX = pointer.texcoordX
     pointer.prevTexcoordY = pointer.texcoordY
     pointer.texcoordX = posX / canvas.width
@@ -1496,33 +1547,33 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     pointer.moved = Math.abs(pointer.deltaX) > 0 || Math.abs(pointer.deltaY) > 0
   }
 
-  function updatePointerUpData(pointer) {
+  function updatePointerUpData(pointer: Pointer) {
     pointer.down = false
   }
 
-  function correctDeltaX(delta) {
+  function correctDeltaX(delta: number) {
     const aspectRatio = canvas.width / canvas.height
     // eslint-disable-next-line no-param-reassign
     if (aspectRatio < 1) delta *= aspectRatio
     return delta
   }
 
-  function correctDeltaY(delta) {
+  function correctDeltaY(delta: number) {
     const aspectRatio = canvas.width / canvas.height
     // eslint-disable-next-line no-param-reassign
     if (aspectRatio > 1) delta /= aspectRatio
     return delta
   }
 
-  function generateColor() {
-    const c = HSVtoRGB(Math.random(), 1.0, 1.0)
+  function generateColor(): ColorRGB {
+    const c = HSVtoRGB(Math.random(), 1, 1)
     c.r *= 0.15
     c.g *= 0.15
     c.b *= 0.15
     return c
   }
 
-  function HSVtoRGB(h, s, v) {
+  function HSVtoRGB(h: number, s: number, v: number) {
     let r
     let g
     let b
@@ -1559,6 +1610,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
         b = v
         break
       case 5:
+      default:
         r = v
         g = p
         b = q
@@ -1572,7 +1624,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     }
   }
 
-  function normalizeColor(input) {
+  function normalizeColor(input: ColorRGB) {
     const output = {
       r: input.r / 255,
       g: input.g / 255,
@@ -1581,13 +1633,13 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     return output
   }
 
-  function wrap(value, min, max) {
+  function wrap(value: number, min: number, max: number) {
     const range = max - min
     if (range === 0) return min
     return ((value - min) % range) + min
   }
 
-  function getResolution(resolution) {
+  function getResolution(resolution: GLenum) {
     let aspectRatio = gl.drawingBufferWidth / gl.drawingBufferHeight
     if (aspectRatio < 1) aspectRatio = 1.0 / aspectRatio
 
@@ -1598,19 +1650,19 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     return { width: min, height: max }
   }
 
-  function getTextureScale(texture, width, height) {
+  function getTextureScale(texture: Texture, width: number, height: number) {
     return {
       x: width / texture.width,
       y: height / texture.height,
     }
   }
 
-  function scaleByPixelRatio(input) {
+  function scaleByPixelRatio(input: number) {
     const pixelRatio = window.devicePixelRatio || 1
     return Math.floor(input * pixelRatio)
   }
 
-  function hashCode(s) {
+  function hashCode(s: string) {
     if (s.length === 0) return 0
     let hash = 0
     for (let i = 0; i < s.length; i++) {
