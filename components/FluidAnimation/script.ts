@@ -89,7 +89,7 @@ type Config = {
   sunraysResolution: number
   sunraysWeight: number
 }
-export type FluidConfigProps = Partial<Config>
+export type FluidConfigProps = Omit<Partial<Config>, 'dyeResolution'>
 
 const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) => {
   // Simulation code
@@ -98,7 +98,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   // eslint-disable-next-line no-param-reassign
   const config: Config = {
     simResolution: 128,
-    dyeResolution: 1024,
+    dyeResolution: canvas.clientWidth,
     densityDissipation: 1,
     velocityDissipation: 0.2,
     pressure: 0.8,
@@ -1678,6 +1678,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
   return () => {
     config.paused = true
+    gl.getExtension('WEBGL_lose_context')?.loseContext()
   }
 }
 

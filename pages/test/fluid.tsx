@@ -6,7 +6,7 @@ import { LayoutPage } from '../../lib/layout'
 import FluidAnimation from '../../components/FluidAnimation'
 
 const Fluid: LayoutPage<PageLayoutProps> = () => {
-  return <FluidAnimation colorful={false} curl={10} dyeResolution={2048} />
+  return <FluidAnimation colorful={false} curl={1} />
 }
 
 Fluid.layout = LayoutFull
