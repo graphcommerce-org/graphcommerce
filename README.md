@@ -1,5 +1,16 @@
 # Reach Digital
 
+- [Next.js](https://nextjs.org/) + [React](https://reactjs.org/)
+- [GraphQL](https://graphql.org/) +
+  [GraphQL Code Generator](https://graphql-code-generator.com/) +
+  [Apollo](https://www.apollographql.com/docs/react/)
+- [GraphCMS](https://graphcms.com/)
+- [Material UI](https://material-ui.com/)
+- [Zeit](https://zeit.co/reachdigital)
+- [Schema-dts](https://github.com/google/schema-dts)
+- [react-schemaorg](https://github.com/google/react-schemaorg) +
+  [schema-dts](https://github.com/google/schema-dts)
+
 # Install
 
 1. `yarn`

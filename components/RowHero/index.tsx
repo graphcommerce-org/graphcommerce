@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
-import { GQLRowHeroVideoFragment } from '../../generated/graphql'
+import { GQLRowHeroFragment } from '../../generated/graphql'
 import LinkInternal from '../LinkInternal/LinkInternal'
 import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
@@ -23,7 +23,7 @@ const useContainerStyles = makeStyles<Theme, ContainerStyles>(
     },
     before: {},
   }),
-  { name: 'RowHeroVideo' },
+  { name: 'RowHero' },
 )
 
 const useStyles = makeStyles(
@@ -50,7 +50,7 @@ const useStyles = makeStyles(
       right: 0,
     },
   }),
-  { name: 'RowHeroVideo' },
+  { name: 'RowHero' },
 )
 
 /**
@@ -61,22 +61,22 @@ const useStyles = makeStyles(
  * ../ContentRenderer/ContentRenderer.graphql
  * ../ContentRenderer/defaultRenderer.tsx
  */
-const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links }) => {
+const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
   // const { width, height, ref } = useResizeObserver<HTMLImageElement>({})
   const classes = useStyles()
   const containerClasses = useContainerStyles()
 
-  const left = video && (
+  const left = asset && (
     <div className={classes.videoContainer}>
       <video autoPlay loop muted playsInline id='video' className={classes.video}>
-        <source src={video.url} type={video.mimeType!} />
+        <source src={asset.url} type={asset.mimeType!} />
       </video>
     </div>
   )
 
   const right = (
     <>
-      <RichText {...content} />
+      <RichText {...text} />
       <div>
         {links.map((link) => {
           if (link.__typename === 'LinkInternal') return <LinkInternal {...link} key={link.id} />
@@ -94,4 +94,4 @@ const RowHeroVideo: React.FC<GQLRowHeroVideoFragment> = ({ content, video, links
   )
 }
 
-export default RowHeroVideo
+export default RowHero

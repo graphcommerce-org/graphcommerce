@@ -13,9 +13,9 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
+  Hex: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
   Date: any
   Json: any
 }
@@ -111,7 +111,6 @@ export type GQLAsset = GQLNode & {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  videoRowHeroVideo: Array<GQLRowHeroVideo>
   personAvatar: Array<GQLPerson>
   companyLogo: Array<GQLCompany>
   colOneIconRowColumnTwo: Array<GQLRowColumnTwo>
@@ -120,6 +119,7 @@ export type GQLAsset = GQLNode & {
   rowColumnThreeColTwoIcon: Array<GQLRowColumnThree>
   rowColumnThreeColThreeIcon: Array<GQLRowColumnThree>
   rowColumnOneColOneIcon: Array<GQLRowColumnOne>
+  rowHeroAsset: Array<GQLRowHero>
   url: Scalars['String']
 }
 
@@ -132,16 +132,6 @@ export type GQLAssetDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
-}
-
-export type GQLAssetVideoRowHeroVideoArgs = {
-  where?: Maybe<GQLRowHeroVideoWhereInput>
-  orderBy?: Maybe<GQLRowHeroVideoOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
 }
 
 export type GQLAssetPersonAvatarArgs = {
@@ -224,6 +214,16 @@ export type GQLAssetRowColumnOneColOneIconArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
+export type GQLAssetRowHeroAssetArgs = {
+  where?: Maybe<GQLRowHeroWhereInput>
+  orderBy?: Maybe<GQLRowHeroOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
 export type GQLAssetUrlArgs = {
   transformation?: Maybe<GQLAssetTransformationInput>
 }
@@ -249,7 +249,6 @@ export type GQLAssetCreateInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  videoRowHeroVideo?: Maybe<GQLRowHeroVideoCreateManyInlineInput>
   personAvatar?: Maybe<GQLPersonCreateManyInlineInput>
   companyLogo?: Maybe<GQLCompanyCreateManyInlineInput>
   colOneIconRowColumnTwo?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
@@ -258,6 +257,7 @@ export type GQLAssetCreateInput = {
   rowColumnThreeColTwoIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   rowColumnOneColOneIcon?: Maybe<GQLRowColumnOneCreateManyInlineInput>
+  rowHeroAsset?: Maybe<GQLRowHeroCreateManyInlineInput>
   localizations?: Maybe<GQLAssetCreateLocalizationsInput>
 }
 
@@ -336,9 +336,6 @@ export type GQLAssetManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  videoRowHeroVideo_every?: Maybe<GQLRowHeroVideoWhereInput>
-  videoRowHeroVideo_some?: Maybe<GQLRowHeroVideoWhereInput>
-  videoRowHeroVideo_none?: Maybe<GQLRowHeroVideoWhereInput>
   personAvatar_every?: Maybe<GQLPersonWhereInput>
   personAvatar_some?: Maybe<GQLPersonWhereInput>
   personAvatar_none?: Maybe<GQLPersonWhereInput>
@@ -363,6 +360,9 @@ export type GQLAssetManyWhereInput = {
   rowColumnOneColOneIcon_every?: Maybe<GQLRowColumnOneWhereInput>
   rowColumnOneColOneIcon_some?: Maybe<GQLRowColumnOneWhereInput>
   rowColumnOneColOneIcon_none?: Maybe<GQLRowColumnOneWhereInput>
+  rowHeroAsset_every?: Maybe<GQLRowHeroWhereInput>
+  rowHeroAsset_some?: Maybe<GQLRowHeroWhereInput>
+  rowHeroAsset_none?: Maybe<GQLRowHeroWhereInput>
 }
 
 export enum GQLAssetOrderByInput {
@@ -401,7 +401,6 @@ export type GQLAssetUpdateInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  videoRowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyInlineInput>
   personAvatar?: Maybe<GQLPersonUpdateManyInlineInput>
   companyLogo?: Maybe<GQLCompanyUpdateManyInlineInput>
   colOneIconRowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
@@ -410,6 +409,7 @@ export type GQLAssetUpdateInput = {
   rowColumnThreeColTwoIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   rowColumnOneColOneIcon?: Maybe<GQLRowColumnOneUpdateManyInlineInput>
+  rowHeroAsset?: Maybe<GQLRowHeroUpdateManyInlineInput>
   localizations?: Maybe<GQLAssetUpdateLocalizationsInput>
 }
 
@@ -586,9 +586,6 @@ export type GQLAssetWhereInput = {
   mimeType_not_starts_with?: Maybe<Scalars['String']>
   mimeType_ends_with?: Maybe<Scalars['String']>
   mimeType_not_ends_with?: Maybe<Scalars['String']>
-  videoRowHeroVideo_every?: Maybe<GQLRowHeroVideoWhereInput>
-  videoRowHeroVideo_some?: Maybe<GQLRowHeroVideoWhereInput>
-  videoRowHeroVideo_none?: Maybe<GQLRowHeroVideoWhereInput>
   personAvatar_every?: Maybe<GQLPersonWhereInput>
   personAvatar_some?: Maybe<GQLPersonWhereInput>
   personAvatar_none?: Maybe<GQLPersonWhereInput>
@@ -613,6 +610,9 @@ export type GQLAssetWhereInput = {
   rowColumnOneColOneIcon_every?: Maybe<GQLRowColumnOneWhereInput>
   rowColumnOneColOneIcon_some?: Maybe<GQLRowColumnOneWhereInput>
   rowColumnOneColOneIcon_none?: Maybe<GQLRowColumnOneWhereInput>
+  rowHeroAsset_every?: Maybe<GQLRowHeroWhereInput>
+  rowHeroAsset_some?: Maybe<GQLRowHeroWhereInput>
+  rowHeroAsset_none?: Maybe<GQLRowHeroWhereInput>
 }
 
 export type GQLAssetWhereUniqueInput = {
@@ -952,7 +952,7 @@ export type GQLLinkExternal = GQLNode & {
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
   description?: Maybe<GQLRichText>
-  rowHeroVideo: Array<GQLRowHeroVideo>
+  rowHeroVideo: Array<GQLRowHero>
   url: Scalars['String']
   title: Scalars['String']
 }
@@ -992,7 +992,7 @@ export type GQLLinkExternalCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   description?: Maybe<Scalars['RichTextAST']>
-  rowHeroVideo?: Maybe<GQLRowHeroVideoCreateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
   url: Scalars['String']
   title: Scalars['String']
   localizations?: Maybe<GQLLinkExternalCreateLocalizationsInput>
@@ -1089,7 +1089,7 @@ export enum GQLLinkExternalOrderByInput {
 
 export type GQLLinkExternalUpdateInput = {
   description?: Maybe<Scalars['RichTextAST']>
-  rowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
   url?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   localizations?: Maybe<GQLLinkExternalUpdateLocalizationsInput>
@@ -1251,7 +1251,7 @@ export type GQLLinkInternal = GQLNode & {
   page?: Maybe<GQLPage>
   rowPeopleWithText: Array<GQLRowPeopleWithText>
   rowServicesWithText: Array<GQLRowServicesWithText>
-  rowHeroVideo: Array<GQLRowHeroVideo>
+  rowHeroVideo: Array<GQLRowHero>
 }
 
 export type GQLLinkInternalLocalizationsArgs = {
@@ -1322,7 +1322,7 @@ export type GQLLinkInternalCreateInput = {
   page?: Maybe<GQLPageCreateOneInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
-  rowHeroVideo?: Maybe<GQLRowHeroVideoCreateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
   localizations?: Maybe<GQLLinkInternalCreateLocalizationsInput>
 }
 
@@ -1425,7 +1425,7 @@ export type GQLLinkInternalUpdateInput = {
   page?: Maybe<GQLPageUpdateOneInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
-  rowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyInlineInput>
+  rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
   localizations?: Maybe<GQLLinkInternalUpdateLocalizationsInput>
 }
 
@@ -1563,13 +1563,13 @@ export type GQLLinkInternalWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type GQLListItems = GQLPage | GQLPerson | GQLCompany | GQLRowHeroVideo | GQLLinkInternal
+export type GQLListItems = GQLPage | GQLPerson | GQLCompany | GQLRowHero | GQLLinkInternal
 
 export type GQLListItemsConnectInput = {
   Page?: Maybe<GQLPageConnectInput>
   Person?: Maybe<GQLPersonConnectInput>
   Company?: Maybe<GQLCompanyConnectInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoConnectInput>
+  RowHero?: Maybe<GQLRowHeroConnectInput>
   LinkInternal?: Maybe<GQLLinkInternalConnectInput>
 }
 
@@ -1577,7 +1577,7 @@ export type GQLListItemsCreateInput = {
   Page?: Maybe<GQLPageCreateInput>
   Person?: Maybe<GQLPersonCreateInput>
   Company?: Maybe<GQLCompanyCreateInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoCreateInput>
+  RowHero?: Maybe<GQLRowHeroCreateInput>
   LinkInternal?: Maybe<GQLLinkInternalCreateInput>
 }
 
@@ -1595,7 +1595,7 @@ export type GQLListItemsUpdateInput = {
   Page?: Maybe<GQLPageUpdateInput>
   Person?: Maybe<GQLPersonUpdateInput>
   Company?: Maybe<GQLCompanyUpdateInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateInput>
+  RowHero?: Maybe<GQLRowHeroUpdateInput>
   LinkInternal?: Maybe<GQLLinkInternalUpdateInput>
 }
 
@@ -1613,7 +1613,7 @@ export type GQLListItemsUpdateManyWithNestedWhereInput = {
   Page?: Maybe<GQLPageUpdateManyWithNestedWhereInput>
   Person?: Maybe<GQLPersonUpdateManyWithNestedWhereInput>
   Company?: Maybe<GQLCompanyUpdateManyWithNestedWhereInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyWithNestedWhereInput>
+  RowHero?: Maybe<GQLRowHeroUpdateManyWithNestedWhereInput>
   LinkInternal?: Maybe<GQLLinkInternalUpdateManyWithNestedWhereInput>
 }
 
@@ -1630,7 +1630,7 @@ export type GQLListItemsUpdateWithNestedWhereUniqueInput = {
   Page?: Maybe<GQLPageUpdateWithNestedWhereUniqueInput>
   Person?: Maybe<GQLPersonUpdateWithNestedWhereUniqueInput>
   Company?: Maybe<GQLCompanyUpdateWithNestedWhereUniqueInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateWithNestedWhereUniqueInput>
+  RowHero?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
   LinkInternal?: Maybe<GQLLinkInternalUpdateWithNestedWhereUniqueInput>
 }
 
@@ -1638,7 +1638,7 @@ export type GQLListItemsUpsertWithNestedWhereUniqueInput = {
   Page?: Maybe<GQLPageUpsertWithNestedWhereUniqueInput>
   Person?: Maybe<GQLPersonUpsertWithNestedWhereUniqueInput>
   Company?: Maybe<GQLCompanyUpsertWithNestedWhereUniqueInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpsertWithNestedWhereUniqueInput>
+  RowHero?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
   LinkInternal?: Maybe<GQLLinkInternalUpsertWithNestedWhereUniqueInput>
 }
 
@@ -1646,7 +1646,7 @@ export type GQLListItemsWhereInput = {
   Page?: Maybe<GQLPageWhereInput>
   Person?: Maybe<GQLPersonWhereInput>
   Company?: Maybe<GQLCompanyWhereInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoWhereInput>
+  RowHero?: Maybe<GQLRowHeroWhereInput>
   LinkInternal?: Maybe<GQLLinkInternalWhereInput>
 }
 
@@ -1654,7 +1654,7 @@ export type GQLListItemsWhereUniqueInput = {
   Page?: Maybe<GQLPageWhereUniqueInput>
   Person?: Maybe<GQLPersonWhereUniqueInput>
   Company?: Maybe<GQLCompanyWhereUniqueInput>
-  RowHeroVideo?: Maybe<GQLRowHeroVideoWhereUniqueInput>
+  RowHero?: Maybe<GQLRowHeroWhereUniqueInput>
   LinkInternal?: Maybe<GQLLinkInternalWhereUniqueInput>
 }
 
@@ -2047,16 +2047,16 @@ export type GQLMutation = {
   deleteManyRowCompanySliders: GQLBatchPayload
   publishManyRowCompanySliders: GQLBatchPayload
   unpublishManyRowCompanySliders: GQLBatchPayload
-  createRowHeroVideo?: Maybe<GQLRowHeroVideo>
-  updateRowHeroVideo?: Maybe<GQLRowHeroVideo>
-  deleteRowHeroVideo?: Maybe<GQLRowHeroVideo>
-  upsertRowHeroVideo?: Maybe<GQLRowHeroVideo>
-  publishRowHeroVideo?: Maybe<GQLRowHeroVideo>
-  unpublishRowHeroVideo?: Maybe<GQLRowHeroVideo>
-  updateManyRowHeroVideos: GQLBatchPayload
-  deleteManyRowHeroVideos: GQLBatchPayload
-  publishManyRowHeroVideos: GQLBatchPayload
-  unpublishManyRowHeroVideos: GQLBatchPayload
+  createRowHero?: Maybe<GQLRowHero>
+  updateRowHero?: Maybe<GQLRowHero>
+  deleteRowHero?: Maybe<GQLRowHero>
+  upsertRowHero?: Maybe<GQLRowHero>
+  publishRowHero?: Maybe<GQLRowHero>
+  unpublishRowHero?: Maybe<GQLRowHero>
+  updateManyRowHeroes: GQLBatchPayload
+  deleteManyRowHeroes: GQLBatchPayload
+  publishManyRowHeroes: GQLBatchPayload
+  unpublishManyRowHeroes: GQLBatchPayload
   createRowPeopleWithText?: Maybe<GQLRowPeopleWithText>
   updateRowPeopleWithText?: Maybe<GQLRowPeopleWithText>
   deleteRowPeopleWithText?: Maybe<GQLRowPeopleWithText>
@@ -2711,50 +2711,50 @@ export type GQLMutationUnpublishManyRowCompanySlidersArgs = {
   from?: Array<GQLStage>
 }
 
-export type GQLMutationCreateRowHeroVideoArgs = {
-  data: GQLRowHeroVideoCreateInput
+export type GQLMutationCreateRowHeroArgs = {
+  data: GQLRowHeroCreateInput
 }
 
-export type GQLMutationUpdateRowHeroVideoArgs = {
-  where: GQLRowHeroVideoWhereUniqueInput
-  data: GQLRowHeroVideoUpdateInput
+export type GQLMutationUpdateRowHeroArgs = {
+  where: GQLRowHeroWhereUniqueInput
+  data: GQLRowHeroUpdateInput
 }
 
-export type GQLMutationDeleteRowHeroVideoArgs = {
-  where: GQLRowHeroVideoWhereUniqueInput
+export type GQLMutationDeleteRowHeroArgs = {
+  where: GQLRowHeroWhereUniqueInput
 }
 
-export type GQLMutationUpsertRowHeroVideoArgs = {
-  where: GQLRowHeroVideoWhereUniqueInput
-  upsert: GQLRowHeroVideoUpsertInput
+export type GQLMutationUpsertRowHeroArgs = {
+  where: GQLRowHeroWhereUniqueInput
+  upsert: GQLRowHeroUpsertInput
 }
 
-export type GQLMutationPublishRowHeroVideoArgs = {
-  where: GQLRowHeroVideoWhereUniqueInput
+export type GQLMutationPublishRowHeroArgs = {
+  where: GQLRowHeroWhereUniqueInput
   to?: Array<GQLStage>
 }
 
-export type GQLMutationUnpublishRowHeroVideoArgs = {
-  where: GQLRowHeroVideoWhereUniqueInput
+export type GQLMutationUnpublishRowHeroArgs = {
+  where: GQLRowHeroWhereUniqueInput
   from?: Array<GQLStage>
 }
 
-export type GQLMutationUpdateManyRowHeroVideosArgs = {
-  where?: Maybe<GQLRowHeroVideoManyWhereInput>
-  data: GQLRowHeroVideoUpdateManyInput
+export type GQLMutationUpdateManyRowHeroesArgs = {
+  where?: Maybe<GQLRowHeroManyWhereInput>
+  data: GQLRowHeroUpdateManyInput
 }
 
-export type GQLMutationDeleteManyRowHeroVideosArgs = {
-  where?: Maybe<GQLRowHeroVideoManyWhereInput>
+export type GQLMutationDeleteManyRowHeroesArgs = {
+  where?: Maybe<GQLRowHeroManyWhereInput>
 }
 
-export type GQLMutationPublishManyRowHeroVideosArgs = {
-  where?: Maybe<GQLRowHeroVideoManyWhereInput>
+export type GQLMutationPublishManyRowHeroesArgs = {
+  where?: Maybe<GQLRowHeroManyWhereInput>
   to?: Array<GQLStage>
 }
 
-export type GQLMutationUnpublishManyRowHeroVideosArgs = {
-  where?: Maybe<GQLRowHeroVideoManyWhereInput>
+export type GQLMutationUnpublishManyRowHeroesArgs = {
+  where?: Maybe<GQLRowHeroManyWhereInput>
   from?: Array<GQLStage>
 }
 
@@ -2984,6 +2984,7 @@ export type GQLPage = GQLNode & {
   content: Array<GQLPageContent>
   metaRobots?: Maybe<GQLMetaRobots>
   list: Array<GQLZzDeleteList>
+  content2: Array<GQLPageContent2>
   internalLink: Array<GQLLinkInternal>
   menu: Array<GQLMenu>
 }
@@ -3008,6 +3009,14 @@ export type GQLPageContentArgs = {
 }
 
 export type GQLPageListArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLPageContent2Args = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -3047,14 +3056,132 @@ export type GQLPageConnection = {
   aggregate: GQLAggregate
 }
 
-export type GQLPageContent = GQLRowHeroVideo
+export type GQLPageContent = GQLRowHero
+
+export type GQLPageContent2 =
+  | GQLRowColumnThree
+  | GQLRowColumnTwo
+  | GQLRowRecentBlogPost
+  | GQLRowPeopleWithText
+  | GQLRowColumnOne
+  | GQLRowCompanySlider
+  | GQLRowServicesWithText
+
+export type GQLPageContent2ConnectInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeConnectInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoConnectInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostConnectInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextConnectInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneConnectInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderConnectInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextConnectInput>
+}
+
+export type GQLPageContent2CreateInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeCreateInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoCreateInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneCreateInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderCreateInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
+}
+
+export type GQLPageContent2CreateManyInlineInput = {
+  create?: Maybe<Array<GQLPageContent2CreateInput>>
+  connect?: Maybe<Array<GQLPageContent2WhereUniqueInput>>
+}
+
+export type GQLPageContent2CreateOneInlineInput = {
+  create?: Maybe<GQLPageContent2CreateInput>
+  connect?: Maybe<GQLPageContent2WhereUniqueInput>
+}
+
+export type GQLPageContent2UpdateInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeUpdateInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneUpdateInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
+}
+
+export type GQLPageContent2UpdateManyInlineInput = {
+  create?: Maybe<Array<GQLPageContent2CreateInput>>
+  connect?: Maybe<Array<GQLPageContent2ConnectInput>>
+  set?: Maybe<Array<GQLPageContent2WhereUniqueInput>>
+  update?: Maybe<Array<GQLPageContent2UpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLPageContent2UpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLPageContent2WhereUniqueInput>>
+  delete?: Maybe<Array<GQLPageContent2WhereUniqueInput>>
+}
+
+export type GQLPageContent2UpdateManyWithNestedWhereInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeUpdateManyWithNestedWhereInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyWithNestedWhereInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyWithNestedWhereInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyWithNestedWhereInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneUpdateManyWithNestedWhereInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateManyWithNestedWhereInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
+}
+
+export type GQLPageContent2UpdateOneInlineInput = {
+  create?: Maybe<GQLPageContent2CreateInput>
+  update?: Maybe<GQLPageContent2UpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLPageContent2UpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLPageContent2WhereUniqueInput>
+  disconnect?: Maybe<Scalars['Boolean']>
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLPageContent2UpdateWithNestedWhereUniqueInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeUpdateWithNestedWhereUniqueInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateWithNestedWhereUniqueInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneUpdateWithNestedWhereUniqueInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateWithNestedWhereUniqueInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
+}
+
+export type GQLPageContent2UpsertWithNestedWhereUniqueInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeUpsertWithNestedWhereUniqueInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoUpsertWithNestedWhereUniqueInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpsertWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneUpsertWithNestedWhereUniqueInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderUpsertWithNestedWhereUniqueInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
+}
+
+export type GQLPageContent2WhereInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeWhereInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoWhereInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextWhereInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneWhereInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderWhereInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
+}
+
+export type GQLPageContent2WhereUniqueInput = {
+  RowColumnThree?: Maybe<GQLRowColumnThreeWhereUniqueInput>
+  RowColumnTwo?: Maybe<GQLRowColumnTwoWhereUniqueInput>
+  RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
+  RowPeopleWithText?: Maybe<GQLRowPeopleWithTextWhereUniqueInput>
+  RowColumnOne?: Maybe<GQLRowColumnOneWhereUniqueInput>
+  RowCompanySlider?: Maybe<GQLRowCompanySliderWhereUniqueInput>
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
+}
 
 export type GQLPageContentConnectInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoConnectInput>
+  RowHero?: Maybe<GQLRowHeroConnectInput>
 }
 
 export type GQLPageContentCreateInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoCreateInput>
+  RowHero?: Maybe<GQLRowHeroCreateInput>
 }
 
 export type GQLPageContentCreateManyInlineInput = {
@@ -3068,7 +3195,7 @@ export type GQLPageContentCreateOneInlineInput = {
 }
 
 export type GQLPageContentUpdateInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateInput>
+  RowHero?: Maybe<GQLRowHeroUpdateInput>
 }
 
 export type GQLPageContentUpdateManyInlineInput = {
@@ -3082,7 +3209,7 @@ export type GQLPageContentUpdateManyInlineInput = {
 }
 
 export type GQLPageContentUpdateManyWithNestedWhereInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateManyWithNestedWhereInput>
+  RowHero?: Maybe<GQLRowHeroUpdateManyWithNestedWhereInput>
 }
 
 export type GQLPageContentUpdateOneInlineInput = {
@@ -3095,19 +3222,19 @@ export type GQLPageContentUpdateOneInlineInput = {
 }
 
 export type GQLPageContentUpdateWithNestedWhereUniqueInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpdateWithNestedWhereUniqueInput>
+  RowHero?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
 }
 
 export type GQLPageContentUpsertWithNestedWhereUniqueInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoUpsertWithNestedWhereUniqueInput>
+  RowHero?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
 }
 
 export type GQLPageContentWhereInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoWhereInput>
+  RowHero?: Maybe<GQLRowHeroWhereInput>
 }
 
 export type GQLPageContentWhereUniqueInput = {
-  RowHeroVideo?: Maybe<GQLRowHeroVideoWhereUniqueInput>
+  RowHero?: Maybe<GQLRowHeroWhereUniqueInput>
 }
 
 export type GQLPageCreateInput = {
@@ -3120,6 +3247,7 @@ export type GQLPageCreateInput = {
   content?: Maybe<GQLPageContentCreateManyInlineInput>
   metaRobots?: Maybe<GQLMetaRobots>
   list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
+  content2?: Maybe<GQLPageContent2CreateManyInlineInput>
   internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
   menu?: Maybe<GQLMenuCreateManyInlineInput>
   localizations?: Maybe<GQLPageCreateLocalizationsInput>
@@ -3247,6 +3375,7 @@ export type GQLPageUpdateInput = {
   content?: Maybe<GQLPageContentUpdateManyInlineInput>
   metaRobots?: Maybe<GQLMetaRobots>
   list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
+  content2?: Maybe<GQLPageContent2UpdateManyInlineInput>
   internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   menu?: Maybe<GQLMenuUpdateManyInlineInput>
   localizations?: Maybe<GQLPageUpdateLocalizationsInput>
@@ -3953,9 +4082,9 @@ export type GQLQuery = {
   rowCompanySliders: Array<GQLRowCompanySlider>
   rowCompanySlider?: Maybe<GQLRowCompanySlider>
   rowCompanySlidersConnection: GQLRowCompanySliderConnection
-  rowHeroVideos: Array<GQLRowHeroVideo>
-  rowHeroVideo?: Maybe<GQLRowHeroVideo>
-  rowHeroVideosConnection: GQLRowHeroVideoConnection
+  rowHeroes: Array<GQLRowHero>
+  rowHero?: Maybe<GQLRowHero>
+  rowHeroesConnection: GQLRowHeroConnection
   rowPeopleWithTexts: Array<GQLRowPeopleWithText>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithText>
   rowPeopleWithTextsConnection: GQLRowPeopleWithTextConnection
@@ -4318,9 +4447,9 @@ export type GQLQueryRowCompanySlidersConnectionArgs = {
   stage?: GQLStage
 }
 
-export type GQLQueryRowHeroVideosArgs = {
-  where?: Maybe<GQLRowHeroVideoWhereInput>
-  orderBy?: Maybe<GQLRowHeroVideoOrderByInput>
+export type GQLQueryRowHeroesArgs = {
+  where?: Maybe<GQLRowHeroWhereInput>
+  orderBy?: Maybe<GQLRowHeroOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -4329,14 +4458,14 @@ export type GQLQueryRowHeroVideosArgs = {
   stage?: GQLStage
 }
 
-export type GQLQueryRowHeroVideoArgs = {
-  where: GQLRowHeroVideoWhereUniqueInput
+export type GQLQueryRowHeroArgs = {
+  where: GQLRowHeroWhereUniqueInput
   stage?: GQLStage
 }
 
-export type GQLQueryRowHeroVideosConnectionArgs = {
-  where?: Maybe<GQLRowHeroVideoWhereInput>
-  orderBy?: Maybe<GQLRowHeroVideoOrderByInput>
+export type GQLQueryRowHeroesConnectionArgs = {
+  where?: Maybe<GQLRowHeroWhereInput>
+  orderBy?: Maybe<GQLRowHeroOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -4492,12 +4621,21 @@ export type GQLRowColumnOne = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   colOne?: Maybe<GQLRichText>
   colOneIcon?: Maybe<GQLAsset>
+  page: Array<GQLPage>
 }
 
 export type GQLRowColumnOneDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
+}
+
+export type GQLRowColumnOnePageArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
 }
 
 export type GQLRowColumnOneConnectInput = {
@@ -4517,6 +4655,7 @@ export type GQLRowColumnOneCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   colOne?: Maybe<Scalars['RichTextAST']>
   colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
+  page?: Maybe<GQLPageCreateManyInlineInput>
 }
 
 export type GQLRowColumnOneCreateManyInlineInput = {
@@ -4591,6 +4730,7 @@ export enum GQLRowColumnOneOrderByInput {
 export type GQLRowColumnOneUpdateInput = {
   colOne?: Maybe<Scalars['RichTextAST']>
   colOneIcon?: Maybe<GQLAssetUpdateOneInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
 }
 
 export type GQLRowColumnOneUpdateManyInlineInput = {
@@ -4700,6 +4840,7 @@ export type GQLRowColumnThree = GQLNode & {
   colTwoIcon?: Maybe<GQLAsset>
   colThree: GQLRichText
   colThreeIcon?: Maybe<GQLAsset>
+  page: Array<GQLPage>
 }
 
 export type GQLRowColumnThreeLocalizationsArgs = {
@@ -4711,6 +4852,14 @@ export type GQLRowColumnThreeDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
+}
+
+export type GQLRowColumnThreePageArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
 }
 
 export type GQLRowColumnThreeConnectInput = {
@@ -4734,6 +4883,7 @@ export type GQLRowColumnThreeCreateInput = {
   colTwoIcon?: Maybe<GQLAssetCreateOneInlineInput>
   colThree: Scalars['RichTextAST']
   colThreeIcon?: Maybe<GQLAssetCreateOneInlineInput>
+  page?: Maybe<GQLPageCreateManyInlineInput>
   localizations?: Maybe<GQLRowColumnThreeCreateLocalizationsInput>
 }
 
@@ -4832,6 +4982,7 @@ export type GQLRowColumnThreeUpdateInput = {
   colTwoIcon?: Maybe<GQLAssetUpdateOneInlineInput>
   colThree?: Maybe<Scalars['RichTextAST']>
   colThreeIcon?: Maybe<GQLAssetUpdateOneInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
   localizations?: Maybe<GQLRowColumnThreeUpdateLocalizationsInput>
 }
 
@@ -4972,6 +5123,7 @@ export type GQLRowColumnTwo = GQLNode & {
   colOneIcon: GQLAsset
   colTwo: GQLRichText
   colTwoIcon: GQLAsset
+  page: Array<GQLPage>
 }
 
 export type GQLRowColumnTwoLocalizationsArgs = {
@@ -4983,6 +5135,14 @@ export type GQLRowColumnTwoDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
+}
+
+export type GQLRowColumnTwoPageArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
 }
 
 export type GQLRowColumnTwoConnectInput = {
@@ -5004,6 +5164,7 @@ export type GQLRowColumnTwoCreateInput = {
   colOneIcon: GQLAssetCreateOneInlineInput
   colTwo: Scalars['RichTextAST']
   colTwoIcon: GQLAssetCreateOneInlineInput
+  page?: Maybe<GQLPageCreateManyInlineInput>
   localizations?: Maybe<GQLRowColumnTwoCreateLocalizationsInput>
 }
 
@@ -5098,6 +5259,7 @@ export type GQLRowColumnTwoUpdateInput = {
   colOneIcon?: Maybe<GQLAssetUpdateOneInlineInput>
   colTwo?: Maybe<Scalars['RichTextAST']>
   colTwoIcon?: Maybe<GQLAssetUpdateOneInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
   localizations?: Maybe<GQLRowColumnTwoUpdateLocalizationsInput>
 }
 
@@ -5230,6 +5392,7 @@ export type GQLRowCompanySlider = GQLNode & {
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
   companies: Array<GQLCompany>
+  page: Array<GQLPage>
 }
 
 export type GQLRowCompanySliderDocumentInStagesArgs = {
@@ -5241,6 +5404,14 @@ export type GQLRowCompanySliderDocumentInStagesArgs = {
 export type GQLRowCompanySliderCompaniesArgs = {
   where?: Maybe<GQLCompanyWhereInput>
   orderBy?: Maybe<GQLCompanyOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLRowCompanySliderPageArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5264,6 +5435,7 @@ export type GQLRowCompanySliderCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   companies?: Maybe<GQLCompanyCreateManyInlineInput>
+  page?: Maybe<GQLPageCreateManyInlineInput>
 }
 
 export type GQLRowCompanySliderCreateManyInlineInput = {
@@ -5339,6 +5511,7 @@ export enum GQLRowCompanySliderOrderByInput {
 
 export type GQLRowCompanySliderUpdateInput = {
   companies?: Maybe<GQLCompanyUpdateManyInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
 }
 
 export type GQLRowCompanySliderUpdateManyInlineInput = {
@@ -5433,29 +5606,28 @@ export type GQLRowCompanySliderWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-export type GQLRowHeroVideo = GQLNode & {
-  __typename?: 'RowHeroVideo'
+export type GQLRowHero = GQLNode & {
+  __typename?: 'RowHero'
   stage: GQLStage
-  documentInStages: Array<GQLRowHeroVideo>
+  documentInStages: Array<GQLRowHero>
   id: Scalars['ID']
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
-  content: GQLRichText
-  title: GQLRichText
-  video?: Maybe<GQLAsset>
+  asset: GQLAsset
+  text: GQLRichText
   links: Array<GQLRowHeroVideoLinks>
   page: Array<GQLPage>
   list: Array<GQLZzDeleteList>
 }
 
-export type GQLRowHeroVideoDocumentInStagesArgs = {
+export type GQLRowHeroDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
 }
 
-export type GQLRowHeroVideoLinksArgs = {
+export type GQLRowHeroLinksArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5463,7 +5635,7 @@ export type GQLRowHeroVideoLinksArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type GQLRowHeroVideoPageArgs = {
+export type GQLRowHeroPageArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5471,7 +5643,7 @@ export type GQLRowHeroVideoPageArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type GQLRowHeroVideoListArgs = {
+export type GQLRowHeroListArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5479,43 +5651,148 @@ export type GQLRowHeroVideoListArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-export type GQLRowHeroVideoConnectInput = {
-  where: GQLRowHeroVideoWhereUniqueInput
+export type GQLRowHeroConnectInput = {
+  where: GQLRowHeroWhereUniqueInput
   position?: Maybe<GQLConnectPositionInput>
 }
 
-export type GQLRowHeroVideoConnection = {
-  __typename?: 'RowHeroVideoConnection'
+export type GQLRowHeroConnection = {
+  __typename?: 'RowHeroConnection'
   pageInfo: GQLPageInfo
-  edges: Array<GQLRowHeroVideoEdge>
+  edges: Array<GQLRowHeroEdge>
   aggregate: GQLAggregate
 }
 
-export type GQLRowHeroVideoCreateInput = {
+export type GQLRowHeroCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['RichTextAST']
-  title: Scalars['RichTextAST']
-  video?: Maybe<GQLAssetCreateOneInlineInput>
+  asset: GQLAssetCreateOneInlineInput
+  text: Scalars['RichTextAST']
   links?: Maybe<GQLRowHeroVideoLinksCreateManyInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
   list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
 }
 
-export type GQLRowHeroVideoCreateManyInlineInput = {
-  create?: Maybe<Array<GQLRowHeroVideoCreateInput>>
-  connect?: Maybe<Array<GQLRowHeroVideoWhereUniqueInput>>
+export type GQLRowHeroCreateManyInlineInput = {
+  create?: Maybe<Array<GQLRowHeroCreateInput>>
+  connect?: Maybe<Array<GQLRowHeroWhereUniqueInput>>
 }
 
-export type GQLRowHeroVideoCreateOneInlineInput = {
-  create?: Maybe<GQLRowHeroVideoCreateInput>
-  connect?: Maybe<GQLRowHeroVideoWhereUniqueInput>
+export type GQLRowHeroCreateOneInlineInput = {
+  create?: Maybe<GQLRowHeroCreateInput>
+  connect?: Maybe<GQLRowHeroWhereUniqueInput>
 }
 
-export type GQLRowHeroVideoEdge = {
-  __typename?: 'RowHeroVideoEdge'
-  node: GQLRowHeroVideo
+export type GQLRowHeroEdge = {
+  __typename?: 'RowHeroEdge'
+  node: GQLRowHero
   cursor: Scalars['String']
+}
+
+export type GQLRowHeroManyWhereInput = {
+  _search?: Maybe<Scalars['String']>
+  AND?: Maybe<Array<GQLRowHeroWhereInput>>
+  OR?: Maybe<Array<GQLRowHeroWhereInput>>
+  NOT?: Maybe<Array<GQLRowHeroWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  id_not?: Maybe<Scalars['ID']>
+  id_in?: Maybe<Array<Scalars['ID']>>
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  id_contains?: Maybe<Scalars['ID']>
+  id_not_contains?: Maybe<Scalars['ID']>
+  id_starts_with?: Maybe<Scalars['ID']>
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  id_ends_with?: Maybe<Scalars['ID']>
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  asset?: Maybe<GQLAssetWhereInput>
+}
+
+export enum GQLRowHeroOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+}
+
+export type GQLRowHeroUpdateInput = {
+  asset?: Maybe<GQLAssetUpdateOneInlineInput>
+  text?: Maybe<Scalars['RichTextAST']>
+  links?: Maybe<GQLRowHeroVideoLinksUpdateManyInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
+  list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
+}
+
+export type GQLRowHeroUpdateManyInlineInput = {
+  create?: Maybe<Array<GQLRowHeroCreateInput>>
+  connect?: Maybe<Array<GQLRowHeroConnectInput>>
+  set?: Maybe<Array<GQLRowHeroWhereUniqueInput>>
+  update?: Maybe<Array<GQLRowHeroUpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLRowHeroUpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLRowHeroWhereUniqueInput>>
+  delete?: Maybe<Array<GQLRowHeroWhereUniqueInput>>
+}
+
+export type GQLRowHeroUpdateManyInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  text: Scalars['RichTextAST']
+}
+
+export type GQLRowHeroUpdateManyWithNestedWhereInput = {
+  where: GQLRowHeroWhereInput
+  data: GQLRowHeroUpdateManyInput
+}
+
+export type GQLRowHeroUpdateOneInlineInput = {
+  create?: Maybe<GQLRowHeroCreateInput>
+  update?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLRowHeroWhereUniqueInput>
+  disconnect?: Maybe<Scalars['Boolean']>
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type GQLRowHeroUpdateWithNestedWhereUniqueInput = {
+  where: GQLRowHeroWhereUniqueInput
+  data: GQLRowHeroUpdateInput
+}
+
+export type GQLRowHeroUpsertInput = {
+  create: GQLRowHeroCreateInput
+  update: GQLRowHeroUpdateInput
+}
+
+export type GQLRowHeroUpsertWithNestedWhereUniqueInput = {
+  where: GQLRowHeroWhereUniqueInput
+  data: GQLRowHeroUpsertInput
 }
 
 export type GQLRowHeroVideoLinks = GQLLinkExternal | GQLLinkInternal
@@ -5589,11 +5866,11 @@ export type GQLRowHeroVideoLinksWhereUniqueInput = {
   LinkInternal?: Maybe<GQLLinkInternalWhereUniqueInput>
 }
 
-export type GQLRowHeroVideoManyWhereInput = {
+export type GQLRowHeroWhereInput = {
   _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<GQLRowHeroVideoWhereInput>>
-  OR?: Maybe<Array<GQLRowHeroVideoWhereInput>>
-  NOT?: Maybe<Array<GQLRowHeroVideoWhereInput>>
+  AND?: Maybe<Array<GQLRowHeroWhereInput>>
+  OR?: Maybe<Array<GQLRowHeroWhereInput>>
+  NOT?: Maybe<Array<GQLRowHeroWhereInput>>
   id?: Maybe<Scalars['ID']>
   id_not?: Maybe<Scalars['ID']>
   id_in?: Maybe<Array<Scalars['ID']>>
@@ -5628,118 +5905,10 @@ export type GQLRowHeroVideoManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  video?: Maybe<GQLAssetWhereInput>
+  asset?: Maybe<GQLAssetWhereInput>
 }
 
-export enum GQLRowHeroVideoOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-}
-
-export type GQLRowHeroVideoUpdateInput = {
-  content?: Maybe<Scalars['RichTextAST']>
-  title?: Maybe<Scalars['RichTextAST']>
-  video?: Maybe<GQLAssetUpdateOneInlineInput>
-  links?: Maybe<GQLRowHeroVideoLinksUpdateManyInlineInput>
-  page?: Maybe<GQLPageUpdateManyInlineInput>
-  list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
-}
-
-export type GQLRowHeroVideoUpdateManyInlineInput = {
-  create?: Maybe<Array<GQLRowHeroVideoCreateInput>>
-  connect?: Maybe<Array<GQLRowHeroVideoConnectInput>>
-  set?: Maybe<Array<GQLRowHeroVideoWhereUniqueInput>>
-  update?: Maybe<Array<GQLRowHeroVideoUpdateWithNestedWhereUniqueInput>>
-  upsert?: Maybe<Array<GQLRowHeroVideoUpsertWithNestedWhereUniqueInput>>
-  disconnect?: Maybe<Array<GQLRowHeroVideoWhereUniqueInput>>
-  delete?: Maybe<Array<GQLRowHeroVideoWhereUniqueInput>>
-}
-
-export type GQLRowHeroVideoUpdateManyInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  content: Scalars['RichTextAST']
-  title: Scalars['RichTextAST']
-}
-
-export type GQLRowHeroVideoUpdateManyWithNestedWhereInput = {
-  where: GQLRowHeroVideoWhereInput
-  data: GQLRowHeroVideoUpdateManyInput
-}
-
-export type GQLRowHeroVideoUpdateOneInlineInput = {
-  create?: Maybe<GQLRowHeroVideoCreateInput>
-  update?: Maybe<GQLRowHeroVideoUpdateWithNestedWhereUniqueInput>
-  upsert?: Maybe<GQLRowHeroVideoUpsertWithNestedWhereUniqueInput>
-  connect?: Maybe<GQLRowHeroVideoWhereUniqueInput>
-  disconnect?: Maybe<Scalars['Boolean']>
-  delete?: Maybe<Scalars['Boolean']>
-}
-
-export type GQLRowHeroVideoUpdateWithNestedWhereUniqueInput = {
-  where: GQLRowHeroVideoWhereUniqueInput
-  data: GQLRowHeroVideoUpdateInput
-}
-
-export type GQLRowHeroVideoUpsertInput = {
-  create: GQLRowHeroVideoCreateInput
-  update: GQLRowHeroVideoUpdateInput
-}
-
-export type GQLRowHeroVideoUpsertWithNestedWhereUniqueInput = {
-  where: GQLRowHeroVideoWhereUniqueInput
-  data: GQLRowHeroVideoUpsertInput
-}
-
-export type GQLRowHeroVideoWhereInput = {
-  _search?: Maybe<Scalars['String']>
-  AND?: Maybe<Array<GQLRowHeroVideoWhereInput>>
-  OR?: Maybe<Array<GQLRowHeroVideoWhereInput>>
-  NOT?: Maybe<Array<GQLRowHeroVideoWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  id_not?: Maybe<Scalars['ID']>
-  id_in?: Maybe<Array<Scalars['ID']>>
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  id_contains?: Maybe<Scalars['ID']>
-  id_not_contains?: Maybe<Scalars['ID']>
-  id_starts_with?: Maybe<Scalars['ID']>
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  id_ends_with?: Maybe<Scalars['ID']>
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-  video?: Maybe<GQLAssetWhereInput>
-}
-
-export type GQLRowHeroVideoWhereUniqueInput = {
+export type GQLRowHeroWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
@@ -5756,6 +5925,7 @@ export type GQLRowPeopleWithText = GQLNode & {
   text: GQLRichText
   links: Array<GQLLinkInternal>
   personList?: Maybe<GQLPersonList>
+  page: Array<GQLPage>
 }
 
 export type GQLRowPeopleWithTextLocalizationsArgs = {
@@ -5772,6 +5942,14 @@ export type GQLRowPeopleWithTextDocumentInStagesArgs = {
 export type GQLRowPeopleWithTextLinksArgs = {
   where?: Maybe<GQLLinkInternalWhereInput>
   orderBy?: Maybe<GQLLinkInternalOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLRowPeopleWithTextPageArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5797,6 +5975,7 @@ export type GQLRowPeopleWithTextCreateInput = {
   text: Scalars['RichTextAST']
   links?: Maybe<GQLLinkInternalCreateManyInlineInput>
   personList?: Maybe<GQLPersonListCreateOneInlineInput>
+  page?: Maybe<GQLPageCreateManyInlineInput>
   localizations?: Maybe<GQLRowPeopleWithTextCreateLocalizationsInput>
 }
 
@@ -5891,6 +6070,7 @@ export type GQLRowPeopleWithTextUpdateInput = {
   text?: Maybe<Scalars['RichTextAST']>
   links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   personList?: Maybe<GQLPersonListUpdateOneInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
   localizations?: Maybe<GQLRowPeopleWithTextUpdateLocalizationsInput>
 }
 
@@ -6023,12 +6203,26 @@ export type GQLRowRecentBlogPost = GQLNode & {
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
   limit?: Maybe<Scalars['Int']>
+  page: Array<GQLPage>
 }
 
 export type GQLRowRecentBlogPostDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
+}
+
+export type GQLRowRecentBlogPostPageArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLRowRecentBlogPostConnectInput = {
+  where: GQLRowRecentBlogPostWhereUniqueInput
+  position?: Maybe<GQLConnectPositionInput>
 }
 
 export type GQLRowRecentBlogPostConnection = {
@@ -6042,6 +6236,17 @@ export type GQLRowRecentBlogPostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   limit?: Maybe<Scalars['Int']>
+  page?: Maybe<GQLPageCreateManyInlineInput>
+}
+
+export type GQLRowRecentBlogPostCreateManyInlineInput = {
+  create?: Maybe<Array<GQLRowRecentBlogPostCreateInput>>
+  connect?: Maybe<Array<GQLRowRecentBlogPostWhereUniqueInput>>
+}
+
+export type GQLRowRecentBlogPostCreateOneInlineInput = {
+  create?: Maybe<GQLRowRecentBlogPostCreateInput>
+  connect?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
 }
 
 export type GQLRowRecentBlogPostEdge = {
@@ -6114,6 +6319,17 @@ export enum GQLRowRecentBlogPostOrderByInput {
 
 export type GQLRowRecentBlogPostUpdateInput = {
   limit?: Maybe<Scalars['Int']>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
+}
+
+export type GQLRowRecentBlogPostUpdateManyInlineInput = {
+  create?: Maybe<Array<GQLRowRecentBlogPostCreateInput>>
+  connect?: Maybe<Array<GQLRowRecentBlogPostConnectInput>>
+  set?: Maybe<Array<GQLRowRecentBlogPostWhereUniqueInput>>
+  update?: Maybe<Array<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>>
+  upsert?: Maybe<Array<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>>
+  disconnect?: Maybe<Array<GQLRowRecentBlogPostWhereUniqueInput>>
+  delete?: Maybe<Array<GQLRowRecentBlogPostWhereUniqueInput>>
 }
 
 export type GQLRowRecentBlogPostUpdateManyInput = {
@@ -6125,6 +6341,15 @@ export type GQLRowRecentBlogPostUpdateManyInput = {
 export type GQLRowRecentBlogPostUpdateManyWithNestedWhereInput = {
   where: GQLRowRecentBlogPostWhereInput
   data: GQLRowRecentBlogPostUpdateManyInput
+}
+
+export type GQLRowRecentBlogPostUpdateOneInlineInput = {
+  create?: Maybe<GQLRowRecentBlogPostCreateInput>
+  update?: Maybe<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>
+  upsert?: Maybe<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>
+  connect?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
+  disconnect?: Maybe<Scalars['Boolean']>
+  delete?: Maybe<Scalars['Boolean']>
 }
 
 export type GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput = {
@@ -6207,6 +6432,7 @@ export type GQLRowServicesWithText = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   text: Scalars['String']
   links: Array<GQLLinkInternal>
+  page: Array<GQLPage>
 }
 
 export type GQLRowServicesWithTextLocalizationsArgs = {
@@ -6223,6 +6449,14 @@ export type GQLRowServicesWithTextDocumentInStagesArgs = {
 export type GQLRowServicesWithTextLinksArgs = {
   where?: Maybe<GQLLinkInternalWhereInput>
   orderBy?: Maybe<GQLLinkInternalOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type GQLRowServicesWithTextPageArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -6247,6 +6481,7 @@ export type GQLRowServicesWithTextCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   text: Scalars['String']
   links?: Maybe<GQLLinkInternalCreateManyInlineInput>
+  page?: Maybe<GQLPageCreateManyInlineInput>
   localizations?: Maybe<GQLRowServicesWithTextCreateLocalizationsInput>
 }
 
@@ -6341,6 +6576,7 @@ export enum GQLRowServicesWithTextOrderByInput {
 export type GQLRowServicesWithTextUpdateInput = {
   text?: Maybe<Scalars['String']>
   links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
   localizations?: Maybe<GQLRowServicesWithTextUpdateLocalizationsInput>
 }
 
@@ -6733,7 +6969,7 @@ export type GQLGetBreadcrumbQuery = { __typename?: 'Query' } & {
 }
 
 export type GQLContentRendererFragment = { __typename?: 'Page' } & {
-  content: Array<{ __typename: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
+  content: Array<{ __typename: 'RowHero' } & GQLRowHeroFragment>
 }
 
 export type GQLLinkExternalFragment = { __typename?: 'LinkExternal' } & Pick<
@@ -6801,6 +7037,26 @@ export type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id'
 
 export type GQLRichTextFragment = { __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
 
+export type GQLGetAllRowColumThreeQueryVariables = {
+  skip: Scalars['Int']
+}
+
+export type GQLGetAllRowColumThreeQuery = { __typename?: 'Query' } & {
+  rowColumnThrees: Array<{ __typename?: 'RowColumnThree' } & GQLRowColumnThreeFragment>
+}
+
+export type GQLRowColumnThreeFragment = { __typename?: 'RowColumnThree' } & Pick<
+  GQLRowColumnThree,
+  'id'
+> & {
+    colOne: { __typename?: 'RichText' } & GQLRichTextFragment
+    colOneIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
+    colTwo: { __typename?: 'RichText' } & GQLRichTextFragment
+    colTwoIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
+    colThree: { __typename?: 'RichText' } & GQLRichTextFragment
+    colThreeIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
+  }
+
 export type GQLGetAllRowCompanySlidersQueryVariables = {
   skip: Scalars['Int']
 }
@@ -6820,20 +7076,17 @@ export type GQLRowCompanySliderFragment = { __typename?: 'RowCompanySlider' } & 
     >
   }
 
-export type GQLGetAllRowHeroVideosQueryVariables = {
+export type GQLGetAllRowHeroQueryVariables = {
   skip: Scalars['Int']
 }
 
-export type GQLGetAllRowHeroVideosQuery = { __typename?: 'Query' } & {
-  rowHeroVideos: Array<{ __typename?: 'RowHeroVideo' } & GQLRowHeroVideoFragment>
+export type GQLGetAllRowHeroQuery = { __typename?: 'Query' } & {
+  rowHeroes: Array<{ __typename?: 'RowHero' } & GQLRowHeroFragment>
 }
 
-export type GQLRowHeroVideoFragment = { __typename?: 'RowHeroVideo' } & Pick<
-  GQLRowHeroVideo,
-  'id'
-> & {
-    video?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-    content: { __typename?: 'RichText' } & GQLRichTextFragment
+export type GQLRowHeroFragment = { __typename?: 'RowHero' } & Pick<GQLRowHero, 'id'> & {
+    asset: { __typename?: 'Asset' } & GQLAssetFragment
+    text: { __typename?: 'RichText' } & GQLRichTextFragment
     links: Array<
       | ({ __typename?: 'LinkExternal' } & GQLLinkExternalFragment)
       | ({ __typename?: 'LinkInternal' } & GQLLinkInternalFragment)
@@ -6860,6 +7113,14 @@ export type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } 
       }
     >
   }
+
+export type GQLCreatePageMutationVariables = {
+  page: GQLPageCreateInput
+}
+
+export type GQLCreatePageMutation = { __typename?: 'Mutation' } & {
+  createPage?: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'id'>>
+}
 
 export const BreadcrumbFragmentDoc = gql`
   fragment Breadcrumb on Page {
@@ -6939,13 +7200,13 @@ export const LinkExternalFragmentDoc = gql`
   }
   ${RichTextFragmentDoc}
 `
-export const RowHeroVideoFragmentDoc = gql`
-  fragment RowHeroVideo on RowHeroVideo {
+export const RowHeroFragmentDoc = gql`
+  fragment RowHero on RowHero {
     id
-    video {
+    asset {
       ...Asset
     }
-    content {
+    text {
       ...RichText
     }
     links {
@@ -6962,10 +7223,10 @@ export const ContentRendererFragmentDoc = gql`
   fragment ContentRenderer on Page {
     content {
       __typename
-      ...RowHeroVideo
+      ...RowHero
     }
   }
-  ${RowHeroVideoFragmentDoc}
+  ${RowHeroFragmentDoc}
 `
 export const PageLayoutFragmentDoc = gql`
   fragment PageLayout on Page {
@@ -6974,6 +7235,31 @@ export const PageLayoutFragmentDoc = gql`
   }
   ${PageMetaFragmentDoc}
   ${ContentRendererFragmentDoc}
+`
+export const RowColumnThreeFragmentDoc = gql`
+  fragment RowColumnThree on RowColumnThree {
+    id
+    colOne {
+      ...RichText
+    }
+    colOneIcon {
+      ...Asset
+    }
+    colTwo {
+      ...RichText
+    }
+    colTwoIcon {
+      ...Asset
+    }
+    colThree {
+      ...RichText
+    }
+    colThreeIcon {
+      ...Asset
+    }
+  }
+  ${RichTextFragmentDoc}
+  ${AssetFragmentDoc}
 `
 export const RowCompanySliderFragmentDoc = gql`
   fragment RowCompanySlider on RowCompanySlider {
@@ -7191,6 +7477,61 @@ export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetStaticPathsQuery,
   GQLGetStaticPathsQueryVariables
 >
+export const GetAllRowColumThreeDocument = gql`
+  query GetAllRowColumThree($skip: Int!) {
+    rowColumnThrees(first: 1, skip: $skip) {
+      ...RowColumnThree
+    }
+  }
+  ${RowColumnThreeFragmentDoc}
+`
+
+/**
+ * __useGetAllRowColumThreeQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowColumThreeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowColumThreeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowColumThreeQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowColumThreeQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >(GetAllRowColumThreeDocument, baseOptions)
+}
+export function useGetAllRowColumThreeLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >(GetAllRowColumThreeDocument, baseOptions)
+}
+export type GetAllRowColumThreeQueryHookResult = ReturnType<typeof useGetAllRowColumThreeQuery>
+export type GetAllRowColumThreeLazyQueryHookResult = ReturnType<
+  typeof useGetAllRowColumThreeLazyQuery
+>
+export type GetAllRowColumThreeQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowColumThreeQuery,
+  GQLGetAllRowColumThreeQueryVariables
+>
 export const GetAllRowCompanySlidersDocument = gql`
   query GetAllRowCompanySliders($skip: Int!) {
     rowCompanySliders(first: 1, skip: $skip) {
@@ -7248,60 +7589,58 @@ export type GetAllRowCompanySlidersQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowCompanySlidersQuery,
   GQLGetAllRowCompanySlidersQueryVariables
 >
-export const GetAllRowHeroVideosDocument = gql`
-  query GetAllRowHeroVideos($skip: Int!) {
-    rowHeroVideos(first: 1, skip: $skip) {
-      ...RowHeroVideo
+export const GetAllRowHeroDocument = gql`
+  query GetAllRowHero($skip: Int!) {
+    rowHeroes(first: 1, skip: $skip) {
+      ...RowHero
     }
   }
-  ${RowHeroVideoFragmentDoc}
+  ${RowHeroFragmentDoc}
 `
 
 /**
- * __useGetAllRowHeroVideosQuery__
+ * __useGetAllRowHeroQuery__
  *
- * To run a query within a React component, call `useGetAllRowHeroVideosQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetAllRowHeroVideosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetAllRowHeroQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowHeroQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetAllRowHeroVideosQuery({
+ * const { data, loading, error } = useGetAllRowHeroQuery({
  *   variables: {
  *      skip: // value for 'skip'
  *   },
  * });
  */
-export function useGetAllRowHeroVideosQuery(
+export function useGetAllRowHeroQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetAllRowHeroVideosQuery,
-    GQLGetAllRowHeroVideosQueryVariables
+    GQLGetAllRowHeroQuery,
+    GQLGetAllRowHeroQueryVariables
   >,
 ) {
-  return ApolloReactHooks.useQuery<
-    GQLGetAllRowHeroVideosQuery,
-    GQLGetAllRowHeroVideosQueryVariables
-  >(GetAllRowHeroVideosDocument, baseOptions)
+  return ApolloReactHooks.useQuery<GQLGetAllRowHeroQuery, GQLGetAllRowHeroQueryVariables>(
+    GetAllRowHeroDocument,
+    baseOptions,
+  )
 }
-export function useGetAllRowHeroVideosLazyQuery(
+export function useGetAllRowHeroLazyQuery(
   baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetAllRowHeroVideosQuery,
-    GQLGetAllRowHeroVideosQueryVariables
+    GQLGetAllRowHeroQuery,
+    GQLGetAllRowHeroQueryVariables
   >,
 ) {
-  return ApolloReactHooks.useLazyQuery<
-    GQLGetAllRowHeroVideosQuery,
-    GQLGetAllRowHeroVideosQueryVariables
-  >(GetAllRowHeroVideosDocument, baseOptions)
+  return ApolloReactHooks.useLazyQuery<GQLGetAllRowHeroQuery, GQLGetAllRowHeroQueryVariables>(
+    GetAllRowHeroDocument,
+    baseOptions,
+  )
 }
-export type GetAllRowHeroVideosQueryHookResult = ReturnType<typeof useGetAllRowHeroVideosQuery>
-export type GetAllRowHeroVideosLazyQueryHookResult = ReturnType<
-  typeof useGetAllRowHeroVideosLazyQuery
->
-export type GetAllRowHeroVideosQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetAllRowHeroVideosQuery,
-  GQLGetAllRowHeroVideosQueryVariables
+export type GetAllRowHeroQueryHookResult = ReturnType<typeof useGetAllRowHeroQuery>
+export type GetAllRowHeroLazyQueryHookResult = ReturnType<typeof useGetAllRowHeroLazyQuery>
+export type GetAllRowHeroQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowHeroQuery,
+  GQLGetAllRowHeroQueryVariables
 >
 export const GetRowPeopleWithTextsDocument = gql`
   query GetRowPeopleWithTexts($skip: Int!) {
@@ -7357,4 +7696,50 @@ export type GetRowPeopleWithTextsLazyQueryHookResult = ReturnType<
 export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetRowPeopleWithTextsQuery,
   GQLGetRowPeopleWithTextsQueryVariables
+>
+export const CreatePageDocument = gql`
+  mutation CreatePage($page: PageCreateInput!) {
+    createPage(data: $page) {
+      id
+    }
+  }
+`
+export type GQLCreatePageMutationFn = ApolloReactCommon.MutationFunction<
+  GQLCreatePageMutation,
+  GQLCreatePageMutationVariables
+>
+
+/**
+ * __useCreatePageMutation__
+ *
+ * To run a mutation, you first call `useCreatePageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPageMutation, { data, loading, error }] = useCreatePageMutation({
+ *   variables: {
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useCreatePageMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    GQLCreatePageMutation,
+    GQLCreatePageMutationVariables
+  >,
+) {
+  return ApolloReactHooks.useMutation<GQLCreatePageMutation, GQLCreatePageMutationVariables>(
+    CreatePageDocument,
+    baseOptions,
+  )
+}
+export type CreatePageMutationHookResult = ReturnType<typeof useCreatePageMutation>
+export type CreatePageMutationResult = ApolloReactCommon.MutationResult<GQLCreatePageMutation>
+export type CreatePageMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  GQLCreatePageMutation,
+  GQLCreatePageMutationVariables
 >

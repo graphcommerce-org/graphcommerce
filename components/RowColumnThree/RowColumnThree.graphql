@@ -1,0 +1,21 @@
+fragment RowColumnThree on RowColumnThree {
+  id
+  colOne {
+    ...RichText
+  }
+  colOneIcon {
+    ...Asset
+  }
+  colTwo {
+    ...RichText
+  }
+  colTwoIcon {
+    ...Asset
+  }
+  colThree {
+    ...RichText
+  }
+  colThreeIcon {
+    ...Asset
+  }
+}

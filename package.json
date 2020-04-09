@@ -9,7 +9,7 @@
     "dev": "concurrently yarn:dev-* --kill-others",
     "dev-next": "next dev",
     "dev-codegen": "graphql-codegen -r dotenv/config -w",
-    "--dev-storybook": "start-storybook --quiet -p 6006",
+    "dev-storybook": "start-storybook --quiet -p 6006",
     "build": "yarn build-storybook -o public/storybook --quiet && next build",
     "start": "next start",
     "semantic-release": "semantic-release"

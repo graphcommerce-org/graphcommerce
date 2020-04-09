@@ -1,60 +1,17 @@
 import React from 'react'
-import { GQLLocale } from '../generated/graphql'
+import { GQLLocale, GQLRowHeroFragment } from '../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
-import ContentRenderer from '../components/ContentRenderer'
+import ContentRenderer, { renderers } from '../components/ContentRenderer'
 import { GetStaticProps } from '../lib/getStaticProps'
 import { LayoutPage } from '../lib/layout'
 
 const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
+  // const PageSpecificRowHero: React.FC<GQLRowHeroFragment> = ({ id }) => <div>{id}</div>
+  // renderers.RowHero = PageSpecificRowHero
+
   return (
     <>
       <ContentRenderer content={pages[0].content} />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   )
 }

@@ -1,6 +1,6 @@
 fragment ContentRenderer on Page {
   content {
     __typename
-    ...RowHeroVideo
+    ...RowHero
   }
 }

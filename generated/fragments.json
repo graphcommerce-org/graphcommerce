@@ -9,10 +9,13 @@
             "name": "Asset"
           },
           {
-            "name": "RowHeroVideo"
+            "name": "Person"
           },
           {
-            "name": "LinkExternal"
+            "name": "PersonList"
+          },
+          {
+            "name": "RowPeopleWithText"
           },
           {
             "name": "LinkInternal"
@@ -24,49 +27,34 @@
             "name": "Page"
           },
           {
-            "name": "Menu"
+            "name": "RowHero"
           },
           {
-            "name": "Person"
-          },
-          {
-            "name": "PersonList"
-          },
-          {
-            "name": "RowPeopleWithText"
-          },
-          {
-            "name": "Company"
-          },
-          {
-            "name": "RowCompanySlider"
-          },
-          {
-            "name": "RowServicesWithText"
-          },
-          {
-            "name": "RowColumnTwo"
+            "name": "LinkExternal"
           },
           {
             "name": "RowColumnThree"
           },
           {
-            "name": "RowColumnOne"
+            "name": "RowColumnTwo"
           },
           {
             "name": "RowRecentBlogPost"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "RowHeroVideoLinks",
-        "possibleTypes": [
-          {
-            "name": "LinkExternal"
           },
           {
-            "name": "LinkInternal"
+            "name": "RowColumnOne"
+          },
+          {
+            "name": "RowCompanySlider"
+          },
+          {
+            "name": "Company"
+          },
+          {
+            "name": "RowServicesWithText"
+          },
+          {
+            "name": "Menu"
           }
         ]
       },
@@ -84,7 +72,7 @@
             "name": "Company"
           },
           {
-            "name": "RowHeroVideo"
+            "name": "RowHero"
           },
           {
             "name": "LinkInternal"
@@ -96,7 +84,46 @@
         "name": "PageContent",
         "possibleTypes": [
           {
-            "name": "RowHeroVideo"
+            "name": "RowHero"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "RowHeroVideoLinks",
+        "possibleTypes": [
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "PageContent2",
+        "possibleTypes": [
+          {
+            "name": "RowColumnThree"
+          },
+          {
+            "name": "RowColumnTwo"
+          },
+          {
+            "name": "RowRecentBlogPost"
+          },
+          {
+            "name": "RowPeopleWithText"
+          },
+          {
+            "name": "RowColumnOne"
+          },
+          {
+            "name": "RowCompanySlider"
+          },
+          {
+            "name": "RowServicesWithText"
           }
         ]
       }
