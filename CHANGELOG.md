@@ -1,3 +1,15 @@
+## [5.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.0.0...v5.1.0) (2020-04-09)
+
+
+### Features
+
+* **catchall:** created a catchall page renderer ([042aa60](https://github.com/ho-nl/project-reachdigital.nl/commit/042aa60377cd0dad1920a6b52225ba9d4bd7ad36))
+
+
+### Bug Fixes
+
+* **cases:** fix remaining pages with new staticData retrieval ([5bd1a32](https://github.com/ho-nl/project-reachdigital.nl/commit/5bd1a328ed3e7cb11560c553c3e5dab3317392e2))
+
 ## [5.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v4.1.0...v5.0.0) (2020-04-09)
 
 
