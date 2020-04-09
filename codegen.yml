@@ -20,16 +20,28 @@ generates:
     hooks:
       afterOneFileWrite:
         - prettier --write
-  generated/graphql.ts:
+  generated/graphql.d.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
+    config:
+      typesPrefix: GQL
+      immutableTypes: true
+      noExport: true
+      enumsAsTypes: true
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+  generated/apollo.ts:
+    plugins:
       - 'typescript-react-apollo'
     config:
+      typesPrefix: GQL
       withHOC: false
       withHooks: true
       withComponent: false
-      typesPrefix: GQL
+      nonOptionalTypename: true
+      immutableTypes: true
     hooks:
       afterOneFileWrite:
         - eslint --fix

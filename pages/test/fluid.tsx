@@ -1,9 +1,9 @@
 import React from 'react'
-import { GQLLocale } from '../../generated/graphql'
+import { GetStaticProps } from 'next'
 import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
-import { GetStaticProps } from '../../lib/getStaticProps'
 import { LayoutPage } from '../../lib/layout'
 import FluidAnimation from '../../components/FluidAnimation'
+import { StaticPageVariables } from '../../lib/staticParams'
 
 const Fluid: LayoutPage<PageLayoutProps> = () => {
   return <FluidAnimation colorful={false} curl={1} />
@@ -14,16 +14,16 @@ Fluid.layout = LayoutFull
 export default Fluid
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
-  const params = { url: '/', locale: GQLLocale.Nl }
+  const params: StaticPageVariables = { url: '/', locale: 'nl' }
 
   const data = await Promise.all([
-    import('../../components/PageLayout/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../../components/PageLayout/server/getStaticData').then((module) =>
+      module.default(params),
     ),
-    import('../../components/Breadcrumb/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../../components/Breadcrumb/server/getStaticData').then((module) =>
+      module.default(params),
     ),
   ])
 
-  return { props: { ...data[0].props, ...data[1].props } }
+  return { props: { ...data[0], ...data[1] } }
 }

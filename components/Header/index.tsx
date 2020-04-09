@@ -4,19 +4,12 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import zIndex from '@material-ui/core/styles/zIndex'
 import logo from '../../public/images/magento-webshop-reach-digital.svg'
 import { vpCalc } from '../Theme'
-import {
-  GQLMenuFragment,
-  GQLPersonFragment,
-  GQLPageMetaFragment,
-  GQLLocale,
-  GQLMetaRobots,
-} from '../../generated/graphql'
 import Menu from '../Menu'
 import FilestackPicture from '../FilestackPicture'
 import { MimeTypes } from '../PictureResponsive'
 import Link from '../Link'
 
-const useStyles = makeStyles(({ gridSpacing, palette }: Theme) => ({
+const useStyles = makeStyles(({ gridSpacing }: Theme) => ({
   root: {
     display: 'grid',
     gridTemplateAreas: `
@@ -63,7 +56,7 @@ const useStyles = makeStyles(({ gridSpacing, palette }: Theme) => ({
 const Header: React.FC<{
   menu: GQLMenuFragment
   page: GQLPageMetaFragment
-  team: GQLPersonFragment[]
+  team: ReadonlyArray<GQLPersonFragment>
 }> = ({ menu, page, team }) => {
   const classes = useStyles()
 
@@ -73,8 +66,8 @@ const Header: React.FC<{
     <div className={classes.root}>
       <Link
         // todo(paales): Have a way to make these common links dynamic?
-        href={page.locale === GQLLocale.Nl ? '/' : `/${page.locale}/`}
-        metaRobots={GQLMetaRobots.IndexFollow}
+        href={page.locale === 'nl' ? '/' : `/${page.locale}/`}
+        metaRobots='INDEX_FOLLOW'
         className={classes.logo}
       >
         <img src={logo} alt='Logo' />
@@ -97,8 +90,8 @@ const Header: React.FC<{
           <Fab size='small' classes={{ root: classes.avatarFab }}>
             <Link
               // todo(paales): Have a way to make these common links dynamic?
-              href={page.locale === GQLLocale.Nl ? '/contact' : `/${page.locale}/contact`}
-              metaRobots={GQLMetaRobots.IndexFollow}
+              href={page.locale === 'nl' ? '/contact' : `/${page.locale}/contact`}
+              metaRobots='INDEX_FOLLOW'
             >
               <Avatar classes={{ colorDefault: classes.avatar }}>
                 <FilestackPicture

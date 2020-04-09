@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
-import { GQLRowHeroFragment } from '../../generated/graphql'
 import LinkInternal from '../LinkInternal/LinkInternal'
 import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'

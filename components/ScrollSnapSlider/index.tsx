@@ -1,8 +1,7 @@
 import React, { ReactNode, useRef, useEffect, useState } from 'react'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
-import { Theme } from '@material-ui/core'
-import makeStyles from '@material-ui/styles/makeStyles'
+import { Theme, makeStyles } from '@material-ui/core'
 import Fab from '@material-ui/core/Fab'
 import { animated, useSpring, config } from 'react-spring'
 

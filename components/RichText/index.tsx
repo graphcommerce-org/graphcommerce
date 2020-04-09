@@ -1,6 +1,5 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import { GQLMetaRobots } from '../../generated/graphql'
+import { Typography } from '@material-ui/core'
 import { MimeTypes } from '../PictureResponsive'
 import FilestackPicture from '../FilestackPicture'
 import Link from '../Link'
@@ -88,7 +87,7 @@ const RenderInline: React.FC<InlineJSON> = (inline) => {
     case 'link':
       return (
         // todo(paales) make sure the meta robots are set to nofollow when the link is external?
-        <Link href={inline.data.href} metaRobots={GQLMetaRobots.IndexFollow}>
+        <Link href={inline.data.href} metaRobots='INDEX_FOLLOW'>
           {childNodes}
         </Link>
       )

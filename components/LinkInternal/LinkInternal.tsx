@@ -1,5 +1,4 @@
 import React from 'react'
-import { GQLLinkInternalFragment } from '../../generated/graphql'
 import RichText from '../RichText'
 import Link from '../Link'
 

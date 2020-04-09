@@ -1,10 +1,10 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import { GQLLocale } from '../generated/graphql'
+import { GetStaticProps } from 'next'
+import { Typography } from '@material-ui/core'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
-import { GetStaticProps } from '../lib/getStaticProps'
-import { LayoutPage } from '../lib/layout'
 import ContentRenderer from '../components/ContentRenderer'
+import { LayoutPage } from '../lib/layout'
+import { StaticPageVariables } from '../lib/staticParams'
 
 const Blog: LayoutPage<PageLayoutProps> = ({ pages }) => {
   if (!pages[0]) return <></>
@@ -22,17 +22,17 @@ Blog.layout = LayoutFull
 export default Blog
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
-  const params = { url: '/blog', locale: GQLLocale.Nl }
+  const params: StaticPageVariables = { url: '/blog', locale: 'nl' }
   // todo(paales): Make generic, currently I don't know how to merge the types
   // The objects are generic and I want props to become PageLayoutProps
   const data = await Promise.all([
-    import('../components/PageLayout/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../components/PageLayout/server/getStaticData').then((module) =>
+      module.default(params),
     ),
-    import('../components/Breadcrumb/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../components/Breadcrumb/server/getStaticData').then((module) =>
+      module.default(params),
     ),
   ])
 
-  return { props: { ...data[0].props, ...data[1].props } }
+  return { props: { ...data[0], ...data[1] } }
 }

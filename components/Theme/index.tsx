@@ -1,6 +1,5 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { red } from '@material-ui/core/colors'
 
 export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
   const round = (x: number, n: number) => Math.round(x * 10 ** n) / 10 ** n
