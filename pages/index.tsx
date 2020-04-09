@@ -1,60 +1,17 @@
 import React from 'react'
 import { GQLLocale } from '../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
-import ContentRenderer from '../components/ContentRenderer'
+import ContentRenderer, { renderers } from '../components/ContentRenderer'
 import { GetStaticProps } from '../lib/getStaticProps'
 import { LayoutPage } from '../lib/layout'
+import RowHeroHome from '../components/RowHeroHome'
+
+renderers.RowHero = RowHeroHome
 
 const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
   return (
     <>
       <ContentRenderer content={pages[0].content} />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   )
 }

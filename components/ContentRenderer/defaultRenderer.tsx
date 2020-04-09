@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
 import { Renderers } from './ContentRenderer'
-import { GQLRowHeroVideoFragment } from '../../generated/graphql'
+import { GQLRowHeroFragment } from '../../generated/graphql'
 
 const registerDefaultRenderer = (renderers: Renderers) => {
-  renderers.RowHeroVideo = dynamic<GQLRowHeroVideoFragment>(() => import('../RowHeroVideo'))
+  renderers.RowHero = dynamic<GQLRowHeroFragment>(() => import('../RowHero'))
 }
 
 export default registerDefaultRenderer

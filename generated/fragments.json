@@ -9,24 +9,6 @@
             "name": "Asset"
           },
           {
-            "name": "RowHeroVideo"
-          },
-          {
-            "name": "LinkExternal"
-          },
-          {
-            "name": "LinkInternal"
-          },
-          {
-            "name": "ZzDeleteList"
-          },
-          {
-            "name": "Page"
-          },
-          {
-            "name": "Menu"
-          },
-          {
             "name": "Person"
           },
           {
@@ -36,25 +18,52 @@
             "name": "RowPeopleWithText"
           },
           {
+            "name": "LinkInternal"
+          },
+          {
+            "name": "Page"
+          },
+          {
+            "name": "RowHero"
+          },
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "ZzDeleteList"
+          },
+          {
             "name": "Company"
           },
           {
             "name": "RowCompanySlider"
           },
           {
-            "name": "RowServicesWithText"
+            "name": "RowColumnThree"
           },
           {
             "name": "RowColumnTwo"
           },
           {
-            "name": "RowColumnThree"
+            "name": "RowRecentBlogPost"
           },
           {
             "name": "RowColumnOne"
           },
           {
-            "name": "RowRecentBlogPost"
+            "name": "RowServicesWithText"
+          },
+          {
+            "name": "Menu"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "PageContent",
+        "possibleTypes": [
+          {
+            "name": "RowHero"
           }
         ]
       },
@@ -84,7 +93,7 @@
             "name": "Company"
           },
           {
-            "name": "RowHeroVideo"
+            "name": "RowHero"
           },
           {
             "name": "LinkInternal"
@@ -93,10 +102,28 @@
       },
       {
         "kind": "UNION",
-        "name": "PageContent",
+        "name": "PageContent2",
         "possibleTypes": [
           {
-            "name": "RowHeroVideo"
+            "name": "RowColumnThree"
+          },
+          {
+            "name": "RowColumnTwo"
+          },
+          {
+            "name": "RowRecentBlogPost"
+          },
+          {
+            "name": "RowPeopleWithText"
+          },
+          {
+            "name": "RowColumnOne"
+          },
+          {
+            "name": "RowCompanySlider"
+          },
+          {
+            "name": "RowServicesWithText"
           }
         ]
       }

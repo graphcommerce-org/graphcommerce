@@ -40,7 +40,7 @@ const useStyles = makeStyles(
           minmax(0, ${1 - leftWidth}fr)
           ${gridSpacing.column}`,
 
-        [breakpoints.up('sm')]: {
+        [breakpoints.up('md')]: {
           gridTemplateRows: '1fr auto 1fr',
           gridTemplateAreas: `
             'spaceleft before before before spaceright'

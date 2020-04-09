@@ -53,7 +53,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
           src={avatar.url}
           type={(avatar.mimeType as MimeTypes) ?? 'image/png'}
           width={83}
-          height={((avatar.width || 1) / (avatar.height || 1)) * 83}
+          height={((avatar.height || 1) / (avatar.width || 1)) * 83}
           key={avatar.id}
         />
       ))}

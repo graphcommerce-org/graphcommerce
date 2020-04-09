@@ -2,13 +2,16 @@
 
 Allow for rendering of content models retrieved by GraphQL.
 
+## Create Model in GraphCMS
+
+1. Create a new model
+
 ## Creating a new Component for a Model
 
-1. Create a GraphQL fragment ([example](../HeroBanner/HeroBanner.graphql)) that
+1. Create a GraphQL fragment ([example](../RowHero/RowHero.graphql)) that
    defines the data required for your component.
 2. Create a component where the Props are defined by the Fragment just created
-   (eg GQLHeroBannerFragment)
-3. Create a renderer which renders the component.
+   (eg GQLRowHeroFragment)
 
 ## Registering a default Component
 
@@ -26,4 +29,5 @@ so no need to change the data loading method.
 
 ## Todo
 
-- [ ] Should probably make more generic.
+- [ ] Should probably make more generic and support multiple content union
+      fields.

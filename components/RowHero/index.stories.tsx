@@ -1,20 +1,20 @@
 import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
 import initApolloClient from '../../lib/apollo'
-import { useGetAllRowHeroVideosQuery } from '../../generated/graphql'
-import RowHeroVideo from '.'
+import { useGetAllRowHeroQuery } from '../../generated/graphql'
+import RowHero from '.'
 
 export default {
-  title: 'row|RowHeroVideo',
-  component: RowHeroVideo,
+  title: 'row|RowHero',
+  component: RowHero,
   decorators: [withKnobs],
 }
 
 export const GraphCMS = () => {
-  const { data } = useGetAllRowHeroVideosQuery({
+  const { data } = useGetAllRowHeroQuery({
     client: initApolloClient(),
     variables: { skip: number('GraphCMS Entry #', 0) },
   })
   if (!data) return null
-  return data.rowHeroVideos.map((props) => <RowHeroVideo {...props} key={props.id} />)
+  return data.rowHeroes.map((props) => <RowHero {...props} key={props.id} />)
 }
