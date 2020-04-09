@@ -1,7 +1,7 @@
 import React from 'react'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
-import Router from 'next/router'
+import { Router } from 'next/router'
 import {
   Theme,
   Divider,

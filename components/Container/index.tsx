@@ -1,6 +1,5 @@
 import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core'
-import { ClassKeyOfStyles } from '@material-ui/styles'
 
 export type ContainerProps = {
   before?: React.ReactNode
@@ -95,7 +94,7 @@ type PartialRecord<K extends keyof any, T> = {
 }
 
 type WithOptionalStyles = {
-  classes?: PartialRecord<ClassKeyOfStyles<ContainerStyles>, string>
+  classes?: PartialRecord<any, string>
 }
 
 const Container: React.ForwardRefRenderFunction<
