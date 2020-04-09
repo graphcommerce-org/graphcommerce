@@ -21,5 +21,5 @@ export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> =
     ),
   ])
 
-  return { props: { ...data[0].props, ...data[1].props } }
+  return { props: { ...data[0], ...data[1] } }
 }
