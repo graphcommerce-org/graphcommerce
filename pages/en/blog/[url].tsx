@@ -1,24 +1,23 @@
+import { GetStaticProps } from 'next'
 import { GQLLocale } from '../../../generated/graphql'
 import { PageLayoutProps } from '../../../components/PageLayout'
-import { GetStaticProps } from '../../../lib/getStaticProps'
 import getStaticPathsFactory from '../../../components/PageLayout/server/getStaticPaths'
 import BlogView from '../../blog/[url]'
+import extractParams, { StaticPageParams } from '../../../lib/staticParams'
 
 export default BlogView
 
 export const getStaticPaths = getStaticPathsFactory('/en/blog/', GQLLocale.En)
 
-export const getStaticProps: GetStaticProps<PageLayoutProps> = async (ctx) => {
-  if (!ctx.params) throw new Error('Params not defined for blog view')
-
-  const params = { url: `/en/blog/${ctx.params.url}`, locale: GQLLocale.En }
+export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
+  const params = extractParams(ctx, '/en/blog/')
 
   const data = await Promise.all([
-    import('../../../components/PageLayout/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../../../components/PageLayout/server/getStaticData').then((module) =>
+      module.default(params),
     ),
-    import('../../../components/Breadcrumb/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../../../components/Breadcrumb/server/getStaticData').then((module) =>
+      module.default(params),
     ),
   ])
 

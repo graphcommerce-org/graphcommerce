@@ -11,10 +11,10 @@ import Header from '../Header'
 export type PageLayoutProps = GQLGetPageLayoutQuery & GQLGetBreadcrumbQuery
 type LayoutComponent = LayoutPage<PageLayoutProps>['layout']
 
-const Layout: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, team }) => {
-  const page = pages[0] ?? undefined
-  if (!page) return <Error statusCode={404}>Page not found</Error>
+const LayoutFull: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, team }) => {
+  if (!pages.length) return <Error statusCode={404}>Page not found</Error>
   if (!mainMenu) return <Error statusCode={404}>Main menu found</Error>
+  const page = pages[0] ?? undefined
 
   return (
     <ThemedProvider>
@@ -31,4 +31,4 @@ const Layout: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, team 
   )
 }
 
-export default Layout
+export default LayoutFull

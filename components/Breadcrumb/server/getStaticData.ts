@@ -4,12 +4,12 @@ import {
   GetBreadcrumbDocument,
 } from '../../../generated/graphql'
 import initApolloClient from '../../../lib/apollo'
-import { GetStaticProps } from '../../../lib/getStaticProps'
 import parentUrls from '../parentUrls'
+import { GetStaticData } from '../../../lib/staticParams'
 
-const getStaticProps: GetStaticProps<GQLGetBreadcrumbQuery> = async ({ params }) => {
-  if (!params) throw new Error('Please provide params')
-  const { url, locale } = params
+const getStaticData: GetStaticData<GQLGetBreadcrumbQuery> = async (variables) => {
+  if (!variables) throw new Error('Please provide params')
+  const { url, locale } = variables
 
   const apolloClient = initApolloClient()
   const query = apolloClient.query<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>({
@@ -17,7 +17,7 @@ const getStaticProps: GetStaticProps<GQLGetBreadcrumbQuery> = async ({ params })
     variables: { urls: [...parentUrls(url, locale), url], locale },
   })
 
-  return { props: (await query).data }
+  return (await query).data
 }
 
-export default getStaticProps
+export default getStaticData

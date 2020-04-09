@@ -1,7 +1,7 @@
 import React from 'react'
 import { GQLLocale } from '../../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
-import { GetStaticProps } from '../../lib/getStaticProps'
+import { GetStaticProps } from '../../lib/staticParams'
 import { LayoutPage } from '../../lib/layout'
 import FluidAnimation from '../../components/FluidAnimation'
 
@@ -17,10 +17,10 @@ export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
   const params = { url: '/', locale: GQLLocale.Nl }
 
   const data = await Promise.all([
-    import('../../components/PageLayout/server/getStaticProps').then((module) =>
+    import('../../components/PageLayout/server/getStaticData').then((module) =>
       module.default({ params }),
     ),
-    import('../../components/Breadcrumb/server/getStaticProps').then((module) =>
+    import('../../components/Breadcrumb/server/getStaticData').then((module) =>
       module.default({ params }),
     ),
   ])

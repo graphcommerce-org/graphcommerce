@@ -1,8 +1,9 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
+import { GetStaticProps } from 'next'
 import { GQLLocale } from '../../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
-import { GetStaticProps } from '../../lib/getStaticProps'
+import extractParams, { StaticPageParams } from '../../lib/staticParams'
 import { LayoutPage } from '../../lib/layout'
 import getStaticPathsFactory from '../../components/PageLayout/server/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
@@ -16,9 +17,6 @@ const BlogView: LayoutPage<PageLayoutProps> = ({ pages }) => {
       <ContentRenderer content={pages[0].content} />
     </>
   )
-  // if (!page || !page.blogPost) {
-  //   return <Error statusCode={404} title='page.blogPost not found.' />
-  // }
 
   // return (
   //   <div>
@@ -47,26 +45,18 @@ BlogView.layout = LayoutFull
 
 export default BlogView
 
-// export const getStaticPaths = async () => {
-//   const { getPaths } = await import('../../components/PageLayout/server/ssg')
-//   return getPaths('/blog/', GQLLocale.Nl)
-// }
-
 export const getStaticPaths = getStaticPathsFactory('/blog/', GQLLocale.Nl)
 
-export const getStaticProps: GetStaticProps<PageLayoutProps> = async (ctx) => {
-  if (!ctx.params) throw new Error('Params not defined for blog view')
-
-  const params = { url: `/blog/${ctx.params.url}`, locale: GQLLocale.Nl }
-
+export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
+  const params = extractParams(ctx, '/blog/')
   const data = await Promise.all([
-    import('../../components/PageLayout/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../../components/PageLayout/server/getStaticData').then((module) =>
+      module.default(params),
     ),
-    import('../../components/Breadcrumb/server/getStaticProps').then((module) =>
-      module.default({ params }),
+    import('../../components/Breadcrumb/server/getStaticData').then((module) =>
+      module.default(params),
     ),
   ])
 
-  return { props: { ...data[0].props, ...data[1].props } }
+  return { props: { ...data[0], ...data[1] } }
 }
