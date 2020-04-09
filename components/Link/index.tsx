@@ -1,7 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
 import MaterialLink, { LinkProps } from '@material-ui/core/Link'
-import { GQLMetaRobots, GQLLocale } from '../../generated/graphql'
 
 export function getCanonical(url: string) {
   return url

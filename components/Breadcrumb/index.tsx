@@ -3,7 +3,6 @@ import { JsonLd } from 'react-schemaorg'
 import { BreadcrumbList, WithContext, ListItem } from 'schema-dts'
 import { Breadcrumbs, Typography } from '@material-ui/core'
 import Link, { getCanonical } from '../Link'
-import type { GQLBreadcrumbFragment } from '../../generated/graphql'
 
 const breadcrumbList = (breadcrumbs: GQLBreadcrumbFragment[]): WithContext<BreadcrumbList> => {
   let position = 1

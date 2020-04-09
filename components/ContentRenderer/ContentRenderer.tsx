@@ -1,5 +1,4 @@
 import React from 'react'
-import { GQLContentRendererFragment } from '../../generated/graphql'
 
 type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
 export type Renderers = { [T in TypeNames]?: React.ComponentType<any> }

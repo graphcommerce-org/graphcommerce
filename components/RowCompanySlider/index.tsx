@@ -1,5 +1,4 @@
 import React from 'react'
-import { GQLRowCompanySliderFragment } from '../../generated/graphql'
 import FilestackPicture from '../FilestackPicture'
 import { MimeTypes } from '../PictureResponsive'
 import ScrollSnapSlider from '../ScrollSnapSlider'

@@ -1,19 +1,17 @@
 import React from 'react'
 import MenuIcon from '@material-ui/icons/Menu'
 import CloseIcon from '@material-ui/icons/Close'
-import MaterialMenu from '@material-ui/core/Menu'
 import Router from 'next/router'
-import makeStyles from '@material-ui/core/styles/makeStyles'
-import Fab from '@material-ui/core/Fab'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import { Theme, Divider, ListSubheader } from '@material-ui/core'
 import {
-  GQLMenuFragment,
-  GQLPageMetaFragment,
-  GQLMetaRobots,
-  GQLLocale,
-} from '../../generated/graphql'
+  Theme,
+  Divider,
+  ListSubheader,
+  makeStyles,
+  Fab,
+  ListItem,
+  ListItemText,
+  Menu as MaterialMenu,
+} from '@material-ui/core'
 import Link from '../Link'
 import { vpCalc } from '../Theme'
 
@@ -120,12 +118,7 @@ const Menu: React.FC<{
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-        <Link
-          href='/'
-          metaRobots={GQLMetaRobots.IndexFollow}
-          color='inherit'
-          className={classes.menuLink}
-        >
+        <Link href='/' metaRobots='INDEX_FOLLOW' color='inherit' className={classes.menuLink}>
           <ListItem button selected={page.url === '/'} classes={{ root: classes.menuItem }}>
             <ListItemText classes={{ primary: classes.menuItemText }}>Home</ListItemText>
           </ListItem>
@@ -157,8 +150,8 @@ const Menu: React.FC<{
           >
             <ListItem button classes={{ root: classes.menuItem }}>
               <ListItemText classes={{ primary: classes.menuItemTextSmall }}>
-                {localization.locale === GQLLocale.En && 'English'}
-                {localization.locale === GQLLocale.Nl && 'Nederlands'}
+                {localization.locale === 'en' && 'English'}
+                {localization.locale === 'nl' && 'Nederlands'}
               </ListItemText>
             </ListItem>
           </Link>

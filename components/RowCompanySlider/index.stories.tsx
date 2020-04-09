@@ -1,8 +1,8 @@
 import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
 import initApolloClient from '../../lib/apollo'
-import { useGetAllRowCompanySlidersQuery } from '../../generated/graphql'
 import RowCompanySlider from '.'
+import { useGetAllRowCompanySlidersQuery } from '../../generated/apollo'
 
 export default {
   title: 'row|RowCompanySlider',

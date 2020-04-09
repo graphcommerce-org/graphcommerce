@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next'
-import { GQLLocale } from '../../../generated/graphql'
 import { PageLayoutProps } from '../../../components/PageLayout'
 import getStaticPathsFactory from '../../../components/PageLayout/server/getStaticPaths'
 import BlogView from '../../blog/[url]'
@@ -7,7 +6,7 @@ import extractParams, { StaticPageParams } from '../../../lib/staticParams'
 
 export default BlogView
 
-export const getStaticPaths = getStaticPathsFactory('/en/blog/', GQLLocale.En)
+export const getStaticPaths = getStaticPathsFactory('/en/blog/', 'en')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
   const params = extractParams(ctx, '/en/blog/')

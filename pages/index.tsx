@@ -1,10 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { GQLLocale } from '../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer, { renderers } from '../components/ContentRenderer'
 import { LayoutPage } from '../lib/layout'
 import RowHeroHome from '../components/RowHeroHome'
+import { StaticPageVariables } from '../lib/staticParams'
 
 renderers.RowHero = RowHeroHome
 
@@ -21,7 +21,7 @@ Home.layout = LayoutFull
 export default Home
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
-  const params = { url: '/', locale: GQLLocale.Nl }
+  const params: StaticPageVariables = { url: '/', locale: 'nl' }
 
   const data = await Promise.all([
     import('../components/PageLayout/server/getStaticData').then((module) =>

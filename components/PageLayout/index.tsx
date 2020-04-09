@@ -5,7 +5,6 @@ import Error from 'next/error'
 import PageMeta from '../PageMeta'
 import ThemedProvider, { theme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
-import { GQLGetBreadcrumbQuery, GQLGetPageLayoutQuery } from '../../generated/graphql'
 import Header from '../Header'
 
 export type PageLayoutProps = GQLGetPageLayoutQuery & GQLGetBreadcrumbQuery

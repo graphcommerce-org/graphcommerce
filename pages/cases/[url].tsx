@@ -1,6 +1,5 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { GQLLocale } from '../../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
 import { LayoutPage } from '../../lib/layout'
 import getStaticPathsFactory from '../../components/PageLayout/server/getStaticPaths'
@@ -17,7 +16,7 @@ CasesView.layout = LayoutFull
 
 export default CasesView
 
-export const getStaticPaths = getStaticPathsFactory('/cases/', GQLLocale.Nl)
+export const getStaticPaths = getStaticPathsFactory('/cases/', 'nl')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
   if (!ctx.params) throw new Error('Params not defined for blog view')

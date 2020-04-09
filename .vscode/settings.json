@@ -8,5 +8,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.snippetSuggestions": "none"
+  "editor.snippetSuggestions": "none",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

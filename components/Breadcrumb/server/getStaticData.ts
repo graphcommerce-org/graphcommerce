@@ -1,11 +1,7 @@
-import {
-  GQLGetBreadcrumbQuery,
-  GQLGetBreadcrumbQueryVariables,
-  GetBreadcrumbDocument,
-} from '../../../generated/graphql'
 import initApolloClient from '../../../lib/apollo'
 import parentUrls from '../parentUrls'
 import { GetStaticData } from '../../../lib/staticParams'
+import { GetBreadcrumbDocument } from '../../../generated/apollo'
 
 const getStaticData: GetStaticData<GQLGetBreadcrumbQuery> = async (variables) => {
   if (!variables) throw new Error('Please provide params')

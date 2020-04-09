@@ -1,10 +1,6 @@
-import {
-  GQLGetPageLayoutQueryVariables,
-  GQLGetPageLayoutQuery,
-  GetPageLayoutDocument,
-} from '../../../generated/graphql'
 import initApolloClient from '../../../lib/apollo'
 import { GetStaticData } from '../../../lib/staticParams'
+import { GetPageLayoutDocument } from '../../../generated/apollo'
 
 const getStaticProps: GetStaticData<GQLGetPageLayoutQuery> = async (variables) => {
   if (!variables) throw new Error('Please provide params')

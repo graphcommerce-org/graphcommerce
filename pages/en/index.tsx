@@ -1,9 +1,9 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { GQLLocale } from '../../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
 import ContentRenderer from '../../components/ContentRenderer'
 import { LayoutPage } from '../../lib/layout'
+import { StaticPageVariables } from '../../lib/staticParams'
 
 const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
   return <ContentRenderer content={pages[0].content} />
@@ -14,7 +14,7 @@ Home.layout = LayoutFull
 export default Home
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
-  const params = { url: '/en', locale: GQLLocale.En }
+  const params: StaticPageVariables = { url: '/en', locale: 'en' }
   // todo(paales): Make generic, currently I don't know how to merge the types
   // The objects are generic and I want props to become PageLayoutProps
   const data = await Promise.all([

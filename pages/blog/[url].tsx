@@ -1,7 +1,6 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
-import { GQLLocale } from '../../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
 import { LayoutPage } from '../../lib/layout'
@@ -45,7 +44,7 @@ BlogView.layout = LayoutFull
 
 export default BlogView
 
-export const getStaticPaths = getStaticPathsFactory('/blog/', GQLLocale.Nl)
+export const getStaticPaths = getStaticPathsFactory('/blog/', 'nl')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
   const params = extractParams(ctx, '/blog/')

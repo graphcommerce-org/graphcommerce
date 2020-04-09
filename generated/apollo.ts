@@ -1,0 +1,579 @@
+import gql from 'graphql-tag'
+import * as ApolloReactCommon from '@apollo/react-common'
+import * as ApolloReactHooks from '@apollo/react-hooks'
+
+export const BreadcrumbFragmentDoc = gql`
+  fragment Breadcrumb on Page {
+    id
+    title
+    metaRobots
+    metaTitle
+    url
+  }
+`
+export const MenuFragmentDoc = gql`
+  fragment Menu on Menu {
+    pages {
+      locale
+      id
+      title
+      metaRobots
+      url
+    }
+  }
+`
+export const PageMetaFragmentDoc = gql`
+  fragment PageMeta on Page {
+    title
+    metaTitle
+    metaDescription
+    metaRobots
+    url
+    locale
+    localizations {
+      id
+      url
+      title
+      locale
+      metaRobots
+    }
+  }
+`
+export const AssetFragmentDoc = gql`
+  fragment Asset on Asset {
+    id
+    url
+    width
+    height
+    mimeType
+  }
+`
+export const RichTextFragmentDoc = gql`
+  fragment RichText on RichText {
+    raw
+  }
+`
+export const LinkInternalFragmentDoc = gql`
+  fragment LinkInternal on LinkInternal {
+    id
+    title
+    description {
+      ...RichText
+    }
+    page {
+      title
+      metaRobots
+      metaTitle
+      url
+    }
+  }
+  ${RichTextFragmentDoc}
+`
+export const LinkExternalFragmentDoc = gql`
+  fragment LinkExternal on LinkExternal {
+    id
+    exTitle: title
+    description {
+      ...RichText
+    }
+    url
+  }
+  ${RichTextFragmentDoc}
+`
+export const RowHeroFragmentDoc = gql`
+  fragment RowHero on RowHero {
+    id
+    asset {
+      ...Asset
+    }
+    text {
+      ...RichText
+    }
+    links {
+      ...LinkInternal
+      ...LinkExternal
+    }
+  }
+  ${AssetFragmentDoc}
+  ${RichTextFragmentDoc}
+  ${LinkInternalFragmentDoc}
+  ${LinkExternalFragmentDoc}
+`
+export const ContentRendererFragmentDoc = gql`
+  fragment ContentRenderer on Page {
+    content {
+      __typename
+      ...RowHero
+    }
+  }
+  ${RowHeroFragmentDoc}
+`
+export const PageLayoutFragmentDoc = gql`
+  fragment PageLayout on Page {
+    ...PageMeta
+    ...ContentRenderer
+  }
+  ${PageMetaFragmentDoc}
+  ${ContentRendererFragmentDoc}
+`
+export const RowColumnThreeFragmentDoc = gql`
+  fragment RowColumnThree on RowColumnThree {
+    id
+    colOne {
+      ...RichText
+    }
+    colOneIcon {
+      ...Asset
+    }
+    colTwo {
+      ...RichText
+    }
+    colTwoIcon {
+      ...Asset
+    }
+    colThree {
+      ...RichText
+    }
+    colThreeIcon {
+      ...Asset
+    }
+  }
+  ${RichTextFragmentDoc}
+  ${AssetFragmentDoc}
+`
+export const RowCompanySliderFragmentDoc = gql`
+  fragment RowCompanySlider on RowCompanySlider {
+    id
+    companies {
+      id
+      logo {
+        mimeType
+        url
+        width
+        height
+      }
+    }
+  }
+`
+export const PersonFragmentDoc = gql`
+  fragment Person on Person {
+    id
+    name
+    avatar {
+      ...Asset
+    }
+  }
+  ${AssetFragmentDoc}
+`
+export const RowPeopleWithTextFragmentDoc = gql`
+  fragment RowPeopleWithText on RowPeopleWithText {
+    id
+    text {
+      ...RichText
+    }
+    links {
+      ...LinkInternal
+    }
+    personList {
+      people {
+        ...Person
+      }
+    }
+  }
+  ${RichTextFragmentDoc}
+  ${LinkInternalFragmentDoc}
+  ${PersonFragmentDoc}
+`
+export const GetBreadcrumbDocument = gql`
+  query GetBreadcrumb($urls: [String!]!, $locale: Locale!) {
+    breadcrumbs: pages(where: { url_in: $urls }, locales: [$locale]) {
+      ...Breadcrumb
+    }
+  }
+  ${BreadcrumbFragmentDoc}
+`
+
+/**
+ * __useGetBreadcrumbQuery__
+ *
+ * To run a query within a React component, call `useGetBreadcrumbQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBreadcrumbQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBreadcrumbQuery({
+ *   variables: {
+ *      urls: // value for 'urls'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetBreadcrumbQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetBreadcrumbQuery,
+    GQLGetBreadcrumbQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>(
+    GetBreadcrumbDocument,
+    baseOptions,
+  )
+}
+export function useGetBreadcrumbLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetBreadcrumbQuery,
+    GQLGetBreadcrumbQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetBreadcrumbQuery, GQLGetBreadcrumbQueryVariables>(
+    GetBreadcrumbDocument,
+    baseOptions,
+  )
+}
+export type GetBreadcrumbQueryHookResult = ReturnType<typeof useGetBreadcrumbQuery>
+export type GetBreadcrumbLazyQueryHookResult = ReturnType<typeof useGetBreadcrumbLazyQuery>
+export type GetBreadcrumbQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetBreadcrumbQuery,
+  GQLGetBreadcrumbQueryVariables
+>
+export const GetPageLayoutDocument = gql`
+  query GetPageLayout($url: String!, $locale: Locale!) {
+    pages(where: { url: $url }, locales: [$locale]) {
+      ...PageLayout
+    }
+    mainMenu: menu(where: { identity: "main" }) {
+      ...Menu
+    }
+    team: people(first: 1) {
+      ...Person
+    }
+  }
+  ${PageLayoutFragmentDoc}
+  ${MenuFragmentDoc}
+  ${PersonFragmentDoc}
+`
+
+/**
+ * __useGetPageLayoutQuery__
+ *
+ * To run a query within a React component, call `useGetPageLayoutQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPageLayoutQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPageLayoutQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetPageLayoutQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetPageLayoutQuery,
+    GQLGetPageLayoutQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetPageLayoutQuery, GQLGetPageLayoutQueryVariables>(
+    GetPageLayoutDocument,
+    baseOptions,
+  )
+}
+export function useGetPageLayoutLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetPageLayoutQuery,
+    GQLGetPageLayoutQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetPageLayoutQuery, GQLGetPageLayoutQueryVariables>(
+    GetPageLayoutDocument,
+    baseOptions,
+  )
+}
+export type GetPageLayoutQueryHookResult = ReturnType<typeof useGetPageLayoutQuery>
+export type GetPageLayoutLazyQueryHookResult = ReturnType<typeof useGetPageLayoutLazyQuery>
+export type GetPageLayoutQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetPageLayoutQuery,
+  GQLGetPageLayoutQueryVariables
+>
+export const GetStaticPathsDocument = gql`
+  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
+    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
+      url
+      localizations {
+        url
+        locale
+      }
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetStaticPathsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
+export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
+export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsQuery,
+  GQLGetStaticPathsQueryVariables
+>
+export const GetAllRowColumThreeDocument = gql`
+  query GetAllRowColumThree($skip: Int!) {
+    rowColumnThrees(first: 1, skip: $skip) {
+      ...RowColumnThree
+    }
+  }
+  ${RowColumnThreeFragmentDoc}
+`
+
+/**
+ * __useGetAllRowColumThreeQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowColumThreeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowColumThreeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowColumThreeQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowColumThreeQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >(GetAllRowColumThreeDocument, baseOptions)
+}
+export function useGetAllRowColumThreeLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowColumThreeQuery,
+    GQLGetAllRowColumThreeQueryVariables
+  >(GetAllRowColumThreeDocument, baseOptions)
+}
+export type GetAllRowColumThreeQueryHookResult = ReturnType<typeof useGetAllRowColumThreeQuery>
+export type GetAllRowColumThreeLazyQueryHookResult = ReturnType<
+  typeof useGetAllRowColumThreeLazyQuery
+>
+export type GetAllRowColumThreeQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowColumThreeQuery,
+  GQLGetAllRowColumThreeQueryVariables
+>
+export const GetAllRowCompanySlidersDocument = gql`
+  query GetAllRowCompanySliders($skip: Int!) {
+    rowCompanySliders(first: 1, skip: $skip) {
+      ...RowCompanySlider
+    }
+  }
+  ${RowCompanySliderFragmentDoc}
+`
+
+/**
+ * __useGetAllRowCompanySlidersQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowCompanySlidersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowCompanySlidersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowCompanySlidersQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowCompanySlidersQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >(GetAllRowCompanySlidersDocument, baseOptions)
+}
+export function useGetAllRowCompanySlidersLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowCompanySlidersQuery,
+    GQLGetAllRowCompanySlidersQueryVariables
+  >(GetAllRowCompanySlidersDocument, baseOptions)
+}
+export type GetAllRowCompanySlidersQueryHookResult = ReturnType<
+  typeof useGetAllRowCompanySlidersQuery
+>
+export type GetAllRowCompanySlidersLazyQueryHookResult = ReturnType<
+  typeof useGetAllRowCompanySlidersLazyQuery
+>
+export type GetAllRowCompanySlidersQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowCompanySlidersQuery,
+  GQLGetAllRowCompanySlidersQueryVariables
+>
+export const GetAllRowHeroDocument = gql`
+  query GetAllRowHero($skip: Int!) {
+    rowHeroes(first: 1, skip: $skip) {
+      ...RowHero
+    }
+  }
+  ${RowHeroFragmentDoc}
+`
+
+/**
+ * __useGetAllRowHeroQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowHeroQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowHeroQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowHeroQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowHeroQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowHeroQuery,
+    GQLGetAllRowHeroQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetAllRowHeroQuery, GQLGetAllRowHeroQueryVariables>(
+    GetAllRowHeroDocument,
+    baseOptions,
+  )
+}
+export function useGetAllRowHeroLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowHeroQuery,
+    GQLGetAllRowHeroQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetAllRowHeroQuery, GQLGetAllRowHeroQueryVariables>(
+    GetAllRowHeroDocument,
+    baseOptions,
+  )
+}
+export type GetAllRowHeroQueryHookResult = ReturnType<typeof useGetAllRowHeroQuery>
+export type GetAllRowHeroLazyQueryHookResult = ReturnType<typeof useGetAllRowHeroLazyQuery>
+export type GetAllRowHeroQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowHeroQuery,
+  GQLGetAllRowHeroQueryVariables
+>
+export const GetRowPeopleWithTextsDocument = gql`
+  query GetRowPeopleWithTexts($skip: Int!) {
+    rowPeopleWithTexts(first: 1, skip: $skip) {
+      ...RowPeopleWithText
+    }
+  }
+  ${RowPeopleWithTextFragmentDoc}
+`
+
+/**
+ * __useGetRowPeopleWithTextsQuery__
+ *
+ * To run a query within a React component, call `useGetRowPeopleWithTextsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRowPeopleWithTextsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRowPeopleWithTextsQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetRowPeopleWithTextsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >(GetRowPeopleWithTextsDocument, baseOptions)
+}
+export function useGetRowPeopleWithTextsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetRowPeopleWithTextsQuery,
+    GQLGetRowPeopleWithTextsQueryVariables
+  >(GetRowPeopleWithTextsDocument, baseOptions)
+}
+export type GetRowPeopleWithTextsQueryHookResult = ReturnType<typeof useGetRowPeopleWithTextsQuery>
+export type GetRowPeopleWithTextsLazyQueryHookResult = ReturnType<
+  typeof useGetRowPeopleWithTextsLazyQuery
+>
+export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetRowPeopleWithTextsQuery,
+  GQLGetRowPeopleWithTextsQueryVariables
+>

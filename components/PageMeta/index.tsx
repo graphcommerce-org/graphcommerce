@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { getCanonical } from '../Link'
-import { GQLPageMetaFragment, GQLLocale } from '../../generated/graphql'
 
 const PageMeta: React.FC<GQLPageMetaFragment> = ({
   metaTitle,
@@ -26,7 +25,7 @@ const PageMeta: React.FC<GQLPageMetaFragment> = ({
         <link
           key={localization.id}
           rel='alternate'
-          hrefLang={localization.locale === GQLLocale.Nl ? 'x-default' : localization.locale}
+          hrefLang={localization.locale === 'nl' ? 'x-default' : localization.locale}
           href={getCanonical(localization.url!)}
         />
       ))}

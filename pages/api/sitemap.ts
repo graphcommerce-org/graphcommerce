@@ -1,13 +1,8 @@
 import { SitemapStream, SitemapItemLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { createGzip } from 'zlib'
-import {
-  GQLGetStaticPathsQuery,
-  GQLGetStaticPathsQueryVariables,
-  GetStaticPathsDocument,
-  GQLLocale,
-} from '../../generated/graphql'
 import initApolloClient from '../../lib/apollo'
+import { GetStaticPathsDocument } from '../../generated/apollo'
 
 function getProtocol(req: NextApiRequest) {
   // @ts-ignore
@@ -31,12 +26,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { data: resultNl } = await apolloClient.query<
       GQLGetStaticPathsQuery,
       GQLGetStaticPathsQueryVariables
-    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: GQLLocale.Nl } })
+    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: 'nl' } })
 
     const { data: resultEn } = await apolloClient.query<
       GQLGetStaticPathsQuery,
       GQLGetStaticPathsQueryVariables
-    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: GQLLocale.En } })
+    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: 'en' } })
+
+    let pagesEn = resultEn.pages
 
     // Add NL Pages with hreflang alternative
     resultNl.pages.forEach((page) => {
@@ -49,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             lang: localization.locale,
           })
 
-          resultEn.pages = resultEn.pages.filter((pageEn) => pageEn.url !== localization.url)
+          pagesEn = resultEn.pages.filter((pageEn) => pageEn.url !== localization.url)
         }
       })
 
@@ -57,9 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     // Add other EN pages
-    resultEn.pages.forEach((page) => {
-      sm.write({ url: page!.url! })
-    })
+    pagesEn.forEach((page) => sm.write({ url: page!.url! }))
 
     sm.end()
 

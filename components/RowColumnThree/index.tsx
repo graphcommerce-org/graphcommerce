@@ -1,5 +1,4 @@
 import React from 'react'
-import { GQLRowColumnThreeFragment } from '../../generated/graphql'
 import RichText from '../RichText'
 
 const RowColumnThree: React.FC<GQLRowColumnThreeFragment> = ({ colOne, colTwo, colThree }) => {
