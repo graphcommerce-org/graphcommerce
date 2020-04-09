@@ -1,3 +1,34 @@
+## [5.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v4.1.0...v5.0.0) (2020-04-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **graphql:** Please remove exisiting GraphQL plugin and add `apollographql.vscode-apollo`.
+
+### Features
+
+* **fluid:** added experimental fluid simulation ([c48b9b8](https://github.com/ho-nl/project-reachdigital.nl/commit/c48b9b8639ebaebe2616505f818b55cdc01cc6f1))
+* **graphql:** moved to Apollo Client as VSCode plugin ([23a4056](https://github.com/ho-nl/project-reachdigital.nl/commit/23a4056205b696c931b4193df4f56ae5c3738cfd))
+* **header:** added contact badge on top right ([c31f7e4](https://github.com/ho-nl/project-reachdigital.nl/commit/c31f7e448ab7be601398b044a1877459f7e91b86))
+* **rowcompanythree:** added new components and GraphCMS renames ([e5f3bb5](https://github.com/ho-nl/project-reachdigital.nl/commit/e5f3bb5035e00f14c266acc17c3978af60bd4926))
+* **rowherohome:** added RowHeroHome and simplified RowHero ([72eea5e](https://github.com/ho-nl/project-reachdigital.nl/commit/72eea5e4f329a13cdbd494b7b90edf4d453de48d))
+
+
+### Bug Fixes
+
+* **codegen:** resolve high CPU usage of document ([85c6305](https://github.com/ho-nl/project-reachdigital.nl/commit/85c630590905155ebdc340acbd78a15ffe178d30))
+* **container:** switch to mobile view below 900 instead of below 600 ([51de92c](https://github.com/ho-nl/project-reachdigital.nl/commit/51de92cd3271faec07a0fe4283791898978fbafc))
+* **fluidanimation:** automatically set dyeResolution to canvas size ([ac98264](https://github.com/ho-nl/project-reachdigital.nl/commit/ac982646e7130b9806f101853a88a70e93468555))
+* **fluidanimation:** converted script to typescript ([57afc85](https://github.com/ho-nl/project-reachdigital.nl/commit/57afc850d9cf08a9bfae59f0aec0dac10fd17107))
+* **fluidanimation:** created component props and cleanup ([2575135](https://github.com/ho-nl/project-reachdigital.nl/commit/257513539f0412d04b9e5b6f286af0c2c26ed6f8))
+* **fluidanimation:** import ditheringPng with correct path ([63d0045](https://github.com/ho-nl/project-reachdigital.nl/commit/63d0045beb56ebc616e961ce8f4e62df82719682))
+* **theme:** load correct Graphic-Medium font, prevent 404 ([0962644](https://github.com/ho-nl/project-reachdigital.nl/commit/096264479ea3c90a7f3eeb9d1b3125fd80df6525))
+
+
+### Documentation
+
+* **asset:** added asset example ([dea5943](https://github.com/ho-nl/project-reachdigital.nl/commit/dea594396ccc7e2d229ce17f2337f36e4f68e8c9))
+
 ## [4.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v4.0.0...v4.1.0) (2020-04-07)
 
 ### Features
