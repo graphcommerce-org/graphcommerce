@@ -21,9 +21,6 @@
             "name": "LinkInternal"
           },
           {
-            "name": "ZzDeleteList"
-          },
-          {
             "name": "Page"
           },
           {
@@ -31,6 +28,15 @@
           },
           {
             "name": "LinkExternal"
+          },
+          {
+            "name": "ZzDeleteList"
+          },
+          {
+            "name": "Company"
+          },
+          {
+            "name": "RowCompanySlider"
           },
           {
             "name": "RowColumnThree"
@@ -45,37 +51,10 @@
             "name": "RowColumnOne"
           },
           {
-            "name": "RowCompanySlider"
-          },
-          {
-            "name": "Company"
-          },
-          {
             "name": "RowServicesWithText"
           },
           {
             "name": "Menu"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "ListItems",
-        "possibleTypes": [
-          {
-            "name": "Page"
-          },
-          {
-            "name": "Person"
-          },
-          {
-            "name": "Company"
-          },
-          {
-            "name": "RowHero"
-          },
-          {
-            "name": "LinkInternal"
           }
         ]
       },
@@ -94,6 +73,27 @@
         "possibleTypes": [
           {
             "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "ListItems",
+        "possibleTypes": [
+          {
+            "name": "Page"
+          },
+          {
+            "name": "Person"
+          },
+          {
+            "name": "Company"
+          },
+          {
+            "name": "RowHero"
           },
           {
             "name": "LinkInternal"

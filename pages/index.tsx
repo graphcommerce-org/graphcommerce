@@ -1,14 +1,14 @@
 import React from 'react'
-import { GQLLocale, GQLRowHeroFragment } from '../generated/graphql'
+import { GQLLocale } from '../generated/graphql'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer, { renderers } from '../components/ContentRenderer'
 import { GetStaticProps } from '../lib/getStaticProps'
 import { LayoutPage } from '../lib/layout'
+import RowHeroHome from '../components/RowHeroHome'
+
+renderers.RowHero = RowHeroHome
 
 const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
-  // const PageSpecificRowHero: React.FC<GQLRowHeroFragment> = ({ id }) => <div>{id}</div>
-  // renderers.RowHero = PageSpecificRowHero
-
   return (
     <>
       <ContentRenderer content={pages[0].content} />

@@ -13,11 +13,11 @@ export type Scalars = {
   DateTime: any
   RichTextAST: any
   Long: any
-  Hex: any
   RGBAHue: any
+  Hex: any
+  Json: any
   RGBATransparency: any
   Date: any
-  Json: any
 }
 
 export enum GQL_FilterKind {
@@ -951,10 +951,10 @@ export type GQLLinkExternal = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  title: Scalars['String']
+  url: Scalars['String']
   description?: Maybe<GQLRichText>
   rowHeroVideo: Array<GQLRowHero>
-  url: Scalars['String']
-  title: Scalars['String']
 }
 
 export type GQLLinkExternalLocalizationsArgs = {
@@ -991,19 +991,19 @@ export type GQLLinkExternalConnection = {
 export type GQLLinkExternalCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  title: Scalars['String']
+  url: Scalars['String']
   description?: Maybe<Scalars['RichTextAST']>
   rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
-  url: Scalars['String']
-  title: Scalars['String']
   localizations?: Maybe<GQLLinkExternalCreateLocalizationsInput>
 }
 
 export type GQLLinkExternalCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  description?: Maybe<Scalars['RichTextAST']>
-  url: Scalars['String']
   title: Scalars['String']
+  url: Scalars['String']
+  description?: Maybe<Scalars['RichTextAST']>
 }
 
 export type GQLLinkExternalCreateLocalizationInput = {
@@ -1081,24 +1081,24 @@ export enum GQLLinkExternalOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
 }
 
 export type GQLLinkExternalUpdateInput = {
+  title?: Maybe<Scalars['String']>
+  url?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['RichTextAST']>
   rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
-  url?: Maybe<Scalars['String']>
-  title?: Maybe<Scalars['String']>
   localizations?: Maybe<GQLLinkExternalUpdateLocalizationsInput>
 }
 
 export type GQLLinkExternalUpdateLocalizationDataInput = {
-  description?: Maybe<Scalars['RichTextAST']>
-  url: Scalars['String']
   title: Scalars['String']
+  url: Scalars['String']
+  description?: Maybe<Scalars['RichTextAST']>
 }
 
 export type GQLLinkExternalUpdateLocalizationInput = {
@@ -1130,9 +1130,9 @@ export type GQLLinkExternalUpdateManyInput = {
 }
 
 export type GQLLinkExternalUpdateManyLocalizationInput = {
-  description?: Maybe<Scalars['RichTextAST']>
-  url: Scalars['String']
   title: Scalars['String']
+  url: Scalars['String']
+  description?: Maybe<Scalars['RichTextAST']>
 }
 
 export type GQLLinkExternalUpdateManyWithNestedWhereInput = {
@@ -1209,16 +1209,6 @@ export type GQLLinkExternalWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  url?: Maybe<Scalars['String']>
-  url_not?: Maybe<Scalars['String']>
-  url_in?: Maybe<Array<Scalars['String']>>
-  url_not_in?: Maybe<Array<Scalars['String']>>
-  url_contains?: Maybe<Scalars['String']>
-  url_not_contains?: Maybe<Scalars['String']>
-  url_starts_with?: Maybe<Scalars['String']>
-  url_not_starts_with?: Maybe<Scalars['String']>
-  url_ends_with?: Maybe<Scalars['String']>
-  url_not_ends_with?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   title_not?: Maybe<Scalars['String']>
   title_in?: Maybe<Array<Scalars['String']>>
@@ -1229,6 +1219,16 @@ export type GQLLinkExternalWhereInput = {
   title_not_starts_with?: Maybe<Scalars['String']>
   title_ends_with?: Maybe<Scalars['String']>
   title_not_ends_with?: Maybe<Scalars['String']>
+  url?: Maybe<Scalars['String']>
+  url_not?: Maybe<Scalars['String']>
+  url_in?: Maybe<Array<Scalars['String']>>
+  url_not_in?: Maybe<Array<Scalars['String']>>
+  url_contains?: Maybe<Scalars['String']>
+  url_not_contains?: Maybe<Scalars['String']>
+  url_starts_with?: Maybe<Scalars['String']>
+  url_not_starts_with?: Maybe<Scalars['String']>
+  url_ends_with?: Maybe<Scalars['String']>
+  url_not_ends_with?: Maybe<Scalars['String']>
 }
 
 export type GQLLinkExternalWhereUniqueInput = {
@@ -1245,10 +1245,10 @@ export type GQLLinkInternal = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
-  title?: Maybe<Scalars['String']>
+  title: Scalars['String']
+  page?: Maybe<GQLPage>
   list: Array<GQLZzDeleteList>
   description?: Maybe<GQLRichText>
-  page?: Maybe<GQLPage>
   rowPeopleWithText: Array<GQLRowPeopleWithText>
   rowServicesWithText: Array<GQLRowServicesWithText>
   rowHeroVideo: Array<GQLRowHero>
@@ -1316,10 +1316,10 @@ export type GQLLinkInternalConnection = {
 export type GQLLinkInternalCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  title?: Maybe<Scalars['String']>
+  title: Scalars['String']
+  page?: Maybe<GQLPageCreateOneInlineInput>
   list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
   description?: Maybe<Scalars['RichTextAST']>
-  page?: Maybe<GQLPageCreateOneInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
@@ -1329,7 +1329,7 @@ export type GQLLinkInternalCreateInput = {
 export type GQLLinkInternalCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  title?: Maybe<Scalars['String']>
+  title: Scalars['String']
 }
 
 export type GQLLinkInternalCreateLocalizationInput = {
@@ -1420,9 +1420,9 @@ export enum GQLLinkInternalOrderByInput {
 
 export type GQLLinkInternalUpdateInput = {
   title?: Maybe<Scalars['String']>
+  page?: Maybe<GQLPageUpdateOneInlineInput>
   list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   description?: Maybe<Scalars['RichTextAST']>
-  page?: Maybe<GQLPageUpdateOneInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
@@ -1430,7 +1430,7 @@ export type GQLLinkInternalUpdateInput = {
 }
 
 export type GQLLinkInternalUpdateLocalizationDataInput = {
-  title?: Maybe<Scalars['String']>
+  title: Scalars['String']
 }
 
 export type GQLLinkInternalUpdateLocalizationInput = {
@@ -1463,7 +1463,7 @@ export type GQLLinkInternalUpdateManyInput = {
 }
 
 export type GQLLinkInternalUpdateManyLocalizationInput = {
-  title?: Maybe<Scalars['String']>
+  title: Scalars['String']
 }
 
 export type GQLLinkInternalUpdateManyWithNestedWhereInput = {
@@ -3636,6 +3636,7 @@ export type GQLPersonList = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   people: Array<GQLPerson>
   rowPeopleWithText: Array<GQLRowPeopleWithText>
 }
@@ -3681,6 +3682,7 @@ export type GQLPersonListConnection = {
 export type GQLPersonListCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   people?: Maybe<GQLPersonCreateManyInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
 }
@@ -3740,6 +3742,16 @@ export type GQLPersonListManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   people_every?: Maybe<GQLPersonWhereInput>
   people_some?: Maybe<GQLPersonWhereInput>
   people_none?: Maybe<GQLPersonWhereInput>
@@ -3757,9 +3769,12 @@ export enum GQLPersonListOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLPersonListUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   people?: Maybe<GQLPersonUpdateManyInlineInput>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
 }
@@ -3847,6 +3862,16 @@ export type GQLPersonListWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   people_every?: Maybe<GQLPersonWhereInput>
   people_some?: Maybe<GQLPersonWhereInput>
   people_none?: Maybe<GQLPersonWhereInput>
@@ -3857,6 +3882,7 @@ export type GQLPersonListWhereInput = {
 
 export type GQLPersonListWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLPersonManyWhereInput = {
@@ -4619,6 +4645,7 @@ export type GQLRowColumnOne = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   colOne?: Maybe<GQLRichText>
   colOneIcon?: Maybe<GQLAsset>
   page: Array<GQLPage>
@@ -4653,6 +4680,7 @@ export type GQLRowColumnOneConnection = {
 export type GQLRowColumnOneCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   colOne?: Maybe<Scalars['RichTextAST']>
   colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
@@ -4713,6 +4741,16 @@ export type GQLRowColumnOneManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   colOneIcon?: Maybe<GQLAssetWhereInput>
 }
 
@@ -4725,9 +4763,12 @@ export enum GQLRowColumnOneOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLRowColumnOneUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   colOne?: Maybe<Scalars['RichTextAST']>
   colOneIcon?: Maybe<GQLAssetUpdateOneInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
@@ -4817,11 +4858,22 @@ export type GQLRowColumnOneWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   colOneIcon?: Maybe<GQLAssetWhereInput>
 }
 
 export type GQLRowColumnOneWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowColumnThree = GQLNode & {
@@ -4834,6 +4886,7 @@ export type GQLRowColumnThree = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   colOne: GQLRichText
   colOneIcon?: Maybe<GQLAsset>
   colTwo: GQLRichText
@@ -4877,6 +4930,7 @@ export type GQLRowColumnThreeConnection = {
 export type GQLRowColumnThreeCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   colOne: Scalars['RichTextAST']
   colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
   colTwo: Scalars['RichTextAST']
@@ -4959,6 +5013,16 @@ export type GQLRowColumnThreeManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   colOneIcon?: Maybe<GQLAssetWhereInput>
   colTwoIcon?: Maybe<GQLAssetWhereInput>
   colThreeIcon?: Maybe<GQLAssetWhereInput>
@@ -4973,9 +5037,12 @@ export enum GQLRowColumnThreeOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLRowColumnThreeUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   colOne?: Maybe<Scalars['RichTextAST']>
   colOneIcon?: Maybe<GQLAssetUpdateOneInlineInput>
   colTwo?: Maybe<Scalars['RichTextAST']>
@@ -5100,6 +5167,16 @@ export type GQLRowColumnThreeWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   colOneIcon?: Maybe<GQLAssetWhereInput>
   colTwoIcon?: Maybe<GQLAssetWhereInput>
   colThreeIcon?: Maybe<GQLAssetWhereInput>
@@ -5107,6 +5184,7 @@ export type GQLRowColumnThreeWhereInput = {
 
 export type GQLRowColumnThreeWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowColumnTwo = GQLNode & {
@@ -5119,6 +5197,7 @@ export type GQLRowColumnTwo = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   colOne: GQLRichText
   colOneIcon: GQLAsset
   colTwo: GQLRichText
@@ -5160,6 +5239,7 @@ export type GQLRowColumnTwoConnection = {
 export type GQLRowColumnTwoCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   colOne: Scalars['RichTextAST']
   colOneIcon: GQLAssetCreateOneInlineInput
   colTwo: Scalars['RichTextAST']
@@ -5239,6 +5319,16 @@ export type GQLRowColumnTwoManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   colOneIcon?: Maybe<GQLAssetWhereInput>
   colTwoIcon?: Maybe<GQLAssetWhereInput>
 }
@@ -5252,9 +5342,12 @@ export enum GQLRowColumnTwoOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLRowColumnTwoUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   colOne?: Maybe<Scalars['RichTextAST']>
   colOneIcon?: Maybe<GQLAssetUpdateOneInlineInput>
   colTwo?: Maybe<Scalars['RichTextAST']>
@@ -5375,12 +5468,23 @@ export type GQLRowColumnTwoWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   colOneIcon?: Maybe<GQLAssetWhereInput>
   colTwoIcon?: Maybe<GQLAssetWhereInput>
 }
 
 export type GQLRowColumnTwoWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowCompanySlider = GQLNode & {
@@ -5391,6 +5495,7 @@ export type GQLRowCompanySlider = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   companies: Array<GQLCompany>
   page: Array<GQLPage>
 }
@@ -5434,6 +5539,7 @@ export type GQLRowCompanySliderConnection = {
 export type GQLRowCompanySliderCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   companies?: Maybe<GQLCompanyCreateManyInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
 }
@@ -5493,6 +5599,16 @@ export type GQLRowCompanySliderManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   companies_every?: Maybe<GQLCompanyWhereInput>
   companies_some?: Maybe<GQLCompanyWhereInput>
   companies_none?: Maybe<GQLCompanyWhereInput>
@@ -5507,9 +5623,12 @@ export enum GQLRowCompanySliderOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLRowCompanySliderUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   companies?: Maybe<GQLCompanyUpdateManyInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
 }
@@ -5597,6 +5716,16 @@ export type GQLRowCompanySliderWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   companies_every?: Maybe<GQLCompanyWhereInput>
   companies_some?: Maybe<GQLCompanyWhereInput>
   companies_none?: Maybe<GQLCompanyWhereInput>
@@ -5604,6 +5733,7 @@ export type GQLRowCompanySliderWhereInput = {
 
 export type GQLRowCompanySliderWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowHero = GQLNode & {
@@ -5614,6 +5744,7 @@ export type GQLRowHero = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   asset: GQLAsset
   text: GQLRichText
   links: Array<GQLRowHeroVideoLinks>
@@ -5666,6 +5797,7 @@ export type GQLRowHeroConnection = {
 export type GQLRowHeroCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   asset: GQLAssetCreateOneInlineInput
   text: Scalars['RichTextAST']
   links?: Maybe<GQLRowHeroVideoLinksCreateManyInlineInput>
@@ -5728,6 +5860,16 @@ export type GQLRowHeroManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   asset?: Maybe<GQLAssetWhereInput>
 }
 
@@ -5740,9 +5882,12 @@ export enum GQLRowHeroOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLRowHeroUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   asset?: Maybe<GQLAssetUpdateOneInlineInput>
   text?: Maybe<Scalars['RichTextAST']>
   links?: Maybe<GQLRowHeroVideoLinksUpdateManyInlineInput>
@@ -5905,11 +6050,22 @@ export type GQLRowHeroWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   asset?: Maybe<GQLAssetWhereInput>
 }
 
 export type GQLRowHeroWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowPeopleWithText = GQLNode & {
@@ -5922,6 +6078,7 @@ export type GQLRowPeopleWithText = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   text: GQLRichText
   links: Array<GQLLinkInternal>
   personList?: Maybe<GQLPersonList>
@@ -5972,6 +6129,7 @@ export type GQLRowPeopleWithTextConnection = {
 export type GQLRowPeopleWithTextCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   text: Scalars['RichTextAST']
   links?: Maybe<GQLLinkInternalCreateManyInlineInput>
   personList?: Maybe<GQLPersonListCreateOneInlineInput>
@@ -6049,6 +6207,16 @@ export type GQLRowPeopleWithTextManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
@@ -6064,9 +6232,12 @@ export enum GQLRowPeopleWithTextOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
 }
 
 export type GQLRowPeopleWithTextUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   text?: Maybe<Scalars['RichTextAST']>
   links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   personList?: Maybe<GQLPersonListUpdateOneInlineInput>
@@ -6184,6 +6355,16 @@ export type GQLRowPeopleWithTextWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
@@ -6192,6 +6373,7 @@ export type GQLRowPeopleWithTextWhereInput = {
 
 export type GQLRowPeopleWithTextWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowRecentBlogPost = GQLNode & {
@@ -6202,6 +6384,7 @@ export type GQLRowRecentBlogPost = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   limit?: Maybe<Scalars['Int']>
   page: Array<GQLPage>
 }
@@ -6235,6 +6418,7 @@ export type GQLRowRecentBlogPostConnection = {
 export type GQLRowRecentBlogPostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   limit?: Maybe<Scalars['Int']>
   page?: Maybe<GQLPageCreateManyInlineInput>
 }
@@ -6294,6 +6478,16 @@ export type GQLRowRecentBlogPostManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   limit?: Maybe<Scalars['Int']>
   limit_not?: Maybe<Scalars['Int']>
   limit_in?: Maybe<Array<Scalars['Int']>>
@@ -6313,11 +6507,14 @@ export enum GQLRowRecentBlogPostOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
   LimitAsc = 'limit_ASC',
   LimitDesc = 'limit_DESC',
 }
 
 export type GQLRowRecentBlogPostUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   limit?: Maybe<Scalars['Int']>
   page?: Maybe<GQLPageUpdateManyInlineInput>
 }
@@ -6406,6 +6603,16 @@ export type GQLRowRecentBlogPostWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   limit?: Maybe<Scalars['Int']>
   limit_not?: Maybe<Scalars['Int']>
   limit_in?: Maybe<Array<Scalars['Int']>>
@@ -6418,6 +6625,7 @@ export type GQLRowRecentBlogPostWhereInput = {
 
 export type GQLRowRecentBlogPostWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type GQLRowServicesWithText = GQLNode & {
@@ -6430,6 +6638,7 @@ export type GQLRowServicesWithText = GQLNode & {
   createdAt: Scalars['DateTime']
   updatedAt: Scalars['DateTime']
   publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   text: Scalars['String']
   links: Array<GQLLinkInternal>
   page: Array<GQLPage>
@@ -6479,6 +6688,7 @@ export type GQLRowServicesWithTextConnection = {
 export type GQLRowServicesWithTextCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
   text: Scalars['String']
   links?: Maybe<GQLLinkInternalCreateManyInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
@@ -6555,6 +6765,16 @@ export type GQLRowServicesWithTextManyWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
@@ -6569,11 +6789,14 @@ export enum GQLRowServicesWithTextOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  IdentityAsc = 'identity_ASC',
+  IdentityDesc = 'identity_DESC',
   TextAsc = 'text_ASC',
   TextDesc = 'text_DESC',
 }
 
 export type GQLRowServicesWithTextUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   text?: Maybe<Scalars['String']>
   links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
@@ -6690,6 +6913,16 @@ export type GQLRowServicesWithTextWhereInput = {
   publishedAt_lte?: Maybe<Scalars['DateTime']>
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  identity_not?: Maybe<Scalars['String']>
+  identity_in?: Maybe<Array<Scalars['String']>>
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  identity_contains?: Maybe<Scalars['String']>
+  identity_not_contains?: Maybe<Scalars['String']>
+  identity_starts_with?: Maybe<Scalars['String']>
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  identity_ends_with?: Maybe<Scalars['String']>
+  identity_not_ends_with?: Maybe<Scalars['String']>
   text?: Maybe<Scalars['String']>
   text_not?: Maybe<Scalars['String']>
   text_in?: Maybe<Array<Scalars['String']>>
@@ -6707,6 +6940,7 @@ export type GQLRowServicesWithTextWhereInput = {
 
 export type GQLRowServicesWithTextWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export enum GQLStage {

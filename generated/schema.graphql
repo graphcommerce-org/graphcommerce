@@ -635,6 +635,16 @@ input PersonListWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   people_every: PersonWhereInput
   people_some: PersonWhereInput
   people_none: PersonWhereInput
@@ -681,6 +691,16 @@ input RowPeopleWithTextWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   links_every: LinkInternalWhereInput
   links_some: LinkInternalWhereInput
   links_none: LinkInternalWhereInput
@@ -931,6 +951,16 @@ input RowServicesWithTextWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   text: String
   text_not: String
   text_in: [String!]
@@ -1038,6 +1068,16 @@ input RowCompanySliderWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   companies_every: CompanyWhereInput
   companies_some: CompanyWhereInput
   companies_none: CompanyWhereInput
@@ -1081,6 +1121,16 @@ input RowColumnTwoWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   colOneIcon: AssetWhereInput
   colTwoIcon: AssetWhereInput
 }
@@ -1123,6 +1173,16 @@ input RowColumnThreeWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   colOneIcon: AssetWhereInput
   colTwoIcon: AssetWhereInput
   colThreeIcon: AssetWhereInput
@@ -1166,6 +1226,16 @@ input RowColumnOneWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   colOneIcon: AssetWhereInput
 }
 input RowHeroWhereInput {
@@ -1207,6 +1277,16 @@ input RowHeroWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   asset: AssetWhereInput
 }
 enum AssetOrderByInput {
@@ -1378,6 +1458,8 @@ enum PersonListOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
 }
 type PersonList implements Node {
   stage: Stage!
@@ -1390,6 +1472,7 @@ type PersonList implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
+  identity: String!
   people(
     where: PersonWhereInput
     orderBy: PersonOrderByInput
@@ -1418,6 +1501,8 @@ enum RowPeopleWithTextOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
 }
 type RowPeopleWithText implements Node {
   stage: Stage!
@@ -1435,6 +1520,7 @@ type RowPeopleWithText implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
+  identity: String!
   text: RichText!
   links(
     where: LinkInternalWhereInput
@@ -1480,10 +1566,10 @@ type LinkInternal implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
-  title: String
+  title: String!
+  page: Page
   list(skip: Int, after: String, before: String, first: Int, last: Int): [ZzDeleteList!]!
   description: RichText
-  page: Page
   rowPeopleWithText(
     where: RowPeopleWithTextWhereInput
     orderBy: RowPeopleWithTextOrderByInput
@@ -1504,21 +1590,6 @@ type LinkInternal implements Node {
   ): [RowServicesWithText!]!
   rowHeroVideo(skip: Int, after: String, before: String, first: Int, last: Int): [RowHero!]!
 }
-type ZzDeleteList implements Node {
-  stage: Stage!
-  documentInStages(
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    includeCurrent: Boolean! = false
-    inheritLocale: Boolean! = false
-  ): [ZzDeleteList!]!
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  publishedAt: DateTime
-  identifier: String!
-  items(skip: Int, after: String, before: String, first: Int, last: Int): [ListItems!]!
-}
-union ListItems = Page | Person | Company | RowHero | LinkInternal
 type Page implements Node {
   stage: Stage!
   locale: Locale!
@@ -1571,6 +1642,7 @@ type RowHero implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
+  identity: String!
   asset: Asset!
   text: RichText!
   links(skip: Int, after: String, before: String, first: Int, last: Int): [RowHeroVideoLinks!]!
@@ -1591,125 +1663,26 @@ type LinkExternal implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
+  title: String!
+  url: String!
   description: RichText
   rowHeroVideo(skip: Int, after: String, before: String, first: Int, last: Int): [RowHero!]!
-  url: String!
-  title: String!
 }
-union PageContent2 =
-    RowColumnThree
-  | RowColumnTwo
-  | RowRecentBlogPost
-  | RowPeopleWithText
-  | RowColumnOne
-  | RowCompanySlider
-  | RowServicesWithText
-type RowColumnThree implements Node {
-  stage: Stage!
-  locale: Locale!
-  localizations(
-    locales: [Locale!]! = [nl, en]
-    includeCurrent: Boolean! = false
-  ): [RowColumnThree!]!
-  documentInStages(
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    includeCurrent: Boolean! = false
-    inheritLocale: Boolean! = false
-  ): [RowColumnThree!]!
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  publishedAt: DateTime
-  colOne: RichText!
-  colOneIcon: Asset
-  colTwo: RichText!
-  colTwoIcon: Asset
-  colThree: RichText!
-  colThreeIcon: Asset
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
-}
-type RowColumnTwo implements Node {
-  stage: Stage!
-  locale: Locale!
-  localizations(locales: [Locale!]! = [nl, en], includeCurrent: Boolean! = false): [RowColumnTwo!]!
-  documentInStages(
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    includeCurrent: Boolean! = false
-    inheritLocale: Boolean! = false
-  ): [RowColumnTwo!]!
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  publishedAt: DateTime
-  colOne: RichText!
-  colOneIcon: Asset!
-  colTwo: RichText!
-  colTwoIcon: Asset!
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
-}
-type RowRecentBlogPost implements Node {
+type ZzDeleteList implements Node {
   stage: Stage!
   documentInStages(
     stages: [Stage!]! = [PUBLISHED, DRAFT]
     includeCurrent: Boolean! = false
     inheritLocale: Boolean! = false
-  ): [RowRecentBlogPost!]!
+  ): [ZzDeleteList!]!
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
-  limit: Int
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+  identifier: String!
+  items(skip: Int, after: String, before: String, first: Int, last: Int): [ListItems!]!
 }
-type RowColumnOne implements Node {
-  stage: Stage!
-  documentInStages(
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    includeCurrent: Boolean! = false
-    inheritLocale: Boolean! = false
-  ): [RowColumnOne!]!
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  publishedAt: DateTime
-  colOne: RichText
-  colOneIcon: Asset
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
-}
-type RowCompanySlider implements Node {
-  stage: Stage!
-  documentInStages(
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    includeCurrent: Boolean! = false
-    inheritLocale: Boolean! = false
-  ): [RowCompanySlider!]!
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  publishedAt: DateTime
-  companies(
-    where: CompanyWhereInput
-    orderBy: CompanyOrderByInput
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): [Company!]!
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
-}
-enum CompanyOrderByInput {
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  publishedAt_ASC
-  publishedAt_DESC
-  name_ASC
-  name_DESC
-}
+union ListItems = Page | Person | Company | RowHero | LinkInternal
 type Company implements Node {
   stage: Stage!
   documentInStages(
@@ -1743,6 +1716,127 @@ enum RowCompanySliderOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
+}
+type RowCompanySlider implements Node {
+  stage: Stage!
+  documentInStages(
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    includeCurrent: Boolean! = false
+    inheritLocale: Boolean! = false
+  ): [RowCompanySlider!]!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  identity: String!
+  companies(
+    where: CompanyWhereInput
+    orderBy: CompanyOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Company!]!
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+}
+enum CompanyOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  name_ASC
+  name_DESC
+}
+union PageContent2 =
+    RowColumnThree
+  | RowColumnTwo
+  | RowRecentBlogPost
+  | RowPeopleWithText
+  | RowColumnOne
+  | RowCompanySlider
+  | RowServicesWithText
+type RowColumnThree implements Node {
+  stage: Stage!
+  locale: Locale!
+  localizations(
+    locales: [Locale!]! = [nl, en]
+    includeCurrent: Boolean! = false
+  ): [RowColumnThree!]!
+  documentInStages(
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    includeCurrent: Boolean! = false
+    inheritLocale: Boolean! = false
+  ): [RowColumnThree!]!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  identity: String!
+  colOne: RichText!
+  colOneIcon: Asset
+  colTwo: RichText!
+  colTwoIcon: Asset
+  colThree: RichText!
+  colThreeIcon: Asset
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+}
+type RowColumnTwo implements Node {
+  stage: Stage!
+  locale: Locale!
+  localizations(locales: [Locale!]! = [nl, en], includeCurrent: Boolean! = false): [RowColumnTwo!]!
+  documentInStages(
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    includeCurrent: Boolean! = false
+    inheritLocale: Boolean! = false
+  ): [RowColumnTwo!]!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  identity: String!
+  colOne: RichText!
+  colOneIcon: Asset!
+  colTwo: RichText!
+  colTwoIcon: Asset!
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+}
+type RowRecentBlogPost implements Node {
+  stage: Stage!
+  documentInStages(
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    includeCurrent: Boolean! = false
+    inheritLocale: Boolean! = false
+  ): [RowRecentBlogPost!]!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  identity: String!
+  limit: Int
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+}
+type RowColumnOne implements Node {
+  stage: Stage!
+  documentInStages(
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    includeCurrent: Boolean! = false
+    inheritLocale: Boolean! = false
+  ): [RowColumnOne!]!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  publishedAt: DateTime
+  identity: String!
+  colOne: RichText
+  colOneIcon: Asset
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
 }
 type RowServicesWithText implements Node {
   stage: Stage!
@@ -1760,6 +1854,7 @@ type RowServicesWithText implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   publishedAt: DateTime
+  identity: String!
   text: String!
   links(
     where: LinkInternalWhereInput
@@ -1835,6 +1930,8 @@ enum RowServicesWithTextOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
   text_ASC
   text_DESC
 }
@@ -1847,6 +1944,8 @@ enum RowColumnTwoOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
 }
 enum RowColumnThreeOrderByInput {
   id_ASC
@@ -1857,6 +1956,8 @@ enum RowColumnThreeOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
 }
 enum RowColumnOneOrderByInput {
   id_ASC
@@ -1867,6 +1968,8 @@ enum RowColumnOneOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
 }
 enum RowHeroOrderByInput {
   id_ASC
@@ -1877,6 +1980,8 @@ enum RowHeroOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
 }
 input AssetTransformationInput {
   image: ImageTransformationInput
@@ -1994,16 +2099,6 @@ input LinkExternalWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
-  url: String
-  url_not: String
-  url_in: [String!]
-  url_not_in: [String!]
-  url_contains: String
-  url_not_contains: String
-  url_starts_with: String
-  url_not_starts_with: String
-  url_ends_with: String
-  url_not_ends_with: String
   title: String
   title_not: String
   title_in: [String!]
@@ -2014,6 +2109,16 @@ input LinkExternalWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
 }
 enum LinkExternalOrderByInput {
   id_ASC
@@ -2024,10 +2129,10 @@ enum LinkExternalOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
-  url_ASC
-  url_DESC
   title_ASC
   title_DESC
+  url_ASC
+  url_DESC
 }
 input LinkExternalWhereUniqueInput {
   id: ID
@@ -2092,6 +2197,7 @@ type PersonEdge {
 }
 input PersonListWhereUniqueInput {
   id: ID
+  identity: String
 }
 type PersonListConnection {
   pageInfo: PageInfo!
@@ -2104,6 +2210,7 @@ type PersonListEdge {
 }
 input RowColumnOneWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowColumnOneConnection {
   pageInfo: PageInfo!
@@ -2116,6 +2223,7 @@ type RowColumnOneEdge {
 }
 input RowColumnThreeWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowColumnThreeConnection {
   pageInfo: PageInfo!
@@ -2128,6 +2236,7 @@ type RowColumnThreeEdge {
 }
 input RowColumnTwoWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowColumnTwoConnection {
   pageInfo: PageInfo!
@@ -2140,6 +2249,7 @@ type RowColumnTwoEdge {
 }
 input RowCompanySliderWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowCompanySliderConnection {
   pageInfo: PageInfo!
@@ -2152,6 +2262,7 @@ type RowCompanySliderEdge {
 }
 input RowHeroWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowHeroConnection {
   pageInfo: PageInfo!
@@ -2164,6 +2275,7 @@ type RowHeroEdge {
 }
 input RowPeopleWithTextWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowPeopleWithTextConnection {
   pageInfo: PageInfo!
@@ -2213,6 +2325,16 @@ input RowRecentBlogPostWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   limit: Int
   limit_not: Int
   limit_in: [Int!]
@@ -2231,11 +2353,14 @@ enum RowRecentBlogPostOrderByInput {
   updatedAt_DESC
   publishedAt_ASC
   publishedAt_DESC
+  identity_ASC
+  identity_DESC
   limit_ASC
   limit_DESC
 }
 input RowRecentBlogPostWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowRecentBlogPostConnection {
   pageInfo: PageInfo!
@@ -2248,6 +2373,7 @@ type RowRecentBlogPostEdge {
 }
 input RowServicesWithTextWhereUniqueInput {
   id: ID
+  identity: String
 }
 type RowServicesWithTextConnection {
   pageInfo: PageInfo!
@@ -2856,6 +2982,7 @@ input PersonListCreateManyInlineInput {
 input PersonListCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   people: PersonCreateManyInlineInput
   rowPeopleWithText: RowPeopleWithTextCreateManyInlineInput
 }
@@ -2866,6 +2993,7 @@ input RowPeopleWithTextCreateManyInlineInput {
 input RowPeopleWithTextCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   text: RichTextAST!
   links: LinkInternalCreateManyInlineInput
   personList: PersonListCreateOneInlineInput
@@ -2879,35 +3007,18 @@ input LinkInternalCreateManyInlineInput {
 input LinkInternalCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
-  title: String
+  title: String!
+  page: PageCreateOneInlineInput
   list: ZzDeleteListCreateManyInlineInput
   description: RichTextAST
-  page: PageCreateOneInlineInput
   rowPeopleWithText: RowPeopleWithTextCreateManyInlineInput
   rowServicesWithText: RowServicesWithTextCreateManyInlineInput
   rowHeroVideo: RowHeroCreateManyInlineInput
   localizations: LinkInternalCreateLocalizationsInput
 }
-input ZzDeleteListCreateManyInlineInput {
-  create: [ZzDeleteListCreateInput!]
-  connect: [ZzDeleteListWhereUniqueInput!]
-}
-input ZzDeleteListCreateInput {
-  createdAt: DateTime
-  updatedAt: DateTime
-  identifier: String!
-  items: ListItemsCreateManyInlineInput
-}
-input ListItemsCreateManyInlineInput {
-  create: [ListItemsCreateInput!]
-  connect: [ListItemsWhereUniqueInput!]
-}
-input ListItemsCreateInput {
-  Page: PageCreateInput
-  Person: PersonCreateInput
-  Company: CompanyCreateInput
-  RowHero: RowHeroCreateInput
-  LinkInternal: LinkInternalCreateInput
+input PageCreateOneInlineInput {
+  create: PageCreateInput
+  connect: PageWhereUniqueInput
 }
 input PageCreateInput {
   createdAt: DateTime
@@ -2934,6 +3045,7 @@ input PageContentCreateInput {
 input RowHeroCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   asset: AssetCreateOneInlineInput!
   text: RichTextAST!
   links: RowHeroVideoLinksCreateManyInlineInput
@@ -2951,10 +3063,10 @@ input RowHeroVideoLinksCreateInput {
 input LinkExternalCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  title: String!
+  url: String!
   description: RichTextAST
   rowHeroVideo: RowHeroCreateManyInlineInput
-  url: String!
-  title: String!
   localizations: LinkExternalCreateLocalizationsInput
 }
 input RowHeroCreateManyInlineInput {
@@ -2971,9 +3083,9 @@ input LinkExternalCreateLocalizationInput {
 input LinkExternalCreateLocalizationDataInput {
   createdAt: DateTime
   updatedAt: DateTime
-  description: RichTextAST
-  url: String!
   title: String!
+  url: String!
+  description: RichTextAST
 }
 input RowHeroVideoLinksWhereUniqueInput {
   LinkExternal: LinkExternalWhereUniqueInput
@@ -2982,6 +3094,57 @@ input RowHeroVideoLinksWhereUniqueInput {
 input PageCreateManyInlineInput {
   create: [PageCreateInput!]
   connect: [PageWhereUniqueInput!]
+}
+input ZzDeleteListCreateManyInlineInput {
+  create: [ZzDeleteListCreateInput!]
+  connect: [ZzDeleteListWhereUniqueInput!]
+}
+input ZzDeleteListCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  identifier: String!
+  items: ListItemsCreateManyInlineInput
+}
+input ListItemsCreateManyInlineInput {
+  create: [ListItemsCreateInput!]
+  connect: [ListItemsWhereUniqueInput!]
+}
+input ListItemsCreateInput {
+  Page: PageCreateInput
+  Person: PersonCreateInput
+  Company: CompanyCreateInput
+  RowHero: RowHeroCreateInput
+  LinkInternal: LinkInternalCreateInput
+}
+input CompanyCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  name: String!
+  list: ZzDeleteListCreateManyInlineInput
+  logo: AssetCreateOneInlineInput!
+  rowCompanySlider: RowCompanySliderCreateManyInlineInput
+}
+input RowCompanySliderCreateManyInlineInput {
+  create: [RowCompanySliderCreateInput!]
+  connect: [RowCompanySliderWhereUniqueInput!]
+}
+input RowCompanySliderCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  identity: String!
+  companies: CompanyCreateManyInlineInput
+  page: PageCreateManyInlineInput
+}
+input CompanyCreateManyInlineInput {
+  create: [CompanyCreateInput!]
+  connect: [CompanyWhereUniqueInput!]
+}
+input ListItemsWhereUniqueInput {
+  Page: PageWhereUniqueInput
+  Person: PersonWhereUniqueInput
+  Company: CompanyWhereUniqueInput
+  RowHero: RowHeroWhereUniqueInput
+  LinkInternal: LinkInternalWhereUniqueInput
 }
 input PageContentWhereUniqueInput {
   RowHero: RowHeroWhereUniqueInput
@@ -3002,6 +3165,7 @@ input PageContent2CreateInput {
 input RowColumnThreeCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   colOne: RichTextAST!
   colOneIcon: AssetCreateOneInlineInput
   colTwo: RichTextAST!
@@ -3028,6 +3192,7 @@ input RowColumnThreeCreateLocalizationDataInput {
 input RowColumnTwoCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   colOne: RichTextAST!
   colOneIcon: AssetCreateOneInlineInput!
   colTwo: RichTextAST!
@@ -3051,41 +3216,22 @@ input RowColumnTwoCreateLocalizationDataInput {
 input RowRecentBlogPostCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   limit: Int
   page: PageCreateManyInlineInput
 }
 input RowColumnOneCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   colOne: RichTextAST
   colOneIcon: AssetCreateOneInlineInput
   page: PageCreateManyInlineInput
 }
-input RowCompanySliderCreateInput {
-  createdAt: DateTime
-  updatedAt: DateTime
-  companies: CompanyCreateManyInlineInput
-  page: PageCreateManyInlineInput
-}
-input CompanyCreateManyInlineInput {
-  create: [CompanyCreateInput!]
-  connect: [CompanyWhereUniqueInput!]
-}
-input CompanyCreateInput {
-  createdAt: DateTime
-  updatedAt: DateTime
-  name: String!
-  list: ZzDeleteListCreateManyInlineInput
-  logo: AssetCreateOneInlineInput!
-  rowCompanySlider: RowCompanySliderCreateManyInlineInput
-}
-input RowCompanySliderCreateManyInlineInput {
-  create: [RowCompanySliderCreateInput!]
-  connect: [RowCompanySliderWhereUniqueInput!]
-}
 input RowServicesWithTextCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
+  identity: String!
   text: String!
   links: LinkInternalCreateManyInlineInput
   page: PageCreateManyInlineInput
@@ -3137,17 +3283,6 @@ input PageCreateLocalizationDataInput {
   metaTitle: String!
   metaDescription: String!
 }
-input ListItemsWhereUniqueInput {
-  Page: PageWhereUniqueInput
-  Person: PersonWhereUniqueInput
-  Company: CompanyWhereUniqueInput
-  RowHero: RowHeroWhereUniqueInput
-  LinkInternal: LinkInternalWhereUniqueInput
-}
-input PageCreateOneInlineInput {
-  create: PageCreateInput
-  connect: PageWhereUniqueInput
-}
 input RowServicesWithTextCreateManyInlineInput {
   create: [RowServicesWithTextCreateInput!]
   connect: [RowServicesWithTextWhereUniqueInput!]
@@ -3162,7 +3297,7 @@ input LinkInternalCreateLocalizationInput {
 input LinkInternalCreateLocalizationDataInput {
   createdAt: DateTime
   updatedAt: DateTime
-  title: String
+  title: String!
 }
 input PersonListCreateOneInlineInput {
   create: PersonListCreateInput
@@ -3294,6 +3429,7 @@ input PersonListUpdateWithNestedWhereUniqueInput {
   data: PersonListUpdateInput!
 }
 input PersonListUpdateInput {
+  identity: String
   people: PersonUpdateManyInlineInput
   rowPeopleWithText: RowPeopleWithTextUpdateManyInlineInput
 }
@@ -3315,6 +3451,7 @@ input RowPeopleWithTextUpdateWithNestedWhereUniqueInput {
   data: RowPeopleWithTextUpdateInput!
 }
 input RowPeopleWithTextUpdateInput {
+  identity: String
   text: RichTextAST
   links: LinkInternalUpdateManyInlineInput
   personList: PersonListUpdateOneInlineInput
@@ -3340,13 +3477,179 @@ input LinkInternalUpdateWithNestedWhereUniqueInput {
 }
 input LinkInternalUpdateInput {
   title: String
+  page: PageUpdateOneInlineInput
   list: ZzDeleteListUpdateManyInlineInput
   description: RichTextAST
-  page: PageUpdateOneInlineInput
   rowPeopleWithText: RowPeopleWithTextUpdateManyInlineInput
   rowServicesWithText: RowServicesWithTextUpdateManyInlineInput
   rowHeroVideo: RowHeroUpdateManyInlineInput
   localizations: LinkInternalUpdateLocalizationsInput
+}
+input PageUpdateOneInlineInput {
+  create: PageCreateInput
+  update: PageUpdateWithNestedWhereUniqueInput
+  upsert: PageUpsertWithNestedWhereUniqueInput
+  connect: PageWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input PageUpdateWithNestedWhereUniqueInput {
+  where: PageWhereUniqueInput!
+  data: PageUpdateInput!
+}
+input PageUpdateInput {
+  url: String
+  title: String
+  metaTitle: String
+  metaDescription: String
+  content: PageContentUpdateManyInlineInput
+  metaRobots: MetaRobots
+  list: ZzDeleteListUpdateManyInlineInput
+  content2: PageContent2UpdateManyInlineInput
+  internalLink: LinkInternalUpdateManyInlineInput
+  menu: MenuUpdateManyInlineInput
+  localizations: PageUpdateLocalizationsInput
+}
+input PageContentUpdateManyInlineInput {
+  create: [PageContentCreateInput!]
+  connect: [PageContentConnectInput!]
+  set: [PageContentWhereUniqueInput!]
+  update: [PageContentUpdateWithNestedWhereUniqueInput!]
+  upsert: [PageContentUpsertWithNestedWhereUniqueInput!]
+  disconnect: [PageContentWhereUniqueInput!]
+  delete: [PageContentWhereUniqueInput!]
+}
+input PageContentConnectInput {
+  RowHero: RowHeroConnectInput
+}
+input RowHeroConnectInput {
+  where: RowHeroWhereUniqueInput!
+  position: ConnectPositionInput
+}
+input PageContentUpdateWithNestedWhereUniqueInput {
+  RowHero: RowHeroUpdateWithNestedWhereUniqueInput
+}
+input RowHeroUpdateWithNestedWhereUniqueInput {
+  where: RowHeroWhereUniqueInput!
+  data: RowHeroUpdateInput!
+}
+input RowHeroUpdateInput {
+  identity: String
+  asset: AssetUpdateOneInlineInput
+  text: RichTextAST
+  links: RowHeroVideoLinksUpdateManyInlineInput
+  page: PageUpdateManyInlineInput
+  list: ZzDeleteListUpdateManyInlineInput
+}
+input RowHeroVideoLinksUpdateManyInlineInput {
+  create: [RowHeroVideoLinksCreateInput!]
+  connect: [RowHeroVideoLinksConnectInput!]
+  set: [RowHeroVideoLinksWhereUniqueInput!]
+  update: [RowHeroVideoLinksUpdateWithNestedWhereUniqueInput!]
+  upsert: [RowHeroVideoLinksUpsertWithNestedWhereUniqueInput!]
+  disconnect: [RowHeroVideoLinksWhereUniqueInput!]
+  delete: [RowHeroVideoLinksWhereUniqueInput!]
+}
+input RowHeroVideoLinksConnectInput {
+  LinkExternal: LinkExternalConnectInput
+  LinkInternal: LinkInternalConnectInput
+}
+input LinkExternalConnectInput {
+  where: LinkExternalWhereUniqueInput!
+  position: ConnectPositionInput
+}
+input RowHeroVideoLinksUpdateWithNestedWhereUniqueInput {
+  LinkExternal: LinkExternalUpdateWithNestedWhereUniqueInput
+  LinkInternal: LinkInternalUpdateWithNestedWhereUniqueInput
+}
+input LinkExternalUpdateWithNestedWhereUniqueInput {
+  where: LinkExternalWhereUniqueInput!
+  data: LinkExternalUpdateInput!
+}
+input LinkExternalUpdateInput {
+  title: String
+  url: String
+  description: RichTextAST
+  rowHeroVideo: RowHeroUpdateManyInlineInput
+  localizations: LinkExternalUpdateLocalizationsInput
+}
+input RowHeroUpdateManyInlineInput {
+  create: [RowHeroCreateInput!]
+  connect: [RowHeroConnectInput!]
+  set: [RowHeroWhereUniqueInput!]
+  update: [RowHeroUpdateWithNestedWhereUniqueInput!]
+  upsert: [RowHeroUpsertWithNestedWhereUniqueInput!]
+  disconnect: [RowHeroWhereUniqueInput!]
+  delete: [RowHeroWhereUniqueInput!]
+}
+input RowHeroUpsertWithNestedWhereUniqueInput {
+  where: RowHeroWhereUniqueInput!
+  data: RowHeroUpsertInput!
+}
+input RowHeroUpsertInput {
+  create: RowHeroCreateInput!
+  update: RowHeroUpdateInput!
+}
+input LinkExternalUpdateLocalizationsInput {
+  create: [LinkExternalCreateLocalizationInput!]
+  update: [LinkExternalUpdateLocalizationInput!]
+  upsert: [LinkExternalUpsertLocalizationInput!]
+  delete: [Locale!]
+}
+input LinkExternalUpdateLocalizationInput {
+  data: LinkExternalUpdateLocalizationDataInput!
+  locale: Locale!
+}
+input LinkExternalUpdateLocalizationDataInput {
+  title: String!
+  url: String!
+  description: RichTextAST
+}
+input LinkExternalUpsertLocalizationInput {
+  update: LinkExternalUpdateLocalizationDataInput!
+  create: LinkExternalCreateLocalizationDataInput!
+  locale: Locale!
+}
+input RowHeroVideoLinksUpsertWithNestedWhereUniqueInput {
+  LinkExternal: LinkExternalUpsertWithNestedWhereUniqueInput
+  LinkInternal: LinkInternalUpsertWithNestedWhereUniqueInput
+}
+input LinkExternalUpsertWithNestedWhereUniqueInput {
+  where: LinkExternalWhereUniqueInput!
+  data: LinkExternalUpsertInput!
+}
+input LinkExternalUpsertInput {
+  create: LinkExternalCreateInput!
+  update: LinkExternalUpdateInput!
+}
+input LinkInternalUpsertWithNestedWhereUniqueInput {
+  where: LinkInternalWhereUniqueInput!
+  data: LinkInternalUpsertInput!
+}
+input LinkInternalUpsertInput {
+  create: LinkInternalCreateInput!
+  update: LinkInternalUpdateInput!
+}
+input PageUpdateManyInlineInput {
+  create: [PageCreateInput!]
+  connect: [PageConnectInput!]
+  set: [PageWhereUniqueInput!]
+  update: [PageUpdateWithNestedWhereUniqueInput!]
+  upsert: [PageUpsertWithNestedWhereUniqueInput!]
+  disconnect: [PageWhereUniqueInput!]
+  delete: [PageWhereUniqueInput!]
+}
+input PageConnectInput {
+  where: PageWhereUniqueInput!
+  position: ConnectPositionInput
+}
+input PageUpsertWithNestedWhereUniqueInput {
+  where: PageWhereUniqueInput!
+  data: PageUpsertInput!
+}
+input PageUpsertInput {
+  create: PageCreateInput!
+  update: PageUpdateInput!
 }
 input ZzDeleteListUpdateManyInlineInput {
   create: [ZzDeleteListCreateInput!]
@@ -3385,16 +3688,8 @@ input ListItemsConnectInput {
   RowHero: RowHeroConnectInput
   LinkInternal: LinkInternalConnectInput
 }
-input PageConnectInput {
-  where: PageWhereUniqueInput!
-  position: ConnectPositionInput
-}
 input CompanyConnectInput {
   where: CompanyWhereUniqueInput!
-  position: ConnectPositionInput
-}
-input RowHeroConnectInput {
-  where: RowHeroWhereUniqueInput!
   position: ConnectPositionInput
 }
 input ListItemsUpdateWithNestedWhereUniqueInput {
@@ -3404,154 +3699,85 @@ input ListItemsUpdateWithNestedWhereUniqueInput {
   RowHero: RowHeroUpdateWithNestedWhereUniqueInput
   LinkInternal: LinkInternalUpdateWithNestedWhereUniqueInput
 }
-input PageUpdateWithNestedWhereUniqueInput {
-  where: PageWhereUniqueInput!
-  data: PageUpdateInput!
+input CompanyUpdateWithNestedWhereUniqueInput {
+  where: CompanyWhereUniqueInput!
+  data: CompanyUpdateInput!
 }
-input PageUpdateInput {
-  url: String
-  title: String
-  metaTitle: String
-  metaDescription: String
-  content: PageContentUpdateManyInlineInput
-  metaRobots: MetaRobots
+input CompanyUpdateInput {
+  name: String
   list: ZzDeleteListUpdateManyInlineInput
-  content2: PageContent2UpdateManyInlineInput
-  internalLink: LinkInternalUpdateManyInlineInput
-  menu: MenuUpdateManyInlineInput
-  localizations: PageUpdateLocalizationsInput
+  logo: AssetUpdateOneInlineInput
+  rowCompanySlider: RowCompanySliderUpdateManyInlineInput
 }
-input PageContentUpdateManyInlineInput {
-  create: [PageContentCreateInput!]
-  connect: [PageContentConnectInput!]
-  set: [PageContentWhereUniqueInput!]
-  update: [PageContentUpdateWithNestedWhereUniqueInput!]
-  upsert: [PageContentUpsertWithNestedWhereUniqueInput!]
-  disconnect: [PageContentWhereUniqueInput!]
-  delete: [PageContentWhereUniqueInput!]
+input RowCompanySliderUpdateManyInlineInput {
+  create: [RowCompanySliderCreateInput!]
+  connect: [RowCompanySliderConnectInput!]
+  set: [RowCompanySliderWhereUniqueInput!]
+  update: [RowCompanySliderUpdateWithNestedWhereUniqueInput!]
+  upsert: [RowCompanySliderUpsertWithNestedWhereUniqueInput!]
+  disconnect: [RowCompanySliderWhereUniqueInput!]
+  delete: [RowCompanySliderWhereUniqueInput!]
 }
-input PageContentConnectInput {
-  RowHero: RowHeroConnectInput
-}
-input PageContentUpdateWithNestedWhereUniqueInput {
-  RowHero: RowHeroUpdateWithNestedWhereUniqueInput
-}
-input RowHeroUpdateWithNestedWhereUniqueInput {
-  where: RowHeroWhereUniqueInput!
-  data: RowHeroUpdateInput!
-}
-input RowHeroUpdateInput {
-  asset: AssetUpdateOneInlineInput
-  text: RichTextAST
-  links: RowHeroVideoLinksUpdateManyInlineInput
-  page: PageUpdateManyInlineInput
-  list: ZzDeleteListUpdateManyInlineInput
-}
-input RowHeroVideoLinksUpdateManyInlineInput {
-  create: [RowHeroVideoLinksCreateInput!]
-  connect: [RowHeroVideoLinksConnectInput!]
-  set: [RowHeroVideoLinksWhereUniqueInput!]
-  update: [RowHeroVideoLinksUpdateWithNestedWhereUniqueInput!]
-  upsert: [RowHeroVideoLinksUpsertWithNestedWhereUniqueInput!]
-  disconnect: [RowHeroVideoLinksWhereUniqueInput!]
-  delete: [RowHeroVideoLinksWhereUniqueInput!]
-}
-input RowHeroVideoLinksConnectInput {
-  LinkExternal: LinkExternalConnectInput
-  LinkInternal: LinkInternalConnectInput
-}
-input LinkExternalConnectInput {
-  where: LinkExternalWhereUniqueInput!
+input RowCompanySliderConnectInput {
+  where: RowCompanySliderWhereUniqueInput!
   position: ConnectPositionInput
 }
-input RowHeroVideoLinksUpdateWithNestedWhereUniqueInput {
-  LinkExternal: LinkExternalUpdateWithNestedWhereUniqueInput
-  LinkInternal: LinkInternalUpdateWithNestedWhereUniqueInput
+input RowCompanySliderUpdateWithNestedWhereUniqueInput {
+  where: RowCompanySliderWhereUniqueInput!
+  data: RowCompanySliderUpdateInput!
 }
-input LinkExternalUpdateWithNestedWhereUniqueInput {
-  where: LinkExternalWhereUniqueInput!
-  data: LinkExternalUpdateInput!
+input RowCompanySliderUpdateInput {
+  identity: String
+  companies: CompanyUpdateManyInlineInput
+  page: PageUpdateManyInlineInput
 }
-input LinkExternalUpdateInput {
-  description: RichTextAST
-  rowHeroVideo: RowHeroUpdateManyInlineInput
-  url: String
-  title: String
-  localizations: LinkExternalUpdateLocalizationsInput
+input CompanyUpdateManyInlineInput {
+  create: [CompanyCreateInput!]
+  connect: [CompanyConnectInput!]
+  set: [CompanyWhereUniqueInput!]
+  update: [CompanyUpdateWithNestedWhereUniqueInput!]
+  upsert: [CompanyUpsertWithNestedWhereUniqueInput!]
+  disconnect: [CompanyWhereUniqueInput!]
+  delete: [CompanyWhereUniqueInput!]
 }
-input RowHeroUpdateManyInlineInput {
-  create: [RowHeroCreateInput!]
-  connect: [RowHeroConnectInput!]
-  set: [RowHeroWhereUniqueInput!]
-  update: [RowHeroUpdateWithNestedWhereUniqueInput!]
-  upsert: [RowHeroUpsertWithNestedWhereUniqueInput!]
-  disconnect: [RowHeroWhereUniqueInput!]
-  delete: [RowHeroWhereUniqueInput!]
+input CompanyUpsertWithNestedWhereUniqueInput {
+  where: CompanyWhereUniqueInput!
+  data: CompanyUpsertInput!
 }
-input RowHeroUpsertWithNestedWhereUniqueInput {
-  where: RowHeroWhereUniqueInput!
-  data: RowHeroUpsertInput!
+input CompanyUpsertInput {
+  create: CompanyCreateInput!
+  update: CompanyUpdateInput!
 }
-input RowHeroUpsertInput {
-  create: RowHeroCreateInput!
-  update: RowHeroUpdateInput!
+input RowCompanySliderUpsertWithNestedWhereUniqueInput {
+  where: RowCompanySliderWhereUniqueInput!
+  data: RowCompanySliderUpsertInput!
 }
-input LinkExternalUpdateLocalizationsInput {
-  create: [LinkExternalCreateLocalizationInput!]
-  update: [LinkExternalUpdateLocalizationInput!]
-  upsert: [LinkExternalUpsertLocalizationInput!]
-  delete: [Locale!]
+input RowCompanySliderUpsertInput {
+  create: RowCompanySliderCreateInput!
+  update: RowCompanySliderUpdateInput!
 }
-input LinkExternalUpdateLocalizationInput {
-  data: LinkExternalUpdateLocalizationDataInput!
-  locale: Locale!
-}
-input LinkExternalUpdateLocalizationDataInput {
-  description: RichTextAST
-  url: String!
-  title: String!
-}
-input LinkExternalUpsertLocalizationInput {
-  update: LinkExternalUpdateLocalizationDataInput!
-  create: LinkExternalCreateLocalizationDataInput!
-  locale: Locale!
-}
-input RowHeroVideoLinksUpsertWithNestedWhereUniqueInput {
-  LinkExternal: LinkExternalUpsertWithNestedWhereUniqueInput
+input ListItemsUpsertWithNestedWhereUniqueInput {
+  Page: PageUpsertWithNestedWhereUniqueInput
+  Person: PersonUpsertWithNestedWhereUniqueInput
+  Company: CompanyUpsertWithNestedWhereUniqueInput
+  RowHero: RowHeroUpsertWithNestedWhereUniqueInput
   LinkInternal: LinkInternalUpsertWithNestedWhereUniqueInput
 }
-input LinkExternalUpsertWithNestedWhereUniqueInput {
-  where: LinkExternalWhereUniqueInput!
-  data: LinkExternalUpsertInput!
+input PersonUpsertWithNestedWhereUniqueInput {
+  where: PersonWhereUniqueInput!
+  data: PersonUpsertInput!
 }
-input LinkExternalUpsertInput {
-  create: LinkExternalCreateInput!
-  update: LinkExternalUpdateInput!
+input PersonUpsertInput {
+  create: PersonCreateInput!
+  update: PersonUpdateInput!
 }
-input LinkInternalUpsertWithNestedWhereUniqueInput {
-  where: LinkInternalWhereUniqueInput!
-  data: LinkInternalUpsertInput!
+input ZzDeleteListUpsertWithNestedWhereUniqueInput {
+  where: ZzDeleteListWhereUniqueInput!
+  data: ZzDeleteListUpsertInput!
 }
-input LinkInternalUpsertInput {
-  create: LinkInternalCreateInput!
-  update: LinkInternalUpdateInput!
-}
-input PageUpdateManyInlineInput {
-  create: [PageCreateInput!]
-  connect: [PageConnectInput!]
-  set: [PageWhereUniqueInput!]
-  update: [PageUpdateWithNestedWhereUniqueInput!]
-  upsert: [PageUpsertWithNestedWhereUniqueInput!]
-  disconnect: [PageWhereUniqueInput!]
-  delete: [PageWhereUniqueInput!]
-}
-input PageUpsertWithNestedWhereUniqueInput {
-  where: PageWhereUniqueInput!
-  data: PageUpsertInput!
-}
-input PageUpsertInput {
-  create: PageCreateInput!
-  update: PageUpdateInput!
+input ZzDeleteListUpsertInput {
+  create: ZzDeleteListCreateInput!
+  update: ZzDeleteListUpdateInput!
 }
 input PageContentUpsertWithNestedWhereUniqueInput {
   RowHero: RowHeroUpsertWithNestedWhereUniqueInput
@@ -3590,10 +3816,6 @@ input RowColumnOneConnectInput {
   where: RowColumnOneWhereUniqueInput!
   position: ConnectPositionInput
 }
-input RowCompanySliderConnectInput {
-  where: RowCompanySliderWhereUniqueInput!
-  position: ConnectPositionInput
-}
 input RowServicesWithTextConnectInput {
   where: RowServicesWithTextWhereUniqueInput!
   position: ConnectPositionInput
@@ -3612,6 +3834,7 @@ input RowColumnThreeUpdateWithNestedWhereUniqueInput {
   data: RowColumnThreeUpdateInput!
 }
 input RowColumnThreeUpdateInput {
+  identity: String
   colOne: RichTextAST
   colOneIcon: AssetUpdateOneInlineInput
   colTwo: RichTextAST
@@ -3646,6 +3869,7 @@ input RowColumnTwoUpdateWithNestedWhereUniqueInput {
   data: RowColumnTwoUpdateInput!
 }
 input RowColumnTwoUpdateInput {
+  identity: String
   colOne: RichTextAST
   colOneIcon: AssetUpdateOneInlineInput
   colTwo: RichTextAST
@@ -3677,6 +3901,7 @@ input RowRecentBlogPostUpdateWithNestedWhereUniqueInput {
   data: RowRecentBlogPostUpdateInput!
 }
 input RowRecentBlogPostUpdateInput {
+  identity: String
   limit: Int
   page: PageUpdateManyInlineInput
 }
@@ -3685,67 +3910,17 @@ input RowColumnOneUpdateWithNestedWhereUniqueInput {
   data: RowColumnOneUpdateInput!
 }
 input RowColumnOneUpdateInput {
+  identity: String
   colOne: RichTextAST
   colOneIcon: AssetUpdateOneInlineInput
   page: PageUpdateManyInlineInput
-}
-input RowCompanySliderUpdateWithNestedWhereUniqueInput {
-  where: RowCompanySliderWhereUniqueInput!
-  data: RowCompanySliderUpdateInput!
-}
-input RowCompanySliderUpdateInput {
-  companies: CompanyUpdateManyInlineInput
-  page: PageUpdateManyInlineInput
-}
-input CompanyUpdateManyInlineInput {
-  create: [CompanyCreateInput!]
-  connect: [CompanyConnectInput!]
-  set: [CompanyWhereUniqueInput!]
-  update: [CompanyUpdateWithNestedWhereUniqueInput!]
-  upsert: [CompanyUpsertWithNestedWhereUniqueInput!]
-  disconnect: [CompanyWhereUniqueInput!]
-  delete: [CompanyWhereUniqueInput!]
-}
-input CompanyUpdateWithNestedWhereUniqueInput {
-  where: CompanyWhereUniqueInput!
-  data: CompanyUpdateInput!
-}
-input CompanyUpdateInput {
-  name: String
-  list: ZzDeleteListUpdateManyInlineInput
-  logo: AssetUpdateOneInlineInput
-  rowCompanySlider: RowCompanySliderUpdateManyInlineInput
-}
-input RowCompanySliderUpdateManyInlineInput {
-  create: [RowCompanySliderCreateInput!]
-  connect: [RowCompanySliderConnectInput!]
-  set: [RowCompanySliderWhereUniqueInput!]
-  update: [RowCompanySliderUpdateWithNestedWhereUniqueInput!]
-  upsert: [RowCompanySliderUpsertWithNestedWhereUniqueInput!]
-  disconnect: [RowCompanySliderWhereUniqueInput!]
-  delete: [RowCompanySliderWhereUniqueInput!]
-}
-input RowCompanySliderUpsertWithNestedWhereUniqueInput {
-  where: RowCompanySliderWhereUniqueInput!
-  data: RowCompanySliderUpsertInput!
-}
-input RowCompanySliderUpsertInput {
-  create: RowCompanySliderCreateInput!
-  update: RowCompanySliderUpdateInput!
-}
-input CompanyUpsertWithNestedWhereUniqueInput {
-  where: CompanyWhereUniqueInput!
-  data: CompanyUpsertInput!
-}
-input CompanyUpsertInput {
-  create: CompanyCreateInput!
-  update: CompanyUpdateInput!
 }
 input RowServicesWithTextUpdateWithNestedWhereUniqueInput {
   where: RowServicesWithTextWhereUniqueInput!
   data: RowServicesWithTextUpdateInput!
 }
 input RowServicesWithTextUpdateInput {
+  identity: String
   text: String
   links: LinkInternalUpdateManyInlineInput
   page: PageUpdateManyInlineInput
@@ -3876,37 +4051,6 @@ input PageUpsertLocalizationInput {
   create: PageCreateLocalizationDataInput!
   locale: Locale!
 }
-input ListItemsUpsertWithNestedWhereUniqueInput {
-  Page: PageUpsertWithNestedWhereUniqueInput
-  Person: PersonUpsertWithNestedWhereUniqueInput
-  Company: CompanyUpsertWithNestedWhereUniqueInput
-  RowHero: RowHeroUpsertWithNestedWhereUniqueInput
-  LinkInternal: LinkInternalUpsertWithNestedWhereUniqueInput
-}
-input PersonUpsertWithNestedWhereUniqueInput {
-  where: PersonWhereUniqueInput!
-  data: PersonUpsertInput!
-}
-input PersonUpsertInput {
-  create: PersonCreateInput!
-  update: PersonUpdateInput!
-}
-input ZzDeleteListUpsertWithNestedWhereUniqueInput {
-  where: ZzDeleteListWhereUniqueInput!
-  data: ZzDeleteListUpsertInput!
-}
-input ZzDeleteListUpsertInput {
-  create: ZzDeleteListCreateInput!
-  update: ZzDeleteListUpdateInput!
-}
-input PageUpdateOneInlineInput {
-  create: PageCreateInput
-  update: PageUpdateWithNestedWhereUniqueInput
-  upsert: PageUpsertWithNestedWhereUniqueInput
-  connect: PageWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
 input RowServicesWithTextUpdateManyInlineInput {
   create: [RowServicesWithTextCreateInput!]
   connect: [RowServicesWithTextConnectInput!]
@@ -3927,7 +4071,7 @@ input LinkInternalUpdateLocalizationInput {
   locale: Locale!
 }
 input LinkInternalUpdateLocalizationDataInput {
-  title: String
+  title: String!
 }
 input LinkInternalUpsertLocalizationInput {
   update: LinkInternalUpdateLocalizationDataInput!
@@ -4205,9 +4349,9 @@ input LinkExternalUpdateManyInput {
   localizations: [LinkExternalUpdateManyLocalizationInput!]
 }
 input LinkExternalUpdateManyLocalizationInput {
-  description: RichTextAST
-  url: String!
   title: String!
+  url: String!
+  description: RichTextAST
 }
 input LinkInternalManyWhereInput {
   _search: String
@@ -4263,7 +4407,7 @@ input LinkInternalUpdateManyInput {
   localizations: [LinkInternalUpdateManyLocalizationInput!]
 }
 input LinkInternalUpdateManyLocalizationInput {
-  title: String
+  title: String!
 }
 input MenuManyWhereInput {
   _search: String
@@ -4481,6 +4625,16 @@ input PersonListManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   people_every: PersonWhereInput
   people_some: PersonWhereInput
   people_none: PersonWhereInput
@@ -4531,6 +4685,16 @@ input RowColumnOneManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   colOneIcon: AssetWhereInput
 }
 input RowColumnOneUpdateManyInput {
@@ -4577,6 +4741,16 @@ input RowColumnThreeManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   colOneIcon: AssetWhereInput
   colTwoIcon: AssetWhereInput
   colThreeIcon: AssetWhereInput
@@ -4630,6 +4804,16 @@ input RowColumnTwoManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   colOneIcon: AssetWhereInput
   colTwoIcon: AssetWhereInput
 }
@@ -4681,6 +4865,16 @@ input RowCompanySliderManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   companies_every: CompanyWhereInput
   companies_some: CompanyWhereInput
   companies_none: CompanyWhereInput
@@ -4728,6 +4922,16 @@ input RowHeroManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   asset: AssetWhereInput
 }
 input RowHeroUpdateManyInput {
@@ -4774,6 +4978,16 @@ input RowPeopleWithTextManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   links_every: LinkInternalWhereInput
   links_some: LinkInternalWhereInput
   links_none: LinkInternalWhereInput
@@ -4826,6 +5040,16 @@ input RowRecentBlogPostManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   limit: Int
   limit_not: Int
   limit_in: [Int!]
@@ -4879,6 +5103,16 @@ input RowServicesWithTextManyWhereInput {
   publishedAt_lte: DateTime
   publishedAt_gt: DateTime
   publishedAt_gte: DateTime
+  identity: String
+  identity_not: String
+  identity_in: [String!]
+  identity_not_in: [String!]
+  identity_contains: String
+  identity_not_contains: String
+  identity_starts_with: String
+  identity_not_starts_with: String
+  identity_ends_with: String
+  identity_not_ends_with: String
   links_every: LinkInternalWhereInput
   links_some: LinkInternalWhereInput
   links_none: LinkInternalWhereInput
@@ -4945,72 +5179,21 @@ input ZzDeleteListUpdateManyInput {
   createdAt: DateTime
   updatedAt: DateTime
 }
-input ColorInput {
-  hex: Hex
-  rgba: RGBAInput
+input RowServicesWithTextCreateOneInlineInput {
+  create: RowServicesWithTextCreateInput
+  connect: RowServicesWithTextWhereUniqueInput
 }
-scalar Hex
-input RGBAInput {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
+input LinkExternalCreateManyInlineInput {
+  create: [LinkExternalCreateInput!]
+  connect: [LinkExternalWhereUniqueInput!]
 }
-scalar RGBAHue
-scalar RGBATransparency
-type Color {
-  hex: Hex!
-  rgba: RGBA!
-  css: String!
-}
-type RGBA {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
-}
-input MenuUpdateManyWithNestedWhereInput {
-  where: MenuWhereInput!
-  data: MenuUpdateManyInput!
-}
-input ListItemsWhereInput {
-  Page: PageWhereInput
-  Person: PersonWhereInput
-  Company: CompanyWhereInput
-  RowHero: RowHeroWhereInput
-  LinkInternal: LinkInternalWhereInput
-}
-input ListItemsUpdateManyWithNestedWhereInput {
-  Page: PageUpdateManyWithNestedWhereInput
-  Person: PersonUpdateManyWithNestedWhereInput
-  Company: CompanyUpdateManyWithNestedWhereInput
-  RowHero: RowHeroUpdateManyWithNestedWhereInput
-  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
-}
-input PageUpdateManyWithNestedWhereInput {
-  where: PageWhereInput!
-  data: PageUpdateManyInput!
-}
-input PersonUpdateManyWithNestedWhereInput {
-  where: PersonWhereInput!
-  data: PersonUpdateManyInput!
-}
-input CompanyUpdateManyWithNestedWhereInput {
-  where: CompanyWhereInput!
-  data: CompanyUpdateManyInput!
-}
-input RowHeroUpdateManyWithNestedWhereInput {
-  where: RowHeroWhereInput!
-  data: RowHeroUpdateManyInput!
-}
-input LinkInternalUpdateManyWithNestedWhereInput {
-  where: LinkInternalWhereInput!
-  data: LinkInternalUpdateManyInput!
-}
-scalar Date
-input RowServicesWithTextUpdateManyWithNestedWhereInput {
-  where: RowServicesWithTextWhereInput!
-  data: RowServicesWithTextUpdateManyInput!
+enum _MutationInputFieldKind {
+  scalar
+  richText
+  enum
+  relation
+  union
+  virtual
 }
 input ListItemsCreateOneInlineInput {
   create: ListItemsCreateInput
@@ -5019,6 +5202,43 @@ input ListItemsCreateOneInlineInput {
 input AssetUpdateManyWithNestedWhereInput {
   where: AssetWhereInput!
   data: AssetUpdateManyInput!
+}
+input PageContentUpdateInput {
+  RowHero: RowHeroUpdateInput
+}
+input PageUpdateManyWithNestedWhereInput {
+  where: PageWhereInput!
+  data: PageUpdateManyInput!
+}
+type Color {
+  hex: Hex!
+  rgba: RGBA!
+  css: String!
+}
+scalar Hex
+type RGBA {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
+}
+scalar RGBAHue
+scalar RGBATransparency
+enum _RelationInputCardinality {
+  one
+  many
+}
+input RowHeroCreateOneInlineInput {
+  create: RowHeroCreateInput
+  connect: RowHeroWhereUniqueInput
+}
+input PersonCreateOneInlineInput {
+  create: PersonCreateInput
+  connect: PersonWhereUniqueInput
+}
+input MenuCreateOneInlineInput {
+  create: MenuCreateInput
+  connect: MenuWhereUniqueInput
 }
 enum _FilterKind {
   search
@@ -5047,70 +5267,67 @@ enum _FilterKind {
   relational_some
   relational_none
 }
-input RowPeopleWithTextCreateOneInlineInput {
-  create: RowPeopleWithTextCreateInput
-  connect: RowPeopleWithTextWhereUniqueInput
+input RowHeroVideoLinksUpdateInput {
+  LinkExternal: LinkExternalUpdateInput
+  LinkInternal: LinkInternalUpdateInput
 }
-input RowHeroVideoLinksWhereInput {
-  LinkExternal: LinkExternalWhereInput
-  LinkInternal: LinkInternalWhereInput
+input RowRecentBlogPostCreateManyInlineInput {
+  create: [RowRecentBlogPostCreateInput!]
+  connect: [RowRecentBlogPostWhereUniqueInput!]
 }
-input PageContent2UpdateManyWithNestedWhereInput {
-  RowColumnThree: RowColumnThreeUpdateManyWithNestedWhereInput
-  RowColumnTwo: RowColumnTwoUpdateManyWithNestedWhereInput
-  RowRecentBlogPost: RowRecentBlogPostUpdateManyWithNestedWhereInput
-  RowPeopleWithText: RowPeopleWithTextUpdateManyWithNestedWhereInput
-  RowColumnOne: RowColumnOneUpdateManyWithNestedWhereInput
-  RowCompanySlider: RowCompanySliderUpdateManyWithNestedWhereInput
-  RowServicesWithText: RowServicesWithTextUpdateManyWithNestedWhereInput
+input RowServicesWithTextUpdateManyWithNestedWhereInput {
+  where: RowServicesWithTextWhereInput!
+  data: RowServicesWithTextUpdateManyInput!
 }
-input RowColumnThreeUpdateManyWithNestedWhereInput {
-  where: RowColumnThreeWhereInput!
-  data: RowColumnThreeUpdateManyInput!
+input LinkInternalUpdateOneInlineInput {
+  create: LinkInternalCreateInput
+  update: LinkInternalUpdateWithNestedWhereUniqueInput
+  upsert: LinkInternalUpsertWithNestedWhereUniqueInput
+  connect: LinkInternalWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
 }
-input RowColumnTwoUpdateManyWithNestedWhereInput {
-  where: RowColumnTwoWhereInput!
-  data: RowColumnTwoUpdateManyInput!
+type Location {
+  latitude: Float!
+  longitude: Float!
+  distance(from: LocationInput!): Float!
+}
+input LocationInput {
+  latitude: Float!
+  longitude: Float!
+}
+input RowColumnTwoCreateOneInlineInput {
+  create: RowColumnTwoCreateInput
+  connect: RowColumnTwoWhereUniqueInput
 }
 input RowRecentBlogPostUpdateManyWithNestedWhereInput {
   where: RowRecentBlogPostWhereInput!
   data: RowRecentBlogPostUpdateManyInput!
 }
-input RowPeopleWithTextUpdateManyWithNestedWhereInput {
-  where: RowPeopleWithTextWhereInput!
-  data: RowPeopleWithTextUpdateManyInput!
+input RowRecentBlogPostUpdateManyInlineInput {
+  create: [RowRecentBlogPostCreateInput!]
+  connect: [RowRecentBlogPostConnectInput!]
+  set: [RowRecentBlogPostWhereUniqueInput!]
+  update: [RowRecentBlogPostUpdateWithNestedWhereUniqueInput!]
+  upsert: [RowRecentBlogPostUpsertWithNestedWhereUniqueInput!]
+  disconnect: [RowRecentBlogPostWhereUniqueInput!]
+  delete: [RowRecentBlogPostWhereUniqueInput!]
 }
-input RowColumnOneUpdateManyWithNestedWhereInput {
-  where: RowColumnOneWhereInput!
-  data: RowColumnOneUpdateManyInput!
+input PageContentCreateOneInlineInput {
+  create: PageContentCreateInput
+  connect: PageContentWhereUniqueInput
 }
-input RowCompanySliderUpdateManyWithNestedWhereInput {
-  where: RowCompanySliderWhereInput!
-  data: RowCompanySliderUpdateManyInput!
+input LinkExternalCreateOneInlineInput {
+  create: LinkExternalCreateInput
+  connect: LinkExternalWhereUniqueInput
 }
-input AssetCreateManyInlineInput {
-  create: [AssetCreateInput!]
-  connect: [AssetWhereUniqueInput!]
-}
-input ZzDeleteListUpdateManyWithNestedWhereInput {
-  where: ZzDeleteListWhereInput!
-  data: ZzDeleteListUpdateManyInput!
-}
-input PersonListUpdateManyWithNestedWhereInput {
-  where: PersonListWhereInput!
-  data: PersonListUpdateManyInput!
-}
-input LinkInternalCreateOneInlineInput {
-  create: LinkInternalCreateInput
-  connect: LinkInternalWhereUniqueInput
-}
-input RowHeroVideoLinksUpdateManyWithNestedWhereInput {
-  LinkExternal: LinkExternalUpdateManyWithNestedWhereInput
-  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
-}
-input LinkExternalUpdateManyWithNestedWhereInput {
-  where: LinkExternalWhereInput!
-  data: LinkExternalUpdateManyInput!
+input PageContentUpdateOneInlineInput {
+  create: PageContentCreateInput
+  update: PageContentUpdateWithNestedWhereUniqueInput
+  upsert: PageContentUpsertWithNestedWhereUniqueInput
+  connect: PageContentWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
 }
 input PageContent2WhereInput {
   RowColumnThree: RowColumnThreeWhereInput
@@ -5121,13 +5338,61 @@ input PageContent2WhereInput {
   RowCompanySlider: RowCompanySliderWhereInput
   RowServicesWithText: RowServicesWithTextWhereInput
 }
-input PageContentUpdateOneInlineInput {
-  create: PageContentCreateInput
-  update: PageContentUpdateWithNestedWhereUniqueInput
-  upsert: PageContentUpsertWithNestedWhereUniqueInput
-  connect: PageContentWhereUniqueInput
+input LinkInternalCreateOneInlineInput {
+  create: LinkInternalCreateInput
+  connect: LinkInternalWhereUniqueInput
+}
+input UnpublishLocaleInput {
+  locale: Locale!
+  stages: [Stage!]!
+}
+input RowPeopleWithTextCreateOneInlineInput {
+  create: RowPeopleWithTextCreateInput
+  connect: RowPeopleWithTextWhereUniqueInput
+}
+input PageContent2UpdateInput {
+  RowColumnThree: RowColumnThreeUpdateInput
+  RowColumnTwo: RowColumnTwoUpdateInput
+  RowRecentBlogPost: RowRecentBlogPostUpdateInput
+  RowPeopleWithText: RowPeopleWithTextUpdateInput
+  RowColumnOne: RowColumnOneUpdateInput
+  RowCompanySlider: RowCompanySliderUpdateInput
+  RowServicesWithText: RowServicesWithTextUpdateInput
+}
+input RowColumnTwoUpdateOneInlineInput {
+  create: RowColumnTwoCreateInput
+  update: RowColumnTwoUpdateWithNestedWhereUniqueInput
+  upsert: RowColumnTwoUpsertWithNestedWhereUniqueInput
+  connect: RowColumnTwoWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
+}
+input RowPeopleWithTextUpdateManyWithNestedWhereInput {
+  where: RowPeopleWithTextWhereInput!
+  data: RowPeopleWithTextUpdateManyInput!
+}
+input ListItemsUpdateManyWithNestedWhereInput {
+  Page: PageUpdateManyWithNestedWhereInput
+  Person: PersonUpdateManyWithNestedWhereInput
+  Company: CompanyUpdateManyWithNestedWhereInput
+  RowHero: RowHeroUpdateManyWithNestedWhereInput
+  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
+}
+input PersonUpdateManyWithNestedWhereInput {
+  where: PersonWhereInput!
+  data: PersonUpdateManyInput!
+}
+input CompanyUpdateManyWithNestedWhereInput {
+  where: CompanyWhereInput!
+  data: CompanyUpdateManyInput!
+}
+input RowHeroUpdateManyWithNestedWhereInput {
+  where: RowHeroWhereInput!
+  data: RowHeroUpdateManyInput!
+}
+input LinkInternalUpdateManyWithNestedWhereInput {
+  where: LinkInternalWhereInput!
+  data: LinkInternalUpdateManyInput!
 }
 enum _MutationKind {
   create
@@ -5141,26 +5406,21 @@ enum _MutationKind {
   unpublishMany
   deleteMany
 }
-input RowColumnThreeUpdateOneInlineInput {
-  create: RowColumnThreeCreateInput
-  update: RowColumnThreeUpdateWithNestedWhereUniqueInput
-  upsert: RowColumnThreeUpsertWithNestedWhereUniqueInput
-  connect: RowColumnThreeWhereUniqueInput
+input RowServicesWithTextUpdateOneInlineInput {
+  create: RowServicesWithTextCreateInput
+  update: RowServicesWithTextUpdateWithNestedWhereUniqueInput
+  upsert: RowServicesWithTextUpsertWithNestedWhereUniqueInput
+  connect: RowServicesWithTextWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
 }
-input RowHeroCreateOneInlineInput {
-  create: RowHeroCreateInput
-  connect: RowHeroWhereUniqueInput
-}
-input RowRecentBlogPostUpdateManyInlineInput {
-  create: [RowRecentBlogPostCreateInput!]
-  connect: [RowRecentBlogPostConnectInput!]
-  set: [RowRecentBlogPostWhereUniqueInput!]
-  update: [RowRecentBlogPostUpdateWithNestedWhereUniqueInput!]
-  upsert: [RowRecentBlogPostUpsertWithNestedWhereUniqueInput!]
-  disconnect: [RowRecentBlogPostWhereUniqueInput!]
-  delete: [RowRecentBlogPostWhereUniqueInput!]
+input MenuUpdateOneInlineInput {
+  create: MenuCreateInput
+  update: MenuUpdateWithNestedWhereUniqueInput
+  upsert: MenuUpsertWithNestedWhereUniqueInput
+  connect: MenuWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
 }
 input LinkExternalUpdateOneInlineInput {
   create: LinkExternalCreateInput
@@ -5170,47 +5430,59 @@ input LinkExternalUpdateOneInlineInput {
   disconnect: Boolean
   delete: Boolean
 }
-enum _RelationInputCardinality {
-  one
-  many
+input ColorInput {
+  hex: Hex
+  rgba: RGBAInput
 }
-input RowColumnTwoCreateOneInlineInput {
-  create: RowColumnTwoCreateInput
-  connect: RowColumnTwoWhereUniqueInput
+input RGBAInput {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
 }
-input PersonUpdateOneInlineInput {
-  create: PersonCreateInput
-  update: PersonUpdateWithNestedWhereUniqueInput
-  upsert: PersonUpsertWithNestedWhereUniqueInput
-  connect: PersonWhereUniqueInput
+input RowColumnTwoUpdateManyWithNestedWhereInput {
+  where: RowColumnTwoWhereInput!
+  data: RowColumnTwoUpdateManyInput!
+}
+input CompanyCreateOneInlineInput {
+  create: CompanyCreateInput
+  connect: CompanyWhereUniqueInput
+}
+input RowColumnThreeUpdateManyWithNestedWhereInput {
+  where: RowColumnThreeWhereInput!
+  data: RowColumnThreeUpdateManyInput!
+}
+input RowHeroUpdateOneInlineInput {
+  create: RowHeroCreateInput
+  update: RowHeroUpdateWithNestedWhereUniqueInput
+  upsert: RowHeroUpsertWithNestedWhereUniqueInput
+  connect: RowHeroWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
 }
-input LinkInternalUpdateOneInlineInput {
-  create: LinkInternalCreateInput
-  update: LinkInternalUpdateWithNestedWhereUniqueInput
-  upsert: LinkInternalUpsertWithNestedWhereUniqueInput
-  connect: LinkInternalWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input MenuCreateOneInlineInput {
-  create: MenuCreateInput
-  connect: MenuWhereUniqueInput
+scalar Date
+input RowColumnOneCreateOneInlineInput {
+  create: RowColumnOneCreateInput
+  connect: RowColumnOneWhereUniqueInput
 }
 input PageContentWhereInput {
   RowHero: RowHeroWhereInput
 }
+input RowCompanySliderUpdateManyWithNestedWhereInput {
+  where: RowCompanySliderWhereInput!
+  data: RowCompanySliderUpdateManyInput!
+}
+input ZzDeleteListUpdateOneInlineInput {
+  create: ZzDeleteListCreateInput
+  update: ZzDeleteListUpdateWithNestedWhereUniqueInput
+  upsert: ZzDeleteListUpsertWithNestedWhereUniqueInput
+  connect: ZzDeleteListWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
 enum _RelationKind {
   regular
   union
-}
-input ListItemsUpdateInput {
-  Page: PageUpdateInput
-  Person: PersonUpdateInput
-  Company: CompanyUpdateInput
-  RowHero: RowHeroUpdateInput
-  LinkInternal: LinkInternalUpdateInput
 }
 input ListItemsUpdateOneInlineInput {
   create: ListItemsCreateInput
@@ -5220,13 +5492,45 @@ input ListItemsUpdateOneInlineInput {
   disconnect: Boolean
   delete: Boolean
 }
-enum _OrderDirection {
-  asc
-  desc
+input PageContent2UpdateManyWithNestedWhereInput {
+  RowColumnThree: RowColumnThreeUpdateManyWithNestedWhereInput
+  RowColumnTwo: RowColumnTwoUpdateManyWithNestedWhereInput
+  RowRecentBlogPost: RowRecentBlogPostUpdateManyWithNestedWhereInput
+  RowPeopleWithText: RowPeopleWithTextUpdateManyWithNestedWhereInput
+  RowColumnOne: RowColumnOneUpdateManyWithNestedWhereInput
+  RowCompanySlider: RowCompanySliderUpdateManyWithNestedWhereInput
+  RowServicesWithText: RowServicesWithTextUpdateManyWithNestedWhereInput
 }
-input RowServicesWithTextCreateOneInlineInput {
-  create: RowServicesWithTextCreateInput
-  connect: RowServicesWithTextWhereUniqueInput
+input RowColumnOneUpdateManyWithNestedWhereInput {
+  where: RowColumnOneWhereInput!
+  data: RowColumnOneUpdateManyInput!
+}
+input LinkExternalUpdateManyWithNestedWhereInput {
+  where: LinkExternalWhereInput!
+  data: LinkExternalUpdateManyInput!
+}
+input PersonListUpdateManyWithNestedWhereInput {
+  where: PersonListWhereInput!
+  data: PersonListUpdateManyInput!
+}
+input ZzDeleteListCreateOneInlineInput {
+  create: ZzDeleteListCreateInput
+  connect: ZzDeleteListWhereUniqueInput
+}
+input ListItemsWhereInput {
+  Page: PageWhereInput
+  Person: PersonWhereInput
+  Company: CompanyWhereInput
+  RowHero: RowHeroWhereInput
+  LinkInternal: LinkInternalWhereInput
+}
+input PageContent2CreateOneInlineInput {
+  create: PageContent2CreateInput
+  connect: PageContent2WhereUniqueInput
+}
+input RowCompanySliderCreateOneInlineInput {
+  create: RowCompanySliderCreateInput
+  connect: RowCompanySliderWhereUniqueInput
 }
 input PageContent2UpdateOneInlineInput {
   create: PageContent2CreateInput
@@ -5235,6 +5539,102 @@ input PageContent2UpdateOneInlineInput {
   connect: PageContent2WhereUniqueInput
   disconnect: Boolean
   delete: Boolean
+}
+input RowColumnThreeUpdateOneInlineInput {
+  create: RowColumnThreeCreateInput
+  update: RowColumnThreeUpdateWithNestedWhereUniqueInput
+  upsert: RowColumnThreeUpsertWithNestedWhereUniqueInput
+  connect: RowColumnThreeWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input RowHeroVideoLinksUpdateManyWithNestedWhereInput {
+  LinkExternal: LinkExternalUpdateManyWithNestedWhereInput
+  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
+}
+input RowHeroVideoLinksUpdateOneInlineInput {
+  create: RowHeroVideoLinksCreateInput
+  update: RowHeroVideoLinksUpdateWithNestedWhereUniqueInput
+  upsert: RowHeroVideoLinksUpsertWithNestedWhereUniqueInput
+  connect: RowHeroVideoLinksWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+scalar Json
+input LinkExternalUpdateManyInlineInput {
+  create: [LinkExternalCreateInput!]
+  connect: [LinkExternalConnectInput!]
+  set: [LinkExternalWhereUniqueInput!]
+  update: [LinkExternalUpdateWithNestedWhereUniqueInput!]
+  upsert: [LinkExternalUpsertWithNestedWhereUniqueInput!]
+  disconnect: [LinkExternalWhereUniqueInput!]
+  delete: [LinkExternalWhereUniqueInput!]
+}
+input ListItemsUpdateInput {
+  Page: PageUpdateInput
+  Person: PersonUpdateInput
+  Company: CompanyUpdateInput
+  RowHero: RowHeroUpdateInput
+  LinkInternal: LinkInternalUpdateInput
+}
+input RowHeroVideoLinksCreateOneInlineInput {
+  create: RowHeroVideoLinksCreateInput
+  connect: RowHeroVideoLinksWhereUniqueInput
+}
+input AssetCreateManyInlineInput {
+  create: [AssetCreateInput!]
+  connect: [AssetWhereUniqueInput!]
+}
+enum _OrderDirection {
+  asc
+  desc
+}
+input MenuUpdateManyWithNestedWhereInput {
+  where: MenuWhereInput!
+  data: MenuUpdateManyInput!
+}
+input RowCompanySliderUpdateOneInlineInput {
+  create: RowCompanySliderCreateInput
+  update: RowCompanySliderUpdateWithNestedWhereUniqueInput
+  upsert: RowCompanySliderUpsertWithNestedWhereUniqueInput
+  connect: RowCompanySliderWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input RowColumnOneUpdateOneInlineInput {
+  create: RowColumnOneCreateInput
+  update: RowColumnOneUpdateWithNestedWhereUniqueInput
+  upsert: RowColumnOneUpsertWithNestedWhereUniqueInput
+  connect: RowColumnOneWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input RowColumnThreeCreateOneInlineInput {
+  create: RowColumnThreeCreateInput
+  connect: RowColumnThreeWhereUniqueInput
+}
+input ZzDeleteListUpdateManyWithNestedWhereInput {
+  where: ZzDeleteListWhereInput!
+  data: ZzDeleteListUpdateManyInput!
+}
+input PersonUpdateOneInlineInput {
+  create: PersonCreateInput
+  update: PersonUpdateWithNestedWhereUniqueInput
+  upsert: PersonUpsertWithNestedWhereUniqueInput
+  connect: PersonWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+}
+input RowHeroVideoLinksWhereInput {
+  LinkExternal: LinkExternalWhereInput
+  LinkInternal: LinkInternalWhereInput
+}
+enum _RelationInputKind {
+  create
+  update
+}
+input PageContentUpdateManyWithNestedWhereInput {
+  RowHero: RowHeroUpdateManyWithNestedWhereInput
 }
 input AssetUpdateManyInlineInput {
   create: [AssetCreateInput!]
@@ -5249,160 +5649,9 @@ input AssetConnectInput {
   where: AssetWhereUniqueInput!
   position: ConnectPositionInput
 }
-input RowRecentBlogPostCreateManyInlineInput {
-  create: [RowRecentBlogPostCreateInput!]
-  connect: [RowRecentBlogPostWhereUniqueInput!]
-}
-input LocationInput {
-  latitude: Float!
-  longitude: Float!
-}
-enum _MutationInputFieldKind {
-  scalar
-  richText
-  enum
-  relation
-  union
-  virtual
-}
-enum _RelationInputKind {
-  create
-  update
-}
-input UnpublishLocaleInput {
+input PublishLocaleInput {
   locale: Locale!
   stages: [Stage!]!
-}
-input PageContent2UpdateInput {
-  RowColumnThree: RowColumnThreeUpdateInput
-  RowColumnTwo: RowColumnTwoUpdateInput
-  RowRecentBlogPost: RowRecentBlogPostUpdateInput
-  RowPeopleWithText: RowPeopleWithTextUpdateInput
-  RowColumnOne: RowColumnOneUpdateInput
-  RowCompanySlider: RowCompanySliderUpdateInput
-  RowServicesWithText: RowServicesWithTextUpdateInput
-}
-input RowHeroVideoLinksCreateOneInlineInput {
-  create: RowHeroVideoLinksCreateInput
-  connect: RowHeroVideoLinksWhereUniqueInput
-}
-input RowHeroVideoLinksUpdateOneInlineInput {
-  create: RowHeroVideoLinksCreateInput
-  update: RowHeroVideoLinksUpdateWithNestedWhereUniqueInput
-  upsert: RowHeroVideoLinksUpsertWithNestedWhereUniqueInput
-  connect: RowHeroVideoLinksWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input RowColumnOneUpdateOneInlineInput {
-  create: RowColumnOneCreateInput
-  update: RowColumnOneUpdateWithNestedWhereUniqueInput
-  upsert: RowColumnOneUpsertWithNestedWhereUniqueInput
-  connect: RowColumnOneWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input RowColumnTwoUpdateOneInlineInput {
-  create: RowColumnTwoCreateInput
-  update: RowColumnTwoUpdateWithNestedWhereUniqueInput
-  upsert: RowColumnTwoUpsertWithNestedWhereUniqueInput
-  connect: RowColumnTwoWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input PageContent2CreateOneInlineInput {
-  create: PageContent2CreateInput
-  connect: PageContent2WhereUniqueInput
-}
-input ZzDeleteListCreateOneInlineInput {
-  create: ZzDeleteListCreateInput
-  connect: ZzDeleteListWhereUniqueInput
-}
-input RowRecentBlogPostCreateOneInlineInput {
-  create: RowRecentBlogPostCreateInput
-  connect: RowRecentBlogPostWhereUniqueInput
-}
-input PageContentUpdateManyWithNestedWhereInput {
-  RowHero: RowHeroUpdateManyWithNestedWhereInput
-}
-input CompanyUpdateOneInlineInput {
-  create: CompanyCreateInput
-  update: CompanyUpdateWithNestedWhereUniqueInput
-  upsert: CompanyUpsertWithNestedWhereUniqueInput
-  connect: CompanyWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input RowHeroUpdateOneInlineInput {
-  create: RowHeroCreateInput
-  update: RowHeroUpdateWithNestedWhereUniqueInput
-  upsert: RowHeroUpsertWithNestedWhereUniqueInput
-  connect: RowHeroWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input LinkExternalCreateManyInlineInput {
-  create: [LinkExternalCreateInput!]
-  connect: [LinkExternalWhereUniqueInput!]
-}
-input PersonCreateOneInlineInput {
-  create: PersonCreateInput
-  connect: PersonWhereUniqueInput
-}
-input LinkExternalCreateOneInlineInput {
-  create: LinkExternalCreateInput
-  connect: LinkExternalWhereUniqueInput
-}
-input LinkExternalUpdateManyInlineInput {
-  create: [LinkExternalCreateInput!]
-  connect: [LinkExternalConnectInput!]
-  set: [LinkExternalWhereUniqueInput!]
-  update: [LinkExternalUpdateWithNestedWhereUniqueInput!]
-  upsert: [LinkExternalUpsertWithNestedWhereUniqueInput!]
-  disconnect: [LinkExternalWhereUniqueInput!]
-  delete: [LinkExternalWhereUniqueInput!]
-}
-input RowPeopleWithTextUpdateOneInlineInput {
-  create: RowPeopleWithTextCreateInput
-  update: RowPeopleWithTextUpdateWithNestedWhereUniqueInput
-  upsert: RowPeopleWithTextUpsertWithNestedWhereUniqueInput
-  connect: RowPeopleWithTextWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input ZzDeleteListUpdateOneInlineInput {
-  create: ZzDeleteListCreateInput
-  update: ZzDeleteListUpdateWithNestedWhereUniqueInput
-  upsert: ZzDeleteListUpsertWithNestedWhereUniqueInput
-  connect: ZzDeleteListWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-input RowCompanySliderUpdateOneInlineInput {
-  create: RowCompanySliderCreateInput
-  update: RowCompanySliderUpdateWithNestedWhereUniqueInput
-  upsert: RowCompanySliderUpsertWithNestedWhereUniqueInput
-  connect: RowCompanySliderWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-scalar Json
-input CompanyCreateOneInlineInput {
-  create: CompanyCreateInput
-  connect: CompanyWhereUniqueInput
-}
-input RowServicesWithTextUpdateOneInlineInput {
-  create: RowServicesWithTextCreateInput
-  update: RowServicesWithTextUpdateWithNestedWhereUniqueInput
-  upsert: RowServicesWithTextUpsertWithNestedWhereUniqueInput
-  connect: RowServicesWithTextWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-}
-type Location {
-  latitude: Float!
-  longitude: Float!
-  distance(from: LocationInput!): Float!
 }
 input RowRecentBlogPostUpdateOneInlineInput {
   create: RowRecentBlogPostCreateInput
@@ -5412,38 +5661,23 @@ input RowRecentBlogPostUpdateOneInlineInput {
   disconnect: Boolean
   delete: Boolean
 }
-input MenuUpdateOneInlineInput {
-  create: MenuCreateInput
-  update: MenuUpdateWithNestedWhereUniqueInput
-  upsert: MenuUpsertWithNestedWhereUniqueInput
-  connect: MenuWhereUniqueInput
+input RowPeopleWithTextUpdateOneInlineInput {
+  create: RowPeopleWithTextCreateInput
+  update: RowPeopleWithTextUpdateWithNestedWhereUniqueInput
+  upsert: RowPeopleWithTextUpsertWithNestedWhereUniqueInput
+  connect: RowPeopleWithTextWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
 }
-input PageContentUpdateInput {
-  RowHero: RowHeroUpdateInput
+input RowRecentBlogPostCreateOneInlineInput {
+  create: RowRecentBlogPostCreateInput
+  connect: RowRecentBlogPostWhereUniqueInput
 }
-input RowColumnThreeCreateOneInlineInput {
-  create: RowColumnThreeCreateInput
-  connect: RowColumnThreeWhereUniqueInput
-}
-input PublishLocaleInput {
-  locale: Locale!
-  stages: [Stage!]!
-}
-input RowColumnOneCreateOneInlineInput {
-  create: RowColumnOneCreateInput
-  connect: RowColumnOneWhereUniqueInput
-}
-input RowCompanySliderCreateOneInlineInput {
-  create: RowCompanySliderCreateInput
-  connect: RowCompanySliderWhereUniqueInput
-}
-input PageContentCreateOneInlineInput {
-  create: PageContentCreateInput
-  connect: PageContentWhereUniqueInput
-}
-input RowHeroVideoLinksUpdateInput {
-  LinkExternal: LinkExternalUpdateInput
-  LinkInternal: LinkInternalUpdateInput
+input CompanyUpdateOneInlineInput {
+  create: CompanyCreateInput
+  update: CompanyUpdateWithNestedWhereUniqueInput
+  upsert: CompanyUpsertWithNestedWhereUniqueInput
+  connect: CompanyWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
 }

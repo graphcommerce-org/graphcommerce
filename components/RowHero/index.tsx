@@ -1,57 +1,27 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { GQLRowHeroFragment } from '../../generated/graphql'
 import LinkInternal from '../LinkInternal/LinkInternal'
 import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
-import Container, { ContainerStyles } from '../Container'
-import logoReachBgShadow from '../../public/images/logo-reach-bg-shadow-secondary.svg'
+import Container from '../Container'
 
-const useContainerStyles = makeStyles<Theme, ContainerStyles>(
-  (theme: Theme) => ({
-    left: {
-      alignSelf: 'stretch',
-    },
-    right: {},
-    root: {
-      background: `linear-gradient(to bottom right, transparent 50%, ${theme.palette.secondary.main} 50%)`,
-      minHeight: 'calc(90vh - 60px)',
-      alignItems: 'center',
-    },
-    after: {
-      position: 'relative',
-    },
-    before: {},
-  }),
-  { name: 'RowHero' },
-)
+const useContainerStyles = makeStyles({
+  left: {
+    alignSelf: 'stretch',
+  },
+  right: {},
+  after: {
+    position: 'relative',
+  },
+  before: {},
+})
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    videoContainer: {
-      position: 'relative',
-      width: '100%',
-      height: '100%',
-      minHeight: '50vh',
-      overflow: 'hidden',
-    },
-    video: {
-      position: 'absolute',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      height: '100%',
-      width: 'auto',
-    },
-    logo: {
-      position: 'absolute',
-      height: '100%',
-      maxWidth: '92%',
-      bottom: 0,
-      right: 0,
-    },
-  }),
-  { name: 'RowHero' },
-)
+const useStyles = makeStyles({
+  video: {
+    width: '100%',
+  },
+})
 
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer
@@ -62,16 +32,13 @@ const useStyles = makeStyles(
  * ../ContentRenderer/defaultRenderer.tsx
  */
 const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
-  // const { width, height, ref } = useResizeObserver<HTMLImageElement>({})
   const classes = useStyles()
   const containerClasses = useContainerStyles()
 
   const left = asset && (
-    <div className={classes.videoContainer}>
-      <video autoPlay loop muted playsInline id='video' className={classes.video}>
-        <source src={asset.url} type={asset.mimeType!} />
-      </video>
-    </div>
+    <video autoPlay loop muted playsInline id='video' className={classes.video}>
+      <source src={asset.url} type={asset.mimeType!} />
+    </video>
   )
 
   const right = (
@@ -88,9 +55,7 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
   )
 
   return (
-    <Container left={left} right={right} leftWidth={0.5} classes={containerClasses} spaceBetween>
-      <img src={`${logoReachBgShadow}`} alt='Logo Reach Digital' className={classes.logo} />
-    </Container>
+    <Container left={left} right={right} leftWidth={0.5} classes={containerClasses} spaceBetween />
   )
 }
 
