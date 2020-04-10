@@ -284,6 +284,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (error) {
     if ((error as ApolloError).networkError) {
       const apolloError = error as ApolloError
+      // @ts-ignore
       console.log(JSON.stringify(apolloError.networkError?.result))
     } else {
       console.log(error)
