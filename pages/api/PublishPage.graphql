@@ -1,0 +1,5 @@
+mutation PublishPage($id: ID!, $locales: [Locale!]!) {
+  publishPage(where: { id: $id }, publishBase: true, locales: $locales, to: PUBLISHED) {
+    id
+  }
+}
