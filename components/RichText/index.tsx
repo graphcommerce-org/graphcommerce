@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
-import { MimeTypes } from '../PictureResponsive'
+import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture from '../FilestackPicture'
 import Link from '../Link'
 
@@ -52,7 +52,7 @@ interface ImageJSON {
     src: string
     width: number
     height: number
-    mimeType: MimeTypes
+    mimeType: ImageMimeTypes
   }
   object: 'block'
 }

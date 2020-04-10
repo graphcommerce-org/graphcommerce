@@ -3,7 +3,7 @@ import useResizeObserver from 'use-resize-observer'
 import useNetworkStatus from './useNetworkStatus'
 
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
-export type MimeTypes =
+export type ImageMimeTypes =
   | 'image/apng'
   | 'image/bmp'
   | 'image/gif'
@@ -15,7 +15,7 @@ export type MimeTypes =
   | 'image/webp'
 
 export type PictureResonsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
-  srcSets: Partial<Record<MimeTypes, string>>
+  srcSets: Partial<Record<ImageMimeTypes, string>>
   width: number
   height: number
 }

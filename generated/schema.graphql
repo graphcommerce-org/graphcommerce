@@ -63,6 +63,36 @@ type Query {
     locales: [Locale!]! = [nl]
   ): AssetConnection!
   """
+  Retrieve multiple blogLists
+  """
+  blogLists(
+    where: BlogListWhereInput
+    orderBy: BlogListOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+    stage: Stage! = PUBLISHED
+  ): [BlogList!]!
+  """
+  Retrieve a single blogList
+  """
+  blogList(where: BlogListWhereUniqueInput!, stage: Stage! = PUBLISHED): BlogList
+  """
+  Retrieve multiple blogLists using the Relay connection interface
+  """
+  blogListsConnection(
+    where: BlogListWhereInput
+    orderBy: BlogListOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+    stage: Stage! = PUBLISHED
+  ): BlogListConnection!
+  """
   Retrieve multiple companies
   """
   companies(
@@ -2126,6 +2156,7 @@ input PageWhereInput {
   menu_every: MenuWhereInput
   menu_some: MenuWhereInput
   menu_none: MenuWhereInput
+  blogList: BlogListWhereInput
 }
 enum MetaRobots {
   INDEX_FOLLOW
@@ -2317,6 +2348,154 @@ input MenuWhereInput {
   pages_every: PageWhereInput
   pages_some: PageWhereInput
   pages_none: PageWhereInput
+}
+"""
+Identifies documents
+"""
+input BlogListWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [BlogListWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [BlogListWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [BlogListWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  blogPages_every: PageWhereInput
+  blogPages_some: PageWhereInput
+  blogPages_none: PageWhereInput
 }
 """
 Identifies documents
@@ -4250,6 +4429,7 @@ type Page implements Node {
     first: Int
     last: Int
   ): [Menu!]!
+  blogList: BlogList
 }
 union PageContent = RowHero
 type RowHero implements Node {
@@ -4899,6 +5079,57 @@ enum PageOrderByInput {
   metaRobots_ASC
   metaRobots_DESC
 }
+type BlogList implements Node {
+  """
+  System stage field
+  """
+  stage: Stage!
+  """
+  Get the document in other stages
+  """
+  documentInStages(
+    """
+    Potential stages that should be returned
+    """
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    """
+    Decides if the current stage should be included or not
+    """
+    includeCurrent: Boolean! = false
+    """
+    Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
+    """
+    inheritLocale: Boolean! = false
+  ): [BlogList!]!
+  """
+  The unique identifier
+  """
+  id: ID!
+  """
+  The time the document was created
+  """
+  createdAt: DateTime!
+  """
+  The time the document was updated
+  """
+  updatedAt: DateTime!
+  """
+  The time the document was published. Null on documents in draft stage.
+  """
+  publishedAt: DateTime
+  """
+  Collects all the blog pages
+  """
+  blogPages(
+    where: PageWhereInput
+    orderBy: PageOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Page!]!
+}
 enum RowServicesWithTextOrderByInput {
   id_ASC
   id_DESC
@@ -5129,6 +5360,49 @@ type AssetEdge {
 }
 type Aggregate {
   count: Int!
+}
+enum BlogListOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+}
+"""
+References BlogList record uniquely
+"""
+input BlogListWhereUniqueInput {
+  id: ID
+}
+"""
+A connection to a list of items.
+"""
+type BlogListConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+  """
+  A list of edges.
+  """
+  edges: [BlogListEdge!]!
+  aggregate: Aggregate!
+}
+"""
+An edge in a connection.
+"""
+type BlogListEdge {
+  """
+  The item at the end of the edge.
+  """
+  node: BlogList!
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
 }
 """
 References Company record uniquely
@@ -6454,6 +6728,103 @@ type Mutation {
     Whether to unpublish the base document and default localization
     """
     unpublishBase: Boolean = true
+  ): BatchPayload!
+  """
+  Create one blogList
+  """
+  createBlogList(data: BlogListCreateInput!): BlogList
+  """
+  Update one blogList
+  """
+  updateBlogList(where: BlogListWhereUniqueInput!, data: BlogListUpdateInput!): BlogList
+  """
+  Delete one blogList from _all_ existing stages. Returns deleted document.
+  """
+  deleteBlogList(
+    """
+    Document to delete
+    """
+    where: BlogListWhereUniqueInput!
+  ): BlogList
+  """
+  Upsert one blogList
+  """
+  upsertBlogList(where: BlogListWhereUniqueInput!, upsert: BlogListUpsertInput!): BlogList
+  """
+  Publish one blogList
+  """
+  publishBlogList(
+    """
+    Document to publish
+    """
+    where: BlogListWhereUniqueInput!
+    """
+    Publishing target stage
+    """
+    to: [Stage!]! = [PUBLISHED]
+  ): BlogList
+  """
+  Unpublish one blogList from selected stages. Unpublish either the complete
+  document with its relations, localizations and base data or specific
+  localizations only.
+  """
+  unpublishBlogList(
+    """
+    Document to unpublish
+    """
+    where: BlogListWhereUniqueInput!
+    """
+    Stages to unpublish document from
+    """
+    from: [Stage!]! = [PUBLISHED]
+  ): BlogList
+  """
+  Update many blogLists
+  """
+  updateManyBlogLists(
+    """
+    Documents to apply update on
+    """
+    where: BlogListManyWhereInput
+    """
+    Updates to document content
+    """
+    data: BlogListUpdateManyInput!
+  ): BatchPayload!
+  """
+  Delete many BlogList documents
+  """
+  deleteManyBlogLists(
+    """
+    Documents to delete
+    """
+    where: BlogListManyWhereInput
+  ): BatchPayload!
+  """
+  Publish many BlogList documents
+  """
+  publishManyBlogLists(
+    """
+    Identifies documents in each stage to be published
+    """
+    where: BlogListManyWhereInput
+    """
+    Stages to publish documents to
+    """
+    to: [Stage!]! = [PUBLISHED]
+  ): BatchPayload!
+  """
+  Unpublish many BlogList documents
+  """
+  unpublishManyBlogLists(
+    """
+    Identifies documents in each stage
+    """
+    where: BlogListManyWhereInput
+    """
+    Stages to unpublish documents from
+    """
+    from: [Stage!]! = [PUBLISHED]
   ): BatchPayload!
   """
   Create one company
@@ -8463,6 +8834,7 @@ input PageCreateInput {
   content2: PageContent2CreateManyInlineInput
   internalLink: LinkInternalCreateManyInlineInput
   menu: MenuCreateManyInlineInput
+  blogList: BlogListCreateOneInlineInput
   """
   Inline mutations for managing document localizations excluding the default locale
   """
@@ -8823,6 +9195,21 @@ input MenuCreateInput {
   updatedAt: DateTime
   identity: String!
   pages: PageCreateManyInlineInput
+}
+input BlogListCreateOneInlineInput {
+  """
+  Create and connect one BlogList document
+  """
+  create: BlogListCreateInput
+  """
+  Connect one existing BlogList document
+  """
+  connect: BlogListWhereUniqueInput
+}
+input BlogListCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  blogPages: PageCreateManyInlineInput
 }
 input PageCreateLocalizationsInput {
   """
@@ -9349,6 +9736,7 @@ input PageUpdateInput {
   content2: PageContent2UpdateManyInlineInput
   internalLink: LinkInternalUpdateManyInlineInput
   menu: MenuUpdateManyInlineInput
+  blogList: BlogListUpdateOneInlineInput
   """
   Manage document localizations
   """
@@ -10477,6 +10865,65 @@ input MenuUpsertInput {
   """
   update: MenuUpdateInput!
 }
+input BlogListUpdateOneInlineInput {
+  """
+  Create and connect one BlogList document
+  """
+  create: BlogListCreateInput
+  """
+  Update single BlogList document
+  """
+  update: BlogListUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single BlogList document
+  """
+  upsert: BlogListUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing BlogList document
+  """
+  connect: BlogListWhereUniqueInput
+  """
+  Disconnect currently connected BlogList document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected BlogList document
+  """
+  delete: Boolean
+}
+input BlogListUpdateWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: BlogListWhereUniqueInput!
+  """
+  Document to update
+  """
+  data: BlogListUpdateInput!
+}
+input BlogListUpdateInput {
+  blogPages: PageUpdateManyInlineInput
+}
+input BlogListUpsertWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: BlogListWhereUniqueInput!
+  """
+  Upsert data
+  """
+  data: BlogListUpsertInput!
+}
+input BlogListUpsertInput {
+  """
+  Create document if it didn't exist
+  """
+  create: BlogListCreateInput!
+  """
+  Update document if it exists
+  """
+  update: BlogListUpdateInput!
+}
 input PageUpdateLocalizationsInput {
   """
   Localizations to create
@@ -10957,6 +11404,158 @@ The Long scalar type represents non-fractional signed whole numeric values. Long
 can represent values between -(2^63) and 2^63 - 1.
 """
 scalar Long
+"""
+Identifies documents
+"""
+input BlogListManyWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [BlogListWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [BlogListWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [BlogListWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  blogPages_every: PageWhereInput
+  blogPages_some: PageWhereInput
+  blogPages_none: PageWhereInput
+}
+input BlogListUpdateManyInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+}
 """
 Identifies documents
 """
@@ -11821,6 +12420,7 @@ input PageManyWhereInput {
   menu_every: MenuWhereInput
   menu_some: MenuWhereInput
   menu_none: MenuWhereInput
+  blogList: BlogListWhereInput
 }
 input PageUpdateManyInput {
   createdAt: DateTime
@@ -13973,159 +14573,72 @@ input ZzDeleteListUpdateManyInput {
   createdAt: DateTime
   updatedAt: DateTime
 }
-input LinkExternalUpdateManyInlineInput {
-  """
-  Create and connect multiple LinkExternal documents
-  """
-  create: [LinkExternalCreateInput!]
-  """
-  Connect multiple existing LinkExternal documents
-  """
-  connect: [LinkExternalConnectInput!]
-  """
-  Override currently-connected documents with multiple existing LinkExternal documents
-  """
-  set: [LinkExternalWhereUniqueInput!]
-  """
-  Update multiple LinkExternal documents
-  """
-  update: [LinkExternalUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple LinkExternal documents
-  """
-  upsert: [LinkExternalUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple LinkExternal documents
-  """
-  disconnect: [LinkExternalWhereUniqueInput!]
-  """
-  Delete multiple LinkExternal documents
-  """
-  delete: [LinkExternalWhereUniqueInput!]
-}
-input MenuCreateOneInlineInput {
-  """
-  Create and connect one Menu document
-  """
-  create: MenuCreateInput
-  """
-  Connect one existing Menu document
-  """
-  connect: MenuWhereUniqueInput
-}
-input RowPeopleWithTextUpdateManyWithNestedWhereInput {
+input RowServicesWithTextUpdateManyWithNestedWhereInput {
   """
   Document search
   """
-  where: RowPeopleWithTextWhereInput!
+  where: RowServicesWithTextWhereInput!
   """
   Update many input
   """
-  data: RowPeopleWithTextUpdateManyInput!
+  data: RowServicesWithTextUpdateManyInput!
 }
-input PageContentWhereInput {
-  RowHero: RowHeroWhereInput
+input RowHeroVideoLinksCreateOneInlineInput {
+  """
+  Create and connect one RowHeroVideoLinks document
+  """
+  create: RowHeroVideoLinksCreateInput
+  """
+  Connect one existing RowHeroVideoLinks document
+  """
+  connect: RowHeroVideoLinksWhereUniqueInput
 }
-input AssetConnectInput {
+input RowColumnThreeCreateOneInlineInput {
   """
-  Document to connect
+  Create and connect one RowColumnThree document
   """
-  where: AssetWhereUniqueInput!
+  create: RowColumnThreeCreateInput
   """
-  Allow to specify document position in list of connected documents, will default to appending at end of list
+  Connect one existing RowColumnThree document
   """
-  position: ConnectPositionInput
+  connect: RowColumnThreeWhereUniqueInput
 }
-input PageContent2UpdateInput {
-  RowColumnThree: RowColumnThreeUpdateInput
-  RowColumnTwo: RowColumnTwoUpdateInput
-  RowRecentBlogPost: RowRecentBlogPostUpdateInput
-  RowPeopleWithText: RowPeopleWithTextUpdateInput
-  RowColumnOne: RowColumnOneUpdateInput
-  RowCompanySlider: RowCompanySliderUpdateInput
-  RowServicesWithText: RowServicesWithTextUpdateInput
+input ListItemsUpdateManyWithNestedWhereInput {
+  Page: PageUpdateManyWithNestedWhereInput
+  Person: PersonUpdateManyWithNestedWhereInput
+  Company: CompanyUpdateManyWithNestedWhereInput
+  RowHero: RowHeroUpdateManyWithNestedWhereInput
+  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
 }
-input RowHeroVideoLinksWhereInput {
-  LinkExternal: LinkExternalWhereInput
-  LinkInternal: LinkInternalWhereInput
-}
-enum _OrderDirection {
-  asc
-  desc
-}
-input RowServicesWithTextCreateOneInlineInput {
-  """
-  Create and connect one RowServicesWithText document
-  """
-  create: RowServicesWithTextCreateInput
-  """
-  Connect one existing RowServicesWithText document
-  """
-  connect: RowServicesWithTextWhereUniqueInput
-}
-input RowColumnThreeUpdateManyWithNestedWhereInput {
+input PageUpdateManyWithNestedWhereInput {
   """
   Document search
   """
-  where: RowColumnThreeWhereInput!
+  where: PageWhereInput!
   """
   Update many input
   """
-  data: RowColumnThreeUpdateManyInput!
+  data: PageUpdateManyInput!
 }
-input AssetUpdateManyInlineInput {
-  """
-  Create and connect multiple Asset documents
-  """
-  create: [AssetCreateInput!]
-  """
-  Connect multiple existing Asset documents
-  """
-  connect: [AssetConnectInput!]
-  """
-  Override currently-connected documents with multiple existing Asset documents
-  """
-  set: [AssetWhereUniqueInput!]
-  """
-  Update multiple Asset documents
-  """
-  update: [AssetUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple Asset documents
-  """
-  upsert: [AssetUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple Asset documents
-  """
-  disconnect: [AssetWhereUniqueInput!]
-  """
-  Delete multiple Asset documents
-  """
-  delete: [AssetWhereUniqueInput!]
-}
-input RowHeroVideoLinksUpdateInput {
-  LinkExternal: LinkExternalUpdateInput
-  LinkInternal: LinkInternalUpdateInput
-}
-input LinkExternalCreateOneInlineInput {
-  """
-  Create and connect one LinkExternal document
-  """
-  create: LinkExternalCreateInput
-  """
-  Connect one existing LinkExternal document
-  """
-  connect: LinkExternalWhereUniqueInput
-}
-input PersonListUpdateManyWithNestedWhereInput {
+input PersonUpdateManyWithNestedWhereInput {
   """
   Document search
   """
-  where: PersonListWhereInput!
+  where: PersonWhereInput!
   """
   Update many input
   """
-  data: PersonListUpdateManyInput!
+  data: PersonUpdateManyInput!
+}
+input CompanyUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: CompanyWhereInput!
+  """
+  Update many input
+  """
+  data: CompanyUpdateManyInput!
 }
 input RowHeroUpdateManyWithNestedWhereInput {
   """
@@ -14137,68 +14650,61 @@ input RowHeroUpdateManyWithNestedWhereInput {
   """
   data: RowHeroUpdateManyInput!
 }
-input RowHeroCreateOneInlineInput {
+input LinkInternalUpdateManyWithNestedWhereInput {
   """
-  Create and connect one RowHero document
+  Document search
   """
-  create: RowHeroCreateInput
+  where: LinkInternalWhereInput!
   """
-  Connect one existing RowHero document
+  Update many input
   """
-  connect: RowHeroWhereUniqueInput
+  data: LinkInternalUpdateManyInput!
 }
-input RowRecentBlogPostUpdateOneInlineInput {
+input RowServicesWithTextUpdateOneInlineInput {
   """
-  Create and connect one RowRecentBlogPost document
+  Create and connect one RowServicesWithText document
   """
-  create: RowRecentBlogPostCreateInput
+  create: RowServicesWithTextCreateInput
   """
-  Update single RowRecentBlogPost document
+  Update single RowServicesWithText document
   """
-  update: RowRecentBlogPostUpdateWithNestedWhereUniqueInput
+  update: RowServicesWithTextUpdateWithNestedWhereUniqueInput
   """
-  Upsert single RowRecentBlogPost document
+  Upsert single RowServicesWithText document
   """
-  upsert: RowRecentBlogPostUpsertWithNestedWhereUniqueInput
+  upsert: RowServicesWithTextUpsertWithNestedWhereUniqueInput
   """
-  Connect existing RowRecentBlogPost document
+  Connect existing RowServicesWithText document
   """
-  connect: RowRecentBlogPostWhereUniqueInput
+  connect: RowServicesWithTextWhereUniqueInput
   """
-  Disconnect currently connected RowRecentBlogPost document
+  Disconnect currently connected RowServicesWithText document
   """
   disconnect: Boolean
   """
-  Delete currently connected RowRecentBlogPost document
+  Delete currently connected RowServicesWithText document
   """
   delete: Boolean
 }
-input LinkExternalUpdateOneInlineInput {
-  """
-  Create and connect one LinkExternal document
-  """
-  create: LinkExternalCreateInput
-  """
-  Update single LinkExternal document
-  """
-  update: LinkExternalUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single LinkExternal document
-  """
-  upsert: LinkExternalUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing LinkExternal document
-  """
-  connect: LinkExternalWhereUniqueInput
-  """
-  Disconnect currently connected LinkExternal document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected LinkExternal document
-  """
-  delete: Boolean
+"""
+Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used.
+"""
+input ColorInput {
+  hex: Hex
+  rgba: RGBAInput
 }
+scalar Hex
+"""
+Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
+"""
+input RGBAInput {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
+}
+scalar RGBAHue
+scalar RGBATransparency
 input RowHeroVideoLinksUpdateOneInlineInput {
   """
   Create and connect one RowHeroVideoLinks document
@@ -14225,108 +14731,13 @@ input RowHeroVideoLinksUpdateOneInlineInput {
   """
   delete: Boolean
 }
-input ListItemsCreateOneInlineInput {
-  """
-  Create and connect one ListItems document
-  """
-  create: ListItemsCreateInput
-  """
-  Connect one existing ListItems document
-  """
-  connect: ListItemsWhereUniqueInput
-}
 """
-Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
+Representing a geolocation point with latitude and longitude
 """
-type RGBA {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
-}
-scalar RGBAHue
-scalar RGBATransparency
-"""
-Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used.
-"""
-input ColorInput {
-  hex: Hex
-  rgba: RGBAInput
-}
-scalar Hex
-"""
-Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
-"""
-input RGBAInput {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
-}
-input LinkInternalUpdateOneInlineInput {
-  """
-  Create and connect one LinkInternal document
-  """
-  create: LinkInternalCreateInput
-  """
-  Update single LinkInternal document
-  """
-  update: LinkInternalUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single LinkInternal document
-  """
-  upsert: LinkInternalUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing LinkInternal document
-  """
-  connect: LinkInternalWhereUniqueInput
-  """
-  Disconnect currently connected LinkInternal document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected LinkInternal document
-  """
-  delete: Boolean
-}
-input LinkInternalCreateOneInlineInput {
-  """
-  Create and connect one LinkInternal document
-  """
-  create: LinkInternalCreateInput
-  """
-  Connect one existing LinkInternal document
-  """
-  connect: LinkInternalWhereUniqueInput
-}
-input PageContentUpdateInput {
-  RowHero: RowHeroUpdateInput
-}
-input RowColumnOneUpdateOneInlineInput {
-  """
-  Create and connect one RowColumnOne document
-  """
-  create: RowColumnOneCreateInput
-  """
-  Update single RowColumnOne document
-  """
-  update: RowColumnOneUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowColumnOne document
-  """
-  upsert: RowColumnOneUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowColumnOne document
-  """
-  connect: RowColumnOneWhereUniqueInput
-  """
-  Disconnect currently connected RowColumnOne document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowColumnOne document
-  """
-  delete: Boolean
+type Location {
+  latitude: Float!
+  longitude: Float!
+  distance(from: LocationInput!): Float!
 }
 """
 Input for a geolocation point with latitude and longitude
@@ -14335,29 +14746,96 @@ input LocationInput {
   latitude: Float!
   longitude: Float!
 }
-input RowColumnTwoUpdateOneInlineInput {
+input RowColumnThreeUpdateManyWithNestedWhereInput {
   """
-  Create and connect one RowColumnTwo document
+  Document search
   """
-  create: RowColumnTwoCreateInput
+  where: RowColumnThreeWhereInput!
   """
-  Update single RowColumnTwo document
+  Update many input
   """
-  update: RowColumnTwoUpdateWithNestedWhereUniqueInput
+  data: RowColumnThreeUpdateManyInput!
+}
+input AssetCreateManyInlineInput {
   """
-  Upsert single RowColumnTwo document
+  Create and connect multiple existing Asset documents
   """
-  upsert: RowColumnTwoUpsertWithNestedWhereUniqueInput
+  create: [AssetCreateInput!]
   """
-  Connect existing RowColumnTwo document
+  Connect multiple existing Asset documents
   """
-  connect: RowColumnTwoWhereUniqueInput
+  connect: [AssetWhereUniqueInput!]
+}
+enum _MutationKind {
+  create
+  publish
+  unpublish
+  update
+  upsert
+  delete
+  updateMany
+  publishMany
+  unpublishMany
+  deleteMany
+}
+input BlogListUpdateManyWithNestedWhereInput {
   """
-  Disconnect currently connected RowColumnTwo document
+  Document search
+  """
+  where: BlogListWhereInput!
+  """
+  Update many input
+  """
+  data: BlogListUpdateManyInput!
+}
+input RowPeopleWithTextCreateOneInlineInput {
+  """
+  Create and connect one RowPeopleWithText document
+  """
+  create: RowPeopleWithTextCreateInput
+  """
+  Connect one existing RowPeopleWithText document
+  """
+  connect: RowPeopleWithTextWhereUniqueInput
+}
+input BlogListCreateManyInlineInput {
+  """
+  Create and connect multiple existing BlogList documents
+  """
+  create: [BlogListCreateInput!]
+  """
+  Connect multiple existing BlogList documents
+  """
+  connect: [BlogListWhereUniqueInput!]
+}
+"""
+A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
+for representation of dates using the Gregorian calendar.
+"""
+scalar Date
+input PersonUpdateOneInlineInput {
+  """
+  Create and connect one Person document
+  """
+  create: PersonCreateInput
+  """
+  Update single Person document
+  """
+  update: PersonUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single Person document
+  """
+  upsert: PersonUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing Person document
+  """
+  connect: PersonWhereUniqueInput
+  """
+  Disconnect currently connected Person document
   """
   disconnect: Boolean
   """
-  Delete currently connected RowColumnTwo document
+  Delete currently connected Person document
   """
   delete: Boolean
 }
@@ -14371,191 +14849,52 @@ input ZzDeleteListUpdateManyWithNestedWhereInput {
   """
   data: ZzDeleteListUpdateManyInput!
 }
-input PersonUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: PersonWhereInput!
-  """
-  Update many input
-  """
-  data: PersonUpdateManyInput!
+"""
+Representing a color value comprising of HEX, RGBA and css color values
+"""
+type Color {
+  hex: Hex!
+  rgba: RGBA!
+  css: String!
 }
-input PageContentUpdateOneInlineInput {
-  """
-  Create and connect one PageContent document
-  """
-  create: PageContentCreateInput
-  """
-  Update single PageContent document
-  """
-  update: PageContentUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single PageContent document
-  """
-  upsert: PageContentUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing PageContent document
-  """
-  connect: PageContentWhereUniqueInput
-  """
-  Disconnect currently connected PageContent document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected PageContent document
-  """
-  delete: Boolean
+"""
+Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
+"""
+type RGBA {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
 }
-input RowCompanySliderUpdateManyWithNestedWhereInput {
+input PublishLocaleInput {
   """
-  Document search
+  Locales to publish
   """
-  where: RowCompanySliderWhereInput!
+  locale: Locale!
   """
-  Update many input
+  Stages to publish selected locales to
   """
-  data: RowCompanySliderUpdateManyInput!
+  stages: [Stage!]!
 }
-input RowRecentBlogPostCreateOneInlineInput {
-  """
-  Create and connect one RowRecentBlogPost document
-  """
-  create: RowRecentBlogPostCreateInput
-  """
-  Connect one existing RowRecentBlogPost document
-  """
-  connect: RowRecentBlogPostWhereUniqueInput
-}
-input PageContent2UpdateOneInlineInput {
+input PageContent2CreateOneInlineInput {
   """
   Create and connect one PageContent2 document
   """
   create: PageContent2CreateInput
   """
-  Update single PageContent2 document
-  """
-  update: PageContent2UpdateWithNestedWhereUniqueInput
-  """
-  Upsert single PageContent2 document
-  """
-  upsert: PageContent2UpsertWithNestedWhereUniqueInput
-  """
-  Connect existing PageContent2 document
+  Connect one existing PageContent2 document
   """
   connect: PageContent2WhereUniqueInput
-  """
-  Disconnect currently connected PageContent2 document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected PageContent2 document
-  """
-  delete: Boolean
 }
-input UnpublishLocaleInput {
-  """
-  Locales to unpublish
-  """
-  locale: Locale!
-  """
-  Stages to unpublish selected locales from
-  """
-  stages: [Stage!]!
-}
-input PageContent2UpdateManyWithNestedWhereInput {
-  RowColumnThree: RowColumnThreeUpdateManyWithNestedWhereInput
-  RowColumnTwo: RowColumnTwoUpdateManyWithNestedWhereInput
-  RowRecentBlogPost: RowRecentBlogPostUpdateManyWithNestedWhereInput
-  RowPeopleWithText: RowPeopleWithTextUpdateManyWithNestedWhereInput
-  RowColumnOne: RowColumnOneUpdateManyWithNestedWhereInput
-  RowCompanySlider: RowCompanySliderUpdateManyWithNestedWhereInput
-  RowServicesWithText: RowServicesWithTextUpdateManyWithNestedWhereInput
-}
-input RowColumnTwoUpdateManyWithNestedWhereInput {
+input MenuUpdateManyWithNestedWhereInput {
   """
   Document search
   """
-  where: RowColumnTwoWhereInput!
+  where: MenuWhereInput!
   """
   Update many input
   """
-  data: RowColumnTwoUpdateManyInput!
-}
-input RowRecentBlogPostUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowRecentBlogPostWhereInput!
-  """
-  Update many input
-  """
-  data: RowRecentBlogPostUpdateManyInput!
-}
-input RowColumnOneUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowColumnOneWhereInput!
-  """
-  Update many input
-  """
-  data: RowColumnOneUpdateManyInput!
-}
-input RowServicesWithTextUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowServicesWithTextWhereInput!
-  """
-  Update many input
-  """
-  data: RowServicesWithTextUpdateManyInput!
-}
-"""
-Raw JSON value
-"""
-scalar Json
-enum _RelationInputKind {
-  create
-  update
-}
-input ListItemsUpdateManyWithNestedWhereInput {
-  Page: PageUpdateManyWithNestedWhereInput
-  Person: PersonUpdateManyWithNestedWhereInput
-  Company: CompanyUpdateManyWithNestedWhereInput
-  RowHero: RowHeroUpdateManyWithNestedWhereInput
-  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
-}
-input PageUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: PageWhereInput!
-  """
-  Update many input
-  """
-  data: PageUpdateManyInput!
-}
-input CompanyUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: CompanyWhereInput!
-  """
-  Update many input
-  """
-  data: CompanyUpdateManyInput!
-}
-input LinkInternalUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: LinkInternalWhereInput!
-  """
-  Update many input
-  """
-  data: LinkInternalUpdateManyInput!
+  data: MenuUpdateManyInput!
 }
 input ListItemsUpdateOneInlineInput {
   """
@@ -14583,6 +14922,98 @@ input ListItemsUpdateOneInlineInput {
   """
   delete: Boolean
 }
+input PageContent2UpdateOneInlineInput {
+  """
+  Create and connect one PageContent2 document
+  """
+  create: PageContent2CreateInput
+  """
+  Update single PageContent2 document
+  """
+  update: PageContent2UpdateWithNestedWhereUniqueInput
+  """
+  Upsert single PageContent2 document
+  """
+  upsert: PageContent2UpsertWithNestedWhereUniqueInput
+  """
+  Connect existing PageContent2 document
+  """
+  connect: PageContent2WhereUniqueInput
+  """
+  Disconnect currently connected PageContent2 document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected PageContent2 document
+  """
+  delete: Boolean
+}
+input CompanyCreateOneInlineInput {
+  """
+  Create and connect one Company document
+  """
+  create: CompanyCreateInput
+  """
+  Connect one existing Company document
+  """
+  connect: CompanyWhereUniqueInput
+}
+input PageContentUpdateOneInlineInput {
+  """
+  Create and connect one PageContent document
+  """
+  create: PageContentCreateInput
+  """
+  Update single PageContent document
+  """
+  update: PageContentUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single PageContent document
+  """
+  upsert: PageContentUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing PageContent document
+  """
+  connect: PageContentWhereUniqueInput
+  """
+  Disconnect currently connected PageContent document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected PageContent document
+  """
+  delete: Boolean
+}
+input RowHeroCreateOneInlineInput {
+  """
+  Create and connect one RowHero document
+  """
+  create: RowHeroCreateInput
+  """
+  Connect one existing RowHero document
+  """
+  connect: RowHeroWhereUniqueInput
+}
+input ListItemsUpdateInput {
+  Page: PageUpdateInput
+  Person: PersonUpdateInput
+  Company: CompanyUpdateInput
+  RowHero: RowHeroUpdateInput
+  LinkInternal: LinkInternalUpdateInput
+}
+input AssetUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: AssetWhereInput!
+  """
+  Update many input
+  """
+  data: AssetUpdateManyInput!
+}
+input PageContentWhereInput {
+  RowHero: RowHeroWhereInput
+}
 input RowHeroVideoLinksUpdateManyWithNestedWhereInput {
   LinkExternal: LinkExternalUpdateManyWithNestedWhereInput
   LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
@@ -14597,15 +15028,199 @@ input LinkExternalUpdateManyWithNestedWhereInput {
   """
   data: LinkExternalUpdateManyInput!
 }
-input RowHeroVideoLinksCreateOneInlineInput {
+input LinkExternalCreateOneInlineInput {
   """
-  Create and connect one RowHeroVideoLinks document
+  Create and connect one LinkExternal document
   """
-  create: RowHeroVideoLinksCreateInput
+  create: LinkExternalCreateInput
   """
-  Connect one existing RowHeroVideoLinks document
+  Connect one existing LinkExternal document
   """
-  connect: RowHeroVideoLinksWhereUniqueInput
+  connect: LinkExternalWhereUniqueInput
+}
+enum _FilterKind {
+  search
+  AND
+  OR
+  NOT
+  eq
+  eq_not
+  in
+  not_in
+  lt
+  lte
+  gt
+  gte
+  contains
+  not_contains
+  starts_with
+  not_starts_with
+  ends_with
+  not_ends_with
+  contains_all
+  contains_some
+  contains_none
+  relational_single
+  relational_every
+  relational_some
+  relational_none
+}
+input PersonListUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: PersonListWhereInput!
+  """
+  Update many input
+  """
+  data: PersonListUpdateManyInput!
+}
+input RowHeroVideoLinksWhereInput {
+  LinkExternal: LinkExternalWhereInput
+  LinkInternal: LinkInternalWhereInput
+}
+input RowColumnOneUpdateOneInlineInput {
+  """
+  Create and connect one RowColumnOne document
+  """
+  create: RowColumnOneCreateInput
+  """
+  Update single RowColumnOne document
+  """
+  update: RowColumnOneUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowColumnOne document
+  """
+  upsert: RowColumnOneUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowColumnOne document
+  """
+  connect: RowColumnOneWhereUniqueInput
+  """
+  Disconnect currently connected RowColumnOne document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowColumnOne document
+  """
+  delete: Boolean
+}
+input RowColumnTwoUpdateOneInlineInput {
+  """
+  Create and connect one RowColumnTwo document
+  """
+  create: RowColumnTwoCreateInput
+  """
+  Update single RowColumnTwo document
+  """
+  update: RowColumnTwoUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowColumnTwo document
+  """
+  upsert: RowColumnTwoUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowColumnTwo document
+  """
+  connect: RowColumnTwoWhereUniqueInput
+  """
+  Disconnect currently connected RowColumnTwo document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowColumnTwo document
+  """
+  delete: Boolean
+}
+input RowRecentBlogPostCreateOneInlineInput {
+  """
+  Create and connect one RowRecentBlogPost document
+  """
+  create: RowRecentBlogPostCreateInput
+  """
+  Connect one existing RowRecentBlogPost document
+  """
+  connect: RowRecentBlogPostWhereUniqueInput
+}
+input RowRecentBlogPostUpdateOneInlineInput {
+  """
+  Create and connect one RowRecentBlogPost document
+  """
+  create: RowRecentBlogPostCreateInput
+  """
+  Update single RowRecentBlogPost document
+  """
+  update: RowRecentBlogPostUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowRecentBlogPost document
+  """
+  upsert: RowRecentBlogPostUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowRecentBlogPost document
+  """
+  connect: RowRecentBlogPostWhereUniqueInput
+  """
+  Disconnect currently connected RowRecentBlogPost document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowRecentBlogPost document
+  """
+  delete: Boolean
+}
+input RowPeopleWithTextUpdateOneInlineInput {
+  """
+  Create and connect one RowPeopleWithText document
+  """
+  create: RowPeopleWithTextCreateInput
+  """
+  Update single RowPeopleWithText document
+  """
+  update: RowPeopleWithTextUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowPeopleWithText document
+  """
+  upsert: RowPeopleWithTextUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowPeopleWithText document
+  """
+  connect: RowPeopleWithTextWhereUniqueInput
+  """
+  Disconnect currently connected RowPeopleWithText document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowPeopleWithText document
+  """
+  delete: Boolean
+}
+input PageContent2WhereInput {
+  RowColumnThree: RowColumnThreeWhereInput
+  RowColumnTwo: RowColumnTwoWhereInput
+  RowRecentBlogPost: RowRecentBlogPostWhereInput
+  RowPeopleWithText: RowPeopleWithTextWhereInput
+  RowColumnOne: RowColumnOneWhereInput
+  RowCompanySlider: RowCompanySliderWhereInput
+  RowServicesWithText: RowServicesWithTextWhereInput
+}
+input AssetConnectInput {
+  """
+  Document to connect
+  """
+  where: AssetWhereUniqueInput!
+  """
+  Allow to specify document position in list of connected documents, will default to appending at end of list
+  """
+  position: ConnectPositionInput
+}
+input RowColumnOneCreateOneInlineInput {
+  """
+  Create and connect one RowColumnOne document
+  """
+  create: RowColumnOneCreateInput
+  """
+  Connect one existing RowColumnOne document
+  """
+  connect: RowColumnOneWhereUniqueInput
 }
 input RowRecentBlogPostUpdateManyInlineInput {
   """
@@ -14637,216 +15252,33 @@ input RowRecentBlogPostUpdateManyInlineInput {
   """
   delete: [RowRecentBlogPostWhereUniqueInput!]
 }
-input AssetUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: AssetWhereInput!
-  """
-  Update many input
-  """
-  data: AssetUpdateManyInput!
+enum _RelationInputKind {
+  create
+  update
 }
-input RowRecentBlogPostCreateManyInlineInput {
+input MenuCreateOneInlineInput {
   """
-  Create and connect multiple existing RowRecentBlogPost documents
+  Create and connect one Menu document
   """
-  create: [RowRecentBlogPostCreateInput!]
+  create: MenuCreateInput
   """
-  Connect multiple existing RowRecentBlogPost documents
+  Connect one existing Menu document
   """
-  connect: [RowRecentBlogPostWhereUniqueInput!]
+  connect: MenuWhereUniqueInput
 }
-input ZzDeleteListCreateOneInlineInput {
-  """
-  Create and connect one ZzDeleteList document
-  """
-  create: ZzDeleteListCreateInput
-  """
-  Connect one existing ZzDeleteList document
-  """
-  connect: ZzDeleteListWhereUniqueInput
+enum _OrderDirection {
+  asc
+  desc
 }
-input RowServicesWithTextUpdateOneInlineInput {
+input UnpublishLocaleInput {
   """
-  Create and connect one RowServicesWithText document
-  """
-  create: RowServicesWithTextCreateInput
-  """
-  Update single RowServicesWithText document
-  """
-  update: RowServicesWithTextUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowServicesWithText document
-  """
-  upsert: RowServicesWithTextUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowServicesWithText document
-  """
-  connect: RowServicesWithTextWhereUniqueInput
-  """
-  Disconnect currently connected RowServicesWithText document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowServicesWithText document
-  """
-  delete: Boolean
-}
-input RowHeroUpdateOneInlineInput {
-  """
-  Create and connect one RowHero document
-  """
-  create: RowHeroCreateInput
-  """
-  Update single RowHero document
-  """
-  update: RowHeroUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowHero document
-  """
-  upsert: RowHeroUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowHero document
-  """
-  connect: RowHeroWhereUniqueInput
-  """
-  Disconnect currently connected RowHero document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowHero document
-  """
-  delete: Boolean
-}
-input PublishLocaleInput {
-  """
-  Locales to publish
+  Locales to unpublish
   """
   locale: Locale!
   """
-  Stages to publish selected locales to
+  Stages to unpublish selected locales from
   """
   stages: [Stage!]!
-}
-input CompanyUpdateOneInlineInput {
-  """
-  Create and connect one Company document
-  """
-  create: CompanyCreateInput
-  """
-  Update single Company document
-  """
-  update: CompanyUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single Company document
-  """
-  upsert: CompanyUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing Company document
-  """
-  connect: CompanyWhereUniqueInput
-  """
-  Disconnect currently connected Company document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected Company document
-  """
-  delete: Boolean
-}
-input PageContentCreateOneInlineInput {
-  """
-  Create and connect one PageContent document
-  """
-  create: PageContentCreateInput
-  """
-  Connect one existing PageContent document
-  """
-  connect: PageContentWhereUniqueInput
-}
-enum _RelationKind {
-  regular
-  union
-}
-input ListItemsWhereInput {
-  Page: PageWhereInput
-  Person: PersonWhereInput
-  Company: CompanyWhereInput
-  RowHero: RowHeroWhereInput
-  LinkInternal: LinkInternalWhereInput
-}
-input AssetCreateManyInlineInput {
-  """
-  Create and connect multiple existing Asset documents
-  """
-  create: [AssetCreateInput!]
-  """
-  Connect multiple existing Asset documents
-  """
-  connect: [AssetWhereUniqueInput!]
-}
-input PageContent2WhereInput {
-  RowColumnThree: RowColumnThreeWhereInput
-  RowColumnTwo: RowColumnTwoWhereInput
-  RowRecentBlogPost: RowRecentBlogPostWhereInput
-  RowPeopleWithText: RowPeopleWithTextWhereInput
-  RowColumnOne: RowColumnOneWhereInput
-  RowCompanySlider: RowCompanySliderWhereInput
-  RowServicesWithText: RowServicesWithTextWhereInput
-}
-enum _FilterKind {
-  search
-  AND
-  OR
-  NOT
-  eq
-  eq_not
-  in
-  not_in
-  lt
-  lte
-  gt
-  gte
-  contains
-  not_contains
-  starts_with
-  not_starts_with
-  ends_with
-  not_ends_with
-  contains_all
-  contains_some
-  contains_none
-  relational_single
-  relational_every
-  relational_some
-  relational_none
-}
-input RowColumnThreeUpdateOneInlineInput {
-  """
-  Create and connect one RowColumnThree document
-  """
-  create: RowColumnThreeCreateInput
-  """
-  Update single RowColumnThree document
-  """
-  update: RowColumnThreeUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowColumnThree document
-  """
-  upsert: RowColumnThreeUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowColumnThree document
-  """
-  connect: RowColumnThreeWhereUniqueInput
-  """
-  Disconnect currently connected RowColumnThree document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowColumnThree document
-  """
-  delete: Boolean
 }
 input ZzDeleteListUpdateOneInlineInput {
   """
@@ -14874,51 +15306,41 @@ input ZzDeleteListUpdateOneInlineInput {
   """
   delete: Boolean
 }
-enum _MutationInputFieldKind {
-  scalar
-  richText
-  enum
-  relation
-  union
-  virtual
+input RowCompanySliderCreateOneInlineInput {
+  """
+  Create and connect one RowCompanySlider document
+  """
+  create: RowCompanySliderCreateInput
+  """
+  Connect one existing RowCompanySlider document
+  """
+  connect: RowCompanySliderWhereUniqueInput
 }
-input CompanyCreateOneInlineInput {
+input CompanyUpdateOneInlineInput {
   """
   Create and connect one Company document
   """
   create: CompanyCreateInput
   """
-  Connect one existing Company document
+  Update single Company document
+  """
+  update: CompanyUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single Company document
+  """
+  upsert: CompanyUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing Company document
   """
   connect: CompanyWhereUniqueInput
-}
-input LinkExternalCreateManyInlineInput {
   """
-  Create and connect multiple existing LinkExternal documents
+  Disconnect currently connected Company document
   """
-  create: [LinkExternalCreateInput!]
+  disconnect: Boolean
   """
-  Connect multiple existing LinkExternal documents
+  Delete currently connected Company document
   """
-  connect: [LinkExternalWhereUniqueInput!]
-}
-input MenuUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: MenuWhereInput!
-  """
-  Update many input
-  """
-  data: MenuUpdateManyInput!
-}
-"""
-Representing a geolocation point with latitude and longitude
-"""
-type Location {
-  latitude: Float!
-  longitude: Float!
-  distance(from: LocationInput!): Float!
+  delete: Boolean
 }
 input RowColumnTwoCreateOneInlineInput {
   """
@@ -14956,6 +15378,154 @@ input RowCompanySliderUpdateOneInlineInput {
   """
   delete: Boolean
 }
+input PageContent2UpdateInput {
+  RowColumnThree: RowColumnThreeUpdateInput
+  RowColumnTwo: RowColumnTwoUpdateInput
+  RowRecentBlogPost: RowRecentBlogPostUpdateInput
+  RowPeopleWithText: RowPeopleWithTextUpdateInput
+  RowColumnOne: RowColumnOneUpdateInput
+  RowCompanySlider: RowCompanySliderUpdateInput
+  RowServicesWithText: RowServicesWithTextUpdateInput
+}
+enum _RelationInputCardinality {
+  one
+  many
+}
+input LinkExternalUpdateOneInlineInput {
+  """
+  Create and connect one LinkExternal document
+  """
+  create: LinkExternalCreateInput
+  """
+  Update single LinkExternal document
+  """
+  update: LinkExternalUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single LinkExternal document
+  """
+  upsert: LinkExternalUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing LinkExternal document
+  """
+  connect: LinkExternalWhereUniqueInput
+  """
+  Disconnect currently connected LinkExternal document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected LinkExternal document
+  """
+  delete: Boolean
+}
+enum _RelationKind {
+  regular
+  union
+}
+input RowColumnOneUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowColumnOneWhereInput!
+  """
+  Update many input
+  """
+  data: RowColumnOneUpdateManyInput!
+}
+input AssetUpdateManyInlineInput {
+  """
+  Create and connect multiple Asset documents
+  """
+  create: [AssetCreateInput!]
+  """
+  Connect multiple existing Asset documents
+  """
+  connect: [AssetConnectInput!]
+  """
+  Override currently-connected documents with multiple existing Asset documents
+  """
+  set: [AssetWhereUniqueInput!]
+  """
+  Update multiple Asset documents
+  """
+  update: [AssetUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple Asset documents
+  """
+  upsert: [AssetUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple Asset documents
+  """
+  disconnect: [AssetWhereUniqueInput!]
+  """
+  Delete multiple Asset documents
+  """
+  delete: [AssetWhereUniqueInput!]
+}
+input ListItemsWhereInput {
+  Page: PageWhereInput
+  Person: PersonWhereInput
+  Company: CompanyWhereInput
+  RowHero: RowHeroWhereInput
+  LinkInternal: LinkInternalWhereInput
+}
+"""
+Raw JSON value
+"""
+scalar Json
+input LinkExternalCreateManyInlineInput {
+  """
+  Create and connect multiple existing LinkExternal documents
+  """
+  create: [LinkExternalCreateInput!]
+  """
+  Connect multiple existing LinkExternal documents
+  """
+  connect: [LinkExternalWhereUniqueInput!]
+}
+enum _MutationInputFieldKind {
+  scalar
+  richText
+  enum
+  relation
+  union
+  virtual
+}
+input LinkInternalCreateOneInlineInput {
+  """
+  Create and connect one LinkInternal document
+  """
+  create: LinkInternalCreateInput
+  """
+  Connect one existing LinkInternal document
+  """
+  connect: LinkInternalWhereUniqueInput
+}
+input RowHeroUpdateOneInlineInput {
+  """
+  Create and connect one RowHero document
+  """
+  create: RowHeroCreateInput
+  """
+  Update single RowHero document
+  """
+  update: RowHeroUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowHero document
+  """
+  upsert: RowHeroUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowHero document
+  """
+  connect: RowHeroWhereUniqueInput
+  """
+  Disconnect currently connected RowHero document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowHero document
+  """
+  delete: Boolean
+}
 input PersonCreateOneInlineInput {
   """
   Create and connect one Person document
@@ -14966,43 +15536,227 @@ input PersonCreateOneInlineInput {
   """
   connect: PersonWhereUniqueInput
 }
-input RowCompanySliderCreateOneInlineInput {
-  """
-  Create and connect one RowCompanySlider document
-  """
-  create: RowCompanySliderCreateInput
-  """
-  Connect one existing RowCompanySlider document
-  """
-  connect: RowCompanySliderWhereUniqueInput
+input RowHeroVideoLinksUpdateInput {
+  LinkExternal: LinkExternalUpdateInput
+  LinkInternal: LinkInternalUpdateInput
 }
-enum _MutationKind {
-  create
-  publish
-  unpublish
-  update
-  upsert
-  delete
-  updateMany
-  publishMany
-  unpublishMany
-  deleteMany
+input RowPeopleWithTextUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowPeopleWithTextWhereInput!
+  """
+  Update many input
+  """
+  data: RowPeopleWithTextUpdateManyInput!
 }
-input RowPeopleWithTextCreateOneInlineInput {
+input PageContentCreateOneInlineInput {
   """
-  Create and connect one RowPeopleWithText document
+  Create and connect one PageContent document
   """
-  create: RowPeopleWithTextCreateInput
+  create: PageContentCreateInput
   """
-  Connect one existing RowPeopleWithText document
+  Connect one existing PageContent document
   """
-  connect: RowPeopleWithTextWhereUniqueInput
+  connect: PageContentWhereUniqueInput
 }
-"""
-A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
-for representation of dates using the Gregorian calendar.
-"""
-scalar Date
+input RowRecentBlogPostUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowRecentBlogPostWhereInput!
+  """
+  Update many input
+  """
+  data: RowRecentBlogPostUpdateManyInput!
+}
+input RowServicesWithTextCreateOneInlineInput {
+  """
+  Create and connect one RowServicesWithText document
+  """
+  create: RowServicesWithTextCreateInput
+  """
+  Connect one existing RowServicesWithText document
+  """
+  connect: RowServicesWithTextWhereUniqueInput
+}
+input BlogListUpdateManyInlineInput {
+  """
+  Create and connect multiple BlogList documents
+  """
+  create: [BlogListCreateInput!]
+  """
+  Connect multiple existing BlogList documents
+  """
+  connect: [BlogListConnectInput!]
+  """
+  Override currently-connected documents with multiple existing BlogList documents
+  """
+  set: [BlogListWhereUniqueInput!]
+  """
+  Update multiple BlogList documents
+  """
+  update: [BlogListUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple BlogList documents
+  """
+  upsert: [BlogListUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple BlogList documents
+  """
+  disconnect: [BlogListWhereUniqueInput!]
+  """
+  Delete multiple BlogList documents
+  """
+  delete: [BlogListWhereUniqueInput!]
+}
+input BlogListConnectInput {
+  """
+  Document to connect
+  """
+  where: BlogListWhereUniqueInput!
+  """
+  Allow to specify document position in list of connected documents, will default to appending at end of list
+  """
+  position: ConnectPositionInput
+}
+input LinkInternalUpdateOneInlineInput {
+  """
+  Create and connect one LinkInternal document
+  """
+  create: LinkInternalCreateInput
+  """
+  Update single LinkInternal document
+  """
+  update: LinkInternalUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single LinkInternal document
+  """
+  upsert: LinkInternalUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing LinkInternal document
+  """
+  connect: LinkInternalWhereUniqueInput
+  """
+  Disconnect currently connected LinkInternal document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected LinkInternal document
+  """
+  delete: Boolean
+}
+input RowColumnTwoUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowColumnTwoWhereInput!
+  """
+  Update many input
+  """
+  data: RowColumnTwoUpdateManyInput!
+}
+input RowCompanySliderUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowCompanySliderWhereInput!
+  """
+  Update many input
+  """
+  data: RowCompanySliderUpdateManyInput!
+}
+input RowColumnThreeUpdateOneInlineInput {
+  """
+  Create and connect one RowColumnThree document
+  """
+  create: RowColumnThreeCreateInput
+  """
+  Update single RowColumnThree document
+  """
+  update: RowColumnThreeUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowColumnThree document
+  """
+  upsert: RowColumnThreeUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowColumnThree document
+  """
+  connect: RowColumnThreeWhereUniqueInput
+  """
+  Disconnect currently connected RowColumnThree document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowColumnThree document
+  """
+  delete: Boolean
+}
+input PageContentUpdateManyWithNestedWhereInput {
+  RowHero: RowHeroUpdateManyWithNestedWhereInput
+}
+input ListItemsCreateOneInlineInput {
+  """
+  Create and connect one ListItems document
+  """
+  create: ListItemsCreateInput
+  """
+  Connect one existing ListItems document
+  """
+  connect: ListItemsWhereUniqueInput
+}
+input PageContent2UpdateManyWithNestedWhereInput {
+  RowColumnThree: RowColumnThreeUpdateManyWithNestedWhereInput
+  RowColumnTwo: RowColumnTwoUpdateManyWithNestedWhereInput
+  RowRecentBlogPost: RowRecentBlogPostUpdateManyWithNestedWhereInput
+  RowPeopleWithText: RowPeopleWithTextUpdateManyWithNestedWhereInput
+  RowColumnOne: RowColumnOneUpdateManyWithNestedWhereInput
+  RowCompanySlider: RowCompanySliderUpdateManyWithNestedWhereInput
+  RowServicesWithText: RowServicesWithTextUpdateManyWithNestedWhereInput
+}
+input LinkExternalUpdateManyInlineInput {
+  """
+  Create and connect multiple LinkExternal documents
+  """
+  create: [LinkExternalCreateInput!]
+  """
+  Connect multiple existing LinkExternal documents
+  """
+  connect: [LinkExternalConnectInput!]
+  """
+  Override currently-connected documents with multiple existing LinkExternal documents
+  """
+  set: [LinkExternalWhereUniqueInput!]
+  """
+  Update multiple LinkExternal documents
+  """
+  update: [LinkExternalUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple LinkExternal documents
+  """
+  upsert: [LinkExternalUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple LinkExternal documents
+  """
+  disconnect: [LinkExternalWhereUniqueInput!]
+  """
+  Delete multiple LinkExternal documents
+  """
+  delete: [LinkExternalWhereUniqueInput!]
+}
+input ZzDeleteListCreateOneInlineInput {
+  """
+  Create and connect one ZzDeleteList document
+  """
+  create: ZzDeleteListCreateInput
+  """
+  Connect one existing ZzDeleteList document
+  """
+  connect: ZzDeleteListWhereUniqueInput
+}
+input PageContentUpdateInput {
+  RowHero: RowHeroUpdateInput
+}
 input MenuUpdateOneInlineInput {
   """
   Create and connect one Menu document
@@ -15029,107 +15783,13 @@ input MenuUpdateOneInlineInput {
   """
   delete: Boolean
 }
-input ListItemsUpdateInput {
-  Page: PageUpdateInput
-  Person: PersonUpdateInput
-  Company: CompanyUpdateInput
-  RowHero: RowHeroUpdateInput
-  LinkInternal: LinkInternalUpdateInput
-}
-enum _RelationInputCardinality {
-  one
-  many
-}
-input PageContentUpdateManyWithNestedWhereInput {
-  RowHero: RowHeroUpdateManyWithNestedWhereInput
-}
-input PageContent2CreateOneInlineInput {
+input RowRecentBlogPostCreateManyInlineInput {
   """
-  Create and connect one PageContent2 document
+  Create and connect multiple existing RowRecentBlogPost documents
   """
-  create: PageContent2CreateInput
+  create: [RowRecentBlogPostCreateInput!]
   """
-  Connect one existing PageContent2 document
+  Connect multiple existing RowRecentBlogPost documents
   """
-  connect: PageContent2WhereUniqueInput
-}
-"""
-Representing a color value comprising of HEX, RGBA and css color values
-"""
-type Color {
-  hex: Hex!
-  rgba: RGBA!
-  css: String!
-}
-input RowPeopleWithTextUpdateOneInlineInput {
-  """
-  Create and connect one RowPeopleWithText document
-  """
-  create: RowPeopleWithTextCreateInput
-  """
-  Update single RowPeopleWithText document
-  """
-  update: RowPeopleWithTextUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowPeopleWithText document
-  """
-  upsert: RowPeopleWithTextUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowPeopleWithText document
-  """
-  connect: RowPeopleWithTextWhereUniqueInput
-  """
-  Disconnect currently connected RowPeopleWithText document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowPeopleWithText document
-  """
-  delete: Boolean
-}
-input PersonUpdateOneInlineInput {
-  """
-  Create and connect one Person document
-  """
-  create: PersonCreateInput
-  """
-  Update single Person document
-  """
-  update: PersonUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single Person document
-  """
-  upsert: PersonUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing Person document
-  """
-  connect: PersonWhereUniqueInput
-  """
-  Disconnect currently connected Person document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected Person document
-  """
-  delete: Boolean
-}
-input RowColumnThreeCreateOneInlineInput {
-  """
-  Create and connect one RowColumnThree document
-  """
-  create: RowColumnThreeCreateInput
-  """
-  Connect one existing RowColumnThree document
-  """
-  connect: RowColumnThreeWhereUniqueInput
-}
-input RowColumnOneCreateOneInlineInput {
-  """
-  Create and connect one RowColumnOne document
-  """
-  create: RowColumnOneCreateInput
-  """
-  Connect one existing RowColumnOne document
-  """
-  connect: RowColumnOneWhereUniqueInput
+  connect: [RowRecentBlogPostWhereUniqueInput!]
 }

@@ -55,6 +55,9 @@
           },
           {
             "name": "Menu"
+          },
+          {
+            "name": "BlogList"
           }
         ]
       },

@@ -5,6 +5,7 @@ import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
 import Container, { ContainerStyles } from '../Container'
 import logoReachBgShadow from './logo-reach-bg-shadow-secondary.svg'
+import Asset from '../Asset'
 
 const useContainerStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => ({
   left: {
@@ -23,14 +24,14 @@ const useContainerStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => 
 }))
 
 const useStyles = makeStyles({
-  videoContainer: {
+  assetContainer: {
     position: 'relative',
     width: '100%',
     height: '100%',
     minHeight: '50vh',
     overflow: 'hidden',
   },
-  video: {
+  asset: {
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
@@ -51,10 +52,8 @@ const RowHeroHome: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
   const containerClasses = useContainerStyles()
 
   const left = asset && (
-    <div className={classes.videoContainer}>
-      <video autoPlay loop muted playsInline id='video' className={classes.video}>
-        <source src={asset.url} type={asset.mimeType!} />
-      </video>
+    <div className={classes.assetContainer}>
+      <Asset asset={asset} autoPlay loop muted playsInline className={classes.asset} width={332} />
     </div>
   )
 

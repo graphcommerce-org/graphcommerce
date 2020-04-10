@@ -5,10 +5,7 @@ fragment RowCompanySlider on RowCompanySlider {
   companies {
     id
     logo {
-      mimeType
-      url
-      width
-      height
+      ...Asset
     }
   }
 }
