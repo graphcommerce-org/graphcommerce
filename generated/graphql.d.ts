@@ -19,14 +19,14 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  RGBAHue: any
-  RGBATransparency: any
-  Hex: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  Hex: any
+  RGBATransparency: any
+  RGBAHue: any
   /** Raw JSON value */
   Json: any
 }

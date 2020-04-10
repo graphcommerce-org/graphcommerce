@@ -7,7 +7,6 @@ import { HttpLink } from 'apollo-link-http'
 import gql from 'graphql-tag'
 import fetch from 'isomorphic-unfetch'
 import {
-  GetStaticPathsDocument,
   CreatePageDocument,
   UpdatePageDocument,
   GetDraftPagesDocument,
@@ -48,14 +47,8 @@ type LegacyQuery = {
     metaRobots: 'INDEX_FOLLOW' | 'INDEX_NOFOLLOW' | 'NOINDEX_FOLLOW' | 'NOINDEX_NOFOLLOW'
     parent: LegacyUrl
     language: LegacyLang
-    translationTo: {
-      language: LegacyLang
-      urlkeynew: string
-    }[]
-    translationFrom: {
-      language: LegacyLang
-      urlkeynew: string
-    }[]
+    translationTo: LegacyQuery['pages']
+    translationFrom: LegacyQuery['pages']
     blogPost: {
       title: string
       content: string
@@ -80,49 +73,48 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const fromData = await fromClient.query<LegacyQuery>({
       query: gql`
-        {
-          pages(where: { statusCode: CODE_200 }) {
-            createdAt
-            updatedAt
-            status
-            id
+        fragment Page on Page {
+          createdAt
+          updatedAt
+          status
+          id
+          urlkeynew
+          metaTitle
+          metaDescription
+          metaRobots
+          parent {
             urlkeynew
-            metaTitle
-            metaDescription
-            metaRobots
             parent {
               urlkeynew
               parent {
                 urlkeynew
-                parent {
-                  urlkeynew
-                }
               }
             }
-            language
+          }
+          language
+          blogPost {
+            title
+            content
+            publicPublishedAt
+            image {
+              url
+            }
+          }
+          singularPage {
+            title
+            content
+          }
+        }
+
+        {
+          pages(where: { statusCode: CODE_200 }) {
+            ...Page
             translationTo {
-              language
-              urlkeynew
+              ...Page
             }
             translationFrom {
-              language
-              urlkeynew
+              ...Page
             }
-            blogPost {
-              title
-              content
-              publicPublishedAt
-              image {
-                url
-              }
-            }
-            singularPage {
-              title
-              content
-            }
-
-            #    jobListing {} NOT MIGRATED
-            #    structuredPage  {} NOT MIGRATED
           }
         }
       `,
@@ -169,7 +161,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const urlToId = Object.fromEntries(draftpages)
 
     let slice = 0
-    console.log(fromData.data.pages.slice(slice).length)
     for (const page of fromData.data.pages.slice(slice)) {
       slice += 1
 
@@ -184,65 +175,109 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         metaRobots,
         status,
         translationTo,
-        translationFrom,
       } = page
 
       const url = `/${getUrlFragments({ urlkeynew, parent }).join('/')}`
 
-      process.stdout.write(`${slice} Importing ${url} ..`)
-
       if (page.language === 'EN') {
-        process.stdout.write('skipping, is english 💩\n')
+        console.log(`${slice} Skipping EN ${url} ..`)
+        // process.stdout.write('skipping, is english 💩\n')
         // eslint-disable-next-line no-continue
         continue // We combine english page with the existing dutch page.
       }
 
+      console.log(`${slice} Importing ${url} ..`)
+
+      const translations = translationTo.filter((translation) => translation.language === 'EN')
+
+      const urlTitles: { [index: string]: string } = {
+        '/': 'Home',
+        'over-reach-digital-magento-experts': 'Over ons',
+        'portfolio-magento-e-commerce-projecten': 'Portfolio',
+        'e-commerce-diensten': 'Diensten',
+      }
+      const title = (urlkey: string) => {
+        return (
+          urlTitles[urlkey] ?? urlkey.charAt(0).toUpperCase() + urlkey.slice(1).split('-').join(' ')
+        )
+      }
+
       const pageData = {
-        title: blogPost?.title ?? metaTitle,
+        title: blogPost?.title ?? title(urlkeynew),
         url,
         metaTitle,
         metaDescription: metaDescription ?? 'TODO',
         metaRobots,
       }
 
-      if (translationTo.length || translationFrom.length) {
-        console.log(translationTo, translationFrom)
-      }
-
       let id: string = urlToId[url]
       if (!id) {
-        process.stdout.write('creating..')
-        // if (slice === 98) {
-        //   console.log({ ...pageData, createdAt, updatedAt })
-        // }
-
+        // console.log(url, translations)
         const result = await toClient.mutate<GQLCreatePageMutation, GQLCreatePageMutationVariables>(
           {
             mutation: CreatePageDocument,
             variables: {
-              page: { ...pageData, createdAt, updatedAt },
+              page: {
+                ...pageData,
+                createdAt,
+                updatedAt,
+                localizations: {
+                  create: translations.map((translation) => ({
+                    locale: 'en',
+                    data: {
+                      title: translation.blogPost?.title ?? title(urlkeynew),
+                      url: `/${getUrlFragments({
+                        urlkeynew: translation.urlkeynew,
+                        parent: translation.parent,
+                      }).join('/')}`,
+                      metaTitle: translation.metaTitle,
+                      metaDescription: translation.metaDescription ?? 'TODO',
+                    },
+                  })),
+                },
+              },
             },
           },
         )
 
         id = result.data?.createPage?.id!
       } else {
-        process.stdout.write('updating..')
+        // console.log(translations)
+        // process.stdout.write('updating..')
         await toClient.mutate<GQLUpdatePageMutation, GQLUpdatePageMutationVariables>({
           mutation: UpdatePageDocument,
-          variables: { id, page: { ...pageData } },
+          variables: {
+            id,
+            page: {
+              ...pageData,
+              localizations: {
+                update: translations.map((translation) => ({
+                  locale: 'en',
+                  data: {
+                    title: translation.blogPost?.title ?? title(urlkeynew),
+                    url: `/${getUrlFragments({
+                      urlkeynew: translation.urlkeynew,
+                      parent: translation.parent,
+                    }).join('/')}`,
+                    metaTitle: translation.metaTitle,
+                    metaDescription: translation.metaDescription ?? 'TODO',
+                  },
+                })),
+              },
+            },
+          },
         })
       }
 
       if (status === 'PUBLISHED') {
-        process.stdout.write('publishing..')
+        // process.stdout.write('publishing..')
         await toClient.mutate<GQLPublishPageMutation, GQLPublishPageMutationVariables>({
           mutation: PublishPageDocument,
-          variables: { id, locales: [] },
+          variables: { id, locales: translations.length > 0 ? ['en'] : [] },
         })
       }
 
-      process.stdout.write('done 🥳\n')
+      // process.stdout.write('done 🥳\n')
     }
 
     res.status(200).end()
