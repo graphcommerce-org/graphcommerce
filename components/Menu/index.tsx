@@ -18,17 +18,21 @@ import { vpCalc } from '../Theme'
 type TreePage = GQLMenuFragment['pages'][0]['localizations'][0] & {
   children: TreePage[]
   parent?: TreePage
+  isRoot: boolean
 }
 
 const extractRoots = (mainMenu: GQLMenuFragment) => {
-  const treePages: TreePage[] = mainMenu.pages.map((p) => ({ ...p.localizations[0], children: [] }))
+  const treePages: TreePage[] = mainMenu.pages
+    .filter((p) => p.localizations.length > 0)
+    .map((p) => ({ ...p.localizations[0], children: [], isRoot: p.url === '/' }))
+
   treePages.forEach((p) => {
     const parentUrl = p.url.split('/').slice(0, -1).join('/')
     const parent = treePages.find((pp) => pp.url === parentUrl)
     p.parent = parent
     if (parent) parent.children.push(p)
   })
-  const roots = treePages.filter((p) => !p.parent)
+  const roots = treePages.filter((p) => !p.parent || p.parent.isRoot)
   return roots
 }
 
@@ -121,11 +125,6 @@ const Menu: React.FC<{
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-        <Link href='/' metaRobots='INDEX_FOLLOW' color='inherit' className={classes.menuLink}>
-          <ListItem button selected={page.url === '/'} classes={{ root: classes.menuItem }}>
-            <ListItemText classes={{ primary: classes.menuItemText }}>Home</ListItemText>
-          </ListItem>
-        </Link>
         {roots.map((root) => (
           <Link
             key={root.id}

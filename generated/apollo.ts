@@ -14,6 +14,7 @@ export const BreadcrumbFragmentDoc = gql`
 export const MenuFragmentDoc = gql`
   fragment Menu on Menu {
     pages {
+      url
       localizations(locales: [$locale], includeCurrent: true) {
         locale
         id
