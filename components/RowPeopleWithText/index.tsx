@@ -1,11 +1,10 @@
 import React from 'react'
 import { Theme, makeStyles, Paper } from '@material-ui/core'
-import FilestackPicture from '../FilestackPicture'
 import Container from '../Container'
 import LinkInternal from '../LinkInternal/LinkInternal'
-import { MimeTypes } from '../PictureResponsive'
 import { vpCalc } from '../Theme'
 import RichText from '../RichText'
+import Asset from '../Asset'
 
 const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   after: { backgroundColor: theme.palette.grey[300] },
@@ -46,13 +45,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
   const Right = () => (
     <Paper elevation={10} className={classes.paper}>
       {personList?.people.map(({ avatar }) => (
-        <FilestackPicture
-          src={avatar.url}
-          type={(avatar.mimeType as MimeTypes) ?? 'image/png'}
-          width={83}
-          height={((avatar.height || 1) / (avatar.width || 1)) * 83}
-          key={avatar.id}
-        />
+        <Asset asset={avatar} width={83} key={avatar.id} />
       ))}
     </Paper>
   )

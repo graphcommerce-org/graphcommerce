@@ -1,17 +1,17 @@
 import React from 'react'
-import PictureResponsive, { PictureResonsiveProps, MimeTypes } from '../PictureResponsive'
+import PictureResponsive, { PictureResonsiveProps, ImageMimeTypes } from '../PictureResponsive'
 
 const possibleWidths = [25, 50, 75, 100, 200, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
 export type FilestackPictureProps = Omit<PictureResonsiveProps, 'srcSets'> & {
   src: string
-  type: MimeTypes
+  type: ImageMimeTypes
 
   // Override compression from source type
   compression?: 'lossy' | 'lossless' | 'none'
 }
 
-const detectResize = (type: MimeTypes): NonNullable<FilestackPictureProps['compression']> => {
+const detectResize = (type: ImageMimeTypes): NonNullable<FilestackPictureProps['compression']> => {
   switch (type) {
     case 'image/png':
     case 'image/bmp':

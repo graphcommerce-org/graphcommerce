@@ -1,4 +1,6 @@
 fragment PageLayout on Page {
+  id
+  locale
   ...PageMeta
   ...ContentRenderer
 }

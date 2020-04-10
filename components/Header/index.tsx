@@ -6,8 +6,9 @@ import logo from '../../public/images/magento-webshop-reach-digital.svg'
 import { vpCalc } from '../Theme'
 import Menu from '../Menu'
 import FilestackPicture from '../FilestackPicture'
-import { MimeTypes } from '../PictureResponsive'
+import { ImageMimeTypes } from '../PictureResponsive'
 import Link from '../Link'
+import Asset from '../Asset'
 
 const useStyles = makeStyles(({ gridSpacing }: Theme) => ({
   root: {
@@ -94,13 +95,7 @@ const Header: React.FC<{
               metaRobots='INDEX_FOLLOW'
             >
               <Avatar classes={{ colorDefault: classes.avatar }}>
-                <FilestackPicture
-                  className={classes.avatarImg}
-                  type={(person.avatar.mimeType as MimeTypes) ?? 'image/png'}
-                  src={person.avatar.url}
-                  width={Math.round((person.avatar.width! / person.avatar.height!) * 40)}
-                  height={40}
-                />
+                <Asset className={classes.avatarImg} asset={person.avatar} width={40} />
               </Avatar>
             </Link>
           </Fab>

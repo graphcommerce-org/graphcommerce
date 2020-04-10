@@ -4,6 +4,7 @@ import LinkInternal from '../LinkInternal/LinkInternal'
 import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
 import Container from '../Container'
+import Asset from '../Asset'
 
 const useContainerStyles = makeStyles({
   left: {
@@ -35,9 +36,7 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
   const containerClasses = useContainerStyles()
 
   const left = asset && (
-    <video autoPlay loop muted playsInline id='video' className={classes.video}>
-      <source src={asset.url} type={asset.mimeType!} />
-    </video>
+    <Asset asset={asset} autoPlay loop muted playsInline className={classes.video} />
   )
 
   const right = (

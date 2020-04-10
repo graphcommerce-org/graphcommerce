@@ -14,11 +14,13 @@ export const BreadcrumbFragmentDoc = gql`
 export const MenuFragmentDoc = gql`
   fragment Menu on Menu {
     pages {
-      locale
-      id
-      title
-      metaRobots
-      url
+      localizations(locales: [$locale], includeCurrent: true) {
+        locale
+        id
+        title
+        metaRobots
+        url
+      }
     }
   }
 `
@@ -110,6 +112,8 @@ export const ContentRendererFragmentDoc = gql`
 `
 export const PageLayoutFragmentDoc = gql`
   fragment PageLayout on Page {
+    id
+    locale
     ...PageMeta
     ...ContentRenderer
   }
@@ -147,13 +151,11 @@ export const RowCompanySliderFragmentDoc = gql`
     companies {
       id
       logo {
-        mimeType
-        url
-        width
-        height
+        ...Asset
       }
     }
   }
+  ${AssetFragmentDoc}
 `
 export const PersonFragmentDoc = gql`
   fragment Person on Person {
@@ -576,4 +578,50 @@ export type GetRowPeopleWithTextsLazyQueryHookResult = ReturnType<
 export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetRowPeopleWithTextsQuery,
   GQLGetRowPeopleWithTextsQueryVariables
+>
+export const CreatePageDocument = gql`
+  mutation CreatePage($page: PageCreateInput!) {
+    createPage(data: $page) {
+      id
+    }
+  }
+`
+export type GQLCreatePageMutationFn = ApolloReactCommon.MutationFunction<
+  GQLCreatePageMutation,
+  GQLCreatePageMutationVariables
+>
+
+/**
+ * __useCreatePageMutation__
+ *
+ * To run a mutation, you first call `useCreatePageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPageMutation, { data, loading, error }] = useCreatePageMutation({
+ *   variables: {
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useCreatePageMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    GQLCreatePageMutation,
+    GQLCreatePageMutationVariables
+  >,
+) {
+  return ApolloReactHooks.useMutation<GQLCreatePageMutation, GQLCreatePageMutationVariables>(
+    CreatePageDocument,
+    baseOptions,
+  )
+}
+export type CreatePageMutationHookResult = ReturnType<typeof useCreatePageMutation>
+export type CreatePageMutationResult = ApolloReactCommon.MutationResult<GQLCreatePageMutation>
+export type CreatePageMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  GQLCreatePageMutation,
+  GQLCreatePageMutationVariables
 >
