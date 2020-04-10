@@ -1,17 +1,20 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
-import ContentRenderer, { renderers } from '../components/ContentRenderer'
+import ContentRenderer from '../components/ContentRenderer'
 import { LayoutPage } from '../lib/layout'
 import RowHeroHome from '../components/RowHeroHome'
 import { StaticPageVariables } from '../lib/staticParams'
 
-renderers.RowHero = RowHeroHome
-
 const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
   return (
     <>
-      <ContentRenderer content={pages[0].content} />
+      <ContentRenderer
+        content={pages[0].content}
+        customRenderers={{
+          RowHero: RowHeroHome,
+        }}
+      />
     </>
   )
 }
