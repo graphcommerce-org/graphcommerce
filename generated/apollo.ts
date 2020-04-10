@@ -307,8 +307,11 @@ export const GetStaticPathsDocument = gql`
   query GetStaticPaths($startsWith: String!, $locale: Locale!) {
     pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
       id
+      locale
       url
       localizations {
+        id
+        locale
         url
         locale
       }

@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  /** Raw JSON value */
-  Json: any
-  Hex: any
   RGBAHue: any
   RGBATransparency: any
+  Hex: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  /** Raw JSON value */
+  Json: any
 }
 
 type GQL_FilterKind =
@@ -10474,9 +10474,9 @@ type GQLGetStaticPathsQueryVariables = {
 
 type GQLGetStaticPathsQuery = { readonly __typename?: 'Query' } & {
   readonly pages: ReadonlyArray<
-    { readonly __typename?: 'Page' } & Pick<GQLPage, 'id' | 'url'> & {
+    { readonly __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'> & {
         readonly localizations: ReadonlyArray<
-          { readonly __typename?: 'Page' } & Pick<GQLPage, 'url' | 'locale'>
+          { readonly __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'>
         >
       }
   >
