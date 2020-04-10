@@ -31,6 +31,7 @@ function createApolloClient(
       fragmentMatcher: new IntrospectionFragmentMatcher({
         introspectionQueryResultData,
       }),
+      dataIdFromObject: (object: { [index: string]: any }) => object?.id + object?.locale,
     }).restore(initialState),
   })
 }

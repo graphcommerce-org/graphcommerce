@@ -14,11 +14,13 @@ export const BreadcrumbFragmentDoc = gql`
 export const MenuFragmentDoc = gql`
   fragment Menu on Menu {
     pages {
-      locale
-      id
-      title
-      metaRobots
-      url
+      localizations(locales: [$locale], includeCurrent: true) {
+        locale
+        id
+        title
+        metaRobots
+        url
+      }
     }
   }
 `
@@ -110,6 +112,8 @@ export const ContentRendererFragmentDoc = gql`
 `
 export const PageLayoutFragmentDoc = gql`
   fragment PageLayout on Page {
+    id
+    locale
     ...PageMeta
     ...ContentRenderer
   }

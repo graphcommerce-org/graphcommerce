@@ -15,10 +15,13 @@ import {
 import Link from '../Link'
 import { vpCalc } from '../Theme'
 
-type TreePage = GQLMenuFragment['pages'][0] & { children: TreePage[]; parent?: TreePage }
+type TreePage = GQLMenuFragment['pages'][0]['localizations'][0] & {
+  children: TreePage[]
+  parent?: TreePage
+}
 
 const extractRoots = (mainMenu: GQLMenuFragment) => {
-  const treePages: TreePage[] = mainMenu.pages.map((p) => ({ ...p, children: [] }))
+  const treePages: TreePage[] = mainMenu.pages.map((p) => ({ ...p.localizations[0], children: [] }))
   treePages.forEach((p) => {
     const parentUrl = p.url.split('/').slice(0, -1).join('/')
     const parent = treePages.find((pp) => pp.url === parentUrl)

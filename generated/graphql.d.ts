@@ -19,11 +19,11 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
+  RGBAHue: any
   /** Raw JSON value */
   Json: any
-  RGBATransparency: any
   Hex: any
-  RGBAHue: any
+  RGBATransparency: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
@@ -10010,14 +10010,19 @@ type GQLLinkInternalFragment = { readonly __typename?: 'LinkInternal' } & Pick<
 
 type GQLMenuFragment = { readonly __typename?: 'Menu' } & {
   readonly pages: ReadonlyArray<
-    { readonly __typename?: 'Page' } & Pick<
-      GQLPage,
-      'locale' | 'id' | 'title' | 'metaRobots' | 'url'
-    >
+    { readonly __typename?: 'Page' } & {
+      readonly localizations: ReadonlyArray<
+        { readonly __typename?: 'Page' } & Pick<
+          GQLPage,
+          'locale' | 'id' | 'title' | 'metaRobots' | 'url'
+        >
+      >
+    }
   >
 }
 
-type GQLPageLayoutFragment = { readonly __typename?: 'Page' } & GQLPageMetaFragment &
+type GQLPageLayoutFragment = { readonly __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale'> &
+  GQLPageMetaFragment &
   GQLContentRendererFragment
 
 type GQLGetPageLayoutQueryVariables = {

@@ -1,9 +1,11 @@
 fragment Menu on Menu {
   pages {
-    locale
-    id
-    title
-    metaRobots
-    url
+    localizations(locales: [$locale], includeCurrent: true) {
+      locale
+      id
+      title
+      metaRobots
+      url
+    }
   }
 }
