@@ -1,3 +1,17 @@
+## [5.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.1.0...v5.2.0) (2020-04-10)
+
+
+### Features
+
+* **asset:** added Asset component to render Images and Video’s ([130def2](https://github.com/ho-nl/project-reachdigital.nl/commit/130def25c9cbb01ac43795dab64b740cfd0d6f66))
+
+
+### Bug Fixes
+
+* **contentrenderer:** solve issue with overring custom renderers ([8364888](https://github.com/ho-nl/project-reachdigital.nl/commit/8364888dc6e9f8e76639a9df08cf020f22cf626b))
+* **linting:** do not prefer default exports ([5b88903](https://github.com/ho-nl/project-reachdigital.nl/commit/5b88903c3560ba43dafdc7ff7cbcadaeaa622efd))
+* **menu:** solve localized menu links ([c6b648e](https://github.com/ho-nl/project-reachdigital.nl/commit/c6b648ef4036e7ab5267019f98fdd5acd515ccc0))
+
 ## [5.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.0.0...v5.1.0) (2020-04-09)
 
 
