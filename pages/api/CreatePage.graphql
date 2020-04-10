@@ -1,0 +1,5 @@
+mutation CreatePage($page: PageCreateInput!) {
+  createPage(data: $page) {
+    id
+  }
+}

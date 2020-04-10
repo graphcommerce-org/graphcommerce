@@ -14,6 +14,7 @@ export const BreadcrumbFragmentDoc = gql`
 export const MenuFragmentDoc = gql`
   fragment Menu on Menu {
     pages {
+      url
       localizations(locales: [$locale], includeCurrent: true) {
         locale
         id
@@ -305,6 +306,7 @@ export type GetPageLayoutQueryResult = ApolloReactCommon.QueryResult<
 export const GetStaticPathsDocument = gql`
   query GetStaticPaths($startsWith: String!, $locale: Locale!) {
     pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
+      id
       url
       localizations {
         url
@@ -624,4 +626,152 @@ export type CreatePageMutationResult = ApolloReactCommon.MutationResult<GQLCreat
 export type CreatePageMutationOptions = ApolloReactCommon.BaseMutationOptions<
   GQLCreatePageMutation,
   GQLCreatePageMutationVariables
+>
+export const GetDraftPagesDocument = gql`
+  query GetDraftPages($skip: Int! = 0) {
+    pages(stage: DRAFT, skip: $skip) {
+      url
+      id
+      stage
+    }
+  }
+`
+
+/**
+ * __useGetDraftPagesQuery__
+ *
+ * To run a query within a React component, call `useGetDraftPagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDraftPagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDraftPagesQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetDraftPagesQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetDraftPagesQuery,
+    GQLGetDraftPagesQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetDraftPagesQuery, GQLGetDraftPagesQueryVariables>(
+    GetDraftPagesDocument,
+    baseOptions,
+  )
+}
+export function useGetDraftPagesLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetDraftPagesQuery,
+    GQLGetDraftPagesQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetDraftPagesQuery, GQLGetDraftPagesQueryVariables>(
+    GetDraftPagesDocument,
+    baseOptions,
+  )
+}
+export type GetDraftPagesQueryHookResult = ReturnType<typeof useGetDraftPagesQuery>
+export type GetDraftPagesLazyQueryHookResult = ReturnType<typeof useGetDraftPagesLazyQuery>
+export type GetDraftPagesQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetDraftPagesQuery,
+  GQLGetDraftPagesQueryVariables
+>
+export const PublishPageDocument = gql`
+  mutation PublishPage($id: ID!, $locales: [Locale!]!) {
+    publishPage(where: { id: $id }, publishBase: true, locales: $locales, to: PUBLISHED) {
+      id
+    }
+  }
+`
+export type GQLPublishPageMutationFn = ApolloReactCommon.MutationFunction<
+  GQLPublishPageMutation,
+  GQLPublishPageMutationVariables
+>
+
+/**
+ * __usePublishPageMutation__
+ *
+ * To run a mutation, you first call `usePublishPageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishPageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishPageMutation, { data, loading, error }] = usePublishPageMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      locales: // value for 'locales'
+ *   },
+ * });
+ */
+export function usePublishPageMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    GQLPublishPageMutation,
+    GQLPublishPageMutationVariables
+  >,
+) {
+  return ApolloReactHooks.useMutation<GQLPublishPageMutation, GQLPublishPageMutationVariables>(
+    PublishPageDocument,
+    baseOptions,
+  )
+}
+export type PublishPageMutationHookResult = ReturnType<typeof usePublishPageMutation>
+export type PublishPageMutationResult = ApolloReactCommon.MutationResult<GQLPublishPageMutation>
+export type PublishPageMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  GQLPublishPageMutation,
+  GQLPublishPageMutationVariables
+>
+export const UpdatePageDocument = gql`
+  mutation UpdatePage($id: ID!, $page: PageUpdateInput!) {
+    updatePage(data: $page, where: { id: $id }) {
+      id
+    }
+  }
+`
+export type GQLUpdatePageMutationFn = ApolloReactCommon.MutationFunction<
+  GQLUpdatePageMutation,
+  GQLUpdatePageMutationVariables
+>
+
+/**
+ * __useUpdatePageMutation__
+ *
+ * To run a mutation, you first call `useUpdatePageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePageMutation, { data, loading, error }] = useUpdatePageMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useUpdatePageMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    GQLUpdatePageMutation,
+    GQLUpdatePageMutationVariables
+  >,
+) {
+  return ApolloReactHooks.useMutation<GQLUpdatePageMutation, GQLUpdatePageMutationVariables>(
+    UpdatePageDocument,
+    baseOptions,
+  )
+}
+export type UpdatePageMutationHookResult = ReturnType<typeof useUpdatePageMutation>
+export type UpdatePageMutationResult = ApolloReactCommon.MutationResult<GQLUpdatePageMutation>
+export type UpdatePageMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  GQLUpdatePageMutation,
+  GQLUpdatePageMutationVariables
 >

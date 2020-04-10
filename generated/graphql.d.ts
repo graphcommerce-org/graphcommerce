@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
+  /** Raw JSON value */
+  Json: any
+  Hex: any
+  RGBAHue: any
+  RGBATransparency: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
-  RGBATransparency: any
-  RGBAHue: any
-  Hex: any
-  /** Raw JSON value */
-  Json: any
 }
 
 type GQL_FilterKind =
@@ -10441,14 +10441,14 @@ type GQLLinkInternalFragment = { readonly __typename?: 'LinkInternal' } & Pick<
 
 type GQLMenuFragment = { readonly __typename?: 'Menu' } & {
   readonly pages: ReadonlyArray<
-    { readonly __typename?: 'Page' } & {
-      readonly localizations: ReadonlyArray<
-        { readonly __typename?: 'Page' } & Pick<
-          GQLPage,
-          'locale' | 'id' | 'title' | 'metaRobots' | 'url'
+    { readonly __typename?: 'Page' } & Pick<GQLPage, 'url'> & {
+        readonly localizations: ReadonlyArray<
+          { readonly __typename?: 'Page' } & Pick<
+            GQLPage,
+            'locale' | 'id' | 'title' | 'metaRobots' | 'url'
+          >
         >
-      >
-    }
+      }
   >
 }
 
@@ -10474,7 +10474,7 @@ type GQLGetStaticPathsQueryVariables = {
 
 type GQLGetStaticPathsQuery = { readonly __typename?: 'Query' } & {
   readonly pages: ReadonlyArray<
-    { readonly __typename?: 'Page' } & Pick<GQLPage, 'url'> & {
+    { readonly __typename?: 'Page' } & Pick<GQLPage, 'id' | 'url'> & {
         readonly localizations: ReadonlyArray<
           { readonly __typename?: 'Page' } & Pick<GQLPage, 'url' | 'locale'>
         >
@@ -10591,4 +10591,32 @@ type GQLCreatePageMutationVariables = {
 
 type GQLCreatePageMutation = { readonly __typename?: 'Mutation' } & {
   readonly createPage?: Maybe<{ readonly __typename?: 'Page' } & Pick<GQLPage, 'id'>>
+}
+
+type GQLGetDraftPagesQueryVariables = {
+  skip?: Scalars['Int']
+}
+
+type GQLGetDraftPagesQuery = { readonly __typename?: 'Query' } & {
+  readonly pages: ReadonlyArray<
+    { readonly __typename?: 'Page' } & Pick<GQLPage, 'url' | 'id' | 'stage'>
+  >
+}
+
+type GQLPublishPageMutationVariables = {
+  id: Scalars['ID']
+  locales: ReadonlyArray<GQLLocale>
+}
+
+type GQLPublishPageMutation = { readonly __typename?: 'Mutation' } & {
+  readonly publishPage?: Maybe<{ readonly __typename?: 'Page' } & Pick<GQLPage, 'id'>>
+}
+
+type GQLUpdatePageMutationVariables = {
+  id: Scalars['ID']
+  page: GQLPageUpdateInput
+}
+
+type GQLUpdatePageMutation = { readonly __typename?: 'Mutation' } & {
+  readonly updatePage?: Maybe<{ readonly __typename?: 'Page' } & Pick<GQLPage, 'id'>>
 }

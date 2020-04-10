@@ -12,6 +12,8 @@ module.exports = withImages(
       env: {
         GRAPHQL: process.env.GRAPHQL,
         GRAPHQL_BEARER: process.env.GRAPHQL_BEARER,
+        GRAPHQL_LEGACY: process.env.GRAPHQL_LEGACY,
+        GRAPHQL_LEGACY_BEARER: process.env.GRAPHQL_LEGACY_BEARER,
       },
       experimental: {
         rewrites() {

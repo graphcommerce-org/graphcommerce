@@ -67,7 +67,7 @@ const Header: React.FC<{
     <div className={classes.root}>
       <Link
         // todo(paales): Have a way to make these common links dynamic?
-        href={page.locale === 'nl' ? '/' : `/${page.locale}/`}
+        href={page.locale === 'nl' ? '/' : `/${page.locale}`}
         metaRobots='INDEX_FOLLOW'
         className={classes.logo}
       >
