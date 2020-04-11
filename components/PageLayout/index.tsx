@@ -6,6 +6,7 @@ import PageMeta from '../PageMeta'
 import ThemedProvider, { theme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
+import PageLoadIndicator from '../PageLoadIndicator'
 
 export type PageLayoutProps = GQLGetPageLayoutQuery & GQLGetBreadcrumbQuery
 type LayoutComponent = LayoutPage<PageLayoutProps>['layout']
@@ -23,6 +24,7 @@ const LayoutFull: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, t
       </Head>
       <CssBaseline />
       <PageMeta {...page} />
+      <PageLoadIndicator />
       <Header menu={mainMenu} page={page} team={team} />
       {/* <Breadcrumb breadcrumbs={breadcrumbs} /> */}
       {children}

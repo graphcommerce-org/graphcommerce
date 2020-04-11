@@ -1,15 +1,7 @@
-import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
-import ContentRenderer from '../../components/ContentRenderer'
-import { LayoutPage } from '../../lib/layout'
+import { PageLayoutProps } from '../../components/PageLayout'
 import { StaticPageVariables } from '../../lib/staticParams'
-
-const Home: LayoutPage<PageLayoutProps> = ({ pages }) => {
-  return <ContentRenderer content={pages[0].content} />
-}
-
-Home.layout = LayoutFull
+import Home from '../index'
 
 export default Home
 

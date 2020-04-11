@@ -13,15 +13,18 @@ const extractParams = (
 ): StaticPageVariables => {
   if (!ctx.params) throw new Error('Can not extract params')
 
-  const url = Array.isArray(ctx.params.url) ? ctx.params.url : [ctx.params.url]
+  const baseParts = base.split('/').filter(Boolean)
+  const url = Array.isArray(ctx.params.url)
+    ? [...baseParts, ...ctx.params.url]
+    : [...baseParts, ctx.params.url]
   let locale: GQLLocale = 'nl'
-  const locales = 'en'
+  const locales = ['en']
 
   if (locales.includes(url[0] as GQLLocale)) {
     locale = url[0] as GQLLocale
   }
 
-  return { url: base + url.join('/'), locale }
+  return { url: `/${url.join('/')}`, locale }
 }
 
 export default extractParams
