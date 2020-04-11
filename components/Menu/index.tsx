@@ -138,10 +138,12 @@ const Menu: React.FC<{
             </ListItem>
           </Link>
         ))}
-        <Divider variant='middle' light />
-        <ListSubheader color='inherit' disableSticky classes={{ root: classes.menuSubheader }}>
-          Switch to
-        </ListSubheader>
+        {page.localizations.length > 0 && <Divider variant='middle' light />}
+        {page.localizations.length > 0 && (
+          <ListSubheader color='inherit' disableSticky classes={{ root: classes.menuSubheader }}>
+            Switch to
+          </ListSubheader>
+        )}
         {page.localizations.map((localization) => (
           <Link
             key={localization.url}
