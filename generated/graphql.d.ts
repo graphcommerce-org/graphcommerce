@@ -19,9 +19,6 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  RGBAHue: any
-  RGBATransparency: any
-  Hex: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
@@ -29,6 +26,9 @@ type Scalars = {
   Date: any
   /** Raw JSON value */
   Json: any
+  RGBATransparency: any
+  RGBAHue: any
+  Hex: any
 }
 
 type GQL_FilterKind =
@@ -1531,6 +1531,453 @@ type GQLConnectPositionInput = {
   /** Connect document at last position */
   readonly end?: Maybe<Scalars['Boolean']>
 }
+
+type GQLContactForm = GQLNode & {
+  readonly __typename?: 'ContactForm'
+  /** System stage field */
+  readonly stage: GQLStage
+  /** Get the document in other stages */
+  readonly documentInStages: ReadonlyArray<GQLContactForm>
+  /** The unique identifier */
+  readonly id: Scalars['ID']
+  /** The time the document was created */
+  readonly createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  readonly updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  readonly name: Scalars['String']
+  readonly email: Scalars['String']
+  readonly phoneNumber?: Maybe<Scalars['String']>
+  readonly subject: GQLContactSubject
+  readonly message: Scalars['String']
+}
+
+type GQLContactFormDocumentInStagesArgs = {
+  stages?: ReadonlyArray<GQLStage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+/** A connection to a list of items. */
+type GQLContactFormConnection = {
+  readonly __typename?: 'ContactFormConnection'
+  /** Information to aid in pagination. */
+  readonly pageInfo: GQLPageInfo
+  /** A list of edges. */
+  readonly edges: ReadonlyArray<GQLContactFormEdge>
+  readonly aggregate: GQLAggregate
+}
+
+type GQLContactFormCreateInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  readonly name: Scalars['String']
+  readonly email: Scalars['String']
+  readonly phoneNumber?: Maybe<Scalars['String']>
+  readonly subject: GQLContactSubject
+  readonly message: Scalars['String']
+}
+
+/** An edge in a connection. */
+type GQLContactFormEdge = {
+  readonly __typename?: 'ContactFormEdge'
+  /** The item at the end of the edge. */
+  readonly node: GQLContactForm
+  /** A cursor for use in pagination. */
+  readonly cursor: Scalars['String']
+}
+
+/** Identifies documents */
+type GQLContactFormManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  readonly _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  readonly AND?: Maybe<ReadonlyArray<GQLContactFormWhereInput>>
+  /** Logical OR on all given filters. */
+  readonly OR?: Maybe<ReadonlyArray<GQLContactFormWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  readonly NOT?: Maybe<ReadonlyArray<GQLContactFormWhereInput>>
+  readonly id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  readonly id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values containing the given string. */
+  readonly id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  readonly id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  readonly id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  readonly id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  readonly id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  readonly id_not_ends_with?: Maybe<Scalars['ID']>
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly name?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly name_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly name_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly name_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly name_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly name_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly name_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly name_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly name_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly name_not_ends_with?: Maybe<Scalars['String']>
+  readonly email?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly email_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly email_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly email_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly email_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly email_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly email_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly email_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly email_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly email_not_ends_with?: Maybe<Scalars['String']>
+  readonly phoneNumber?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly phoneNumber_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly phoneNumber_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly phoneNumber_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly phoneNumber_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly phoneNumber_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly phoneNumber_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly phoneNumber_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly phoneNumber_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly phoneNumber_not_ends_with?: Maybe<Scalars['String']>
+  readonly subject?: Maybe<GQLContactSubject>
+  /** All values that are not equal to given value. */
+  readonly subject_not?: Maybe<GQLContactSubject>
+  /** All values that are contained in given list. */
+  readonly subject_in?: Maybe<ReadonlyArray<GQLContactSubject>>
+  /** All values that are not contained in given list. */
+  readonly subject_not_in?: Maybe<ReadonlyArray<GQLContactSubject>>
+  readonly message?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly message_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly message_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly message_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly message_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly message_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly message_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly message_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly message_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly message_not_ends_with?: Maybe<Scalars['String']>
+}
+
+type GQLContactFormOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'phoneNumber_ASC'
+  | 'phoneNumber_DESC'
+  | 'subject_ASC'
+  | 'subject_DESC'
+  | 'message_ASC'
+  | 'message_DESC'
+
+type GQLContactFormUpdateInput = {
+  readonly name?: Maybe<Scalars['String']>
+  readonly email?: Maybe<Scalars['String']>
+  readonly phoneNumber?: Maybe<Scalars['String']>
+  readonly subject?: Maybe<GQLContactSubject>
+  readonly message?: Maybe<Scalars['String']>
+}
+
+type GQLContactFormUpdateManyInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  readonly name: Scalars['String']
+  readonly email: Scalars['String']
+  readonly phoneNumber?: Maybe<Scalars['String']>
+  readonly subject: GQLContactSubject
+  readonly message: Scalars['String']
+}
+
+type GQLContactFormUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  readonly where: GQLContactFormWhereInput
+  /** Update many input */
+  readonly data: GQLContactFormUpdateManyInput
+}
+
+type GQLContactFormUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  readonly where: GQLContactFormWhereUniqueInput
+  /** Document to update */
+  readonly data: GQLContactFormUpdateInput
+}
+
+type GQLContactFormUpsertInput = {
+  /** Create document if it didn't exist */
+  readonly create: GQLContactFormCreateInput
+  /** Update document if it exists */
+  readonly update: GQLContactFormUpdateInput
+}
+
+type GQLContactFormUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  readonly where: GQLContactFormWhereUniqueInput
+  /** Upsert data */
+  readonly data: GQLContactFormUpsertInput
+}
+
+/** Identifies documents */
+type GQLContactFormWhereInput = {
+  /** Contains search across all appropriate fields. */
+  readonly _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  readonly AND?: Maybe<ReadonlyArray<GQLContactFormWhereInput>>
+  /** Logical OR on all given filters. */
+  readonly OR?: Maybe<ReadonlyArray<GQLContactFormWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  readonly NOT?: Maybe<ReadonlyArray<GQLContactFormWhereInput>>
+  readonly id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  readonly id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values containing the given string. */
+  readonly id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  readonly id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  readonly id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  readonly id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  readonly id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  readonly id_not_ends_with?: Maybe<Scalars['ID']>
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly name?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly name_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly name_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly name_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly name_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly name_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly name_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly name_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly name_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly name_not_ends_with?: Maybe<Scalars['String']>
+  readonly email?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly email_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly email_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly email_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly email_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly email_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly email_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly email_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly email_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly email_not_ends_with?: Maybe<Scalars['String']>
+  readonly phoneNumber?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly phoneNumber_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly phoneNumber_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly phoneNumber_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly phoneNumber_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly phoneNumber_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly phoneNumber_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly phoneNumber_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly phoneNumber_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly phoneNumber_not_ends_with?: Maybe<Scalars['String']>
+  readonly subject?: Maybe<GQLContactSubject>
+  /** All values that are not equal to given value. */
+  readonly subject_not?: Maybe<GQLContactSubject>
+  /** All values that are contained in given list. */
+  readonly subject_in?: Maybe<ReadonlyArray<GQLContactSubject>>
+  /** All values that are not contained in given list. */
+  readonly subject_not_in?: Maybe<ReadonlyArray<GQLContactSubject>>
+  readonly message?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly message_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly message_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly message_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly message_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly message_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly message_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly message_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly message_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly message_not_ends_with?: Maybe<Scalars['String']>
+}
+
+/** References ContactForm record uniquely */
+type GQLContactFormWhereUniqueInput = {
+  readonly id?: Maybe<Scalars['ID']>
+}
+
+type GQLContactSubject = 'COLLABORATION' | 'MODULE' | 'NEW_PROJECT' | 'OTHER' | 'VACANCY'
 
 type GQLDocumentFileTypes =
   | 'jpg'
@@ -3097,6 +3544,30 @@ type GQLMutation = {
   readonly publishManyCompanies: GQLBatchPayload
   /** Unpublish many Company documents */
   readonly unpublishManyCompanies: GQLBatchPayload
+  /** Create one contactForm */
+  readonly createContactForm?: Maybe<GQLContactForm>
+  /** Update one contactForm */
+  readonly updateContactForm?: Maybe<GQLContactForm>
+  /** Delete one contactForm from _all_ existing stages. Returns deleted document. */
+  readonly deleteContactForm?: Maybe<GQLContactForm>
+  /** Upsert one contactForm */
+  readonly upsertContactForm?: Maybe<GQLContactForm>
+  /** Publish one contactForm */
+  readonly publishContactForm?: Maybe<GQLContactForm>
+  /**
+   * Unpublish one contactForm from selected stages. Unpublish either the complete
+   * document with its relations, localizations and base data or specific
+   * localizations only.
+   */
+  readonly unpublishContactForm?: Maybe<GQLContactForm>
+  /** Update many contactForms */
+  readonly updateManyContactForms: GQLBatchPayload
+  /** Delete many ContactForm documents */
+  readonly deleteManyContactForms: GQLBatchPayload
+  /** Publish many ContactForm documents */
+  readonly publishManyContactForms: GQLBatchPayload
+  /** Unpublish many ContactForm documents */
+  readonly unpublishManyContactForms: GQLBatchPayload
   /** Create one linkExternal */
   readonly createLinkExternal?: Maybe<GQLLinkExternal>
   /** Update one linkExternal */
@@ -3605,6 +4076,53 @@ type GQLMutationPublishManyCompaniesArgs = {
 
 type GQLMutationUnpublishManyCompaniesArgs = {
   where?: Maybe<GQLCompanyManyWhereInput>
+  from?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationCreateContactFormArgs = {
+  data: GQLContactFormCreateInput
+}
+
+type GQLMutationUpdateContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+  data: GQLContactFormUpdateInput
+}
+
+type GQLMutationDeleteContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+}
+
+type GQLMutationUpsertContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+  upsert: GQLContactFormUpsertInput
+}
+
+type GQLMutationPublishContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+  to?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationUnpublishContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+  from?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationUpdateManyContactFormsArgs = {
+  where?: Maybe<GQLContactFormManyWhereInput>
+  data: GQLContactFormUpdateManyInput
+}
+
+type GQLMutationDeleteManyContactFormsArgs = {
+  where?: Maybe<GQLContactFormManyWhereInput>
+}
+
+type GQLMutationPublishManyContactFormsArgs = {
+  where?: Maybe<GQLContactFormManyWhereInput>
+  to?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationUnpublishManyContactFormsArgs = {
+  where?: Maybe<GQLContactFormManyWhereInput>
   from?: ReadonlyArray<GQLStage>
 }
 
@@ -5971,6 +6489,12 @@ type GQLQuery = {
   readonly company?: Maybe<GQLCompany>
   /** Retrieve multiple companies using the Relay connection interface */
   readonly companiesConnection: GQLCompanyConnection
+  /** Retrieve multiple contactForms */
+  readonly contactForms: ReadonlyArray<GQLContactForm>
+  /** Retrieve a single contactForm */
+  readonly contactForm?: Maybe<GQLContactForm>
+  /** Retrieve multiple contactForms using the Relay connection interface */
+  readonly contactFormsConnection: GQLContactFormConnection
   /** Retrieve multiple linkExternals */
   readonly linkExternals: ReadonlyArray<GQLLinkExternal>
   /** Retrieve a single linkExternal */
@@ -6145,6 +6669,33 @@ type GQLQueryCompanyArgs = {
 type GQLQueryCompaniesConnectionArgs = {
   where?: Maybe<GQLCompanyWhereInput>
   orderBy?: Maybe<GQLCompanyOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+}
+
+type GQLQueryContactFormsArgs = {
+  where?: Maybe<GQLContactFormWhereInput>
+  orderBy?: Maybe<GQLContactFormOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+}
+
+type GQLQueryContactFormArgs = {
+  where: GQLContactFormWhereUniqueInput
+  stage?: GQLStage
+}
+
+type GQLQueryContactFormsConnectionArgs = {
+  where?: Maybe<GQLContactFormWhereInput>
+  orderBy?: Maybe<GQLContactFormOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -10416,6 +10967,20 @@ type GQLGetBreadcrumbQueryVariables = {
 
 type GQLGetBreadcrumbQuery = { readonly __typename?: 'Query' } & {
   readonly breadcrumbs: ReadonlyArray<{ readonly __typename?: 'Page' } & GQLBreadcrumbFragment>
+}
+
+type GQLSubmitContactFormMutationVariables = {
+  name: Scalars['String']
+  email: Scalars['String']
+  phoneNumber?: Maybe<Scalars['String']>
+  subject?: GQLContactSubject
+  message: Scalars['String']
+}
+
+type GQLSubmitContactFormMutation = { readonly __typename?: 'Mutation' } & {
+  readonly createContactForm?: Maybe<
+    { readonly __typename?: 'ContactForm' } & Pick<GQLContactForm, 'id'>
+  >
 }
 
 type GQLContentRendererFragment = { readonly __typename?: 'Page' } & {

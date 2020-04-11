@@ -241,6 +241,72 @@ export type GetBreadcrumbQueryResult = ApolloReactCommon.QueryResult<
   GQLGetBreadcrumbQuery,
   GQLGetBreadcrumbQueryVariables
 >
+export const SubmitContactFormDocument = gql`
+  mutation SubmitContactForm(
+    $name: String!
+    $email: String!
+    $phoneNumber: String
+    $subject: ContactSubject! = NEW_PROJECT
+    $message: String!
+  ) {
+    createContactForm(
+      data: {
+        name: $name
+        email: $email
+        phoneNumber: $phoneNumber
+        subject: $subject
+        message: $message
+      }
+    ) {
+      id
+    }
+  }
+`
+export type GQLSubmitContactFormMutationFn = ApolloReactCommon.MutationFunction<
+  GQLSubmitContactFormMutation,
+  GQLSubmitContactFormMutationVariables
+>
+
+/**
+ * __useSubmitContactFormMutation__
+ *
+ * To run a mutation, you first call `useSubmitContactFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSubmitContactFormMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [submitContactFormMutation, { data, loading, error }] = useSubmitContactFormMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      email: // value for 'email'
+ *      phoneNumber: // value for 'phoneNumber'
+ *      subject: // value for 'subject'
+ *      message: // value for 'message'
+ *   },
+ * });
+ */
+export function useSubmitContactFormMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    GQLSubmitContactFormMutation,
+    GQLSubmitContactFormMutationVariables
+  >,
+) {
+  return ApolloReactHooks.useMutation<
+    GQLSubmitContactFormMutation,
+    GQLSubmitContactFormMutationVariables
+  >(SubmitContactFormDocument, baseOptions)
+}
+export type SubmitContactFormMutationHookResult = ReturnType<typeof useSubmitContactFormMutation>
+export type SubmitContactFormMutationResult = ApolloReactCommon.MutationResult<
+  GQLSubmitContactFormMutation
+>
+export type SubmitContactFormMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  GQLSubmitContactFormMutation,
+  GQLSubmitContactFormMutationVariables
+>
 export const GetPageLayoutDocument = gql`
   query GetPageLayout($url: String!, $locale: Locale!) {
     pages(where: { url: $url }, locales: [$locale]) {
