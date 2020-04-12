@@ -1,16 +1,11 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import dynamic from 'next/dynamic'
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { LayoutPage } from '../lib/layout'
 import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
 import { StaticPageVariables } from '../lib/staticParams'
 import ContentRenderer from '../components/ContentRenderer'
-
-const ContactForm = dynamic(() => import('../components/ContactForm'), {
-  ssr: false,
-  loading: () => <p>Loading ...</p>,
-})
+import ContactFormLoader from '../components/ContactForm'
 
 const Contact: LayoutPage<PageLayoutProps> = ({ pages }) => {
   return (
@@ -18,11 +13,13 @@ const Contact: LayoutPage<PageLayoutProps> = ({ pages }) => {
       <ContentRenderer content={pages[0].content} />
 
       <Container>
-        <ContactForm />
+        <Typography variant='h3'>Neem contact op</Typography>
+        <ContactFormLoader />
       </Container>
     </>
   )
 }
+
 Contact.layout = LayoutFull
 
 export default Contact

@@ -91,7 +91,7 @@ const Menu: React.FC<{
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
   const roots = extractRoots(mainMenu)
-  Router.events.on('routeChangeComplete', () => setOpenEl(null))
+  Router.events.on('routeChangeStart', () => setOpenEl(null))
 
   return (
     <>

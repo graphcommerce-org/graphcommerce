@@ -9,7 +9,7 @@ import {
   DocumentNode,
   VariableDefinitionNode,
 } from 'graphql'
-import { useForm, DeepPartial } from 'react-hook-form'
+import { useForm, DeepPartial, ValidationOptions, ValidationOption } from 'react-hook-form'
 import { useMutation } from '@apollo/react-hooks'
 import initApolloClient from './apollo'
 
@@ -74,3 +74,6 @@ export function useMutationForm<TData, TVariables = {}>(mutation: DocumentNode) 
 
   return { required, result, register, errors, onSubmit }
 }
+
+export const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+export const phonePattern = /([(+]*[0-9]+[()+. -]*)/
