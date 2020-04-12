@@ -1,13 +1,43 @@
 import React from 'react'
-import { Button, FormHelperText, makeStyles, Theme, TextField } from '@material-ui/core'
+import { Button, FormHelperText, TextField, makeStyles, Theme } from '@material-ui/core'
 import { SubmitContactFormDocument } from '../../generated/apollo'
-import { useMutationForm } from '../../lib/apollo-form'
+import { useMutationForm, emailPattern, phonePattern } from '../../lib/apollo-form'
 
 const useStyles = makeStyles((theme: Theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+  form: {
+    display: 'grid',
+    rowGap: theme.gridSpacing.row,
+
+    gridTemplateColumns: '1fr',
+    gridTemplateAreas: `
+      "name"
+      "email"
+      "phoneNumber"
+      "subject"
+      "message"
+      "attachment"
+      "result"
+      "submit"
+    `,
+
+    [theme.breakpoints.up('md')]: {
+      columnGap: theme.gridSpacing.column,
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gridTemplateAreas: `
+       "name       email   phoneNumber"
+       "subject    subject subject"
+       "message    message message"
+       "attachment result  submit"`,
+    },
   },
+  name: { gridArea: 'name' },
+  email: { gridArea: 'email' },
+  phoneNumber: { gridArea: 'phoneNumber' },
+  subject: { gridArea: 'subject' },
+  message: { gridArea: 'message' },
+  attachment: { gridArea: 'attachment' },
+  submit: { gridArea: 'submit' },
+  result: { gridArea: 'result' },
 }))
 
 const ContactForm: React.FC = () => {
@@ -27,60 +57,64 @@ const ContactForm: React.FC = () => {
     MODULE: 'Module',
     NEW_PROJECT: 'Nieuw Project',
     VACANCY: 'Vacature',
-    OTHER: 'Overig',
+    OTHER: 'Anders',
   }
 
   return (
     <>
-      <form noValidate onSubmit={onSubmit}>
+      <form noValidate onSubmit={onSubmit} className={classes.form}>
         <TextField
-          margin='normal'
-          variant='outlined'
+          variant='filled'
           error={!!errors.name}
-          className={classes.formControl}
           label='Naam'
           name='name'
+          className={classes.name}
           required={required.name}
           inputRef={register({ required: required.name })}
-          helperText={errors.name && 'Naam is verplicht'}
+          helperText={errors?.name?.message}
         />
 
         <TextField
-          margin='normal'
-          variant='outlined'
+          variant='filled'
+          type='email'
           error={!!errors.email}
-          className={classes.formControl}
           label='Emailadres'
           name='email'
+          className={classes.email}
           required={required.email}
-          inputRef={register({ required: required.email })}
-          helperText={errors.name && 'Emailadres is verplicht'}
+          inputRef={register({
+            required: required.email,
+            pattern: { value: emailPattern, message: 'Emailadres is ongeldig' },
+          })}
+          helperText={errors?.email?.message}
         />
 
         <TextField
-          margin='normal'
-          variant='outlined'
+          variant='filled'
+          type='tel'
           error={!!errors.phoneNumber}
-          className={classes.formControl}
           label='Telefoonnummer'
           name='phoneNumber'
+          className={classes.phoneNumber}
           required={required.phoneNumber}
-          inputRef={register({ required: required.phoneNumber })}
-          helperText={errors.phoneNumber && 'Telefoonnummer is verplicht'}
+          inputRef={register({
+            required: required.phoneNumber,
+            pattern: { value: phonePattern, message: 'Telefoonnummer is ongeldig' },
+          })}
+          helperText={errors?.phoneNumber?.message}
         />
 
         <TextField
-          margin='normal'
-          variant='outlined'
+          variant='filled'
           select
           SelectProps={{ native: true }}
           error={!!errors.subject}
-          className={classes.formControl}
           label='Onderwerp'
           name='subject'
+          className={classes.subject}
           required={required.subject}
           inputRef={register({ required: required.subject })}
-          helperText={errors.subject && 'Onderwerp is verplicht'}
+          helperText={errors?.subject?.message}
         >
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label*/}
           {!required.subject && <option value='' />}
@@ -92,34 +126,40 @@ const ContactForm: React.FC = () => {
         </TextField>
 
         <TextField
-          margin='normal'
-          variant='outlined'
+          variant='filled'
           multiline
-          rowsMax={6}
+          className={classes.message}
           error={!!errors.message}
-          className={classes.formControl}
           label='Bericht'
           name='message'
           inputProps={{ style: { minHeight: 'calc(10em * 1.1876)' } }}
           required={required.message}
           inputRef={register({ required: required.message })}
-          helperText={errors.message && 'Bericht is verplicht'}
+          helperText={errors?.subject?.message}
         />
 
-        <Button type='submit' disabled={loading || !!data?.createContactForm?.id}>
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+          className={classes.submit}
+          disabled={loading || !!data?.createContactForm?.id}
+        >
           Submit
         </Button>
-        {error && (
-          <FormHelperText error>
-            {error.message} Please email to info@reachdigital.nl
-          </FormHelperText>
-        )}
-        {data?.createContactForm?.id && <FormHelperText>Bedankt voor je bericht</FormHelperText>}
-        {data?.createContactForm === null && (
-          <FormHelperText error>
-            Message was send, but couldn&apos;t be saved.. Please email to info@reachdigital.nl
-          </FormHelperText>
-        )}
+        <div className={classes.result}>
+          {error && (
+            <FormHelperText error>
+              {error.message} Please email to info@reachdigital.nl
+            </FormHelperText>
+          )}
+          {data?.createContactForm?.id && <FormHelperText>Bedankt voor je bericht</FormHelperText>}
+          {data?.createContactForm === null && (
+            <FormHelperText error>
+              Message was send, but couldn&apos;t be saved.. Please email to info@reachdigital.nl
+            </FormHelperText>
+          )}
+        </div>
       </form>
     </>
   )
