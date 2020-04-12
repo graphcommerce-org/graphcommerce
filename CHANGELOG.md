@@ -1,3 +1,31 @@
+## [5.3.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.2.0...v5.3.0) (2020-04-12)
+
+
+### Features
+
+* **contact:** working on contact form implementation ([8ec8958](https://github.com/ho-nl/project-reachdigital.nl/commit/8ec8958baea02f0adf9210feb17bfa256b55dc19))
+* **contactform:** added layout and field validation ([16ebb4f](https://github.com/ho-nl/project-reachdigital.nl/commit/16ebb4f74f8a9db599b82f3faaaff48a723f7f71))
+* **contactform:** implement skeleton loader for contact form ([e236d47](https://github.com/ho-nl/project-reachdigital.nl/commit/e236d47753815eabdae6501888909e7827fbad60))
+* **layout:** implemented a page load indicator for the header ([5137565](https://github.com/ho-nl/project-reachdigital.nl/commit/513756588ec512b282f5331644067e23a6dcdad6))
+* **menu:** small fixes to main menu to fully render dynamic menu ([f6b1afc](https://github.com/ho-nl/project-reachdigital.nl/commit/f6b1afc1ba69b3e819979247de8dd17d6efc5800))
+* **migration:** added english pages, added url to title mapping ([2d14eab](https://github.com/ho-nl/project-reachdigital.nl/commit/2d14eab58b983f0b2c0cabe036a7e6f8b4a1ce25))
+* **migration:** initial migration of page data form old website to new ([27e8d40](https://github.com/ho-nl/project-reachdigital.nl/commit/27e8d40e51198e2b7e8279e9faffc1a1b9dfbf18))
+
+
+### Bug Fixes
+
+* **menu:** hide menu when route change starts ([88c563e](https://github.com/ho-nl/project-reachdigital.nl/commit/88c563ed66a99146d94ddf9b0d45330c91e443ab))
+* solved issue where /en would show the wrong layout components ([dc61955](https://github.com/ho-nl/project-reachdigital.nl/commit/dc619552c35c344ca500cc88a93dfdd1e1105ce4))
+* **blog:** make sure the correct locale is loaded for each blog post. ([35dae11](https://github.com/ho-nl/project-reachdigital.nl/commit/35dae11c923e3093cfa672e8c83ff667a1a62755))
+* **menu:** hide ‘switch to’ when there is no translation available ([a3d2bf8](https://github.com/ho-nl/project-reachdigital.nl/commit/a3d2bf845fa6d1a9f151c8fdb1deaed4b1903479))
+* **migration:** stfu for migration hackjobscript ([d961692](https://github.com/ho-nl/project-reachdigital.nl/commit/d961692b275f9ec0bf243ff7546b95b037b3918e))
+* **sitemap:** english URL’s couldn’t be retrieved properly ([bff42e8](https://github.com/ho-nl/project-reachdigital.nl/commit/bff42e89d5476752ae87095f9b17556ca8a4cf71))
+
+
+### Performance Improvements
+
+* removed react-docgen-typescript-loader to speed up storybook ([3d7c2ff](https://github.com/ho-nl/project-reachdigital.nl/commit/3d7c2ff8354a71b38dc34f9d29a812e48960d71a))
+
 ## [5.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.1.0...v5.2.0) (2020-04-10)
 
 
