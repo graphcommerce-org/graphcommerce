@@ -1,3 +1,18 @@
+### [5.3.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.1...v5.3.2) (2020-04-13)
+
+
+### Bug Fixes
+
+* **lighthouse:** a11y contact form contrast and label id ([a211dd7](https://github.com/ho-nl/project-reachdigital.nl/commit/a211dd74c73b3024b00d6bfcb312042e350f5eb2))
+* **lighthouse:** provide alt tag for asset ([0b724b5](https://github.com/ho-nl/project-reachdigital.nl/commit/0b724b59010227ef5c19238204fec18ba988e275))
+* **lighthouse:** require alt tag for PictureResonsive ([3ce9291](https://github.com/ho-nl/project-reachdigital.nl/commit/3ce92917c212f434c702a77abfe6f833eb060cb4))
+* **lighthouse:** robots.txt added ([7aae0f4](https://github.com/ho-nl/project-reachdigital.nl/commit/7aae0f4e6519e4be7763cb6d790b72cfab0a10cf))
+
+
+### Performance Improvements
+
+* smaller home page reach digital image ([31a2b3d](https://github.com/ho-nl/project-reachdigital.nl/commit/31a2b3dd398f00c72d6442b87e277ba687d22377))
+
 ### [5.3.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.0...v5.3.1) (2020-04-13)
 
 
