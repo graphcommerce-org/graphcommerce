@@ -1,3 +1,11 @@
+### [5.3.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.0...v5.3.1) (2020-04-13)
+
+
+### Performance Improvements
+
+* added one missing rel=preload tags for used fonts ([5de3468](https://github.com/ho-nl/project-reachdigital.nl/commit/5de34689485fefcef069d00138bec8c54c51440e))
+* added rel=preload tags for used fonts ([89e2eee](https://github.com/ho-nl/project-reachdigital.nl/commit/89e2eee865bf5d8e426ec1661aae7efb42723480))
+
 ## [5.3.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.2.0...v5.3.0) (2020-04-12)
 
 
