@@ -156,6 +156,7 @@ const RenderBlock: React.FC<BlockJSON | IframeJSON | ImageJSON> = (block) => {
     case 'image':
       return (
         <FilestackPicture
+          alt=''
           src={[
             ...block.data.src.split('/').slice(0, 3),
             ...block.data.src.split('/').slice(-1),

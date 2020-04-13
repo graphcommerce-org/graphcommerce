@@ -28,9 +28,10 @@ const ContactForm: React.FC = () => {
     <>
       <form noValidate onSubmit={onSubmit} className={classes.form}>
         <TextField
-          variant='filled'
+          variant='outlined'
           error={!!errors.name}
           label='Naam'
+          id='name'
           name='name'
           className={classes.name}
           required={required.name}
@@ -39,10 +40,11 @@ const ContactForm: React.FC = () => {
         />
 
         <TextField
-          variant='filled'
+          variant='outlined'
           type='email'
           error={!!errors.email}
           label='Emailadres'
+          id='email'
           name='email'
           className={classes.email}
           required={required.email}
@@ -54,10 +56,11 @@ const ContactForm: React.FC = () => {
         />
 
         <TextField
-          variant='filled'
+          variant='outlined'
           type='tel'
           error={!!errors.phoneNumber}
           label='Telefoonnummer'
+          id='phoneNumber'
           name='phoneNumber'
           className={classes.phoneNumber}
           required={required.phoneNumber}
@@ -69,11 +72,12 @@ const ContactForm: React.FC = () => {
         />
 
         <TextField
-          variant='filled'
+          variant='outlined'
           select
           SelectProps={{ native: true }}
           error={!!errors.subject}
           label='Onderwerp'
+          id='subject'
           name='subject'
           className={classes.subject}
           required={required.subject}
@@ -90,11 +94,12 @@ const ContactForm: React.FC = () => {
         </TextField>
 
         <TextField
-          variant='filled'
+          variant='outlined'
           multiline
           className={classes.message}
           error={!!errors.message}
           label='Bericht'
+          id='message'
           name='message'
           inputProps={{ style: { minHeight: 'calc(10em * 1.1876)' } }}
           required={required.message}

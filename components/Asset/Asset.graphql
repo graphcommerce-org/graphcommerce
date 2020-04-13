@@ -1,5 +1,6 @@
 fragment Asset on Asset {
   id
+  alt
   url
   width
   height
