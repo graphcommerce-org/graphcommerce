@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { animated, useSpring } from 'react-spring'
 import { useRouter } from 'next/router'
-import { LinearProgress, makeStyles } from '@material-ui/core'
+import { LinearProgress, makeStyles, Fade } from '@material-ui/core'
 
 const useStyles = makeStyles({
   progress: {
@@ -14,9 +13,6 @@ const PageLoadIndicator: React.FC = () => {
   const router = useRouter()
   const classes = useStyles()
   const [loading, setLoading] = useState<boolean>(false)
-
-  const progressAnim = useSpring({ opacity: loading ? 1 : 0, from: { opacity: 0 } })
-  const AnimatedLinearProgress = animated(LinearProgress)
 
   useEffect(() => {
     const show = () => setLoading(true)
@@ -32,7 +28,11 @@ const PageLoadIndicator: React.FC = () => {
     }
   }, [router.pathname, router.query])
 
-  return <AnimatedLinearProgress style={progressAnim} className={classes.progress} />
+  return (
+    <Fade in={loading}>
+      <LinearProgress className={classes.progress} />
+    </Fade>
+  )
 }
 
 export default PageLoadIndicator
