@@ -16,6 +16,7 @@ module.exports = withImages(
         GRAPHQL_LEGACY_BEARER: process.env.GRAPHQL_LEGACY_BEARER,
       },
       experimental: {
+        modern: true,
         rewrites() {
           return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
         },
