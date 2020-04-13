@@ -44,7 +44,7 @@
     "regenerator-runtime": "^0.13.3",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.5.1",
-    "sitemap": "^6.1.0",
+    "sitemap": "^6.1.1",
     "use-resize-observer": "^6.0.0"
   },
   "devDependencies": {
