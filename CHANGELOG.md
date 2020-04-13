@@ -1,3 +1,11 @@
+### [5.3.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.3...v5.3.4) (2020-04-13)
+
+
+### Performance Improvements
+
+* enable modern config ([e78b4fb](https://github.com/ho-nl/project-reachdigital.nl/commit/e78b4fb057ed9a113a6248caae59570c4ff4e06b))
+* remove react spring as main dependency ([a04701c](https://github.com/ho-nl/project-reachdigital.nl/commit/a04701c12f681b7753f182c9142b996009f961b2))
+
 ### [5.3.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.2...v5.3.3) (2020-04-13)
 
 
