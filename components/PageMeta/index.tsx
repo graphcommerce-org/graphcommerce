@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import Head from 'next/head'
-import { getCanonical } from '../Link'
 
 const PageMeta: React.FC<GQLPageMetaFragment> = ({
   metaTitle,
@@ -19,14 +18,14 @@ const PageMeta: React.FC<GQLPageMetaFragment> = ({
       <title>{metaTitle}</title>
       <meta name='description' content={metaDescription} />
       <meta name='robots' content={metaRobots!} />
-      <link rel='canonical' href={getCanonical(url)} />
+      <link rel='canonical' href={url} />
 
       {localizations.map((localization) => (
         <link
           key={localization.id}
           rel='alternate'
           hrefLang={localization.locale === 'nl' ? 'x-default' : localization.locale}
-          href={getCanonical(localization.url!)}
+          href={localization.url!}
         />
       ))}
     </Head>
