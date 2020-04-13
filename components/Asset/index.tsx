@@ -25,15 +25,15 @@ const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ..
     throw new Error('Asset has no mimeType, can not determine renderer.')
   }
 
+  const url = new URL(asset.url)
+  url.pathname = `cache=expiry:max/${url.pathname.substr(1)}`
+
   switch (asset.mimeType) {
     case 'video/mp4':
       return (
         // eslint-disable-next-line jsx-a11y/media-has-caption
         <video {...(props as VideoProps)}>
-          <source
-            src={(asset as VideoProps['asset']).url}
-            type={(asset as VideoProps['asset']).mimeType}
-          />
+          <source src={url.toString()} type={(asset as VideoProps['asset']).mimeType} />
         </video>
       )
     case undefined:
