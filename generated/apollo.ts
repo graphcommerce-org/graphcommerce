@@ -45,6 +45,7 @@ export const PageMetaFragmentDoc = gql`
 export const AssetFragmentDoc = gql`
   fragment Asset on Asset {
     id
+    alt
     url
     width
     height

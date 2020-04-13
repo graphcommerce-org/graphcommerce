@@ -19,6 +19,9 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
+  Hex: any
+  RGBAHue: any
+  RGBATransparency: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
@@ -26,9 +29,6 @@ type Scalars = {
   Date: any
   /** Raw JSON value */
   Json: any
-  RGBATransparency: any
-  RGBAHue: any
-  Hex: any
 }
 
 type GQL_FilterKind =
@@ -125,6 +125,7 @@ type GQLAsset = GQLNode & {
   readonly rowColumnThreeColThreeIcon: ReadonlyArray<GQLRowColumnThree>
   readonly rowColumnOneColOneIcon: ReadonlyArray<GQLRowColumnOne>
   readonly rowHeroAsset: ReadonlyArray<GQLRowHero>
+  readonly alt?: Maybe<Scalars['String']>
   /** Get the url for the asset with provided transformations applied. */
   readonly url: Scalars['String']
 }
@@ -281,6 +282,8 @@ type GQLAssetCreateInput = {
   readonly rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   readonly rowColumnOneColOneIcon?: Maybe<GQLRowColumnOneCreateManyInlineInput>
   readonly rowHeroAsset?: Maybe<GQLRowHeroCreateManyInlineInput>
+  /** alt input for default locale (nl) */
+  readonly alt?: Maybe<Scalars['String']>
   /** Inline mutations for managing document localizations excluding the default locale */
   readonly localizations?: Maybe<GQLAssetCreateLocalizationsInput>
 }
@@ -294,6 +297,7 @@ type GQLAssetCreateLocalizationDataInput = {
   readonly width?: Maybe<Scalars['Float']>
   readonly size?: Maybe<Scalars['Float']>
   readonly mimeType?: Maybe<Scalars['String']>
+  readonly alt?: Maybe<Scalars['String']>
 }
 
 type GQLAssetCreateLocalizationInput = {
@@ -454,6 +458,8 @@ type GQLAssetOrderByInput =
   | 'size_DESC'
   | 'mimeType_ASC'
   | 'mimeType_DESC'
+  | 'alt_ASC'
+  | 'alt_DESC'
 
 /** Transformations for Assets */
 type GQLAssetTransformationInput = {
@@ -479,6 +485,8 @@ type GQLAssetUpdateInput = {
   readonly rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   readonly rowColumnOneColOneIcon?: Maybe<GQLRowColumnOneUpdateManyInlineInput>
   readonly rowHeroAsset?: Maybe<GQLRowHeroUpdateManyInlineInput>
+  /** alt input for default locale (nl) */
+  readonly alt?: Maybe<Scalars['String']>
   /** Manage document localizations */
   readonly localizations?: Maybe<GQLAssetUpdateLocalizationsInput>
 }
@@ -490,6 +498,7 @@ type GQLAssetUpdateLocalizationDataInput = {
   readonly width?: Maybe<Scalars['Float']>
   readonly size?: Maybe<Scalars['Float']>
   readonly mimeType?: Maybe<Scalars['String']>
+  readonly alt?: Maybe<Scalars['String']>
 }
 
 type GQLAssetUpdateLocalizationInput = {
@@ -537,6 +546,7 @@ type GQLAssetUpdateManyLocalizationInput = {
   readonly width?: Maybe<Scalars['Float']>
   readonly size?: Maybe<Scalars['Float']>
   readonly mimeType?: Maybe<Scalars['String']>
+  readonly alt?: Maybe<Scalars['String']>
 }
 
 type GQLAssetUpdateManyWithNestedWhereInput = {
@@ -791,6 +801,25 @@ type GQLAssetWhereInput = {
   readonly rowHeroAsset_every?: Maybe<GQLRowHeroWhereInput>
   readonly rowHeroAsset_some?: Maybe<GQLRowHeroWhereInput>
   readonly rowHeroAsset_none?: Maybe<GQLRowHeroWhereInput>
+  readonly alt?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly alt_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly alt_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly alt_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly alt_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly alt_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly alt_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly alt_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly alt_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly alt_not_ends_with?: Maybe<Scalars['String']>
 }
 
 /** References Asset record uniquely */
@@ -802,328 +831,6 @@ type GQLBatchPayload = {
   readonly __typename?: 'BatchPayload'
   /** The number of nodes that have been affected by the Batch operation. */
   readonly count: Scalars['Long']
-}
-
-type GQLBlogList = GQLNode & {
-  readonly __typename?: 'BlogList'
-  /** System stage field */
-  readonly stage: GQLStage
-  /** Get the document in other stages */
-  readonly documentInStages: ReadonlyArray<GQLBlogList>
-  /** The unique identifier */
-  readonly id: Scalars['ID']
-  /** The time the document was created */
-  readonly createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  readonly updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** Collects all the blog pages */
-  readonly blogPages: ReadonlyArray<GQLPage>
-}
-
-type GQLBlogListDocumentInStagesArgs = {
-  stages?: ReadonlyArray<GQLStage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-type GQLBlogListBlogPagesArgs = {
-  where?: Maybe<GQLPageWhereInput>
-  orderBy?: Maybe<GQLPageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLBlogListConnectInput = {
-  /** Document to connect */
-  readonly where: GQLBlogListWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  readonly position?: Maybe<GQLConnectPositionInput>
-}
-
-/** A connection to a list of items. */
-type GQLBlogListConnection = {
-  readonly __typename?: 'BlogListConnection'
-  /** Information to aid in pagination. */
-  readonly pageInfo: GQLPageInfo
-  /** A list of edges. */
-  readonly edges: ReadonlyArray<GQLBlogListEdge>
-  readonly aggregate: GQLAggregate
-}
-
-type GQLBlogListCreateInput = {
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  readonly blogPages?: Maybe<GQLPageCreateManyInlineInput>
-}
-
-type GQLBlogListCreateManyInlineInput = {
-  /** Create and connect multiple existing BlogList documents */
-  readonly create?: Maybe<ReadonlyArray<GQLBlogListCreateInput>>
-  /** Connect multiple existing BlogList documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLBlogListWhereUniqueInput>>
-}
-
-type GQLBlogListCreateOneInlineInput = {
-  /** Create and connect one BlogList document */
-  readonly create?: Maybe<GQLBlogListCreateInput>
-  /** Connect one existing BlogList document */
-  readonly connect?: Maybe<GQLBlogListWhereUniqueInput>
-}
-
-/** An edge in a connection. */
-type GQLBlogListEdge = {
-  readonly __typename?: 'BlogListEdge'
-  /** The item at the end of the edge. */
-  readonly node: GQLBlogList
-  /** A cursor for use in pagination. */
-  readonly cursor: Scalars['String']
-}
-
-/** Identifies documents */
-type GQLBlogListManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  readonly _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  readonly AND?: Maybe<ReadonlyArray<GQLBlogListWhereInput>>
-  /** Logical OR on all given filters. */
-  readonly OR?: Maybe<ReadonlyArray<GQLBlogListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  readonly NOT?: Maybe<ReadonlyArray<GQLBlogListWhereInput>>
-  readonly id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  readonly id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values containing the given string. */
-  readonly id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  readonly id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  readonly id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  readonly id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  readonly id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  readonly id_not_ends_with?: Maybe<Scalars['ID']>
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly blogPages_every?: Maybe<GQLPageWhereInput>
-  readonly blogPages_some?: Maybe<GQLPageWhereInput>
-  readonly blogPages_none?: Maybe<GQLPageWhereInput>
-}
-
-type GQLBlogListOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-
-type GQLBlogListUpdateInput = {
-  readonly blogPages?: Maybe<GQLPageUpdateManyInlineInput>
-}
-
-type GQLBlogListUpdateManyInlineInput = {
-  /** Create and connect multiple BlogList documents */
-  readonly create?: Maybe<ReadonlyArray<GQLBlogListCreateInput>>
-  /** Connect multiple existing BlogList documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLBlogListConnectInput>>
-  /** Override currently-connected documents with multiple existing BlogList documents */
-  readonly set?: Maybe<ReadonlyArray<GQLBlogListWhereUniqueInput>>
-  /** Update multiple BlogList documents */
-  readonly update?: Maybe<ReadonlyArray<GQLBlogListUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple BlogList documents */
-  readonly upsert?: Maybe<ReadonlyArray<GQLBlogListUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple BlogList documents */
-  readonly disconnect?: Maybe<ReadonlyArray<GQLBlogListWhereUniqueInput>>
-  /** Delete multiple BlogList documents */
-  readonly delete?: Maybe<ReadonlyArray<GQLBlogListWhereUniqueInput>>
-}
-
-type GQLBlogListUpdateManyInput = {
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-type GQLBlogListUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  readonly where: GQLBlogListWhereInput
-  /** Update many input */
-  readonly data: GQLBlogListUpdateManyInput
-}
-
-type GQLBlogListUpdateOneInlineInput = {
-  /** Create and connect one BlogList document */
-  readonly create?: Maybe<GQLBlogListCreateInput>
-  /** Update single BlogList document */
-  readonly update?: Maybe<GQLBlogListUpdateWithNestedWhereUniqueInput>
-  /** Upsert single BlogList document */
-  readonly upsert?: Maybe<GQLBlogListUpsertWithNestedWhereUniqueInput>
-  /** Connect existing BlogList document */
-  readonly connect?: Maybe<GQLBlogListWhereUniqueInput>
-  /** Disconnect currently connected BlogList document */
-  readonly disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected BlogList document */
-  readonly delete?: Maybe<Scalars['Boolean']>
-}
-
-type GQLBlogListUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  readonly where: GQLBlogListWhereUniqueInput
-  /** Document to update */
-  readonly data: GQLBlogListUpdateInput
-}
-
-type GQLBlogListUpsertInput = {
-  /** Create document if it didn't exist */
-  readonly create: GQLBlogListCreateInput
-  /** Update document if it exists */
-  readonly update: GQLBlogListUpdateInput
-}
-
-type GQLBlogListUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  readonly where: GQLBlogListWhereUniqueInput
-  /** Upsert data */
-  readonly data: GQLBlogListUpsertInput
-}
-
-/** Identifies documents */
-type GQLBlogListWhereInput = {
-  /** Contains search across all appropriate fields. */
-  readonly _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  readonly AND?: Maybe<ReadonlyArray<GQLBlogListWhereInput>>
-  /** Logical OR on all given filters. */
-  readonly OR?: Maybe<ReadonlyArray<GQLBlogListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  readonly NOT?: Maybe<ReadonlyArray<GQLBlogListWhereInput>>
-  readonly id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  readonly id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values containing the given string. */
-  readonly id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  readonly id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  readonly id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  readonly id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  readonly id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  readonly id_not_ends_with?: Maybe<Scalars['ID']>
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly blogPages_every?: Maybe<GQLPageWhereInput>
-  readonly blogPages_some?: Maybe<GQLPageWhereInput>
-  readonly blogPages_none?: Maybe<GQLPageWhereInput>
-}
-
-/** References BlogList record uniquely */
-type GQLBlogListWhereUniqueInput = {
-  readonly id?: Maybe<Scalars['ID']>
 }
 
 /** Representing a color value comprising of HEX, RGBA and css color values */
@@ -3496,30 +3203,6 @@ type GQLMutation = {
   readonly publishManyAssets: GQLBatchPayload
   /** Unpublish many Asset documents */
   readonly unpublishManyAssets: GQLBatchPayload
-  /** Create one blogList */
-  readonly createBlogList?: Maybe<GQLBlogList>
-  /** Update one blogList */
-  readonly updateBlogList?: Maybe<GQLBlogList>
-  /** Delete one blogList from _all_ existing stages. Returns deleted document. */
-  readonly deleteBlogList?: Maybe<GQLBlogList>
-  /** Upsert one blogList */
-  readonly upsertBlogList?: Maybe<GQLBlogList>
-  /** Publish one blogList */
-  readonly publishBlogList?: Maybe<GQLBlogList>
-  /**
-   * Unpublish one blogList from selected stages. Unpublish either the complete
-   * document with its relations, localizations and base data or specific
-   * localizations only.
-   */
-  readonly unpublishBlogList?: Maybe<GQLBlogList>
-  /** Update many blogLists */
-  readonly updateManyBlogLists: GQLBatchPayload
-  /** Delete many BlogList documents */
-  readonly deleteManyBlogLists: GQLBatchPayload
-  /** Publish many BlogList documents */
-  readonly publishManyBlogLists: GQLBatchPayload
-  /** Unpublish many BlogList documents */
-  readonly unpublishManyBlogLists: GQLBatchPayload
   /** Create one company */
   readonly createCompany?: Maybe<GQLCompany>
   /** Update one company */
@@ -3904,6 +3587,30 @@ type GQLMutation = {
   readonly publishManyRowServicesWithTexts: GQLBatchPayload
   /** Unpublish many RowServicesWithText documents */
   readonly unpublishManyRowServicesWithTexts: GQLBatchPayload
+  /** Create one zzDeleteBlogList */
+  readonly createZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Update one zzDeleteBlogList */
+  readonly updateZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Delete one zzDeleteBlogList from _all_ existing stages. Returns deleted document. */
+  readonly deleteZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Upsert one zzDeleteBlogList */
+  readonly upsertZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Publish one zzDeleteBlogList */
+  readonly publishZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /**
+   * Unpublish one zzDeleteBlogList from selected stages. Unpublish either the
+   * complete document with its relations, localizations and base data or specific
+   * localizations only.
+   */
+  readonly unpublishZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Update many zzDeleteBlogLists */
+  readonly updateManyZzDeleteBlogLists: GQLBatchPayload
+  /** Delete many ZzDeleteBlogList documents */
+  readonly deleteManyZzDeleteBlogLists: GQLBatchPayload
+  /** Publish many ZzDeleteBlogList documents */
+  readonly publishManyZzDeleteBlogLists: GQLBatchPayload
+  /** Unpublish many ZzDeleteBlogList documents */
+  readonly unpublishManyZzDeleteBlogLists: GQLBatchPayload
   /** Create one zzDeleteList */
   readonly createZzDeleteList?: Maybe<GQLZzDeleteList>
   /** Update one zzDeleteList */
@@ -3983,53 +3690,6 @@ type GQLMutationUnpublishManyAssetsArgs = {
   from?: ReadonlyArray<GQLStage>
   locales?: Maybe<ReadonlyArray<GQLLocale>>
   unpublishBase?: Maybe<Scalars['Boolean']>
-}
-
-type GQLMutationCreateBlogListArgs = {
-  data: GQLBlogListCreateInput
-}
-
-type GQLMutationUpdateBlogListArgs = {
-  where: GQLBlogListWhereUniqueInput
-  data: GQLBlogListUpdateInput
-}
-
-type GQLMutationDeleteBlogListArgs = {
-  where: GQLBlogListWhereUniqueInput
-}
-
-type GQLMutationUpsertBlogListArgs = {
-  where: GQLBlogListWhereUniqueInput
-  upsert: GQLBlogListUpsertInput
-}
-
-type GQLMutationPublishBlogListArgs = {
-  where: GQLBlogListWhereUniqueInput
-  to?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationUnpublishBlogListArgs = {
-  where: GQLBlogListWhereUniqueInput
-  from?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationUpdateManyBlogListsArgs = {
-  where?: Maybe<GQLBlogListManyWhereInput>
-  data: GQLBlogListUpdateManyInput
-}
-
-type GQLMutationDeleteManyBlogListsArgs = {
-  where?: Maybe<GQLBlogListManyWhereInput>
-}
-
-type GQLMutationPublishManyBlogListsArgs = {
-  where?: Maybe<GQLBlogListManyWhereInput>
-  to?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationUnpublishManyBlogListsArgs = {
-  where?: Maybe<GQLBlogListManyWhereInput>
-  from?: ReadonlyArray<GQLStage>
 }
 
 type GQLMutationCreateCompanyArgs = {
@@ -4840,6 +4500,53 @@ type GQLMutationUnpublishManyRowServicesWithTextsArgs = {
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
 
+type GQLMutationCreateZzDeleteBlogListArgs = {
+  data: GQLZzDeleteBlogListCreateInput
+}
+
+type GQLMutationUpdateZzDeleteBlogListArgs = {
+  where: GQLZzDeleteBlogListWhereUniqueInput
+  data: GQLZzDeleteBlogListUpdateInput
+}
+
+type GQLMutationDeleteZzDeleteBlogListArgs = {
+  where: GQLZzDeleteBlogListWhereUniqueInput
+}
+
+type GQLMutationUpsertZzDeleteBlogListArgs = {
+  where: GQLZzDeleteBlogListWhereUniqueInput
+  upsert: GQLZzDeleteBlogListUpsertInput
+}
+
+type GQLMutationPublishZzDeleteBlogListArgs = {
+  where: GQLZzDeleteBlogListWhereUniqueInput
+  to?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationUnpublishZzDeleteBlogListArgs = {
+  where: GQLZzDeleteBlogListWhereUniqueInput
+  from?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationUpdateManyZzDeleteBlogListsArgs = {
+  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+  data: GQLZzDeleteBlogListUpdateManyInput
+}
+
+type GQLMutationDeleteManyZzDeleteBlogListsArgs = {
+  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+}
+
+type GQLMutationPublishManyZzDeleteBlogListsArgs = {
+  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+  to?: ReadonlyArray<GQLStage>
+}
+
+type GQLMutationUnpublishManyZzDeleteBlogListsArgs = {
+  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+  from?: ReadonlyArray<GQLStage>
+}
+
 type GQLMutationCreateZzDeleteListArgs = {
   data: GQLZzDeleteListCreateInput
 }
@@ -4924,7 +4631,7 @@ type GQLPage = GQLNode & {
   readonly content2: ReadonlyArray<GQLPageContent2>
   readonly internalLink: ReadonlyArray<GQLLinkInternal>
   readonly menu: ReadonlyArray<GQLMenu>
-  readonly blogList?: Maybe<GQLBlogList>
+  readonly blogList?: Maybe<GQLZzDeleteBlogList>
 }
 
 type GQLPageLocalizationsArgs = {
@@ -5231,7 +4938,7 @@ type GQLPageCreateInput = {
   readonly content2?: Maybe<GQLPageContent2CreateManyInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
   readonly menu?: Maybe<GQLMenuCreateManyInlineInput>
-  readonly blogList?: Maybe<GQLBlogListCreateOneInlineInput>
+  readonly blogList?: Maybe<GQLZzDeleteBlogListCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   readonly localizations?: Maybe<GQLPageCreateLocalizationsInput>
 }
@@ -5379,7 +5086,7 @@ type GQLPageManyWhereInput = {
   readonly menu_every?: Maybe<GQLMenuWhereInput>
   readonly menu_some?: Maybe<GQLMenuWhereInput>
   readonly menu_none?: Maybe<GQLMenuWhereInput>
-  readonly blogList?: Maybe<GQLBlogListWhereInput>
+  readonly blogList?: Maybe<GQLZzDeleteBlogListWhereInput>
 }
 
 type GQLPageOrderByInput =
@@ -5417,7 +5124,7 @@ type GQLPageUpdateInput = {
   readonly content2?: Maybe<GQLPageContent2UpdateManyInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   readonly menu?: Maybe<GQLMenuUpdateManyInlineInput>
-  readonly blogList?: Maybe<GQLBlogListUpdateOneInlineInput>
+  readonly blogList?: Maybe<GQLZzDeleteBlogListUpdateOneInlineInput>
   /** Manage document localizations */
   readonly localizations?: Maybe<GQLPageUpdateLocalizationsInput>
 }
@@ -5687,7 +5394,7 @@ type GQLPageWhereInput = {
   readonly menu_every?: Maybe<GQLMenuWhereInput>
   readonly menu_some?: Maybe<GQLMenuWhereInput>
   readonly menu_none?: Maybe<GQLMenuWhereInput>
-  readonly blogList?: Maybe<GQLBlogListWhereInput>
+  readonly blogList?: Maybe<GQLZzDeleteBlogListWhereInput>
 }
 
 /** References Page record uniquely */
@@ -6477,12 +6184,6 @@ type GQLQuery = {
   readonly asset?: Maybe<GQLAsset>
   /** Retrieve multiple assets using the Relay connection interface */
   readonly assetsConnection: GQLAssetConnection
-  /** Retrieve multiple blogLists */
-  readonly blogLists: ReadonlyArray<GQLBlogList>
-  /** Retrieve a single blogList */
-  readonly blogList?: Maybe<GQLBlogList>
-  /** Retrieve multiple blogLists using the Relay connection interface */
-  readonly blogListsConnection: GQLBlogListConnection
   /** Retrieve multiple companies */
   readonly companies: ReadonlyArray<GQLCompany>
   /** Retrieve a single company */
@@ -6579,6 +6280,12 @@ type GQLQuery = {
   readonly rowServicesWithText?: Maybe<GQLRowServicesWithText>
   /** Retrieve multiple rowServicesWithTexts using the Relay connection interface */
   readonly rowServicesWithTextsConnection: GQLRowServicesWithTextConnection
+  /** Retrieve multiple zzDeleteBlogLists */
+  readonly zzDeleteBlogLists: ReadonlyArray<GQLZzDeleteBlogList>
+  /** Retrieve a single zzDeleteBlogList */
+  readonly zzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Retrieve multiple zzDeleteBlogLists using the Relay connection interface */
+  readonly zzDeleteBlogListsConnection: GQLZzDeleteBlogListConnection
   /** Retrieve multiple zzDeleteLists */
   readonly zzDeleteLists: ReadonlyArray<GQLZzDeleteList>
   /** Retrieve a single zzDeleteList */
@@ -6621,33 +6328,6 @@ type GQLQueryAssetsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
   locales?: ReadonlyArray<GQLLocale>
-}
-
-type GQLQueryBlogListsArgs = {
-  where?: Maybe<GQLBlogListWhereInput>
-  orderBy?: Maybe<GQLBlogListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: GQLStage
-}
-
-type GQLQueryBlogListArgs = {
-  where: GQLBlogListWhereUniqueInput
-  stage?: GQLStage
-}
-
-type GQLQueryBlogListsConnectionArgs = {
-  where?: Maybe<GQLBlogListWhereInput>
-  orderBy?: Maybe<GQLBlogListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: GQLStage
 }
 
 type GQLQueryCompaniesArgs = {
@@ -7101,6 +6781,33 @@ type GQLQueryRowServicesWithTextsConnectionArgs = {
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
   locales?: ReadonlyArray<GQLLocale>
+}
+
+type GQLQueryZzDeleteBlogListsArgs = {
+  where?: Maybe<GQLZzDeleteBlogListWhereInput>
+  orderBy?: Maybe<GQLZzDeleteBlogListOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+}
+
+type GQLQueryZzDeleteBlogListArgs = {
+  where: GQLZzDeleteBlogListWhereUniqueInput
+  stage?: GQLStage
+}
+
+type GQLQueryZzDeleteBlogListsConnectionArgs = {
+  where?: Maybe<GQLZzDeleteBlogListWhereInput>
+  orderBy?: Maybe<GQLZzDeleteBlogListOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
 }
 
 type GQLQueryZzDeleteListsArgs = {
@@ -10593,6 +10300,328 @@ type GQLUnpublishLocaleInput = {
   readonly stages: ReadonlyArray<GQLStage>
 }
 
+type GQLZzDeleteBlogList = GQLNode & {
+  readonly __typename?: 'ZzDeleteBlogList'
+  /** System stage field */
+  readonly stage: GQLStage
+  /** Get the document in other stages */
+  readonly documentInStages: ReadonlyArray<GQLZzDeleteBlogList>
+  /** The unique identifier */
+  readonly id: Scalars['ID']
+  /** The time the document was created */
+  readonly createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  readonly updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** Collects all the blog pages */
+  readonly blogPages: ReadonlyArray<GQLPage>
+}
+
+type GQLZzDeleteBlogListDocumentInStagesArgs = {
+  stages?: ReadonlyArray<GQLStage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+type GQLZzDeleteBlogListBlogPagesArgs = {
+  where?: Maybe<GQLPageWhereInput>
+  orderBy?: Maybe<GQLPageOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+type GQLZzDeleteBlogListConnectInput = {
+  /** Document to connect */
+  readonly where: GQLZzDeleteBlogListWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  readonly position?: Maybe<GQLConnectPositionInput>
+}
+
+/** A connection to a list of items. */
+type GQLZzDeleteBlogListConnection = {
+  readonly __typename?: 'ZzDeleteBlogListConnection'
+  /** Information to aid in pagination. */
+  readonly pageInfo: GQLPageInfo
+  /** A list of edges. */
+  readonly edges: ReadonlyArray<GQLZzDeleteBlogListEdge>
+  readonly aggregate: GQLAggregate
+}
+
+type GQLZzDeleteBlogListCreateInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  readonly blogPages?: Maybe<GQLPageCreateManyInlineInput>
+}
+
+type GQLZzDeleteBlogListCreateManyInlineInput = {
+  /** Create and connect multiple existing ZzDeleteBlogList documents */
+  readonly create?: Maybe<ReadonlyArray<GQLZzDeleteBlogListCreateInput>>
+  /** Connect multiple existing ZzDeleteBlogList documents */
+  readonly connect?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
+}
+
+type GQLZzDeleteBlogListCreateOneInlineInput = {
+  /** Create and connect one ZzDeleteBlogList document */
+  readonly create?: Maybe<GQLZzDeleteBlogListCreateInput>
+  /** Connect one existing ZzDeleteBlogList document */
+  readonly connect?: Maybe<GQLZzDeleteBlogListWhereUniqueInput>
+}
+
+/** An edge in a connection. */
+type GQLZzDeleteBlogListEdge = {
+  readonly __typename?: 'ZzDeleteBlogListEdge'
+  /** The item at the end of the edge. */
+  readonly node: GQLZzDeleteBlogList
+  /** A cursor for use in pagination. */
+  readonly cursor: Scalars['String']
+}
+
+/** Identifies documents */
+type GQLZzDeleteBlogListManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  readonly _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  readonly AND?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
+  /** Logical OR on all given filters. */
+  readonly OR?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  readonly NOT?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
+  readonly id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  readonly id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values containing the given string. */
+  readonly id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  readonly id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  readonly id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  readonly id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  readonly id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  readonly id_not_ends_with?: Maybe<Scalars['ID']>
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly blogPages_every?: Maybe<GQLPageWhereInput>
+  readonly blogPages_some?: Maybe<GQLPageWhereInput>
+  readonly blogPages_none?: Maybe<GQLPageWhereInput>
+}
+
+type GQLZzDeleteBlogListOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+
+type GQLZzDeleteBlogListUpdateInput = {
+  readonly blogPages?: Maybe<GQLPageUpdateManyInlineInput>
+}
+
+type GQLZzDeleteBlogListUpdateManyInlineInput = {
+  /** Create and connect multiple ZzDeleteBlogList documents */
+  readonly create?: Maybe<ReadonlyArray<GQLZzDeleteBlogListCreateInput>>
+  /** Connect multiple existing ZzDeleteBlogList documents */
+  readonly connect?: Maybe<ReadonlyArray<GQLZzDeleteBlogListConnectInput>>
+  /** Override currently-connected documents with multiple existing ZzDeleteBlogList documents */
+  readonly set?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
+  /** Update multiple ZzDeleteBlogList documents */
+  readonly update?: Maybe<ReadonlyArray<GQLZzDeleteBlogListUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple ZzDeleteBlogList documents */
+  readonly upsert?: Maybe<ReadonlyArray<GQLZzDeleteBlogListUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple ZzDeleteBlogList documents */
+  readonly disconnect?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
+  /** Delete multiple ZzDeleteBlogList documents */
+  readonly delete?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
+}
+
+type GQLZzDeleteBlogListUpdateManyInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+type GQLZzDeleteBlogListUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  readonly where: GQLZzDeleteBlogListWhereInput
+  /** Update many input */
+  readonly data: GQLZzDeleteBlogListUpdateManyInput
+}
+
+type GQLZzDeleteBlogListUpdateOneInlineInput = {
+  /** Create and connect one ZzDeleteBlogList document */
+  readonly create?: Maybe<GQLZzDeleteBlogListCreateInput>
+  /** Update single ZzDeleteBlogList document */
+  readonly update?: Maybe<GQLZzDeleteBlogListUpdateWithNestedWhereUniqueInput>
+  /** Upsert single ZzDeleteBlogList document */
+  readonly upsert?: Maybe<GQLZzDeleteBlogListUpsertWithNestedWhereUniqueInput>
+  /** Connect existing ZzDeleteBlogList document */
+  readonly connect?: Maybe<GQLZzDeleteBlogListWhereUniqueInput>
+  /** Disconnect currently connected ZzDeleteBlogList document */
+  readonly disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected ZzDeleteBlogList document */
+  readonly delete?: Maybe<Scalars['Boolean']>
+}
+
+type GQLZzDeleteBlogListUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  readonly where: GQLZzDeleteBlogListWhereUniqueInput
+  /** Document to update */
+  readonly data: GQLZzDeleteBlogListUpdateInput
+}
+
+type GQLZzDeleteBlogListUpsertInput = {
+  /** Create document if it didn't exist */
+  readonly create: GQLZzDeleteBlogListCreateInput
+  /** Update document if it exists */
+  readonly update: GQLZzDeleteBlogListUpdateInput
+}
+
+type GQLZzDeleteBlogListUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  readonly where: GQLZzDeleteBlogListWhereUniqueInput
+  /** Upsert data */
+  readonly data: GQLZzDeleteBlogListUpsertInput
+}
+
+/** Identifies documents */
+type GQLZzDeleteBlogListWhereInput = {
+  /** Contains search across all appropriate fields. */
+  readonly _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  readonly AND?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
+  /** Logical OR on all given filters. */
+  readonly OR?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  readonly NOT?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
+  readonly id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  readonly id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values containing the given string. */
+  readonly id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  readonly id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  readonly id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  readonly id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  readonly id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  readonly id_not_ends_with?: Maybe<Scalars['ID']>
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly blogPages_every?: Maybe<GQLPageWhereInput>
+  readonly blogPages_some?: Maybe<GQLPageWhereInput>
+  readonly blogPages_none?: Maybe<GQLPageWhereInput>
+}
+
+/** References ZzDeleteBlogList record uniquely */
+type GQLZzDeleteBlogListWhereUniqueInput = {
+  readonly id?: Maybe<Scalars['ID']>
+}
+
 type GQLZzDeleteList = GQLNode & {
   readonly __typename?: 'ZzDeleteList'
   /** System stage field */
@@ -10952,7 +10981,7 @@ type GQLZzDeleteListWhereUniqueInput = {
 
 type GQLAssetFragment = { readonly __typename?: 'Asset' } & Pick<
   GQLAsset,
-  'id' | 'url' | 'width' | 'height' | 'mimeType'
+  'id' | 'alt' | 'url' | 'width' | 'height' | 'mimeType'
 >
 
 type GQLBreadcrumbFragment = { readonly __typename?: 'Page' } & Pick<

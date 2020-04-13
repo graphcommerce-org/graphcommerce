@@ -5,8 +5,6 @@ import zIndex from '@material-ui/core/styles/zIndex'
 import logo from '../../public/images/magento-webshop-reach-digital.svg'
 import { vpCalc } from '../Theme'
 import Menu from '../Menu'
-import FilestackPicture from '../FilestackPicture'
-import { ImageMimeTypes } from '../PictureResponsive'
 import Link from '../Link'
 import Asset from '../Asset'
 
@@ -88,14 +86,19 @@ const Header: React.FC<{
           }}
           variant='standard'
         >
-          <Fab size='small' classes={{ root: classes.avatarFab }}>
+          <Fab size='small' classes={{ root: classes.avatarFab }} name='contact'>
             <Link
               // todo(paales): Have a way to make these common links dynamic?
               href={page.locale === 'nl' ? '/contact' : `/${page.locale}/contact`}
               metaRobots='INDEX_FOLLOW'
             >
               <Avatar classes={{ colorDefault: classes.avatar }}>
-                <Asset className={classes.avatarImg} asset={person.avatar} width={40} />
+                <Asset
+                  alt={person.name}
+                  className={classes.avatarImg}
+                  asset={person.avatar}
+                  width={40}
+                />
               </Avatar>
             </Link>
           </Fab>
