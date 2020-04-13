@@ -20,6 +20,7 @@ type Manifest = {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+    // @ts-ignore
     const manifest: Manifest = await import('../../lib/routes-manifest.json').then(
       (mol) => mol.default,
     )
