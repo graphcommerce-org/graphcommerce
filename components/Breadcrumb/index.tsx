@@ -2,7 +2,7 @@ import React from 'react'
 import { JsonLd } from 'react-schemaorg'
 import { BreadcrumbList, WithContext, ListItem } from 'schema-dts'
 import { Breadcrumbs, Typography } from '@material-ui/core'
-import Link, { getCanonical } from '../Link'
+import Link from '../Link'
 
 const breadcrumbList = (breadcrumbs: GQLBreadcrumbFragment[]): WithContext<BreadcrumbList> => {
   let position = 1
@@ -19,7 +19,7 @@ const breadcrumbList = (breadcrumbs: GQLBreadcrumbFragment[]): WithContext<Bread
         '@type': 'ListItem',
         position,
         name: breadcrumb.title,
-        ...(index === breadcrumbs.length - 1 && { link: getCanonical(breadcrumb.url) }),
+        ...(index === breadcrumbs.length - 1 && { link: breadcrumb.url }),
       }
       position += 1
       return item
