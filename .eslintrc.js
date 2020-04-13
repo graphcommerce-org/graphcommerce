@@ -26,7 +26,7 @@ module.exports = {
       { devDependencies: ['**/*.test.js', '**/*.stories.tsx'] },
     ],
     'no-param-reassign': ['error', { props: false }],
-    'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'] }],
+    'jsx-a11y/anchor-is-valid': 'off',
     'default-case': 'off',
     '@typescript-eslint/indent': 'off',
     'react/jsx-one-expression-per-line': 'off',
