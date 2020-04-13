@@ -15,6 +15,7 @@ export type ImageMimeTypes =
   | 'image/webp'
 
 export type PictureResonsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
+  alt: string
   srcSets: Partial<Record<ImageMimeTypes, string>>
   width: number
   height: number
