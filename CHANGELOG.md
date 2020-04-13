@@ -1,3 +1,11 @@
+### [5.3.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.2...v5.3.3) (2020-04-13)
+
+
+### Fixes
+
+* **asset:** make sure video assets have a permanent cache expiry ([cac17d3](https://github.com/ho-nl/project-reachdigital.nl/commit/cac17d38ca77e23d38bd33c5330634b3d161713c))
+* solve issue where catch-all routes would not have a proper href ([7c3e912](https://github.com/ho-nl/project-reachdigital.nl/commit/7c3e91260069693b8bc71359519a2565e68136bf))
+
 ### [5.3.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.1...v5.3.2) (2020-04-13)
 
 
