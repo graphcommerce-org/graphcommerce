@@ -39,7 +39,7 @@ const fonts: Array<{
   { font: 'Graphik-RegularItalic', fontWeight: 400, fontStyle: 'italic', preload: true },
   { font: 'Graphik-Medium', fontWeight: 500, fontStyle: 'normal', preload: true },
   { font: 'Graphik-MediumItalic', fontWeight: 500, fontStyle: 'italic' },
-  { font: 'Graphik-Semibold', fontWeight: 600, fontStyle: 'normal' },
+  { font: 'Graphik-Semibold', fontWeight: 600, fontStyle: 'normal', preload: true },
   { font: 'Graphik-SemiboldItalic', fontWeight: 600, fontStyle: 'italic', preload: true },
   { font: 'Graphik-Bold', fontWeight: 700, fontStyle: 'normal' },
   { font: 'Graphik-BoldItalic', fontWeight: 700, fontStyle: 'italic' },
