@@ -20,20 +20,20 @@ type Manifest = {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    // @ts-ignore
-    const manifest: Manifest = await import('../../lib/routes-manifest.json').then(
-      (mol) => mol.default,
-    )
+    // todo(paales) actually extract the routes instead of using a build artifact
+    // const manifest: Manifest = await import('../../lib/routes-manifest.json').then(
+    //   (mol) => mol.default,
+    // )
 
-    const pages = manifest.dataRoutes.map(({ page }) => ({ page }))
-    const bla = pages
-      .map(({ page }): [string, string] => {
-        const dynamicRoute = manifest.dynamicRoutes.find((dyn) => dyn.page === page)
-        return dynamicRoute ? [dynamicRoute.regex, dynamicRoute.page] : [page, page]
-      })
-      .sort(([, a], [, b]) => (a < b ? 1 : -1))
+    // const pages = manifest.dataRoutes.map(({ page }) => ({ page }))
+    // const bla = pages
+    //   .map(({ page }): [string, string] => {
+    //     const dynamicRoute = manifest.dynamicRoutes.find((dyn) => dyn.page === page)
+    //     return dynamicRoute ? [dynamicRoute.regex, dynamicRoute.page] : [page, page]
+    //   })
+    //   .sort(([, a], [, b]) => (a < b ? 1 : -1))
 
-    console.log(JSON.stringify(bla))
+    // console.log(JSON.stringify(bla))
 
     res.status(200).end()
   } catch (error) {
