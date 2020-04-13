@@ -1,5 +1,6 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import Head from 'next/head'
 
 export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
   const round = (x: number, n: number) => Math.round(x * 10 ** n) / 10 ** n
@@ -14,29 +15,38 @@ export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): stri
   return `max(${min}px, min(${calc}, ${max}px))`
 }
 
-const fonts: Array<[
-  string,
-  100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900,
-  'normal' | 'italic',
-]> = [
-  ['Graphik-Thin', 100, 'normal'],
-  ['Graphik-ThinItalic', 100, 'italic'],
-  ['Graphik-Extralight', 200, 'normal'],
-  ['Graphik-ExtralightItalic', 200, 'italic'],
-  ['Graphik-Light', 300, 'normal'],
-  ['Graphik-LightItalic', 300, 'italic'],
-  ['Graphik-Regular', 400, 'normal'],
-  ['Graphik-RegularItalic', 400, 'italic'],
-  ['Graphik-Medium', 500, 'normal'],
-  ['Graphik-MediumItalic', 500, 'italic'],
-  ['Graphik-Semibold', 600, 'normal'],
-  ['Graphik-SemiboldItalic', 600, 'italic'],
-  ['Graphik-Bold', 700, 'normal'],
-  ['Graphik-BoldItalic', 700, 'italic'],
-  ['Graphik-Black', 800, 'normal'],
-  ['Graphik-BlackItalic', 800, 'italic'],
-  ['Graphik-Super', 900, 'normal'],
-  ['Graphik-SuperItalic', 900, 'italic'],
+// font-size: 16px
+// line-height: 1.6
+// font-family: sans-serif
+// letter-spacing: 0.25px
+// word-spacing: 0.15px
+// color: black
+// visibility: visible;
+
+const fonts: Array<{
+  font: string
+  fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
+  fontStyle: 'normal' | 'italic'
+  preload?: true
+}> = [
+  { font: 'Graphik-Thin', fontWeight: 100, fontStyle: 'normal' },
+  { font: 'Graphik-ThinItalic', fontWeight: 100, fontStyle: 'italic' },
+  { font: 'Graphik-Extralight', fontWeight: 200, fontStyle: 'normal' },
+  { font: 'Graphik-ExtralightItalic', fontWeight: 200, fontStyle: 'italic' },
+  { font: 'Graphik-Light', fontWeight: 300, fontStyle: 'normal' },
+  { font: 'Graphik-LightItalic', fontWeight: 300, fontStyle: 'italic' },
+  { font: 'Graphik-Regular', fontWeight: 400, fontStyle: 'normal', preload: true },
+  { font: 'Graphik-RegularItalic', fontWeight: 400, fontStyle: 'italic', preload: true },
+  { font: 'Graphik-Medium', fontWeight: 500, fontStyle: 'normal', preload: true },
+  { font: 'Graphik-MediumItalic', fontWeight: 500, fontStyle: 'italic' },
+  { font: 'Graphik-Semibold', fontWeight: 600, fontStyle: 'normal' },
+  { font: 'Graphik-SemiboldItalic', fontWeight: 600, fontStyle: 'italic', preload: true },
+  { font: 'Graphik-Bold', fontWeight: 700, fontStyle: 'normal' },
+  { font: 'Graphik-BoldItalic', fontWeight: 700, fontStyle: 'italic' },
+  { font: 'Graphik-Black', fontWeight: 800, fontStyle: 'normal' },
+  { font: 'Graphik-BlackItalic', fontWeight: 800, fontStyle: 'italic' },
+  { font: 'Graphik-Super', fontWeight: 900, fontStyle: 'normal' },
+  { font: 'Graphik-SuperItalic', fontWeight: 900, fontStyle: 'italic' },
 ]
 
 declare module '@material-ui/core/styles/createPalette' {
@@ -134,12 +144,12 @@ export const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        '@font-face': fonts.map(([font, fontWeight, fontStyle]) => ({
+        '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
           fontFamily: 'Graphic',
           fontWeight,
           fontStyle,
           fontDisplay: 'swap',
-          src: `url('/fonts/${font}.woff2') format('woff2'), url('/fonts/${font}.woff') format('woff')`,
+          src: `url('/fonts/${font}.woff2') format('woff2')`,
         })),
       },
     },
@@ -147,6 +157,15 @@ export const theme = createMuiTheme({
 })
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  <ThemeProvider theme={theme}>
+    <Head>
+      {fonts
+        .filter(({ preload }) => preload)
+        .map(({ font }) => (
+          <link key={font} rel='preload' href={`/fonts/${font}.woff2`} as='font' crossOrigin='' />
+        ))}
+    </Head>
+    {children}
+  </ThemeProvider>
 )
 export default ThemedProvider
