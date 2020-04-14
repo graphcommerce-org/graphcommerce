@@ -2,6 +2,16 @@ import gql from 'graphql-tag'
 import * as ApolloReactCommon from '@apollo/react-common'
 import * as ApolloReactHooks from '@apollo/react-hooks'
 
+export const AssetFragmentDoc = gql`
+  fragment Asset on Asset {
+    id
+    alt
+    url
+    width
+    height
+    mimeType
+  }
+`
 export const BlogListItemFragmentDoc = gql`
   fragment BlogListItem on Page {
     id
@@ -12,7 +22,11 @@ export const BlogListItemFragmentDoc = gql`
     metaRobots
     url
     locale
+    asset {
+      ...Asset
+    }
   }
+  ${AssetFragmentDoc}
 `
 export const BreadcrumbFragmentDoc = gql`
   fragment Breadcrumb on Page {
@@ -52,16 +66,6 @@ export const PageMetaFragmentDoc = gql`
       locale
       metaRobots
     }
-  }
-`
-export const AssetFragmentDoc = gql`
-  fragment Asset on Asset {
-    id
-    alt
-    url
-    width
-    height
-    mimeType
   }
 `
 export const RichTextFragmentDoc = gql`

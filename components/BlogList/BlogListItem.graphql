@@ -8,4 +8,7 @@ fragment BlogListItem on Page {
   metaRobots
   url
   locale
+  asset {
+    ...Asset
+  }
 }
