@@ -2,6 +2,18 @@ import gql from 'graphql-tag'
 import * as ApolloReactCommon from '@apollo/react-common'
 import * as ApolloReactHooks from '@apollo/react-hooks'
 
+export const BlogListItemFragmentDoc = gql`
+  fragment BlogListItem on Page {
+    id
+    documentInStages(includeCurrent: true, stages: [PUBLISHED]) {
+      publishedAt
+    }
+    title
+    metaRobots
+    url
+    locale
+  }
+`
 export const BreadcrumbFragmentDoc = gql`
   fragment Breadcrumb on Page {
     id
@@ -188,6 +200,65 @@ export const RowPeopleWithTextFragmentDoc = gql`
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
 `
+export const GetBlogListDocument = gql`
+  query GetBlogList($url: String!, $locale: Locale!) {
+    blogPosts: pages(
+      where: { url_starts_with: $url }
+      locales: [$locale]
+      orderBy: publishedAt_DESC
+      first: 100
+    ) {
+      ...BlogListItem
+    }
+  }
+  ${BlogListItemFragmentDoc}
+`
+
+/**
+ * __useGetBlogListQuery__
+ *
+ * To run a query within a React component, call `useGetBlogListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetBlogListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetBlogListQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetBlogListQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetBlogListQuery,
+    GQLGetBlogListQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetBlogListQuery, GQLGetBlogListQueryVariables>(
+    GetBlogListDocument,
+    baseOptions,
+  )
+}
+export function useGetBlogListLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetBlogListQuery,
+    GQLGetBlogListQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetBlogListQuery, GQLGetBlogListQueryVariables>(
+    GetBlogListDocument,
+    baseOptions,
+  )
+}
+export type GetBlogListQueryHookResult = ReturnType<typeof useGetBlogListQuery>
+export type GetBlogListLazyQueryHookResult = ReturnType<typeof useGetBlogListLazyQuery>
+export type GetBlogListQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetBlogListQuery,
+  GQLGetBlogListQueryVariables
+>
 export const GetBreadcrumbDocument = gql`
   query GetBreadcrumb($urls: [String!]!, $locale: Locale!) {
     breadcrumbs: pages(where: { url_in: $urls }, locales: [$locale]) {

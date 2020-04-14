@@ -22,13 +22,13 @@ type Scalars = {
   Hex: any
   RGBAHue: any
   RGBATransparency: any
+  /** Raw JSON value */
+  Json: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
-  /** Raw JSON value */
-  Json: any
 }
 
 type GQL_FilterKind =
@@ -10983,6 +10983,24 @@ type GQLAssetFragment = { readonly __typename?: 'Asset' } & Pick<
   GQLAsset,
   'id' | 'alt' | 'url' | 'width' | 'height' | 'mimeType'
 >
+
+type GQLBlogListItemFragment = { readonly __typename?: 'Page' } & Pick<
+  GQLPage,
+  'id' | 'title' | 'metaRobots' | 'url' | 'locale'
+> & {
+    readonly documentInStages: ReadonlyArray<
+      { readonly __typename?: 'Page' } & Pick<GQLPage, 'publishedAt'>
+    >
+  }
+
+type GQLGetBlogListQueryVariables = {
+  url: Scalars['String']
+  locale: GQLLocale
+}
+
+type GQLGetBlogListQuery = { readonly __typename?: 'Query' } & {
+  readonly blogPosts: ReadonlyArray<{ readonly __typename?: 'Page' } & GQLBlogListItemFragment>
+}
 
 type GQLBreadcrumbFragment = { readonly __typename?: 'Page' } & Pick<
   GQLPage,

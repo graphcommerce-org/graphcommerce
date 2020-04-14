@@ -9,7 +9,7 @@ import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
 
 export type PageLayoutProps = GQLGetPageLayoutQuery & GQLGetBreadcrumbQuery
-type LayoutComponent = LayoutPage<PageLayoutProps>['layout']
+type LayoutComponent = LayoutPage<PageLayoutProps & any>['layout']
 
 const LayoutFull: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, team }) => {
   if (!pages.length) return <Error statusCode={404}>Page not found</Error>
