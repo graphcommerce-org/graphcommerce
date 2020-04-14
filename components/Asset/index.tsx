@@ -42,7 +42,10 @@ const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ..
     default:
       if (!asset.width || !asset.height) throw new Error('Missing width/height')
       if (!(props as ImageProps).width)
-        console.warn('Width property should be the width as rendered on Nexus5X (lighthouse)')
+        console.warn(
+          'Width property should be the width as rendered on Nexus5X (lighthouse) for:',
+          asset.url,
+        )
 
       // eslint-disable-next-line no-case-declarations
       const width = (props as ImageProps).width || 100
