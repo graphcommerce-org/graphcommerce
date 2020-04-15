@@ -72,8 +72,10 @@ function requestUpgrade(img: HTMLImageElement) {
 const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
   const { width } = useResizeObserver<HTMLImageElement>({ ref })
-  const { effectiveConnectionType } = useNetworkStatus('4g')
-  const scaleDown = effectiveConnectionType === '4g' ? 1 : window.devicePixelRatio
+
+  const { effectiveConnectionType } = useNetworkStatus('3g')
+  const dpr = typeof window === 'undefined' ? 2.6 : window.devicePixelRatio
+  const scaleDown = effectiveConnectionType === '4g' ? 1 : dpr
 
   const [upgraded, setUpgraded] = useState<boolean>(false)
 
