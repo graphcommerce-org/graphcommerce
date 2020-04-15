@@ -13,6 +13,8 @@
 
 # Install
 
+Make sure you're using Node >= 12 `nvm install 12 && nvm alias default node`
+
 1. `yarn`
 2. `cp .env.example .env` and fill values
 
