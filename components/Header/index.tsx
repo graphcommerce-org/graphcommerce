@@ -9,16 +9,20 @@ import Link from '../Link'
 import Asset from '../Asset'
 
 const useStyles = makeStyles(({ gridSpacing }: Theme) => ({
-  root: {
+  navigation: {
     display: 'grid',
     gridTemplateAreas: `
       'spaceleft before before before spaceright'
       'spaceleft menu logo contact spaceright'`,
     gridTemplateColumns: `${gridSpacing.column} 46px auto 46px ${gridSpacing.column}`,
     gridTemplateRows: `${gridSpacing.row} auto`,
-    alignItems: 'center',
     justifyItems: 'center',
     width: '100%',
+  },
+  '@media (min-width: 1024px)': {
+    navigation: {
+      height: 250,
+    },
   },
   logo: {
     zIndex: zIndex.appBar,
@@ -62,7 +66,7 @@ const Header: React.FC<{
   const person = team[Math.floor(Math.random() * team.length)]
 
   return (
-    <div className={classes.root}>
+    <header className={classes.navigation}>
       <Link
         // todo(paales): Have a way to make these common links dynamic?
         href={page.locale === 'nl' ? '/' : `/${page.locale}`}
@@ -104,7 +108,7 @@ const Header: React.FC<{
           </Fab>
         </Badge>
       </div>
-    </div>
+    </header>
   )
 }
 
