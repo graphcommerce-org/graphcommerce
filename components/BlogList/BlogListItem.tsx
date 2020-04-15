@@ -12,6 +12,7 @@ const useStyles = makeStyles({
   title: {
     color: '#000',
     fontSize: '25px',
+    fontWeight: 500,
     lineHeight: '1.68',
     letterSpacing: '-0.0375em',
     margin: '0 0 30px',
@@ -41,6 +42,12 @@ const useStyles = makeStyles({
     width: '100%',
     height: 'auto',
   },
+  href: {
+    textDecoration: 'none !important',
+  },
+  link: {
+    textDecoration: 'underline',
+  },
 })
 
 const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
@@ -61,7 +68,7 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
   })
 
   return (
-    <Link href={url} metaRobots={metaRobots!}>
+    <Link href={url} metaRobots={metaRobots!} className={classes.href}>
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (
@@ -74,7 +81,7 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
         <Typography component='h4' className={classes.title}>
           {title}
         </Typography>
-        <div className='classes.link'>Lees meer</div>
+        <div className={classes.link}>Lees meer</div>
       </div>
     </Link>
   )
