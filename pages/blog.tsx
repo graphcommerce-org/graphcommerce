@@ -11,7 +11,6 @@ const Blog: PageWithLayoutFull<GQLGetBlogListQuery> = ({ pages, blogPosts }) => 
 
   return (
     <>
-      <Typography variant='h1'>{pages[0].title}</Typography>
       <ContentRenderer content={pages[0].content} />
       <BlogList blogPosts={blogPosts} />
     </>
