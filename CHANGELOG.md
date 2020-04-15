@@ -1,3 +1,12 @@
+### [5.5.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.1...v5.5.2) (2020-04-15)
+
+
+### Fixes
+
+* **bloglist:** add a maxWidth to the container ([04ac28c](https://github.com/ho-nl/project-reachdigital.nl/commit/04ac28c4b9b96a3018707a97696ea9ecf90554a1))
+* **bloglist:** add css to match the current design ([54418e7](https://github.com/ho-nl/project-reachdigital.nl/commit/54418e78f2254e2b85f4a4f0161768190723f798))
+* **bloglist:** decrease the image size maxWidth ([6242c3d](https://github.com/ho-nl/project-reachdigital.nl/commit/6242c3d5873f237bb72d7ee542f28da965b3a3f6))
+
 ### [5.5.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.0...v5.5.1) (2020-04-15)
 
 
