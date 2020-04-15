@@ -1,0 +1,9 @@
+fragment PortfolioListitem on Page {
+  id
+  title
+  metaRobots
+  url
+  asset {
+    ...Asset
+  }
+}

@@ -15,14 +15,6 @@ export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): stri
   return `max(${min}px, min(${calc}, ${max}px))`
 }
 
-// font-size: 16px
-// line-height: 1.6
-// font-family: sans-serif
-// letter-spacing: 0.25px
-// word-spacing: 0.15px
-// color: black
-// visibility: visible;
-
 const fonts: Array<{
   font: string
   fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900

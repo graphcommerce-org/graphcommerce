@@ -14,8 +14,10 @@ export type PageWithLayoutFull<T = {}> = LayoutPage<
 >
 
 const LayoutFull: PageWithLayoutFull['layout'] = ({ children, pages, mainMenu, team }) => {
-  if (!pages.length || !pages[0]) return <Error statusCode={404}>Page not found</Error>
-  if (!mainMenu) return <Error statusCode={404}>Main menu found</Error>
+  if (!pages)
+    return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
+  if (!pages.length || !pages[0]) return <Error statusCode={404} title='Page not found' />
+  if (!mainMenu) return <Error statusCode={404} title='Main menu not loaded' />
   const page = pages[0]
 
   return (
