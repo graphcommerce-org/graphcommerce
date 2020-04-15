@@ -1,15 +1,32 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
+import { makeStyles } from '@material-ui/core'
 import LayoutFull, { PageWithLayoutFull } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import PortfolioList from '../components/PortfolioList'
 import { StaticPageVariables } from '../lib/staticParams'
+import RichText from '../components/RichText'
+
+const useStyles = makeStyles({
+  root: {
+    textAlign: 'center',
+  },
+})
+
+const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
+  const classes = useStyles()
+  return (
+    <div className={classes.root}>
+      <RichText {...text} />
+    </div>
+  )
+}
 
 const Portfolio: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ pages, portfolioList }) => {
   return (
     <>
+      <ContentRenderer content={pages[0].content} customRenderers={{ RowHero }} />
       <PortfolioList portfolioList={portfolioList} />
-      <ContentRenderer content={pages[0].content} />
     </>
   )
 }
