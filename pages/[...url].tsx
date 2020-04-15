@@ -1,11 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageLayoutProps } from '../components/PageLayout'
-import { LayoutPage } from '../lib/layout'
+import LayoutFull, { PageWithLayoutFull } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../lib/staticParams'
 
-const CatchAll: LayoutPage<PageLayoutProps> = ({ pages }) => {
+const CatchAll: PageWithLayoutFull = ({ pages }) => {
   return <ContentRenderer {...pages[0]} />
 }
 
@@ -13,19 +12,11 @@ CatchAll.layout = LayoutFull
 
 export default CatchAll
 
-export const getServerSideProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (
+export const getServerSideProps: GetStaticProps<GQLGetPageLayoutQuery, StaticPageParams> = async (
   ctx,
 ) => {
   const params = extractParams(ctx, '/')
 
-  const data = await Promise.all([
-    import('../components/PageLayout/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-    import('../components/Breadcrumb/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-  ])
-
-  return { props: { ...data[0], ...data[1] } }
+  const getStaticData = await import('../components/PageLayout/server/getStaticData')
+  return { props: await getStaticData.default(params) }
 }

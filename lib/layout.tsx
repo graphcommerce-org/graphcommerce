@@ -6,7 +6,7 @@ function isLayoutPage<P = {}, IP = P>(Component: any): Component is LayoutPage<P
 }
 
 export type LayoutPage<P = {}, IP = P> = NextPage<P, IP> & {
-  layout: NextPage<P, IP>
+  layout: React.FC<IP>
 }
 
 export function renderLayout(

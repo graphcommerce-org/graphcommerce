@@ -1,13 +1,12 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageLayoutProps } from '../../components/PageLayout'
+import LayoutFull, { PageWithLayoutFull } from '../../components/PageLayout'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
-import { LayoutPage } from '../../lib/layout'
 import getStaticPathsFactory from '../../components/PageLayout/server/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 
-const BlogView: LayoutPage<PageLayoutProps> = ({ pages }) => {
+const BlogView: PageWithLayoutFull = ({ pages }) => {
   if (!pages[0]) return <></>
 
   return (
@@ -46,16 +45,16 @@ export default BlogView
 
 export const getStaticPaths = getStaticPathsFactory('/blog/', 'nl')
 
-export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
+export const getStaticProps: GetStaticProps<GQLGetPageLayoutQuery, StaticPageParams> = async (
+  ctx,
+) => {
   const params = extractParams(ctx, '/blog/')
   const data = await Promise.all([
     import('../../components/PageLayout/server/getStaticData').then((module) =>
       module.default(params),
     ),
-    import('../../components/Breadcrumb/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
+    // todo add blog view data
   ])
 
-  return { props: { ...data[0], ...data[1] } }
+  return { props: { ...data[0] } }
 }

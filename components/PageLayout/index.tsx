@@ -8,13 +8,15 @@ import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
 
-export type PageLayoutProps = GQLGetPageLayoutQuery & GQLGetBreadcrumbQuery
-type LayoutComponent = LayoutPage<PageLayoutProps>['layout']
+export type PageWithLayoutFull<T = {}> = LayoutPage<
+  GQLGetPageLayoutQuery & T,
+  GQLGetPageLayoutQuery
+>
 
-const LayoutFull: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, team }) => {
-  if (!pages.length) return <Error statusCode={404}>Page not found</Error>
+const LayoutFull: PageWithLayoutFull['layout'] = ({ children, pages, mainMenu, team }) => {
+  if (!pages.length || !pages[0]) return <Error statusCode={404}>Page not found</Error>
   if (!mainMenu) return <Error statusCode={404}>Main menu found</Error>
-  const page = pages[0] ?? undefined
+  const page = pages[0]
 
   return (
     <ThemedProvider>
@@ -26,7 +28,6 @@ const LayoutFull: LayoutComponent = ({ children, pages, breadcrumbs, mainMenu, t
       <PageMeta {...page} />
       <PageLoadIndicator />
       <Header menu={mainMenu} page={page} team={team} />
-      {/* <Breadcrumb breadcrumbs={breadcrumbs} /> */}
       {children}
     </ThemedProvider>
   )

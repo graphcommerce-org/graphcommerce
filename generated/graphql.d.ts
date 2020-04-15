@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  Hex: any
-  RGBAHue: any
+  /** Raw JSON value */
+  Json: any
   RGBATransparency: any
+  RGBAHue: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
-  /** Raw JSON value */
-  Json: any
+  Hex: any
 }
 
 type GQL_FilterKind =
@@ -126,6 +126,7 @@ type GQLAsset = GQLNode & {
   readonly rowColumnOneColOneIcon: ReadonlyArray<GQLRowColumnOne>
   readonly rowHeroAsset: ReadonlyArray<GQLRowHero>
   readonly alt?: Maybe<Scalars['String']>
+  readonly pageAsset: ReadonlyArray<GQLPage>
   /** Get the url for the asset with provided transformations applied. */
   readonly url: Scalars['String']
 }
@@ -243,6 +244,17 @@ type GQLAssetRowHeroAssetArgs = {
 }
 
 /** Asset system model */
+type GQLAssetPageAssetArgs = {
+  where?: Maybe<GQLPageWhereInput>
+  orderBy?: Maybe<GQLPageOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Asset system model */
 type GQLAssetUrlArgs = {
   transformation?: Maybe<GQLAssetTransformationInput>
 }
@@ -284,6 +296,7 @@ type GQLAssetCreateInput = {
   readonly rowHeroAsset?: Maybe<GQLRowHeroCreateManyInlineInput>
   /** alt input for default locale (nl) */
   readonly alt?: Maybe<Scalars['String']>
+  readonly pageAsset?: Maybe<GQLPageCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   readonly localizations?: Maybe<GQLAssetCreateLocalizationsInput>
 }
@@ -435,6 +448,9 @@ type GQLAssetManyWhereInput = {
   readonly rowHeroAsset_every?: Maybe<GQLRowHeroWhereInput>
   readonly rowHeroAsset_some?: Maybe<GQLRowHeroWhereInput>
   readonly rowHeroAsset_none?: Maybe<GQLRowHeroWhereInput>
+  readonly pageAsset_every?: Maybe<GQLPageWhereInput>
+  readonly pageAsset_some?: Maybe<GQLPageWhereInput>
+  readonly pageAsset_none?: Maybe<GQLPageWhereInput>
 }
 
 type GQLAssetOrderByInput =
@@ -487,6 +503,7 @@ type GQLAssetUpdateInput = {
   readonly rowHeroAsset?: Maybe<GQLRowHeroUpdateManyInlineInput>
   /** alt input for default locale (nl) */
   readonly alt?: Maybe<Scalars['String']>
+  readonly pageAsset?: Maybe<GQLPageUpdateManyInlineInput>
   /** Manage document localizations */
   readonly localizations?: Maybe<GQLAssetUpdateLocalizationsInput>
 }
@@ -820,6 +837,9 @@ type GQLAssetWhereInput = {
   readonly alt_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   readonly alt_not_ends_with?: Maybe<Scalars['String']>
+  readonly pageAsset_every?: Maybe<GQLPageWhereInput>
+  readonly pageAsset_some?: Maybe<GQLPageWhereInput>
+  readonly pageAsset_none?: Maybe<GQLPageWhereInput>
 }
 
 /** References Asset record uniquely */
@@ -4628,6 +4648,7 @@ type GQLPage = GQLNode & {
   readonly content: ReadonlyArray<GQLPageContent>
   readonly metaRobots?: Maybe<GQLMetaRobots>
   readonly list: ReadonlyArray<GQLZzDeleteList>
+  readonly asset?: Maybe<GQLAsset>
   readonly content2: ReadonlyArray<GQLPageContent2>
   readonly internalLink: ReadonlyArray<GQLLinkInternal>
   readonly menu: ReadonlyArray<GQLMenu>
@@ -4935,6 +4956,7 @@ type GQLPageCreateInput = {
   readonly content?: Maybe<GQLPageContentCreateManyInlineInput>
   readonly metaRobots?: Maybe<GQLMetaRobots>
   readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
+  readonly asset?: Maybe<GQLAssetCreateOneInlineInput>
   readonly content2?: Maybe<GQLPageContent2CreateManyInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
   readonly menu?: Maybe<GQLMenuCreateManyInlineInput>
@@ -5080,6 +5102,7 @@ type GQLPageManyWhereInput = {
   readonly metaRobots_in?: Maybe<ReadonlyArray<GQLMetaRobots>>
   /** All values that are not contained in given list. */
   readonly metaRobots_not_in?: Maybe<ReadonlyArray<GQLMetaRobots>>
+  readonly asset?: Maybe<GQLAssetWhereInput>
   readonly internalLink_every?: Maybe<GQLLinkInternalWhereInput>
   readonly internalLink_some?: Maybe<GQLLinkInternalWhereInput>
   readonly internalLink_none?: Maybe<GQLLinkInternalWhereInput>
@@ -5121,6 +5144,7 @@ type GQLPageUpdateInput = {
   readonly content?: Maybe<GQLPageContentUpdateManyInlineInput>
   readonly metaRobots?: Maybe<GQLMetaRobots>
   readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
+  readonly asset?: Maybe<GQLAssetUpdateOneInlineInput>
   readonly content2?: Maybe<GQLPageContent2UpdateManyInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   readonly menu?: Maybe<GQLMenuUpdateManyInlineInput>
@@ -5388,6 +5412,7 @@ type GQLPageWhereInput = {
   readonly metaRobots_in?: Maybe<ReadonlyArray<GQLMetaRobots>>
   /** All values that are not contained in given list. */
   readonly metaRobots_not_in?: Maybe<ReadonlyArray<GQLMetaRobots>>
+  readonly asset?: Maybe<GQLAssetWhereInput>
   readonly internalLink_every?: Maybe<GQLLinkInternalWhereInput>
   readonly internalLink_some?: Maybe<GQLLinkInternalWhereInput>
   readonly internalLink_none?: Maybe<GQLLinkInternalWhereInput>
@@ -10983,6 +11008,25 @@ type GQLAssetFragment = { readonly __typename?: 'Asset' } & Pick<
   GQLAsset,
   'id' | 'alt' | 'url' | 'width' | 'height' | 'mimeType'
 >
+
+type GQLBlogListItemFragment = { readonly __typename?: 'Page' } & Pick<
+  GQLPage,
+  'id' | 'title' | 'metaRobots' | 'url' | 'locale'
+> & {
+    readonly documentInStages: ReadonlyArray<
+      { readonly __typename?: 'Page' } & Pick<GQLPage, 'publishedAt'>
+    >
+    readonly asset?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment>
+  }
+
+type GQLGetBlogListQueryVariables = {
+  url: Scalars['String']
+  locale: GQLLocale
+}
+
+type GQLGetBlogListQuery = { readonly __typename?: 'Query' } & {
+  readonly blogPosts: ReadonlyArray<{ readonly __typename?: 'Page' } & GQLBlogListItemFragment>
+}
 
 type GQLBreadcrumbFragment = { readonly __typename?: 'Page' } & Pick<
   GQLPage,

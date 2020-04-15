@@ -1,0 +1,14 @@
+fragment BlogListItem on Page {
+  id
+  # Bug in GraphCM, should use publishedAt directly
+  documentInStages(includeCurrent: true, stages: [PUBLISHED]) {
+    publishedAt
+  }
+  title
+  metaRobots
+  url
+  locale
+  asset {
+    ...Asset
+  }
+}
