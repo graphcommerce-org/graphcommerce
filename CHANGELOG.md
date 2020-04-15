@@ -1,3 +1,10 @@
+### [5.5.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.0...v5.5.1) (2020-04-15)
+
+
+### Fixes
+
+* **bloglist:** add styling to the bloglist items ([8ba53ed](https://github.com/ho-nl/project-reachdigital.nl/commit/8ba53ed3b5b5eb7fa2ce7ce3a802e4dab9a36d42))
+
 ## [5.5.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.4.0...v5.5.0) (2020-04-15)
 
 
