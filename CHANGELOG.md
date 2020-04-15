@@ -1,3 +1,22 @@
+## [5.4.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.4...v5.4.0) (2020-04-15)
+
+
+### Features
+
+* **blog:** added asset, formatted date, grid styling ([af8bce6](https://github.com/ho-nl/project-reachdigital.nl/commit/af8bce6d8db12fbe23deb98951ddfa48fce0bfd5))
+* **blog:** created BlogList and BlogListItem with recent posts ([d6e5535](https://github.com/ho-nl/project-reachdigital.nl/commit/d6e55350df6a17e5605f1c32879b509d83efb91c))
+
+
+### Fixes
+
+* make the asset size warning more clear ([62a1d0e](https://github.com/ho-nl/project-reachdigital.nl/commit/62a1d0e60942811245e325cd4500a0ae8dfba200))
+* **blog:** fix english blog page ([dfa0b2d](https://github.com/ho-nl/project-reachdigital.nl/commit/dfa0b2d569fbf7b879d4f175b8b51e3b2b9c0ec2))
+
+
+### Documentation
+
+* **readme:** added node version ([2fce651](https://github.com/ho-nl/project-reachdigital.nl/commit/2fce651471aeb6f1c1950e58ae2d1703957a0efb))
+
 ### [5.3.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.3...v5.3.4) (2020-04-13)
 
 
