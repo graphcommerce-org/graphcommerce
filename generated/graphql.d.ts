@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  /** Raw JSON value */
-  Json: any
-  RGBATransparency: any
   RGBAHue: any
+  RGBATransparency: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
   Hex: any
+  /** Raw JSON value */
+  Json: any
 }
 
 type GQL_FilterKind =
@@ -11135,6 +11135,22 @@ type GQLPageMetaFragment = { readonly __typename?: 'Page' } & Pick<
 type GQLPersonFragment = { readonly __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'name'> & {
     readonly avatar: { readonly __typename?: 'Asset' } & GQLAssetFragment
   }
+
+type GQLPortfolioListitemFragment = { readonly __typename?: 'Page' } & Pick<
+  GQLPage,
+  'id' | 'title' | 'metaRobots' | 'url'
+> & { readonly asset?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment> }
+
+type GQLGetPortfolioListQueryVariables = {
+  url: Scalars['String']
+  locale: GQLLocale
+}
+
+type GQLGetPortfolioListQuery = { readonly __typename?: 'Query' } & {
+  readonly portfolioList: ReadonlyArray<
+    { readonly __typename?: 'Page' } & GQLPortfolioListitemFragment
+  >
+}
 
 type GQLRichTextFragment = { readonly __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
 

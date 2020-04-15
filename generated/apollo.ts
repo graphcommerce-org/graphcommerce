@@ -138,6 +138,18 @@ export const PageLayoutFragmentDoc = gql`
   ${PageMetaFragmentDoc}
   ${ContentRendererFragmentDoc}
 `
+export const PortfolioListitemFragmentDoc = gql`
+  fragment PortfolioListitem on Page {
+    id
+    title
+    metaRobots
+    url
+    asset {
+      ...Asset
+    }
+  }
+  ${AssetFragmentDoc}
+`
 export const RowColumnThreeFragmentDoc = gql`
   fragment RowColumnThree on RowColumnThree {
     id
@@ -505,6 +517,64 @@ export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPa
 export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetStaticPathsQuery,
   GQLGetStaticPathsQueryVariables
+>
+export const GetPortfolioListDocument = gql`
+  query GetPortfolioList($url: String!, $locale: Locale!) {
+    portfolioList: pages(
+      where: { url_starts_with: $url }
+      locales: [$locale]
+      orderBy: createdAt_DESC
+    ) {
+      ...PortfolioListitem
+    }
+  }
+  ${PortfolioListitemFragmentDoc}
+`
+
+/**
+ * __useGetPortfolioListQuery__
+ *
+ * To run a query within a React component, call `useGetPortfolioListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPortfolioListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPortfolioListQuery({
+ *   variables: {
+ *      url: // value for 'url'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetPortfolioListQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetPortfolioListQuery,
+    GQLGetPortfolioListQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetPortfolioListQuery, GQLGetPortfolioListQueryVariables>(
+    GetPortfolioListDocument,
+    baseOptions,
+  )
+}
+export function useGetPortfolioListLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetPortfolioListQuery,
+    GQLGetPortfolioListQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetPortfolioListQuery, GQLGetPortfolioListQueryVariables>(
+    GetPortfolioListDocument,
+    baseOptions,
+  )
+}
+export type GetPortfolioListQueryHookResult = ReturnType<typeof useGetPortfolioListQuery>
+export type GetPortfolioListLazyQueryHookResult = ReturnType<typeof useGetPortfolioListLazyQuery>
+export type GetPortfolioListQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetPortfolioListQuery,
+  GQLGetPortfolioListQueryVariables
 >
 export const GetAllRowColumThreeDocument = gql`
   query GetAllRowColumThree($skip: Int!) {
