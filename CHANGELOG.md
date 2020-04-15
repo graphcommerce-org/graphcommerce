@@ -1,3 +1,16 @@
+## [5.5.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.4.0...v5.5.0) (2020-04-15)
+
+
+### Features
+
+* **portfolio:** added portfolio overview page ([66541f3](https://github.com/ho-nl/project-reachdigital.nl/commit/66541f3bb7ba80dc8d474deb08f4cc2ad3270051))
+* **portfolio:** added styling for pages ([518b58f](https://github.com/ho-nl/project-reachdigital.nl/commit/518b58fd48d201ac9c1380c0c525a7d57c7fb8b2))
+
+
+### Fixes
+
+* **pictureresponsive:** make sure for SSR we assume 3g and Nexus 5X ([0026e68](https://github.com/ho-nl/project-reachdigital.nl/commit/0026e6854fc8850173b6be2ab5effbab876b022d))
+
 ## [5.4.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.4...v5.4.0) (2020-04-15)
 
 
