@@ -1,3 +1,10 @@
+## [5.6.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.2...v5.6.0) (2020-04-16)
+
+
+### Features
+
+* **contentrenderer:** support other row types for unions ([89e0283](https://github.com/ho-nl/project-reachdigital.nl/commit/89e0283eddf892170f33b8007a893fbf236f0e20))
+
 ### [5.5.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.1...v5.5.2) (2020-04-15)
 
 
