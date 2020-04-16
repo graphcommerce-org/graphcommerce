@@ -119,37 +119,6 @@ export const RowHeroFragmentDoc = gql`
   ${LinkInternalFragmentDoc}
   ${LinkExternalFragmentDoc}
 `
-export const ContentRendererFragmentDoc = gql`
-  fragment ContentRenderer on Page {
-    content {
-      __typename
-      ...RowHero
-    }
-  }
-  ${RowHeroFragmentDoc}
-`
-export const PageLayoutFragmentDoc = gql`
-  fragment PageLayout on Page {
-    id
-    locale
-    ...PageMeta
-    ...ContentRenderer
-  }
-  ${PageMetaFragmentDoc}
-  ${ContentRendererFragmentDoc}
-`
-export const PortfolioListitemFragmentDoc = gql`
-  fragment PortfolioListitem on Page {
-    id
-    title
-    metaRobots
-    url
-    asset {
-      ...Asset
-    }
-  }
-  ${AssetFragmentDoc}
-`
 export const RowColumnThreeFragmentDoc = gql`
   fragment RowColumnThree on RowColumnThree {
     id
@@ -215,6 +184,46 @@ export const RowPeopleWithTextFragmentDoc = gql`
   ${RichTextFragmentDoc}
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
+`
+export const ContentRendererFragmentDoc = gql`
+  fragment ContentRenderer on Page {
+    content {
+      __typename
+      ... on Node {
+        id
+      }
+      ...RowHero
+      ...RowColumnThree
+      ...RowCompanySlider
+      ...RowPeopleWithText
+    }
+  }
+  ${RowHeroFragmentDoc}
+  ${RowColumnThreeFragmentDoc}
+  ${RowCompanySliderFragmentDoc}
+  ${RowPeopleWithTextFragmentDoc}
+`
+export const PageLayoutFragmentDoc = gql`
+  fragment PageLayout on Page {
+    id
+    locale
+    ...PageMeta
+    ...ContentRenderer
+  }
+  ${PageMetaFragmentDoc}
+  ${ContentRendererFragmentDoc}
+`
+export const PortfolioListitemFragmentDoc = gql`
+  fragment PortfolioListitem on Page {
+    id
+    title
+    metaRobots
+    url
+    asset {
+      ...Asset
+    }
+  }
+  ${AssetFragmentDoc}
 `
 export const GetBlogListDocument = gql`
   query GetBlogList($url: String!, $locale: Locale!) {

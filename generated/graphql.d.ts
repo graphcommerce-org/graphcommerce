@@ -21,12 +21,12 @@ type Scalars = {
   Long: any
   RGBAHue: any
   RGBATransparency: any
+  Hex: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
-  Hex: any
   /** Raw JSON value */
   Json: any
 }
@@ -4645,11 +4645,10 @@ type GQLPage = GQLNode & {
   readonly title: Scalars['String']
   readonly metaTitle: Scalars['String']
   readonly metaDescription: Scalars['String']
-  readonly content: ReadonlyArray<GQLPageContent>
   readonly metaRobots?: Maybe<GQLMetaRobots>
   readonly list: ReadonlyArray<GQLZzDeleteList>
+  readonly content: ReadonlyArray<GQLPageContent>
   readonly asset?: Maybe<GQLAsset>
-  readonly content2: ReadonlyArray<GQLPageContent2>
   readonly internalLink: ReadonlyArray<GQLLinkInternal>
   readonly menu: ReadonlyArray<GQLMenu>
   readonly blogList?: Maybe<GQLZzDeleteBlogList>
@@ -4666,14 +4665,6 @@ type GQLPageDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean']
 }
 
-type GQLPageContentArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
 type GQLPageListArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
@@ -4682,7 +4673,7 @@ type GQLPageListArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLPageContent2Args = {
+type GQLPageContentArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -4727,149 +4718,36 @@ type GQLPageConnection = {
   readonly aggregate: GQLAggregate
 }
 
-type GQLPageContent = GQLRowHero
-
-type GQLPageContent2 =
+type GQLPageContent =
   | GQLRowColumnThree
   | GQLRowColumnTwo
   | GQLRowRecentBlogPost
   | GQLRowPeopleWithText
   | GQLRowColumnOne
   | GQLRowCompanySlider
+  | GQLRowHero
   | GQLRowServicesWithText
 
-type GQLPageContent2ConnectInput = {
+type GQLPageContentConnectInput = {
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeConnectInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoConnectInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostConnectInput>
   readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextConnectInput>
   readonly RowColumnOne?: Maybe<GQLRowColumnOneConnectInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderConnectInput>
+  readonly RowHero?: Maybe<GQLRowHeroConnectInput>
   readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextConnectInput>
 }
 
-type GQLPageContent2CreateInput = {
+type GQLPageContentCreateInput = {
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeCreateInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoCreateInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateInput>
   readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateInput>
   readonly RowColumnOne?: Maybe<GQLRowColumnOneCreateInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderCreateInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
-}
-
-type GQLPageContent2CreateManyInlineInput = {
-  /** Create and connect multiple existing PageContent2 documents */
-  readonly create?: Maybe<ReadonlyArray<GQLPageContent2CreateInput>>
-  /** Connect multiple existing PageContent2 documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLPageContent2WhereUniqueInput>>
-}
-
-type GQLPageContent2CreateOneInlineInput = {
-  /** Create and connect one PageContent2 document */
-  readonly create?: Maybe<GQLPageContent2CreateInput>
-  /** Connect one existing PageContent2 document */
-  readonly connect?: Maybe<GQLPageContent2WhereUniqueInput>
-}
-
-type GQLPageContent2UpdateInput = {
-  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateInput>
-  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateInput>
-  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateInput>
-  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateInput>
-  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateInput>
-  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
-}
-
-type GQLPageContent2UpdateManyInlineInput = {
-  /** Create and connect multiple PageContent2 documents */
-  readonly create?: Maybe<ReadonlyArray<GQLPageContent2CreateInput>>
-  /** Connect multiple existing PageContent2 documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLPageContent2ConnectInput>>
-  /** Override currently-connected documents with multiple existing PageContent2 documents */
-  readonly set?: Maybe<ReadonlyArray<GQLPageContent2WhereUniqueInput>>
-  /** Update multiple PageContent2 documents */
-  readonly update?: Maybe<ReadonlyArray<GQLPageContent2UpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple PageContent2 documents */
-  readonly upsert?: Maybe<ReadonlyArray<GQLPageContent2UpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple PageContent2 documents */
-  readonly disconnect?: Maybe<ReadonlyArray<GQLPageContent2WhereUniqueInput>>
-  /** Delete multiple PageContent2 documents */
-  readonly delete?: Maybe<ReadonlyArray<GQLPageContent2WhereUniqueInput>>
-}
-
-type GQLPageContent2UpdateManyWithNestedWhereInput = {
-  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateManyWithNestedWhereInput>
-  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyWithNestedWhereInput>
-  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyWithNestedWhereInput>
-  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyWithNestedWhereInput>
-  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateManyWithNestedWhereInput>
-  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateManyWithNestedWhereInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
-}
-
-type GQLPageContent2UpdateOneInlineInput = {
-  /** Create and connect one PageContent2 document */
-  readonly create?: Maybe<GQLPageContent2CreateInput>
-  /** Update single PageContent2 document */
-  readonly update?: Maybe<GQLPageContent2UpdateWithNestedWhereUniqueInput>
-  /** Upsert single PageContent2 document */
-  readonly upsert?: Maybe<GQLPageContent2UpsertWithNestedWhereUniqueInput>
-  /** Connect existing PageContent2 document */
-  readonly connect?: Maybe<GQLPageContent2WhereUniqueInput>
-  /** Disconnect currently connected PageContent2 document */
-  readonly disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected PageContent2 document */
-  readonly delete?: Maybe<Scalars['Boolean']>
-}
-
-type GQLPageContent2UpdateWithNestedWhereUniqueInput = {
-  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateWithNestedWhereUniqueInput>
-  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateWithNestedWhereUniqueInput>
-  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>
-  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateWithNestedWhereUniqueInput>
-  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateWithNestedWhereUniqueInput>
-  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateWithNestedWhereUniqueInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
-}
-
-type GQLPageContent2UpsertWithNestedWhereUniqueInput = {
-  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpsertWithNestedWhereUniqueInput>
-  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpsertWithNestedWhereUniqueInput>
-  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>
-  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpsertWithNestedWhereUniqueInput>
-  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpsertWithNestedWhereUniqueInput>
-  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpsertWithNestedWhereUniqueInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
-}
-
-type GQLPageContent2WhereInput = {
-  readonly RowColumnThree?: Maybe<GQLRowColumnThreeWhereInput>
-  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
-  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextWhereInput>
-  readonly RowColumnOne?: Maybe<GQLRowColumnOneWhereInput>
-  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderWhereInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
-}
-
-type GQLPageContent2WhereUniqueInput = {
-  readonly RowColumnThree?: Maybe<GQLRowColumnThreeWhereUniqueInput>
-  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoWhereUniqueInput>
-  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
-  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextWhereUniqueInput>
-  readonly RowColumnOne?: Maybe<GQLRowColumnOneWhereUniqueInput>
-  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderWhereUniqueInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
-}
-
-type GQLPageContentConnectInput = {
-  readonly RowHero?: Maybe<GQLRowHeroConnectInput>
-}
-
-type GQLPageContentCreateInput = {
   readonly RowHero?: Maybe<GQLRowHeroCreateInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
 }
 
 type GQLPageContentCreateManyInlineInput = {
@@ -4887,7 +4765,14 @@ type GQLPageContentCreateOneInlineInput = {
 }
 
 type GQLPageContentUpdateInput = {
+  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateInput>
+  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateInput>
+  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateInput>
+  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateInput>
+  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateInput>
+  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateInput>
   readonly RowHero?: Maybe<GQLRowHeroUpdateInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
 }
 
 type GQLPageContentUpdateManyInlineInput = {
@@ -4908,7 +4793,14 @@ type GQLPageContentUpdateManyInlineInput = {
 }
 
 type GQLPageContentUpdateManyWithNestedWhereInput = {
+  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateManyWithNestedWhereInput>
+  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyWithNestedWhereInput>
+  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyWithNestedWhereInput>
+  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyWithNestedWhereInput>
+  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateManyWithNestedWhereInput>
+  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateManyWithNestedWhereInput>
   readonly RowHero?: Maybe<GQLRowHeroUpdateManyWithNestedWhereInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
 }
 
 type GQLPageContentUpdateOneInlineInput = {
@@ -4927,19 +4819,47 @@ type GQLPageContentUpdateOneInlineInput = {
 }
 
 type GQLPageContentUpdateWithNestedWhereUniqueInput = {
+  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateWithNestedWhereUniqueInput>
+  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateWithNestedWhereUniqueInput>
+  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>
+  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateWithNestedWhereUniqueInput>
+  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateWithNestedWhereUniqueInput>
+  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateWithNestedWhereUniqueInput>
   readonly RowHero?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
 }
 
 type GQLPageContentUpsertWithNestedWhereUniqueInput = {
+  readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpsertWithNestedWhereUniqueInput>
+  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpsertWithNestedWhereUniqueInput>
+  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>
+  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpsertWithNestedWhereUniqueInput>
+  readonly RowColumnOne?: Maybe<GQLRowColumnOneUpsertWithNestedWhereUniqueInput>
+  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpsertWithNestedWhereUniqueInput>
   readonly RowHero?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
 }
 
 type GQLPageContentWhereInput = {
+  readonly RowColumnThree?: Maybe<GQLRowColumnThreeWhereInput>
+  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
+  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextWhereInput>
+  readonly RowColumnOne?: Maybe<GQLRowColumnOneWhereInput>
+  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderWhereInput>
   readonly RowHero?: Maybe<GQLRowHeroWhereInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
 }
 
 type GQLPageContentWhereUniqueInput = {
+  readonly RowColumnThree?: Maybe<GQLRowColumnThreeWhereUniqueInput>
+  readonly RowColumnTwo?: Maybe<GQLRowColumnTwoWhereUniqueInput>
+  readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
+  readonly RowPeopleWithText?: Maybe<GQLRowPeopleWithTextWhereUniqueInput>
+  readonly RowColumnOne?: Maybe<GQLRowColumnOneWhereUniqueInput>
+  readonly RowCompanySlider?: Maybe<GQLRowCompanySliderWhereUniqueInput>
   readonly RowHero?: Maybe<GQLRowHeroWhereUniqueInput>
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
 }
 
 type GQLPageCreateInput = {
@@ -4953,11 +4873,10 @@ type GQLPageCreateInput = {
   readonly metaTitle: Scalars['String']
   /** metaDescription input for default locale (nl) */
   readonly metaDescription: Scalars['String']
-  readonly content?: Maybe<GQLPageContentCreateManyInlineInput>
   readonly metaRobots?: Maybe<GQLMetaRobots>
   readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
+  readonly content?: Maybe<GQLPageContentCreateManyInlineInput>
   readonly asset?: Maybe<GQLAssetCreateOneInlineInput>
-  readonly content2?: Maybe<GQLPageContent2CreateManyInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
   readonly menu?: Maybe<GQLMenuCreateManyInlineInput>
   readonly blogList?: Maybe<GQLZzDeleteBlogListCreateOneInlineInput>
@@ -5141,11 +5060,10 @@ type GQLPageUpdateInput = {
   readonly metaTitle?: Maybe<Scalars['String']>
   /** metaDescription input for default locale (nl) */
   readonly metaDescription?: Maybe<Scalars['String']>
-  readonly content?: Maybe<GQLPageContentUpdateManyInlineInput>
   readonly metaRobots?: Maybe<GQLMetaRobots>
   readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
+  readonly content?: Maybe<GQLPageContentUpdateManyInlineInput>
   readonly asset?: Maybe<GQLAssetUpdateOneInlineInput>
-  readonly content2?: Maybe<GQLPageContent2UpdateManyInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   readonly menu?: Maybe<GQLMenuUpdateManyInlineInput>
   readonly blogList?: Maybe<GQLZzDeleteBlogListUpdateOneInlineInput>
@@ -8550,8 +8468,8 @@ type GQLRowHero = GQLNode & {
   readonly asset: GQLAsset
   readonly text: GQLRichText
   readonly links: ReadonlyArray<GQLRowHeroVideoLinks>
-  readonly page: ReadonlyArray<GQLPage>
   readonly list: ReadonlyArray<GQLZzDeleteList>
+  readonly page: ReadonlyArray<GQLPage>
 }
 
 type GQLRowHeroDocumentInStagesArgs = {
@@ -8568,7 +8486,7 @@ type GQLRowHeroLinksArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLRowHeroPageArgs = {
+type GQLRowHeroListArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -8576,7 +8494,7 @@ type GQLRowHeroPageArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLRowHeroListArgs = {
+type GQLRowHeroPageArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -8608,8 +8526,8 @@ type GQLRowHeroCreateInput = {
   readonly asset: GQLAssetCreateOneInlineInput
   readonly text: Scalars['RichTextAST']
   readonly links?: Maybe<GQLRowHeroVideoLinksCreateManyInlineInput>
-  readonly page?: Maybe<GQLPageCreateManyInlineInput>
   readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
+  readonly page?: Maybe<GQLPageCreateManyInlineInput>
 }
 
 type GQLRowHeroCreateManyInlineInput = {
@@ -8748,8 +8666,8 @@ type GQLRowHeroUpdateInput = {
   readonly asset?: Maybe<GQLAssetUpdateOneInlineInput>
   readonly text?: Maybe<Scalars['RichTextAST']>
   readonly links?: Maybe<GQLRowHeroVideoLinksUpdateManyInlineInput>
-  readonly page?: Maybe<GQLPageUpdateManyInlineInput>
   readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
+  readonly page?: Maybe<GQLPageUpdateManyInlineInput>
 }
 
 type GQLRowHeroUpdateManyInlineInput = {
@@ -11057,7 +10975,19 @@ type GQLSubmitContactFormMutation = { readonly __typename?: 'Mutation' } & {
 }
 
 type GQLContentRendererFragment = { readonly __typename?: 'Page' } & {
-  readonly content: ReadonlyArray<{ readonly __typename: 'RowHero' } & GQLRowHeroFragment>
+  readonly content: ReadonlyArray<
+    | ({ readonly __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> &
+        GQLRowColumnThreeFragment)
+    | ({ readonly __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'>)
+    | ({ readonly __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'>)
+    | ({ readonly __typename: 'RowPeopleWithText' } & Pick<GQLRowPeopleWithText, 'id'> &
+        GQLRowPeopleWithTextFragment)
+    | ({ readonly __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'>)
+    | ({ readonly __typename: 'RowCompanySlider' } & Pick<GQLRowCompanySlider, 'id'> &
+        GQLRowCompanySliderFragment)
+    | ({ readonly __typename: 'RowHero' } & Pick<GQLRowHero, 'id'> & GQLRowHeroFragment)
+    | ({ readonly __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
+  >
 }
 
 type GQLLinkExternalFragment = { readonly __typename?: 'LinkExternal' } & Pick<

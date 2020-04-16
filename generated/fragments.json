@@ -24,12 +24,6 @@
             "name": "Page"
           },
           {
-            "name": "RowHero"
-          },
-          {
-            "name": "LinkExternal"
-          },
-          {
             "name": "ZzDeleteList"
           },
           {
@@ -37,6 +31,12 @@
           },
           {
             "name": "RowCompanySlider"
+          },
+          {
+            "name": "RowHero"
+          },
+          {
+            "name": "LinkExternal"
           },
           {
             "name": "RowColumnThree"
@@ -66,27 +66,6 @@
       },
       {
         "kind": "UNION",
-        "name": "PageContent",
-        "possibleTypes": [
-          {
-            "name": "RowHero"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "RowHeroVideoLinks",
-        "possibleTypes": [
-          {
-            "name": "LinkExternal"
-          },
-          {
-            "name": "LinkInternal"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
         "name": "ListItems",
         "possibleTypes": [
           {
@@ -108,7 +87,19 @@
       },
       {
         "kind": "UNION",
-        "name": "PageContent2",
+        "name": "RowHeroVideoLinks",
+        "possibleTypes": [
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "PageContent",
         "possibleTypes": [
           {
             "name": "RowColumnThree"
@@ -127,6 +118,9 @@
           },
           {
             "name": "RowCompanySlider"
+          },
+          {
+            "name": "RowHero"
           },
           {
             "name": "RowServicesWithText"

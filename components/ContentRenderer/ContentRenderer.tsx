@@ -2,7 +2,11 @@ import React from 'react'
 
 type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
 export type Renderers = { [T in TypeNames]?: React.ComponentType<any> }
-export const renderers: Renderers = {}
+
+let renderers: Renderers = {}
+export const setRenderers = (newRenderers: Renderers): void => {
+  renderers = newRenderers
+}
 
 const ContentRenderer: React.FC<GQLContentRendererFragment & { customRenderers?: Renderers }> = (
   props,

@@ -1,7 +1,7 @@
-import ContentRenderer, { renderers, Renderers } from './ContentRenderer'
+import ContentRenderer, { Renderers } from './ContentRenderer'
 import registerDefaultRenderer from './defaultRenderer'
 
-registerDefaultRenderer(renderers)
+registerDefaultRenderer()
 
 export default ContentRenderer
 export type { Renderers }

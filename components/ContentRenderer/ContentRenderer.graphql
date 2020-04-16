@@ -1,6 +1,12 @@
 fragment ContentRenderer on Page {
   content {
     __typename
+    ... on Node {
+      id
+    }
     ...RowHero
+    ...RowColumnThree
+    ...RowCompanySlider
+    ...RowPeopleWithText
   }
 }
