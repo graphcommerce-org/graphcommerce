@@ -93,7 +93,7 @@
     "husky": "^4.2.5",
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
-    "semantic-release": "^17.0.4",
+    "semantic-release": "^17.0.6",
     "semantic-release-slack-bot": "^1.6.1",
     "typescript": "^3.7.5",
     "webpack": "^4.42.1"
