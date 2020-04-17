@@ -31,6 +31,7 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, pages, mainMenu, t
       <PageLoadIndicator />
       <Header menu={mainMenu} page={page} team={team} />
       {children}
+      <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )
 }
