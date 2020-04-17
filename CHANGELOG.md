@@ -1,3 +1,10 @@
+### [5.6.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.1...v5.6.2) (2020-04-17)
+
+
+### Fixes
+
+* **pictureresponsive:** add resizeobserver polyfill for safari ([3c58c61](https://github.com/ho-nl/project-reachdigital.nl/commit/3c58c61dac1d9294e15751a74b8fcd32b1ca8dcb))
+
 ### [5.6.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.0...v5.6.1) (2020-04-17)
 
 
