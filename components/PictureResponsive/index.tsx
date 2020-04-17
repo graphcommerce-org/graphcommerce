@@ -21,13 +21,20 @@ export type PictureResonsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | '
   height: number
 }
 
-// todo(paales) Height is not properly set on initial page load?
-
+/**
+ * Checks whether an image is currently in the viewport
+ */
 function isInViewport(elem: HTMLImageElement): boolean {
   const { top, right, bottom, left } = elem.getBoundingClientRect()
   return bottom >= 0 && right >= 0 && top <= window.innerHeight && left <= window.innerWidth
 }
 
+/**
+ * 1. Images in viewport will be downloaded and then upgraded.
+ * 2. Image not in viewport + loading=lazy support: upgrade directly
+ * 3. Image not in viewport + intersection observer: upgrade when almost in viewport
+ * 4. Image not in viewport + fallback: upgrade directly
+ */
 function requestUpgrade(img: HTMLImageElement) {
   return new Promise((resolve) => {
     const inViewport = isInViewport(img)
