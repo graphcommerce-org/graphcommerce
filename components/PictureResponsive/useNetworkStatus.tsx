@@ -13,7 +13,7 @@ const useNetworkStatus = (
   initialEffectiveConnectionType: EffectiveConnectionType | null,
 ): {
   unsupported: boolean
-  effectiveConnectionType: EffectiveConnectionType | null
+  connectionType: EffectiveConnectionType | null
 } => {
   if (
     typeof navigator !== 'undefined' &&
@@ -28,7 +28,7 @@ const useNetworkStatus = (
 
   const initialNetworkStatus = {
     unsupported,
-    effectiveConnectionType: unsupported
+    connectionType: unsupported
       ? initialEffectiveConnectionType
       : navigator.connection.effectiveType,
   }
@@ -42,7 +42,7 @@ const useNetworkStatus = (
       const updateECTStatus = () => {
         setNetworkStatus({
           unsupported,
-          effectiveConnectionType: navigatorConnection.effectiveType,
+          connectionType: navigatorConnection.effectiveType,
         })
       }
       navigatorConnection.addEventListener('change', updateECTStatus)

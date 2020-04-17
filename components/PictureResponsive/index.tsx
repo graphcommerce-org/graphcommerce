@@ -69,36 +69,32 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, ...imgProps }) => {
+const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, alt, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
-  const { width } = useResizeObserver<HTMLImageElement>({ ref })
+  const { width } = useResizeObserver({ ref })
 
-  const { effectiveConnectionType } = useNetworkStatus('3g')
-  const dpr = typeof window === 'undefined' ? 2.6 : window.devicePixelRatio
-  const scaleDown = effectiveConnectionType === '4g' ? 1 : dpr
+  // We get the network type and set it to 4g safari
+  const { connectionType } = useNetworkStatus('4g')
 
-  const [upgraded, setUpgraded] = useState<boolean>(false)
-
-  const size =
-    upgraded === false || width === undefined ? imgProps.width / scaleDown : width / scaleDown
+  // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
+  const [size, setSize] = useState<number>(imgProps.width / 2.6)
 
   useEffect(() => {
     // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
-    const img = ref.current
-    if (!img || !width) return
-    requestUpgrade(img).then(() => setUpgraded(true))
-  }, [ref.current, width])
+    if (!ref.current || !width) return
+    requestUpgrade(ref.current).then(() => {
+      // If the connection is slow, request a lower quality image
+      setSize(Math.round(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
+    })
+  }, [ref.current, width, connectionType])
 
   return (
-    <>
-      <picture>
-        {Object.entries(srcSets).map(([type, srcSet]) => (
-          <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
-        ))}
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <img ref={ref} {...imgProps} loading='lazy' />
-      </picture>
-    </>
+    <picture>
+      {Object.entries(srcSets).map(([type, srcSet]) => (
+        <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
+      ))}
+      <img ref={ref} alt={alt} {...imgProps} loading='lazy' />
+    </picture>
   )
 }
 
