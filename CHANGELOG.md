@@ -1,3 +1,10 @@
+### [5.6.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.0...v5.6.1) (2020-04-17)
+
+
+### Fixes
+
+* **pictureresponsive:** solve ssr render mismatch ([8bd7d0f](https://github.com/ho-nl/project-reachdigital.nl/commit/8bd7d0fc0febdf228226b2a0077525ffc5821366))
+
 ## [5.6.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.2...v5.6.0) (2020-04-16)
 
 
