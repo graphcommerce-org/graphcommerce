@@ -1,15 +1,18 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import { Renderers, setRenderers } from './ContentRenderer'
+import RowHero from '../RowHero'
+import RowColumnThree from '../RowColumnThree'
+import RowCompanySlider from '../RowCompanySlider'
+import RowPeopleWithText from '../RowPeopleWithText'
 
 const registerDefaultRenderer = () => {
   const renderers = {
-    RowHero: dynamic<GQLRowHeroFragment>(() => import('../RowHero')),
+    RowHero,
     RowColumnOne: () => <div>RowColumnOne Not yet implemented</div>,
     RowColumnTwo: () => <div>RowColumnTwo Not yet implemented</div>,
-    RowColumnThree: dynamic<GQLRowColumnThreeFragment>(() => import('../RowColumnThree')),
-    RowCompanySlider: dynamic<GQLRowCompanySliderFragment>(() => import('../RowCompanySlider')),
-    RowPeopleWithText: dynamic<GQLRowPeopleWithTextFragment>(() => import('../RowPeopleWithText')),
+    RowColumnThree,
+    RowCompanySlider,
+    RowPeopleWithText,
     RowRecentBlogPost: () => <div>RecentBlogPosts not yet implemented</div>,
     RowServicesWithText: () => <div>RowServicesWithText not yet implemented</div>,
   } as Required<Renderers>
