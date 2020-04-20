@@ -185,6 +185,15 @@ export const RowPeopleWithTextFragmentDoc = gql`
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
 `
+export const RowRecentBlogPostFragmentDoc = gql`
+  fragment RowRecentBlogPost on RowRecentBlogPost {
+    link {
+      ...LinkInternal
+      locale
+    }
+  }
+  ${LinkInternalFragmentDoc}
+`
 export const ContentRendererFragmentDoc = gql`
   fragment ContentRenderer on Page {
     content {
@@ -196,12 +205,14 @@ export const ContentRendererFragmentDoc = gql`
       ...RowColumnThree
       ...RowCompanySlider
       ...RowPeopleWithText
+      ...RowRecentBlogPost
     }
   }
   ${RowHeroFragmentDoc}
   ${RowColumnThreeFragmentDoc}
   ${RowCompanySliderFragmentDoc}
   ${RowPeopleWithTextFragmentDoc}
+  ${RowRecentBlogPostFragmentDoc}
 `
 export const PageLayoutFragmentDoc = gql`
   fragment PageLayout on Page {

@@ -19,11 +19,11 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  Hex: any
   RGBAHue: any
   RGBATransparency: any
   /** Raw JSON value */
   Json: any
+  Hex: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
@@ -2246,6 +2246,7 @@ type GQLLinkInternal = GQLNode & {
   rowPeopleWithText: Array<GQLRowPeopleWithText>
   rowServicesWithText: Array<GQLRowServicesWithText>
   rowHeroVideo: Array<GQLRowHero>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPost>
 }
 
 type GQLLinkInternalLocalizationsArgs = {
@@ -2314,6 +2315,7 @@ type GQLLinkInternalCreateInput = {
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLLinkInternalCreateLocalizationsInput>
 }
@@ -2439,6 +2441,7 @@ type GQLLinkInternalManyWhereInput = {
   rowServicesWithText_every?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_some?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
 }
 
 type GQLLinkInternalOrderByInput =
@@ -2461,6 +2464,7 @@ type GQLLinkInternalUpdateInput = {
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateOneInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLLinkInternalUpdateLocalizationsInput>
 }
@@ -2662,6 +2666,7 @@ type GQLLinkInternalWhereInput = {
   rowServicesWithText_every?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_some?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
 }
 
 /** References LinkInternal record uniquely */
@@ -9158,8 +9163,8 @@ type GQLRowRecentBlogPost = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  limit?: Maybe<Scalars['Int']>
   page: Array<GQLPage>
+  link?: Maybe<GQLLinkInternal>
 }
 
 type GQLRowRecentBlogPostDocumentInStagesArgs = {
@@ -9197,8 +9202,8 @@ type GQLRowRecentBlogPostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  limit?: Maybe<Scalars['Int']>
   page?: Maybe<GQLPageCreateManyInlineInput>
+  link?: Maybe<GQLLinkInternalCreateOneInlineInput>
 }
 
 type GQLRowRecentBlogPostCreateManyInlineInput = {
@@ -9317,21 +9322,7 @@ type GQLRowRecentBlogPostManyWhereInput = {
   identity_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   identity_not_ends_with?: Maybe<Scalars['String']>
-  limit?: Maybe<Scalars['Int']>
-  /** All values that are not equal to given value. */
-  limit_not?: Maybe<Scalars['Int']>
-  /** All values that are contained in given list. */
-  limit_in?: Maybe<Array<Scalars['Int']>>
-  /** All values that are not contained in given list. */
-  limit_not_in?: Maybe<Array<Scalars['Int']>>
-  /** All values less than the given value. */
-  limit_lt?: Maybe<Scalars['Int']>
-  /** All values less than or equal the given value. */
-  limit_lte?: Maybe<Scalars['Int']>
-  /** All values greater than the given value. */
-  limit_gt?: Maybe<Scalars['Int']>
-  /** All values greater than or equal the given value. */
-  limit_gte?: Maybe<Scalars['Int']>
+  link?: Maybe<GQLLinkInternalWhereInput>
 }
 
 type GQLRowRecentBlogPostOrderByInput =
@@ -9345,13 +9336,11 @@ type GQLRowRecentBlogPostOrderByInput =
   | 'publishedAt_DESC'
   | 'identity_ASC'
   | 'identity_DESC'
-  | 'limit_ASC'
-  | 'limit_DESC'
 
 type GQLRowRecentBlogPostUpdateInput = {
   identity?: Maybe<Scalars['String']>
-  limit?: Maybe<Scalars['Int']>
   page?: Maybe<GQLPageUpdateManyInlineInput>
+  link?: Maybe<GQLLinkInternalUpdateOneInlineInput>
 }
 
 type GQLRowRecentBlogPostUpdateManyInlineInput = {
@@ -9374,7 +9363,6 @@ type GQLRowRecentBlogPostUpdateManyInlineInput = {
 type GQLRowRecentBlogPostUpdateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  limit?: Maybe<Scalars['Int']>
 }
 
 type GQLRowRecentBlogPostUpdateManyWithNestedWhereInput = {
@@ -9513,21 +9501,7 @@ type GQLRowRecentBlogPostWhereInput = {
   identity_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   identity_not_ends_with?: Maybe<Scalars['String']>
-  limit?: Maybe<Scalars['Int']>
-  /** All values that are not equal to given value. */
-  limit_not?: Maybe<Scalars['Int']>
-  /** All values that are contained in given list. */
-  limit_in?: Maybe<Array<Scalars['Int']>>
-  /** All values that are not contained in given list. */
-  limit_not_in?: Maybe<Array<Scalars['Int']>>
-  /** All values less than the given value. */
-  limit_lt?: Maybe<Scalars['Int']>
-  /** All values less than or equal the given value. */
-  limit_lte?: Maybe<Scalars['Int']>
-  /** All values greater than the given value. */
-  limit_gt?: Maybe<Scalars['Int']>
-  /** All values greater than or equal the given value. */
-  limit_gte?: Maybe<Scalars['Int']>
+  link?: Maybe<GQLLinkInternalWhereInput>
 }
 
 /** References RowRecentBlogPost record uniquely */
@@ -10021,6 +9995,7 @@ type GQLRowYoutubeVideo = GQLNode & {
   /** The unique identifier */
   videoId: Scalars['String']
   page: Array<GQLPage>
+  title: Scalars['String']
 }
 
 /** A full-width Youtube video */
@@ -10068,6 +10043,7 @@ type GQLRowYoutubeVideoCreateInput = {
   /** videoId input for default locale (nl) */
   videoId: Scalars['String']
   page?: Maybe<GQLPageCreateManyInlineInput>
+  title: Scalars['String']
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLRowYoutubeVideoCreateLocalizationsInput>
 }
@@ -10186,6 +10162,25 @@ type GQLRowYoutubeVideoManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  title?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>
 }
 
 type GQLRowYoutubeVideoOrderByInput =
@@ -10199,11 +10194,14 @@ type GQLRowYoutubeVideoOrderByInput =
   | 'publishedAt_DESC'
   | 'videoId_ASC'
   | 'videoId_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
 
 type GQLRowYoutubeVideoUpdateInput = {
   /** videoId input for default locale (nl) */
   videoId?: Maybe<Scalars['String']>
   page?: Maybe<GQLPageUpdateManyInlineInput>
+  title?: Maybe<Scalars['String']>
   /** Manage document localizations */
   localizations?: Maybe<GQLRowYoutubeVideoUpdateLocalizationsInput>
 }
@@ -10247,6 +10245,7 @@ type GQLRowYoutubeVideoUpdateManyInlineInput = {
 type GQLRowYoutubeVideoUpdateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
+  title: Scalars['String']
   /** Optional updates to localizations */
   localizations?: Maybe<Array<GQLRowYoutubeVideoUpdateManyLocalizationInput>>
 }
@@ -10397,6 +10396,25 @@ type GQLRowYoutubeVideoWhereInput = {
   videoId_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   videoId_not_ends_with?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>
 }
 
 /** References RowYoutubeVideo record uniquely */
@@ -10472,7 +10490,8 @@ type GQLContentRendererFragment = { __typename?: 'Page' } & {
     | ({ __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
     | ({ __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> & GQLRowColumnThreeFragment)
     | ({ __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'>)
-    | ({ __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'>)
+    | ({ __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'> &
+        GQLRowRecentBlogPostFragment)
     | ({ __typename: 'RowPeopleWithText' } & Pick<GQLRowPeopleWithText, 'id'> &
         GQLRowPeopleWithTextFragment)
     | ({ __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'>)
@@ -10643,6 +10662,12 @@ type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } & Pick<
       }
     >
   }
+
+type GQLRowRecentBlogPostFragment = { __typename?: 'RowRecentBlogPost' } & {
+  link?: Maybe<
+    { __typename?: 'LinkInternal' } & Pick<GQLLinkInternal, 'locale'> & GQLLinkInternalFragment
+  >
+}
 
 type GQLCreatePageMutationVariables = {
   page: GQLPageCreateInput

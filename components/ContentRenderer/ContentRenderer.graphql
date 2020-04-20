@@ -8,5 +8,6 @@ fragment ContentRenderer on Page {
     ...RowColumnThree
     ...RowCompanySlider
     ...RowPeopleWithText
+    ...RowRecentBlogPost
   }
 }
