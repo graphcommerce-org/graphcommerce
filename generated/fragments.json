@@ -24,21 +24,6 @@
             "name": "Page"
           },
           {
-            "name": "ZzDeleteList"
-          },
-          {
-            "name": "Company"
-          },
-          {
-            "name": "RowCompanySlider"
-          },
-          {
-            "name": "RowHero"
-          },
-          {
-            "name": "LinkExternal"
-          },
-          {
             "name": "RowColumnThree"
           },
           {
@@ -51,28 +36,7 @@
             "name": "RowColumnOne"
           },
           {
-            "name": "RowServicesWithText"
-          },
-          {
-            "name": "Menu"
-          },
-          {
-            "name": "ZzDeleteBlogList"
-          },
-          {
-            "name": "ContactForm"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "ListItems",
-        "possibleTypes": [
-          {
-            "name": "Page"
-          },
-          {
-            "name": "Person"
+            "name": "RowCompanySlider"
           },
           {
             "name": "Company"
@@ -81,19 +45,16 @@
             "name": "RowHero"
           },
           {
-            "name": "LinkInternal"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "RowHeroVideoLinks",
-        "possibleTypes": [
-          {
             "name": "LinkExternal"
           },
           {
-            "name": "LinkInternal"
+            "name": "RowServicesWithText"
+          },
+          {
+            "name": "Menu"
+          },
+          {
+            "name": "ContactForm"
           }
         ]
       },
@@ -124,6 +85,18 @@
           },
           {
             "name": "RowServicesWithText"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "RowHeroVideoLinks",
+        "possibleTypes": [
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
           }
         ]
       }

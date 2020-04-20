@@ -1,0 +1,6 @@
+query GetAllAssets($skip: Int!) {
+  assets(skip: $skip, stage: DRAFT) {
+    fileName
+    id
+  }
+}

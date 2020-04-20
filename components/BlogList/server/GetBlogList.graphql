@@ -2,7 +2,7 @@ query GetBlogList($url: String!, $locale: Locale!) {
   blogPosts: pages(
     where: { url_starts_with: $url }
     locales: [$locale]
-    orderBy: publishedAt_DESC
+    orderBy: releaseDate_DESC
     first: 100
   ) {
     ...BlogListItem

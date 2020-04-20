@@ -1,0 +1,5 @@
+mutation PublishAsset($id: ID!, $locales: [Locale!]!) {
+  publishAsset(where: { id: $id }, publishBase: true, locales: $locales, to: PUBLISHED) {
+    id
+  }
+}

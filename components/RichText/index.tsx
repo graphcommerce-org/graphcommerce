@@ -4,7 +4,7 @@ import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture from '../FilestackPicture'
 import Link from '../Link'
 
-interface ValueJSON {
+export interface ValueJSON {
   document: DocumentJSON
   object?: 'value'
 }
@@ -75,9 +75,7 @@ interface LinkJSON {
   object: 'inline'
   nodes: NodeJSON[]
   type: 'link'
-  data: {
-    href: string
-  }
+  data: { href: string }
 }
 
 const RenderInline: React.FC<InlineJSON> = (inline) => {
@@ -188,19 +186,17 @@ const RenderNode: React.FC<NodeJSON> = (node) => {
     case 'block':
       return <RenderBlock {...node} />
     case 'document':
-      return <RenderDocument {...node} />
+      return <RenderNodes {...node} />
     case 'inline':
       return <RenderInline {...node} />
     case 'text':
       return <RenderText {...node} />
     default:
       // @ts-ignore
-      throw Error(`RenderDocument object ${node.object} not implemented`)
+      throw Error(`RenderNode object ${node.object} not implemented`)
   }
 }
 
-const RenderDocument: React.FC<DocumentJSON> = (props) => <RenderNodes {...props} />
-
-const RichText: React.FC<{ raw: ValueJSON }> = ({ raw }) => <RenderDocument {...raw.document} />
+const RichText: React.FC<{ raw: ValueJSON }> = ({ raw }) => <RenderNodes {...raw.document} />
 
 export default RichText
