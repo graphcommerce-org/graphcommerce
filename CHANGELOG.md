@@ -1,3 +1,12 @@
+### [5.6.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.2...v5.6.3) (2020-04-20)
+
+
+### Fixes
+
+* **import:** added blog images to pages ([3b95840](https://github.com/ho-nl/project-reachdigital.nl/commit/3b95840a82671886ff9538fc64e4bb245111f77b))
+* **import:** make sure types are valid ([f3d7e2a](https://github.com/ho-nl/project-reachdigital.nl/commit/f3d7e2ae6b7bb37b9cef34d2f016419c0b58e238))
+* **import:** remove asset downloader ([47f564c](https://github.com/ho-nl/project-reachdigital.nl/commit/47f564c08ab77475d10b0e0a9ce5456e89ccf8fd))
+
 ### [5.6.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.1...v5.6.2) (2020-04-17)
 
 
