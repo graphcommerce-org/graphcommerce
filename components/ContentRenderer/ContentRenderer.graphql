@@ -6,7 +6,10 @@ fragment ContentRenderer on Page {
     }
     ...RowHero
     ...RowColumnThree
+    ...RowColumnTwo
+    ...RowColumnOne
     ...RowCompanySlider
     ...RowPeopleWithText
+    ...RowYoutubeVideo
   }
 }

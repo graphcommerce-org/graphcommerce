@@ -1,0 +1,15 @@
+fragment RowColumnTwo on RowColumnTwo {
+  id
+  colOne {
+    ...RichText
+  }
+  colOneIcon {
+    ...Asset
+  }
+  colTwo {
+    ...RichText
+  }
+  colTwoIcon {
+    ...Asset
+  }
+}
