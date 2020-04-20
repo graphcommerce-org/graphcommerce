@@ -1,0 +1,5 @@
+query GetAllRowColumOne($skip: Int!) {
+  rowColumnOnes(first: 1, skip: $skip) {
+    ...RowColumnOne
+  }
+}

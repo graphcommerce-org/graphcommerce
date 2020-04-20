@@ -144,6 +144,38 @@ export const RowColumnThreeFragmentDoc = gql`
   ${RichTextFragmentDoc}
   ${AssetFragmentDoc}
 `
+export const RowColumnTwoFragmentDoc = gql`
+  fragment RowColumnTwo on RowColumnTwo {
+    id
+    colOne {
+      ...RichText
+    }
+    colOneIcon {
+      ...Asset
+    }
+    colTwo {
+      ...RichText
+    }
+    colTwoIcon {
+      ...Asset
+    }
+  }
+  ${RichTextFragmentDoc}
+  ${AssetFragmentDoc}
+`
+export const RowColumnOneFragmentDoc = gql`
+  fragment RowColumnOne on RowColumnOne {
+    id
+    colOne {
+      ...RichText
+    }
+    colOneIcon {
+      ...Asset
+    }
+  }
+  ${RichTextFragmentDoc}
+  ${AssetFragmentDoc}
+`
 export const RowCompanySliderFragmentDoc = gql`
   fragment RowCompanySlider on RowCompanySlider {
     id
@@ -185,6 +217,12 @@ export const RowPeopleWithTextFragmentDoc = gql`
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
 `
+export const RowYoutubeVideoFragmentDoc = gql`
+  fragment RowYoutubeVideo on RowYoutubeVideo {
+    videoId
+    title
+  }
+`
 export const ContentRendererFragmentDoc = gql`
   fragment ContentRenderer on Page {
     content {
@@ -194,14 +232,20 @@ export const ContentRendererFragmentDoc = gql`
       }
       ...RowHero
       ...RowColumnThree
+      ...RowColumnTwo
+      ...RowColumnOne
       ...RowCompanySlider
       ...RowPeopleWithText
+      ...RowYoutubeVideo
     }
   }
   ${RowHeroFragmentDoc}
   ${RowColumnThreeFragmentDoc}
+  ${RowColumnTwoFragmentDoc}
+  ${RowColumnOneFragmentDoc}
   ${RowCompanySliderFragmentDoc}
   ${RowPeopleWithTextFragmentDoc}
+  ${RowYoutubeVideoFragmentDoc}
 `
 export const PageLayoutFragmentDoc = gql`
   fragment PageLayout on Page {
@@ -585,6 +629,59 @@ export type GetPortfolioListQueryResult = ApolloReactCommon.QueryResult<
   GQLGetPortfolioListQuery,
   GQLGetPortfolioListQueryVariables
 >
+export const GetAllRowColumOneDocument = gql`
+  query GetAllRowColumOne($skip: Int!) {
+    rowColumnOnes(first: 1, skip: $skip) {
+      ...RowColumnOne
+    }
+  }
+  ${RowColumnOneFragmentDoc}
+`
+
+/**
+ * __useGetAllRowColumOneQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowColumOneQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowColumOneQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowColumOneQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowColumOneQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowColumOneQuery,
+    GQLGetAllRowColumOneQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetAllRowColumOneQuery, GQLGetAllRowColumOneQueryVariables>(
+    GetAllRowColumOneDocument,
+    baseOptions,
+  )
+}
+export function useGetAllRowColumOneLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowColumOneQuery,
+    GQLGetAllRowColumOneQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowColumOneQuery,
+    GQLGetAllRowColumOneQueryVariables
+  >(GetAllRowColumOneDocument, baseOptions)
+}
+export type GetAllRowColumOneQueryHookResult = ReturnType<typeof useGetAllRowColumOneQuery>
+export type GetAllRowColumOneLazyQueryHookResult = ReturnType<typeof useGetAllRowColumOneLazyQuery>
+export type GetAllRowColumOneQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowColumOneQuery,
+  GQLGetAllRowColumOneQueryVariables
+>
 export const GetAllRowColumThreeDocument = gql`
   query GetAllRowColumThree($skip: Int!) {
     rowColumnThrees(first: 1, skip: $skip) {
@@ -639,6 +736,59 @@ export type GetAllRowColumThreeLazyQueryHookResult = ReturnType<
 export type GetAllRowColumThreeQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowColumThreeQuery,
   GQLGetAllRowColumThreeQueryVariables
+>
+export const GetAllRowColumTwoDocument = gql`
+  query GetAllRowColumTwo($skip: Int!) {
+    rowColumnTwos(first: 1, skip: $skip) {
+      ...RowColumnTwo
+    }
+  }
+  ${RowColumnTwoFragmentDoc}
+`
+
+/**
+ * __useGetAllRowColumTwoQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowColumTwoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowColumTwoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowColumTwoQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowColumTwoQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowColumTwoQuery,
+    GQLGetAllRowColumTwoQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetAllRowColumTwoQuery, GQLGetAllRowColumTwoQueryVariables>(
+    GetAllRowColumTwoDocument,
+    baseOptions,
+  )
+}
+export function useGetAllRowColumTwoLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowColumTwoQuery,
+    GQLGetAllRowColumTwoQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowColumTwoQuery,
+    GQLGetAllRowColumTwoQueryVariables
+  >(GetAllRowColumTwoDocument, baseOptions)
+}
+export type GetAllRowColumTwoQueryHookResult = ReturnType<typeof useGetAllRowColumTwoQuery>
+export type GetAllRowColumTwoLazyQueryHookResult = ReturnType<typeof useGetAllRowColumTwoLazyQuery>
+export type GetAllRowColumTwoQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowColumTwoQuery,
+  GQLGetAllRowColumTwoQueryVariables
 >
 export const GetAllRowCompanySlidersDocument = gql`
   query GetAllRowCompanySliders($skip: Int!) {
@@ -804,6 +954,63 @@ export type GetRowPeopleWithTextsLazyQueryHookResult = ReturnType<
 export type GetRowPeopleWithTextsQueryResult = ApolloReactCommon.QueryResult<
   GQLGetRowPeopleWithTextsQuery,
   GQLGetRowPeopleWithTextsQueryVariables
+>
+export const GetAllRowYoutubeVideosDocument = gql`
+  query GetAllRowYoutubeVideos($skip: Int!) {
+    rowYoutubeVideos(first: 1, skip: $skip) {
+      ...RowYoutubeVideo
+    }
+  }
+  ${RowYoutubeVideoFragmentDoc}
+`
+
+/**
+ * __useGetAllRowYoutubeVideosQuery__
+ *
+ * To run a query within a React component, call `useGetAllRowYoutubeVideosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllRowYoutubeVideosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllRowYoutubeVideosQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllRowYoutubeVideosQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllRowYoutubeVideosQuery,
+    GQLGetAllRowYoutubeVideosQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<
+    GQLGetAllRowYoutubeVideosQuery,
+    GQLGetAllRowYoutubeVideosQueryVariables
+  >(GetAllRowYoutubeVideosDocument, baseOptions)
+}
+export function useGetAllRowYoutubeVideosLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllRowYoutubeVideosQuery,
+    GQLGetAllRowYoutubeVideosQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<
+    GQLGetAllRowYoutubeVideosQuery,
+    GQLGetAllRowYoutubeVideosQueryVariables
+  >(GetAllRowYoutubeVideosDocument, baseOptions)
+}
+export type GetAllRowYoutubeVideosQueryHookResult = ReturnType<
+  typeof useGetAllRowYoutubeVideosQuery
+>
+export type GetAllRowYoutubeVideosLazyQueryHookResult = ReturnType<
+  typeof useGetAllRowYoutubeVideosLazyQuery
+>
+export type GetAllRowYoutubeVideosQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllRowYoutubeVideosQuery,
+  GQLGetAllRowYoutubeVideosQueryVariables
 >
 export const CreatePageDocument = gql`
   mutation CreatePage($page: PageCreateInput!) {

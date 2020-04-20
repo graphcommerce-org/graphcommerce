@@ -24,19 +24,7 @@
             "name": "Page"
           },
           {
-            "name": "ZzDeleteList"
-          },
-          {
-            "name": "Company"
-          },
-          {
-            "name": "RowCompanySlider"
-          },
-          {
-            "name": "RowHero"
-          },
-          {
-            "name": "LinkExternal"
+            "name": "RowServicesWithText"
           },
           {
             "name": "RowColumnThree"
@@ -51,28 +39,7 @@
             "name": "RowColumnOne"
           },
           {
-            "name": "RowServicesWithText"
-          },
-          {
-            "name": "Menu"
-          },
-          {
-            "name": "ZzDeleteBlogList"
-          },
-          {
-            "name": "ContactForm"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "ListItems",
-        "possibleTypes": [
-          {
-            "name": "Page"
-          },
-          {
-            "name": "Person"
+            "name": "RowCompanySlider"
           },
           {
             "name": "Company"
@@ -81,19 +48,16 @@
             "name": "RowHero"
           },
           {
-            "name": "LinkInternal"
-          }
-        ]
-      },
-      {
-        "kind": "UNION",
-        "name": "RowHeroVideoLinks",
-        "possibleTypes": [
-          {
             "name": "LinkExternal"
           },
           {
-            "name": "LinkInternal"
+            "name": "RowYoutubeVideo"
+          },
+          {
+            "name": "Menu"
+          },
+          {
+            "name": "ContactForm"
           }
         ]
       },
@@ -101,6 +65,9 @@
         "kind": "UNION",
         "name": "PageContent",
         "possibleTypes": [
+          {
+            "name": "RowServicesWithText"
+          },
           {
             "name": "RowColumnThree"
           },
@@ -123,7 +90,19 @@
             "name": "RowHero"
           },
           {
-            "name": "RowServicesWithText"
+            "name": "RowYoutubeVideo"
+          }
+        ]
+      },
+      {
+        "kind": "UNION",
+        "name": "RowHeroVideoLinks",
+        "possibleTypes": [
+          {
+            "name": "LinkExternal"
+          },
+          {
+            "name": "LinkInternal"
           }
         ]
       }

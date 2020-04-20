@@ -21,12 +21,12 @@ type Scalars = {
   Long: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  Hex: any
   /** Raw JSON value */
   Json: any
 }
@@ -118,8 +118,6 @@ type GQLAsset = GQLNode & {
   readonly mimeType?: Maybe<Scalars['String']>
   readonly personAvatar: ReadonlyArray<GQLPerson>
   readonly companyLogo: ReadonlyArray<GQLCompany>
-  readonly colOneIconRowColumnTwo: ReadonlyArray<GQLRowColumnTwo>
-  readonly colTwoIconRowColumnTwo: ReadonlyArray<GQLRowColumnTwo>
   readonly rowColumnThreeColOneIcon: ReadonlyArray<GQLRowColumnThree>
   readonly rowColumnThreeColTwoIcon: ReadonlyArray<GQLRowColumnThree>
   readonly rowColumnThreeColThreeIcon: ReadonlyArray<GQLRowColumnThree>
@@ -127,6 +125,8 @@ type GQLAsset = GQLNode & {
   readonly rowHeroAsset: ReadonlyArray<GQLRowHero>
   readonly alt?: Maybe<Scalars['String']>
   readonly pageAsset: ReadonlyArray<GQLPage>
+  readonly rowColumnTwoColOneIcon: ReadonlyArray<GQLRowColumnTwo>
+  readonly rowColumnTwoColTwoIcon: ReadonlyArray<GQLRowColumnTwo>
   /** Get the url for the asset with provided transformations applied. */
   readonly url: Scalars['String']
 }
@@ -159,28 +159,6 @@ type GQLAssetPersonAvatarArgs = {
 type GQLAssetCompanyLogoArgs = {
   where?: Maybe<GQLCompanyWhereInput>
   orderBy?: Maybe<GQLCompanyOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-/** Asset system model */
-type GQLAssetColOneIconRowColumnTwoArgs = {
-  where?: Maybe<GQLRowColumnTwoWhereInput>
-  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-/** Asset system model */
-type GQLAssetColTwoIconRowColumnTwoArgs = {
-  where?: Maybe<GQLRowColumnTwoWhereInput>
-  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -255,6 +233,28 @@ type GQLAssetPageAssetArgs = {
 }
 
 /** Asset system model */
+type GQLAssetRowColumnTwoColOneIconArgs = {
+  where?: Maybe<GQLRowColumnTwoWhereInput>
+  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Asset system model */
+type GQLAssetRowColumnTwoColTwoIconArgs = {
+  where?: Maybe<GQLRowColumnTwoWhereInput>
+  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Asset system model */
 type GQLAssetUrlArgs = {
   transformation?: Maybe<GQLAssetTransformationInput>
 }
@@ -287,8 +287,6 @@ type GQLAssetCreateInput = {
   readonly mimeType?: Maybe<Scalars['String']>
   readonly personAvatar?: Maybe<GQLPersonCreateManyInlineInput>
   readonly companyLogo?: Maybe<GQLCompanyCreateManyInlineInput>
-  readonly colOneIconRowColumnTwo?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
-  readonly colTwoIconRowColumnTwo?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
   readonly rowColumnThreeColOneIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   readonly rowColumnThreeColTwoIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   readonly rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
@@ -297,6 +295,8 @@ type GQLAssetCreateInput = {
   /** alt input for default locale (nl) */
   readonly alt?: Maybe<Scalars['String']>
   readonly pageAsset?: Maybe<GQLPageCreateManyInlineInput>
+  readonly rowColumnTwoColOneIcon?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
+  readonly rowColumnTwoColTwoIcon?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   readonly localizations?: Maybe<GQLAssetCreateLocalizationsInput>
 }
@@ -427,12 +427,6 @@ type GQLAssetManyWhereInput = {
   readonly companyLogo_every?: Maybe<GQLCompanyWhereInput>
   readonly companyLogo_some?: Maybe<GQLCompanyWhereInput>
   readonly companyLogo_none?: Maybe<GQLCompanyWhereInput>
-  readonly colOneIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colOneIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colOneIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colTwoIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colTwoIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colTwoIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
   readonly rowColumnThreeColOneIcon_every?: Maybe<GQLRowColumnThreeWhereInput>
   readonly rowColumnThreeColOneIcon_some?: Maybe<GQLRowColumnThreeWhereInput>
   readonly rowColumnThreeColOneIcon_none?: Maybe<GQLRowColumnThreeWhereInput>
@@ -451,6 +445,12 @@ type GQLAssetManyWhereInput = {
   readonly pageAsset_every?: Maybe<GQLPageWhereInput>
   readonly pageAsset_some?: Maybe<GQLPageWhereInput>
   readonly pageAsset_none?: Maybe<GQLPageWhereInput>
+  readonly rowColumnTwoColOneIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColOneIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColOneIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColTwoIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColTwoIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColTwoIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
 }
 
 type GQLAssetOrderByInput =
@@ -494,8 +494,6 @@ type GQLAssetUpdateInput = {
   readonly mimeType?: Maybe<Scalars['String']>
   readonly personAvatar?: Maybe<GQLPersonUpdateManyInlineInput>
   readonly companyLogo?: Maybe<GQLCompanyUpdateManyInlineInput>
-  readonly colOneIconRowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
-  readonly colTwoIconRowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
   readonly rowColumnThreeColOneIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   readonly rowColumnThreeColTwoIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   readonly rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
@@ -504,6 +502,8 @@ type GQLAssetUpdateInput = {
   /** alt input for default locale (nl) */
   readonly alt?: Maybe<Scalars['String']>
   readonly pageAsset?: Maybe<GQLPageUpdateManyInlineInput>
+  readonly rowColumnTwoColOneIcon?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
+  readonly rowColumnTwoColTwoIcon?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
   /** Manage document localizations */
   readonly localizations?: Maybe<GQLAssetUpdateLocalizationsInput>
 }
@@ -797,12 +797,6 @@ type GQLAssetWhereInput = {
   readonly companyLogo_every?: Maybe<GQLCompanyWhereInput>
   readonly companyLogo_some?: Maybe<GQLCompanyWhereInput>
   readonly companyLogo_none?: Maybe<GQLCompanyWhereInput>
-  readonly colOneIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colOneIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colOneIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colTwoIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colTwoIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  readonly colTwoIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
   readonly rowColumnThreeColOneIcon_every?: Maybe<GQLRowColumnThreeWhereInput>
   readonly rowColumnThreeColOneIcon_some?: Maybe<GQLRowColumnThreeWhereInput>
   readonly rowColumnThreeColOneIcon_none?: Maybe<GQLRowColumnThreeWhereInput>
@@ -840,6 +834,12 @@ type GQLAssetWhereInput = {
   readonly pageAsset_every?: Maybe<GQLPageWhereInput>
   readonly pageAsset_some?: Maybe<GQLPageWhereInput>
   readonly pageAsset_none?: Maybe<GQLPageWhereInput>
+  readonly rowColumnTwoColOneIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColOneIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColOneIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColTwoIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColTwoIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  readonly rowColumnTwoColTwoIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
 }
 
 /** References Asset record uniquely */
@@ -882,7 +882,6 @@ type GQLCompany = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   readonly publishedAt?: Maybe<Scalars['DateTime']>
   readonly name: Scalars['String']
-  readonly list: ReadonlyArray<GQLZzDeleteList>
   readonly logo: GQLAsset
   readonly rowCompanySlider: ReadonlyArray<GQLRowCompanySlider>
 }
@@ -891,14 +890,6 @@ type GQLCompanyDocumentInStagesArgs = {
   stages?: ReadonlyArray<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
-}
-
-type GQLCompanyListArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
 }
 
 type GQLCompanyRowCompanySliderArgs = {
@@ -932,7 +923,6 @@ type GQLCompanyCreateInput = {
   readonly createdAt?: Maybe<Scalars['DateTime']>
   readonly updatedAt?: Maybe<Scalars['DateTime']>
   readonly name: Scalars['String']
-  readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
   readonly logo: GQLAssetCreateOneInlineInput
   readonly rowCompanySlider?: Maybe<GQLRowCompanySliderCreateManyInlineInput>
 }
@@ -1073,7 +1063,6 @@ type GQLCompanyOrderByInput =
 
 type GQLCompanyUpdateInput = {
   readonly name?: Maybe<Scalars['String']>
-  readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   readonly logo?: Maybe<GQLAssetUpdateOneInlineInput>
   readonly rowCompanySlider?: Maybe<GQLRowCompanySliderUpdateManyInlineInput>
 }
@@ -2253,7 +2242,6 @@ type GQLLinkInternal = GQLNode & {
   readonly publishedAt?: Maybe<Scalars['DateTime']>
   readonly title: Scalars['String']
   readonly page?: Maybe<GQLPage>
-  readonly list: ReadonlyArray<GQLZzDeleteList>
   readonly description?: Maybe<GQLRichText>
   readonly rowPeopleWithText: ReadonlyArray<GQLRowPeopleWithText>
   readonly rowServicesWithText: ReadonlyArray<GQLRowServicesWithText>
@@ -2269,14 +2257,6 @@ type GQLLinkInternalDocumentInStagesArgs = {
   stages?: ReadonlyArray<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
-}
-
-type GQLLinkInternalListArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
 }
 
 type GQLLinkInternalRowPeopleWithTextArgs = {
@@ -2330,7 +2310,6 @@ type GQLLinkInternalCreateInput = {
   /** title input for default locale (nl) */
   readonly title: Scalars['String']
   readonly page?: Maybe<GQLPageCreateOneInlineInput>
-  readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
   readonly description?: Maybe<Scalars['RichTextAST']>
   readonly rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
   readonly rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
@@ -2478,7 +2457,6 @@ type GQLLinkInternalUpdateInput = {
   /** title input for default locale (nl) */
   readonly title?: Maybe<Scalars['String']>
   readonly page?: Maybe<GQLPageUpdateOneInlineInput>
-  readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   readonly description?: Maybe<Scalars['RichTextAST']>
   readonly rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   readonly rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
@@ -2689,118 +2667,6 @@ type GQLLinkInternalWhereInput = {
 /** References LinkInternal record uniquely */
 type GQLLinkInternalWhereUniqueInput = {
   readonly id?: Maybe<Scalars['ID']>
-}
-
-type GQLListItems = GQLPage | GQLPerson | GQLCompany | GQLRowHero | GQLLinkInternal
-
-type GQLListItemsConnectInput = {
-  readonly Page?: Maybe<GQLPageConnectInput>
-  readonly Person?: Maybe<GQLPersonConnectInput>
-  readonly Company?: Maybe<GQLCompanyConnectInput>
-  readonly RowHero?: Maybe<GQLRowHeroConnectInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalConnectInput>
-}
-
-type GQLListItemsCreateInput = {
-  readonly Page?: Maybe<GQLPageCreateInput>
-  readonly Person?: Maybe<GQLPersonCreateInput>
-  readonly Company?: Maybe<GQLCompanyCreateInput>
-  readonly RowHero?: Maybe<GQLRowHeroCreateInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalCreateInput>
-}
-
-type GQLListItemsCreateManyInlineInput = {
-  /** Create and connect multiple existing ListItems documents */
-  readonly create?: Maybe<ReadonlyArray<GQLListItemsCreateInput>>
-  /** Connect multiple existing ListItems documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLListItemsWhereUniqueInput>>
-}
-
-type GQLListItemsCreateOneInlineInput = {
-  /** Create and connect one ListItems document */
-  readonly create?: Maybe<GQLListItemsCreateInput>
-  /** Connect one existing ListItems document */
-  readonly connect?: Maybe<GQLListItemsWhereUniqueInput>
-}
-
-type GQLListItemsUpdateInput = {
-  readonly Page?: Maybe<GQLPageUpdateInput>
-  readonly Person?: Maybe<GQLPersonUpdateInput>
-  readonly Company?: Maybe<GQLCompanyUpdateInput>
-  readonly RowHero?: Maybe<GQLRowHeroUpdateInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalUpdateInput>
-}
-
-type GQLListItemsUpdateManyInlineInput = {
-  /** Create and connect multiple ListItems documents */
-  readonly create?: Maybe<ReadonlyArray<GQLListItemsCreateInput>>
-  /** Connect multiple existing ListItems documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLListItemsConnectInput>>
-  /** Override currently-connected documents with multiple existing ListItems documents */
-  readonly set?: Maybe<ReadonlyArray<GQLListItemsWhereUniqueInput>>
-  /** Update multiple ListItems documents */
-  readonly update?: Maybe<ReadonlyArray<GQLListItemsUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple ListItems documents */
-  readonly upsert?: Maybe<ReadonlyArray<GQLListItemsUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple ListItems documents */
-  readonly disconnect?: Maybe<ReadonlyArray<GQLListItemsWhereUniqueInput>>
-  /** Delete multiple ListItems documents */
-  readonly delete?: Maybe<ReadonlyArray<GQLListItemsWhereUniqueInput>>
-}
-
-type GQLListItemsUpdateManyWithNestedWhereInput = {
-  readonly Page?: Maybe<GQLPageUpdateManyWithNestedWhereInput>
-  readonly Person?: Maybe<GQLPersonUpdateManyWithNestedWhereInput>
-  readonly Company?: Maybe<GQLCompanyUpdateManyWithNestedWhereInput>
-  readonly RowHero?: Maybe<GQLRowHeroUpdateManyWithNestedWhereInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalUpdateManyWithNestedWhereInput>
-}
-
-type GQLListItemsUpdateOneInlineInput = {
-  /** Create and connect one ListItems document */
-  readonly create?: Maybe<GQLListItemsCreateInput>
-  /** Update single ListItems document */
-  readonly update?: Maybe<GQLListItemsUpdateWithNestedWhereUniqueInput>
-  /** Upsert single ListItems document */
-  readonly upsert?: Maybe<GQLListItemsUpsertWithNestedWhereUniqueInput>
-  /** Connect existing ListItems document */
-  readonly connect?: Maybe<GQLListItemsWhereUniqueInput>
-  /** Disconnect currently connected ListItems document */
-  readonly disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected ListItems document */
-  readonly delete?: Maybe<Scalars['Boolean']>
-}
-
-type GQLListItemsUpdateWithNestedWhereUniqueInput = {
-  readonly Page?: Maybe<GQLPageUpdateWithNestedWhereUniqueInput>
-  readonly Person?: Maybe<GQLPersonUpdateWithNestedWhereUniqueInput>
-  readonly Company?: Maybe<GQLCompanyUpdateWithNestedWhereUniqueInput>
-  readonly RowHero?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalUpdateWithNestedWhereUniqueInput>
-}
-
-type GQLListItemsUpsertWithNestedWhereUniqueInput = {
-  readonly Page?: Maybe<GQLPageUpsertWithNestedWhereUniqueInput>
-  readonly Person?: Maybe<GQLPersonUpsertWithNestedWhereUniqueInput>
-  readonly Company?: Maybe<GQLCompanyUpsertWithNestedWhereUniqueInput>
-  readonly RowHero?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalUpsertWithNestedWhereUniqueInput>
-}
-
-type GQLListItemsWhereInput = {
-  readonly Page?: Maybe<GQLPageWhereInput>
-  readonly Person?: Maybe<GQLPersonWhereInput>
-  readonly Company?: Maybe<GQLCompanyWhereInput>
-  readonly RowHero?: Maybe<GQLRowHeroWhereInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalWhereInput>
-}
-
-type GQLListItemsWhereUniqueInput = {
-  readonly Page?: Maybe<GQLPageWhereUniqueInput>
-  readonly Person?: Maybe<GQLPersonWhereUniqueInput>
-  readonly Company?: Maybe<GQLCompanyWhereUniqueInput>
-  readonly RowHero?: Maybe<GQLRowHeroWhereUniqueInput>
-  readonly LinkInternal?: Maybe<GQLLinkInternalWhereUniqueInput>
 }
 
 /** Locale system enumeration */
@@ -3607,54 +3473,30 @@ type GQLMutation = {
   readonly publishManyRowServicesWithTexts: GQLBatchPayload
   /** Unpublish many RowServicesWithText documents */
   readonly unpublishManyRowServicesWithTexts: GQLBatchPayload
-  /** Create one zzDeleteBlogList */
-  readonly createZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
-  /** Update one zzDeleteBlogList */
-  readonly updateZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
-  /** Delete one zzDeleteBlogList from _all_ existing stages. Returns deleted document. */
-  readonly deleteZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
-  /** Upsert one zzDeleteBlogList */
-  readonly upsertZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
-  /** Publish one zzDeleteBlogList */
-  readonly publishZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
+  /** Create one rowYoutubeVideo */
+  readonly createRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Update one rowYoutubeVideo */
+  readonly updateRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Delete one rowYoutubeVideo from _all_ existing stages. Returns deleted document. */
+  readonly deleteRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Upsert one rowYoutubeVideo */
+  readonly upsertRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Publish one rowYoutubeVideo */
+  readonly publishRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
   /**
-   * Unpublish one zzDeleteBlogList from selected stages. Unpublish either the
+   * Unpublish one rowYoutubeVideo from selected stages. Unpublish either the
    * complete document with its relations, localizations and base data or specific
    * localizations only.
    */
-  readonly unpublishZzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
-  /** Update many zzDeleteBlogLists */
-  readonly updateManyZzDeleteBlogLists: GQLBatchPayload
-  /** Delete many ZzDeleteBlogList documents */
-  readonly deleteManyZzDeleteBlogLists: GQLBatchPayload
-  /** Publish many ZzDeleteBlogList documents */
-  readonly publishManyZzDeleteBlogLists: GQLBatchPayload
-  /** Unpublish many ZzDeleteBlogList documents */
-  readonly unpublishManyZzDeleteBlogLists: GQLBatchPayload
-  /** Create one zzDeleteList */
-  readonly createZzDeleteList?: Maybe<GQLZzDeleteList>
-  /** Update one zzDeleteList */
-  readonly updateZzDeleteList?: Maybe<GQLZzDeleteList>
-  /** Delete one zzDeleteList from _all_ existing stages. Returns deleted document. */
-  readonly deleteZzDeleteList?: Maybe<GQLZzDeleteList>
-  /** Upsert one zzDeleteList */
-  readonly upsertZzDeleteList?: Maybe<GQLZzDeleteList>
-  /** Publish one zzDeleteList */
-  readonly publishZzDeleteList?: Maybe<GQLZzDeleteList>
-  /**
-   * Unpublish one zzDeleteList from selected stages. Unpublish either the complete
-   * document with its relations, localizations and base data or specific
-   * localizations only.
-   */
-  readonly unpublishZzDeleteList?: Maybe<GQLZzDeleteList>
-  /** Update many zzDeleteLists */
-  readonly updateManyZzDeleteLists: GQLBatchPayload
-  /** Delete many ZzDeleteList documents */
-  readonly deleteManyZzDeleteLists: GQLBatchPayload
-  /** Publish many ZzDeleteList documents */
-  readonly publishManyZzDeleteLists: GQLBatchPayload
-  /** Unpublish many ZzDeleteList documents */
-  readonly unpublishManyZzDeleteLists: GQLBatchPayload
+  readonly unpublishRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Update many rowYoutubeVideos */
+  readonly updateManyRowYoutubeVideos: GQLBatchPayload
+  /** Delete many RowYoutubeVideo documents */
+  readonly deleteManyRowYoutubeVideos: GQLBatchPayload
+  /** Publish many RowYoutubeVideo documents */
+  readonly publishManyRowYoutubeVideos: GQLBatchPayload
+  /** Unpublish many RowYoutubeVideo documents */
+  readonly unpublishManyRowYoutubeVideos: GQLBatchPayload
 }
 
 type GQLMutationCreateAssetArgs = {
@@ -4520,98 +4362,59 @@ type GQLMutationUnpublishManyRowServicesWithTextsArgs = {
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
 
-type GQLMutationCreateZzDeleteBlogListArgs = {
-  data: GQLZzDeleteBlogListCreateInput
+type GQLMutationCreateRowYoutubeVideoArgs = {
+  data: GQLRowYoutubeVideoCreateInput
 }
 
-type GQLMutationUpdateZzDeleteBlogListArgs = {
-  where: GQLZzDeleteBlogListWhereUniqueInput
-  data: GQLZzDeleteBlogListUpdateInput
+type GQLMutationUpdateRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  data: GQLRowYoutubeVideoUpdateInput
 }
 
-type GQLMutationDeleteZzDeleteBlogListArgs = {
-  where: GQLZzDeleteBlogListWhereUniqueInput
+type GQLMutationDeleteRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
 }
 
-type GQLMutationUpsertZzDeleteBlogListArgs = {
-  where: GQLZzDeleteBlogListWhereUniqueInput
-  upsert: GQLZzDeleteBlogListUpsertInput
+type GQLMutationUpsertRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  upsert: GQLRowYoutubeVideoUpsertInput
 }
 
-type GQLMutationPublishZzDeleteBlogListArgs = {
-  where: GQLZzDeleteBlogListWhereUniqueInput
+type GQLMutationPublishRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  locales?: Maybe<ReadonlyArray<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
   to?: ReadonlyArray<GQLStage>
 }
 
-type GQLMutationUnpublishZzDeleteBlogListArgs = {
-  where: GQLZzDeleteBlogListWhereUniqueInput
+type GQLMutationUnpublishRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
   from?: ReadonlyArray<GQLStage>
+  locales?: Maybe<ReadonlyArray<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
 }
 
-type GQLMutationUpdateManyZzDeleteBlogListsArgs = {
-  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
-  data: GQLZzDeleteBlogListUpdateManyInput
+type GQLMutationUpdateManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
+  data: GQLRowYoutubeVideoUpdateManyInput
 }
 
-type GQLMutationDeleteManyZzDeleteBlogListsArgs = {
-  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+type GQLMutationDeleteManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
 }
 
-type GQLMutationPublishManyZzDeleteBlogListsArgs = {
-  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+type GQLMutationPublishManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
   to?: ReadonlyArray<GQLStage>
+  locales?: Maybe<ReadonlyArray<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
 }
 
-type GQLMutationUnpublishManyZzDeleteBlogListsArgs = {
-  where?: Maybe<GQLZzDeleteBlogListManyWhereInput>
+type GQLMutationUnpublishManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
   from?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationCreateZzDeleteListArgs = {
-  data: GQLZzDeleteListCreateInput
-}
-
-type GQLMutationUpdateZzDeleteListArgs = {
-  where: GQLZzDeleteListWhereUniqueInput
-  data: GQLZzDeleteListUpdateInput
-}
-
-type GQLMutationDeleteZzDeleteListArgs = {
-  where: GQLZzDeleteListWhereUniqueInput
-}
-
-type GQLMutationUpsertZzDeleteListArgs = {
-  where: GQLZzDeleteListWhereUniqueInput
-  upsert: GQLZzDeleteListUpsertInput
-}
-
-type GQLMutationPublishZzDeleteListArgs = {
-  where: GQLZzDeleteListWhereUniqueInput
-  to?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationUnpublishZzDeleteListArgs = {
-  where: GQLZzDeleteListWhereUniqueInput
-  from?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationUpdateManyZzDeleteListsArgs = {
-  where?: Maybe<GQLZzDeleteListManyWhereInput>
-  data: GQLZzDeleteListUpdateManyInput
-}
-
-type GQLMutationDeleteManyZzDeleteListsArgs = {
-  where?: Maybe<GQLZzDeleteListManyWhereInput>
-}
-
-type GQLMutationPublishManyZzDeleteListsArgs = {
-  where?: Maybe<GQLZzDeleteListManyWhereInput>
-  to?: ReadonlyArray<GQLStage>
-}
-
-type GQLMutationUnpublishManyZzDeleteListsArgs = {
-  where?: Maybe<GQLZzDeleteListManyWhereInput>
-  from?: ReadonlyArray<GQLStage>
+  locales?: Maybe<ReadonlyArray<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
 }
 
 /** An object with an ID */
@@ -4646,12 +4449,12 @@ type GQLPage = GQLNode & {
   readonly metaTitle: Scalars['String']
   readonly metaDescription: Scalars['String']
   readonly metaRobots?: Maybe<GQLMetaRobots>
-  readonly list: ReadonlyArray<GQLZzDeleteList>
+  /** Content */
   readonly content: ReadonlyArray<GQLPageContent>
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
   readonly asset?: Maybe<GQLAsset>
   readonly internalLink: ReadonlyArray<GQLLinkInternal>
   readonly menu: ReadonlyArray<GQLMenu>
-  readonly blogList?: Maybe<GQLZzDeleteBlogList>
 }
 
 type GQLPageLocalizationsArgs = {
@@ -4663,14 +4466,6 @@ type GQLPageDocumentInStagesArgs = {
   stages?: ReadonlyArray<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
-}
-
-type GQLPageListArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
 }
 
 type GQLPageContentArgs = {
@@ -4719,6 +4514,7 @@ type GQLPageConnection = {
 }
 
 type GQLPageContent =
+  | GQLRowServicesWithText
   | GQLRowColumnThree
   | GQLRowColumnTwo
   | GQLRowRecentBlogPost
@@ -4726,9 +4522,10 @@ type GQLPageContent =
   | GQLRowColumnOne
   | GQLRowCompanySlider
   | GQLRowHero
-  | GQLRowServicesWithText
+  | GQLRowYoutubeVideo
 
 type GQLPageContentConnectInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextConnectInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeConnectInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoConnectInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostConnectInput>
@@ -4736,10 +4533,11 @@ type GQLPageContentConnectInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneConnectInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderConnectInput>
   readonly RowHero?: Maybe<GQLRowHeroConnectInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextConnectInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoConnectInput>
 }
 
 type GQLPageContentCreateInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeCreateInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoCreateInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateInput>
@@ -4747,7 +4545,7 @@ type GQLPageContentCreateInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneCreateInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderCreateInput>
   readonly RowHero?: Maybe<GQLRowHeroCreateInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoCreateInput>
 }
 
 type GQLPageContentCreateManyInlineInput = {
@@ -4765,6 +4563,7 @@ type GQLPageContentCreateOneInlineInput = {
 }
 
 type GQLPageContentUpdateInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateInput>
@@ -4772,7 +4571,7 @@ type GQLPageContentUpdateInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateInput>
   readonly RowHero?: Maybe<GQLRowHeroUpdateInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpdateInput>
 }
 
 type GQLPageContentUpdateManyInlineInput = {
@@ -4793,6 +4592,7 @@ type GQLPageContentUpdateManyInlineInput = {
 }
 
 type GQLPageContentUpdateManyWithNestedWhereInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateManyWithNestedWhereInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyWithNestedWhereInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyWithNestedWhereInput>
@@ -4800,7 +4600,7 @@ type GQLPageContentUpdateManyWithNestedWhereInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateManyWithNestedWhereInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateManyWithNestedWhereInput>
   readonly RowHero?: Maybe<GQLRowHeroUpdateManyWithNestedWhereInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpdateManyWithNestedWhereInput>
 }
 
 type GQLPageContentUpdateOneInlineInput = {
@@ -4819,6 +4619,7 @@ type GQLPageContentUpdateOneInlineInput = {
 }
 
 type GQLPageContentUpdateWithNestedWhereUniqueInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpdateWithNestedWhereUniqueInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateWithNestedWhereUniqueInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>
@@ -4826,10 +4627,11 @@ type GQLPageContentUpdateWithNestedWhereUniqueInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneUpdateWithNestedWhereUniqueInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateWithNestedWhereUniqueInput>
   readonly RowHero?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput>
 }
 
 type GQLPageContentUpsertWithNestedWhereUniqueInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeUpsertWithNestedWhereUniqueInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoUpsertWithNestedWhereUniqueInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>
@@ -4837,10 +4639,11 @@ type GQLPageContentUpsertWithNestedWhereUniqueInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneUpsertWithNestedWhereUniqueInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderUpsertWithNestedWhereUniqueInput>
   readonly RowHero?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput>
 }
 
 type GQLPageContentWhereInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeWhereInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoWhereInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
@@ -4848,10 +4651,11 @@ type GQLPageContentWhereInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneWhereInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderWhereInput>
   readonly RowHero?: Maybe<GQLRowHeroWhereInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoWhereInput>
 }
 
 type GQLPageContentWhereUniqueInput = {
+  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
   readonly RowColumnThree?: Maybe<GQLRowColumnThreeWhereUniqueInput>
   readonly RowColumnTwo?: Maybe<GQLRowColumnTwoWhereUniqueInput>
   readonly RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
@@ -4859,7 +4663,7 @@ type GQLPageContentWhereUniqueInput = {
   readonly RowColumnOne?: Maybe<GQLRowColumnOneWhereUniqueInput>
   readonly RowCompanySlider?: Maybe<GQLRowCompanySliderWhereUniqueInput>
   readonly RowHero?: Maybe<GQLRowHeroWhereUniqueInput>
-  readonly RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
+  readonly RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoWhereUniqueInput>
 }
 
 type GQLPageCreateInput = {
@@ -4874,12 +4678,12 @@ type GQLPageCreateInput = {
   /** metaDescription input for default locale (nl) */
   readonly metaDescription: Scalars['String']
   readonly metaRobots?: Maybe<GQLMetaRobots>
-  readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
   readonly content?: Maybe<GQLPageContentCreateManyInlineInput>
+  /** releaseDate input for default locale (nl) */
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
   readonly asset?: Maybe<GQLAssetCreateOneInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalCreateManyInlineInput>
   readonly menu?: Maybe<GQLMenuCreateManyInlineInput>
-  readonly blogList?: Maybe<GQLZzDeleteBlogListCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   readonly localizations?: Maybe<GQLPageCreateLocalizationsInput>
 }
@@ -4891,6 +4695,7 @@ type GQLPageCreateLocalizationDataInput = {
   readonly title: Scalars['String']
   readonly metaTitle: Scalars['String']
   readonly metaDescription: Scalars['String']
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
 }
 
 type GQLPageCreateLocalizationInput = {
@@ -5028,7 +4833,6 @@ type GQLPageManyWhereInput = {
   readonly menu_every?: Maybe<GQLMenuWhereInput>
   readonly menu_some?: Maybe<GQLMenuWhereInput>
   readonly menu_none?: Maybe<GQLMenuWhereInput>
-  readonly blogList?: Maybe<GQLZzDeleteBlogListWhereInput>
 }
 
 type GQLPageOrderByInput =
@@ -5050,6 +4854,8 @@ type GQLPageOrderByInput =
   | 'metaDescription_DESC'
   | 'metaRobots_ASC'
   | 'metaRobots_DESC'
+  | 'releaseDate_ASC'
+  | 'releaseDate_DESC'
 
 type GQLPageUpdateInput = {
   /** url input for default locale (nl) */
@@ -5061,12 +4867,12 @@ type GQLPageUpdateInput = {
   /** metaDescription input for default locale (nl) */
   readonly metaDescription?: Maybe<Scalars['String']>
   readonly metaRobots?: Maybe<GQLMetaRobots>
-  readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   readonly content?: Maybe<GQLPageContentUpdateManyInlineInput>
+  /** releaseDate input for default locale (nl) */
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
   readonly asset?: Maybe<GQLAssetUpdateOneInlineInput>
   readonly internalLink?: Maybe<GQLLinkInternalUpdateManyInlineInput>
   readonly menu?: Maybe<GQLMenuUpdateManyInlineInput>
-  readonly blogList?: Maybe<GQLZzDeleteBlogListUpdateOneInlineInput>
   /** Manage document localizations */
   readonly localizations?: Maybe<GQLPageUpdateLocalizationsInput>
 }
@@ -5076,6 +4882,7 @@ type GQLPageUpdateLocalizationDataInput = {
   readonly title: Scalars['String']
   readonly metaTitle: Scalars['String']
   readonly metaDescription: Scalars['String']
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
 }
 
 type GQLPageUpdateLocalizationInput = {
@@ -5122,6 +4929,7 @@ type GQLPageUpdateManyLocalizationInput = {
   readonly title: Scalars['String']
   readonly metaTitle: Scalars['String']
   readonly metaDescription: Scalars['String']
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
 }
 
 type GQLPageUpdateManyWithNestedWhereInput = {
@@ -5330,6 +5138,21 @@ type GQLPageWhereInput = {
   readonly metaRobots_in?: Maybe<ReadonlyArray<GQLMetaRobots>>
   /** All values that are not contained in given list. */
   readonly metaRobots_not_in?: Maybe<ReadonlyArray<GQLMetaRobots>>
+  readonly releaseDate?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly releaseDate_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly releaseDate_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly releaseDate_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly releaseDate_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly releaseDate_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly releaseDate_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly releaseDate_gte?: Maybe<Scalars['DateTime']>
   readonly asset?: Maybe<GQLAssetWhereInput>
   readonly internalLink_every?: Maybe<GQLLinkInternalWhereInput>
   readonly internalLink_some?: Maybe<GQLLinkInternalWhereInput>
@@ -5337,7 +5160,6 @@ type GQLPageWhereInput = {
   readonly menu_every?: Maybe<GQLMenuWhereInput>
   readonly menu_some?: Maybe<GQLMenuWhereInput>
   readonly menu_none?: Maybe<GQLMenuWhereInput>
-  readonly blogList?: Maybe<GQLZzDeleteBlogListWhereInput>
 }
 
 /** References Page record uniquely */
@@ -5362,7 +5184,6 @@ type GQLPerson = GQLNode & {
   readonly avatar: GQLAsset
   readonly name: Scalars['String']
   readonly personList: ReadonlyArray<GQLPersonList>
-  readonly list: ReadonlyArray<GQLZzDeleteList>
 }
 
 type GQLPersonDocumentInStagesArgs = {
@@ -5374,14 +5195,6 @@ type GQLPersonDocumentInStagesArgs = {
 type GQLPersonPersonListArgs = {
   where?: Maybe<GQLPersonListWhereInput>
   orderBy?: Maybe<GQLPersonListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLPersonListArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -5412,7 +5225,6 @@ type GQLPersonCreateInput = {
   readonly avatar: GQLAssetCreateOneInlineInput
   readonly name: Scalars['String']
   readonly personList?: Maybe<GQLPersonListCreateManyInlineInput>
-  readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
 }
 
 type GQLPersonCreateManyInlineInput = {
@@ -5937,7 +5749,6 @@ type GQLPersonUpdateInput = {
   readonly avatar?: Maybe<GQLAssetUpdateOneInlineInput>
   readonly name?: Maybe<Scalars['String']>
   readonly personList?: Maybe<GQLPersonListUpdateManyInlineInput>
-  readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
 }
 
 type GQLPersonUpdateManyInlineInput = {
@@ -6223,18 +6034,12 @@ type GQLQuery = {
   readonly rowServicesWithText?: Maybe<GQLRowServicesWithText>
   /** Retrieve multiple rowServicesWithTexts using the Relay connection interface */
   readonly rowServicesWithTextsConnection: GQLRowServicesWithTextConnection
-  /** Retrieve multiple zzDeleteBlogLists */
-  readonly zzDeleteBlogLists: ReadonlyArray<GQLZzDeleteBlogList>
-  /** Retrieve a single zzDeleteBlogList */
-  readonly zzDeleteBlogList?: Maybe<GQLZzDeleteBlogList>
-  /** Retrieve multiple zzDeleteBlogLists using the Relay connection interface */
-  readonly zzDeleteBlogListsConnection: GQLZzDeleteBlogListConnection
-  /** Retrieve multiple zzDeleteLists */
-  readonly zzDeleteLists: ReadonlyArray<GQLZzDeleteList>
-  /** Retrieve a single zzDeleteList */
-  readonly zzDeleteList?: Maybe<GQLZzDeleteList>
-  /** Retrieve multiple zzDeleteLists using the Relay connection interface */
-  readonly zzDeleteListsConnection: GQLZzDeleteListConnection
+  /** Retrieve multiple rowYoutubeVideos */
+  readonly rowYoutubeVideos: ReadonlyArray<GQLRowYoutubeVideo>
+  /** Retrieve a single rowYoutubeVideo */
+  readonly rowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Retrieve multiple rowYoutubeVideos using the Relay connection interface */
+  readonly rowYoutubeVideosConnection: GQLRowYoutubeVideoConnection
 }
 
 type GQLQueryNodeArgs = {
@@ -6726,58 +6531,34 @@ type GQLQueryRowServicesWithTextsConnectionArgs = {
   locales?: ReadonlyArray<GQLLocale>
 }
 
-type GQLQueryZzDeleteBlogListsArgs = {
-  where?: Maybe<GQLZzDeleteBlogListWhereInput>
-  orderBy?: Maybe<GQLZzDeleteBlogListOrderByInput>
+type GQLQueryRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoWhereInput>
+  orderBy?: Maybe<GQLRowYoutubeVideoOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
   first?: Maybe<Scalars['Int']>
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
+  locales?: ReadonlyArray<GQLLocale>
 }
 
-type GQLQueryZzDeleteBlogListArgs = {
-  where: GQLZzDeleteBlogListWhereUniqueInput
+type GQLQueryRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
   stage?: GQLStage
+  locales?: ReadonlyArray<GQLLocale>
 }
 
-type GQLQueryZzDeleteBlogListsConnectionArgs = {
-  where?: Maybe<GQLZzDeleteBlogListWhereInput>
-  orderBy?: Maybe<GQLZzDeleteBlogListOrderByInput>
+type GQLQueryRowYoutubeVideosConnectionArgs = {
+  where?: Maybe<GQLRowYoutubeVideoWhereInput>
+  orderBy?: Maybe<GQLRowYoutubeVideoOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
   first?: Maybe<Scalars['Int']>
   last?: Maybe<Scalars['Int']>
   stage?: GQLStage
-}
-
-type GQLQueryZzDeleteListsArgs = {
-  where?: Maybe<GQLZzDeleteListWhereInput>
-  orderBy?: Maybe<GQLZzDeleteListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: GQLStage
-}
-
-type GQLQueryZzDeleteListArgs = {
-  where: GQLZzDeleteListWhereUniqueInput
-  stage?: GQLStage
-}
-
-type GQLQueryZzDeleteListsConnectionArgs = {
-  where?: Maybe<GQLZzDeleteListWhereInput>
-  orderBy?: Maybe<GQLZzDeleteListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: GQLStage
+  locales?: ReadonlyArray<GQLLocale>
 }
 
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
@@ -6826,7 +6607,7 @@ type GQLRowColumnOne = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   readonly publishedAt?: Maybe<Scalars['DateTime']>
   readonly identity: Scalars['String']
-  readonly colOne?: Maybe<GQLRichText>
+  readonly colOne: GQLRichText
   readonly colOneIcon?: Maybe<GQLAsset>
   readonly page: ReadonlyArray<GQLPage>
 }
@@ -6868,7 +6649,7 @@ type GQLRowColumnOneCreateInput = {
   readonly createdAt?: Maybe<Scalars['DateTime']>
   readonly updatedAt?: Maybe<Scalars['DateTime']>
   readonly identity: Scalars['String']
-  readonly colOne?: Maybe<Scalars['RichTextAST']>
+  readonly colOne: Scalars['RichTextAST']
   readonly colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
   readonly page?: Maybe<GQLPageCreateManyInlineInput>
 }
@@ -7031,7 +6812,7 @@ type GQLRowColumnOneUpdateManyInlineInput = {
 type GQLRowColumnOneUpdateManyInput = {
   readonly createdAt?: Maybe<Scalars['DateTime']>
   readonly updatedAt?: Maybe<Scalars['DateTime']>
-  readonly colOne?: Maybe<Scalars['RichTextAST']>
+  readonly colOne: Scalars['RichTextAST']
 }
 
 type GQLRowColumnOneUpdateManyWithNestedWhereInput = {
@@ -7653,9 +7434,9 @@ type GQLRowColumnTwo = GQLNode & {
   readonly publishedAt?: Maybe<Scalars['DateTime']>
   readonly identity: Scalars['String']
   readonly colOne: GQLRichText
-  readonly colOneIcon: GQLAsset
+  readonly colOneIcon?: Maybe<GQLAsset>
   readonly colTwo: GQLRichText
-  readonly colTwoIcon: GQLAsset
+  readonly colTwoIcon?: Maybe<GQLAsset>
   readonly page: ReadonlyArray<GQLPage>
 }
 
@@ -7701,10 +7482,10 @@ type GQLRowColumnTwoCreateInput = {
   readonly identity: Scalars['String']
   /** colOne input for default locale (nl) */
   readonly colOne: Scalars['RichTextAST']
-  readonly colOneIcon: GQLAssetCreateOneInlineInput
+  readonly colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
   /** colTwo input for default locale (nl) */
   readonly colTwo: Scalars['RichTextAST']
-  readonly colTwoIcon: GQLAssetCreateOneInlineInput
+  readonly colTwoIcon?: Maybe<GQLAssetCreateOneInlineInput>
   readonly page?: Maybe<GQLPageCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   readonly localizations?: Maybe<GQLRowColumnTwoCreateLocalizationsInput>
@@ -8468,7 +8249,6 @@ type GQLRowHero = GQLNode & {
   readonly asset: GQLAsset
   readonly text: GQLRichText
   readonly links: ReadonlyArray<GQLRowHeroVideoLinks>
-  readonly list: ReadonlyArray<GQLZzDeleteList>
   readonly page: ReadonlyArray<GQLPage>
 }
 
@@ -8479,14 +8259,6 @@ type GQLRowHeroDocumentInStagesArgs = {
 }
 
 type GQLRowHeroLinksArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLRowHeroListArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -8526,7 +8298,6 @@ type GQLRowHeroCreateInput = {
   readonly asset: GQLAssetCreateOneInlineInput
   readonly text: Scalars['RichTextAST']
   readonly links?: Maybe<GQLRowHeroVideoLinksCreateManyInlineInput>
-  readonly list?: Maybe<GQLZzDeleteListCreateManyInlineInput>
   readonly page?: Maybe<GQLPageCreateManyInlineInput>
 }
 
@@ -8666,7 +8437,6 @@ type GQLRowHeroUpdateInput = {
   readonly asset?: Maybe<GQLAssetUpdateOneInlineInput>
   readonly text?: Maybe<Scalars['RichTextAST']>
   readonly links?: Maybe<GQLRowHeroVideoLinksUpdateManyInlineInput>
-  readonly list?: Maybe<GQLZzDeleteListUpdateManyInlineInput>
   readonly page?: Maybe<GQLPageUpdateManyInlineInput>
 }
 
@@ -9388,7 +9158,6 @@ type GQLRowRecentBlogPost = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   readonly publishedAt?: Maybe<Scalars['DateTime']>
   readonly identity: Scalars['String']
-  readonly limit?: Maybe<Scalars['Int']>
   readonly page: ReadonlyArray<GQLPage>
 }
 
@@ -9427,7 +9196,6 @@ type GQLRowRecentBlogPostCreateInput = {
   readonly createdAt?: Maybe<Scalars['DateTime']>
   readonly updatedAt?: Maybe<Scalars['DateTime']>
   readonly identity: Scalars['String']
-  readonly limit?: Maybe<Scalars['Int']>
   readonly page?: Maybe<GQLPageCreateManyInlineInput>
 }
 
@@ -9547,21 +9315,6 @@ type GQLRowRecentBlogPostManyWhereInput = {
   readonly identity_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   readonly identity_not_ends_with?: Maybe<Scalars['String']>
-  readonly limit?: Maybe<Scalars['Int']>
-  /** All values that are not equal to given value. */
-  readonly limit_not?: Maybe<Scalars['Int']>
-  /** All values that are contained in given list. */
-  readonly limit_in?: Maybe<ReadonlyArray<Scalars['Int']>>
-  /** All values that are not contained in given list. */
-  readonly limit_not_in?: Maybe<ReadonlyArray<Scalars['Int']>>
-  /** All values less than the given value. */
-  readonly limit_lt?: Maybe<Scalars['Int']>
-  /** All values less than or equal the given value. */
-  readonly limit_lte?: Maybe<Scalars['Int']>
-  /** All values greater than the given value. */
-  readonly limit_gt?: Maybe<Scalars['Int']>
-  /** All values greater than or equal the given value. */
-  readonly limit_gte?: Maybe<Scalars['Int']>
 }
 
 type GQLRowRecentBlogPostOrderByInput =
@@ -9575,12 +9328,9 @@ type GQLRowRecentBlogPostOrderByInput =
   | 'publishedAt_DESC'
   | 'identity_ASC'
   | 'identity_DESC'
-  | 'limit_ASC'
-  | 'limit_DESC'
 
 type GQLRowRecentBlogPostUpdateInput = {
   readonly identity?: Maybe<Scalars['String']>
-  readonly limit?: Maybe<Scalars['Int']>
   readonly page?: Maybe<GQLPageUpdateManyInlineInput>
 }
 
@@ -9604,7 +9354,6 @@ type GQLRowRecentBlogPostUpdateManyInlineInput = {
 type GQLRowRecentBlogPostUpdateManyInput = {
   readonly createdAt?: Maybe<Scalars['DateTime']>
   readonly updatedAt?: Maybe<Scalars['DateTime']>
-  readonly limit?: Maybe<Scalars['Int']>
 }
 
 type GQLRowRecentBlogPostUpdateManyWithNestedWhereInput = {
@@ -9743,21 +9492,6 @@ type GQLRowRecentBlogPostWhereInput = {
   readonly identity_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   readonly identity_not_ends_with?: Maybe<Scalars['String']>
-  readonly limit?: Maybe<Scalars['Int']>
-  /** All values that are not equal to given value. */
-  readonly limit_not?: Maybe<Scalars['Int']>
-  /** All values that are contained in given list. */
-  readonly limit_in?: Maybe<ReadonlyArray<Scalars['Int']>>
-  /** All values that are not contained in given list. */
-  readonly limit_not_in?: Maybe<ReadonlyArray<Scalars['Int']>>
-  /** All values less than the given value. */
-  readonly limit_lt?: Maybe<Scalars['Int']>
-  /** All values less than or equal the given value. */
-  readonly limit_lte?: Maybe<Scalars['Int']>
-  /** All values greater than the given value. */
-  readonly limit_gt?: Maybe<Scalars['Int']>
-  /** All values greater than or equal the given value. */
-  readonly limit_gte?: Maybe<Scalars['Int']>
 }
 
 /** References RowRecentBlogPost record uniquely */
@@ -10229,6 +9963,455 @@ type GQLRowServicesWithTextWhereUniqueInput = {
   readonly identity?: Maybe<Scalars['String']>
 }
 
+/** A full-width Youtube video */
+type GQLRowYoutubeVideo = GQLNode & {
+  readonly __typename?: 'RowYoutubeVideo'
+  /** System stage field */
+  readonly stage: GQLStage
+  /** System Locale field */
+  readonly locale: GQLLocale
+  /** Get the other localizations for this document */
+  readonly localizations: ReadonlyArray<GQLRowYoutubeVideo>
+  /** Get the document in other stages */
+  readonly documentInStages: ReadonlyArray<GQLRowYoutubeVideo>
+  /** The unique identifier */
+  readonly id: Scalars['ID']
+  /** The time the document was created */
+  readonly createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  readonly updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** The unique identifier */
+  readonly videoId: Scalars['String']
+  readonly page: ReadonlyArray<GQLPage>
+  readonly title: Scalars['String']
+}
+
+/** A full-width Youtube video */
+type GQLRowYoutubeVideoLocalizationsArgs = {
+  locales?: ReadonlyArray<GQLLocale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+/** A full-width Youtube video */
+type GQLRowYoutubeVideoDocumentInStagesArgs = {
+  stages?: ReadonlyArray<GQLStage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+/** A full-width Youtube video */
+type GQLRowYoutubeVideoPageArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+type GQLRowYoutubeVideoConnectInput = {
+  /** Document to connect */
+  readonly where: GQLRowYoutubeVideoWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  readonly position?: Maybe<GQLConnectPositionInput>
+}
+
+/** A connection to a list of items. */
+type GQLRowYoutubeVideoConnection = {
+  readonly __typename?: 'RowYoutubeVideoConnection'
+  /** Information to aid in pagination. */
+  readonly pageInfo: GQLPageInfo
+  /** A list of edges. */
+  readonly edges: ReadonlyArray<GQLRowYoutubeVideoEdge>
+  readonly aggregate: GQLAggregate
+}
+
+type GQLRowYoutubeVideoCreateInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** videoId input for default locale (nl) */
+  readonly videoId: Scalars['String']
+  readonly page?: Maybe<GQLPageCreateManyInlineInput>
+  readonly title: Scalars['String']
+  /** Inline mutations for managing document localizations excluding the default locale */
+  readonly localizations?: Maybe<GQLRowYoutubeVideoCreateLocalizationsInput>
+}
+
+type GQLRowYoutubeVideoCreateLocalizationDataInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  readonly videoId: Scalars['String']
+}
+
+type GQLRowYoutubeVideoCreateLocalizationInput = {
+  /** Localization input */
+  readonly data: GQLRowYoutubeVideoCreateLocalizationDataInput
+  readonly locale: GQLLocale
+}
+
+type GQLRowYoutubeVideoCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  readonly create?: Maybe<ReadonlyArray<GQLRowYoutubeVideoCreateLocalizationInput>>
+}
+
+type GQLRowYoutubeVideoCreateManyInlineInput = {
+  /** Create and connect multiple existing RowYoutubeVideo documents */
+  readonly create?: Maybe<ReadonlyArray<GQLRowYoutubeVideoCreateInput>>
+  /** Connect multiple existing RowYoutubeVideo documents */
+  readonly connect?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereUniqueInput>>
+}
+
+type GQLRowYoutubeVideoCreateOneInlineInput = {
+  /** Create and connect one RowYoutubeVideo document */
+  readonly create?: Maybe<GQLRowYoutubeVideoCreateInput>
+  /** Connect one existing RowYoutubeVideo document */
+  readonly connect?: Maybe<GQLRowYoutubeVideoWhereUniqueInput>
+}
+
+/** An edge in a connection. */
+type GQLRowYoutubeVideoEdge = {
+  readonly __typename?: 'RowYoutubeVideoEdge'
+  /** The item at the end of the edge. */
+  readonly node: GQLRowYoutubeVideo
+  /** A cursor for use in pagination. */
+  readonly cursor: Scalars['String']
+}
+
+/** Identifies documents */
+type GQLRowYoutubeVideoManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  readonly _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  readonly AND?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereInput>>
+  /** Logical OR on all given filters. */
+  readonly OR?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  readonly NOT?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereInput>>
+  readonly id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  readonly id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values containing the given string. */
+  readonly id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  readonly id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  readonly id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  readonly id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  readonly id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  readonly id_not_ends_with?: Maybe<Scalars['ID']>
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly title?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly title_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly title_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly title_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly title_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly title_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly title_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly title_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly title_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly title_not_ends_with?: Maybe<Scalars['String']>
+}
+
+type GQLRowYoutubeVideoOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'videoId_ASC'
+  | 'videoId_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+
+type GQLRowYoutubeVideoUpdateInput = {
+  /** videoId input for default locale (nl) */
+  readonly videoId?: Maybe<Scalars['String']>
+  readonly page?: Maybe<GQLPageUpdateManyInlineInput>
+  readonly title?: Maybe<Scalars['String']>
+  /** Manage document localizations */
+  readonly localizations?: Maybe<GQLRowYoutubeVideoUpdateLocalizationsInput>
+}
+
+type GQLRowYoutubeVideoUpdateLocalizationDataInput = {
+  readonly videoId: Scalars['String']
+}
+
+type GQLRowYoutubeVideoUpdateLocalizationInput = {
+  readonly data: GQLRowYoutubeVideoUpdateLocalizationDataInput
+  readonly locale: GQLLocale
+}
+
+type GQLRowYoutubeVideoUpdateLocalizationsInput = {
+  /** Localizations to create */
+  readonly create?: Maybe<ReadonlyArray<GQLRowYoutubeVideoCreateLocalizationInput>>
+  /** Localizations to update */
+  readonly update?: Maybe<ReadonlyArray<GQLRowYoutubeVideoUpdateLocalizationInput>>
+  readonly upsert?: Maybe<ReadonlyArray<GQLRowYoutubeVideoUpsertLocalizationInput>>
+  /** Localizations to delete */
+  readonly delete?: Maybe<ReadonlyArray<GQLLocale>>
+}
+
+type GQLRowYoutubeVideoUpdateManyInlineInput = {
+  /** Create and connect multiple RowYoutubeVideo documents */
+  readonly create?: Maybe<ReadonlyArray<GQLRowYoutubeVideoCreateInput>>
+  /** Connect multiple existing RowYoutubeVideo documents */
+  readonly connect?: Maybe<ReadonlyArray<GQLRowYoutubeVideoConnectInput>>
+  /** Override currently-connected documents with multiple existing RowYoutubeVideo documents */
+  readonly set?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereUniqueInput>>
+  /** Update multiple RowYoutubeVideo documents */
+  readonly update?: Maybe<ReadonlyArray<GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowYoutubeVideo documents */
+  readonly upsert?: Maybe<ReadonlyArray<GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowYoutubeVideo documents */
+  readonly disconnect?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereUniqueInput>>
+  /** Delete multiple RowYoutubeVideo documents */
+  readonly delete?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereUniqueInput>>
+}
+
+type GQLRowYoutubeVideoUpdateManyInput = {
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  readonly title: Scalars['String']
+  /** Optional updates to localizations */
+  readonly localizations?: Maybe<ReadonlyArray<GQLRowYoutubeVideoUpdateManyLocalizationInput>>
+}
+
+type GQLRowYoutubeVideoUpdateManyLocalizationInput = {
+  readonly videoId: Scalars['String']
+}
+
+type GQLRowYoutubeVideoUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  readonly where: GQLRowYoutubeVideoWhereInput
+  /** Update many input */
+  readonly data: GQLRowYoutubeVideoUpdateManyInput
+}
+
+type GQLRowYoutubeVideoUpdateOneInlineInput = {
+  /** Create and connect one RowYoutubeVideo document */
+  readonly create?: Maybe<GQLRowYoutubeVideoCreateInput>
+  /** Update single RowYoutubeVideo document */
+  readonly update?: Maybe<GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowYoutubeVideo document */
+  readonly upsert?: Maybe<GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowYoutubeVideo document */
+  readonly connect?: Maybe<GQLRowYoutubeVideoWhereUniqueInput>
+  /** Disconnect currently connected RowYoutubeVideo document */
+  readonly disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowYoutubeVideo document */
+  readonly delete?: Maybe<Scalars['Boolean']>
+}
+
+type GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  readonly where: GQLRowYoutubeVideoWhereUniqueInput
+  /** Document to update */
+  readonly data: GQLRowYoutubeVideoUpdateInput
+}
+
+type GQLRowYoutubeVideoUpsertInput = {
+  /** Create document if it didn't exist */
+  readonly create: GQLRowYoutubeVideoCreateInput
+  /** Update document if it exists */
+  readonly update: GQLRowYoutubeVideoUpdateInput
+}
+
+type GQLRowYoutubeVideoUpsertLocalizationInput = {
+  readonly update: GQLRowYoutubeVideoUpdateLocalizationDataInput
+  readonly create: GQLRowYoutubeVideoCreateLocalizationDataInput
+  readonly locale: GQLLocale
+}
+
+type GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  readonly where: GQLRowYoutubeVideoWhereUniqueInput
+  /** Upsert data */
+  readonly data: GQLRowYoutubeVideoUpsertInput
+}
+
+/** Identifies documents */
+type GQLRowYoutubeVideoWhereInput = {
+  /** Contains search across all appropriate fields. */
+  readonly _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  readonly AND?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereInput>>
+  /** Logical OR on all given filters. */
+  readonly OR?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  readonly NOT?: Maybe<ReadonlyArray<GQLRowYoutubeVideoWhereInput>>
+  readonly id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  readonly id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
+  /** All values containing the given string. */
+  readonly id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  readonly id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  readonly id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  readonly id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  readonly id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  readonly id_not_ends_with?: Maybe<Scalars['ID']>
+  readonly createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
+  readonly updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
+  readonly videoId?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly videoId_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly videoId_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly videoId_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly videoId_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly videoId_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly videoId_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly videoId_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly videoId_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly videoId_not_ends_with?: Maybe<Scalars['String']>
+  readonly title?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  readonly title_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  readonly title_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  readonly title_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
+  /** All values containing the given string. */
+  readonly title_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  readonly title_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  readonly title_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  readonly title_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  readonly title_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  readonly title_not_ends_with?: Maybe<Scalars['String']>
+}
+
+/** References RowYoutubeVideo record uniquely */
+type GQLRowYoutubeVideoWhereUniqueInput = {
+  readonly id?: Maybe<Scalars['ID']>
+}
+
 /** Stage system enumeration */
 type GQLStage =
   /** System Published Stage */
@@ -10241,685 +10424,6 @@ type GQLUnpublishLocaleInput = {
   readonly locale: GQLLocale
   /** Stages to unpublish selected locales from */
   readonly stages: ReadonlyArray<GQLStage>
-}
-
-type GQLZzDeleteBlogList = GQLNode & {
-  readonly __typename?: 'ZzDeleteBlogList'
-  /** System stage field */
-  readonly stage: GQLStage
-  /** Get the document in other stages */
-  readonly documentInStages: ReadonlyArray<GQLZzDeleteBlogList>
-  /** The unique identifier */
-  readonly id: Scalars['ID']
-  /** The time the document was created */
-  readonly createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  readonly updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** Collects all the blog pages */
-  readonly blogPages: ReadonlyArray<GQLPage>
-}
-
-type GQLZzDeleteBlogListDocumentInStagesArgs = {
-  stages?: ReadonlyArray<GQLStage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-type GQLZzDeleteBlogListBlogPagesArgs = {
-  where?: Maybe<GQLPageWhereInput>
-  orderBy?: Maybe<GQLPageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLZzDeleteBlogListConnectInput = {
-  /** Document to connect */
-  readonly where: GQLZzDeleteBlogListWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  readonly position?: Maybe<GQLConnectPositionInput>
-}
-
-/** A connection to a list of items. */
-type GQLZzDeleteBlogListConnection = {
-  readonly __typename?: 'ZzDeleteBlogListConnection'
-  /** Information to aid in pagination. */
-  readonly pageInfo: GQLPageInfo
-  /** A list of edges. */
-  readonly edges: ReadonlyArray<GQLZzDeleteBlogListEdge>
-  readonly aggregate: GQLAggregate
-}
-
-type GQLZzDeleteBlogListCreateInput = {
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  readonly blogPages?: Maybe<GQLPageCreateManyInlineInput>
-}
-
-type GQLZzDeleteBlogListCreateManyInlineInput = {
-  /** Create and connect multiple existing ZzDeleteBlogList documents */
-  readonly create?: Maybe<ReadonlyArray<GQLZzDeleteBlogListCreateInput>>
-  /** Connect multiple existing ZzDeleteBlogList documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
-}
-
-type GQLZzDeleteBlogListCreateOneInlineInput = {
-  /** Create and connect one ZzDeleteBlogList document */
-  readonly create?: Maybe<GQLZzDeleteBlogListCreateInput>
-  /** Connect one existing ZzDeleteBlogList document */
-  readonly connect?: Maybe<GQLZzDeleteBlogListWhereUniqueInput>
-}
-
-/** An edge in a connection. */
-type GQLZzDeleteBlogListEdge = {
-  readonly __typename?: 'ZzDeleteBlogListEdge'
-  /** The item at the end of the edge. */
-  readonly node: GQLZzDeleteBlogList
-  /** A cursor for use in pagination. */
-  readonly cursor: Scalars['String']
-}
-
-/** Identifies documents */
-type GQLZzDeleteBlogListManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  readonly _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  readonly AND?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
-  /** Logical OR on all given filters. */
-  readonly OR?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  readonly NOT?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
-  readonly id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  readonly id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values containing the given string. */
-  readonly id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  readonly id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  readonly id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  readonly id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  readonly id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  readonly id_not_ends_with?: Maybe<Scalars['ID']>
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly blogPages_every?: Maybe<GQLPageWhereInput>
-  readonly blogPages_some?: Maybe<GQLPageWhereInput>
-  readonly blogPages_none?: Maybe<GQLPageWhereInput>
-}
-
-type GQLZzDeleteBlogListOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-
-type GQLZzDeleteBlogListUpdateInput = {
-  readonly blogPages?: Maybe<GQLPageUpdateManyInlineInput>
-}
-
-type GQLZzDeleteBlogListUpdateManyInlineInput = {
-  /** Create and connect multiple ZzDeleteBlogList documents */
-  readonly create?: Maybe<ReadonlyArray<GQLZzDeleteBlogListCreateInput>>
-  /** Connect multiple existing ZzDeleteBlogList documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLZzDeleteBlogListConnectInput>>
-  /** Override currently-connected documents with multiple existing ZzDeleteBlogList documents */
-  readonly set?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
-  /** Update multiple ZzDeleteBlogList documents */
-  readonly update?: Maybe<ReadonlyArray<GQLZzDeleteBlogListUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple ZzDeleteBlogList documents */
-  readonly upsert?: Maybe<ReadonlyArray<GQLZzDeleteBlogListUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple ZzDeleteBlogList documents */
-  readonly disconnect?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
-  /** Delete multiple ZzDeleteBlogList documents */
-  readonly delete?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereUniqueInput>>
-}
-
-type GQLZzDeleteBlogListUpdateManyInput = {
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-type GQLZzDeleteBlogListUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  readonly where: GQLZzDeleteBlogListWhereInput
-  /** Update many input */
-  readonly data: GQLZzDeleteBlogListUpdateManyInput
-}
-
-type GQLZzDeleteBlogListUpdateOneInlineInput = {
-  /** Create and connect one ZzDeleteBlogList document */
-  readonly create?: Maybe<GQLZzDeleteBlogListCreateInput>
-  /** Update single ZzDeleteBlogList document */
-  readonly update?: Maybe<GQLZzDeleteBlogListUpdateWithNestedWhereUniqueInput>
-  /** Upsert single ZzDeleteBlogList document */
-  readonly upsert?: Maybe<GQLZzDeleteBlogListUpsertWithNestedWhereUniqueInput>
-  /** Connect existing ZzDeleteBlogList document */
-  readonly connect?: Maybe<GQLZzDeleteBlogListWhereUniqueInput>
-  /** Disconnect currently connected ZzDeleteBlogList document */
-  readonly disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected ZzDeleteBlogList document */
-  readonly delete?: Maybe<Scalars['Boolean']>
-}
-
-type GQLZzDeleteBlogListUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  readonly where: GQLZzDeleteBlogListWhereUniqueInput
-  /** Document to update */
-  readonly data: GQLZzDeleteBlogListUpdateInput
-}
-
-type GQLZzDeleteBlogListUpsertInput = {
-  /** Create document if it didn't exist */
-  readonly create: GQLZzDeleteBlogListCreateInput
-  /** Update document if it exists */
-  readonly update: GQLZzDeleteBlogListUpdateInput
-}
-
-type GQLZzDeleteBlogListUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  readonly where: GQLZzDeleteBlogListWhereUniqueInput
-  /** Upsert data */
-  readonly data: GQLZzDeleteBlogListUpsertInput
-}
-
-/** Identifies documents */
-type GQLZzDeleteBlogListWhereInput = {
-  /** Contains search across all appropriate fields. */
-  readonly _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  readonly AND?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
-  /** Logical OR on all given filters. */
-  readonly OR?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  readonly NOT?: Maybe<ReadonlyArray<GQLZzDeleteBlogListWhereInput>>
-  readonly id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  readonly id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values containing the given string. */
-  readonly id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  readonly id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  readonly id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  readonly id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  readonly id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  readonly id_not_ends_with?: Maybe<Scalars['ID']>
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly blogPages_every?: Maybe<GQLPageWhereInput>
-  readonly blogPages_some?: Maybe<GQLPageWhereInput>
-  readonly blogPages_none?: Maybe<GQLPageWhereInput>
-}
-
-/** References ZzDeleteBlogList record uniquely */
-type GQLZzDeleteBlogListWhereUniqueInput = {
-  readonly id?: Maybe<Scalars['ID']>
-}
-
-type GQLZzDeleteList = GQLNode & {
-  readonly __typename?: 'ZzDeleteList'
-  /** System stage field */
-  readonly stage: GQLStage
-  /** Get the document in other stages */
-  readonly documentInStages: ReadonlyArray<GQLZzDeleteList>
-  /** The unique identifier */
-  readonly id: Scalars['ID']
-  /** The time the document was created */
-  readonly createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  readonly updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  readonly identifier: Scalars['String']
-  readonly items: ReadonlyArray<GQLListItems>
-}
-
-type GQLZzDeleteListDocumentInStagesArgs = {
-  stages?: ReadonlyArray<GQLStage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-type GQLZzDeleteListItemsArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLZzDeleteListConnectInput = {
-  /** Document to connect */
-  readonly where: GQLZzDeleteListWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  readonly position?: Maybe<GQLConnectPositionInput>
-}
-
-/** A connection to a list of items. */
-type GQLZzDeleteListConnection = {
-  readonly __typename?: 'ZzDeleteListConnection'
-  /** Information to aid in pagination. */
-  readonly pageInfo: GQLPageInfo
-  /** A list of edges. */
-  readonly edges: ReadonlyArray<GQLZzDeleteListEdge>
-  readonly aggregate: GQLAggregate
-}
-
-type GQLZzDeleteListCreateInput = {
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  readonly identifier: Scalars['String']
-  readonly items?: Maybe<GQLListItemsCreateManyInlineInput>
-}
-
-type GQLZzDeleteListCreateManyInlineInput = {
-  /** Create and connect multiple existing ZzDeleteList documents */
-  readonly create?: Maybe<ReadonlyArray<GQLZzDeleteListCreateInput>>
-  /** Connect multiple existing ZzDeleteList documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLZzDeleteListWhereUniqueInput>>
-}
-
-type GQLZzDeleteListCreateOneInlineInput = {
-  /** Create and connect one ZzDeleteList document */
-  readonly create?: Maybe<GQLZzDeleteListCreateInput>
-  /** Connect one existing ZzDeleteList document */
-  readonly connect?: Maybe<GQLZzDeleteListWhereUniqueInput>
-}
-
-/** An edge in a connection. */
-type GQLZzDeleteListEdge = {
-  readonly __typename?: 'ZzDeleteListEdge'
-  /** The item at the end of the edge. */
-  readonly node: GQLZzDeleteList
-  /** A cursor for use in pagination. */
-  readonly cursor: Scalars['String']
-}
-
-/** Identifies documents */
-type GQLZzDeleteListManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  readonly _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  readonly AND?: Maybe<ReadonlyArray<GQLZzDeleteListWhereInput>>
-  /** Logical OR on all given filters. */
-  readonly OR?: Maybe<ReadonlyArray<GQLZzDeleteListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  readonly NOT?: Maybe<ReadonlyArray<GQLZzDeleteListWhereInput>>
-  readonly id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  readonly id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values containing the given string. */
-  readonly id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  readonly id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  readonly id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  readonly id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  readonly id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  readonly id_not_ends_with?: Maybe<Scalars['ID']>
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly identifier?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  readonly identifier_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  readonly identifier_in?: Maybe<ReadonlyArray<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  readonly identifier_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
-  /** All values containing the given string. */
-  readonly identifier_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  readonly identifier_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  readonly identifier_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  readonly identifier_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  readonly identifier_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  readonly identifier_not_ends_with?: Maybe<Scalars['String']>
-}
-
-type GQLZzDeleteListOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'identifier_ASC'
-  | 'identifier_DESC'
-
-type GQLZzDeleteListUpdateInput = {
-  readonly identifier?: Maybe<Scalars['String']>
-  readonly items?: Maybe<GQLListItemsUpdateManyInlineInput>
-}
-
-type GQLZzDeleteListUpdateManyInlineInput = {
-  /** Create and connect multiple ZzDeleteList documents */
-  readonly create?: Maybe<ReadonlyArray<GQLZzDeleteListCreateInput>>
-  /** Connect multiple existing ZzDeleteList documents */
-  readonly connect?: Maybe<ReadonlyArray<GQLZzDeleteListConnectInput>>
-  /** Override currently-connected documents with multiple existing ZzDeleteList documents */
-  readonly set?: Maybe<ReadonlyArray<GQLZzDeleteListWhereUniqueInput>>
-  /** Update multiple ZzDeleteList documents */
-  readonly update?: Maybe<ReadonlyArray<GQLZzDeleteListUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple ZzDeleteList documents */
-  readonly upsert?: Maybe<ReadonlyArray<GQLZzDeleteListUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple ZzDeleteList documents */
-  readonly disconnect?: Maybe<ReadonlyArray<GQLZzDeleteListWhereUniqueInput>>
-  /** Delete multiple ZzDeleteList documents */
-  readonly delete?: Maybe<ReadonlyArray<GQLZzDeleteListWhereUniqueInput>>
-}
-
-type GQLZzDeleteListUpdateManyInput = {
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-type GQLZzDeleteListUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  readonly where: GQLZzDeleteListWhereInput
-  /** Update many input */
-  readonly data: GQLZzDeleteListUpdateManyInput
-}
-
-type GQLZzDeleteListUpdateOneInlineInput = {
-  /** Create and connect one ZzDeleteList document */
-  readonly create?: Maybe<GQLZzDeleteListCreateInput>
-  /** Update single ZzDeleteList document */
-  readonly update?: Maybe<GQLZzDeleteListUpdateWithNestedWhereUniqueInput>
-  /** Upsert single ZzDeleteList document */
-  readonly upsert?: Maybe<GQLZzDeleteListUpsertWithNestedWhereUniqueInput>
-  /** Connect existing ZzDeleteList document */
-  readonly connect?: Maybe<GQLZzDeleteListWhereUniqueInput>
-  /** Disconnect currently connected ZzDeleteList document */
-  readonly disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected ZzDeleteList document */
-  readonly delete?: Maybe<Scalars['Boolean']>
-}
-
-type GQLZzDeleteListUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  readonly where: GQLZzDeleteListWhereUniqueInput
-  /** Document to update */
-  readonly data: GQLZzDeleteListUpdateInput
-}
-
-type GQLZzDeleteListUpsertInput = {
-  /** Create document if it didn't exist */
-  readonly create: GQLZzDeleteListCreateInput
-  /** Update document if it exists */
-  readonly update: GQLZzDeleteListUpdateInput
-}
-
-type GQLZzDeleteListUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  readonly where: GQLZzDeleteListWhereUniqueInput
-  /** Upsert data */
-  readonly data: GQLZzDeleteListUpsertInput
-}
-
-/** Identifies documents */
-type GQLZzDeleteListWhereInput = {
-  /** Contains search across all appropriate fields. */
-  readonly _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  readonly AND?: Maybe<ReadonlyArray<GQLZzDeleteListWhereInput>>
-  /** Logical OR on all given filters. */
-  readonly OR?: Maybe<ReadonlyArray<GQLZzDeleteListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  readonly NOT?: Maybe<ReadonlyArray<GQLZzDeleteListWhereInput>>
-  readonly id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  readonly id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  readonly id_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  readonly id_not_in?: Maybe<ReadonlyArray<Scalars['ID']>>
-  /** All values containing the given string. */
-  readonly id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  readonly id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  readonly id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  readonly id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  readonly id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  readonly id_not_ends_with?: Maybe<Scalars['ID']>
-  readonly createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly createdAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly createdAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly createdAt_gte?: Maybe<Scalars['DateTime']>
-  readonly updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly updatedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly updatedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly updatedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  readonly publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  readonly publishedAt_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  readonly publishedAt_not_in?: Maybe<ReadonlyArray<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  readonly publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  readonly publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  readonly publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  readonly publishedAt_gte?: Maybe<Scalars['DateTime']>
-  readonly identifier?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  readonly identifier_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  readonly identifier_in?: Maybe<ReadonlyArray<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  readonly identifier_not_in?: Maybe<ReadonlyArray<Scalars['String']>>
-  /** All values containing the given string. */
-  readonly identifier_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  readonly identifier_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  readonly identifier_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  readonly identifier_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  readonly identifier_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  readonly identifier_not_ends_with?: Maybe<Scalars['String']>
-}
-
-/** References ZzDeleteList record uniquely */
-type GQLZzDeleteListWhereUniqueInput = {
-  readonly id?: Maybe<Scalars['ID']>
-  readonly identifier?: Maybe<Scalars['String']>
 }
 
 type GQLAssetFragment = { readonly __typename?: 'Asset' } & Pick<
@@ -10976,17 +10480,21 @@ type GQLSubmitContactFormMutation = { readonly __typename?: 'Mutation' } & {
 
 type GQLContentRendererFragment = { readonly __typename?: 'Page' } & {
   readonly content: ReadonlyArray<
+    | ({ readonly __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
     | ({ readonly __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> &
         GQLRowColumnThreeFragment)
-    | ({ readonly __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'>)
+    | ({ readonly __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'> &
+        GQLRowColumnTwoFragment)
     | ({ readonly __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'>)
     | ({ readonly __typename: 'RowPeopleWithText' } & Pick<GQLRowPeopleWithText, 'id'> &
         GQLRowPeopleWithTextFragment)
-    | ({ readonly __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'>)
+    | ({ readonly __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'> &
+        GQLRowColumnOneFragment)
     | ({ readonly __typename: 'RowCompanySlider' } & Pick<GQLRowCompanySlider, 'id'> &
         GQLRowCompanySliderFragment)
     | ({ readonly __typename: 'RowHero' } & Pick<GQLRowHero, 'id'> & GQLRowHeroFragment)
-    | ({ readonly __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
+    | ({ readonly __typename: 'RowYoutubeVideo' } & Pick<GQLRowYoutubeVideo, 'id'> &
+        GQLRowYoutubeVideoFragment)
   >
 }
 
@@ -11084,6 +10592,24 @@ type GQLGetPortfolioListQuery = { readonly __typename?: 'Query' } & {
 
 type GQLRichTextFragment = { readonly __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
 
+type GQLGetAllRowColumOneQueryVariables = {
+  skip: Scalars['Int']
+}
+
+type GQLGetAllRowColumOneQuery = { readonly __typename?: 'Query' } & {
+  readonly rowColumnOnes: ReadonlyArray<
+    { readonly __typename?: 'RowColumnOne' } & GQLRowColumnOneFragment
+  >
+}
+
+type GQLRowColumnOneFragment = { readonly __typename?: 'RowColumnOne' } & Pick<
+  GQLRowColumnOne,
+  'id'
+> & {
+    readonly colOne: { readonly __typename?: 'RichText' } & GQLRichTextFragment
+    readonly colOneIcon?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment>
+  }
+
 type GQLGetAllRowColumThreeQueryVariables = {
   skip: Scalars['Int']
 }
@@ -11104,6 +10630,26 @@ type GQLRowColumnThreeFragment = { readonly __typename?: 'RowColumnThree' } & Pi
     readonly colTwoIcon?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment>
     readonly colThree: { readonly __typename?: 'RichText' } & GQLRichTextFragment
     readonly colThreeIcon?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment>
+  }
+
+type GQLGetAllRowColumTwoQueryVariables = {
+  skip: Scalars['Int']
+}
+
+type GQLGetAllRowColumTwoQuery = { readonly __typename?: 'Query' } & {
+  readonly rowColumnTwos: ReadonlyArray<
+    { readonly __typename?: 'RowColumnTwo' } & GQLRowColumnTwoFragment
+  >
+}
+
+type GQLRowColumnTwoFragment = { readonly __typename?: 'RowColumnTwo' } & Pick<
+  GQLRowColumnTwo,
+  'id'
+> & {
+    readonly colOne: { readonly __typename?: 'RichText' } & GQLRichTextFragment
+    readonly colOneIcon?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment>
+    readonly colTwo: { readonly __typename?: 'RichText' } & GQLRichTextFragment
+    readonly colTwoIcon?: Maybe<{ readonly __typename?: 'Asset' } & GQLAssetFragment>
   }
 
 type GQLGetAllRowCompanySlidersQueryVariables = {
@@ -11168,6 +10714,21 @@ type GQLRowPeopleWithTextFragment = { readonly __typename?: 'RowPeopleWithText' 
       }
     >
   }
+
+type GQLGetAllRowYoutubeVideosQueryVariables = {
+  skip: Scalars['Int']
+}
+
+type GQLGetAllRowYoutubeVideosQuery = { readonly __typename?: 'Query' } & {
+  readonly rowYoutubeVideos: ReadonlyArray<
+    { readonly __typename?: 'RowYoutubeVideo' } & GQLRowYoutubeVideoFragment
+  >
+}
+
+type GQLRowYoutubeVideoFragment = { readonly __typename?: 'RowYoutubeVideo' } & Pick<
+  GQLRowYoutubeVideo,
+  'videoId' | 'title'
+>
 
 type GQLCreatePageMutationVariables = {
   page: GQLPageCreateInput
