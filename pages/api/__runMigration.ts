@@ -6,11 +6,14 @@ import ApolloClient, { ApolloError } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import gql from 'graphql-tag'
 import fetch from 'isomorphic-unfetch'
+// @ts-ignore
 import {
   CreatePageDocument,
   UpdatePageDocument,
   GetDraftPagesDocument,
   PublishPageDocument,
+  GetAllAssetsDocument,
+  PublishAssetDocument,
 } from '../../generated/apollo'
 
 function createApolloClient(
@@ -55,6 +58,7 @@ type LegacyQuery = {
       publicPublishedAt: string
       image: {
         url: string
+        fileName: string
       }
     }
     singularPage: {
@@ -97,6 +101,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             content
             publicPublishedAt
             image {
+              fileName
               url
             }
           }
@@ -160,7 +165,51 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     ]
     const urlToId = Object.fromEntries(draftpages)
 
-    let slice = 0
+    const { data: assetP1 } = await toClient.query<
+      GQLGetAllAssetsQuery,
+      GQLGetAllAssetsQueryVariables
+    >({ query: GetAllAssetsDocument, variables: { skip: 0 } })
+
+    const { data: assetP2 } = await toClient.query<
+      GQLGetAllAssetsQuery,
+      GQLGetAllAssetsQueryVariables
+    >({ query: GetAllAssetsDocument, variables: { skip: 100 } })
+
+    const { data: assetP3 } = await toClient.query<
+      GQLGetAllAssetsQuery,
+      GQLGetAllAssetsQueryVariables
+    >({ query: GetAllAssetsDocument, variables: { skip: 200 } })
+
+    const { data: assetP4 } = await toClient.query<
+      GQLGetAllAssetsQuery,
+      GQLGetAllAssetsQueryVariables
+    >({ query: GetAllAssetsDocument, variables: { skip: 300 } })
+
+    const { data: assetP5 } = await toClient.query<
+      GQLGetAllAssetsQuery,
+      GQLGetAllAssetsQueryVariables
+    >({ query: GetAllAssetsDocument, variables: { skip: 400 } })
+    const { data: assetP6 } = await toClient.query<
+      GQLGetAllAssetsQuery,
+      GQLGetAllAssetsQueryVariables
+    >({ query: GetAllAssetsDocument, variables: { skip: 500 } })
+
+    const assets = Object.fromEntries(
+      [
+        ...assetP1.assets,
+        ...assetP2.assets,
+        ...assetP3.assets,
+        ...assetP4.assets,
+        ...assetP5.assets,
+        ...assetP6.assets,
+      ].map((asset) => [asset.fileName, asset.id]),
+    )
+
+    // const slateTransformer: {
+    //   fromMarkdown: (markdown: string) => ValueJSON
+    // } = new SlateTransformer()
+
+    let slice = 23
     for (const page of fromData.data.pages.slice(slice)) {
       slice += 1
 
@@ -202,42 +251,64 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         )
       }
 
-      const pageData = {
-        title: blogPost?.title ?? title(urlkeynew),
+      const pageData:
+        | GQLCreatePageMutationVariables['page']
+        | GQLUpdatePageMutationVariables['page'] = {
+        title: title(urlkeynew),
         url,
         metaTitle,
         metaDescription: metaDescription ?? 'TODO',
         metaRobots,
       }
 
+      const contentRows: GQLPageContentCreateInput[] = []
+      if (blogPost) {
+        pageData.title = blogPost.title
+        pageData.releaseDate = blogPost.publicPublishedAt
+
+        if (blogPost.image) {
+          if (assets[blogPost.image.fileName]) {
+            pageData.asset = { connect: { id: assets[blogPost.image.fileName] } }
+          } else {
+            console.log(`Should have image: ${blogPost.image.fileName}`)
+          }
+        }
+
+        // contentRows.push({
+        //   RowColumnOne: {
+        //     identity: url,
+        //     colOne: slateTransformer.fromMarkdown(blogPost.content),
+        //   },
+        // })
+      }
+
       let id: string = urlToId[url]
       if (!id) {
-        // console.log(url, translations)
-        const result = await toClient.mutate<GQLCreatePageMutation, GQLCreatePageMutationVariables>(
-          {
-            mutation: CreatePageDocument,
-            variables: {
-              page: {
-                ...pageData,
-                createdAt,
-                updatedAt,
-                localizations: {
-                  create: translations.map((translation) => ({
-                    locale: 'en',
-                    data: {
-                      title: translation.blogPost?.title ?? title(urlkeynew),
-                      url: `/${getUrlFragments({
-                        urlkeynew: translation.urlkeynew,
-                        parent: translation.parent,
-                      }).join('/')}`,
-                      metaTitle: translation.metaTitle,
-                      metaDescription: translation.metaDescription ?? 'TODO',
-                    },
-                  })),
+        const variables: GQLCreatePageMutationVariables = {
+          page: {
+            ...(pageData as GQLCreatePageMutationVariables['page']),
+            createdAt,
+            updatedAt,
+            content: { create: contentRows },
+            localizations: {
+              create: translations.map((translation) => ({
+                locale: 'en',
+                data: {
+                  title: translation.blogPost?.title ?? title(urlkeynew),
+                  url: `/${getUrlFragments({
+                    urlkeynew: translation.urlkeynew,
+                    parent: translation.parent,
+                  }).join('/')}`,
+                  metaTitle: translation.metaTitle,
+                  metaDescription: translation.metaDescription ?? 'TODO',
                 },
-              },
+              })),
             },
           },
+        }
+        // console.log(JSON.stringify(variables))
+        const result = await toClient.mutate<GQLCreatePageMutation, GQLCreatePageMutationVariables>(
+          { mutation: CreatePageDocument, variables },
         )
 
         id = result.data?.createPage?.id!
@@ -249,7 +320,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           variables: {
             id,
             page: {
-              ...pageData,
+              ...(pageData as GQLUpdatePageMutationVariables['page']),
               localizations: {
                 update: translations.map((translation) => ({
                   locale: 'en',
@@ -270,16 +341,27 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       if (status === 'PUBLISHED') {
-        // process.stdout.write('publishing..')
-        await toClient.mutate<GQLPublishPageMutation, GQLPublishPageMutationVariables>({
+        // pr:ocess.stdout.write('publishing..')
+        const { data } = await toClient.mutate<
+          GQLPublishPageMutation,
+          GQLPublishPageMutationVariables
+        >({
           mutation: PublishPageDocument,
           variables: { id, locales: translations.length > 0 ? ['en'] : [] },
         })
-      }
 
-      // process.stdout.write('done 🥳\n')
+        const assetId = data?.publishPage?.asset?.id
+
+        if (assetId) {
+          await toClient.mutate<GQLPublishAssetMutation, GQLPublishAssetMutationVariables>({
+            mutation: PublishAssetDocument,
+            variables: { id: assetId, locales: [] },
+          })
+        }
+      }
     }
 
+    process.stdout.write('done 🥳\n')
     res.status(200).end()
   } catch (error) {
     if ((error as ApolloError).networkError) {

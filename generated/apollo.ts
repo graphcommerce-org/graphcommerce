@@ -274,7 +274,7 @@ export const GetBlogListDocument = gql`
     blogPosts: pages(
       where: { url_starts_with: $url }
       locales: [$locale]
-      orderBy: publishedAt_DESC
+      orderBy: releaseDate_DESC
       first: 100
     ) {
       ...BlogListItem
@@ -1058,6 +1058,59 @@ export type CreatePageMutationOptions = ApolloReactCommon.BaseMutationOptions<
   GQLCreatePageMutation,
   GQLCreatePageMutationVariables
 >
+export const GetAllAssetsDocument = gql`
+  query GetAllAssets($skip: Int!) {
+    assets(skip: $skip, stage: DRAFT) {
+      fileName
+      id
+    }
+  }
+`
+
+/**
+ * __useGetAllAssetsQuery__
+ *
+ * To run a query within a React component, call `useGetAllAssetsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllAssetsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllAssetsQuery({
+ *   variables: {
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useGetAllAssetsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllAssetsQuery,
+    GQLGetAllAssetsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetAllAssetsQuery, GQLGetAllAssetsQueryVariables>(
+    GetAllAssetsDocument,
+    baseOptions,
+  )
+}
+export function useGetAllAssetsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllAssetsQuery,
+    GQLGetAllAssetsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetAllAssetsQuery, GQLGetAllAssetsQueryVariables>(
+    GetAllAssetsDocument,
+    baseOptions,
+  )
+}
+export type GetAllAssetsQueryHookResult = ReturnType<typeof useGetAllAssetsQuery>
+export type GetAllAssetsLazyQueryHookResult = ReturnType<typeof useGetAllAssetsLazyQuery>
+export type GetAllAssetsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllAssetsQuery,
+  GQLGetAllAssetsQueryVariables
+>
 export const GetDraftPagesDocument = gql`
   query GetDraftPages($skip: Int! = 0) {
     pages(stage: DRAFT, skip: $skip) {
@@ -1112,10 +1165,60 @@ export type GetDraftPagesQueryResult = ApolloReactCommon.QueryResult<
   GQLGetDraftPagesQuery,
   GQLGetDraftPagesQueryVariables
 >
+export const PublishAssetDocument = gql`
+  mutation PublishAsset($id: ID!, $locales: [Locale!]!) {
+    publishAsset(where: { id: $id }, publishBase: true, locales: $locales, to: PUBLISHED) {
+      id
+    }
+  }
+`
+export type GQLPublishAssetMutationFn = ApolloReactCommon.MutationFunction<
+  GQLPublishAssetMutation,
+  GQLPublishAssetMutationVariables
+>
+
+/**
+ * __usePublishAssetMutation__
+ *
+ * To run a mutation, you first call `usePublishAssetMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishAssetMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishAssetMutation, { data, loading, error }] = usePublishAssetMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      locales: // value for 'locales'
+ *   },
+ * });
+ */
+export function usePublishAssetMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    GQLPublishAssetMutation,
+    GQLPublishAssetMutationVariables
+  >,
+) {
+  return ApolloReactHooks.useMutation<GQLPublishAssetMutation, GQLPublishAssetMutationVariables>(
+    PublishAssetDocument,
+    baseOptions,
+  )
+}
+export type PublishAssetMutationHookResult = ReturnType<typeof usePublishAssetMutation>
+export type PublishAssetMutationResult = ApolloReactCommon.MutationResult<GQLPublishAssetMutation>
+export type PublishAssetMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  GQLPublishAssetMutation,
+  GQLPublishAssetMutationVariables
+>
 export const PublishPageDocument = gql`
   mutation PublishPage($id: ID!, $locales: [Locale!]!) {
     publishPage(where: { id: $id }, publishBase: true, locales: $locales, to: PUBLISHED) {
       id
+      asset {
+        id
+      }
     }
   }
 `

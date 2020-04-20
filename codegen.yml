@@ -26,7 +26,7 @@ generates:
       - 'typescript-operations'
     config:
       typesPrefix: GQL
-      immutableTypes: true
+      immutableTypes: false
       noExport: true
       enumsAsTypes: true
     hooks:
@@ -40,8 +40,6 @@ generates:
       withHOC: false
       withHooks: true
       withComponent: false
-      nonOptionalTypename: true
-      immutableTypes: true
     hooks:
       afterOneFileWrite:
         - eslint --fix

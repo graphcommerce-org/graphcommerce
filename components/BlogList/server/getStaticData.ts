@@ -4,12 +4,11 @@ import { GetBlogListDocument } from '../../../generated/apollo'
 
 const getStaticData: GetStaticData<GQLGetBlogListQuery> = async (variables) => {
   const apolloClient = initApolloClient()
-  const query = apolloClient.query<GQLGetBlogListQuery, GQLGetBlogListQueryVariables>({
+  const { data } = await apolloClient.query<GQLGetBlogListQuery, GQLGetBlogListQueryVariables>({
     query: GetBlogListDocument,
-    variables,
+    variables: { url: `${variables.url}/`, locale: variables.locale },
   })
-
-  return (await query).data
+  return data
 }
 
 export default getStaticData

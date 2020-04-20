@@ -1,18 +1,24 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import { Renderers, setRenderers } from './ContentRenderer'
+import RowHero from '../RowHero'
+import RowColumnThree from '../RowColumnThree'
+import RowColumnTwo from '../RowColumnTwo'
+import RowColumnOne from '../RowColumnOne'
+import RowCompanySlider from '../RowCompanySlider'
+import RowPeopleWithText from '../RowPeopleWithText'
+import RowYoutubeVideo from '../RowYoutubeVideo'
 
 const registerDefaultRenderer = () => {
   const renderers = {
-    RowHero: dynamic<GQLRowHeroFragment>(() => import('../RowHero')),
-    RowColumnOne: dynamic<GQLRowColumnOneFragment>(() => import('../RowColumnOne')),
-    RowColumnTwo: dynamic<GQLRowColumnTwoFragment>(() => import('../RowColumnTwo')),
-    RowColumnThree: dynamic<GQLRowColumnThreeFragment>(() => import('../RowColumnThree')),
-    RowCompanySlider: dynamic<GQLRowCompanySliderFragment>(() => import('../RowCompanySlider')),
-    RowPeopleWithText: dynamic<GQLRowPeopleWithTextFragment>(() => import('../RowPeopleWithText')),
+    RowHero,
+    RowColumnOne,
+    RowColumnTwo,
+    RowColumnThree,
+    RowCompanySlider,
+    RowPeopleWithText,
     RowRecentBlogPost: () => <div>RecentBlogPosts not yet implemented</div>,
     RowServicesWithText: () => <div>RowServicesWithText not yet implemented</div>,
-    RowYoutubeVideo: dynamic<GQLRowYoutubeVideoFragment>(() => import('../RowYoutubeVideo')),
+    RowYoutubeVideo,
   } as Required<Renderers>
   setRenderers(renderers)
 }
