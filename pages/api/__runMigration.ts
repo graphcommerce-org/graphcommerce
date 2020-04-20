@@ -15,7 +15,6 @@ import {
   GetAllAssetsDocument,
   PublishAssetDocument,
 } from '../../generated/apollo'
-import { ValueJSON } from '../../components/RichText'
 
 function createApolloClient(
   uri: string,
@@ -287,7 +286,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       if (!id) {
         const variables: GQLCreatePageMutationVariables = {
           page: {
-            ...pageData,
+            ...(pageData as GQLCreatePageMutationVariables['page']),
             createdAt,
             updatedAt,
             content: { create: contentRows },
@@ -321,7 +320,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           variables: {
             id,
             page: {
-              ...pageData,
+              ...(pageData as GQLUpdatePageMutationVariables['page']),
               localizations: {
                 update: translations.map((translation) => ({
                   locale: 'en',
