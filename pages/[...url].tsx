@@ -1,18 +1,18 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull } from '../components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../lib/staticParams'
 
-const CatchAll: PageWithLayoutFull = ({ pages }) => {
-  return <ContentRenderer {...pages[0]} />
+const CatchAll: PageWithLayoutFull = ({ page }) => {
+  return <ContentRenderer {...page} />
 }
 
 CatchAll.layout = LayoutFull
 
 export default CatchAll
 
-export const getServerSideProps: GetStaticProps<GQLGetPageLayoutQuery, StaticPageParams> = async (
+export const getServerSideProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (
   ctx,
 ) => {
   const params = extractParams(ctx, '/')

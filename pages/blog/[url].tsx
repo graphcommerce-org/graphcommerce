@@ -1,18 +1,16 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull } from '../../components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../components/PageLayout'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
 import getStaticPathsFactory from '../../components/PageLayout/server/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 
-const BlogView: PageWithLayoutFull = ({ pages }) => {
-  if (!pages[0]) return <></>
-
+const BlogView: PageWithLayoutFull = ({ page }) => {
   return (
     <>
-      <Typography variant='h1'>{pages[0].title}</Typography>
-      <ContentRenderer content={pages[0].content} />
+      <Typography variant='h1'>{page.title}</Typography>
+      <ContentRenderer content={page.content} />
     </>
   )
 
@@ -45,9 +43,7 @@ export default BlogView
 
 export const getStaticPaths = getStaticPathsFactory('/blog/', 'nl')
 
-export const getStaticProps: GetStaticProps<GQLGetPageLayoutQuery, StaticPageParams> = async (
-  ctx,
-) => {
+export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
   const params = extractParams(ctx, '/blog/')
   const data = await Promise.all([
     import('../../components/PageLayout/server/getStaticData').then((module) =>

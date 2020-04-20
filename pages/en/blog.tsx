@@ -1,12 +1,11 @@
 import { GetStaticProps } from 'next'
 import Blog from '../blog'
 import { StaticPageVariables } from '../../lib/staticParams'
+import { PageLayoutProps } from '../../components/PageLayout'
 
 export default Blog
 
-export const getStaticProps: GetStaticProps<
-  GQLGetPageLayoutQuery & GQLGetBlogListQuery
-> = async () => {
+export const getStaticProps: GetStaticProps<PageLayoutProps & GQLGetBlogListQuery> = async () => {
   const params: StaticPageVariables = { url: '/en/blog', locale: 'en' }
 
   const data = await Promise.all([

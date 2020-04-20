@@ -1,14 +1,23 @@
 import initApolloClient from '../../../lib/apollo'
 import { GetStaticData } from '../../../lib/staticParams'
 import { GetPageLayoutDocument } from '../../../generated/apollo'
+import { PageLayoutProps } from '..'
 
-const getStaticData: GetStaticData<GQLGetPageLayoutQuery> = async (variables) => {
-  const query = initApolloClient().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>({
+const getStaticData: GetStaticData<PageLayoutProps> = async (variables) => {
+  const { data } = await initApolloClient().query<
+    GQLGetPageLayoutQuery,
+    GQLGetPortfolioListQueryVariables
+  >({
     query: GetPageLayoutDocument,
     variables,
   })
 
-  return (await query).data
+  const {
+    pages: [page],
+    ...rest
+  } = data
+
+  return { ...rest, page }
 }
 
 export default getStaticData

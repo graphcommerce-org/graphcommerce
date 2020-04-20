@@ -8,17 +8,15 @@ import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
 
-export type PageWithLayoutFull<T = {}> = LayoutPage<
-  GQLGetPageLayoutQuery & T,
-  GQLGetPageLayoutQuery
->
+export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
+  page: GQLGetPageLayoutQuery['pages'][0]
+}
 
-const LayoutFull: PageWithLayoutFull['layout'] = ({ children, pages, mainMenu, team }) => {
-  if (!pages)
-    return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
-  if (!pages.length || !pages[0]) return <Error statusCode={404} title='Page not found' />
+export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
+
+const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, team }) => {
+  if (!page) return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
   if (!mainMenu) return <Error statusCode={404} title='Main menu not loaded' />
-  const page = pages[0]
 
   return (
     <ThemedProvider>
