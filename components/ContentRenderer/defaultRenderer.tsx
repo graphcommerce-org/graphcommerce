@@ -4,6 +4,7 @@ import RowHero from '../RowHero'
 import RowColumnThree from '../RowColumnThree'
 import RowCompanySlider from '../RowCompanySlider'
 import RowPeopleWithText from '../RowPeopleWithText'
+import RowRecentBlogPost from '../RowRecentBlogPost'
 
 const registerDefaultRenderer = () => {
   const renderers = {
@@ -13,9 +14,9 @@ const registerDefaultRenderer = () => {
     RowColumnThree,
     RowCompanySlider,
     RowPeopleWithText,
-    RowRecentBlogPost: () => <div>RecentBlogPosts not yet implemented</div>,
+    RowRecentBlogPost,
     RowServicesWithText: () => <div>RowServicesWithText not yet implemented</div>,
-  } as Required<Renderers>
+  } as Renderers
   setRenderers(renderers)
 }
 

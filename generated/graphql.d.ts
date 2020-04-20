@@ -19,9 +19,9 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
+  Hex: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
   /** Raw JSON value */
   Json: any
   /**
@@ -118,8 +118,6 @@ type GQLAsset = GQLNode & {
   mimeType?: Maybe<Scalars['String']>
   personAvatar: Array<GQLPerson>
   companyLogo: Array<GQLCompany>
-  colOneIconRowColumnTwo: Array<GQLRowColumnTwo>
-  colTwoIconRowColumnTwo: Array<GQLRowColumnTwo>
   rowColumnThreeColOneIcon: Array<GQLRowColumnThree>
   rowColumnThreeColTwoIcon: Array<GQLRowColumnThree>
   rowColumnThreeColThreeIcon: Array<GQLRowColumnThree>
@@ -127,6 +125,8 @@ type GQLAsset = GQLNode & {
   rowHeroAsset: Array<GQLRowHero>
   alt?: Maybe<Scalars['String']>
   pageAsset: Array<GQLPage>
+  rowColumnTwoColOneIcon: Array<GQLRowColumnTwo>
+  rowColumnTwoColTwoIcon: Array<GQLRowColumnTwo>
   /** Get the url for the asset with provided transformations applied. */
   url: Scalars['String']
 }
@@ -159,28 +159,6 @@ type GQLAssetPersonAvatarArgs = {
 type GQLAssetCompanyLogoArgs = {
   where?: Maybe<GQLCompanyWhereInput>
   orderBy?: Maybe<GQLCompanyOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-/** Asset system model */
-type GQLAssetColOneIconRowColumnTwoArgs = {
-  where?: Maybe<GQLRowColumnTwoWhereInput>
-  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-/** Asset system model */
-type GQLAssetColTwoIconRowColumnTwoArgs = {
-  where?: Maybe<GQLRowColumnTwoWhereInput>
-  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -255,6 +233,28 @@ type GQLAssetPageAssetArgs = {
 }
 
 /** Asset system model */
+type GQLAssetRowColumnTwoColOneIconArgs = {
+  where?: Maybe<GQLRowColumnTwoWhereInput>
+  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Asset system model */
+type GQLAssetRowColumnTwoColTwoIconArgs = {
+  where?: Maybe<GQLRowColumnTwoWhereInput>
+  orderBy?: Maybe<GQLRowColumnTwoOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+/** Asset system model */
 type GQLAssetUrlArgs = {
   transformation?: Maybe<GQLAssetTransformationInput>
 }
@@ -287,8 +287,6 @@ type GQLAssetCreateInput = {
   mimeType?: Maybe<Scalars['String']>
   personAvatar?: Maybe<GQLPersonCreateManyInlineInput>
   companyLogo?: Maybe<GQLCompanyCreateManyInlineInput>
-  colOneIconRowColumnTwo?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
-  colTwoIconRowColumnTwo?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
   rowColumnThreeColOneIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   rowColumnThreeColTwoIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
@@ -297,6 +295,8 @@ type GQLAssetCreateInput = {
   /** alt input for default locale (nl) */
   alt?: Maybe<Scalars['String']>
   pageAsset?: Maybe<GQLPageCreateManyInlineInput>
+  rowColumnTwoColOneIcon?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
+  rowColumnTwoColTwoIcon?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLAssetCreateLocalizationsInput>
 }
@@ -427,12 +427,6 @@ type GQLAssetManyWhereInput = {
   companyLogo_every?: Maybe<GQLCompanyWhereInput>
   companyLogo_some?: Maybe<GQLCompanyWhereInput>
   companyLogo_none?: Maybe<GQLCompanyWhereInput>
-  colOneIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  colOneIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  colOneIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
-  colTwoIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  colTwoIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  colTwoIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
   rowColumnThreeColOneIcon_every?: Maybe<GQLRowColumnThreeWhereInput>
   rowColumnThreeColOneIcon_some?: Maybe<GQLRowColumnThreeWhereInput>
   rowColumnThreeColOneIcon_none?: Maybe<GQLRowColumnThreeWhereInput>
@@ -451,6 +445,12 @@ type GQLAssetManyWhereInput = {
   pageAsset_every?: Maybe<GQLPageWhereInput>
   pageAsset_some?: Maybe<GQLPageWhereInput>
   pageAsset_none?: Maybe<GQLPageWhereInput>
+  rowColumnTwoColOneIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColOneIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColOneIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColTwoIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColTwoIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColTwoIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
 }
 
 type GQLAssetOrderByInput =
@@ -494,8 +494,6 @@ type GQLAssetUpdateInput = {
   mimeType?: Maybe<Scalars['String']>
   personAvatar?: Maybe<GQLPersonUpdateManyInlineInput>
   companyLogo?: Maybe<GQLCompanyUpdateManyInlineInput>
-  colOneIconRowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
-  colTwoIconRowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
   rowColumnThreeColOneIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   rowColumnThreeColTwoIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
@@ -504,6 +502,8 @@ type GQLAssetUpdateInput = {
   /** alt input for default locale (nl) */
   alt?: Maybe<Scalars['String']>
   pageAsset?: Maybe<GQLPageUpdateManyInlineInput>
+  rowColumnTwoColOneIcon?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
+  rowColumnTwoColTwoIcon?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLAssetUpdateLocalizationsInput>
 }
@@ -797,12 +797,6 @@ type GQLAssetWhereInput = {
   companyLogo_every?: Maybe<GQLCompanyWhereInput>
   companyLogo_some?: Maybe<GQLCompanyWhereInput>
   companyLogo_none?: Maybe<GQLCompanyWhereInput>
-  colOneIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  colOneIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  colOneIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
-  colTwoIconRowColumnTwo_every?: Maybe<GQLRowColumnTwoWhereInput>
-  colTwoIconRowColumnTwo_some?: Maybe<GQLRowColumnTwoWhereInput>
-  colTwoIconRowColumnTwo_none?: Maybe<GQLRowColumnTwoWhereInput>
   rowColumnThreeColOneIcon_every?: Maybe<GQLRowColumnThreeWhereInput>
   rowColumnThreeColOneIcon_some?: Maybe<GQLRowColumnThreeWhereInput>
   rowColumnThreeColOneIcon_none?: Maybe<GQLRowColumnThreeWhereInput>
@@ -840,6 +834,12 @@ type GQLAssetWhereInput = {
   pageAsset_every?: Maybe<GQLPageWhereInput>
   pageAsset_some?: Maybe<GQLPageWhereInput>
   pageAsset_none?: Maybe<GQLPageWhereInput>
+  rowColumnTwoColOneIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColOneIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColOneIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColTwoIcon_every?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColTwoIcon_some?: Maybe<GQLRowColumnTwoWhereInput>
+  rowColumnTwoColTwoIcon_none?: Maybe<GQLRowColumnTwoWhereInput>
 }
 
 /** References Asset record uniquely */
@@ -3473,6 +3473,30 @@ type GQLMutation = {
   publishManyRowServicesWithTexts: GQLBatchPayload
   /** Unpublish many RowServicesWithText documents */
   unpublishManyRowServicesWithTexts: GQLBatchPayload
+  /** Create one rowYoutubeVideo */
+  createRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Update one rowYoutubeVideo */
+  updateRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Delete one rowYoutubeVideo from _all_ existing stages. Returns deleted document. */
+  deleteRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Upsert one rowYoutubeVideo */
+  upsertRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Publish one rowYoutubeVideo */
+  publishRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /**
+   * Unpublish one rowYoutubeVideo from selected stages. Unpublish either the
+   * complete document with its relations, localizations and base data or specific
+   * localizations only.
+   */
+  unpublishRowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Update many rowYoutubeVideos */
+  updateManyRowYoutubeVideos: GQLBatchPayload
+  /** Delete many RowYoutubeVideo documents */
+  deleteManyRowYoutubeVideos: GQLBatchPayload
+  /** Publish many RowYoutubeVideo documents */
+  publishManyRowYoutubeVideos: GQLBatchPayload
+  /** Unpublish many RowYoutubeVideo documents */
+  unpublishManyRowYoutubeVideos: GQLBatchPayload
 }
 
 type GQLMutationCreateAssetArgs = {
@@ -4338,6 +4362,61 @@ type GQLMutationUnpublishManyRowServicesWithTextsArgs = {
   unpublishBase?: Maybe<Scalars['Boolean']>
 }
 
+type GQLMutationCreateRowYoutubeVideoArgs = {
+  data: GQLRowYoutubeVideoCreateInput
+}
+
+type GQLMutationUpdateRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  data: GQLRowYoutubeVideoUpdateInput
+}
+
+type GQLMutationDeleteRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+}
+
+type GQLMutationUpsertRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  upsert: GQLRowYoutubeVideoUpsertInput
+}
+
+type GQLMutationPublishRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  locales?: Maybe<Array<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
+  to?: Array<GQLStage>
+}
+
+type GQLMutationUnpublishRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  from?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
+}
+
+type GQLMutationUpdateManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
+  data: GQLRowYoutubeVideoUpdateManyInput
+}
+
+type GQLMutationDeleteManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
+}
+
+type GQLMutationPublishManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
+  to?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  publishBase?: Maybe<Scalars['Boolean']>
+}
+
+type GQLMutationUnpublishManyRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoManyWhereInput>
+  from?: Array<GQLStage>
+  locales?: Maybe<Array<GQLLocale>>
+  unpublishBase?: Maybe<Scalars['Boolean']>
+}
+
 /** An object with an ID */
 type GQLNode = {
   /** The id of the object. */
@@ -4370,6 +4449,7 @@ type GQLPage = GQLNode & {
   metaTitle: Scalars['String']
   metaDescription: Scalars['String']
   metaRobots?: Maybe<GQLMetaRobots>
+  /** Content */
   content: Array<GQLPageContent>
   releaseDate?: Maybe<Scalars['DateTime']>
   asset?: Maybe<GQLAsset>
@@ -4434,6 +4514,7 @@ type GQLPageConnection = {
 }
 
 type GQLPageContent =
+  | GQLRowServicesWithText
   | GQLRowColumnThree
   | GQLRowColumnTwo
   | GQLRowRecentBlogPost
@@ -4441,9 +4522,10 @@ type GQLPageContent =
   | GQLRowColumnOne
   | GQLRowCompanySlider
   | GQLRowHero
-  | GQLRowServicesWithText
+  | GQLRowYoutubeVideo
 
 type GQLPageContentConnectInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextConnectInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeConnectInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoConnectInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostConnectInput>
@@ -4451,10 +4533,11 @@ type GQLPageContentConnectInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneConnectInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderConnectInput>
   RowHero?: Maybe<GQLRowHeroConnectInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextConnectInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoConnectInput>
 }
 
 type GQLPageContentCreateInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeCreateInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoCreateInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateInput>
@@ -4462,7 +4545,7 @@ type GQLPageContentCreateInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneCreateInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderCreateInput>
   RowHero?: Maybe<GQLRowHeroCreateInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextCreateInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoCreateInput>
 }
 
 type GQLPageContentCreateManyInlineInput = {
@@ -4480,6 +4563,7 @@ type GQLPageContentCreateOneInlineInput = {
 }
 
 type GQLPageContentUpdateInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeUpdateInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateInput>
@@ -4487,7 +4571,7 @@ type GQLPageContentUpdateInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneUpdateInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateInput>
   RowHero?: Maybe<GQLRowHeroUpdateInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpdateInput>
 }
 
 type GQLPageContentUpdateManyInlineInput = {
@@ -4508,6 +4592,7 @@ type GQLPageContentUpdateManyInlineInput = {
 }
 
 type GQLPageContentUpdateManyWithNestedWhereInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeUpdateManyWithNestedWhereInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateManyWithNestedWhereInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyWithNestedWhereInput>
@@ -4515,7 +4600,7 @@ type GQLPageContentUpdateManyWithNestedWhereInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneUpdateManyWithNestedWhereInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateManyWithNestedWhereInput>
   RowHero?: Maybe<GQLRowHeroUpdateManyWithNestedWhereInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyWithNestedWhereInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpdateManyWithNestedWhereInput>
 }
 
 type GQLPageContentUpdateOneInlineInput = {
@@ -4534,6 +4619,7 @@ type GQLPageContentUpdateOneInlineInput = {
 }
 
 type GQLPageContentUpdateWithNestedWhereUniqueInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeUpdateWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoUpdateWithNestedWhereUniqueInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateWithNestedWhereUniqueInput>
@@ -4541,10 +4627,11 @@ type GQLPageContentUpdateWithNestedWhereUniqueInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneUpdateWithNestedWhereUniqueInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderUpdateWithNestedWhereUniqueInput>
   RowHero?: Maybe<GQLRowHeroUpdateWithNestedWhereUniqueInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateWithNestedWhereUniqueInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput>
 }
 
 type GQLPageContentUpsertWithNestedWhereUniqueInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeUpsertWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoUpsertWithNestedWhereUniqueInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpsertWithNestedWhereUniqueInput>
@@ -4552,10 +4639,11 @@ type GQLPageContentUpsertWithNestedWhereUniqueInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneUpsertWithNestedWhereUniqueInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderUpsertWithNestedWhereUniqueInput>
   RowHero?: Maybe<GQLRowHeroUpsertWithNestedWhereUniqueInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextUpsertWithNestedWhereUniqueInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput>
 }
 
 type GQLPageContentWhereInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeWhereInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoWhereInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
@@ -4563,10 +4651,11 @@ type GQLPageContentWhereInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneWhereInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderWhereInput>
   RowHero?: Maybe<GQLRowHeroWhereInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoWhereInput>
 }
 
 type GQLPageContentWhereUniqueInput = {
+  RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
   RowColumnThree?: Maybe<GQLRowColumnThreeWhereUniqueInput>
   RowColumnTwo?: Maybe<GQLRowColumnTwoWhereUniqueInput>
   RowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereUniqueInput>
@@ -4574,7 +4663,7 @@ type GQLPageContentWhereUniqueInput = {
   RowColumnOne?: Maybe<GQLRowColumnOneWhereUniqueInput>
   RowCompanySlider?: Maybe<GQLRowCompanySliderWhereUniqueInput>
   RowHero?: Maybe<GQLRowHeroWhereUniqueInput>
-  RowServicesWithText?: Maybe<GQLRowServicesWithTextWhereUniqueInput>
+  RowYoutubeVideo?: Maybe<GQLRowYoutubeVideoWhereUniqueInput>
 }
 
 type GQLPageCreateInput = {
@@ -5945,6 +6034,12 @@ type GQLQuery = {
   rowServicesWithText?: Maybe<GQLRowServicesWithText>
   /** Retrieve multiple rowServicesWithTexts using the Relay connection interface */
   rowServicesWithTextsConnection: GQLRowServicesWithTextConnection
+  /** Retrieve multiple rowYoutubeVideos */
+  rowYoutubeVideos: Array<GQLRowYoutubeVideo>
+  /** Retrieve a single rowYoutubeVideo */
+  rowYoutubeVideo?: Maybe<GQLRowYoutubeVideo>
+  /** Retrieve multiple rowYoutubeVideos using the Relay connection interface */
+  rowYoutubeVideosConnection: GQLRowYoutubeVideoConnection
 }
 
 type GQLQueryNodeArgs = {
@@ -6436,6 +6531,36 @@ type GQLQueryRowServicesWithTextsConnectionArgs = {
   locales?: Array<GQLLocale>
 }
 
+type GQLQueryRowYoutubeVideosArgs = {
+  where?: Maybe<GQLRowYoutubeVideoWhereInput>
+  orderBy?: Maybe<GQLRowYoutubeVideoOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+  locales?: Array<GQLLocale>
+}
+
+type GQLQueryRowYoutubeVideoArgs = {
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  stage?: GQLStage
+  locales?: Array<GQLLocale>
+}
+
+type GQLQueryRowYoutubeVideosConnectionArgs = {
+  where?: Maybe<GQLRowYoutubeVideoWhereInput>
+  orderBy?: Maybe<GQLRowYoutubeVideoOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: GQLStage
+  locales?: Array<GQLLocale>
+}
+
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 type GQLRgba = {
   __typename?: 'RGBA'
@@ -6482,7 +6607,7 @@ type GQLRowColumnOne = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  colOne?: Maybe<GQLRichText>
+  colOne: GQLRichText
   colOneIcon?: Maybe<GQLAsset>
   page: Array<GQLPage>
 }
@@ -6524,7 +6649,7 @@ type GQLRowColumnOneCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  colOne?: Maybe<Scalars['RichTextAST']>
+  colOne: Scalars['RichTextAST']
   colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
 }
@@ -6687,7 +6812,7 @@ type GQLRowColumnOneUpdateManyInlineInput = {
 type GQLRowColumnOneUpdateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  colOne?: Maybe<Scalars['RichTextAST']>
+  colOne: Scalars['RichTextAST']
 }
 
 type GQLRowColumnOneUpdateManyWithNestedWhereInput = {
@@ -7309,9 +7434,9 @@ type GQLRowColumnTwo = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
   colOne: GQLRichText
-  colOneIcon: GQLAsset
+  colOneIcon?: Maybe<GQLAsset>
   colTwo: GQLRichText
-  colTwoIcon: GQLAsset
+  colTwoIcon?: Maybe<GQLAsset>
   page: Array<GQLPage>
 }
 
@@ -7357,10 +7482,10 @@ type GQLRowColumnTwoCreateInput = {
   identity: Scalars['String']
   /** colOne input for default locale (nl) */
   colOne: Scalars['RichTextAST']
-  colOneIcon: GQLAssetCreateOneInlineInput
+  colOneIcon?: Maybe<GQLAssetCreateOneInlineInput>
   /** colTwo input for default locale (nl) */
   colTwo: Scalars['RichTextAST']
-  colTwoIcon: GQLAssetCreateOneInlineInput
+  colTwoIcon?: Maybe<GQLAssetCreateOneInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLRowColumnTwoCreateLocalizationsInput>
@@ -9874,6 +9999,411 @@ type GQLRowServicesWithTextWhereUniqueInput = {
   identity?: Maybe<Scalars['String']>
 }
 
+/** A full-width Youtube video */
+type GQLRowYoutubeVideo = GQLNode & {
+  __typename?: 'RowYoutubeVideo'
+  /** System stage field */
+  stage: GQLStage
+  /** System Locale field */
+  locale: GQLLocale
+  /** Get the other localizations for this document */
+  localizations: Array<GQLRowYoutubeVideo>
+  /** Get the document in other stages */
+  documentInStages: Array<GQLRowYoutubeVideo>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** The unique identifier */
+  videoId: Scalars['String']
+  page: Array<GQLPage>
+}
+
+/** A full-width Youtube video */
+type GQLRowYoutubeVideoLocalizationsArgs = {
+  locales?: Array<GQLLocale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+/** A full-width Youtube video */
+type GQLRowYoutubeVideoDocumentInStagesArgs = {
+  stages?: Array<GQLStage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+/** A full-width Youtube video */
+type GQLRowYoutubeVideoPageArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+type GQLRowYoutubeVideoConnectInput = {
+  /** Document to connect */
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<GQLConnectPositionInput>
+}
+
+/** A connection to a list of items. */
+type GQLRowYoutubeVideoConnection = {
+  __typename?: 'RowYoutubeVideoConnection'
+  /** Information to aid in pagination. */
+  pageInfo: GQLPageInfo
+  /** A list of edges. */
+  edges: Array<GQLRowYoutubeVideoEdge>
+  aggregate: GQLAggregate
+}
+
+type GQLRowYoutubeVideoCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** videoId input for default locale (nl) */
+  videoId: Scalars['String']
+  page?: Maybe<GQLPageCreateManyInlineInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<GQLRowYoutubeVideoCreateLocalizationsInput>
+}
+
+type GQLRowYoutubeVideoCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  videoId: Scalars['String']
+}
+
+type GQLRowYoutubeVideoCreateLocalizationInput = {
+  /** Localization input */
+  data: GQLRowYoutubeVideoCreateLocalizationDataInput
+  locale: GQLLocale
+}
+
+type GQLRowYoutubeVideoCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<GQLRowYoutubeVideoCreateLocalizationInput>>
+}
+
+type GQLRowYoutubeVideoCreateManyInlineInput = {
+  /** Create and connect multiple existing RowYoutubeVideo documents */
+  create?: Maybe<Array<GQLRowYoutubeVideoCreateInput>>
+  /** Connect multiple existing RowYoutubeVideo documents */
+  connect?: Maybe<Array<GQLRowYoutubeVideoWhereUniqueInput>>
+}
+
+type GQLRowYoutubeVideoCreateOneInlineInput = {
+  /** Create and connect one RowYoutubeVideo document */
+  create?: Maybe<GQLRowYoutubeVideoCreateInput>
+  /** Connect one existing RowYoutubeVideo document */
+  connect?: Maybe<GQLRowYoutubeVideoWhereUniqueInput>
+}
+
+/** An edge in a connection. */
+type GQLRowYoutubeVideoEdge = {
+  __typename?: 'RowYoutubeVideoEdge'
+  /** The item at the end of the edge. */
+  node: GQLRowYoutubeVideo
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+}
+
+/** Identifies documents */
+type GQLRowYoutubeVideoManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<GQLRowYoutubeVideoWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<GQLRowYoutubeVideoWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<GQLRowYoutubeVideoWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+}
+
+type GQLRowYoutubeVideoOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'videoId_ASC'
+  | 'videoId_DESC'
+
+type GQLRowYoutubeVideoUpdateInput = {
+  /** videoId input for default locale (nl) */
+  videoId?: Maybe<Scalars['String']>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
+  /** Manage document localizations */
+  localizations?: Maybe<GQLRowYoutubeVideoUpdateLocalizationsInput>
+}
+
+type GQLRowYoutubeVideoUpdateLocalizationDataInput = {
+  videoId: Scalars['String']
+}
+
+type GQLRowYoutubeVideoUpdateLocalizationInput = {
+  data: GQLRowYoutubeVideoUpdateLocalizationDataInput
+  locale: GQLLocale
+}
+
+type GQLRowYoutubeVideoUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<GQLRowYoutubeVideoCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<GQLRowYoutubeVideoUpdateLocalizationInput>>
+  upsert?: Maybe<Array<GQLRowYoutubeVideoUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<GQLLocale>>
+}
+
+type GQLRowYoutubeVideoUpdateManyInlineInput = {
+  /** Create and connect multiple RowYoutubeVideo documents */
+  create?: Maybe<Array<GQLRowYoutubeVideoCreateInput>>
+  /** Connect multiple existing RowYoutubeVideo documents */
+  connect?: Maybe<Array<GQLRowYoutubeVideoConnectInput>>
+  /** Override currently-connected documents with multiple existing RowYoutubeVideo documents */
+  set?: Maybe<Array<GQLRowYoutubeVideoWhereUniqueInput>>
+  /** Update multiple RowYoutubeVideo documents */
+  update?: Maybe<Array<GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowYoutubeVideo documents */
+  upsert?: Maybe<Array<GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowYoutubeVideo documents */
+  disconnect?: Maybe<Array<GQLRowYoutubeVideoWhereUniqueInput>>
+  /** Delete multiple RowYoutubeVideo documents */
+  delete?: Maybe<Array<GQLRowYoutubeVideoWhereUniqueInput>>
+}
+
+type GQLRowYoutubeVideoUpdateManyInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<Array<GQLRowYoutubeVideoUpdateManyLocalizationInput>>
+}
+
+type GQLRowYoutubeVideoUpdateManyLocalizationInput = {
+  videoId: Scalars['String']
+}
+
+type GQLRowYoutubeVideoUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: GQLRowYoutubeVideoWhereInput
+  /** Update many input */
+  data: GQLRowYoutubeVideoUpdateManyInput
+}
+
+type GQLRowYoutubeVideoUpdateOneInlineInput = {
+  /** Create and connect one RowYoutubeVideo document */
+  create?: Maybe<GQLRowYoutubeVideoCreateInput>
+  /** Update single RowYoutubeVideo document */
+  update?: Maybe<GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowYoutubeVideo document */
+  upsert?: Maybe<GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowYoutubeVideo document */
+  connect?: Maybe<GQLRowYoutubeVideoWhereUniqueInput>
+  /** Disconnect currently connected RowYoutubeVideo document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowYoutubeVideo document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+type GQLRowYoutubeVideoUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  /** Document to update */
+  data: GQLRowYoutubeVideoUpdateInput
+}
+
+type GQLRowYoutubeVideoUpsertInput = {
+  /** Create document if it didn't exist */
+  create: GQLRowYoutubeVideoCreateInput
+  /** Update document if it exists */
+  update: GQLRowYoutubeVideoUpdateInput
+}
+
+type GQLRowYoutubeVideoUpsertLocalizationInput = {
+  update: GQLRowYoutubeVideoUpdateLocalizationDataInput
+  create: GQLRowYoutubeVideoCreateLocalizationDataInput
+  locale: GQLLocale
+}
+
+type GQLRowYoutubeVideoUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: GQLRowYoutubeVideoWhereUniqueInput
+  /** Upsert data */
+  data: GQLRowYoutubeVideoUpsertInput
+}
+
+/** Identifies documents */
+type GQLRowYoutubeVideoWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<GQLRowYoutubeVideoWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<GQLRowYoutubeVideoWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<GQLRowYoutubeVideoWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  videoId?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  videoId_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  videoId_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  videoId_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  videoId_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  videoId_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  videoId_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  videoId_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  videoId_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  videoId_not_ends_with?: Maybe<Scalars['String']>
+}
+
+/** References RowYoutubeVideo record uniquely */
+type GQLRowYoutubeVideoWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+}
+
 /** Stage system enumeration */
 type GQLStage =
   /** System Published Stage */
@@ -9904,6 +10434,7 @@ type GQLBlogListItemFragment = { __typename?: 'Page' } & Pick<
 type GQLGetBlogListQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
+  first?: Scalars['Int']
 }
 
 type GQLGetBlogListQuery = { __typename?: 'Query' } & {
@@ -9938,6 +10469,7 @@ type GQLSubmitContactFormMutation = { __typename?: 'Mutation' } & {
 
 type GQLContentRendererFragment = { __typename?: 'Page' } & {
   content: Array<
+    | ({ __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
     | ({ __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> & GQLRowColumnThreeFragment)
     | ({ __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'>)
     | ({ __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'>)
@@ -9947,7 +10479,7 @@ type GQLContentRendererFragment = { __typename?: 'Page' } & {
     | ({ __typename: 'RowCompanySlider' } & Pick<GQLRowCompanySlider, 'id'> &
         GQLRowCompanySliderFragment)
     | ({ __typename: 'RowHero' } & Pick<GQLRowHero, 'id'> & GQLRowHeroFragment)
-    | ({ __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
+    | ({ __typename: 'RowYoutubeVideo' } & Pick<GQLRowYoutubeVideo, 'id'>)
   >
 }
 

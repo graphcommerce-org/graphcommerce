@@ -24,6 +24,9 @@
             "name": "Page"
           },
           {
+            "name": "RowServicesWithText"
+          },
+          {
             "name": "RowColumnThree"
           },
           {
@@ -48,7 +51,7 @@
             "name": "LinkExternal"
           },
           {
-            "name": "RowServicesWithText"
+            "name": "RowYoutubeVideo"
           },
           {
             "name": "Menu"
@@ -62,6 +65,9 @@
         "kind": "UNION",
         "name": "PageContent",
         "possibleTypes": [
+          {
+            "name": "RowServicesWithText"
+          },
           {
             "name": "RowColumnThree"
           },
@@ -84,7 +90,7 @@
             "name": "RowHero"
           },
           {
-            "name": "RowServicesWithText"
+            "name": "RowYoutubeVideo"
           }
         ]
       },

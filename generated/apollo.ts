@@ -226,12 +226,12 @@ export const PortfolioListitemFragmentDoc = gql`
   ${AssetFragmentDoc}
 `
 export const GetBlogListDocument = gql`
-  query GetBlogList($url: String!, $locale: Locale!) {
+  query GetBlogList($url: String!, $locale: Locale!, $first: Int! = 100) {
     blogPosts: pages(
       where: { url_starts_with: $url }
       locales: [$locale]
       orderBy: releaseDate_DESC
-      first: 100
+      first: $first
     ) {
       ...BlogListItem
     }
@@ -253,6 +253,7 @@ export const GetBlogListDocument = gql`
  *   variables: {
  *      url: // value for 'url'
  *      locale: // value for 'locale'
+ *      first: // value for 'first'
  *   },
  * });
  */
