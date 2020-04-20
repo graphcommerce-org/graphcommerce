@@ -1,3 +1,11 @@
+### [5.6.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.3...v5.6.4) (2020-04-20)
+
+
+### Performance Improvements
+
+* load photo’s of people with compression=lossy ([e32a9c1](https://github.com/ho-nl/project-reachdigital.nl/commit/e32a9c1227353b666d90c3e33971831f5910a315))
+* remove next/dynamic usage ([dfa0f18](https://github.com/ho-nl/project-reachdigital.nl/commit/dfa0f187943ac8887488d14b4a5d83a317a66230))
+
 ### [5.6.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.2...v5.6.3) (2020-04-20)
 
 
