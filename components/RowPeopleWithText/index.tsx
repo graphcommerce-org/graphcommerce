@@ -45,7 +45,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
   const Right = () => (
     <Paper elevation={10} className={classes.paper}>
       {personList?.people.map(({ avatar }) => (
-        <Asset asset={avatar} width={83} key={avatar.id} />
+        <Asset asset={avatar} width={83} key={avatar.id} compression='lossy' />
       ))}
     </Paper>
   )
