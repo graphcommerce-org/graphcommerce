@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  Hex: any
   RGBATransparency: any
+  Hex: any
   RGBAHue: any
-  /** Raw JSON value */
-  Json: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  /** Raw JSON value */
+  Json: any
 }
 
 type GQL_FilterKind =
@@ -2246,7 +2246,7 @@ type GQLLinkInternal = GQLNode & {
   rowPeopleWithText: Array<GQLRowPeopleWithText>
   rowServicesWithText: Array<GQLRowServicesWithText>
   rowHeroVideo: Array<GQLRowHero>
-  rowRecentBlogPost: Array<GQLRowRecentBlogPost>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPost>
 }
 
 type GQLLinkInternalLocalizationsArgs = {
@@ -2288,16 +2288,6 @@ type GQLLinkInternalRowHeroVideoArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLLinkInternalRowRecentBlogPostArgs = {
-  where?: Maybe<GQLRowRecentBlogPostWhereInput>
-  orderBy?: Maybe<GQLRowRecentBlogPostOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
 type GQLLinkInternalConnectInput = {
   /** Document to connect */
   where: GQLLinkInternalWhereUniqueInput
@@ -2325,7 +2315,7 @@ type GQLLinkInternalCreateInput = {
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
-  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateManyInlineInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLLinkInternalCreateLocalizationsInput>
 }
@@ -2451,9 +2441,7 @@ type GQLLinkInternalManyWhereInput = {
   rowServicesWithText_every?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_some?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
-  rowRecentBlogPost_every?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_some?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_none?: Maybe<GQLRowRecentBlogPostWhereInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
 }
 
 type GQLLinkInternalOrderByInput =
@@ -2476,7 +2464,7 @@ type GQLLinkInternalUpdateInput = {
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
-  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyInlineInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateOneInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLLinkInternalUpdateLocalizationsInput>
 }
@@ -2678,9 +2666,7 @@ type GQLLinkInternalWhereInput = {
   rowServicesWithText_every?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_some?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
-  rowRecentBlogPost_every?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_some?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_none?: Maybe<GQLRowRecentBlogPostWhereInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
 }
 
 /** References LinkInternal record uniquely */
@@ -9177,8 +9163,8 @@ type GQLRowRecentBlogPost = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  link?: Maybe<GQLLinkInternal>
   page: Array<GQLPage>
+  link?: Maybe<GQLLinkInternal>
 }
 
 type GQLRowRecentBlogPostDocumentInStagesArgs = {
@@ -9216,8 +9202,8 @@ type GQLRowRecentBlogPostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  link?: Maybe<GQLLinkInternalCreateOneInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
+  link?: Maybe<GQLLinkInternalCreateOneInlineInput>
 }
 
 type GQLRowRecentBlogPostCreateManyInlineInput = {
@@ -9353,8 +9339,8 @@ type GQLRowRecentBlogPostOrderByInput =
 
 type GQLRowRecentBlogPostUpdateInput = {
   identity?: Maybe<Scalars['String']>
-  link?: Maybe<GQLLinkInternalUpdateOneInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
+  link?: Maybe<GQLLinkInternalUpdateOneInlineInput>
 }
 
 type GQLRowRecentBlogPostUpdateManyInlineInput = {

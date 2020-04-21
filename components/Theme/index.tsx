@@ -1,6 +1,7 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
+import { ColorPartial } from '@material-ui/core/styles/createPalette'
 
 export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
   const round = (x: number, n: number) => Math.round(x * 10 ** n) / 10 ** n
@@ -46,7 +47,7 @@ declare module '@material-ui/core/styles/createPalette' {
     tertiary: PaletteColorOptions
   }
   interface Palette {
-    tertiary: PaletteColor
+    tertiary: PaletteColor & ColorPartial
   }
 }
 declare module '@material-ui/core/styles/createMuiTheme' {
@@ -81,6 +82,7 @@ export const theme = createMuiTheme({
       main: '#2b153d',
       light: '#463058',
       '100': '#9f89b1',
+      '500': '#2a183e',
       contrastText: '#fff',
     },
     background: {
