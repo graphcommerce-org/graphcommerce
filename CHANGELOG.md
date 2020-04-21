@@ -1,3 +1,10 @@
+## [5.8.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.7.0...v5.8.0) (2020-04-21)
+
+
+### Features
+
+* added RowRecentBlogPost synchronously ([2ba635d](https://github.com/ho-nl/project-reachdigital.nl/commit/2ba635dcb5176f0b24d9d58319623f3054909cde))
+
 ## [5.7.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.4...v5.7.0) (2020-04-20)
 
 ### Features
