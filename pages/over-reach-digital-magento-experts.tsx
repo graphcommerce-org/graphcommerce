@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { makeStyles } from '@material-ui/core'
-import LayoutFull, { PageWithLayoutFull } from '../components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
 import RichText from '../components/RichText'
@@ -21,23 +21,19 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
   )
 }
 
-const AboutUs: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ pages }) => {
-  return (
-    <>
-      <ContentRenderer content={pages[0].content} customRenderers={{ RowHero }} />
-    </>
-  )
+const AboutUs: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page }) => {
+  return <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
 }
 
 AboutUs.layout = LayoutFull
 
 export default AboutUs
 
-export const getStaticProps: GetStaticProps<GQLGetPageLayoutQuery> = async () => {
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
   const params: StaticPageVariables = {
     url: '/over-reach-digital-magento-experts',
     locale: 'nl',
   }
-  const getStaticData = await import('../components/PageLayout/server/getStaticData')
-  return { props: await getStaticData.default(params) }
+  const { getStaticProps: get } = await import('../components/PageLayout')
+  return { props: await get(params) }
 }

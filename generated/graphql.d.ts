@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  Hex: any
   RGBATransparency: any
+  Hex: any
   RGBAHue: any
-  /** Raw JSON value */
-  Json: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  /** Raw JSON value */
+  Json: any
 }
 
 type GQL_FilterKind =
@@ -2246,7 +2246,7 @@ type GQLLinkInternal = GQLNode & {
   rowPeopleWithText: Array<GQLRowPeopleWithText>
   rowServicesWithText: Array<GQLRowServicesWithText>
   rowHeroVideo: Array<GQLRowHero>
-  rowRecentBlogPost: Array<GQLRowRecentBlogPost>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPost>
 }
 
 type GQLLinkInternalLocalizationsArgs = {
@@ -2288,16 +2288,6 @@ type GQLLinkInternalRowHeroVideoArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLLinkInternalRowRecentBlogPostArgs = {
-  where?: Maybe<GQLRowRecentBlogPostWhereInput>
-  orderBy?: Maybe<GQLRowRecentBlogPostOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
 type GQLLinkInternalConnectInput = {
   /** Document to connect */
   where: GQLLinkInternalWhereUniqueInput
@@ -2325,7 +2315,7 @@ type GQLLinkInternalCreateInput = {
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
-  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateManyInlineInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLLinkInternalCreateLocalizationsInput>
 }
@@ -2451,9 +2441,7 @@ type GQLLinkInternalManyWhereInput = {
   rowServicesWithText_every?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_some?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
-  rowRecentBlogPost_every?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_some?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_none?: Maybe<GQLRowRecentBlogPostWhereInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
 }
 
 type GQLLinkInternalOrderByInput =
@@ -2476,7 +2464,7 @@ type GQLLinkInternalUpdateInput = {
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
   rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
-  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateManyInlineInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateOneInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLLinkInternalUpdateLocalizationsInput>
 }
@@ -2678,9 +2666,7 @@ type GQLLinkInternalWhereInput = {
   rowServicesWithText_every?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_some?: Maybe<GQLRowServicesWithTextWhereInput>
   rowServicesWithText_none?: Maybe<GQLRowServicesWithTextWhereInput>
-  rowRecentBlogPost_every?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_some?: Maybe<GQLRowRecentBlogPostWhereInput>
-  rowRecentBlogPost_none?: Maybe<GQLRowRecentBlogPostWhereInput>
+  rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostWhereInput>
 }
 
 /** References LinkInternal record uniquely */
@@ -9177,8 +9163,8 @@ type GQLRowRecentBlogPost = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  link?: Maybe<GQLLinkInternal>
   page: Array<GQLPage>
+  link?: Maybe<GQLLinkInternal>
 }
 
 type GQLRowRecentBlogPostDocumentInStagesArgs = {
@@ -9216,8 +9202,8 @@ type GQLRowRecentBlogPostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  link?: Maybe<GQLLinkInternalCreateOneInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
+  link?: Maybe<GQLLinkInternalCreateOneInlineInput>
 }
 
 type GQLRowRecentBlogPostCreateManyInlineInput = {
@@ -9353,8 +9339,8 @@ type GQLRowRecentBlogPostOrderByInput =
 
 type GQLRowRecentBlogPostUpdateInput = {
   identity?: Maybe<Scalars['String']>
-  link?: Maybe<GQLLinkInternalUpdateOneInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
+  link?: Maybe<GQLLinkInternalUpdateOneInlineInput>
 }
 
 type GQLRowRecentBlogPostUpdateManyInlineInput = {
@@ -10466,6 +10452,7 @@ type GQLBlogListItemFragment = { __typename?: 'Page' } & Pick<
 type GQLGetBlogListQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
+  first?: Scalars['Int']
 }
 
 type GQLGetBlogListQuery = { __typename?: 'Query' } & {
@@ -10503,7 +10490,8 @@ type GQLContentRendererFragment = { __typename?: 'Page' } & {
     | ({ __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
     | ({ __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> & GQLRowColumnThreeFragment)
     | ({ __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'> & GQLRowColumnTwoFragment)
-    | ({ __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'>)
+    | ({ __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'> &
+        GQLRowRecentBlogPostFragment)
     | ({ __typename: 'RowPeopleWithText' } & Pick<GQLRowPeopleWithText, 'id'> &
         GQLRowPeopleWithTextFragment)
     | ({ __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'> & GQLRowColumnOneFragment)
@@ -10542,10 +10530,6 @@ type GQLMenuFragment = { __typename?: 'Menu' } & {
   >
 }
 
-type GQLPageLayoutFragment = { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale'> &
-  GQLPageMetaFragment &
-  GQLContentRendererFragment
-
 type GQLGetPageLayoutQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
@@ -10557,18 +10541,9 @@ type GQLGetPageLayoutQuery = { __typename?: 'Query' } & {
   team: Array<{ __typename?: 'Person' } & GQLPersonFragment>
 }
 
-type GQLGetStaticPathsQueryVariables = {
-  startsWith: Scalars['String']
-  locale: GQLLocale
-}
-
-type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
-  pages: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'> & {
-        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'>>
-      }
-  >
-}
+type GQLPageLayoutFragment = { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale'> &
+  GQLPageMetaFragment &
+  GQLContentRendererFragment
 
 type GQLPageMetaFragment = { __typename?: 'Page' } & Pick<
   GQLPage,
@@ -10583,11 +10558,6 @@ type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'nam
     avatar: { __typename?: 'Asset' } & GQLAssetFragment
   }
 
-type GQLPortfolioListitemFragment = { __typename?: 'Page' } & Pick<
-  GQLPage,
-  'id' | 'title' | 'metaRobots' | 'url'
-> & { asset?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment> }
-
 type GQLGetPortfolioListQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
@@ -10596,6 +10566,11 @@ type GQLGetPortfolioListQueryVariables = {
 type GQLGetPortfolioListQuery = { __typename?: 'Query' } & {
   portfolioList: Array<{ __typename?: 'Page' } & GQLPortfolioListitemFragment>
 }
+
+type GQLPortfolioListitemFragment = { __typename?: 'Page' } & Pick<
+  GQLPage,
+  'id' | 'title' | 'metaRobots' | 'url'
+> & { asset?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment> }
 
 type GQLRichTextFragment = { __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
 
@@ -10704,6 +10679,12 @@ type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } & Pick<
     >
   }
 
+type GQLRowRecentBlogPostFragment = { __typename?: 'RowRecentBlogPost' } & {
+  link?: Maybe<
+    { __typename?: 'LinkInternal' } & Pick<GQLLinkInternal, 'locale'> & GQLLinkInternalFragment
+  >
+}
+
 type GQLGetAllRowYoutubeVideosQueryVariables = {
   skip: Scalars['Int']
 }
@@ -10716,6 +10697,19 @@ type GQLRowYoutubeVideoFragment = { __typename?: 'RowYoutubeVideo' } & Pick<
   GQLRowYoutubeVideo,
   'videoId' | 'title'
 >
+
+type GQLGetStaticPathsQueryVariables = {
+  startsWith: Scalars['String']
+  locale: GQLLocale
+}
+
+type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
+  pages: Array<
+    { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'> & {
+        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'>>
+      }
+  >
+}
 
 type GQLCreatePageMutationVariables = {
   page: GQLPageCreateInput

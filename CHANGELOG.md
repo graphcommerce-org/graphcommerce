@@ -1,9 +1,9 @@
 ## [5.7.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.4...v5.7.0) (2020-04-20)
 
-
 ### Features
 
-* **about-us page:** add page and initial content ([fd3ba3c](https://github.com/ho-nl/project-reachdigital.nl/commit/fd3ba3c41c6a28223d7ba62919276e90e4153a22))
+- **about-us page:** add page and initial content
+  ([fd3ba3c](https://github.com/ho-nl/project-reachdigital.nl/commit/fd3ba3c41c6a28223d7ba62919276e90e4153a22))
 
 ### [5.6.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.3...v5.6.4) (2020-04-20)
 

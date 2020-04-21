@@ -7,18 +7,17 @@ import ThemedProvider, { theme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
+import { GQLGetStaticProps } from '../../lib/staticParams'
 
-export type PageWithLayoutFull<T = {}> = LayoutPage<
-  GQLGetPageLayoutQuery & T,
-  GQLGetPageLayoutQuery
->
+export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
+  page: GQLGetPageLayoutQuery['pages'][0]
+}
 
-const LayoutFull: PageWithLayoutFull['layout'] = ({ children, pages, mainMenu, team }) => {
-  if (!pages)
-    return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
-  if (!pages.length || !pages[0]) return <Error statusCode={404} title='Page not found' />
+export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
+
+const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, team }) => {
+  if (!page) return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
   if (!mainMenu) return <Error statusCode={404} title='Main menu not loaded' />
-  const page = pages[0]
 
   return (
     <ThemedProvider>
@@ -37,3 +36,20 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, pages, mainMenu, t
 }
 
 export default LayoutFull
+
+export const getStaticProps: GQLGetStaticProps<PageLayoutProps> = async (variables) => {
+  const { default: client } = await import('../../lib/apollo')
+  const { GetPageLayoutDocument } = await import('../../generated/apollo')
+  const { getStaticProps: get } = await import('../ContentRenderer/ContentRenderer')
+
+  const { data } = await client().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>({
+    query: GetPageLayoutDocument,
+    variables,
+  })
+
+  const { pages, ...rest } = data
+  const page = pages[0]
+
+  page.content = await get(page.content)
+  return { ...rest, page: pages[0] }
+}

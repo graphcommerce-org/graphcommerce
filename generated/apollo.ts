@@ -217,6 +217,15 @@ export const RowPeopleWithTextFragmentDoc = gql`
   ${LinkInternalFragmentDoc}
   ${PersonFragmentDoc}
 `
+export const RowRecentBlogPostFragmentDoc = gql`
+  fragment RowRecentBlogPost on RowRecentBlogPost {
+    link {
+      ...LinkInternal
+      locale
+    }
+  }
+  ${LinkInternalFragmentDoc}
+`
 export const RowYoutubeVideoFragmentDoc = gql`
   fragment RowYoutubeVideo on RowYoutubeVideo {
     videoId
@@ -236,6 +245,7 @@ export const ContentRendererFragmentDoc = gql`
       ...RowColumnOne
       ...RowCompanySlider
       ...RowPeopleWithText
+      ...RowRecentBlogPost
       ...RowYoutubeVideo
     }
   }
@@ -245,6 +255,7 @@ export const ContentRendererFragmentDoc = gql`
   ${RowColumnOneFragmentDoc}
   ${RowCompanySliderFragmentDoc}
   ${RowPeopleWithTextFragmentDoc}
+  ${RowRecentBlogPostFragmentDoc}
   ${RowYoutubeVideoFragmentDoc}
 `
 export const PageLayoutFragmentDoc = gql`
@@ -270,12 +281,12 @@ export const PortfolioListitemFragmentDoc = gql`
   ${AssetFragmentDoc}
 `
 export const GetBlogListDocument = gql`
-  query GetBlogList($url: String!, $locale: Locale!) {
+  query GetBlogList($url: String!, $locale: Locale!, $first: Int! = 100) {
     blogPosts: pages(
       where: { url_starts_with: $url }
       locales: [$locale]
       orderBy: releaseDate_DESC
-      first: 100
+      first: $first
     ) {
       ...BlogListItem
     }
@@ -297,6 +308,7 @@ export const GetBlogListDocument = gql`
  *   variables: {
  *      url: // value for 'url'
  *      locale: // value for 'locale'
+ *      first: // value for 'first'
  *   },
  * });
  */
@@ -509,67 +521,6 @@ export type GetPageLayoutLazyQueryHookResult = ReturnType<typeof useGetPageLayou
 export type GetPageLayoutQueryResult = ApolloReactCommon.QueryResult<
   GQLGetPageLayoutQuery,
   GQLGetPageLayoutQueryVariables
->
-export const GetStaticPathsDocument = gql`
-  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
-    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
-      id
-      locale
-      url
-      localizations {
-        id
-        locale
-        url
-        locale
-      }
-    }
-  }
-`
-
-/**
- * __useGetStaticPathsQuery__
- *
- * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetStaticPathsQuery({
- *   variables: {
- *      startsWith: // value for 'startsWith'
- *      locale: // value for 'locale'
- *   },
- * });
- */
-export function useGetStaticPathsQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
-    GetStaticPathsDocument,
-    baseOptions,
-  )
-}
-export function useGetStaticPathsLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
-    GetStaticPathsDocument,
-    baseOptions,
-  )
-}
-export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
-export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
-export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetStaticPathsQuery,
-  GQLGetStaticPathsQueryVariables
 >
 export const GetPortfolioListDocument = gql`
   query GetPortfolioList($url: String!, $locale: Locale!) {
@@ -1011,6 +962,67 @@ export type GetAllRowYoutubeVideosLazyQueryHookResult = ReturnType<
 export type GetAllRowYoutubeVideosQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowYoutubeVideosQuery,
   GQLGetAllRowYoutubeVideosQueryVariables
+>
+export const GetStaticPathsDocument = gql`
+  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
+    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
+      id
+      locale
+      url
+      localizations {
+        id
+        locale
+        url
+        locale
+      }
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetStaticPathsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
+export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
+export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsQuery,
+  GQLGetStaticPathsQueryVariables
 >
 export const CreatePageDocument = gql`
   mutation CreatePage($page: PageCreateInput!) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { makeStyles } from '@material-ui/core'
-import LayoutFull, { PageWithLayoutFull } from '../components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import PortfolioList from '../components/PortfolioList'
 import { StaticPageVariables } from '../lib/staticParams'
@@ -22,10 +22,10 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
   )
 }
 
-const Portfolio: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ pages, portfolioList }) => {
+const Portfolio: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page, portfolioList }) => {
   return (
     <>
-      <ContentRenderer content={pages[0].content} customRenderers={{ RowHero }} />
+      <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
       <PortfolioList portfolioList={portfolioList} />
     </>
   )
@@ -36,7 +36,7 @@ Portfolio.layout = LayoutFull
 export default Portfolio
 
 export const getStaticProps: GetStaticProps<
-  GQLGetPageLayoutQuery & GQLGetPortfolioListQuery
+  PageLayoutProps & GQLGetPortfolioListQuery
 > = async () => {
   const params: StaticPageVariables = {
     url: '/portfolio-magento-e-commerce-projecten',
@@ -44,12 +44,8 @@ export const getStaticProps: GetStaticProps<
   }
 
   const data = await Promise.all([
-    import('../components/PageLayout/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-    import('../components/PortfolioList/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
+    import('../components/PageLayout').then(({ getStaticProps: get }) => get(params)),
+    import('../components/PortfolioList').then(({ getStaticProps: get }) => get(params)),
   ])
 
   return { props: Object.assign(...data) }

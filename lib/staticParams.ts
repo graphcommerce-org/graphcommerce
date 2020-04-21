@@ -5,7 +5,7 @@ type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A
 export type StaticPageParams = { url: string | string[]; locale: GQLLocale }
 
 export type StaticPageVariables = { url: string; locale: GQLLocale }
-export type GetStaticData<T> = (props: StaticPageVariables) => Promise<T>
+export type GQLGetStaticProps<T> = (variables: StaticPageVariables) => Promise<T>
 
 const extractParams = (
   ctx: ArgumentTypes<NextGetStaticProps<{}, StaticPageParams>>[0],

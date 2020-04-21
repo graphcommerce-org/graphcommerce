@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles, Theme, Container } from '@material-ui/core'
 import PortfolioListItem from './PortfolioListItem'
 import { vpCalc } from '../Theme'
+import { GQLGetStaticProps } from '../../lib/staticParams'
 
 const useStyles = makeStyles((theme: Theme) => ({
   portfolioList: {
@@ -24,3 +25,16 @@ const PortfolioList: React.FC<GQLGetPortfolioListQuery> = ({ portfolioList }) =>
 }
 
 export default PortfolioList
+
+export const getStaticProps: GQLGetStaticProps<GQLGetPortfolioListQuery> = async ({
+  url,
+  locale,
+}) => {
+  const { default: client } = await import('../../lib/apollo')
+  const { GetPortfolioListDocument } = await import('../../generated/apollo')
+  const { data } = await client().query<GQLGetPortfolioListQuery, GQLGetPageLayoutQueryVariables>({
+    query: GetPortfolioListDocument,
+    variables: { url: `${url}/`, locale },
+  })
+  return data
+}
