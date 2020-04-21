@@ -10489,16 +10489,17 @@ type GQLContentRendererFragment = { __typename?: 'Page' } & {
   content: Array<
     | ({ __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
     | ({ __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> & GQLRowColumnThreeFragment)
-    | ({ __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'>)
+    | ({ __typename: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'> & GQLRowColumnTwoFragment)
     | ({ __typename: 'RowRecentBlogPost' } & Pick<GQLRowRecentBlogPost, 'id'> &
         GQLRowRecentBlogPostFragment)
     | ({ __typename: 'RowPeopleWithText' } & Pick<GQLRowPeopleWithText, 'id'> &
         GQLRowPeopleWithTextFragment)
-    | ({ __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'>)
+    | ({ __typename: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'> & GQLRowColumnOneFragment)
     | ({ __typename: 'RowCompanySlider' } & Pick<GQLRowCompanySlider, 'id'> &
         GQLRowCompanySliderFragment)
     | ({ __typename: 'RowHero' } & Pick<GQLRowHero, 'id'> & GQLRowHeroFragment)
-    | ({ __typename: 'RowYoutubeVideo' } & Pick<GQLRowYoutubeVideo, 'id'>)
+    | ({ __typename: 'RowYoutubeVideo' } & Pick<GQLRowYoutubeVideo, 'id'> &
+        GQLRowYoutubeVideoFragment)
   >
 }
 
@@ -10529,10 +10530,6 @@ type GQLMenuFragment = { __typename?: 'Menu' } & {
   >
 }
 
-type GQLPageLayoutFragment = { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale'> &
-  GQLPageMetaFragment &
-  GQLContentRendererFragment
-
 type GQLGetPageLayoutQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
@@ -10544,18 +10541,9 @@ type GQLGetPageLayoutQuery = { __typename?: 'Query' } & {
   team: Array<{ __typename?: 'Person' } & GQLPersonFragment>
 }
 
-type GQLGetStaticPathsQueryVariables = {
-  startsWith: Scalars['String']
-  locale: GQLLocale
-}
-
-type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
-  pages: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'> & {
-        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'>>
-      }
-  >
-}
+type GQLPageLayoutFragment = { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale'> &
+  GQLPageMetaFragment &
+  GQLContentRendererFragment
 
 type GQLPageMetaFragment = { __typename?: 'Page' } & Pick<
   GQLPage,
@@ -10570,11 +10558,6 @@ type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'nam
     avatar: { __typename?: 'Asset' } & GQLAssetFragment
   }
 
-type GQLPortfolioListitemFragment = { __typename?: 'Page' } & Pick<
-  GQLPage,
-  'id' | 'title' | 'metaRobots' | 'url'
-> & { asset?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment> }
-
 type GQLGetPortfolioListQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
@@ -10584,7 +10567,25 @@ type GQLGetPortfolioListQuery = { __typename?: 'Query' } & {
   portfolioList: Array<{ __typename?: 'Page' } & GQLPortfolioListitemFragment>
 }
 
+type GQLPortfolioListitemFragment = { __typename?: 'Page' } & Pick<
+  GQLPage,
+  'id' | 'title' | 'metaRobots' | 'url'
+> & { asset?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment> }
+
 type GQLRichTextFragment = { __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
+
+type GQLGetAllRowColumOneQueryVariables = {
+  skip: Scalars['Int']
+}
+
+type GQLGetAllRowColumOneQuery = { __typename?: 'Query' } & {
+  rowColumnOnes: Array<{ __typename?: 'RowColumnOne' } & GQLRowColumnOneFragment>
+}
+
+type GQLRowColumnOneFragment = { __typename?: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'> & {
+    colOne: { __typename?: 'RichText' } & GQLRichTextFragment
+    colOneIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
+  }
 
 type GQLGetAllRowColumThreeQueryVariables = {
   skip: Scalars['Int']
@@ -10604,6 +10605,21 @@ type GQLRowColumnThreeFragment = { __typename?: 'RowColumnThree' } & Pick<
     colTwoIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
     colThree: { __typename?: 'RichText' } & GQLRichTextFragment
     colThreeIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
+  }
+
+type GQLGetAllRowColumTwoQueryVariables = {
+  skip: Scalars['Int']
+}
+
+type GQLGetAllRowColumTwoQuery = { __typename?: 'Query' } & {
+  rowColumnTwos: Array<{ __typename?: 'RowColumnTwo' } & GQLRowColumnTwoFragment>
+}
+
+type GQLRowColumnTwoFragment = { __typename?: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'> & {
+    colOne: { __typename?: 'RichText' } & GQLRichTextFragment
+    colOneIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
+    colTwo: { __typename?: 'RichText' } & GQLRichTextFragment
+    colTwoIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
   }
 
 type GQLGetAllRowCompanySlidersQueryVariables = {
@@ -10666,6 +10682,32 @@ type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } & Pick<
 type GQLRowRecentBlogPostFragment = { __typename?: 'RowRecentBlogPost' } & {
   link?: Maybe<
     { __typename?: 'LinkInternal' } & Pick<GQLLinkInternal, 'locale'> & GQLLinkInternalFragment
+  >
+}
+
+type GQLGetAllRowYoutubeVideosQueryVariables = {
+  skip: Scalars['Int']
+}
+
+type GQLGetAllRowYoutubeVideosQuery = { __typename?: 'Query' } & {
+  rowYoutubeVideos: Array<{ __typename?: 'RowYoutubeVideo' } & GQLRowYoutubeVideoFragment>
+}
+
+type GQLRowYoutubeVideoFragment = { __typename?: 'RowYoutubeVideo' } & Pick<
+  GQLRowYoutubeVideo,
+  'videoId' | 'title'
+>
+
+type GQLGetStaticPathsQueryVariables = {
+  startsWith: Scalars['String']
+  locale: GQLLocale
+}
+
+type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
+  pages: Array<
+    { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'> & {
+        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'>>
+      }
   >
 }
 

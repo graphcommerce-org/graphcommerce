@@ -1,0 +1,5 @@
+query GetAllRowColumTwo($skip: Int!) {
+  rowColumnTwos(first: 1, skip: $skip) {
+    ...RowColumnTwo
+  }
+}

@@ -1,212 +1,257 @@
-### [5.6.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.3...v5.6.4) (2020-04-20)
+## [5.7.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.4...v5.7.0) (2020-04-20)
 
+### Features
+
+- **about-us page:** add page and initial content
+  ([fd3ba3c](https://github.com/ho-nl/project-reachdigital.nl/commit/fd3ba3c41c6a28223d7ba62919276e90e4153a22))
+
+### [5.6.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.3...v5.6.4) (2020-04-20)
 
 ### Performance Improvements
 
-* load photo’s of people with compression=lossy ([e32a9c1](https://github.com/ho-nl/project-reachdigital.nl/commit/e32a9c1227353b666d90c3e33971831f5910a315))
-* remove next/dynamic usage ([dfa0f18](https://github.com/ho-nl/project-reachdigital.nl/commit/dfa0f187943ac8887488d14b4a5d83a317a66230))
+- load photo’s of people with compression=lossy
+  ([e32a9c1](https://github.com/ho-nl/project-reachdigital.nl/commit/e32a9c1227353b666d90c3e33971831f5910a315))
+- remove next/dynamic usage
+  ([dfa0f18](https://github.com/ho-nl/project-reachdigital.nl/commit/dfa0f187943ac8887488d14b4a5d83a317a66230))
 
 ### [5.6.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.2...v5.6.3) (2020-04-20)
 
-
 ### Fixes
 
-* **import:** added blog images to pages ([3b95840](https://github.com/ho-nl/project-reachdigital.nl/commit/3b95840a82671886ff9538fc64e4bb245111f77b))
-* **import:** make sure types are valid ([f3d7e2a](https://github.com/ho-nl/project-reachdigital.nl/commit/f3d7e2ae6b7bb37b9cef34d2f016419c0b58e238))
-* **import:** remove asset downloader ([47f564c](https://github.com/ho-nl/project-reachdigital.nl/commit/47f564c08ab77475d10b0e0a9ce5456e89ccf8fd))
+- **import:** added blog images to pages
+  ([3b95840](https://github.com/ho-nl/project-reachdigital.nl/commit/3b95840a82671886ff9538fc64e4bb245111f77b))
+- **import:** make sure types are valid
+  ([f3d7e2a](https://github.com/ho-nl/project-reachdigital.nl/commit/f3d7e2ae6b7bb37b9cef34d2f016419c0b58e238))
+- **import:** remove asset downloader
+  ([47f564c](https://github.com/ho-nl/project-reachdigital.nl/commit/47f564c08ab77475d10b0e0a9ce5456e89ccf8fd))
 
 ### [5.6.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.1...v5.6.2) (2020-04-17)
 
-
 ### Fixes
 
-* **pictureresponsive:** add resizeobserver polyfill for safari ([3c58c61](https://github.com/ho-nl/project-reachdigital.nl/commit/3c58c61dac1d9294e15751a74b8fcd32b1ca8dcb))
+- **pictureresponsive:** add resizeobserver polyfill for safari
+  ([3c58c61](https://github.com/ho-nl/project-reachdigital.nl/commit/3c58c61dac1d9294e15751a74b8fcd32b1ca8dcb))
 
 ### [5.6.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.0...v5.6.1) (2020-04-17)
 
-
 ### Fixes
 
-* **pictureresponsive:** solve ssr render mismatch ([8bd7d0f](https://github.com/ho-nl/project-reachdigital.nl/commit/8bd7d0fc0febdf228226b2a0077525ffc5821366))
+- **pictureresponsive:** solve ssr render mismatch
+  ([8bd7d0f](https://github.com/ho-nl/project-reachdigital.nl/commit/8bd7d0fc0febdf228226b2a0077525ffc5821366))
 
 ## [5.6.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.2...v5.6.0) (2020-04-16)
 
-
 ### Features
 
-* **contentrenderer:** support other row types for unions ([89e0283](https://github.com/ho-nl/project-reachdigital.nl/commit/89e0283eddf892170f33b8007a893fbf236f0e20))
+- **contentrenderer:** support other row types for unions
+  ([89e0283](https://github.com/ho-nl/project-reachdigital.nl/commit/89e0283eddf892170f33b8007a893fbf236f0e20))
 
 ### [5.5.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.1...v5.5.2) (2020-04-15)
 
-
 ### Fixes
 
-* **bloglist:** add a maxWidth to the container ([04ac28c](https://github.com/ho-nl/project-reachdigital.nl/commit/04ac28c4b9b96a3018707a97696ea9ecf90554a1))
-* **bloglist:** add css to match the current design ([54418e7](https://github.com/ho-nl/project-reachdigital.nl/commit/54418e78f2254e2b85f4a4f0161768190723f798))
-* **bloglist:** decrease the image size maxWidth ([6242c3d](https://github.com/ho-nl/project-reachdigital.nl/commit/6242c3d5873f237bb72d7ee542f28da965b3a3f6))
+- **bloglist:** add a maxWidth to the container
+  ([04ac28c](https://github.com/ho-nl/project-reachdigital.nl/commit/04ac28c4b9b96a3018707a97696ea9ecf90554a1))
+- **bloglist:** add css to match the current design
+  ([54418e7](https://github.com/ho-nl/project-reachdigital.nl/commit/54418e78f2254e2b85f4a4f0161768190723f798))
+- **bloglist:** decrease the image size maxWidth
+  ([6242c3d](https://github.com/ho-nl/project-reachdigital.nl/commit/6242c3d5873f237bb72d7ee542f28da965b3a3f6))
 
 ### [5.5.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.5.0...v5.5.1) (2020-04-15)
 
-
 ### Fixes
 
-* **bloglist:** add styling to the bloglist items ([8ba53ed](https://github.com/ho-nl/project-reachdigital.nl/commit/8ba53ed3b5b5eb7fa2ce7ce3a802e4dab9a36d42))
+- **bloglist:** add styling to the bloglist items
+  ([8ba53ed](https://github.com/ho-nl/project-reachdigital.nl/commit/8ba53ed3b5b5eb7fa2ce7ce3a802e4dab9a36d42))
 
 ## [5.5.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.4.0...v5.5.0) (2020-04-15)
 
-
 ### Features
 
-* **portfolio:** added portfolio overview page ([66541f3](https://github.com/ho-nl/project-reachdigital.nl/commit/66541f3bb7ba80dc8d474deb08f4cc2ad3270051))
-* **portfolio:** added styling for pages ([518b58f](https://github.com/ho-nl/project-reachdigital.nl/commit/518b58fd48d201ac9c1380c0c525a7d57c7fb8b2))
-
+- **portfolio:** added portfolio overview page
+  ([66541f3](https://github.com/ho-nl/project-reachdigital.nl/commit/66541f3bb7ba80dc8d474deb08f4cc2ad3270051))
+- **portfolio:** added styling for pages
+  ([518b58f](https://github.com/ho-nl/project-reachdigital.nl/commit/518b58fd48d201ac9c1380c0c525a7d57c7fb8b2))
 
 ### Fixes
 
-* **pictureresponsive:** make sure for SSR we assume 3g and Nexus 5X ([0026e68](https://github.com/ho-nl/project-reachdigital.nl/commit/0026e6854fc8850173b6be2ab5effbab876b022d))
+- **pictureresponsive:** make sure for SSR we assume 3g and Nexus 5X
+  ([0026e68](https://github.com/ho-nl/project-reachdigital.nl/commit/0026e6854fc8850173b6be2ab5effbab876b022d))
 
 ## [5.4.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.4...v5.4.0) (2020-04-15)
 
-
 ### Features
 
-* **blog:** added asset, formatted date, grid styling ([af8bce6](https://github.com/ho-nl/project-reachdigital.nl/commit/af8bce6d8db12fbe23deb98951ddfa48fce0bfd5))
-* **blog:** created BlogList and BlogListItem with recent posts ([d6e5535](https://github.com/ho-nl/project-reachdigital.nl/commit/d6e55350df6a17e5605f1c32879b509d83efb91c))
-
+- **blog:** added asset, formatted date, grid styling
+  ([af8bce6](https://github.com/ho-nl/project-reachdigital.nl/commit/af8bce6d8db12fbe23deb98951ddfa48fce0bfd5))
+- **blog:** created BlogList and BlogListItem with recent posts
+  ([d6e5535](https://github.com/ho-nl/project-reachdigital.nl/commit/d6e55350df6a17e5605f1c32879b509d83efb91c))
 
 ### Fixes
 
-* make the asset size warning more clear ([62a1d0e](https://github.com/ho-nl/project-reachdigital.nl/commit/62a1d0e60942811245e325cd4500a0ae8dfba200))
-* **blog:** fix english blog page ([dfa0b2d](https://github.com/ho-nl/project-reachdigital.nl/commit/dfa0b2d569fbf7b879d4f175b8b51e3b2b9c0ec2))
-
+- make the asset size warning more clear
+  ([62a1d0e](https://github.com/ho-nl/project-reachdigital.nl/commit/62a1d0e60942811245e325cd4500a0ae8dfba200))
+- **blog:** fix english blog page
+  ([dfa0b2d](https://github.com/ho-nl/project-reachdigital.nl/commit/dfa0b2d569fbf7b879d4f175b8b51e3b2b9c0ec2))
 
 ### Documentation
 
-* **readme:** added node version ([2fce651](https://github.com/ho-nl/project-reachdigital.nl/commit/2fce651471aeb6f1c1950e58ae2d1703957a0efb))
+- **readme:** added node version
+  ([2fce651](https://github.com/ho-nl/project-reachdigital.nl/commit/2fce651471aeb6f1c1950e58ae2d1703957a0efb))
 
 ### [5.3.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.3...v5.3.4) (2020-04-13)
 
-
 ### Performance Improvements
 
-* enable modern config ([e78b4fb](https://github.com/ho-nl/project-reachdigital.nl/commit/e78b4fb057ed9a113a6248caae59570c4ff4e06b))
-* remove react spring as main dependency ([a04701c](https://github.com/ho-nl/project-reachdigital.nl/commit/a04701c12f681b7753f182c9142b996009f961b2))
+- enable modern config
+  ([e78b4fb](https://github.com/ho-nl/project-reachdigital.nl/commit/e78b4fb057ed9a113a6248caae59570c4ff4e06b))
+- remove react spring as main dependency
+  ([a04701c](https://github.com/ho-nl/project-reachdigital.nl/commit/a04701c12f681b7753f182c9142b996009f961b2))
 
 ### [5.3.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.2...v5.3.3) (2020-04-13)
 
-
 ### Fixes
 
-* **asset:** make sure video assets have a permanent cache expiry ([cac17d3](https://github.com/ho-nl/project-reachdigital.nl/commit/cac17d38ca77e23d38bd33c5330634b3d161713c))
-* solve issue where catch-all routes would not have a proper href ([7c3e912](https://github.com/ho-nl/project-reachdigital.nl/commit/7c3e91260069693b8bc71359519a2565e68136bf))
+- **asset:** make sure video assets have a permanent cache expiry
+  ([cac17d3](https://github.com/ho-nl/project-reachdigital.nl/commit/cac17d38ca77e23d38bd33c5330634b3d161713c))
+- solve issue where catch-all routes would not have a proper href
+  ([7c3e912](https://github.com/ho-nl/project-reachdigital.nl/commit/7c3e91260069693b8bc71359519a2565e68136bf))
 
 ### [5.3.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.1...v5.3.2) (2020-04-13)
 
-
 ### Bug Fixes
 
-* **lighthouse:** a11y contact form contrast and label id ([a211dd7](https://github.com/ho-nl/project-reachdigital.nl/commit/a211dd74c73b3024b00d6bfcb312042e350f5eb2))
-* **lighthouse:** provide alt tag for asset ([0b724b5](https://github.com/ho-nl/project-reachdigital.nl/commit/0b724b59010227ef5c19238204fec18ba988e275))
-* **lighthouse:** require alt tag for PictureResonsive ([3ce9291](https://github.com/ho-nl/project-reachdigital.nl/commit/3ce92917c212f434c702a77abfe6f833eb060cb4))
-* **lighthouse:** robots.txt added ([7aae0f4](https://github.com/ho-nl/project-reachdigital.nl/commit/7aae0f4e6519e4be7763cb6d790b72cfab0a10cf))
-
+- **lighthouse:** a11y contact form contrast and label id
+  ([a211dd7](https://github.com/ho-nl/project-reachdigital.nl/commit/a211dd74c73b3024b00d6bfcb312042e350f5eb2))
+- **lighthouse:** provide alt tag for asset
+  ([0b724b5](https://github.com/ho-nl/project-reachdigital.nl/commit/0b724b59010227ef5c19238204fec18ba988e275))
+- **lighthouse:** require alt tag for PictureResonsive
+  ([3ce9291](https://github.com/ho-nl/project-reachdigital.nl/commit/3ce92917c212f434c702a77abfe6f833eb060cb4))
+- **lighthouse:** robots.txt added
+  ([7aae0f4](https://github.com/ho-nl/project-reachdigital.nl/commit/7aae0f4e6519e4be7763cb6d790b72cfab0a10cf))
 
 ### Performance Improvements
 
-* smaller home page reach digital image ([31a2b3d](https://github.com/ho-nl/project-reachdigital.nl/commit/31a2b3dd398f00c72d6442b87e277ba687d22377))
+- smaller home page reach digital image
+  ([31a2b3d](https://github.com/ho-nl/project-reachdigital.nl/commit/31a2b3dd398f00c72d6442b87e277ba687d22377))
 
 ### [5.3.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.3.0...v5.3.1) (2020-04-13)
 
-
 ### Performance Improvements
 
-* added one missing rel=preload tags for used fonts ([5de3468](https://github.com/ho-nl/project-reachdigital.nl/commit/5de34689485fefcef069d00138bec8c54c51440e))
-* added rel=preload tags for used fonts ([89e2eee](https://github.com/ho-nl/project-reachdigital.nl/commit/89e2eee865bf5d8e426ec1661aae7efb42723480))
+- added one missing rel=preload tags for used fonts
+  ([5de3468](https://github.com/ho-nl/project-reachdigital.nl/commit/5de34689485fefcef069d00138bec8c54c51440e))
+- added rel=preload tags for used fonts
+  ([89e2eee](https://github.com/ho-nl/project-reachdigital.nl/commit/89e2eee865bf5d8e426ec1661aae7efb42723480))
 
 ## [5.3.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.2.0...v5.3.0) (2020-04-12)
 
-
 ### Features
 
-* **contact:** working on contact form implementation ([8ec8958](https://github.com/ho-nl/project-reachdigital.nl/commit/8ec8958baea02f0adf9210feb17bfa256b55dc19))
-* **contactform:** added layout and field validation ([16ebb4f](https://github.com/ho-nl/project-reachdigital.nl/commit/16ebb4f74f8a9db599b82f3faaaff48a723f7f71))
-* **contactform:** implement skeleton loader for contact form ([e236d47](https://github.com/ho-nl/project-reachdigital.nl/commit/e236d47753815eabdae6501888909e7827fbad60))
-* **layout:** implemented a page load indicator for the header ([5137565](https://github.com/ho-nl/project-reachdigital.nl/commit/513756588ec512b282f5331644067e23a6dcdad6))
-* **menu:** small fixes to main menu to fully render dynamic menu ([f6b1afc](https://github.com/ho-nl/project-reachdigital.nl/commit/f6b1afc1ba69b3e819979247de8dd17d6efc5800))
-* **migration:** added english pages, added url to title mapping ([2d14eab](https://github.com/ho-nl/project-reachdigital.nl/commit/2d14eab58b983f0b2c0cabe036a7e6f8b4a1ce25))
-* **migration:** initial migration of page data form old website to new ([27e8d40](https://github.com/ho-nl/project-reachdigital.nl/commit/27e8d40e51198e2b7e8279e9faffc1a1b9dfbf18))
-
+- **contact:** working on contact form implementation
+  ([8ec8958](https://github.com/ho-nl/project-reachdigital.nl/commit/8ec8958baea02f0adf9210feb17bfa256b55dc19))
+- **contactform:** added layout and field validation
+  ([16ebb4f](https://github.com/ho-nl/project-reachdigital.nl/commit/16ebb4f74f8a9db599b82f3faaaff48a723f7f71))
+- **contactform:** implement skeleton loader for contact form
+  ([e236d47](https://github.com/ho-nl/project-reachdigital.nl/commit/e236d47753815eabdae6501888909e7827fbad60))
+- **layout:** implemented a page load indicator for the header
+  ([5137565](https://github.com/ho-nl/project-reachdigital.nl/commit/513756588ec512b282f5331644067e23a6dcdad6))
+- **menu:** small fixes to main menu to fully render dynamic menu
+  ([f6b1afc](https://github.com/ho-nl/project-reachdigital.nl/commit/f6b1afc1ba69b3e819979247de8dd17d6efc5800))
+- **migration:** added english pages, added url to title mapping
+  ([2d14eab](https://github.com/ho-nl/project-reachdigital.nl/commit/2d14eab58b983f0b2c0cabe036a7e6f8b4a1ce25))
+- **migration:** initial migration of page data form old website to new
+  ([27e8d40](https://github.com/ho-nl/project-reachdigital.nl/commit/27e8d40e51198e2b7e8279e9faffc1a1b9dfbf18))
 
 ### Bug Fixes
 
-* **menu:** hide menu when route change starts ([88c563e](https://github.com/ho-nl/project-reachdigital.nl/commit/88c563ed66a99146d94ddf9b0d45330c91e443ab))
-* solved issue where /en would show the wrong layout components ([dc61955](https://github.com/ho-nl/project-reachdigital.nl/commit/dc619552c35c344ca500cc88a93dfdd1e1105ce4))
-* **blog:** make sure the correct locale is loaded for each blog post. ([35dae11](https://github.com/ho-nl/project-reachdigital.nl/commit/35dae11c923e3093cfa672e8c83ff667a1a62755))
-* **menu:** hide ‘switch to’ when there is no translation available ([a3d2bf8](https://github.com/ho-nl/project-reachdigital.nl/commit/a3d2bf845fa6d1a9f151c8fdb1deaed4b1903479))
-* **migration:** stfu for migration hackjobscript ([d961692](https://github.com/ho-nl/project-reachdigital.nl/commit/d961692b275f9ec0bf243ff7546b95b037b3918e))
-* **sitemap:** english URL’s couldn’t be retrieved properly ([bff42e8](https://github.com/ho-nl/project-reachdigital.nl/commit/bff42e89d5476752ae87095f9b17556ca8a4cf71))
-
+- **menu:** hide menu when route change starts
+  ([88c563e](https://github.com/ho-nl/project-reachdigital.nl/commit/88c563ed66a99146d94ddf9b0d45330c91e443ab))
+- solved issue where /en would show the wrong layout components
+  ([dc61955](https://github.com/ho-nl/project-reachdigital.nl/commit/dc619552c35c344ca500cc88a93dfdd1e1105ce4))
+- **blog:** make sure the correct locale is loaded for each blog post.
+  ([35dae11](https://github.com/ho-nl/project-reachdigital.nl/commit/35dae11c923e3093cfa672e8c83ff667a1a62755))
+- **menu:** hide ‘switch to’ when there is no translation available
+  ([a3d2bf8](https://github.com/ho-nl/project-reachdigital.nl/commit/a3d2bf845fa6d1a9f151c8fdb1deaed4b1903479))
+- **migration:** stfu for migration hackjobscript
+  ([d961692](https://github.com/ho-nl/project-reachdigital.nl/commit/d961692b275f9ec0bf243ff7546b95b037b3918e))
+- **sitemap:** english URL’s couldn’t be retrieved properly
+  ([bff42e8](https://github.com/ho-nl/project-reachdigital.nl/commit/bff42e89d5476752ae87095f9b17556ca8a4cf71))
 
 ### Performance Improvements
 
-* removed react-docgen-typescript-loader to speed up storybook ([3d7c2ff](https://github.com/ho-nl/project-reachdigital.nl/commit/3d7c2ff8354a71b38dc34f9d29a812e48960d71a))
+- removed react-docgen-typescript-loader to speed up storybook
+  ([3d7c2ff](https://github.com/ho-nl/project-reachdigital.nl/commit/3d7c2ff8354a71b38dc34f9d29a812e48960d71a))
 
 ## [5.2.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.1.0...v5.2.0) (2020-04-10)
 
-
 ### Features
 
-* **asset:** added Asset component to render Images and Video’s ([130def2](https://github.com/ho-nl/project-reachdigital.nl/commit/130def25c9cbb01ac43795dab64b740cfd0d6f66))
-
+- **asset:** added Asset component to render Images and Video’s
+  ([130def2](https://github.com/ho-nl/project-reachdigital.nl/commit/130def25c9cbb01ac43795dab64b740cfd0d6f66))
 
 ### Bug Fixes
 
-* **contentrenderer:** solve issue with overring custom renderers ([8364888](https://github.com/ho-nl/project-reachdigital.nl/commit/8364888dc6e9f8e76639a9df08cf020f22cf626b))
-* **linting:** do not prefer default exports ([5b88903](https://github.com/ho-nl/project-reachdigital.nl/commit/5b88903c3560ba43dafdc7ff7cbcadaeaa622efd))
-* **menu:** solve localized menu links ([c6b648e](https://github.com/ho-nl/project-reachdigital.nl/commit/c6b648ef4036e7ab5267019f98fdd5acd515ccc0))
+- **contentrenderer:** solve issue with overring custom renderers
+  ([8364888](https://github.com/ho-nl/project-reachdigital.nl/commit/8364888dc6e9f8e76639a9df08cf020f22cf626b))
+- **linting:** do not prefer default exports
+  ([5b88903](https://github.com/ho-nl/project-reachdigital.nl/commit/5b88903c3560ba43dafdc7ff7cbcadaeaa622efd))
+- **menu:** solve localized menu links
+  ([c6b648e](https://github.com/ho-nl/project-reachdigital.nl/commit/c6b648ef4036e7ab5267019f98fdd5acd515ccc0))
 
 ## [5.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.0.0...v5.1.0) (2020-04-09)
 
-
 ### Features
 
-* **catchall:** created a catchall page renderer ([042aa60](https://github.com/ho-nl/project-reachdigital.nl/commit/042aa60377cd0dad1920a6b52225ba9d4bd7ad36))
-
+- **catchall:** created a catchall page renderer
+  ([042aa60](https://github.com/ho-nl/project-reachdigital.nl/commit/042aa60377cd0dad1920a6b52225ba9d4bd7ad36))
 
 ### Bug Fixes
 
-* **cases:** fix remaining pages with new staticData retrieval ([5bd1a32](https://github.com/ho-nl/project-reachdigital.nl/commit/5bd1a328ed3e7cb11560c553c3e5dab3317392e2))
+- **cases:** fix remaining pages with new staticData retrieval
+  ([5bd1a32](https://github.com/ho-nl/project-reachdigital.nl/commit/5bd1a328ed3e7cb11560c553c3e5dab3317392e2))
 
 ## [5.0.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v4.1.0...v5.0.0) (2020-04-09)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **graphql:** Please remove exisiting GraphQL plugin and add `apollographql.vscode-apollo`.
+- **graphql:** Please remove exisiting GraphQL plugin and add
+  `apollographql.vscode-apollo`.
 
 ### Features
 
-* **fluid:** added experimental fluid simulation ([c48b9b8](https://github.com/ho-nl/project-reachdigital.nl/commit/c48b9b8639ebaebe2616505f818b55cdc01cc6f1))
-* **graphql:** moved to Apollo Client as VSCode plugin ([23a4056](https://github.com/ho-nl/project-reachdigital.nl/commit/23a4056205b696c931b4193df4f56ae5c3738cfd))
-* **header:** added contact badge on top right ([c31f7e4](https://github.com/ho-nl/project-reachdigital.nl/commit/c31f7e448ab7be601398b044a1877459f7e91b86))
-* **rowcompanythree:** added new components and GraphCMS renames ([e5f3bb5](https://github.com/ho-nl/project-reachdigital.nl/commit/e5f3bb5035e00f14c266acc17c3978af60bd4926))
-* **rowherohome:** added RowHeroHome and simplified RowHero ([72eea5e](https://github.com/ho-nl/project-reachdigital.nl/commit/72eea5e4f329a13cdbd494b7b90edf4d453de48d))
-
+- **fluid:** added experimental fluid simulation
+  ([c48b9b8](https://github.com/ho-nl/project-reachdigital.nl/commit/c48b9b8639ebaebe2616505f818b55cdc01cc6f1))
+- **graphql:** moved to Apollo Client as VSCode plugin
+  ([23a4056](https://github.com/ho-nl/project-reachdigital.nl/commit/23a4056205b696c931b4193df4f56ae5c3738cfd))
+- **header:** added contact badge on top right
+  ([c31f7e4](https://github.com/ho-nl/project-reachdigital.nl/commit/c31f7e448ab7be601398b044a1877459f7e91b86))
+- **rowcompanythree:** added new components and GraphCMS renames
+  ([e5f3bb5](https://github.com/ho-nl/project-reachdigital.nl/commit/e5f3bb5035e00f14c266acc17c3978af60bd4926))
+- **rowherohome:** added RowHeroHome and simplified RowHero
+  ([72eea5e](https://github.com/ho-nl/project-reachdigital.nl/commit/72eea5e4f329a13cdbd494b7b90edf4d453de48d))
 
 ### Bug Fixes
 
-* **codegen:** resolve high CPU usage of document ([85c6305](https://github.com/ho-nl/project-reachdigital.nl/commit/85c630590905155ebdc340acbd78a15ffe178d30))
-* **container:** switch to mobile view below 900 instead of below 600 ([51de92c](https://github.com/ho-nl/project-reachdigital.nl/commit/51de92cd3271faec07a0fe4283791898978fbafc))
-* **fluidanimation:** automatically set dyeResolution to canvas size ([ac98264](https://github.com/ho-nl/project-reachdigital.nl/commit/ac982646e7130b9806f101853a88a70e93468555))
-* **fluidanimation:** converted script to typescript ([57afc85](https://github.com/ho-nl/project-reachdigital.nl/commit/57afc850d9cf08a9bfae59f0aec0dac10fd17107))
-* **fluidanimation:** created component props and cleanup ([2575135](https://github.com/ho-nl/project-reachdigital.nl/commit/257513539f0412d04b9e5b6f286af0c2c26ed6f8))
-* **fluidanimation:** import ditheringPng with correct path ([63d0045](https://github.com/ho-nl/project-reachdigital.nl/commit/63d0045beb56ebc616e961ce8f4e62df82719682))
-* **theme:** load correct Graphic-Medium font, prevent 404 ([0962644](https://github.com/ho-nl/project-reachdigital.nl/commit/096264479ea3c90a7f3eeb9d1b3125fd80df6525))
-
+- **codegen:** resolve high CPU usage of document
+  ([85c6305](https://github.com/ho-nl/project-reachdigital.nl/commit/85c630590905155ebdc340acbd78a15ffe178d30))
+- **container:** switch to mobile view below 900 instead of below 600
+  ([51de92c](https://github.com/ho-nl/project-reachdigital.nl/commit/51de92cd3271faec07a0fe4283791898978fbafc))
+- **fluidanimation:** automatically set dyeResolution to canvas size
+  ([ac98264](https://github.com/ho-nl/project-reachdigital.nl/commit/ac982646e7130b9806f101853a88a70e93468555))
+- **fluidanimation:** converted script to typescript
+  ([57afc85](https://github.com/ho-nl/project-reachdigital.nl/commit/57afc850d9cf08a9bfae59f0aec0dac10fd17107))
+- **fluidanimation:** created component props and cleanup
+  ([2575135](https://github.com/ho-nl/project-reachdigital.nl/commit/257513539f0412d04b9e5b6f286af0c2c26ed6f8))
+- **fluidanimation:** import ditheringPng with correct path
+  ([63d0045](https://github.com/ho-nl/project-reachdigital.nl/commit/63d0045beb56ebc616e961ce8f4e62df82719682))
+- **theme:** load correct Graphic-Medium font, prevent 404
+  ([0962644](https://github.com/ho-nl/project-reachdigital.nl/commit/096264479ea3c90a7f3eeb9d1b3125fd80df6525))
 
 ### Documentation
 
-* **asset:** added asset example ([dea5943](https://github.com/ho-nl/project-reachdigital.nl/commit/dea594396ccc7e2d229ce17f2337f36e4f68e8c9))
+- **asset:** added asset example
+  ([dea5943](https://github.com/ho-nl/project-reachdigital.nl/commit/dea594396ccc7e2d229ce17f2337f36e4f68e8c9))
 
 ## [4.1.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v4.0.0...v4.1.0) (2020-04-07)
 

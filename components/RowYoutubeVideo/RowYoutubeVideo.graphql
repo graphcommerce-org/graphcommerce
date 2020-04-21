@@ -1,0 +1,4 @@
+fragment RowYoutubeVideo on RowYoutubeVideo {
+  videoId
+  title
+}
