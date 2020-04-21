@@ -1,3 +1,10 @@
+### [5.8.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.2...v5.8.3) (2020-04-21)
+
+
+### Fixes
+
+* **bloglist:** use releaseDate instead of publishDate ([c7f4d7e](https://github.com/ho-nl/project-reachdigital.nl/commit/c7f4d7e7b8a9a78908c56cb52d2907e7e3d70358))
+
 ### [5.8.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.1...v5.8.2) (2020-04-21)
 
 
