@@ -33,8 +33,8 @@ export default ContentRenderer
  */
 export type CRGetStaticProps<P, R> = (props: P) => Promise<R>
 
-type LoaderComponent<P = {}> = Promise<{
-  getStaticProps: CRGetStaticProps<P, {}>
+type LoaderComponent<P = any> = Promise<{
+  getStaticProps: CRGetStaticProps<P, any>
 }>
 
 export type StaticData = { [T in TypeNames]?: () => LoaderComponent }

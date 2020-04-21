@@ -75,6 +75,7 @@ export const RichTextFragmentDoc = gql`
 `
 export const LinkInternalFragmentDoc = gql`
   fragment LinkInternal on LinkInternal {
+    __typename
     id
     title
     description {
@@ -91,6 +92,7 @@ export const LinkInternalFragmentDoc = gql`
 `
 export const LinkExternalFragmentDoc = gql`
   fragment LinkExternal on LinkExternal {
+    __typename
     id
     exTitle: title
     description {
@@ -188,16 +190,6 @@ export const RowCompanySliderFragmentDoc = gql`
   }
   ${AssetFragmentDoc}
 `
-export const PersonFragmentDoc = gql`
-  fragment Person on Person {
-    id
-    name
-    avatar {
-      ...Asset
-    }
-  }
-  ${AssetFragmentDoc}
-`
 export const RowPeopleWithTextFragmentDoc = gql`
   fragment RowPeopleWithText on RowPeopleWithText {
     id
@@ -207,15 +199,9 @@ export const RowPeopleWithTextFragmentDoc = gql`
     links {
       ...LinkInternal
     }
-    personList {
-      people {
-        ...Person
-      }
-    }
   }
   ${RichTextFragmentDoc}
   ${LinkInternalFragmentDoc}
-  ${PersonFragmentDoc}
 `
 export const RowRecentBlogPostFragmentDoc = gql`
   fragment RowRecentBlogPost on RowRecentBlogPost {
@@ -267,6 +253,16 @@ export const PageLayoutFragmentDoc = gql`
   }
   ${PageMetaFragmentDoc}
   ${ContentRendererFragmentDoc}
+`
+export const PersonFragmentDoc = gql`
+  fragment Person on Person {
+    id
+    name
+    avatar {
+      ...Asset
+    }
+  }
+  ${AssetFragmentDoc}
 `
 export const PortfolioListitemFragmentDoc = gql`
   fragment PortfolioListitem on Page {
@@ -850,6 +846,58 @@ export type GetAllRowHeroLazyQueryHookResult = ReturnType<typeof useGetAllRowHer
 export type GetAllRowHeroQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowHeroQuery,
   GQLGetAllRowHeroQueryVariables
+>
+export const GetAllPeopleDocument = gql`
+  query GetAllPeople {
+    people {
+      ...Person
+    }
+  }
+  ${PersonFragmentDoc}
+`
+
+/**
+ * __useGetAllPeopleQuery__
+ *
+ * To run a query within a React component, call `useGetAllPeopleQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPeopleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllPeopleQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllPeopleQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllPeopleQuery,
+    GQLGetAllPeopleQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetAllPeopleQuery, GQLGetAllPeopleQueryVariables>(
+    GetAllPeopleDocument,
+    baseOptions,
+  )
+}
+export function useGetAllPeopleLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllPeopleQuery,
+    GQLGetAllPeopleQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetAllPeopleQuery, GQLGetAllPeopleQueryVariables>(
+    GetAllPeopleDocument,
+    baseOptions,
+  )
+}
+export type GetAllPeopleQueryHookResult = ReturnType<typeof useGetAllPeopleQuery>
+export type GetAllPeopleLazyQueryHookResult = ReturnType<typeof useGetAllPeopleLazyQuery>
+export type GetAllPeopleQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllPeopleQuery,
+  GQLGetAllPeopleQueryVariables
 >
 export const GetRowPeopleWithTextsDocument = gql`
   query GetRowPeopleWithTexts($skip: Int!) {

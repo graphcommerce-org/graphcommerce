@@ -1,4 +1,5 @@
 fragment LinkInternal on LinkInternal {
+  __typename
   id
   title
   description {
