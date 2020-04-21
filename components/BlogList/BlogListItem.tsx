@@ -2,6 +2,7 @@ import React from 'react'
 import { Typography, makeStyles } from '@material-ui/core'
 import Link from '../Link'
 import Asset from '../Asset'
+import { theme, vpCalc } from '../Theme'
 
 const useStyles = makeStyles({
   item: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     marginBottom: '75px',
   },
   title: {
-    color: '#000',
+    color: theme.palette.primary.contrastText,
     fontSize: '25px',
     fontWeight: 500,
     lineHeight: '1.68',
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
     display: 'block',
     position: 'relative',
     marginBottom: '50px',
-    height: '200px',
+    height: vpCalc(120, 200),
     '&::before': {
       content: '""',
       height: '100%',
@@ -44,9 +45,9 @@ const useStyles = makeStyles({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '0.7em',
-    color: '#fff',
-    backgroundColor: '#10e4ad',
+    ...theme.typography.body2,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.background.default,
     fontWeight: 600,
     userSelect: 'none',
   },
