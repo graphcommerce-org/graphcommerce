@@ -26,7 +26,7 @@ const BlogList: React.FC<GQLGetBlogListQuery> = ({ blogPosts }) => {
 
 export default BlogList
 
-export const getStaticData: GQLGetStaticProps<GQLGetBlogListQuery> = async (variables) => {
+export const getStaticProps: GQLGetStaticProps<GQLGetBlogListQuery> = async (variables) => {
   const { default: client } = await import('../../lib/apollo')
   const { GetBlogListDocument } = await import('../../generated/apollo')
   const { data } = await client().query<GQLGetBlogListQuery, GQLGetBlogListQueryVariables>({

@@ -17,6 +17,6 @@ export const getServerSideProps: GetStaticProps<PageLayoutProps, StaticPageParam
 ) => {
   const params = extractParams(ctx, '/')
 
-  const getStaticData = await import('../components/PageLayout/server/getStaticData')
-  return { props: await getStaticData.default(params) }
+  const { getStaticProps: get } = await import('../components/PageLayout')
+  return { props: await get(params) }
 }

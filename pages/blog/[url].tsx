@@ -45,12 +45,6 @@ export const getStaticPaths = getStaticPathsFactory('/blog/', 'nl')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
   const params = extractParams(ctx, '/blog/')
-  const data = await Promise.all([
-    import('../../components/PageLayout/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-    // todo add blog view data
-  ])
-
-  return { props: { ...data[0] } }
+  const { getStaticProps: get } = await import('../../components/PageLayout')
+  return { props: await get(params) }
 }

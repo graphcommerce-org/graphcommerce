@@ -11,11 +11,6 @@ export const getStaticPaths = getStaticPathsFactory('/en/blog/', 'en')
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
   const params = extractParams(ctx, '/en/blog/')
 
-  const data = await Promise.all([
-    import('../../../components/PageLayout/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-  ])
-
-  return { props: data[0] }
+  const { getStaticProps: get } = await import('../../../components/PageLayout')
+  return { props: await get(params) }
 }

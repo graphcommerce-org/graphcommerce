@@ -44,12 +44,8 @@ export const getStaticProps: GetStaticProps<
   }
 
   const data = await Promise.all([
-    import('../components/PageLayout/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-    import('../components/PortfolioList/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
+    import('../components/PageLayout').then(({ getStaticProps: get }) => get(params)),
+    import('../components/PortfolioList').then(({ getStaticProps: get }) => get(params)),
   ])
 
   return { props: Object.assign(...data) }

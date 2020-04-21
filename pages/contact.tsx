@@ -25,6 +25,6 @@ export default Contact
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
   const params: StaticPageVariables = { url: '/contact', locale: 'nl' }
 
-  const getStaticData = await import('../components/PageLayout/server/getStaticData')
-  return { props: await getStaticData.default(params) }
+  const { getStaticProps: get } = await import('../components/PageLayout')
+  return { props: await get(params) }
 }

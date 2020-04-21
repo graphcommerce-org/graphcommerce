@@ -9,12 +9,8 @@ export const getStaticProps: GetStaticProps<PageLayoutProps & GQLGetBlogListQuer
   const params: StaticPageVariables = { url: '/en/blog', locale: 'en' }
 
   const data = await Promise.all([
-    import('../../components/PageLayout/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
-    import('../../components/BlogList/server/getStaticData').then((module) =>
-      module.default(params),
-    ),
+    import('../../components/PageLayout').then(({ getStaticProps: get }) => get(params)),
+    import('../../components/BlogList').then(({ getStaticProps: get }) => get(params)),
   ])
 
   return { props: Object.assign(...data) }
