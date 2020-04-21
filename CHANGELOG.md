@@ -1,3 +1,14 @@
+### [5.8.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.0...v5.8.1) (2020-04-21)
+
+
+### Fixes
+
+* **asset:** removed height property will be generated based on asset ([40038c9](https://github.com/ho-nl/project-reachdigital.nl/commit/40038c915b5bbfdca5c06b6ddf66eec9f125411c))
+* **blogpage:** change the maxWidth to ‘lg’ ([d37876a](https://github.com/ho-nl/project-reachdigital.nl/commit/d37876ab1cf24ee776a17e21b3c8d299e57d9083))
+* **blogpost:** add theme colors and the vpCalc() function for better responsiveness ([e967a33](https://github.com/ho-nl/project-reachdigital.nl/commit/e967a33bf13b912576a0b57606b2e86634a0cee0))
+* **blogpost:** remove the height attribute and change the image width to the “Nexus 5X” render size ([6d46947](https://github.com/ho-nl/project-reachdigital.nl/commit/6d469470576790ab51fd048a8ad5e03d247c0082))
+* **blogpostitems:** give the image wrapper a equal height and style the placeholder image ([0eca181](https://github.com/ho-nl/project-reachdigital.nl/commit/0eca18133b3ce0cd25c881cf357b6458e0cd548d))
+
 ## [5.8.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.7.0...v5.8.0) (2020-04-21)
 
 
