@@ -19,9 +19,9 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  Hex: any
   RGBAHue: any
   RGBATransparency: any
+  Hex: any
   /** Raw JSON value */
   Json: any
   /**
@@ -3239,30 +3239,6 @@ type GQLMutation = {
   publishManyPeople: GQLBatchPayload
   /** Unpublish many Person documents */
   unpublishManyPeople: GQLBatchPayload
-  /** Create one personList */
-  createPersonList?: Maybe<GQLPersonList>
-  /** Update one personList */
-  updatePersonList?: Maybe<GQLPersonList>
-  /** Delete one personList from _all_ existing stages. Returns deleted document. */
-  deletePersonList?: Maybe<GQLPersonList>
-  /** Upsert one personList */
-  upsertPersonList?: Maybe<GQLPersonList>
-  /** Publish one personList */
-  publishPersonList?: Maybe<GQLPersonList>
-  /**
-   * Unpublish one personList from selected stages. Unpublish either the complete
-   * document with its relations, localizations and base data or specific
-   * localizations only.
-   */
-  unpublishPersonList?: Maybe<GQLPersonList>
-  /** Update many personLists */
-  updateManyPersonLists: GQLBatchPayload
-  /** Delete many PersonList documents */
-  deleteManyPersonLists: GQLBatchPayload
-  /** Publish many PersonList documents */
-  publishManyPersonLists: GQLBatchPayload
-  /** Unpublish many PersonList documents */
-  unpublishManyPersonLists: GQLBatchPayload
   /** Create one rowColumnOne */
   createRowColumnOne?: Maybe<GQLRowColumnOne>
   /** Update one rowColumnOne */
@@ -3886,53 +3862,6 @@ type GQLMutationPublishManyPeopleArgs = {
 
 type GQLMutationUnpublishManyPeopleArgs = {
   where?: Maybe<GQLPersonManyWhereInput>
-  from?: Array<GQLStage>
-}
-
-type GQLMutationCreatePersonListArgs = {
-  data: GQLPersonListCreateInput
-}
-
-type GQLMutationUpdatePersonListArgs = {
-  where: GQLPersonListWhereUniqueInput
-  data: GQLPersonListUpdateInput
-}
-
-type GQLMutationDeletePersonListArgs = {
-  where: GQLPersonListWhereUniqueInput
-}
-
-type GQLMutationUpsertPersonListArgs = {
-  where: GQLPersonListWhereUniqueInput
-  upsert: GQLPersonListUpsertInput
-}
-
-type GQLMutationPublishPersonListArgs = {
-  where: GQLPersonListWhereUniqueInput
-  to?: Array<GQLStage>
-}
-
-type GQLMutationUnpublishPersonListArgs = {
-  where: GQLPersonListWhereUniqueInput
-  from?: Array<GQLStage>
-}
-
-type GQLMutationUpdateManyPersonListsArgs = {
-  where?: Maybe<GQLPersonListManyWhereInput>
-  data: GQLPersonListUpdateManyInput
-}
-
-type GQLMutationDeleteManyPersonListsArgs = {
-  where?: Maybe<GQLPersonListManyWhereInput>
-}
-
-type GQLMutationPublishManyPersonListsArgs = {
-  where?: Maybe<GQLPersonListManyWhereInput>
-  to?: Array<GQLStage>
-}
-
-type GQLMutationUnpublishManyPersonListsArgs = {
-  where?: Maybe<GQLPersonListManyWhereInput>
   from?: Array<GQLStage>
 }
 
@@ -5160,23 +5089,12 @@ type GQLPerson = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   avatar: GQLAsset
   name: Scalars['String']
-  personList: Array<GQLPersonList>
 }
 
 type GQLPersonDocumentInStagesArgs = {
   stages?: Array<GQLStage>
   includeCurrent?: Scalars['Boolean']
   inheritLocale?: Scalars['Boolean']
-}
-
-type GQLPersonPersonListArgs = {
-  where?: Maybe<GQLPersonListWhereInput>
-  orderBy?: Maybe<GQLPersonListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
 }
 
 type GQLPersonConnectInput = {
@@ -5200,7 +5118,6 @@ type GQLPersonCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   avatar: GQLAssetCreateOneInlineInput
   name: Scalars['String']
-  personList?: Maybe<GQLPersonListCreateManyInlineInput>
 }
 
 type GQLPersonCreateManyInlineInput = {
@@ -5223,387 +5140,6 @@ type GQLPersonEdge = {
   node: GQLPerson
   /** A cursor for use in pagination. */
   cursor: Scalars['String']
-}
-
-type GQLPersonList = GQLNode & {
-  /** System stage field */
-  stage: GQLStage
-  /** Get the document in other stages */
-  documentInStages: Array<GQLPersonList>
-  /** The unique identifier */
-  id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  people: Array<GQLPerson>
-  rowPeopleWithText: Array<GQLRowPeopleWithText>
-}
-
-type GQLPersonListDocumentInStagesArgs = {
-  stages?: Array<GQLStage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-type GQLPersonListPeopleArgs = {
-  where?: Maybe<GQLPersonWhereInput>
-  orderBy?: Maybe<GQLPersonOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLPersonListRowPeopleWithTextArgs = {
-  where?: Maybe<GQLRowPeopleWithTextWhereInput>
-  orderBy?: Maybe<GQLRowPeopleWithTextOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-type GQLPersonListConnectInput = {
-  /** Document to connect */
-  where: GQLPersonListWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<GQLConnectPositionInput>
-}
-
-/** A connection to a list of items. */
-type GQLPersonListConnection = {
-  /** Information to aid in pagination. */
-  pageInfo: GQLPageInfo
-  /** A list of edges. */
-  edges: Array<GQLPersonListEdge>
-  aggregate: GQLAggregate
-}
-
-type GQLPersonListCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  people?: Maybe<GQLPersonCreateManyInlineInput>
-  rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
-}
-
-type GQLPersonListCreateManyInlineInput = {
-  /** Create and connect multiple existing PersonList documents */
-  create?: Maybe<Array<GQLPersonListCreateInput>>
-  /** Connect multiple existing PersonList documents */
-  connect?: Maybe<Array<GQLPersonListWhereUniqueInput>>
-}
-
-type GQLPersonListCreateOneInlineInput = {
-  /** Create and connect one PersonList document */
-  create?: Maybe<GQLPersonListCreateInput>
-  /** Connect one existing PersonList document */
-  connect?: Maybe<GQLPersonListWhereUniqueInput>
-}
-
-/** An edge in a connection. */
-type GQLPersonListEdge = {
-  /** The item at the end of the edge. */
-  node: GQLPersonList
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
-}
-
-/** Identifies documents */
-type GQLPersonListManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<GQLPersonListWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<GQLPersonListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<GQLPersonListWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-  identity?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  identity_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  identity_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  identity_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  identity_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  identity_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  identity_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  identity_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  identity_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  identity_not_ends_with?: Maybe<Scalars['String']>
-  people_every?: Maybe<GQLPersonWhereInput>
-  people_some?: Maybe<GQLPersonWhereInput>
-  people_none?: Maybe<GQLPersonWhereInput>
-  rowPeopleWithText_every?: Maybe<GQLRowPeopleWithTextWhereInput>
-  rowPeopleWithText_some?: Maybe<GQLRowPeopleWithTextWhereInput>
-  rowPeopleWithText_none?: Maybe<GQLRowPeopleWithTextWhereInput>
-}
-
-type GQLPersonListOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'identity_ASC'
-  | 'identity_DESC'
-
-type GQLPersonListUpdateInput = {
-  identity?: Maybe<Scalars['String']>
-  people?: Maybe<GQLPersonUpdateManyInlineInput>
-  rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
-}
-
-type GQLPersonListUpdateManyInlineInput = {
-  /** Create and connect multiple PersonList documents */
-  create?: Maybe<Array<GQLPersonListCreateInput>>
-  /** Connect multiple existing PersonList documents */
-  connect?: Maybe<Array<GQLPersonListConnectInput>>
-  /** Override currently-connected documents with multiple existing PersonList documents */
-  set?: Maybe<Array<GQLPersonListWhereUniqueInput>>
-  /** Update multiple PersonList documents */
-  update?: Maybe<Array<GQLPersonListUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple PersonList documents */
-  upsert?: Maybe<Array<GQLPersonListUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple PersonList documents */
-  disconnect?: Maybe<Array<GQLPersonListWhereUniqueInput>>
-  /** Delete multiple PersonList documents */
-  delete?: Maybe<Array<GQLPersonListWhereUniqueInput>>
-}
-
-type GQLPersonListUpdateManyInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-type GQLPersonListUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: GQLPersonListWhereInput
-  /** Update many input */
-  data: GQLPersonListUpdateManyInput
-}
-
-type GQLPersonListUpdateOneInlineInput = {
-  /** Create and connect one PersonList document */
-  create?: Maybe<GQLPersonListCreateInput>
-  /** Update single PersonList document */
-  update?: Maybe<GQLPersonListUpdateWithNestedWhereUniqueInput>
-  /** Upsert single PersonList document */
-  upsert?: Maybe<GQLPersonListUpsertWithNestedWhereUniqueInput>
-  /** Connect existing PersonList document */
-  connect?: Maybe<GQLPersonListWhereUniqueInput>
-  /** Disconnect currently connected PersonList document */
-  disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected PersonList document */
-  delete?: Maybe<Scalars['Boolean']>
-}
-
-type GQLPersonListUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: GQLPersonListWhereUniqueInput
-  /** Document to update */
-  data: GQLPersonListUpdateInput
-}
-
-type GQLPersonListUpsertInput = {
-  /** Create document if it didn't exist */
-  create: GQLPersonListCreateInput
-  /** Update document if it exists */
-  update: GQLPersonListUpdateInput
-}
-
-type GQLPersonListUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: GQLPersonListWhereUniqueInput
-  /** Upsert data */
-  data: GQLPersonListUpsertInput
-}
-
-/** Identifies documents */
-type GQLPersonListWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<GQLPersonListWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<GQLPersonListWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<GQLPersonListWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-  identity?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  identity_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  identity_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  identity_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  identity_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  identity_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  identity_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  identity_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  identity_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  identity_not_ends_with?: Maybe<Scalars['String']>
-  people_every?: Maybe<GQLPersonWhereInput>
-  people_some?: Maybe<GQLPersonWhereInput>
-  people_none?: Maybe<GQLPersonWhereInput>
-  rowPeopleWithText_every?: Maybe<GQLRowPeopleWithTextWhereInput>
-  rowPeopleWithText_some?: Maybe<GQLRowPeopleWithTextWhereInput>
-  rowPeopleWithText_none?: Maybe<GQLRowPeopleWithTextWhereInput>
-}
-
-/** References PersonList record uniquely */
-type GQLPersonListWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  identity?: Maybe<Scalars['String']>
 }
 
 /** Identifies documents */
@@ -5700,9 +5236,6 @@ type GQLPersonManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>
-  personList_every?: Maybe<GQLPersonListWhereInput>
-  personList_some?: Maybe<GQLPersonListWhereInput>
-  personList_none?: Maybe<GQLPersonListWhereInput>
 }
 
 type GQLPersonOrderByInput =
@@ -5720,7 +5253,6 @@ type GQLPersonOrderByInput =
 type GQLPersonUpdateInput = {
   avatar?: Maybe<GQLAssetUpdateOneInlineInput>
   name?: Maybe<Scalars['String']>
-  personList?: Maybe<GQLPersonListUpdateManyInlineInput>
 }
 
 type GQLPersonUpdateManyInlineInput = {
@@ -5883,9 +5415,6 @@ type GQLPersonWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>
-  personList_every?: Maybe<GQLPersonListWhereInput>
-  personList_some?: Maybe<GQLPersonListWhereInput>
-  personList_none?: Maybe<GQLPersonListWhereInput>
 }
 
 /** References Person record uniquely */
@@ -5951,12 +5480,6 @@ type GQLQuery = {
   person?: Maybe<GQLPerson>
   /** Retrieve multiple people using the Relay connection interface */
   peopleConnection: GQLPersonConnection
-  /** Retrieve multiple personLists */
-  personLists: Array<GQLPersonList>
-  /** Retrieve a single personList */
-  personList?: Maybe<GQLPersonList>
-  /** Retrieve multiple personLists using the Relay connection interface */
-  personListsConnection: GQLPersonListConnection
   /** Retrieve multiple rowColumnOnes */
   rowColumnOnes: Array<GQLRowColumnOne>
   /** Retrieve a single rowColumnOne */
@@ -6239,33 +5762,6 @@ type GQLQueryPersonArgs = {
 type GQLQueryPeopleConnectionArgs = {
   where?: Maybe<GQLPersonWhereInput>
   orderBy?: Maybe<GQLPersonOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: GQLStage
-}
-
-type GQLQueryPersonListsArgs = {
-  where?: Maybe<GQLPersonListWhereInput>
-  orderBy?: Maybe<GQLPersonListOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: GQLStage
-}
-
-type GQLQueryPersonListArgs = {
-  where: GQLPersonListWhereUniqueInput
-  stage?: GQLStage
-}
-
-type GQLQueryPersonListsConnectionArgs = {
-  where?: Maybe<GQLPersonListWhereInput>
-  orderBy?: Maybe<GQLPersonListOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -8670,7 +8166,6 @@ type GQLRowPeopleWithText = GQLNode & {
   identity: Scalars['String']
   text: GQLRichText
   links: Array<GQLLinkInternal>
-  personList?: Maybe<GQLPersonList>
   page: Array<GQLPage>
 }
 
@@ -8726,7 +8221,6 @@ type GQLRowPeopleWithTextCreateInput = {
   /** text input for default locale (nl) */
   text: Scalars['RichTextAST']
   links?: Maybe<GQLLinkInternalCreateManyInlineInput>
-  personList?: Maybe<GQLPersonListCreateOneInlineInput>
   page?: Maybe<GQLPageCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLRowPeopleWithTextCreateLocalizationsInput>
@@ -8867,7 +8361,6 @@ type GQLRowPeopleWithTextManyWhereInput = {
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
-  personList?: Maybe<GQLPersonListWhereInput>
 }
 
 type GQLRowPeopleWithTextOrderByInput =
@@ -8887,7 +8380,6 @@ type GQLRowPeopleWithTextUpdateInput = {
   /** text input for default locale (nl) */
   text?: Maybe<Scalars['RichTextAST']>
   links?: Maybe<GQLLinkInternalUpdateManyInlineInput>
-  personList?: Maybe<GQLPersonListUpdateOneInlineInput>
   page?: Maybe<GQLPageUpdateManyInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLRowPeopleWithTextUpdateLocalizationsInput>
@@ -9085,7 +8577,6 @@ type GQLRowPeopleWithTextWhereInput = {
   links_every?: Maybe<GQLLinkInternalWhereInput>
   links_some?: Maybe<GQLLinkInternalWhereInput>
   links_none?: Maybe<GQLLinkInternalWhereInput>
-  personList?: Maybe<GQLPersonListWhereInput>
 }
 
 /** References RowPeopleWithText record uniquely */
@@ -10375,10 +9866,10 @@ type GQLUnpublishLocaleInput = {
 
 type GQLAssetFragment = Pick<GQLAsset, 'id' | 'alt' | 'url' | 'width' | 'height' | 'mimeType'>
 
-type GQLBlogListItemFragment = Pick<GQLPage, 'id' | 'title' | 'metaRobots' | 'url' | 'locale'> & {
-  documentInStages: Array<Pick<GQLPage, 'publishedAt'>>
-  asset?: Maybe<GQLAssetFragment>
-}
+type GQLBlogListItemFragment = Pick<
+  GQLPage,
+  'id' | 'releaseDate' | 'title' | 'metaRobots' | 'url' | 'locale'
+> & { asset?: Maybe<GQLAssetFragment> }
 
 type GQLGetBlogListQueryVariables = {
   url: Scalars['String']

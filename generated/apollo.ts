@@ -15,9 +15,7 @@ export const AssetFragmentDoc = gql`
 export const BlogListItemFragmentDoc = gql`
   fragment BlogListItem on Page {
     id
-    documentInStages(includeCurrent: true, stages: [PUBLISHED]) {
-      publishedAt
-    }
+    releaseDate
     title
     metaRobots
     url

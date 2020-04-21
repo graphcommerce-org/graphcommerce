@@ -1,9 +1,6 @@
 fragment BlogListItem on Page {
   id
-  # Bug in GraphCM, should use publishedAt directly
-  documentInStages(includeCurrent: true, stages: [PUBLISHED]) {
-    publishedAt
-  }
+  releaseDate
   title
   metaRobots
   url
