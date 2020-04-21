@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  RGBATransparency: any
   Hex: any
   RGBAHue: any
+  RGBATransparency: any
+  /** Raw JSON value */
+  Json: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
-  /** Raw JSON value */
-  Json: any
 }
 
 type GQL_FilterKind =
@@ -81,13 +81,11 @@ type GQL_RelationInputKind = 'create' | 'update'
 type GQL_RelationKind = 'regular' | 'union'
 
 type GQLAggregate = {
-  __typename?: 'Aggregate'
   count: Scalars['Int']
 }
 
 /** Asset system model */
 type GQLAsset = GQLNode & {
-  __typename?: 'Asset'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -268,7 +266,6 @@ type GQLAssetConnectInput = {
 
 /** A connection to a list of items. */
 type GQLAssetConnection = {
-  __typename?: 'AssetConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -340,7 +337,6 @@ type GQLAssetCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLAssetEdge = {
-  __typename?: 'AssetEdge'
   /** The item at the end of the edge. */
   node: GQLAsset
   /** A cursor for use in pagination. */
@@ -848,14 +844,12 @@ type GQLAssetWhereUniqueInput = {
 }
 
 type GQLBatchPayload = {
-  __typename?: 'BatchPayload'
   /** The number of nodes that have been affected by the Batch operation. */
   count: Scalars['Long']
 }
 
 /** Representing a color value comprising of HEX, RGBA and css color values */
 type GQLColor = {
-  __typename?: 'Color'
   hex: Scalars['Hex']
   rgba: GQLRgba
   css: Scalars['String']
@@ -868,7 +862,6 @@ type GQLColorInput = {
 }
 
 type GQLCompany = GQLNode & {
-  __typename?: 'Company'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -911,7 +904,6 @@ type GQLCompanyConnectInput = {
 
 /** A connection to a list of items. */
 type GQLCompanyConnection = {
-  __typename?: 'CompanyConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -943,7 +935,6 @@ type GQLCompanyCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLCompanyEdge = {
-  __typename?: 'CompanyEdge'
   /** The item at the end of the edge. */
   node: GQLCompany
   /** A cursor for use in pagination. */
@@ -1249,7 +1240,6 @@ type GQLConnectPositionInput = {
 }
 
 type GQLContactForm = GQLNode & {
-  __typename?: 'ContactForm'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -1277,7 +1267,6 @@ type GQLContactFormDocumentInStagesArgs = {
 
 /** A connection to a list of items. */
 type GQLContactFormConnection = {
-  __typename?: 'ContactFormConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -1297,7 +1286,6 @@ type GQLContactFormCreateInput = {
 
 /** An edge in a connection. */
 type GQLContactFormEdge = {
-  __typename?: 'ContactFormEdge'
   /** The item at the end of the edge. */
   node: GQLContactForm
   /** A cursor for use in pagination. */
@@ -1785,7 +1773,6 @@ type GQLImageTransformationInput = {
 }
 
 type GQLLinkExternal = GQLNode & {
-  __typename?: 'LinkExternal'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -1837,7 +1824,6 @@ type GQLLinkExternalConnectInput = {
 
 /** A connection to a list of items. */
 type GQLLinkExternalConnection = {
-  __typename?: 'LinkExternalConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -1894,7 +1880,6 @@ type GQLLinkExternalCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLLinkExternalEdge = {
-  __typename?: 'LinkExternalEdge'
   /** The item at the end of the edge. */
   node: GQLLinkExternal
   /** A cursor for use in pagination. */
@@ -2223,7 +2208,6 @@ type GQLLinkExternalWhereUniqueInput = {
 }
 
 type GQLLinkInternal = GQLNode & {
-  __typename?: 'LinkInternal'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -2244,8 +2228,8 @@ type GQLLinkInternal = GQLNode & {
   page?: Maybe<GQLPage>
   description?: Maybe<GQLRichText>
   rowPeopleWithText: Array<GQLRowPeopleWithText>
-  rowServicesWithText: Array<GQLRowServicesWithText>
   rowHeroVideo: Array<GQLRowHero>
+  rowServicesWithText: Array<GQLRowServicesWithText>
   rowRecentBlogPost?: Maybe<GQLRowRecentBlogPost>
 }
 
@@ -2270,9 +2254,7 @@ type GQLLinkInternalRowPeopleWithTextArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLLinkInternalRowServicesWithTextArgs = {
-  where?: Maybe<GQLRowServicesWithTextWhereInput>
-  orderBy?: Maybe<GQLRowServicesWithTextOrderByInput>
+type GQLLinkInternalRowHeroVideoArgs = {
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -2280,7 +2262,9 @@ type GQLLinkInternalRowServicesWithTextArgs = {
   last?: Maybe<Scalars['Int']>
 }
 
-type GQLLinkInternalRowHeroVideoArgs = {
+type GQLLinkInternalRowServicesWithTextArgs = {
+  where?: Maybe<GQLRowServicesWithTextWhereInput>
+  orderBy?: Maybe<GQLRowServicesWithTextOrderByInput>
   skip?: Maybe<Scalars['Int']>
   after?: Maybe<Scalars['String']>
   before?: Maybe<Scalars['String']>
@@ -2297,7 +2281,6 @@ type GQLLinkInternalConnectInput = {
 
 /** A connection to a list of items. */
 type GQLLinkInternalConnection = {
-  __typename?: 'LinkInternalConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -2313,8 +2296,8 @@ type GQLLinkInternalCreateInput = {
   page?: Maybe<GQLPageCreateOneInlineInput>
   description?: Maybe<Scalars['RichTextAST']>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextCreateManyInlineInput>
-  rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroCreateManyInlineInput>
+  rowServicesWithText?: Maybe<GQLRowServicesWithTextCreateManyInlineInput>
   rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLLinkInternalCreateLocalizationsInput>
@@ -2353,7 +2336,6 @@ type GQLLinkInternalCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLLinkInternalEdge = {
-  __typename?: 'LinkInternalEdge'
   /** The item at the end of the edge. */
   node: GQLLinkInternal
   /** A cursor for use in pagination. */
@@ -2462,8 +2444,8 @@ type GQLLinkInternalUpdateInput = {
   page?: Maybe<GQLPageUpdateOneInlineInput>
   description?: Maybe<Scalars['RichTextAST']>
   rowPeopleWithText?: Maybe<GQLRowPeopleWithTextUpdateManyInlineInput>
-  rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
   rowHeroVideo?: Maybe<GQLRowHeroUpdateManyInlineInput>
+  rowServicesWithText?: Maybe<GQLRowServicesWithTextUpdateManyInlineInput>
   rowRecentBlogPost?: Maybe<GQLRowRecentBlogPostUpdateOneInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLLinkInternalUpdateLocalizationsInput>
@@ -2681,7 +2663,6 @@ type GQLLocale =
 
 /** Representing a geolocation point with latitude and longitude */
 type GQLLocation = {
-  __typename?: 'Location'
   latitude: Scalars['Float']
   longitude: Scalars['Float']
   distance: Scalars['Float']
@@ -2699,7 +2680,6 @@ type GQLLocationInput = {
 }
 
 type GQLMenu = GQLNode & {
-  __typename?: 'Menu'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -2741,7 +2721,6 @@ type GQLMenuConnectInput = {
 
 /** A connection to a list of items. */
 type GQLMenuConnection = {
-  __typename?: 'MenuConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -2772,7 +2751,6 @@ type GQLMenuCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLMenuEdge = {
-  __typename?: 'MenuEdge'
   /** The item at the end of the edge. */
   node: GQLMenu
   /** A cursor for use in pagination. */
@@ -3066,7 +3044,6 @@ type GQLMenuWhereUniqueInput = {
 type GQLMetaRobots = 'INDEX_FOLLOW' | 'INDEX_NOFOLLOW' | 'NOINDEX_FOLLOW' | 'NOINDEX_NOFOLLOW'
 
 type GQLMutation = {
-  __typename?: 'Mutation'
   /**
    * Create one asset
    * @deprecated Asset mutations will be overhauled soon
@@ -4431,7 +4408,6 @@ type GQLNode = {
 }
 
 type GQLPage = GQLNode & {
-  __typename?: 'Page'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -4510,7 +4486,6 @@ type GQLPageConnectInput = {
 
 /** A connection to a list of items. */
 type GQLPageConnection = {
-  __typename?: 'PageConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -4730,7 +4705,6 @@ type GQLPageCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLPageEdge = {
-  __typename?: 'PageEdge'
   /** The item at the end of the edge. */
   node: GQLPage
   /** A cursor for use in pagination. */
@@ -4739,7 +4713,6 @@ type GQLPageEdge = {
 
 /** Information about pagination in a connection. */
 type GQLPageInfo = {
-  __typename?: 'PageInfo'
   /** When paginating forwards, are there more items? */
   hasNextPage: Scalars['Boolean']
   /** When paginating backwards, are there more items? */
@@ -5173,7 +5146,6 @@ type GQLPageWhereUniqueInput = {
 }
 
 type GQLPerson = GQLNode & {
-  __typename?: 'Person'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -5216,7 +5188,6 @@ type GQLPersonConnectInput = {
 
 /** A connection to a list of items. */
 type GQLPersonConnection = {
-  __typename?: 'PersonConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -5248,7 +5219,6 @@ type GQLPersonCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLPersonEdge = {
-  __typename?: 'PersonEdge'
   /** The item at the end of the edge. */
   node: GQLPerson
   /** A cursor for use in pagination. */
@@ -5256,7 +5226,6 @@ type GQLPersonEdge = {
 }
 
 type GQLPersonList = GQLNode & {
-  __typename?: 'PersonList'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -5309,7 +5278,6 @@ type GQLPersonListConnectInput = {
 
 /** A connection to a list of items. */
 type GQLPersonListConnection = {
-  __typename?: 'PersonListConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -5341,7 +5309,6 @@ type GQLPersonListCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLPersonListEdge = {
-  __typename?: 'PersonListEdge'
   /** The item at the end of the edge. */
   node: GQLPersonList
   /** A cursor for use in pagination. */
@@ -5934,7 +5901,6 @@ type GQLPublishLocaleInput = {
 }
 
 type GQLQuery = {
-  __typename?: 'Query'
   /** Fetches an object given its ID */
   node?: Maybe<GQLNode>
   /** Retrieve multiple assets */
@@ -6568,7 +6534,6 @@ type GQLQueryRowYoutubeVideosConnectionArgs = {
 
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 type GQLRgba = {
-  __typename?: 'RGBA'
   r: Scalars['RGBAHue']
   g: Scalars['RGBAHue']
   b: Scalars['RGBAHue']
@@ -6585,7 +6550,6 @@ type GQLRgbaInput = {
 
 /** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
 type GQLRichText = {
-  __typename?: 'RichText'
   /** Returns AST representation */
   raw: Scalars['RichTextAST']
   /** Returns HTMl representation */
@@ -6598,7 +6562,6 @@ type GQLRichText = {
 
 /** Single text area, flowing over two columns (CSS Columns) */
 type GQLRowColumnOne = GQLNode & {
-  __typename?: 'RowColumnOne'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -6642,7 +6605,6 @@ type GQLRowColumnOneConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowColumnOneConnection = {
-  __typename?: 'RowColumnOneConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -6675,7 +6637,6 @@ type GQLRowColumnOneCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowColumnOneEdge = {
-  __typename?: 'RowColumnOneEdge'
   /** The item at the end of the edge. */
   node: GQLRowColumnOne
   /** A cursor for use in pagination. */
@@ -6966,7 +6927,6 @@ type GQLRowColumnOneWhereUniqueInput = {
 }
 
 type GQLRowColumnThree = GQLNode & {
-  __typename?: 'RowColumnThree'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -7021,7 +6981,6 @@ type GQLRowColumnThreeConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowColumnThreeConnection = {
-  __typename?: 'RowColumnThreeConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -7082,7 +7041,6 @@ type GQLRowColumnThreeCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowColumnThreeEdge = {
-  __typename?: 'RowColumnThreeEdge'
   /** The item at the end of the edge. */
   node: GQLRowColumnThree
   /** A cursor for use in pagination. */
@@ -7420,7 +7378,6 @@ type GQLRowColumnThreeWhereUniqueInput = {
 }
 
 type GQLRowColumnTwo = GQLNode & {
-  __typename?: 'RowColumnTwo'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -7473,7 +7430,6 @@ type GQLRowColumnTwoConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowColumnTwoConnection = {
-  __typename?: 'RowColumnTwoConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -7530,7 +7486,6 @@ type GQLRowColumnTwoCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowColumnTwoEdge = {
-  __typename?: 'RowColumnTwoEdge'
   /** The item at the end of the edge. */
   node: GQLRowColumnTwo
   /** A cursor for use in pagination. */
@@ -7861,7 +7816,6 @@ type GQLRowColumnTwoWhereUniqueInput = {
 }
 
 type GQLRowCompanySlider = GQLNode & {
-  __typename?: 'RowCompanySlider'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -7912,7 +7866,6 @@ type GQLRowCompanySliderConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowCompanySliderConnection = {
-  __typename?: 'RowCompanySliderConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -7944,7 +7897,6 @@ type GQLRowCompanySliderCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowCompanySliderEdge = {
-  __typename?: 'RowCompanySliderEdge'
   /** The item at the end of the edge. */
   node: GQLRowCompanySlider
   /** A cursor for use in pagination. */
@@ -8237,7 +8189,6 @@ type GQLRowCompanySliderWhereUniqueInput = {
 }
 
 type GQLRowHero = GQLNode & {
-  __typename?: 'RowHero'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -8288,7 +8239,6 @@ type GQLRowHeroConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowHeroConnection = {
-  __typename?: 'RowHeroConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -8322,7 +8272,6 @@ type GQLRowHeroCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowHeroEdge = {
-  __typename?: 'RowHeroEdge'
   /** The item at the end of the edge. */
   node: GQLRowHero
   /** A cursor for use in pagination. */
@@ -8702,7 +8651,6 @@ type GQLRowHeroWhereUniqueInput = {
 }
 
 type GQLRowPeopleWithText = GQLNode & {
-  __typename?: 'RowPeopleWithText'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -8764,7 +8712,6 @@ type GQLRowPeopleWithTextConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowPeopleWithTextConnection = {
-  __typename?: 'RowPeopleWithTextConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -8818,7 +8765,6 @@ type GQLRowPeopleWithTextCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowPeopleWithTextEdge = {
-  __typename?: 'RowPeopleWithTextEdge'
   /** The item at the end of the edge. */
   node: GQLRowPeopleWithText
   /** A cursor for use in pagination. */
@@ -9149,7 +9095,6 @@ type GQLRowPeopleWithTextWhereUniqueInput = {
 }
 
 type GQLRowRecentBlogPost = GQLNode & {
-  __typename?: 'RowRecentBlogPost'
   /** System stage field */
   stage: GQLStage
   /** Get the document in other stages */
@@ -9190,7 +9135,6 @@ type GQLRowRecentBlogPostConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowRecentBlogPostConnection = {
-  __typename?: 'RowRecentBlogPostConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -9222,7 +9166,6 @@ type GQLRowRecentBlogPostCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowRecentBlogPostEdge = {
-  __typename?: 'RowRecentBlogPostEdge'
   /** The item at the end of the edge. */
   node: GQLRowRecentBlogPost
   /** A cursor for use in pagination. */
@@ -9511,7 +9454,6 @@ type GQLRowRecentBlogPostWhereUniqueInput = {
 }
 
 type GQLRowServicesWithText = GQLNode & {
-  __typename?: 'RowServicesWithText'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -9572,7 +9514,6 @@ type GQLRowServicesWithTextConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowServicesWithTextConnection = {
-  __typename?: 'RowServicesWithTextConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -9625,7 +9566,6 @@ type GQLRowServicesWithTextCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowServicesWithTextEdge = {
-  __typename?: 'RowServicesWithTextEdge'
   /** The item at the end of the edge. */
   node: GQLRowServicesWithText
   /** A cursor for use in pagination. */
@@ -9975,7 +9915,6 @@ type GQLRowServicesWithTextWhereUniqueInput = {
 
 /** A full-width Youtube video */
 type GQLRowYoutubeVideo = GQLNode & {
-  __typename?: 'RowYoutubeVideo'
   /** System stage field */
   stage: GQLStage
   /** System Locale field */
@@ -10029,7 +9968,6 @@ type GQLRowYoutubeVideoConnectInput = {
 
 /** A connection to a list of items. */
 type GQLRowYoutubeVideoConnection = {
-  __typename?: 'RowYoutubeVideoConnection'
   /** Information to aid in pagination. */
   pageInfo: GQLPageInfo
   /** A list of edges. */
@@ -10081,7 +10019,6 @@ type GQLRowYoutubeVideoCreateOneInlineInput = {
 
 /** An edge in a connection. */
 type GQLRowYoutubeVideoEdge = {
-  __typename?: 'RowYoutubeVideoEdge'
   /** The item at the end of the edge. */
   node: GQLRowYoutubeVideo
   /** A cursor for use in pagination. */
@@ -10436,18 +10373,12 @@ type GQLUnpublishLocaleInput = {
   stages: Array<GQLStage>
 }
 
-type GQLAssetFragment = { __typename?: 'Asset' } & Pick<
-  GQLAsset,
-  'id' | 'alt' | 'url' | 'width' | 'height' | 'mimeType'
->
+type GQLAssetFragment = Pick<GQLAsset, 'id' | 'alt' | 'url' | 'width' | 'height' | 'mimeType'>
 
-type GQLBlogListItemFragment = { __typename?: 'Page' } & Pick<
-  GQLPage,
-  'id' | 'title' | 'metaRobots' | 'url' | 'locale'
-> & {
-    documentInStages: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'publishedAt'>>
-    asset?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-  }
+type GQLBlogListItemFragment = Pick<GQLPage, 'id' | 'title' | 'metaRobots' | 'url' | 'locale'> & {
+  documentInStages: Array<Pick<GQLPage, 'publishedAt'>>
+  asset?: Maybe<GQLAssetFragment>
+}
 
 type GQLGetBlogListQueryVariables = {
   url: Scalars['String']
@@ -10455,23 +10386,16 @@ type GQLGetBlogListQueryVariables = {
   first?: Scalars['Int']
 }
 
-type GQLGetBlogListQuery = { __typename?: 'Query' } & {
-  blogPosts: Array<{ __typename?: 'Page' } & GQLBlogListItemFragment>
-}
+type GQLGetBlogListQuery = { blogPosts: Array<GQLBlogListItemFragment> }
 
-type GQLBreadcrumbFragment = { __typename?: 'Page' } & Pick<
-  GQLPage,
-  'id' | 'title' | 'metaRobots' | 'metaTitle' | 'url'
->
+type GQLBreadcrumbFragment = Pick<GQLPage, 'id' | 'title' | 'metaRobots' | 'metaTitle' | 'url'>
 
 type GQLGetBreadcrumbQueryVariables = {
   urls: Array<Scalars['String']>
   locale: GQLLocale
 }
 
-type GQLGetBreadcrumbQuery = { __typename?: 'Query' } & {
-  breadcrumbs: Array<{ __typename?: 'Page' } & GQLBreadcrumbFragment>
-}
+type GQLGetBreadcrumbQuery = { breadcrumbs: Array<GQLBreadcrumbFragment> }
 
 type GQLSubmitContactFormMutationVariables = {
   name: Scalars['String']
@@ -10481,11 +10405,9 @@ type GQLSubmitContactFormMutationVariables = {
   message: Scalars['String']
 }
 
-type GQLSubmitContactFormMutation = { __typename?: 'Mutation' } & {
-  createContactForm?: Maybe<{ __typename?: 'ContactForm' } & Pick<GQLContactForm, 'id'>>
-}
+type GQLSubmitContactFormMutation = { createContactForm?: Maybe<Pick<GQLContactForm, 'id'>> }
 
-type GQLContentRendererFragment = { __typename?: 'Page' } & {
+type GQLContentRendererFragment = {
   content: Array<
     | ({ __typename: 'RowServicesWithText' } & Pick<GQLRowServicesWithText, 'id'>)
     | ({ __typename: 'RowColumnThree' } & Pick<GQLRowColumnThree, 'id'> & GQLRowColumnThreeFragment)
@@ -10503,30 +10425,24 @@ type GQLContentRendererFragment = { __typename?: 'Page' } & {
   >
 }
 
-type GQLLinkExternalFragment = { __typename?: 'LinkExternal' } & Pick<
+type GQLLinkExternalFragment = { __typename: 'LinkExternal' } & Pick<
   GQLLinkExternal,
   'id' | 'url'
-> & { exTitle: GQLLinkExternal['title'] } & {
-    description?: Maybe<{ __typename?: 'RichText' } & GQLRichTextFragment>
-  }
+> & { exTitle: GQLLinkExternal['title'] } & { description?: Maybe<GQLRichTextFragment> }
 
-type GQLLinkInternalFragment = { __typename?: 'LinkInternal' } & Pick<
+type GQLLinkInternalFragment = { __typename: 'LinkInternal' } & Pick<
   GQLLinkInternal,
   'id' | 'title'
 > & {
-    description?: Maybe<{ __typename?: 'RichText' } & GQLRichTextFragment>
-    page?: Maybe<
-      { __typename?: 'Page' } & Pick<GQLPage, 'title' | 'metaRobots' | 'metaTitle' | 'url'>
-    >
+    description?: Maybe<GQLRichTextFragment>
+    page?: Maybe<Pick<GQLPage, 'title' | 'metaRobots' | 'metaTitle' | 'url'>>
   }
 
-type GQLMenuFragment = { __typename?: 'Menu' } & {
+type GQLMenuFragment = {
   pages: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'url'> & {
-        localizations: Array<
-          { __typename?: 'Page' } & Pick<GQLPage, 'locale' | 'id' | 'title' | 'metaRobots' | 'url'>
-        >
-      }
+    Pick<GQLPage, 'url'> & {
+      localizations: Array<Pick<GQLPage, 'locale' | 'id' | 'title' | 'metaRobots' | 'url'>>
+    }
   >
 }
 
@@ -10535,179 +10451,134 @@ type GQLGetPageLayoutQueryVariables = {
   locale: GQLLocale
 }
 
-type GQLGetPageLayoutQuery = { __typename?: 'Query' } & {
-  pages: Array<{ __typename?: 'Page' } & GQLPageLayoutFragment>
-  mainMenu?: Maybe<{ __typename?: 'Menu' } & GQLMenuFragment>
-  team: Array<{ __typename?: 'Person' } & GQLPersonFragment>
+type GQLGetPageLayoutQuery = {
+  pages: Array<GQLPageLayoutFragment>
+  mainMenu?: Maybe<GQLMenuFragment>
+  team: Array<GQLPersonFragment>
 }
 
-type GQLPageLayoutFragment = { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale'> &
+type GQLPageLayoutFragment = Pick<GQLPage, 'id' | 'locale'> &
   GQLPageMetaFragment &
   GQLContentRendererFragment
 
-type GQLPageMetaFragment = { __typename?: 'Page' } & Pick<
+type GQLPageMetaFragment = Pick<
   GQLPage,
   'title' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url' | 'locale'
-> & {
-    localizations: Array<
-      { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'url' | 'title' | 'locale' | 'metaRobots'>
-    >
-  }
+> & { localizations: Array<Pick<GQLPage, 'id' | 'url' | 'title' | 'locale' | 'metaRobots'>> }
 
-type GQLPersonFragment = { __typename?: 'Person' } & Pick<GQLPerson, 'id' | 'name'> & {
-    avatar: { __typename?: 'Asset' } & GQLAssetFragment
-  }
+type GQLPersonFragment = Pick<GQLPerson, 'id' | 'name'> & { avatar: GQLAssetFragment }
 
 type GQLGetPortfolioListQueryVariables = {
   url: Scalars['String']
   locale: GQLLocale
 }
 
-type GQLGetPortfolioListQuery = { __typename?: 'Query' } & {
-  portfolioList: Array<{ __typename?: 'Page' } & GQLPortfolioListitemFragment>
+type GQLGetPortfolioListQuery = { portfolioList: Array<GQLPortfolioListitemFragment> }
+
+type GQLPortfolioListitemFragment = Pick<GQLPage, 'id' | 'title' | 'metaRobots' | 'url'> & {
+  asset?: Maybe<GQLAssetFragment>
 }
 
-type GQLPortfolioListitemFragment = { __typename?: 'Page' } & Pick<
-  GQLPage,
-  'id' | 'title' | 'metaRobots' | 'url'
-> & { asset?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment> }
-
-type GQLRichTextFragment = { __typename?: 'RichText' } & Pick<GQLRichText, 'raw'>
+type GQLRichTextFragment = Pick<GQLRichText, 'raw'>
 
 type GQLGetAllRowColumOneQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllRowColumOneQuery = { __typename?: 'Query' } & {
-  rowColumnOnes: Array<{ __typename?: 'RowColumnOne' } & GQLRowColumnOneFragment>
-}
+type GQLGetAllRowColumOneQuery = { rowColumnOnes: Array<GQLRowColumnOneFragment> }
 
-type GQLRowColumnOneFragment = { __typename?: 'RowColumnOne' } & Pick<GQLRowColumnOne, 'id'> & {
-    colOne: { __typename?: 'RichText' } & GQLRichTextFragment
-    colOneIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-  }
+type GQLRowColumnOneFragment = Pick<GQLRowColumnOne, 'id'> & {
+  colOne: GQLRichTextFragment
+  colOneIcon?: Maybe<GQLAssetFragment>
+}
 
 type GQLGetAllRowColumThreeQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllRowColumThreeQuery = { __typename?: 'Query' } & {
-  rowColumnThrees: Array<{ __typename?: 'RowColumnThree' } & GQLRowColumnThreeFragment>
-}
+type GQLGetAllRowColumThreeQuery = { rowColumnThrees: Array<GQLRowColumnThreeFragment> }
 
-type GQLRowColumnThreeFragment = { __typename?: 'RowColumnThree' } & Pick<
-  GQLRowColumnThree,
-  'id'
-> & {
-    colOne: { __typename?: 'RichText' } & GQLRichTextFragment
-    colOneIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-    colTwo: { __typename?: 'RichText' } & GQLRichTextFragment
-    colTwoIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-    colThree: { __typename?: 'RichText' } & GQLRichTextFragment
-    colThreeIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-  }
+type GQLRowColumnThreeFragment = Pick<GQLRowColumnThree, 'id'> & {
+  colOne: GQLRichTextFragment
+  colOneIcon?: Maybe<GQLAssetFragment>
+  colTwo: GQLRichTextFragment
+  colTwoIcon?: Maybe<GQLAssetFragment>
+  colThree: GQLRichTextFragment
+  colThreeIcon?: Maybe<GQLAssetFragment>
+}
 
 type GQLGetAllRowColumTwoQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllRowColumTwoQuery = { __typename?: 'Query' } & {
-  rowColumnTwos: Array<{ __typename?: 'RowColumnTwo' } & GQLRowColumnTwoFragment>
-}
+type GQLGetAllRowColumTwoQuery = { rowColumnTwos: Array<GQLRowColumnTwoFragment> }
 
-type GQLRowColumnTwoFragment = { __typename?: 'RowColumnTwo' } & Pick<GQLRowColumnTwo, 'id'> & {
-    colOne: { __typename?: 'RichText' } & GQLRichTextFragment
-    colOneIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-    colTwo: { __typename?: 'RichText' } & GQLRichTextFragment
-    colTwoIcon?: Maybe<{ __typename?: 'Asset' } & GQLAssetFragment>
-  }
+type GQLRowColumnTwoFragment = Pick<GQLRowColumnTwo, 'id'> & {
+  colOne: GQLRichTextFragment
+  colOneIcon?: Maybe<GQLAssetFragment>
+  colTwo: GQLRichTextFragment
+  colTwoIcon?: Maybe<GQLAssetFragment>
+}
 
 type GQLGetAllRowCompanySlidersQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllRowCompanySlidersQuery = { __typename?: 'Query' } & {
-  rowCompanySliders: Array<{ __typename?: 'RowCompanySlider' } & GQLRowCompanySliderFragment>
-}
+type GQLGetAllRowCompanySlidersQuery = { rowCompanySliders: Array<GQLRowCompanySliderFragment> }
 
-type GQLRowCompanySliderFragment = { __typename?: 'RowCompanySlider' } & Pick<
-  GQLRowCompanySlider,
-  'id'
-> & {
-    companies: Array<
-      { __typename?: 'Company' } & Pick<GQLCompany, 'id'> & {
-          logo: { __typename?: 'Asset' } & GQLAssetFragment
-        }
-    >
-  }
+type GQLRowCompanySliderFragment = Pick<GQLRowCompanySlider, 'id'> & {
+  companies: Array<Pick<GQLCompany, 'id'> & { logo: GQLAssetFragment }>
+}
 
 type GQLGetAllRowHeroQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllRowHeroQuery = { __typename?: 'Query' } & {
-  rowHeroes: Array<{ __typename?: 'RowHero' } & GQLRowHeroFragment>
+type GQLGetAllRowHeroQuery = { rowHeroes: Array<GQLRowHeroFragment> }
+
+type GQLRowHeroFragment = Pick<GQLRowHero, 'id'> & {
+  asset: GQLAssetFragment
+  text: GQLRichTextFragment
+  links: Array<GQLLinkExternalFragment | GQLLinkInternalFragment>
 }
 
-type GQLRowHeroFragment = { __typename?: 'RowHero' } & Pick<GQLRowHero, 'id'> & {
-    asset: { __typename?: 'Asset' } & GQLAssetFragment
-    text: { __typename?: 'RichText' } & GQLRichTextFragment
-    links: Array<
-      | ({ __typename?: 'LinkExternal' } & GQLLinkExternalFragment)
-      | ({ __typename?: 'LinkInternal' } & GQLLinkInternalFragment)
-    >
-  }
+type GQLGetAllPeopleQueryVariables = {}
+
+type GQLGetAllPeopleQuery = { people: Array<GQLPersonFragment> }
 
 type GQLGetRowPeopleWithTextsQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetRowPeopleWithTextsQuery = { __typename?: 'Query' } & {
-  rowPeopleWithTexts: Array<{ __typename?: 'RowPeopleWithText' } & GQLRowPeopleWithTextFragment>
+type GQLGetRowPeopleWithTextsQuery = { rowPeopleWithTexts: Array<GQLRowPeopleWithTextFragment> }
+
+type GQLRowPeopleWithTextFragment = Pick<GQLRowPeopleWithText, 'id'> & {
+  text: GQLRichTextFragment
+  links: Array<GQLLinkInternalFragment>
 }
 
-type GQLRowPeopleWithTextFragment = { __typename?: 'RowPeopleWithText' } & Pick<
-  GQLRowPeopleWithText,
-  'id'
-> & {
-    text: { __typename?: 'RichText' } & GQLRichTextFragment
-    links: Array<{ __typename?: 'LinkInternal' } & GQLLinkInternalFragment>
-    personList?: Maybe<
-      { __typename?: 'PersonList' } & {
-        people: Array<{ __typename?: 'Person' } & GQLPersonFragment>
-      }
-    >
-  }
-
-type GQLRowRecentBlogPostFragment = { __typename?: 'RowRecentBlogPost' } & {
-  link?: Maybe<
-    { __typename?: 'LinkInternal' } & Pick<GQLLinkInternal, 'locale'> & GQLLinkInternalFragment
-  >
+type GQLRowRecentBlogPostFragment = {
+  link?: Maybe<Pick<GQLLinkInternal, 'locale'> & GQLLinkInternalFragment>
 }
 
 type GQLGetAllRowYoutubeVideosQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllRowYoutubeVideosQuery = { __typename?: 'Query' } & {
-  rowYoutubeVideos: Array<{ __typename?: 'RowYoutubeVideo' } & GQLRowYoutubeVideoFragment>
-}
+type GQLGetAllRowYoutubeVideosQuery = { rowYoutubeVideos: Array<GQLRowYoutubeVideoFragment> }
 
-type GQLRowYoutubeVideoFragment = { __typename?: 'RowYoutubeVideo' } & Pick<
-  GQLRowYoutubeVideo,
-  'videoId' | 'title'
->
+type GQLRowYoutubeVideoFragment = Pick<GQLRowYoutubeVideo, 'videoId' | 'title'>
 
 type GQLGetStaticPathsQueryVariables = {
   startsWith: Scalars['String']
   locale: GQLLocale
 }
 
-type GQLGetStaticPathsQuery = { __typename?: 'Query' } & {
+type GQLGetStaticPathsQuery = {
   pages: Array<
-    { __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'> & {
-        localizations: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'id' | 'locale' | 'url'>>
-      }
+    Pick<GQLPage, 'id' | 'locale' | 'url'> & {
+      localizations: Array<Pick<GQLPage, 'id' | 'locale' | 'url'>>
+    }
   >
 }
 
@@ -10715,46 +10586,34 @@ type GQLCreatePageMutationVariables = {
   page: GQLPageCreateInput
 }
 
-type GQLCreatePageMutation = { __typename?: 'Mutation' } & {
-  createPage?: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'id'>>
-}
+type GQLCreatePageMutation = { createPage?: Maybe<Pick<GQLPage, 'id'>> }
 
 type GQLGetAllAssetsQueryVariables = {
   skip: Scalars['Int']
 }
 
-type GQLGetAllAssetsQuery = { __typename?: 'Query' } & {
-  assets: Array<{ __typename?: 'Asset' } & Pick<GQLAsset, 'fileName' | 'id'>>
-}
+type GQLGetAllAssetsQuery = { assets: Array<Pick<GQLAsset, 'fileName' | 'id'>> }
 
 type GQLGetDraftPagesQueryVariables = {
   skip?: Scalars['Int']
 }
 
-type GQLGetDraftPagesQuery = { __typename?: 'Query' } & {
-  pages: Array<{ __typename?: 'Page' } & Pick<GQLPage, 'url' | 'id' | 'stage'>>
-}
+type GQLGetDraftPagesQuery = { pages: Array<Pick<GQLPage, 'url' | 'id' | 'stage'>> }
 
 type GQLPublishAssetMutationVariables = {
   id: Scalars['ID']
   locales: Array<GQLLocale>
 }
 
-type GQLPublishAssetMutation = { __typename?: 'Mutation' } & {
-  publishAsset?: Maybe<{ __typename?: 'Asset' } & Pick<GQLAsset, 'id'>>
-}
+type GQLPublishAssetMutation = { publishAsset?: Maybe<Pick<GQLAsset, 'id'>> }
 
 type GQLPublishPageMutationVariables = {
   id: Scalars['ID']
   locales: Array<GQLLocale>
 }
 
-type GQLPublishPageMutation = { __typename?: 'Mutation' } & {
-  publishPage?: Maybe<
-    { __typename?: 'Page' } & Pick<GQLPage, 'id'> & {
-        asset?: Maybe<{ __typename?: 'Asset' } & Pick<GQLAsset, 'id'>>
-      }
-  >
+type GQLPublishPageMutation = {
+  publishPage?: Maybe<Pick<GQLPage, 'id'> & { asset?: Maybe<Pick<GQLAsset, 'id'>> }>
 }
 
 type GQLUpdatePageMutationVariables = {
@@ -10762,6 +10621,4 @@ type GQLUpdatePageMutationVariables = {
   page: GQLPageUpdateInput
 }
 
-type GQLUpdatePageMutation = { __typename?: 'Mutation' } & {
-  updatePage?: Maybe<{ __typename?: 'Page' } & Pick<GQLPage, 'id'>>
-}
+type GQLUpdatePageMutation = { updatePage?: Maybe<Pick<GQLPage, 'id'>> }

@@ -29,6 +29,7 @@ generates:
       immutableTypes: false
       noExport: true
       enumsAsTypes: true
+      skipTypename: true
     hooks:
       afterOneFileWrite:
         - prettier --write
