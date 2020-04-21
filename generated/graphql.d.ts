@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
-  RGBAHue: any
   RGBATransparency: any
-  /** Raw JSON value */
-  Json: any
   Hex: any
+  RGBAHue: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  /** Raw JSON value */
+  Json: any
 }
 
 type GQL_FilterKind =

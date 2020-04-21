@@ -19,15 +19,22 @@ Allow for rendering of content models retrieved by GraphQL.
 2. Add the just created fragment to
    [ContentRenderer.graphql](./ContentRenderer.graphql);
 
-## Overriding Components per template
+## Fetching additional data
 
-1. `import { renderers } from '.'`
-2. `renderers.HeroBanner = dynamic<GQLHeroBannerFragment>(() => import('../HeroBanner'))`
+To load additional you can define a getStaticProps method on your components add
+to `registerGetStaticProps` in [defaultRenderer](./defaultRenderer.tsx).
 
-Note: Since the Model doesn't change, the data requirements don't change either,
-so no need to change the data loading method.
+!! Make sure you only do dynamic imports, else te bundle size will increase.
 
-## Todo
+## Overriding Components per page
 
-- [ ] Should probably make more generic and support multiple content union
-      fields.
+```
+import RowHeroHome from '../RowHeroHome'
+
+<ContentRenderer
+   content={page.content}
+   customRenderers={{
+      RowHero: RowHeroHome,
+   }}
+/>
+```

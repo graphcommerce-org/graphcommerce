@@ -1,11 +1,12 @@
 import React from 'react'
+import { GetStaticData, StaticPageVariables } from '../../lib/staticParams'
 
 type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
 export type Renderers = { [T in TypeNames]?: React.ComponentType<any> }
 
 let renderers: Renderers = {}
 export const setRenderers = (newRenderers: Renderers): void => {
-  renderers = newRenderers
+  renderers = { ...renderers, ...newRenderers }
 }
 
 const ContentRenderer: React.FC<GQLContentRendererFragment & { customRenderers?: Renderers }> = (
@@ -27,3 +28,35 @@ const ContentRenderer: React.FC<GQLContentRendererFragment & { customRenderers?:
 }
 
 export default ContentRenderer
+
+/**
+ * Make sure you also register this method in defaultRenderer.tsx
+ */
+export type CRGetStaticProps<P, R> = (props: P) => Promise<R>
+
+type LoaderComponent<P = {}> = Promise<{
+  getStaticProps: CRGetStaticProps<P, {}>
+}>
+
+export type StaticData = { [T in TypeNames]?: () => LoaderComponent }
+
+let staticProps: StaticData = {}
+export const setStaticProps = (newStaticData: StaticData): void => {
+  staticProps = { ...staticProps, ...newStaticData }
+}
+
+export const getStaticProps = async (
+  content: GQLContentRendererFragment['content'],
+): Promise<GQLContentRendererFragment['content']> => {
+  const augmented = await Promise.all(
+    content.map(async (item) => {
+      const loader = staticProps[item.__typename]
+      if (!loader) return item
+
+      const { getStaticProps: get } = await loader()
+      return { ...item, ...(await get(item)) }
+    }),
+  )
+
+  return augmented
+}
