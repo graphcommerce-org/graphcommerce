@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import getStaticPathsFactory from '../../../components/PageLayout/server/getStaticPaths'
+import getStaticPathsFactory from '../../../lib/getStaticPaths'
 import BlogView from '../../blog/[url]'
 import extractParams, { StaticPageParams } from '../../../lib/staticParams'
 import { PageLayoutProps } from '../../../components/PageLayout'

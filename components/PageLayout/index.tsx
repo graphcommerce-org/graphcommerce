@@ -7,6 +7,7 @@ import ThemedProvider, { theme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
+import { GQLGetStaticProps } from '../../lib/staticParams'
 
 export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
   page: GQLGetPageLayoutQuery['pages'][0]
@@ -35,3 +36,20 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, te
 }
 
 export default LayoutFull
+
+export const getStaticData: GQLGetStaticProps<PageLayoutProps> = async (variables) => {
+  const { default: client } = await import('../../lib/apollo')
+  const { GetPageLayoutDocument } = await import('../../generated/apollo')
+  const { getStaticProps } = await import('../ContentRenderer/ContentRenderer')
+
+  const { data } = await client().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>({
+    query: GetPageLayoutDocument,
+    variables,
+  })
+
+  const { pages, ...rest } = data
+  const page = pages[0]
+
+  page.content = await getStaticProps(page.content)
+  return { ...rest, page: pages[0] }
+}

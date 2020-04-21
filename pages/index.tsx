@@ -24,6 +24,6 @@ export default Home
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
   const params: StaticPageVariables = { url: '/', locale: 'nl' }
-  const getStaticData = await import('../components/PageLayout/server/getStaticData')
-  return { props: await getStaticData.default(params) }
+  const { getStaticData } = await import('../components/PageLayout')
+  return { props: await getStaticData(params) }
 }

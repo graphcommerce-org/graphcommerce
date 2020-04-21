@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../components/PageLayout'
-import getStaticPathsFactory from '../../components/PageLayout/server/getStaticPaths'
+import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
 

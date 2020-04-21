@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../components/PageLayout'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
-import getStaticPathsFactory from '../../components/PageLayout/server/getStaticPaths'
+import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
