@@ -1,3 +1,42 @@
+### [5.8.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.1...v5.8.2) (2020-04-21)
+
+### Fixes
+
+- **graphql:** do not include typename in types by default
+  ([97d1c2e](https://github.com/ho-nl/project-reachdigital.nl/commit/97d1c2e36897ec35f936e8086347204824df707b))
+
+### [5.8.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.0...v5.8.1) (2020-04-21)
+
+### Fixes
+
+- **asset:** removed height property will be generated based on asset
+  ([40038c9](https://github.com/ho-nl/project-reachdigital.nl/commit/40038c915b5bbfdca5c06b6ddf66eec9f125411c))
+- **blogpage:** change the maxWidth to ‘lg’
+  ([d37876a](https://github.com/ho-nl/project-reachdigital.nl/commit/d37876ab1cf24ee776a17e21b3c8d299e57d9083))
+- **blogpost:** add theme colors and the vpCalc() function for better
+  responsiveness
+  ([e967a33](https://github.com/ho-nl/project-reachdigital.nl/commit/e967a33bf13b912576a0b57606b2e86634a0cee0))
+- **blogpost:** remove the height attribute and change the image width to the
+  “Nexus 5X” render size
+  ([6d46947](https://github.com/ho-nl/project-reachdigital.nl/commit/6d469470576790ab51fd048a8ad5e03d247c0082))
+- **blogpostitems:** give the image wrapper a equal height and style the
+  placeholder image
+  ([0eca181](https://github.com/ho-nl/project-reachdigital.nl/commit/0eca18133b3ce0cd25c881cf357b6458e0cd548d))
+
+## [5.8.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.7.0...v5.8.0) (2020-04-21)
+
+### Features
+
+- added RowRecentBlogPost synchronously
+  ([2ba635d](https://github.com/ho-nl/project-reachdigital.nl/commit/2ba635dcb5176f0b24d9d58319623f3054909cde))
+
+## [5.7.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.4...v5.7.0) (2020-04-20)
+
+### Features
+
+- **about-us page:** add page and initial content
+  ([fd3ba3c](https://github.com/ho-nl/project-reachdigital.nl/commit/fd3ba3c41c6a28223d7ba62919276e90e4153a22))
+
 ### [5.6.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.3...v5.6.4) (2020-04-20)
 
 ### Performance Improvements

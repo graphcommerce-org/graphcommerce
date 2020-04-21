@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { makeStyles, Theme, Button, SvgIcon } from '@material-ui/core'
-import LayoutFull, { PageWithLayoutFull } from '../components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
 import RichText from '../components/RichText'
@@ -75,6 +75,7 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
                 <RichText {...link.description} />
               </small>
               <Link href={link.page.url} metaRobots={link.page.metaRobots!}>
+                {console.log(chevronRight)}
                 <Button color='primary' endIcon={<SvgIcon>{chevronRight}</SvgIcon>}>
                   {link.title}
                 </Button>
@@ -93,11 +94,11 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
     </div>
   )
 }
-
-const AboutUs: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ pages }) => {
+// @todo this probably shouldnt be a portfolioListQuery
+const AboutUs: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page }) => {
   return (
     <>
-      <ContentRenderer content={pages[0].content} customRenderers={{ RowHero }} />
+      <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
     </>
   )
 }
@@ -106,11 +107,11 @@ AboutUs.layout = LayoutFull
 
 export default AboutUs
 
-export const getStaticProps: GetStaticProps<GQLGetPageLayoutQuery> = async () => {
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
   const params: StaticPageVariables = {
     url: '/over-reach-digital-magento-experts',
     locale: 'nl',
   }
-  const getStaticData = await import('../components/PageLayout/server/getStaticData')
-  return { props: await getStaticData.default(params) }
+  const { getStaticProps: get } = await import('../components/PageLayout')
+  return { props: await get(params) }
 }

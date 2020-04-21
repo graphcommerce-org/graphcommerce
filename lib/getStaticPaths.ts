@@ -1,6 +1,6 @@
 import { GetStaticPaths } from 'next'
-import initApolloClient from '../../../lib/apollo'
-import { GetStaticPathsDocument } from '../../../generated/apollo'
+import initApolloClient from './apollo'
+import { GetStaticPathsDocument } from '../generated/apollo'
 
 const getStaticPathsFactory: (baseUrl: string, locale: GQLLocale) => GetStaticPaths = (
   baseUrl,

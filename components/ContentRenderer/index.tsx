@@ -1,7 +1,8 @@
 import ContentRenderer, { Renderers } from './ContentRenderer'
-import registerDefaultRenderer from './defaultRenderer'
+import { registerGetStaticProps, registerRenderers } from './defaultRenderer'
 
-registerDefaultRenderer()
+registerRenderers()
+registerGetStaticProps()
 
 export default ContentRenderer
 export type { Renderers }

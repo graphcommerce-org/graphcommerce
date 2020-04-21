@@ -2,6 +2,7 @@ import React from 'react'
 import { Typography, makeStyles } from '@material-ui/core'
 import Link from '../Link'
 import Asset from '../Asset'
+import { theme, vpCalc } from '../Theme'
 
 const useStyles = makeStyles({
   item: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     marginBottom: '75px',
   },
   title: {
-    color: '#000',
+    color: theme.palette.primary.contrastText,
     fontSize: '25px',
     fontWeight: 500,
     lineHeight: '1.68',
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
     display: 'block',
     position: 'relative',
     marginBottom: '50px',
+    height: vpCalc(120, 200),
     '&::before': {
       content: '""',
       height: '100%',
@@ -37,10 +39,23 @@ const useStyles = makeStyles({
       transform: 'scale(.85, 0.95)',
     },
   },
+  placeholder: {
+    display: 'flex',
+    textAlign: 'center',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...theme.typography.body2,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.background.default,
+    fontWeight: 600,
+    userSelect: 'none',
+  },
   image: {
     display: 'block',
     width: '100%',
-    height: 'auto',
+    height: '100%',
+    objectFit: 'cover',
   },
   href: {
     textDecoration: 'none !important',
@@ -74,7 +89,7 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
           {asset ? (
             <Asset asset={asset} className={classes.image} width={179} />
           ) : (
-            <div>GEEN AFBEELDING</div>
+            <div className={classes.placeholder}>GEEN AFBEELDING</div>
           )}
         </div>
         <div className={classes.date}>{publishedAtFormatted}</div>

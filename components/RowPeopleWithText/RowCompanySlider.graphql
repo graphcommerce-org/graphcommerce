@@ -6,9 +6,4 @@ fragment RowPeopleWithText on RowPeopleWithText {
   links {
     ...LinkInternal
   }
-  personList {
-    people {
-      ...Person
-    }
-  }
 }

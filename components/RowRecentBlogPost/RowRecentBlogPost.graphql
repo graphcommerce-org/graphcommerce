@@ -1,0 +1,6 @@
+fragment RowRecentBlogPost on RowRecentBlogPost {
+  link {
+    ...LinkInternal
+    locale
+  }
+}

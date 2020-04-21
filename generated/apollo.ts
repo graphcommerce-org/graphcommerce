@@ -1,7 +1,6 @@
 import gql from 'graphql-tag'
 import * as ApolloReactCommon from '@apollo/react-common'
 import * as ApolloReactHooks from '@apollo/react-hooks'
-
 export const AssetFragmentDoc = gql`
   fragment Asset on Asset {
     id
@@ -75,6 +74,7 @@ export const RichTextFragmentDoc = gql`
 `
 export const LinkInternalFragmentDoc = gql`
   fragment LinkInternal on LinkInternal {
+    __typename
     id
     title
     description {
@@ -91,6 +91,7 @@ export const LinkInternalFragmentDoc = gql`
 `
 export const LinkExternalFragmentDoc = gql`
   fragment LinkExternal on LinkExternal {
+    __typename
     id
     exTitle: title
     description {
@@ -188,16 +189,6 @@ export const RowCompanySliderFragmentDoc = gql`
   }
   ${AssetFragmentDoc}
 `
-export const PersonFragmentDoc = gql`
-  fragment Person on Person {
-    id
-    name
-    avatar {
-      ...Asset
-    }
-  }
-  ${AssetFragmentDoc}
-`
 export const RowPeopleWithTextFragmentDoc = gql`
   fragment RowPeopleWithText on RowPeopleWithText {
     id
@@ -207,15 +198,18 @@ export const RowPeopleWithTextFragmentDoc = gql`
     links {
       ...LinkInternal
     }
-    personList {
-      people {
-        ...Person
-      }
-    }
   }
   ${RichTextFragmentDoc}
   ${LinkInternalFragmentDoc}
-  ${PersonFragmentDoc}
+`
+export const RowRecentBlogPostFragmentDoc = gql`
+  fragment RowRecentBlogPost on RowRecentBlogPost {
+    link {
+      ...LinkInternal
+      locale
+    }
+  }
+  ${LinkInternalFragmentDoc}
 `
 export const RowYoutubeVideoFragmentDoc = gql`
   fragment RowYoutubeVideo on RowYoutubeVideo {
@@ -236,6 +230,7 @@ export const ContentRendererFragmentDoc = gql`
       ...RowColumnOne
       ...RowCompanySlider
       ...RowPeopleWithText
+      ...RowRecentBlogPost
       ...RowYoutubeVideo
     }
   }
@@ -245,6 +240,7 @@ export const ContentRendererFragmentDoc = gql`
   ${RowColumnOneFragmentDoc}
   ${RowCompanySliderFragmentDoc}
   ${RowPeopleWithTextFragmentDoc}
+  ${RowRecentBlogPostFragmentDoc}
   ${RowYoutubeVideoFragmentDoc}
 `
 export const PageLayoutFragmentDoc = gql`
@@ -256,6 +252,16 @@ export const PageLayoutFragmentDoc = gql`
   }
   ${PageMetaFragmentDoc}
   ${ContentRendererFragmentDoc}
+`
+export const PersonFragmentDoc = gql`
+  fragment Person on Person {
+    id
+    name
+    avatar {
+      ...Asset
+    }
+  }
+  ${AssetFragmentDoc}
 `
 export const PortfolioListitemFragmentDoc = gql`
   fragment PortfolioListitem on Page {
@@ -270,12 +276,12 @@ export const PortfolioListitemFragmentDoc = gql`
   ${AssetFragmentDoc}
 `
 export const GetBlogListDocument = gql`
-  query GetBlogList($url: String!, $locale: Locale!) {
+  query GetBlogList($url: String!, $locale: Locale!, $first: Int! = 100) {
     blogPosts: pages(
       where: { url_starts_with: $url }
       locales: [$locale]
       orderBy: releaseDate_DESC
-      first: 100
+      first: $first
     ) {
       ...BlogListItem
     }
@@ -297,6 +303,7 @@ export const GetBlogListDocument = gql`
  *   variables: {
  *      url: // value for 'url'
  *      locale: // value for 'locale'
+ *      first: // value for 'first'
  *   },
  * });
  */
@@ -509,67 +516,6 @@ export type GetPageLayoutLazyQueryHookResult = ReturnType<typeof useGetPageLayou
 export type GetPageLayoutQueryResult = ApolloReactCommon.QueryResult<
   GQLGetPageLayoutQuery,
   GQLGetPageLayoutQueryVariables
->
-export const GetStaticPathsDocument = gql`
-  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
-    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
-      id
-      locale
-      url
-      localizations {
-        id
-        locale
-        url
-        locale
-      }
-    }
-  }
-`
-
-/**
- * __useGetStaticPathsQuery__
- *
- * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetStaticPathsQuery({
- *   variables: {
- *      startsWith: // value for 'startsWith'
- *      locale: // value for 'locale'
- *   },
- * });
- */
-export function useGetStaticPathsQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
-    GetStaticPathsDocument,
-    baseOptions,
-  )
-}
-export function useGetStaticPathsLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >,
-) {
-  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
-    GetStaticPathsDocument,
-    baseOptions,
-  )
-}
-export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
-export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
-export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
-  GQLGetStaticPathsQuery,
-  GQLGetStaticPathsQueryVariables
 >
 export const GetPortfolioListDocument = gql`
   query GetPortfolioList($url: String!, $locale: Locale!) {
@@ -900,6 +846,58 @@ export type GetAllRowHeroQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowHeroQuery,
   GQLGetAllRowHeroQueryVariables
 >
+export const GetAllPeopleDocument = gql`
+  query GetAllPeople {
+    people {
+      ...Person
+    }
+  }
+  ${PersonFragmentDoc}
+`
+
+/**
+ * __useGetAllPeopleQuery__
+ *
+ * To run a query within a React component, call `useGetAllPeopleQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPeopleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllPeopleQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllPeopleQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetAllPeopleQuery,
+    GQLGetAllPeopleQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetAllPeopleQuery, GQLGetAllPeopleQueryVariables>(
+    GetAllPeopleDocument,
+    baseOptions,
+  )
+}
+export function useGetAllPeopleLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetAllPeopleQuery,
+    GQLGetAllPeopleQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetAllPeopleQuery, GQLGetAllPeopleQueryVariables>(
+    GetAllPeopleDocument,
+    baseOptions,
+  )
+}
+export type GetAllPeopleQueryHookResult = ReturnType<typeof useGetAllPeopleQuery>
+export type GetAllPeopleLazyQueryHookResult = ReturnType<typeof useGetAllPeopleLazyQuery>
+export type GetAllPeopleQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetAllPeopleQuery,
+  GQLGetAllPeopleQueryVariables
+>
 export const GetRowPeopleWithTextsDocument = gql`
   query GetRowPeopleWithTexts($skip: Int!) {
     rowPeopleWithTexts(first: 1, skip: $skip) {
@@ -1011,6 +1009,67 @@ export type GetAllRowYoutubeVideosLazyQueryHookResult = ReturnType<
 export type GetAllRowYoutubeVideosQueryResult = ApolloReactCommon.QueryResult<
   GQLGetAllRowYoutubeVideosQuery,
   GQLGetAllRowYoutubeVideosQueryVariables
+>
+export const GetStaticPathsDocument = gql`
+  query GetStaticPaths($startsWith: String!, $locale: Locale!) {
+    pages(where: { url_starts_with: $startsWith }, orderBy: url_ASC, locales: [$locale]) {
+      id
+      locale
+      url
+      localizations {
+        id
+        locale
+        url
+        locale
+      }
+    }
+  }
+`
+
+/**
+ * __useGetStaticPathsQuery__
+ *
+ * To run a query within a React component, call `useGetStaticPathsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStaticPathsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStaticPathsQuery({
+ *   variables: {
+ *      startsWith: // value for 'startsWith'
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useGetStaticPathsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export function useGetStaticPathsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    GQLGetStaticPathsQuery,
+    GQLGetStaticPathsQueryVariables
+  >,
+) {
+  return ApolloReactHooks.useLazyQuery<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>(
+    GetStaticPathsDocument,
+    baseOptions,
+  )
+}
+export type GetStaticPathsQueryHookResult = ReturnType<typeof useGetStaticPathsQuery>
+export type GetStaticPathsLazyQueryHookResult = ReturnType<typeof useGetStaticPathsLazyQuery>
+export type GetStaticPathsQueryResult = ApolloReactCommon.QueryResult<
+  GQLGetStaticPathsQuery,
+  GQLGetStaticPathsQueryVariables
 >
 export const CreatePageDocument = gql`
   mutation CreatePage($page: PageCreateInput!) {

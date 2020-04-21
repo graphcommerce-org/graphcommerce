@@ -12,13 +12,10 @@
             "name": "Person"
           },
           {
-            "name": "PersonList"
+            "name": "Company"
           },
           {
-            "name": "RowPeopleWithText"
-          },
-          {
-            "name": "LinkInternal"
+            "name": "RowCompanySlider"
           },
           {
             "name": "Page"
@@ -27,28 +24,28 @@
             "name": "RowServicesWithText"
           },
           {
-            "name": "RowColumnThree"
+            "name": "LinkInternal"
           },
           {
-            "name": "RowColumnTwo"
-          },
-          {
-            "name": "RowRecentBlogPost"
-          },
-          {
-            "name": "RowColumnOne"
-          },
-          {
-            "name": "RowCompanySlider"
-          },
-          {
-            "name": "Company"
+            "name": "RowPeopleWithText"
           },
           {
             "name": "RowHero"
           },
           {
             "name": "LinkExternal"
+          },
+          {
+            "name": "RowRecentBlogPost"
+          },
+          {
+            "name": "RowColumnThree"
+          },
+          {
+            "name": "RowColumnTwo"
+          },
+          {
+            "name": "RowColumnOne"
           },
           {
             "name": "RowYoutubeVideo"
