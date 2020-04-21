@@ -1,3 +1,10 @@
+### [5.8.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.1...v5.8.2) (2020-04-21)
+
+
+### Fixes
+
+* **graphql:** do not include typename in types by default ([97d1c2e](https://github.com/ho-nl/project-reachdigital.nl/commit/97d1c2e36897ec35f936e8086347204824df707b))
+
 ### [5.8.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.0...v5.8.1) (2020-04-21)
 
 
