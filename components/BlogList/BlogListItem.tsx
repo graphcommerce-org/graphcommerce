@@ -86,7 +86,7 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (
-            <Asset asset={asset} className={classes.image} width={180} height={120} />
+            <Asset asset={asset} className={classes.image} width={179} />
           ) : (
             <div className={classes.placeholder}>GEEN AFBEELDING</div>
           )}
