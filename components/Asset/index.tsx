@@ -2,23 +2,15 @@ import React from 'react'
 import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture, { FilestackPictureProps } from '../FilestackPicture'
 
-type UnsupportedProps = {
-  asset: GQLAssetFragment
-}
+type UnsupportedProps = { asset: GQLAssetFragment }
 
 type ImageProps = {
-  asset: {
-    // width: number
-    // height: number
-    mimeType: ImageMimeTypes
-  } & GQLAssetFragment
-} & Omit<FilestackPictureProps, 'src' | 'type'>
+  asset: { mimeType: ImageMimeTypes } & GQLAssetFragment
+} & Omit<FilestackPictureProps, 'src' | 'type' | 'height'>
 
 type VideoProps = {
-  asset: {
-    mimeType: 'video/mp4'
-  } & GQLAssetFragment
-} & Omit<JSX.IntrinsicElements['video'], 'src'>
+  asset: { mimeType: 'video/mp4' } & GQLAssetFragment
+} & Omit<JSX.IntrinsicElements['video'], 'src' | 'height'>
 
 const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ...props }) => {
   if (!asset.mimeType) {
