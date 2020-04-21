@@ -2,7 +2,7 @@ import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
 import initApolloClient from '../../lib/apollo'
 import RowPeopleWithText from '.'
-import { useGetRowPeopleWithTextsQuery } from '../../generated/apollo'
+import { useGetRowPeopleWithTextsQuery, useGetAllPeopleQuery } from '../../generated/apollo'
 
 export default {
   title: 'row|RowPeopleWithText',
@@ -15,6 +15,10 @@ export const GraphCMS = () => {
     client: initApolloClient(),
     variables: { skip: number('GraphCMS Entry #', 0) },
   })
-  if (!data) return null
-  return data.rowPeopleWithTexts.map((props) => <RowPeopleWithText {...props} key={props.id} />)
+  const { data: allPeople } = useGetAllPeopleQuery({ client: initApolloClient() })
+
+  if (!data || !allPeople) return null
+  return data.rowPeopleWithTexts.map((props) => (
+    <RowPeopleWithText {...props} {...allPeople} key={props.id} />
+  ))
 }

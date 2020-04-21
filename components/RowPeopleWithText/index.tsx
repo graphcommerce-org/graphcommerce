@@ -5,6 +5,7 @@ import LinkInternal from '../LinkInternal/LinkInternal'
 import { vpCalc } from '../Theme'
 import RichText from '../RichText'
 import Asset from '../Asset'
+import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
 
 const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   after: { backgroundColor: theme.palette.grey[300] },
@@ -28,7 +29,11 @@ const useStyles = makeStyles<Theme>((theme) => ({
   },
 }))
 
-const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text, personList }) => {
+const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment & GQLGetAllPeopleQuery> = ({
+  links,
+  text,
+  people,
+}) => {
   const container = useContainerStyles()
   const classes = useStyles()
 
@@ -44,7 +49,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
 
   const Right = () => (
     <Paper elevation={10} className={classes.paper}>
-      {personList?.people.map(({ avatar }) => (
+      {people.map(({ avatar }) => (
         <Asset asset={avatar} width={83} key={avatar.id} compression='lossy' />
       ))}
     </Paper>
@@ -56,3 +61,17 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment> = ({ links, text
 }
 
 export default RowPeopleWithText
+
+export const getStaticProps: CRGetStaticProps<
+  GQLRowPeopleWithTextFragment,
+  GQLGetAllPeopleQuery
+> = async () => {
+  const { default: client } = await import('../../lib/apollo')
+  const { GetAllPeopleDocument } = await import('../../generated/apollo')
+
+  const { data } = await client().query<GQLGetAllPeopleQuery, GQLGetAllPeopleQueryVariables>({
+    query: GetAllPeopleDocument,
+  })
+
+  return data
+}
