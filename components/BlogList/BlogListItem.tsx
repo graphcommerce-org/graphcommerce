@@ -26,6 +26,7 @@ const useStyles = makeStyles({
     display: 'block',
     position: 'relative',
     marginBottom: '50px',
+    height: '200px',
     '&::before': {
       content: '""',
       height: '100%',
@@ -37,10 +38,23 @@ const useStyles = makeStyles({
       transform: 'scale(.85, 0.95)',
     },
   },
+  placeholder: {
+    display: 'flex',
+    textAlign: 'center',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '0.7em',
+    color: '#fff',
+    backgroundColor: '#10e4ad',
+    fontWeight: 600,
+    userSelect: 'none',
+  },
   image: {
     display: 'block',
     width: '100%',
-    height: 'auto',
+    height: '100%',
+    objectFit: 'cover',
   },
   href: {
     textDecoration: 'none !important',
@@ -72,9 +86,9 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (
-            <Asset asset={asset} className={classes.image} width={179} />
+            <Asset asset={asset} className={classes.image} width={180} height={120} />
           ) : (
-            <div>GEEN AFBEELDING</div>
+            <div className={classes.placeholder}>GEEN AFBEELDING</div>
           )}
         </div>
         <div className={classes.date}>{publishedAtFormatted}</div>
