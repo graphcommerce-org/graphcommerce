@@ -1,17 +1,35 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
+import { Container, makeStyles } from '@material-ui/core'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../components/PageLayout'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
 import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
+import AuthorCard from '../../components/AuthorCard'
+import ContactFormLoader from '../../components/ContactForm'
+
+const useStyles = makeStyles({
+  article: {
+    margin: '0 auto',
+    maxWidth: 800,
+  },
+})
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
+  const classes = useStyles()
+  const image = 'https://media.graphcms.com/resize=fit:max,w:100/L4GgPJCbS5OHefBPtaTp'
+
   return (
-    <>
+    <Container maxWidth='lg'>
+      {/* TODO get data below from parent component */}
+      <AuthorCard name='Erwin Otten' date='19 juni 2015' imageUrl={image} />
       <Typography variant='h1'>{page.title}</Typography>
-      <ContentRenderer content={page.content} />
-    </>
+      <div className={classes.article}>
+        <ContentRenderer content={page.content} />
+      </div>
+      <ContactFormLoader />
+    </Container>
   )
 
   // return (
