@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles, Theme, Avatar, createStyles } from '@material-ui/core'
-import { Url } from 'url'
+import Asset from '../Asset'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,20 +30,21 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 interface AuthorProps {
-  name: string
+  author: GQLPersonFragment
   date: string
-  imageUrl: string
 }
 
-const AuthorCard: React.FC<AuthorProps> = ({ name, date, imageUrl }) => {
+const AuthorCard: React.FC<AuthorProps> = ({ author, date }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.authorcard}>
-      <Avatar alt={name} src={imageUrl} className={classes.image} />
+      <Avatar alt={author.name} className={classes.image}>
+        <Asset alt={author.name} asset={author.avatar} width={56} />
+      </Avatar>
       <div className={classes.info}>
         <div className={classes.date}>{date}</div>
-        <div className={classes.authorName}>Door {name}</div>
+        <div className={classes.authorName}>Door {author.name}</div>
       </div>
     </div>
   )
