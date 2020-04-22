@@ -101,12 +101,8 @@ export const theme = createMuiTheme({
   typography: {
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     fontSize: 18,
-    body1: {
-      fontSize: vpCalc(15, 20),
-    },
-    body2: {
-      fontSize: vpCalc(13, 15),
-    },
+    body1: { fontSize: vpCalc(15, 20) },
+    body2: { fontSize: vpCalc(13, 15) },
     subtitle1: {},
     subtitle2: {},
     h1: {
