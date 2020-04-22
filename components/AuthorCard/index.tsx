@@ -38,8 +38,6 @@ interface AuthorProps {
 const AuthorCard: React.FC<AuthorProps> = ({ name, date, imageUrl }) => {
   const classes = useStyles()
 
-  console.log(name, date, imageUrl)
-
   return (
     <div className={classes.authorcard}>
       <Avatar alt={name} src={imageUrl} className={classes.image} />
