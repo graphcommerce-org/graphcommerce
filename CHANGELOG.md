@@ -1,3 +1,10 @@
+### [5.8.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.3...v5.8.4) (2020-04-22)
+
+
+### Fixes
+
+* **metarobots:** metaRobots is now required in GraphCMS ([fb64921](https://github.com/ho-nl/project-reachdigital.nl/commit/fb64921353bb914c1ce32bfa713af82f7412b9b7))
+
 ### [5.8.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.2...v5.8.3) (2020-04-21)
 
 
