@@ -1,6 +1,13 @@
 fragment PageLayout on Page {
   id
   locale
+  asset {
+    ...Asset
+  }
+  author {
+    ...Person
+  }
+  releaseDate
   ...PageMeta
   ...ContentRenderer
 }
