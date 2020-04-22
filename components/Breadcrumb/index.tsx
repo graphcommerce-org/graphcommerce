@@ -45,7 +45,7 @@ const Breadcrumb: React.FC<{ breadcrumbs: GQLBreadcrumbFragment[] }> = ({ breadc
               {breadcrumb.title}
             </Typography>
           ) : (
-            <Link key={breadcrumb.id} href={breadcrumb.url!} metaRobots={breadcrumb.metaRobots!}>
+            <Link key={breadcrumb.id} href={breadcrumb.url!} metaRobots={breadcrumb.metaRobots}>
               {breadcrumb.title}
             </Link>
           ),

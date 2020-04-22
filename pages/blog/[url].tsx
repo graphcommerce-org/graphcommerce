@@ -26,7 +26,7 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
   //       }}
   //     />
   //     <h1>
-  //       <Link metaRobots={page.metaRobots!} href={page.url!}>
+  //       <Link metaRobots={page.metaRobots} href={page.url!}>
   //         {page.breadcrumbTitle}
   //       </Link>
   //     </h1>

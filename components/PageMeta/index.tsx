@@ -17,7 +17,7 @@ const PageMeta: React.FC<GQLPageMetaFragment> = ({
     <Head>
       <title>{metaTitle}</title>
       <meta name='description' content={metaDescription} />
-      <meta name='robots' content={metaRobots!} />
+      <meta name='robots' content={metaRobots} />
       <link rel='canonical' href={url} />
 
       {localizations.map((localization) => (

@@ -8,7 +8,7 @@ const LinkInternal: React.FC<GQLLinkInternalFragment> = ({ page, id, title, desc
   }
 
   const GraphCmsLink = (
-    <Link href={page.url} metaRobots={page.metaRobots!}>
+    <Link href={page.url} metaRobots={page.metaRobots}>
       {title ?? page.title}
     </Link>
   )
