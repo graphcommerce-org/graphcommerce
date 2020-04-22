@@ -1047,27 +1047,6 @@ input AssetWhereInput {
   All values not ending with the given string
   """
   mimeType_not_ends_with: String
-  personAvatar_every: PersonWhereInput
-  personAvatar_some: PersonWhereInput
-  personAvatar_none: PersonWhereInput
-  companyLogo_every: CompanyWhereInput
-  companyLogo_some: CompanyWhereInput
-  companyLogo_none: CompanyWhereInput
-  rowColumnThreeColOneIcon_every: RowColumnThreeWhereInput
-  rowColumnThreeColOneIcon_some: RowColumnThreeWhereInput
-  rowColumnThreeColOneIcon_none: RowColumnThreeWhereInput
-  rowColumnThreeColTwoIcon_every: RowColumnThreeWhereInput
-  rowColumnThreeColTwoIcon_some: RowColumnThreeWhereInput
-  rowColumnThreeColTwoIcon_none: RowColumnThreeWhereInput
-  rowColumnThreeColThreeIcon_every: RowColumnThreeWhereInput
-  rowColumnThreeColThreeIcon_some: RowColumnThreeWhereInput
-  rowColumnThreeColThreeIcon_none: RowColumnThreeWhereInput
-  rowColumnOneColOneIcon_every: RowColumnOneWhereInput
-  rowColumnOneColOneIcon_some: RowColumnOneWhereInput
-  rowColumnOneColOneIcon_none: RowColumnOneWhereInput
-  rowHeroAsset_every: RowHeroWhereInput
-  rowHeroAsset_some: RowHeroWhereInput
-  rowHeroAsset_none: RowHeroWhereInput
   alt: String
   """
   All values that are not equal to given value.
@@ -1105,6 +1084,27 @@ input AssetWhereInput {
   All values not ending with the given string
   """
   alt_not_ends_with: String
+  personAvatar_every: PersonWhereInput
+  personAvatar_some: PersonWhereInput
+  personAvatar_none: PersonWhereInput
+  companyLogo_every: CompanyWhereInput
+  companyLogo_some: CompanyWhereInput
+  companyLogo_none: CompanyWhereInput
+  rowColumnThreeColOneIcon_every: RowColumnThreeWhereInput
+  rowColumnThreeColOneIcon_some: RowColumnThreeWhereInput
+  rowColumnThreeColOneIcon_none: RowColumnThreeWhereInput
+  rowColumnThreeColTwoIcon_every: RowColumnThreeWhereInput
+  rowColumnThreeColTwoIcon_some: RowColumnThreeWhereInput
+  rowColumnThreeColTwoIcon_none: RowColumnThreeWhereInput
+  rowColumnThreeColThreeIcon_every: RowColumnThreeWhereInput
+  rowColumnThreeColThreeIcon_some: RowColumnThreeWhereInput
+  rowColumnThreeColThreeIcon_none: RowColumnThreeWhereInput
+  rowColumnOneColOneIcon_every: RowColumnOneWhereInput
+  rowColumnOneColOneIcon_some: RowColumnOneWhereInput
+  rowColumnOneColOneIcon_none: RowColumnOneWhereInput
+  rowHeroAsset_every: RowHeroWhereInput
+  rowHeroAsset_some: RowHeroWhereInput
+  rowHeroAsset_none: RowHeroWhereInput
   pageAsset_every: PageWhereInput
   pageAsset_some: PageWhereInput
   pageAsset_none: PageWhereInput
@@ -1303,928 +1303,7 @@ input PersonWhereInput {
   All values not ending with the given string
   """
   name_not_ends_with: String
-}
-"""
-Identifies documents
-"""
-input CompanyWhereInput {
-  """
-  Contains search across all appropriate fields.
-  """
-  _search: String
-  """
-  Logical AND on all given filters.
-  """
-  AND: [CompanyWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [CompanyWhereInput!]
-  """
-  Logical NOT on all given filters combined by AND.
-  """
-  NOT: [CompanyWhereInput!]
-  id: ID
-  """
-  All values that are not equal to given value.
-  """
-  id_not: ID
-  """
-  All values that are contained in given list.
-  """
-  id_in: [ID!]
-  """
-  All values that are not contained in given list.
-  """
-  id_not_in: [ID!]
-  """
-  All values containing the given string.
-  """
-  id_contains: ID
-  """
-  All values not containing the given string.
-  """
-  id_not_contains: ID
-  """
-  All values starting with the given string.
-  """
-  id_starts_with: ID
-  """
-  All values not starting with the given string.
-  """
-  id_not_starts_with: ID
-  """
-  All values ending with the given string.
-  """
-  id_ends_with: ID
-  """
-  All values not ending with the given string
-  """
-  id_not_ends_with: ID
-  createdAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  createdAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  createdAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  createdAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  createdAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  createdAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  createdAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  updatedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  updatedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  updatedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  updatedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  updatedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  updatedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  updatedAt_gte: DateTime
-  publishedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  publishedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  publishedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  publishedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  publishedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  publishedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  publishedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  publishedAt_gte: DateTime
-  name: String
-  """
-  All values that are not equal to given value.
-  """
-  name_not: String
-  """
-  All values that are contained in given list.
-  """
-  name_in: [String!]
-  """
-  All values that are not contained in given list.
-  """
-  name_not_in: [String!]
-  """
-  All values containing the given string.
-  """
-  name_contains: String
-  """
-  All values not containing the given string.
-  """
-  name_not_contains: String
-  """
-  All values starting with the given string.
-  """
-  name_starts_with: String
-  """
-  All values not starting with the given string.
-  """
-  name_not_starts_with: String
-  """
-  All values ending with the given string.
-  """
-  name_ends_with: String
-  """
-  All values not ending with the given string
-  """
-  name_not_ends_with: String
-  logo: AssetWhereInput
-  rowCompanySlider_every: RowCompanySliderWhereInput
-  rowCompanySlider_some: RowCompanySliderWhereInput
-  rowCompanySlider_none: RowCompanySliderWhereInput
-}
-"""
-Identifies documents
-"""
-input RowCompanySliderWhereInput {
-  """
-  Contains search across all appropriate fields.
-  """
-  _search: String
-  """
-  Logical AND on all given filters.
-  """
-  AND: [RowCompanySliderWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [RowCompanySliderWhereInput!]
-  """
-  Logical NOT on all given filters combined by AND.
-  """
-  NOT: [RowCompanySliderWhereInput!]
-  id: ID
-  """
-  All values that are not equal to given value.
-  """
-  id_not: ID
-  """
-  All values that are contained in given list.
-  """
-  id_in: [ID!]
-  """
-  All values that are not contained in given list.
-  """
-  id_not_in: [ID!]
-  """
-  All values containing the given string.
-  """
-  id_contains: ID
-  """
-  All values not containing the given string.
-  """
-  id_not_contains: ID
-  """
-  All values starting with the given string.
-  """
-  id_starts_with: ID
-  """
-  All values not starting with the given string.
-  """
-  id_not_starts_with: ID
-  """
-  All values ending with the given string.
-  """
-  id_ends_with: ID
-  """
-  All values not ending with the given string
-  """
-  id_not_ends_with: ID
-  createdAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  createdAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  createdAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  createdAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  createdAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  createdAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  createdAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  updatedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  updatedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  updatedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  updatedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  updatedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  updatedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  updatedAt_gte: DateTime
-  publishedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  publishedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  publishedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  publishedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  publishedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  publishedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  publishedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  publishedAt_gte: DateTime
-  identity: String
-  """
-  All values that are not equal to given value.
-  """
-  identity_not: String
-  """
-  All values that are contained in given list.
-  """
-  identity_in: [String!]
-  """
-  All values that are not contained in given list.
-  """
-  identity_not_in: [String!]
-  """
-  All values containing the given string.
-  """
-  identity_contains: String
-  """
-  All values not containing the given string.
-  """
-  identity_not_contains: String
-  """
-  All values starting with the given string.
-  """
-  identity_starts_with: String
-  """
-  All values not starting with the given string.
-  """
-  identity_not_starts_with: String
-  """
-  All values ending with the given string.
-  """
-  identity_ends_with: String
-  """
-  All values not ending with the given string
-  """
-  identity_not_ends_with: String
-  companies_every: CompanyWhereInput
-  companies_some: CompanyWhereInput
-  companies_none: CompanyWhereInput
-}
-"""
-Identifies documents
-"""
-input RowColumnThreeWhereInput {
-  """
-  Contains search across all appropriate fields.
-  """
-  _search: String
-  """
-  Logical AND on all given filters.
-  """
-  AND: [RowColumnThreeWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [RowColumnThreeWhereInput!]
-  """
-  Logical NOT on all given filters combined by AND.
-  """
-  NOT: [RowColumnThreeWhereInput!]
-  id: ID
-  """
-  All values that are not equal to given value.
-  """
-  id_not: ID
-  """
-  All values that are contained in given list.
-  """
-  id_in: [ID!]
-  """
-  All values that are not contained in given list.
-  """
-  id_not_in: [ID!]
-  """
-  All values containing the given string.
-  """
-  id_contains: ID
-  """
-  All values not containing the given string.
-  """
-  id_not_contains: ID
-  """
-  All values starting with the given string.
-  """
-  id_starts_with: ID
-  """
-  All values not starting with the given string.
-  """
-  id_not_starts_with: ID
-  """
-  All values ending with the given string.
-  """
-  id_ends_with: ID
-  """
-  All values not ending with the given string
-  """
-  id_not_ends_with: ID
-  createdAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  createdAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  createdAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  createdAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  createdAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  createdAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  createdAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  updatedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  updatedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  updatedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  updatedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  updatedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  updatedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  updatedAt_gte: DateTime
-  publishedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  publishedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  publishedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  publishedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  publishedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  publishedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  publishedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  publishedAt_gte: DateTime
-  identity: String
-  """
-  All values that are not equal to given value.
-  """
-  identity_not: String
-  """
-  All values that are contained in given list.
-  """
-  identity_in: [String!]
-  """
-  All values that are not contained in given list.
-  """
-  identity_not_in: [String!]
-  """
-  All values containing the given string.
-  """
-  identity_contains: String
-  """
-  All values not containing the given string.
-  """
-  identity_not_contains: String
-  """
-  All values starting with the given string.
-  """
-  identity_starts_with: String
-  """
-  All values not starting with the given string.
-  """
-  identity_not_starts_with: String
-  """
-  All values ending with the given string.
-  """
-  identity_ends_with: String
-  """
-  All values not ending with the given string
-  """
-  identity_not_ends_with: String
-  colOneIcon: AssetWhereInput
-  colTwoIcon: AssetWhereInput
-  colThreeIcon: AssetWhereInput
-}
-"""
-Identifies documents
-"""
-input RowColumnOneWhereInput {
-  """
-  Contains search across all appropriate fields.
-  """
-  _search: String
-  """
-  Logical AND on all given filters.
-  """
-  AND: [RowColumnOneWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [RowColumnOneWhereInput!]
-  """
-  Logical NOT on all given filters combined by AND.
-  """
-  NOT: [RowColumnOneWhereInput!]
-  id: ID
-  """
-  All values that are not equal to given value.
-  """
-  id_not: ID
-  """
-  All values that are contained in given list.
-  """
-  id_in: [ID!]
-  """
-  All values that are not contained in given list.
-  """
-  id_not_in: [ID!]
-  """
-  All values containing the given string.
-  """
-  id_contains: ID
-  """
-  All values not containing the given string.
-  """
-  id_not_contains: ID
-  """
-  All values starting with the given string.
-  """
-  id_starts_with: ID
-  """
-  All values not starting with the given string.
-  """
-  id_not_starts_with: ID
-  """
-  All values ending with the given string.
-  """
-  id_ends_with: ID
-  """
-  All values not ending with the given string
-  """
-  id_not_ends_with: ID
-  createdAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  createdAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  createdAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  createdAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  createdAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  createdAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  createdAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  updatedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  updatedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  updatedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  updatedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  updatedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  updatedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  updatedAt_gte: DateTime
-  publishedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  publishedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  publishedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  publishedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  publishedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  publishedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  publishedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  publishedAt_gte: DateTime
-  identity: String
-  """
-  All values that are not equal to given value.
-  """
-  identity_not: String
-  """
-  All values that are contained in given list.
-  """
-  identity_in: [String!]
-  """
-  All values that are not contained in given list.
-  """
-  identity_not_in: [String!]
-  """
-  All values containing the given string.
-  """
-  identity_contains: String
-  """
-  All values not containing the given string.
-  """
-  identity_not_contains: String
-  """
-  All values starting with the given string.
-  """
-  identity_starts_with: String
-  """
-  All values not starting with the given string.
-  """
-  identity_not_starts_with: String
-  """
-  All values ending with the given string.
-  """
-  identity_ends_with: String
-  """
-  All values not ending with the given string
-  """
-  identity_not_ends_with: String
-  colOneIcon: AssetWhereInput
-}
-"""
-Identifies documents
-"""
-input RowHeroWhereInput {
-  """
-  Contains search across all appropriate fields.
-  """
-  _search: String
-  """
-  Logical AND on all given filters.
-  """
-  AND: [RowHeroWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [RowHeroWhereInput!]
-  """
-  Logical NOT on all given filters combined by AND.
-  """
-  NOT: [RowHeroWhereInput!]
-  id: ID
-  """
-  All values that are not equal to given value.
-  """
-  id_not: ID
-  """
-  All values that are contained in given list.
-  """
-  id_in: [ID!]
-  """
-  All values that are not contained in given list.
-  """
-  id_not_in: [ID!]
-  """
-  All values containing the given string.
-  """
-  id_contains: ID
-  """
-  All values not containing the given string.
-  """
-  id_not_contains: ID
-  """
-  All values starting with the given string.
-  """
-  id_starts_with: ID
-  """
-  All values not starting with the given string.
-  """
-  id_not_starts_with: ID
-  """
-  All values ending with the given string.
-  """
-  id_ends_with: ID
-  """
-  All values not ending with the given string
-  """
-  id_not_ends_with: ID
-  createdAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  createdAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  createdAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  createdAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  createdAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  createdAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  createdAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  updatedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  updatedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  updatedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  updatedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  updatedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  updatedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  updatedAt_gte: DateTime
-  publishedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  publishedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  publishedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  publishedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  publishedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  publishedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  publishedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  publishedAt_gte: DateTime
-  identity: String
-  """
-  All values that are not equal to given value.
-  """
-  identity_not: String
-  """
-  All values that are contained in given list.
-  """
-  identity_in: [String!]
-  """
-  All values that are not contained in given list.
-  """
-  identity_not_in: [String!]
-  """
-  All values containing the given string.
-  """
-  identity_contains: String
-  """
-  All values not containing the given string.
-  """
-  identity_not_contains: String
-  """
-  All values starting with the given string.
-  """
-  identity_starts_with: String
-  """
-  All values not starting with the given string.
-  """
-  identity_not_starts_with: String
-  """
-  All values ending with the given string.
-  """
-  identity_ends_with: String
-  """
-  All values not ending with the given string
-  """
-  identity_not_ends_with: String
-  asset: AssetWhereInput
+  page: PageWhereInput
 }
 """
 Identifies documents
@@ -2531,6 +1610,7 @@ input PageWhereInput {
   All values that are not contained in given list.
   """
   metaRobots_not_in: [MetaRobots!]
+  author: PersonWhereInput
   releaseDate: DateTime
   """
   All values that are not equal to given value.
@@ -3542,6 +2622,928 @@ input MenuWhereInput {
 """
 Identifies documents
 """
+input CompanyWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [CompanyWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [CompanyWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [CompanyWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  name: String
+  """
+  All values that are not equal to given value.
+  """
+  name_not: String
+  """
+  All values that are contained in given list.
+  """
+  name_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  name_not_in: [String!]
+  """
+  All values containing the given string.
+  """
+  name_contains: String
+  """
+  All values not containing the given string.
+  """
+  name_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  name_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  name_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  name_ends_with: String
+  """
+  All values not ending with the given string
+  """
+  name_not_ends_with: String
+  logo: AssetWhereInput
+  rowCompanySlider_every: RowCompanySliderWhereInput
+  rowCompanySlider_some: RowCompanySliderWhereInput
+  rowCompanySlider_none: RowCompanySliderWhereInput
+}
+"""
+Identifies documents
+"""
+input RowCompanySliderWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [RowCompanySliderWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [RowCompanySliderWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [RowCompanySliderWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  identity: String
+  """
+  All values that are not equal to given value.
+  """
+  identity_not: String
+  """
+  All values that are contained in given list.
+  """
+  identity_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  identity_not_in: [String!]
+  """
+  All values containing the given string.
+  """
+  identity_contains: String
+  """
+  All values not containing the given string.
+  """
+  identity_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  identity_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  identity_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  identity_ends_with: String
+  """
+  All values not ending with the given string
+  """
+  identity_not_ends_with: String
+  companies_every: CompanyWhereInput
+  companies_some: CompanyWhereInput
+  companies_none: CompanyWhereInput
+}
+"""
+Identifies documents
+"""
+input RowColumnThreeWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [RowColumnThreeWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [RowColumnThreeWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [RowColumnThreeWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  identity: String
+  """
+  All values that are not equal to given value.
+  """
+  identity_not: String
+  """
+  All values that are contained in given list.
+  """
+  identity_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  identity_not_in: [String!]
+  """
+  All values containing the given string.
+  """
+  identity_contains: String
+  """
+  All values not containing the given string.
+  """
+  identity_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  identity_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  identity_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  identity_ends_with: String
+  """
+  All values not ending with the given string
+  """
+  identity_not_ends_with: String
+  colOneIcon: AssetWhereInput
+  colTwoIcon: AssetWhereInput
+  colThreeIcon: AssetWhereInput
+}
+"""
+Identifies documents
+"""
+input RowColumnOneWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [RowColumnOneWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [RowColumnOneWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [RowColumnOneWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  identity: String
+  """
+  All values that are not equal to given value.
+  """
+  identity_not: String
+  """
+  All values that are contained in given list.
+  """
+  identity_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  identity_not_in: [String!]
+  """
+  All values containing the given string.
+  """
+  identity_contains: String
+  """
+  All values not containing the given string.
+  """
+  identity_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  identity_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  identity_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  identity_ends_with: String
+  """
+  All values not ending with the given string
+  """
+  identity_not_ends_with: String
+  colOneIcon: AssetWhereInput
+}
+"""
+Identifies documents
+"""
+input RowHeroWhereInput {
+  """
+  Contains search across all appropriate fields.
+  """
+  _search: String
+  """
+  Logical AND on all given filters.
+  """
+  AND: [RowHeroWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [RowHeroWhereInput!]
+  """
+  Logical NOT on all given filters combined by AND.
+  """
+  NOT: [RowHeroWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  publishedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  publishedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  publishedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  publishedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  publishedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  publishedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  publishedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  publishedAt_gte: DateTime
+  identity: String
+  """
+  All values that are not equal to given value.
+  """
+  identity_not: String
+  """
+  All values that are contained in given list.
+  """
+  identity_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  identity_not_in: [String!]
+  """
+  All values containing the given string.
+  """
+  identity_contains: String
+  """
+  All values not containing the given string.
+  """
+  identity_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  identity_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  identity_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  identity_ends_with: String
+  """
+  All values not ending with the given string
+  """
+  identity_not_ends_with: String
+  asset: AssetWhereInput
+}
+"""
+Identifies documents
+"""
 input RowColumnTwoWhereInput {
   """
   Contains search across all appropriate fields.
@@ -3829,6 +3831,7 @@ type Asset implements Node {
   The mime type of the file
   """
   mimeType: String
+  alt: String
   personAvatar(
     where: PersonWhereInput
     orderBy: PersonOrderByInput
@@ -3892,7 +3895,6 @@ type Asset implements Node {
     first: Int
     last: Int
   ): [RowHero!]!
-  alt: String
   pageAsset(
     where: PageWhereInput
     orderBy: PageOrderByInput
@@ -3977,130 +3979,7 @@ type Person implements Node {
   publishedAt: DateTime
   avatar: Asset!
   name: String!
-}
-enum CompanyOrderByInput {
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  publishedAt_ASC
-  publishedAt_DESC
-  name_ASC
-  name_DESC
-}
-type Company implements Node {
-  """
-  System stage field
-  """
-  stage: Stage!
-  """
-  Get the document in other stages
-  """
-  documentInStages(
-    """
-    Potential stages that should be returned
-    """
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    """
-    Decides if the current stage should be included or not
-    """
-    includeCurrent: Boolean! = false
-    """
-    Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
-    """
-    inheritLocale: Boolean! = false
-  ): [Company!]!
-  """
-  The unique identifier
-  """
-  id: ID!
-  """
-  The time the document was created
-  """
-  createdAt: DateTime!
-  """
-  The time the document was updated
-  """
-  updatedAt: DateTime!
-  """
-  The time the document was published. Null on documents in draft stage.
-  """
-  publishedAt: DateTime
-  name: String!
-  logo: Asset!
-  rowCompanySlider(
-    where: RowCompanySliderWhereInput
-    orderBy: RowCompanySliderOrderByInput
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): [RowCompanySlider!]!
-}
-enum RowCompanySliderOrderByInput {
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  publishedAt_ASC
-  publishedAt_DESC
-  identity_ASC
-  identity_DESC
-}
-type RowCompanySlider implements Node {
-  """
-  System stage field
-  """
-  stage: Stage!
-  """
-  Get the document in other stages
-  """
-  documentInStages(
-    """
-    Potential stages that should be returned
-    """
-    stages: [Stage!]! = [PUBLISHED, DRAFT]
-    """
-    Decides if the current stage should be included or not
-    """
-    includeCurrent: Boolean! = false
-    """
-    Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
-    """
-    inheritLocale: Boolean! = false
-  ): [RowCompanySlider!]!
-  """
-  The unique identifier
-  """
-  id: ID!
-  """
-  The time the document was created
-  """
-  createdAt: DateTime!
-  """
-  The time the document was updated
-  """
-  updatedAt: DateTime!
-  """
-  The time the document was published. Null on documents in draft stage.
-  """
-  publishedAt: DateTime
-  identity: String!
-  companies(
-    where: CompanyWhereInput
-    orderBy: CompanyOrderByInput
-    skip: Int
-    after: String
-    before: String
-    first: Int
-    last: Int
-  ): [Company!]!
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+  page: Page
 }
 type Page implements Node {
   """
@@ -4164,11 +4043,12 @@ type Page implements Node {
   title: String!
   metaTitle: String!
   metaDescription: String!
-  metaRobots: MetaRobots
+  metaRobots: MetaRobots!
   """
   Content
   """
   content(skip: Int, after: String, before: String, first: Int, last: Int): [PageContent!]!
+  author: Person
   releaseDate: DateTime
   asset: Asset
   internalLink(
@@ -4625,8 +4505,8 @@ type RowRecentBlogPost implements Node {
   """
   publishedAt: DateTime
   identity: String!
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
   link: LinkInternal
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
 }
 type RowColumnThree implements Node {
   """
@@ -4800,6 +4680,130 @@ type RowColumnOne implements Node {
   colOneIcon: Asset
   page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
 }
+type RowCompanySlider implements Node {
+  """
+  System stage field
+  """
+  stage: Stage!
+  """
+  Get the document in other stages
+  """
+  documentInStages(
+    """
+    Potential stages that should be returned
+    """
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    """
+    Decides if the current stage should be included or not
+    """
+    includeCurrent: Boolean! = false
+    """
+    Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
+    """
+    inheritLocale: Boolean! = false
+  ): [RowCompanySlider!]!
+  """
+  The unique identifier
+  """
+  id: ID!
+  """
+  The time the document was created
+  """
+  createdAt: DateTime!
+  """
+  The time the document was updated
+  """
+  updatedAt: DateTime!
+  """
+  The time the document was published. Null on documents in draft stage.
+  """
+  publishedAt: DateTime
+  identity: String!
+  companies(
+    where: CompanyWhereInput
+    orderBy: CompanyOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Company!]!
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
+}
+enum CompanyOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  name_ASC
+  name_DESC
+}
+type Company implements Node {
+  """
+  System stage field
+  """
+  stage: Stage!
+  """
+  Get the document in other stages
+  """
+  documentInStages(
+    """
+    Potential stages that should be returned
+    """
+    stages: [Stage!]! = [PUBLISHED, DRAFT]
+    """
+    Decides if the current stage should be included or not
+    """
+    includeCurrent: Boolean! = false
+    """
+    Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
+    """
+    inheritLocale: Boolean! = false
+  ): [Company!]!
+  """
+  The unique identifier
+  """
+  id: ID!
+  """
+  The time the document was created
+  """
+  createdAt: DateTime!
+  """
+  The time the document was updated
+  """
+  updatedAt: DateTime!
+  """
+  The time the document was published. Null on documents in draft stage.
+  """
+  publishedAt: DateTime
+  name: String!
+  logo: Asset!
+  rowCompanySlider(
+    where: RowCompanySliderWhereInput
+    orderBy: RowCompanySliderOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [RowCompanySlider!]!
+}
+enum RowCompanySliderOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  identity_ASC
+  identity_DESC
+}
 """
 A full-width Youtube video
 """
@@ -4862,8 +4866,8 @@ type RowYoutubeVideo implements Node {
   The unique identifier
   """
   videoId: String!
-  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
   title: String!
+  page(skip: Int, after: String, before: String, first: Int, last: Int): [Page!]!
 }
 enum MenuOrderByInput {
   id_ASC
@@ -8588,6 +8592,10 @@ input AssetCreateInput {
   width: Float
   size: Float
   mimeType: String
+  """
+  alt input for default locale (nl)
+  """
+  alt: String
   personAvatar: PersonCreateManyInlineInput
   companyLogo: CompanyCreateManyInlineInput
   rowColumnThreeColOneIcon: RowColumnThreeCreateManyInlineInput
@@ -8595,10 +8603,6 @@ input AssetCreateInput {
   rowColumnThreeColThreeIcon: RowColumnThreeCreateManyInlineInput
   rowColumnOneColOneIcon: RowColumnOneCreateManyInlineInput
   rowHeroAsset: RowHeroCreateManyInlineInput
-  """
-  alt input for default locale (nl)
-  """
-  alt: String
   pageAsset: PageCreateManyInlineInput
   rowColumnTwoColOneIcon: RowColumnTwoCreateManyInlineInput
   rowColumnTwoColTwoIcon: RowColumnTwoCreateManyInlineInput
@@ -8622,6 +8626,7 @@ input PersonCreateInput {
   updatedAt: DateTime
   avatar: AssetCreateOneInlineInput!
   name: String!
+  page: PageCreateOneInlineInput
 }
 input AssetCreateOneInlineInput {
   """
@@ -8633,49 +8638,15 @@ input AssetCreateOneInlineInput {
   """
   connect: AssetWhereUniqueInput
 }
-input CompanyCreateManyInlineInput {
+input PageCreateOneInlineInput {
   """
-  Create and connect multiple existing Company documents
+  Create and connect one Page document
   """
-  create: [CompanyCreateInput!]
+  create: PageCreateInput
   """
-  Connect multiple existing Company documents
+  Connect one existing Page document
   """
-  connect: [CompanyWhereUniqueInput!]
-}
-input CompanyCreateInput {
-  createdAt: DateTime
-  updatedAt: DateTime
-  name: String!
-  logo: AssetCreateOneInlineInput!
-  rowCompanySlider: RowCompanySliderCreateManyInlineInput
-}
-input RowCompanySliderCreateManyInlineInput {
-  """
-  Create and connect multiple existing RowCompanySlider documents
-  """
-  create: [RowCompanySliderCreateInput!]
-  """
-  Connect multiple existing RowCompanySlider documents
-  """
-  connect: [RowCompanySliderWhereUniqueInput!]
-}
-input RowCompanySliderCreateInput {
-  createdAt: DateTime
-  updatedAt: DateTime
-  identity: String!
-  companies: CompanyCreateManyInlineInput
-  page: PageCreateManyInlineInput
-}
-input PageCreateManyInlineInput {
-  """
-  Create and connect multiple existing Page documents
-  """
-  create: [PageCreateInput!]
-  """
-  Connect multiple existing Page documents
-  """
-  connect: [PageWhereUniqueInput!]
+  connect: PageWhereUniqueInput
 }
 input PageCreateInput {
   createdAt: DateTime
@@ -8696,8 +8667,9 @@ input PageCreateInput {
   metaDescription input for default locale (nl)
   """
   metaDescription: String!
-  metaRobots: MetaRobots
+  metaRobots: MetaRobots!
   content: PageContentCreateManyInlineInput
+  author: PersonCreateOneInlineInput
   """
   releaseDate input for default locale (nl)
   """
@@ -8774,16 +8746,6 @@ input LinkInternalCreateInput {
   """
   localizations: LinkInternalCreateLocalizationsInput
 }
-input PageCreateOneInlineInput {
-  """
-  Create and connect one Page document
-  """
-  create: PageCreateInput
-  """
-  Connect one existing Page document
-  """
-  connect: PageWhereUniqueInput
-}
 input RowPeopleWithTextCreateManyInlineInput {
   """
   Create and connect multiple existing RowPeopleWithText documents
@@ -8808,6 +8770,16 @@ input RowPeopleWithTextCreateInput {
   Inline mutations for managing document localizations excluding the default locale
   """
   localizations: RowPeopleWithTextCreateLocalizationsInput
+}
+input PageCreateManyInlineInput {
+  """
+  Create and connect multiple existing Page documents
+  """
+  create: [PageCreateInput!]
+  """
+  Connect multiple existing Page documents
+  """
+  connect: [PageWhereUniqueInput!]
 }
 input RowPeopleWithTextCreateLocalizationsInput {
   """
@@ -8929,8 +8901,8 @@ input RowRecentBlogPostCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
   identity: String!
-  page: PageCreateManyInlineInput
   link: LinkInternalCreateOneInlineInput
+  page: PageCreateManyInlineInput
 }
 input LinkInternalCreateOneInlineInput {
   """
@@ -9070,6 +9042,40 @@ input RowColumnOneCreateInput {
   colOneIcon: AssetCreateOneInlineInput
   page: PageCreateManyInlineInput
 }
+input RowCompanySliderCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  identity: String!
+  companies: CompanyCreateManyInlineInput
+  page: PageCreateManyInlineInput
+}
+input CompanyCreateManyInlineInput {
+  """
+  Create and connect multiple existing Company documents
+  """
+  create: [CompanyCreateInput!]
+  """
+  Connect multiple existing Company documents
+  """
+  connect: [CompanyWhereUniqueInput!]
+}
+input CompanyCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  name: String!
+  logo: AssetCreateOneInlineInput!
+  rowCompanySlider: RowCompanySliderCreateManyInlineInput
+}
+input RowCompanySliderCreateManyInlineInput {
+  """
+  Create and connect multiple existing RowCompanySlider documents
+  """
+  create: [RowCompanySliderCreateInput!]
+  """
+  Connect multiple existing RowCompanySlider documents
+  """
+  connect: [RowCompanySliderWhereUniqueInput!]
+}
 input RowYoutubeVideoCreateInput {
   createdAt: DateTime
   updatedAt: DateTime
@@ -9077,8 +9083,8 @@ input RowYoutubeVideoCreateInput {
   videoId input for default locale (nl)
   """
   videoId: String!
-  page: PageCreateManyInlineInput
   title: String!
+  page: PageCreateManyInlineInput
   """
   Inline mutations for managing document localizations excluding the default locale
   """
@@ -9112,6 +9118,16 @@ input PageContentWhereUniqueInput {
   RowCompanySlider: RowCompanySliderWhereUniqueInput
   RowHero: RowHeroWhereUniqueInput
   RowYoutubeVideo: RowYoutubeVideoWhereUniqueInput
+}
+input PersonCreateOneInlineInput {
+  """
+  Create and connect one Person document
+  """
+  create: PersonCreateInput
+  """
+  Connect one existing Person document
+  """
+  connect: PersonWhereUniqueInput
 }
 input MenuCreateManyInlineInput {
   """
@@ -9212,6 +9228,10 @@ input AssetUpdateInput {
   width: Float
   size: Float
   mimeType: String
+  """
+  alt input for default locale (nl)
+  """
+  alt: String
   personAvatar: PersonUpdateManyInlineInput
   companyLogo: CompanyUpdateManyInlineInput
   rowColumnThreeColOneIcon: RowColumnThreeUpdateManyInlineInput
@@ -9219,10 +9239,6 @@ input AssetUpdateInput {
   rowColumnThreeColThreeIcon: RowColumnThreeUpdateManyInlineInput
   rowColumnOneColOneIcon: RowColumnOneUpdateManyInlineInput
   rowHeroAsset: RowHeroUpdateManyInlineInput
-  """
-  alt input for default locale (nl)
-  """
-  alt: String
   pageAsset: PageUpdateManyInlineInput
   rowColumnTwoColOneIcon: RowColumnTwoUpdateManyInlineInput
   rowColumnTwoColTwoIcon: RowColumnTwoUpdateManyInlineInput
@@ -9302,6 +9318,7 @@ input PersonUpdateWithNestedWhereUniqueInput {
 input PersonUpdateInput {
   avatar: AssetUpdateOneInlineInput
   name: String
+  page: PageUpdateOneInlineInput
 }
 input AssetUpdateOneInlineInput {
   """
@@ -9359,175 +9376,31 @@ input AssetUpsertInput {
   """
   update: AssetUpdateInput!
 }
-input PersonUpsertWithNestedWhereUniqueInput {
+input PageUpdateOneInlineInput {
   """
-  Unique document search
+  Create and connect one Page document
   """
-  where: PersonWhereUniqueInput!
+  create: PageCreateInput
   """
-  Upsert data
+  Update single Page document
   """
-  data: PersonUpsertInput!
-}
-input PersonUpsertInput {
+  update: PageUpdateWithNestedWhereUniqueInput
   """
-  Create document if it didn't exist
+  Upsert single Page document
   """
-  create: PersonCreateInput!
+  upsert: PageUpsertWithNestedWhereUniqueInput
   """
-  Update document if it exists
+  Connect existing Page document
   """
-  update: PersonUpdateInput!
-}
-input CompanyUpdateManyInlineInput {
+  connect: PageWhereUniqueInput
   """
-  Create and connect multiple Company documents
+  Disconnect currently connected Page document
   """
-  create: [CompanyCreateInput!]
+  disconnect: Boolean
   """
-  Connect multiple existing Company documents
+  Delete currently connected Page document
   """
-  connect: [CompanyConnectInput!]
-  """
-  Override currently-connected documents with multiple existing Company documents
-  """
-  set: [CompanyWhereUniqueInput!]
-  """
-  Update multiple Company documents
-  """
-  update: [CompanyUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple Company documents
-  """
-  upsert: [CompanyUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple Company documents
-  """
-  disconnect: [CompanyWhereUniqueInput!]
-  """
-  Delete multiple Company documents
-  """
-  delete: [CompanyWhereUniqueInput!]
-}
-input CompanyConnectInput {
-  """
-  Document to connect
-  """
-  where: CompanyWhereUniqueInput!
-  """
-  Allow to specify document position in list of connected documents, will default to appending at end of list
-  """
-  position: ConnectPositionInput
-}
-input CompanyUpdateWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: CompanyWhereUniqueInput!
-  """
-  Document to update
-  """
-  data: CompanyUpdateInput!
-}
-input CompanyUpdateInput {
-  name: String
-  logo: AssetUpdateOneInlineInput
-  rowCompanySlider: RowCompanySliderUpdateManyInlineInput
-}
-input RowCompanySliderUpdateManyInlineInput {
-  """
-  Create and connect multiple RowCompanySlider documents
-  """
-  create: [RowCompanySliderCreateInput!]
-  """
-  Connect multiple existing RowCompanySlider documents
-  """
-  connect: [RowCompanySliderConnectInput!]
-  """
-  Override currently-connected documents with multiple existing RowCompanySlider documents
-  """
-  set: [RowCompanySliderWhereUniqueInput!]
-  """
-  Update multiple RowCompanySlider documents
-  """
-  update: [RowCompanySliderUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple RowCompanySlider documents
-  """
-  upsert: [RowCompanySliderUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple RowCompanySlider documents
-  """
-  disconnect: [RowCompanySliderWhereUniqueInput!]
-  """
-  Delete multiple RowCompanySlider documents
-  """
-  delete: [RowCompanySliderWhereUniqueInput!]
-}
-input RowCompanySliderConnectInput {
-  """
-  Document to connect
-  """
-  where: RowCompanySliderWhereUniqueInput!
-  """
-  Allow to specify document position in list of connected documents, will default to appending at end of list
-  """
-  position: ConnectPositionInput
-}
-input RowCompanySliderUpdateWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: RowCompanySliderWhereUniqueInput!
-  """
-  Document to update
-  """
-  data: RowCompanySliderUpdateInput!
-}
-input RowCompanySliderUpdateInput {
-  identity: String
-  companies: CompanyUpdateManyInlineInput
-  page: PageUpdateManyInlineInput
-}
-input PageUpdateManyInlineInput {
-  """
-  Create and connect multiple Page documents
-  """
-  create: [PageCreateInput!]
-  """
-  Connect multiple existing Page documents
-  """
-  connect: [PageConnectInput!]
-  """
-  Override currently-connected documents with multiple existing Page documents
-  """
-  set: [PageWhereUniqueInput!]
-  """
-  Update multiple Page documents
-  """
-  update: [PageUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple Page documents
-  """
-  upsert: [PageUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple Page documents
-  """
-  disconnect: [PageWhereUniqueInput!]
-  """
-  Delete multiple Page documents
-  """
-  delete: [PageWhereUniqueInput!]
-}
-input PageConnectInput {
-  """
-  Document to connect
-  """
-  where: PageWhereUniqueInput!
-  """
-  Allow to specify document position in list of connected documents, will default to appending at end of list
-  """
-  position: ConnectPositionInput
+  delete: Boolean
 }
 input PageUpdateWithNestedWhereUniqueInput {
   """
@@ -9558,6 +9431,7 @@ input PageUpdateInput {
   metaDescription: String
   metaRobots: MetaRobots
   content: PageContentUpdateManyInlineInput
+  author: PersonUpdateOneInlineInput
   """
   releaseDate input for default locale (nl)
   """
@@ -9666,6 +9540,16 @@ input RowColumnOneConnectInput {
   Document to connect
   """
   where: RowColumnOneWhereUniqueInput!
+  """
+  Allow to specify document position in list of connected documents, will default to appending at end of list
+  """
+  position: ConnectPositionInput
+}
+input RowCompanySliderConnectInput {
+  """
+  Document to connect
+  """
+  where: RowCompanySliderWhereUniqueInput!
   """
   Allow to specify document position in list of connected documents, will default to appending at end of list
   """
@@ -9791,52 +9675,6 @@ input LinkInternalUpdateInput {
   """
   localizations: LinkInternalUpdateLocalizationsInput
 }
-input PageUpdateOneInlineInput {
-  """
-  Create and connect one Page document
-  """
-  create: PageCreateInput
-  """
-  Update single Page document
-  """
-  update: PageUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single Page document
-  """
-  upsert: PageUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing Page document
-  """
-  connect: PageWhereUniqueInput
-  """
-  Disconnect currently connected Page document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected Page document
-  """
-  delete: Boolean
-}
-input PageUpsertWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: PageWhereUniqueInput!
-  """
-  Upsert data
-  """
-  data: PageUpsertInput!
-}
-input PageUpsertInput {
-  """
-  Create document if it didn't exist
-  """
-  create: PageCreateInput!
-  """
-  Update document if it exists
-  """
-  update: PageUpdateInput!
-}
 input RowPeopleWithTextUpdateManyInlineInput {
   """
   Create and connect multiple RowPeopleWithText documents
@@ -9889,6 +9727,66 @@ input RowPeopleWithTextUpdateInput {
   Manage document localizations
   """
   localizations: RowPeopleWithTextUpdateLocalizationsInput
+}
+input PageUpdateManyInlineInput {
+  """
+  Create and connect multiple Page documents
+  """
+  create: [PageCreateInput!]
+  """
+  Connect multiple existing Page documents
+  """
+  connect: [PageConnectInput!]
+  """
+  Override currently-connected documents with multiple existing Page documents
+  """
+  set: [PageWhereUniqueInput!]
+  """
+  Update multiple Page documents
+  """
+  update: [PageUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple Page documents
+  """
+  upsert: [PageUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple Page documents
+  """
+  disconnect: [PageWhereUniqueInput!]
+  """
+  Delete multiple Page documents
+  """
+  delete: [PageWhereUniqueInput!]
+}
+input PageConnectInput {
+  """
+  Document to connect
+  """
+  where: PageWhereUniqueInput!
+  """
+  Allow to specify document position in list of connected documents, will default to appending at end of list
+  """
+  position: ConnectPositionInput
+}
+input PageUpsertWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: PageWhereUniqueInput!
+  """
+  Upsert data
+  """
+  data: PageUpsertInput!
+}
+input PageUpsertInput {
+  """
+  Create document if it didn't exist
+  """
+  create: PageCreateInput!
+  """
+  Update document if it exists
+  """
+  update: PageUpdateInput!
 }
 input RowPeopleWithTextUpdateLocalizationsInput {
   """
@@ -10242,8 +10140,8 @@ input RowRecentBlogPostUpdateWithNestedWhereUniqueInput {
 }
 input RowRecentBlogPostUpdateInput {
   identity: String
-  page: PageUpdateManyInlineInput
   link: LinkInternalUpdateOneInlineInput
+  page: PageUpdateManyInlineInput
 }
 input LinkInternalUpdateOneInlineInput {
   """
@@ -10479,6 +10377,146 @@ input RowColumnOneUpdateInput {
   colOneIcon: AssetUpdateOneInlineInput
   page: PageUpdateManyInlineInput
 }
+input RowCompanySliderUpdateWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: RowCompanySliderWhereUniqueInput!
+  """
+  Document to update
+  """
+  data: RowCompanySliderUpdateInput!
+}
+input RowCompanySliderUpdateInput {
+  identity: String
+  companies: CompanyUpdateManyInlineInput
+  page: PageUpdateManyInlineInput
+}
+input CompanyUpdateManyInlineInput {
+  """
+  Create and connect multiple Company documents
+  """
+  create: [CompanyCreateInput!]
+  """
+  Connect multiple existing Company documents
+  """
+  connect: [CompanyConnectInput!]
+  """
+  Override currently-connected documents with multiple existing Company documents
+  """
+  set: [CompanyWhereUniqueInput!]
+  """
+  Update multiple Company documents
+  """
+  update: [CompanyUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple Company documents
+  """
+  upsert: [CompanyUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple Company documents
+  """
+  disconnect: [CompanyWhereUniqueInput!]
+  """
+  Delete multiple Company documents
+  """
+  delete: [CompanyWhereUniqueInput!]
+}
+input CompanyConnectInput {
+  """
+  Document to connect
+  """
+  where: CompanyWhereUniqueInput!
+  """
+  Allow to specify document position in list of connected documents, will default to appending at end of list
+  """
+  position: ConnectPositionInput
+}
+input CompanyUpdateWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: CompanyWhereUniqueInput!
+  """
+  Document to update
+  """
+  data: CompanyUpdateInput!
+}
+input CompanyUpdateInput {
+  name: String
+  logo: AssetUpdateOneInlineInput
+  rowCompanySlider: RowCompanySliderUpdateManyInlineInput
+}
+input RowCompanySliderUpdateManyInlineInput {
+  """
+  Create and connect multiple RowCompanySlider documents
+  """
+  create: [RowCompanySliderCreateInput!]
+  """
+  Connect multiple existing RowCompanySlider documents
+  """
+  connect: [RowCompanySliderConnectInput!]
+  """
+  Override currently-connected documents with multiple existing RowCompanySlider documents
+  """
+  set: [RowCompanySliderWhereUniqueInput!]
+  """
+  Update multiple RowCompanySlider documents
+  """
+  update: [RowCompanySliderUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple RowCompanySlider documents
+  """
+  upsert: [RowCompanySliderUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple RowCompanySlider documents
+  """
+  disconnect: [RowCompanySliderWhereUniqueInput!]
+  """
+  Delete multiple RowCompanySlider documents
+  """
+  delete: [RowCompanySliderWhereUniqueInput!]
+}
+input RowCompanySliderUpsertWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: RowCompanySliderWhereUniqueInput!
+  """
+  Upsert data
+  """
+  data: RowCompanySliderUpsertInput!
+}
+input RowCompanySliderUpsertInput {
+  """
+  Create document if it didn't exist
+  """
+  create: RowCompanySliderCreateInput!
+  """
+  Update document if it exists
+  """
+  update: RowCompanySliderUpdateInput!
+}
+input CompanyUpsertWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: CompanyWhereUniqueInput!
+  """
+  Upsert data
+  """
+  data: CompanyUpsertInput!
+}
+input CompanyUpsertInput {
+  """
+  Create document if it didn't exist
+  """
+  create: CompanyCreateInput!
+  """
+  Update document if it exists
+  """
+  update: CompanyUpdateInput!
+}
 input RowYoutubeVideoUpdateWithNestedWhereUniqueInput {
   """
   Unique document search
@@ -10494,8 +10532,8 @@ input RowYoutubeVideoUpdateInput {
   videoId input for default locale (nl)
   """
   videoId: String
-  page: PageUpdateManyInlineInput
   title: String
+  page: PageUpdateManyInlineInput
   """
   Manage document localizations
   """
@@ -10599,26 +10637,6 @@ input RowColumnOneUpsertInput {
   """
   update: RowColumnOneUpdateInput!
 }
-input RowCompanySliderUpsertWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: RowCompanySliderWhereUniqueInput!
-  """
-  Upsert data
-  """
-  data: RowCompanySliderUpsertInput!
-}
-input RowCompanySliderUpsertInput {
-  """
-  Create document if it didn't exist
-  """
-  create: RowCompanySliderCreateInput!
-  """
-  Update document if it exists
-  """
-  update: RowCompanySliderUpdateInput!
-}
 input RowYoutubeVideoUpsertWithNestedWhereUniqueInput {
   """
   Unique document search
@@ -10638,6 +10656,52 @@ input RowYoutubeVideoUpsertInput {
   Update document if it exists
   """
   update: RowYoutubeVideoUpdateInput!
+}
+input PersonUpdateOneInlineInput {
+  """
+  Create and connect one Person document
+  """
+  create: PersonCreateInput
+  """
+  Update single Person document
+  """
+  update: PersonUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single Person document
+  """
+  upsert: PersonUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing Person document
+  """
+  connect: PersonWhereUniqueInput
+  """
+  Disconnect currently connected Person document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected Person document
+  """
+  delete: Boolean
+}
+input PersonUpsertWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: PersonWhereUniqueInput!
+  """
+  Upsert data
+  """
+  data: PersonUpsertInput!
+}
+input PersonUpsertInput {
+  """
+  Create document if it didn't exist
+  """
+  create: PersonCreateInput!
+  """
+  Update document if it exists
+  """
+  update: PersonUpdateInput!
 }
 input MenuUpdateManyInlineInput {
   """
@@ -10743,26 +10807,6 @@ input PageUpsertLocalizationInput {
   update: PageUpdateLocalizationDataInput!
   create: PageCreateLocalizationDataInput!
   locale: Locale!
-}
-input CompanyUpsertWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: CompanyWhereUniqueInput!
-  """
-  Upsert data
-  """
-  data: CompanyUpsertInput!
-}
-input CompanyUpsertInput {
-  """
-  Create document if it didn't exist
-  """
-  create: CompanyCreateInput!
-  """
-  Update document if it exists
-  """
-  update: CompanyUpdateInput!
 }
 input RowColumnThreeUpdateManyInlineInput {
   """
@@ -12289,6 +12333,7 @@ input PageManyWhereInput {
   All values that are not contained in given list.
   """
   metaRobots_not_in: [MetaRobots!]
+  author: PersonWhereInput
   asset: AssetWhereInput
   internalLink_every: LinkInternalWhereInput
   internalLink_some: LinkInternalWhereInput
@@ -12300,7 +12345,7 @@ input PageManyWhereInput {
 input PageUpdateManyInput {
   createdAt: DateTime
   updatedAt: DateTime
-  metaRobots: MetaRobots
+  metaRobots: MetaRobots!
   """
   Optional updates to localizations
   """
@@ -12494,6 +12539,7 @@ input PersonManyWhereInput {
   All values not ending with the given string
   """
   name_not_ends_with: String
+  page: PageWhereInput
 }
 input PersonUpdateManyInput {
   createdAt: DateTime
@@ -14232,42 +14278,165 @@ input RowYoutubeVideoUpdateManyInput {
 input RowYoutubeVideoUpdateManyLocalizationInput {
   videoId: String!
 }
+input LinkExternalCreateManyInlineInput {
+  """
+  Create and connect multiple existing LinkExternal documents
+  """
+  create: [LinkExternalCreateInput!]
+  """
+  Connect multiple existing LinkExternal documents
+  """
+  connect: [LinkExternalWhereUniqueInput!]
+}
+input RowHeroCreateOneInlineInput {
+  """
+  Create and connect one RowHero document
+  """
+  create: RowHeroCreateInput
+  """
+  Connect one existing RowHero document
+  """
+  connect: RowHeroWhereUniqueInput
+}
+input ContactFormUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: ContactFormWhereInput!
+  """
+  Update many input
+  """
+  data: ContactFormUpdateManyInput!
+}
+input PageUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: PageWhereInput!
+  """
+  Update many input
+  """
+  data: PageUpdateManyInput!
+}
+input RowColumnThreeCreateOneInlineInput {
+  """
+  Create and connect one RowColumnThree document
+  """
+  create: RowColumnThreeCreateInput
+  """
+  Connect one existing RowColumnThree document
+  """
+  connect: RowColumnThreeWhereUniqueInput
+}
 """
-Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
+Representing a geolocation point with latitude and longitude
 """
-input RGBAInput {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
+type Location {
+  latitude: Float!
+  longitude: Float!
+  distance(from: LocationInput!): Float!
+}
+"""
+Input for a geolocation point with latitude and longitude
+"""
+input LocationInput {
+  latitude: Float!
+  longitude: Float!
+}
+input RowHeroVideoLinksUpdateManyWithNestedWhereInput {
+  LinkExternal: LinkExternalUpdateManyWithNestedWhereInput
+  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
+}
+input LinkExternalUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: LinkExternalWhereInput!
+  """
+  Update many input
+  """
+  data: LinkExternalUpdateManyInput!
+}
+input LinkInternalUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: LinkInternalWhereInput!
+  """
+  Update many input
+  """
+  data: LinkInternalUpdateManyInput!
 }
 scalar RGBAHue
-scalar RGBATransparency
-input CompanyUpdateOneInlineInput {
+input PublishLocaleInput {
   """
-  Create and connect one Company document
+  Locales to publish
   """
-  create: CompanyCreateInput
+  locale: Locale!
   """
-  Update single Company document
+  Stages to publish selected locales to
   """
-  update: CompanyUpdateWithNestedWhereUniqueInput
+  stages: [Stage!]!
+}
+input PageContentCreateOneInlineInput {
   """
-  Upsert single Company document
+  Create and connect one PageContent document
   """
-  upsert: CompanyUpsertWithNestedWhereUniqueInput
+  create: PageContentCreateInput
   """
-  Connect existing Company document
+  Connect one existing PageContent document
   """
-  connect: CompanyWhereUniqueInput
+  connect: PageContentWhereUniqueInput
+}
+input RowColumnTwoCreateOneInlineInput {
   """
-  Disconnect currently connected Company document
+  Create and connect one RowColumnTwo document
   """
-  disconnect: Boolean
+  create: RowColumnTwoCreateInput
   """
-  Delete currently connected Company document
+  Connect one existing RowColumnTwo document
   """
-  delete: Boolean
+  connect: RowColumnTwoWhereUniqueInput
+}
+input RowHeroUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowHeroWhereInput!
+  """
+  Update many input
+  """
+  data: RowHeroUpdateManyInput!
+}
+input RowYoutubeVideoCreateManyInlineInput {
+  """
+  Create and connect multiple existing RowYoutubeVideo documents
+  """
+  create: [RowYoutubeVideoCreateInput!]
+  """
+  Connect multiple existing RowYoutubeVideo documents
+  """
+  connect: [RowYoutubeVideoWhereUniqueInput!]
+}
+input RowRecentBlogPostCreateManyInlineInput {
+  """
+  Create and connect multiple existing RowRecentBlogPost documents
+  """
+  create: [RowRecentBlogPostCreateInput!]
+  """
+  Connect multiple existing RowRecentBlogPost documents
+  """
+  connect: [RowRecentBlogPostWhereUniqueInput!]
+}
+input RowColumnOneCreateOneInlineInput {
+  """
+  Create and connect one RowColumnOne document
+  """
+  create: RowColumnOneCreateInput
+  """
+  Connect one existing RowColumnOne document
+  """
+  connect: RowColumnOneWhereUniqueInput
 }
 input RowServicesWithTextCreateOneInlineInput {
   """
@@ -14278,6 +14447,286 @@ input RowServicesWithTextCreateOneInlineInput {
   Connect one existing RowServicesWithText document
   """
   connect: RowServicesWithTextWhereUniqueInput
+}
+input RowYoutubeVideoUpdateManyInlineInput {
+  """
+  Create and connect multiple RowYoutubeVideo documents
+  """
+  create: [RowYoutubeVideoCreateInput!]
+  """
+  Connect multiple existing RowYoutubeVideo documents
+  """
+  connect: [RowYoutubeVideoConnectInput!]
+  """
+  Override currently-connected documents with multiple existing RowYoutubeVideo documents
+  """
+  set: [RowYoutubeVideoWhereUniqueInput!]
+  """
+  Update multiple RowYoutubeVideo documents
+  """
+  update: [RowYoutubeVideoUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple RowYoutubeVideo documents
+  """
+  upsert: [RowYoutubeVideoUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple RowYoutubeVideo documents
+  """
+  disconnect: [RowYoutubeVideoWhereUniqueInput!]
+  """
+  Delete multiple RowYoutubeVideo documents
+  """
+  delete: [RowYoutubeVideoWhereUniqueInput!]
+}
+enum _MutationKind {
+  create
+  publish
+  unpublish
+  update
+  upsert
+  delete
+  updateMany
+  publishMany
+  unpublishMany
+  deleteMany
+}
+input RowRecentBlogPostUpdateManyInlineInput {
+  """
+  Create and connect multiple RowRecentBlogPost documents
+  """
+  create: [RowRecentBlogPostCreateInput!]
+  """
+  Connect multiple existing RowRecentBlogPost documents
+  """
+  connect: [RowRecentBlogPostConnectInput!]
+  """
+  Override currently-connected documents with multiple existing RowRecentBlogPost documents
+  """
+  set: [RowRecentBlogPostWhereUniqueInput!]
+  """
+  Update multiple RowRecentBlogPost documents
+  """
+  update: [RowRecentBlogPostUpdateWithNestedWhereUniqueInput!]
+  """
+  Upsert multiple RowRecentBlogPost documents
+  """
+  upsert: [RowRecentBlogPostUpsertWithNestedWhereUniqueInput!]
+  """
+  Disconnect multiple RowRecentBlogPost documents
+  """
+  disconnect: [RowRecentBlogPostWhereUniqueInput!]
+  """
+  Delete multiple RowRecentBlogPost documents
+  """
+  delete: [RowRecentBlogPostWhereUniqueInput!]
+}
+input PageContentWhereInput {
+  RowServicesWithText: RowServicesWithTextWhereInput
+  RowColumnThree: RowColumnThreeWhereInput
+  RowColumnTwo: RowColumnTwoWhereInput
+  RowRecentBlogPost: RowRecentBlogPostWhereInput
+  RowPeopleWithText: RowPeopleWithTextWhereInput
+  RowColumnOne: RowColumnOneWhereInput
+  RowCompanySlider: RowCompanySliderWhereInput
+  RowHero: RowHeroWhereInput
+  RowYoutubeVideo: RowYoutubeVideoWhereInput
+}
+"""
+Raw JSON value
+"""
+scalar Json
+input RowHeroVideoLinksWhereInput {
+  LinkExternal: LinkExternalWhereInput
+  LinkInternal: LinkInternalWhereInput
+}
+input MenuUpdateOneInlineInput {
+  """
+  Create and connect one Menu document
+  """
+  create: MenuCreateInput
+  """
+  Update single Menu document
+  """
+  update: MenuUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single Menu document
+  """
+  upsert: MenuUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing Menu document
+  """
+  connect: MenuWhereUniqueInput
+  """
+  Disconnect currently connected Menu document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected Menu document
+  """
+  delete: Boolean
+}
+input RowPeopleWithTextUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowPeopleWithTextWhereInput!
+  """
+  Update many input
+  """
+  data: RowPeopleWithTextUpdateManyInput!
+}
+input AssetCreateManyInlineInput {
+  """
+  Create and connect multiple existing Asset documents
+  """
+  create: [AssetCreateInput!]
+  """
+  Connect multiple existing Asset documents
+  """
+  connect: [AssetWhereUniqueInput!]
+}
+input RowCompanySliderCreateOneInlineInput {
+  """
+  Create and connect one RowCompanySlider document
+  """
+  create: RowCompanySliderCreateInput
+  """
+  Connect one existing RowCompanySlider document
+  """
+  connect: RowCompanySliderWhereUniqueInput
+}
+"""
+Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
+"""
+input RGBAInput {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
+}
+scalar RGBATransparency
+input RowColumnThreeUpdateOneInlineInput {
+  """
+  Create and connect one RowColumnThree document
+  """
+  create: RowColumnThreeCreateInput
+  """
+  Update single RowColumnThree document
+  """
+  update: RowColumnThreeUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowColumnThree document
+  """
+  upsert: RowColumnThreeUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowColumnThree document
+  """
+  connect: RowColumnThreeWhereUniqueInput
+  """
+  Disconnect currently connected RowColumnThree document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowColumnThree document
+  """
+  delete: Boolean
+}
+enum _RelationInputCardinality {
+  one
+  many
+}
+input AssetUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: AssetWhereInput!
+  """
+  Update many input
+  """
+  data: AssetUpdateManyInput!
+}
+input LinkExternalCreateOneInlineInput {
+  """
+  Create and connect one LinkExternal document
+  """
+  create: LinkExternalCreateInput
+  """
+  Connect one existing LinkExternal document
+  """
+  connect: LinkExternalWhereUniqueInput
+}
+enum _MutationInputFieldKind {
+  scalar
+  richText
+  enum
+  relation
+  union
+  virtual
+}
+input CompanyCreateOneInlineInput {
+  """
+  Create and connect one Company document
+  """
+  create: CompanyCreateInput
+  """
+  Connect one existing Company document
+  """
+  connect: CompanyWhereUniqueInput
+}
+input RowColumnOneUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowColumnOneWhereInput!
+  """
+  Update many input
+  """
+  data: RowColumnOneUpdateManyInput!
+}
+input RowColumnOneUpdateOneInlineInput {
+  """
+  Create and connect one RowColumnOne document
+  """
+  create: RowColumnOneCreateInput
+  """
+  Update single RowColumnOne document
+  """
+  update: RowColumnOneUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowColumnOne document
+  """
+  upsert: RowColumnOneUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowColumnOne document
+  """
+  connect: RowColumnOneWhereUniqueInput
+  """
+  Disconnect currently connected RowColumnOne document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowColumnOne document
+  """
+  delete: Boolean
+}
+"""
+Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
+"""
+type RGBA {
+  r: RGBAHue!
+  g: RGBAHue!
+  b: RGBAHue!
+  a: RGBATransparency!
+}
+input RowHeroVideoLinksCreateOneInlineInput {
+  """
+  Create and connect one RowHeroVideoLinks document
+  """
+  create: RowHeroVideoLinksCreateInput
+  """
+  Connect one existing RowHeroVideoLinks document
+  """
+  connect: RowHeroVideoLinksWhereUniqueInput
 }
 input AssetUpdateManyInlineInput {
   """
@@ -14319,44 +14768,161 @@ input AssetConnectInput {
   """
   position: ConnectPositionInput
 }
-input PublishLocaleInput {
+input RowHeroUpdateOneInlineInput {
   """
-  Locales to publish
+  Create and connect one RowHero document
   """
-  locale: Locale!
+  create: RowHeroCreateInput
   """
-  Stages to publish selected locales to
+  Update single RowHero document
   """
-  stages: [Stage!]!
+  update: RowHeroUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowHero document
+  """
+  upsert: RowHeroUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowHero document
+  """
+  connect: RowHeroWhereUniqueInput
+  """
+  Disconnect currently connected RowHero document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowHero document
+  """
+  delete: Boolean
+}
+input RowServicesWithTextUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowServicesWithTextWhereInput!
+  """
+  Update many input
+  """
+  data: RowServicesWithTextUpdateManyInput!
+}
+input CompanyUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: CompanyWhereInput!
+  """
+  Update many input
+  """
+  data: CompanyUpdateManyInput!
+}
+input RowYoutubeVideoCreateOneInlineInput {
+  """
+  Create and connect one RowYoutubeVideo document
+  """
+  create: RowYoutubeVideoCreateInput
+  """
+  Connect one existing RowYoutubeVideo document
+  """
+  connect: RowYoutubeVideoWhereUniqueInput
 }
 """
-Representing a geolocation point with latitude and longitude
+Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used.
 """
-type Location {
-  latitude: Float!
-  longitude: Float!
-  distance(from: LocationInput!): Float!
+input ColorInput {
+  hex: Hex
+  rgba: RGBAInput
+}
+scalar Hex
+input RowCompanySliderUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowCompanySliderWhereInput!
+  """
+  Update many input
+  """
+  data: RowCompanySliderUpdateManyInput!
+}
+input ContactFormUpdateWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: ContactFormWhereUniqueInput!
+  """
+  Document to update
+  """
+  data: ContactFormUpdateInput!
+}
+input ContactFormUpsertWithNestedWhereUniqueInput {
+  """
+  Unique document search
+  """
+  where: ContactFormWhereUniqueInput!
+  """
+  Upsert data
+  """
+  data: ContactFormUpsertInput!
+}
+input RowColumnThreeUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowColumnThreeWhereInput!
+  """
+  Update many input
+  """
+  data: RowColumnThreeUpdateManyInput!
+}
+input RowRecentBlogPostUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowRecentBlogPostWhereInput!
+  """
+  Update many input
+  """
+  data: RowRecentBlogPostUpdateManyInput!
+}
+input MenuUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: MenuWhereInput!
+  """
+  Update many input
+  """
+  data: MenuUpdateManyInput!
+}
+input PersonUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: PersonWhereInput!
+  """
+  Update many input
+  """
+  data: PersonUpdateManyInput!
+}
+input RowColumnTwoUpdateManyWithNestedWhereInput {
+  """
+  Document search
+  """
+  where: RowColumnTwoWhereInput!
+  """
+  Update many input
+  """
+  data: RowColumnTwoUpdateManyInput!
+}
+enum _OrderDirection {
+  asc
+  desc
 }
 """
-Input for a geolocation point with latitude and longitude
+Representing a color value comprising of HEX, RGBA and css color values
 """
-input LocationInput {
-  latitude: Float!
-  longitude: Float!
-}
-input RowColumnOneCreateOneInlineInput {
-  """
-  Create and connect one RowColumnOne document
-  """
-  create: RowColumnOneCreateInput
-  """
-  Connect one existing RowColumnOne document
-  """
-  connect: RowColumnOneWhereUniqueInput
-}
-enum _RelationInputKind {
-  create
-  update
+type Color {
+  hex: Hex!
+  rgba: RGBA!
+  css: String!
 }
 input PageContentUpdateOneInlineInput {
   """
@@ -14384,97 +14950,71 @@ input PageContentUpdateOneInlineInput {
   """
   delete: Boolean
 }
-input RowHeroUpdateOneInlineInput {
+"""
+A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
+for representation of dates using the Gregorian calendar.
+"""
+scalar Date
+input MenuCreateOneInlineInput {
   """
-  Create and connect one RowHero document
+  Create and connect one Menu document
   """
-  create: RowHeroCreateInput
+  create: MenuCreateInput
   """
-  Update single RowHero document
+  Connect one existing Menu document
   """
-  update: RowHeroUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowHero document
-  """
-  upsert: RowHeroUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowHero document
-  """
-  connect: RowHeroWhereUniqueInput
-  """
-  Disconnect currently connected RowHero document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowHero document
-  """
-  delete: Boolean
+  connect: MenuWhereUniqueInput
 }
-input ContactFormUpdateManyWithNestedWhereInput {
+input PageContentUpdateManyWithNestedWhereInput {
+  RowServicesWithText: RowServicesWithTextUpdateManyWithNestedWhereInput
+  RowColumnThree: RowColumnThreeUpdateManyWithNestedWhereInput
+  RowColumnTwo: RowColumnTwoUpdateManyWithNestedWhereInput
+  RowRecentBlogPost: RowRecentBlogPostUpdateManyWithNestedWhereInput
+  RowPeopleWithText: RowPeopleWithTextUpdateManyWithNestedWhereInput
+  RowColumnOne: RowColumnOneUpdateManyWithNestedWhereInput
+  RowCompanySlider: RowCompanySliderUpdateManyWithNestedWhereInput
+  RowHero: RowHeroUpdateManyWithNestedWhereInput
+  RowYoutubeVideo: RowYoutubeVideoUpdateManyWithNestedWhereInput
+}
+input RowYoutubeVideoUpdateManyWithNestedWhereInput {
   """
   Document search
   """
-  where: ContactFormWhereInput!
+  where: RowYoutubeVideoWhereInput!
   """
   Update many input
   """
-  data: ContactFormUpdateManyInput!
+  data: RowYoutubeVideoUpdateManyInput!
 }
-input RowColumnTwoUpdateOneInlineInput {
+enum _RelationKind {
+  regular
+  union
+}
+input RowCompanySliderUpdateOneInlineInput {
   """
-  Create and connect one RowColumnTwo document
+  Create and connect one RowCompanySlider document
   """
-  create: RowColumnTwoCreateInput
+  create: RowCompanySliderCreateInput
   """
-  Update single RowColumnTwo document
+  Update single RowCompanySlider document
   """
-  update: RowColumnTwoUpdateWithNestedWhereUniqueInput
+  update: RowCompanySliderUpdateWithNestedWhereUniqueInput
   """
-  Upsert single RowColumnTwo document
+  Upsert single RowCompanySlider document
   """
-  upsert: RowColumnTwoUpsertWithNestedWhereUniqueInput
+  upsert: RowCompanySliderUpsertWithNestedWhereUniqueInput
   """
-  Connect existing RowColumnTwo document
+  Connect existing RowCompanySlider document
   """
-  connect: RowColumnTwoWhereUniqueInput
+  connect: RowCompanySliderWhereUniqueInput
   """
-  Disconnect currently connected RowColumnTwo document
+  Disconnect currently connected RowCompanySlider document
   """
   disconnect: Boolean
   """
-  Delete currently connected RowColumnTwo document
+  Delete currently connected RowCompanySlider document
   """
   delete: Boolean
-}
-input PageContentCreateOneInlineInput {
-  """
-  Create and connect one PageContent document
-  """
-  create: PageContentCreateInput
-  """
-  Connect one existing PageContent document
-  """
-  connect: PageContentWhereUniqueInput
-}
-input RowHeroCreateOneInlineInput {
-  """
-  Create and connect one RowHero document
-  """
-  create: RowHeroCreateInput
-  """
-  Connect one existing RowHero document
-  """
-  connect: RowHeroWhereUniqueInput
-}
-input RowHeroVideoLinksCreateOneInlineInput {
-  """
-  Create and connect one RowHeroVideoLinks document
-  """
-  create: RowHeroVideoLinksCreateInput
-  """
-  Connect one existing RowHeroVideoLinks document
-  """
-  connect: RowHeroVideoLinksWhereUniqueInput
 }
 input RowServicesWithTextUpdateOneInlineInput {
   """
@@ -14502,6 +15042,125 @@ input RowServicesWithTextUpdateOneInlineInput {
   """
   delete: Boolean
 }
+enum _RelationInputKind {
+  create
+  update
+}
+input RowColumnTwoUpdateOneInlineInput {
+  """
+  Create and connect one RowColumnTwo document
+  """
+  create: RowColumnTwoCreateInput
+  """
+  Update single RowColumnTwo document
+  """
+  update: RowColumnTwoUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowColumnTwo document
+  """
+  upsert: RowColumnTwoUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowColumnTwo document
+  """
+  connect: RowColumnTwoWhereUniqueInput
+  """
+  Disconnect currently connected RowColumnTwo document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowColumnTwo document
+  """
+  delete: Boolean
+}
+input CompanyUpdateOneInlineInput {
+  """
+  Create and connect one Company document
+  """
+  create: CompanyCreateInput
+  """
+  Update single Company document
+  """
+  update: CompanyUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single Company document
+  """
+  upsert: CompanyUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing Company document
+  """
+  connect: CompanyWhereUniqueInput
+  """
+  Disconnect currently connected Company document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected Company document
+  """
+  delete: Boolean
+}
+input LinkExternalUpdateOneInlineInput {
+  """
+  Create and connect one LinkExternal document
+  """
+  create: LinkExternalCreateInput
+  """
+  Update single LinkExternal document
+  """
+  update: LinkExternalUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single LinkExternal document
+  """
+  upsert: LinkExternalUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing LinkExternal document
+  """
+  connect: LinkExternalWhereUniqueInput
+  """
+  Disconnect currently connected LinkExternal document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected LinkExternal document
+  """
+  delete: Boolean
+}
+input RowPeopleWithTextCreateOneInlineInput {
+  """
+  Create and connect one RowPeopleWithText document
+  """
+  create: RowPeopleWithTextCreateInput
+  """
+  Connect one existing RowPeopleWithText document
+  """
+  connect: RowPeopleWithTextWhereUniqueInput
+}
+enum _FilterKind {
+  search
+  AND
+  OR
+  NOT
+  eq
+  eq_not
+  in
+  not_in
+  lt
+  lte
+  gt
+  gte
+  contains
+  not_contains
+  starts_with
+  not_starts_with
+  ends_with
+  not_ends_with
+  contains_all
+  contains_some
+  contains_none
+  relational_single
+  relational_every
+  relational_some
+  relational_none
+}
 input UnpublishLocaleInput {
   """
   Locales to unpublish
@@ -14511,6 +15170,62 @@ input UnpublishLocaleInput {
   Stages to unpublish selected locales from
   """
   stages: [Stage!]!
+}
+input RowYoutubeVideoUpdateOneInlineInput {
+  """
+  Create and connect one RowYoutubeVideo document
+  """
+  create: RowYoutubeVideoCreateInput
+  """
+  Update single RowYoutubeVideo document
+  """
+  update: RowYoutubeVideoUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowYoutubeVideo document
+  """
+  upsert: RowYoutubeVideoUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowYoutubeVideo document
+  """
+  connect: RowYoutubeVideoWhereUniqueInput
+  """
+  Disconnect currently connected RowYoutubeVideo document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowYoutubeVideo document
+  """
+  delete: Boolean
+}
+input RowHeroVideoLinksUpdateInput {
+  LinkExternal: LinkExternalUpdateInput
+  LinkInternal: LinkInternalUpdateInput
+}
+input RowHeroVideoLinksUpdateOneInlineInput {
+  """
+  Create and connect one RowHeroVideoLinks document
+  """
+  create: RowHeroVideoLinksCreateInput
+  """
+  Update single RowHeroVideoLinks document
+  """
+  update: RowHeroVideoLinksUpdateWithNestedWhereUniqueInput
+  """
+  Upsert single RowHeroVideoLinks document
+  """
+  upsert: RowHeroVideoLinksUpsertWithNestedWhereUniqueInput
+  """
+  Connect existing RowHeroVideoLinks document
+  """
+  connect: RowHeroVideoLinksWhereUniqueInput
+  """
+  Disconnect currently connected RowHeroVideoLinks document
+  """
+  disconnect: Boolean
+  """
+  Delete currently connected RowHeroVideoLinks document
+  """
+  delete: Boolean
 }
 input LinkExternalUpdateManyInlineInput {
   """
@@ -14542,448 +15257,16 @@ input LinkExternalUpdateManyInlineInput {
   """
   delete: [LinkExternalWhereUniqueInput!]
 }
-input PersonUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: PersonWhereInput!
-  """
-  Update many input
-  """
-  data: PersonUpdateManyInput!
-}
-input AssetCreateManyInlineInput {
-  """
-  Create and connect multiple existing Asset documents
-  """
-  create: [AssetCreateInput!]
-  """
-  Connect multiple existing Asset documents
-  """
-  connect: [AssetWhereUniqueInput!]
-}
-input MenuCreateOneInlineInput {
-  """
-  Create and connect one Menu document
-  """
-  create: MenuCreateInput
-  """
-  Connect one existing Menu document
-  """
-  connect: MenuWhereUniqueInput
-}
-input RowCompanySliderCreateOneInlineInput {
-  """
-  Create and connect one RowCompanySlider document
-  """
-  create: RowCompanySliderCreateInput
-  """
-  Connect one existing RowCompanySlider document
-  """
-  connect: RowCompanySliderWhereUniqueInput
-}
-input MenuUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: MenuWhereInput!
-  """
-  Update many input
-  """
-  data: MenuUpdateManyInput!
-}
-input PageContentWhereInput {
-  RowServicesWithText: RowServicesWithTextWhereInput
-  RowColumnThree: RowColumnThreeWhereInput
-  RowColumnTwo: RowColumnTwoWhereInput
-  RowRecentBlogPost: RowRecentBlogPostWhereInput
-  RowPeopleWithText: RowPeopleWithTextWhereInput
-  RowColumnOne: RowColumnOneWhereInput
-  RowCompanySlider: RowCompanySliderWhereInput
-  RowHero: RowHeroWhereInput
-  RowYoutubeVideo: RowYoutubeVideoWhereInput
-}
-input RowRecentBlogPostUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowRecentBlogPostWhereInput!
-  """
-  Update many input
-  """
-  data: RowRecentBlogPostUpdateManyInput!
-}
-"""
-Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used.
-"""
-input ColorInput {
-  hex: Hex
-  rgba: RGBAInput
-}
-scalar Hex
-enum _OrderDirection {
-  asc
-  desc
-}
-input PersonCreateOneInlineInput {
-  """
-  Create and connect one Person document
-  """
-  create: PersonCreateInput
-  """
-  Connect one existing Person document
-  """
-  connect: PersonWhereUniqueInput
-}
-"""
-Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()
-"""
-type RGBA {
-  r: RGBAHue!
-  g: RGBAHue!
-  b: RGBAHue!
-  a: RGBATransparency!
-}
-input CompanyUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: CompanyWhereInput!
-  """
-  Update many input
-  """
-  data: CompanyUpdateManyInput!
-}
-input RowServicesWithTextUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowServicesWithTextWhereInput!
-  """
-  Update many input
-  """
-  data: RowServicesWithTextUpdateManyInput!
-}
-input PageContentUpdateManyWithNestedWhereInput {
-  RowServicesWithText: RowServicesWithTextUpdateManyWithNestedWhereInput
-  RowColumnThree: RowColumnThreeUpdateManyWithNestedWhereInput
-  RowColumnTwo: RowColumnTwoUpdateManyWithNestedWhereInput
-  RowRecentBlogPost: RowRecentBlogPostUpdateManyWithNestedWhereInput
-  RowPeopleWithText: RowPeopleWithTextUpdateManyWithNestedWhereInput
-  RowColumnOne: RowColumnOneUpdateManyWithNestedWhereInput
-  RowCompanySlider: RowCompanySliderUpdateManyWithNestedWhereInput
-  RowHero: RowHeroUpdateManyWithNestedWhereInput
-  RowYoutubeVideo: RowYoutubeVideoUpdateManyWithNestedWhereInput
-}
-input RowColumnThreeUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowColumnThreeWhereInput!
-  """
-  Update many input
-  """
-  data: RowColumnThreeUpdateManyInput!
-}
-input RowColumnTwoUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowColumnTwoWhereInput!
-  """
-  Update many input
-  """
-  data: RowColumnTwoUpdateManyInput!
-}
-input RowPeopleWithTextUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowPeopleWithTextWhereInput!
-  """
-  Update many input
-  """
-  data: RowPeopleWithTextUpdateManyInput!
-}
-input RowColumnOneUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowColumnOneWhereInput!
-  """
-  Update many input
-  """
-  data: RowColumnOneUpdateManyInput!
-}
-input RowCompanySliderUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowCompanySliderWhereInput!
-  """
-  Update many input
-  """
-  data: RowCompanySliderUpdateManyInput!
-}
-input RowHeroUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowHeroWhereInput!
-  """
-  Update many input
-  """
-  data: RowHeroUpdateManyInput!
-}
-input RowYoutubeVideoUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: RowYoutubeVideoWhereInput!
-  """
-  Update many input
-  """
-  data: RowYoutubeVideoUpdateManyInput!
-}
-input LinkExternalUpdateOneInlineInput {
-  """
-  Create and connect one LinkExternal document
-  """
-  create: LinkExternalCreateInput
-  """
-  Update single LinkExternal document
-  """
-  update: LinkExternalUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single LinkExternal document
-  """
-  upsert: LinkExternalUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing LinkExternal document
-  """
-  connect: LinkExternalWhereUniqueInput
-  """
-  Disconnect currently connected LinkExternal document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected LinkExternal document
-  """
-  delete: Boolean
-}
-input PersonUpdateOneInlineInput {
-  """
-  Create and connect one Person document
-  """
-  create: PersonCreateInput
-  """
-  Update single Person document
-  """
-  update: PersonUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single Person document
-  """
-  upsert: PersonUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing Person document
-  """
-  connect: PersonWhereUniqueInput
-  """
-  Disconnect currently connected Person document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected Person document
-  """
-  delete: Boolean
-}
-input ContactFormUpsertWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: ContactFormWhereUniqueInput!
-  """
-  Upsert data
-  """
-  data: ContactFormUpsertInput!
-}
-input RowHeroVideoLinksUpdateManyWithNestedWhereInput {
-  LinkExternal: LinkExternalUpdateManyWithNestedWhereInput
-  LinkInternal: LinkInternalUpdateManyWithNestedWhereInput
-}
-input LinkExternalUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: LinkExternalWhereInput!
-  """
-  Update many input
-  """
-  data: LinkExternalUpdateManyInput!
-}
-input LinkInternalUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: LinkInternalWhereInput!
-  """
-  Update many input
-  """
-  data: LinkInternalUpdateManyInput!
-}
-"""
-Representing a color value comprising of HEX, RGBA and css color values
-"""
-type Color {
-  hex: Hex!
-  rgba: RGBA!
-  css: String!
-}
-input RowPeopleWithTextCreateOneInlineInput {
-  """
-  Create and connect one RowPeopleWithText document
-  """
-  create: RowPeopleWithTextCreateInput
-  """
-  Connect one existing RowPeopleWithText document
-  """
-  connect: RowPeopleWithTextWhereUniqueInput
-}
-input RowHeroVideoLinksWhereInput {
-  LinkExternal: LinkExternalWhereInput
-  LinkInternal: LinkInternalWhereInput
-}
-input RowColumnOneUpdateOneInlineInput {
-  """
-  Create and connect one RowColumnOne document
-  """
-  create: RowColumnOneCreateInput
-  """
-  Update single RowColumnOne document
-  """
-  update: RowColumnOneUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowColumnOne document
-  """
-  upsert: RowColumnOneUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowColumnOne document
-  """
-  connect: RowColumnOneWhereUniqueInput
-  """
-  Disconnect currently connected RowColumnOne document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowColumnOne document
-  """
-  delete: Boolean
-}
-input RowYoutubeVideoUpdateOneInlineInput {
-  """
-  Create and connect one RowYoutubeVideo document
-  """
-  create: RowYoutubeVideoCreateInput
-  """
-  Update single RowYoutubeVideo document
-  """
-  update: RowYoutubeVideoUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowYoutubeVideo document
-  """
-  upsert: RowYoutubeVideoUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowYoutubeVideo document
-  """
-  connect: RowYoutubeVideoWhereUniqueInput
-  """
-  Disconnect currently connected RowYoutubeVideo document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowYoutubeVideo document
-  """
-  delete: Boolean
-}
-input MenuUpdateOneInlineInput {
-  """
-  Create and connect one Menu document
-  """
-  create: MenuCreateInput
-  """
-  Update single Menu document
-  """
-  update: MenuUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single Menu document
-  """
-  upsert: MenuUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing Menu document
-  """
-  connect: MenuWhereUniqueInput
-  """
-  Disconnect currently connected Menu document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected Menu document
-  """
-  delete: Boolean
-}
-input AssetUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: AssetWhereInput!
-  """
-  Update many input
-  """
-  data: AssetUpdateManyInput!
-}
-"""
-Raw JSON value
-"""
-scalar Json
-input RowYoutubeVideoUpdateManyInlineInput {
-  """
-  Create and connect multiple RowYoutubeVideo documents
-  """
-  create: [RowYoutubeVideoCreateInput!]
-  """
-  Connect multiple existing RowYoutubeVideo documents
-  """
-  connect: [RowYoutubeVideoConnectInput!]
-  """
-  Override currently-connected documents with multiple existing RowYoutubeVideo documents
-  """
-  set: [RowYoutubeVideoWhereUniqueInput!]
-  """
-  Update multiple RowYoutubeVideo documents
-  """
-  update: [RowYoutubeVideoUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple RowYoutubeVideo documents
-  """
-  upsert: [RowYoutubeVideoUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple RowYoutubeVideo documents
-  """
-  disconnect: [RowYoutubeVideoWhereUniqueInput!]
-  """
-  Delete multiple RowYoutubeVideo documents
-  """
-  delete: [RowYoutubeVideoWhereUniqueInput!]
-}
-input CompanyCreateOneInlineInput {
-  """
-  Create and connect one Company document
-  """
-  create: CompanyCreateInput
-  """
-  Connect one existing Company document
-  """
-  connect: CompanyWhereUniqueInput
+input PageContentUpdateInput {
+  RowServicesWithText: RowServicesWithTextUpdateInput
+  RowColumnThree: RowColumnThreeUpdateInput
+  RowColumnTwo: RowColumnTwoUpdateInput
+  RowRecentBlogPost: RowRecentBlogPostUpdateInput
+  RowPeopleWithText: RowPeopleWithTextUpdateInput
+  RowColumnOne: RowColumnOneUpdateInput
+  RowCompanySlider: RowCompanySliderUpdateInput
+  RowHero: RowHeroUpdateInput
+  RowYoutubeVideo: RowYoutubeVideoUpdateInput
 }
 input RowPeopleWithTextUpdateOneInlineInput {
   """
@@ -15008,279 +15291,6 @@ input RowPeopleWithTextUpdateOneInlineInput {
   disconnect: Boolean
   """
   Delete currently connected RowPeopleWithText document
-  """
-  delete: Boolean
-}
-input RowColumnThreeCreateOneInlineInput {
-  """
-  Create and connect one RowColumnThree document
-  """
-  create: RowColumnThreeCreateInput
-  """
-  Connect one existing RowColumnThree document
-  """
-  connect: RowColumnThreeWhereUniqueInput
-}
-enum _RelationKind {
-  regular
-  union
-}
-input RowYoutubeVideoCreateManyInlineInput {
-  """
-  Create and connect multiple existing RowYoutubeVideo documents
-  """
-  create: [RowYoutubeVideoCreateInput!]
-  """
-  Connect multiple existing RowYoutubeVideo documents
-  """
-  connect: [RowYoutubeVideoWhereUniqueInput!]
-}
-input PageUpdateManyWithNestedWhereInput {
-  """
-  Document search
-  """
-  where: PageWhereInput!
-  """
-  Update many input
-  """
-  data: PageUpdateManyInput!
-}
-enum _MutationKind {
-  create
-  publish
-  unpublish
-  update
-  upsert
-  delete
-  updateMany
-  publishMany
-  unpublishMany
-  deleteMany
-}
-enum _FilterKind {
-  search
-  AND
-  OR
-  NOT
-  eq
-  eq_not
-  in
-  not_in
-  lt
-  lte
-  gt
-  gte
-  contains
-  not_contains
-  starts_with
-  not_starts_with
-  ends_with
-  not_ends_with
-  contains_all
-  contains_some
-  contains_none
-  relational_single
-  relational_every
-  relational_some
-  relational_none
-}
-input LinkExternalCreateManyInlineInput {
-  """
-  Create and connect multiple existing LinkExternal documents
-  """
-  create: [LinkExternalCreateInput!]
-  """
-  Connect multiple existing LinkExternal documents
-  """
-  connect: [LinkExternalWhereUniqueInput!]
-}
-enum _RelationInputCardinality {
-  one
-  many
-}
-input LinkExternalCreateOneInlineInput {
-  """
-  Create and connect one LinkExternal document
-  """
-  create: LinkExternalCreateInput
-  """
-  Connect one existing LinkExternal document
-  """
-  connect: LinkExternalWhereUniqueInput
-}
-input ContactFormUpdateWithNestedWhereUniqueInput {
-  """
-  Unique document search
-  """
-  where: ContactFormWhereUniqueInput!
-  """
-  Document to update
-  """
-  data: ContactFormUpdateInput!
-}
-input RowCompanySliderUpdateOneInlineInput {
-  """
-  Create and connect one RowCompanySlider document
-  """
-  create: RowCompanySliderCreateInput
-  """
-  Update single RowCompanySlider document
-  """
-  update: RowCompanySliderUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowCompanySlider document
-  """
-  upsert: RowCompanySliderUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowCompanySlider document
-  """
-  connect: RowCompanySliderWhereUniqueInput
-  """
-  Disconnect currently connected RowCompanySlider document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowCompanySlider document
-  """
-  delete: Boolean
-}
-input RowHeroVideoLinksUpdateInput {
-  LinkExternal: LinkExternalUpdateInput
-  LinkInternal: LinkInternalUpdateInput
-}
-"""
-A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
-for representation of dates using the Gregorian calendar.
-"""
-scalar Date
-input RowYoutubeVideoCreateOneInlineInput {
-  """
-  Create and connect one RowYoutubeVideo document
-  """
-  create: RowYoutubeVideoCreateInput
-  """
-  Connect one existing RowYoutubeVideo document
-  """
-  connect: RowYoutubeVideoWhereUniqueInput
-}
-enum _MutationInputFieldKind {
-  scalar
-  richText
-  enum
-  relation
-  union
-  virtual
-}
-input RowColumnTwoCreateOneInlineInput {
-  """
-  Create and connect one RowColumnTwo document
-  """
-  create: RowColumnTwoCreateInput
-  """
-  Connect one existing RowColumnTwo document
-  """
-  connect: RowColumnTwoWhereUniqueInput
-}
-input RowRecentBlogPostCreateManyInlineInput {
-  """
-  Create and connect multiple existing RowRecentBlogPost documents
-  """
-  create: [RowRecentBlogPostCreateInput!]
-  """
-  Connect multiple existing RowRecentBlogPost documents
-  """
-  connect: [RowRecentBlogPostWhereUniqueInput!]
-}
-input PageContentUpdateInput {
-  RowServicesWithText: RowServicesWithTextUpdateInput
-  RowColumnThree: RowColumnThreeUpdateInput
-  RowColumnTwo: RowColumnTwoUpdateInput
-  RowRecentBlogPost: RowRecentBlogPostUpdateInput
-  RowPeopleWithText: RowPeopleWithTextUpdateInput
-  RowColumnOne: RowColumnOneUpdateInput
-  RowCompanySlider: RowCompanySliderUpdateInput
-  RowHero: RowHeroUpdateInput
-  RowYoutubeVideo: RowYoutubeVideoUpdateInput
-}
-input RowRecentBlogPostUpdateManyInlineInput {
-  """
-  Create and connect multiple RowRecentBlogPost documents
-  """
-  create: [RowRecentBlogPostCreateInput!]
-  """
-  Connect multiple existing RowRecentBlogPost documents
-  """
-  connect: [RowRecentBlogPostConnectInput!]
-  """
-  Override currently-connected documents with multiple existing RowRecentBlogPost documents
-  """
-  set: [RowRecentBlogPostWhereUniqueInput!]
-  """
-  Update multiple RowRecentBlogPost documents
-  """
-  update: [RowRecentBlogPostUpdateWithNestedWhereUniqueInput!]
-  """
-  Upsert multiple RowRecentBlogPost documents
-  """
-  upsert: [RowRecentBlogPostUpsertWithNestedWhereUniqueInput!]
-  """
-  Disconnect multiple RowRecentBlogPost documents
-  """
-  disconnect: [RowRecentBlogPostWhereUniqueInput!]
-  """
-  Delete multiple RowRecentBlogPost documents
-  """
-  delete: [RowRecentBlogPostWhereUniqueInput!]
-}
-input RowHeroVideoLinksUpdateOneInlineInput {
-  """
-  Create and connect one RowHeroVideoLinks document
-  """
-  create: RowHeroVideoLinksCreateInput
-  """
-  Update single RowHeroVideoLinks document
-  """
-  update: RowHeroVideoLinksUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowHeroVideoLinks document
-  """
-  upsert: RowHeroVideoLinksUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowHeroVideoLinks document
-  """
-  connect: RowHeroVideoLinksWhereUniqueInput
-  """
-  Disconnect currently connected RowHeroVideoLinks document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowHeroVideoLinks document
-  """
-  delete: Boolean
-}
-input RowColumnThreeUpdateOneInlineInput {
-  """
-  Create and connect one RowColumnThree document
-  """
-  create: RowColumnThreeCreateInput
-  """
-  Update single RowColumnThree document
-  """
-  update: RowColumnThreeUpdateWithNestedWhereUniqueInput
-  """
-  Upsert single RowColumnThree document
-  """
-  upsert: RowColumnThreeUpsertWithNestedWhereUniqueInput
-  """
-  Connect existing RowColumnThree document
-  """
-  connect: RowColumnThreeWhereUniqueInput
-  """
-  Disconnect currently connected RowColumnThree document
-  """
-  disconnect: Boolean
-  """
-  Delete currently connected RowColumnThree document
   """
   delete: Boolean
 }

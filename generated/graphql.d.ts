@@ -19,16 +19,16 @@ type Scalars = {
    * can represent values between -(2^63) and 2^63 - 1.
    */
   Long: any
+  Hex: any
   RGBAHue: any
   RGBATransparency: any
-  Hex: any
-  /** Raw JSON value */
-  Json: any
   /**
    * A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard
    * for representation of dates using the Gregorian calendar.
    */
   Date: any
+  /** Raw JSON value */
+  Json: any
 }
 
 type GQL_FilterKind =
@@ -114,6 +114,7 @@ type GQLAsset = GQLNode & {
   size?: Maybe<Scalars['Float']>
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
   personAvatar: Array<GQLPerson>
   companyLogo: Array<GQLCompany>
   rowColumnThreeColOneIcon: Array<GQLRowColumnThree>
@@ -121,7 +122,6 @@ type GQLAsset = GQLNode & {
   rowColumnThreeColThreeIcon: Array<GQLRowColumnThree>
   rowColumnOneColOneIcon: Array<GQLRowColumnOne>
   rowHeroAsset: Array<GQLRowHero>
-  alt?: Maybe<Scalars['String']>
   pageAsset: Array<GQLPage>
   rowColumnTwoColOneIcon: Array<GQLRowColumnTwo>
   rowColumnTwoColTwoIcon: Array<GQLRowColumnTwo>
@@ -282,6 +282,8 @@ type GQLAssetCreateInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  /** alt input for default locale (nl) */
+  alt?: Maybe<Scalars['String']>
   personAvatar?: Maybe<GQLPersonCreateManyInlineInput>
   companyLogo?: Maybe<GQLCompanyCreateManyInlineInput>
   rowColumnThreeColOneIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
@@ -289,8 +291,6 @@ type GQLAssetCreateInput = {
   rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeCreateManyInlineInput>
   rowColumnOneColOneIcon?: Maybe<GQLRowColumnOneCreateManyInlineInput>
   rowHeroAsset?: Maybe<GQLRowHeroCreateManyInlineInput>
-  /** alt input for default locale (nl) */
-  alt?: Maybe<Scalars['String']>
   pageAsset?: Maybe<GQLPageCreateManyInlineInput>
   rowColumnTwoColOneIcon?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
   rowColumnTwoColTwoIcon?: Maybe<GQLRowColumnTwoCreateManyInlineInput>
@@ -488,6 +488,8 @@ type GQLAssetUpdateInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  /** alt input for default locale (nl) */
+  alt?: Maybe<Scalars['String']>
   personAvatar?: Maybe<GQLPersonUpdateManyInlineInput>
   companyLogo?: Maybe<GQLCompanyUpdateManyInlineInput>
   rowColumnThreeColOneIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
@@ -495,8 +497,6 @@ type GQLAssetUpdateInput = {
   rowColumnThreeColThreeIcon?: Maybe<GQLRowColumnThreeUpdateManyInlineInput>
   rowColumnOneColOneIcon?: Maybe<GQLRowColumnOneUpdateManyInlineInput>
   rowHeroAsset?: Maybe<GQLRowHeroUpdateManyInlineInput>
-  /** alt input for default locale (nl) */
-  alt?: Maybe<Scalars['String']>
   pageAsset?: Maybe<GQLPageUpdateManyInlineInput>
   rowColumnTwoColOneIcon?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
   rowColumnTwoColTwoIcon?: Maybe<GQLRowColumnTwoUpdateManyInlineInput>
@@ -787,6 +787,25 @@ type GQLAssetWhereInput = {
   mimeType_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   mimeType_not_ends_with?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  alt_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  alt_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  alt_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  alt_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  alt_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  alt_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  alt_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  alt_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  alt_not_ends_with?: Maybe<Scalars['String']>
   personAvatar_every?: Maybe<GQLPersonWhereInput>
   personAvatar_some?: Maybe<GQLPersonWhereInput>
   personAvatar_none?: Maybe<GQLPersonWhereInput>
@@ -808,25 +827,6 @@ type GQLAssetWhereInput = {
   rowHeroAsset_every?: Maybe<GQLRowHeroWhereInput>
   rowHeroAsset_some?: Maybe<GQLRowHeroWhereInput>
   rowHeroAsset_none?: Maybe<GQLRowHeroWhereInput>
-  alt?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  alt_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  alt_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  alt_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  alt_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  alt_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  alt_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  alt_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  alt_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  alt_not_ends_with?: Maybe<Scalars['String']>
   pageAsset_every?: Maybe<GQLPageWhereInput>
   pageAsset_some?: Maybe<GQLPageWhereInput>
   pageAsset_none?: Maybe<GQLPageWhereInput>
@@ -4358,9 +4358,10 @@ type GQLPage = GQLNode & {
   title: Scalars['String']
   metaTitle: Scalars['String']
   metaDescription: Scalars['String']
-  metaRobots?: Maybe<GQLMetaRobots>
+  metaRobots: GQLMetaRobots
   /** Content */
   content: Array<GQLPageContent>
+  author?: Maybe<GQLPerson>
   releaseDate?: Maybe<Scalars['DateTime']>
   asset?: Maybe<GQLAsset>
   internalLink: Array<GQLLinkInternal>
@@ -4586,8 +4587,9 @@ type GQLPageCreateInput = {
   metaTitle: Scalars['String']
   /** metaDescription input for default locale (nl) */
   metaDescription: Scalars['String']
-  metaRobots?: Maybe<GQLMetaRobots>
+  metaRobots: GQLMetaRobots
   content?: Maybe<GQLPageContentCreateManyInlineInput>
+  author?: Maybe<GQLPersonCreateOneInlineInput>
   /** releaseDate input for default locale (nl) */
   releaseDate?: Maybe<Scalars['DateTime']>
   asset?: Maybe<GQLAssetCreateOneInlineInput>
@@ -4733,6 +4735,7 @@ type GQLPageManyWhereInput = {
   metaRobots_in?: Maybe<Array<GQLMetaRobots>>
   /** All values that are not contained in given list. */
   metaRobots_not_in?: Maybe<Array<GQLMetaRobots>>
+  author?: Maybe<GQLPersonWhereInput>
   asset?: Maybe<GQLAssetWhereInput>
   internalLink_every?: Maybe<GQLLinkInternalWhereInput>
   internalLink_some?: Maybe<GQLLinkInternalWhereInput>
@@ -4775,6 +4778,7 @@ type GQLPageUpdateInput = {
   metaDescription?: Maybe<Scalars['String']>
   metaRobots?: Maybe<GQLMetaRobots>
   content?: Maybe<GQLPageContentUpdateManyInlineInput>
+  author?: Maybe<GQLPersonUpdateOneInlineInput>
   /** releaseDate input for default locale (nl) */
   releaseDate?: Maybe<Scalars['DateTime']>
   asset?: Maybe<GQLAssetUpdateOneInlineInput>
@@ -4827,7 +4831,7 @@ type GQLPageUpdateManyInlineInput = {
 type GQLPageUpdateManyInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  metaRobots?: Maybe<GQLMetaRobots>
+  metaRobots: GQLMetaRobots
   /** Optional updates to localizations */
   localizations?: Maybe<Array<GQLPageUpdateManyLocalizationInput>>
 }
@@ -5045,6 +5049,7 @@ type GQLPageWhereInput = {
   metaRobots_in?: Maybe<Array<GQLMetaRobots>>
   /** All values that are not contained in given list. */
   metaRobots_not_in?: Maybe<Array<GQLMetaRobots>>
+  author?: Maybe<GQLPersonWhereInput>
   releaseDate?: Maybe<Scalars['DateTime']>
   /** All values that are not equal to given value. */
   releaseDate_not?: Maybe<Scalars['DateTime']>
@@ -5089,6 +5094,7 @@ type GQLPerson = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   avatar: GQLAsset
   name: Scalars['String']
+  page?: Maybe<GQLPage>
 }
 
 type GQLPersonDocumentInStagesArgs = {
@@ -5118,6 +5124,7 @@ type GQLPersonCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   avatar: GQLAssetCreateOneInlineInput
   name: Scalars['String']
+  page?: Maybe<GQLPageCreateOneInlineInput>
 }
 
 type GQLPersonCreateManyInlineInput = {
@@ -5236,6 +5243,7 @@ type GQLPersonManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>
+  page?: Maybe<GQLPageWhereInput>
 }
 
 type GQLPersonOrderByInput =
@@ -5253,6 +5261,7 @@ type GQLPersonOrderByInput =
 type GQLPersonUpdateInput = {
   avatar?: Maybe<GQLAssetUpdateOneInlineInput>
   name?: Maybe<Scalars['String']>
+  page?: Maybe<GQLPageUpdateOneInlineInput>
 }
 
 type GQLPersonUpdateManyInlineInput = {
@@ -5415,6 +5424,7 @@ type GQLPersonWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>
+  page?: Maybe<GQLPageWhereInput>
 }
 
 /** References Person record uniquely */
@@ -8599,8 +8609,8 @@ type GQLRowRecentBlogPost = GQLNode & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  page: Array<GQLPage>
   link?: Maybe<GQLLinkInternal>
+  page: Array<GQLPage>
 }
 
 type GQLRowRecentBlogPostDocumentInStagesArgs = {
@@ -8637,8 +8647,8 @@ type GQLRowRecentBlogPostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  page?: Maybe<GQLPageCreateManyInlineInput>
   link?: Maybe<GQLLinkInternalCreateOneInlineInput>
+  page?: Maybe<GQLPageCreateManyInlineInput>
 }
 
 type GQLRowRecentBlogPostCreateManyInlineInput = {
@@ -8773,8 +8783,8 @@ type GQLRowRecentBlogPostOrderByInput =
 
 type GQLRowRecentBlogPostUpdateInput = {
   identity?: Maybe<Scalars['String']>
-  page?: Maybe<GQLPageUpdateManyInlineInput>
   link?: Maybe<GQLLinkInternalUpdateOneInlineInput>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
 }
 
 type GQLRowRecentBlogPostUpdateManyInlineInput = {
@@ -9424,8 +9434,8 @@ type GQLRowYoutubeVideo = GQLNode & {
   publishedAt?: Maybe<Scalars['DateTime']>
   /** The unique identifier */
   videoId: Scalars['String']
-  page: Array<GQLPage>
   title: Scalars['String']
+  page: Array<GQLPage>
 }
 
 /** A full-width Youtube video */
@@ -9471,8 +9481,8 @@ type GQLRowYoutubeVideoCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   /** videoId input for default locale (nl) */
   videoId: Scalars['String']
-  page?: Maybe<GQLPageCreateManyInlineInput>
   title: Scalars['String']
+  page?: Maybe<GQLPageCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<GQLRowYoutubeVideoCreateLocalizationsInput>
 }
@@ -9628,8 +9638,8 @@ type GQLRowYoutubeVideoOrderByInput =
 type GQLRowYoutubeVideoUpdateInput = {
   /** videoId input for default locale (nl) */
   videoId?: Maybe<Scalars['String']>
-  page?: Maybe<GQLPageUpdateManyInlineInput>
   title?: Maybe<Scalars['String']>
+  page?: Maybe<GQLPageUpdateManyInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<GQLRowYoutubeVideoUpdateLocalizationsInput>
 }

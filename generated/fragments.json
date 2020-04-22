@@ -12,12 +12,6 @@
             "name": "Person"
           },
           {
-            "name": "Company"
-          },
-          {
-            "name": "RowCompanySlider"
-          },
-          {
             "name": "Page"
           },
           {
@@ -46,6 +40,12 @@
           },
           {
             "name": "RowColumnOne"
+          },
+          {
+            "name": "RowCompanySlider"
+          },
+          {
+            "name": "Company"
           },
           {
             "name": "RowYoutubeVideo"
