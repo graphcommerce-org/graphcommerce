@@ -76,6 +76,7 @@ export const theme = createMuiTheme({
     secondary: {
       main: '#fffe00',
       contrastText: '#000',
+      light: '#b8b8b8',
     },
     tertiary: {
       main: '#2b153d',
@@ -100,24 +101,36 @@ export const theme = createMuiTheme({
   typography: {
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     fontSize: 18,
-    body1: { fontSize: vpCalc(18, 20) },
-    body2: { fontSize: vpCalc(13, 15) },
+    body1: {
+      fontSize: vpCalc(15, 20),
+      marginBottom: '1em',
+    },
+    body2: {
+      fontSize: vpCalc(13, 15),
+    },
     subtitle1: {},
     subtitle2: {},
     h1: {
       fontSize: vpCalc(36, 74),
-      fontWeight: 400,
+      fontWeight: 600,
       letterSpacing: '-0.0375em',
+      lineHeight: 1.16,
+      margin: '0.24em 0 0.58em',
     },
     h2: {
       fontSize: vpCalc(24, 48),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
+      lineHeight: 1.42,
+      margin: '0.84em 0 0.84em',
     },
     h3: {
       fontSize: vpCalc(22, 30),
-      fontWeight: 400,
+      fontWeight: 600,
       letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
+      marginTop: vpCalc(22, 30),
+      marginBottom: vpCalc(22, 30),
     },
     h4: {
       fontSize: vpCalc(18, 25),
