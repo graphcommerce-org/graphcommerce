@@ -82,7 +82,7 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
   })
 
   return (
-    <Link href={url} metaRobots={metaRobots!} className={classes.href}>
+    <Link href={url} metaRobots={metaRobots} className={classes.href}>
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (

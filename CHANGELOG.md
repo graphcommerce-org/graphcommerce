@@ -1,3 +1,19 @@
+### [5.8.5](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.4...v5.8.5) (2020-04-22)
+
+
+### Fixes
+
+* added homepage to package.json ([457100f](https://github.com/ho-nl/project-reachdigital.nl/commit/457100fb946b584d88c427b9f50f59c3e7612871))
+* generate graphql files folder on build ([b112531](https://github.com/ho-nl/project-reachdigital.nl/commit/b1125313d0da216bee03c1e5a5d9eee6fdd8477f))
+* remove generated from git ([3613dcb](https://github.com/ho-nl/project-reachdigital.nl/commit/3613dcb9baffd22d7597fba99206973ca5806416))
+
+### [5.8.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.3...v5.8.4) (2020-04-22)
+
+
+### Fixes
+
+* **metarobots:** metaRobots is now required in GraphCMS ([fb64921](https://github.com/ho-nl/project-reachdigital.nl/commit/fb64921353bb914c1ce32bfa713af82f7412b9b7))
+
 ### [5.8.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.2...v5.8.3) (2020-04-21)
 
 
