@@ -1,6 +1,6 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Container } from '@material-ui/core'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
@@ -22,7 +22,11 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
 }
 
 const AboutUs: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page }) => {
-  return <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
+  return (
+    <Container maxWidth='lg'>
+      <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
+    </Container>
+  )
 }
 
 AboutUs.layout = LayoutFull
