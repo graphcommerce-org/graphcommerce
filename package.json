@@ -97,7 +97,7 @@
     "semantic-release": "^17.0.7",
     "semantic-release-slack-bot": "^1.6.1",
     "typescript": "^3.7.5",
-    "webpack": "^4.42.1"
+    "webpack": "^4.43.0"
   },
   "prettier": {
     "trailingComma": "all",
