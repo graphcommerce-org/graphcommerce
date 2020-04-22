@@ -103,7 +103,6 @@ export const theme = createMuiTheme({
     fontSize: 18,
     body1: {
       fontSize: vpCalc(15, 20),
-      marginBottom: '1em',
     },
     body2: {
       fontSize: vpCalc(13, 15),
@@ -115,22 +114,18 @@ export const theme = createMuiTheme({
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.16,
-      margin: '0.24em 0 0.58em',
     },
     h2: {
       fontSize: vpCalc(24, 48),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.42,
-      margin: '0.84em 0 0.84em',
     },
     h3: {
       fontSize: vpCalc(22, 30),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
-      marginTop: vpCalc(22, 30),
-      marginBottom: vpCalc(22, 30),
     },
     h4: {
       fontSize: vpCalc(18, 25),
@@ -157,6 +152,12 @@ export const theme = createMuiTheme({
           src: `url('/fonts/${font}.woff2') format('woff2')`,
         })),
       },
+    },
+    MuiTypography: {
+      body1: { marginBottom: '1em' },
+      h1: { marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
+      h2: { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) },
+      h3: { marginTop: vpCalc(22, 30), marginBottom: vpCalc(22, 30) },
     },
   },
 })
