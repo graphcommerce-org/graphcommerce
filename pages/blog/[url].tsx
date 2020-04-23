@@ -8,7 +8,7 @@ import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../component
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
 import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
-import AuthorCard from '../../components/AuthorCard'
+import ReleaseDateCard from '../../components/ReleaseDateCard'
 import ContactFormLoader from '../../components/ContactForm'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
@@ -24,7 +24,7 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
         }}
       />
       <Container maxWidth='lg'>
-        {page.author && <AuthorCard author={page.author} date={page.releaseDate} />}
+        {page.author && <ReleaseDateCard author={page.author} releaseDate={page.releaseDate} />}
         <Typography variant='h1'>{page.title}</Typography>
       </Container>
       <Container maxWidth='md'>

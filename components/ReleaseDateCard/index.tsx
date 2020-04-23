@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-interface AuthorProps {
+interface ReleaseDateCardProps {
   author: GQLPersonFragment
-  date: string
+  releaseDate: string
 }
 
-const AuthorCard: React.FC<AuthorProps> = ({ author, date }) => {
+const ReleaseDateCard: React.FC<ReleaseDateCardProps> = ({ author, releaseDate }) => {
   const classes = useStyles()
 
   return (
@@ -43,11 +43,11 @@ const AuthorCard: React.FC<AuthorProps> = ({ author, date }) => {
         <Asset alt={author.name} asset={author.avatar} width={56} />
       </Avatar>
       <div className={classes.info}>
-        <div className={classes.date}>{date}</div>
+        <div className={classes.date}>{releaseDate}</div>
         <div className={classes.authorName}>Door {author.name}</div>
       </div>
     </div>
   )
 }
 
-export default AuthorCard
+export default ReleaseDateCard
