@@ -1,19 +1,21 @@
 import React from 'react'
 import { makeStyles, Theme, Avatar, createStyles } from '@material-ui/core'
 import Asset from '../Asset'
+import { vpCalc } from '../Theme'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     image: {
       width: theme.spacing(7),
       height: theme.spacing(7),
-      marginRight: theme.spacing(2),
+      marginRight: '20px',
     },
-    authorcard: {
+    releasecard: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: theme.gridSpacing.gutter,
+      marginBottom: vpCalc(23, 80),
+      padding: '10px 30px',
     },
     info: {
       color: 'inherit',
@@ -38,7 +40,7 @@ const ReleaseDateCard: React.FC<ReleaseDateCardProps> = ({ author, releaseDate }
   const classes = useStyles()
 
   return (
-    <div className={classes.authorcard}>
+    <div className={classes.releasecard}>
       <Avatar alt={author.name} className={classes.image}>
         <Asset alt={author.name} asset={author.avatar} width={56} />
       </Avatar>
