@@ -59,12 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   menuItemText: {
-    fontSize: vpCalc(22, 30),
-    fontWeight: 600,
-    letterSpacing: '-0.0375em',
-    marginTop: 0,
-    marginBottom: 0,
-    lineHeight: 1.5,
+    ...theme.typography.h3,
   },
   menuItem: {
     '&:hover': {

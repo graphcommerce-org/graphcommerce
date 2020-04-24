@@ -149,12 +149,6 @@ export const theme = createMuiTheme({
         })),
       },
     },
-    MuiTypography: {
-      body1: { marginBottom: '1em' },
-      h1: { marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
-      h2: { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) },
-      h3: { marginTop: vpCalc(22, 30), marginBottom: vpCalc(22, 30) },
-    },
     MuiContainer: {
       maxWidthMd: {
         '@media (min-width: 960px)': {

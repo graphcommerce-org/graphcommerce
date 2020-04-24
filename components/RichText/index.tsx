@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core'
 import { ImageMimeTypes } from '../PictureResponsive'
 import Link from '../Link'
 import Asset from '../Asset'
+import useRichTextStyles from './useRichTextStyles'
 
 export interface ValueJSON {
   document: DocumentJSON
@@ -156,58 +157,59 @@ const RenderMark: React.FC<Mark> = (mark) => {
 }
 
 const RenderBlock: React.FC<BlockJSON> = (block) => {
+  const { asset, ...typographyClasses } = useRichTextStyles()
   switch (block.type) {
     case 'heading-one':
       return (
-        <Typography variant='h1'>
+        <Typography variant='h1' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'heading-two':
       return (
-        <Typography variant='h2'>
+        <Typography variant='h2' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'heading-three':
       return (
-        <Typography variant='h3'>
+        <Typography variant='h3' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'heading-four':
       return (
-        <Typography variant='h4'>
+        <Typography variant='h4' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'heading-five':
       return (
-        <Typography variant='h5'>
+        <Typography variant='h5' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'heading-six':
       return (
-        <Typography variant='h6'>
+        <Typography variant='h6' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'paragraph':
       return (
-        <Typography variant='body1'>
+        <Typography variant='body1' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'bulleted-list':
       return (
-        <Typography component='ul'>
+        <Typography component='ul' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
     case 'numbered-list':
       return (
-        <Typography component='ol'>
+        <Typography component='ol' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
@@ -221,7 +223,7 @@ const RenderBlock: React.FC<BlockJSON> = (block) => {
       return <RenderNodes nodes={block.nodes} />
     case 'block-quote':
       return (
-        <Typography component='blockquote'>
+        <Typography component='blockquote' classes={typographyClasses}>
           <RenderNodes nodes={block.nodes} />
         </Typography>
       )
@@ -230,7 +232,19 @@ const RenderBlock: React.FC<BlockJSON> = (block) => {
       // todo(paales) make iframe responsive
       return <iframe src={block.data.src} title='embedded content' />
     case 'image':
-      return <Asset asset={{ ...block.data, url: block.data.src }} width={380} />
+      return <Asset asset={{ ...block.data, url: block.data.src }} width={380} className={asset} />
+    case 'video':
+      return (
+        <Asset
+          asset={{ ...block.data, url: block.data.src }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          width={380}
+          className={asset}
+        />
+      )
     case 'table':
       return (
         <table>
@@ -261,17 +275,6 @@ const RenderBlock: React.FC<BlockJSON> = (block) => {
         <td>
           <RenderNodes nodes={block.nodes} />
         </td>
-      )
-    case 'video':
-      return (
-        <Asset
-          asset={{ ...block.data, url: block.data.src }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          width={380}
-        />
       )
     default:
       // @ts-ignore
