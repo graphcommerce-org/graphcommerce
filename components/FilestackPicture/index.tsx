@@ -1,7 +1,15 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core'
 import PictureResponsive, { PictureResonsiveProps, ImageMimeTypes } from '../PictureResponsive'
 
 const possibleWidths = [25, 50, 75, 100, 200, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: '100%',
+    height: 'auto',
+  },
+})
 
 export type FilestackPictureProps = Omit<PictureResonsiveProps, 'srcSets'> & {
   src: string
@@ -33,6 +41,7 @@ const FilestackPicture: React.FC<FilestackPictureProps> = ({
 }) => {
   const url = new URL(src)
   const handle = url.pathname.substr(1)
+  const classes = useStyles()
 
   if (handle.includes('/')) {
     throw new Error(`Please provide a bare Filestack compatible URL: ${src}`)
@@ -74,7 +83,7 @@ const FilestackPicture: React.FC<FilestackPictureProps> = ({
         .join(', ')
   }
 
-  return <PictureResponsive {...imgProps} srcSets={srcSets} />
+  return <PictureResponsive {...imgProps} srcSets={srcSets} className={classes.root} />
 }
 
 export default FilestackPicture
