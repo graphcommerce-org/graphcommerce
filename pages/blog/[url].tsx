@@ -10,8 +10,18 @@ import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 import ReleaseDateCard from '../../components/ReleaseDateCard'
 import ContactFormLoader from '../../components/ContactForm'
+import Asset from '../../components/Asset'
+import BlogStyles from './BlogStyles'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
+  const classes = BlogStyles()
+
+  const releaseDateFormatted = new Date(page.releaseDate).toLocaleDateString(page.locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
   return (
     <>
       <JsonLd<BlogPosting>
@@ -24,14 +34,34 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
         }}
       />
       <Container maxWidth='lg'>
-        {page.author && <ReleaseDateCard author={page.author} releaseDate={page.releaseDate} />}
-        <Typography variant='h1'>{page.title}</Typography>
+        {page.author && <ReleaseDateCard author={page.author} releaseDate={releaseDateFormatted} />}
+        <div className={classes.featured}>
+          {page.asset && (
+            <div className={classes.assetWrapper}>
+              <Asset
+                asset={page.asset}
+                {...page.asset}
+                className={classes.asset}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            </div>
+          )}
+          <Typography variant='h1' className={classes.pageTitle}>
+            {page.title}
+          </Typography>
+        </div>
       </Container>
-      <Container maxWidth='md'>
+      <Container maxWidth='md' className='classes.article'>
         <ContentRenderer content={page.content} />
       </Container>
-      <Container maxWidth='lg'>
-        <ContactFormLoader />
+      <Container maxWidth='lg' className={classes.last}>
+        {page.author && <ReleaseDateCard author={page.author} releaseDate={releaseDateFormatted} />}
+        <div className={classes.boxed}>
+          <ContactFormLoader />
+        </div>
       </Container>
     </>
   )
