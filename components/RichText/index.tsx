@@ -274,8 +274,8 @@ const RenderBlock: React.FC<BlockJSON> = (block) => {
         />
       )
     default:
-      console.log(`UNKOWNN BLOCK TYPE ${block.type}`, block)
-      return <></>
+      // @ts-ignore
+      return <div>UNKOWNN BLOCK TYPE {block.type}</div>
   }
 }
 
