@@ -1,15 +1,15 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import { ImageMimeTypes } from '../PictureResponsive'
-import FilestackPicture from '../FilestackPicture'
 import Link from '../Link'
+import Asset from '../Asset'
 
 export interface ValueJSON {
   document: DocumentJSON
   object?: 'value'
 }
 
-type NodeJSON = DocumentJSON | BlockJSON | InlineJSON | TextJSON | IframeJSON
+type NodeJSON = DocumentJSON | InlineJSON | TextJSON | BlockJSON
 
 interface DocumentJSON {
   nodes: NodeJSON[]
@@ -17,7 +17,16 @@ interface DocumentJSON {
   object: 'document'
 }
 
-interface BlockJSON {
+type BlockJSON =
+  | SimpleBlockJSON
+  | IframeJSON
+  | ImageJSON
+  | VideoJSON
+  | TableJSON
+  | TableRowJSON
+  | TableCellJSON
+
+interface SimpleBlockJSON {
   type:
     | 'heading-one'
     | 'heading-two'
@@ -29,7 +38,6 @@ interface BlockJSON {
     | 'numbered-list'
     | 'bulleted-list'
     | 'block-quote'
-    | 'table'
     | 'paragraph'
     | 'list-item'
     | 'list-item-child'
@@ -45,6 +53,13 @@ interface IframeJSON {
   object: 'block'
 }
 
+interface VideoJSON {
+  type: 'video'
+  nodes: NodeJSON[]
+  data: { src: string; title: string; handle: string; mimeType: string }
+  object: 'block'
+}
+
 interface ImageJSON {
   type: 'image'
   nodes: NodeJSON[]
@@ -53,7 +68,28 @@ interface ImageJSON {
     width: number
     height: number
     mimeType: ImageMimeTypes
+    title: string
   }
+  object: 'block'
+}
+
+interface TableJSON {
+  type: 'table'
+  nodes: NodeJSON[]
+  data: { rows: number; header: boolean; columns: number }
+  object: 'block'
+}
+
+interface TableRowJSON {
+  type: 'table_row'
+  nodes: NodeJSON[]
+  data: { cells: number; index: number }
+  object: 'block'
+}
+interface TableCellJSON {
+  type: 'table_cell'
+  nodes: NodeJSON[]
+  data: { index: number }
   object: 'block'
 }
 
@@ -119,49 +155,122 @@ const RenderMark: React.FC<Mark> = (mark) => {
   }
 }
 
-const RenderBlock: React.FC<BlockJSON | IframeJSON | ImageJSON> = (block) => {
-  const childNodes = <RenderNodes nodes={block.nodes} />
-
+const RenderBlock: React.FC<BlockJSON> = (block) => {
   switch (block.type) {
     case 'heading-one':
-      return <Typography variant='h1'>{childNodes}</Typography>
+      return (
+        <Typography variant='h1'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'heading-two':
-      return <Typography variant='h2'>{childNodes}</Typography>
+      return (
+        <Typography variant='h2'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'heading-three':
-      return <Typography variant='h3'>{childNodes}</Typography>
+      return (
+        <Typography variant='h3'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'heading-four':
-      return <Typography variant='h4'>{childNodes}</Typography>
+      return (
+        <Typography variant='h4'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'heading-five':
-      return <Typography variant='h5'>{childNodes}</Typography>
+      return (
+        <Typography variant='h5'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'heading-six':
-      return <Typography variant='h6'>{childNodes}</Typography>
+      return (
+        <Typography variant='h6'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'paragraph':
-      return <Typography variant='body1'>{childNodes}</Typography>
+      return (
+        <Typography variant='body1'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'bulleted-list':
-      return <Typography component='ul'>{childNodes}</Typography>
+      return (
+        <Typography component='ul'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'numbered-list':
-      return <Typography component='ol'>{childNodes}</Typography>
+      return (
+        <Typography component='ol'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'list-item':
-      return <li>{childNodes}</li>
+      return (
+        <li>
+          <RenderNodes nodes={block.nodes} />
+        </li>
+      )
     case 'list-item-child':
-      return <>{childNodes}</>
+      return <RenderNodes nodes={block.nodes} />
     case 'block-quote':
-      return <Typography component='blockquote'>{childNodes}</Typography>
+      return (
+        <Typography component='blockquote'>
+          <RenderNodes nodes={block.nodes} />
+        </Typography>
+      )
     case 'iframe':
       // todo(paales) add security attributes to iframe
       // todo(paales) make iframe responsive
       return <iframe src={block.data.src} title='embedded content' />
     case 'image':
+      return <Asset asset={{ ...block.data, url: block.data.src }} width={380} />
+    case 'table':
       return (
-        <FilestackPicture
-          alt=''
-          src={[
-            ...block.data.src.split('/').slice(0, 3),
-            ...block.data.src.split('/').slice(-1),
-          ].join('/')}
-          type={block.data.mimeType}
-          width={block.data.width}
-          height={block.data.height}
+        <table>
+          {block.data.header ? (
+            <>
+              <thead>
+                <RenderNodes nodes={block.nodes.slice(0, 1)} />
+              </thead>
+              <tbody>
+                <RenderNodes nodes={block.nodes.slice(1)} />
+              </tbody>
+            </>
+          ) : (
+            <tbody>
+              <RenderNodes nodes={block.nodes} />
+            </tbody>
+          )}
+        </table>
+      )
+    case 'table_row':
+      return (
+        <tr>
+          <RenderNodes nodes={block.nodes} />
+        </tr>
+      )
+    case 'table_cell':
+      return (
+        <td>
+          <RenderNodes nodes={block.nodes} />
+        </td>
+      )
+    case 'video':
+      return (
+        <Asset
+          asset={{ ...block.data, url: block.data.src }}
+          autoPlay
+          loop
+          muted
+          playsInline
+          width={380}
         />
       )
     default:
@@ -174,6 +283,7 @@ const RenderNodes: React.FC<{ nodes: NodeJSON[] }> = ({ nodes }) => {
   return (
     <>
       {nodes.map((node, key) => (
+        // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
         // eslint-disable-next-line react/no-array-index-key
         <RenderNode {...node} key={key} />
       ))}
@@ -197,6 +307,8 @@ const RenderNode: React.FC<NodeJSON> = (node) => {
   }
 }
 
-const RichText: React.FC<{ raw: ValueJSON }> = ({ raw }) => <RenderNodes {...raw.document} />
+const RichText: React.FC<GQLRichTextFragment & { raw: ValueJSON }> = ({ raw }) => (
+  <RenderNodes {...raw.document} />
+)
 
 export default RichText
