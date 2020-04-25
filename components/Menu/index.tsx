@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   menuItemText: {
     ...theme.typography.h3,
+    lineHeight: 1,
   },
   menuItem: {
     '&:hover': {
