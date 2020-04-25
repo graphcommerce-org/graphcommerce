@@ -11,10 +11,10 @@ import ContentRenderer from '../../components/ContentRenderer'
 import ReleaseDateCard from '../../components/ReleaseDateCard'
 import ContactFormLoader from '../../components/ContactForm'
 import Asset from '../../components/Asset'
-import BlogStyles from './BlogStyles'
+import useBlogViewStyles from '../../components/BlogView/useBlogViewStyles'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
-  const classes = BlogStyles()
+  const classes = useBlogViewStyles()
 
   const releaseDateFormatted = new Date(page.releaseDate).toLocaleDateString(page.locale, {
     year: 'numeric',
@@ -40,12 +40,12 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
             <div className={classes.assetWrapper}>
               <Asset
                 asset={page.asset}
-                {...page.asset}
                 className={classes.asset}
                 autoPlay
                 loop
                 muted
                 playsInline
+                width={380}
               />
             </div>
           )}

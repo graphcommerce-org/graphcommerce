@@ -1,14 +1,12 @@
 import React from 'react'
-import { createStyles, makeStyles, Theme, Grid } from '@material-ui/core'
+import { makeStyles, Theme, Grid } from '@material-ui/core'
 import RichText from '../RichText'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-  }),
-)
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+}))
 
 const RowColumnOne: React.FC<GQLRowColumnOneFragment> = ({ colOne }) => {
   const classes = useStyles()
