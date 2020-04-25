@@ -168,7 +168,11 @@
         {
           "notifyOnSuccess": true,
           "notifyOnFail": true,
-          "markdownReleaseNotes": true
+          "markdownReleaseNotes": true,
+          "onSuccessTemplate": {
+            "type": "mrkdwn",
+            "text": "Version <$repo_url/releases/tag/$npm_package_version|$npm_package_version> for <$repo_url|$repo_path> has been released!\n$release_notes"
+          }
         }
       ]
     ],
