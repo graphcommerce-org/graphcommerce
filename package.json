@@ -43,7 +43,7 @@
     "react-spring": "^9.0.0-canary.809.5.f01ecc2",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.5.1",
-    "sitemap": "^6.1.1",
+    "sitemap": "^6.1.2",
     "use-resize-observer": "^6.1.0-alpha.1"
   },
   "devDependencies": {
