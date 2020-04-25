@@ -175,17 +175,8 @@
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "*New release for $repo_url 🎉*"
+                  "text": "*New release for $repo_url 🎉*\n$release_notes"
                 }
-              },
-              {
-                "type": "context",
-                "elements": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "$release_notes"
-                  }
-                ]
               }
             ]
           }
