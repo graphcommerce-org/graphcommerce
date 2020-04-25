@@ -1,3 +1,10 @@
+### [5.9.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.1...v5.9.2) (2020-04-25)
+
+
+### Fixes
+
+* simplified release notes in slack ([88d5118](https://github.com/ho-nl/project-reachdigital.nl/commit/88d5118732645237cfb125ef3dcafeac87744f9e))
+
 ### [5.9.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.0...v5.9.1) (2020-04-25)
 
 
