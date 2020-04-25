@@ -170,8 +170,24 @@
           "notifyOnFail": true,
           "markdownReleaseNotes": true,
           "onSuccessTemplate": {
-            "type": "mrkdwn",
-            "text": "Version <$repo_url/releases/tag/$npm_package_version|$npm_package_version> for <$repo_url|$repo_path> has been released!\n$release_notes"
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*New release for $repo_url 🎉*"
+                }
+              },
+              {
+                "type": "context",
+                "elements": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "$release_notes"
+                  }
+                ]
+              }
+            ]
           }
         }
       ]
