@@ -40,7 +40,7 @@ const ReleaseDateCard: React.FC<ReleaseDateCardProps> = ({ author, releaseDate }
   return (
     <div className={classes.releasecard}>
       <Avatar alt={author.name} className={classes.image}>
-        <Asset alt={author.name} asset={author.avatar} width={56} />
+        {author.avatar && <Asset alt={author.name} asset={author.avatar} width={56} />}
       </Avatar>
       <div className={classes.info}>
         <div className={classes.date}>{releaseDate}</div>
