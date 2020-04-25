@@ -1,3 +1,10 @@
+## [5.9.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.5...v5.9.0) (2020-04-25)
+
+
+### Features
+
+* **releases:** added slack success message ([335dd99](https://github.com/ho-nl/project-reachdigital.nl/commit/335dd996196ce444714502d38360690e1b78dd03))
+
 ### [5.8.5](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.4...v5.8.5) (2020-04-22)
 
 
