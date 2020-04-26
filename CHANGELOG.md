@@ -1,3 +1,24 @@
+### [5.9.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.1...v5.9.2) (2020-04-25)
+
+
+### Fixes
+
+* simplified release notes in slack ([88d5118](https://github.com/ho-nl/project-reachdigital.nl/commit/88d5118732645237cfb125ef3dcafeac87744f9e))
+
+### [5.9.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.0...v5.9.1) (2020-04-25)
+
+
+### Fixes
+
+* **releases:** simpler message template ([7d9114c](https://github.com/ho-nl/project-reachdigital.nl/commit/7d9114c38c70d00e9dc6868b67900eae8369c8e0))
+
+## [5.9.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.5...v5.9.0) (2020-04-25)
+
+
+### Features
+
+* **releases:** added slack success message ([335dd99](https://github.com/ho-nl/project-reachdigital.nl/commit/335dd996196ce444714502d38360690e1b78dd03))
+
 ### [5.8.5](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.4...v5.8.5) (2020-04-22)
 
 
