@@ -15108,10 +15108,10 @@ use-memo-one@^1.1.0:
   resolved "https://registry.yarnpkg.com/use-memo-one/-/use-memo-one-1.1.1.tgz#39e6f08fe27e422a7d7b234b5f9056af313bd22c"
   integrity sha512-oFfsyun+bP7RX8X2AskHNTxu+R3QdE/RC5IefMbqptmACAA/gfol1KDD5KRzPsGMa62sWxGZw+Ui43u6x4ddoQ==
 
-use-resize-observer@^6.1.0-alpha.1:
-  version "6.1.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/use-resize-observer/-/use-resize-observer-6.1.0-alpha.1.tgz#2146bd87a5b763087f62d3b9dd0fa30de92edc13"
-  integrity sha512-wu44tDFT3bSIXkf0XeHYLlUP4FmbIRm6tN9OiC0t/dv/lAtbYsvyJhMmv/fOJGOi0T7QAI44504ckW98SGPbGA==
+use-resize-observer@^6.1.0-alpha.3:
+  version "6.1.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/use-resize-observer/-/use-resize-observer-6.1.0-alpha.3.tgz#5bdbe51bef36da89d2fa97fc8cc1ad3e5214d331"
+  integrity sha512-7Z/vpGIIyOTXP2PMGvTjLAjWQ+6FTt+fA6Ke+9mOJD9L40HEcb/K6PTtYNXaMmzq2yiU5Bv255YwGSjMRQ9c6A==
   dependencies:
     resize-observer-polyfill "^1.5.1"
 
