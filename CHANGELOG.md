@@ -1,3 +1,10 @@
+### [5.9.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.2...v5.9.3) (2020-04-26)
+
+
+### Fixes
+
+* **sitemap:** if en page is related to nl page do not give own entry ([39d60e6](https://github.com/ho-nl/project-reachdigital.nl/commit/39d60e645246de40ff9aa554160526b1bc644b71))
+
 ### [5.9.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.1...v5.9.2) (2020-04-25)
 
 
