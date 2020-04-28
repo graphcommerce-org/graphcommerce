@@ -33,7 +33,7 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           datePublished: page.releaseDate,
         }}
       />
-      <Container maxWidth='lg'>
+      <Container maxWidth='xl'>
         {page.author && <ReleaseDateCard author={page.author} releaseDate={releaseDateFormatted} />}
         <div className={classes.featured}>
           {page.asset && (
@@ -54,10 +54,10 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           </Typography>
         </div>
       </Container>
-      <Container maxWidth='md' className='classes.article'>
+      <Container className={classes.article}>
         <ContentRenderer content={page.content} />
       </Container>
-      <Container maxWidth='lg' className={classes.last}>
+      <Container maxWidth='xl' className={classes.last}>
         {page.author && <ReleaseDateCard author={page.author} releaseDate={releaseDateFormatted} />}
         <div className={classes.boxed}>
           <ContactFormLoader />

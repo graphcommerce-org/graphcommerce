@@ -23,7 +23,7 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
 
 const AboutUs: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page }) => {
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='xl'>
       <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
     </Container>
   )
