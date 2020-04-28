@@ -46,7 +46,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             lang: localization.locale,
           })
 
-          pagesEn = resultEn.pages.filter((pageEn) => pageEn.url !== localization.url)
+          pagesEn = pagesEn.filter((pageEn) => pageEn.url !== localization.url)
         }
       })
 

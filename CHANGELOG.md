@@ -1,3 +1,22 @@
+## [5.10.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.3...v5.10.0) (2020-04-28)
+
+
+### Features
+
+* **bundlesize:** added bundlesize check to github actions ([36b58b9](https://github.com/ho-nl/project-reachdigital.nl/commit/36b58b956f2a7e4af99c9b05618874ded789b891))
+
+
+### Fixes
+
+* **bundlesize:** do not check for duplicate ([8c44689](https://github.com/ho-nl/project-reachdigital.nl/commit/8c44689cf809d547702c8cb999099894bdfc0a8f))
+
+### [5.9.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.2...v5.9.3) (2020-04-26)
+
+
+### Fixes
+
+* **sitemap:** if en page is related to nl page do not give own entry ([39d60e6](https://github.com/ho-nl/project-reachdigital.nl/commit/39d60e645246de40ff9aa554160526b1bc644b71))
+
 ### [5.9.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.1...v5.9.2) (2020-04-25)
 
 
