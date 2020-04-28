@@ -29,4 +29,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           msg: ${{steps.bundlesize.outputs.diff}}
-          check_for_duplicate_msg: true
