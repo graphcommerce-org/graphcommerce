@@ -76,27 +76,55 @@ implemented the IntersectionObserver manually.
   ><source
     type="image/webp"
     srcset="
-      https://media.graphcms.com/resize=fit:max,w:400/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w   400w,
-      https://media.graphcms.com/resize=fit:max,w:600/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w   600w,
-      https://media.graphcms.com/resize=fit:max,w:800/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w   800w,
-      https://media.graphcms.com/resize=fit:max,w:1000/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1000w,
-      https://media.graphcms.com/resize=fit:max,w:1200/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1200w,
-      https://media.graphcms.com/resize=fit:max,w:1400/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1400w,
-      https://media.graphcms.com/resize=fit:max,w:1600/output=c:true,f:webp,t:true/Fm8jSWwxTgaWs6JDAV3w 1600w
+      https://media.graphcms.com/resize=fit:max,
+      w:400/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w                400w,
+      https://media.graphcms.com/resize=fit:max,
+      w:600/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w                600w,
+      https://media.graphcms.com/resize=fit:max,
+      w:800/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w                800w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1000/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w               1000w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1200/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w               1200w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1400/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w               1400w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1600/output=c:true,
+      f:webp,
+      t:true/Fm8jSWwxTgaWs6JDAV3w               1600w
     "
-    sizes="400px"/>
+    sizes="400px" />
   <source
     type="image/jpeg"
     srcset="
-      https://media.graphcms.com/resize=fit:max,w:400/Fm8jSWwxTgaWs6JDAV3w   400w,
-      https://media.graphcms.com/resize=fit:max,w:600/Fm8jSWwxTgaWs6JDAV3w   600w,
-      https://media.graphcms.com/resize=fit:max,w:800/Fm8jSWwxTgaWs6JDAV3w   800w,
-      https://media.graphcms.com/resize=fit:max,w:1000/Fm8jSWwxTgaWs6JDAV3w 1000w,
-      https://media.graphcms.com/resize=fit:max,w:1200/Fm8jSWwxTgaWs6JDAV3w 1200w,
-      https://media.graphcms.com/resize=fit:max,w:1400/Fm8jSWwxTgaWs6JDAV3w 1400w,
-      https://media.graphcms.com/resize=fit:max,w:1600/Fm8jSWwxTgaWs6JDAV3w 1600w
+      https://media.graphcms.com/resize=fit:max,
+      w:400/Fm8jSWwxTgaWs6JDAV3w                 400w,
+      https://media.graphcms.com/resize=fit:max,
+      w:600/Fm8jSWwxTgaWs6JDAV3w                 600w,
+      https://media.graphcms.com/resize=fit:max,
+      w:800/Fm8jSWwxTgaWs6JDAV3w                 800w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1000/Fm8jSWwxTgaWs6JDAV3w               1000w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1200/Fm8jSWwxTgaWs6JDAV3w               1200w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1400/Fm8jSWwxTgaWs6JDAV3w               1400w,
+      https://media.graphcms.com/resize=fit:max,
+      w:1600/Fm8jSWwxTgaWs6JDAV3w               1600w
     "
-    sizes="400px"/>
+    sizes="400px" />
   <img
     alt="img"
     width="1019"
