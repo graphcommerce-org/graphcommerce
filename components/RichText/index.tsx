@@ -1,8 +1,7 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
-import { ImageMimeTypes } from '../PictureResponsive'
 import Link from '../Link'
-import Asset from '../Asset'
+import Asset, { MimeTypes } from '../Asset'
 import useRichTextStyles from './useRichTextStyles'
 
 export interface ValueJSON {
@@ -68,7 +67,7 @@ interface ImageJSON {
     src: string
     width: number
     height: number
-    mimeType: ImageMimeTypes
+    mimeType: MimeTypes
     title: string
   }
   object: 'block'

@@ -2,6 +2,8 @@ import React from 'react'
 import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture, { FilestackPictureProps } from '../FilestackPicture'
 
+export type MimeTypes = ImageMimeTypes & 'video/mp4'
+
 type UnsupportedProps = { asset: GQLAssetFragment }
 
 type ImageProps = {
