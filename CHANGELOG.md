@@ -1,3 +1,10 @@
+## [5.11.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.10.0...v5.11.0) (2020-04-28)
+
+
+### Features
+
+* deploy storybook to github pages ([ac1b55f](https://github.com/ho-nl/project-reachdigital.nl/commit/ac1b55fd435421cf63c68ad5418a60f690f35b93))
+
 ## [5.10.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.3...v5.10.0) (2020-04-28)
 
 
