@@ -6,7 +6,7 @@ const useBlogViewStyles = makeStyles((theme: Theme) => ({
     marginTop: '30px',
   },
   boxed: {
-    padding: 'calc(8px + 5vw)',
+    padding: vpCalc(24, 80),
     boxShadow: '0 2px 15px 0 rgba(0, 0, 0, 0.04), 0 60px 70px -20px rgba(0, 0, 0, 0.14)',
   },
   featured: {
