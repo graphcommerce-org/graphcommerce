@@ -94,8 +94,8 @@ export const theme = createMuiTheme({
       xs: 0,
       sm: 600,
       md: 960,
-      lg: 1500,
-      xl: 1920,
+      lg: 1024,
+      xl: 1500,
     },
   },
   typography: {
