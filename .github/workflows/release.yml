@@ -22,6 +22,6 @@ jobs:
         env:
           GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
           GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
-      - run: yarn storybook-to-ghpages -- --ci --quiet --host-token-env-variable=GITHUB_TOKEN
+      - run: yarn storybook-to-ghpages --ci --quiet
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ho-nl:${{ secrets.GITHUB_TOKEN }}
