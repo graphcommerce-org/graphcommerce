@@ -13,21 +13,22 @@ const useBlogViewStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     marginBottom: vpCalc(20, 50),
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('sm')]: {
       alignItems: 'center',
     },
   },
   assetWrapper: {
     flexBasis: '46%',
     textAlign: 'right',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       flexBasis: '100%',
+      width: '100%',
       marginBottom: '40px',
     },
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('md')]: {
       padding: '0 30px',
     },
   },
@@ -38,13 +39,19 @@ const useBlogViewStyles = makeStyles((theme: Theme) => ({
   pageTitle: {
     flex: '1 0 50%',
     marginTop: '-0.2em',
+    padding: vpCalc(10, 30),
+
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
 
     [theme.breakpoints.up('lg')]: {
       padding: '0 0 0 30px',
     },
   },
   article: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       maxWidth: '800px',
     },
     [theme.breakpoints.up('lg')]: {
@@ -53,9 +60,6 @@ const useBlogViewStyles = makeStyles((theme: Theme) => ({
     '& img': {
       maxWidth: '100%',
       height: 'auto',
-    },
-    '& p': {
-      margin: '40px 0',
     },
   },
 }))
