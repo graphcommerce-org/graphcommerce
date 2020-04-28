@@ -75,7 +75,7 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
 }) => {
   const classes = useStyles()
 
-  const publishedAtFormatted = new Date(releaseDate).toLocaleDateString(locale, {
+  const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -91,7 +91,9 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
             <div className={classes.placeholder}>GEEN AFBEELDING</div>
           )}
         </div>
-        <div className={classes.date}>{publishedAtFormatted}</div>
+        <time className={classes.date} dateTime={releaseDate}>
+          {formatter.format(new Date(releaseDate))}
+        </time>
         <Typography component='h4' className={classes.title}>
           {title}
         </Typography>

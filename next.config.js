@@ -1,5 +1,13 @@
 require('dotenv').config()
 
+const IntlPolyfill = require('intl')
+
+Intl.NumberFormat = IntlPolyfill.NumberFormat
+Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
+if (process.versions.node.split('.')[0] > 12) {
+  console.warn("'intl' polyfill isn't required anymore")
+}
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })

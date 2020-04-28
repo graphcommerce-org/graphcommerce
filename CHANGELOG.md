@@ -1,104 +1,113 @@
 ### [5.11.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.11.0...v5.11.1) (2020-04-28)
 
-
 ### Fixes
 
-* **RowColumn:** integrate a Grid system for RowColumns ([4dc9d5f](https://github.com/ho-nl/project-reachdigital.nl/commit/4dc9d5f4a7fb3533f860c5b61fa5a1058e46ac39))
+- **RowColumn:** integrate a Grid system for RowColumns
+  ([4dc9d5f](https://github.com/ho-nl/project-reachdigital.nl/commit/4dc9d5f4a7fb3533f860c5b61fa5a1058e46ac39))
 
 ## [5.11.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.10.0...v5.11.0) (2020-04-28)
 
-
 ### Features
 
-* deploy storybook to github pages ([ac1b55f](https://github.com/ho-nl/project-reachdigital.nl/commit/ac1b55fd435421cf63c68ad5418a60f690f35b93))
+- deploy storybook to github pages
+  ([ac1b55f](https://github.com/ho-nl/project-reachdigital.nl/commit/ac1b55fd435421cf63c68ad5418a60f690f35b93))
 
 ## [5.10.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.3...v5.10.0) (2020-04-28)
 
-
 ### Features
 
-* **bundlesize:** added bundlesize check to github actions ([36b58b9](https://github.com/ho-nl/project-reachdigital.nl/commit/36b58b956f2a7e4af99c9b05618874ded789b891))
-
+- **bundlesize:** added bundlesize check to github actions
+  ([36b58b9](https://github.com/ho-nl/project-reachdigital.nl/commit/36b58b956f2a7e4af99c9b05618874ded789b891))
 
 ### Fixes
 
-* **bundlesize:** do not check for duplicate ([8c44689](https://github.com/ho-nl/project-reachdigital.nl/commit/8c44689cf809d547702c8cb999099894bdfc0a8f))
+- **bundlesize:** do not check for duplicate
+  ([8c44689](https://github.com/ho-nl/project-reachdigital.nl/commit/8c44689cf809d547702c8cb999099894bdfc0a8f))
 
 ### [5.9.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.2...v5.9.3) (2020-04-26)
 
-
 ### Fixes
 
-* **sitemap:** if en page is related to nl page do not give own entry ([39d60e6](https://github.com/ho-nl/project-reachdigital.nl/commit/39d60e645246de40ff9aa554160526b1bc644b71))
+- **sitemap:** if en page is related to nl page do not give own entry
+  ([39d60e6](https://github.com/ho-nl/project-reachdigital.nl/commit/39d60e645246de40ff9aa554160526b1bc644b71))
 
 ### [5.9.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.1...v5.9.2) (2020-04-25)
 
-
 ### Fixes
 
-* simplified release notes in slack ([88d5118](https://github.com/ho-nl/project-reachdigital.nl/commit/88d5118732645237cfb125ef3dcafeac87744f9e))
+- simplified release notes in slack
+  ([88d5118](https://github.com/ho-nl/project-reachdigital.nl/commit/88d5118732645237cfb125ef3dcafeac87744f9e))
 
 ### [5.9.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.0...v5.9.1) (2020-04-25)
 
-
 ### Fixes
 
-* **releases:** simpler message template ([7d9114c](https://github.com/ho-nl/project-reachdigital.nl/commit/7d9114c38c70d00e9dc6868b67900eae8369c8e0))
+- **releases:** simpler message template
+  ([7d9114c](https://github.com/ho-nl/project-reachdigital.nl/commit/7d9114c38c70d00e9dc6868b67900eae8369c8e0))
 
 ## [5.9.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.5...v5.9.0) (2020-04-25)
 
-
 ### Features
 
-* **releases:** added slack success message ([335dd99](https://github.com/ho-nl/project-reachdigital.nl/commit/335dd996196ce444714502d38360690e1b78dd03))
+- **releases:** added slack success message
+  ([335dd99](https://github.com/ho-nl/project-reachdigital.nl/commit/335dd996196ce444714502d38360690e1b78dd03))
 
 ### [5.8.5](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.4...v5.8.5) (2020-04-22)
 
-
 ### Fixes
 
-* added homepage to package.json ([457100f](https://github.com/ho-nl/project-reachdigital.nl/commit/457100fb946b584d88c427b9f50f59c3e7612871))
-* generate graphql files folder on build ([b112531](https://github.com/ho-nl/project-reachdigital.nl/commit/b1125313d0da216bee03c1e5a5d9eee6fdd8477f))
-* remove generated from git ([3613dcb](https://github.com/ho-nl/project-reachdigital.nl/commit/3613dcb9baffd22d7597fba99206973ca5806416))
+- added homepage to package.json
+  ([457100f](https://github.com/ho-nl/project-reachdigital.nl/commit/457100fb946b584d88c427b9f50f59c3e7612871))
+- generate graphql files folder on build
+  ([b112531](https://github.com/ho-nl/project-reachdigital.nl/commit/b1125313d0da216bee03c1e5a5d9eee6fdd8477f))
+- remove generated from git
+  ([3613dcb](https://github.com/ho-nl/project-reachdigital.nl/commit/3613dcb9baffd22d7597fba99206973ca5806416))
 
 ### [5.8.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.3...v5.8.4) (2020-04-22)
 
-
 ### Fixes
 
-* **metarobots:** metaRobots is now required in GraphCMS ([fb64921](https://github.com/ho-nl/project-reachdigital.nl/commit/fb64921353bb914c1ce32bfa713af82f7412b9b7))
+- **metarobots:** metaRobots is now required in GraphCMS
+  ([fb64921](https://github.com/ho-nl/project-reachdigital.nl/commit/fb64921353bb914c1ce32bfa713af82f7412b9b7))
 
 ### [5.8.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.2...v5.8.3) (2020-04-21)
 
-
 ### Fixes
 
-* **bloglist:** use releaseDate instead of publishDate ([c7f4d7e](https://github.com/ho-nl/project-reachdigital.nl/commit/c7f4d7e7b8a9a78908c56cb52d2907e7e3d70358))
+- **bloglist:** use releaseDate instead of publishDate
+  ([c7f4d7e](https://github.com/ho-nl/project-reachdigital.nl/commit/c7f4d7e7b8a9a78908c56cb52d2907e7e3d70358))
 
 ### [5.8.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.1...v5.8.2) (2020-04-21)
 
-
 ### Fixes
 
-* **graphql:** do not include typename in types by default ([97d1c2e](https://github.com/ho-nl/project-reachdigital.nl/commit/97d1c2e36897ec35f936e8086347204824df707b))
+- **graphql:** do not include typename in types by default
+  ([97d1c2e](https://github.com/ho-nl/project-reachdigital.nl/commit/97d1c2e36897ec35f936e8086347204824df707b))
 
 ### [5.8.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.0...v5.8.1) (2020-04-21)
 
-
 ### Fixes
 
-* **asset:** removed height property will be generated based on asset ([40038c9](https://github.com/ho-nl/project-reachdigital.nl/commit/40038c915b5bbfdca5c06b6ddf66eec9f125411c))
-* **blogpage:** change the maxWidth to ‘lg’ ([d37876a](https://github.com/ho-nl/project-reachdigital.nl/commit/d37876ab1cf24ee776a17e21b3c8d299e57d9083))
-* **blogpost:** add theme colors and the vpCalc() function for better responsiveness ([e967a33](https://github.com/ho-nl/project-reachdigital.nl/commit/e967a33bf13b912576a0b57606b2e86634a0cee0))
-* **blogpost:** remove the height attribute and change the image width to the “Nexus 5X” render size ([6d46947](https://github.com/ho-nl/project-reachdigital.nl/commit/6d469470576790ab51fd048a8ad5e03d247c0082))
-* **blogpostitems:** give the image wrapper a equal height and style the placeholder image ([0eca181](https://github.com/ho-nl/project-reachdigital.nl/commit/0eca18133b3ce0cd25c881cf357b6458e0cd548d))
+- **asset:** removed height property will be generated based on asset
+  ([40038c9](https://github.com/ho-nl/project-reachdigital.nl/commit/40038c915b5bbfdca5c06b6ddf66eec9f125411c))
+- **blogpage:** change the maxWidth to ‘lg’
+  ([d37876a](https://github.com/ho-nl/project-reachdigital.nl/commit/d37876ab1cf24ee776a17e21b3c8d299e57d9083))
+- **blogpost:** add theme colors and the vpCalc() function for better
+  responsiveness
+  ([e967a33](https://github.com/ho-nl/project-reachdigital.nl/commit/e967a33bf13b912576a0b57606b2e86634a0cee0))
+- **blogpost:** remove the height attribute and change the image width to the
+  “Nexus 5X” render size
+  ([6d46947](https://github.com/ho-nl/project-reachdigital.nl/commit/6d469470576790ab51fd048a8ad5e03d247c0082))
+- **blogpostitems:** give the image wrapper a equal height and style the
+  placeholder image
+  ([0eca181](https://github.com/ho-nl/project-reachdigital.nl/commit/0eca18133b3ce0cd25c881cf357b6458e0cd548d))
 
 ## [5.8.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.7.0...v5.8.0) (2020-04-21)
 
-
 ### Features
 
-* added RowRecentBlogPost synchronously ([2ba635d](https://github.com/ho-nl/project-reachdigital.nl/commit/2ba635dcb5176f0b24d9d58319623f3054909cde))
+- added RowRecentBlogPost synchronously
+  ([2ba635d](https://github.com/ho-nl/project-reachdigital.nl/commit/2ba635dcb5176f0b24d9d58319623f3054909cde))
 
 ## [5.7.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.6.4...v5.7.0) (2020-04-20)
 

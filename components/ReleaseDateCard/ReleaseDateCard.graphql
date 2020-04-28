@@ -1,0 +1,7 @@
+fragment ReleaseDateCard on Page {
+  locale
+  releaseDate
+  author {
+    ...Person
+  }
+}
