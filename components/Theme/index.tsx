@@ -149,13 +149,6 @@ export const theme = createMuiTheme({
         })),
       },
     },
-    MuiContainer: {
-      maxWidthMd: {
-        '@media (min-width: 960px)': {
-          maxWidth: 800,
-        },
-      },
-    },
   },
 })
 
