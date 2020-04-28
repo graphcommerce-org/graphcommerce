@@ -16,12 +16,6 @@ import useBlogViewStyles from '../../components/BlogView/useBlogViewStyles'
 const BlogView: PageWithLayoutFull = ({ page }) => {
   const classes = useBlogViewStyles()
 
-  const releaseDateFormatted = new Date(page.releaseDate).toLocaleDateString(page.locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-
   return (
     <>
       <JsonLd<BlogPosting>
@@ -34,19 +28,11 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
         }}
       />
       <Container maxWidth='lg'>
-        {page.author && <ReleaseDateCard author={page.author} releaseDate={releaseDateFormatted} />}
+        <ReleaseDateCard {...page} />
         <div className={classes.featured}>
           {page.asset && (
             <div className={classes.assetWrapper}>
-              <Asset
-                asset={page.asset}
-                className={classes.asset}
-                autoPlay
-                loop
-                muted
-                playsInline
-                width={380}
-              />
+              <Asset asset={page.asset} className={classes.asset} width={380} />
             </div>
           )}
           <Typography variant='h1' className={classes.pageTitle}>
@@ -58,7 +44,7 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
         <ContentRenderer content={page.content} />
       </Container>
       <Container maxWidth='lg' className={classes.last}>
-        {page.author && <ReleaseDateCard author={page.author} releaseDate={releaseDateFormatted} />}
+        <ReleaseDateCard {...page} />
         <div className={classes.boxed}>
           <ContactFormLoader />
         </div>

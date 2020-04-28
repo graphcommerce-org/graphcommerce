@@ -4,10 +4,7 @@ fragment PageLayout on Page {
   asset {
     ...Asset
   }
-  author {
-    ...Person
-  }
-  releaseDate
+  ...ReleaseDateCard
   ...PageMeta
   ...ContentRenderer
 }

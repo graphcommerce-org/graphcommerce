@@ -29,13 +29,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-interface ReleaseDateCardProps {
-  author: GQLPersonFragment
-  releaseDate: string
-}
-
-const ReleaseDateCard: React.FC<ReleaseDateCardProps> = ({ author, releaseDate }) => {
+const ReleaseDateCard: React.FC<GQLReleaseDateCardFragment> = ({ author, locale, releaseDate }) => {
   const classes = useStyles()
+
+  if (!author || !releaseDate) {
+    return null
+  }
+
+  const formatter = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+  const releaseDateFormatted = formatter.format(new Date(releaseDate))
 
   return (
     <div className={classes.releasecard}>
@@ -43,7 +49,7 @@ const ReleaseDateCard: React.FC<ReleaseDateCardProps> = ({ author, releaseDate }
         {author.avatar && <Asset alt={author.name} asset={author.avatar} width={56} />}
       </Avatar>
       <div className={classes.info}>
-        <div className={classes.date}>{releaseDate}</div>
+        <div className={classes.date}>{releaseDateFormatted}</div>
         <div className={classes.authorName}>Door {author.name}</div>
       </div>
     </div>
