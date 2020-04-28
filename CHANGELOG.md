@@ -1,3 +1,10 @@
+### [5.11.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.11.0...v5.11.1) (2020-04-28)
+
+
+### Fixes
+
+* **RowColumn:** integrate a Grid system for RowColumns ([4dc9d5f](https://github.com/ho-nl/project-reachdigital.nl/commit/4dc9d5f4a7fb3533f860c5b61fa5a1058e46ac39))
+
 ## [5.11.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.10.0...v5.11.0) (2020-04-28)
 
 
