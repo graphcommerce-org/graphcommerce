@@ -1,7 +1,7 @@
 {
   "name": "project-reachdigital.nl",
   "homepage": "https://project-reachdigital-nl.now.sh/",
-  "version": "5.10.0",
+  "version": "5.11.1",
   "private": true,
   "engines": {
     "node": "12.x"
@@ -11,9 +11,8 @@
     "dev-next": "next dev",
     "dev-codegen": "graphql-codegen -r dotenv/config -w",
     "dev-storybook": "start-storybook --quiet -p 6006",
-    "build": "graphql-codegen -r dotenv/config && yarn build-storybook -o public/storybook --quiet && next build",
-    "start": "next start",
-    "semantic-release": "semantic-release"
+    "build": "graphql-codegen -r dotenv/config && next build",
+    "start": "next start"
   },
   "sideEffects": false,
   "dependencies": {
@@ -74,6 +73,7 @@
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^5.3.18",
     "@storybook/source-loader": "^5.3.17",
+    "@storybook/storybook-deployer": "^2.8.5",
     "@types/node": "^13.13.4",
     "@types/react": "^16.9.34",
     "@types/resize-observer-browser": "^0.1.3",
