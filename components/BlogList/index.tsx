@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const BlogList: React.FC<GQLGetBlogListQuery> = ({ blogPosts }) => {
   const classes = useStyles()
   return (
-    <Container maxWidth='xl' className={classes.blogList}>
+    <Container maxWidth='lg' className={classes.blogList}>
       {blogPosts.map((blogPost) => (
         <BlogListItem key={blogPost.id} {...blogPost} />
       ))}
