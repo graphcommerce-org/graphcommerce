@@ -18,6 +18,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      - run: yarn storybook-to-ghpages -- --ci --host-token-env-variable=GITHUB_TOKEN
+      - run: yarn storybook-to-ghpages -- --ci --quiet --host-token-env-variable=GITHUB_TOKEN
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
