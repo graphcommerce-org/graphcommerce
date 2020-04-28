@@ -23,7 +23,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.51",
     "@material-ui/styles": "^4.9.6",
-    "@next/bundle-analyzer": "^9.3.4",
+    "@next/bundle-analyzer": "^9.3.6",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.17",
