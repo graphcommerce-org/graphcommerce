@@ -1,3 +1,75 @@
+## [5.11.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.10.0...v5.11.0) (2020-04-28)
+
+### Features
+
+- deploy storybook to github pages
+  ([ac1b55f](https://github.com/ho-nl/project-reachdigital.nl/commit/ac1b55fd435421cf63c68ad5418a60f690f35b93))
+
+## [5.10.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.3...v5.10.0) (2020-04-28)
+
+### Features
+
+- **bundlesize:** added bundlesize check to github actions
+  ([36b58b9](https://github.com/ho-nl/project-reachdigital.nl/commit/36b58b956f2a7e4af99c9b05618874ded789b891))
+
+### Fixes
+
+- **bundlesize:** do not check for duplicate
+  ([8c44689](https://github.com/ho-nl/project-reachdigital.nl/commit/8c44689cf809d547702c8cb999099894bdfc0a8f))
+
+### [5.9.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.2...v5.9.3) (2020-04-26)
+
+### Fixes
+
+- **sitemap:** if en page is related to nl page do not give own entry
+  ([39d60e6](https://github.com/ho-nl/project-reachdigital.nl/commit/39d60e645246de40ff9aa554160526b1bc644b71))
+
+### [5.9.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.1...v5.9.2) (2020-04-25)
+
+### Fixes
+
+- simplified release notes in slack
+  ([88d5118](https://github.com/ho-nl/project-reachdigital.nl/commit/88d5118732645237cfb125ef3dcafeac87744f9e))
+
+### [5.9.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.9.0...v5.9.1) (2020-04-25)
+
+### Fixes
+
+- **releases:** simpler message template
+  ([7d9114c](https://github.com/ho-nl/project-reachdigital.nl/commit/7d9114c38c70d00e9dc6868b67900eae8369c8e0))
+
+## [5.9.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.5...v5.9.0) (2020-04-25)
+
+### Features
+
+- **releases:** added slack success message
+  ([335dd99](https://github.com/ho-nl/project-reachdigital.nl/commit/335dd996196ce444714502d38360690e1b78dd03))
+
+### [5.8.5](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.4...v5.8.5) (2020-04-22)
+
+### Fixes
+
+- added homepage to package.json
+  ([457100f](https://github.com/ho-nl/project-reachdigital.nl/commit/457100fb946b584d88c427b9f50f59c3e7612871))
+- generate graphql files folder on build
+  ([b112531](https://github.com/ho-nl/project-reachdigital.nl/commit/b1125313d0da216bee03c1e5a5d9eee6fdd8477f))
+- remove generated from git
+  ([3613dcb](https://github.com/ho-nl/project-reachdigital.nl/commit/3613dcb9baffd22d7597fba99206973ca5806416))
+
+### [5.8.4](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.3...v5.8.4) (2020-04-22)
+
+### Fixes
+
+- **metarobots:** metaRobots is now required in GraphCMS
+  ([fb64921](https://github.com/ho-nl/project-reachdigital.nl/commit/fb64921353bb914c1ce32bfa713af82f7412b9b7))
+
+### [5.8.3](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.2...v5.8.3) (2020-04-21)
+
+### Fixes
+
+- **bloglist:** use releaseDate instead of publishDate
+  ([c7f4d7e](https://github.com/ho-nl/project-reachdigital.nl/commit/c7f4d7e7b8a9a78908c56cb52d2907e7e3d70358))
+
 ### [5.8.2](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.8.1...v5.8.2) (2020-04-21)
 
 ### Fixes

@@ -1,0 +1,31 @@
+name: 'bundlesize'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+jobs:
+  bundlesize: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: new
+      - uses: actions/checkout@v2
+        with:
+          path: old
+          ref: master # Change this if you want to compare to a different bundle
+      - run: yarn --frozen-lockfile --cwd ./new # install PR depedendencies
+      - run: yarn --cwd ./new build > new.txt # build PR branch
+        env:
+          GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
+          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
+      - run: yarn --frozen-lockfile --cwd ./old # install main branch dependencies
+      - run: yarn --cwd ./old build > old.txt # build main branch
+        env:
+          GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
+          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
+      - uses: ho-nl/next-bundlesize-action@master # create diff markdown
+        id: 'bundlesize'
+      - uses: unsplash/comment-on-pr@master # create comment on PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: ${{steps.bundlesize.outputs.diff}}

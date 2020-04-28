@@ -3,23 +3,25 @@ on:
   push:
     branches:
       - master
-      - canary
 jobs:
   release:
     name: Release
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-      - name: Release
+      - run: yarn --frozen-lockfile
+      - run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        run: yarn semantic-release
+      - run: graphql-codegen -r dotenv/config
+        env:
+          GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
+          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
+      - run: yarn storybook-to-ghpages -- --ci --quiet --host-token-env-variable=GITHUB_TOKEN
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

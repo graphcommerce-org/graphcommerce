@@ -69,21 +69,20 @@ const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
   title,
   url,
   metaRobots,
-  documentInStages,
+  releaseDate,
   asset,
   locale,
 }) => {
   const classes = useStyles()
-  const publishedAt = documentInStages?.[0]?.publishedAt
 
-  const publishedAtFormatted = new Date(publishedAt).toLocaleDateString(locale, {
+  const publishedAtFormatted = new Date(releaseDate).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   })
 
   return (
-    <Link href={url} metaRobots={metaRobots!} className={classes.href}>
+    <Link href={url} metaRobots={metaRobots} className={classes.href}>
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (

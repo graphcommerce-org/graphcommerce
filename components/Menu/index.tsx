@@ -129,7 +129,7 @@ const Menu: React.FC<{
           <Link
             key={root.id}
             href={root.url}
-            metaRobots={root.metaRobots!}
+            metaRobots={root.metaRobots}
             color='inherit'
             className={classes.menuLink}
           >
@@ -148,7 +148,7 @@ const Menu: React.FC<{
           <Link
             key={localization.url}
             href={localization.url}
-            metaRobots={localization.metaRobots!}
+            metaRobots={localization.metaRobots}
             color='inherit'
             className={classes.menuLink}
           >
