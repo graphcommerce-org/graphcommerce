@@ -1,3 +1,36 @@
+## [5.12.0](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.11.1...v5.12.0) (2020-04-28)
+
+
+### Features
+
+* **blog-view:** added ability to render tables and video’s and assets ([3b4e77d](https://github.com/ho-nl/project-reachdigital.nl/commit/3b4e77d29d80a231e37216557620fdfb97694759))
+* **blog-view:** added JSON-LD schema markup for google ([268cedb](https://github.com/ho-nl/project-reachdigital.nl/commit/268cedbfb2a17d952a9b226e4c15adc0c5995d64))
+
+
+### Fixes
+
+* **aboutus:** wrap the page inside a container ([eb11331](https://github.com/ho-nl/project-reachdigital.nl/commit/eb11331d1fbd084adcd607111644d6d3bdabaff2))
+* **asset:** solve asset incompatible mime types in content renderer ([0a4f580](https://github.com/ho-nl/project-reachdigital.nl/commit/0a4f580e42a74cc69c45a90856f29d95e462da8f))
+* **authorcard:** use GQLPersonFragment to render asset ([dbc0963](https://github.com/ho-nl/project-reachdigital.nl/commit/dbc0963f73420939e8a80c0c89f111d2dfafa557))
+* **blog-view:** created usRichTextStyles ([78cb863](https://github.com/ho-nl/project-reachdigital.nl/commit/78cb863876642a87bbf2420598ed9bb89768d53c))
+* **blog-view:** extend page query and use containers for rendering ([3fa243d](https://github.com/ho-nl/project-reachdigital.nl/commit/3fa243d50755af5ab1d6967ec15a39c28be6799c))
+* **blog-view:** fix build issues ([b4a7c6d](https://github.com/ho-nl/project-reachdigital.nl/commit/b4a7c6d90137e2d8c3a00c35b8ada3ed5f7cc83b))
+* **blog-view:** fix releasedatecard SSR issue ([a1ff48c](https://github.com/ho-nl/project-reachdigital.nl/commit/a1ff48c3aec44df6df2e7ee3d61ec9e030fe8e25))
+* add Intl support to node 12.x, solves ssr issue ([20fcb40](https://github.com/ho-nl/project-reachdigital.nl/commit/20fcb403db1ea611151bb3d76231312630254622))
+* **blog-view:** make sure an author has an avatar ([ca72c28](https://github.com/ho-nl/project-reachdigital.nl/commit/ca72c28067031e5f183bbf410a61949ffb971700))
+* **blog-view:** move BlogView styles to its own folder ([8f8a71b](https://github.com/ho-nl/project-reachdigital.nl/commit/8f8a71bb78e9d1912fde1c0eb16a294c5546fbec))
+* **blog-view:** moved styles from theme.typography to Typography component ([9e566dd](https://github.com/ho-nl/project-reachdigital.nl/commit/9e566dd4afa904395224648843fe8d8d0de5c3fc))
+* **blog-view:** renamed to ReleaseDateCard ([55181dc](https://github.com/ho-nl/project-reachdigital.nl/commit/55181dc999f8bbab4a81fb593ba130e18fb058c2))
+* **filestackpicture:** removed style declaration of element ([78d6225](https://github.com/ho-nl/project-reachdigital.nl/commit/78d6225654d86d45b051b177d9d796dd6ba243e0))
+* **global:** change the max-width for MD container sizes ([1c35242](https://github.com/ho-nl/project-reachdigital.nl/commit/1c35242e86ec561a07704e1a503f1b74ed79290f))
+* **main-menu:** fix height issues with styling ([4497bc7](https://github.com/ho-nl/project-reachdigital.nl/commit/4497bc7b4fc36f842a8cbba49695176cd02b0452))
+* **menu:** remove the theming rules and replace by own CSS ([dce0aaf](https://github.com/ho-nl/project-reachdigital.nl/commit/dce0aafd7819631609660e4c956a0fb6e0259a2b))
+* **richtext:** add styling to the richtext image component ([5eb7fa5](https://github.com/ho-nl/project-reachdigital.nl/commit/5eb7fa50f63111c6d9bc58e5da57a2b27e4a306d))
+* **RowColumn:** integrate a Grid system for RowColumns ([a43c128](https://github.com/ho-nl/project-reachdigital.nl/commit/a43c128e68baa6813dc42da80434b11e562a5a73))
+* **singleblog:** add the featured image section + put the contactForm in a shadowed box ([773db5e](https://github.com/ho-nl/project-reachdigital.nl/commit/773db5e60138bcf672a34e3e54984d2aa2a36748))
+* **singleblogpost:** add default single-blogpost components ([4550571](https://github.com/ho-nl/project-reachdigital.nl/commit/45505715c22c74b2fa34a31f64fe30bb7c7ae9c4))
+* **typography:** add theming css for the h1-h6 tags ([72548a0](https://github.com/ho-nl/project-reachdigital.nl/commit/72548a04223c9458505dd0e0ba2408b146a54a2d))
+
 ### [5.11.1](https://github.com/ho-nl/project-reachdigital.nl/compare/v5.11.0...v5.11.1) (2020-04-28)
 
 ### Fixes
