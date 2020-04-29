@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import Link from '../Link'
 import Asset, { MimeTypes } from '../Asset'
-import useRichTextStyles from './useRichTextStyles'
+import useRichTextStyles, { RichTextStylesProps } from './useRichTextStyles'
 
 export interface ValueJSON {
   document: DocumentJSON
@@ -13,7 +13,7 @@ type NodeJSON = DocumentJSON | InlineJSON | TextJSON | BlockJSON
 
 interface DocumentJSON {
   nodes: NodeJSON[]
-  data?: { [key: string]: any }
+  data?: { [key: string]: unknown }
   object: 'document'
 }
 
@@ -42,7 +42,7 @@ interface SimpleBlockJSON {
     | 'list-item'
     | 'list-item-child'
   nodes: NodeJSON[]
-  data?: { [key: string]: any }
+  data?: { [key: string]: unknown }
   object: 'block'
 }
 
@@ -114,8 +114,8 @@ interface LinkJSON {
   data: { href: string }
 }
 
-const RenderInline: React.FC<InlineJSON> = (inline) => {
-  const childNodes = <RenderNodes nodes={inline.nodes} />
+const RenderInline: React.FC<InlineJSON & RichTextStylesProps> = ({ condensed, ...inline }) => {
+  const childNodes = <RenderNodes nodes={inline.nodes} condensed={condensed} />
 
   switch (inline.type) {
     case 'link':
@@ -150,80 +150,81 @@ const RenderMark: React.FC<Mark> = (mark) => {
     case 'code':
       return <code>{mark.children}</code>
     default:
+      // eslint-disable-next-line no-console
       console.log(`UNKOWNN MARK TYPE ${mark.type}`, mark)
       return <>{mark.children}</>
   }
 }
 
-const RenderBlock: React.FC<BlockJSON> = (block) => {
-  const { asset, ...typographyClasses } = useRichTextStyles()
+const RenderBlock: React.FC<BlockJSON & { condensed: boolean }> = ({ condensed, ...block }) => {
+  const { asset, ...typographyClasses } = useRichTextStyles({ condensed })
   switch (block.type) {
     case 'heading-one':
       return (
         <Typography variant='h1' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'heading-two':
       return (
         <Typography variant='h2' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'heading-three':
       return (
         <Typography variant='h3' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'heading-four':
       return (
         <Typography variant='h4' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'heading-five':
       return (
         <Typography variant='h5' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'heading-six':
       return (
         <Typography variant='h6' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'paragraph':
       return (
         <Typography variant='body1' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'bulleted-list':
       return (
         <Typography component='ul' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'numbered-list':
       return (
         <Typography component='ol' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'list-item':
       return (
         <li>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </li>
       )
     case 'list-item-child':
-      return <RenderNodes nodes={block.nodes} />
+      return <RenderNodes nodes={block.nodes} condensed={condensed} />
     case 'block-quote':
       return (
         <Typography component='blockquote' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </Typography>
       )
     case 'iframe':
@@ -250,15 +251,15 @@ const RenderBlock: React.FC<BlockJSON> = (block) => {
           {block.data.header ? (
             <>
               <thead>
-                <RenderNodes nodes={block.nodes.slice(0, 1)} />
+                <RenderNodes nodes={block.nodes.slice(0, 1)} condensed={condensed} />
               </thead>
               <tbody>
-                <RenderNodes nodes={block.nodes.slice(1)} />
+                <RenderNodes nodes={block.nodes.slice(1)} condensed={condensed} />
               </tbody>
             </>
           ) : (
             <tbody>
-              <RenderNodes nodes={block.nodes} />
+              <RenderNodes nodes={block.nodes} condensed={condensed} />
             </tbody>
           )}
         </table>
@@ -266,34 +267,35 @@ const RenderBlock: React.FC<BlockJSON> = (block) => {
     case 'table_row':
       return (
         <tr>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </tr>
       )
     case 'table_cell':
       return (
         <td>
-          <RenderNodes nodes={block.nodes} />
+          <RenderNodes nodes={block.nodes} condensed={condensed} />
         </td>
       )
     default:
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return <div>UNKOWNN BLOCK TYPE {block.type}</div>
   }
 }
 
-const RenderNodes: React.FC<{ nodes: NodeJSON[] }> = ({ nodes }) => {
+const RenderNodes: React.FC<{ nodes: NodeJSON[]; condensed: boolean }> = ({ nodes, condensed }) => {
   return (
     <>
       {nodes.map((node, key) => (
         // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
         // eslint-disable-next-line react/no-array-index-key
-        <RenderNode {...node} key={key} />
+        <RenderNode {...node} key={key} condensed={condensed} />
       ))}
     </>
   )
 }
 
-const RenderNode: React.FC<NodeJSON> = (node) => {
+const RenderNode: React.FC<NodeJSON & { condensed: boolean }> = (node) => {
   switch (node.object) {
     case 'block':
       return <RenderBlock {...node} />
@@ -304,13 +306,14 @@ const RenderNode: React.FC<NodeJSON> = (node) => {
     case 'text':
       return <RenderText {...node} />
     default:
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       throw Error(`RenderNode object ${node.object} not implemented`)
   }
 }
 
-const RichText: React.FC<GQLRichTextFragment & { raw: ValueJSON }> = ({ raw }) => (
-  <RenderNodes {...raw.document} />
-)
+const RichText: React.FC<{ raw: ValueJSON; condensed?: true }> = ({ raw, condensed = false }) => {
+  return <RenderNodes condensed={condensed} {...raw.document} />
+}
 
 export default RichText

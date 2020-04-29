@@ -1,0 +1,19 @@
+fragment Footer on Footer {
+  locale
+  id
+  links {
+    ...LinkInternal
+  }
+  contact {
+    ...RichText
+  }
+  text {
+    ...RichText
+  }
+  address {
+    ...RichText
+  }
+  contactLink {
+    ...LinkInternal
+  }
+}

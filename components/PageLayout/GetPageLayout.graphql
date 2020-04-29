@@ -5,6 +5,9 @@ query GetPageLayout($url: String!, $locale: Locale!) {
   mainMenu: menu(where: { identity: "main" }) {
     ...Menu
   }
+  footer: footer(where: { identity: "footer" }, locales: [$locale]) {
+    ...Footer
+  }
   team: people(first: 1) {
     ...Person
   }

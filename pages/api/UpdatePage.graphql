@@ -1,5 +1,0 @@
-mutation UpdatePage($id: ID!, $page: PageUpdateInput!) {
-  updatePage(data: $page, where: { id: $id }) {
-    id
-  }
-}

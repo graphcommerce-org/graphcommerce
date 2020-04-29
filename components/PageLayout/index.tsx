@@ -8,6 +8,7 @@ import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
 import { GQLGetStaticProps } from '../../lib/staticParams'
+import Footer from '../Footer'
 
 export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
   page: GQLGetPageLayoutQuery['pages'][0]
@@ -15,9 +16,10 @@ export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
 
 export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
 
-const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, team }) => {
+const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, team, footer }) => {
   if (!page) return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
-  if (!mainMenu) return <Error statusCode={404} title='Main menu not loaded' />
+  if (!mainMenu) return <Error statusCode={500} title='Main menu not loaded' />
+  if (!footer) return <Error statusCode={500} title='Footer not loaded' />
 
   return (
     <ThemedProvider>
@@ -30,6 +32,7 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, te
       <PageLoadIndicator />
       <Header menu={mainMenu} page={page} team={team} />
       {children}
+      <Footer {...footer} />
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )

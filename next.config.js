@@ -29,6 +29,7 @@ module.exports = withImages(
       rewrites() {
         return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
       },
+      reactRefresh: true,
     },
   }),
 )
