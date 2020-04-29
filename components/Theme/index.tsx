@@ -57,12 +57,18 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       column: string
       gutter: string
     }
+    spacings: {
+      xl: string
+    }
   }
   interface ThemeOptions {
     gridSpacing: {
       row: string
       column: string
       gutter: string
+    }
+    spacings: {
+      xl: string
     }
   }
 }
@@ -140,6 +146,9 @@ export const theme = createMuiTheme({
     column: vpCalc(18, 60),
     row: vpCalc(12, 40),
     gutter: vpCalc(27, 90),
+  },
+  spacings: {
+    xl: vpCalc(48, 160),
   },
   overrides: {
     MuiCssBaseline: {
