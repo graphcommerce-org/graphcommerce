@@ -8,16 +8,20 @@ export const setRenderers = (newRenderers: Renderers): void => {
   renderers = { ...renderers, ...newRenderers }
 }
 
+export type ContentRowProps = {
+  index: number
+}
+
 const ContentRenderer: React.FC<GQLContentRendererFragment & { customRenderers?: Renderers }> = (
   props,
 ) => {
   const { content, customRenderers = {} } = props
   return (
     <>
-      {content.map((item) => {
+      {content.map((item, index) => {
         const Component = customRenderers[item.__typename] ?? renderers[item.__typename]
         return Component ? (
-          <Component key={item.id} {...item} />
+          <Component key={item.id} {...item} index={index} />
         ) : (
           <div key={item.id}>Content block with type {item.__typename} not implemented/loading</div>
         )
