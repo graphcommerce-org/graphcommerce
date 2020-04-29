@@ -1,40 +1,50 @@
 import React from 'react'
-import { makeStyles, Theme, Grid } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import RichText from '../RichText'
-import { vpCalc } from '../Theme'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    background: 'red',
-    display: 'flex',
-    justifyContent: 'space-between',
-    '& > div': {
-      background: 'pink',
-      padding: vpCalc(16, 50),
+    display: 'grid',
+    padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
+    gridColumnGap: theme.gridSpacing.column,
+    gridRowGap: theme.gridSpacing.row,
+    gridTemplateColumns: `1fr`,
+    gridTemplateAreas: `
+      "one"
+      "two"
+      "three"
+    `,
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: `1fr 1fr`,
+      gridTemplateAreas: `
+        "one two"
+        "three three"
+      `,
+    },
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: `1fr 1fr 1fr`,
+      gridTemplateAreas: '"one two three"',
     },
   },
-}))
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-  },
+  colOne: { gridArea: 'one' },
+  colTwo: { gridArea: 'two' },
+  colThree: { gridArea: 'three' },
 }))
 
 const RowColumnThree: React.FC<GQLRowColumnThreeFragment> = ({ colOne, colTwo, colThree }) => {
+  const classes = useStyles()
+
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={4}>
-          <RichText {...colOne} />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <RichText {...colTwo} />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <RichText {...colThree} />
-        </Grid>
-      </Grid>
+      <div className={classes.colOne}>
+        <RichText {...colOne} />
+      </div>
+      <div className={classes.colTwo}>
+        <RichText {...colTwo} />
+      </div>
+      <div className={classes.colThree}>
+        <RichText {...colThree} />
+      </div>
     </div>
   )
 }
