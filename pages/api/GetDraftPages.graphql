@@ -1,7 +1,0 @@
-query GetDraftPages($skip: Int! = 0) {
-  pages(stage: DRAFT, skip: $skip) {
-    url
-    id
-    stage
-  }
-}
