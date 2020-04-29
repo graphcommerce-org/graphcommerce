@@ -1,7 +1,7 @@
 import React from 'react'
 import RichText from '../RichText'
 
-const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, description }) => {
+const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, title, description }) => {
   if (description) {
     return (
       <div>
@@ -9,7 +9,7 @@ const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, descrip
           <RichText {...description} />
         </div>
         <a href={url} rel='nofollow noopener noreferrer' target='_blank'>
-          {exTitle}
+          {title}
         </a>
       </div>
     )
@@ -17,7 +17,7 @@ const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, exTitle, descrip
 
   return (
     <a href={url} rel='nofollow noopener noreferrer' target='_blank'>
-      {exTitle}
+      {title}
     </a>
   )
 }

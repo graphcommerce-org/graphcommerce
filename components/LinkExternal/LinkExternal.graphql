@@ -1,7 +1,7 @@
 fragment LinkExternal on LinkExternal {
   __typename
   id
-  exTitle: title
+  title
   description {
     ...RichText
   }
