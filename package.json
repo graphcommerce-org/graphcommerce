@@ -1,7 +1,7 @@
 {
   "name": "project-reachdigital.nl",
   "homepage": "https://project-reachdigital-nl.now.sh/",
-  "version": "5.11.0",
+  "version": "5.13.0",
   "private": true,
   "engines": {
     "node": "12.x"
@@ -12,8 +12,7 @@
     "dev-codegen": "graphql-codegen -r dotenv/config -w",
     "dev-storybook": "start-storybook --quiet -p 6006",
     "build": "graphql-codegen -r dotenv/config && next build",
-    "start": "next start",
-    "semantic-release": "semantic-release"
+    "start": "next start"
   },
   "sideEffects": false,
   "dependencies": {
@@ -24,7 +23,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.51",
     "@material-ui/styles": "^4.9.6",
-    "@next/bundle-analyzer": "^9.3.4",
+    "@next/bundle-analyzer": "^9.3.6",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.17",
@@ -32,8 +31,9 @@
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.1",
+    "intl": "^1.2.5",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.3.5",
+    "next": "9.3.6",
     "next-images": "^1.4.0",
     "now": "^18.0.0",
     "react": "16.13.1",
@@ -61,7 +61,6 @@
     "@graphql-codegen/typescript-operations": "1.13.3",
     "@graphql-codegen/typescript-react-apollo": "1.13.3",
     "@harelpls/storybook-addon-materialui": "^2.0.0",
-    "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
@@ -160,7 +159,6 @@
           }
         }
       ],
-      "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
       "@semantic-release/github",

@@ -1,5 +1,6 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
+import { makeStyles, Container } from '@material-ui/core'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
@@ -24,13 +25,15 @@ const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
 
 const AboutUs: PageWithLayoutFull = ({ page }) => {
   return (
-    <ContentRenderer
-      content={page.content}
-      customRenderers={{
-        RowHero: RowHeroVideoBackground,
-        RowColumnThree: FirstRowYellow,
-      }}
-    />
+    <Container maxWidth='lg'>
+      <ContentRenderer
+        content={page.content}
+        customRenderers={{
+          RowHero: RowHeroVideoBackground,
+          RowColumnThree: FirstRowYellow,
+        }}
+      />
+    </Container>
   )
 }
 

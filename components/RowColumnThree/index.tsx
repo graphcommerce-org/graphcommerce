@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, Grid } from '@material-ui/core'
 import RichText from '../RichText'
 import { vpCalc } from '../Theme'
 
@@ -15,20 +15,26 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const RowColumnThree: React.FC<GQLRowColumnThreeFragment> = ({ colOne, colTwo, colThree }) => {
-  const classes = useStyles()
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+}))
 
+const RowColumnThree: React.FC<GQLRowColumnThreeFragment> = ({ colOne, colTwo, colThree }) => {
   return (
     <div className={classes.root}>
-      <div>
-        <RichText {...colOne} />
-      </div>
-      <div>
-        <RichText {...colTwo} />
-      </div>
-      <div>
-        <RichText {...colThree} />
-      </div>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} md={4}>
+          <RichText {...colOne} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <RichText {...colTwo} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <RichText {...colThree} />
+        </Grid>
+      </Grid>
     </div>
   )
 }

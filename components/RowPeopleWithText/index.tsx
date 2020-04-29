@@ -49,8 +49,8 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment & GQLGetAllPeople
 
   const Right = () => (
     <Paper elevation={10} className={classes.paper}>
-      {people.map(({ avatar }) => (
-        <Asset asset={avatar} width={83} key={avatar.id} compression='lossy' />
+      {people.map(({ avatar, id }) => (
+        <Asset asset={avatar} width={83} key={id} compression='lossy' />
       ))}
     </Paper>
   )

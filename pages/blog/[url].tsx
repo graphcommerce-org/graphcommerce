@@ -1,40 +1,56 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
+import { Container } from '@material-ui/core'
+import { BlogPosting } from 'schema-dts'
+import { JsonLd } from 'react-schemaorg'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../components/PageLayout'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
 import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
+import ReleaseDateCard from '../../components/ReleaseDateCard'
+import ContactFormLoader from '../../components/ContactForm'
+import Asset from '../../components/Asset'
+import useBlogViewStyles from '../../components/BlogView/useBlogViewStyles'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
+  const classes = useBlogViewStyles()
+
   return (
     <>
-      <Typography variant='h1'>{page.title}</Typography>
-      <ContentRenderer content={page.content} />
+      <JsonLd<BlogPosting>
+        item={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: page.metaTitle,
+          image: page.asset?.url,
+          datePublished: page.releaseDate,
+        }}
+      />
+      <Container maxWidth='lg'>
+        <ReleaseDateCard {...page} />
+        <div className={classes.featured}>
+          {page.asset && (
+            <div className={classes.assetWrapper}>
+              <Asset asset={page.asset} className={classes.asset} width={380} />
+            </div>
+          )}
+          <Typography variant='h1' className={classes.pageTitle}>
+            {page.title}
+          </Typography>
+        </div>
+      </Container>
+      <Container className={classes.article}>
+        <ContentRenderer content={page.content} />
+      </Container>
+      <Container maxWidth='lg' className={classes.last}>
+        <ReleaseDateCard {...page} />
+        <div className={classes.boxed}>
+          <ContactFormLoader />
+        </div>
+      </Container>
     </>
   )
-
-  // return (
-  //   <div>
-  //     <JsonLd<BlogPosting>
-  //       item={{
-  //         '@context': 'https://schema.org',
-  //         '@type': 'BlogPosting',
-  //         headline: page.metaTitle!,
-  //         image: page.blogPost.image?.url,
-  //         datePublished: page.blogPost.publicPublishedAt,
-  //       }}
-  //     />
-  //     <h1>
-  //       <Link metaRobots={page.metaRobots} href={page.url!}>
-  //         {page.breadcrumbTitle}
-  //       </Link>
-  //     </h1>
-
-  //     {/* eslint-disable react/no-danger */}
-  //     <div dangerouslySetInnerHTML={{ __html: page.blogPost?.content! }} />
-  //   </div>
-  // )
 }
 
 BlogView.layout = LayoutFull

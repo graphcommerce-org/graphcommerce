@@ -6,9 +6,9 @@ on:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -18,10 +18,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-      - run: graphql-codegen -r dotenv/config
+      - run: yarn graphql-codegen -r dotenv/config
         env:
-          GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
-          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
-      - run: yarn storybook-to-ghpages -- --ci --quiet --host-token-env-variable=GITHUB_TOKEN
+          GRAPHQL: ${{ secrets.GRAPHQL }}
+          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
+      - run: yarn storybook-to-ghpages --ci --quiet
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ho-nl:${{ secrets.GITHUB_TOKEN }}
+          GRAPHQL: ${{ secrets.GRAPHQL }}
+          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}

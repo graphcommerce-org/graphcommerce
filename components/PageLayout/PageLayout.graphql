@@ -1,6 +1,10 @@
 fragment PageLayout on Page {
   id
   locale
+  asset {
+    ...Asset
+  }
+  ...ReleaseDateCard
   ...PageMeta
   ...ContentRenderer
 }
