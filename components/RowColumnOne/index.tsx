@@ -4,7 +4,10 @@ import RichText from '../RichText'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'grid',
+    padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '1fr',
   },
 }))
 
@@ -13,11 +16,7 @@ const RowColumnOne: React.FC<GQLRowColumnOneFragment> = ({ colOne }) => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <RichText {...colOne} />
-        </Grid>
-      </Grid>
+      <RichText {...colOne} />
     </div>
   )
 }
