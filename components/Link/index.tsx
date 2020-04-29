@@ -1,6 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
-import MaterialLink, { LinkProps } from '@material-ui/core/Link'
+import { ButtonProps, Button as MuiButton, Link as MuiLink, LinkProps } from '@material-ui/core'
 import routes from './routes.json'
 
 function getHref(sourceHref: string): string {
@@ -25,9 +25,30 @@ const Link: React.FC<{ href: string; metaRobots: GQLMetaRobots } & LinkProps> = 
 
   return (
     <NextLink href={getHref(href)} as={href} passHref>
-      <MaterialLink {...materialLinkProps}>{children}</MaterialLink>
+      <MuiLink {...materialLinkProps}>{children}</MuiLink>
     </NextLink>
   )
 }
 
 export default Link
+
+// Generate a next/link from a GraphCms Page.
+export const Button: React.FC<{ href: string; metaRobots: GQLMetaRobots } & ButtonProps> = ({
+  href,
+  metaRobots,
+  children,
+  ...buttonProps
+}) => {
+  const materialButtonProps: ButtonProps = {
+    ...buttonProps,
+    ...(metaRobots.includes('NOFOLLOW') && {
+      rel: 'nofollow',
+    }),
+  }
+
+  return (
+    <NextLink href={getHref(href)} as={href} passHref>
+      <MuiButton {...materialButtonProps}>{children}</MuiButton>
+    </NextLink>
+  )
+}
