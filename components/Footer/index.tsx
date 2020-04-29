@@ -1,7 +1,7 @@
 import React from 'react'
 import { Theme, makeStyles, Container } from '@material-ui/core'
 import RichText from '../RichText'
-import Link from '../Link'
+import LinkInternal from '../LinkInternal/LinkInternal'
 
 const useStyles = makeStyles(({ gridSpacing, palette }: Theme) => ({
   footer: {
@@ -37,8 +37,8 @@ const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, co
   const classes = useStyles()
 
   const split = Math.ceil(links.length / 2)
-  const col1 = links.slice(0, split)
-  const col2 = links.slice(split)
+  const linksOne = links.slice(0, split)
+  const linksTwo = links.slice(split)
 
   return (
     <footer className={classes.footer}>
@@ -48,14 +48,18 @@ const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, co
         </div>
         <div className={classes.contactLink}>{contactLink?.title}</div>
         <div className={classes.linksOne}>
-          {col1.map((link) => {
-            return link.title
-          })}
+          {linksOne.map((link) => (
+            <div key={link.id}>
+              <LinkInternal {...link} />
+            </div>
+          ))}
         </div>
         <div className={classes.linksTwo}>
-          {col2.map((link) => {
-            return link.title
-          })}
+          {linksTwo.map((link) => (
+            <div key={link.id}>
+              <LinkInternal {...link} />
+            </div>
+          ))}
         </div>
         <div className={classes.address}>
           <RichText {...address} condensed />

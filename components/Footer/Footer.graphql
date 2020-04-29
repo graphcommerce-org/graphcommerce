@@ -2,9 +2,7 @@ fragment Footer on Footer {
   locale
   id
   links {
-    __typename
     ...LinkInternal
-    ...LinkExternal
   }
   contact {
     ...RichText
@@ -16,8 +14,6 @@ fragment Footer on Footer {
     ...RichText
   }
   contactLink {
-    __typename
     ...LinkInternal
-    ...LinkExternal
   }
 }
