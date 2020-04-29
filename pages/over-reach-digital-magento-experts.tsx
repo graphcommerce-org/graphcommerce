@@ -1,20 +1,12 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { makeStyles, Container } from '@material-ui/core'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
 import RowHeroVideoBackground from '../components/RowHero/RowHeroVideoBackground'
 import RowColumnThree from '../components/RowColumnThree'
 import { ContentRowProps } from '../components/ContentRenderer/ContentRenderer'
-
-const RowColumnThreeYellow: React.FC<GQLRowColumnThreeFragment> = (props) => {
-  return (
-    <div style={{ backgroundColor: 'red' }}>
-      <RowColumnThree {...props} />
-    </div>
-  )
-}
+import RowColumnThreeYellow from '../components/RowColumnThree/RowColumnThreeYellow'
 
 const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
   index,
@@ -25,15 +17,13 @@ const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
 
 const AboutUs: PageWithLayoutFull = ({ page }) => {
   return (
-    <Container maxWidth='lg'>
-      <ContentRenderer
-        content={page.content}
-        customRenderers={{
-          RowHero: RowHeroVideoBackground,
-          RowColumnThree: FirstRowYellow,
-        }}
-      />
-    </Container>
+    <ContentRenderer
+      content={page.content}
+      customRenderers={{
+        RowHero: RowHeroVideoBackground,
+        RowColumnThree: FirstRowYellow,
+      }}
+    />
   )
 }
 
