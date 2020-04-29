@@ -110,6 +110,8 @@ export const theme = createMuiTheme({
       fontSize: vpCalc(36, 74),
       fontWeight: 400,
       letterSpacing: '-0.0375em',
+      marginTop: '0.24em',
+      marginBottom: '0.58em',
     },
     h2: {
       fontSize: vpCalc(24, 48),
@@ -145,6 +147,17 @@ export const theme = createMuiTheme({
           fontDisplay: 'swap',
           src: `url('/fonts/${font}.woff2') format('woff2')`,
         })),
+      },
+    },
+    MuiButton: {
+      root: {
+        textTransform: 'none',
+      },
+      containedPrimary: {
+        color: '#fff',
+      },
+      sizeLarge: {
+        padding: '15px 30px',
       },
     },
   },
