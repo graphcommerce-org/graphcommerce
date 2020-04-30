@@ -3,11 +3,12 @@ import { makeStyles, Theme } from '@material-ui/core'
 import LinkInternal from '../LinkInternal/LinkInternal'
 import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
-import Container, { ContainerStyles } from '../Container'
+import Container from '../Container'
 import logoReachBgShadow from './logo-reach-bg-shadow-secondary.svg'
 import Asset from '../Asset'
+import { RowHeroProps } from '.'
 
-const useContainerStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => ({
+const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   left: {
     alignSelf: 'stretch',
   },
@@ -50,7 +51,7 @@ const useStyles = makeStyles(
   { name: 'RowHeroHome' },
 )
 
-const RowHeroHome: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
+const RowHeroHome: React.FC<RowHeroProps> = ({ text, asset, links }) => {
   const classes = useStyles()
   const containerClasses = useContainerStyles()
 

@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Theme, Grid } from '@material-ui/core'
+import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
+import { UseStyles } from '../Theme'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -11,38 +12,39 @@ const useStyles = makeStyles(
       display: `grid`,
       gridTemplateColumns: `1fr`,
       gridTemplateAreas: `
-      "one"
-      "two"
-    `,
+        "one"
+        "two"
+      `,
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
         gridTemplateAreas: `
-        "one two"
-      `,
+          "one two"
+        `,
       },
     },
-    colOne: {
-      gridArea: 'one',
-    },
-    colTwo: {
-      gridArea: 'two',
-    },
+    colOne: { gridArea: 'one' },
+    colTwo: { gridArea: 'two' },
   }),
   { name: 'RowColumnTwo' },
 )
 
-const RowColumnTwo: React.FC<GQLRowColumnTwoFragment> = ({ colOne, colTwo }) => {
-  const classes = useStyles()
+export type RowColumnTwoProps = GQLRowColumnTwoFragment &
+  UseStyles<typeof useStyles> &
+  ContainerProps
+
+const RowColumnTwo: React.FC<RowColumnTwoProps> = (props) => {
+  const { colOne, colTwo, ...containerProps } = props
+  const classes = useStyles(props)
 
   return (
-    <div className={classes.root}>
+    <Container className={classes.root} {...containerProps}>
       <div className={classes.colOne}>
         <RichText {...colOne} />
       </div>
       <div className={classes.colTwo}>
         <RichText {...colTwo} />
       </div>
-    </div>
+    </Container>
   )
 }
 

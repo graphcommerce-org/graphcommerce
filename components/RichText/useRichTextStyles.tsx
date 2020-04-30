@@ -1,26 +1,26 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { vpCalc } from '../Theme'
 
-export type RichTextStylesProps = {
-  condensed: boolean
-}
-
-const useRichTextStyles = makeStyles<Theme, RichTextStylesProps>(
+const useRichTextStyles = makeStyles(
   {
-    body1: ({ condensed }) => ({
-      ...(!condensed && { marginBottom: '1em' }),
-    }),
-    h1: ({ condensed }) => ({
-      fontWeight: 400,
-      ...(!condensed && { marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) }),
-    }),
-    h2: ({ condensed }) => ({
-      ...(!condensed && { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) }),
-    }),
-    h3: ({ condensed }) => ({
-      ...(!condensed && { marginTop: vpCalc(22, 30), marginBottom: vpCalc(22, 30) }),
-    }),
+    paragraph: { marginBottom: '1em' },
+    h1: { fontWeight: 400, marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
+    h2: { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) },
+    h3: { marginTop: vpCalc(22, 30), marginBottom: vpCalc(22, 30) },
+    h4: {},
+    h5: {},
+    h6: {},
     asset: { width: '100%', height: 'auto' },
+    blockQuote: {},
+    ol: {},
+    ul: {},
+    strong: {},
+    italic: {},
+    underlined: {},
+    code: {},
+    iframe: {},
+    table: {},
+    link: {},
   },
   { name: 'RichText' },
 )

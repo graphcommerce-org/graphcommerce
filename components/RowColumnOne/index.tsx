@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
+import { UseStyles } from '../Theme'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -10,17 +11,25 @@ const useStyles = makeStyles(
       gridTemplateColumns: '1fr',
       gridTemplateRows: '1fr',
     },
+    colOne: { gridArea: 'one' },
   }),
   { name: 'RowColumnOne' },
 )
 
-const RowColumnOne: React.FC<GQLRowColumnOneFragment> = ({ colOne }) => {
-  const classes = useStyles()
+export type RowColumnOneProps = GQLRowColumnOneFragment &
+  UseStyles<typeof useStyles> &
+  ContainerProps
+
+const RowColumnOne: React.FC<RowColumnOneProps> = (props) => {
+  const { colOne, ...containerProps } = props
+  const classes = useStyles(props)
 
   return (
-    <div className={classes.root}>
-      <RichText {...colOne} />
-    </div>
+    <Container className={classes.root} {...containerProps}>
+      <div className={classes.colOne}>
+        <RichText {...colOne} />
+      </div>
+    </Container>
   )
 }
 

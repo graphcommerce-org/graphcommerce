@@ -1,21 +1,28 @@
 import React from 'react'
+import { ContainerProps } from '@material-ui/core'
 import ScrollSnapSlider from '../ScrollSnapSlider'
 import Container from '../Container'
 import Asset from '../Asset'
 
-const RowCompanySlider: React.FC<GQLRowCompanySliderFragment> = ({ companies }) => {
+export type RowCompanySliderProps = GQLRowCompanySliderFragment & ContainerProps
+
+const RowCompanySlider: React.FC<GQLRowCompanySliderFragment> = ({
+  companies,
+  ...containerProps
+}) => {
   return (
-    <Container>
+    <Container {...containerProps}>
       <ScrollSnapSlider>
-        {companies
-          .filter((company) => company.logo && company.logo.width && company.logo.height)
-          .map((company) => (
+        {companies.map((company) => {
+          if (!company.logo?.width || !company.logo?.height) return null
+          return (
             <Asset
               asset={company.logo}
               key={company.id}
-              width={Math.round((company.logo.width! / company.logo.height!) * 100)}
+              width={Math.round((company.logo.width / company.logo.height) * 100)}
             />
-          ))}
+          )
+        })}
       </ScrollSnapSlider>
     </Container>
   )
