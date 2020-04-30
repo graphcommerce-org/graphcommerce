@@ -3,13 +3,16 @@ import { makeStyles } from '@material-ui/core'
 import Asset from '../Asset'
 import Link from '../Link'
 
-const useStyles = makeStyles({
-  image: {
-    display: 'block',
-    width: '100%',
-    height: 'auto',
+const useStyles = makeStyles(
+  {
+    image: {
+      display: 'block',
+      width: '100%',
+      height: 'auto',
+    },
   },
-})
+  { name: 'PortfolioListItem' },
+)
 
 const PortfolioListItem: React.FC<GQLPortfolioListitemFragment> = ({
   title,

@@ -11,23 +11,26 @@ const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   after: { backgroundColor: theme.palette.grey[300] },
 }))
 
-const useStyles = makeStyles<Theme>((theme) => ({
-  paper: {
-    backgroundColor: theme.palette.primary.main,
-    display: 'grid',
-    padding: vpCalc(16, 64),
-    gridRowGap: vpCalc(8, 32),
-    gridColumnGap: vpCalc(8, 32),
-    justifyContent: 'space-around',
-    gridTemplateColumns: `repeat(auto-fill, ${vpCalc(80, 120)})`,
-    '& img': {
-      width: vpCalc(80, 120),
-      height: 'auto',
-      display: 'block',
-      mixBlendMode: 'multiply',
+const useStyles = makeStyles<Theme>(
+  (theme) => ({
+    paper: {
+      backgroundColor: theme.palette.primary.main,
+      display: 'grid',
+      padding: vpCalc(16, 64),
+      gridRowGap: vpCalc(8, 32),
+      gridColumnGap: vpCalc(8, 32),
+      justifyContent: 'space-around',
+      gridTemplateColumns: `repeat(auto-fill, ${vpCalc(80, 120)})`,
+      '& img': {
+        width: vpCalc(80, 120),
+        height: 'auto',
+        display: 'block',
+        mixBlendMode: 'multiply',
+      },
     },
-  },
-}))
+  }),
+  { name: 'RowPeopleWithText' },
+)
 
 const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment & GQLGetAllPeopleQuery> = ({
   links,

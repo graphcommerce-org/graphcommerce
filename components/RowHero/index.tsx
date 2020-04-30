@@ -17,11 +17,14 @@ const useContainerStyles = makeStyles({
   before: {},
 })
 
-const useStyles = makeStyles({
-  video: {
-    width: '100%',
+const useStyles = makeStyles(
+  {
+    video: {
+      width: '100%',
+    },
   },
-})
+  { name: 'RowHero' },
+)
 
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer

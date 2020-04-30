@@ -2,34 +2,37 @@ import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 import RichText from '../RichText'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'grid',
-    padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
-    gridColumnGap: theme.gridSpacing.column,
-    gridRowGap: theme.gridSpacing.row,
-    gridTemplateColumns: `1fr`,
-    gridTemplateAreas: `
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      display: 'grid',
+      padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
+      gridColumnGap: theme.gridSpacing.column,
+      gridRowGap: theme.gridSpacing.row,
+      gridTemplateColumns: `1fr`,
+      gridTemplateAreas: `
       "one"
       "two"
       "three"
     `,
-    [theme.breakpoints.up('sm')]: {
-      gridTemplateColumns: `1fr 1fr`,
-      gridTemplateAreas: `
+      [theme.breakpoints.up('sm')]: {
+        gridTemplateColumns: `1fr 1fr`,
+        gridTemplateAreas: `
         "one two"
         "three three"
       `,
+      },
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: `1fr 1fr 1fr`,
+        gridTemplateAreas: '"one two three"',
+      },
     },
-    [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: `1fr 1fr 1fr`,
-      gridTemplateAreas: '"one two three"',
-    },
-  },
-  colOne: { gridArea: 'one' },
-  colTwo: { gridArea: 'two' },
-  colThree: { gridArea: 'three' },
-}))
+    colOne: { gridArea: 'one' },
+    colTwo: { gridArea: 'two' },
+    colThree: { gridArea: 'three' },
+  }),
+  { name: 'RowColumnThree' },
+)
 
 const RowColumnThree: React.FC<GQLRowColumnThreeFragment> = ({ colOne, colTwo, colThree }) => {
   const classes = useStyles()

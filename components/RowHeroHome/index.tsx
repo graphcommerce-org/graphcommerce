@@ -23,29 +23,32 @@ const useContainerStyles = makeStyles<Theme, ContainerStyles>((theme: Theme) => 
   before: {},
 }))
 
-const useStyles = makeStyles({
-  assetContainer: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    minHeight: '50vh',
-    overflow: 'hidden',
+const useStyles = makeStyles(
+  {
+    assetContainer: {
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+      minHeight: '50vh',
+      overflow: 'hidden',
+    },
+    asset: {
+      position: 'absolute',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      height: '100%',
+      width: 'auto',
+    },
+    logo: {
+      position: 'absolute',
+      height: '100%',
+      maxWidth: '92%',
+      bottom: 0,
+      right: 0,
+    },
   },
-  asset: {
-    position: 'absolute',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    height: '100%',
-    width: 'auto',
-  },
-  logo: {
-    position: 'absolute',
-    height: '100%',
-    maxWidth: '92%',
-    bottom: 0,
-    right: 0,
-  },
-})
+  { name: 'RowHeroHome' },
+)
 
 const RowHeroHome: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
   const classes = useStyles()

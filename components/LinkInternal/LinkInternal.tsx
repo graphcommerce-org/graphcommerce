@@ -2,6 +2,9 @@ import React from 'react'
 import RichText from '../RichText'
 import Link from '../Link'
 
+/**
+ * @deprecated Please use ../Link directly
+ */
 const LinkInternal: React.FC<GQLLinkInternalFragment> = ({ page, id, title, description }) => {
   if (!page) {
     return <div>InternalLink (id: {id}) doesn&apos;t have a page assigned..</div>
