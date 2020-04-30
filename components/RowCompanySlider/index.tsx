@@ -5,7 +5,7 @@ import Asset from '../Asset'
 
 export type RowCompanySliderProps = GQLRowCompanySliderFragment &
   ContainerProps & {
-    slider: ScrollSnapSliderProps
+    slider?: ScrollSnapSliderProps
   }
 
 const RowCompanySlider: React.FC<RowCompanySliderProps> = ({
