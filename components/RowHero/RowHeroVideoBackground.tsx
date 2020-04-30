@@ -71,9 +71,14 @@ const useContainerStyles = makeStyles((theme: Theme) => ({
   after: { position: 'relative' },
 }))
 
+const useCtaStyles = makeStyles({
+  paragraph: { marginBottom: 0 },
+})
+
 const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) => {
   const classes = useStyles()
   const containerClasses = useContainerStyles()
+  const ctaClasses = useCtaStyles()
 
   const left = (
     <div>
@@ -85,7 +90,7 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) 
           return (
             <div key={link.id} className={classes.ctaBlock}>
               <small>
-                <RichText {...link.description} />
+                <RichText {...link.description} classes={ctaClasses} />
               </small>
               <Button
                 href={link.page.url}

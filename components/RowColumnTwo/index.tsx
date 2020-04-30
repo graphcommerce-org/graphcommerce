@@ -39,15 +39,13 @@ const RowColumnTwo: React.FC<RowColumnTwoProps> = (props) => {
 
   return (
     <Container className={classes.root} maxWidth='lg' {...containerProps}>
-      <div className={classes.root}>
-        <div className={classes.colOne}>
-          {colOneIcon?.width ? <Asset asset={colOneIcon} width={colOneIcon.width / 2} /> : ''}
-          <RichText {...colOne} />
-        </div>
-        <div className={classes.colTwo}>
-          {colTwoIcon?.width ? <Asset asset={colTwoIcon} width={colTwoIcon.width / 2} /> : ''}
-          <RichText {...colTwo} />
-        </div>
+      <div className={classes.colOne}>
+        {colOneIcon?.width ? <Asset asset={colOneIcon} width={colOneIcon.width / 2} /> : ''}
+        <RichText {...colOne} />
+      </div>
+      <div className={classes.colTwo}>
+        {colTwoIcon?.width ? <Asset asset={colTwoIcon} width={colTwoIcon.width / 2} /> : ''}
+        <RichText {...colTwo} />
       </div>
     </Container>
   )
