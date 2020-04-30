@@ -7,6 +7,7 @@ import RowHeroVideoBackground from '../components/RowHero/RowHeroVideoBackground
 import RowColumnThree from '../components/RowColumnThree'
 import { ContentRowProps } from '../components/ContentRenderer/ContentRenderer'
 import RowColumnThreeYellow from '../components/RowColumnThree/RowColumnThreeYellow'
+import RowColumnTwoSpread from '../components/RowColumnTwo/RowColumnTwoSpread'
 
 const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
   index,
@@ -21,6 +22,7 @@ const AboutUs: PageWithLayoutFull = ({ page }) => {
       content={page.content}
       customRenderers={{
         RowHero: RowHeroVideoBackground,
+        RowColumnTwo: RowColumnTwoSpread,
         RowColumnThree: FirstRowYellow,
       }}
     />
