@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
 import { UseStyles } from '../Theme'
+import { UseRichTextStyles } from '../RichText/useRichTextStyles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -37,22 +38,34 @@ const useStyles = makeStyles(
 
 export type RowColumnThreeProps = GQLRowColumnThreeFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps
+  ContainerProps & {
+    richTextOneClasses?: UseRichTextStyles['classes']
+    richTextTwoClasses?: UseRichTextStyles['classes']
+    richTextTheeClasses?: UseRichTextStyles['classes']
+  }
 
 const RowColumnThree: React.FC<RowColumnThreeProps> = (props) => {
-  const { colOne, colTwo, colThree, ...containerProps } = props
+  const {
+    colOne,
+    colTwo,
+    colThree,
+    richTextOneClasses,
+    richTextTwoClasses,
+    richTextTheeClasses,
+    ...containerProps
+  } = props
   const classes = useStyles(props)
 
   return (
     <Container className={classes.root} {...containerProps}>
       <div className={classes.colOne}>
-        <RichText {...colOne} />
+        <RichText {...colOne} classes={richTextOneClasses} />
       </div>
       <div className={classes.colTwo}>
-        <RichText {...colTwo} />
+        <RichText {...colTwo} classes={richTextTwoClasses} />
       </div>
       <div className={classes.colThree}>
-        <RichText {...colThree} />
+        <RichText {...colThree} classes={richTextTheeClasses} />
       </div>
     </Container>
   )

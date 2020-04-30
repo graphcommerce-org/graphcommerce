@@ -7,8 +7,6 @@ import ChevronRight from '../Icons'
 import { Button } from '../Link'
 import { RowHeroProps } from '.'
 
-// @Q: Wat is deze 'root' hieronder? Waar wordt deze gebruikt?
-
 const useStyles = makeStyles(
   (theme: Theme) => ({
     headerWysiwyg: {
@@ -75,7 +73,12 @@ const useCtaStyles = makeStyles({
   paragraph: { marginBottom: 0 },
 })
 
-const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) => {
+const RowHeroVideoBackground: React.FC<RowHeroProps> = ({
+  text,
+  asset,
+  links,
+  richTextClasses,
+}) => {
   const classes = useStyles()
   const containerClasses = useContainerStyles()
   const ctaClasses = useCtaStyles()
@@ -83,7 +86,7 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) 
   const left = (
     <div>
       <div className={classes.headerWysiwyg}>
-        <RichText {...text} />
+        <RichText {...text} classes={richTextClasses} />
       </div>
       {links.map((link) => {
         if (link.__typename === 'LinkInternal' && link.page && link.description)

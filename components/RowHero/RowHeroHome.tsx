@@ -51,7 +51,7 @@ const useStyles = makeStyles(
   { name: 'RowHeroHome' },
 )
 
-const RowHeroHome: React.FC<RowHeroProps> = ({ text, asset, links }) => {
+const RowHeroHome: React.FC<RowHeroProps> = ({ text, asset, links, richTextClasses }) => {
   const classes = useStyles()
   const containerClasses = useContainerStyles()
 
@@ -63,7 +63,7 @@ const RowHeroHome: React.FC<RowHeroProps> = ({ text, asset, links }) => {
 
   const right = (
     <>
-      <RichText {...text} />
+      <RichText {...text} classes={richTextClasses} />
       <div>
         {links.map((link) => {
           if (link.__typename === 'LinkInternal') return <LinkInternal {...link} key={link.id} />

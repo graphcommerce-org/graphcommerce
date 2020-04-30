@@ -26,13 +26,13 @@ export type RowYoutubeVideoProps = GQLRowYoutubeVideoFragment &
 
 const RowYoutubeVideo: React.FC<RowYoutubeVideoProps> = (props) => {
   const { videoId, title, ...containerProps } = props
-  const classes = useStyles(props)
+  const { iframe, aspectContainer, ...classes } = useStyles(props)
 
   return (
     <Container {...containerProps} classes={classes}>
-      <div className={classes.aspectContainer}>
+      <div className={aspectContainer}>
         <iframe
-          className={classes.iframe}
+          className={iframe}
           title={title}
           width='1920'
           height='1080'

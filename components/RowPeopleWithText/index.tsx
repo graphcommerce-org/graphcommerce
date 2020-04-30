@@ -1,18 +1,20 @@
 import React from 'react'
 import { Theme, makeStyles, Paper } from '@material-ui/core'
 import Container from '../Container'
-import LinkInternal from '../LinkInternal/LinkInternal'
-import { vpCalc } from '../Theme'
+import { vpCalc, UseStyles } from '../Theme'
 import RichText from '../RichText'
 import Asset from '../Asset'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
+import { UseRichTextStyles } from '../RichText/useRichTextStyles'
+import Link from '../Link'
 
-const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
-  after: { backgroundColor: theme.palette.grey[300] },
-}))
-
-const useStyles = makeStyles<Theme>(
-  (theme) => ({
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    linkList: {
+      display: 'flex',
+      margin: `0 calc(${theme.spacings.md} * -1) 0 0`,
+      '& > *': { margin: `0 ${theme.spacings.md} 0 0` },
+    },
     paper: {
       backgroundColor: theme.palette.primary.main,
       display: 'grid',
@@ -32,19 +34,34 @@ const useStyles = makeStyles<Theme>(
   { name: 'RowPeopleWithText' },
 )
 
-type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment & GQLGetAllPeopleQuery
+type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment &
+  GQLGetAllPeopleQuery &
+  UseStyles<typeof useStyles> & {
+    richTextClasses: UseRichTextStyles['classes']
+  }
 
-const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = ({ links, text, people }) => {
-  const container = useContainerStyles()
-  const classes = useStyles()
+const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = (props) => {
+  const { links, text, people, richTextClasses } = props
+  const classes = useStyles(props)
 
   const Left: React.FC = () => (
     <>
-      <RichText {...text} />
-
-      {links.map((link) => (
-        <LinkInternal {...link} key={link.id} />
-      ))}
+      <RichText {...text} classes={richTextClasses} />
+      <div className={classes.linkList}>
+        {links.map((link) => {
+          if (!link.page) return null
+          return (
+            <Link
+              href={link.page.url}
+              metaRobots={link.page.metaRobots}
+              key={link.id}
+              variant='body1'
+            >
+              {link.title}
+            </Link>
+          )
+        })}
+      </div>
     </>
   )
 
@@ -56,9 +73,7 @@ const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = ({ links, text, peop
     </Paper>
   )
 
-  return (
-    <Container left={<Left />} right={<Right />} leftWidth={0.5} classes={container} spaceBetween />
-  )
+  return <Container left={<Left />} right={<Right />} leftWidth={0.5} spaceBetween />
 }
 
 export default RowPeopleWithText

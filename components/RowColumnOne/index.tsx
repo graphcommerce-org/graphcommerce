@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
 import { UseStyles } from '../Theme'
+import { UseRichTextStyles } from '../RichText/useRichTextStyles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -18,16 +19,18 @@ const useStyles = makeStyles(
 
 export type RowColumnOneProps = GQLRowColumnOneFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps
+  ContainerProps & {
+    richTextOneClasses?: UseRichTextStyles['classes']
+  }
 
 const RowColumnOne: React.FC<RowColumnOneProps> = (props) => {
-  const { colOne, ...containerProps } = props
+  const { colOne, colOneIcon, richTextOneClasses, ...containerProps } = props
   const classes = useStyles(props)
 
   return (
     <Container className={classes.root} {...containerProps}>
       <div className={classes.colOne}>
-        <RichText {...colOne} />
+        <RichText {...colOne} classes={richTextOneClasses} />
       </div>
     </Container>
   )

@@ -6,6 +6,7 @@ import RichText from '../RichText'
 import Container from '../Container'
 import Asset from '../Asset'
 import { UseStyles } from '../Theme'
+import { UseRichTextStyles } from '../RichText/useRichTextStyles'
 
 const useContainerStyles = makeStyles({
   left: {
@@ -27,7 +28,10 @@ const useStyles = makeStyles(
   { name: 'RowHero' },
 )
 
-export type RowHeroProps = GQLRowHeroFragment & UseStyles<typeof useStyles>
+export type RowHeroProps = GQLRowHeroFragment &
+  UseStyles<typeof useStyles> & {
+    richTextClasses: UseRichTextStyles['classes']
+  }
 
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer
@@ -37,8 +41,8 @@ export type RowHeroProps = GQLRowHeroFragment & UseStyles<typeof useStyles>
  * ../ContentRenderer/ContentRenderer.graphql
  * ../ContentRenderer/defaultRenderer.tsx
  */
-const RowHero: React.FC<GQLRowHeroFragment> = (props) => {
-  const { text, asset, links } = props
+const RowHero: React.FC<RowHeroProps> = (props) => {
+  const { text, asset, links, richTextClasses } = props
   const classes = useStyles(props)
   const containerClasses = useContainerStyles()
 
@@ -48,7 +52,7 @@ const RowHero: React.FC<GQLRowHeroFragment> = (props) => {
 
   const right = (
     <>
-      <RichText {...text} />
+      <RichText {...text} classes={richTextClasses} />
       <div>
         {links.map((link) => {
           if (link.__typename === 'LinkInternal') return <LinkInternal {...link} key={link.id} />
