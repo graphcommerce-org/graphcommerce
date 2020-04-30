@@ -57,7 +57,7 @@
     "@graphql-codegen/schema-ast": "^1.13.3",
     "@graphql-codegen/typescript": "1.13.3",
     "@graphql-codegen/typescript-document-nodes": "1.13.3",
-    "@graphql-codegen/typescript-graphql-files-modules": "1.13.3",
+    "@graphql-codegen/typescript-graphql-files-modules": "1.13.4",
     "@graphql-codegen/typescript-operations": "1.13.3",
     "@graphql-codegen/typescript-react-apollo": "1.13.3",
     "@harelpls/storybook-addon-materialui": "^2.0.0",
