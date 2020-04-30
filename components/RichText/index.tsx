@@ -1,8 +1,9 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
+import { Typography, TypographyProps } from '@material-ui/core'
 import Link from '../Link'
 import Asset, { MimeTypes } from '../Asset'
 import useRichTextStyles, { RichTextStylesProps } from './useRichTextStyles'
+import { UseStyles } from '../Theme'
 
 export interface ValueJSON {
   document: DocumentJSON
@@ -114,8 +115,8 @@ interface LinkJSON {
   data: { href: string }
 }
 
-const RenderInline: React.FC<InlineJSON & RichTextStylesProps> = ({ condensed, ...inline }) => {
-  const childNodes = <RenderNodes nodes={inline.nodes} condensed={condensed} />
+const RenderInline: React.FC<InlineJSON & RichTextClasses> = ({ classes, ...inline }) => {
+  const childNodes = <RenderNodes nodes={inline.nodes} classes={classes} />
 
   switch (inline.type) {
     case 'link':
@@ -156,75 +157,76 @@ const RenderMark: React.FC<Mark> = (mark) => {
   }
 }
 
-const RenderBlock: React.FC<BlockJSON & { condensed: boolean }> = ({ condensed, ...block }) => {
-  const { asset, ...typographyClasses } = useRichTextStyles({ condensed })
+const RenderBlock: React.FC<BlockJSON & RichTextClasses> = ({ classes, ...block }) => {
+  const { asset, ...typographyClasses } = classes
+
   switch (block.type) {
     case 'heading-one':
       return (
         <Typography variant='h1' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-two':
       return (
         <Typography variant='h2' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-three':
       return (
         <Typography variant='h3' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-four':
       return (
         <Typography variant='h4' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-five':
       return (
         <Typography variant='h5' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-six':
       return (
         <Typography variant='h6' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'paragraph':
       return (
         <Typography variant='body1' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'bulleted-list':
       return (
         <Typography component='ul' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'numbered-list':
       return (
         <Typography component='ol' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'list-item':
       return (
         <li>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </li>
       )
     case 'list-item-child':
-      return <RenderNodes nodes={block.nodes} condensed={condensed} />
+      return <RenderNodes nodes={block.nodes} classes={classes} />
     case 'block-quote':
       return (
         <Typography component='blockquote' classes={typographyClasses}>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'iframe':
@@ -251,15 +253,15 @@ const RenderBlock: React.FC<BlockJSON & { condensed: boolean }> = ({ condensed, 
           {block.data.header ? (
             <>
               <thead>
-                <RenderNodes nodes={block.nodes.slice(0, 1)} condensed={condensed} />
+                <RenderNodes nodes={block.nodes.slice(0, 1)} classes={classes} />
               </thead>
               <tbody>
-                <RenderNodes nodes={block.nodes.slice(1)} condensed={condensed} />
+                <RenderNodes nodes={block.nodes.slice(1)} classes={classes} />
               </tbody>
             </>
           ) : (
             <tbody>
-              <RenderNodes nodes={block.nodes} condensed={condensed} />
+              <RenderNodes nodes={block.nodes} classes={classes} />
             </tbody>
           )}
         </table>
@@ -267,13 +269,13 @@ const RenderBlock: React.FC<BlockJSON & { condensed: boolean }> = ({ condensed, 
     case 'table_row':
       return (
         <tr>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </tr>
       )
     case 'table_cell':
       return (
         <td>
-          <RenderNodes nodes={block.nodes} condensed={condensed} />
+          <RenderNodes nodes={block.nodes} classes={classes} />
         </td>
       )
     default:
@@ -283,19 +285,19 @@ const RenderBlock: React.FC<BlockJSON & { condensed: boolean }> = ({ condensed, 
   }
 }
 
-const RenderNodes: React.FC<{ nodes: NodeJSON[]; condensed: boolean }> = ({ nodes, condensed }) => {
+const RenderNodes: React.FC<{ nodes: NodeJSON[] } & RichTextClasses> = ({ nodes, classes }) => {
   return (
     <>
       {nodes.map((node, key) => (
         // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
         // eslint-disable-next-line react/no-array-index-key
-        <RenderNode {...node} key={key} condensed={condensed} />
+        <RenderNode {...node} key={key} classes={classes} />
       ))}
     </>
   )
 }
 
-const RenderNode: React.FC<NodeJSON & { condensed: boolean }> = (node) => {
+const RenderNode: React.FC<NodeJSON & RichTextClasses> = (node) => {
   switch (node.object) {
     case 'block':
       return <RenderBlock {...node} />
@@ -312,8 +314,15 @@ const RenderNode: React.FC<NodeJSON & { condensed: boolean }> = (node) => {
   }
 }
 
-const RichText: React.FC<{ raw: ValueJSON; condensed?: true }> = ({ raw, condensed = false }) => {
-  return <RenderNodes condensed={condensed} {...raw.document} />
+type RichTextClasses = Required<UseStyles<typeof useRichTextStyles>>
+
+type RichTextProps = { raw: ValueJSON } & Partial<RichTextStylesProps> &
+  UseStyles<typeof useRichTextStyles> &
+  TypographyProps
+
+const RichText: React.FC<RichTextProps> = ({ raw, ...props }) => {
+  const classes = useRichTextStyles({ condensed: false, ...props })
+  return <RenderNodes classes={classes} {...raw.document} />
 }
 
 export default RichText

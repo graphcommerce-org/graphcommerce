@@ -2,7 +2,7 @@ import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
 
-export type UseStyles<T extends (...args: unknown[]) => unknown> = {
+export type UseStyles<T extends (...args: never[]) => unknown> = {
   classes?: Partial<ReturnType<T>>
 }
 

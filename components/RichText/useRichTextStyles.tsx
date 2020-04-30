@@ -1,13 +1,13 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { vpCalc } from '../Theme'
 
 export type RichTextStylesProps = {
   condensed: boolean
 }
 
-const useRichTextStyles = makeStyles<Theme, RichTextStylesProps>(
+const useRichTextStyles = makeStyles(
   {
-    body1: ({ condensed }) => ({
+    body1: ({ condensed }: RichTextStylesProps) => ({
       ...(!condensed && { marginBottom: '1em' }),
     }),
     h1: ({ condensed }) => ({
