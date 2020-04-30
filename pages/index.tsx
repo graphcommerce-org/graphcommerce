@@ -2,7 +2,7 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
-import RowHeroHome from '../components/RowHeroHome'
+import RowHeroHome from '../components/RowHero/RowHeroHome'
 import { StaticPageVariables } from '../lib/staticParams'
 
 const Home: PageWithLayoutFull = ({ page }) => {

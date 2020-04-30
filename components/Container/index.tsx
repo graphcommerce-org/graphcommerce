@@ -1,5 +1,6 @@
 import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core'
+import { UseStyles } from '../Theme'
 
 export type ContainerProps = {
   before?: React.ReactNode
@@ -87,19 +88,9 @@ const useStyles = makeStyles(
   { name: 'Container' },
 )
 
-export type ContainerStyles = keyof ReturnType<typeof useStyles>
-
-type PartialRecord<K extends keyof any, T> = {
-  [P in K]?: T
-}
-
-type WithOptionalStyles = {
-  classes?: PartialRecord<any, string>
-}
-
 const Container: React.ForwardRefRenderFunction<
   HTMLDivElement,
-  ContainerProps & WithOptionalStyles
+  ContainerProps & UseStyles<typeof useStyles>
 > = (props, ref) => {
   const classes = useStyles(props)
   const { before, left, right, children } = props

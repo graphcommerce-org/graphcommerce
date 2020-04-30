@@ -5,6 +5,7 @@ import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
 import Container from '../Container'
 import Asset from '../Asset'
+import { UseStyles } from '../Theme'
 
 const useContainerStyles = makeStyles({
   left: {
@@ -26,6 +27,8 @@ const useStyles = makeStyles(
   { name: 'RowHero' },
 )
 
+export type RowHeroProps = GQLRowHeroFragment & UseStyles<typeof useStyles>
+
 /**
  * In GQLHeroBannerFragment you can see the data defined in ContentRenderer
  * Besides that link it is _just_ a regular function component.
@@ -34,8 +37,9 @@ const useStyles = makeStyles(
  * ../ContentRenderer/ContentRenderer.graphql
  * ../ContentRenderer/defaultRenderer.tsx
  */
-const RowHero: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
-  const classes = useStyles()
+const RowHero: React.FC<GQLRowHeroFragment> = (props) => {
+  const { text, asset, links } = props
+  const classes = useStyles(props)
   const containerClasses = useContainerStyles()
 
   const left = asset && (

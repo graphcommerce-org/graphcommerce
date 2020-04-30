@@ -1,21 +1,34 @@
 import React from 'react'
+import { Container, makeStyles, ContainerProps } from '@material-ui/core'
 import LinkInternal from '../LinkInternal/LinkInternal'
 import BlogList from '../BlogList'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
+import { UseStyles } from '../Theme'
 
-const RowRecentBlogPost: React.FC<GQLRowRecentBlogPostFragment & GQLGetBlogListQuery> = ({
-  link,
-  blogPosts,
-}) => {
+const useStyles = makeStyles(
+  {
+    root: {},
+  },
+  { name: 'RowRecentBlogPost' },
+)
+
+export type RowRecentBlogPostProps = GQLRowRecentBlogPostFragment &
+  GQLGetBlogListQuery &
+  ContainerProps &
+  UseStyles<typeof useStyles>
+
+const RowRecentBlogPost: React.FC<RowRecentBlogPostProps> = (props) => {
+  const { link, blogPosts, ...containerProps } = props
+  const classes = useStyles(props)
   if (!link || !link.page) {
     return <>Please provide link in RowRecentBlogPost</>
   }
 
   return (
-    <>
+    <Container {...containerProps} classes={classes}>
       <BlogList blogPosts={blogPosts} />
       <LinkInternal {...link} />
-    </>
+    </Container>
   )
 }
 

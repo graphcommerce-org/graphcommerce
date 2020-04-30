@@ -32,15 +32,13 @@ const useStyles = makeStyles<Theme>(
   { name: 'RowPeopleWithText' },
 )
 
-const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment & GQLGetAllPeopleQuery> = ({
-  links,
-  text,
-  people,
-}) => {
+type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment & GQLGetAllPeopleQuery
+
+const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = ({ links, text, people }) => {
   const container = useContainerStyles()
   const classes = useStyles()
 
-  const Left = () => (
+  const Left: React.FC = () => (
     <>
       <RichText {...text} />
 
@@ -50,7 +48,7 @@ const RowPeopleWithText: React.FC<GQLRowPeopleWithTextFragment & GQLGetAllPeople
     </>
   )
 
-  const Right = () => (
+  const Right: React.FC = () => (
     <Paper elevation={10} className={classes.paper}>
       {people.map(({ avatar, id }) => (
         <Asset asset={avatar} width={83} key={id} compression='lossy' />

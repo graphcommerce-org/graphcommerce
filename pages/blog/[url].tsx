@@ -40,9 +40,7 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           </Typography>
         </div>
       </Container>
-      <Container className={classes.article}>
-        <ContentRenderer content={page.content} />
-      </Container>
+      <ContentRenderer content={page.content} />
       <Container maxWidth='lg' className={classes.last}>
         <ReleaseDateCard {...page} />
         <div className={classes.boxed}>

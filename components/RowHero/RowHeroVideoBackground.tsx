@@ -5,6 +5,7 @@ import Asset from '../Asset'
 import Container from '../Container'
 import ChevronRight from '../Icons'
 import { Button } from '../Link'
+import { RowHeroProps } from '.'
 
 // @Q: Wat is deze 'root' hieronder? Waar wordt deze gebruikt?
 
@@ -67,7 +68,7 @@ const useContainerStyles = makeStyles((theme: Theme) => ({
   after: { position: 'relative' },
 }))
 
-const RowHeroVideoBackground: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
+const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) => {
   const classes = useStyles()
   const containerClasses = useContainerStyles()
 

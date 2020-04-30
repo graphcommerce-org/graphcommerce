@@ -1,10 +1,13 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
-import { ColorPartial } from '@material-ui/core/styles/createPalette'
+
+export type UseStyles<T extends (...args: unknown[]) => unknown> = {
+  classes?: Partial<ReturnType<T>>
+}
 
 export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
-  const round = (x: number, n: number) => Math.round(x * 10 ** n) / 10 ** n
+  const round = (x: number, n: number): number => Math.round(x * 10 ** n) / 10 ** n
 
   const minBreakpoint = axis === 'vw' ? 320 : 560
   const maxBreakpoint = axis === 'vw' ? 1280 : 720
