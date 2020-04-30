@@ -1,6 +1,9 @@
 import React from 'react'
 import RichText from '../RichText'
 
+/**
+ * @deprecated Please use an <a href={url} target='_blank'></a> directly
+ */
 const LinkExternal: React.FC<GQLLinkExternalFragment> = ({ url, title, description }) => {
   if (description) {
     return (
