@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography, TypographyProps } from '@material-ui/core'
 import Link from '../Link'
 import Asset, { MimeTypes } from '../Asset'
-import useRichTextStyles, { RichTextStylesProps } from './useRichTextStyles'
+import useRichTextStyles from './useRichTextStyles'
 import { UseStyles } from '../Theme'
 
 export interface ValueJSON {
@@ -116,13 +116,14 @@ interface LinkJSON {
 }
 
 const RenderInline: React.FC<InlineJSON & RichTextClasses> = ({ classes, ...inline }) => {
+  const { link } = classes
   const childNodes = <RenderNodes nodes={inline.nodes} classes={classes} />
 
   switch (inline.type) {
     case 'link':
       return (
         // todo(paales) make sure the meta robots are set to nofollow when the link is external?
-        <Link href={inline.data.href} metaRobots='INDEX_FOLLOW'>
+        <Link href={inline.data.href} metaRobots='INDEX_FOLLOW' classes={{ root: link }}>
           {childNodes}
         </Link>
       )
@@ -132,86 +133,91 @@ const RenderInline: React.FC<InlineJSON & RichTextClasses> = ({ classes, ...inli
   }
 }
 
-const RenderText: React.FC<TextJSON> = (text) => {
-  const result = text.marks.reduce(
-    (val, mark) => <RenderMark {...mark}>{val}</RenderMark>,
-    <>{text.text}</>,
+const RenderText: React.FC<TextJSON & RichTextClasses> = ({ classes, text, marks }) => {
+  const result = marks.reduce(
+    (val, mark) => (
+      <RenderMark classes={classes} {...mark}>
+        {val}
+      </RenderMark>
+    ),
+    <>{text}</>,
   )
   return <>{result}</>
 }
 
-const RenderMark: React.FC<Mark> = (mark) => {
+const RenderMark: React.FC<Mark & RichTextClasses> = ({ classes, children, ...mark }) => {
+  const { strong, italic, underlined, code } = classes
   switch (mark.type) {
     case 'bold':
-      return <strong>{mark.children}</strong>
+      return <strong className={strong}>{children}</strong>
     case 'italic':
-      return <em>{mark.children}</em>
+      return <em className={italic}>{children}</em>
     case 'underlined':
-      return <u>{mark.children}</u>
+      return <u className={underlined}>{children}</u>
     case 'code':
-      return <code>{mark.children}</code>
+      return <code className={code}>{children}</code>
     default:
       // eslint-disable-next-line no-console
       console.log(`UNKOWNN MARK TYPE ${mark.type}`, mark)
-      return <>{mark.children}</>
+      return <>{children}</>
   }
 }
 
 const RenderBlock: React.FC<BlockJSON & RichTextClasses> = ({ classes, ...block }) => {
-  const { asset, ...typographyClasses } = classes
+  const { asset, h1, h2, h3, h4, h5, h6, paragraph, ul, ol, blockQuote, iframe, table } = classes
 
   switch (block.type) {
     case 'heading-one':
       return (
-        <Typography variant='h1' classes={typographyClasses}>
+        <Typography variant='h1' classes={{ h1 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-two':
       return (
-        <Typography variant='h2' classes={typographyClasses}>
+        <Typography variant='h2' classes={{ h2 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-three':
       return (
-        <Typography variant='h3' classes={typographyClasses}>
+        <Typography variant='h3' classes={{ h3 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-four':
       return (
-        <Typography variant='h4' classes={typographyClasses}>
+        <Typography variant='h4' classes={{ h4 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-five':
       return (
-        <Typography variant='h5' classes={typographyClasses}>
+        <Typography variant='h5' classes={{ h5 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-six':
       return (
-        <Typography variant='h6' classes={typographyClasses}>
+        <Typography variant='h6' classes={{ h6 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'paragraph':
       return (
-        <Typography variant='body1' classes={typographyClasses}>
+        <Typography variant='body1' paragraph classes={{ paragraph }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'bulleted-list':
       return (
-        <Typography component='ul' classes={typographyClasses}>
+        <Typography component='ul' classes={{ root: ul }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'numbered-list':
       return (
-        <Typography component='ol' classes={typographyClasses}>
+        <Typography component='ol' classes={{ root: ol }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
@@ -225,14 +231,14 @@ const RenderBlock: React.FC<BlockJSON & RichTextClasses> = ({ classes, ...block 
       return <RenderNodes nodes={block.nodes} classes={classes} />
     case 'block-quote':
       return (
-        <Typography component='blockquote' classes={typographyClasses}>
+        <Typography component='blockquote' classes={{ root: blockQuote }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'iframe':
       // todo(paales) add security attributes to iframe
       // todo(paales) make iframe responsive
-      return <iframe src={block.data.src} title='embedded content' />
+      return <iframe src={block.data.src} title='embedded content' className={iframe} />
     case 'image':
       return <Asset asset={{ ...block.data, url: block.data.src }} width={380} className={asset} />
     case 'video':
@@ -249,7 +255,7 @@ const RenderBlock: React.FC<BlockJSON & RichTextClasses> = ({ classes, ...block 
       )
     case 'table':
       return (
-        <table>
+        <table className={table}>
           {block.data.header ? (
             <>
               <thead>
@@ -316,12 +322,10 @@ const RenderNode: React.FC<NodeJSON & RichTextClasses> = (node) => {
 
 type RichTextClasses = Required<UseStyles<typeof useRichTextStyles>>
 
-type RichTextProps = { raw: ValueJSON } & Partial<RichTextStylesProps> &
-  UseStyles<typeof useRichTextStyles> &
-  TypographyProps
+type RichTextProps = { raw: ValueJSON } & UseStyles<typeof useRichTextStyles> & TypographyProps
 
 const RichText: React.FC<RichTextProps> = ({ raw, ...props }) => {
-  const classes = useRichTextStyles({ condensed: false, ...props })
+  const classes = useRichTextStyles(props)
   return <RenderNodes classes={classes} {...raw.document} />
 }
 

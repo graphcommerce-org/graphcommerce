@@ -62,8 +62,15 @@ const useStyles = makeStyles(
   { name: 'Footer' },
 )
 
+const useRichTextStyles = makeStyles((theme: Theme) => ({
+  h3: { marginTop: 0, marginBottom: 8 },
+  paragraph: { marginBottom: 0 },
+  italic: { color: theme.palette.tertiary[100] },
+}))
+
 const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, contactLink }) => {
   const classes = useStyles()
+  const richtTextClasses = useRichTextStyles()
 
   const split = Math.ceil(links.length / 2)
   const linksOne = links.slice(0, split)
@@ -73,7 +80,7 @@ const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, co
     <footer className={classes.footer}>
       <Container className={classes.containerOne}>
         <div className={classes.text}>
-          <RichText {...text} condensed />
+          <RichText {...text} classes={richtTextClasses} />
         </div>
         <div className={classes.contactLink}>
           {contactLink?.page && (
@@ -115,10 +122,10 @@ const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, co
           })}
         </div>
         <div className={classes.address}>
-          <RichText {...address} condensed />
+          <RichText {...address} classes={richtTextClasses} />
         </div>
         <div className={classes.contact}>
-          <RichText {...contact} condensed />
+          <RichText {...contact} classes={richtTextClasses} />
           {contactLink?.page && (
             <Link
               href={contactLink.page.url}
