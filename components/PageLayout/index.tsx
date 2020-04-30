@@ -16,9 +16,9 @@ export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
 
 export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
 
-const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, team, footer }) => {
+const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, header, footer }) => {
   if (!page?.url) return <Error statusCode={404} title='Page not found' />
-  if (!mainMenu) return <Error statusCode={500} title='Main menu not loaded' />
+  if (!header) return <Error statusCode={500} title='Header not loaded' />
   if (!footer) return <Error statusCode={500} title='Footer not loaded' />
 
   return (
@@ -30,7 +30,7 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, te
       <CssBaseline />
       <PageMeta {...page} />
       <PageLoadIndicator />
-      <Header menu={mainMenu} page={page} team={team} />
+      <Header {...header} {...page} />
       {children}
       <Footer {...footer} />
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />

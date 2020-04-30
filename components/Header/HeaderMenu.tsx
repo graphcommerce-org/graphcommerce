@@ -15,14 +15,14 @@ import {
 import Link from '../Link'
 import { vpCalc } from '../Theme'
 
-type TreePage = GQLMenuFragment['pages'][0]['localizations'][0] & {
+type TreePage = GQLHeaderFragment['menuPages'][0]['localizations'][0] & {
   children: TreePage[]
   parent?: TreePage
   isRoot: boolean
 }
 
-const extractRoots = (mainMenu: GQLMenuFragment) => {
-  const treePages: TreePage[] = mainMenu.pages
+const extractRoots = (menuPages: GQLHeaderFragment['menuPages']) => {
+  const treePages: TreePage[] = menuPages
     .filter((p) => p.localizations.length > 0)
     .map((p) => ({ ...p.localizations[0], children: [], isRoot: p.url === '/' }))
 
@@ -86,14 +86,14 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-const Menu: React.FC<{
-  menu: GQLMenuFragment
-  page: GQLPageMetaFragment
-}> = ({ menu: mainMenu, page }) => {
+type HeaderMenuProps = Pick<GQLHeaderFragment, 'menuPages'> &
+  Pick<GQLPageMetaFragment, 'url' | 'localizations'>
+
+const HeaderMenu: React.FC<HeaderMenuProps> = ({ menuPages, url, localizations }) => {
   const classes = useStyles()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
-  const roots = extractRoots(mainMenu)
+  const roots = extractRoots(menuPages)
   Router.events.on('routeChangeStart', () => setOpenEl(null))
 
   return (
@@ -136,18 +136,18 @@ const Menu: React.FC<{
             color='inherit'
             className={classes.menuLink}
           >
-            <ListItem button selected={page.url === root.url} classes={{ root: classes.menuItem }}>
+            <ListItem button selected={url === root.url} classes={{ root: classes.menuItem }}>
               <ListItemText classes={{ primary: classes.menuItemText }}>{root.title}</ListItemText>
             </ListItem>
           </Link>
         ))}
-        {page.localizations.length > 0 && <Divider variant='middle' light />}
-        {page.localizations.length > 0 && (
+        {localizations.length > 0 && <Divider variant='middle' light />}
+        {localizations.length > 0 && (
           <ListSubheader color='inherit' disableSticky classes={{ root: classes.menuSubheader }}>
             Switch to
           </ListSubheader>
         )}
-        {page.localizations.map((localization) => (
+        {localizations.map((localization) => (
           <Link
             key={localization.url}
             href={localization.url}
@@ -168,4 +168,4 @@ const Menu: React.FC<{
   )
 }
 
-export default Menu
+export default HeaderMenu

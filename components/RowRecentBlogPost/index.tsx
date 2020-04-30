@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, makeStyles, ContainerProps } from '@material-ui/core'
-import LinkInternal from '../LinkInternal/LinkInternal'
 import BlogList from '../BlogList'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
 import { UseStyles } from '../Theme'
+import Link from '../Link'
 
 const useStyles = makeStyles(
   {
@@ -27,7 +27,9 @@ const RowRecentBlogPost: React.FC<RowRecentBlogPostProps> = (props) => {
   return (
     <Container {...containerProps} classes={classes}>
       <BlogList blogPosts={blogPosts} />
-      <LinkInternal {...link} />
+      <Link href={link.page.url} metaRobots={link.page.metaRobots}>
+        {link.title}
+      </Link>
     </Container>
   )
 }

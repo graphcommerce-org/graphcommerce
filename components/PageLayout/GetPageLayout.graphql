@@ -2,13 +2,10 @@ query GetPageLayout($url: String!, $locale: Locale!) {
   pages(where: { url: $url }, locales: [$locale]) {
     ...PageLayout
   }
-  mainMenu: menu(where: { identity: "main" }) {
-    ...Menu
+  header(where: { identity: "header" }) {
+    ...Header
   }
   footer: footer(where: { identity: "footer" }, locales: [$locale]) {
     ...Footer
-  }
-  team: people(first: 1) {
-    ...Person
   }
 }

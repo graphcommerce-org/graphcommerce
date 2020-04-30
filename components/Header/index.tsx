@@ -4,7 +4,7 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import zIndex from '@material-ui/core/styles/zIndex'
 import logo from '../../public/images/magento-webshop-reach-digital.svg'
 import { vpCalc } from '../Theme'
-import Menu from '../Menu'
+import HeaderMenu from './HeaderMenu'
 import Link from '../Link'
 import Asset from '../Asset'
 
@@ -13,73 +13,46 @@ const useStyles = makeStyles(
     navigation: {
       display: 'grid',
       gridTemplateAreas: `
-      'spaceleft before before before spaceright'
-      'spaceleft menu logo contact spaceright'`,
-      gridTemplateColumns: `${gridSpacing.column} 46px auto 46px ${gridSpacing.column}`,
-      gridTemplateRows: `${gridSpacing.row} auto`,
+      'menu logo contact'`,
+      padding: `${gridSpacing.row} ${gridSpacing.column}`,
+      gridTemplateColumns: `46px auto 46px`,
+      gridTemplateRows: `auto`,
       justifyItems: 'center',
       width: '100%',
+      // 2xGridspacing, Logo Height, Logo Margin
+      marginBottom: `calc((${gridSpacing.row} * -2 + ${vpCalc(46, 72)} * -1))`,
     },
-    '@media (min-width: 1024px)': {
-      navigation: {
-        height: 250,
-      },
-    },
-    logo: {
-      zIndex: zIndex.appBar,
-      gridArea: 'logo',
-      '& img': {
-        maxHeight: vpCalc(46, 72),
-        display: 'block',
-        marginTop: 3,
-      },
-    },
-    menu: {
-      gridArea: 'menu',
-    },
-    contact: {
-      gridArea: 'contact',
-    },
-    avatar: {
-      backgroundColor: 'transparent',
-    },
-    avatarFab: {
-      boxShadow: 'none',
-    },
-    avatarImg: {
-      display: 'block',
-    },
-    avatarPhone: {
-      padding: 0,
-    },
-    avatarPhoneIcon: {
-      fontSize: 12,
-    },
+    logo: { zIndex: zIndex.appBar, gridArea: 'logo' },
+    logoImg: { maxHeight: vpCalc(46, 72), display: 'block', marginTop: 3 },
+    menu: { gridArea: 'menu', zIndex: zIndex.appBar },
+    contact: { gridArea: 'contact', zIndex: zIndex.appBar },
+    avatar: { backgroundColor: 'transparent' },
+    avatarFab: { boxShadow: 'none' },
+    avatarImg: { display: 'block' },
+    avatarPhone: { padding: 0 },
+    avatarPhoneIcon: { fontSize: 12 },
   }),
   { name: 'Header' },
 )
 
-const Header: React.FC<{
-  menu: GQLMenuFragment
-  page: GQLPageMetaFragment
-  team: ReadonlyArray<GQLPersonFragment>
-}> = ({ menu, page, team }) => {
+const Header: React.FC<GQLHeaderFragment & GQLPageMetaFragment> = ({
+  menuPages,
+  contactPage,
+  contactAvatar,
+  homePage,
+  ...page
+}) => {
   const classes = useStyles()
-
-  const person = team[Math.floor(Math.random() * team.length)]
 
   return (
     <header className={classes.navigation}>
-      <Link
-        // todo(paales): Have a way to make these common links dynamic?
-        href={page.locale === 'nl' ? '/' : `/${page.locale}`}
-        metaRobots='INDEX_FOLLOW'
-        className={classes.logo}
-      >
-        <img src={logo} alt='Logo' />
-      </Link>
+      {homePage && (
+        <Link href={homePage.url} metaRobots={homePage.metaRobots} className={classes.logo}>
+          <img src={logo} alt='Logo' className={classes.logoImg} />
+        </Link>
+      )}
       <div className={classes.menu}>
-        <Menu menu={menu} page={page} />
+        <HeaderMenu menuPages={menuPages} {...page} />
       </div>
       <div className={classes.contact}>
         <Badge
@@ -94,20 +67,20 @@ const Header: React.FC<{
           variant='standard'
         >
           <Fab size='small' classes={{ root: classes.avatarFab }} name='contact'>
-            <Link
-              // todo(paales): Have a way to make these common links dynamic?
-              href={page.locale === 'nl' ? '/contact' : `/${page.locale}/contact`}
-              metaRobots='INDEX_FOLLOW'
-            >
-              <Avatar classes={{ colorDefault: classes.avatar }}>
-                <Asset
-                  alt={person.name}
-                  className={classes.avatarImg}
-                  asset={person.avatar}
-                  width={40}
-                />
-              </Avatar>
-            </Link>
+            {contactPage && (
+              <Link href={contactPage.url} metaRobots={contactPage.metaRobots}>
+                <Avatar classes={{ colorDefault: classes.avatar }}>
+                  {contactAvatar && (
+                    <Asset
+                      alt={contactAvatar.name}
+                      className={classes.avatarImg}
+                      asset={contactAvatar.avatar}
+                      width={40}
+                    />
+                  )}
+                </Avatar>
+              </Link>
+            )}
           </Fab>
         </Badge>
       </div>
