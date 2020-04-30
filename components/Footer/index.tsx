@@ -18,13 +18,13 @@ const useStyles = makeStyles(
       gridColumnGap: gridSpacing.column,
       gridRowGap: gridSpacing.row,
       gridTemplateAreas: `
-      "text"
-      "contactLink"
-    `,
-      [breakpoints.up('md')]: {
-        gridTemplateAreas: `
-        "text text contactLink contactLink"
+        "text"
+        "contactLink"
       `,
+      [breakpoints.up('sm')]: {
+        gridTemplateAreas: `
+          "text text contactLink contactLink"
+        `,
       },
       borderBottom: `2px solid ${palette.tertiary.light}`,
     },
@@ -35,21 +35,21 @@ const useStyles = makeStyles(
       gridColumnGap: gridSpacing.column,
       gridRowGap: gridSpacing.row,
       gridTemplateAreas: `
-      "linksOne"
-      "linksTwo"
-      "address"
-      "contact"
-    `,
+        "linksOne"
+        "linksTwo"
+        "address"
+        "contact"
+      `,
       [breakpoints.up('sm')]: {
         gridTemplateAreas: `
-        "linksOne address"
-        "linksTwo contact"
-      `,
+          "linksOne address"
+          "linksTwo contact"
+        `,
       },
       [breakpoints.up('md')]: {
         gridTemplateAreas: `
-        "linksOne linksTwo address contact"
-      `,
+          "linksOne linksTwo address contact"
+        `,
       },
     },
     text: { gridArea: 'text' },
