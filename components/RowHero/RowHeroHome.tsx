@@ -1,7 +1,5 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
-import LinkInternal from '../LinkInternal/LinkInternal'
-import LinkExternal from '../LinkExternal/LinkExternal'
 import RichText from '../RichText'
 import Container from '../Container'
 import logoReachBgShadow from './logo-reach-bg-shadow-secondary.svg'

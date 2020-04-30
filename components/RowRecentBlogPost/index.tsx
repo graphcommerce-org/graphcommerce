@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, makeStyles, ContainerProps } from '@material-ui/core'
-import LinkInternal from '../LinkInternal/LinkInternal'
 import BlogList from '../BlogList'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
 import { UseStyles } from '../Theme'

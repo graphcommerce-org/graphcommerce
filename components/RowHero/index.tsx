@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
-import LinkInternal from '../LinkInternal/LinkInternal'
 import RichText from '../RichText'
 import Container from '../Container'
 import Asset from '../Asset'
