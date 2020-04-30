@@ -1,5 +1,5 @@
-fragment Menu on Menu {
-  pages {
+fragment Header on Header {
+  menuPages {
     url
     localizations(locales: [$locale], includeCurrent: true) {
       locale
@@ -8,5 +8,14 @@ fragment Menu on Menu {
       metaRobots
       url
     }
+  }
+  homePage {
+    ...Link
+  }
+  contactPage {
+    ...Link
+  }
+  contactAvatar {
+    ...Person
   }
 }

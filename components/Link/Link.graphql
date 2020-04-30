@@ -1,0 +1,5 @@
+fragment Link on Page {
+  title
+  metaRobots
+  url
+}

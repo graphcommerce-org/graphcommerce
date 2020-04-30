@@ -31,7 +31,6 @@ const useStyles = makeStyles(
       background: theme.palette.tertiary['500'],
       [theme.breakpoints.up('md')]: {
         paddingTop: theme.spacings.xxl,
-        marginTop: `calc(${theme.spacings.xxl} * -1)`,
         paddingBottom: theme.spacings.xl,
       },
     },

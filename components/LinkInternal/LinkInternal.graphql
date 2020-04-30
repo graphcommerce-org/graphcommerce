@@ -6,9 +6,6 @@ fragment LinkInternal on LinkInternal {
     ...RichText
   }
   page {
-    title
-    metaRobots
-    metaTitle
-    url
+    ...Link
   }
 }
