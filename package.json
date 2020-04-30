@@ -47,7 +47,7 @@
     "use-resize-observer": "^6.1.0-alpha.3"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.9.0",
+    "@babel/compat-data": "^7.9.6",
     "@babel/core": "^7.9.6",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
