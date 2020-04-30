@@ -61,7 +61,12 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       gutter: string
     }
     spacings: {
+      xs: string
+      sm: string
+      md: string
+      lg: string
       xl: string
+      xxl: string
     }
   }
   interface ThemeOptions {
@@ -71,7 +76,12 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       gutter: string
     }
     spacings: {
+      xs: string
+      sm: string
+      md: string
+      lg: string
       xl: string
+      xxl: string
     }
   }
 }
@@ -151,7 +161,12 @@ export const defaultTheme = createMuiTheme({
     gutter: vpCalc(27, 90),
   },
   spacings: {
+    xs: vpCalc(6, 20),
+    sm: vpCalc(10, 30),
+    md: vpCalc(16, 50),
+    lg: vpCalc(24, 80),
     xl: vpCalc(48, 160),
+    xxl: vpCalc(104, 250),
   },
   overrides: {
     MuiCssBaseline: {
