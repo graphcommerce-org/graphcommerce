@@ -1,5 +1,5 @@
 import { addDecorator } from '@storybook/react'
 import { withMuiTheme } from '@harelpls/storybook-addon-materialui'
-import { theme } from '../components/Theme'
+import { defaultTheme } from '../components/Theme'
 
-addDecorator(withMuiTheme({ Default: theme }))
+addDecorator(withMuiTheme({ Default: defaultTheme }))
