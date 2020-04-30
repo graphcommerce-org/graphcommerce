@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { vpCalc } from '../Theme'
+import { vpCalc, UseStyles } from '../Theme'
 
 const useRichTextStyles = makeStyles(
   {
@@ -24,5 +24,6 @@ const useRichTextStyles = makeStyles(
   },
   { name: 'RichText' },
 )
+export type UseRichTextStyles = UseStyles<typeof useRichTextStyles>
 
 export default useRichTextStyles

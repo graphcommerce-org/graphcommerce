@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography, TypographyProps } from '@material-ui/core'
 import Link from '../Link'
 import Asset, { MimeTypes } from '../Asset'
-import useRichTextStyles from './useRichTextStyles'
+import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 import { UseStyles } from '../Theme'
 
 export interface ValueJSON {
@@ -115,7 +115,10 @@ interface LinkJSON {
   data: { href: string }
 }
 
-const RenderInline: React.FC<InlineJSON & RichTextClasses> = ({ classes, ...inline }) => {
+const RenderInline: React.FC<InlineJSON & Required<UseRichTextStyles>> = ({
+  classes,
+  ...inline
+}) => {
   const { link } = classes
   const childNodes = <RenderNodes nodes={inline.nodes} classes={classes} />
 
@@ -133,7 +136,7 @@ const RenderInline: React.FC<InlineJSON & RichTextClasses> = ({ classes, ...inli
   }
 }
 
-const RenderText: React.FC<TextJSON & RichTextClasses> = ({ classes, text, marks }) => {
+const RenderText: React.FC<TextJSON & Required<UseRichTextStyles>> = ({ classes, text, marks }) => {
   const result = marks.reduce(
     (val, mark) => (
       <RenderMark classes={classes} {...mark}>
@@ -145,7 +148,11 @@ const RenderText: React.FC<TextJSON & RichTextClasses> = ({ classes, text, marks
   return <>{result}</>
 }
 
-const RenderMark: React.FC<Mark & RichTextClasses> = ({ classes, children, ...mark }) => {
+const RenderMark: React.FC<Mark & Required<UseRichTextStyles>> = ({
+  classes,
+  children,
+  ...mark
+}) => {
   const { strong, italic, underlined, code } = classes
   switch (mark.type) {
     case 'bold':
@@ -163,7 +170,7 @@ const RenderMark: React.FC<Mark & RichTextClasses> = ({ classes, children, ...ma
   }
 }
 
-const RenderBlock: React.FC<BlockJSON & RichTextClasses> = ({ classes, ...block }) => {
+const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classes, ...block }) => {
   const { asset, h1, h2, h3, h4, h5, h6, paragraph, ul, ol, blockQuote, iframe, table } = classes
 
   switch (block.type) {
@@ -291,7 +298,10 @@ const RenderBlock: React.FC<BlockJSON & RichTextClasses> = ({ classes, ...block 
   }
 }
 
-const RenderNodes: React.FC<{ nodes: NodeJSON[] } & RichTextClasses> = ({ nodes, classes }) => {
+const RenderNodes: React.FC<{ nodes: NodeJSON[] } & Required<UseRichTextStyles>> = ({
+  nodes,
+  classes,
+}) => {
   return (
     <>
       {nodes.map((node, key) => (
@@ -303,7 +313,7 @@ const RenderNodes: React.FC<{ nodes: NodeJSON[] } & RichTextClasses> = ({ nodes,
   )
 }
 
-const RenderNode: React.FC<NodeJSON & RichTextClasses> = (node) => {
+const RenderNode: React.FC<NodeJSON & Required<UseRichTextStyles>> = (node) => {
   switch (node.object) {
     case 'block':
       return <RenderBlock {...node} />
@@ -320,11 +330,7 @@ const RenderNode: React.FC<NodeJSON & RichTextClasses> = (node) => {
   }
 }
 
-type RichTextClasses = Required<UseStyles<typeof useRichTextStyles>>
-
-type RichTextProps = { raw: ValueJSON } & UseStyles<typeof useRichTextStyles> & TypographyProps
-
-const RichText: React.FC<RichTextProps> = ({ raw, ...props }) => {
+const RichText: React.FC<{ raw: ValueJSON } & UseRichTextStyles> = ({ raw, ...props }) => {
   const classes = useRichTextStyles(props)
   return <RenderNodes classes={classes} {...raw.document} />
 }

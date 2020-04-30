@@ -5,7 +5,7 @@ import { Theme, makeStyles } from '@material-ui/core'
 import Fab from '@material-ui/core/Fab'
 import { animated, useSpring, config } from 'react-spring'
 
-type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
+export type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
 type StyleProps = { scrolling: boolean } & ScrollSnapSliderProps
 
 const useStyles = makeStyles<Theme, StyleProps>(
