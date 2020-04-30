@@ -1,5 +1,7 @@
 [
   ["/test/fluid", "/test/fluid"],
+  ["/portfolio-magento-e-commerce-projecten", "/portfolio-magento-e-commerce-projecten"],
+  ["/over-reach-digital-magento-experts", "/over-reach-digital-magento-experts"],
   ["^\\/en\\/blog\\/([^/]+?)(?:\\/)?$", "/en/blog/[url]"],
   ["/en/blog", "/en/blog"],
   ["/en", "/en"],

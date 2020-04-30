@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "pages404": true,
+  "basePath": "",
+  "redirects": [],
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/sitemap", "regex": "^\\/sitemap\\.xml$" }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/blog/[url]",
+      "regex": "^\\/blog\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/blog/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/cases/[url]",
+      "regex": "^\\/cases\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/cases/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/en/blog/[url]",
+      "regex": "^\\/en\\/blog\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/en/blog/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/[...url]",
+      "regex": "^\\/(.+?)(?:\\/)?$",
+      "namedRegex": "^/(?<url>.+?)(?:/)?$",
+      "routeKeys": ["url"]
+    }
+  ],
+  "dataRoutes": [
+    { "page": "/", "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/index.json$" },
+    {
+      "page": "/blog",
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/blog.json$"
+    },
+    {
+      "page": "/blog/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/blog\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/blog/(?<url>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/cases/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/cases\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/cases/(?<url>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/contact",
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/contact.json$"
+    },
+    { "page": "/en", "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/en.json$" },
+    {
+      "page": "/en/blog",
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/en\\/blog.json$"
+    },
+    {
+      "page": "/en/blog/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/en\\/blog\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/en/blog/(?<url>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/over-reach-digital-magento-experts",
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/over-reach-digital-magento-experts.json$"
+    },
+    {
+      "page": "/portfolio-magento-e-commerce-projecten",
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/portfolio-magento-e-commerce-projecten.json$"
+    },
+    {
+      "page": "/test/fluid",
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/test\\/fluid.json$"
+    },
+    {
+      "page": "/[...url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/(.+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/(?<url>.+?)\\.json$"
+    }
+  ]
+}
