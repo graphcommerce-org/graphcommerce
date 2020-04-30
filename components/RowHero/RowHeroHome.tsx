@@ -7,6 +7,7 @@ import Container from '../Container'
 import logoReachBgShadow from './logo-reach-bg-shadow-secondary.svg'
 import Asset from '../Asset'
 import { RowHeroProps } from '.'
+import Link from '../Link'
 
 const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   left: {
@@ -66,8 +67,18 @@ const RowHeroHome: React.FC<RowHeroProps> = ({ text, asset, links, richTextClass
       <RichText {...text} classes={richTextClasses} />
       <div>
         {links.map((link) => {
-          if (link.__typename === 'LinkInternal') return <LinkInternal {...link} key={link.id} />
-          if (link.__typename === 'LinkExternal') return <LinkExternal {...link} key={link.id} />
+          if (link.__typename === 'LinkInternal' && link.page)
+            return (
+              <Link href={link.page.url} metaRobots={link.page.metaRobots} key={link.id}>
+                {link.title}
+              </Link>
+            )
+          if (link.__typename === 'LinkExternal')
+            return (
+              <a href={link.url} target='_blank' rel='noopener nofollow noreferrer' key={link.id}>
+                {link.title}
+              </a>
+            )
           return undefined
         })}
       </div>
