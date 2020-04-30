@@ -164,13 +164,31 @@ export const theme = createMuiTheme({
     },
     MuiButton: {
       root: {
+        fontWeight: 400,
         textTransform: 'none',
+      },
+      contained: {
+        backgroundColor: '#fff',
+        '& .MuiSvgIcon-root': {
+          color: '#13e4ad',
+        },
       },
       containedPrimary: {
         color: '#fff',
+        '& .MuiSvgIcon-root': {
+          color: '#fff',
+        },
       },
-      sizeLarge: {
+      containedSizeLarge: {
         padding: '15px 30px',
+      },
+      endIcon: {
+        marginLeft: 20,
+      },
+      iconSizeLarge: {
+        '& > *:first-child': {
+          fontSize: 24,
+        },
       },
     },
   },
