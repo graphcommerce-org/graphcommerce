@@ -1,32 +1,58 @@
 import React from 'react'
 import { Theme, makeStyles, Container } from '@material-ui/core'
 import RichText from '../RichText'
-import LinkInternal from '../LinkInternal/LinkInternal'
+import ChevronRight from '../Icons'
+import Link, { Button } from '../Link'
 
-const useStyles = makeStyles(({ gridSpacing, palette }: Theme) => ({
+const useStyles = makeStyles(({ gridSpacing, palette, breakpoints, typography }: Theme) => ({
   footer: {
-    // position: 'sticky',
-    // bottom: 0,
-    // left: 0,
-    // right: 0,
-    // zIndex: -1,
     backgroundColor: palette.tertiary.main,
     color: palette.tertiary.contrastText,
+    ...typography.body1,
   },
-  container: {
-    paddingTop: gridSpacing.row,
-    paddingBottom: gridSpacing.row,
+  containerOne: {
+    paddingTop: gridSpacing.gutter,
+    paddingBottom: gridSpacing.gutter,
     display: 'grid',
     gridColumnGap: gridSpacing.column,
     gridRowGap: gridSpacing.row,
-    // gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(150, 285)}, 1fr))`,
     gridTemplateAreas: `
-      "text     text     contactLink contactLink"
-      "linksOne linksTwo address     contact"
+      "text"
+      "contactLink"
     `,
+    [breakpoints.up('md')]: {
+      gridTemplateAreas: `
+        "text text contactLink contactLink"
+      `,
+    },
+    borderBottom: `2px solid ${palette.tertiary.light}`,
+  },
+  containerTwo: {
+    paddingTop: gridSpacing.gutter,
+    paddingBottom: gridSpacing.gutter,
+    display: 'grid',
+    gridColumnGap: gridSpacing.column,
+    gridRowGap: gridSpacing.row,
+    gridTemplateAreas: `
+      "linksOne"
+      "linksTwo"
+      "address"
+      "contact"
+    `,
+    [breakpoints.up('sm')]: {
+      gridTemplateAreas: `
+        "linksOne address"
+        "linksTwo contact"
+      `,
+    },
+    [breakpoints.up('md')]: {
+      gridTemplateAreas: `
+        "linksOne linksTwo address contact"
+      `,
+    },
   },
   text: { gridArea: 'text' },
-  contactLink: { gridArea: 'contactLink' },
+  contactLink: { gridArea: 'contactLink', textAlign: 'right' },
   linksOne: { gridArea: 'linksOne' },
   linksTwo: { gridArea: 'linksTwo' },
   address: { gridArea: 'address' },
@@ -42,30 +68,63 @@ const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, co
 
   return (
     <footer className={classes.footer}>
-      <Container className={classes.container}>
+      <Container className={classes.containerOne}>
         <div className={classes.text}>
           <RichText {...text} condensed />
         </div>
-        <div className={classes.contactLink}>{contactLink?.title}</div>
+        <div className={classes.contactLink}>
+          {contactLink?.page && (
+            <Button
+              href={contactLink.page.url}
+              metaRobots={contactLink.page.metaRobots}
+              variant='contained'
+              size='large'
+              endIcon={<ChevronRight />}
+            >
+              {contactLink.title}
+            </Button>
+          )}
+        </div>
+      </Container>
+      <Container className={classes.containerTwo}>
         <div className={classes.linksOne}>
-          {linksOne.map((link) => (
-            <div key={link.id}>
-              <LinkInternal {...link} />
-            </div>
-          ))}
+          {linksOne.map((link) => {
+            if (!link.page) return null
+            return (
+              <div key={link.id}>
+                <Link href={link.page.url} metaRobots={link.page.metaRobots} color='inherit'>
+                  {link.title}
+                </Link>
+              </div>
+            )
+          })}
         </div>
         <div className={classes.linksTwo}>
-          {linksTwo.map((link) => (
-            <div key={link.id}>
-              <LinkInternal {...link} />
-            </div>
-          ))}
+          {linksTwo.map((link) => {
+            if (!link.page) return null
+            return (
+              <div key={link.id}>
+                <Link href={link.page.url} metaRobots={link.page.metaRobots} color='inherit'>
+                  {link.title}
+                </Link>
+              </div>
+            )
+          })}
         </div>
         <div className={classes.address}>
           <RichText {...address} condensed />
         </div>
         <div className={classes.contact}>
           <RichText {...contact} condensed />
+          {contactLink?.page && (
+            <Link
+              href={contactLink.page.url}
+              metaRobots={contactLink.page.metaRobots}
+              color='inherit'
+            >
+              Contact
+            </Link>
+          )}
         </div>
       </Container>
     </footer>
