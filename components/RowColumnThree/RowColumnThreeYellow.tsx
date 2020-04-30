@@ -9,6 +9,7 @@ const useStyles = makeStyles(
       position: `relative`,
       background: theme.palette.secondary.main,
       marginTop: `calc(${theme.spacings.xl} * -1)`,
+      marginBottom: theme.spacings.xl,
       '& h2': {
         fontSize: vpCalc(18, 25),
       },
@@ -20,7 +21,7 @@ const useStyles = makeStyles(
 const RowColumnThreeYellow: React.FC<GQLRowColumnThreeFragment> = (props) => {
   const classes = useStyles()
 
-  console.log(props)
+  // console.log(props)
 
   return (
     <Container maxWidth='lg'>

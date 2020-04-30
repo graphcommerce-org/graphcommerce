@@ -32,9 +32,9 @@ const useStyles = makeStyles(
       zIndex: 0,
       background: theme.palette.tertiary['500'],
       [theme.breakpoints.up('md')]: {
-        paddingTop: 250,
-        marginTop: -250,
-        paddingBottom: 250,
+        paddingTop: theme.spacings.xxl,
+        marginTop: `calc(${theme.spacings.xxl} * -1)`,
+        paddingBottom: theme.spacings.xl,
       },
     },
     ctaBlock: {
@@ -64,13 +64,21 @@ const useStyles = makeStyles(
 
 const useContainerStyles = makeStyles((theme: Theme) => ({
   left: { alignSelf: 'stretch' },
-  root: { alignItems: 'center' },
+  root: {
+    alignItems: 'center',
+    paddingBottom: theme.spacings.xl,
+  },
   after: { position: 'relative' },
 }))
+
+const useCtaStyles = makeStyles({
+  paragraph: { marginBottom: 0 },
+})
 
 const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) => {
   const classes = useStyles()
   const containerClasses = useContainerStyles()
+  const ctaClasses = useCtaStyles()
 
   const left = (
     <div>
@@ -82,7 +90,7 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({ text, asset, links }) 
           return (
             <div key={link.id} className={classes.ctaBlock}>
               <small>
-                <RichText {...link.description} />
+                <RichText {...link.description} classes={ctaClasses} />
               </small>
               <Button
                 href={link.page.url}

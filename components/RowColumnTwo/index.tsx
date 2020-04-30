@@ -1,14 +1,15 @@
 import React from 'react'
 import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
+import Asset from '../Asset'
 import { UseStyles } from '../Theme'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
       gridColumnGap: theme.gridSpacing.column,
       gridRowGap: theme.gridSpacing.row,
+      marginBottom: theme.spacings.xl,
       display: `grid`,
       gridTemplateColumns: `1fr`,
       gridTemplateAreas: `
@@ -33,15 +34,17 @@ export type RowColumnTwoProps = GQLRowColumnTwoFragment &
   ContainerProps
 
 const RowColumnTwo: React.FC<RowColumnTwoProps> = (props) => {
-  const { colOne, colTwo, ...containerProps } = props
+  const { colOne, colOneIcon, colTwo, colTwoIcon, ...containerProps } = props
   const classes = useStyles(props)
 
   return (
-    <Container className={classes.root} {...containerProps}>
+    <Container className={classes.root} maxWidth='lg' {...containerProps}>
       <div className={classes.colOne}>
+        {colOneIcon?.width ? <Asset asset={colOneIcon} width={colOneIcon.width / 2} /> : ''}
         <RichText {...colOne} />
       </div>
       <div className={classes.colTwo}>
+        {colTwoIcon?.width ? <Asset asset={colTwoIcon} width={colTwoIcon.width / 2} /> : ''}
         <RichText {...colTwo} />
       </div>
     </Container>
