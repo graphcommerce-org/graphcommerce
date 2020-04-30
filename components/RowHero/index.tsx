@@ -30,7 +30,7 @@ const useStyles = makeStyles(
 
 export type RowHeroProps = GQLRowHeroFragment &
   UseStyles<typeof useStyles> & {
-    richTextClasses: UseRichTextStyles['classes']
+    richTextClasses?: UseRichTextStyles['classes']
   }
 
 /**

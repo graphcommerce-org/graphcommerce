@@ -23,9 +23,8 @@ export const registerRenderers = () => {
   })
 }
 
-export const registerGetStaticProps = async () => {
+export const registerGetStaticProps = () =>
   setStaticProps({
     RowRecentBlogPost: () => import('../RowRecentBlogPost'),
     RowPeopleWithText: () => import('../RowPeopleWithText'),
   })
-}

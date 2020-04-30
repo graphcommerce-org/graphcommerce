@@ -1,6 +1,7 @@
 # In this file we register the data requirements for the component.
 # Autocomplete should work here, else you can look it up in GraphCMS
 fragment RowCompanySlider on RowCompanySlider {
+  id
   companies {
     id
     logo {
