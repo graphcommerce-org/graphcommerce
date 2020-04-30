@@ -17,7 +17,7 @@ export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
 export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
 
 const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, team, footer }) => {
-  if (!page) return <Error statusCode={404} title='No page loaded, please provide getStaticProps' />
+  if (!page?.url) return <Error statusCode={404} title='Page not found' />
   if (!mainMenu) return <Error statusCode={500} title='Main menu not loaded' />
   if (!footer) return <Error statusCode={500} title='Footer not loaded' />
 
@@ -45,14 +45,23 @@ export const getStaticProps: GQLGetStaticProps<PageLayoutProps> = async (variabl
   const { GetPageLayoutDocument } = await import('../../generated/apollo')
   const { getStaticProps: get } = await import('../ContentRenderer/ContentRenderer')
 
-  const { data } = await client().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>({
-    query: GetPageLayoutDocument,
-    variables,
-  })
+  try {
+    const { data } = await client().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>(
+      {
+        query: GetPageLayoutDocument,
+        variables,
+      },
+    )
 
-  const { pages, ...rest } = data
-  const page = pages[0]
+    const { pages, ...rest } = data
+    const page = pages[0]
 
-  page.content = await get(page.content)
-  return { ...rest, page: pages[0] }
+    page.content = await get(page.content)
+    return { ...rest, page: pages[0] }
+  } catch (error) {
+    return {
+      page: {} as GQLPageLayoutFragment,
+      team: [],
+    }
+  }
 }
