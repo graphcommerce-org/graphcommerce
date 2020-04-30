@@ -1,15 +1,18 @@
 import React from 'react'
-import { makeStyles, Theme, Grid } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import RichText from '../RichText'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'grid',
-    padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
-    gridTemplateColumns: '1fr',
-    gridTemplateRows: '1fr',
-  },
-}))
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      display: 'grid',
+      padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
+      gridTemplateColumns: '1fr',
+      gridTemplateRows: '1fr',
+    },
+  }),
+  { name: 'RowColumnOne' },
+)
 
 const RowColumnOne: React.FC<GQLRowColumnOneFragment> = ({ colOne }) => {
   const classes = useStyles()

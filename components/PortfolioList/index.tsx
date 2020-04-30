@@ -4,14 +4,17 @@ import PortfolioListItem from './PortfolioListItem'
 import { vpCalc } from '../Theme'
 import { GQLGetStaticProps } from '../../lib/staticParams'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  portfolioList: {
-    display: 'grid',
-    gridColumnGap: theme.gridSpacing.column,
-    gridRowGap: theme.gridSpacing.row,
-    gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(260, 500)}, 1fr))`,
-  },
-}))
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    portfolioList: {
+      display: 'grid',
+      gridColumnGap: theme.gridSpacing.column,
+      gridRowGap: theme.gridSpacing.row,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(260, 500)}, 1fr))`,
+    },
+  }),
+  { name: 'PortfolioList' },
+)
 
 const PortfolioList: React.FC<GQLGetPortfolioListQuery> = ({ portfolioList }) => {
   const classes = useStyles()

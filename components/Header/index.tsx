@@ -8,53 +8,56 @@ import Menu from '../Menu'
 import Link from '../Link'
 import Asset from '../Asset'
 
-const useStyles = makeStyles(({ gridSpacing }: Theme) => ({
-  navigation: {
-    display: 'grid',
-    gridTemplateAreas: `
+const useStyles = makeStyles(
+  ({ gridSpacing }: Theme) => ({
+    navigation: {
+      display: 'grid',
+      gridTemplateAreas: `
       'spaceleft before before before spaceright'
       'spaceleft menu logo contact spaceright'`,
-    gridTemplateColumns: `${gridSpacing.column} 46px auto 46px ${gridSpacing.column}`,
-    gridTemplateRows: `${gridSpacing.row} auto`,
-    justifyItems: 'center',
-    width: '100%',
-  },
-  '@media (min-width: 1024px)': {
-    navigation: {
-      height: 250,
+      gridTemplateColumns: `${gridSpacing.column} 46px auto 46px ${gridSpacing.column}`,
+      gridTemplateRows: `${gridSpacing.row} auto`,
+      justifyItems: 'center',
+      width: '100%',
     },
-  },
-  logo: {
-    zIndex: zIndex.appBar,
-    gridArea: 'logo',
-    '& img': {
-      maxHeight: vpCalc(46, 72),
+    '@media (min-width: 1024px)': {
+      navigation: {
+        height: 250,
+      },
+    },
+    logo: {
+      zIndex: zIndex.appBar,
+      gridArea: 'logo',
+      '& img': {
+        maxHeight: vpCalc(46, 72),
+        display: 'block',
+        marginTop: 3,
+      },
+    },
+    menu: {
+      gridArea: 'menu',
+    },
+    contact: {
+      gridArea: 'contact',
+    },
+    avatar: {
+      backgroundColor: 'transparent',
+    },
+    avatarFab: {
+      boxShadow: 'none',
+    },
+    avatarImg: {
       display: 'block',
-      marginTop: 3,
     },
-  },
-  menu: {
-    gridArea: 'menu',
-  },
-  contact: {
-    gridArea: 'contact',
-  },
-  avatar: {
-    backgroundColor: 'transparent',
-  },
-  avatarFab: {
-    boxShadow: 'none',
-  },
-  avatarImg: {
-    display: 'block',
-  },
-  avatarPhone: {
-    padding: 0,
-  },
-  avatarPhoneIcon: {
-    fontSize: 12,
-  },
-}))
+    avatarPhone: {
+      padding: 0,
+    },
+    avatarPhoneIcon: {
+      fontSize: 12,
+    },
+  }),
+  { name: 'Header' },
+)
 
 const Header: React.FC<{
   menu: GQLMenuFragment

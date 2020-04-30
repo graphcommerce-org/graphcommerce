@@ -8,44 +8,47 @@ import { animated, useSpring, config } from 'react-spring'
 type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
 type StyleProps = { scrolling: boolean } & ScrollSnapSliderProps
 
-const useStyles = makeStyles<Theme, StyleProps>(() => ({
-  container: {
-    position: 'relative',
-  },
-  scroller: ({ scrolling, scrollbar }) => ({
-    overflow: 'auto',
-    '-webkit-overflow-scrolling': 'touch',
-    display: 'flex',
-    willChange: 'transform', // Solve issue with repaints
-    overscrollBehavior: 'contain', // https://developers.google.com/web/updates/2017/11/overscroll-behavior
-    ...(!scrollbar && {
-      scrollbarWidth: 'none',
-      '-ms-overflow-style': 'none',
-      '&::-webkit-scrollbar': { display: 'none' },
+const useStyles = makeStyles<Theme, StyleProps>(
+  () => ({
+    container: {
+      position: 'relative',
+    },
+    scroller: ({ scrolling, scrollbar }) => ({
+      overflow: 'auto',
+      '-webkit-overflow-scrolling': 'touch',
+      display: 'flex',
+      willChange: 'transform', // Solve issue with repaints
+      overscrollBehavior: 'contain', // https://developers.google.com/web/updates/2017/11/overscroll-behavior
+      ...(!scrollbar && {
+        scrollbarWidth: 'none',
+        '-ms-overflow-style': 'none',
+        '&::-webkit-scrollbar': { display: 'none' },
+      }),
+      // We disable the scroll-snap-align when we're animating because it causes animation jank
+      ...(!scrolling && {
+        scrollSnapType: 'both proximity',
+        '& > *': { scrollSnapAlign: 'center' },
+      }),
     }),
-    // We disable the scroll-snap-align when we're animating because it causes animation jank
-    ...(!scrolling && {
-      scrollSnapType: 'both proximity',
-      '& > *': { scrollSnapAlign: 'center' },
-    }),
+    prevFab: {
+      position: 'absolute',
+      left: '0',
+      top: 'calc(50% - (40px / 2))',
+      '&[hidden]': {
+        display: 'none',
+      },
+    },
+    nextFab: {
+      position: 'absolute',
+      right: '0',
+      top: 'calc(50% - (40px / 2))',
+      '&[hidden]': {
+        display: 'none',
+      },
+    },
   }),
-  prevFab: {
-    position: 'absolute',
-    left: '0',
-    top: 'calc(50% - (40px / 2))',
-    '&[hidden]': {
-      display: 'none',
-    },
-  },
-  nextFab: {
-    position: 'absolute',
-    right: '0',
-    top: 'calc(50% - (40px / 2))',
-    '&[hidden]': {
-      display: 'none',
-    },
-  },
-}))
+  { name: 'ScrollSnapSlider' },
+)
 
 const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = ({
   children,

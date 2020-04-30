@@ -2,16 +2,19 @@ import React, { useRef, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core'
 import start, { FluidConfigProps } from './script'
 
-const useStyles = makeStyles({
-  canvas: {
-    width: '100%',
-    height: '100vh',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: -1,
+const useStyles = makeStyles(
+  {
+    canvas: {
+      width: '100%',
+      height: '100vh',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      zIndex: -1,
+    },
   },
-})
+  { name: 'FluidAnimation' },
+)
 
 const FluidAnimation: React.FC<FluidConfigProps> = (config) => {
   const classes = useStyles()

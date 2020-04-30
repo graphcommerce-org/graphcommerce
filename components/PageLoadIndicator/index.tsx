@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { LinearProgress, makeStyles, Fade } from '@material-ui/core'
 
-const useStyles = makeStyles({
-  progress: {
-    marginBottom: -2,
-    height: 2,
+const useStyles = makeStyles(
+  {
+    progress: {
+      marginBottom: -2,
+      height: 2,
+    },
   },
-})
+  { name: 'PageLoadIndicator' },
+)
 
 const PageLoadIndicator: React.FC = () => {
   const router = useRouter()

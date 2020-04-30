@@ -4,60 +4,63 @@ import RichText from '../RichText'
 import ChevronRight from '../Icons'
 import Link, { Button } from '../Link'
 
-const useStyles = makeStyles(({ gridSpacing, palette, breakpoints, typography }: Theme) => ({
-  footer: {
-    backgroundColor: palette.tertiary.main,
-    color: palette.tertiary.contrastText,
-    ...typography.body1,
-  },
-  containerOne: {
-    paddingTop: gridSpacing.gutter,
-    paddingBottom: gridSpacing.gutter,
-    display: 'grid',
-    gridColumnGap: gridSpacing.column,
-    gridRowGap: gridSpacing.row,
-    gridTemplateAreas: `
+const useStyles = makeStyles(
+  ({ gridSpacing, palette, breakpoints, typography }: Theme) => ({
+    footer: {
+      backgroundColor: palette.tertiary.main,
+      color: palette.tertiary.contrastText,
+      ...typography.body1,
+    },
+    containerOne: {
+      paddingTop: gridSpacing.gutter,
+      paddingBottom: gridSpacing.gutter,
+      display: 'grid',
+      gridColumnGap: gridSpacing.column,
+      gridRowGap: gridSpacing.row,
+      gridTemplateAreas: `
       "text"
       "contactLink"
     `,
-    [breakpoints.up('md')]: {
-      gridTemplateAreas: `
+      [breakpoints.up('md')]: {
+        gridTemplateAreas: `
         "text text contactLink contactLink"
       `,
+      },
+      borderBottom: `2px solid ${palette.tertiary.light}`,
     },
-    borderBottom: `2px solid ${palette.tertiary.light}`,
-  },
-  containerTwo: {
-    paddingTop: gridSpacing.gutter,
-    paddingBottom: gridSpacing.gutter,
-    display: 'grid',
-    gridColumnGap: gridSpacing.column,
-    gridRowGap: gridSpacing.row,
-    gridTemplateAreas: `
+    containerTwo: {
+      paddingTop: gridSpacing.gutter,
+      paddingBottom: gridSpacing.gutter,
+      display: 'grid',
+      gridColumnGap: gridSpacing.column,
+      gridRowGap: gridSpacing.row,
+      gridTemplateAreas: `
       "linksOne"
       "linksTwo"
       "address"
       "contact"
     `,
-    [breakpoints.up('sm')]: {
-      gridTemplateAreas: `
+      [breakpoints.up('sm')]: {
+        gridTemplateAreas: `
         "linksOne address"
         "linksTwo contact"
       `,
-    },
-    [breakpoints.up('md')]: {
-      gridTemplateAreas: `
+      },
+      [breakpoints.up('md')]: {
+        gridTemplateAreas: `
         "linksOne linksTwo address contact"
       `,
+      },
     },
-  },
-  text: { gridArea: 'text' },
-  contactLink: { gridArea: 'contactLink', textAlign: 'right' },
-  linksOne: { gridArea: 'linksOne' },
-  linksTwo: { gridArea: 'linksTwo' },
-  address: { gridArea: 'address' },
-  contact: { gridArea: 'contact' },
-}))
+    text: { gridArea: 'text' },
+    contactLink: { gridArea: 'contactLink', textAlign: 'right' },
+    linksOne: { gridArea: 'linksOne' },
+    linksTwo: { gridArea: 'linksTwo' },
+    address: { gridArea: 'address' },
+    contact: { gridArea: 'contact' },
+  }),
+  { name: 'Footer' },
+)
 
 const Footer: React.FC<GQLFooterFragment> = ({ links, address, contact, text, contactLink }) => {
   const classes = useStyles()

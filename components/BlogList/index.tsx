@@ -4,14 +4,17 @@ import BlogListItem from './BlogListItem'
 import { vpCalc } from '../Theme'
 import { GQLGetStaticProps } from '../../lib/staticParams'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  blogList: {
-    display: 'grid',
-    gridColumnGap: theme.gridSpacing.column,
-    gridRowGap: theme.gridSpacing.row,
-    gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(150, 285)}, 1fr))`,
-  },
-}))
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    blogList: {
+      display: 'grid',
+      gridColumnGap: theme.gridSpacing.column,
+      gridRowGap: theme.gridSpacing.row,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(150, 285)}, 1fr))`,
+    },
+  }),
+  { name: 'BlogList' },
+)
 
 const BlogList: React.FC<GQLGetBlogListQuery> = ({ blogPosts }) => {
   const classes = useStyles()

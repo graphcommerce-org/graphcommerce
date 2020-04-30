@@ -36,52 +36,55 @@ const extractRoots = (mainMenu: GQLMenuFragment) => {
   return roots
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  menuOpen: {
-    // position: 'fixed',
-    // left: vpCalc(18, 60),
-    // top: vpCalc(18, 60),
-    // zIndex: zIndex.appBar,
-  },
-  menu: {
-    backgroundColor: theme.palette.tertiary.main,
-    color: theme.palette.tertiary.contrastText,
-    minWidth: vpCalc(200, 280),
-  },
-  menuClose: {
-    marginLeft: 16,
-    marginTop: 8,
-    marginBottom: 16,
-  },
-  menuLink: {
-    '&:hover': {
-      textDecoration: 'none',
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    menuOpen: {
+      // position: 'fixed',
+      // left: vpCalc(18, 60),
+      // top: vpCalc(18, 60),
+      // zIndex: zIndex.appBar,
     },
-  },
-  menuItemText: {
-    ...theme.typography.h3,
-    lineHeight: 1,
-  },
-  menuItem: {
-    '&:hover': {
-      backgroundColor: theme.palette.tertiary.light,
+    menu: {
+      backgroundColor: theme.palette.tertiary.main,
+      color: theme.palette.tertiary.contrastText,
+      minWidth: vpCalc(200, 280),
     },
-    '&.Mui-selected': {
-      backgroundColor: theme.palette.tertiary.light,
+    menuClose: {
+      marginLeft: 16,
+      marginTop: 8,
+      marginBottom: 16,
     },
-    '&.Mui-selected:hover': {
-      backgroundColor: theme.palette.tertiary.light,
+    menuLink: {
+      '&:hover': {
+        textDecoration: 'none',
+      },
     },
-  },
+    menuItemText: {
+      ...theme.typography.h3,
+      lineHeight: 1,
+    },
+    menuItem: {
+      '&:hover': {
+        backgroundColor: theme.palette.tertiary.light,
+      },
+      '&.Mui-selected': {
+        backgroundColor: theme.palette.tertiary.light,
+      },
+      '&.Mui-selected:hover': {
+        backgroundColor: theme.palette.tertiary.light,
+      },
+    },
 
-  menuItemTextSmall: {
-    fontWeight: 600,
-  },
-  menuSubheader: {
-    paddingTop: 16,
-    ...theme.typography.body2,
-  },
-}))
+    menuItemTextSmall: {
+      fontWeight: 600,
+    },
+    menuSubheader: {
+      paddingTop: 16,
+      ...theme.typography.body2,
+    },
+  }),
+  { name: 'Menu' },
+)
 
 const Menu: React.FC<{
   menu: GQLMenuFragment
