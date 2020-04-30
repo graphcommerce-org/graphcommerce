@@ -3,7 +3,7 @@ import { CssBaseline } from '@material-ui/core'
 import Head from 'next/head'
 import Error from 'next/error'
 import PageMeta from '../PageMeta'
-import ThemedProvider, { theme } from '../Theme'
+import ThemedProvider, { defaultTheme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
 import Header from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
@@ -24,7 +24,7 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, mainMenu, te
   return (
     <ThemedProvider>
       <Head>
-        <meta name='theme-color' content={theme.palette.primary.main} />
+        <meta name='theme-color' content={defaultTheme.palette.primary.main} />
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
       <CssBaseline />

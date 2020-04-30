@@ -1,11 +1,11 @@
 import React from 'react'
-import { Typography, makeStyles } from '@material-ui/core'
+import { Typography, makeStyles, Theme } from '@material-ui/core'
 import Link from '../Link'
 import Asset from '../Asset'
-import { theme, vpCalc } from '../Theme'
+import { vpCalc } from '../Theme'
 
 const useStyles = makeStyles(
-  {
+  (theme: Theme) => ({
     item: {
       position: 'relative',
       fontSize: 20,
@@ -64,7 +64,7 @@ const useStyles = makeStyles(
     link: {
       textDecoration: 'underline',
     },
-  },
+  }),
   { name: 'BlogListItem' },
 )
 

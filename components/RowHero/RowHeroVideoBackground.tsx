@@ -61,11 +61,11 @@ const useStyles = makeStyles(
   { name: 'RowHeroVideoBackground' },
 )
 
-const useContainerStyles = makeStyles<Theme>({
+const useContainerStyles = makeStyles((theme: Theme) => ({
   left: { alignSelf: 'stretch' },
   root: { alignItems: 'center' },
   after: { position: 'relative' },
-})
+}))
 
 const RowHeroVideoBackground: React.FC<GQLRowHeroFragment> = ({ text, asset, links }) => {
   const classes = useStyles()

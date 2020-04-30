@@ -74,7 +74,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 }
 
 // Create a theme instance.
-export const theme = createMuiTheme({
+export const defaultTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#13e4ad',
@@ -195,7 +195,7 @@ export const theme = createMuiTheme({
 })
 
 const ThemedProvider: React.FC = ({ children }) => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={defaultTheme}>
     <Head>
       {fonts
         .filter(({ preload }) => preload)

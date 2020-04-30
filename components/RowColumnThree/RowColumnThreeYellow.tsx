@@ -1,18 +1,21 @@
 import React from 'react'
-import { Container, makeStyles } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import RowColumnThree from '.'
-import { theme, vpCalc } from '../Theme'
+import { vpCalc } from '../Theme'
 
-const useStyles = makeStyles({
-  root: {
-    position: `relative`,
-    background: theme.palette.secondary.main,
-    marginTop: `calc(${theme.spacings.xl} * -1)`,
-    '& h2': {
-      fontSize: vpCalc(18, 25),
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      position: `relative`,
+      background: theme.palette.secondary.main,
+      marginTop: `calc(${theme.spacings.xl} * -1)`,
+      '& h2': {
+        fontSize: vpCalc(18, 25),
+      },
     },
-  },
-})
+  }),
+  { name: 'RowColumnThreeYellow' },
+)
 
 const RowColumnThreeYellow: React.FC<GQLRowColumnThreeFragment> = (props) => {
   const classes = useStyles()
