@@ -2,14 +2,13 @@ import React from 'react'
 import { Typography, makeStyles, Theme } from '@material-ui/core'
 import Link from '../Link'
 import Asset from '../Asset'
-import { vpCalc } from '../Theme'
+import { vpCalc, UseStyles } from '../Theme'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     item: {
       position: 'relative',
       fontSize: 20,
-      marginBottom: '75px',
     },
     title: {
       color: theme.palette.primary.contrastText,
@@ -38,7 +37,10 @@ const useStyles = makeStyles(
         zIndex: '-1',
         boxShadow: '0 30px 60px 0 rgba(0, 0, 0, 0.25)',
         transform: 'scale(.85, 0.95)',
+        top: 0,
+        left: 0,
       },
+      paddingTop: 'calc(100% / 3 * 2)',
     },
     placeholder: {
       display: 'flex',
@@ -57,6 +59,9 @@ const useStyles = makeStyles(
       width: '100%',
       height: '100%',
       objectFit: 'cover',
+      position: 'absolute',
+      top: 0,
+      left: 0,
     },
     href: {
       textDecoration: 'none !important',
@@ -68,15 +73,11 @@ const useStyles = makeStyles(
   { name: 'BlogListItem' },
 )
 
-const BlogListItem: React.FC<GQLBlogListItemFragment> = ({
-  title,
-  url,
-  metaRobots,
-  releaseDate,
-  asset,
-  locale,
-}) => {
-  const classes = useStyles()
+type BlogListItemProps = GQLBlogListItemFragment & UseStyles<typeof useStyles>
+
+const BlogListItem: React.FC<BlogListItemProps> = (props) => {
+  const { title, url, metaRobots, releaseDate, asset, locale } = props
+  const classes = useStyles(props)
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',

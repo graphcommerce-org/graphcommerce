@@ -1,7 +1,7 @@
 import React from 'react'
 import { SvgIcon } from '@material-ui/core'
 
-const ChevronRight = () => (
+export const ChevronRight = () => (
   <SvgIcon>
     <path
       d='M12,1.8c5.6,0,10.2,4.6,10.2,10.2S17.6,22.2,12,22.2S1.8,17.6,1.8,12S6.4,1.8,12,1.8 M12,0C5.4,0,0,5.4,0,12
@@ -12,4 +12,16 @@ const ChevronRight = () => (
   </SvgIcon>
 )
 
-export default ChevronRight
+export const ArrowRight = () => (
+  <SvgIcon>
+    <svg viewBox='0 0 24 24' preserveAspectRatio='xMidYMid meet' focusable='false'>
+      <g>
+        <path
+          className='st0'
+          d='M23.9,11.8l-2.4-3.6C21.4,8,21.2,8,21,8.1c-0.2,0.1-0.2,0.3-0.1,0.5l2.1,3.1H0v0.6h23l-2,3.1
+            c-0.1,0.2-0.1,0.4,0.1,0.5c0,0.1,0.1,0.1,0.2,0.1c0.1,0,0.2-0.1,0.3-0.2l2.4-3.6c0,0,0-0.1,0-0.2S24,11.8,23.9,11.8z'
+        />
+      </g>
+    </svg>
+  </SvgIcon>
+)

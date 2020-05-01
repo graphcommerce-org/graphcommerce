@@ -5,7 +5,8 @@ import { LinearProgress, makeStyles, Fade } from '@material-ui/core'
 const useStyles = makeStyles(
   {
     progress: {
-      marginBottom: -2,
+      position: 'fixed',
+      top: 0,
       height: 2,
     },
   },
