@@ -32,7 +32,7 @@ const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ..
       )
     case undefined:
     case null:
-      return <div>Corrupt file {(asset as UnsupportedProps['asset']).url}</div>
+      return <div>Corrupt file {asset.url}</div>
     default:
       if (!asset.width || !asset.height) throw new Error('Missing width/height')
       if (!(props as ImageProps).width)

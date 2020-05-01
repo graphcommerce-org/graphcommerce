@@ -3,9 +3,16 @@ import { GetStaticProps } from 'next'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../lib/staticParams'
+import { useHeaderSpacing } from '../components/Header'
 
 const CatchAll: PageWithLayoutFull = ({ page }) => {
-  return <ContentRenderer {...page} />
+  const header = useHeaderSpacing()
+
+  return (
+    <div className={header.marginTop}>
+      <ContentRenderer {...page} />
+    </div>
+  )
 }
 
 CatchAll.layout = LayoutFull

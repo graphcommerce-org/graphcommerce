@@ -12,9 +12,11 @@ import ReleaseDateCard from '../../components/ReleaseDateCard'
 import ContactFormLoader from '../../components/ContactForm'
 import Asset from '../../components/Asset'
 import useBlogViewStyles from '../../components/BlogView/useBlogViewStyles'
+import { useHeaderSpacing } from '../../components/Header'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
   const classes = useBlogViewStyles()
+  const header = useHeaderSpacing()
 
   return (
     <>
@@ -27,7 +29,7 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           datePublished: page.releaseDate,
         }}
       />
-      <Container maxWidth='lg'>
+      <Container maxWidth='lg' className={header.marginTop}>
         <ReleaseDateCard {...page} />
         <div className={classes.featured}>
           {page.asset && (

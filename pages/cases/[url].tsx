@@ -4,9 +4,16 @@ import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../component
 import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
+import { useHeaderSpacing } from '../../components/Header'
 
 const CasesView: PageWithLayoutFull = ({ page }) => {
-  return <ContentRenderer content={page.content} />
+  const header = useHeaderSpacing()
+
+  return (
+    <div className={header.marginTop}>
+      <ContentRenderer content={page.content} />
+    </div>
+  )
 }
 
 CasesView.layout = LayoutFull

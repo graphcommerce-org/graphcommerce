@@ -4,6 +4,7 @@ import { ButtonProps, Button as MuiButton, Link as MuiLink, LinkProps } from '@m
 import routes from './routes.json'
 
 function getHref(sourceHref: string): string {
+  // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
   const route = (routes as [string, string][]).find(([regex]) => sourceHref.match(regex))
   if (route) return route[1]
   return sourceHref

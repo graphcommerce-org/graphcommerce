@@ -86,14 +86,14 @@ export const stressTest = () => {
     max: 1000,
     step: 10,
   })
-  const images: number[] = Array.apply(null, Array(count)).map((x, i) => i)
+  const images: number[] = [...Array(count)].map((x, i) => i)
   return (
     <>
       <h1>Stress test lazy loading images.</h1>
       <p style={{ fontStyle: 'italic' }}>
-        Please note: `lazy=loading`'s automatic rootMargin functionality doesn&apos;t work when you
-        are scrolling inside a div, so it doesn&apos;t work in this demo, open in separate tab on
-        the top right.
+        Please note: `lazy=loading`&apos;s automatic rootMargin functionality doesn&apos;t work when
+        you are scrolling inside a div, so it doesn&apos;t work in this demo, open in separate tab
+        on the top right.
       </p>
       <p style={{ fontStyle: 'italic' }}>
         Please note: Storybook doesn&apos;t do SSR so the loading experience is different when

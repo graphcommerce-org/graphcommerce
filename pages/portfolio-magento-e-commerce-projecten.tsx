@@ -6,6 +6,7 @@ import ContentRenderer from '../components/ContentRenderer'
 import PortfolioList from '../components/PortfolioList'
 import { StaticPageVariables } from '../lib/staticParams'
 import RichText from '../components/RichText'
+import { useHeaderSpacing } from '../components/Header'
 
 const useStyles = makeStyles({
   root: {
@@ -23,11 +24,13 @@ const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
 }
 
 const Portfolio: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page, portfolioList }) => {
+  const header = useHeaderSpacing()
+
   return (
-    <>
+    <div className={header.marginTop}>
       <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
       <PortfolioList portfolioList={portfolioList} />
-    </>
+    </div>
   )
 }
 

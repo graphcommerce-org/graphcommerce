@@ -4,13 +4,16 @@ import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/P
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
 import BlogList from '../components/BlogList'
+import { useHeaderSpacing } from '../components/Header'
 
 const Blog: PageWithLayoutFull<GQLGetBlogListQuery> = ({ page, blogPosts }) => {
+  const header = useHeaderSpacing()
+
   return (
-    <>
+    <div className={header.marginTop}>
       <ContentRenderer content={page.content} />
       <BlogList blogPosts={blogPosts} />
-    </>
+    </div>
   )
 }
 

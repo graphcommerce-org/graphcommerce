@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
 type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
-export type Renderers = { [T in TypeNames]?: React.ComponentType<any> }
+export type Renderers = {
+  [T in TypeNames]?: React.ComponentType<any>
+}
 
 let renderers: Renderers = {}
 export const setRenderers = (newRenderers: Renderers): void => {

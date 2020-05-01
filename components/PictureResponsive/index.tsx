@@ -58,7 +58,7 @@ function requestUpgrade(img: HTMLImageElement) {
         (entries: IntersectionObserverEntry[]) => {
           entries
             .filter((entry) => entry.isIntersecting === undefined || entry.isIntersecting)
-            .forEach((_) => {
+            .forEach(() => {
               intersectionObserver.unobserve(img)
               resolve()
             })
@@ -93,7 +93,7 @@ const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, alt, ...i
       // If the connection is slow, request a lower quality image
       setSize(Math.round(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
     })
-  }, [ref.current, width, connectionType])
+  }, [width, connectionType])
 
   return (
     <picture>

@@ -5,6 +5,7 @@ import initApolloClient from '../../lib/apollo'
 import { GetStaticPathsDocument } from '../../generated/apollo'
 
 function getProtocol(req: NextApiRequest) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   let proto = req.connection.encrypted ? 'https' : 'http'
   // only do this if you trust the proxy
@@ -37,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Add NL Pages with hreflang alternative
     resultNl.pages.forEach((page) => {
-      const item: SitemapItemLoose = { url: page!.url!, links: [] }
+      const item: SitemapItemLoose = { url: page.url, links: [] }
 
       page.localizations.forEach((localization) => {
         if (item.links) {
@@ -54,7 +55,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     // Add other EN pages
-    pagesEn.forEach((page) => sm.write({ url: page!.url! }))
+    pagesEn.forEach((page) => sm.write({ url: page.url }))
 
     sm.end()
 

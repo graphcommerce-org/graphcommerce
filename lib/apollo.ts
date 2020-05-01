@@ -3,6 +3,7 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
   IntrospectionFragmentMatcher,
+  IdGetterObj,
 } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
@@ -31,7 +32,8 @@ function createApolloClient(
       fragmentMatcher: new IntrospectionFragmentMatcher({
         introspectionQueryResultData,
       }),
-      dataIdFromObject: (object: { [index: string]: any }) => object?.id + object?.locale,
+      dataIdFromObject: (value: IdGetterObj & { locale?: string }) =>
+        (value.id ?? '') + (value.locale ?? ''),
     }).restore(initialState),
   })
 }

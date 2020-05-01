@@ -5,16 +5,19 @@ import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/P
 import { StaticPageVariables } from '../lib/staticParams'
 import ContentRenderer from '../components/ContentRenderer'
 import ContactFormLoader from '../components/ContactForm'
+import { useHeaderSpacing } from '../components/Header'
 
 const Contact: PageWithLayoutFull = ({ page }) => {
+  const header = useHeaderSpacing()
+
   return (
-    <>
+    <div className={header.marginTop}>
       <ContentRenderer content={page.content} />
       <Container>
         <Typography variant='h3'>Neem contact op</Typography>
         <ContactFormLoader />
       </Container>
-    </>
+    </div>
   )
 }
 

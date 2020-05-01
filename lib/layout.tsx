@@ -1,8 +1,10 @@
 import React from 'react'
 import { NextPage, NextComponentType, NextPageContext } from 'next'
 
-function isLayoutPage<P = {}, IP = P>(Component: any): Component is LayoutPage<P, IP> {
-  return Component.layout !== undefined
+function isLayoutPage<P = {}, IP = P>(
+  Component: NextPage<P, IP> | LayoutPage<P, IP>,
+): Component is LayoutPage<P, IP> {
+  return (Component as LayoutPage<P, IP>).layout !== undefined
 }
 
 export type LayoutPage<P = {}, IP = P> = NextPage<P, IP> & {
@@ -10,10 +12,10 @@ export type LayoutPage<P = {}, IP = P> = NextPage<P, IP> & {
 }
 
 export function renderLayout(
-  Component: NextComponentType<NextPageContext, any, {}>,
-  pageProps: any,
+  Component: NextComponentType<NextPageContext, unknown, {}>,
+  pageProps: {},
 ) {
-  if (isLayoutPage<{}, any>(Component)) {
+  if (isLayoutPage<{}, unknown>(Component)) {
     const LayoutComponent = Component.layout
     return (
       <LayoutComponent {...pageProps}>
