@@ -29,7 +29,7 @@ const PageLoadIndicator: React.FC = () => {
       router.events.off('routeChangeComplete', hide)
       router.events.off('routeChangeError', hide)
     }
-  }, [router.pathname, router.query])
+  }, [router.events, router.pathname, router.query])
 
   return (
     <Fade in={loading}>

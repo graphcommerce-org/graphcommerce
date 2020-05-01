@@ -1,6 +1,6 @@
 import { GetStaticProps as NextGetStaticProps } from 'next'
 
-type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A : never
+type ArgumentTypes<F extends Function> = F extends (...args: infer A) => unknown ? A : never
 
 export type StaticPageParams = { url: string | string[]; locale: GQLLocale }
 

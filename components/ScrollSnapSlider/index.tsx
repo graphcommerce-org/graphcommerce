@@ -142,6 +142,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
       {pagination && (
         <div>
           {intersects.map((intersecting, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <span style={{ opacity: intersecting ? 1 : 0.5 }} key={index}>
               {index}
             </span>

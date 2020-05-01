@@ -25,7 +25,7 @@ const PageMeta: React.FC<GQLPageMetaFragment> = ({
           key={localization.id}
           rel='alternate'
           hrefLang={localization.locale === 'nl' ? 'x-default' : localization.locale}
-          href={localization.url!}
+          href={localization.url}
         />
       ))}
     </Head>

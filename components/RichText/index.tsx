@@ -1,9 +1,8 @@
 import React from 'react'
-import { Typography, TypographyProps } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import Link from '../Link'
 import Asset, { MimeTypes } from '../Asset'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
-import { UseStyles } from '../Theme'
 
 export interface ValueJSON {
   document: DocumentJSON

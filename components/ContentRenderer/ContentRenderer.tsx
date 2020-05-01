@@ -1,7 +1,7 @@
 import React from 'react'
 
 type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
-export type Renderers = { [T in TypeNames]?: React.ComponentType<any> }
+export type Renderers = { [T in TypeNames]?: React.ComponentType<{ index: number }> }
 
 let renderers: Renderers = {}
 export const setRenderers = (newRenderers: Renderers): void => {
@@ -37,8 +37,8 @@ export default ContentRenderer
  */
 export type CRGetStaticProps<P, R> = (props: P) => Promise<R>
 
-type LoaderComponent<P = any> = Promise<{
-  getStaticProps: CRGetStaticProps<P, any>
+type LoaderComponent<P = {}> = Promise<{
+  getStaticProps: CRGetStaticProps<P, {}>
 }>
 
 export type StaticData = { [T in TypeNames]?: () => LoaderComponent }

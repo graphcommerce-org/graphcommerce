@@ -6,7 +6,7 @@ declare global {
       effectiveType: 'slow-2g' | '2g' | '3g' | '4g'
       addEventListener<K extends keyof WindowEventMap>(
         type: K,
-        listener: (this: Window, ev: WindowEventMap[K]) => any,
+        listener: (this: Window, ev: WindowEventMap[K]) => unknown,
         options?: boolean | AddEventListenerOptions,
       ): void
       addEventListener(
@@ -16,7 +16,7 @@ declare global {
       ): void
       removeEventListener<K extends keyof WindowEventMap>(
         type: K,
-        listener: (this: Window, ev: WindowEventMap[K]) => any,
+        listener: (this: Window, ev: WindowEventMap[K]) => unknown,
         options?: boolean | EventListenerOptions,
       ): void
       removeEventListener(

@@ -126,15 +126,15 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   class Pointer {
-    id: number = -1
-    texcoordX: number = 0
-    texcoordY: number = 0
-    prevTexcoordX: number = 0
-    prevTexcoordY: number = 0
-    deltaX: number = 0
-    deltaY: number = 0
-    down: boolean = false
-    moved: boolean = false
+    id = -1
+    texcoordX = 0
+    texcoordY = 0
+    prevTexcoordX = 0
+    prevTexcoordY = 0
+    deltaX = 0
+    deltaY = 0
+    down = false
+    moved = false
     color: ColorRGB = { r: 30, g: 0, b: 300 }
   }
 
@@ -280,13 +280,16 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function createProgram(vertexShader: WebGLShader, fragmentShader: WebGLShader) {
-    const program = gl.createProgram()!
+    const program = gl.createProgram()
+    if (!program) {
+      throw new Error('program cound not be created')
+    }
     gl.attachShader(program, vertexShader)
     gl.attachShader(program, fragmentShader)
     gl.linkProgram(program)
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS))
-      throw new Error(gl.getProgramInfoLog(program)!)
+      throw new Error(gl.getProgramInfoLog(program) ?? undefined)
 
     return program
   }
@@ -295,7 +298,9 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     const uniforms: { [index: string]: WebGLUniformLocation } = {}
     const uniformCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)
     for (let i = 0; i < uniformCount; i++) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const uniformName = gl.getActiveUniform(program, i)!.name
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       uniforms[uniformName] = gl.getUniformLocation(program, uniformName)!
     }
     return uniforms
@@ -305,6 +310,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     // eslint-disable-next-line no-param-reassign
     source = addKeywords(source, keywords)
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const shader = gl.createShader(type)!
     gl.shaderSource(shader, source)
     gl.compileShader(shader)
@@ -1013,7 +1019,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     param: number,
   ): FrameBuffer {
     gl.activeTexture(gl.TEXTURE0)
-    const texture = gl.createTexture()!
+    const texture = gl.createTexture()
     gl.bindTexture(gl.TEXTURE_2D, texture)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, param)
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, param)
@@ -1021,7 +1027,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
     gl.texImage2D(gl.TEXTURE_2D, 0, internalFormat, width, height, 0, format, type, null)
 
-    const fbo = gl.createFramebuffer()!
+    const fbo = gl.createFramebuffer()
     gl.bindFramebuffer(gl.FRAMEBUFFER, fbo)
     gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0)
     gl.viewport(0, 0, width, height)
@@ -1029,6 +1035,8 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
 
     const texelSizeX = 1.0 / width
     const texelSizeY = 1.0 / height
+
+    if (!texture || !fbo) throw new Error('texture or fbo not created')
 
     return {
       texture,
@@ -1215,6 +1223,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function applyInputs() {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (splatStack) multipleSplats(splatStack.pop()!)
 
     pointers.forEach((p) => {

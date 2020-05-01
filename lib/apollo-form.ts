@@ -9,7 +9,7 @@ import {
   DocumentNode,
   VariableDefinitionNode,
 } from 'graphql'
-import { useForm, DeepPartial, ValidationOptions, ValidationOption } from 'react-hook-form'
+import { useForm, DeepPartial } from 'react-hook-form'
 import { useMutation } from '@apollo/react-hooks'
 import initApolloClient from './apollo'
 
@@ -28,7 +28,7 @@ function isWithValueNode(value: ValueNode | WithValueNode): value is WithValueNo
 }
 
 type RequiredFields<T> = { [key in keyof T]?: boolean }
-function fieldRequirements<T = { [index: string]: any }>(
+function fieldRequirements<T = { [index: string]: unknown }>(
   gql: DocumentNode,
 ): [Partial<T>, RequiredFields<T>] {
   const variables: Partial<T> = {}
@@ -40,7 +40,7 @@ function fieldRequirements<T = { [index: string]: any }>(
         const name = variable.variable.name.value as keyof T
 
         if (variable.defaultValue && isWithValueNode(variable.defaultValue)) {
-          variables[name] = (variable.defaultValue.value as any) as T[keyof T] | undefined
+          variables[name] = (variable.defaultValue.value as unknown) as T[keyof T] | undefined
         } else {
           variables[name] = undefined
         }
@@ -75,5 +75,5 @@ export function useMutationForm<TData, TVariables = {}>(mutation: DocumentNode) 
   return { required, result, register, errors, onSubmit }
 }
 
-export const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+export const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 export const phonePattern = /([(+]*[0-9]+[()+. -]*)/

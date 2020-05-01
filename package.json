@@ -12,7 +12,9 @@
     "dev-codegen": "graphql-codegen -r dotenv/config -w",
     "dev-storybook": "start-storybook --quiet -p 6006",
     "build": "graphql-codegen -r dotenv/config && next build",
-    "start": "next start"
+    "start": "next start",
+    "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
+    "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,js,css,html}'"
   },
   "sideEffects": false,
   "dependencies": {
