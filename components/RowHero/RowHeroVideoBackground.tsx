@@ -20,9 +20,11 @@ const useStyles = makeStyles(
       position: 'absolute',
       zIndex: -1,
       top: '0',
+      width: '100%',
       height: '100%',
       margin: '0 auto',
       left: '50%',
+      objectFit: 'cover',
       transform: 'translateX(-50%)',
     },
     aboutUsIntroContainer: {
