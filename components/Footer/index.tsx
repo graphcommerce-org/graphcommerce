@@ -1,7 +1,7 @@
 import React from 'react'
 import { Theme, makeStyles, Container } from '@material-ui/core'
 import RichText from '../RichText'
-import ChevronRight from '../Icons'
+import { ChevronRight } from '../Icons'
 import Link, { Button } from '../Link'
 
 const useStyles = makeStyles(

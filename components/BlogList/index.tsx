@@ -9,7 +9,7 @@ const useStyles = makeStyles(
     blogList: {
       display: 'grid',
       gridColumnGap: theme.gridSpacing.column,
-      gridRowGap: theme.gridSpacing.row,
+      gridRowGap: theme.gridSpacing.gutter,
       gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(150, 285)}, 1fr))`,
     },
   }),

@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import RichText from '../RichText'
 import Asset from '../Asset'
 import Container from '../Container'
-import ChevronRight from '../Icons'
+import { ChevronRight } from '../Icons'
 import { Button } from '../Link'
 import { RowHeroProps } from '.'
 
