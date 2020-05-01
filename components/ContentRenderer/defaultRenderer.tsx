@@ -27,4 +27,5 @@ export const registerGetStaticProps = () =>
   setStaticProps({
     RowRecentBlogPost: () => import('../RowRecentBlogPost'),
     RowPeopleWithText: () => import('../RowPeopleWithText'),
+    RowColumnOne: () => import('../RowColumnOne/RowColumnOneAwards'),
   })

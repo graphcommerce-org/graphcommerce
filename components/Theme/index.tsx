@@ -68,6 +68,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       xl: string
       xxl: string
     }
+    boxShadows: {
+      lg: string
+    }
   }
   interface ThemeOptions {
     gridSpacing: {
@@ -82,6 +85,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       lg: string
       xl: string
       xxl: string
+    }
+    boxShadows: {
+      lg: string
     }
   }
 }
@@ -167,6 +173,9 @@ export const defaultTheme = createMuiTheme({
     lg: vpCalc(24, 80),
     xl: vpCalc(48, 160),
     xxl: vpCalc(104, 250),
+  },
+  boxShadows: {
+    lg: `rgba(0, 0, 0, 0.04) 0px 2px 15px 0px, rgba(0, 0, 0, 0.14) 0px 60px 70px -20px;`,
   },
   overrides: {
     MuiCssBaseline: {
