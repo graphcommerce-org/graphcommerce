@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
 type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
-export type Renderers = { [T in TypeNames]?: React.ComponentType<{ index: number }> }
+export type Renderers = {
+  [T in TypeNames]?: React.ComponentType<any>
+}
 
 let renderers: Renderers = {}
 export const setRenderers = (newRenderers: Renderers): void => {
@@ -37,8 +40,8 @@ export default ContentRenderer
  */
 export type CRGetStaticProps<P, R> = (props: P) => Promise<R>
 
-type LoaderComponent<P = {}> = Promise<{
-  getStaticProps: CRGetStaticProps<P, {}>
+type LoaderComponent<P = any> = Promise<{
+  getStaticProps: CRGetStaticProps<P, any>
 }>
 
 export type StaticData = { [T in TypeNames]?: () => LoaderComponent }
