@@ -32,10 +32,8 @@ const useStyles = makeStyles(
       position: 'relative',
       zIndex: 0,
       background: theme.palette.tertiary['500'],
-      [theme.breakpoints.up('md')]: {
-        paddingTop: theme.spacings.xxl,
-        paddingBottom: theme.spacings.xl,
-      },
+      paddingTop: theme.spacings.xxl,
+      paddingBottom: theme.spacings.xl,
     },
     ctaBlock: {
       padding: 30,
