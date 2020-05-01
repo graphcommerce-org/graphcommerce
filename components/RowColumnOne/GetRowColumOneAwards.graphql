@@ -1,0 +1,14 @@
+query GetRowColumOneAwards {
+  awards {
+    id
+    name
+    asset {
+      id
+      mimeType
+      width
+      height
+      alt
+      url
+    }
+  }
+}
