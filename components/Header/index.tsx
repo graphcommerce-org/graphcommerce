@@ -8,6 +8,18 @@ import HeaderMenu from './HeaderMenu'
 import Link from '../Link'
 import Asset from '../Asset'
 
+export const useHeaderSpacing = makeStyles(
+  ({ gridSpacing }: Theme) => ({
+    marginTop: {
+      marginTop: `calc((${gridSpacing.row} * 2 + ${vpCalc(46, 72)}))`,
+    },
+    height: {
+      height: `calc((${gridSpacing.row} * 2 + ${vpCalc(46, 72)}))`,
+    },
+  }),
+  { name: 'Header' },
+)
+
 const useStyles = makeStyles(
   ({ gridSpacing }: Theme) => ({
     navigation: {
