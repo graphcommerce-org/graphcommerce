@@ -15,7 +15,7 @@ export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): stri
   const base = round(min - growth * minBreakpoint, 2)
   const vsize = round(growth * 100, 2)
 
-  const calc = `calc(${base}px + ${vsize}${axis})`
+  const calc = `(${base}px + ${vsize}${axis})`
   return `max(${min}px, min(${calc}, ${max}px))`
 }
 
