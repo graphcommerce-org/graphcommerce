@@ -4,6 +4,7 @@ fragment RowCompanySlider on RowCompanySlider {
   id
   companies {
     id
+    name
     logo {
       ...Asset
     }
