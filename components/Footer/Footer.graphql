@@ -16,4 +16,11 @@ fragment Footer on Footer {
   contactLink {
     ...LinkInternal
   }
+  reviewsLink {
+    ...LinkInternal
+  }
+  additionalLinks {
+    ...LinkInternal
+    ...LinkExternal
+  }
 }
