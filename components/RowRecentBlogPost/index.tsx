@@ -15,55 +15,44 @@ const useStyles = makeStyles(
       marginTop: gridSpacing.gutter,
       marginBottom: gridSpacing.gutter,
 
-      gridTemplateColumns: `1fr`,
+      gridTemplateColumns: `repeat(2, minmax(${vpCalc(130, 285)}, 1fr))`,
       gridTemplateAreas: `
-          "post"
-          "post"
-          "post"
-          "view"
-        `,
-
-      [breakpoints.up('sm')]: {
-        gridTemplateColumns: `
-          minmax(${vpCalc(130, 285)}, 1fr)
-          minmax(${vpCalc(130, 285)}, 1fr)
-        `,
-        gridTemplateAreas: `
-          "post post"
-          "post view"
-        `,
+        "post1 post2"
+        "post3 view"
+      `,
+      [breakpoints.only('md')]: {
+        maxWidth: breakpoints.values.md,
       },
-
-      [breakpoints.up('md')]: {
-        gridTemplateColumns: `
-          repeat(3, minmax(${vpCalc(130, 285)}, 1fr))
-          minmax(${vpCalc(72, 112)}, 1fr)}
+      [breakpoints.up('lg')]: {
+        gridTemplateColumns: `repeat(4, minmax(${vpCalc(130, 285)}, 1fr))`,
+        gridTemplateAreas: `
+          "post1 post2 post3 view"
         `,
-        gridTemplateAreas: `"post post post view"`,
       },
     },
     fabContainer: {
-      gridArea: 'view',
-      color: palette.grey[400],
+      // gridArea: 'view',
+    },
+    fabAspect: {
+      position: 'relative',
+      paddingTop: 'calc(100% / 3 * 2)',
     },
     fabLink: {
+      position: 'absolute',
+      top: 0,
+      width: '100%',
+      height: '100%',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      height: '100%',
-      marginTop: spacings.md,
+      justifyContent: 'center',
     },
     fab: {
       backgroundColor: '#fff',
       width: vpCalc(72, 112),
       height: vpCalc(72, 112),
-      '&:hover': {
-        backgroundColor: '#efefef',
-      },
-      '& svg': {
-        color: palette.primary.main,
-        fontSize: 56,
-      },
+      '&:hover': { backgroundColor: '#efefef' },
+      '& svg': { color: palette.primary.main, fontSize: vpCalc(30, 56) },
     },
     fabText: {
       marginTop: spacings.sm,
@@ -79,30 +68,39 @@ export type RowRecentBlogPostProps = GQLRowRecentBlogPostFragment &
 
 const RowRecentBlogPost: React.FC<RowRecentBlogPostProps> = (props) => {
   const { link, blogPosts, ...containerProps } = props
-  const { rowContainer, fab, fabContainer, fabLink, fabText, ...containerClasses } = useStyles(
-    props,
-  )
+  const {
+    rowContainer,
+    fab,
+    fabLink,
+    fabText,
+    fabAspect,
+    fabContainer,
+    ...containerClasses
+  } = useStyles(props)
   if (!link || !link.page) {
     return <>Please provide link in RowRecentBlogPost</>
   }
 
   return (
     <Container {...containerProps} classes={containerClasses} className={rowContainer}>
-      {blogPosts.map((blogPost) => (
+      {blogPosts.map((blogPost, index) => (
         <BlogListItem key={blogPost.id} {...blogPost} />
       ))}
+
       <div className={fabContainer}>
-        <Link
-          href={link.page.url}
-          metaRobots={link.page.metaRobots}
-          color='inherit'
-          className={fabLink}
-        >
-          <Fab size='large' classes={{ root: fab }}>
-            <ArrowRight />
-          </Fab>
-          <div className={fabText}>{link.title}</div>
-        </Link>
+        <div className={fabAspect}>
+          <Link
+            href={link.page.url}
+            metaRobots={link.page.metaRobots}
+            color='inherit'
+            className={fabLink}
+          >
+            <Fab size='large' classes={{ root: fab }}>
+              <ArrowRight />
+            </Fab>
+            <div className={fabText}>{link.title}</div>
+          </Link>
+        </div>
       </div>
     </Container>
   )

@@ -1,27 +1,24 @@
 import React from 'react'
-import { Typography, makeStyles, Theme } from '@material-ui/core'
+import { Typography, makeStyles, Theme, LinkProps } from '@material-ui/core'
 import Link from '../Link'
 import Asset from '../Asset'
 import { vpCalc, UseStyles } from '../Theme'
 
-const useStyles = makeStyles(
+export const useBlogListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
       position: 'relative',
-      fontSize: 20,
+      ...theme.typography.body1,
     },
     title: {
       color: theme.palette.primary.contrastText,
-      fontSize: '25px',
-      fontWeight: 500,
-      lineHeight: '1.68',
-      letterSpacing: '-0.0375em',
-      margin: '0 0 30px',
+      ...theme.typography.h4,
+      margin: `0 0 ${theme.spacings.sm}`,
     },
     date: {
       display: 'inline-block',
       color: '#b8b8b8',
-      marginBottom: '30px',
+      marginBottom: theme.spacings.sm,
     },
     imageContainer: {
       display: 'block',
@@ -55,16 +52,12 @@ const useStyles = makeStyles(
       userSelect: 'none',
     },
     image: {
-      display: 'block',
       width: '100%',
       height: '100%',
       objectFit: 'cover',
       position: 'absolute',
       top: 0,
       left: 0,
-    },
-    href: {
-      textDecoration: 'none !important',
     },
     link: {
       textDecoration: 'underline',
@@ -73,11 +66,13 @@ const useStyles = makeStyles(
   { name: 'BlogListItem' },
 )
 
-type BlogListItemProps = GQLBlogListItemFragment & UseStyles<typeof useStyles>
+type BlogListItemProps = GQLBlogListItemFragment &
+  UseStyles<typeof useBlogListItemStyles> &
+  LinkProps
 
 const BlogListItem: React.FC<BlogListItemProps> = (props) => {
-  const { title, url, metaRobots, releaseDate, asset, locale } = props
-  const classes = useStyles(props)
+  const { title, url, metaRobots, releaseDate, asset, locale, ...linkProps } = props
+  const classes = useBlogListItemStyles(props)
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -86,13 +81,13 @@ const BlogListItem: React.FC<BlogListItemProps> = (props) => {
   })
 
   return (
-    <Link href={url} metaRobots={metaRobots} className={classes.href}>
+    <Link href={url} metaRobots={metaRobots} underline='none' {...linkProps}>
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (
             <Asset asset={asset} className={classes.image} width={179} />
           ) : (
-            <div className={classes.placeholder}>GEEN AFBEELDING</div>
+            <div className={`${classes.placeholder} ${classes.image}`}>GEEN AFBEELDING</div>
           )}
         </div>
         <time className={classes.date} dateTime={releaseDate}>
