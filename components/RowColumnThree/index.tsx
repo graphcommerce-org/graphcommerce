@@ -3,6 +3,7 @@ import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
 import { UseStyles } from '../Theme'
 import { UseRichTextStyles } from '../RichText/useRichTextStyles'
+import Asset from '../Asset'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -47,8 +48,11 @@ export type RowColumnThreeProps = GQLRowColumnThreeFragment &
 const RowColumnThree: React.FC<RowColumnThreeProps> = (props) => {
   const {
     colOne,
+    colOneIcon,
     colTwo,
+    colTwoIcon,
     colThree,
+    colThreeIcon,
     richTextOneClasses,
     richTextTwoClasses,
     richTextTheeClasses,
@@ -59,12 +63,15 @@ const RowColumnThree: React.FC<RowColumnThreeProps> = (props) => {
   return (
     <Container className={classes.root} {...containerProps}>
       <div className={classes.colOne}>
+        {colOneIcon?.width && <Asset asset={colOneIcon} width={colOneIcon.width / 2} />}
         <RichText {...colOne} classes={richTextOneClasses} />
       </div>
       <div className={classes.colTwo}>
+        {colTwoIcon?.width && <Asset asset={colTwoIcon} width={colTwoIcon.width / 2} />}
         <RichText {...colTwo} classes={richTextTwoClasses} />
       </div>
       <div className={classes.colThree}>
+        {colThreeIcon?.width && <Asset asset={colThreeIcon} width={colThreeIcon.width / 2} />}
         <RichText {...colThree} classes={richTextTheeClasses} />
       </div>
     </Container>

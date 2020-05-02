@@ -52,11 +52,11 @@ const RowColumnTwo: React.FC<RowColumnTwoProps> = (props) => {
   return (
     <Container maxWidth='lg' {...containerProps} className={classes.root}>
       <div className={classes.colOne}>
-        {colOneIcon?.width ? <Asset asset={colOneIcon} width={colOneIcon.width / 2} /> : ''}
+        {colOneIcon?.width && <Asset asset={colOneIcon} width={60} />}
         <RichText {...colOne} classes={richTextOne} />
       </div>
       <div className={classes.colTwo}>
-        {colTwoIcon?.width ? <Asset asset={colTwoIcon} width={colTwoIcon.width / 2} /> : ''}
+        {colTwoIcon?.width && <Asset asset={colTwoIcon} width={60} />}
         <RichText {...colTwo} classes={richTextTwo} />
       </div>
     </Container>

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       gridTemplateColumns: `repeat(8, 1fr)`,
     },
     '& img': {
-      maxWidth: '120px',
+      width: '120px',
       height: 'auto',
     },
   },
@@ -44,9 +44,9 @@ const RowColumnOneAwards: React.FC<RowColumnOneAwardsProps> = (props) => {
       <div className={classes.wrapper}>
         <RowColumnOneSpread {...props} />
         <div className={classes.awards}>
-          {awards.map((award) => {
-            return <Asset key={award.id} asset={award.asset} width={220} />
-          })}
+          {awards.map((award) => (
+            <Asset key={award.id} asset={award.asset} width={120} />
+          ))}
         </div>
       </div>
     </Container>
