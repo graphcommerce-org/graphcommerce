@@ -1,9 +1,10 @@
-import React, { ReactNode, useRef, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import { Theme, makeStyles } from '@material-ui/core'
 import Fab from '@material-ui/core/Fab'
 import { animated, useSpring, config } from 'react-spring'
+import useResizeObserver from 'use-resize-observer'
 
 export type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
 type StyleProps = { scrolling: boolean } & ScrollSnapSliderProps
@@ -50,26 +51,23 @@ const useStyles = makeStyles<Theme, StyleProps>(
   { name: 'ScrollSnapSlider' },
 )
 
-const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = ({
-  children,
-  pagination = false,
-  scrollbar = false,
-}) => {
-  const scroller = useRef<HTMLDivElement>(null)
+const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = (props) => {
+  const { children, pagination = false, scrollbar = false } = props
+  const { ref, width = 0 } = useResizeObserver<HTMLDivElement>()
   const [intersects, setIntersects] = useState<number[]>([])
-  const [styleProps, setStyleProps] = useState<StyleProps>({
-    scrolling: false,
-    pagination,
-    scrollbar,
-  })
-  const classes = useStyles(styleProps)
 
-  const [{ scroll }, setScroll] = useSpring(() => ({
-    scroll: 0,
-    config: { clamp: true },
-    onStart: () => setStyleProps({ ...styleProps, scrolling: true }),
-    onRest: () => setStyleProps({ ...styleProps, scrolling: false }),
-  }))
+  const [scrolling, setScrolling] = useState<boolean>(false)
+  const classes = useStyles({ pagination, scrollbar, scrolling })
+
+  const [{ scroll: scrollLeft }, setScroll] = useSpring(
+    () => ({
+      scroll: 0,
+      onStart: () => setScrolling(true),
+      onRest: () => setScrolling(false),
+    }),
+    [],
+  )
+
   const prevAnim = useSpring({
     opacity: intersects[0] > 0.9 ? 0 : 1,
     transform: `scale(${intersects[0] > 0.9 ? 0 : 1})`,
@@ -84,53 +82,73 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   })
 
   const onPrev = () => {
-    if (scroller.current === null) return
-    const { scrollLeft } = scroller.current
+    const { current } = ref
+    if (!current) return
 
-    setScroll({
-      scroll: scrollLeft < 1000 ? 0 : scrollLeft - 1000,
-      reset: true,
-      from: { scroll: scrollLeft },
-    })
+    // Find targetEl
+    const targetIdx = intersects.map((val) => val > 0.9).indexOf(true) - 1
+    const targetEl = current.children[targetIdx] as HTMLElement
+    if (!targetEl) return
+
+    const leftBound = targetEl.offsetLeft - current.offsetLeft
+
+    // Scroll center position of targetEl
+    let scroll = Math.round(leftBound - width / 2 + targetEl.offsetWidth / 2)
+
+    // Scroll to start if if righBound will be in view
+    const rightBound = leftBound + targetEl.offsetWidth
+    if (rightBound < width) scroll = 0
+
+    setScroll({ scroll, reset: true, from: { scroll: current.scrollLeft } })
   }
 
   const onNext = () => {
-    if (scroller.current === null) return
-    const { scrollWidth, scrollLeft } = scroller.current
+    const { current } = ref
+    if (!current) return
 
-    setScroll({
-      scroll: scrollLeft + 1000 > scrollWidth ? scrollWidth : scrollLeft + 1000,
-      reset: true,
-      from: { scroll: scrollLeft },
-    })
+    // Find targetEl
+    const targetIdx = intersects.map((val) => val > 0.9).lastIndexOf(true) + 1
+    const targetEl = current.children[targetIdx] as HTMLElement
+    if (!targetEl) return
+
+    const leftBound = targetEl.offsetLeft - current.offsetLeft
+
+    // Scroll center position of targetEl
+    let scroll = Math.round(leftBound - width / 2 + targetEl.offsetWidth / 2)
+
+    // Scroll to end if leftBound of will be in view
+    const scrollEnd = current.scrollWidth - width
+    if (leftBound > scrollEnd) scroll = scrollEnd
+
+    setScroll({ scroll, reset: true, from: { scroll: current.scrollLeft } })
   }
 
   useEffect(() => {
-    if (scroller.current === null) return () => {}
-    const childElements = Array.from(scroller.current.children)
+    if (ref.current === null) return () => {}
+    const childElements = Array.from(ref.current.children)
     const newIntersects: number[] = new Array<number>(childElements.length).fill(0)
     setIntersects(newIntersects)
 
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
           const idx = childElements.indexOf(entry.target)
           newIntersects[idx] = entry.intersectionRatio
           setIntersects([...newIntersects])
         }),
-      { root: scroller.current, threshold: [0, 0.1, 0.9, 1] },
+      { root: ref.current, threshold: [0, 0.1, 0.9, 1] },
     )
 
-    childElements.forEach((child) => observer.observe(child))
+    childElements.forEach((child) => io.observe(child))
 
-    return () => observer.disconnect()
-  }, [scroller, children])
+    return () => io.disconnect()
+  }, [children, ref])
 
   const AnimatedFab = animated(Fab)
 
   return (
     <div className={classes.container}>
-      <animated.div className={classes.scroller} scrollLeft={scroll} ref={scroller}>
+      <animated.div className={classes.scroller} scrollLeft={scrollLeft} ref={ref}>
         {children}
       </animated.div>
       <AnimatedFab className={classes.prevFab} size='small' onClick={onPrev} style={prevAnim}>
