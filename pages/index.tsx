@@ -10,7 +10,7 @@ const Home: PageWithLayoutFull = ({ page }) => {
     <>
       <ContentRenderer
         content={page.content}
-        customRenderers={{
+        renderers={{
           RowHero: RowHeroHome,
         }}
       />

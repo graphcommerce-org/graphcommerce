@@ -21,7 +21,7 @@ const AboutUs: PageWithLayoutFull = ({ page }) => {
   return (
     <ContentRenderer
       content={page.content}
-      customRenderers={{
+      renderers={{
         RowHero: RowHeroVideoBackground,
         RowColumnTwo: RowColumnTwoSpread,
         RowColumnOne: RowColumnOneAwards,
