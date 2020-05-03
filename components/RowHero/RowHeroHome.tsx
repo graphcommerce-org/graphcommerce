@@ -6,12 +6,12 @@ import logoReachBgShadow from './logo-reach-bg-shadow-secondary.svg'
 import Asset from '../Asset'
 import { RowHeroProps } from '.'
 import Link from '../Link'
+import { useHeaderSpacing } from '../Header'
 
 const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   left: {
     alignSelf: 'stretch',
   },
-  right: {},
   root: {
     background: `linear-gradient(to bottom right, transparent 50%, ${theme.palette.secondary.main} 50%)`,
     minHeight: 'calc(90vh - 60px)',
@@ -20,7 +20,6 @@ const useContainerStyles = makeStyles<Theme>((theme: Theme) => ({
   after: {
     position: 'relative',
   },
-  before: {},
 }))
 
 const useStyles = makeStyles(
@@ -52,11 +51,12 @@ const useStyles = makeStyles(
 
 const RowHeroHome: React.FC<RowHeroProps> = ({ text, asset, links, richTextClasses }) => {
   const classes = useStyles()
+  const headerSpacing = useHeaderSpacing()
   const containerClasses = useContainerStyles()
 
   const left = asset && (
-    <div className={classes.assetContainer}>
-      <Asset asset={asset} autoPlay loop muted playsInline className={classes.asset} width={332} />
+    <div className={`${classes.assetContainer} ${headerSpacing.marginTop}`}>
+      <Asset asset={asset} className={classes.asset} width={332} />
     </div>
   )
 

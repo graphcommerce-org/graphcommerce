@@ -26,7 +26,7 @@ const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ..
     case 'video/mp4':
       return (
         // eslint-disable-next-line jsx-a11y/media-has-caption
-        <video {...(props as VideoProps)}>
+        <video autoPlay muted playsInline loop {...(props as VideoProps)}>
           <source src={url.toString()} type={(asset as VideoProps['asset']).mimeType} />
         </video>
       )
