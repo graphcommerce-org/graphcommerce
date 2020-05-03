@@ -11,10 +11,10 @@ import Asset from '../Asset'
 export const useHeaderSpacing = makeStyles(
   ({ gridSpacing }: Theme) => ({
     marginTop: {
-      marginTop: `calc((${gridSpacing.row} * 2 + ${vpCalc(46, 72)}))`,
+      marginTop: `calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)`,
     },
     height: {
-      height: `calc((${gridSpacing.row} * 2 + ${vpCalc(46, 72)}))`,
+      height: `calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)`,
     },
   }),
   { name: 'Header' },
@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       width: '100%',
       // 2xGridspacing, Logo Height, Logo Margin
-      marginBottom: `calc((${gridSpacing.row} * -2 + ${vpCalc(46, 72)} * -1))`,
+      marginBottom: `calc(${gridSpacing.row} * -2 + ${vpCalc(46, 72)} * -1 - 3px)`,
     },
     logo: { zIndex: zIndex.appBar, gridArea: 'logo' },
     logoImg: { maxHeight: vpCalc(46, 72), display: 'block', marginTop: 3 },

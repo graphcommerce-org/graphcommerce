@@ -10,6 +10,7 @@ const useStyles = makeStyles(
       width: '100%',
       top: 0,
       height: 3,
+      marginBottom: -3,
       zIndex: zIndex.tooltip,
     },
   },

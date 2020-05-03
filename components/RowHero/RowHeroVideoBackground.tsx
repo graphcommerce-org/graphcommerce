@@ -6,6 +6,7 @@ import Container from '../Container'
 import { ChevronRight } from '../Icons'
 import { Button } from '../Link'
 import { RowHeroProps } from '.'
+import { useHeaderSpacing } from '../Header'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -83,10 +84,11 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({
   const classes = useStyles()
   const containerClasses = useContainerStyles()
   const ctaClasses = useCtaStyles()
+  const headerSpacing = useHeaderSpacing()
 
   const left = (
     <div>
-      <div className={classes.headerWysiwyg}>
+      <div className={`${classes.headerWysiwyg} ${headerSpacing.marginTop}`}>
         <RichText {...text} classes={richTextClasses} />
       </div>
       {links.map((link) => {
@@ -116,7 +118,7 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({
 
   return (
     <div className={classes.aboutUsIntroContainer}>
-      <Asset asset={asset} autoPlay loop muted playsInline className={classes.video} />
+      <Asset asset={asset} className={classes.video} />
       <Container left={left} leftWidth={0.5} classes={containerClasses} spaceBetween />
     </div>
   )
