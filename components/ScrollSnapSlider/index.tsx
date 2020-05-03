@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
-import { Theme, makeStyles } from '@material-ui/core'
-import Fab from '@material-ui/core/Fab'
-import { animated, useSpring, config } from 'react-spring'
+import { Theme, makeStyles, Grow, Fab } from '@material-ui/core'
+import { animated, useSpring } from 'react-spring'
 import useResizeObserver from 'use-resize-observer'
+import { vpCalc } from '../Theme'
 
 export type ScrollSnapSliderProps = { scrollbar?: boolean; pagination?: boolean }
 type StyleProps = { scrolling: boolean } & ScrollSnapSliderProps
@@ -32,20 +32,20 @@ const useStyles = makeStyles<Theme, StyleProps>(
       }),
     }),
     prevFab: {
+      width: vpCalc(40, 60),
+      height: vpCalc(40, 60),
+      willChange: 'opacity, transform',
       position: 'absolute',
       left: '0',
-      top: 'calc(50% - (40px / 2))',
-      '&[hidden]': {
-        display: 'none',
-      },
+      top: `calc(50% - (${vpCalc(40, 60)} / 2))`,
     },
     nextFab: {
+      width: vpCalc(40, 60),
+      height: vpCalc(40, 60),
+      willChange: 'opacity, transform',
       position: 'absolute',
       right: '0',
-      top: 'calc(50% - (40px / 2))',
-      '&[hidden]': {
-        display: 'none',
-      },
+      top: `calc(50% - (${vpCalc(40, 60)} / 2))`,
     },
   }),
   { name: 'ScrollSnapSlider' },
@@ -62,19 +62,8 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   const [{ scroll: scrollLeft }, setScroll] = useSpring(() => ({
     scroll: 0,
     onRest: () => setScrolling(false),
+    config: { clamp: true },
   }))
-  const prevAnim = useSpring({
-    opacity: intersects[0] ? 0 : 1,
-    transform: `scale(${intersects[0] ? 0 : 1})`,
-    from: { transform: 'scale(0)', opacity: 0 },
-    config: config.stiff,
-  })
-  const nextAnim = useSpring({
-    opacity: intersects[intersects.length - 1] ? 0 : 1,
-    transform: `scale(${intersects[intersects.length - 1] ? 0 : 1})`,
-    from: { transform: 'scale(0)', opacity: 0 },
-    config: config.stiff,
-  })
 
   const onPrev = () => {
     const { current } = ref
@@ -130,8 +119,10 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
       (entries) =>
         entries.forEach((entry) => {
           const idx = childElements.indexOf(entry.target)
-          newIntersects[idx] = entry.intersectionRatio > 0.9
-          setIntersects([...newIntersects])
+          if (newIntersects[idx] !== entry.intersectionRatio > 0.9) {
+            newIntersects[idx] = entry.intersectionRatio > 0.9
+            setIntersects([...newIntersects])
+          }
         }),
       { root: ref.current, threshold: [0, 0.1, 0.9, 1] },
     )
@@ -141,21 +132,23 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
     return () => io.disconnect()
   }, [children, ref])
 
-  const AnimatedFab = animated(Fab)
-
   return (
     <div className={classes.container}>
-      {/* 
+      {/* animated misses a typescript declaration for scrollLeft
       //@ts-ignore */}
       <animated.div className={classes.scroller} scrollLeft={scrollLeft} ref={ref}>
         {children}
       </animated.div>
-      <AnimatedFab className={classes.prevFab} size='small' onClick={onPrev} style={prevAnim}>
-        <ArrowBack />
-      </AnimatedFab>
-      <AnimatedFab className={classes.nextFab} size='small' onClick={onNext} style={nextAnim}>
-        <ArrowForward />
-      </AnimatedFab>
+      <Grow in={!intersects[0]}>
+        <Fab className={classes.prevFab} size='large' onClick={onPrev}>
+          <ArrowBack />
+        </Fab>
+      </Grow>
+      <Grow in={!intersects[intersects.length - 1]}>
+        <Fab className={classes.nextFab} size='large' onClick={onNext}>
+          <ArrowForward />
+        </Fab>
+      </Grow>
       {pagination && (
         <div>
           {intersects.map((intersecting, index) => (
