@@ -39,7 +39,7 @@ const RowCompanySlider: React.FC<RowCompanySliderProps> = (props) => {
               asset={company.logo}
               key={company.id}
               alt={company.name}
-              width={Math.round((company.logo.width / company.logo.height) * 100)}
+              width={173}
             />
           )
         })}
