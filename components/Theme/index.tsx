@@ -218,6 +218,12 @@ export const defaultTheme = createMuiTheme({
         },
       },
     },
+    MuiFab: {
+      root: {
+        backgroundColor: '#fff',
+        '&:hover': { backgroundColor: '#efefef' },
+      },
+    },
   },
 })
 
