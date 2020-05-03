@@ -6,23 +6,23 @@ export type Renderers = {
   [T in TypeNames]?: React.ComponentType<any>
 }
 
-let renderers: Renderers = {}
+let defaultRenderers: Renderers = {}
 export const setRenderers = (newRenderers: Renderers): void => {
-  renderers = { ...renderers, ...newRenderers }
+  defaultRenderers = { ...defaultRenderers, ...newRenderers }
 }
 
 export type ContentRowProps = {
   index: number
 }
 
-const ContentRenderer: React.FC<GQLContentRendererFragment & { customRenderers?: Renderers }> = (
+const ContentRenderer: React.FC<GQLContentRendererFragment & { renderers?: Renderers }> = (
   props,
 ) => {
-  const { content, customRenderers = {} } = props
+  const { content, renderers = {} } = props
   return (
     <>
       {content.map((item, index) => {
-        const Component = customRenderers[item.__typename] ?? renderers[item.__typename]
+        const Component = renderers[item.__typename] ?? defaultRenderers[item.__typename]
         return Component ? (
           <Component key={item.id} {...item} index={index} />
         ) : (
@@ -47,8 +47,8 @@ type LoaderComponent<P = any> = Promise<{
 export type StaticData = { [T in TypeNames]?: () => LoaderComponent }
 
 let staticProps: StaticData = {}
-export const setStaticProps = (newStaticData: StaticData): void => {
-  staticProps = { ...staticProps, ...newStaticData }
+export const setStaticProps = (newStaticProps: StaticData): void => {
+  staticProps = { ...staticProps, ...newStaticProps }
 }
 
 export const getStaticProps = async (

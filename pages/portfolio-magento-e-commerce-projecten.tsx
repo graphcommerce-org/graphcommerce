@@ -28,7 +28,7 @@ const Portfolio: PageWithLayoutFull<GQLGetPortfolioListQuery> = ({ page, portfol
 
   return (
     <div className={header.marginTop}>
-      <ContentRenderer content={page.content} customRenderers={{ RowHero }} />
+      <ContentRenderer content={page.content} renderers={{ RowHero }} />
       <PortfolioList portfolioList={portfolioList} />
     </div>
   )

@@ -48,10 +48,8 @@ const useStyles = makeStyles(
       justifyContent: 'center',
     },
     fab: {
-      backgroundColor: '#fff',
       width: vpCalc(72, 112),
       height: vpCalc(72, 112),
-      '&:hover': { backgroundColor: '#efefef' },
       '& svg': { color: palette.primary.main, fontSize: vpCalc(30, 56) },
     },
     fabText: {
