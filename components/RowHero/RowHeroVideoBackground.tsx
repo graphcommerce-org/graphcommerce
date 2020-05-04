@@ -86,7 +86,7 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({
 
   const left = (
     <div>
-      <div className={`${classes.headerWysiwyg} ${headerSpacing.marginTop}`}>
+      <div className={`${classes.headerWysiwyg}`}>
         <RichText {...text} classes={richTextClasses} />
       </div>
       {links.map((link) => {
