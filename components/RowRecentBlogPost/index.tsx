@@ -5,6 +5,7 @@ import { UseStyles, vpCalc } from '../Theme'
 import Link from '../Link'
 import BlogListItem from '../BlogList/BlogListItem'
 import { ArrowRight } from '../Icons'
+import TriangleBg from '../TriangleBg'
 
 const useStyles = makeStyles(
   ({ gridSpacing, palette, spacings, breakpoints }: Theme) => ({
@@ -80,27 +81,29 @@ const RowRecentBlogPost: React.FC<RowRecentBlogPostProps> = (props) => {
   }
 
   return (
-    <Container {...containerProps} classes={containerClasses} className={rowContainer}>
-      {blogPosts.map((blogPost, index) => (
-        <BlogListItem key={blogPost.id} {...blogPost} />
-      ))}
+    <TriangleBg color='white' gradient>
+      <Container {...containerProps} classes={containerClasses} className={rowContainer}>
+        {blogPosts.map((blogPost, index) => (
+          <BlogListItem key={blogPost.id} {...blogPost} />
+        ))}
 
-      <div className={fabContainer}>
-        <div className={fabAspect}>
-          <Link
-            href={link.page.url}
-            metaRobots={link.page.metaRobots}
-            color='inherit'
-            className={fabLink}
-          >
-            <Fab size='large' classes={{ root: fab }}>
-              <ArrowRight />
-            </Fab>
-            <div className={fabText}>{link.title}</div>
-          </Link>
+        <div className={fabContainer}>
+          <div className={fabAspect}>
+            <Link
+              href={link.page.url}
+              metaRobots={link.page.metaRobots}
+              color='inherit'
+              className={fabLink}
+            >
+              <Fab size='large' classes={{ root: fab }}>
+                <ArrowRight />
+              </Fab>
+              <div className={fabText}>{link.title}</div>
+            </Link>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </TriangleBg>
   )
 }
 

@@ -31,7 +31,6 @@ export const useBlogListItemStyles = makeStyles(
         width: '100%',
         position: 'absolute',
         display: 'block',
-        zIndex: '-1',
         boxShadow: '0 30px 60px 0 rgba(0, 0, 0, 0.25)',
         transform: 'scale(.85, 0.95)',
         top: 0,

@@ -1,6 +1,8 @@
 import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
+import fonts from './fonts'
+import shadows from './shadows'
 
 export type UseStyles<T extends (...args: never[]) => unknown> = {
   classes?: Partial<ReturnType<T>>
@@ -18,32 +20,6 @@ export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): stri
   const calc = `(${base}px + ${vsize}${axis})`
   return `max(${min}px, min(${calc}, ${max}px))`
 }
-
-const fonts: Array<{
-  font: string
-  fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
-  fontStyle: 'normal' | 'italic'
-  preload?: true
-}> = [
-  { font: 'Graphik-Thin', fontWeight: 100, fontStyle: 'normal' },
-  { font: 'Graphik-ThinItalic', fontWeight: 100, fontStyle: 'italic' },
-  { font: 'Graphik-Extralight', fontWeight: 200, fontStyle: 'normal' },
-  { font: 'Graphik-ExtralightItalic', fontWeight: 200, fontStyle: 'italic' },
-  { font: 'Graphik-Light', fontWeight: 300, fontStyle: 'normal' },
-  { font: 'Graphik-LightItalic', fontWeight: 300, fontStyle: 'italic' },
-  { font: 'Graphik-Regular', fontWeight: 400, fontStyle: 'normal', preload: true },
-  { font: 'Graphik-RegularItalic', fontWeight: 400, fontStyle: 'italic', preload: true },
-  { font: 'Graphik-Medium', fontWeight: 500, fontStyle: 'normal', preload: true },
-  { font: 'Graphik-MediumItalic', fontWeight: 500, fontStyle: 'italic' },
-  { font: 'Graphik-Semibold', fontWeight: 600, fontStyle: 'normal', preload: true },
-  { font: 'Graphik-SemiboldItalic', fontWeight: 600, fontStyle: 'italic', preload: true },
-  { font: 'Graphik-Bold', fontWeight: 700, fontStyle: 'normal' },
-  { font: 'Graphik-BoldItalic', fontWeight: 700, fontStyle: 'italic' },
-  { font: 'Graphik-Black', fontWeight: 800, fontStyle: 'normal' },
-  { font: 'Graphik-BlackItalic', fontWeight: 800, fontStyle: 'italic' },
-  { font: 'Graphik-Super', fontWeight: 900, fontStyle: 'normal' },
-  { font: 'Graphik-SuperItalic', fontWeight: 900, fontStyle: 'italic' },
-]
 
 declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions {
@@ -125,6 +101,7 @@ export const defaultTheme = createMuiTheme({
       xl: 1920,
     },
   },
+  shadows,
   typography: {
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     fontSize: 18,
@@ -177,55 +154,52 @@ export const defaultTheme = createMuiTheme({
   boxShadows: {
     lg: `rgba(0, 0, 0, 0.04) 0px 2px 15px 0px, rgba(0, 0, 0, 0.14) 0px 60px 70px -20px;`,
   },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
-          fontFamily: 'Graphic',
-          fontWeight,
-          fontStyle,
-          fontDisplay: 'swap',
-          src: `url('/fonts/${font}.woff2') format('woff2')`,
-        })),
-      },
-    },
-    MuiButton: {
-      root: {
-        fontWeight: 400,
-        textTransform: 'none',
-      },
-      contained: {
-        backgroundColor: '#fff',
-        '& .MuiSvgIcon-root': {
-          color: '#13e4ad',
-        },
-      },
-      containedPrimary: {
-        color: '#fff',
-        '& .MuiSvgIcon-root': {
-          color: '#fff',
-        },
-      },
-      containedSizeLarge: {
-        padding: '15px 30px',
-      },
-      endIcon: {
-        marginLeft: 20,
-      },
-      iconSizeLarge: {
-        '& > *:first-child': {
-          fontSize: 24,
-        },
-      },
-    },
-    MuiFab: {
-      root: {
-        backgroundColor: '#fff',
-        '&:hover': { backgroundColor: '#efefef' },
-      },
+})
+
+defaultTheme.overrides = {
+  MuiCssBaseline: {
+    '@global': {
+      '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
+        fontFamily: 'Graphic',
+        fontWeight,
+        fontStyle,
+        fontDisplay: 'swap',
+        src: `url('/fonts/${font}.woff2') format('woff2')`,
+      })),
+      '::selection': { background: `rgba(20, 227, 173, 0.5)` },
+      '::-moz-selection': { background: `rgba(20, 227, 173, 0.5)` },
     },
   },
-})
+  MuiButton: {
+    root: {
+      fontWeight: 400,
+      textTransform: 'none',
+    },
+    contained: {
+      borderRadius: 0,
+      backgroundColor: '#fff',
+      boxShadow: defaultTheme.shadows[8],
+      '&:hover': { boxShadow: defaultTheme.shadows[10] },
+      '&:focus': { boxShadow: defaultTheme.shadows[12] },
+      '& .MuiSvgIcon-root': { color: defaultTheme.palette.primary.main },
+    },
+    containedPrimary: {
+      color: '#fff',
+      '& .MuiSvgIcon-root': { color: '#fff' },
+    },
+    containedSizeLarge: { padding: '15px 30px' },
+    endIcon: { marginLeft: 20 },
+    iconSizeLarge: {
+      '& > *:first-child': { fontSize: 24 },
+    },
+  },
+  MuiFab: {
+    root: {
+      backgroundColor: '#fff',
+      '&:hover': { backgroundColor: '#efefef' },
+    },
+  },
+}
 
 const ThemedProvider: React.FC = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
