@@ -1,20 +1,27 @@
 import React from 'react'
-import { ImageMimeTypes } from '../PictureResponsive'
+import PictureResponsive, { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture, { FilestackPictureProps } from '../FilestackPicture'
 
 export type MimeTypes = ImageMimeTypes & 'video/mp4'
 
 type UnsupportedProps = { asset: GQLAssetFragment }
 
+type SvgProps = {
+  asset: { mimeType: 'image/svg+xml' } & GQLAssetFragment
+} & Omit<JSX.IntrinsicElements['img'], 'src' | 'type'>
+
 type ImageProps = {
-  asset: { mimeType: ImageMimeTypes } & GQLAssetFragment
+  asset: { mimeType: Omit<ImageMimeTypes, 'image/svg+xml'> } & GQLAssetFragment
 } & Omit<FilestackPictureProps, 'src' | 'type' | 'height'>
 
 type VideoProps = {
   asset: { mimeType: 'video/mp4' } & GQLAssetFragment
 } & Omit<JSX.IntrinsicElements['video'], 'src' | 'height'>
 
-const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ...props }) => {
+const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = ({
+  asset,
+  ...props
+}) => {
   if (!asset.mimeType) {
     throw new Error('Asset has no mimeType, can not determine renderer.')
   }
@@ -25,10 +32,13 @@ const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ..
   switch (asset.mimeType) {
     case 'video/mp4':
       return (
-        // eslint-disable-next-line jsx-a11y/media-has-caption
         <video autoPlay muted playsInline loop {...(props as VideoProps)}>
           <source src={url.toString()} type={(asset as VideoProps['asset']).mimeType} />
         </video>
+      )
+    case 'image/svg+xml':
+      return (
+        <img src={asset.url} alt={asset.alt ?? ''} {...(props as JSX.IntrinsicElements['img'])} />
       )
     case undefined:
     case null:
@@ -47,8 +57,8 @@ const Asset: React.FC<ImageProps | VideoProps | UnsupportedProps> = ({ asset, ..
       return (
         <FilestackPicture
           {...(props as ImageProps)}
-          src={(asset as VideoProps['asset']).url}
-          type={(asset as ImageProps['asset']).mimeType}
+          src={asset.url}
+          type={asset.mimeType as ImageMimeTypes}
           width={width}
           height={Math.round((asset.height / asset.width) * width)}
         />
