@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles, Container, Theme } from '@material-ui/core'
-import { pink } from '@material-ui/core/colors'
 import RowColumnOneSpread from './RowColumnOneSpread'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
 import { RowColumnOneProps } from '.'

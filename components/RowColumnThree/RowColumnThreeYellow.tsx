@@ -46,8 +46,6 @@ const RowColumnThreeYellow: React.FC<GQLRowColumnThreeFragment> = (props) => {
   const classes = useStyles()
   const rowColumnThreeClasses = rowColumThreeStyles()
 
-  // console.log(props)
-
   return (
     <Container maxWidth='lg'>
       <div className={classes.root}>
