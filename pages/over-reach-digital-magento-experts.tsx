@@ -9,12 +9,26 @@ import { ContentRowProps } from '../components/ContentRenderer/ContentRenderer'
 import RowColumnThreeYellow from '../components/RowColumnThree/RowColumnThreeYellow'
 import RowColumnTwoSpread from '../components/RowColumnTwo/RowColumnTwoSpread'
 import RowColumnOneAwards from '../components/RowColumnOne/RowColumnOneAwards'
+import RowColumnOneCentered from '../components/RowColumnOne/RowColumnOneCentered'
+import RowColumnOne from '../components/RowColumnOne'
 
 const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
   index,
   ...props
 }) => {
   return index === 1 ? <RowColumnThreeYellow {...props} /> : <RowColumnThree {...props} />
+}
+
+const CustomRowColumnOneRenderers: React.FC<
+  GQLRowColumnOneFragment & ContentRowProps & GQLGetRowColumOneAwardsQuery
+> = ({ index, ...props }) => {
+  if (index === 4) {
+    return <RowColumnOneAwards {...props} />
+  }
+  if (index === 6) {
+    return <RowColumnOneCentered {...props} />
+  }
+  return <RowColumnOne {...props} />
 }
 
 const AboutUs: PageWithLayoutFull = ({ page }) => {
@@ -24,7 +38,7 @@ const AboutUs: PageWithLayoutFull = ({ page }) => {
       renderers={{
         RowHero: RowHeroVideoBackground,
         RowColumnTwo: RowColumnTwoSpread,
-        RowColumnOne: RowColumnOneAwards,
+        RowColumnOne: CustomRowColumnOneRenderers,
         RowColumnThree: FirstRowYellow,
       }}
     />
