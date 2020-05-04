@@ -12,5 +12,6 @@ fragment ContentRenderer on Page {
     ...RowPeopleWithText
     ...RowRecentBlogPost
     ...RowYoutubeVideo
+    ...RowIconWithTextList
   }
 }

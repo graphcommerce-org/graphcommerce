@@ -1,0 +1,5 @@
+query GetAllRowIconWithTextList($skip: Int!) {
+  rowIconWithTextLists(first: 1, skip: $skip) {
+    ...RowIconWithTextList
+  }
+}

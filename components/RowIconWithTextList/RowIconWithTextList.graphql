@@ -1,0 +1,42 @@
+fragment RowIconWithTextList on RowIconWithTextList {
+  id
+  text {
+    ...RichText
+  }
+  rowOne {
+    ...RichText
+  }
+  rowOneIcon {
+    ...Asset
+  }
+  rowTwo {
+    ...RichText
+  }
+  rowTwoIcon {
+    ...Asset
+  }
+  rowThree {
+    ...RichText
+  }
+  rowThreeIcon {
+    ...Asset
+  }
+  rowFour {
+    ...RichText
+  }
+  rowFourIcon {
+    ...Asset
+  }
+  rowFive {
+    ...RichText
+  }
+  rowFiveIcon {
+    ...Asset
+  }
+  rowSix {
+    ...RichText
+  }
+  rowSixIcon {
+    ...Asset
+  }
+}
