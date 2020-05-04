@@ -6,7 +6,6 @@ import Container from '../Container'
 import { ChevronRight } from '../Icons'
 import { Button } from '../Link'
 import { RowHeroProps } from '.'
-import { useHeaderSpacing } from '../Header'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -82,7 +81,6 @@ const RowHeroVideoBackground: React.FC<RowHeroProps> = ({
   const classes = useStyles()
   const containerClasses = useContainerStyles()
   const ctaClasses = useCtaStyles()
-  const headerSpacing = useHeaderSpacing()
 
   const left = (
     <div>
