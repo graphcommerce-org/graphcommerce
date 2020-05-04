@@ -57,7 +57,7 @@ const RowHero: React.FC<RowHeroProps> = (props) => {
         classes={containerClasses}
         className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom)}
       >
-        <Asset asset={asset} autoPlay loop muted playsInline className={video} />
+        {asset && <Asset asset={asset} autoPlay loop muted playsInline className={video} />}
         <div>
           <RichText {...text} classes={richTextClasses} />
           <div>
