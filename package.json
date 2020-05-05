@@ -45,7 +45,7 @@
     "react-schemaorg": "^1.0.0",
     "react-spring": "^8.0.27",
     "resize-observer": "^1.0.0",
-    "schema-dts": "^0.5.1",
+    "schema-dts": "^0.5.3",
     "sitemap": "^6.1.2",
     "use-resize-observer": "^6.1.0-alpha.3"
   },
