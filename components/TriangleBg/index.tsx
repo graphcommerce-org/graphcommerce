@@ -32,9 +32,9 @@ const useStyles = makeStyles(
         zIndex: gradient ? 0 : -1,
         overflow: 'visible',
         filter: blur ? `blur(15px);` : undefined,
-        [breakpoints.up('md')]: {
-          filter: blur ? `blur(30px);` : undefined,
-        },
+        // [breakpoints.up('md')]: {
+        //   filter: blur ? `blur(30px);` : undefined,
+        // },
       }
     },
     svgGradient: ({ half, halfHeight, halfWidth }) => {

@@ -60,5 +60,5 @@ export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
     locale: 'nl',
   }
   const { getStaticProps: get } = await import('../components/PageLayout')
-  return { props: await get(params) }
+  return { props: { ...(await get(params)), headerTheme: 'on-green' } }
 }
