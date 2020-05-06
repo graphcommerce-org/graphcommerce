@@ -84,7 +84,7 @@ const BlogListItem: React.FC<BlogListItemProps> = (props) => {
       <div className={classes.item}>
         <div className={classes.imageContainer}>
           {asset ? (
-            <Asset asset={asset} className={classes.image} width={179} />
+            <Asset asset={asset} className={classes.image} width={179} alt={title} />
           ) : (
             <div className={`${classes.placeholder} ${classes.image}`}>GEEN AFBEELDING</div>
           )}
