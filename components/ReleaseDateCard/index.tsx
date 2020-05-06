@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles, Theme, Avatar } from '@material-ui/core'
 import Asset from '../Asset'
-import { vpCalc } from '../Theme'
 
 const useStyles = makeStyles(
   ({ palette, typography, spacings }: Theme) => ({
