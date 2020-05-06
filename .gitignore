@@ -24,3 +24,5 @@ yarn-error.log*
 
 # application
 /generated
+/public/workbox-*.js
+/public/sw.js

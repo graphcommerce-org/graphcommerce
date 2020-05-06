@@ -12,4 +12,7 @@ fragment PageMeta on Page {
     locale
     metaRobots
   }
+  asset {
+    ...Asset
+  }
 }
