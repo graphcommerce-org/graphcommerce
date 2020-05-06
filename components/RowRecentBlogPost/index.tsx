@@ -13,8 +13,8 @@ const useStyles = makeStyles(
       display: 'grid',
       gridColumnGap: gridSpacing.column,
       gridRowGap: gridSpacing.row,
-      marginTop: gridSpacing.gutter,
-      marginBottom: gridSpacing.gutter,
+      paddingTop: spacings.xl,
+      paddingBottom: spacings.xl,
 
       gridTemplateColumns: `repeat(2, minmax(${vpCalc(130, 285)}, 1fr))`,
       gridTemplateAreas: `

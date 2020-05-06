@@ -1,22 +1,35 @@
 import React from 'react'
-import { Theme, makeStyles, Paper } from '@material-ui/core'
-import Container from '../Container'
-import { vpCalc, UseStyles } from '../Theme'
+import { Theme, makeStyles, Paper, Container } from '@material-ui/core'
 import RichText from '../RichText'
 import Asset from '../Asset'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
 import { UseRichTextStyles } from '../RichText/useRichTextStyles'
 import Link from '../Link'
+import { vpCalc, UseStyles } from '../Theme'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  ({ gridSpacing, breakpoints, spacings, palette }: Theme) => ({
+    root: {
+      gridColumnGap: gridSpacing.gutter,
+      gridRowGap: gridSpacing.row,
+      marginBottom: gridSpacing.gutter,
+      display: `grid`,
+      gridTemplateColumns: `1fr`,
+      gridTemplateAreas: `"one" "two"`,
+      [breakpoints.up('md')]: {
+        gridTemplateColumns: `1fr ${vpCalc(320, 620)}`,
+        gridTemplateAreas: `"one two"`,
+      },
+      alignItems: 'center',
+    },
     linkList: {
+      marginTop: vpCalc(20, 40),
       display: 'flex',
-      margin: `0 calc(${theme.spacings.md} * -1) 0 0`,
-      '& > *': { margin: `0 ${theme.spacings.md} 0 0` },
+      margin: `0 calc(${spacings.md} * -1) 0 0`,
+      '& > *': { margin: `0 ${spacings.md} 0 0` },
     },
     paper: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: palette.primary.main,
       display: 'grid',
       padding: vpCalc(16, 64),
       gridRowGap: vpCalc(8, 32),
@@ -34,6 +47,15 @@ const useStyles = makeStyles(
   { name: 'RowPeopleWithText' },
 )
 
+const useRichTextStyles = makeStyles(
+  ({ palette }: Theme) => ({
+    paragraph: {
+      color: palette.primary.mutedText,
+    },
+  }),
+  { name: 'RowPeopleWithTextRichText' },
+)
+
 type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment &
   GQLGetAllPeopleQuery &
   UseStyles<typeof useStyles> & {
@@ -42,38 +64,38 @@ type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment &
 
 const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = (props) => {
   const { links, text, people, richTextClasses } = props
-  const classes = useStyles(props)
+  const { linkList, paper, ...containerClasses } = useStyles(props)
+  const richText = useRichTextStyles({ classes: richTextClasses })
 
-  const Left: React.FC = () => (
-    <>
-      <RichText {...text} classes={richTextClasses} />
-      <div className={classes.linkList}>
-        {links.map((link) => {
-          if (!link.page) return null
-          return (
-            <Link
-              href={link.page.url}
-              metaRobots={link.page.metaRobots}
-              key={link.id}
-              variant='body1'
-            >
-              {link.title}
-            </Link>
-          )
-        })}
+  return (
+    <Container classes={containerClasses}>
+      <div>
+        <RichText {...text} classes={richText} />
+        <div className={linkList}>
+          {links.map((link) => {
+            if (!link.page) return null
+            return (
+              <Link
+                href={link.page.url}
+                metaRobots={link.page.metaRobots}
+                key={link.id}
+                variant='body1'
+              >
+                {link.title}
+              </Link>
+            )
+          })}
+        </div>
       </div>
-    </>
+      <div>
+        <Paper elevation={8} className={paper}>
+          {people.map(({ avatar, id }) => (
+            <Asset asset={avatar} width={83} key={id} compression='lossy' />
+          ))}
+        </Paper>
+      </div>
+    </Container>
   )
-
-  const Right: React.FC = () => (
-    <Paper elevation={10} className={classes.paper}>
-      {people.map(({ avatar, id }) => (
-        <Asset asset={avatar} width={83} key={id} compression='lossy' />
-      ))}
-    </Paper>
-  )
-
-  return <Container left={<Left />} right={<Right />} leftWidth={0.5} spaceBetween />
 }
 
 export default RowPeopleWithText

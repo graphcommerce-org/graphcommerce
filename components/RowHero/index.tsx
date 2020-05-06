@@ -13,20 +13,15 @@ import TriangleBg, { TriangleBgProps } from '../TriangleBg'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      gridColumnGap: theme.gridSpacing.column,
+      gridColumnGap: theme.gridSpacing.gutter,
       gridRowGap: theme.gridSpacing.row,
       // marginBottom: theme.spacings.xl,
       display: `grid`,
       gridTemplateColumns: `1fr`,
-      gridTemplateAreas: `
-        "one"
-        "two"
-      `,
+      gridTemplateAreas: `"one" "two"`,
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: `1fr 1fr`,
-        gridTemplateAreas: `
-          "one two"
-        `,
+        gridTemplateAreas: `"one two"`,
       },
       alignItems: 'center',
     },
