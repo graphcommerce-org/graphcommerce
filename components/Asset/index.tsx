@@ -62,6 +62,7 @@ const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = (
         <FilestackPicture
           {...(props as ImageProps)}
           src={asset.url}
+          alt={asset.alt ?? ''}
           type={asset.mimeType as ImageMimeTypes}
           width={width}
           height={Math.round((asset.height / asset.width) * width)}
