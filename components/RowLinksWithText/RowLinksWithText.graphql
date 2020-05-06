@@ -1,0 +1,13 @@
+fragment RowLinksWithText on RowLinksWithText {
+  id
+  pages {
+    id
+    ...Link
+  }
+  text {
+    ...RichText
+  }
+  links {
+    ...LinkInternal
+  }
+}

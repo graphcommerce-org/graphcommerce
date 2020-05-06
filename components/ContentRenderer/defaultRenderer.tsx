@@ -9,6 +9,7 @@ import RowPeopleWithText from '../RowPeopleWithText'
 import RowRecentBlogPost from '../RowRecentBlogPost'
 import RowYoutubeVideo from '../RowYoutubeVideo'
 import RowIconWithTextList from '../RowIconWithTextList'
+import RowLinksWithText from '../RowLinksWithText'
 
 export const registerRenderers = () => {
   setRenderers({
@@ -20,7 +21,7 @@ export const registerRenderers = () => {
     RowPeopleWithText,
     RowRecentBlogPost,
     RowIconWithTextList,
-    RowServicesWithText: () => <div>RowServicesWithText not yet implemented</div>,
+    RowLinksWithText,
     RowYoutubeVideo,
   })
 }
