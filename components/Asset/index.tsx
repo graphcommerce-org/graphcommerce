@@ -38,7 +38,11 @@ const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = (
       )
     case 'image/svg+xml':
       return (
-        <img src={asset.url} alt={asset.alt ?? ''} {...(props as JSX.IntrinsicElements['img'])} />
+        <img
+          src={url.toString()}
+          alt={asset.alt ?? ''}
+          {...(props as JSX.IntrinsicElements['img'])}
+        />
       )
     case undefined:
     case null:
