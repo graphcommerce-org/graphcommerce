@@ -244,7 +244,9 @@ const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classe
     case 'iframe':
       // todo(paales) add security attributes to iframe
       // todo(paales) make iframe responsive
-      return <iframe src={block.data.src} title='embedded content' className={iframe} />
+      return (
+        <iframe src={block.data.src} title='embedded content' className={iframe} loading='lazy' />
+      )
     case 'image':
       return <Asset asset={{ ...block.data, url: block.data.src }} width={380} className={asset} />
     case 'video':
