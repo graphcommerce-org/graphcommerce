@@ -11,6 +11,7 @@ import RowColumnTwoSpread from '../components/RowColumnTwo/RowColumnTwoSpread'
 import RowColumnOneAwards from '../components/RowColumnOne/RowColumnOneAwards'
 import RowColumnOneCentered from '../components/RowColumnOne/RowColumnOneCentered'
 import RowColumnOne from '../components/RowColumnOne'
+import TriangleBg from '../components/TriangleBg'
 
 const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
   index,
@@ -26,7 +27,11 @@ const CustomRowColumnOneRenderers: React.FC<
     return <RowColumnOneAwards {...props} />
   }
   if (index === 6) {
-    return <RowColumnOneCentered {...props} />
+    return (
+      <TriangleBg color='white' gradient halfWidth>
+        <RowColumnOneCentered {...props} />
+      </TriangleBg>
+    )
   }
   return <RowColumnOne {...props} />
 }

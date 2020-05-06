@@ -42,6 +42,18 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
+      [theme.breakpoints.down('md')]: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        '& p': {
+          marginBottom: theme.spacings.md,
+        },
+      },
+      [theme.breakpoints.up('xs')]: {
+        '& p': {
+          marginRight: theme.spacings.md,
+        },
+      },
       color: '#fff',
       '& small .MuiTypography-body1': {
         ...theme.typography.body2,

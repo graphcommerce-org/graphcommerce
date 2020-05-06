@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     maxWidth: `calc(1050px + calc(${theme.gridSpacing.column} * 2))`,
     margin: `0 auto`,
+    position: 'relative',
   },
   imageContainer: {
     margin: `0 auto`,
