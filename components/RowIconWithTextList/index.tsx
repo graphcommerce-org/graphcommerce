@@ -45,6 +45,7 @@ const useStyles = makeStyles(
       color: `#fff`,
       [theme.breakpoints.up('sm')]: {
         columnCount: 2,
+        columnGap: theme.gridSpacing.column,
       },
       '& h3': {
         color: theme.palette.tertiary.main,
