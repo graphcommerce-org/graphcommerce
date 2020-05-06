@@ -11,9 +11,11 @@ export type RowCompanySliderProps = GQLRowCompanySliderFragment &
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
+    wrapper: {
+      borderBottom: `1px solid rgba(0,0,0,0.05)`,
+      marginBottom: theme.spacings.xl,
+      paddingTop: theme.spacings.sm,
+      paddingBottom: theme.spacings.sm,
     },
     asset: {
       width: vpCalc(161, 290),
@@ -26,25 +28,27 @@ const useStyles = makeStyles(
 
 const RowCompanySlider: React.FC<RowCompanySliderProps> = (props) => {
   const { companies, slider, ...containerProps } = props
-  const { asset, ...containerClasses } = useStyles(props)
+  const { asset, wrapper, ...containerClasses } = useStyles(props)
 
   return (
-    <Container {...containerProps} classes={containerClasses}>
-      <ScrollSnapSlider {...slider}>
-        {companies.map((company) => {
-          if (!company.logo?.width || !company.logo?.height) return null
-          return (
-            <Asset
-              className={asset}
-              asset={company.logo}
-              key={company.id}
-              alt={company.name}
-              width={173}
-            />
-          )
-        })}
-      </ScrollSnapSlider>
-    </Container>
+    <div className={wrapper}>
+      <Container {...containerProps} classes={containerClasses}>
+        <ScrollSnapSlider {...slider}>
+          {companies.map((company) => {
+            if (!company.logo?.width || !company.logo?.height) return null
+            return (
+              <Asset
+                className={asset}
+                asset={company.logo}
+                key={company.id}
+                alt={company.name}
+                width={173}
+              />
+            )
+          })}
+        </ScrollSnapSlider>
+      </Container>
+    </div>
   )
 }
 

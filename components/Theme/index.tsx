@@ -28,6 +28,13 @@ declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
     tertiary: PaletteColor & ColorPartial
   }
+
+  interface SimplePaletteColorOptions {
+    mutedText: string
+  }
+  interface PaletteColor {
+    mutedText: string
+  }
 }
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
@@ -74,12 +81,13 @@ export const defaultTheme = createMuiTheme({
     primary: {
       main: '#13e4ad',
       contrastText: '#000',
+      mutedText: '#b8b8b8',
       dark: '#0edda7',
     },
     secondary: {
       main: '#fffe00',
       contrastText: '#000',
-      light: '#b8b8b8',
+      mutedText: '#b8b8b8',
     },
     tertiary: {
       main: '#2b153d',
@@ -87,6 +95,7 @@ export const defaultTheme = createMuiTheme({
       '100': '#9f89b1',
       '500': '#2a183e',
       contrastText: '#fff',
+      mutedText: '#b8b8b8',
     },
     background: {
       default: '#fff',
