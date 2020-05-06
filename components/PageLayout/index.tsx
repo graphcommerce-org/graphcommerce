@@ -33,6 +33,15 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({
       <Head>
         <meta name='theme-color' content={defaultTheme.palette.primary.main} />
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
+        <meta name='application-name' content='Reach Digital' />
+        <meta name='apple-mobile-web-app-capable' content='yes' />
+        <meta name='apple-mobile-web-app-status-bar-style' content='default' />
+        <meta name='apple-mobile-web-app-title' content='Reach Digital' />
+        <meta name='format-detection' content='telephone=no' />
+        <meta name='mobile-web-app-capable' content='yes' />
+        <link rel='apple-touch-icon' href='/manifest/icon-512-512.png' />
+        <link rel='manifest' href='/manifest.webmanifest' />
+        <link rel='shortcut icon' href='/manifest/favicon.ico' />
       </Head>
       <CssBaseline />
       <PageMeta {...page} />

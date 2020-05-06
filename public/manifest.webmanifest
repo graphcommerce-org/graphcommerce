@@ -1,0 +1,16 @@
+{
+  "name": "next-pwa",
+  "short_name": "next-pwa",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#13e4ad",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/manifest/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
