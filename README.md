@@ -6,8 +6,8 @@
   [Apollo](https://www.apollographql.com/docs/react/)
 - [GraphCMS](https://graphcms.com/)
 - [Material UI](https://material-ui.com/)
+- [React-spring](https://www.react-spring.io/)
 - [Zeit](https://zeit.co/reachdigital)
-- [Schema-dts](https://github.com/google/schema-dts)
 - [react-schemaorg](https://github.com/google/react-schemaorg) +
   [schema-dts](https://github.com/google/schema-dts)
 
@@ -16,14 +16,13 @@
 Make sure you're using Node >= 12 `nvm install 12 && nvm alias default node`
 
 1. `yarn`
-2. `cp .env.example .env` and fill values
+2. `cp .env.example .env` and fill values (see 1Password)
 
 # Run
 
 Site:
 
 - `yarn dev`
-- `yarn storybook`
 
 # Build
 
