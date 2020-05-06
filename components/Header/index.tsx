@@ -7,6 +7,7 @@ import { vpCalc } from '../Theme'
 import HeaderMenu from './HeaderMenu'
 import Link from '../Link'
 import Asset from '../Asset'
+import TriangleBg from '../TriangleBg'
 
 export const useHeaderSpacing = makeStyles(
   ({ gridSpacing }: Theme) => ({
@@ -31,7 +32,11 @@ const useStyles = makeStyles(
       // 2xGridspacing, Logo Height, Logo Margin
       marginBottom: `calc(${gridSpacing.row} * -2 + ${vpCalc(46, 72)} * -1 - 3px)`,
     },
-    logo: { zIndex: zIndex.appBar, gridArea: 'logo' },
+    logo: ({ theme }: HeaderProps) => ({
+      zIndex: zIndex.appBar,
+      gridArea: 'logo',
+      filter: theme === 'on-green' ? `invert(1)` : undefined,
+    }),
     logoImg: { maxHeight: vpCalc(46, 72), display: 'block', marginTop: 3 },
     menu: { gridArea: 'menu', zIndex: zIndex.appBar },
     contact: { gridArea: 'contact', zIndex: zIndex.appBar },
@@ -40,21 +45,33 @@ const useStyles = makeStyles(
     avatarImg: { display: 'block' },
     avatarPhone: { padding: 0 },
     avatarPhoneIcon: { fontSize: 12 },
+    headerDecoration: {
+      width: 235,
+      height: 200,
+      left: -60,
+      top: -60,
+      position: 'absolute',
+      zIndex: 1,
+      pointerEvents: 'none',
+    },
   }),
   { name: 'Header' },
 )
 
-const Header: React.FC<GQLHeaderFragment & GQLPageMetaFragment> = ({
-  menuPages,
-  contactPage,
-  contactAvatar,
-  homePage,
-  ...page
-}) => {
-  const classes = useStyles()
+export type HeaderTheme = undefined | 'on-green'
+
+type HeaderProps = GQLHeaderFragment &
+  GQLPageMetaFragment & {
+    theme: HeaderTheme
+  }
+
+const Header: React.FC<HeaderProps> = (props) => {
+  const { menuPages, contactPage, contactAvatar, homePage, theme, ...page } = props
+  const classes = useStyles(props)
 
   return (
     <header className={classes.navigation}>
+      {!theme && <TriangleBg className={classes.headerDecoration} color='primary' blur flip />}
       {homePage && (
         <Link href={homePage.url} metaRobots={homePage.metaRobots} className={classes.logo}>
           <img src={logo} alt='Logo' className={classes.logoImg} />

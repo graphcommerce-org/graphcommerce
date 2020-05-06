@@ -5,18 +5,25 @@ import Error from 'next/error'
 import PageMeta from '../PageMeta'
 import ThemedProvider, { defaultTheme } from '../Theme'
 import { LayoutPage } from '../../lib/layout'
-import Header from '../Header'
+import Header, { HeaderTheme } from '../Header'
 import PageLoadIndicator from '../PageLoadIndicator'
 import { GQLGetStaticProps } from '../../lib/staticParams'
 import Footer from '../Footer'
 
 export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
   page: GQLGetPageLayoutQuery['pages'][0]
+  headerTheme?: HeaderTheme
 }
 
 export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
 
-const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, header, footer }) => {
+const LayoutFull: PageWithLayoutFull['layout'] = ({
+  children,
+  page,
+  header,
+  footer,
+  headerTheme,
+}) => {
   if (!page?.url) return <Error statusCode={404} title='Page not found' />
   if (!header) return <Error statusCode={500} title='Header not loaded' />
   if (!footer) return <Error statusCode={500} title='Footer not loaded' />
@@ -30,7 +37,7 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({ children, page, header, foot
       <CssBaseline />
       <PageMeta {...page} />
       <PageLoadIndicator />
-      <Header {...header} {...page} />
+      <Header {...header} {...page} theme={headerTheme} />
       {children}
       <Footer {...footer} />
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
