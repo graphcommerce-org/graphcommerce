@@ -82,7 +82,7 @@
     "@types/use-resize-observer": "^6.0.0",
     "@types/webpack": "^4.41.12",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
-    "@typescript-eslint/parser": "^2.30.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "babel-loader": "^8.1.0",
     "concurrently": "^5.2.0",
     "eslint": "^6.8.0",
