@@ -92,9 +92,13 @@ const Header: React.FC<HeaderProps> = (props) => {
           }}
           variant='standard'
         >
-          <Fab size='small' classes={{ root: classes.avatarFab }} name='contact'>
+          <Fab size='small' classes={{ root: classes.avatarFab }} aria-label={contactPage?.title}>
             {contactPage && (
-              <Link href={contactPage.url} metaRobots={contactPage.metaRobots}>
+              <Link
+                href={contactPage.url}
+                metaRobots={contactPage.metaRobots}
+                aria-label={contactPage?.title}
+              >
                 <Avatar classes={{ colorDefault: classes.avatar }}>
                   {contactAvatar && (
                     <Asset

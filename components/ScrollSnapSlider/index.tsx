@@ -143,12 +143,12 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
         {children}
       </animated.div>
       <Grow in={!intersects[0]}>
-        <Fab className={classes.prevFab} size='large' onClick={onPrev} name='previous'>
+        <Fab className={classes.prevFab} size='large' onClick={onPrev} aria-label='previous'>
           <ArrowBack />
         </Fab>
       </Grow>
       <Grow in={!intersects[intersects.length - 1]}>
-        <Fab className={classes.nextFab} size='large' onClick={onNext} name='next'>
+        <Fab className={classes.nextFab} size='large' onClick={onNext} aria-label='next'>
           <ArrowForward />
         </Fab>
       </Grow>

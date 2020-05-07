@@ -4,7 +4,9 @@
       "numberOfRuns": 3
     },
     "assert": {
-      "preset": "lighthouse:recommended"
+      "preset": "lighthouse:recommended",
+      "color-contrast": "warn",
+      "is-crawlable": "off"
     },
     "upload": {
       "target": "temporary-public-storage"

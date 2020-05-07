@@ -95,7 +95,7 @@ const RowRecentBlogPost: React.FC<RowRecentBlogPostProps> = (props) => {
               color='inherit'
               className={fabLink}
             >
-              <Fab size='large' classes={{ root: fab }}>
+              <Fab size='large' classes={{ root: fab }} aria-label={link.page.title}>
                 <ArrowRight />
               </Fab>
               <div className={fabText}>{link.title}</div>
