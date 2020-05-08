@@ -1,0 +1,12 @@
+fragment VacancyListItem on Page {
+  id
+  createdAt
+  title
+  metaRobots
+  metaDescription
+  url
+  locale
+  asset {
+    ...Asset
+  }
+}

@@ -1,0 +1,10 @@
+query GetVacancyList($url: String!, $locale: Locale!, $first: Int! = 100) {
+  vacancyPosts: pages(
+    where: { url_starts_with: $url }
+    locales: [$locale]
+    orderBy: createdAt_DESC
+    first: $first
+  ) {
+    ...VacancyListItem
+  }
+}
