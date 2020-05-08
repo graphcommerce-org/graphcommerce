@@ -10594,15 +10594,15 @@ next-images@^1.4.0:
     file-loader "^6.0.0"
     url-loader "^4.0.0"
 
-next-pwa@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/next-pwa/-/next-pwa-2.3.3.tgz#120440c82e00a92f3b2204155999eaacd523d6cb"
-  integrity sha512-mIKRp0C1ta33Mbq8hmr5tzwa1xouYHH5JEEcpFzUkD5FbKGx6QKs1WIcG1uyzmOcvj9qd51Stw1kp4WuPR31Bg==
+next-pwa@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/next-pwa/-/next-pwa-2.4.0.tgz#5c0292f90e3c31286db64acb8686c8dea798bd9b"
+  integrity sha512-Q8p0Jwt1nHzBi/gD5HJLJcA5jFS9GjO5/+GDKN77CIjgpP2Jcy8xAAOu4/haxyvEXBfP8W0nhUUr4J5P6yZ31A==
   dependencies:
     clean-webpack-plugin "^3.0.0"
     globby "^11.0.0"
-    workbox-webpack-plugin "^5.1.2"
-    workbox-window "^5.1.2"
+    workbox-webpack-plugin "^5.1.3"
+    workbox-window "^5.1.3"
 
 next-tick@~1.0.0:
   version "1.0.0"
@@ -15918,7 +15918,7 @@ workbox-sw@^5.1.3:
   resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-5.1.3.tgz#7bffbf034f2f5b58e1734b5b86d240019a5332bb"
   integrity sha512-Syk6RhYr/8VdFwXrxo5IpVz8Og2xapHTWJhqsZRF+TbxSvlaJs8hrvVPd7edn5ZiiVdPhE9NTeOTOg1+D+FGoA==
 
-workbox-webpack-plugin@^5.1.2:
+workbox-webpack-plugin@^5.1.3:
   version "5.1.3"
   resolved "https://registry.yarnpkg.com/workbox-webpack-plugin/-/workbox-webpack-plugin-5.1.3.tgz#a7070e3ea0eedb6f87e11fd916ec5d4430a6e348"
   integrity sha512-gxSkZ9GFLrMNC/8DGNRjcMhrt8iu+MMXhH/Fpo3wo9rKaSMsI7esGq0klTH/UloP9pNvBizVydysrB52eRhI7w==
@@ -15930,7 +15930,7 @@ workbox-webpack-plugin@^5.1.2:
     webpack-sources "^1.3.0"
     workbox-build "^5.1.3"
 
-workbox-window@^5.1.2, workbox-window@^5.1.3:
+workbox-window@^5.1.3:
   version "5.1.3"
   resolved "https://registry.yarnpkg.com/workbox-window/-/workbox-window-5.1.3.tgz#24a2acb2903b0ff2789a4ce32f355621e769eb23"
   integrity sha512-oYvfVtPLET7FUrhOzbk0R+aATVmpdQBkmDqwyFH4W2dfVqJXTvTXzuGP5Pn9oZ8jMTB3AYW43yhYBlLYM3mYyg==
