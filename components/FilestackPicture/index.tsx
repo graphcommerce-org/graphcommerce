@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PictureResponsive, { PictureResonsiveProps, ImageMimeTypes } from '../PictureResponsive'
+import useNetworkStatus from '../PictureResponsive/useNetworkStatus'
 
 const possibleWidths = [25, 50, 75, 100, 200, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
@@ -11,24 +12,53 @@ export type FilestackPictureProps = Omit<PictureResonsiveProps, 'srcSets'> & {
   compression?: 'lossy' | 'lossless' | 'none'
 }
 
-const detectResize = (type: ImageMimeTypes): NonNullable<FilestackPictureProps['compression']> => {
-  switch (type) {
-    case 'image/png':
-    case 'image/bmp':
-    case 'image/tiff':
-      return 'lossless'
-    case 'image/svg+xml':
-    case 'image/gif':
-      return 'none'
-    default:
-      return 'lossy'
-  }
+type UseCompressionReturn = {
+  compression: FilestackPictureProps['compression']
+  quality: number
+}
+
+const useImageOptions = (
+  compression: FilestackPictureProps['compression'],
+  type: ImageMimeTypes,
+): UseCompressionReturn => {
+  const { connectionType } = useNetworkStatus('4g')
+  const [compress, setCompress] = useState<UseCompressionReturn>({
+    compression: 'lossy',
+    quality: 80,
+  })
+
+  useEffect(() => {
+    if (connectionType !== '4g') {
+      setCompress({ compression: 'lossy', quality: 80 })
+      return
+    }
+
+    switch (type) {
+      case 'image/png':
+      case 'image/bmp':
+      case 'image/tiff':
+        setCompress({ compression: 'lossless', quality: 100 })
+        break
+      case 'image/gif':
+      case 'image/svg+xml':
+        setCompress({ compression: 'lossless', quality: 100 })
+        break
+      default:
+        setCompress({ compression: 'lossy', quality: 100 })
+        break
+    }
+  }, [type, connectionType])
+
+  if (compression) return compress
+  if (typeof window === 'undefined') return compress
+
+  return compress
 }
 
 const FilestackPicture: React.FC<FilestackPictureProps> = ({
   src,
   type,
-  compression: resize,
+  compression,
   ...imgProps
 }) => {
   const url = new URL(src)
@@ -44,7 +74,9 @@ const FilestackPicture: React.FC<FilestackPictureProps> = ({
   const widths = possibleWidths.filter((width) => imgProps.width < width - 20)
   widths.unshift(imgProps.width)
 
-  switch (resize || detectResize(type)) {
+  const imageOptions = useImageOptions(compression, type)
+
+  switch (imageOptions.compression) {
     case 'none':
       srcSets[type] = src
       break
@@ -52,14 +84,14 @@ const FilestackPicture: React.FC<FilestackPictureProps> = ({
       // Generate webp + jpeg for all lossy images.
       srcSets['image/webp'] = widths
         .map((width) => {
-          url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:webp,quality:100,t:true/${handle}`
+          url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:webp,quality:${imageOptions.quality},t:true/${handle}`
           return `${url.toString()} ${width}w`
         })
         .join(', ')
 
       srcSets[type] = widths
         .map((width) => {
-          url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:jpg,quality:100,t:true/${handle}`
+          url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:jpg,quality:${imageOptions.quality},t:true/${handle}`
           return `${url.toString()} ${width}w`
         })
         .join(', ')
