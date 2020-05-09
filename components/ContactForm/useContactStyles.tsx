@@ -20,12 +20,21 @@ const useContactStyles = makeStyles(
 
       [theme.breakpoints.up('md')]: {
         columnGap: theme.gridSpacing.column,
-        gridTemplateColumns: '1fr 1fr 1fr',
+        // gridTemplateColumns: '2fr 2fr 1fr 1fr',
+        // gridTemplateAreas: `
+        //   "name       email   phoneNumber phoneNumber"
+        //   "subject    subject subject subject"
+        //   "message    message message message"
+        //   "attachment .       error   submit"
+        // `,
+
+        gridTemplateColumns: '2fr 1fr 1fr',
         gridTemplateAreas: `
-       "name       email   phoneNumber"
-       "subject    subject subject"
-       "message    message message"
-       "attachment .  submit"`,
+          "name        message  message"
+          "email       message  message"
+          "phoneNumber message  message"
+          "subject     error    submit"
+        `,
       },
     },
     name: { gridArea: 'name' },
@@ -34,6 +43,7 @@ const useContactStyles = makeStyles(
     subject: { gridArea: 'subject' },
     message: { gridArea: 'message' },
     attachment: { gridArea: 'attachment' },
+    error: { gridArea: 'error' },
     submit: { gridArea: 'submit' },
   }),
   { name: 'ContactForm' },

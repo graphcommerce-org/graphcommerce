@@ -23,13 +23,13 @@ const useStyles = makeStyles(
       return styles
     },
 
-    svg: ({ gradient, blur, half }) => {
+    svg: ({ blur, half }) => {
       return {
         pointerEvents: 'none',
         height: half ? '50%' : '100%',
         width: half ? '50%' : '100%',
         position: 'absolute',
-        zIndex: gradient ? 0 : -1,
+        zIndex: -1,
         overflow: 'visible',
         filter: blur ? `blur(15px);` : undefined,
         // [breakpoints.up('md')]: {

@@ -3,6 +3,7 @@ import { Button, FormHelperText, TextField } from '@material-ui/core'
 import { SubmitContactFormDocument } from '../../generated/apollo'
 import { useMutationForm, emailPattern, phonePattern } from '../../lib/apollo-form'
 import useContactStyles from './useContactStyles'
+import { ChevronRight } from '../Icons'
 
 const ContactForm: React.FC = () => {
   const classes = useContactStyles()
@@ -28,7 +29,7 @@ const ContactForm: React.FC = () => {
     <>
       <form noValidate onSubmit={onSubmit} className={classes.form}>
         <TextField
-          variant='outlined'
+          variant='filled'
           error={!!errors.name}
           label='Naam'
           id='name'
@@ -40,7 +41,7 @@ const ContactForm: React.FC = () => {
         />
 
         <TextField
-          variant='outlined'
+          variant='filled'
           type='email'
           error={!!errors.email}
           label='Emailadres'
@@ -56,7 +57,7 @@ const ContactForm: React.FC = () => {
         />
 
         <TextField
-          variant='outlined'
+          variant='filled'
           type='tel'
           error={!!errors.phoneNumber}
           label='Telefoonnummer'
@@ -72,7 +73,7 @@ const ContactForm: React.FC = () => {
         />
 
         <TextField
-          variant='outlined'
+          variant='filled'
           select
           SelectProps={{ native: true }}
           error={!!errors.subject}
@@ -94,7 +95,7 @@ const ContactForm: React.FC = () => {
         </TextField>
 
         <TextField
-          variant='outlined'
+          variant='filled'
           multiline
           className={classes.message}
           error={!!errors.message}
@@ -107,7 +108,7 @@ const ContactForm: React.FC = () => {
           helperText={errors?.subject?.message}
         />
 
-        <div className={classes.submit}>
+        <div className={classes.error}>
           {error && (
             <FormHelperText error>
               {error.message} Please email to info@reachdigital.nl
@@ -119,15 +120,18 @@ const ContactForm: React.FC = () => {
               Message was send, but couldn&apos;t be saved.. Please email to info@reachdigital.nl
             </FormHelperText>
           )}
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            disabled={loading || !!data?.createContactForm?.id}
-          >
-            Submit
-          </Button>
         </div>
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+          disabled={loading || !!data?.createContactForm?.id}
+          className={classes.submit}
+          size='large'
+          endIcon={<ChevronRight />}
+        >
+          Submit
+        </Button>
       </form>
     </>
   )
