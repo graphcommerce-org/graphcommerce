@@ -84,7 +84,7 @@ const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, alt, ...i
   const { connectionType } = useNetworkStatus('4g')
 
   // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
-  const [size, setSize] = useState<number>(imgProps.width / 2.6)
+  const [size, setSize] = useState<number>(Math.round(imgProps.width / 2.6))
 
   useEffect(() => {
     // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
