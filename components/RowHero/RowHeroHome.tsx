@@ -10,13 +10,20 @@ const useStyles = makeStyles(
       background: `url(${logoReachBgShadow}) no-repeat bottom right`,
       backgroundSize: vpCalc(200, 1200),
     },
+    h1: { fontWeight: 400 },
   },
   { name: 'RowHeroHome' },
 )
 
 const RowHeroHome: React.FC<RowHeroProps> = (props) => {
-  const { triangleRoot } = useStyles()
-  return <RowHero {...props} triangleBgProps={{ classes: { root: triangleRoot } }} />
+  const { triangleRoot, h1 } = useStyles()
+  return (
+    <RowHero
+      {...props}
+      triangleBgProps={{ classes: { root: triangleRoot } }}
+      richTextClasses={{ h1 }}
+    />
+  )
 }
 
 export default RowHeroHome

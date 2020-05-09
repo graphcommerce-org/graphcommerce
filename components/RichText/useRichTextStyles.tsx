@@ -4,7 +4,7 @@ import { vpCalc, UseStyles } from '../Theme'
 const useRichTextStyles = makeStyles(
   {
     paragraph: { marginBottom: '1em' },
-    h1: { fontWeight: 400, marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
+    h1: { marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
     h2: { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) },
     h3: { marginTop: vpCalc(22, 30), marginBottom: vpCalc(22, 30) },
     h4: {},
