@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import PictureResponsive, { PictureResonsiveProps, ImageMimeTypes } from '../PictureResponsive'
-import useNetworkStatus from '../PictureResponsive/useNetworkStatus'
+import PictureResponsive, { PictureResponsiveProps, ImageMimeTypes } from '../PictureResponsive'
+import useConnectionType from '../PictureResponsive/useConnectionType'
 
 const possibleWidths = [25, 50, 75, 100, 150, 200, 250, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
-export type FilestackPictureProps = Omit<PictureResonsiveProps, 'srcSets'> & {
+export type FilestackPictureProps = Omit<PictureResponsiveProps, 'srcSets'> & {
   src: string
   type: ImageMimeTypes
 
@@ -21,7 +21,7 @@ const useImageOptions = (
   compression: FilestackPictureProps['compression'],
   type: ImageMimeTypes,
 ): UseCompressionReturn => {
-  const { connectionType } = useNetworkStatus('4g')
+  const connectionType = useConnectionType()
   const [compress, setCompress] = useState<UseCompressionReturn>({
     compression: 'lossy',
     quality: 80,
@@ -33,8 +33,6 @@ const useImageOptions = (
       setCompress({ compression, quality })
       return
     }
-
-    console.error(navigator.connection.effectiveType)
 
     switch (type) {
       case 'image/png':
@@ -68,7 +66,7 @@ const FilestackPicture: React.FC<FilestackPictureProps> = ({
     throw new Error(`Please provide a bare Filestack compatible URL: ${src}`)
   }
 
-  const srcSets: PictureResonsiveProps['srcSets'] = {}
+  const srcSets: PictureResponsiveProps['srcSets'] = {}
 
   // The smallest possible image is the supplied img size, remove smaller sizes.
   const widths = possibleWidths.filter((width) => imgProps.width < width - 20)

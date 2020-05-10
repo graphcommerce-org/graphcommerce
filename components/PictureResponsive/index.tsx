@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
-import useNetworkStatus from './useNetworkStatus'
+import useConnectionType from './useConnectionType'
 
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 export type ImageMimeTypes =
@@ -14,7 +14,7 @@ export type ImageMimeTypes =
   | 'image/tiff'
   | 'image/webp'
 
-export type PictureResonsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
+export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
   alt: string
   srcSets: Partial<Record<ImageMimeTypes, string>>
   width: number
@@ -76,12 +76,12 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-const PictureResponsive: React.FC<PictureResonsiveProps> = ({ srcSets, alt, ...imgProps }) => {
+const PictureResponsive: React.FC<PictureResponsiveProps> = ({ srcSets, alt, ...imgProps }) => {
   const ref = useRef<HTMLImageElement>(null)
   const { width } = useResizeObserver({ ref })
 
   // We get the network type and set it to 4g safari
-  const { connectionType } = useNetworkStatus('4g')
+  const connectionType = useConnectionType()
 
   // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
   const [size, setSize] = useState<number>(Math.round(imgProps.width / 2.6))
