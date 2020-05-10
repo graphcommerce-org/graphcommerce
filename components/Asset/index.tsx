@@ -1,6 +1,7 @@
 import React from 'react'
 import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture, { FilestackPictureProps } from '../FilestackPicture'
+import VideoResponsive from '../PictureResponsive/VideoResponsive'
 
 export type MimeTypes = ImageMimeTypes & 'video/mp4'
 
@@ -32,9 +33,14 @@ const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = (
   switch (asset.mimeType) {
     case 'video/mp4':
       return (
-        <video autoPlay muted playsInline loop {...(props as VideoProps)}>
-          <source src={url.toString()} type={(asset as VideoProps['asset']).mimeType} />
-        </video>
+        <VideoResponsive
+          muted
+          playsInline
+          loop
+          autoPlay
+          src={url.toString()}
+          {...(props as VideoProps)}
+        />
       )
     case 'image/svg+xml':
       return (
