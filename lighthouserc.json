@@ -5,8 +5,10 @@
     },
     "assert": {
       "preset": "lighthouse:recommended",
-      "color-contrast": "warn",
-      "is-crawlable": "off"
+      "assertions": {
+        "color-contrast": "warn",
+        "is-crawlable": "off"
+      }
     },
     "upload": {
       "target": "temporary-public-storage"
