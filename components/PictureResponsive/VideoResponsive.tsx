@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import useConnectionType from './useConnectionType'
 
 // @todo incomplete list
-export type ImageMimeTypes = 'video/mp4' | 'image/webv'
+export type VideoMimeTypes = 'video/mp4' | 'image/webv'
 
 export type VideoResponsiveProps = JSX.IntrinsicElements['video']
 
 /**
- * Creates a simple video element but disables autoplay for 3g connections
+ * Creates a standard video element but disables autoplay for 3g connections
  */
 const VideoResponsive = ({ autoPlay, ...videoProps }: VideoResponsiveProps) => {
   const connectionType = useConnectionType()

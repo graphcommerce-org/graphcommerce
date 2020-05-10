@@ -28,7 +28,7 @@ const useImageOptions = (
   })
 
   useEffect(() => {
-    const quality = connectionType !== '4g' ? 100 : 80
+    const quality = connectionType === '4g' ? 100 : 80
     if (compression) {
       setCompress({ compression, quality })
       return
