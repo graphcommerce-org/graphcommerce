@@ -6,9 +6,12 @@
     "assert": {
       "preset": "lighthouse:recommended",
       "assertions": {
-        "color-contrast": "warn",
+        "color-contrast": "off",
         "is-crawlable": "off",
-        "tap-targets": "warn"
+        "tap-targets": "off",
+        "mainthread-work-breakdown": "off",
+        "max-potential-fid": "off",
+        "uses-long-cache-ttl": "off"
       }
     },
     "upload": {
