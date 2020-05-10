@@ -32,7 +32,9 @@ declare global {
 
 const isLighthouse =
   typeof window !== 'undefined' &&
-  (navigator.userAgent.indexOf('Nexus 5X') > 0 || navigator.userAgent.indexOf('Moto G (4)') > 0)
+  (navigator.userAgent.indexOf('Nexus 5') > 0 ||
+    navigator.userAgent.indexOf('Moto G (4)') > 0 ||
+    navigator.userAgent.indexOf('Chrome-Lighthouse') > 0)
 
 /**
  * Will return the effective connection type used by the client
