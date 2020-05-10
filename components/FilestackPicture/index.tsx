@@ -28,8 +28,9 @@ const useImageOptions = (
   })
 
   useEffect(() => {
-    if (connectionType !== '4g') {
-      setCompress({ compression: 'lossy', quality: 80 })
+    const quality = connectionType !== '4g' ? 100 : 80
+    if (compression) {
+      setCompress({ compression, quality })
       return
     }
 
@@ -37,20 +38,17 @@ const useImageOptions = (
       case 'image/png':
       case 'image/bmp':
       case 'image/tiff':
-        setCompress({ compression: 'lossless', quality: 100 })
+        setCompress({ compression: connectionType !== '4g' ? 'lossy' : 'lossless', quality })
         break
       case 'image/gif':
       case 'image/svg+xml':
-        setCompress({ compression: 'lossless', quality: 100 })
+        setCompress({ compression: 'none', quality })
         break
       default:
-        setCompress({ compression: 'lossy', quality: 100 })
+        setCompress({ compression: 'lossy', quality })
         break
     }
-  }, [type, connectionType])
-
-  if (compression) return compress
-  if (typeof window === 'undefined') return compress
+  }, [type, connectionType, compression])
 
   return compress
 }
