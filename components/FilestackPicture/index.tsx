@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PictureResponsive, { PictureResonsiveProps, ImageMimeTypes } from '../PictureResponsive'
 import useNetworkStatus from '../PictureResponsive/useNetworkStatus'
 
-const possibleWidths = [25, 50, 75, 100, 200, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
+const possibleWidths = [25, 50, 75, 100, 150, 200, 250, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
 export type FilestackPictureProps = Omit<PictureResonsiveProps, 'srcSets'> & {
   src: string

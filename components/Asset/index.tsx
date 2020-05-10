@@ -1,5 +1,5 @@
 import React from 'react'
-import PictureResponsive, { ImageMimeTypes } from '../PictureResponsive'
+import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture, { FilestackPictureProps } from '../FilestackPicture'
 
 export type MimeTypes = ImageMimeTypes & 'video/mp4'
