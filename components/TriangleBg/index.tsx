@@ -78,7 +78,7 @@ type Props = {
 export type TriangleBgProps = Props & UseStyles<typeof useStyles> & JSX.IntrinsicElements['div']
 
 const TriangleBg: React.FC<TriangleBgProps> = (props) => {
-  const { children, topRight, gradient, blur, half, className, color, ...divProps } = props
+  const { children, topRight, gradient, blur, half, className, color, flip, ...divProps } = props
   const classes = useStyles(props)
 
   return (
