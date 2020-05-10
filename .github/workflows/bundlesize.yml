@@ -1,8 +1,7 @@
-name: 'bundlesize'
-on: # rebuild any PRs and main branch changes
-  pull_request:
+name: bundlesize
+on: [pull_request]
 jobs:
-  bundlesize: # make sure the action works on a clean machine without building
+  bundlesize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

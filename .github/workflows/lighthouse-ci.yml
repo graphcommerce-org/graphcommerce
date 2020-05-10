@@ -1,4 +1,4 @@
-name: Lighthouse
+name: lighthouse
 on: [pull_request]
 jobs:
   lhci:
@@ -9,8 +9,7 @@ jobs:
         with:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
-      - name: Get deployment URL
-        id: deployment
+      - id: deployment
         uses: dorshinar/get-deployment-url@v1.0.3
         timeout-minutes: 5
         with:
