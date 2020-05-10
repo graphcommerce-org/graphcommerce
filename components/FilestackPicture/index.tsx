@@ -34,6 +34,8 @@ const useImageOptions = (
       return
     }
 
+    console.error(navigator.connection.effectiveType)
+
     switch (type) {
       case 'image/png':
       case 'image/bmp':
@@ -87,7 +89,7 @@ const FilestackPicture: React.FC<FilestackPictureProps> = ({
         })
         .join(', ')
 
-      srcSets[type] = widths
+      srcSets['image/jpeg'] = widths
         .map((width) => {
           url.pathname = `resize=fit:max,w:${width}/cache=expiry:max/output=c:true,f:jpg,quality:${imageOptions.quality},t:true/${handle}`
           return `${url.toString()} ${width}w`

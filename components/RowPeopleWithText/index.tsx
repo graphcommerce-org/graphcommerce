@@ -94,7 +94,7 @@ const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = (props) => {
       <div className={peopleContainer}>
         <Paper elevation={8} className={paper}>
           {people.map(({ avatar, id, name }) => (
-            <Asset asset={avatar} width={83} key={id} compression='lossy' alt={name} />
+            <Asset asset={avatar} width={83} key={id} alt={name} />
           ))}
         </Paper>
       </div>

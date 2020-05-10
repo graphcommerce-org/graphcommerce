@@ -23,7 +23,7 @@ const PortfolioListItem: React.FC<GQLPortfolioListitemFragment> = ({
   const classes = useStyles()
   return (
     <Link href={url} metaRobots={metaRobots}>
-      {asset && <Asset asset={asset} className={classes.image} width={380} compression='lossy' />}
+      {asset && <Asset asset={asset} className={classes.image} width={380} />}
       {title}
     </Link>
   )
