@@ -1,6 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../../components/PageLayout'
+import LayoutFull, {
+  PageWithLayoutFull,
+  PageLayoutProps,
+  getStaticProps as getPageLayout,
+} from '../../components/PageLayout'
 import getStaticPathsFactory from '../../lib/getStaticPaths'
 import ContentRenderer from '../../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../../lib/staticParams'
@@ -22,11 +26,6 @@ export default CasesView
 
 export const getStaticPaths = getStaticPathsFactory('/cases/', 'nl')
 
-export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => {
-  if (!ctx.params) throw new Error('Params not defined for blog view')
-
-  const params = extractParams(ctx, '/cases/')
-
-  const { getStaticProps: get } = await import('../../components/PageLayout')
-  return { props: await get(params) }
-}
+export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => ({
+  props: await getPageLayout(extractParams(ctx, '/cases/')),
+})

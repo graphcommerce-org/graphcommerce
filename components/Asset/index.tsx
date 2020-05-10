@@ -1,6 +1,10 @@
 import React from 'react'
-import PictureResponsive, { ImageMimeTypes } from '../PictureResponsive'
+import { ImageMimeTypes } from '../PictureResponsive'
 import FilestackPicture, { FilestackPictureProps } from '../FilestackPicture'
+import VideoResponsive, {
+  VideoResponsiveProps,
+  VideoMimeTypes,
+} from '../PictureResponsive/VideoResponsive'
 
 export type MimeTypes = ImageMimeTypes & 'video/mp4'
 
@@ -15,8 +19,8 @@ type ImageProps = {
 } & Omit<FilestackPictureProps, 'src' | 'type' | 'height'>
 
 type VideoProps = {
-  asset: { mimeType: 'video/mp4' } & GQLAssetFragment
-} & Omit<JSX.IntrinsicElements['video'], 'src' | 'height'>
+  asset: { mimeType: VideoMimeTypes } & GQLAssetFragment
+} & Omit<VideoResponsiveProps, 'src' | 'height'>
 
 const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = ({
   asset,
@@ -31,10 +35,16 @@ const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = (
 
   switch (asset.mimeType) {
     case 'video/mp4':
+    case 'video/webv':
       return (
-        <video autoPlay muted playsInline loop {...(props as VideoProps)}>
-          <source src={url.toString()} type={(asset as VideoProps['asset']).mimeType} />
-        </video>
+        <VideoResponsive
+          muted
+          playsInline
+          loop
+          autoPlay
+          src={url.toString()}
+          {...(props as VideoProps)}
+        />
       )
     case 'image/svg+xml':
       return (

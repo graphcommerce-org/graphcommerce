@@ -1,6 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
+import LayoutFull, {
+  PageWithLayoutFull,
+  PageLayoutProps,
+  getStaticProps as getPageLayout,
+} from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import extractParams, { StaticPageParams } from '../lib/staticParams'
 import { useHeaderSpacing } from '../components/Header'
@@ -21,9 +25,4 @@ export default CatchAll
 
 export const getServerSideProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (
   ctx,
-) => {
-  const params = extractParams(ctx, '/')
-
-  const { getStaticProps: get } = await import('../components/PageLayout')
-  return { props: await get(params) }
-}
+) => ({ props: await getPageLayout(extractParams(ctx, '/')) })

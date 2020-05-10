@@ -23,13 +23,13 @@ const useStyles = makeStyles(
       return styles
     },
 
-    svg: ({ gradient, blur, half }) => {
+    svg: ({ blur, half }) => {
       return {
         pointerEvents: 'none',
         height: half ? '50%' : '100%',
         width: half ? '50%' : '100%',
         position: 'absolute',
-        zIndex: gradient ? 0 : -1,
+        zIndex: -1,
         overflow: 'visible',
         filter: blur ? `blur(15px);` : undefined,
         // [breakpoints.up('md')]: {
@@ -78,7 +78,7 @@ type Props = {
 export type TriangleBgProps = Props & UseStyles<typeof useStyles> & JSX.IntrinsicElements['div']
 
 const TriangleBg: React.FC<TriangleBgProps> = (props) => {
-  const { children, topRight, gradient, blur, half, className, color, ...divProps } = props
+  const { children, topRight, gradient, blur, half, className, color, flip, ...divProps } = props
   const classes = useStyles(props)
 
   return (

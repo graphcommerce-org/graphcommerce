@@ -5,8 +5,14 @@
     },
     "assert": {
       "preset": "lighthouse:recommended",
-      "color-contrast": "warn",
-      "is-crawlable": "off"
+      "assertions": {
+        "color-contrast": "off",
+        "is-crawlable": "off",
+        "tap-targets": "off",
+        "mainthread-work-breakdown": "off",
+        "max-potential-fid": "off",
+        "uses-long-cache-ttl": "off"
+      }
     },
     "upload": {
       "target": "temporary-public-storage"

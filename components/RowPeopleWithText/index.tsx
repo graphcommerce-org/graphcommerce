@@ -1,5 +1,5 @@
 import React from 'react'
-import { Theme, makeStyles, Paper, Container } from '@material-ui/core'
+import { Theme, makeStyles, Paper, Container, ContainerProps } from '@material-ui/core'
 import RichText from '../RichText'
 import Asset from '../Asset'
 import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
@@ -22,6 +22,8 @@ const useStyles = makeStyles(
       },
       alignItems: 'center',
     },
+    textContainer: { gridArea: 'one' },
+    peopleContainer: { gridArea: 'two' },
     linkList: {
       marginTop: vpCalc(20, 40),
       display: 'flex',
@@ -56,41 +58,43 @@ const useRichTextStyles = makeStyles(
   { name: 'RowPeopleWithTextRichText' },
 )
 
-type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment &
+export type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment &
   GQLGetAllPeopleQuery &
   UseStyles<typeof useStyles> & {
     richTextClasses?: UseRichTextStyles['classes']
-  }
+  } & ContainerProps
 
 const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = (props) => {
-  const { links, text, people, richTextClasses } = props
-  const { linkList, paper, ...containerClasses } = useStyles(props)
+  const { links, text, people, richTextClasses, ...containerProps } = props
+  const { linkList, paper, textContainer, peopleContainer, ...containerClasses } = useStyles(props)
   const richText = useRichTextStyles({ classes: richTextClasses })
 
   return (
-    <Container classes={containerClasses}>
-      <div>
+    <Container {...containerProps} classes={containerClasses}>
+      <div className={textContainer}>
         <RichText {...text} classes={richText} />
-        <div className={linkList}>
-          {links.map((link) => {
-            if (!link.page) return null
-            return (
-              <Link
-                href={link.page.url}
-                metaRobots={link.page.metaRobots}
-                key={link.id}
-                variant='body1'
-              >
-                {link.title}
-              </Link>
-            )
-          })}
-        </div>
+        {links.length > 0 && (
+          <div className={linkList}>
+            {links.map((link) => {
+              if (!link.page) return null
+              return (
+                <Link
+                  href={link.page.url}
+                  metaRobots={link.page.metaRobots}
+                  key={link.id}
+                  variant='body1'
+                >
+                  {link.title}
+                </Link>
+              )
+            })}
+          </div>
+        )}
       </div>
-      <div>
+      <div className={peopleContainer}>
         <Paper elevation={8} className={paper}>
           {people.map(({ avatar, id, name }) => (
-            <Asset asset={avatar} width={83} key={id} compression='lossy' alt={name} />
+            <Asset asset={avatar} width={83} key={id} alt={name} />
           ))}
         </Paper>
       </div>

@@ -1,6 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
+import LayoutFull, {
+  PageWithLayoutFull,
+  PageLayoutProps,
+  getStaticProps as getPageLayout,
+} from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
 import { StaticPageVariables } from '../lib/staticParams'
 import RowHeroVideoBackground from '../components/RowHero/RowHeroVideoBackground'
@@ -54,11 +58,12 @@ AboutUs.layout = LayoutFull
 
 export default AboutUs
 
-export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => {
-  const params: StaticPageVariables = {
-    url: '/over-reach-digital-magento-experts',
-    locale: 'nl',
-  }
-  const { getStaticProps: get } = await import('../components/PageLayout')
-  return { props: { ...(await get(params)), headerTheme: 'on-green' } }
-}
+export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => ({
+  props: {
+    ...(await getPageLayout({
+      url: '/over-reach-digital-magento-experts',
+      locale: 'nl',
+    })),
+    headerTheme: 'on-green',
+  },
+})

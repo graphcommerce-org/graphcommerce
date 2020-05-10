@@ -1,25 +1,19 @@
-name: Lighthouse
+name: lighthouse
 on: [pull_request]
 jobs:
   lhci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Extract branch name
-        shell: bash
-        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF#refs/heads/} | sed 's/\//-/g')"
       - uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
-      - uses: fountainhead/action-wait-for-check@v1.0.0
-        id: wait
+      - id: deployment
+        uses: dorshinar/get-deployment-url@v1.0.3
+        timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          intervalSeconds: 2
-          checkName: bundlesize # TODO Wait for Vercel status to report green, but since that isn't an action we need to wait for some other stuff.
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      - if: steps.wait.outputs.conclusion == 'success'
-        run: lhci autorun --collect.url=https://project-reachdigital-nl-git-${BRANCH_NAME}.reachdigital.now.sh || echo "failed with errors"
+      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} || echo "failed with errors"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
