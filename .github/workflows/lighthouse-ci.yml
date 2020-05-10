@@ -12,13 +12,11 @@ jobs:
         with:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
-      - uses: fountainhead/action-wait-for-check@v1.0.0
+      - uses: ho-nl/wait-for-url-action@master
         id: wait
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          intervalSeconds: 2
-          checkName: bundlesize # TODO Wait for Vercel status to report green, but since that isn't an action we need to wait for some other stuff.
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          url: https://project-reachdigital-nl-git-${BRANCH_NAME}.reachdigital.now.sh
+          max_timeout: 600
       - if: steps.wait.outputs.conclusion == 'success'
         run: lhci autorun --collect.url=https://project-reachdigital-nl-git-${BRANCH_NAME}.reachdigital.now.sh || echo "failed with errors"
         env:
