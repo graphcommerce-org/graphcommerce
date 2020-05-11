@@ -10,10 +10,11 @@ jobs:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
       - id: deployment
-        uses: dorshinar/get-deployment-url@v1.0.4
+        uses: ho-nl-fork/get-deployment-url@master
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          retryInterval: 2000
       - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} || echo "failed with errors"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
