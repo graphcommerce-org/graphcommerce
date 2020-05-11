@@ -5,12 +5,12 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../components/PageLayout'
-import ContentRenderer from '../components/ContentRenderer'
-import PortfolioList, { getStaticProps as getPortfolioList } from '../components/PortfolioList'
-import { StaticPageVariables } from '../lib/staticParams'
-import RichText from '../components/RichText'
-import { useHeaderSpacing } from '../components/Header'
+} from 'components/PageLayout'
+import ContentRenderer from 'components/ContentRenderer'
+import PortfolioList, { getStaticProps as getPortfolioList } from 'components/PortfolioList'
+import { StaticPageVariables } from 'lib/staticParams'
+import RichText from 'components/RichText'
+import { useHeaderSpacing } from 'components/Header'
 
 const useStyles = makeStyles({
   root: {

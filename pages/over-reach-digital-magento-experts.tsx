@@ -4,18 +4,18 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../components/PageLayout'
-import ContentRenderer from '../components/ContentRenderer'
-import { StaticPageVariables } from '../lib/staticParams'
-import RowHeroVideoBackground from '../components/RowHero/RowHeroVideoBackground'
-import RowColumnThree from '../components/RowColumnThree'
-import { ContentRowProps } from '../components/ContentRenderer/ContentRenderer'
-import RowColumnThreeYellow from '../components/RowColumnThree/RowColumnThreeYellow'
-import RowColumnTwoSpread from '../components/RowColumnTwo/RowColumnTwoSpread'
-import RowColumnOneAwards from '../components/RowColumnOne/RowColumnOneAwards'
-import RowColumnOneCentered from '../components/RowColumnOne/RowColumnOneCentered'
-import RowColumnOne from '../components/RowColumnOne'
-import TriangleBg from '../components/TriangleBg'
+} from 'components/PageLayout'
+import ContentRenderer from 'components/ContentRenderer'
+import { StaticPageVariables } from 'lib/staticParams'
+import RowHeroVideoBackground from 'components/RowHero/RowHeroVideoBackground'
+import RowColumnThree from 'components/RowColumnThree'
+import { ContentRowProps } from 'components/ContentRenderer/ContentRenderer'
+import RowColumnThreeYellow from 'components/RowColumnThree/RowColumnThreeYellow'
+import RowColumnTwoSpread from 'components/RowColumnTwo/RowColumnTwoSpread'
+import RowColumnOneAwards from 'components/RowColumnOne/RowColumnOneAwards'
+import RowColumnOneCentered from 'components/RowColumnOne/RowColumnOneCentered'
+import RowColumnOne from 'components/RowColumnOne'
+import TriangleBg from 'components/TriangleBg'
 
 const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
   index,

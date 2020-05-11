@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next'
-import getStaticPathsFactory from '../../../lib/getStaticPaths'
-import BlogView from '../../blog/[url]'
-import extractParams, { StaticPageParams } from '../../../lib/staticParams'
-import { PageLayoutProps, getStaticProps as getPageLayout } from '../../../components/PageLayout'
+import getStaticPathsFactory from 'lib/getStaticPaths'
+import extractParams, { StaticPageParams } from 'lib/staticParams'
+import { PageLayoutProps, getStaticProps as getPageLayout } from 'components/PageLayout'
+import BlogView from 'pages/blog/[url]'
 
 export default BlogView
 

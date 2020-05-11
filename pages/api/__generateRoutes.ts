@@ -23,7 +23,7 @@ type Manifest = {
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   try {
     // todo(paales) actually extract the routes instead of using a build artifact
-    const manifest: Manifest = (await import('../../lib/routes-manifest.json')).default
+    const manifest: Manifest = (await import('lib/routes-manifest.json')).default
 
     const pages = manifest.dataRoutes.map(({ page }) => ({ page }))
     const bla = pages

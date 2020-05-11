@@ -5,12 +5,11 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../components/PageLayout'
-import { StaticPageVariables } from '../lib/staticParams'
-import ContentRenderer from '../components/ContentRenderer'
-import ContactFormLoader from '../components/ContactForm'
-import { useHeaderSpacing } from '../components/Header'
-import RowPeopleWithTextFlipped from '../components/RowPeopleWithText/RowPeopleWithTextFlipped'
+} from 'components/PageLayout'
+import ContentRenderer from 'components/ContentRenderer'
+import ContactFormLoader from 'components/ContactForm'
+import { useHeaderSpacing } from 'components/Header'
+import RowPeopleWithTextFlipped from 'components/RowPeopleWithText/RowPeopleWithTextFlipped'
 
 const Contact: PageWithLayoutFull = ({ page }) => {
   const header = useHeaderSpacing()

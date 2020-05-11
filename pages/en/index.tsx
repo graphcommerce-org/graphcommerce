@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next'
-import { StaticPageVariables } from '../../lib/staticParams'
-import Home from '../index'
-import { PageLayoutProps, getStaticProps as getPageLayout } from '../../components/PageLayout'
+import { PageLayoutProps, getStaticProps as getPageLayout } from 'components/PageLayout'
+import Home from 'pages/index'
 
 export default Home
 

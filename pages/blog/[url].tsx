@@ -8,15 +8,15 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../../components/PageLayout'
-import extractParams, { StaticPageParams } from '../../lib/staticParams'
-import getStaticPathsFactory from '../../lib/getStaticPaths'
-import ContentRenderer from '../../components/ContentRenderer'
-import ReleaseDateCard from '../../components/ReleaseDateCard'
-import ContactFormLoader from '../../components/ContactForm'
-import Asset from '../../components/Asset'
-import useBlogViewStyles from '../../components/BlogView/useBlogViewStyles'
-import { useHeaderSpacing } from '../../components/Header'
+} from 'components/PageLayout'
+import extractParams, { StaticPageParams } from 'lib/staticParams'
+import getStaticPathsFactory from 'lib/getStaticPaths'
+import ContentRenderer from 'components/ContentRenderer'
+import ReleaseDateCard from 'components/ReleaseDateCard'
+import ContactFormLoader from 'components/ContactForm'
+import Asset from 'components/Asset'
+import useBlogViewStyles from 'components/BlogView/useBlogViewStyles'
+import { useHeaderSpacing } from 'components/Header'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
   const classes = useBlogViewStyles()
