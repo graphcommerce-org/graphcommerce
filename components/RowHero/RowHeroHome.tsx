@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
+import { vpCalc } from 'components/Theme'
 import logoReachBgShadow from './logo-reach-bg-shadow-secondary.svg'
 import RowHero, { RowHeroProps } from '.'
-import { vpCalc } from '../Theme'
 
 const useStyles = makeStyles(
   {

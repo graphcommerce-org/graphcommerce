@@ -2,9 +2,9 @@ import React from 'react'
 import { Theme, makeStyles, Container } from '@material-ui/core'
 import { JsonLd } from 'react-schemaorg'
 import { AggregateRating } from 'schema-dts'
-import RichText from '../RichText'
-import { ChevronRight } from '../Icons'
-import Link, { Button } from '../Link'
+import RichText from 'components/RichText'
+import { ChevronRight } from 'components/Icons'
+import Link, { Button } from 'components/Link'
 
 const useStyles = makeStyles(
   ({ gridSpacing, palette, breakpoints, typography, spacings }: Theme) => ({

@@ -1,15 +1,15 @@
 import React from 'react'
+import RowHero from 'components/RowHero'
+import RowColumnThree from 'components/RowColumnThree'
+import RowColumnTwo from 'components/RowColumnTwo'
+import RowColumnOne from 'components/RowColumnOne'
+import RowCompanySlider from 'components/RowCompanySlider'
+import RowPeopleWithText from 'components/RowPeopleWithText'
+import RowRecentBlogPost from 'components/RowRecentBlogPost'
+import RowYoutubeVideo from 'components/RowYoutubeVideo'
+import RowIconWithTextList from 'components/RowIconWithTextList'
+import RowLinksWithText from 'components/RowLinksWithText'
 import { setStaticProps, setRenderers } from './ContentRenderer'
-import RowHero from '../RowHero'
-import RowColumnThree from '../RowColumnThree'
-import RowColumnTwo from '../RowColumnTwo'
-import RowColumnOne from '../RowColumnOne'
-import RowCompanySlider from '../RowCompanySlider'
-import RowPeopleWithText from '../RowPeopleWithText'
-import RowRecentBlogPost from '../RowRecentBlogPost'
-import RowYoutubeVideo from '../RowYoutubeVideo'
-import RowIconWithTextList from '../RowIconWithTextList'
-import RowLinksWithText from '../RowLinksWithText'
 
 export const registerRenderers = () => {
   setRenderers({
@@ -28,7 +28,7 @@ export const registerRenderers = () => {
 
 export const registerGetStaticProps = () =>
   setStaticProps({
-    RowRecentBlogPost: () => import('../RowRecentBlogPost'),
-    RowPeopleWithText: () => import('../RowPeopleWithText'),
-    RowColumnOne: () => import('../RowColumnOne/RowColumnOneAwards'),
+    RowRecentBlogPost: () => import('components/RowRecentBlogPost'),
+    RowPeopleWithText: () => import('components/RowPeopleWithText'),
+    RowColumnOne: () => import('components/RowColumnOne/RowColumnOneAwards'),
   })

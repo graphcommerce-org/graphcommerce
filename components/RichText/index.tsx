@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
-import Link from '../Link'
-import Asset, { MimeTypes } from '../Asset'
+import Link from 'components/Link'
+import Asset, { MimeTypes } from 'components/Asset'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 
 export interface ValueJSON {

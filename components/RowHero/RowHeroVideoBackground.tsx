@@ -1,10 +1,10 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
-import RichText from '../RichText'
-import Asset from '../Asset'
-import Container from '../Container'
-import { ChevronRight } from '../Icons'
-import { Button } from '../Link'
+import RichText from 'components/RichText'
+import Asset from 'components/Asset'
+import Container from 'components/Container'
+import { ChevronRight } from 'components/Icons'
+import { Button } from 'components/Link'
 import { RowHeroProps } from '.'
 
 const useStyles = makeStyles(

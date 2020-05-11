@@ -1,8 +1,8 @@
 import React from 'react'
 import { ContainerProps, Container, makeStyles, Theme } from '@material-ui/core'
-import ScrollSnapSlider, { ScrollSnapSliderProps } from '../ScrollSnapSlider'
-import Asset from '../Asset'
-import { vpCalc } from '../Theme'
+import ScrollSnapSlider, { ScrollSnapSliderProps } from 'components/ScrollSnapSlider'
+import Asset from 'components/Asset'
+import { vpCalc } from 'components/Theme'
 
 export type RowCompanySliderProps = GQLRowCompanySliderFragment &
   ContainerProps & {

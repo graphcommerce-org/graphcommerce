@@ -1,14 +1,14 @@
 import React from 'react'
 import { makeStyles, Container, ContainerProps, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import RichText from '../RichText'
-import Asset from '../Asset'
-import { UseStyles } from '../Theme'
-import { UseRichTextStyles } from '../RichText/useRichTextStyles'
-import { useHeaderSpacing } from '../Header'
-import { Button } from '../Link'
-import { ChevronRight } from '../Icons'
-import TriangleBg, { TriangleBgProps } from '../TriangleBg'
+import RichText from 'components/RichText'
+import Asset from 'components/Asset'
+import { UseStyles } from 'components/Theme'
+import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
+import { useHeaderSpacing } from 'components/Header'
+import { Button } from 'components/Link'
+import { ChevronRight } from 'components/Icons'
+import TriangleBg, { TriangleBgProps } from 'components/TriangleBg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

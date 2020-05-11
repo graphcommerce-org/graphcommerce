@@ -1,8 +1,8 @@
 import React from 'react'
 import { Typography, makeStyles, Theme, LinkProps } from '@material-ui/core'
-import Link from '../Link'
-import Asset from '../Asset'
-import { vpCalc, UseStyles } from '../Theme'
+import Link from 'components/Link'
+import Asset from 'components/Asset'
+import { vpCalc, UseStyles } from 'components/Theme'
 
 export const useBlogListItemStyles = makeStyles(
   (theme: Theme) => ({

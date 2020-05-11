@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles, Container, Theme } from '@material-ui/core'
+import { GQLGetStaticProps } from 'lib/staticParams'
+import { vpCalc } from 'components/Theme'
 import BlogListItem from './BlogListItem'
-import { vpCalc } from '../Theme'
-import { GQLGetStaticProps } from '../../lib/staticParams'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -30,8 +30,8 @@ const BlogList: React.FC<GQLGetBlogListQuery> = ({ blogPosts }) => {
 export default BlogList
 
 export const getStaticProps: GQLGetStaticProps<GQLGetBlogListQuery> = async (variables) => {
-  const { default: client } = await import('../../lib/apollo')
-  const { GetBlogListDocument } = await import('../../generated/apollo')
+  const { default: client } = await import('lib/apollo')
+  const { GetBlogListDocument } = await import('generated/apollo')
   const { data } = await client().query<GQLGetBlogListQuery, GQLGetBlogListQueryVariables>({
     query: GetBlogListDocument,
     variables: { url: `${variables.url}/`, locale: variables.locale },

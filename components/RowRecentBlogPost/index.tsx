@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container, makeStyles, ContainerProps, Theme, Fab } from '@material-ui/core'
-import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
-import { UseStyles, vpCalc } from '../Theme'
-import Link from '../Link'
-import BlogListItem from '../BlogList/BlogListItem'
-import { ArrowRight } from '../Icons'
-import TriangleBg from '../TriangleBg'
+import { CRGetStaticProps } from 'components/ContentRenderer/ContentRenderer'
+import { UseStyles, vpCalc } from 'components/Theme'
+import Link from 'components/Link'
+import BlogListItem from 'components/BlogList/BlogListItem'
+import { ArrowRight } from 'components/Icons'
+import TriangleBg from 'components/TriangleBg'
 
 const useStyles = makeStyles(
   ({ gridSpacing, palette, spacings, breakpoints }: Theme) => ({
@@ -113,8 +113,8 @@ export const getStaticProps: CRGetStaticProps<
   GQLRowRecentBlogPostFragment,
   GQLGetBlogListQuery
 > = async ({ link }) => {
-  const { default: client } = await import('../../lib/apollo')
-  const { GetBlogListDocument } = await import('../../generated/apollo')
+  const { default: client } = await import('lib/apollo')
+  const { GetBlogListDocument } = await import('generated/apollo')
 
   if (!link || !link.page)
     throw new Error('Make sure there is a link with a page for GQLGetBlogListQuery')

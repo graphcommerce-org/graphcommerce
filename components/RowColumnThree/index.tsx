@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
-import RichText from '../RichText'
-import { UseStyles } from '../Theme'
-import { UseRichTextStyles } from '../RichText/useRichTextStyles'
-import Asset from '../Asset'
+import RichText from 'components/RichText'
+import { UseStyles } from 'components/Theme'
+import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
+import Asset from 'components/Asset'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

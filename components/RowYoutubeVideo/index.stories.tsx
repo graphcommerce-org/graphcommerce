@@ -1,8 +1,8 @@
 import React from 'react'
 import { number, withKnobs } from '@storybook/addon-knobs'
-import initApolloClient from '../../lib/apollo'
+import initApolloClient from 'lib/apollo'
+import { useGetAllRowYoutubeVideosQuery } from 'generated/apollo'
 import RowYoutubeVideo from '.'
-import { useGetAllRowYoutubeVideosQuery } from '../../generated/apollo'
 
 export default {
   title: 'row|RowYoutubeVideo',

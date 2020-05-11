@@ -4,7 +4,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import { makeStyles, Grow, Fab } from '@material-ui/core'
 import { animated, useSpring } from 'react-spring'
 import useResizeObserver from 'use-resize-observer'
-import { vpCalc, UseStyles } from '../Theme'
+import { vpCalc, UseStyles } from 'components/Theme'
 
 // @todo cancel all animatins on touch down, cancellation of animations doesn't work with react-spring 8.0 yet.
 

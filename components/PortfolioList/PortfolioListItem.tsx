@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
-import Asset from '../Asset'
-import Link from '../Link'
+import Asset from 'components/Asset'
+import Link from 'components/Link'
 
 const useStyles = makeStyles(
   {

@@ -2,12 +2,12 @@ import React from 'react'
 import { Theme, makeStyles, Avatar, Badge, Fab } from '@material-ui/core'
 import PhoneIcon from '@material-ui/icons/Phone'
 import zIndex from '@material-ui/core/styles/zIndex'
-import logo from './magento-webshop-reach-digital.svg'
-import { vpCalc } from '../Theme'
+import { vpCalc } from 'components/Theme'
+import Link from 'components/Link'
+import Asset from 'components/Asset'
+import TriangleBg from 'components/TriangleBg'
 import HeaderMenu from './HeaderMenu'
-import Link from '../Link'
-import Asset from '../Asset'
-import TriangleBg from '../TriangleBg'
+import logo from './magento-webshop-reach-digital.svg'
 
 export const useHeaderSpacing = makeStyles(
   ({ gridSpacing }: Theme) => ({

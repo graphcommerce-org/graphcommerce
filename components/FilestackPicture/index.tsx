@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import PictureResponsive, { PictureResponsiveProps, ImageMimeTypes } from '../PictureResponsive'
-import useConnectionType from '../PictureResponsive/useConnectionType'
+import PictureResponsive, {
+  PictureResponsiveProps,
+  ImageMimeTypes,
+} from 'components/PictureResponsive'
+import useConnectionType from 'components/PictureResponsive/useConnectionType'
 
 const possibleWidths = [25, 50, 75, 100, 150, 200, 250, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
