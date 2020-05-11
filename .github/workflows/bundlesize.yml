@@ -14,13 +14,15 @@ jobs:
       - run: yarn --frozen-lockfile --cwd ./new # install PR depedendencies
       - run: yarn --cwd ./new build > new.txt # build PR branch
         env:
-          GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
-          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
+          NEXT_PUBLIC_GRAPHQL: ${{ secrets.GRAPHQL }}
+          NEXT_PUBLIC_GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
       - run: yarn --frozen-lockfile --cwd ./old # install main branch dependencies
       - run: yarn --cwd ./old build > old.txt # build main branch
         env:
-          GRAPHQL: ${{ secrets.GRAPHQL }} # custom env variable to be able to build nextjs
-          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }} # custom env variable to be able to build nextjs
+          GRAPHQL: ${{ secrets.GRAPHQL }}
+          NEXT_PUBLIC_GRAPHQL: ${{ secrets.GRAPHQL }}
+          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
+          NEXT_PUBLIC_GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
       - uses: ho-nl/next-bundlesize-action@master # create diff markdown
         id: 'bundlesize'
       - uses: unsplash/comment-on-pr@master # create comment on PR
