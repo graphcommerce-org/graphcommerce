@@ -20,10 +20,10 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       - run: yarn graphql-codegen -r dotenv/config
         env:
-          GRAPHQL: ${{ secrets.GRAPHQL }}
-          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
+          NEXT_PUBLIC_GRAPHQL: ${{ secrets.GRAPHQL }}
+          NEXT_PUBLIC_GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
       - run: yarn storybook-to-ghpages --ci --quiet
         env:
           GH_TOKEN: ho-nl:${{ secrets.GITHUB_TOKEN }}
-          GRAPHQL: ${{ secrets.GRAPHQL }}
-          GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
+          NEXT_PUBLIC_GRAPHQL: ${{ secrets.GRAPHQL }}
+          NEXT_PUBLIC_GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}

@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${GRAPHQL}
+schema: ${NEXT_PUBLIC_GRAPHQL}
 documents:
   - '**/*.graphql'
   - '!generated/*.graphql'

@@ -6,6 +6,7 @@ import {
   IdGetterObj,
 } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
+// todo(paales): replace by build in nextjs fetch polyfill
 import fetch from 'isomorphic-unfetch'
 import introspectionQueryResultData from '../generated/fragments.json'
 
@@ -17,15 +18,12 @@ let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 function createApolloClient(
   initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
-  // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
+    ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: process.env.GRAPHQL, // Server URL (must be absolute)
-      // headers: {
-      //   Authorization: process.env.GRAPHQL_BEARER,
-      // },
-      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+      uri: process.env.NEXT_PUBLIC_GRAPHQL,
+      // headers: { Authorization: process.env.NEXT_PUBLIC_GRAPHQL_BEARER },
+      credentials: 'same-origin',
       fetch,
     }),
     cache: new InMemoryCache({
