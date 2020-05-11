@@ -10,7 +10,7 @@ jobs:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
       - id: deployment
-        uses: dorshinar/get-deployment-url@v1.0.3
+        uses: dorshinar/get-deployment-url@v1.0.4
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
