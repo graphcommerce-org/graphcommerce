@@ -8,7 +8,7 @@ import {
 import { HttpLink } from 'apollo-link-http'
 // todo(paales): replace by build in nextjs fetch polyfill
 import fetch from 'isomorphic-unfetch'
-import introspectionQueryResultData from '../generated/fragments.json'
+import introspectionQueryResultData from 'generated/fragments.json'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 

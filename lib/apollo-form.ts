@@ -11,7 +11,7 @@ import {
 } from 'graphql'
 import { useForm, DeepPartial } from 'react-hook-form'
 import { useMutation } from '@apollo/react-hooks'
-import initApolloClient from './apollo'
+import initApolloClient from 'lib/apollo'
 
 function isOperationDefinitionNode(
   node: DefinitionNode | OperationDefinitionNode,
