@@ -76,7 +76,6 @@ const RowGoogleMap: React.FC<RowGoogleMapProps> = (props) => {
     businessInfoArea,
     socialLinksArea,
     locationArea,
-    iframe,
     title,
     ...containerClasses
   } = useStyles(props)
