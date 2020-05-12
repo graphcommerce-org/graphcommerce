@@ -9,6 +9,10 @@ const useStyles = makeStyles(
     root: {
       paddingTop: spacings.lg,
       paddingBottom: spacings.lg,
+      gridTemplateAreas: `
+        "two"
+        "one"
+      `,
       [breakpoints.up('md')]: {
         gridTemplateColumns: `${vpCalc(320, 620)} 1fr`,
       },
