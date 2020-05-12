@@ -76,7 +76,7 @@
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^5.3.18",
     "@storybook/source-loader": "^5.3.17",
-    "@storybook/storybook-deployer": "^2.8.5",
+    "@storybook/storybook-deployer": "^2.8.6",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.35",
     "@types/resize-observer-browser": "^0.1.3",
