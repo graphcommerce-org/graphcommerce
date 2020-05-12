@@ -10,7 +10,7 @@ jobs:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
       - id: deployment
-        uses: paales/get-deployment-url@patch-1
+        uses: ho-nl-fork/get-deployment-url@master
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
