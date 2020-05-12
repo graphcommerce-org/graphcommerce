@@ -10522,10 +10522,10 @@ next-images@^1.4.0:
     file-loader "^6.0.0"
     url-loader "^4.0.0"
 
-next-pwa@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/next-pwa/-/next-pwa-2.4.0.tgz#5c0292f90e3c31286db64acb8686c8dea798bd9b"
-  integrity sha512-Q8p0Jwt1nHzBi/gD5HJLJcA5jFS9GjO5/+GDKN77CIjgpP2Jcy8xAAOu4/haxyvEXBfP8W0nhUUr4J5P6yZ31A==
+next-pwa@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/next-pwa/-/next-pwa-2.4.1.tgz#a30ae1211e69b09ac753ba6efd7b4243bd55bde5"
+  integrity sha512-vZzRkdMDOBGPpnQeaaXfnAIPGuNcU6GU41j+bXWy++AVkVllrIHfz+nAMlLsFPcILjsfXuYrCDSSLcewSywmcg==
   dependencies:
     clean-webpack-plugin "^3.0.0"
     globby "^11.0.0"
