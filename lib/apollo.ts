@@ -6,8 +6,6 @@ import {
   IdGetterObj,
 } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
-// todo(paales): replace by build in nextjs fetch polyfill
-import fetch from 'isomorphic-unfetch'
 import introspectionQueryResultData from 'generated/fragments.json'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
@@ -20,14 +18,9 @@ function createApolloClient(
 ): ApolloClient<NormalizedCacheObject> {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: new HttpLink({
-      credentials: 'same-origin',
-      fetch,
-    }),
+    link: new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
     cache: new InMemoryCache({
-      fragmentMatcher: new IntrospectionFragmentMatcher({
-        introspectionQueryResultData,
-      }),
+      fragmentMatcher: new IntrospectionFragmentMatcher({ introspectionQueryResultData }),
       dataIdFromObject,
     }).restore(initialState),
   })

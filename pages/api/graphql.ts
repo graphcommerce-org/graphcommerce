@@ -1,10 +1,9 @@
-import { getMesh, findAndParseConfig } from '@graphql-mesh/runtime'
 import { ApolloServer } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { mesh } from 'lib/apolloServer'
 
 const createHandler = async () => {
-  const meshConfig = await findAndParseConfig()
-  const { schema } = await getMesh(meshConfig)
+  const { schema } = await mesh
   const apolloServer = new ApolloServer({ schema })
   return apolloServer.createHandler({ path: '/api/graphql' })
 }
