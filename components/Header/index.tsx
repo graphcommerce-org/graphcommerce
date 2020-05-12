@@ -71,7 +71,9 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <header className={classes.navigation}>
-      {!theme && <TriangleBg className={classes.headerDecoration} color='primary' blur flip />}
+      {!theme && (
+        <TriangleBg divProps={{ className: classes.headerDecoration }} color='primary' blur flip />
+      )}
       {homePage && (
         <Link href={homePage.url} metaRobots={homePage.metaRobots} className={classes.logo}>
           <img src={logo} alt='Logo' className={classes.logoImg} />

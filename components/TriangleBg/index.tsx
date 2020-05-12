@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { UseStyles } from 'components/Theme'
 
 const useStyles = makeStyles(
-  ({ breakpoints, palette }: Theme) => ({
+  ({ palette }: Theme) => ({
     root: {
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -75,16 +75,19 @@ type Props = {
   halfWidth?: boolean
   halfHeight?: boolean
 }
-export type TriangleBgProps = Props & UseStyles<typeof useStyles> & JSX.IntrinsicElements['div']
+export type TriangleBgProps = Props &
+  UseStyles<typeof useStyles> & {
+    divProps?: JSX.IntrinsicElements['div']
+  }
 
 const TriangleBg: React.FC<TriangleBgProps> = (props) => {
-  const { children, topRight, gradient, blur, half, className, color, flip, ...divProps } = props
+  const { blur, half, gradient, topRight, divProps, children } = props
   const classes = useStyles(props)
 
   return (
     <div
       {...divProps}
-      className={clsx(className, {
+      className={clsx(divProps?.className, {
         [classes.root]: true,
         [classes.rootHalfBlur]: blur && half,
         [classes.rootGradient]: gradient,
@@ -103,9 +106,7 @@ const TriangleBg: React.FC<TriangleBgProps> = (props) => {
         <polygon
           strokeWidth='0'
           points={topRight ? '0, 0,20 0,20 10' : '0,10 20,10 20,0'}
-          className={clsx({
-            [classes.polygon]: true,
-          })}
+          className={clsx({ [classes.polygon]: true })}
         />
       </svg>
       {children}
