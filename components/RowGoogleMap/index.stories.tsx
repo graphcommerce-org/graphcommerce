@@ -16,5 +16,5 @@ export const GraphCMS = () => {
     variables: { skip: number('GraphCMS Entry #', 0) },
   })
   if (!data) return null
-  return data.rowGoogleMap.map((props) => <RowGoogleMap {...props} key={props.id} />)
+  return data.rowGoogleMaps.map((props) => <RowGoogleMap {...props} key={props.id} />)
 }
