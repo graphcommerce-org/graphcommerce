@@ -2,9 +2,9 @@ sources:
   - name: GraphCMS
     handler:
       graphql:
-        endpoint: ${NEXT_PUBLIC_GRAPHQL}
+        endpoint: ${GRAPHCMS}
         headers:
-          Authorization: ${NEXT_PUBLIC_GRAPHQL_BEARER}
+          Authorization: ${GRAPHCMS_BEARER}
     transforms:
       - filterSchema:
           - Mutation.createContactForm

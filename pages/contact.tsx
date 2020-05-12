@@ -1,13 +1,10 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, {
-  PageWithLayoutFull,
-  PageLayoutProps,
-  getStaticProps as getPageLayout,
-} from 'components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import ContentRenderer from 'components/ContentRenderer'
 import { useHeaderSpacing } from 'components/Header'
 import RowPeopleWithTextFlipped from 'components/RowPeopleWithText/RowPeopleWithTextFlipped'
+import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 
 const Contact: PageWithLayoutFull = ({ page }) => {
   const header = useHeaderSpacing()
@@ -28,5 +25,5 @@ Contact.layout = LayoutFull
 export default Contact
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => ({
-  props: await getPageLayout({ url: '/contact', locale: 'nl' }),
+  props: await getPageLayoutProps({ url: '/contact', locale: 'nl' }),
 })

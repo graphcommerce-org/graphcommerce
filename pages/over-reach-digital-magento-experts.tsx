@@ -1,12 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, {
-  PageWithLayoutFull,
-  PageLayoutProps,
-  getStaticProps as getPageLayout,
-} from 'components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import ContentRenderer from 'components/ContentRenderer'
-import { StaticPageVariables } from 'lib/staticParams'
 import RowHeroVideoBackground from 'components/RowHero/RowHeroVideoBackground'
 import RowColumnThree from 'components/RowColumnThree'
 import { ContentRowProps } from 'components/ContentRenderer/ContentRenderer'
@@ -16,6 +11,7 @@ import RowColumnOneAwards from 'components/RowColumnOne/RowColumnOneAwards'
 import RowColumnOneCentered from 'components/RowColumnOne/RowColumnOneCentered'
 import RowColumnOne from 'components/RowColumnOne'
 import TriangleBg from 'components/TriangleBg'
+import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 
 const FirstRowYellow: React.FC<GQLRowColumnThreeFragment & ContentRowProps> = ({
   index,
@@ -60,10 +56,7 @@ export default AboutUs
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => ({
   props: {
-    ...(await getPageLayout({
-      url: '/over-reach-digital-magento-experts',
-      locale: 'nl',
-    })),
+    ...(await getPageLayoutProps({ url: '/over-reach-digital-magento-experts', locale: 'nl' })),
     headerTheme: 'on-green',
   },
 })

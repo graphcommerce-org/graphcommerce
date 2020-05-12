@@ -4,11 +4,7 @@ import { GetStaticProps } from 'next'
 import { Container } from '@material-ui/core'
 import { BlogPosting } from 'schema-dts'
 import { JsonLd } from 'react-schemaorg'
-import LayoutFull, {
-  PageWithLayoutFull,
-  PageLayoutProps,
-  getStaticProps as getPageLayout,
-} from 'components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import extractParams, { StaticPageParams } from 'lib/staticParams'
 import getStaticPathsFactory from 'lib/getStaticPaths'
 import ContentRenderer from 'components/ContentRenderer'
@@ -17,6 +13,7 @@ import ContactFormLoader from 'components/ContactForm'
 import Asset from 'components/Asset'
 import useBlogViewStyles from 'components/BlogView/useBlogViewStyles'
 import { useHeaderSpacing } from 'components/Header'
+import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 
 const BlogView: PageWithLayoutFull = ({ page }) => {
   const classes = useBlogViewStyles()
@@ -64,5 +61,5 @@ export default BlogView
 export const getStaticPaths = getStaticPathsFactory('/blog/', 'nl')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => ({
-  props: await getPageLayout(extractParams(ctx, '/blog/')),
+  props: await getPageLayoutProps(extractParams(ctx, '/blog/')),
 })

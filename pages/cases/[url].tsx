@@ -1,14 +1,11 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import LayoutFull, {
-  PageWithLayoutFull,
-  PageLayoutProps,
-  getStaticProps as getPageLayout,
-} from 'components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import getStaticPathsFactory from 'lib/getStaticPaths'
 import ContentRenderer from 'components/ContentRenderer'
 import extractParams, { StaticPageParams } from 'lib/staticParams'
 import { useHeaderSpacing } from 'components/Header'
+import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 
 const CasesView: PageWithLayoutFull = ({ page }) => {
   const header = useHeaderSpacing()
@@ -27,5 +24,5 @@ export default CasesView
 export const getStaticPaths = getStaticPathsFactory('/cases/', 'nl')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => ({
-  props: await getPageLayout(extractParams(ctx, '/cases/')),
+  props: await getPageLayoutProps(extractParams(ctx, '/cases/')),
 })

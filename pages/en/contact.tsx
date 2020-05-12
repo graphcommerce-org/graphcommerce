@@ -1,9 +1,10 @@
 import { GetStaticProps } from 'next'
-import { PageLayoutProps, getStaticProps as getPageLayout } from 'components/PageLayout'
+import { PageLayoutProps } from 'components/PageLayout'
 import Contact from 'pages/contact'
+import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 
 export default Contact
 
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => ({
-  props: await getPageLayout({ url: '/en/contact', locale: 'en' }),
+  props: await getPageLayoutProps({ url: '/en/contact', locale: 'en' }),
 })

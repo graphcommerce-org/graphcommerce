@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
-type TypeNames = GQLContentRendererFragment['content'][0]['__typename']
+export type ContentRendererTypes = GQLContentRendererFragment['content'][0]['__typename']
 export type Renderers = {
-  [T in TypeNames]?: React.ComponentType<any>
+  [T in ContentRendererTypes]?: React.ComponentType<any>
 }
 
 let defaultRenderers: Renderers = {}
@@ -34,35 +34,3 @@ const ContentRenderer: React.FC<GQLContentRendererFragment & { renderers?: Rende
 }
 
 export default ContentRenderer
-
-/**
- * Make sure you also register this method in defaultRenderer.tsx
- */
-export type CRGetStaticProps<P, R> = (props: P) => Promise<R>
-
-type LoaderComponent<P = any> = Promise<{
-  getStaticProps: CRGetStaticProps<P, any>
-}>
-
-export type StaticData = { [T in TypeNames]?: () => LoaderComponent }
-
-let staticProps: StaticData = {}
-export const setStaticProps = (newStaticProps: StaticData): void => {
-  staticProps = { ...staticProps, ...newStaticProps }
-}
-
-export const getStaticProps = async (
-  content: GQLContentRendererFragment['content'],
-): Promise<GQLContentRendererFragment['content']> => {
-  const augmented = await Promise.all(
-    content.map(async (item) => {
-      const loader = staticProps[item.__typename]
-      if (!loader) return item
-
-      const { getStaticProps: get } = await loader()
-      return { ...item, ...(await get(item)) }
-    }),
-  )
-
-  return augmented
-}
