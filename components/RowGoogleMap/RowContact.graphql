@@ -1,0 +1,17 @@
+fragment RowGoogleMap on RowGoogleMap {
+  id
+  locale
+  address {
+    ...RichText
+  }
+  businessInfo {
+    ...RichText
+  }
+  socialLinks {
+    ...LinkExternal
+  }
+  location {
+    latitude
+    longitude
+  }
+}

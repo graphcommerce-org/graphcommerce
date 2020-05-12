@@ -1,0 +1,6 @@
+fragment RowContact on RowContact {
+  id
+  text {
+    ...RichText
+  }
+}

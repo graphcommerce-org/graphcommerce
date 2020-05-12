@@ -1,0 +1,5 @@
+query GetAllRowGoogleMap($skip: Int!) {
+  rowGoogleMaps(first: 1, skip: $skip) {
+    ...RowGoogleMap
+  }
+}

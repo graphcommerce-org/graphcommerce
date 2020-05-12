@@ -1,19 +1,16 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { Container, Typography } from '@material-ui/core'
 import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
 } from 'components/PageLayout'
 import ContentRenderer from 'components/ContentRenderer'
-import ContactFormLoader from 'components/ContactForm'
 import { useHeaderSpacing } from 'components/Header'
 import RowPeopleWithTextFlipped from 'components/RowPeopleWithText/RowPeopleWithTextFlipped'
 
 const Contact: PageWithLayoutFull = ({ page }) => {
   const header = useHeaderSpacing()
-
   return (
     <div className={header.marginTop}>
       <ContentRenderer
@@ -22,12 +19,6 @@ const Contact: PageWithLayoutFull = ({ page }) => {
           RowPeopleWithText: RowPeopleWithTextFlipped,
         }}
       />
-      <Container>
-        <Typography variant='h3' color='primary'>
-          Contact
-        </Typography>
-        <ContactFormLoader />
-      </Container>
     </div>
   )
 }

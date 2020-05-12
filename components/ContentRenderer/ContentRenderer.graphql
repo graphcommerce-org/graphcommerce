@@ -14,5 +14,7 @@ fragment ContentRenderer on Page {
     ...RowYoutubeVideo
     ...RowIconWithTextList
     ...RowLinksWithText
+    ...RowContact
+    ...RowGoogleMap
   }
 }

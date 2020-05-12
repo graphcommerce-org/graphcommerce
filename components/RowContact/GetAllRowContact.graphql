@@ -1,0 +1,5 @@
+query GetAllRowContact($skip: Int!) {
+  rowContacts(first: 1, skip: $skip) {
+    ...RowContact
+  }
+}
