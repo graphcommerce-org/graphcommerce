@@ -1,4 +1,5 @@
 const path = require('path')
+const { compilerOptions } = require('../tsconfig.json')
 
 module.exports = {
   stories: ['../**/*.stories.tsx'],
@@ -19,7 +20,7 @@ module.exports = {
       ],
     })
 
-    config.resolve.alias['~'] = path.resolve(__dirname, '..')
+    config.resolve.modules.push(path.resolve(__dirname, '../', compilerOptions.baseUrl))
 
     config.module.rules.push({
       test: /\.stories\.tsx?$/,
