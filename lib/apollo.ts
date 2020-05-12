@@ -21,7 +21,6 @@ function createApolloClient(
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL,
       credentials: 'same-origin',
       fetch,
     }),

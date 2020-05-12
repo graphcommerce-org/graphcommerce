@@ -1,8 +1,8 @@
 {
   "build": {
     "env": {
-      "NEXT_PUBLIC_GRAPHQL": "@graphql",
-      "NEXT_PUBLIC_GRAPHQL_BEARER": "@graphql_bearer",
+      "GRAPHQL": "@graphql",
+      "GRAPHQL_BEARER": "@graphql_bearer",
       "NEXT_PUBLIC_GOOGLE_MAPS_API": "@google_maps"
     }
   }
