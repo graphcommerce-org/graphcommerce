@@ -10,8 +10,5 @@ fragment RowGoogleMap on RowGoogleMap {
   socialLinks {
     ...LinkExternal
   }
-  location {
-    latitude
-    longitude
-  }
+  location
 }

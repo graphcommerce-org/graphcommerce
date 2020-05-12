@@ -115,7 +115,7 @@ const RowGoogleMap: React.FC<RowGoogleMapProps> = (props) => {
         className={locationArea}
         title='Google Maps'
         frameBorder='0'
-        src='https://www.google.com/maps/embed/v1/place?q=place_id:ChIJCZtBtFrDxUcRrpLiRqWyg6c&key=AIzaSyDH_AXQZTcRPAanNQl9EaigxSXOj9I-E2o'
+        src={`https://www.google.com/maps/embed/v1/place?q=${location}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}`}
         loading='lazy'
       />
     </Container>
