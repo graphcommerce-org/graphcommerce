@@ -31,7 +31,7 @@ const useStyles = makeStyles(
       borderBottom: `2px solid rgba(0,0,0,0.05)`,
     },
   }),
-  { name: 'RowColumnTwo' },
+  { name: 'RowLinksWithText' },
 )
 
 export type RowLinksWithTextProps = GQLRowLinksWithTextFragment &

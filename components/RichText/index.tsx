@@ -170,48 +170,63 @@ const RenderMark: React.FC<Mark & Required<UseRichTextStyles>> = ({
 }
 
 const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classes, ...block }) => {
-  const { asset, h1, h2, h3, h4, h5, h6, paragraph, ul, ol, blockQuote, iframe, table } = classes
+  const {
+    root,
+    asset,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    paragraph,
+    ul,
+    ol,
+    blockQuote,
+    iframe,
+    table,
+  } = classes
 
   switch (block.type) {
     case 'heading-one':
       return (
-        <Typography variant='h1' classes={{ h1 }}>
+        <Typography variant='h1' classes={{ root, h1 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-two':
       return (
-        <Typography variant='h2' classes={{ h2 }}>
+        <Typography variant='h2' classes={{ root, h2 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-three':
       return (
-        <Typography variant='h3' classes={{ h3 }}>
+        <Typography variant='h3' classes={{ root, h3 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-four':
       return (
-        <Typography variant='h4' classes={{ h4 }}>
+        <Typography variant='h4' classes={{ root, h4 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-five':
       return (
-        <Typography variant='h5' classes={{ h5 }}>
+        <Typography variant='h5' classes={{ root, h5 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'heading-six':
       return (
-        <Typography variant='h6' classes={{ h6 }}>
+        <Typography variant='h6' classes={{ root, h6 }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )
     case 'paragraph':
       return (
-        <Typography variant='body1' paragraph classes={{ paragraph }}>
+        <Typography variant='body1' paragraph classes={{ root, paragraph }}>
           <RenderNodes nodes={block.nodes} classes={classes} />
         </Typography>
       )

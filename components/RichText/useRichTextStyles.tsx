@@ -3,6 +3,7 @@ import { vpCalc, UseStyles } from 'components/Theme'
 
 const useRichTextStyles = makeStyles(
   {
+    root: { '&:empty': { display: 'none' } },
     paragraph: { marginBottom: '1em' },
     h1: { marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
     h2: { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) },

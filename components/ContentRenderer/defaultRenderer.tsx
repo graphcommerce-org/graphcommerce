@@ -1,4 +1,3 @@
-import React from 'react'
 import RowHero from 'components/RowHero'
 import RowColumnThree from 'components/RowColumnThree'
 import RowColumnTwo from 'components/RowColumnTwo'
@@ -9,6 +8,7 @@ import RowRecentBlogPost from 'components/RowRecentBlogPost'
 import RowYoutubeVideo from 'components/RowYoutubeVideo'
 import RowIconWithTextList from 'components/RowIconWithTextList'
 import RowLinksWithText from 'components/RowLinksWithText'
+import RowContact from 'components/RowContact'
 import { setStaticProps, setRenderers } from './ContentRenderer'
 
 export const registerRenderers = () => {
@@ -23,6 +23,7 @@ export const registerRenderers = () => {
     RowIconWithTextList,
     RowLinksWithText,
     RowYoutubeVideo,
+    RowContact,
   })
 }
 

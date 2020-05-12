@@ -9,15 +9,15 @@ const useContactStyles = makeStyles(
 
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `
-      "name"
-      "email"
-      "phoneNumber"
-      "subject"
-      "message"
-      "attachment"
-      "submit"
-    `,
-
+        "name"
+        "email"
+        "phoneNumber"
+        "subject"
+        "message"
+        "attachment"
+        "submit"
+        "error"
+      `,
       [theme.breakpoints.up('md')]: {
         columnGap: theme.gridSpacing.column,
         gridTemplateColumns: '2fr 1fr 1fr',
