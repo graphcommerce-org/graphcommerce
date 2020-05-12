@@ -1,8 +1,8 @@
 import { SitemapStream, SitemapItemLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { createGzip } from 'zlib'
-import initApolloClient from '../../lib/apollo'
-import { GetStaticPathsDocument } from '../../generated/apollo'
+import initApolloClient from 'lib/apollo'
+import { GetStaticPathsDocument } from 'generated/apollo'
 
 function getProtocol(req: NextApiRequest) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

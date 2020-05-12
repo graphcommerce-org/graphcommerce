@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import { UseStyles } from '../Theme'
+import { UseStyles } from 'components/Theme'
 
 const useStyles = makeStyles(
   ({ breakpoints, palette }: Theme) => ({

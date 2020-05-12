@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles, Container, Theme } from '@material-ui/core'
+import { CRGetStaticProps } from 'components/ContentRenderer/ContentRenderer'
+import Asset from 'components/Asset'
 import RowColumnOneSpread from './RowColumnOneSpread'
-import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
 import { RowColumnOneProps } from '.'
-import Asset from '../Asset'
 
 export type RowColumnOneAwardsProps = RowColumnOneProps & GQLGetRowColumOneAwardsQuery
 
@@ -56,8 +56,8 @@ export const getStaticProps: CRGetStaticProps<
   GQLRowColumnOneFragment,
   GQLGetRowColumOneAwardsQuery
 > = async () => {
-  const { default: client } = await import('../../lib/apollo')
-  const { GetRowColumOneAwardsDocument } = await import('../../generated/apollo')
+  const { default: client } = await import('lib/apollo')
+  const { GetRowColumOneAwardsDocument } = await import('generated/apollo')
 
   const { data } = await client().query<
     GQLGetRowColumOneAwardsQuery,

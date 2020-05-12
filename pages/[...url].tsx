@@ -4,10 +4,10 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../components/PageLayout'
-import ContentRenderer from '../components/ContentRenderer'
-import extractParams, { StaticPageParams } from '../lib/staticParams'
-import { useHeaderSpacing } from '../components/Header'
+} from 'components/PageLayout'
+import ContentRenderer from 'components/ContentRenderer'
+import extractParams, { StaticPageParams } from 'lib/staticParams'
+import { useHeaderSpacing } from 'components/Header'
 
 const CatchAll: PageWithLayoutFull = ({ page }) => {
   const header = useHeaderSpacing()

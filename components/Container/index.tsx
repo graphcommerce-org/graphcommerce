@@ -1,6 +1,6 @@
 import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core'
-import { UseStyles } from '../Theme'
+import { UseStyles } from 'components/Theme'
 
 export type ContainerProps = {
   before?: React.ReactNode

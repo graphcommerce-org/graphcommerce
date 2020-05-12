@@ -2,13 +2,13 @@ import React from 'react'
 import { CssBaseline } from '@material-ui/core'
 import Head from 'next/head'
 import Error from 'next/error'
-import PageMeta from '../PageMeta'
-import ThemedProvider, { defaultTheme } from '../Theme'
-import { LayoutPage } from '../../lib/layout'
-import Header, { HeaderTheme } from '../Header'
-import PageLoadIndicator from '../PageLoadIndicator'
-import { GQLGetStaticProps } from '../../lib/staticParams'
-import Footer from '../Footer'
+import { LayoutPage } from 'lib/layout'
+import { GQLGetStaticProps } from 'lib/staticParams'
+import PageMeta from 'components/PageMeta'
+import ThemedProvider, { defaultTheme } from 'components/Theme'
+import Header, { HeaderTheme } from 'components/Header'
+import PageLoadIndicator from 'components/PageLoadIndicator'
+import Footer from 'components/Footer'
 
 export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
   page: GQLGetPageLayoutQuery['pages'][0]
@@ -57,9 +57,9 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({
 export default LayoutFull
 
 export const getStaticProps: GQLGetStaticProps<PageLayoutProps> = async (variables) => {
-  const { default: client } = await import('../../lib/apollo')
-  const { GetPageLayoutDocument } = await import('../../generated/apollo')
-  const { getStaticProps: get } = await import('../ContentRenderer/ContentRenderer')
+  const { default: client } = await import('lib/apollo')
+  const { GetPageLayoutDocument } = await import('generated/apollo')
+  const { getStaticProps: get } = await import('components/ContentRenderer/ContentRenderer')
 
   try {
     const { data } = await client().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>(

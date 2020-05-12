@@ -12,8 +12,8 @@ import {
   ListItemText,
   Menu as MaterialMenu,
 } from '@material-ui/core'
-import Link from '../Link'
-import { vpCalc } from '../Theme'
+import Link from 'components/Link'
+import { vpCalc } from 'components/Theme'
 
 type TreePage = GQLHeaderFragment['menuPages'][0]['localizations'][0] & {
   children: TreePage[]

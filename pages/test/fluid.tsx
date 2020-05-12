@@ -4,8 +4,8 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../../components/PageLayout'
-import FluidAnimation from '../../components/FluidAnimation'
+} from 'components/PageLayout'
+import FluidAnimation from 'components/FluidAnimation'
 
 const Fluid: PageWithLayoutFull = () => {
   return <FluidAnimation colorful={false} curl={1} />

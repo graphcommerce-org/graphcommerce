@@ -8,8 +8,8 @@ Allow for rendering of content models retrieved by GraphQL.
 
 ## Creating a new Component for a Model
 
-1. Create a GraphQL fragment ([example](../RowHero/RowHero.graphql)) that
-   defines the data required for your component.
+1. Create a GraphQL fragment ([example](components/RowHero/RowHero.graphql))
+   that defines the data required for your component.
 2. Create a component where the Props are defined by the Fragment just created
    (eg GQLRowHeroFragment)
 
@@ -29,7 +29,7 @@ to `registerGetStaticProps` in [defaultRenderer](./defaultRenderer.tsx).
 ## Overriding Components per page
 
 ```
-import RowHeroHome from '../RowHeroHome'
+import RowHeroHome from 'components/RowHeroHome'
 
 <ContentRenderer
    content={page.content}

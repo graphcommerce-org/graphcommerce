@@ -1,11 +1,11 @@
 import React from 'react'
 import { Theme, makeStyles, Paper, Container, ContainerProps } from '@material-ui/core'
-import RichText from '../RichText'
-import Asset from '../Asset'
-import { CRGetStaticProps } from '../ContentRenderer/ContentRenderer'
-import { UseRichTextStyles } from '../RichText/useRichTextStyles'
-import Link from '../Link'
-import { vpCalc, UseStyles } from '../Theme'
+import RichText from 'components/RichText'
+import Asset from 'components/Asset'
+import { CRGetStaticProps } from 'components/ContentRenderer/ContentRenderer'
+import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
+import Link from 'components/Link'
+import { vpCalc, UseStyles } from 'components/Theme'
 
 const useStyles = makeStyles(
   ({ gridSpacing, breakpoints, spacings, palette }: Theme) => ({
@@ -108,8 +108,8 @@ export const getStaticProps: CRGetStaticProps<
   GQLRowPeopleWithTextFragment,
   GQLGetAllPeopleQuery
 > = async () => {
-  const { default: client } = await import('../../lib/apollo')
-  const { GetAllPeopleDocument } = await import('../../generated/apollo')
+  const { default: client } = await import('lib/apollo')
+  const { GetAllPeopleDocument } = await import('generated/apollo')
 
   const { data } = await client().query<GQLGetAllPeopleQuery, GQLGetAllPeopleQueryVariables>({
     query: GetAllPeopleDocument,

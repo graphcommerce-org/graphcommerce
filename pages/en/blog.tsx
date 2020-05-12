@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next'
-import Blog from '../blog'
-import { StaticPageVariables } from '../../lib/staticParams'
-import { PageLayoutProps, getStaticProps as getPageLayout } from '../../components/PageLayout'
-import { getStaticProps as getBlogList } from '../../components/BlogList'
+import { StaticPageVariables } from 'lib/staticParams'
+import { PageLayoutProps, getStaticProps as getPageLayout } from 'components/PageLayout'
+import { getStaticProps as getBlogList } from 'components/BlogList'
+import Blog from 'pages/blog'
 
 export default Blog
 

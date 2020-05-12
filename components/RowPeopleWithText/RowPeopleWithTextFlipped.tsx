@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles, Theme } from '@material-ui/core'
+import { vpCalc } from 'components/Theme'
+import TriangleBg from 'components/TriangleBg'
 import RowPeopleWithText, { RowPeopleWithTextProps } from '.'
-import { vpCalc } from '../Theme'
-import TriangleBg from '../TriangleBg'
 
 const useStyles = makeStyles(
   ({ breakpoints, spacings }: Theme) => ({

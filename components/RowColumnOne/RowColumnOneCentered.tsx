@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, Container, Theme } from '@material-ui/core'
+import Asset from 'components/Asset'
 import RowColumnOne, { RowColumnOneProps } from '.'
-import Asset from '../Asset'
 
 const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {

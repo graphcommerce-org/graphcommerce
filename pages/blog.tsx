@@ -4,11 +4,11 @@ import LayoutFull, {
   PageWithLayoutFull,
   PageLayoutProps,
   getStaticProps as getPageLayout,
-} from '../components/PageLayout'
-import ContentRenderer from '../components/ContentRenderer'
-import { StaticPageVariables } from '../lib/staticParams'
-import BlogList, { getStaticProps as getBlogList } from '../components/BlogList'
-import { useHeaderSpacing } from '../components/Header'
+} from 'components/PageLayout'
+import ContentRenderer from 'components/ContentRenderer'
+import { StaticPageVariables } from 'lib/staticParams'
+import BlogList, { getStaticProps as getBlogList } from 'components/BlogList'
+import { useHeaderSpacing } from 'components/Header'
 
 const Blog: PageWithLayoutFull<GQLGetBlogListQuery> = ({ page, blogPosts }) => {
   const header = useHeaderSpacing()

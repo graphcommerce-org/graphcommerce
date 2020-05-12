@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles, Theme, Container } from '@material-ui/core'
+import { GQLGetStaticProps } from 'lib/staticParams'
+import { vpCalc } from 'components/Theme'
 import PortfolioListItem from './PortfolioListItem'
-import { vpCalc } from '../Theme'
-import { GQLGetStaticProps } from '../../lib/staticParams'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -33,8 +33,8 @@ export const getStaticProps: GQLGetStaticProps<GQLGetPortfolioListQuery> = async
   url,
   locale,
 }) => {
-  const { default: client } = await import('../../lib/apollo')
-  const { GetPortfolioListDocument } = await import('../../generated/apollo')
+  const { default: client } = await import('lib/apollo')
+  const { GetPortfolioListDocument } = await import('generated/apollo')
   const { data } = await client().query<GQLGetPortfolioListQuery, GQLGetPageLayoutQueryVariables>({
     query: GetPortfolioListDocument,
     variables: { url: `${url}/`, locale },

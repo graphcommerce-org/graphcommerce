@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
-import RichText from '../RichText'
-import { UseStyles, vpCalc } from '../Theme'
-import { UseRichTextStyles } from '../RichText/useRichTextStyles'
-import Link from '../Link'
+import RichText from 'components/RichText'
+import { UseStyles, vpCalc } from 'components/Theme'
+import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
+import Link from 'components/Link'
 
 const useStyles = makeStyles(
   ({ spacings, gridSpacing, breakpoints }: Theme) => ({

@@ -1,5 +1,5 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import { vpCalc } from '../Theme'
+import { vpCalc } from 'components/Theme'
 
 const useBlogViewStyles = makeStyles(
   (theme: Theme) => ({

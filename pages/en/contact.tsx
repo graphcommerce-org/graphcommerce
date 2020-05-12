@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
-import Contact from '../contact'
-import { PageLayoutProps, getStaticProps as getPageLayout } from '../../components/PageLayout'
+import { PageLayoutProps, getStaticProps as getPageLayout } from 'components/PageLayout'
+import Contact from 'pages/contact'
 
 export default Contact
 

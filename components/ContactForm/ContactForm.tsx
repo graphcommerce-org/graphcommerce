@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, FormHelperText, TextField } from '@material-ui/core'
-import { SubmitContactFormDocument } from '../../generated/apollo'
-import { useMutationForm, emailPattern, phonePattern } from '../../lib/apollo-form'
+import { useMutationForm, emailPattern, phonePattern } from 'lib/apollo-form'
+import { SubmitContactFormDocument } from 'generated/apollo'
+import { ChevronRight } from 'components/Icons'
 import useContactStyles from './useContactStyles'
-import { ChevronRight } from '../Icons'
 
 const ContactForm: React.FC = () => {
   const classes = useContactStyles()

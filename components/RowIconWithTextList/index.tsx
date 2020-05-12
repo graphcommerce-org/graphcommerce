@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles, Theme, Container, ThemeProvider } from '@material-ui/core'
-import RichText from '../RichText'
-import Asset from '../Asset'
-import { vpCalc } from '../Theme'
+import RichText from 'components/RichText'
+import Asset from 'components/Asset'
+import { vpCalc } from 'components/Theme'
 import backgroundSvg from './logo-reach-bg-shadow-primary.svg'
 
 const useStyles = makeStyles(
