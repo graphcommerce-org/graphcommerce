@@ -5,7 +5,12 @@ import { UseStyles } from 'components/Theme'
 import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
 import ContactFormLoader from 'components/ContactForm'
 
-const useStyles = makeStyles({}, { name: 'RowContact' })
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: { marginBottom: theme.spacings.xl },
+  }),
+  { name: 'RowContact' },
+)
 
 const useRichTextStyles = makeStyles((theme: Theme) => ({
   h3: { color: theme.palette.primary.main, marginBottom: 0 },

@@ -9,6 +9,7 @@ import RowYoutubeVideo from 'components/RowYoutubeVideo'
 import RowIconWithTextList from 'components/RowIconWithTextList'
 import RowLinksWithText from 'components/RowLinksWithText'
 import RowContact from 'components/RowContact'
+import RowGoogleMap from 'components/RowGoogleMap'
 import { setStaticProps, setRenderers } from './ContentRenderer'
 
 export const registerRenderers = () => {
@@ -24,6 +25,7 @@ export const registerRenderers = () => {
     RowLinksWithText,
     RowYoutubeVideo,
     RowContact,
+    RowGoogleMap,
   })
 }
 

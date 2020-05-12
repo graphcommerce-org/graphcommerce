@@ -9,7 +9,7 @@ const useRichTextStyles = makeStyles(
     h2: { marginTop: vpCalc(22, 40), marginBottom: vpCalc(20, 40) },
     h3: { marginTop: vpCalc(22, 30), marginBottom: vpCalc(22, 30) },
     h4: {},
-    h5: {},
+    h5: { marginTop: vpCalc(7, 20), marginBottom: vpCalc(7, 20) },
     h6: {},
     asset: { width: '100%', height: 'auto' },
     blockQuote: {},

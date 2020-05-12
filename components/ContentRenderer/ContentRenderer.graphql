@@ -15,5 +15,6 @@ fragment ContentRenderer on Page {
     ...RowIconWithTextList
     ...RowLinksWithText
     ...RowContact
+    ...RowGoogleMap
   }
 }
