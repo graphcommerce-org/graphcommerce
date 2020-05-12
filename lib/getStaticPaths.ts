@@ -1,14 +1,12 @@
 import { GetStaticPaths } from 'next'
 import { GetStaticPathsDocument } from 'generated/apollo'
-import initApolloClient from 'lib/apollo'
+import { serverClient } from './apolloServer'
 
 const getStaticPathsFactory: (baseUrl: string, locale: GQLLocale) => GetStaticPaths = (
   baseUrl,
   locale,
 ) => async () => {
-  const apolloClient = initApolloClient()
-
-  const queryResult = await apolloClient.query<
+  const queryResult = await (await serverClient()).query<
     GQLGetStaticPathsQuery,
     GQLGetStaticPathsQueryVariables
   >({
