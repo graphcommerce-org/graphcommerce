@@ -15,6 +15,7 @@ const useStyles = makeStyles(
       `,
       [breakpoints.up('md')]: {
         gridTemplateColumns: `${vpCalc(320, 620)} 1fr`,
+        gridTemplateAreas: `"one two"`,
       },
     },
     textContainer: { gridArea: 'two' },
