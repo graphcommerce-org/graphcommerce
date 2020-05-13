@@ -22,12 +22,15 @@ const AsyncComponent = <T extends {}>({
 
   useEffect(() => {
     if (!measureRef.current) return () => {}
-    const io = new IntersectionObserver(([entry]) => {
-      if (!intersected && entry.isIntersecting && !debugShowSkeleton) {
-        setIntersected(entry.isIntersecting)
-        if (measureRef.current) io.unobserve(measureRef.current)
-      }
-    }, intersectionObserver)
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!intersected && entry.isIntersecting && !debugShowSkeleton) {
+          setIntersected(entry.isIntersecting)
+          if (measureRef.current) io.unobserve(measureRef.current)
+        }
+      },
+      { rootMargin: '50%', ...intersectionObserver },
+    )
     io.observe(measureRef.current)
     return () => io.disconnect()
   }, [intersected, measureRef, intersectionObserver, debugShowSkeleton])
