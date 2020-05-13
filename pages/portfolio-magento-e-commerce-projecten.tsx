@@ -1,16 +1,14 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import { makeStyles } from '@material-ui/core'
-import LayoutFull, {
-  PageWithLayoutFull,
-  PageLayoutProps,
-  getStaticProps as getPageLayout,
-} from 'components/PageLayout'
+import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import ContentRenderer from 'components/ContentRenderer'
-import PortfolioList, { getStaticProps as getPortfolioList } from 'components/PortfolioList'
+import PortfolioList from 'components/PortfolioList'
 import { StaticPageVariables } from 'lib/staticParams'
 import RichText from 'components/RichText'
 import { useHeaderSpacing } from 'components/Header'
+import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
+import getPortfolioListProps from 'components/PortfolioList/getPortfolioListProps'
 
 const useStyles = makeStyles({
   root: {
@@ -49,6 +47,6 @@ export const getStaticProps: GetStaticProps<
     url: '/portfolio-magento-e-commerce-projecten',
     locale: 'nl',
   }
-  const data = await Promise.all([getPageLayout(params), getPortfolioList(params)])
+  const data = await Promise.all([getPageLayoutProps(params), getPortfolioListProps(params)])
   return { props: Object.assign(...data) }
 }

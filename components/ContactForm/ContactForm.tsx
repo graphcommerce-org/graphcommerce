@@ -114,7 +114,6 @@ const ContactForm: React.FC = () => {
               {error.message} Please email to info@reachdigital.nl
             </FormHelperText>
           )}
-          {data?.createContactForm?.id && <FormHelperText>Bedankt voor je bericht</FormHelperText>}
           {data?.createContactForm === null && (
             <FormHelperText error>
               Message was send, but couldn&apos;t be saved.. Please email to info@reachdigital.nl
@@ -128,9 +127,9 @@ const ContactForm: React.FC = () => {
           disabled={loading || !!data?.createContactForm?.id}
           className={classes.submit}
           size='large'
-          endIcon={<ChevronRight />}
+          endIcon={!data?.createContactForm?.id && <ChevronRight />}
         >
-          Submit
+          {data?.createContactForm?.id ? 'Bericht is verzonden! 🎉' : 'Verzend'}
         </Button>
       </form>
     </>

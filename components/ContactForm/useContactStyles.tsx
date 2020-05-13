@@ -14,7 +14,6 @@ const useContactStyles = makeStyles(
         "phoneNumber"
         "subject"
         "message"
-        "attachment"
         "submit"
         "error"
       `,

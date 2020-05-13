@@ -55,29 +55,3 @@ const LayoutFull: PageWithLayoutFull['layout'] = ({
 }
 
 export default LayoutFull
-
-export const getStaticProps: GQLGetStaticProps<PageLayoutProps> = async (variables) => {
-  const { default: client } = await import('lib/apollo')
-  const { GetPageLayoutDocument } = await import('generated/apollo')
-  const { getStaticProps: get } = await import('components/ContentRenderer/ContentRenderer')
-
-  try {
-    const { data } = await client().query<GQLGetPageLayoutQuery, GQLGetPortfolioListQueryVariables>(
-      {
-        query: GetPageLayoutDocument,
-        variables,
-      },
-    )
-
-    const { pages, ...rest } = data
-    const page = pages[0]
-
-    page.content = await get(page.content)
-    return { ...rest, page: pages[0] }
-  } catch (error) {
-    return {
-      page: {} as GQLPageLayoutFragment,
-      team: [],
-    }
-  }
-}

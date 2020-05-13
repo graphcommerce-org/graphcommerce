@@ -28,16 +28,3 @@ const PortfolioList: React.FC<GQLGetPortfolioListQuery> = ({ portfolioList }) =>
 }
 
 export default PortfolioList
-
-export const getStaticProps: GQLGetStaticProps<GQLGetPortfolioListQuery> = async ({
-  url,
-  locale,
-}) => {
-  const { default: client } = await import('lib/apollo')
-  const { GetPortfolioListDocument } = await import('generated/apollo')
-  const { data } = await client().query<GQLGetPortfolioListQuery, GQLGetPageLayoutQueryVariables>({
-    query: GetPortfolioListDocument,
-    variables: { url: `${url}/`, locale },
-  })
-  return data
-}

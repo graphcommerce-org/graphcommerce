@@ -1,5 +1,0 @@
-query GetBreadcrumb($urls: [String!]!, $locale: Locale!) {
-  breadcrumbs: pages(where: { url_in: $urls }, locales: [$locale]) {
-    ...Breadcrumb
-  }
-}

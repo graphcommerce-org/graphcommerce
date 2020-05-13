@@ -21,8 +21,9 @@ Allow for rendering of content models retrieved by GraphQL.
 
 ## Fetching additional data
 
-To load additional you can define a getStaticProps method on your components add
-to `registerGetStaticProps` in [defaultRenderer](./defaultRenderer.tsx).
+TODOOOOOO To load additional you can define a getStaticProps method on your
+components add to `registerGetStaticProps` in
+[defaultRenderer](./defaultRenderer.tsx).
 
 !! Make sure you only do dynamic imports, else te bundle size will increase.
 

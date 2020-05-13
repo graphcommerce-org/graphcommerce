@@ -14,14 +14,14 @@ jobs:
       - run: yarn --frozen-lockfile --cwd ./new # install PR depedendencies
       - run: yarn --cwd ./new build > new.txt # build PR branch
         env:
-          NEXT_PUBLIC_GRAPHQL: ${{ secrets.GRAPHQL }}
-          NEXT_PUBLIC_GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
+          GRAPHCMS: ${{ secrets.GRAPHQL }}
+          GRAPHCMS_BEARER: ${{ secrets.GRAPHQL_BEARER }}
           NEXT_PUBLIC_GOOGLE_MAPS_API: ${{ secrets.GOOGLE_MAPS_API }}
       - run: yarn --frozen-lockfile --cwd ./old # install main branch dependencies
       - run: yarn --cwd ./old build > old.txt # build main branch
         env:
-          NEXT_PUBLIC_GRAPHQL: ${{ secrets.GRAPHQL }}
-          NEXT_PUBLIC_GRAPHQL_BEARER: ${{ secrets.GRAPHQL_BEARER }}
+          GRAPHCMS: ${{ secrets.GRAPHQL }}
+          GRAPHCMS_BEARER: ${{ secrets.GRAPHQL_BEARER }}
           NEXT_PUBLIC_GOOGLE_MAPS_API: ${{ secrets.GOOGLE_MAPS_API }}
       - uses: ho-nl/next-bundlesize-action@master # create diff markdown
         id: 'bundlesize'
