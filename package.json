@@ -1,7 +1,7 @@
 {
   "name": "project-reachdigital.nl",
   "homepage": "https://project-reachdigital-nl.now.sh/",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "private": true,
   "engines": {
     "node": "12.x"
