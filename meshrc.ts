@@ -1,5 +1,9 @@
-if (!process.env.GRAPHCMS_BEARER || !process.env.GRAPHCMS)
-  throw new Error('GRAPHCMS_BEARER or GRAPHCMS env variable not set')
+import filterSchemaTransform from '@graphql-mesh/transform-filter-schema'
+
+if (!process.env.GRAPHCMS || !process.env.GRAPHCMS_BEARER)
+  throw new Error(
+    `GRAPHCMS_BEARER:${process.env.GRAPHCMS} or GRAPHCMS ${process.env.GRAPHCMS} env variable not set`,
+  )
 
 const meshrc = {
   sources: [
@@ -16,6 +20,7 @@ const meshrc = {
       transforms: [
         {
           filterSchema: ['Mutation.createContactForm'],
+          tranformFn: filterSchemaTransform,
         },
       ],
     },
