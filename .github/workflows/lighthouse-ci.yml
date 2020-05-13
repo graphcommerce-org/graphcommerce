@@ -17,6 +17,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           retryInterval: 2000
-      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} --collect.url=${{ steps.deployment.outputs.deployment }}/contact || echo "failed with errors"
+      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} \
+                          --collect.url=${{ steps.deployment.outputs.deployment }}/blog \
+                          --collect.url=${{ steps.deployment.outputs.deployment }}/over-reach-digital-magento-experts \
+                          --collect.url=${{ steps.deployment.outputs.deployment }}/portfolio-magento-e-commerce-projecten \
+                          --collect.url=${{ steps.deployment.outputs.deployment }}/contact \ || echo "failed with errors"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
