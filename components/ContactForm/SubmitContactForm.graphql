@@ -15,5 +15,10 @@ mutation SubmitContactForm(
     }
   ) {
     id
+    name
+    email
+    phoneNumber
+    subject
+    message
   }
 }
