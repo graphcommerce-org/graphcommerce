@@ -1,12 +1,12 @@
 import { CRGetStaticProps } from 'components/ContentRenderer/getContentRendererProps'
-import { serverClient } from 'lib/apolloServer'
+import apolloClient from 'node/apolloClient'
 import { GetAllPeopleDocument } from 'generated/apollo'
 
 const getRowPeopleWithTextProps: CRGetStaticProps<
   GQLRowPeopleWithTextFragment,
   GQLGetAllPeopleQuery
 > = async () => {
-  const { data } = await (await serverClient()).query<
+  const { data } = await (await apolloClient()).query<
     GQLGetAllPeopleQuery,
     GQLGetAllPeopleQueryVariables
   >({ query: GetAllPeopleDocument })

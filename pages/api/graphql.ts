@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse } from 'next'
-import meshSchema from 'lib/graphqlMesh'
+import meshSchema from 'node/meshSchema'
 
 const createHandler = async () => {
   const apolloServer = new ApolloServer({ schema: await meshSchema })

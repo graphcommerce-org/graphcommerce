@@ -1,3 +1,4 @@
+import React from 'react'
 import { ApolloClient } from 'apollo-client'
 import {
   InMemoryCache,
@@ -7,6 +8,7 @@ import {
 } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import introspectionQueryResultData from 'generated/fragments.json'
+import { ApolloProvider as ApolloProviderBase } from '@apollo/react-hooks'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
@@ -41,4 +43,9 @@ export default function initApolloClient(
   }
 
   return globalApolloClient
+}
+
+export const ApolloProvider: React.FC = ({ children }) => {
+  const client = initApolloClient()
+  return <ApolloProviderBase client={client}>{children}</ApolloProviderBase>
 }

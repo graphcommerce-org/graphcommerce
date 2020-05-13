@@ -1,4 +1,4 @@
-import { serverClient } from 'lib/apolloServer'
+import apolloClient from 'node/apolloClient'
 import { GetBlogListDocument } from 'generated/apollo'
 import { CRGetStaticProps } from 'components/ContentRenderer/getContentRendererProps'
 
@@ -9,7 +9,7 @@ const getRowRecentBlogPostProps: CRGetStaticProps<
   if (!link || !link.page)
     throw new Error('Make sure there is a link with a page for GQLGetBlogListQuery')
 
-  const { data } = await (await serverClient()).query<
+  const { data } = await (await apolloClient()).query<
     GQLGetBlogListQuery,
     GQLGetBlogListQueryVariables
   >({

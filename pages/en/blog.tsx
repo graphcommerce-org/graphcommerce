@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { StaticPageVariables } from 'lib/staticParams'
+import { StaticPageVariables } from 'node/staticParams'
 import { PageLayoutProps } from 'components/PageLayout'
 import Blog from 'pages/blog'
 import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'

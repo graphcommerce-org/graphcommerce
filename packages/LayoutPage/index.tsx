@@ -11,7 +11,7 @@ export type LayoutPage<P = {}, IP = P> = NextPage<P, IP> & {
   layout: React.FC<IP>
 }
 
-export function renderLayout(
+export function renderLayoutPage(
   Component: NextComponentType<NextPageContext, unknown, {}>,
   pageProps: {},
 ) {
