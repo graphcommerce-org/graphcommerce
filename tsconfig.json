@@ -16,13 +16,5 @@
     "jsx": "preserve"
   },
   "exclude": ["node_modules", "public"],
-  "include": [
-    "lib/graphqlMesh.js",
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "next.config.js",
-    "apollo.config.js",
-    "lib/graphqlMesh.js"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "apollo.config.js"]
 }
