@@ -2,6 +2,7 @@ import React from 'react'
 import { Typography } from '@material-ui/core'
 import Link from 'components/Link'
 import Asset, { MimeTypes } from 'components/Asset'
+import AsyncIframe from 'components/AsyncIframe'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 
 export interface ValueJSON {
@@ -260,7 +261,12 @@ const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classe
       // todo(paales) add security attributes to iframe
       // todo(paales) make iframe responsive
       return (
-        <iframe src={block.data.src} title='embedded content' className={iframe} loading='lazy' />
+        <AsyncIframe
+          src={block.data.src}
+          title='embedded content'
+          className={iframe}
+          loading='lazy'
+        />
       )
     case 'image':
       return <Asset asset={{ ...block.data, url: block.data.src }} width={380} className={asset} />

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, PropsWithChildren } from 'react'
-import dynamic, { LoaderComponent } from 'next/dynamic'
+import dynamic, { Loader } from 'next/dynamic'
 
 type DynamicIntersect<P> = {
-  loader: () => LoaderComponent<P>
+  loader: Loader<P>
   skeleton: React.ComponentType<P> | JSX.Element
   measureRef: React.RefObject<HTMLElement>
   intersectionObserver?: IntersectionObserverInit
+  debugShowSkeleton?: boolean
 } & P
 
 const AsyncComponent = <T extends {}>({
@@ -14,6 +15,7 @@ const AsyncComponent = <T extends {}>({
   children,
   measureRef,
   intersectionObserver,
+  debugShowSkeleton,
   ...props
 }: PropsWithChildren<DynamicIntersect<T>>) => {
   const [intersected, setIntersected] = useState<boolean>(false)
@@ -21,14 +23,14 @@ const AsyncComponent = <T extends {}>({
   useEffect(() => {
     if (!measureRef.current) return () => {}
     const io = new IntersectionObserver(([entry]) => {
-      if (!intersected && entry.isIntersecting) {
+      if (!intersected && entry.isIntersecting && !debugShowSkeleton) {
         setIntersected(entry.isIntersecting)
         if (measureRef.current) io.unobserve(measureRef.current)
       }
     }, intersectionObserver)
     io.observe(measureRef.current)
     return () => io.disconnect()
-  }, [intersected, measureRef, intersectionObserver])
+  }, [intersected, measureRef, intersectionObserver, debugShowSkeleton])
 
   const LoadingComponent = () => <>{skeleton}</>
   if (!intersected) return <LoadingComponent />
