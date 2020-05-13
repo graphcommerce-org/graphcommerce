@@ -4,6 +4,7 @@
 - [GraphQL](https://graphql.org/) +
   [GraphQL Code Generator](https://graphql-code-generator.com/) +
   [Apollo](https://www.apollographql.com/docs/react/)
+- [GraphQL Mesh](https://graphql-mesh.com/)
 - [GraphCMS](https://graphcms.com/)
 - [Material UI](https://material-ui.com/)
 - [React-spring](https://www.react-spring.io/)
