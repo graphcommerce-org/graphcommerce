@@ -1,9 +1,9 @@
-import { GQLGetStaticProps } from 'lib/staticParams'
-import { serverClient } from 'lib/apolloServer'
+import { GQLGetStaticProps } from 'node/staticParams'
+import apolloClient from 'node/apolloClient'
 import { GetBlogListDocument } from 'generated/apollo'
 
 const getBlogListProps: GQLGetStaticProps<GQLGetBlogListQuery> = async (variables) => {
-  const { data } = await (await serverClient()).query<
+  const { data } = await (await apolloClient()).query<
     GQLGetBlogListQuery,
     GQLGetBlogListQueryVariables
   >({

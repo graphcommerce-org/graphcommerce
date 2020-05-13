@@ -29,8 +29,9 @@ const RowContact: React.FC<RowContactProps> = (props) => {
 
   return (
     <Container {...containerProps} classes={containerClasses}>
-      <RichText {...text} classes={{ ...richTextClasses, ...richTextClassesAdded }} />
-      <ContactFormLoader />
+      <ContactFormLoader>
+        <RichText {...text} classes={{ ...richTextClasses, ...richTextClassesAdded }} />
+      </ContactFormLoader>
     </Container>
   )
 }

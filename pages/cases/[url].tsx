@@ -1,9 +1,9 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
-import getStaticPathsFactory from 'lib/getStaticPaths'
+import getStaticPathsFactory from 'node/getStaticPathsFactory'
 import ContentRenderer from 'components/ContentRenderer'
-import extractParams, { StaticPageParams } from 'lib/staticParams'
+import extractParams, { StaticPageParams } from 'node/staticParams'
 import { useHeaderSpacing } from 'components/Header'
 import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 

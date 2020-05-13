@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import { UseStyles } from 'components/Theme'
+import AsyncIframe from 'components/AsyncIframe'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -32,7 +33,7 @@ const RowYoutubeVideo: React.FC<RowYoutubeVideoProps> = (props) => {
   return (
     <Container {...containerProps} classes={classes}>
       <div className={aspectContainer}>
-        <iframe
+        <AsyncIframe
           className={iframe}
           title={title}
           src={`https://www.youtube.com/embed/${videoId}`}

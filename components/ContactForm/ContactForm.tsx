@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button, FormHelperText, TextField } from '@material-ui/core'
-import { useMutationForm, emailPattern, phonePattern } from 'lib/apollo-form'
+import { useMutationForm, emailPattern, phonePattern } from 'components/useMutationForm'
 import { SubmitContactFormDocument } from 'generated/apollo'
 import { ChevronRight } from 'components/Icons'
 import useContactStyles from './useContactStyles'
 
-const ContactForm: React.FC = () => {
+const ContactForm: React.FC = ({ children }) => {
   const classes = useContactStyles()
   const {
     onSubmit,
@@ -27,6 +27,7 @@ const ContactForm: React.FC = () => {
 
   return (
     <>
+      {children}
       <form noValidate onSubmit={onSubmit} className={classes.form}>
         <TextField
           variant='filled'

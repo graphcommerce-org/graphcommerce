@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles, Container, Theme } from '@material-ui/core'
-import { GQLGetStaticProps } from 'lib/staticParams'
 import { vpCalc } from 'components/Theme'
 import BlogListItem from './BlogListItem'
 

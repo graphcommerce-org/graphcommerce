@@ -3,6 +3,7 @@ import { makeStyles, Theme, Container, ContainerProps, Typography, Link } from '
 import RichText from 'components/RichText'
 import { UseStyles } from 'components/Theme'
 import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
+import AsyncIframe from 'components/AsyncIframe'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -111,7 +112,7 @@ const RowGoogleMap: React.FC<RowGoogleMapProps> = (props) => {
           </Link>
         ))}
       </div>
-      <iframe
+      <AsyncIframe
         className={locationArea}
         title='Google Maps'
         frameBorder='0'

@@ -1,5 +1,5 @@
 import App from 'next/app'
-import { renderLayout } from 'lib/layout'
+import { renderLayoutPage } from 'packages/LayoutPage'
 
 export default class extends App {
   componentDidMount() {
@@ -12,6 +12,6 @@ export default class extends App {
 
   render() {
     const { Component, pageProps } = this.props
-    return renderLayout(Component, pageProps)
+    return renderLayoutPage(Component, pageProps)
   }
 }

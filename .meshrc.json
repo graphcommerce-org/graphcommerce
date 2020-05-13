@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "handler": {
+        "graphql": {
+          "headers": {
+            "Authorization": "${GRAPHCMS_BEARER}"
+          },
+          "endpoint": "${GRAPHCMS}"
+        }
+      },
+      "name": "GraphCMS",
+      "transforms": [
+        {
+          "filterSchema": ["Mutation.createContactForm"]
+        }
+      ]
+    }
+  ]
+}
