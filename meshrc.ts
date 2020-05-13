@@ -1,4 +1,5 @@
-import filterSchemaTransform from '@graphql-mesh/transform-filter-schema'
+import '@graphql-mesh/transform-filter-schema'
+import '@graphql-mesh/graphql'
 
 if (!process.env.GRAPHCMS || !process.env.GRAPHCMS_BEARER)
   throw new Error(
@@ -20,7 +21,6 @@ const meshrc = {
       transforms: [
         {
           filterSchema: ['Mutation.createContactForm'],
-          tranformFn: filterSchemaTransform,
         },
       ],
     },
