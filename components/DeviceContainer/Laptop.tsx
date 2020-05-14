@@ -7,7 +7,6 @@ const useStyles = makeStyles(
   ({ palette }: Theme) => ({
     root: {
       display: 'block',
-      paddingBottom: 0,
       position: 'relative',
     },
     laptopShadow: {
@@ -36,6 +35,7 @@ const useStyles = makeStyles(
     content: {
       paddingTop: '2.5%',
       width: '80%',
+      paddingBottom: '17.5%',
       position: 'relative',
       left: '50%',
       transform: 'translateX(-50%)',
