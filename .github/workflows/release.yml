@@ -23,7 +23,7 @@ jobs:
           GRAPHCMS: ${{ secrets.GRAPHQL }}
           GRAPHCMS_BEARER: ${{ secrets.GRAPHQL_BEARER }}
           NEXT_PUBLIC_GOOGLE_MAPS_API: ${{ secrets.GOOGLE_MAPS_API }}
-          TS_NODE_COMPILER_OPTIONS: '{\"module\":\"commonjs\"}'
+          TS_NODE_COMPILER_OPTIONS: '{"module":"commonjs"}'
       - run: yarn storybook-to-ghpages --ci --quiet
         env:
           GH_TOKEN: ho-nl:${{ secrets.GITHUB_TOKEN }}
