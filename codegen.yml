@@ -1,5 +1,8 @@
 overwrite: true
-schema: ${GRAPHCMS}
+require:
+  - ts-node/register/transpile-only
+  - tsconfig-paths/register
+schema: ./node/meshSchema.ts
 documents:
   - '**/*.graphql'
   - '!generated/*.graphql'
