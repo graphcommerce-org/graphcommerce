@@ -20,7 +20,7 @@ const RowHeroHome: React.FC<RowHeroProps> = (props) => {
   return (
     <RowHero
       {...props}
-      triangleBgProps={{ classes: { root: triangleRoot } }}
+      triangleBgProps={{ color: 'secondary', gradient: false, classes: { root: triangleRoot } }}
       richTextClasses={{ h1 }}
     />
   )

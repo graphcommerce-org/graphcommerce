@@ -141,7 +141,7 @@ export const defaultTheme = createMuiTheme({
     },
     h4: {
       fontSize: vpCalc(18, 25),
-      fontWeight: 600,
+      fontWeight: 500,
       letterSpacing: '-0.0375em',
     },
     h5: {

@@ -10,18 +10,13 @@ const useStyles = makeStyles(
     root: {
       gridColumnGap: theme.gridSpacing.column,
       gridRowGap: theme.gridSpacing.row,
-      marginBottom: theme.spacings.xl,
+      marginBottom: theme.spacings.lg,
       display: `grid`,
       gridTemplateColumns: `1fr`,
-      gridTemplateAreas: `
-        "one"
-        "two"
-      `,
+      gridTemplateAreas: `"one" "two"`,
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
-        gridTemplateAreas: `
-          "one two"
-        `,
+        gridTemplateAreas: `"one two"`,
       },
     },
     colOne: { gridArea: 'one' },
