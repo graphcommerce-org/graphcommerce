@@ -1,8 +1,8 @@
 import { SitemapStream, SitemapItemLoose } from 'sitemap'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { createGzip } from 'zlib'
-import initApolloClient from 'lib/apollo'
 import { GetStaticPathsDocument } from 'generated/apollo'
+import apolloClientInit from 'node/apolloClient'
 
 function getProtocol(req: NextApiRequest) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -23,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
     const pipeline = sm.pipe(createGzip())
 
-    const apolloClient = initApolloClient()
+    const apolloClient = await apolloClientInit()
     const { data: resultNl } = await apolloClient.query<
       GQLGetStaticPathsQuery,
       GQLGetStaticPathsQueryVariables
