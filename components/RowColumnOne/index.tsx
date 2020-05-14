@@ -8,7 +8,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'grid',
-      padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
+      marginBottom: theme.spacings.lg,
       gridTemplateColumns: '1fr',
       gridTemplateRows: '1fr',
     },

@@ -25,6 +25,8 @@ const useStyles = makeStyles(
       },
       alignItems: 'center',
     },
+    colOne: { gridArea: 'one' },
+    colTwo: { gridArea: 'two' },
     video: {
       width: '100%',
       height: '100%',
@@ -42,18 +44,22 @@ export type RowHeroProps = GQLRowHeroFragment &
   } & ContainerProps
 
 const RowHero: React.FC<RowHeroProps> = (props) => {
-  const { text, asset, links, richTextClasses, triangleBgProps } = props
-  const { video, ...containerClasses } = useStyles(props)
+  const { text, asset, links, richTextClasses, triangleBgProps, children } = props
+  const { video, colOne, colTwo, ...containerClasses } = useStyles(props)
   const headerSpacing = useHeaderSpacing()
 
   return (
-    <TriangleBg color='secondary' {...triangleBgProps}>
+    <TriangleBg color='primary' gradient {...triangleBgProps}>
       <Container
         classes={containerClasses}
         className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom)}
       >
-        {asset && <Asset asset={asset} className={video} />}
-        <div>
+        {children ? (
+          <div className={colOne}>{children}</div>
+        ) : (
+          asset && <Asset asset={asset} className={clsx(video, colOne)} />
+        )}
+        <div className={colTwo}>
           <RichText {...text} classes={richTextClasses} />
           <div>
             {links.map((link) => {

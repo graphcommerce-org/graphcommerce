@@ -9,15 +9,15 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'grid',
-      padding: `${theme.gridSpacing.row} ${theme.gridSpacing.column}`,
+      marginBottom: theme.spacings.lg,
       gridColumnGap: theme.gridSpacing.column,
       gridRowGap: theme.gridSpacing.row,
       gridTemplateColumns: `1fr`,
       gridTemplateAreas: `
-      "one"
-      "two"
-      "three"
-    `,
+        "one"
+        "two"
+        "three"
+      `,
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr 1fr`,
         gridTemplateAreas: `
