@@ -1527,15 +1527,6 @@
     pascal-case "3.1.1"
     tslib "~1.11.1"
 
-"@graphql-mesh/cache-inmemory-lru@0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-inmemory-lru/-/cache-inmemory-lru-0.1.16.tgz#c8f7e836e7cec146924b58c8eb12127d9efdcc9e"
-  integrity sha512-05vzd1rUwwNG5dXrx0b6vEDIsL0le/kQnIhCvIYIkW08CnX74KrAUFWZo4T3VFAaEDxxknX4kk6TuocWZapuaw==
-  dependencies:
-    "@graphql-mesh/types" "0.1.16"
-    "@types/lru-cache" "5.1.0"
-    lru-cache "5.1.1"
-
 "@graphql-mesh/cache-inmemory-lru@0.1.17":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-inmemory-lru/-/cache-inmemory-lru-0.1.17.tgz#6975a812a715377ae24d82ae1e5b3027daddc5f4"
@@ -1545,17 +1536,17 @@
     "@types/lru-cache" "5.1.0"
     lru-cache "5.1.1"
 
-"@graphql-mesh/cli@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/cli/-/cli-0.1.16.tgz#e2fa8a405efa105bbb5b4ffb02316b231d47023c"
-  integrity sha512-8mtI09jNA9MYX3+MmdLvPVIRkKPrDrCalWPbjoleGLy4p/oYd6JTcf+F8PQVxHN5GgdkNCQ1ba+JsRPomARMMQ==
+"@graphql-mesh/cli@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cli/-/cli-0.1.17.tgz#549fef913771e19703220294cd3c444255a9b1d2"
+  integrity sha512-XvCCQ19gEtjt+EWEcL6+bTDxHS8WeKe7GBstgq0ZSzJurgbgDuf76Di3vQHduzKc6ZltfX0gnzyAj/fTveti8g==
   dependencies:
     "@graphql-codegen/core" "1.13.5"
     "@graphql-codegen/typescript" "1.13.5"
     "@graphql-codegen/typescript-generic-sdk" "1.13.5"
     "@graphql-codegen/typescript-operations" "1.13.5"
     "@graphql-codegen/typescript-resolvers" "1.13.5"
-    "@graphql-mesh/runtime" "0.1.16"
+    "@graphql-mesh/runtime" "0.1.17"
     "@graphql-toolkit/code-file-loader" "0.10.6"
     "@graphql-toolkit/common" "0.10.6"
     "@graphql-toolkit/core" "0.10.6"
@@ -1593,22 +1584,7 @@
     fetchache "0.0.3"
     graphql-tools "5.0.0"
 
-"@graphql-mesh/runtime@0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.1.16.tgz#ea4241d5bb4785b11ffae00ccbb97026ac565fcf"
-  integrity sha512-Squai9zWzigx8Fx3xTgYe8P+3xI2NyLVDYE7V7BqxpAoWwvBE3BAZ/ALVumdkix6PcdWy8MRY1sXAIO3BKU3Eg==
-  dependencies:
-    "@graphql-mesh/cache-inmemory-lru" "0.1.16"
-    "@graphql-mesh/types" "0.1.16"
-    "@graphql-toolkit/common" "0.10.6"
-    "@graphql-toolkit/schema-merging" "0.10.6"
-    aggregate-error "3.0.1"
-    ajv "6.12.2"
-    cosmiconfig "6.0.0"
-    graphql-tools "5.0.0"
-    param-case "3.0.3"
-
-"@graphql-mesh/runtime@^0.1.17":
+"@graphql-mesh/runtime@0.1.17", "@graphql-mesh/runtime@^0.1.17":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.1.17.tgz#fcb7842b55ddf2f0b4315c494092b19b6fcfa394"
   integrity sha512-xu6BZoxlqE7Nm3akjOvkMfaJwCE0yDWcQeaNv6b8WsKZ+EXAM6MV6/iTUgddDcxCh0Z2lrmcKXCb5qzOdkDzWQ==
@@ -1633,14 +1609,6 @@
     "@graphql-mesh/utils" "0.1.17"
     graphql-tools "5.0.0"
     micromatch "4.0.2"
-
-"@graphql-mesh/types@0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.1.16.tgz#8d26fd8549a04f274f4269bce7aaf6c3e7338b33"
-  integrity sha512-FyeFyJor5riEsvZC2pNZRvJBDQLTyhwi5OzxYbWvIHc4nE4MMPpp/JiPJ/uYUBVyvFZaVWoHkm96jUOGzksvcg==
-  dependencies:
-    fetchache "0.0.3"
-    tsee "1.3.0"
 
 "@graphql-mesh/types@0.1.17":
   version "0.1.17"
