@@ -1,5 +1,5 @@
 import App from 'next/app'
-import { renderLayoutPage } from 'packages/LayoutPage'
+import { renderLayoutPage } from 'components/LayoutPage'
 
 export default class extends App {
   componentDidMount() {
