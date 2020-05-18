@@ -1536,6 +1536,15 @@
     "@types/lru-cache" "5.1.0"
     lru-cache "5.1.1"
 
+"@graphql-mesh/cache-inmemory-lru@0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-inmemory-lru/-/cache-inmemory-lru-0.1.17.tgz#6975a812a715377ae24d82ae1e5b3027daddc5f4"
+  integrity sha512-p2Ia2/6LfnBj4M6It1tjTk932waveGDf/bsiTAjULs0qwMSQnY6dug1kT9xyNhEs29bo1LRSbcd8TxwO0K277g==
+  dependencies:
+    "@graphql-mesh/types" "0.1.17"
+    "@types/lru-cache" "5.1.0"
+    lru-cache "5.1.1"
+
 "@graphql-mesh/cli@^0.1.16":
   version "0.1.16"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/cli/-/cli-0.1.16.tgz#e2fa8a405efa105bbb5b4ffb02316b231d47023c"
@@ -1575,7 +1584,16 @@
     fetchache "0.0.3"
     graphql-tools "5.0.0"
 
-"@graphql-mesh/runtime@0.1.16", "@graphql-mesh/runtime@^0.1.16":
+"@graphql-mesh/merger-stitching@0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.1.17.tgz#2354411cec932ee378c4cf858c7c3424653198a5"
+  integrity sha512-vitkOJdmxNcPdxlL7No4zOmxvtPcnFe8y7rl6NYx0De/u15hl5n5ewXEosuV8VOvwDFTP+YN9TrUWoUau67Tug==
+  dependencies:
+    "@graphql-mesh/types" "0.1.17"
+    fetchache "0.0.3"
+    graphql-tools "5.0.0"
+
+"@graphql-mesh/runtime@0.1.16":
   version "0.1.16"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.1.16.tgz#ea4241d5bb4785b11ffae00ccbb97026ac565fcf"
   integrity sha512-Squai9zWzigx8Fx3xTgYe8P+3xI2NyLVDYE7V7BqxpAoWwvBE3BAZ/ALVumdkix6PcdWy8MRY1sXAIO3BKU3Eg==
@@ -1584,6 +1602,22 @@
     "@graphql-mesh/types" "0.1.16"
     "@graphql-toolkit/common" "0.10.6"
     "@graphql-toolkit/schema-merging" "0.10.6"
+    aggregate-error "3.0.1"
+    ajv "6.12.2"
+    cosmiconfig "6.0.0"
+    graphql-tools "5.0.0"
+    param-case "3.0.3"
+
+"@graphql-mesh/runtime@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/runtime/-/runtime-0.1.17.tgz#fcb7842b55ddf2f0b4315c494092b19b6fcfa394"
+  integrity sha512-xu6BZoxlqE7Nm3akjOvkMfaJwCE0yDWcQeaNv6b8WsKZ+EXAM6MV6/iTUgddDcxCh0Z2lrmcKXCb5qzOdkDzWQ==
+  dependencies:
+    "@graphql-mesh/cache-inmemory-lru" "0.1.17"
+    "@graphql-mesh/merger-stitching" "0.1.17"
+    "@graphql-mesh/types" "0.1.17"
+    "@graphql-toolkit/common" "0.10.5"
+    "@graphql-toolkit/schema-merging" "0.10.5"
     aggregate-error "3.0.1"
     ajv "6.12.2"
     cosmiconfig "6.0.0"
@@ -1645,6 +1679,16 @@
     "@graphql-toolkit/common" "0.10.6"
     "@graphql-toolkit/graphql-tag-pluck" "0.10.6"
     tslib "1.11.1"
+
+"@graphql-toolkit/common@0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.10.5.tgz#5190f53179d832fc352d5ae986103bac4e81e4da"
+  integrity sha512-XwdjIIAruL+7JLREOIIGnczBSve6HomBAyWE6P7G4AG9NgEOGQUuPZ1CY2mK5ChKCKwTWm12cM5SfJLJXO7JHw==
+  dependencies:
+    aggregate-error "3.0.1"
+    camel-case "4.1.1"
+    graphql-tools "5.0.0"
+    lodash "4.17.15"
 
 "@graphql-toolkit/common@0.10.6", "@graphql-toolkit/common@~0.10.4", "@graphql-toolkit/common@~0.10.6":
   version "0.10.6"
@@ -1737,6 +1781,16 @@
   dependencies:
     "@graphql-toolkit/common" "0.10.6"
     relay-compiler "9.1.0"
+
+"@graphql-toolkit/schema-merging@0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/schema-merging/-/schema-merging-0.10.5.tgz#4a9f43080e73d2b14a4896bb151e063cdc825665"
+  integrity sha512-8UyVPkojbWbTNVWfTSAF+LNjhyWpjrTRGgTZKLocYQdwvqLJ1tHgNSTZv/tH1zUGGpKKvZqCKf8Jei+CjoDYQQ==
+  dependencies:
+    "@graphql-toolkit/common" "0.10.5"
+    deepmerge "4.2.2"
+    graphql-tools "5.0.0"
+    tslib "1.11.1"
 
 "@graphql-toolkit/schema-merging@0.10.6", "@graphql-toolkit/schema-merging@~0.10.4", "@graphql-toolkit/schema-merging@~0.10.6":
   version "0.10.6"
