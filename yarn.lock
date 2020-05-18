@@ -1544,12 +1544,12 @@
     winston "3.2.1"
     yargs "15.3.1"
 
-"@graphql-mesh/graphql@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.1.16.tgz#92778f1f73dc48245b9235d1f47d02120fc3dee3"
-  integrity sha512-BGZeDsO4dauj2w2R3DyFRQO4yC1shNaq1x9NlvwbWmzWe4hk2gu3ZVG1mDCSGzfWyYVoUsPB6gP50OYu8QFlIw==
+"@graphql-mesh/graphql@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.1.17.tgz#69cb635c996d4f2b5625ee9f158e5c4dc3625096"
+  integrity sha512-NGs0NvqjnYgIy97PLCZ7sFXPfIU1IY0OkXywMJ5XdBo5CpH7vrU3CWuZcNB5WMMdsG32YSPpPJ9l/NXoPpCgEg==
   dependencies:
-    "@graphql-mesh/types" "0.1.16"
+    "@graphql-mesh/types" "0.1.17"
     "@graphql-toolkit/core" "0.10.6"
     "@graphql-toolkit/url-loader" "0.10.6"
     fetchache "0.0.3"
@@ -1584,6 +1584,14 @@
   version "0.1.16"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.1.16.tgz#8d26fd8549a04f274f4269bce7aaf6c3e7338b33"
   integrity sha512-FyeFyJor5riEsvZC2pNZRvJBDQLTyhwi5OzxYbWvIHc4nE4MMPpp/JiPJ/uYUBVyvFZaVWoHkm96jUOGzksvcg==
+  dependencies:
+    fetchache "0.0.3"
+    tsee "1.3.0"
+
+"@graphql-mesh/types@0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.1.17.tgz#6a03c3f07ee7b097cd563828da36379e1299186d"
+  integrity sha512-D/pF/yo3FG3KBa4fpyVFxVAP7QjA6CEzkj4pH5bJ9xjzJHx7htU2iJycYLKuMtFHHo61zTMbEibvCyaPMotkxg==
   dependencies:
     fetchache "0.0.3"
     tsee "1.3.0"
