@@ -1624,13 +1624,13 @@
     graphql-tools "5.0.0"
     param-case "3.0.3"
 
-"@graphql-mesh/transform-filter-schema@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.1.16.tgz#0eac4adcde733830ad301e6b4886bf2f5891fda3"
-  integrity sha512-uoNU5zydbe0VAbZFXSBxvjdZ3Lge7E2gSaUonO5SKlFUHWZvqAE/dFHfWfBmynb9dbY3nZvYmW23SGZS5BD3wA==
+"@graphql-mesh/transform-filter-schema@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.1.17.tgz#3d6fb3205e70b4fe7103ea9851beac2248946dab"
+  integrity sha512-liybA6tzJnj0LSVjc2u1Da79muwD2Rkdy2pTZb8DRryH/AMKBOqiseJA/HhWzzRpdjR6/oz8aC1kD1UKGIY/xQ==
   dependencies:
-    "@graphql-mesh/types" "0.1.16"
-    "@graphql-mesh/utils" "0.1.16"
+    "@graphql-mesh/types" "0.1.17"
+    "@graphql-mesh/utils" "0.1.17"
     graphql-tools "5.0.0"
     micromatch "4.0.2"
 
@@ -1650,10 +1650,10 @@
     fetchache "0.0.3"
     tsee "1.3.0"
 
-"@graphql-mesh/utils@0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.1.16.tgz#6aaf2ec55e0c0accabe205089bd7e0cdf28cb93b"
-  integrity sha512-aSDi18LjAocV1qiVjyI2gOBBYLAUXpaRfMRpMc64wqpDr2QVN9t95brzF7TygxjtpX32cK3nQngdKfZAvH7jxA==
+"@graphql-mesh/utils@0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.1.17.tgz#ae6eaabe009c813349d9a64f9b7e753948962471"
+  integrity sha512-vtt4CzVNayLGNtZFkJX+HBJiV1gm0beuNYIVZ4eJfOMAsfY+vcV2WnqiGFZa6wub+6hNEfmVf7cHZhUz8E7xmg==
   dependencies:
     "@ardatan/string-interpolation" "1.2.8"
     date-fns "2.13.0"
