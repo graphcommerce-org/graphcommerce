@@ -5,10 +5,8 @@ import svgIpadBg from './horizontal-tablet-frame.svg'
 import Asset from '../Asset'
 
 const useStyles = makeStyles({
-  root: {
-    background: 'pink',
-  },
   iPadContainer: {
+    marginTop: `-45%`,
     position: `relative`,
     '& img': {
       maxWidth: '100%',
@@ -16,7 +14,7 @@ const useStyles = makeStyles({
   },
   iPadContent: {
     height: `85.3%`,
-    width: `71.8%`,
+    width: `72.5%`,
     position: 'absolute',
     top: `7%`,
     left: `13.5%`,
@@ -27,7 +25,6 @@ const useStyles = makeStyles({
     },
   },
   bgImg: {
-    background: 'yellow',
     width: '100%',
     textAlign: 'center',
   },

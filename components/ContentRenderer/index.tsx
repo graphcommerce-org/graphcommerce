@@ -11,6 +11,7 @@ import RowLinksWithText from 'components/RowLinksWithText'
 import RowContact from 'components/RowContact'
 import RowGoogleMap from 'components/RowGoogleMap'
 import RowIpadHorizontal from 'components/RowIpadHorizontal'
+import RowLineHorizontal from 'components/RowLineHorizontal'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -27,6 +28,7 @@ setRenderers({
   RowContact,
   RowGoogleMap,
   RowIpadHorizontal,
+  RowLineHorizontal,
 })
 
 export default ContentRenderer
