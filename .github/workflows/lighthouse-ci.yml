@@ -12,11 +12,11 @@ jobs:
           node-version: 12
       - run: npm install -g @lhci/cli@0.3.x
       - id: deployment
-        uses: ho-nl-fork/get-deployment-url@master
+        uses: dorshinar/get-deployment-url@v1.0.5
         timeout-minutes: 5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           retryInterval: 2000
-      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} --collect.url=${{ steps.deployment.outputs.deployment }}/blog --collect.url=${{ steps.deployment.outputs.deployment }}/over-reach-digital-magento-experts --collect.url=${{ steps.deployment.outputs.deployment }}/portfolio-magento-e-commerce-projecten --collect.url=${{ steps.deployment.outputs.deployment }}/contact || echo "failed with errors"
+      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} --collect.url=${{ steps.deployment.outputs.deployment }}/contact || echo "failed with errors"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
