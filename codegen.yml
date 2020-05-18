@@ -2,6 +2,7 @@ overwrite: true
 require:
   - ts-node/register/transpile-only
   - tsconfig-paths/register
+  - dotenv/config
 schema: ./node/meshSchema.ts
 documents:
   - '**/*.graphql'
