@@ -10,6 +10,7 @@ import RowIconWithTextList from 'components/RowIconWithTextList'
 import RowLinksWithText from 'components/RowLinksWithText'
 import RowContact from 'components/RowContact'
 import RowGoogleMap from 'components/RowGoogleMap'
+import RowIpadHorizontal from 'components/RowIpadHorizontal'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -25,6 +26,7 @@ setRenderers({
   RowYoutubeVideo,
   RowContact,
   RowGoogleMap,
+  RowIpadHorizontal,
 })
 
 export default ContentRenderer

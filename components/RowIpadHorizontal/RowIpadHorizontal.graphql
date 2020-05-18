@@ -1,0 +1,17 @@
+fragment RowIpadHorizontal on RowIpadHorizontal {
+  id
+  backgroundImage {
+    alt
+    url
+    width
+    height
+    mimeType
+  }
+  iPadContent {
+    alt
+    url
+    width
+    height
+    mimeType
+  }
+}
