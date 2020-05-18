@@ -22,7 +22,7 @@
     "@apollo/react-hooks": "^3.1.5",
     "@apollo/react-ssr": "^3.1.5",
     "@graphql-mesh/cli": "^0.1.16",
-    "@graphql-mesh/graphql": "^0.1.16",
+    "@graphql-mesh/graphql": "^0.1.17",
     "@graphql-mesh/runtime": "^0.1.16",
     "@graphql-mesh/transform-filter-schema": "^0.1.16",
     "@material-ui/core": "^4.9.14",
