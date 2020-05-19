@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "concurrently yarn:dev-* --kill-others",
     "dev-next": "next dev",
+    "codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen",
     "dev-codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen -w",
     "dev-storybook": "start-storybook --quiet -p 6006",
     "build": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen && next build",
@@ -27,6 +28,8 @@
     "@graphql-mesh/runtime": "^0.1.18",
     "@graphql-mesh/transform-filter-schema": "^0.1.18",
     "@material-ui/core": "^4.10.0",
+    "@magento/peregrine": "^6.0.0",
+    "@magento/venia-ui": "^3.0.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.54",
     "@material-ui/styles": "^4.10.0",
@@ -56,6 +59,7 @@
     "sitemap": "^6.1.5",
     "ts-node": "^8.10.1",
     "tsconfig-paths": "^3.9.0",
+    "type-fest": "^0.13.1",
     "use-resize-observer": "^6.1.0"
   },
   "devDependencies": {

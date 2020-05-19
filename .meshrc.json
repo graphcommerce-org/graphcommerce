@@ -1,6 +1,7 @@
 {
   "sources": [
     {
+      "name": "GraphCMS",
       "handler": {
         "graphql": {
           "headers": {
@@ -9,12 +10,20 @@
           "endpoint": "${GRAPHCMS}"
         }
       },
-      "name": "GraphCMS",
       "transforms": [
         {
           "filterSchema": ["Mutation.createContactForm"]
         }
       ]
+    },
+    {
+      "name": "Magento GraphQL",
+      "handler": {
+        "graphql": {
+          "endpoint": "https://develop.pwa-venia.com/graphql",
+          "useGETForQueries": true
+        }
+      }
     }
   ]
 }

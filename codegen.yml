@@ -8,10 +8,11 @@ documents:
   - '**/*.graphql'
   - '!generated/*.graphql'
   - '!node_modules/**'
+  - 'node_modules/@magento/venia-ui/lib/queries/**/*.graphql'
 generates:
   generated/fragments.json:
     plugins:
-      - 'fragment-matcher'
+      - fragment-matcher
     hooks:
       afterOneFileWrite:
         - prettier --write
@@ -26,20 +27,25 @@ generates:
         - prettier --write
   generated/graphql.d.ts:
     plugins:
-      - 'typescript'
-      - 'typescript-operations'
+      - typescript
+      - typescript-operations
     config:
       typesPrefix: GQL
       immutableTypes: false
       noExport: true
       enumsAsTypes: true
       skipTypename: true
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: true
+      maybeValue: 'T'
     hooks:
       afterOneFileWrite:
         - prettier --write
   generated/apollo.ts:
     plugins:
-      - 'typescript-react-apollo'
+      - typescript-react-apollo
     config:
       typesPrefix: GQL
       withHOC: false
@@ -49,3 +55,8 @@ generates:
       afterOneFileWrite:
         - eslint --fix
         - prettier --write
+  generated/sdk.ts:
+    plugins:
+      - typescript-generic-sdk
+    config:
+      typesPrefix: GQL
