@@ -1,16 +1,14 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import Skeleton from '@material-ui/lab/Skeleton'
 import AsyncComponent from 'components/AsyncComponent'
 import useContactStyles from './useContactStyles'
 
 const ContactFormLoader: React.FC = ({ children }) => {
   const classes = useContactStyles()
-  const ref = useRef<HTMLDivElement>(null)
   return (
     <AsyncComponent
       loader={() => import('./ContactForm')}
-      measureRef={ref}
-      skeleton={
+      skeleton={(ref) => (
         <>
           {children}
           <div className={classes.form} ref={ref}>
@@ -27,7 +25,7 @@ const ContactFormLoader: React.FC = ({ children }) => {
             <Skeleton animation='wave' variant='rect' className={classes.submit} height={64.6} />
           </div>
         </>
-      }
+      )}
     >
       {children}
     </AsyncComponent>
