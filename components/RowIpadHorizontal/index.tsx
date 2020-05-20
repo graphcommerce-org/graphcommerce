@@ -1,10 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { Container } from '@material-ui/core'
+import { Container, Theme } from '@material-ui/core'
 import svgIpadBg from './horizontal-tablet-frame.svg'
 import Asset from '../Asset'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    margin: `${theme.spacings.xl} 0 ${theme.spacings.lg}`,
+  },
   iPadContainer: {
     marginTop: `-45%`,
     position: `relative`,
@@ -27,8 +30,12 @@ const useStyles = makeStyles({
   bgImg: {
     width: '100%',
     textAlign: 'center',
+    '& img': {
+      maxWidth: `100%`,
+      height: `auto`,
+    },
   },
-})
+}))
 
 const RowIpadHorizontal: React.FC<GQLRowIpadHorizontalFragment> = (props) => {
   const classes = useStyles()
