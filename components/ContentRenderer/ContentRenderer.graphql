@@ -17,6 +17,7 @@ fragment ContentRenderer on Page {
     ...RowContact
     ...RowGoogleMap
     ...RowIpadHorizontal
+    ...RowIpadVertical
     ...RowIphoneWithText
     ...RowLineHorizontal
   }
