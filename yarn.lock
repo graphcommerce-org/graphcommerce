@@ -1637,7 +1637,7 @@
     fetchache "0.0.3"
     graphql-tools "5.0.0"
 
-"@graphql-mesh/merger-stitching@0.1.17":
+"@graphql-mesh/merger-stitching@0.1.17", "@graphql-mesh/merger-stitching@^0.1.17":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.1.17.tgz#2354411cec932ee378c4cf858c7c3424653198a5"
   integrity sha512-vitkOJdmxNcPdxlL7No4zOmxvtPcnFe8y7rl6NYx0De/u15hl5n5ewXEosuV8VOvwDFTP+YN9TrUWoUau67Tug==
