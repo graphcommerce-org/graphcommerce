@@ -7,8 +7,7 @@ import { HeaderTheme } from 'components/Header'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import Link from 'next/link'
 import Error from 'next/error'
-import AsyncComponent from 'components/AsyncComponent'
-import { resourceUrl } from '@magento/venia-drivers'
+import dynamic from 'next/dynamic'
 import { GetNavigationProps } from './getNavigationProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
@@ -16,6 +15,8 @@ export type ShopLayoutProps = (GetNavigationProps &
   GetUrlResolveProps & { headerTheme?: HeaderTheme }) & { error?: string }
 
 export type PageWithShopLayout<T = {}> = LayoutPage<ShopLayoutProps & T, ShopLayoutProps>
+
+const MagentoDynamic = dynamic(() => import('./MagentoDynamic'), { ssr: false })
 
 const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id }) => {
   if (!id) return <Error statusCode={404}>{error}</Error>
@@ -46,10 +47,7 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id })
           )
         })}
 
-      <AsyncComponent
-        loader={() => import('./MiniCart')}
-        skeleton={(ref) => <div ref={ref}>loading</div>}
-      />
+      <MagentoDynamic />
 
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />

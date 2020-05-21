@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@magento/venia-drivers": ["shop/drivers"]
+      "@magento/venia-drivers": ["shop/drivers/index"]
     }
   },
   "exclude": ["node_modules", "public"],

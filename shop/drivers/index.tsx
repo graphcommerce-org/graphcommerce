@@ -1,14 +1,15 @@
 export {
-  connect,
   Link,
   Redirect,
   Route,
   Switch,
   withRouter,
-  useHistory,
   useLocation,
-  useRouteMatch,
+  useHistory,
   useParams,
-} from '@magento/venia-ui/lib/drivers'
+  useRouteMatch,
+} from 'react-router-dom'
+export { connect } from 'react-redux'
+
 export { default as resourceUrl } from '@magento/venia-ui/lib/util/makeUrl'
-export { default as Adapter } from '@magento/venia-ui/lib/drivers/adapter'
+export { default as Adapter } from './adapter'

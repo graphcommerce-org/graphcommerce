@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path')
 
 /**
  * Probably
@@ -99,6 +100,11 @@ module.exports = (nextConfig = {}) => {
       config.resolve.extensions.push(
         process.env.MAGENTO_BACKEND_EDITION === 'EE' ? '.ee.js' : '.ce.js',
       )
+
+      /**
+       * Make sure it can find @magento/venia-drivers, should probably be provided in some other way.
+       */
+      config.resolve.alias['@magento/venia-drivers'] = path.resolve(process.cwd(), 'shop/drivers')
 
       return config
     },
