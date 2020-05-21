@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 
 const useRichTextStyles = makeStyles(
-  {
+  ({ spacings }) => ({
     root: { '&:empty': { display: 'none' } },
     paragraph: { marginBottom: '1em' },
     h1: { marginTop: vpCalc(9, 0), marginBottom: vpCalc(21, 50) },
@@ -19,10 +19,22 @@ const useRichTextStyles = makeStyles(
     italic: {},
     underlined: {},
     code: {},
+    aspectContainer: {
+      position: 'relative',
+      paddingTop: 'calc(100% / 16 * 9)',
+      marginBottom: spacings.md,
+      '& > *': {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+      },
+    },
     iframe: {},
     table: {},
     link: {},
-  },
+  }),
   { name: 'RichText' },
 )
 export type UseRichTextStyles = UseStyles<typeof useRichTextStyles>

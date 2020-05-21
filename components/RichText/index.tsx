@@ -1,33 +1,14 @@
 import React from 'react'
 import { Typography } from '@material-ui/core'
 import Link from 'components/Link'
-import Asset, { MimeTypes } from 'components/Asset'
+import Asset from 'components/Asset'
 import AsyncIframe from 'components/AsyncIframe'
+import { VideoMimeTypes } from 'components/PictureResponsive/VideoResponsive'
+import { ImageMimeTypes } from 'components/PictureResponsive'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 
-export interface ValueJSON {
-  document: DocumentJSON
-  object?: 'value'
-}
-
-type NodeJSON = DocumentJSON | InlineJSON | TextJSON | BlockJSON
-
-interface DocumentJSON {
-  nodes: NodeJSON[]
-  data?: { [key: string]: unknown }
-  object: 'document'
-}
-
-type BlockJSON =
-  | SimpleBlockJSON
-  | IframeJSON
-  | ImageJSON
-  | VideoJSON
-  | TableJSON
-  | TableRowJSON
-  | TableCellJSON
-
-interface SimpleBlockJSON {
+interface Element {
+  children: Node[]
   type:
     | 'heading-one'
     | 'heading-two'
@@ -42,135 +23,61 @@ interface SimpleBlockJSON {
     | 'paragraph'
     | 'list-item'
     | 'list-item-child'
-  nodes: NodeJSON[]
-  data?: { [key: string]: unknown }
-  object: 'block'
+    | 'table'
+    | 'table_head'
+    | 'table_body'
+    | 'table_row'
+    | 'table_cell'
+    | string
+  [key: string]: unknown
 }
 
-interface IframeJSON {
-  type: 'iframe'
-  nodes: NodeJSON[]
-  data: { src: string }
-  object: 'block'
-}
-
-interface VideoJSON {
-  type: 'video'
-  nodes: NodeJSON[]
-  data: { src: string; title: string; handle: string; mimeType: string }
-  object: 'block'
-}
-
-interface ImageJSON {
-  type: 'image'
-  nodes: NodeJSON[]
-  data: {
-    src: string
-    width: number
-    height: number
-    mimeType: MimeTypes
-    title: string
-  }
-  object: 'block'
-}
-
-interface TableJSON {
-  type: 'table'
-  nodes: NodeJSON[]
-  data: { rows: number; header: boolean; columns: number }
-  object: 'block'
-}
-
-interface TableRowJSON {
-  type: 'table_row'
-  nodes: NodeJSON[]
-  data: { cells: number; index: number }
-  object: 'block'
-}
-interface TableCellJSON {
-  type: 'table_cell'
-  nodes: NodeJSON[]
-  data: { index: number }
-  object: 'block'
-}
-
-interface TextJSON {
-  marks: Mark[]
+interface Text {
   text: string
-  object: 'text'
+  bold?: true
+  italic?: true
+  underlined?: true
+  [key: string]: unknown
 }
 
-interface Mark {
-  object: 'mark'
-  type: 'bold' | 'italic' | 'underlined' | 'code'
-  // data: Immutable.Map<string, any>
-}
-
-type InlineJSON = LinkJSON
-
-interface LinkJSON {
-  object: 'inline'
-  nodes: NodeJSON[]
+interface LinkElement extends Element {
   type: 'link'
-  data: { href: string }
+  href: string
 }
 
-const RenderInline: React.FC<InlineJSON & Required<UseRichTextStyles>> = ({
-  classes,
-  ...inline
-}) => {
-  const { link } = classes
-  const childNodes = <RenderNodes nodes={inline.nodes} classes={classes} />
-
-  switch (inline.type) {
-    case 'link':
-      return (
-        // todo(paales) make sure the meta robots are set to nofollow when the link is external?
-        <Link href={inline.data.href} metaRobots='INDEX_FOLLOW' classes={{ root: link }}>
-          {childNodes}
-        </Link>
-      )
-    default:
-      console.error(`UNKOWNN INLINE TYPE ${inline.type}`, inline)
-      return <>{childNodes}</>
-  }
+interface ImageElement extends Element {
+  type: 'image'
+  src: string
+  title: string
+  width: number
+  height: number
+  mimeType: ImageMimeTypes
 }
 
-const RenderText: React.FC<TextJSON & Required<UseRichTextStyles>> = ({ classes, text, marks }) => {
-  const result = marks.reduce(
-    (val, mark) => (
-      <RenderMark classes={classes} {...mark}>
-        {val}
-      </RenderMark>
-    ),
-    <>{text}</>,
-  )
-  return <>{result}</>
+interface VideoElement extends Element {
+  type: 'image'
+  src: string
+  title: string
+  width: number
+  height: number
+  mimeType: VideoMimeTypes
 }
 
-const RenderMark: React.FC<Mark & Required<UseRichTextStyles>> = ({
-  classes,
-  children,
-  ...mark
-}) => {
-  const { strong, italic, underlined, code } = classes
-  switch (mark.type) {
-    case 'bold':
-      return <strong className={strong}>{children}</strong>
-    case 'italic':
-      return <em className={italic}>{children}</em>
-    case 'underlined':
-      return <u className={underlined}>{children}</u>
-    case 'code':
-      return <code className={code}>{children}</code>
-    default:
-      // eslint-disable-next-line no-console
-      console.log(`UNKOWNN MARK TYPE ${mark.type}`, mark)
-      return <>{children}</>
-  }
+interface LinkElement extends Element {
+  type: 'link'
+  href: string
 }
 
-const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classes, ...block }) => {
+interface IframeElement extends Element {
+  type: 'iframe'
+  src: string
+}
+
+type ElementNode = Element | LinkElement | ImageElement | VideoElement | IframeElement | LinkElement
+
+type Node = ElementNode | Text
+
+const RenderElement = ({ classes, ...element }: ElementNode & Required<UseRichTextStyles>) => {
   const {
     root,
     asset,
@@ -185,95 +92,116 @@ const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classe
     ol,
     blockQuote,
     iframe,
+    aspectContainer,
     table,
+    link,
   } = classes
 
-  switch (block.type) {
+  switch (element.type) {
     case 'heading-one':
       return (
         <Typography variant='h1' classes={{ root, h1 }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'heading-two':
       return (
         <Typography variant='h2' classes={{ root, h2 }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'heading-three':
       return (
         <Typography variant='h3' classes={{ root, h3 }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'heading-four':
       return (
         <Typography variant='h4' classes={{ root, h4 }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'heading-five':
       return (
         <Typography variant='h5' classes={{ root, h5 }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'heading-six':
       return (
         <Typography variant='h6' classes={{ root, h6 }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'paragraph':
       return (
         <Typography variant='body1' paragraph classes={{ root, paragraph }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'bulleted-list':
       return (
         <Typography component='ul' classes={{ root: ul }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'numbered-list':
       return (
         <Typography component='ol' classes={{ root: ol }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'list-item':
       return (
         <li>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </li>
       )
     case 'list-item-child':
-      return <RenderNodes nodes={block.nodes} classes={classes} />
+      return <RenderChildren {...element} classes={classes} />
     case 'block-quote':
       return (
         <Typography component='blockquote' classes={{ root: blockQuote }}>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </Typography>
       )
     case 'iframe':
+      // eslint-disable-next-line no-case-declarations
+      const iframeElement = element as IframeElement
       // todo(paales) add security attributes to iframe
       // todo(paales) make iframe responsive
       return (
-        <AsyncIframe
-          src={block.data.src}
-          title='embedded content'
-          className={iframe}
-          loading='lazy'
-        />
+        <div className={aspectContainer}>
+          <AsyncIframe
+            src={iframeElement.src}
+            title='embedded content'
+            className={iframe}
+            loading='lazy'
+          />
+        </div>
       )
     case 'image':
-      return <Asset asset={{ ...block.data, url: block.data.src }} width={380} className={asset} />
-    case 'video':
+      // eslint-disable-next-line no-case-declarations
+      const imageElement = element as ImageElement
       return (
         <Asset
-          asset={{ ...block.data, url: block.data.src }}
+          asset={{
+            url: imageElement.src,
+            mimeType: imageElement.mimeType,
+            width: imageElement.width,
+            height: imageElement.height,
+          }}
+          width={380}
+          className={asset}
+        />
+      )
+    case 'video':
+      // eslint-disable-next-line no-case-declarations
+      const videoElement = element as VideoElement
+      return (
+        <Asset
+          asset={{ url: videoElement.src, mimeType: videoElement.mimeType }}
           autoPlay
           loop
           muted
@@ -282,51 +210,80 @@ const RenderBlock: React.FC<BlockJSON & Required<UseRichTextStyles>> = ({ classe
           className={asset}
         />
       )
+    case 'link':
+      // eslint-disable-next-line no-case-declarations
+      const linkElement = element as LinkElement
+      return (
+        <Link href={linkElement.href} metaRobots='INDEX_FOLLOW' classes={{ root: link }}>
+          <RenderChildren {...element} classes={classes} />
+        </Link>
+      )
     case 'table':
       return (
         <table className={table}>
-          {block.data.header ? (
-            <>
-              <thead>
-                <RenderNodes nodes={block.nodes.slice(0, 1)} classes={classes} />
-              </thead>
-              <tbody>
-                <RenderNodes nodes={block.nodes.slice(1)} classes={classes} />
-              </tbody>
-            </>
-          ) : (
-            <tbody>
-              <RenderNodes nodes={block.nodes} classes={classes} />
-            </tbody>
-          )}
+          <RenderChildren {...element} classes={classes} />
         </table>
+      )
+    case 'table_head':
+      return (
+        <thead>
+          <RenderChildren {...element} classes={classes} />
+        </thead>
+      )
+    case 'table_body':
+      return (
+        <tbody>
+          <RenderChildren {...element} classes={classes} />
+        </tbody>
       )
     case 'table_row':
       return (
         <tr>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </tr>
       )
     case 'table_cell':
       return (
         <td>
-          <RenderNodes nodes={block.nodes} classes={classes} />
+          <RenderChildren {...element} classes={classes} />
         </td>
       )
     default:
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      return <div>UNKOWNN BLOCK TYPE {block.type}</div>
+      console.error(element)
+      throw Error(`RichText: Unknown Element: ${element.type}`)
   }
 }
 
-const RenderNodes: React.FC<{ nodes: NodeJSON[] } & Required<UseRichTextStyles>> = ({
-  nodes,
+const RenderText = ({ classes, text, ...textProps }: Text & Required<UseRichTextStyles>) => {
+  let result = <>{text}</>
+  if (textProps.bold) result = <strong>{result}</strong>
+  if (textProps.italic) result = <em>{result}</em>
+  if (textProps.underlined) result = <em>{result}</em>
+
+  return result
+}
+
+const RenderNode = ({ classes, ...node }: Node & Required<UseRichTextStyles>) => {
+  if (node.text !== undefined) {
+    const textNode = node as Text
+    return <RenderText {...textNode} classes={classes} />
+  }
+  if (node.type) {
+    const elementNode = node as ElementNode
+    return <RenderElement {...elementNode} classes={classes} />
+  }
+
+  console.error(node)
+  throw Error(`RichText: Node not recognized`)
+}
+
+const RenderChildren = ({
+  children,
   classes,
-}) => {
+}: { children: Node[] } & Required<UseRichTextStyles>) => {
   return (
     <>
-      {nodes.map((node, key) => (
+      {children.map((node, key) => (
         // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
         // eslint-disable-next-line react/no-array-index-key
         <RenderNode {...node} key={key} classes={classes} />
@@ -335,26 +292,9 @@ const RenderNodes: React.FC<{ nodes: NodeJSON[] } & Required<UseRichTextStyles>>
   )
 }
 
-const RenderNode: React.FC<NodeJSON & Required<UseRichTextStyles>> = (node) => {
-  switch (node.object) {
-    case 'block':
-      return <RenderBlock {...node} />
-    case 'document':
-      return <RenderNodes {...node} />
-    case 'inline':
-      return <RenderInline {...node} />
-    case 'text':
-      return <RenderText {...node} />
-    default:
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      throw Error(`RenderNode object ${node.object} not implemented`)
-  }
-}
-
-const RichText: React.FC<{ raw: ValueJSON } & UseRichTextStyles> = ({ raw, ...props }) => {
+const RichText = ({ raw, ...props }: { raw: ElementNode } & UseRichTextStyles) => {
   const classes = useRichTextStyles(props)
-  return <RenderNodes classes={classes} {...raw.document} />
+  return <RenderChildren classes={classes} {...raw} />
 }
 
 export default RichText
