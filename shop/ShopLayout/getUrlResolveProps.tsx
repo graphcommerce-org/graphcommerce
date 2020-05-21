@@ -1,6 +1,6 @@
 import apolloClient from 'node/apolloClient'
-import { ResolveUrlDocument } from 'generated/sdk'
 import { PromiseValue } from 'type-fest'
+import { ResolveUrlDocument } from 'generated/apollo'
 
 const getUrlResolveProps = async (variables: GQLResolveUrlQueryVariables) => {
   const {

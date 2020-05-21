@@ -20,8 +20,7 @@
       "name": "Magento GraphQL",
       "handler": {
         "graphql": {
-          "endpoint": "https://develop.pwa-venia.com/graphql",
-          "useGETForQueries": true
+          "endpoint": "https://develop.pwa-venia.com/graphql"
         }
       }
     }

@@ -7,6 +7,8 @@ import { HeaderTheme } from 'components/Header'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import Link from 'next/link'
 import Error from 'next/error'
+import AsyncComponent from 'components/AsyncComponent'
+import { resourceUrl } from '@magento/venia-drivers'
 import { GetNavigationProps } from './getNavigationProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
@@ -15,8 +17,8 @@ export type ShopLayoutProps = (GetNavigationProps &
 
 export type PageWithShopLayout<T = {}> = LayoutPage<ShopLayoutProps & T, ShopLayoutProps>
 
-const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error }) => {
-  if (error) return <Error statusCode={404}>{error}</Error>
+const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id }) => {
+  if (!id) return <Error statusCode={404}>{error}</Error>
   return (
     <ThemedProvider>
       <Head>
@@ -35,13 +37,19 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error }) => 
       <CssBaseline />
       <PageLoadIndicator />
 
-      {menu.children.map((child) => {
-        return (
-          <Link href='/shop/browse/[...url]' as={`/shop/browse/${child.url_path}`} key={child.id}>
-            <a>{child.name}</a>
-          </Link>
-        )
-      })}
+      {menu &&
+        menu.children.map((child) => {
+          return (
+            <Link href='/shop/browse/[...url]' as={`/shop/browse/${child.url_path}`} key={child.id}>
+              <a>{child.name}</a>
+            </Link>
+          )
+        })}
+
+      <AsyncComponent
+        loader={() => import('./MiniCart')}
+        skeleton={(ref) => <div ref={ref}>loading</div>}
+      />
 
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />

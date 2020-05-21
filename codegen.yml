@@ -55,8 +55,3 @@ generates:
       afterOneFileWrite:
         - eslint --fix
         - prettier --write
-  generated/sdk.ts:
-    plugins:
-      - typescript-generic-sdk
-    config:
-      typesPrefix: GQL

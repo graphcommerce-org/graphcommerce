@@ -47,7 +47,7 @@ custom parts with NextJS where possible.
 
 The UI library is (as expected) super limited and is a custom solution once
 again. It doesn't offer a good default and it will require beautification before
-we can even begin to start using it. I'd call the solution Naive.
+we can even begin to start using it. I'd call the solution naive.
 
 ## Technical
 

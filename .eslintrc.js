@@ -59,6 +59,9 @@ module.exports = {
     'no-underscore-dangle': ['error', { allow: ['__typename'] }],
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     '@typescript-eslint/explicit-function-return-type': 'off',
+
+    //Magento compatibility
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx'] }],
   },
   overrides: [
     {

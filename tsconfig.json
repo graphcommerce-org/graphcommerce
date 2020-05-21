@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "baseUrl": ".",
     "strict": true,
@@ -13,7 +13,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@magento/venia-drivers": ["shop/drivers"]
+    }
   },
   "exclude": ["node_modules", "public"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "apollo.config.js"]

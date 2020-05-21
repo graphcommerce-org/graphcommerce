@@ -8,6 +8,7 @@ const ContactFormLoader: React.FC = ({ children }) => {
   return (
     <AsyncComponent
       loader={() => import('./ContactForm')}
+      debugShowSkeleton
       skeleton={(ref) => (
         <>
           {children}
