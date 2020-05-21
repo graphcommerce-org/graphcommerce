@@ -1,5 +1,7 @@
 import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
+import '@graphql-mesh/merger-stitching'
+
 import { getMesh, processConfig } from '@graphql-mesh/runtime'
 import meshrc from '../.meshrc.json'
 
