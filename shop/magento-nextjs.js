@@ -40,6 +40,7 @@ module.exports = (nextConfig = {}) => {
           },
           // https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L85-L90
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
               options: {

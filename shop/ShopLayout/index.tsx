@@ -16,7 +16,7 @@ export type ShopLayoutProps = (GetNavigationProps &
 
 export type PageWithShopLayout<T = {}> = LayoutPage<ShopLayoutProps & T, ShopLayoutProps>
 
-const MagentoDynamic = dynamic(() => import('./MagentoDynamic'), { ssr: false })
+const MagentoDynamic = dynamic(() => import('../MagentoDynamic'), { ssr: false })
 
 const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id }) => {
   if (!id) return <Error statusCode={404}>{error}</Error>
