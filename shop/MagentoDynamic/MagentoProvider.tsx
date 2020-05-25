@@ -2,9 +2,7 @@ import React from 'react'
 import { ApolloLink } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
 import { RetryLink } from 'apollo-link-retry'
-
 import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
-
 import { Util } from '@magento/peregrine'
 import app from '@magento/peregrine/lib/store/actions/app'
 import AppContextProvider from '@magento/venia-ui/lib/components/App/contextProvider'

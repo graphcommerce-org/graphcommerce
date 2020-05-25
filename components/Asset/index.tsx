@@ -5,6 +5,7 @@ import VideoResponsive, {
   VideoResponsiveProps,
   VideoMimeTypes,
 } from 'components/PictureResponsive/VideoResponsive'
+import { SetOptional } from 'type-fest'
 
 export type MimeTypes = ImageMimeTypes & 'video/mp4'
 
@@ -19,7 +20,7 @@ type ImageProps = {
 } & Omit<FilestackPictureProps, 'src' | 'type' | 'height'>
 
 type VideoProps = {
-  asset: { mimeType: VideoMimeTypes } & GQLAssetFragment
+  asset: { mimeType: VideoMimeTypes } & SetOptional<GQLAssetFragment, 'width' | 'height'>
 } & Omit<VideoResponsiveProps, 'src' | 'height'>
 
 const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = ({
@@ -54,9 +55,6 @@ const Asset: React.FC<SvgProps | ImageProps | VideoProps | UnsupportedProps> = (
           {...(props as JSX.IntrinsicElements['img'])}
         />
       )
-    case undefined:
-    case null:
-      return <div>Corrupt file {asset.url}</div>
     default:
       if (!asset.width || !asset.height) throw new Error('Missing width/height')
       if (!(props as ImageProps).width)

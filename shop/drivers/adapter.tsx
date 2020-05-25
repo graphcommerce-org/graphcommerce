@@ -24,6 +24,7 @@ import { cacheKeyFromType } from '@magento/venia-ui/lib/util/apolloCache'
 
 import introspectionQueryResultData from 'generated/fragments.json'
 import { Store } from 'redux'
+import { PersistedData, PersistentStorage } from 'apollo-cache-persist/types'
 
 /**
  * To improve initial load time, create an apollo cache object as soon as
@@ -64,7 +65,7 @@ const VeniaAdapter = (
       link?: ApolloLink
       initialData?: {}
     }
-    store: Store
+    store: Store | any
   }>,
 ) => {
   const { apiBase, apollo = {}, children, store } = props
@@ -79,7 +80,7 @@ const VeniaAdapter = (
 
   const persistor = new CachePersistor({
     cache,
-    storage: window.localStorage,
+    storage: window.localStorage as PersistentStorage<PersistedData<NormalizedCacheObject>>,
     debug: process.env.NODE_ENV === 'development',
   })
 
@@ -92,10 +93,15 @@ const VeniaAdapter = (
       link,
       resolvers,
     })
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     apolloClient.apiBase = apiBase
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   apolloClient.persistor = persistor
+  // eslint-disable-next-line @typescript-eslint/require-await
   apolloClient.onResetStore(async () =>
     cache.writeData({
       data: initialData,

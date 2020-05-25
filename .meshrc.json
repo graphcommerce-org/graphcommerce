@@ -22,7 +22,16 @@
         "graphql": {
           "endpoint": "https://develop.pwa-venia.com/graphql"
         }
-      }
+      },
+      "transforms": [
+        {
+          "snapshot": {
+            "if": "process.env.NODE_ENV !== 'production'",
+            "apply": ["Query.category", "Query.urlResolver", "Query.cmsPage"],
+            "outputDir": "generated/snapshots"
+          }
+        }
+      ]
     }
   ]
 }

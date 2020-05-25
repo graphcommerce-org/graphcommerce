@@ -187,6 +187,7 @@ const RenderElement = ({ classes, ...element }: ElementNode & Required<UseRichTe
       return (
         <Asset
           asset={{
+            alt: '',
             url: imageElement.src,
             mimeType: imageElement.mimeType,
             width: imageElement.width,
@@ -201,7 +202,7 @@ const RenderElement = ({ classes, ...element }: ElementNode & Required<UseRichTe
       const videoElement = element as VideoElement
       return (
         <Asset
-          asset={{ url: videoElement.src, mimeType: videoElement.mimeType }}
+          asset={{ url: videoElement.src, mimeType: videoElement.mimeType, alt: '' }}
           autoPlay
           loop
           muted
