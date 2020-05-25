@@ -2,14 +2,13 @@ import React from 'react'
 import { ApolloLink } from 'apollo-link'
 import { setContext } from 'apollo-link-context'
 import { RetryLink } from 'apollo-link-retry'
-import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
-import { Util } from '@magento/peregrine'
+import MutationQueueLink from '@adobe/apollo-link-mutation-queue/src/index'
+import { BrowserPersistence } from '@magento/peregrine/lib/util'
 import app from '@magento/peregrine/lib/store/actions/app'
 import AppContextProvider from '@magento/venia-ui/lib/components/App/contextProvider'
 import { Adapter } from '@magento/venia-drivers'
 import store from './store'
 
-const { BrowserPersistence } = Util
 const apiBase = '/api/graphql'
 
 /**
@@ -33,7 +32,7 @@ const authLink = setContext((_, { headers }) => {
 
 // @see https://www.apollographql.com/docs/link/composition/.
 const apolloLink = ApolloLink.from([
-  new MutationQueueLink(),
+  new MutationQueueLink() as ApolloLink,
   new RetryLink(),
   authLink,
   Adapter.apolloLink(apiBase),
