@@ -1,0 +1,17 @@
+fragment RowLaptop on RowLaptop {
+  id
+  backgroundimage {
+    alt
+    url
+    width
+    height
+    mimeType
+  }
+  laptopcontent {
+    alt
+    url
+    width
+    height
+    mimeType
+  }
+}

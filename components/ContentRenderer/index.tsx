@@ -13,6 +13,7 @@ import RowGoogleMap from 'components/RowGoogleMap'
 import RowIpadHorizontal from 'components/RowIpadHorizontal'
 import RowIpadVertical from 'components/RowIpadVertical'
 import RowIphoneWithText from 'components/RowIphoneWithText'
+import RowLaptop from 'components/RowLaptop'
 import RowLineHorizontal from 'components/RowLineHorizontal'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
@@ -31,6 +32,7 @@ setRenderers({
   RowGoogleMap,
   RowIpadHorizontal,
   RowIpadVertical,
+  RowLaptop,
   RowIphoneWithText,
   RowLineHorizontal,
 })
