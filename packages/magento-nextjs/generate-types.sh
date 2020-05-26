@@ -1,11 +1,17 @@
 #!/bin/bash
+# todo(paales): Move the generated packages a separate repository or commit them back to Magento.
 
-rm -rf $PWD/node_modules/@types/magento__peregrine
-rm -rf $PWD/node_modules/@types/magento__venia-ui
+echo "Generating @magento/peregrine + @magento/venia-ui TypeScript declarations from source.."
+rm -r $PWD/node_modules/@types/magento__peregrine
+rm -r $PWD/node_modules/@types/magento__venia-ui
 
-find node_modules/@magento -name '*.js' -not -path "*/__tests__/*" -not -path "*/___tests__/*" -not -path "*/__stories__/*" -not -path "*/__mocks__/*"  -not -path "*/__fixtures__/*" | xargs $(yarn bin)/tsc --declaration --allowJs --emitDeclarationOnly --esModuleInterop -module esnext --moduleResolution node --outDir __types__
-# yarn eslint --fix generated/__types__/**/*.d.ts
-# yarn prettier --write generated/__types__/**/*.d.ts
+find node_modules/@magento -name '*.js' -not -path "*/__*" | xargs $(yarn bin)/tsc --declaration --allowJs --emitDeclarationOnly --esModuleInterop -module esnext --moduleResolution node --outDir __types__
+# yarn eslint --fix __types__/**/*.d.ts
+yarn prettier --write --loglevel silent __types__/**/*.d.ts
+
+echo "export * from './lib/index'" > $PWD/__types__/peregrine/index.d.ts
+echo "export * from './lib/index'" > $PWD/__types__/venia-ui/index.d.ts
+
 mv $PWD/__types__/peregrine $PWD/node_modules/@types/magento__peregrine
 mv $PWD/__types__/venia-ui $PWD/node_modules/@types/magento__venia-ui
-rm -rf $PWD/__types__
+rm -r $PWD/__types__
