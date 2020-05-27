@@ -1166,7 +1166,7 @@ const start = (canvas: HTMLCanvasElement, configPartial: Partial<Config> = {}) =
   }
 
   function updateKeywords() {
-    const displayKeywords = []
+    const displayKeywords: string[] = []
     if (config.shading) displayKeywords.push('SHADING')
     if (config.bloom) displayKeywords.push('BLOOM')
     if (config.sunrays) displayKeywords.push('SUNRAYS')

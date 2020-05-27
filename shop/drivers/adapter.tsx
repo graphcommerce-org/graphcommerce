@@ -74,9 +74,7 @@ const VeniaAdapter = (
   const link = apollo.link || VeniaAdapter.apolloLink(apiBase)
   const initialData = apollo.initialData || {}
 
-  cache.writeData({
-    data: initialData,
-  })
+  cache.writeData({ data: initialData })
 
   const persistor = new CachePersistor({
     cache,
@@ -88,11 +86,7 @@ const VeniaAdapter = (
   if (apollo.client) {
     apolloClient = apollo.client
   } else {
-    apolloClient = new ApolloClient({
-      cache,
-      link,
-      resolvers,
-    })
+    apolloClient = new ApolloClient({ cache, link, resolvers })
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     apolloClient.apiBase = apiBase
@@ -102,11 +96,7 @@ const VeniaAdapter = (
   // @ts-ignore
   apolloClient.persistor = persistor
   // eslint-disable-next-line @typescript-eslint/require-await
-  apolloClient.onResetStore(async () =>
-    cache.writeData({
-      data: initialData,
-    }),
-  )
+  apolloClient.onResetStore(async () => cache.writeData({ data: initialData }))
 
   const [initialized, setInitialized] = useState(false)
 
@@ -114,20 +104,13 @@ const VeniaAdapter = (
     async function initialize() {
       // On load, restore the persisted data to the apollo cache and then
       // allow rendering. You can do other async blocking stuff here.
-      if (persistor) {
-        await persistor.restore()
-      }
+      if (persistor) await persistor.restore()
       setInitialized(true)
     }
-    if (!initialized) {
-      initialize()
-    }
+    if (!initialized) initialize()
   }, [initialized, persistor])
 
-  if (!initialized) {
-    // TODO: Replace with app skeleton. See PWA-547.
-    return null
-  }
+  if (!initialized) return null
 
   return (
     <ApolloProvider client={apolloClient}>
@@ -142,10 +125,6 @@ const VeniaAdapter = (
  * We attach this Link as a static method on VeniaAdapter because
  * other modules in the codebase need access to it.
  */
-VeniaAdapter.apolloLink = (apiBase: string) => {
-  return createHttpLink({
-    uri: apiBase,
-  })
-}
+VeniaAdapter.apolloLink = (apiBase: string) => createHttpLink({ uri: apiBase })
 
 export default VeniaAdapter
