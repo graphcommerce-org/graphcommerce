@@ -7,8 +7,8 @@ import { HeaderTheme } from 'components/Header'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import Link from 'next/link'
 import Error from 'next/error'
-import dynamic from 'next/dynamic'
 import MagentoDynamic from 'shop/MagentoDynamic/MagentoDynamic'
+import CartTriggerSkeleton from 'shop/MagentoDynamic/CartTriggerSkeleton'
 import { GetNavigationProps } from './getNavigationProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
@@ -34,7 +34,7 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id })
         <link rel='manifest' href='/manifest.webmanifest' />
         <link rel='shortcut icon' href='/manifest/favicon.ico' />
       </Head>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <PageLoadIndicator />
 
       {menu &&
@@ -50,7 +50,13 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id })
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         loader={() => import('@magento/venia-ui/lib/components/Header/cartTrigger')}
-        skeleton={(ref) => <div ref={ref}>hoi</div>}
+        skeleton={(ref) => <CartTriggerSkeleton ref={ref} />}
+      />
+
+      <MagentoDynamic
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        loader={() => import('@magento/venia-ui/lib/components/MiniCart')}
       />
 
       {children}

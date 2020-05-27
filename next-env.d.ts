@@ -9,3 +9,8 @@ declare module 'react' {
     loading?: 'lazy' | 'eager' | 'auto'
   }
 }
+
+declare module '*.css' {
+  const classes: { readonly [key: string]: string }
+  export default classes
+}

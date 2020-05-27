@@ -13,7 +13,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
-const withTM = require('next-transpile-modules')(['@magento/venia-ui', '@magento/peregrine'])
 const withMagento = require('./shop/magento-nextjs')
 
 const nextConfig = {
@@ -119,4 +118,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withTM(withImages(withMagento(withBundleAnalyzer(nextConfig))))
+module.exports = withImages(withMagento(withBundleAnalyzer(nextConfig)))
