@@ -36,6 +36,7 @@ const magentoExcludes = generateExcludes(affectedPackages)
  * - ServiceWorkerPlugin: Handled by nextjs plugin when required
  */
 module.exports = (nextConfig = {}) => {
+  const { magento } = nextConfig
   return {
     ...nextConfig,
     /**
@@ -61,7 +62,23 @@ module.exports = (nextConfig = {}) => {
 
         return origExclude(p)
       }
-      console.log(config.module.rules[0])
+
+      /**
+       * Solve issues with relative imports in modules.
+       * https://github.com/martpie/next-transpile-modules/blob/master/src/next-transpile-modules.js#L66-L78
+       */
+      if (config.externals) {
+        config.externals = config.externals.map((external) => {
+          if (typeof external !== 'function') return external
+          return (ctx, req, cb) => {
+            return magentoIncludes.find((include) =>
+              req.startsWith('.') ? include.test(path.resolve(ctx, req)) : include.test(req),
+            )
+              ? cb()
+              : external(ctx, req, cb)
+          }
+        })
+      }
 
       /**
        * Find all css loaders
@@ -87,15 +104,7 @@ module.exports = (nextConfig = {}) => {
         include: magentoIncludes,
         exclude: magentoExcludes,
         // https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L85-L90
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        ],
+        use: ['style-loader', { loader: 'css-loader', options: { modules: true } }],
         // We don't support compiling CSS from other node_modules, not sure why this is there.
         // https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L94-L105
       })
@@ -107,18 +116,9 @@ module.exports = (nextConfig = {}) => {
        */
       config.module.rules.push({
         test: /\.graphql$/,
-        include: [
-          /(@magento[\\/]venia-ui|@magento[\\/]peregrine)$/,
-          /(@magento[\\/]venia-ui|@magento[\\/]peregrine)[\\/](?!.*node_modules)/,
-        ],
-        exclude: [
-          /node_modules[\\/](?!(@magento[\\/]venia-ui|@magento[\\/]peregrine)([\\/]|$)(?!.*node_modules))/,
-        ],
-        use: [
-          {
-            loader: 'graphql-tag/loader',
-          },
-        ],
+        include: magentoIncludes,
+        exclude: magentoExcludes,
+        use: [{ loader: 'graphql-tag/loader' }],
       })
 
       /**
@@ -128,13 +128,8 @@ module.exports = (nextConfig = {}) => {
        */
       config.module.rules.push({
         test: /\.(jpg|svg|png)$/,
-        include: [
-          /(@magento[\\/]venia-ui|@magento[\\/]peregrine)$/,
-          /(@magento[\\/]venia-ui|@magento[\\/]peregrine)[\\/](?!.*node_modules)/,
-        ],
-        exclude: [
-          /node_modules[\\/](?!(@magento[\\/]venia-ui|@magento[\\/]peregrine)([\\/]|$)(?!.*node_modules))/,
-        ],
+        include: magentoIncludes,
+        exclude: magentoExcludes,
         use: [{ loader: 'file-loader' }],
       })
 
@@ -144,14 +139,12 @@ module.exports = (nextConfig = {}) => {
        * https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/WebpackTools/MagentoResolver.js
        * https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L121-L126
        */
-      config.resolve.extensions.push(
-        process.env.MAGENTO_BACKEND_EDITION === 'EE' ? '.ee.js' : '.ce.js',
-      )
+      config.resolve.extensions.push(magento.isCommerce ? '.ee.js' : '.ce.js')
 
       /**
        * Make sure it can find @magento/venia-drivers, should probably be provided in some other way.
        */
-      config.resolve.alias['@magento/venia-drivers'] = path.resolve(process.cwd(), 'shop/drivers')
+      config.resolve.alias['@magento/venia-drivers'] = path.resolve(process.cwd(), magento.drivers)
 
       return config
     },

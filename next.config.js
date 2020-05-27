@@ -116,6 +116,7 @@ const nextConfig = {
       },
     ],
   },
+  magento: { isCommerce: false, drivers: 'shop/drivers' },
 }
 
 module.exports = withImages(withMagento(withBundleAnalyzer(nextConfig)))
