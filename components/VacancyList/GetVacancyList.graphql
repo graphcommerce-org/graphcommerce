@@ -1,4 +1,4 @@
-query GetVacancyList($url: String, $locale: Locale!) {
+query GetVacancyList($locale: Locale!) {
   vacancyPosts: pages(
     where: { url_starts_with: "/vacature", url_not_in: ["/vacatures", "/vacature-php-developer"] }
     locales: [$locale]

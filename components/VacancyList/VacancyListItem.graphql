@@ -1,12 +1,11 @@
 fragment VacancyListItem on Page {
+  __typename
   id
-  createdAt
   title
   metaRobots
-  metaDescription
   url
   locale
-  asset {
-    ...Asset
+  content {
+    ...RowVacancy
   }
 }
