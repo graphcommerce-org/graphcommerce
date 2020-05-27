@@ -17,11 +17,13 @@ const useStyles = makeStyles(
 
 const PortfolioList: React.FC<GQLGetPortfolioListQuery> = ({ portfolioList }) => {
   const classes = useStyles()
+
   return (
     <Container className={classes.portfolioList}>
-      {portfolioList.map((portfolioItem) => (
-        <PortfolioListItem key={portfolioItem.id} {...portfolioItem} />
-      ))}
+      {portfolioList &&
+        portfolioList.map((portfolioItem) => (
+          <PortfolioListItem key={portfolioItem.id} {...portfolioItem} />
+        ))}
     </Container>
   )
 }
