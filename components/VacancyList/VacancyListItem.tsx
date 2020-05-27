@@ -1,7 +1,6 @@
 import React from 'react'
 import { Typography, makeStyles, Theme, LinkProps } from '@material-ui/core'
 import Link from '../Link'
-import Asset from '../Asset'
 import { vpCalc, UseStyles } from '../Theme'
 
 export const useVacancyListItemStyles = makeStyles(
@@ -35,8 +34,33 @@ type VacancyListItemProps = GQLVacancyListItemFragment &
   LinkProps
 
 const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
-  const { title, url, metaRobots, createdAt, asset, locale, metaDescription, ...linkProps } = props
+  const { title, url, metaRobots, locale, content, ...linkProps } = props
   const classes = useVacancyListItemStyles(props)
+
+  const status = content[0].vacancystatus ? content[0].vacancystatus : 'leeg'
+  let statusLabel = ''
+  let labelClass = ''
+
+  switch (status) {
+    case 'FRESH': {
+      statusLabel = 'Nieuw'
+      labelClass = 'classes.fresh'
+      break
+    }
+    case 'RENEWED': {
+      statusLabel = 'Vernieuwd'
+      labelClass = 'classes.renewed'
+      break
+    }
+    case 'NOT_AVAILABLE': {
+      statusLabel = 'Niet meer beschikbaar'
+      labelClass = 'classes.notavailable'
+      break
+    }
+    default: {
+      break
+    }
+  }
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -47,13 +71,15 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
   return (
     <Link href={url} metaRobots={metaRobots} underline='none' {...linkProps}>
       <div className={classes.item}>
-        <Typography component='h3' className={classes.title}>
-          {title}
-        </Typography>
         <div>
-          <Typography component='p'>{metaDescription}</Typography>
+          <div className={labelClass}>{statusLabel}</div>
+          <Typography component='h3' className={classes.title}>
+            {title}
+          </Typography>
         </div>
-        <div className={classes.link}>Lees meer</div>
+        <ul>
+          {content[0] && content[0].perks ? content[0].perks.map((item) => <li>{item}</li>) : ''}
+        </ul>
       </div>
     </Link>
   )
