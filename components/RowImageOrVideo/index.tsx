@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: `${theme.spacings.xl} 0 ${theme.spacings.xl}`,
     '& img, & video': {
       maxWidth: '100%',
+      height: 'auto',
     },
   },
 }))

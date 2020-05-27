@@ -1,0 +1,15 @@
+fragment RowPhonesSlider on RowPhonesSlider {
+  id
+  backgroundImage {
+    ...Asset
+  }
+  phoneOneContent {
+    ...Asset
+  }
+  phoneTwoContent {
+    ...Asset
+  }
+  phoneThreeContent {
+    ...Asset
+  }
+}

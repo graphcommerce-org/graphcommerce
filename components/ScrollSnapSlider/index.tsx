@@ -32,6 +32,7 @@ const useStyles = makeStyles(
         scrollSnapType: 'both proximity',
         '& > *': { scrollSnapAlign: 'center' },
       }),
+      overflowY: `hidden`,
     }),
     prevFab: {
       width: vpCalc(40, 60),
