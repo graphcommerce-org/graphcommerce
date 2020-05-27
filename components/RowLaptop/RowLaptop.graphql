@@ -1,17 +1,9 @@
 fragment RowLaptop on RowLaptop {
   id
-  backgroundimage {
-    alt
-    url
-    width
-    height
-    mimeType
+  backgroundImage {
+    ...Asset
   }
-  laptopcontent {
-    alt
-    url
-    width
-    height
-    mimeType
+  laptopContent {
+    ...Asset
   }
 }

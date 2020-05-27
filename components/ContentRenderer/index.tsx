@@ -14,7 +14,9 @@ import RowIpadHorizontal from 'components/RowIpadHorizontal'
 import RowIpadVertical from 'components/RowIpadVertical'
 import RowIphoneWithText from 'components/RowIphoneWithText'
 import RowLaptop from 'components/RowLaptop'
+import RowLaptopWithText from 'components/RowLaptopWithText'
 import RowLineHorizontal from 'components/RowLineHorizontal'
+import RowImageOrVideo from 'components/RowImageOrVideo'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -33,8 +35,10 @@ setRenderers({
   RowIpadHorizontal,
   RowIpadVertical,
   RowLaptop,
+  RowLaptopWithText,
   RowIphoneWithText,
   RowLineHorizontal,
+  RowImageOrVideo,
 })
 
 export default ContentRenderer

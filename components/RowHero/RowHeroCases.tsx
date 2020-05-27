@@ -9,8 +9,14 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       backgroundColor: '#fafafa',
-      paddingTop: theme.spacings.xxl,
+      paddingTop: `calc(${theme.spacings.xxl} + calc(${theme.gridSpacing.row} * 2 + ${vpCalc(
+        46,
+        72,
+      )} + 3px))`,
       paddingBottom: theme.spacings.xl,
+      marginTop: `calc(-1 * calc(${theme.spacings.xxl} + calc(${
+        theme.gridSpacing.row
+      } * 2 + ${vpCalc(46, 72)} + 3px)))`,
     },
     grid: {
       display: `grid`,

@@ -18,7 +18,10 @@ fragment ContentRenderer on Page {
     ...RowGoogleMap
     ...RowIpadHorizontal
     ...RowIpadVertical
+    ...RowLaptop
+    ...RowLaptopWithText
     ...RowIphoneWithText
     ...RowLineHorizontal
+    ...RowImageOrVideo
   }
 }

@@ -1,17 +1,9 @@
 fragment RowIpadVertical on RowIpadVertical {
   id
   backgroundImage {
-    alt
-    url
-    width
-    height
-    mimeType
+    ...Asset
   }
   iPadContent {
-    alt
-    url
-    width
-    height
-    mimeType
+    ...Asset
   }
 }

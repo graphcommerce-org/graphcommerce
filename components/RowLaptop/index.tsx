@@ -2,26 +2,37 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Container, Theme } from '@material-ui/core'
 import svgLaptopBg from './laptop-frame.svg'
+import laptopShadow from './laptop-shadow.png'
 import Asset from '../Asset'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    margin: `${theme.spacings.xl} 0 ${theme.spacings.lg}`,
+    margin: `${theme.spacings.xl} 0 ${theme.spacings.xl}`,
   },
-  iPadContainer: {
-    marginTop: `-45%`,
+  laptopContainer: {
+    marginTop: `-50%`,
     position: `relative`,
     '& img': {
       maxWidth: '100%',
     },
   },
-  iPadContent: {
-    height: `85.3%`,
-    width: `72.5%`,
+  laptopShadow: {
+    left: `-5.5%`,
+    width: `112.2%`,
+    height: `auto`,
+    opacity: `0.17`,
+    position: `absolute`,
+    maxWidth: `none !important`,
+    marginTop: `-6.76%`,
+  },
+  laptopContent: {
+    height: `84%`,
+    width: `79.5%`,
     position: 'absolute',
-    top: `7%`,
-    left: `13.5%`,
+    top: `5%`,
+    left: `10.3%`,
     display: `flex`,
+    alignItems: `center`,
     '& video': {
       width: `100%`,
       height: `auto`,
@@ -30,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   bgImg: {
     width: '100%',
     textAlign: 'center',
-    '& img': {
+    '& img, & picture': {
       maxWidth: `100%`,
       height: `auto`,
     },
@@ -39,18 +50,19 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const RowLaptop: React.FC<GQLRowLaptopFragment> = (props) => {
   const classes = useStyles()
-  const { laptopcontent, backgroundimage } = props
+  const { laptopContent, backgroundImage } = props
+
   return (
     <Container>
       <div className={classes.root}>
         <div className={classes.bgImg}>
-          {backgroundimage && <Asset asset={backgroundimage} width='1440' />}
+          {backgroundImage && <Asset asset={backgroundImage} width='1440' />}
         </div>
-        <div className={classes.iPadContainer}>
+        <div className={classes.laptopContainer}>
+          <img className={classes.laptopShadow} src={laptopShadow} alt='' />
           <img src={svgLaptopBg} alt='' />
-          <div className={classes.iPadContent}>
-            {console.log(laptopcontent)}
-            {laptopcontent ? <Asset asset={laptopcontent} /> : ''}
+          <div className={classes.laptopContent}>
+            <Asset asset={laptopContent} width={1160} />
           </div>
         </div>
       </div>

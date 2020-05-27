@@ -1,0 +1,6 @@
+fragment RowImageOrVideo on RowImageOrVideo {
+  id
+  asset {
+    ...Asset
+  }
+}

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: `70%`,
     marginTop: `-78%`,
     position: `relative`,
-    '& img': {
+    '& img, & picture': {
       width: '100%',
     },
   },
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: `72.5%`,
     height: `77%`,
     display: `flex`,
+    alignItems: `center`,
     position: `absolute`,
     '& video': {
       width: `100%`,
@@ -50,7 +51,7 @@ const RowIpadVertical: React.FC<GQLRowIpadVerticalFragment> = (props) => {
         <div className={classes.iPadContainer}>
           <img src={svgIpadBg} alt='' />
           <div className={classes.iPadContent}>
-            <Asset asset={iPadContent} />
+            <Asset asset={iPadContent} width={740} />
           </div>
         </div>
       </div>

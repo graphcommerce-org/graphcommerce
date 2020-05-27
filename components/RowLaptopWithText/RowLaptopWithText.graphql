@@ -1,0 +1,12 @@
+fragment RowLaptopWithText on RowLaptopWithText {
+  id
+  backgroundImage {
+    ...Asset
+  }
+  laptopContent {
+    ...Asset
+  }
+  colOne {
+    ...RichText
+  }
+}

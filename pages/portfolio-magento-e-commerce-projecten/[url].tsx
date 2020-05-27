@@ -7,6 +7,7 @@ import extractParams, { StaticPageParams } from 'node/staticParams'
 import { useHeaderSpacing } from 'components/Header'
 import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 import RowHeroCases from 'components/RowHero/RowHeroCases'
+import RowColumnTwoSpread from 'components/RowColumnTwo/RowColumnTwoSpread'
 
 const CasesView: PageWithLayoutFull = ({ page }) => {
   const header = useHeaderSpacing()
@@ -17,6 +18,7 @@ const CasesView: PageWithLayoutFull = ({ page }) => {
         content={page.content}
         renderers={{
           RowHero: RowHeroCases,
+          RowColumnTwo: RowColumnTwoSpread,
         }}
       />
     </div>
