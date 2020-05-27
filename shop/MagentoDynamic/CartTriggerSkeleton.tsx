@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from '@magento/venia-ui/lib/components/Header/cartTrigger.css'
 import Icon from '@magento/venia-ui/lib/components/Icon'
-import TextInput from '@magento/venia-ui/lib/components/TextInput'
 import { ShoppingCart as ShoppingCartIcon } from 'react-feather'
 
 const CartTriggerSkeleton: React.ForwardRefRenderFunction<
