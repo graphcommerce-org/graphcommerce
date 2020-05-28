@@ -15,6 +15,10 @@ export const useVacancyListItemStyles = makeStyles(
       boxShadow: '0 2px 15px 0 rgba(0, 0, 0, 0.04), 0 60px 70px -20px rgba(0, 0, 0, 0.14)',
       transform: 'translateY(0)',
       transition: 'transform 0.2s ease-in-out',
+
+      '&:hover, &:focus, &:active': {
+        transform: 'translateY(-3px)',
+      },
     },
     header: {
       display: 'flex',
