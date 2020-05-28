@@ -1,7 +1,19 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
+const { cloneDeep } = require('lodash')
 
 const PATH_DELIMITER = '[\\\\/]' // match 2 antislashes or one slash
+
+const regexEqual = (x, y) => {
+  return (
+    x instanceof RegExp &&
+    y instanceof RegExp &&
+    x.source === y.source &&
+    x.global === y.global &&
+    x.ignoreCase === y.ignoreCase &&
+    x.multiline === y.multiline
+  )
+}
 
 const safePath = (module) => module.split(/[\\\/]/g).join(PATH_DELIMITER)
 
@@ -27,7 +39,8 @@ const magentoIncludes = generateIncludes(affectedPackages)
 const magentoExcludes = generateExcludes(affectedPackages)
 
 /**
- * Based on https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js
+ * @see https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js
+ * @see https://github.com/martpie/next-transpile-modules/blob/master/src/next-transpile-modules.js
  *
  * Plugins not used:
  * - RootComponentsPlugin: handles bundle splitting per page, already handled by NextJS
@@ -36,13 +49,17 @@ const magentoExcludes = generateExcludes(affectedPackages)
  * - ServiceWorkerPlugin: Handled by nextjs plugin when required
  */
 module.exports = (nextConfig = {}) => {
-  const { magento } = nextConfig
   return {
     ...nextConfig,
     /**
      * @param {WebpackOptions} config
      */
-    webpack(config) {
+    webpack(config, environment) {
+      const {
+        config: { magento },
+        isServer,
+      } = environment
+
       // Avoid Webpack to resolve transpiled modules path to their real path as
       // we want to test modules from node_modules only. If it was enabled,
       // modules in node_modules installed via symlink would then not be
@@ -89,7 +106,7 @@ module.exports = (nextConfig = {}) => {
        * Disable all error-loaders for @magento packages
        */
       nextCssLoaders.oneOf
-        .filter((rule) => rule.use && rule.use.loader === 'error-loader')
+        // .filter((rule) => rule.use && rule.use.loader === 'error-loader')
         .forEach((rule) => {
           rule.exclude = rule.exclude || []
           rule.exclude.push(...magentoIncludes)
@@ -97,17 +114,22 @@ module.exports = (nextConfig = {}) => {
 
       /**
        * Magento CSS module loader
+       *
+       * https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L85-L90
        */
-      nextCssLoaders.oneOf.push({
-        sideEffects: false,
-        test: /\.css$/,
-        include: magentoIncludes,
-        exclude: magentoExcludes,
-        // https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L85-L90
-        use: ['style-loader', { loader: 'css-loader', options: { modules: true } }],
-        // We don't support compiling CSS from other node_modules, not sure why this is there.
-        // https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L94-L105
-      })
+      const magentoCssLoader = cloneDeep(
+        nextCssLoaders.oneOf.find(
+          (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.css$/),
+        ),
+      )
+
+      delete magentoCssLoader.issuer.exclude
+      magentoCssLoader.test = /(?<!\.module)\.css$/
+      magentoCssLoader.include = magentoIncludes
+      magentoCssLoader.exclude = magentoExcludes
+      const cssLoader = magentoCssLoader.use.find((loader) => loader.options.modules)
+      cssLoader.options.modules.mode = 'local'
+      nextCssLoaders.oneOf.push(magentoCssLoader)
 
       /**
        * GraphQL file loader

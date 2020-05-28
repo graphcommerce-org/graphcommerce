@@ -37,15 +37,18 @@ const MagentoDynamic = <P extends {}>({
 
   const LoadingComponent = () => <>{skeleton ? skeleton(ref) : null}</>
 
-  if (!intersected) return <LoadingComponent />
   const DynamicComponent = dynamic(loader, { loading: LoadingComponent })
   const MagentoProvider = dynamic(() => import('./App'), { loading: LoadingComponent })
 
   return (
     <div className={classes.MagentoDynamic}>
-      <MagentoProvider>
-        <DynamicComponent {...(props as any)}>{children}</DynamicComponent>
-      </MagentoProvider>
+      {!intersected ? (
+        <LoadingComponent />
+      ) : (
+        <MagentoProvider>
+          <DynamicComponent {...(props as any)}>{children}</DynamicComponent>
+        </MagentoProvider>
+      )}
     </div>
   )
 }
