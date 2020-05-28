@@ -26,18 +26,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   phonesContainer: {
-    display: `flex`,
-    justifyContent: 'space-between',
-    marginTop: `-48%`,
-    [theme.breakpoints.down('xs')]: {
-      display: `none`,
+    [theme.breakpoints.up('sm')]: {
+      marginTop: `-48%`,
     },
   },
   phoneContainer: {
     width: `calc(100% / 3)`,
     position: `relative`,
     [theme.breakpoints.down('xs')]: {
-      display: `none`,
+      width: `85%`,
+      flexShrink: 0,
     },
   },
   phone: {
@@ -54,17 +52,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     left: `50%`,
     transform: `translateX(-50%)`,
   },
-  slideContainer: {
-    display: `none`,
-    [theme.breakpoints.down('xs')]: {
-      display: `block`,
-    },
-  },
-  slidePhoneContainer: {
-    width: '102.5%',
-    margin: `0 -10%`,
-    flexShrink: 0,
+  phoneOuter: {
     position: `relative`,
+    margin: `0 -10%`,
   },
 }))
 
@@ -72,49 +62,36 @@ const RowPhonesSlider: React.FC<GQLRowPhonesSliderFragment> = (props) => {
   const classes = useStyles()
   const { backgroundImage, phoneOneContent, phoneTwoContent, phoneThreeContent } = props
 
+  const PhoneContainer = (item: GQLAssetFragment) => (
+    <div className={classes.phoneContainer}>
+      <div className={classes.phoneOuter}>
+        <img className={classes.phone} src={phoneContainer} alt='Phone background' />
+        <div className={classes.phoneContent}>
+          <AspectRatioContainer width={340} height={602}>
+            <Asset asset={item} width={300} />
+          </AspectRatioContainer>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
-    <Container>
+    <Container disableGutters>
       <div className={classes.root}>
-        {backgroundImage ? (
+        {backgroundImage && backgroundImage.height && backgroundImage.width && (
           <div className={classes.bgImgContainer}>
             <AspectRatioContainer height={backgroundImage.height} width={backgroundImage.width}>
               <div className={classes.bgImg}>
-                <Asset asset={backgroundImage} width={backgroundImage.width} />
+                <Asset asset={backgroundImage} width={300} />
               </div>
             </AspectRatioContainer>
           </div>
-        ) : (
-          ''
         )}
         <div className={classes.phonesContainer}>
-          {[phoneOneContent, phoneTwoContent, phoneThreeContent].map((item, index) => {
-            return (
-              <div key={index} className={classes.phoneContainer}>
-                <img className={classes.phone} src={phoneContainer} alt='Phone background' />
-                <div className={classes.phoneContent}>
-                  <AspectRatioContainer width={340} height={602}>
-                    <Asset asset={item} width={item.width} />
-                  </AspectRatioContainer>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className={classes.slideContainer}>
           <ScrollSnapSlider>
-            {[phoneOneContent, phoneTwoContent, phoneThreeContent].map((item, index) => {
-              return (
-                <div key={index} className={classes.slidePhoneContainer}>
-                  <img className={classes.phone} src={phoneContainer} alt='Phone background' />
-                  <div className={classes.phoneContent}>
-                    <AspectRatioContainer width={340} height={602}>
-                      <Asset asset={item} width={item.width} />
-                    </AspectRatioContainer>
-                  </div>
-                </div>
-              )
-            })}
+            <PhoneContainer {...phoneOneContent} />
+            <PhoneContainer {...phoneTwoContent} />
+            <PhoneContainer {...phoneThreeContent} />
           </ScrollSnapSlider>
         </div>
       </div>
