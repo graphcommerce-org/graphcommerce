@@ -36,7 +36,6 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id })
       </Head>
       <CssBaseline />
       <PageLoadIndicator />
-
       {menu &&
         menu.children.map((child) => {
           return (
@@ -45,20 +44,14 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id })
             </Link>
           )
         })}
-
       <MagentoDynamic
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
         loader={() => import('@magento/venia-ui/lib/components/Header/cartTrigger')}
         skeleton={(ref) => <CartTriggerSkeleton ref={ref} />}
       />
-
       <MagentoDynamic
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
         loader={() => import('@magento/venia-ui/lib/components/MiniCart')}
+        skeleton={(ref) => <div ref={ref} />}
       />
-
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>

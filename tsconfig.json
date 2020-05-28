@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "strict": true,
+    "strictFunctionTypes": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
