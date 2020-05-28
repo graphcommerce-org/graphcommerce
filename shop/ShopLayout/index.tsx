@@ -34,7 +34,7 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id })
         <link rel='manifest' href='/manifest.webmanifest' />
         <link rel='shortcut icon' href='/manifest/favicon.ico' />
       </Head>
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       <PageLoadIndicator />
 
       {menu &&
