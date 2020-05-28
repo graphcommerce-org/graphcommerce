@@ -145,7 +145,9 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
           </div>
         </div>
         <ul className={classes.perks}>
-          {content[0] && content[0].perks ? content[0].perks.map((item) => <li>{item}</li>) : ''}
+          {content[0] && content[0].perks
+            ? content[0].perks.map((item, key) => <li key={key}>{item}</li>)
+            : ''}
         </ul>
       </div>
     </Link>
