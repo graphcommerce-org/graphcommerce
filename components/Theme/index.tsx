@@ -96,6 +96,7 @@ export const defaultTheme = createMuiTheme({
       '500': '#2a183e',
       contrastText: '#fff',
       mutedText: '#b8b8b8',
+      red: '#e53935',
     },
     background: {
       default: '#fff',

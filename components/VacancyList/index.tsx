@@ -8,6 +8,8 @@ const useStyles = makeStyles(
     root: {
       paddingTop: vpCalc(104, 250),
       paddingBottom: vpCalc(48, 160),
+      paddingLeft: vpCalc(2, 36),
+      paddingRight: vpCalc(2, 36),
       background: theme.palette.primary.dark,
       position: 'relative',
       overflow: 'hidden',
