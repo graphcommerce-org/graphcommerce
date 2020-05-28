@@ -57,9 +57,9 @@ export const useVacancyListItemStyles = makeStyles(
     notavailable: {
       '&:not(:empty)': {
         borderRadius: '4px',
-        border: `1px solid ${theme.palette.tertiary.red}`,
+        border: '1px solid #e53935',
         padding: '2px 10px',
-        color: theme.palette.tertiary.red,
+        color: '#e53935',
       },
     },
 
