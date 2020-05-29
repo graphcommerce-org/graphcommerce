@@ -5,17 +5,14 @@ import getVacancyListProps from 'components/VacancyList/getVacancyListProps'
 import { StaticPageVariables } from 'node/staticParams'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from '../components/PageLayout'
 import ContentRenderer from '../components/ContentRenderer'
-import { useHeaderSpacing } from '../components/Header'
 import VacancyList from '../components/VacancyList'
 
 const Vacancies: PageWithLayoutFull<GQLGetVacancyListQuery> = ({ page, vacancyPosts }) => {
-  const header = useHeaderSpacing()
-
   return (
-    <div className={header.marginTop}>
+    <>
       <VacancyList vacancyPosts={vacancyPosts} />
       <ContentRenderer content={page.content} />
-    </div>
+    </>
   )
 }
 
