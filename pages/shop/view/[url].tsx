@@ -1,12 +1,12 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'shop/ShopLayout'
-import getUrlResolveProps from 'shop/ShopLayout/getUrlResolveProps'
-import getNavigationProps from 'shop/ShopLayout/getNavigationProps'
+import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'shop/venia-ui/ShopLayout'
+import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+import getNavigationProps from 'shop/venia-ui/ShopLayout/getNavigationProps'
 import getProductPageProps, {
   GetProductPageProps,
-} from 'shop/RootComponents/ProductPage/getProductProps'
-import ProductPage from 'shop/RootComponents/ProductPage'
+} from 'shop/venia-ui/RootComponents/ProductPage/getProductProps'
+import ProductPage from 'shop/venia-ui/RootComponents/ProductPage'
 
 const PageWithLayout: PageWithShopLayout<GetProductPageProps> = (props) => {
   return <ProductPage {...props} />

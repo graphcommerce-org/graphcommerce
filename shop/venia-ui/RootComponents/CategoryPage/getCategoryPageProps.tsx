@@ -1,7 +1,7 @@
 import apolloClient from 'node/apolloClient'
 import { CategoryDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
-import { GetUrlResolveProps } from 'shop/ShopLayout/getUrlResolveProps'
+import { GetUrlResolveProps } from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
 
 const getCategoryPageProps = async (
   variables: Pick<GetUrlResolveProps, 'id'> & GQLCategoryQueryVariables,
