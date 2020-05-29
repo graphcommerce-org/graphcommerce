@@ -37,8 +37,8 @@ const MagentoDynamic = <P extends Record<string, unknown>>({
 
   const LoadingComponent = () => <>{skeleton ? skeleton(ref) : null}</>
 
-  const DynamicComponent = dynamic(loader, { loading: LoadingComponent })
-  const MagentoProvider = dynamic(() => import('./App'), { loading: LoadingComponent })
+  const DynamicComponent = dynamic(loader, { loading: LoadingComponent, ssr: false })
+  const MagentoProvider = dynamic(() => import('./App'), { loading: LoadingComponent, ssr: false })
 
   return (
     <div className={classes.MagentoDynamic}>
