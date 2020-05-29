@@ -42,6 +42,9 @@ const useBlogViewStyles = makeStyles(
         paddingRight: vpCalc(10, 30),
       },
     },
+    last: {
+      marginTop: 30,
+    },
   }),
   { name: 'BlogView' },
 )

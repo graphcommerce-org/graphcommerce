@@ -51,14 +51,12 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           RowColumnOne: RowColumnOneSingleBlog,
         }}
       />
-      <Box marginTop={4}>
-        <Container maxWidth='lg'>
-          <ReleaseDateCard {...page} />
-          <div className={classes.boxed}>
-            <ContactFormLoader />
-          </div>
-        </Container>
-      </Box>
+      <Container maxWidth='lg' className={classes.last}>
+        <ReleaseDateCard {...page} />
+        <div className={classes.boxed}>
+          <ContactFormLoader />
+        </div>
+      </Container>
     </>
   )
 }
