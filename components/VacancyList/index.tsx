@@ -28,7 +28,7 @@ const VacancyList: React.FC<GQLGetVacancyListQuery> = ({ vacancyPosts }) => {
     <div className={classes.wrapper}>
       <Container
         maxWidth='lg'
-        className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}
+        className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom)}
       >
         <div className={classes.vacancyList}>
           {vacancyPosts && vacancyPosts.map((item) => <VacancyListItem key={item.id} {...item} />)}
