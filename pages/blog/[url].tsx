@@ -7,6 +7,7 @@ import { JsonLd } from 'react-schemaorg'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import extractParams, { StaticPageParams } from 'node/staticParams'
 import getStaticPathsFactory from 'node/getStaticPathsFactory'
+import RowColumnOneSingleBlog from 'components/RowColumnOne/RowColumnOneSingleBlog'
 import ContentRenderer from 'components/ContentRenderer'
 import ReleaseDateCard from 'components/ReleaseDateCard'
 import ContactFormLoader from 'components/ContactForm'
@@ -43,7 +44,12 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           </Typography>
         </div>
       </Container>
-      <ContentRenderer content={page.content} />
+      <ContentRenderer
+        content={page.content}
+        renderers={{
+          RowColumnOne: RowColumnOneSingleBlog,
+        }}
+      />
       <Container maxWidth='lg' className={classes.last}>
         <ReleaseDateCard {...page} />
         <div className={classes.boxed}>
