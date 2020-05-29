@@ -33,7 +33,7 @@ const useRichTextStyles = makeStyles(
     },
     iframe: {},
     table: {},
-    link: {},
+    link: { wordBreak: 'break-word' },
   }),
   { name: 'RichText' },
 )

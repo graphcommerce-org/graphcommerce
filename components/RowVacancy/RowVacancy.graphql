@@ -1,0 +1,11 @@
+fragment RowVacancy on RowVacancy {
+  id
+  vacancystatus
+  perks
+  text {
+    ...RichText
+  }
+  pdf {
+    ...Asset
+  }
+}
