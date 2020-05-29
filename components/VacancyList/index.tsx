@@ -1,19 +1,25 @@
 import React from 'react'
 import { makeStyles, Container, Theme } from '@material-ui/core'
 import { vpCalc } from 'components/Theme'
+import { useHeaderSpacing } from 'components/Header'
+import clsx from 'clsx'
 import VacancyListItem from './VacancyListItem'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      paddingTop: vpCalc(104, 250),
-      paddingBottom: vpCalc(48, 160),
-      paddingLeft: vpCalc(2, 36),
-      paddingRight: vpCalc(2, 36),
-      background: theme.palette.primary.dark,
       position: 'relative',
-      overflow: 'hidden',
-      top: `calc(${vpCalc(73, 155)} * -1)`,
+    },
+    bg: {
+      position: 'absolute',
+      zIndex: -1,
+      width: '100vw',
+      height: '100%',
+      margin: '0 auto',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      backgroundColor: theme.palette.primary.main,
+      boxSizing: 'content-box',
     },
     list: {
       display: 'flex',
@@ -38,18 +44,21 @@ const useStyles = makeStyles(
 
 const VacancyList: React.FC<GQLGetVacancyListQuery> = ({ vacancyPosts }) => {
   const classes = useStyles()
+  const headerSpacing = useHeaderSpacing()
 
   return (
-    <div className={classes.root}>
-      <Container maxWidth='lg'>
-        <div className={classes.list}>
-          {vacancyPosts &&
-            vacancyPosts.map((item) => (
-              <VacancyListItem key={item.id} {...item} className={classes.item} />
-            ))}
-        </div>
-      </Container>
-    </div>
+    <Container maxWidth='lg' className={clsx(headerSpacing.paddingTop, classes.root)}>
+      <div className={classes.list}>
+        {vacancyPosts &&
+          vacancyPosts.map((item) => (
+            <VacancyListItem key={item.id} {...item} className={classes.item} />
+          ))}
+      </div>
+      <span
+        className={classes.background}
+        className={clsx(headerSpacing.top, headerSpacing.paddingBottomInverse, classes.bg)}
+      />
+    </Container>
   )
 }
 
