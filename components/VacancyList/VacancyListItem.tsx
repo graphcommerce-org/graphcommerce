@@ -39,23 +39,19 @@ export const useVacancyListItemStyles = makeStyles(
     status: {
       ...theme.typography.body1,
       fontWeight: 500,
-      marginBottom: 20,
+      marginBottom: vpCalc(20, 30),
     },
     label: {
-      '&:not(:empty)': {
-        borderRadius: '4px',
-        border: `1px solid ${theme.palette.primary.main}`,
-        color: theme.palette.primary.main,
-        padding: '2px 10px',
-      },
+      borderRadius: '4px',
+      border: `1px solid ${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
+      padding: '2px 10px',
     },
     notavailable: {
-      '&:not(:empty)': {
-        borderRadius: '4px',
-        border: '1px solid #e53935',
-        padding: '2px 10px',
-        color: '#e53935',
-      },
+      borderRadius: '4px',
+      border: '1px solid #e53935',
+      padding: '2px 10px',
+      color: '#e53935',
     },
     perks: {
       listStyle: 'none',
@@ -63,10 +59,10 @@ export const useVacancyListItemStyles = makeStyles(
       margin: 0,
 
       '& li': {
+        ...theme.typography.body1,
         position: 'relative',
         paddingLeft: 35,
-        fontSize: 'calc(13.6px + 0.45vw)',
-        lineHeight: 'calc(18px + 0.45vw)',
+        lineHeight: vpCalc(19, 25),
         marginBottom: '10px',
 
         '&:before': {
@@ -75,6 +71,7 @@ export const useVacancyListItemStyles = makeStyles(
           height: 18,
           width: 8,
           position: 'absolute',
+          top: 2,
           left: 5,
           transform: 'rotate(45deg)',
           borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -131,13 +128,15 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
           <Typography component='h3' className={classes.title}>
             {title}
           </Typography>
-          <div className={classes.status}>
-            {isAvailable ? (
-              <div className={classes.label}>{statusLabel}</div>
-            ) : (
-              <div className={classes.notavailable}>{statusLabel}</div>
-            )}
-          </div>
+          {statusLabel && (
+            <div className={classes.status}>
+              {isAvailable ? (
+                <div className={classes.label}>{statusLabel}</div>
+              ) : (
+                <div className={classes.notavailable}>{statusLabel}</div>
+              )}
+            </div>
+          )}
         </div>
         <ul className={classes.perks}>
           {content[0]?.perks && content[0].perks.map((item, key) => <li key={key}>{item}</li>)}
