@@ -15,8 +15,14 @@ const regexEqual = (x, y) => {
   )
 }
 
-const safePath = (module) => module.split(/[\\\/]/g).join(PATH_DELIMITER)
+/**
+ * @param {string} module
+ */
+const safePath = (module) => module.split(/[\\/]/g).join(PATH_DELIMITER)
 
+/**
+ * @param {string[]} modules
+ */
 const generateIncludes = (modules) => {
   return [
     new RegExp(`(${modules.map(safePath).join('|')})$`),
@@ -24,6 +30,9 @@ const generateIncludes = (modules) => {
   ]
 }
 
+/**
+ * @param {string[]} modules
+ */
 const generateExcludes = (modules) => {
   return [
     new RegExp(
@@ -71,6 +80,10 @@ module.exports = (nextConfig = {}) => {
        * https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L63-L76
        */
       config.module.rules[0].include.push(...magentoIncludes)
+
+      /**
+       * @type {(p: string) => boolean}
+       */
       const origExclude = config.module.rules[0].exclude
       config.module.rules[0].exclude = (p) => {
         if (magentoIncludes.some((r) => r.test(p)) && !magentoExcludes.some((r) => r.test(p))) {
@@ -87,13 +100,12 @@ module.exports = (nextConfig = {}) => {
       if (config.externals) {
         config.externals = config.externals.map((external) => {
           if (typeof external !== 'function') return external
-          return (ctx, req, cb) => {
-            return magentoIncludes.find((include) =>
+          return (ctx, req, cb) =>
+            magentoIncludes.find((include) =>
               req.startsWith('.') ? include.test(path.resolve(ctx, req)) : include.test(req),
             )
               ? cb()
               : external(ctx, req, cb)
-          }
         })
       }
 
@@ -124,11 +136,21 @@ module.exports = (nextConfig = {}) => {
       )
 
       delete magentoCssLoader.issuer.exclude
-      magentoCssLoader.test = /(?<!\.module)\.css$/
+      magentoCssLoader.test = /\.css$/
       magentoCssLoader.include = magentoIncludes
       magentoCssLoader.exclude = magentoExcludes
+
       const cssLoader = magentoCssLoader.use.find((loader) => loader.options.modules)
       cssLoader.options.modules.mode = 'local'
+
+      // Emit typescript declarations for css-modules
+      const cssTs = {
+        loader: 'css-modules-typescript-loader',
+        options: { mode: process.env.CI ? 'verify' : 'emit' },
+      }
+      magentoCssLoader.use.splice(magentoCssLoader.use.indexOf(cssLoader), 0, cssTs)
+
+      // Add the loader
       nextCssLoaders.oneOf.push(magentoCssLoader)
 
       /**
