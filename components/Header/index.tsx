@@ -14,6 +14,10 @@ export const useHeaderSpacing = makeStyles(
     marginTop: { marginTop: `calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)` },
     paddingTop: { paddingTop: `calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)` },
     paddingBottom: { paddingBottom: `calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)` },
+    top: { top: `calc(calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px) *-1)` },
+    paddingBottomInverse: {
+      paddingBottom: `calc(${gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)`,
+    },
   }),
   { name: 'Header' },
 )
