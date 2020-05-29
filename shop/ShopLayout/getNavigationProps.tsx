@@ -3,7 +3,9 @@ import { NavigationMenuDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-const getNavigationProps = async ({ id }: GetUrlResolveProps) => {
+const getNavigationProps = async ({
+  id,
+}: GetUrlResolveProps): Promise<{ menu: GQLNavigationMenuQuery['category'] }> => {
   const {
     data: { category },
   } = await (await apolloClient()).query<GQLNavigationMenuQuery, GQLNavigationMenuQueryVariables>({

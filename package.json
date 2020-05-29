@@ -19,7 +19,7 @@
     "start": "next start",
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,css,html}'",
-    "postinstall": "bash ./packages/magento-nextjs/generate-types.sh"
+    "postinstall": "bash ./shop/buildpack/generate-types.sh"
   },
   "sideEffects": false,
   "dependencies": {

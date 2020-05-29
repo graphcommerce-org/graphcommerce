@@ -13,7 +13,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
-const withMagento = require('./shop/magento-nextjs')
+const withMagento = require('./shop/pwa-buildpack/magento-nextjs')
 
 const nextConfig = {
   experimental: {
