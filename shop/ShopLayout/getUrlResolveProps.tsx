@@ -2,7 +2,9 @@ import apolloClient from 'node/apolloClient'
 import { PromiseValue } from 'type-fest'
 import { ResolveUrlDocument } from 'generated/apollo'
 
-const getUrlResolveProps = async (variables: GQLResolveUrlQueryVariables) => {
+const getUrlResolveProps = async (
+  variables: GQLResolveUrlQueryVariables,
+): Promise<GQLResolveUrlQuery['urlResolver'] & GQLResolveUrlQueryVariables> => {
   const {
     data: { urlResolver },
   } = await (await apolloClient()).query<GQLResolveUrlQuery, GQLResolveUrlQueryVariables>({

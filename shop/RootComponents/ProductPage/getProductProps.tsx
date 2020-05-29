@@ -4,13 +4,15 @@ import { PromiseValue } from 'type-fest'
 import { GetUrlResolveProps } from 'shop/ShopLayout/getUrlResolveProps'
 
 const getProductPageProps = async (
-  variables: GetUrlResolveProps & GQLCategoryQueryVariables,
-): Promise<GQLProductDetailQuery> => {
+  variables: GetUrlResolveProps & GQLProductDetailQueryVariables,
+): Promise<{ product: GQLProductDetailQuery['productDetail']['items'][0] }> => {
   const { data } = await (await apolloClient()).query<
     GQLProductDetailQuery,
     GQLProductDetailQueryVariables
   >({ query: ProductDetailDocument, variables })
-  return data
+
+  if (!data.productDetail.items.length) throw new Error('Product now found')
+  return { product: data.productDetail.items[0] }
 }
 
 export default getProductPageProps

@@ -3,6 +3,7 @@ import React from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import { Typography } from '@material-ui/core'
+import Link from 'components/Link'
 import { GetCategoryPageProps } from './getCategoryPageProps'
 import classes from './CategoryPage.module.css'
 
@@ -20,13 +21,11 @@ const CategoryPage: React.FC<GetCategoryPageProps> = ({ category, products }) =>
       </Head>
       <Typography variant='h1'>{category.name}</Typography>
       <div className={classes.CategoryPage}>
-        {products.items.map((product) => (
-          <div key={product.id}>
-            <img src={product.small_image.url} alt={product.name} />
-            {product.name} {product.sku}
-            {product.price.regularPrice.amount.value}
-            {product.price.regularPrice.amount.currency}
-          </div>
+        {products.items.map(({ id, url_key, small_image, name }) => (
+          <Link key={id} href={`/shop/view/${url_key}`} metaRobots='INDEX_FOLLOW'>
+            <img src={small_image.url} alt={name} />
+            {name}
+          </Link>
         ))}
       </div>
     </>

@@ -1,9 +1,9 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import { GetProductPageProps } from './getProductProps'
 
-const ProductPage: React.FC<GetProductPageProps> = ({ productDetail, children }) => {
-  return <div>Product details</div>
+const ProductPage: React.FC<GetProductPageProps> = ({ product }) => {
+  const { name } = product
+  return <div>Product {name}</div>
 }
 
 export default ProductPage

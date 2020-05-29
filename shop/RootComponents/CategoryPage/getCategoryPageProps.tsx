@@ -5,7 +5,7 @@ import { GetUrlResolveProps } from 'shop/ShopLayout/getUrlResolveProps'
 
 const getCategoryPageProps = async (
   variables: Pick<GetUrlResolveProps, 'id'> & GQLCategoryQueryVariables,
-) => {
+): Promise<GQLCategoryQuery> => {
   const { data } = await (await apolloClient()).query<GQLCategoryQuery, GQLCategoryQueryVariables>({
     query: CategoryDocument,
     variables,
