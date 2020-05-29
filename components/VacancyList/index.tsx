@@ -41,10 +41,7 @@ const VacancyList: React.FC<GQLGetVacancyListQuery> = ({ vacancyPosts }) => {
       className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}
     >
       <div className={classes.vacancyList}>
-        {vacancyPosts &&
-          vacancyPosts.map((item) => (
-            <VacancyListItem key={item.id} {...item} className={classes.item} />
-          ))}
+        {vacancyPosts && vacancyPosts.map((item) => <VacancyListItem key={item.id} {...item} />)}
       </div>
       <span
         className={classes.background}
