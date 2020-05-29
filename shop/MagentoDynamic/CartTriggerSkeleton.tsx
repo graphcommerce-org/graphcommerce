@@ -9,7 +9,7 @@ const CartTriggerSkeleton: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   return (
     <button type='button' className={classes.root} {...props} ref={ref}>
-      <Icon classes={{ root: classes.iconClass }} src={ShoppingCartIcon} />
+      <Icon src={ShoppingCartIcon} attrs={{ stroke: 'rgb(var(--venia-text))' }} />
     </button>
   )
 }

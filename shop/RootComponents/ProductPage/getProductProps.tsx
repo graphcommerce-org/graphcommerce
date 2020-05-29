@@ -3,12 +3,13 @@ import { ProductDetailDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import { GetUrlResolveProps } from 'shop/ShopLayout/getUrlResolveProps'
 
-const getProductPageProps = async (variables: GetUrlResolveProps & GQLCategoryQueryVariables) => {
+const getProductPageProps = async (
+  variables: GetUrlResolveProps & GQLCategoryQueryVariables,
+): Promise<GQLProductDetailQuery> => {
   const { data } = await (await apolloClient()).query<
     GQLProductDetailQuery,
     GQLProductDetailQueryVariables
   >({ query: ProductDetailDocument, variables })
-
   return data
 }
 

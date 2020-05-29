@@ -14,7 +14,7 @@ const useStyles = makeStyles(
     rootGradient: ({ half, halfHeight }: Props) => ({
       overflow: half || halfHeight ? 'hidden' : undefined,
     }),
-    rootHalfBlur: ({ flip }) => {
+    rootHalfBlur: ({ flip }: Props) => {
       const styles = { height: '60%', width: '60%', marginTop: '50px', marginLeft: '50px' }
       if (flip) {
         styles.marginTop = '-50px'
@@ -23,7 +23,7 @@ const useStyles = makeStyles(
       return styles
     },
 
-    svg: ({ blur, half }) => {
+    svg: ({ blur, half }: Props) => {
       return {
         pointerEvents: 'none',
         height: half ? '50%' : '100%',
@@ -37,7 +37,7 @@ const useStyles = makeStyles(
         // },
       }
     },
-    svgGradient: ({ half, halfHeight, halfWidth }) => {
+    svgGradient: ({ half, halfHeight, halfWidth }: Props) => {
       const styles = {
         backgroundImage: `linear-gradient(to bottom, #f5f5f5, #fff)`,
         width: half ? '145%' : undefined,
@@ -48,7 +48,7 @@ const useStyles = makeStyles(
       return styles
     },
 
-    polygon: ({ flip, gradient, color }) => {
+    polygon: ({ flip, gradient, color }: Props) => {
       const styles = {
         transformOrigin: 'center',
         transform: flip ? 'rotate(180deg)' : undefined,

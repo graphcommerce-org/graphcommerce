@@ -9,14 +9,14 @@ type MagentoDynamicProps<P> = {
   debugShowSkeleton?: boolean
 } & P
 
-const MagentoDynamic = <P extends {}>({
+const MagentoDynamic = <P extends Record<string, unknown>>({
   loader,
   skeleton,
   children,
   intersectionObserver,
   debugShowSkeleton,
   ...props
-}: PropsWithChildren<MagentoDynamicProps<P>>) => {
+}: PropsWithChildren<MagentoDynamicProps<P>>): JSX.Element => {
   const ref = useRef<any>(null)
   const [intersected, setIntersected] = useState<boolean>(false)
 
