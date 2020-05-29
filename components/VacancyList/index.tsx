@@ -7,19 +7,8 @@ import VacancyListItem from './VacancyListItem'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      position: 'relative',
-    },
-    bg: {
-      position: 'absolute',
-      zIndex: -1,
-      width: '100vw',
-      height: '100%',
-      margin: '0 auto',
-      left: '50%',
-      transform: 'translateX(-50%)',
+    wrapper: {
       backgroundColor: theme.palette.primary.main,
-      boxSizing: 'content-box',
     },
     vacancyList: {
       display: 'grid',
@@ -36,15 +25,16 @@ const VacancyList: React.FC<GQLGetVacancyListQuery> = ({ vacancyPosts }) => {
   const headerSpacing = useHeaderSpacing()
 
   return (
-    <Container
-      maxWidth='lg'
-      className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}
-    >
-      <div className={classes.vacancyList}>
-        {vacancyPosts && vacancyPosts.map((item) => <VacancyListItem key={item.id} {...item} />)}
-      </div>
-      <span className={clsx(headerSpacing.top, headerSpacing.paddingBottomInverse, classes.bg)} />
-    </Container>
+    <div className={classes.wrapper}>
+      <Container
+        maxWidth='lg'
+        className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}
+      >
+        <div className={classes.vacancyList}>
+          {vacancyPosts && vacancyPosts.map((item) => <VacancyListItem key={item.id} {...item} />)}
+        </div>
+      </Container>
+    </div>
   )
 }
 
