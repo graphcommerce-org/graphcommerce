@@ -2,6 +2,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { GetStaticProps } from 'next'
 import { Container } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
 import { BlogPosting } from 'schema-dts'
 import { JsonLd } from 'react-schemaorg'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
@@ -50,12 +51,14 @@ const BlogView: PageWithLayoutFull = ({ page }) => {
           RowColumnOne: RowColumnOneSingleBlog,
         }}
       />
-      <Container maxWidth='lg' className={classes.last}>
-        <ReleaseDateCard {...page} />
-        <div className={classes.boxed}>
-          <ContactFormLoader />
-        </div>
-      </Container>
+      <Box marginTop={4}>
+        <Container maxWidth='lg'>
+          <ReleaseDateCard {...page} />
+          <div className={classes.boxed}>
+            <ContactFormLoader />
+          </div>
+        </Container>
+      </Box>
     </>
   )
 }
