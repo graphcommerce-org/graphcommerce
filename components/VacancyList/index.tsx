@@ -21,22 +21,11 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.primary.main,
       boxSizing: 'content-box',
     },
-    list: {
-      display: 'flex',
-      flexFlow: 'row wrap',
-      justifyContent: 'space-between',
-    },
-    item: {
-      flex: '1 0 100%',
-      marginBottom: vpCalc(24, 75),
-    },
-    [theme.breakpoints.up(1024)]: {
-      item: {
-        flex: `0 0 calc(50% - ${vpCalc(24, 75)} /2)`,
-        '&:nth-child(2n)': {
-          marginLeft: vpCalc(24, 75),
-        },
-      },
+    vacancyList: {
+      display: 'grid',
+      gridColumnGap: theme.gridSpacing.column,
+      gridRowGap: theme.gridSpacing.row,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(260, 500)}, 1fr))`,
     },
   }),
   { name: 'VacancyList' },
@@ -47,8 +36,11 @@ const VacancyList: React.FC<GQLGetVacancyListQuery> = ({ vacancyPosts }) => {
   const headerSpacing = useHeaderSpacing()
 
   return (
-    <Container maxWidth='lg' className={clsx(headerSpacing.paddingTop, classes.root)}>
-      <div className={classes.list}>
+    <Container
+      maxWidth='lg'
+      className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}
+    >
+      <div className={classes.vacancyList}>
         {vacancyPosts &&
           vacancyPosts.map((item) => (
             <VacancyListItem key={item.id} {...item} className={classes.item} />
