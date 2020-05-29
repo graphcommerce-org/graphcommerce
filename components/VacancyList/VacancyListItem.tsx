@@ -24,7 +24,7 @@ export const useVacancyListItemStyles = makeStyles(
       justifyContent: 'space-between',
       flexDirection: 'column',
     },
-    [theme.breakpoints.up(767)]: {
+    [theme.breakpoints.up('md')]: {
       header: {
         flexDirection: 'row',
       },
