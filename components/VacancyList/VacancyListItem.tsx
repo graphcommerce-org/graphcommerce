@@ -8,11 +8,9 @@ export const useVacancyListItemStyles = makeStyles(
     item: {
       display: 'block',
       height: '100%',
-      textDecoration: 'none',
-      color: '#000',
       backgroundColor: '#fff',
-      padding: vpCalc(24, 75),
-      boxShadow: '0 2px 15px 0 rgba(0, 0, 0, 0.04), 0 60px 70px -20px rgba(0, 0, 0, 0.14)',
+      padding: theme.spacings.lg,
+      boxShadow: theme.shadows[24],
       transform: 'translateY(0)',
       transition: 'transform 0.2s ease-in-out',
 
@@ -24,6 +22,12 @@ export const useVacancyListItemStyles = makeStyles(
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'space-between',
+      flexDirection: 'column',
+    },
+    [theme.breakpoints.up(767)]: {
+      header: {
+        flexDirection: 'row',
+      },
     },
     title: {
       color: theme.palette.primary.contrastText,
@@ -33,18 +37,9 @@ export const useVacancyListItemStyles = makeStyles(
       marginRight: 20,
     },
     status: {
-      display: 'inline-block',
-      fontSize: 20,
+      ...theme.typography.body1,
       fontWeight: 500,
-    },
-    [theme.breakpoints.down(768)]: {
-      status: {
-        fontSize: 14,
-        marginBottom: 20,
-      },
-      header: {
-        flexDirection: 'column',
-      },
+      marginBottom: 20,
     },
     label: {
       '&:not(:empty)': {
@@ -61,10 +56,6 @@ export const useVacancyListItemStyles = makeStyles(
         padding: '2px 10px',
         color: '#e53935',
       },
-    },
-
-    link: {
-      textDecoration: 'underline',
     },
     perks: {
       listStyle: 'none',
@@ -134,7 +125,7 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
   })
 
   return (
-    <Link href={url} metaRobots={metaRobots} underline='none' {...linkProps}>
+    <Link href={url} metaRobots={metaRobots} underline='none' color='inherit' {...linkProps}>
       <div className={classes.item}>
         <div className={classes.header}>
           <Typography component='h3' className={classes.title}>
@@ -149,9 +140,7 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
           </div>
         </div>
         <ul className={classes.perks}>
-          {content[0] && content[0].perks
-            ? content[0].perks.map((item, key) => <li key={key}>{item}</li>)
-            : ''}
+          {content[0]?.perks && content[0].perks.map((item, key) => <li key={key}>{item}</li>)}
         </ul>
       </div>
     </Link>
