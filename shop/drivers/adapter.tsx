@@ -1,7 +1,5 @@
 /**
  * We overwrite this adapter to replace UNION_AND_INTERFACE_TYPES
- * todo(paales): Implement webpack replacement based on
- * https://github.com/magento/pwa-studio/blob/a5bbb1cee9fcdff99c86b52cb698a461272ea16d/packages/venia-ui/.storybook/webpack.config.js
  */
 
 import React, { useEffect, useState, PropsWithChildren } from 'react'
@@ -63,7 +61,7 @@ const VeniaAdapter = (
       cache?: ApolloCache<NormalizedCacheObject>
       client?: ApolloClient<NormalizedCacheObject>
       link?: ApolloLink
-      initialData?: {}
+      initialData?: Record<string, unknown>
     }
     store: Store | any
   }>,
@@ -87,12 +85,12 @@ const VeniaAdapter = (
     apolloClient = apollo.client
   } else {
     apolloClient = new ApolloClient({ cache, link, resolvers })
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     apolloClient.apiBase = apiBase
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   apolloClient.persistor = persistor
   // eslint-disable-next-line @typescript-eslint/require-await

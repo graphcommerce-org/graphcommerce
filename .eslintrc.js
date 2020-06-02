@@ -32,7 +32,14 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['**/*.test.js', '**/*.stories.tsx'] },
+      {
+        devDependencies: [
+          '**/*.test.js',
+          '**/*.stories.tsx',
+          'next.config.js',
+          'shop/pwa-buildpack/magento-nextjs.js',
+        ],
+      },
     ],
     'no-param-reassign': ['error', { props: false }],
     'jsx-a11y/anchor-is-valid': 'off',
@@ -75,6 +82,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-member-access': 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   overrides: [
     {

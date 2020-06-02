@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const { cloneDeep } = require('lodash')
+const webpack = require('webpack')
+const loadEnvironment = require('@magento/pwa-buildpack/lib/Utilities/loadEnvironment')
 
 const PATH_DELIMITER = '[\\\\/]' // match 2 antislashes or one slash
 
@@ -188,6 +190,11 @@ module.exports = (nextConfig = {}) => {
        * Make sure it can find @magento/venia-drivers, should probably be provided in some other way.
        */
       config.resolve.alias['@magento/venia-drivers'] = path.resolve(process.cwd(), magento.drivers)
+
+      /**
+       * Load env variables from Magento PWA.
+       */
+      config.plugins.push(new webpack.DefinePlugin(loadEnvironment(environment.dir).env))
 
       return config
     },
