@@ -45,9 +45,8 @@ const VacancyView: PageWithLayoutFull = ({ page }) => {
   const { content } = page
   const classes = useStyles()
   const headerSpacing = useHeaderSpacing()
-  console.log('page: ', page)
 
-  const status = content[0].vacancystatus ? content[0].vacancystatus : 'leeg'
+  const status = content[0].__typename
 
   return (
     <>
@@ -64,7 +63,7 @@ const VacancyView: PageWithLayoutFull = ({ page }) => {
       <div className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}>
         <Container maxWidth='lg'>
           <Typography variant='h1'>{page.title}</Typography>
-          {status !== 'NOT_AVAILABLE' && (
+          {status == 'RowVacancy' && status == 'NOT_AVAILABLE' && (
             <span className={classes.status}>
               Deze vacature is niet meer beschikbaar,
               <Link href='/vacatures' color='inherit' underline='always' className={classes.link}>
