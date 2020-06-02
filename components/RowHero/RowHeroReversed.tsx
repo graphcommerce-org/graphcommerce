@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core'
 import { Theme, vpCalc } from 'components/Theme'
 import Asset from 'components/Asset'
 import RichText from 'components/RichText'
-import { useHeaderSpacing } from 'components/Header'
 import { RowHeroProps } from '.'
 
 const useStyles = makeStyles(
@@ -26,7 +25,7 @@ const useStyles = makeStyles(
     video: {
       width: '100%',
       height: '100%',
-      // minHeight: '60vh',
+      minHeight: '60vh',
       objectFit: 'cover',
     },
   }),
@@ -34,18 +33,15 @@ const useStyles = makeStyles(
 )
 
 const RowHeroReversed: React.FC<RowHeroProps> = (props) => {
-  const { text, asset, links, richTextClasses } = props
+  const { text, asset } = props
   const classes = useStyles()
-  const headerSpacing = useHeaderSpacing()
 
   return (
     <div className={classes.root}>
-      <div className={classes.column}>
+      <div>
         <RichText {...text} />
       </div>
-      <div className={classes.column}>
-        {asset && <Asset asset={asset} className={classes.video} />}
-      </div>
+      <div>{asset && <Asset asset={asset} className={classes.video} />}</div>
     </div>
   )
 }
