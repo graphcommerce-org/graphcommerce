@@ -100,7 +100,7 @@ export const defaultTheme = createMuiTheme({
     background: {
       default: '#fff',
     },
-    divider: '#fff',
+    divider: '#f2f2f2',
   },
   breakpoints: {
     values: {
