@@ -66,7 +66,6 @@ module.exports = (nextConfig = {}) => {
     webpack(config, environment) {
       const {
         config: { magento },
-        isServer,
       } = environment
 
       // Avoid Webpack to resolve transpiled modules path to their real path as
@@ -115,14 +114,12 @@ module.exports = (nextConfig = {}) => {
       const nextCssLoaders = config.module.rules.find((rule) => typeof rule.oneOf === 'object')
 
       /**
-       * Disable all error-loaders for @magento packages
+       * Disable default CSS loaders for all @magento packages
        */
-      nextCssLoaders.oneOf
-        // .filter((rule) => rule.use && rule.use.loader === 'error-loader')
-        .forEach((rule) => {
-          rule.exclude = rule.exclude || []
-          rule.exclude.push(...magentoIncludes)
-        })
+      nextCssLoaders.oneOf.forEach((rule) => {
+        rule.exclude = rule.exclude || []
+        rule.exclude.push(...magentoIncludes)
+      })
 
       /**
        * Magento CSS module loader
@@ -183,7 +180,9 @@ module.exports = (nextConfig = {}) => {
        * https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/WebpackTools/MagentoResolver.js
        * https://github.com/magento/pwa-studio/blob/develop/packages/pwa-buildpack/lib/Utilities/getClientConfig.js#L121-L126
        */
-      config.resolve.extensions.push(magento.isCommerce ? '.ee.js' : '.ce.js')
+      config.resolve.extensions.push(
+        process.env.MAGENTO_BACKEND_EDITION === 'EE' ? '.ee.js' : '.ce.js',
+      )
 
       /**
        * Make sure it can find @magento/venia-drivers, should probably be provided in some other way.

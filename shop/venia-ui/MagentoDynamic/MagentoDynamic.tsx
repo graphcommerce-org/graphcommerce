@@ -1,10 +1,9 @@
 import React, { useState, useEffect, PropsWithChildren, useRef } from 'react'
 import dynamic, { Loader } from 'next/dynamic'
-import classes from './styles.module.css'
 
 type MagentoDynamicProps<P> = {
   loader: Loader<P>
-  skeleton?: (ref: React.RefObject<any>) => React.ComponentType<P> | JSX.Element
+  skeleton: (ref: React.RefObject<any>) => React.ComponentType<P> | JSX.Element
   intersectionObserver?: IntersectionObserverInit
   debugShowSkeleton?: boolean
 } & P
@@ -40,16 +39,12 @@ const MagentoDynamic = <P extends Record<string, unknown>>({
   const DynamicComponent = dynamic(loader, { loading: LoadingComponent, ssr: false })
   const MagentoProvider = dynamic(() => import('./App'), { loading: LoadingComponent, ssr: false })
 
-  return (
-    <div className={classes.MagentoDynamic}>
-      {!intersected ? (
-        <LoadingComponent />
-      ) : (
-        <MagentoProvider>
-          <DynamicComponent {...(props as any)}>{children}</DynamicComponent>
-        </MagentoProvider>
-      )}
-    </div>
+  return !intersected ? (
+    <LoadingComponent />
+  ) : (
+    <MagentoProvider>
+      <DynamicComponent {...(props as never)}>{children}</DynamicComponent>
+    </MagentoProvider>
   )
 }
 

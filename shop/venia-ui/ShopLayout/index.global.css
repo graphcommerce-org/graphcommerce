@@ -1,7 +1,10 @@
-/* Copy of https://github.com/magento/pwa-studio/blob/develop/packages/venia-concept/src/index.css */
+/** https://github.com/magento/pwa-studio/blob/develop/packages/venia-concept/src/index.css */
 
-.MagentoDynamic {
+* {
   box-sizing: border-box;
+}
+
+:root {
   --venia-anim-bounce: cubic-bezier(0.5, 1.8, 0.9, 0.8);
   --venia-anim-in: cubic-bezier(0, 0, 0.2, 1);
   --venia-anim-out: cubic-bezier(0.4, 0, 1, 1);
@@ -25,66 +28,81 @@
   --venia-text-spot: 255, 99, 51;
   --venia-warning-dark: 249, 93, 94;
   --venia-warning-light: 254, 229, 232;
+}
 
-  /* html */
+html {
   background-color: white;
   font-size: 100%;
   font-weight: 400;
   line-height: 1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
 
-  /* body */
+body {
   background-color: white;
   color: rgb(var(--venia-text));
   margin: 0;
   padding: 0;
+}
 
+html[data-scroll-lock='true'],
+html[data-scroll-lock='true'] body {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+body,
+input,
+select,
+textarea {
   font-family: var(--venia-font);
 }
 
-.MagentoDynamic h1,
-.MagentoDynamic h2,
-.MagentoDynamic h3,
-.MagentoDynamic h4,
-.MagentoDynamic h5,
-.MagentoDynamic h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 1rem;
   font-weight: 400;
   margin: 0;
 }
 
-.MagentoDynamic h1 {
+h1 {
   font-size: 1.5rem;
 }
 
-.MagentoDynamic h2 {
+h2 {
   font-size: 1.25rem;
 }
 
-.MagentoDynamic a {
+a {
   color: currentColor;
   text-decoration: none;
 }
 
-.MagentoDynamic p {
+p {
   margin: 0;
 }
 
-.MagentoDynamic dl,
-.MagentoDynamic ol,
-.MagentoDynamic ul {
+dl,
+ol,
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.MagentoDynamic dd,
-.MagentoDynamic dt {
+dd,
+dt {
   margin: 0;
 }
 
-.MagentoDynamic button {
+button {
   background: none;
   border: 0;
   cursor: pointer;
@@ -96,7 +114,7 @@
   -webkit-appearance: none;
 }
 
-.MagentoDynamic button:disabled {
+button:disabled {
   cursor: default;
   touch-action: none;
 }

@@ -116,7 +116,7 @@ const nextConfig = {
       },
     ],
   },
-  magento: { isCommerce: false, drivers: 'shop/drivers' },
+  magento: { drivers: 'shop/drivers' },
 }
 
 module.exports = withPWA(withImages(withMagento(withBundleAnalyzer(nextConfig))))

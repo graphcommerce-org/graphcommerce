@@ -1,6 +1,8 @@
 import App from 'next/app'
 import { renderLayoutPage } from 'components/LayoutPage'
 
+import 'shop/venia-ui/ShopLayout/index.global.css'
+
 export default class extends App {
   componentDidMount(): void {
     // Remove the server-side injected CSS.
