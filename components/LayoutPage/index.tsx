@@ -1,21 +1,21 @@
 import React from 'react'
 import { NextPage, NextComponentType, NextPageContext } from 'next'
 
-function isLayoutPage<P = {}, IP = P>(
+function isLayoutPage<P = Record<string, unknown>, IP = P>(
   Component: NextPage<P, IP> | LayoutPage<P, IP>,
 ): Component is LayoutPage<P, IP> {
   return (Component as LayoutPage<P, IP>).layout !== undefined
 }
 
-export type LayoutPage<P = {}, IP = P> = NextPage<P, IP> & {
+export type LayoutPage<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
   layout: React.FC<IP>
 }
 
 export function renderLayoutPage(
-  Component: NextComponentType<NextPageContext, unknown, {}>,
-  pageProps: {},
-) {
-  if (isLayoutPage<{}, unknown>(Component)) {
+  Component: NextComponentType<NextPageContext>,
+  pageProps: Record<string, unknown>,
+): JSX.Element {
+  if (isLayoutPage(Component)) {
     const LayoutComponent = Component.layout
     return (
       <LayoutComponent {...pageProps}>

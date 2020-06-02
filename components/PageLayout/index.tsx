@@ -14,7 +14,10 @@ export type PageLayoutProps = Omit<GQLGetPageLayoutQuery, 'pages'> & {
   headerTheme?: HeaderTheme
 }
 
-export type PageWithLayoutFull<T = {}> = LayoutPage<PageLayoutProps & T, PageLayoutProps>
+export type PageWithLayoutFull<T = Record<string, unknown>> = LayoutPage<
+  PageLayoutProps & T,
+  PageLayoutProps
+>
 
 const LayoutFull: PageWithLayoutFull['layout'] = ({
   children,

@@ -2,7 +2,7 @@ import App from 'next/app'
 import { renderLayoutPage } from 'components/LayoutPage'
 
 export default class extends App {
-  componentDidMount() {
+  componentDidMount(): void {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles && jssStyles.parentElement) {
@@ -10,7 +10,7 @@ export default class extends App {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { Component, pageProps } = this.props
     return renderLayoutPage(Component, pageProps)
   }
