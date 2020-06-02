@@ -20,7 +20,7 @@
       "name": "Magento GraphQL",
       "handler": {
         "graphql": {
-          "endpoint": "https://develop.pwa-venia.com/graphql"
+          "endpoint": "${MAGENTO_BACKEND_URL}graphql"
         }
       },
       "transforms": [
