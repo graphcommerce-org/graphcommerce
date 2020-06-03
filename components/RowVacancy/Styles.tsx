@@ -7,6 +7,10 @@ const useRowVacancyStyles = makeStyles(
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.tertiary.contrastText,
       textAlign: 'center',
+      width: '100vw',
+      position: 'relative',
+      marginLeft: '-50vw',
+      left: '50%',
 
       '& *::selection': {
         color: theme.palette.primary.contrastText,
