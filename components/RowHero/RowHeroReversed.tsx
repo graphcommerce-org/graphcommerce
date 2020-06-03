@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
-import { Theme, vpCalc } from 'components/Theme'
+import { makeStyles, Theme } from '@material-ui/core'
+import { vpCalc } from 'components/Theme'
+
 import Asset from 'components/Asset'
 import RichText from 'components/RichText'
 import { RowHeroProps } from '.'
