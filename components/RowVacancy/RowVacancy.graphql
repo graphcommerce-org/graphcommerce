@@ -9,3 +9,9 @@ fragment RowVacancy on RowVacancy {
     ...Asset
   }
 }
+
+fragment RowVacancyList on RowVacancy {
+  id
+  vacancystatus
+  perks
+}
