@@ -18,6 +18,7 @@ import RowLaptopWithText from 'components/RowLaptopWithText'
 import RowLineHorizontal from 'components/RowLineHorizontal'
 import RowImageOrVideo from 'components/RowImageOrVideo'
 import RowPhonesSlider from 'components/RowPhonesSlider'
+import RowVacancy from 'components/RowVacancy'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -41,6 +42,7 @@ setRenderers({
   RowLineHorizontal,
   RowImageOrVideo,
   RowPhonesSlider,
+  RowVacancy,
 })
 
 export default ContentRenderer
