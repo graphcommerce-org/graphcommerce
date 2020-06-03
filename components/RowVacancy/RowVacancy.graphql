@@ -1,4 +1,5 @@
 fragment RowVacancy on RowVacancy {
+  __typename
   id
   vacancystatus
   perks
@@ -11,6 +12,7 @@ fragment RowVacancy on RowVacancy {
 }
 
 fragment RowVacancyList on RowVacancy {
+  __typename
   id
   vacancystatus
   perks
