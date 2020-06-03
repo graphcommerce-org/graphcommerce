@@ -115,12 +115,6 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
     }
   }
 
-  const formatter = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-
   return (
     <Link href={url} metaRobots={metaRobots} underline='none' color='inherit' {...linkProps}>
       <div className={classes.item}>
