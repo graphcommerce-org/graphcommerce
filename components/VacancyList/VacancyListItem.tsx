@@ -1,5 +1,6 @@
 import React from 'react'
-import { Typography, makeStyles, Theme, LinkProps } from '@material-ui/core'
+import { Typography, makeStyles, Theme } from '@material-ui/core'
+import { LinkProps } from 'next/link'
 import Link from '../Link'
 import { vpCalc, UseStyles } from '../Theme'
 
