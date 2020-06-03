@@ -1,27 +1,24 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Container, Typography, Link, makeStyles, Theme, Button } from '@material-ui/core'
+import { Container, Typography, Link, Button } from '@material-ui/core'
+import { UseStyles } from 'components/Theme'
 import { useHeaderSpacing } from 'components/Header'
 import { ChevronRight } from 'components/Icons'
-import { vpCalc } from 'components/Theme'
 import useRowVacancyStyles from 'components/RowVacancy/Styles'
+import RichText from 'components/RichText'
 
-type RowVacancyProps = GQLVacancyListItemFragment &
-  UseStyles<typeof useRowVacancyStyles> &
-  LinkProps
+type RowVacancyProps = GQLRowVacancyFragment & UseStyles<typeof useRowVacancyStyles>
 
 const RowVacancy: React.FC<RowVacancyProps> = (props) => {
-  const { title, content } = props
+  const { text, vacancystatus, pdf, __typename } = props
   const classes = useRowVacancyStyles(props)
   const headerSpacing = useHeaderSpacing()
-  const rowType = content[0].__typename
-  const status = content[0].vacancystatus
 
   return (
     <div className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}>
       <Container maxWidth='lg'>
-        <Typography variant='h1'>{title}</Typography>
-        {rowType === 'RowVacancy' && status === 'NOT_AVAILABLE' && (
+        <RichText {...text} />
+        {__typename === 'RowVacancy' && vacancystatus === 'NOT_AVAILABLE' && (
           <span className={classes.status}>
             Deze vacature is niet meer beschikbaar,
             <Link href='/vacatures' color='inherit' underline='always' className={classes.link}>
@@ -34,13 +31,13 @@ const RowVacancy: React.FC<RowVacancyProps> = (props) => {
             Meer over onze kijk op e-Commerce en alle details van deze vacature hebben we
             beschikbaar in een handige PDF.
           </span>
-          {content[0].pdf.url && (
+          {pdf?.url && (
             <Button
-              href={content[0].pdf.url}
+              href={pdf.url}
               target='_blank'
               variant='contained'
               color='primary'
-              endIcon={<ChevronRight color='inherit' />}
+              endIcon={<ChevronRight />}
               size='large'
               disableElevation
               className={classes.button}
