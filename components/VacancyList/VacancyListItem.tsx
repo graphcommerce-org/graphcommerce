@@ -93,7 +93,6 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
 
   const status = content[0].vacancystatus ? content[0].vacancystatus : 'leeg'
   let statusLabel = ''
-  const labelClass = 'classes.label'
   let isAvailable = true
 
   switch (status) {
