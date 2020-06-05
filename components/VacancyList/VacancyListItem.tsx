@@ -89,7 +89,7 @@ type VacancyListItemProps = GQLVacancyListItemFragment &
   LinkProps
 
 const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
-  const { title, url, metaRobots, locale, content, ...linkProps } = props
+  const { title, url, metaRobots, locale, content } = props
   const classes = useVacancyListItemStyles(props)
 
   const status = content[0].vacancystatus ? content[0].vacancystatus : 'leeg'
@@ -116,7 +116,7 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
   }
 
   return (
-    <Link href={url} metaRobots={metaRobots} underline='none' color='inherit' {...linkProps}>
+    <Link href={url} metaRobots={metaRobots} underline='none' color='inherit'>
       <div className={classes.item}>
         <div className={classes.header}>
           <Typography component='h3' className={classes.title}>
