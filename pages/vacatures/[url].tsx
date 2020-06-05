@@ -23,9 +23,8 @@ const VacancyView: PageWithLayoutFull = ({ page }) => {
           datePosted: page.releaseDate,
         }}
       />
-      <Container>
+      <Container maxWidth='lg'>
         <ContentRenderer
-          maxWidth='lg'
           content={page.content}
           renderers={{
             RowHero: RowHeroReversed,
