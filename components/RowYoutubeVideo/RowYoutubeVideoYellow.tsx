@@ -8,7 +8,7 @@ const useStyles = makeStyles(
     root: {},
     aspectContainer: {
       position: 'relative',
-      marginTop: theme.spacings.xl,
+      marginTop: vpCalc(20, 160),
       backgroundColor: theme.palette.secondary.main,
       height: 0,
       paddingTop: 0,
@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       border: 0,
     },
     row: {
-      paddingBottom: vpCalc(70, 160),
+      paddingBottom: vpCalc(20, 160),
       borderBottomWidth: 2,
       borderBottomStyle: 'solid',
       borderBottomColor: theme.palette.divider,
