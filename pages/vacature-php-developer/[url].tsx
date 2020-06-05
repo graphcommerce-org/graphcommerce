@@ -40,8 +40,8 @@ VacancyView.layout = LayoutFull
 
 export default VacancyView
 
-export const getStaticPaths = getStaticPathsFactory('/vacatures/', 'nl')
+export const getStaticPaths = getStaticPathsFactory('/vacature-php-developer/', 'nl')
 
 export const getStaticProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (ctx) => ({
-  props: await getPageLayoutProps(extractParams(ctx, '/vacatures/')),
+  props: await getPageLayoutProps(extractParams(ctx, '/vacature-php-developer/')),
 })
