@@ -9,6 +9,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       backgroundColor: theme.palette.primary.main,
+      marginBottom: `calc(${theme.gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)`,
     },
     vacancyList: {
       display: 'grid',
@@ -31,7 +32,8 @@ const VacancyList: React.FC<GQLGetVacancyListQuery> = ({ vacancyPosts }) => {
         className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom)}
       >
         <div className={classes.vacancyList}>
-          {vacancyPosts && vacancyPosts.map((item) => <VacancyListItem key={item.id} {...item} />)}
+          {vacancyPosts &&
+            vacancyPosts.map((item) => <VacancyListItem href={item.url} key={item.id} {...item} />)}
         </div>
       </Container>
     </div>
