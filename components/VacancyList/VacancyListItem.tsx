@@ -1,6 +1,5 @@
 import React from 'react'
 import { Typography, makeStyles, Theme } from '@material-ui/core'
-import { LinkProps } from 'next/link'
 import Link from '../Link'
 import { vpCalc, UseStyles } from '../Theme'
 
@@ -84,9 +83,7 @@ export const useVacancyListItemStyles = makeStyles(
   { name: 'VacancyListItem' },
 )
 
-type VacancyListItemProps = GQLVacancyListItemFragment &
-  UseStyles<typeof useVacancyListItemStyles> &
-  LinkProps
+type VacancyListItemProps = GQLVacancyListItemFragment & UseStyles<typeof useVacancyListItemStyles>
 
 const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
   const { title, url, metaRobots, locale, content } = props
