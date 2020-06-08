@@ -4,7 +4,7 @@ import { Container, Typography, Link, Button } from '@material-ui/core'
 import { UseStyles } from 'components/Theme'
 import { useHeaderSpacing } from 'components/Header'
 import { ChevronRight } from 'components/Icons'
-import useRowVacancyStyles from 'components/RowVacancy/Styles'
+import useRowVacancyStyles from 'components/RowVacancy/useRowVacancyStyles'
 import RichText from 'components/RichText'
 
 type RowVacancyProps = GQLRowVacancyFragment & UseStyles<typeof useRowVacancyStyles>
