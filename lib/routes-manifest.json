@@ -15,15 +15,33 @@
       "routeKeys": ["url"]
     },
     {
-      "page": "/cases/[url]",
-      "regex": "^\\/cases\\/([^/]+?)(?:\\/)?$",
-      "namedRegex": "^/cases/(?<url>[^/]+?)(?:/)?$",
-      "routeKeys": ["url"]
-    },
-    {
       "page": "/en/blog/[url]",
       "regex": "^\\/en\\/blog\\/([^/]+?)(?:\\/)?$",
       "namedRegex": "^/en/blog/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/magento-2/[url]",
+      "regex": "^\\/magento\\-2\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/magento\\-2/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/portfolio-magento-e-commerce-projecten/[url]",
+      "regex": "^\\/portfolio\\-magento\\-e\\-commerce\\-projecten\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/portfolio\\-magento\\-e\\-commerce\\-projecten/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/vacature-php-developer/[url]",
+      "regex": "^\\/vacature\\-php\\-developer\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/vacature\\-php\\-developer/(?<url>[^/]+?)(?:/)?$",
+      "routeKeys": ["url"]
+    },
+    {
+      "page": "/vacatures/[url]",
+      "regex": "^\\/vacatures\\/([^/]+?)(?:\\/)?$",
+      "namedRegex": "^/vacatures/(?<url>[^/]+?)(?:/)?$",
       "routeKeys": ["url"]
     },
     {
@@ -34,55 +52,86 @@
     }
   ],
   "dataRoutes": [
-    { "page": "/", "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/index.json$" },
-    {
-      "page": "/blog",
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/blog.json$"
-    },
+    { "page": "/", "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/index.json$" },
+    { "page": "/blog", "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/blog.json$" },
     {
       "page": "/blog/[url]",
       "routeKeys": ["url"],
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/blog\\/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/blog/(?<url>[^/]+?)\\.json$"
-    },
-    {
-      "page": "/cases/[url]",
-      "routeKeys": ["url"],
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/cases\\/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/cases/(?<url>[^/]+?)\\.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/blog\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/blog/(?<url>[^/]+?)\\.json$"
     },
     {
       "page": "/contact",
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/contact.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/contact.json$"
     },
-    { "page": "/en", "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/en.json$" },
+    { "page": "/en", "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/en.json$" },
     {
       "page": "/en/blog",
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/en\\/blog.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/en\\/blog.json$"
     },
     {
       "page": "/en/blog/[url]",
       "routeKeys": ["url"],
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/en\\/blog\\/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/en/blog/(?<url>[^/]+?)\\.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/en\\/blog\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/en/blog/(?<url>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/en/contact",
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/en\\/contact.json$"
+    },
+    {
+      "page": "/magento-2/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/magento\\-2\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/magento\\-2/(?<url>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/magento-vacature",
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/magento-vacature.json$"
     },
     {
       "page": "/over-reach-digital-magento-experts",
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/over-reach-digital-magento-experts.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/over-reach-digital-magento-experts.json$"
     },
     {
       "page": "/portfolio-magento-e-commerce-projecten",
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/portfolio-magento-e-commerce-projecten.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/portfolio-magento-e-commerce-projecten.json$"
+    },
+    {
+      "page": "/portfolio-magento-e-commerce-projecten/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/portfolio\\-magento\\-e\\-commerce\\-projecten\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/portfolio\\-magento\\-e\\-commerce\\-projecten/(?<url>[^/]+?)\\.json$"
     },
     {
       "page": "/test/fluid",
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/test\\/fluid.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/test\\/fluid.json$"
+    },
+    {
+      "page": "/vacature-php-developer",
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/vacature-php-developer.json$"
+    },
+    {
+      "page": "/vacature-php-developer/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/vacature\\-php\\-developer\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/vacature\\-php\\-developer/(?<url>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/vacatures",
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/vacatures.json$"
+    },
+    {
+      "page": "/vacatures/[url]",
+      "routeKeys": ["url"],
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/vacatures\\/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/vacatures/(?<url>[^/]+?)\\.json$"
     },
     {
       "page": "/[...url]",
       "routeKeys": ["url"],
-      "dataRouteRegex": "^\\/_next\\/data\\/\\-VUXbQSYk5FLn3Qj9ZMST\\/(.+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/\\-VUXbQSYk5FLn3Qj9ZMST/(?<url>.+?)\\.json$"
+      "dataRouteRegex": "^\\/_next\\/data\\/k6BT7rfeuUbp66C9h0H41\\/(.+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/k6BT7rfeuUbp66C9h0H41/(?<url>.+?)\\.json$"
     }
   ]
 }
