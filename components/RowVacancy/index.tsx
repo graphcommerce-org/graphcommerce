@@ -10,7 +10,7 @@ import RichText from 'components/RichText'
 type RowVacancyProps = GQLRowVacancyFragment & UseStyles<typeof useRowVacancyStyles>
 
 const RowVacancy: React.FC<RowVacancyProps> = (props) => {
-  const { text, vacancystatus, pdf, __typename } = props
+  const { text, vacancystatus, pdf } = props
   const classes = useRowVacancyStyles(props)
   const headerSpacing = useHeaderSpacing()
 
@@ -18,7 +18,7 @@ const RowVacancy: React.FC<RowVacancyProps> = (props) => {
     <div className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom, classes.root)}>
       <Container maxWidth='lg'>
         <RichText {...text} />
-        {__typename === 'RowVacancy' && vacancystatus === 'NOT_AVAILABLE' && (
+        {vacancystatus === 'NOT_AVAILABLE' && (
           <span className={classes.status}>
             Deze vacature is niet meer beschikbaar,
             <Link href='/vacatures' color='inherit' underline='always' className={classes.link}>
