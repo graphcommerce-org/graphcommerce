@@ -10,6 +10,7 @@ const useStyles = makeStyles(
     wrapper: {
       backgroundColor: theme.palette.primary.main,
       marginBottom: `calc(${theme.gridSpacing.row} * 2 + ${vpCalc(46, 72)} + 3px)`,
+      marginBottom: theme.spacings.xl,
     },
     vacancyList: {
       display: 'grid',
