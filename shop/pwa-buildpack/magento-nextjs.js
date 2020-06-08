@@ -192,9 +192,14 @@ module.exports = (nextConfig = {}) => {
       config.resolve.alias['@magento/venia-drivers'] = path.resolve(process.cwd(), magento.drivers)
 
       /**
-       * Load env variables from Magento PWA.
+       * https://github.com/magento/pwa-studio/blob/e5d4c42855627c4365fb3313f52837945a30aeb4/packages/venia-concept/webpack.config.js#L53-L58
        */
-      config.plugins.push(new webpack.DefinePlugin(loadEnvironment(environment.dir).env))
+      config.plugins.push(new webpack.DefinePlugin({ STORE_NAME: JSON.stringify('REACH DIGITAL') }))
+
+      /**
+       * Load env variables
+       */
+      config.plugins.push(new webpack.EnvironmentPlugin(loadEnvironment(environment.dir).env))
 
       return config
     },

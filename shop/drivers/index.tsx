@@ -1,3 +1,5 @@
+import makeUrl from '@magento/venia-ui/lib/util/makeUrl'
+
 export {
   Link,
   Redirect,
@@ -11,5 +13,9 @@ export {
 } from 'react-router-dom'
 export { connect } from 'react-redux'
 
-export { default as resourceUrl } from '@magento/venia-ui/lib/util/makeUrl'
+export const resourceUrl: typeof makeUrl = (url, options) => {
+  if (!options) return url
+  return new URL(makeUrl(url, options), process.env.MAGENTO_BACKEND_URL).toString()
+}
+
 export { default as Adapter } from './adapter'
