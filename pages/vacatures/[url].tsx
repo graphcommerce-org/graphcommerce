@@ -10,6 +10,7 @@ import ContentRenderer from 'components/ContentRenderer'
 import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 import RowHeroReversed from 'components/RowHero/RowHeroReversed'
 import RowYoutubeVideoYellow from 'components/RowYoutubeVideo/RowYoutubeVideoYellow'
+import RowIframeYellow from 'components/RowIframe/RowIframeYellow'
 
 const VacancyView: PageWithLayoutFull = ({ page }) => {
   return (
@@ -29,6 +30,7 @@ const VacancyView: PageWithLayoutFull = ({ page }) => {
           renderers={{
             RowHero: RowHeroReversed,
             RowYoutubeVideo: RowYoutubeVideoYellow,
+            RowIframe: RowIframeYellow,
           }}
         />
       </Container>
