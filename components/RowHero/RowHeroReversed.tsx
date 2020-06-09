@@ -41,7 +41,7 @@ const RowHeroReversed: React.FC<RowHeroProps> = (props) => {
         <RichText {...text} />
       </div>
       <AspectRatioContainer width={650} height={776}>
-        {asset && <Asset asset={asset} width={650} />}
+        {asset && <Asset asset={asset} width={380} />}
       </AspectRatioContainer>
     </div>
   )
