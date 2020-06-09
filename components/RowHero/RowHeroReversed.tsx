@@ -4,6 +4,7 @@ import { vpCalc } from 'components/Theme'
 
 import Asset from 'components/Asset'
 import RichText from 'components/RichText'
+import AspectRatioContainer from 'components/AspectRatioContainer'
 import { RowHeroProps } from '.'
 
 const useStyles = makeStyles(
@@ -23,13 +24,6 @@ const useStyles = makeStyles(
       borderBottomStyle: 'solid',
       borderBottomColor: theme.palette.divider,
     },
-    video: {
-      width: '100%',
-      height: '100%',
-      minHeight: '60vh',
-      objectFit: 'cover',
-      marginTop: 20,
-    },
     [theme.breakpoints.up('md')]: {
       marginTop: 0,
     },
@@ -46,7 +40,9 @@ const RowHeroReversed: React.FC<RowHeroProps> = (props) => {
       <div>
         <RichText {...text} />
       </div>
-      <div>{asset && <Asset asset={asset} className={classes.video} />}</div>
+      <AspectRatioContainer width={650} height={776}>
+        {asset && <Asset asset={asset} width={650} />}
+      </AspectRatioContainer>
     </div>
   )
 }
