@@ -6,6 +6,6 @@ fragment VacancyListItem on Page {
   url
   locale
   content {
-    ...RowVacancy
+    ...RowVacancyList
   }
 }

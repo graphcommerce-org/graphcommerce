@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, makeStyles, Theme, LinkProps } from '@material-ui/core'
+import { Typography, makeStyles, Theme } from '@material-ui/core'
 import Link from '../Link'
 import { vpCalc, UseStyles } from '../Theme'
 
@@ -83,17 +83,14 @@ export const useVacancyListItemStyles = makeStyles(
   { name: 'VacancyListItem' },
 )
 
-type VacancyListItemProps = GQLVacancyListItemFragment &
-  UseStyles<typeof useVacancyListItemStyles> &
-  LinkProps
+type VacancyListItemProps = GQLVacancyListItemFragment & UseStyles<typeof useVacancyListItemStyles>
 
 const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
-  const { title, url, metaRobots, locale, content, ...linkProps } = props
+  const { title, url, metaRobots, locale, content } = props
   const classes = useVacancyListItemStyles(props)
 
   const status = content[0].vacancystatus ? content[0].vacancystatus : 'leeg'
   let statusLabel = ''
-  const labelClass = 'classes.label'
   let isAvailable = true
 
   switch (status) {
@@ -115,14 +112,8 @@ const VacancyListItem: React.FC<VacancyListItemProps> = (props) => {
     }
   }
 
-  const formatter = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-
   return (
-    <Link href={url} metaRobots={metaRobots} underline='none' color='inherit' {...linkProps}>
+    <Link href={url} metaRobots={metaRobots} underline='none' color='inherit'>
       <div className={classes.item}>
         <div className={classes.header}>
           <Typography component='h3' className={classes.title}>

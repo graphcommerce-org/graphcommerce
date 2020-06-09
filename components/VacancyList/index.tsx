@@ -9,6 +9,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       backgroundColor: theme.palette.primary.main,
+      marginBottom: theme.spacings.xl,
     },
     vacancyList: {
       display: 'grid',
