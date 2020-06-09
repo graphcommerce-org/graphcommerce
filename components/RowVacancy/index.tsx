@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Container, Typography, Link, Button } from '@material-ui/core'
+import { Container, Link, Button } from '@material-ui/core'
 import { UseStyles } from 'components/Theme'
 import { useHeaderSpacing } from 'components/Header'
 import { ChevronRight } from 'components/Icons'
