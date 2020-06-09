@@ -1,5 +1,6 @@
 import { Theme, makeStyles } from '@material-ui/core'
 import { vpCalc } from 'components/Theme'
+import logoReachBgShadow from './logo-reach-bg-shadow-primary.svg'
 
 const useRowVacancyStyles = makeStyles(
   (theme: Theme) => ({
@@ -61,6 +62,12 @@ const useRowVacancyStyles = makeStyles(
     },
 
     [theme.breakpoints.up('md')]: {
+      root: {
+        backgroundImage: `url(${logoReachBgShadow})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '50% 168%',
+        backgroundSize: vpCalc(200, 1512),
+      },
       status: {
         display: 'inline-block',
       },
