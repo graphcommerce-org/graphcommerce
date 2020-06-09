@@ -65,8 +65,8 @@ const useRowVacancyStyles = makeStyles(
       root: {
         backgroundImage: `url(${logoReachBgShadow})`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: '50% 168%',
-        backgroundSize: vpCalc(200, 1512),
+        backgroundPosition: '50% 125%',
+        backgroundSize: vpCalc(100, 1200),
       },
       status: {
         display: 'inline-block',
