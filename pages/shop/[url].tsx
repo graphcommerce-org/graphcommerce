@@ -3,10 +3,8 @@ import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'shop/venia-ui/S
 import getNavigationProps from 'shop/venia-ui/ShopLayout/getNavigationProps'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
-import getCmsPageProps, {
-  GetCmsPageProps,
-} from 'shop/venia-ui/RootComponents/CmsPage/getCmsPageProps'
-import CmsPage from 'shop/venia-ui/RootComponents/CmsPage'
+import getCmsPageProps, { GetCmsPageProps } from 'shop/venia-ui/RootComponents/CMS/getCmsPageProps'
+import CmsPage from 'shop/venia-ui/RootComponents/CMS'
 
 const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = (props) => {
   return <CmsPage {...props} />
