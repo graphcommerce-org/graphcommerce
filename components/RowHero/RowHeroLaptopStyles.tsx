@@ -19,7 +19,6 @@ const RowHeroLaptopStyles = makeStyles(
         gridTemplateColumns: `1fr 1fr`,
         gridTemplateAreas: `"one two"`,
       },
-      alignItems: 'center',
     },
     colOne: { gridArea: 'one' },
     colTwo: { gridArea: 'two' },
@@ -35,7 +34,6 @@ const RowHeroLaptopStyles = makeStyles(
       },
     },
     video: {
-      position: 'absolute',
       zIndex: -1,
       top: '0',
       width: '100%',
@@ -43,7 +41,6 @@ const RowHeroLaptopStyles = makeStyles(
       margin: '0 auto',
       left: '50%',
       objectFit: 'cover',
-      transform: 'translateX(-50%)',
     },
     h1: { fontWeight: 400 },
     assetArea: {
@@ -103,6 +100,7 @@ const RowHeroLaptopStyles = makeStyles(
         color: '#fff !important',
       },
     },
+    assetContainer: {},
   }),
   { name: 'RowHeroLaptopStyles' },
 )

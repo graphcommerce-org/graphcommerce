@@ -5,27 +5,40 @@ import clsx from 'clsx'
 import { useHeaderSpacing } from 'components/Header'
 import { Button } from 'components/Link'
 import { ChevronRight } from 'components/Icons'
-import { Container } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import RichText from 'components/RichText'
 import ContactCta from 'components/ContactCta'
 import RowHeroLaptopStyles from './RowHeroLaptopStyles'
 import { RowHeroProps } from '.'
 
+const useLaptopStyles = makeStyles((theme: Theme) => ({
+  [theme.breakpoints.up('md')]: {
+    root: {
+      width: 'calc(100% + 20vw)',
+      left: '-20vw',
+      maxWidth: '1100px',
+    },
+  },
+}))
+
 const RowHeroLaptop: React.FC<RowHeroProps> = (props) => {
   const { text, asset, links, contactPersons, richTextClasses, children } = props
   const classes = RowHeroLaptopStyles()
   const headerSpacing = useHeaderSpacing()
+  const DeviceLaptopStyles = useLaptopStyles()
 
   return (
     <div className={classes.wrapper}>
       <Container className={clsx(headerSpacing.paddingTop, classes.grid)}>
         {children ? (
-          <div className={colOne}>{children}</div>
+          <div className={classes.colOne}>{children}</div>
         ) : (
           asset && (
-            <DeviceContainerLaptop>
-              <Asset asset={asset} width={380} className={clsx(classes.video, classes.colOne)} />
-            </DeviceContainerLaptop>
+            <div className={classes.assetContainer}>
+              <DeviceContainerLaptop classes={DeviceLaptopStyles}>
+                <Asset asset={asset} width={304} className={clsx(classes.video, classes.colOne)} />
+              </DeviceContainerLaptop>
+            </div>
           )
         )}
         <div className={classes.colTwo}>
