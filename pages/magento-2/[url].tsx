@@ -7,6 +7,7 @@ import RowHeroLaptop from 'components/RowHero/RowHeroLaptop'
 import RowColumnTwoSpread from 'components/RowColumnTwo/RowColumnTwoSpread'
 import extractParams, { StaticPageParams } from 'node/staticParams'
 import getStaticPathsFactory from 'node/getStaticPathsFactory'
+import RowContactBoxed from 'components/RowContact/RowContactBoxed'
 
 const M2Community: PageWithLayoutFull = ({ page }) => {
   return (
@@ -16,6 +17,7 @@ const M2Community: PageWithLayoutFull = ({ page }) => {
         renderers={{
           RowHero: RowHeroLaptop,
           RowColumnTwo: RowColumnTwoSpread,
+          RowContact: RowContactBoxed,
         }}
       />
     </div>
