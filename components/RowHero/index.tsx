@@ -9,6 +9,7 @@ import { useHeaderSpacing } from 'components/Header'
 import { Button } from 'components/Link'
 import { ChevronRight } from 'components/Icons'
 import TriangleBg, { TriangleBgProps } from 'components/TriangleBg'
+import ContactCta from 'components/ContactCta'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -44,7 +45,7 @@ export type RowHeroProps = GQLRowHeroFragment &
   } & ContainerProps
 
 const RowHero: React.FC<RowHeroProps> = (props) => {
-  const { text, asset, links, richTextClasses, triangleBgProps, children } = props
+  const { text, asset, links, contactPersons, richTextClasses, triangleBgProps, children } = props
   const { video, colOne, colTwo, ...containerClasses } = useStyles(props)
   const headerSpacing = useHeaderSpacing()
 
@@ -91,6 +92,7 @@ const RowHero: React.FC<RowHeroProps> = (props) => {
               return undefined
             })}
           </div>
+          <ContactCta items={contactPersons} {...contactPersons} />
         </div>
       </Container>
     </TriangleBg>
