@@ -6,7 +6,7 @@ const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
   const classes = ContactCtaStyles()
 
   return (
-    contactPeople.length > 0 && (
+    contactPeople && (
       <div className={classes.root}>
         <div className={classes.persons}>
           {contactPeople.map((person) => {
