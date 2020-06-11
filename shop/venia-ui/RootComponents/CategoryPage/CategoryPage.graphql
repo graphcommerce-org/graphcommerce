@@ -1,0 +1,8 @@
+query CategoryPage($id: Int!) {
+  category(id: $id) {
+    ...CategoryBreadcrumb
+    ...CategoryDescription
+    ...CategoryMeta
+    ...CategorySort
+  }
+}

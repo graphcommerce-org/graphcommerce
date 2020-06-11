@@ -15,6 +15,6 @@ export default PageWithLayout
 
 export const getStaticProps: GetStaticProps = async () => {
   const variables = await getUrlResolveProps({ urlKey: '/' })
-  const data = await Promise.all([getNavigationProps(variables), getCmsPageProps(variables)])
+  const data = await Promise.all([getNavigationProps(), getCmsPageProps(variables)])
   return { props: { ...variables, ...Object.assign(...data) } }
 }

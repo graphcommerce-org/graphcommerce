@@ -45,8 +45,10 @@ generates:
         - prettier --write
   generated/apollo.ts:
     plugins:
+      # - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
       - typescript-react-apollo
     config:
+      # skipDocumentsValidation: true
       typesPrefix: GQL
       withHOC: false
       withHooks: true

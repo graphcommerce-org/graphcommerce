@@ -1,0 +1,16 @@
+fragment ProductListItemSimple on ProductInterface {
+  name
+  url_key
+  small_image {
+    url
+    label
+  }
+  price_range {
+    maximum_price {
+      ...ProductPrice
+    }
+    minimum_price {
+      ...ProductPrice
+    }
+  }
+}

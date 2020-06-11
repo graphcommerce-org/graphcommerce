@@ -1,0 +1,31 @@
+fragment ProductListItemConfigurable on ConfigurableProduct {
+  ...ProductListItemSimple
+  configurable_options {
+    attribute_code
+    attribute_id
+    id
+    label
+    values {
+      store_label
+      use_default_value
+      value_index
+      swatch_data {
+        ... on ImageSwatchData {
+          thumbnail
+          value
+        }
+        value
+      }
+    }
+  }
+  variants {
+    attributes {
+      code
+      label
+      value_index
+    }
+    product {
+      ...ProductListItemSimple
+    }
+  }
+}

@@ -27,19 +27,15 @@ export const getStaticProps: GetStaticProps<
   { url: [string] }
 > = async (ctx) => {
   if (!ctx.params) throw Error('No params')
-  const variables = await getUrlResolveProps({ urlKey: `${ctx.params.url.join('/')}.html` })
+
+  const urlKey = `${ctx.params.url.slice(0, 1).join('/')}.html`
+
+  const urlResolve = getUrlResolveProps({ urlKey })
+
   const data = await Promise.all([
-    getNavigationProps(variables),
-    getCategoryPageProps({
-      ...variables,
-      currentPage: 1,
-      pageSize: 10,
-      onServer: true,
-      filters: {
-        category_id: { eq: String(variables.id) },
-      },
-      sort: {},
-    }),
+    getNavigationProps(),
+    getCategoryPageProps({ query: ctx.params.url.slice(1), urlResolve }),
   ])
-  return { props: { ...variables, ...Object.assign(...data) } }
+
+  return { props: { ...(await urlResolve), ...Object.assign(...data) } }
 }

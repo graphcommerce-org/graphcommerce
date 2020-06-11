@@ -27,10 +27,14 @@ export const getStaticProps: GetStaticProps<
   { url: string }
 > = async (ctx) => {
   if (!ctx.params?.url) throw Error('No params')
-  const variables = await getUrlResolveProps({ urlKey: `${ctx.params.url}.html` })
+  const urlResolve = getUrlResolveProps({ urlKey: `${ctx.params.url}.html` })
   const data = await Promise.all([
-    getNavigationProps(variables),
-    getProductPageProps({ ...variables, urlKey: ctx.params.url, onServer: true }),
+    getNavigationProps(),
+    getProductPageProps({
+      ...(await urlResolve),
+      urlKey: ctx.params.url,
+      onServer: true,
+    }),
   ])
-  return { props: { ...variables, ...Object.assign(...data) } }
+  return { props: { ...(await urlResolve), ...Object.assign(...data) } }
 }

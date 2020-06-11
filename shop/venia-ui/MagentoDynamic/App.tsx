@@ -7,7 +7,7 @@ import { BrowserPersistence } from '@magento/peregrine/lib/util'
 import app from '@magento/peregrine/lib/store/actions/app'
 import AppContextProvider from '@magento/venia-ui/lib/components/App/contextProvider'
 import { Adapter } from '@magento/venia-drivers'
-import { HeadProvider, Title } from '@magento/venia-ui/lib/components/Head'
+// import { HeadProvider } from '@magento/venia-ui/lib/components/Head'
 import store from './store'
 
 const apiBase = '/api/graphql'
@@ -43,9 +43,7 @@ const apolloLink = ApolloLink.from([
 const MagentoWrapper: React.FC = ({ children }) => {
   return (
     <Adapter apiBase={apiBase} apollo={{ link: apolloLink }} store={store}>
-      <AppContextProvider>
-        <HeadProvider>{children}</HeadProvider>
-      </AppContextProvider>
+      <AppContextProvider>{children}</AppContextProvider>
     </Adapter>
   )
 }

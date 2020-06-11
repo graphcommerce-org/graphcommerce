@@ -2,21 +2,14 @@ import apolloClient from 'node/apolloClient'
 import { PromiseValue } from 'type-fest'
 import { ResolveUrlDocument } from 'generated/apollo'
 
-const getUrlResolveProps = async (
-  variables: GQLResolveUrlQueryVariables,
-): Promise<GQLResolveUrlQuery['urlResolver'] & GQLResolveUrlQueryVariables> => {
-  const {
-    data: { urlResolver },
-  } = await (await apolloClient()).query<GQLResolveUrlQuery, GQLResolveUrlQueryVariables>({
-    query: ResolveUrlDocument,
-    variables,
-  })
-  if (!urlResolver?.id) throw Error('Page not found')
+const getUrlResolveProps = async (variables: GQLResolveUrlQueryVariables) => {
+  const { data } = await (await apolloClient()).query<
+    GQLResolveUrlQuery,
+    GQLResolveUrlQueryVariables
+  >({ query: ResolveUrlDocument, variables })
 
-  return {
-    ...urlResolver,
-    ...variables,
-  }
+  if (!data.urlResolver?.id) throw Error('Page not found')
+  return data
 }
 
 export default getUrlResolveProps

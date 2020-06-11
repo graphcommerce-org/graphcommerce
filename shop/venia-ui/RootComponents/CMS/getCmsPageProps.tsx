@@ -1,13 +1,16 @@
 import apolloClient from 'node/apolloClient'
 import { GetCmsPageDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
-import { GetUrlResolveProps } from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
 
-const getCmsPageProps = async ({ id }: GetUrlResolveProps) => {
+const getCmsPageProps = async (urlResolve: ReturnType<typeof getUrlResolveProps>) => {
   const { data } = await (await apolloClient()).query<
     GQLGetCmsPageQuery,
     GQLGetCmsPageQueryVariables
-  >({ query: GetCmsPageDocument, variables: { id, onServer: true } })
+  >({
+    query: GetCmsPageDocument,
+    variables: { id: (await urlResolve).urlResolver.id, onServer: true },
+  })
   return data
 }
 

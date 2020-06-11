@@ -1,0 +1,9 @@
+fragment ProductSort on Products {
+  sort_fields {
+    default
+    options {
+      label
+      value
+    }
+  }
+}

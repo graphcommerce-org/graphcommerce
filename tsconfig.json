@@ -18,6 +18,7 @@
     "jsx": "preserve",
     "paths": {
       "@magento/venia-drivers": ["shop/drivers/index"]
+      // "@magento/venia-ui/*": ["@magento/venia-ui/*"]
     }
   },
   "exclude": ["node_modules", "public"],

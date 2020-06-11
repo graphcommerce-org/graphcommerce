@@ -1,0 +1,8 @@
+fragment ProductList on Products {
+  items {
+    id
+    __typename
+    ...ProductListItemSimple
+    ...ProductListItemConfigurable
+  }
+}

@@ -189,7 +189,8 @@ module.exports = (nextConfig = {}) => {
       /**
        * Make sure it can find @magento/venia-drivers, should probably be provided in some other way.
        */
-      config.resolve.alias['@magento/venia-drivers'] = path.resolve(process.cwd(), magento.drivers)
+      config.resolve.alias['@magento/venia-drivers'] = magento.drivers
+      config.resolve.alias['react-router-dom'] = `${magento.drivers}/react-router-dom`
 
       /**
        * https://github.com/magento/pwa-studio/blob/e5d4c42855627c4365fb3313f52837945a30aeb4/packages/venia-concept/webpack.config.js#L53-L58

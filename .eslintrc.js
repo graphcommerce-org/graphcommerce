@@ -63,7 +63,7 @@ module.exports = {
         markers: ['/'],
       },
     ],
-    'no-underscore-dangle': ['error', { allow: ['__typename'] }],
+    'no-underscore-dangle': ['error', { allow: ['__typename', '__type'] }],
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     '@typescript-eslint/explicit-function-return-type': 'off',
 

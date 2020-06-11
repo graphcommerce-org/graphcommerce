@@ -1,0 +1,4 @@
+fragment CategoryDescription on CategoryInterface {
+  description
+  name
+}

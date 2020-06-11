@@ -1,0 +1,5 @@
+fragment CategoryMeta on CategoryInterface {
+  name
+  meta_title
+  meta_description
+}

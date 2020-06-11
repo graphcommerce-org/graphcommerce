@@ -17,8 +17,8 @@ export type ShopLayoutProps = (GetNavigationProps &
 
 export type PageWithShopLayout<T = {}> = LayoutPage<ShopLayoutProps & T, ShopLayoutProps>
 
-const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, id }) => {
-  if (!id) return <Error statusCode={404}>{error}</Error>
+const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlResolver }) => {
+  if (!urlResolver.id) return <Error statusCode={404}>{error}</Error>
   return (
     <ThemedProvider>
       <Head>

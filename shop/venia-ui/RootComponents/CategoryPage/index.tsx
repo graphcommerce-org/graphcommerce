@@ -1,21 +1,39 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
 import Error from 'next/error'
-import MagentoDynamic from 'shop/venia-ui/MagentoDynamic/MagentoDynamic'
+import CategoryMeta from 'shop/venia-ui/components/CategoryMeta'
+import CategoryDescription from 'shop/venia-ui/components/CategoryDescription'
+import CategoryBreadcrumb from 'shop/venia-ui/components/CategoryBreadcrumb'
+import CategorySort from 'shop/venia-ui/components/CategorySort'
+import ProductPagination from 'shop/venia-ui/components/ProductPagination'
+import ProductSort from 'shop/venia-ui/components/ProductSort'
+import ProductList from 'shop/venia-ui/components/ProductList'
+import ProductFilters from 'shop/venia-ui/components/ProductFilters'
+import { filterProps } from '@magento/peregrine/lib/util/fromRenderProp'
 import { GetCategoryPageProps } from './getCategoryPageProps'
 
-const CategoryPage: React.FC<GetCategoryPageProps> = ({ category }) => {
+export default function CategoryPage({
+  category,
+  products,
+  filterParams,
+  filterInputTypes,
+}: GetCategoryPageProps) {
   if (!category) return <Error statusCode={404}>404</Error>
 
   return (
     <>
-      <MagentoDynamic
-        loader={() => import('@magento/venia-ui/lib/RootComponents/Category')}
-        skeleton={(ref) => <div ref={ref}>hoi</div>}
-        id={category.id}
+      <CategoryMeta {...category} />
+      <CategoryDescription {...category} />
+      <CategoryBreadcrumb {...category} />
+      <CategorySort {...category} />
+      <ProductPagination {...products} />
+      <ProductSort {...products} sort={filterParams.sort} />
+      <ProductList {...products} />
+      <ProductFilters
+        {...products}
+        filters={filterParams.filters ?? {}}
+        filterTypes={filterInputTypes}
       />
     </>
   )
 }
-
-export default CategoryPage
