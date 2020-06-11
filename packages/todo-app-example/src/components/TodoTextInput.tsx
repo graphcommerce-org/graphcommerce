@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import * as React from "react";
 
 interface Props {
   className: string;
@@ -20,12 +20,12 @@ const TodoTextInput: React.FC<Props> = ({
   onCancel,
   onDelete,
   onSave,
-  placeholder
+  placeholder,
 }) => {
-  const [text, setText] = useState<string>(initialValue || "");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [text, setText] = React.useState<string>(initialValue || "");
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }

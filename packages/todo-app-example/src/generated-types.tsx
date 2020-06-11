@@ -2,6 +2,8 @@ import gql from "graphql-tag";
 import * as ApolloReactCommon from "@apollo/react-common";
 import * as ApolloReactHooks from "@apollo/react-hooks";
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -199,10 +201,11 @@ export type UserTodosArgs = {
   before?: Maybe<Scalars["String"]>;
   last?: Maybe<Scalars["Int"]>;
 };
-export type TodoApp_UserFragment = ({ __typename?: "User" } & Pick<
+
+export type TodoApp_UserFragment = { __typename?: "User" } & Pick<
   User,
   "id" | "userId" | "totalCount"
->) &
+> &
   TodoListFooter_UserFragment &
   TodoList_UserFragment;
 
@@ -210,13 +213,13 @@ export type TodoListFooter_UserFragment = { __typename?: "User" } & Pick<
   User,
   "id" | "userId" | "completedCount" | "totalCount"
 > & {
-    todos: Maybe<
+    todos?: Maybe<
       { __typename?: "TodoConnection" } & {
-        edges: Maybe<
+        edges?: Maybe<
           Array<
             Maybe<
               { __typename?: "TodoEdge" } & {
-                node: Maybe<
+                node?: Maybe<
                   { __typename?: "Todo" } & Pick<Todo, "id" | "complete">
                 >;
               }
@@ -227,18 +230,18 @@ export type TodoListFooter_UserFragment = { __typename?: "User" } & Pick<
     >;
   };
 
-export type TodoList_UserFragment = ({ __typename?: "User" } & Pick<
+export type TodoList_UserFragment = { __typename?: "User" } & Pick<
   User,
   "id" | "userId" | "totalCount" | "completedCount"
 > & {
-    todos: Maybe<
+    todos?: Maybe<
       { __typename?: "TodoConnection" } & {
-        edges: Maybe<
+        edges?: Maybe<
           Array<
             Maybe<
               { __typename?: "TodoEdge" } & {
-                node: Maybe<
-                  ({ __typename?: "Todo" } & Pick<Todo, "id" | "complete">) &
+                node?: Maybe<
+                  { __typename?: "Todo" } & Pick<Todo, "id" | "complete"> &
                     Todo_TodoFragment
                 >;
               }
@@ -247,8 +250,7 @@ export type TodoList_UserFragment = ({ __typename?: "User" } & Pick<
         >;
       }
     >;
-  }) &
-  Todo_UserFragment;
+  } & Todo_UserFragment;
 
 export type Todo_TodoFragment = { __typename?: "Todo" } & Pick<
   Todo,
@@ -260,23 +262,23 @@ export type Todo_UserFragment = { __typename?: "User" } & Pick<
   "id" | "userId" | "totalCount" | "completedCount"
 >;
 
-export type AppQueryQueryVariables = {
+export type AppQueryQueryVariables = Exact<{
   userId?: Maybe<Scalars["String"]>;
-};
+}>;
 
 export type AppQueryQuery = { __typename?: "Query" } & {
-  user: Maybe<
+  user?: Maybe<
     { __typename?: "User" } & Pick<
       User,
       "id" | "userId" | "totalCount" | "completedCount"
     > & {
-        todos: Maybe<
+        todos?: Maybe<
           { __typename?: "TodoConnection" } & {
-            edges: Maybe<
+            edges?: Maybe<
               Array<
                 Maybe<
                   { __typename?: "TodoEdge" } & {
-                    node: Maybe<
+                    node?: Maybe<
                       { __typename?: "Todo" } & Pick<
                         Todo,
                         "id" | "complete" | "text"
@@ -292,15 +294,15 @@ export type AppQueryQuery = { __typename?: "Query" } & {
   >;
 };
 
-export type AddTodoMutationMutationVariables = {
+export type AddTodoMutationMutationVariables = Exact<{
   input: AddTodoInput;
-};
+}>;
 
 export type AddTodoMutationMutation = { __typename?: "Mutation" } & {
-  addTodo: Maybe<
+  addTodo?: Maybe<
     { __typename?: "AddTodoPayload" } & {
       todoEdge: { __typename: "TodoEdge" } & Pick<TodoEdge, "cursor"> & {
-          node: Maybe<
+          node?: Maybe<
             { __typename?: "Todo" } & Pick<Todo, "complete" | "id" | "text">
           >;
         };
@@ -309,12 +311,12 @@ export type AddTodoMutationMutation = { __typename?: "Mutation" } & {
   >;
 };
 
-export type ChangeTodoStatusMutationMutationVariables = {
+export type ChangeTodoStatusMutationMutationVariables = Exact<{
   input: ChangeTodoStatusInput;
-};
+}>;
 
 export type ChangeTodoStatusMutationMutation = { __typename?: "Mutation" } & {
-  changeTodoStatus: Maybe<
+  changeTodoStatus?: Maybe<
     { __typename?: "ChangeTodoStatusPayload" } & {
       todo: { __typename?: "Todo" } & Pick<Todo, "id" | "complete">;
       user: { __typename?: "User" } & Pick<User, "id" | "completedCount">;
@@ -322,14 +324,14 @@ export type ChangeTodoStatusMutationMutation = { __typename?: "Mutation" } & {
   >;
 };
 
-export type MarkAllTodosMutationMutationVariables = {
+export type MarkAllTodosMutationMutationVariables = Exact<{
   input: MarkAllTodosInput;
-};
+}>;
 
 export type MarkAllTodosMutationMutation = { __typename?: "Mutation" } & {
-  markAllTodos: Maybe<
+  markAllTodos?: Maybe<
     { __typename?: "MarkAllTodosPayload" } & {
-      changedTodos: Maybe<
+      changedTodos?: Maybe<
         Array<{ __typename?: "Todo" } & Pick<Todo, "id" | "complete">>
       >;
       user: { __typename?: "User" } & Pick<User, "id" | "completedCount">;
@@ -337,14 +339,14 @@ export type MarkAllTodosMutationMutation = { __typename?: "Mutation" } & {
   >;
 };
 
-export type RemoveCompletedTodosMutationMutationVariables = {
+export type RemoveCompletedTodosMutationMutationVariables = Exact<{
   input: RemoveCompletedTodosInput;
-};
+}>;
 
 export type RemoveCompletedTodosMutationMutation = {
   __typename?: "Mutation";
 } & {
-  removeCompletedTodos: Maybe<
+  removeCompletedTodos?: Maybe<
     { __typename?: "RemoveCompletedTodosPayload" } & Pick<
       RemoveCompletedTodosPayload,
       "deletedTodoIds"
@@ -357,12 +359,12 @@ export type RemoveCompletedTodosMutationMutation = {
   >;
 };
 
-export type RemoveTodoMutationMutationVariables = {
+export type RemoveTodoMutationMutationVariables = Exact<{
   input: RemoveTodoInput;
-};
+}>;
 
 export type RemoveTodoMutationMutation = { __typename?: "Mutation" } & {
-  removeTodo: Maybe<
+  removeTodo?: Maybe<
     { __typename?: "RemoveTodoPayload" } & Pick<
       RemoveTodoPayload,
       "deletedTodoId"
@@ -375,17 +377,18 @@ export type RemoveTodoMutationMutation = { __typename?: "Mutation" } & {
   >;
 };
 
-export type RenameTodoMutationMutationVariables = {
+export type RenameTodoMutationMutationVariables = Exact<{
   input: RenameTodoInput;
-};
+}>;
 
 export type RenameTodoMutationMutation = { __typename?: "Mutation" } & {
-  renameTodo: Maybe<
+  renameTodo?: Maybe<
     { __typename?: "RenameTodoPayload" } & {
       todo: { __typename?: "Todo" } & Pick<Todo, "id" | "text">;
     }
   >;
 };
+
 export const TodoListFooter_UserFragmentDoc = gql`
   fragment TodoListFooter_user on User {
     id

@@ -26,11 +26,11 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     /* GraphQL */ `
       directive @connection(key: String!, filter: [String!]) on FIELD
       directive @client on FIELD
-    `
+    `,
   ]);
 
   const documentAsts = documents.reduce((prev, v) => {
-    return [...prev, ...v.content.definitions];
+    return [...prev, ...(v.document?.definitions || [])];
   }, [] as DefinitionNode[]);
 
   const relayDocuments = RelayParser.transform(adjustedSchema, documentAsts);
@@ -43,10 +43,10 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     .applyTransforms([
       applyFragmentArgumentTransform,
       flattenTransformWithOptions({ flattenAbstractTypes: false }),
-      skipRedundantNodesTransform
+      skipRedundantNodesTransform,
     ])
     .documents()
-    .filter(doc => doc.kind === "Fragment");
+    .filter((doc) => doc.kind === "Fragment");
 
   const queryCompilerContext = new CompilerContext(adjustedSchema)
     .addAll(relayDocuments)
@@ -54,26 +54,28 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
       applyFragmentArgumentTransform,
       inlineFragmentsTransform,
       flattenTransformWithOptions({ flattenAbstractTypes: false }),
-      skipRedundantNodesTransform
+      skipRedundantNodesTransform,
     ]);
 
-  const newQueryDocuments = queryCompilerContext.documents().map(doc => ({
+  const newQueryDocuments = queryCompilerContext.documents().map((doc) => ({
     filePath: "optimized by relay",
-    content: parse(relayPrint(adjustedSchema, doc))
+    content: parse(relayPrint(adjustedSchema, doc)),
   }));
 
   const newDocuments = [
-    ...fragmentDocuments.map(doc => ({
+    ...fragmentDocuments.map((doc) => ({
       filePath: "optimized by relay",
-      content: parse(relayPrint(adjustedSchema, doc))
+      content: parse(relayPrint(adjustedSchema, doc)),
     })),
-    ...newQueryDocuments
+    ...newQueryDocuments,
   ];
 
   documents.splice(0, documents.length);
-  documents.push(...newDocuments);
+  documents.push(
+    ...newDocuments.map((document) => ({ document: document.content }))
+  );
 
   return {
-    content: ""
+    content: "",
   };
 };

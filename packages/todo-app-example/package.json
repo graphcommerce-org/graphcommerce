@@ -52,7 +52,7 @@
     "@graphql-codegen/typescript": "1.15.3",
     "@graphql-codegen/typescript-operations": "1.15.3",
     "@graphql-codegen/typescript-react-apollo": "1.15.3",
-    "@n1ru4l/graphql-codegen-relay-optimizer-plugin": "3.1.0",
+    "@n1ru4l/graphql-codegen-relay-optimizer-plugin": "*",
     "@types/classnames": "2.2.10",
     "@types/jest": "24.9.1",
     "@types/node": "12.12.47",

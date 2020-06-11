@@ -1,11 +1,10 @@
+import * as React from "react";
 import { useChangeTodoStatusMutation } from "../mutations/ChangeTodoStatusMutation";
 import { useRemoveTodoMutation } from "../mutations/RemoveTodoMutation";
 import { useRenameTodoMutation } from "../mutations/RenameTodoMutation";
 import TodoTextInput from "./TodoTextInput";
-
-import React, { useState } from "react";
 import classnames from "classnames";
-import { Todo_TodoFragment, Todo_UserFragment } from "../generated-types";
+import type { Todo_TodoFragment, Todo_UserFragment } from "../generated-types";
 
 interface Props {
   todo: Todo_TodoFragment;
@@ -16,7 +15,7 @@ const Todo: React.FC<Props> = ({ todo, user }) => {
   const renameTodoMutation = useRenameTodoMutation();
   const changeTodoStatusMutation = useChangeTodoStatusMutation();
   const removeTodoMutation = useRemoveTodoMutation();
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = React.useState<boolean>(false);
 
   const handleCompleteChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
     const complete = e.currentTarget.checked;
@@ -43,7 +42,7 @@ const Todo: React.FC<Props> = ({ todo, user }) => {
     <li
       className={classnames({
         completed: todo.complete,
-        editing: isEditing
+        editing: isEditing,
       })}
     >
       <div className="view">

@@ -1,21 +1,22 @@
+import * as React from "react";
 import {
   useMarkAllTodosMutationMutation,
   TodoList_UserFragment,
   MarkAllTodosInput,
-  MarkAllTodosMutationMutation
+  MarkAllTodosMutationMutation,
 } from "../generated-types";
-import { useCallback } from "react";
+import type { None } from "../utility-types"
 
-type Todos = Exclude<TodoList_UserFragment["todos"], null>;
+type Todos = Exclude<TodoList_UserFragment["todos"], None>;
 type ChangedTodos = Exclude<
-  Exclude<MarkAllTodosMutationMutation["markAllTodos"], null>["changedTodos"],
-  null
+  Exclude<MarkAllTodosMutationMutation["markAllTodos"], None>["changedTodos"],
+  None
 >;
 type ChangedTodo = ChangedTodos[number];
 
 function emptyEdgeFilter<TValue>(
-  value: TValue | null | undefined
-): value is TValue {
+  value: TValue
+): value is Exclude<TValue, None> {
   return Boolean(value);
 }
 
@@ -27,13 +28,13 @@ const createOptimisticResponse = (
   const changedTodos: ChangedTodos = todos.edges
     ? todos.edges
         .filter(emptyEdgeFilter)
-        .map(edge => edge.node)
+        .map((edge) => edge.node)
         .filter(emptyEdgeFilter)
-        .filter(node => node.complete !== complete)
+        .filter((node) => node.complete !== complete)
         .map(
           (node): ChangedTodo => ({
             complete,
-            id: node.id
+            id: node.id,
           })
         )
     : [];
@@ -46,26 +47,26 @@ const createOptimisticResponse = (
       user: {
         __typename: "User",
         id: user.id,
-        completedCount: complete ? user.totalCount : 0
-      }
-    }
+        completedCount: complete ? user.totalCount : 0,
+      },
+    },
   };
 };
 
 export const useMarkAllTodosMutation = () => {
   const [mutate] = useMarkAllTodosMutationMutation();
-  return useCallback(
+  return React.useCallback(
     (complete: boolean, todos: Todos, user: TodoList_UserFragment) => {
       const input: MarkAllTodosInput = {
         complete,
-        userId: user.userId
+        userId: user.userId,
       };
 
       return mutate({
         variables: {
-          input
+          input,
         },
-        optimisticResponse: createOptimisticResponse(complete, todos, user)
+        optimisticResponse: createOptimisticResponse(complete, todos, user),
       });
     },
     [mutate]

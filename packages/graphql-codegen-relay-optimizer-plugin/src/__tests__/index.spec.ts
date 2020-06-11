@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 import "@graphql-codegen/testing";
 
-import { buildSchema, parse, print } from "graphql";
+import { buildSchema, parse, print, ASTNode } from "graphql";
 import { plugin } from "..";
 import { Types } from "@graphql-codegen/plugin-helpers";
 
@@ -23,6 +23,7 @@ const testSchema = buildSchema(/* GraphQL */ `
   }
 `);
 
+// eslint-disable-next-line jest/expect-expect
 it("can be called", async () => {
   const testDocument = parse(/* GraphQL */ `
     query user {
@@ -31,9 +32,10 @@ it("can be called", async () => {
       }
     }
   `);
-  await plugin(testSchema, [{ filePath: "lel", content: testDocument }], {});
+  await plugin(testSchema, [{ document: testDocument }], {});
 });
 
+// eslint-disable-next-line jest/expect-expect
 it("can be called with queries that include connection fragments", async () => {
   const testDocument = parse(/* GraphQL */ `
     query user {
@@ -42,7 +44,7 @@ it("can be called with queries that include connection fragments", async () => {
       }
     }
   `);
-  await plugin(testSchema, [{ filePath: "lel", content: testDocument }], {});
+  await plugin(testSchema, [{ document: testDocument }], {});
 });
 
 it("can inline @argumentDefinitions/@arguments annotated fragments", async () => {
@@ -68,17 +70,17 @@ it("can inline @argumentDefinitions/@arguments annotated fragments", async () =>
     }
   `);
   const input: Types.DocumentFile[] = [
-    { filePath: "fragment", content: fragmentDocument },
-    { filePath: "query", content: queryDocument }
+    { document: fragmentDocument },
+    { document: queryDocument },
   ];
   await plugin(testSchema, input, {});
   const queryDoc = input.find(
-    doc => doc.content.definitions[0].kind === "OperationDefinition"
+    (doc) => doc.document?.definitions[0].kind === "OperationDefinition"
   );
 
   expect(queryDoc).toBeDefined();
-  // @ts-ignore
-  expect(print(queryDoc.content)).toBeSimilarStringTo(/* GraphQL */ `
+  expect(print(queryDoc?.document as ASTNode))
+    .toBeSimilarStringTo(/* GraphQL */ `
     query user {
       users {
         id
@@ -132,17 +134,15 @@ it("handles unions with interfaces the correct way", async () => {
     }
   `);
 
-  const input: Types.DocumentFile[] = [
-    { filePath: "query", content: queryDocument }
-  ];
+  const input: Types.DocumentFile[] = [{ document: queryDocument }];
   await plugin(schema, input, {});
   const queryDoc = input.find(
-    doc => doc.content.definitions[0].kind === "OperationDefinition"
+    (doc) => doc.document?.definitions[0].kind === "OperationDefinition"
   );
 
   expect(queryDoc).toBeDefined();
-  // @ts-ignore
-  expect(print(queryDoc.content)).toBeSimilarStringTo(/* GraphQL */ `
+  expect(print(queryDoc?.document as ASTNode))
+    .toBeSimilarStringTo(/* GraphQL */ `
     query user {
       user {
         ... on User {
