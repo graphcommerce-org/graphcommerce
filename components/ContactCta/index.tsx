@@ -2,16 +2,14 @@ import React from 'react'
 import Asset from 'components/Asset'
 import ContactCtaStyles from './ContactCtaStyles'
 
-export type ContactCtaPeopleProps = GQLPersonFragment & GQLGetAllContactCtaPeopleQuery
-
-const ContactCta: React.FC<ContactCtaPeopleProps> = ({ contactPeople }) => {
+const ContactCta: React.FC<GQLPersonFragment> = ({ contactPeople }) => {
   const classes = ContactCtaStyles()
 
   return (
-    <div className={classes.root}>
-      <div className={classes.persons}>
-        {contactPeople &&
-          contactPeople.map((person: GQLPersonFragment) => {
+    contactPeople.length > 0 && (
+      <div className={classes.root}>
+        <div className={classes.persons}>
+          {contactPeople.map((person: GQLPersonFragment) => {
             return (
               <a
                 key={person.id}
@@ -23,14 +21,15 @@ const ContactCta: React.FC<ContactCtaPeopleProps> = ({ contactPeople }) => {
               </a>
             )
           })}
+        </div>
+        <span className={classes.ctaMessage}>
+          <span>Even sparren?</span>{' '}
+          <strong>
+            <a href='tel:0717440084'>071 744 0084</a>
+          </strong>
+        </span>
       </div>
-      <span className={classes.ctaMessage}>
-        <span>Even sparren?</span>{' '}
-        <strong>
-          <a href='tel:0717440084'>071 744 0084</a>
-        </strong>
-      </span>
-    </div>
+    )
   )
 }
 
