@@ -6,9 +6,17 @@ const ContactCtaStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       marginTop: theme.spacings.sm,
+      flexDirection: 'column',
+      [theme.breakpoints.up('sm')]: {
+        flexDirection: 'row',
+      },
     },
     persons: {
-      marginRight: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
+      [theme.breakpoints.up('sm')]: {
+        marginRight: theme.spacings.sm,
+        marginBottom: 0,
+      },
     },
     person: {
       display: 'inline-block',
