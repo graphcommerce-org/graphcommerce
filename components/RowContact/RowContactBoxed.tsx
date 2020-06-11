@@ -31,11 +31,11 @@ export type RowContactProps = GQLRowContactFragment &
 
 const RowContactBoxed: React.FC<RowContactProps> = (props) => {
   const { text, richTextClasses, ...containerProps } = props
-  const { containerClasses, boxed } = useStyles(props)
+  const { boxed } = useStyles(props)
   const richTextClassesAdded = useRichTextStyles()
 
   return (
-    <Container {...containerProps} classes={containerClasses}>
+    <Container {...containerProps}>
       <div className={boxed}>
         <ContactFormLoader>
           <RichText {...text} classes={{ ...richTextClasses, ...richTextClassesAdded }} />
