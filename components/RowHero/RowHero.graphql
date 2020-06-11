@@ -12,5 +12,7 @@ fragment RowHero on RowHero {
     ...LinkInternal
     ...LinkExternal
   }
-  showContactCta
+  contactPeople {
+    ...Person
+  }
 }

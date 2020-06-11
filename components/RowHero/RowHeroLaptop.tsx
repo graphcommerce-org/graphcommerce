@@ -22,7 +22,7 @@ const useLaptopStyles = makeStyles((theme: Theme) => ({
 }))
 
 const RowHeroLaptop: React.FC<RowHeroProps> = (props) => {
-  const { text, asset, links, showContactCta, id, richTextClasses, children } = props
+  const { text, asset, links, contactPeople, richTextClasses, children } = props
   const classes = RowHeroLaptopStyles()
   const headerSpacing = useHeaderSpacing()
   const DeviceLaptopStyles = useLaptopStyles()
@@ -79,7 +79,7 @@ const RowHeroLaptop: React.FC<RowHeroProps> = (props) => {
               return undefined
             })}
           </div>
-          {showContactCta && showContactCta === true && <ContactCta id={id} />}
+          <ContactCta contactPeople={contactPeople} />
         </div>
       </Container>
     </div>
