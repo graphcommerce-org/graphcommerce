@@ -2,14 +2,14 @@ import React from 'react'
 import Asset from 'components/Asset'
 import ContactCtaStyles from './ContactCtaStyles'
 
-const ContactCta: React.FC<GQLPersonFragment> = ({ contactPeople }) => {
+const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
   const classes = ContactCtaStyles()
 
   return (
     contactPeople.length > 0 && (
       <div className={classes.root}>
         <div className={classes.persons}>
-          {contactPeople.map((person: GQLPersonFragment) => {
+          {contactPeople.map((person) => {
             return (
               <a
                 key={person.id}
