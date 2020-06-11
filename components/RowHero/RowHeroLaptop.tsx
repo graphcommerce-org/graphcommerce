@@ -79,7 +79,7 @@ const RowHeroLaptop: React.FC<RowHeroProps> = (props) => {
               return undefined
             })}
           </div>
-          <ContactCta contactPeople={contactPeople} />
+          <ContactCta {...props} />
         </div>
       </Container>
     </div>
