@@ -5,8 +5,9 @@ const RowHeroLaptopStyles = makeStyles(
     wrapper: {
       backgroundColor: '#fafafa',
       backgroundImage: 'none',
-      paddingTop: theme.spacings.md,
-      paddingBottom: theme.spacings.xl,
+      paddingTop: theme.spacings.sm,
+      paddingBottom: theme.spacings.lg,
+      marginBottom: theme.spacings.xl,
     },
     grid: {
       display: `grid`,
@@ -18,6 +19,10 @@ const RowHeroLaptopStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: `1fr 1fr`,
         gridTemplateAreas: `"one two"`,
+      },
+      '& h1': {
+        marginTop: 0,
+        marginBottom: 30,
       },
     },
     colOne: { gridArea: 'one' },
