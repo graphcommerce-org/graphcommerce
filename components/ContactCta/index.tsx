@@ -1,20 +1,17 @@
 import React from 'react'
 import Asset from 'components/Asset'
-import { useGetAllContactCtaPeopleQuery } from 'generated/apollo'
 import ContactCtaStyles from './ContactCtaStyles'
 
 export type ContactCtaPeopleProps = GQLPersonFragment & GQLGetAllContactCtaPeopleQuery
 
-const ContactCta: React.FC<ContactCtaPeopleProps> = ({ people }) => {
+const ContactCta: React.FC<ContactCtaPeopleProps> = ({ contactPeople }) => {
   const classes = ContactCtaStyles()
-
-  // const { data, loading, error } = useGetAllContactCtaPeopleQuery()
 
   return (
     <div className={classes.root}>
       <div className={classes.persons}>
-        {people &&
-          people.map((person) => {
+        {contactPeople &&
+          contactPeople.map((person: GQLPersonFragment) => {
             return (
               <a
                 key={person.id}
