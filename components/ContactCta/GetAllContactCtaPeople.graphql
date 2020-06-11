@@ -1,8 +1,0 @@
-query GetAllContactCtaPeople {
-  people(
-    where: { name_in: ["Paul Hachmang", "Erwin Otten", "Machiel Kreiken"] }
-    orderBy: name_DESC
-  ) {
-    ...Person
-  }
-}
