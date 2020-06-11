@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 
-const RowHeroLaptopStyles = makeStyles(
+const useRowHeroLaptopStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       backgroundColor: '#fafafa',
@@ -20,18 +20,14 @@ const RowHeroLaptopStyles = makeStyles(
         gridTemplateColumns: `1fr 1fr`,
         gridTemplateAreas: `"one two"`,
       },
-      '& h1': {
-        marginTop: 0,
-        marginBottom: 30,
-      },
+    },
+    title: {
+      marginTop: 0,
+      marginBottom: 30,
     },
     colOne: { gridArea: 'one' },
     colTwo: { gridArea: 'two' },
-    video: {
-      width: '100%',
-      height: 'auto',
-    },
-    h1: { fontWeight: 400 },
+    h1: { fontWeight: 400, marginBottom: 50 },
     headerWysiwyg: {
       '& a': {
         color: theme.palette.tertiary.contrastText,
@@ -47,7 +43,6 @@ const RowHeroLaptopStyles = makeStyles(
       left: '50%',
       objectFit: 'cover',
     },
-    h1: { fontWeight: 400 },
     assetArea: {
       width: '100%',
       height: 'auto',
@@ -110,4 +105,4 @@ const RowHeroLaptopStyles = makeStyles(
   { name: 'RowHeroLaptopStyles' },
 )
 
-export default RowHeroLaptopStyles
+export default useRowHeroLaptopStyles
