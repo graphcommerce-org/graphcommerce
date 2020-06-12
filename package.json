@@ -68,7 +68,7 @@
     "@graphql-codegen/introspection": "1.15.1",
     "@graphql-codegen/schema-ast": "^1.15.1",
     "@graphql-codegen/typescript": "1.15.1",
-    "@graphql-codegen/typescript-document-nodes": "1.15.1",
+    "@graphql-codegen/typescript-document-nodes": "1.15.3",
     "@graphql-codegen/typescript-graphql-files-modules": "1.15.1",
     "@graphql-codegen/typescript-operations": "1.15.1",
     "@graphql-codegen/typescript-react-apollo": "1.15.1",
