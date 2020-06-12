@@ -1,5 +1,7 @@
 import React from 'react'
 import Asset from 'components/Asset'
+import Avatar from '@material-ui/core/Avatar'
+import AvatarGroup from '@material-ui/lab/AvatarGroup'
 import ContactCtaStyles from './ContactCtaStyles'
 
 const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
@@ -9,18 +11,18 @@ const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
     contactPeople && (
       <div className={classes.root}>
         <div className={classes.persons}>
-          {contactPeople.map((person) => {
-            return (
-              <a
-                key={person.id}
-                href='tel:0717440084'
-                className={classes.person}
-                title={`Bel met ${person.name}`}
-              >
-                {person.avatar && <Asset asset={person.avatar} width={49} />}
-              </a>
-            )
-          })}
+          <AvatarGroup classes={{ avatar: classes.avatarGroup }}>
+            {contactPeople.map((person) => {
+              return (
+                <Avatar
+                  key={person.id}
+                  alt={person.name}
+                  src={person.avatar.url}
+                  className={classes.avatar}
+                />
+              )
+            })}
+          </AvatarGroup>
         </div>
         <span className={classes.ctaMessage}>
           <span>Even sparren?</span>{' '}
