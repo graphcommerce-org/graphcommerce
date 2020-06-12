@@ -25,7 +25,7 @@ const RowHeroLaptop: React.FC<RowHeroProps> = (props) => {
   const { text, asset, links, children } = props
   const classes = useRowHeroLaptopStyles()
   const headerSpacing = useHeaderSpacing()
-  const DeviceLaptopStyles = useLaptopStyles()
+  const deviceLaptopClasses = useLaptopStyles()
 
   return (
     <div className={classes.wrapper}>
@@ -35,7 +35,7 @@ const RowHeroLaptop: React.FC<RowHeroProps> = (props) => {
         ) : (
           asset && (
             <div className={classes.assetContainer}>
-              <DeviceContainerLaptop classes={DeviceLaptopStyles}>
+              <DeviceContainerLaptop classes={deviceLaptopClasses}>
                 <Asset asset={asset} width={304} className={clsx(classes.video, classes.colOne)} />
               </DeviceContainerLaptop>
             </div>
