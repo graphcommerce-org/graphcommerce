@@ -1,11 +1,10 @@
 import React from 'react'
-import Asset from 'components/Asset'
 import Avatar from '@material-ui/core/Avatar'
 import AvatarGroup from '@material-ui/lab/AvatarGroup'
-import ContactCtaStyles from './ContactCtaStyles'
+import useContactCtaStyles from './useContactCtaStyles'
 
 const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
-  const classes = ContactCtaStyles()
+  const classes = useContactCtaStyles()
 
   return (
     contactPeople && (

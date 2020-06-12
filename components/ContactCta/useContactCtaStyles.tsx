@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 
-const ContactCtaStyles = makeStyles(
+const useContactCtaStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'flex',
@@ -36,4 +36,4 @@ const ContactCtaStyles = makeStyles(
   { name: 'ContactCtaStyles' },
 )
 
-export default ContactCtaStyles
+export default useContactCtaStyles
