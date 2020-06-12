@@ -26,5 +26,6 @@ fragment ContentRenderer on Page {
     ...RowImageOrVideo
     ...RowPhonesSlider
     ...RowVacancy
+    ...RowQuote
   }
 }
