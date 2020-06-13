@@ -1,4 +1,5 @@
 fragment ProductListItemSimple on ProductInterface {
+  sku
   name
   url_key
   small_image {

@@ -7,14 +7,13 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
     label
     values {
       store_label
-      use_default_value
       value_index
       swatch_data {
+        __typename
+        value
         ... on ImageSwatchData {
           thumbnail
-          value
         }
-        value
       }
     }
   }

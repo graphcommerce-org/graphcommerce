@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Theme, Container } from '@material-ui/core'
 import { vpCalc } from 'components/Theme'
 import ProductListItemSimple from '../ProductListItemSimple'
+import ProductListItemConfigurable from '../ProductListItemConfigurable'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -22,9 +23,16 @@ export default function ProductList(props: GQLProductListFragment) {
 
   return (
     <Container className={classes.productList}>
-      {items.map((item) => (
-        <ProductListItemSimple {...item} key={item.id} />
-      ))}
+      {items.map((item) => {
+        switch (item.__typename) {
+          case 'ConfigurableProduct':
+            return <ProductListItemConfigurable {...item} key={item.id} />
+          case 'SimpleProduct':
+            return <ProductListItemSimple {...item} key={item.id} />
+          default:
+            return <div>${item.__typename}</div>
+        }
+      })}
     </Container>
   )
 }

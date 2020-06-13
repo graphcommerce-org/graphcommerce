@@ -5,9 +5,6 @@ query CategoryProducts(
   $sort: ProductAttributeSortInput = {}
 ) {
   products(pageSize: $pageSize, currentPage: $currentPage, filter: $filters, sort: $sort) {
-    items {
-      name
-    }
     ...ProductPagination
     ...ProductSort
     ...ProductFilters

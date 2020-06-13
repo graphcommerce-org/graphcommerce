@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 import { Typography, makeStyles, Theme } from '@material-ui/core'
 import Link from 'components/Link'
@@ -61,19 +61,20 @@ export const useProductListItemSimpleStyles = makeStyles(
       textDecoration: 'underline',
     },
   }),
-  { name: 'BlogListItem' },
+  { name: 'ProductListItemSimple' },
 )
 
-type ProductListItemSimpleProps = GQLProductListItemSimpleFragment &
-  UseStyles<typeof useProductListItemSimpleStyles>
+type ProductListItemSimpleProps = PropsWithChildren<
+  GQLProductListItemSimpleFragment & UseStyles<typeof useProductListItemSimpleStyles>
+>
 
 export default function ProductListItemSimple(props: ProductListItemSimpleProps) {
-  const { small_image, url_key, name, price_range } = props
+  const { small_image, url_key, name, price_range, children, sku } = props
   const classes = useProductListItemSimpleStyles(props)
 
   return (
-    <Link href={`/shop/view/${url_key}`} metaRobots='INDEX_FOLLOW' underline='none'>
-      <div className={classes.item}>
+    <div className={classes.item}>
+      <Link href={`/shop/view/${url_key}`} metaRobots='INDEX_FOLLOW' underline='none'>
         <div className={classes.imageContainer}>
           {small_image ? (
             <PictureResponsive
@@ -87,11 +88,13 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
             <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
           )}
         </div>
+
         <Typography component='h2' className={classes.title}>
-          {name}
+          {name} {sku}
         </Typography>
-        <ProductPrice {...price_range.minimum_price} />
-      </div>
-    </Link>
+      </Link>
+      <ProductPrice {...price_range.minimum_price} />
+      {children}
+    </div>
   )
 }
