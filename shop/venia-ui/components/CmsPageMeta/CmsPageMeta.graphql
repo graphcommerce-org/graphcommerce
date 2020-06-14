@@ -1,0 +1,5 @@
+fragment CmsPageMeta on CmsPage {
+  meta_title
+  meta_description
+  title
+}

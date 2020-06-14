@@ -1,4 +1,4 @@
-fragment CategoryMeta on CategoryInterface {
+fragment CategoryMeta on CategoryTree {
   name
   meta_title
   meta_description

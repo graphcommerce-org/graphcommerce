@@ -1,4 +1,4 @@
-fragment CategoryDescription on CategoryInterface {
+fragment CategoryDescription on CategoryTree {
   description
   name
 }

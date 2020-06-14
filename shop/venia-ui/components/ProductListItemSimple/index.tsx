@@ -52,7 +52,7 @@ export const useProductListItemSimpleStyles = makeStyles(
     image: {
       width: '100%',
       height: '100%',
-      objectFit: 'cover',
+      objectFit: 'contain',
       position: 'absolute',
       top: 0,
       left: 0,

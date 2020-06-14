@@ -8,7 +8,6 @@ documents:
   - '**/*.graphql'
   - '!generated/*.graphql'
   - '!node_modules/**'
-  - 'node_modules/@magento/venia-ui/lib/queries/**/*.graphql'
 generates:
   generated/fragments.json:
     plugins:
@@ -16,12 +15,13 @@ generates:
     hooks:
       afterOneFileWrite:
         - prettier --write
+    config:
   generated/schema.graphql:
     plugins:
       - schema-ast
     config:
       includeDirectives: true
-      commentDescriptions: true
+      commentDescriptions: false
     hooks:
       afterOneFileWrite:
         - prettier --write
@@ -45,10 +45,9 @@ generates:
         - prettier --write
   generated/apollo.ts:
     plugins:
-      # - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
+      - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
       - typescript-react-apollo
     config:
-      # skipDocumentsValidation: true
       typesPrefix: GQL
       withHOC: false
       withHooks: true

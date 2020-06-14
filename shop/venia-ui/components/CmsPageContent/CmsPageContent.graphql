@@ -1,0 +1,4 @@
+fragment CmsPageContent on CmsPage {
+  content_heading
+  content
+}

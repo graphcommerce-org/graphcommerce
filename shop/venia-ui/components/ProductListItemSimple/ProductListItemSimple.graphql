@@ -1,4 +1,4 @@
-fragment ProductListItemSimple on ProductInterface {
+fragment ProductListItemSimple on SimpleProduct {
   sku
   name
   url_key

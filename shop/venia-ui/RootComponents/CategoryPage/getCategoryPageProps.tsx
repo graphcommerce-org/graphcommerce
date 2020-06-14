@@ -6,6 +6,7 @@ import {
 } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+import getFilterInputTypes from './FilterInputTypes'
 
 type GetCategoryPagePropsArguments = {
   query: string[]
@@ -60,10 +61,7 @@ const parseCategoryFilterParams = (query: string[], introspectionData: GQLGetFil
 const getCategoryPageProps = async ({ query, urlResolve }: GetCategoryPagePropsArguments) => {
   const client = await apolloClient()
 
-  const filterInputTypes = client.query<
-    GQLFilterInputTypesQuery,
-    GQLFilterInputTypesQueryVariables
-  >({ query: FilterInputTypesDocument })
+  const filterInputTypes = getFilterInputTypes()
 
   const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
     query: CategoryPageDocument,

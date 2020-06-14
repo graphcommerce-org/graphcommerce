@@ -1,5 +1,19 @@
 fragment ProductListItemConfigurable on ConfigurableProduct {
-  ...ProductListItemSimple
+  sku
+  name
+  url_key
+  small_image {
+    url
+    label
+  }
+  price_range {
+    maximum_price {
+      ...ProductPrice
+    }
+    minimum_price {
+      ...ProductPrice
+    }
+  }
   configurable_options {
     attribute_code
     attribute_id

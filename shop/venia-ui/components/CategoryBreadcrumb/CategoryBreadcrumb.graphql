@@ -1,4 +1,4 @@
-fragment CategoryBreadcrumb on CategoryInterface {
+fragment CategoryBreadcrumb on CategoryTree {
   breadcrumbs {
     category_id
     category_level

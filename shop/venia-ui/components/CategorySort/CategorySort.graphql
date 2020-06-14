@@ -1,4 +1,4 @@
-fragment CategorySort on CategoryInterface {
+fragment CategorySort on CategoryTree {
   default_sort_by
   automatic_sorting
   available_sort_by
