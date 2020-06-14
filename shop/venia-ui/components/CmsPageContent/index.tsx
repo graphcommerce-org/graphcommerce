@@ -1,12 +1,12 @@
 import React from 'react'
-import RichContent from '@magento/venia-ui/lib/components/RichContent'
+// import RichContent from '@magento/venia-ui/lib/components/RichContent'
 
 export default function CmsPageContent(props: GQLCmsPageContentFragment) {
-  const { content, content_heading } = props
+  const { content_heading, content } = props
   return (
     <>
-      <h1>{content_heading}</h1>}
-      <RichContent html={content} />
+      {content_heading && <h1>{content_heading}</h1>}
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </>
   )
 }

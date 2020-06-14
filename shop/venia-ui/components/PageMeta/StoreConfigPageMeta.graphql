@@ -1,0 +1,7 @@
+fragment StoreConfigPageMeta on StoreConfig {
+  default_title
+  default_description
+  title_prefix
+  title_suffix
+  title_separator
+}

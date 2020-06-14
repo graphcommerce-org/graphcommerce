@@ -1,0 +1,5 @@
+query CmsPageStoreConfig {
+  storeConfig {
+    ...StoreConfigPageMeta
+  }
+}

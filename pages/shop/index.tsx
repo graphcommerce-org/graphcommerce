@@ -14,7 +14,15 @@ PageWithLayout.layout = ShopLayout
 export default PageWithLayout
 
 export const getStaticProps: GetStaticProps = async () => {
-  const variables = await getUrlResolveProps({ urlKey: '/' })
-  const data = await Promise.all([getNavigationProps(), getCmsPageProps(variables)])
-  return { props: { ...variables, ...Object.assign(...data) } }
+  const urlResolve = getUrlResolveProps({ urlKey: '/' })
+  const navigationProps = getNavigationProps()
+  const cmsPageProps = getCmsPageProps(urlResolve)
+
+  return {
+    props: {
+      ...(await urlResolve),
+      ...(await navigationProps),
+      ...(await cmsPageProps),
+    },
+  }
 }
