@@ -6,7 +6,7 @@ type ProductFiltersProps = GQLProductFiltersFragment &
     filterTypes: FilterInputTypesQuery
   }
 
-export default function ProductFilters(props: ProductFiltersProps) {
+export default function ProductListFilters(props: ProductFiltersProps) {
   const { aggregations, filters, filterTypes } = props
   return <div />
 }

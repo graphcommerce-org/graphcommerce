@@ -1,4 +1,4 @@
-fragment ProductFilters on Products {
+fragment ProductListFilters on Products {
   aggregations {
     label
     count

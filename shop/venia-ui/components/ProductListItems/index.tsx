@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   { name: 'ProductList' },
 )
 
-export default function ProductList(props: GQLProductListFragment) {
+export default function ProductListItems(props: GQLProductListFragment) {
   const { items } = props
   const classes = useStyles(props)
 

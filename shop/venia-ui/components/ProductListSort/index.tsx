@@ -2,18 +2,18 @@ import React from 'react'
 import { Button, Menu, MenuItem } from '@material-ui/core'
 import { CategoryProductsLink } from '../CategoryProductsLink'
 
-export type ProductSortProps = GQLProductSortFragment & {
+export type ProductListSortProps = GQLProductSortFragment & {
   url: string[]
   defaultSort: string
   categoryVariables: GQLCategoryProductsQueryVariables
 }
 
-export default function ProductSort({
+export default function ProductListSort({
   sort_fields,
   url,
   defaultSort,
   categoryVariables,
-}: ProductSortProps) {
+}: ProductListSortProps) {
   const { sort = {} } = categoryVariables
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)

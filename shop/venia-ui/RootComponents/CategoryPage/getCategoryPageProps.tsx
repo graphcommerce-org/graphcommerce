@@ -1,21 +1,26 @@
 import apolloClient from 'node/apolloClient'
 import {
   CategoryPageDocument,
-  CategoryProductsDocument,
   CategorypageStoreConfigDocument,
+  ProductListDocument,
 } from 'generated/apollo'
-import { PromiseValue } from 'type-fest'
+import { PromiseValue, SetRequired } from 'type-fest'
 import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+
 import getFilterInputTypes, { FilterInputTypesQuery } from './getFilterInputTypes'
 
 const filterTypeInputs: Array<
   'FilterEqualTypeInput' | 'FilterMatchTypeInput' | 'FilterRangeTypeInput'
 > = ['FilterEqualTypeInput', 'FilterMatchTypeInput', 'FilterRangeTypeInput']
 
-const parseCategoryVariables = (query: string[], introspectionData: FilterInputTypesQuery) => {
+const parseProductListParams = async (
+  query: string[],
+  urlResolve: Promise<GQLResolveUrlQuery>,
+  filterInputTypes: Promise<FilterInputTypesQuery>,
+) => {
   const typeMap: { [index: string]: typeof filterTypeInputs[0] } = {}
 
-  introspectionData.__type.inputFields.forEach(({ name, type }) => {
+  ;(await filterInputTypes).__type.inputFields.forEach(({ name, type }) => {
     const typeName = type.name as typeof filterTypeInputs[0]
     if (!filterTypeInputs.includes(typeName)) {
       throw new Error(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
@@ -23,9 +28,8 @@ const parseCategoryVariables = (query: string[], introspectionData: FilterInputT
     typeMap[name] = typeName
   })
 
-  const categoryVariables: Partial<GQLCategoryProductsQueryVariables> &
-    Required<Pick<GQLCategoryProductsQueryVariables, 'filters' | 'sort'>> = {
-    filters: {},
+  const categoryVariables: SetRequired<GQLProductListQueryVariables, 'filters' | 'sort'> = {
+    filters: { category_id: { eq: String((await urlResolve).urlResolver.id) } },
     sort: {},
   }
 
@@ -82,13 +86,11 @@ const getCategoryPageProps = async ({
     variables: { id: (await urlResolve).urlResolver.id },
   })
 
-  const categoryVariables = parseCategoryVariables(urlParams, (await filterInputTypes).data)
-  categoryVariables.filters.category_id = { eq: String((await urlResolve).urlResolver.id) }
+  const productListParams = parseProductListParams(urlParams, urlResolve, filterInputTypes)
 
-  console.log(categoryVariables)
-  const products = client.query<GQLCategoryProductsQuery, GQLCategoryProductsQueryVariables>({
-    query: CategoryProductsDocument,
-    variables: categoryVariables as GQLCategoryProductsQueryVariables,
+  const products = client.query<GQLProductListQuery, GQLProductListQueryVariables>({
+    query: ProductListDocument,
+    variables: await productListParams,
   })
 
   return {
@@ -96,8 +98,8 @@ const getCategoryPageProps = async ({
     ...(await category).data,
     ...(await products).data,
     ...(await storeConfig).data,
-    categoryVariables: categoryVariables as GQLCategoryProductsQueryVariables,
-    filterInputTypes: (await filterInputTypes).data,
+    productListParams: await productListParams,
+    filterInputTypes: await filterInputTypes,
   }
 }
 

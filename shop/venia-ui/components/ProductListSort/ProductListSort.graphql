@@ -1,4 +1,4 @@
-fragment ProductSort on Products {
+fragment ProductListSort on Products {
   sort_fields {
     default
     options {

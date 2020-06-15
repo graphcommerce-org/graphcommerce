@@ -5,7 +5,7 @@ import Link from 'components/Link'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
-import ProductPrice from '../ProductPrice'
+import ProductListPrice from '../ProductListPrice'
 
 export const useProductListItemSimpleStyles = makeStyles(
   (theme: Theme) => ({
@@ -93,7 +93,7 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
           {name} {sku}
         </Typography>
       </Link>
-      <ProductPrice {...price_range.minimum_price} />
+      <ProductListPrice {...price_range.minimum_price} />
       {children}
     </div>
   )

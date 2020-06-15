@@ -8,10 +8,10 @@ fragment ProductListItemSimple on SimpleProduct {
   }
   price_range {
     maximum_price {
-      ...ProductPrice
+      ...ProductListPrice
     }
     minimum_price {
-      ...ProductPrice
+      ...ProductListPrice
     }
   }
 }

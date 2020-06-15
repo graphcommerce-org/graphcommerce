@@ -8,10 +8,10 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
   }
   price_range {
     maximum_price {
-      ...ProductPrice
+      ...ProductListPrice
     }
     minimum_price {
-      ...ProductPrice
+      ...ProductListPrice
     }
   }
   configurable_options {

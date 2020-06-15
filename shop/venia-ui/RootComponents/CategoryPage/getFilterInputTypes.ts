@@ -24,7 +24,8 @@ const FilterInputTypesDocument = gql`
 
 export default async function getFilterInputTypes() {
   const client = await apolloClient()
-  return client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({
+  const filterInputTypes = client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({
     query: FilterInputTypesDocument,
   })
+  return (await filterInputTypes).data
 }

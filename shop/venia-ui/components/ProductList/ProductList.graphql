@@ -1,8 +1,26 @@
-fragment ProductList on Products {
-  items {
-    id
-    __typename
-    ...ProductListItemSimple
-    ...ProductListItemConfigurable
+query ProductList(
+  $pageSize: Int = 10
+  $currentPage: Int = 1
+  $filters: ProductAttributeFilterInput = {}
+  $sort: ProductAttributeSortInput = {}
+  $search: String = ""
+) {
+  products(
+    pageSize: $pageSize
+    currentPage: $currentPage
+    filter: $filters
+    sort: $sort
+    search: $search
+  ) {
+    items {
+      name
+    }
+    sort_fields {
+      default
+    }
+    ...ProductListPagination
+    ...ProductListSort
+    ...ProductListFilters
+    ...ProductListItems
   }
 }

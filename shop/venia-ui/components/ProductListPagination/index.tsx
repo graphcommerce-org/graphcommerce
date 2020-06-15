@@ -4,12 +4,12 @@ import { CategoryProductsLink } from '../CategoryProductsLink'
 
 type ProductPaginationProps = GQLProductPaginationFragment & {
   url: string[]
-  categoryVariables: GQLCategoryProductsQueryVariables
+  productListParams: GQLCategoryProductsQueryVariables
 }
 
-export default function ProductPagination({
+export default function ProductListPagination({
   page_info,
-  categoryVariables,
+  productListParams,
   url,
 }: ProductPaginationProps) {
   const { current_page, total_pages } = page_info
@@ -20,7 +20,7 @@ export default function ProductPagination({
       defaultPage={1}
       page={current_page}
       renderItem={(item) => {
-        const variables = { ...categoryVariables }
+        const variables = { ...productListParams }
         delete variables.currentPage
         if (item.page > 1) variables.currentPage = item.page
 
