@@ -10,7 +10,7 @@ const useStyles = makeStyles(
     root: {
       gridColumnGap: theme.gridSpacing.column,
       gridRowGap: theme.gridSpacing.row,
-      marginBottom: theme.spacings.lg,
+      marginBottom: theme.spacings.xl,
       display: `grid`,
       gridTemplateColumns: `1fr`,
       gridTemplateAreas: `"one" "two"`,
