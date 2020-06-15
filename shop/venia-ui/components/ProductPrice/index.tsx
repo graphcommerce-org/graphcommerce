@@ -1,6 +1,6 @@
 import React from 'react'
+import Money from '../Money'
 
-export default function ProductPrice(props: GQLProductPriceFragment) {
-  const { discount, final_price, regular_price } = props
-  return <div />
+export default function ProductPrice({ final_price }: GQLProductPriceFragment) {
+  return <Money {...final_price} />
 }
