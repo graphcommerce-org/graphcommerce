@@ -28,14 +28,22 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params) throw Error('No params')
 
-  const urlKey = `${ctx.params.url.slice(0, 1).join('/')}.html`
+  // @todo slice everything before queryParam?
+  const url = ctx.params.url.slice(0, 1)
 
-  const urlResolve = getUrlResolveProps({ urlKey })
+  const urlResolve = getUrlResolveProps({ urlKey: `${url.join('/')}.html` })
+  const navigationProps = getNavigationProps()
+  const categoryPageProps = getCategoryPageProps({
+    urlParams: ctx.params.url.slice(1),
+    urlResolve,
+    url,
+  })
 
-  const data = await Promise.all([
-    getNavigationProps(),
-    getCategoryPageProps({ query: ctx.params.url.slice(1), urlResolve }),
-  ])
-
-  return { props: { ...(await urlResolve), ...Object.assign(...data) } }
+  return {
+    props: {
+      ...(await urlResolve),
+      ...(await navigationProps),
+      ...(await categoryPageProps),
+    },
+  }
 }

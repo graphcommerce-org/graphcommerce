@@ -5,7 +5,6 @@ import Link from 'components/Link'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
-import Money from '../Money'
 import ProductPrice from '../ProductPrice'
 
 export const useProductListItemSimpleStyles = makeStyles(

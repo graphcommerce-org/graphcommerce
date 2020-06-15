@@ -1,0 +1,5 @@
+query CategorypageStoreConfig {
+  storeConfig {
+    ...StoreConfigProductSort
+  }
+}

@@ -3,8 +3,21 @@ query CategoryProducts(
   $currentPage: Int = 1
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
+  $search: String
 ) {
-  products(pageSize: $pageSize, currentPage: $currentPage, filter: $filters, sort: $sort) {
+  products(
+    pageSize: $pageSize
+    currentPage: $currentPage
+    filter: $filters
+    sort: $sort
+    search: $search
+  ) {
+    items {
+      name
+    }
+    sort_fields {
+      default
+    }
     ...ProductPagination
     ...ProductSort
     ...ProductFilters

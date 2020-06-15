@@ -12,13 +12,20 @@ import CartTriggerSkeleton from 'shop/venia-ui/MagentoDynamic/CartTriggerSkeleto
 import { GetNavigationProps } from './getNavigationProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-export type ShopLayoutProps = (GetNavigationProps &
-  GetUrlResolveProps & { headerTheme?: HeaderTheme }) & { error?: string }
+export type ShopLayoutProps = GetNavigationProps &
+  GetUrlResolveProps & {
+    headerTheme?: HeaderTheme
+    url: string[]
+    error?: string
+  }
 
-export type PageWithShopLayout<T = {}> = LayoutPage<ShopLayoutProps & T, ShopLayoutProps>
+export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
+  ShopLayoutProps & T,
+  ShopLayoutProps
+>
 
 const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlResolver }) => {
-  if (!urlResolver.id) return <Error statusCode={404}>{error}</Error>
+  if (!urlResolver || !urlResolver.id) return <Error statusCode={404}>{error}</Error>
   return (
     <ThemedProvider>
       <Head>
