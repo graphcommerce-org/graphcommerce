@@ -6,6 +6,7 @@ import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import ProductListPrice from '../ProductListPrice'
+import { ProductListParams } from '../ProductList'
 
 export const useProductListItemSimpleStyles = makeStyles(
   (theme: Theme) => ({

@@ -6,7 +6,7 @@ type CategoryProductsLinkProps = PropsWithChildren<
   LinkProps & { variables: GQLCategoryProductsQueryVariables; url: string[] }
 >
 
-export function CategoryProductsLink({
+export function ProductListLink({
   children,
   url,
   variables,

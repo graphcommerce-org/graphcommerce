@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Theme, Container } from '@material-ui/core'
-import { vpCalc } from 'components/Theme'
+import { vpCalc, UseStyles } from 'components/Theme'
 import ProductListItemSimple from '../ProductListItemSimple'
 import ProductListItemConfigurable from '../ProductListItemConfigurable'
 
@@ -17,7 +17,9 @@ const useStyles = makeStyles(
   { name: 'ProductList' },
 )
 
-export default function ProductListItems(props: GQLProductListFragment) {
+type ProductListItemsParams = GQLProductListItemsFragment & UseStyles<typeof useStyles>
+
+export default function ProductListItems(props: ProductListItemsParams) {
   const { items } = props
   const classes = useStyles(props)
 

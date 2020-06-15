@@ -1,18 +1,16 @@
 import React from 'react'
 import { Button, Menu, MenuItem } from '@material-ui/core'
-import { CategoryProductsLink } from '../CategoryProductsLink'
+import { ProductListLink } from '../ProductListLink'
+import { ProductListParams } from '../ProductList'
 
-export type ProductListSortProps = GQLProductSortFragment & {
-  url: string[]
-  defaultSort: string
-  categoryVariables: GQLCategoryProductsQueryVariables
-}
+export type ProductListSortProps = GQLProductListSortFragment &
+  ProductListParams & { defaultSort: string }
 
 export default function ProductListSort({
   sort_fields,
   url,
   defaultSort,
-  categoryVariables,
+  productListParams,
 }: ProductListSortProps) {
   const { sort = {} } = categoryVariables
 
@@ -38,14 +36,14 @@ export default function ProductListSort({
       </Button>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         {sort_fields.options.map((option) => (
-          <CategoryProductsLink
+          <ProductListLink
             key={option.value}
             color='inherit'
             url={url}
-            variables={{ ...categoryVariables, sort: { [option.value]: true } }}
+            variables={{ ...productListParams, sort: { [option.value]: true } }}
           >
             <MenuItem onClick={handleClose}>{option.label}</MenuItem>
-          </CategoryProductsLink>
+          </ProductListLink>
         ))}
       </Menu>
       {currentDir}

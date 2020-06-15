@@ -1,11 +1,9 @@
 import React from 'react'
 import { Pagination, PaginationItem } from '@material-ui/lab'
-import { CategoryProductsLink } from '../CategoryProductsLink'
+import { ProductListLink } from '../ProductListLink'
+import { ProductListParams } from '../ProductList'
 
-type ProductPaginationProps = GQLProductPaginationFragment & {
-  url: string[]
-  productListParams: GQLCategoryProductsQueryVariables
-}
+type ProductPaginationProps = GQLProductListPaginationFragment & ProductListParams
 
 export default function ProductListPagination({
   page_info,
@@ -27,9 +25,7 @@ export default function ProductListPagination({
         return (
           <PaginationItem
             {...item}
-            component={(props) => (
-              <CategoryProductsLink url={url} variables={variables} {...props} />
-            )}
+            component={(props) => <ProductListLink url={url} variables={variables} {...props} />}
           />
         )
       }}

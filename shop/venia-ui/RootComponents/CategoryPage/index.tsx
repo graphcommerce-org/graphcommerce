@@ -26,18 +26,18 @@ export default function CategoryPage({
       <CategoryBreadcrumb {...category} />
       <ProductListPagination {...products} productListParams={productListParams} url={url} />
       {/* <CategorySort {...category} /> */}
-      <ProductListSort
-        {...products}
-        categoryVariables={productListParams}
-        url={url}
-        defaultSort={storeConfig.catalog_default_sort_by}
-      />
-      <ProductListItems {...products} />
       <ProductListFilters
         {...products}
         filters={productListParams.filters ?? {}}
         filterTypes={filterInputTypes}
       />
+      <ProductListSort
+        {...products}
+        productListParams={productListParams}
+        url={url}
+        defaultSort={storeConfig.catalog_default_sort_by}
+      />
+      <ProductListItems {...products} productListParams={productListParams} url={url} />
     </>
   )
 }
