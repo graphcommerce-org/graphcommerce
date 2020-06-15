@@ -3,6 +3,5 @@ query CategoryPage($id: Int!) {
     ...CategoryBreadcrumb
     ...CategoryDescription
     ...CategoryMeta
-    ...CategorySort
   }
 }

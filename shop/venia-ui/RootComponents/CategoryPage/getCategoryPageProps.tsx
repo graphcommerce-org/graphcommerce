@@ -4,36 +4,25 @@ import {
   CategorypageStoreConfigDocument,
   ProductListDocument,
 } from 'generated/apollo'
-import { PromiseValue, SetRequired } from 'type-fest'
+import { PromiseValue } from 'type-fest'
 import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+import getFilterTypeMap from 'shop/venia-ui/components/ProductList/getFilterTypeMap'
+import { ProductListParams } from 'shop/venia-ui/components/ProductList'
 
-import getFilterInputTypes, { FilterInputTypesQuery } from './getFilterInputTypes'
-
-const filterTypeInputs: Array<
-  'FilterEqualTypeInput' | 'FilterMatchTypeInput' | 'FilterRangeTypeInput'
-> = ['FilterEqualTypeInput', 'FilterMatchTypeInput', 'FilterRangeTypeInput']
-
-const parseProductListParams = async (
+async function parseParams(
+  url: string,
   query: string[],
   urlResolve: Promise<GQLResolveUrlQuery>,
-  filterInputTypes: Promise<FilterInputTypesQuery>,
-) => {
-  const typeMap: { [index: string]: typeof filterTypeInputs[0] } = {}
-
-  ;(await filterInputTypes).__type.inputFields.forEach(({ name, type }) => {
-    const typeName = type.name as typeof filterTypeInputs[0]
-    if (!filterTypeInputs.includes(typeName)) {
-      throw new Error(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
-    }
-    typeMap[name] = typeName
-  })
-
-  const categoryVariables: SetRequired<GQLProductListQueryVariables, 'filters' | 'sort'> = {
+  filterTypeMap: ReturnType<typeof getFilterTypeMap>,
+) {
+  const categoryVariables: ProductListParams = {
+    url,
     filters: { category_id: { eq: String((await urlResolve).urlResolver.id) } },
     sort: {},
   }
 
   query.reduce<string | undefined>((param, value) => {
+    // We parse everything in pairs, every second loop we parse
     if (!param) return value
 
     if (param === 'page') categoryVariables.currentPage = Number(value)
@@ -45,7 +34,7 @@ const parseProductListParams = async (
     }
 
     const [from, to] = value.split('-')
-    switch (typeMap[param]) {
+    switch (filterTypeMap[param]) {
       case 'FilterEqualTypeInput':
         categoryVariables.filters[param] = { eq: value } as GQLFilterEqualTypeInput
         break
@@ -56,6 +45,7 @@ const parseProductListParams = async (
         categoryVariables.filters[param] = { from, to } as GQLFilterRangeTypeInput
         break
     }
+
     return undefined
   }, undefined)
 
@@ -75,7 +65,7 @@ const getCategoryPageProps = async ({
 }: GetCategoryPagePropsArguments) => {
   const client = await apolloClient()
 
-  const filterInputTypes = getFilterInputTypes()
+  const filterTypeMap = getFilterTypeMap()
 
   const storeConfig = client.query<GQLCategorypageStoreConfigQuery>({
     query: CategorypageStoreConfigDocument,
@@ -86,20 +76,19 @@ const getCategoryPageProps = async ({
     variables: { id: (await urlResolve).urlResolver.id },
   })
 
-  const productListParams = parseProductListParams(urlParams, urlResolve, filterInputTypes)
+  const params = parseParams(url.join('/'), urlParams, urlResolve, filterTypeMap)
 
   const products = client.query<GQLProductListQuery, GQLProductListQueryVariables>({
     query: ProductListDocument,
-    variables: await productListParams,
+    variables: await params,
   })
 
   return {
-    url,
     ...(await category).data,
     ...(await products).data,
     ...(await storeConfig).data,
-    productListParams: await productListParams,
-    filterInputTypes: await filterInputTypes,
+    params: await params,
+    filterTypeMap: await filterTypeMap,
   }
 }
 

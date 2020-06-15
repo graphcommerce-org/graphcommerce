@@ -13,11 +13,7 @@ import { GetNavigationProps } from './getNavigationProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
 export type ShopLayoutProps = GetNavigationProps &
-  GetUrlResolveProps & {
-    headerTheme?: HeaderTheme
-    url: string[]
-    error?: string
-  }
+  GetUrlResolveProps & { headerTheme?: HeaderTheme; error?: string }
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
   ShopLayoutProps & T,

@@ -3,25 +3,25 @@ import { Button, Menu, MenuItem } from '@material-ui/core'
 import { ProductListLink } from '../ProductListLink'
 import { ProductListParams } from '../ProductList'
 
-export type ProductListSortProps = GQLProductListSortFragment &
-  ProductListParams & { defaultSort: string }
+export type ProductListSortProps = GQLProductListSortFragment & {
+  params: ProductListParams
+  defaultSort: string
+}
 
 export default function ProductListSort({
   sort_fields,
-  url,
   defaultSort,
-  productListParams,
+  params,
 }: ProductListSortProps) {
-  const { sort = {} } = categoryVariables
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
+  }
   const handleClose = () => setAnchorEl(null)
 
-  const [currentSort = defaultSort] = Object.keys(sort)
+  const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields.options.find((option) => option.value === currentSort)
-  const currentDir = currentOption?.value ? sort[currentOption.value] : 'ASC'
+  const currentDir = currentOption?.value ? params.sort[currentOption.value] : 'ASC'
 
   return (
     <div>
@@ -39,8 +39,8 @@ export default function ProductListSort({
           <ProductListLink
             key={option.value}
             color='inherit'
-            url={url}
-            variables={{ ...productListParams, sort: { [option.value]: true } }}
+            {...params}
+            sort={{ [option.value]: true }}
           >
             <MenuItem onClick={handleClose}>{option.label}</MenuItem>
           </ProductListLink>

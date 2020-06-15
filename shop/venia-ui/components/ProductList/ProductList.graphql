@@ -12,12 +12,6 @@ query ProductList(
     sort: $sort
     search: $search
   ) {
-    items {
-      name
-    }
-    sort_fields {
-      default
-    }
     ...ProductListPagination
     ...ProductListSort
     ...ProductListFilters
