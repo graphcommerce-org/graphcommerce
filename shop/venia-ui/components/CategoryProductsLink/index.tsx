@@ -1,15 +1,22 @@
 import React, { PropsWithChildren } from 'react'
-import Link from 'components/Link'
-import { LinkProps } from '@material-ui/core'
+import { LinkProps, Link } from '@material-ui/core'
+import NextLink from 'next/link'
 
 type CategoryProductsLinkProps = PropsWithChildren<
   LinkProps & { variables: GQLCategoryProductsQueryVariables; url: string[] }
 >
 
-export function CategoryProductsLink({ children, url, variables }: CategoryProductsLinkProps) {
-  const { sort = {} } = variables
+export function CategoryProductsLink({
+  children,
+  url,
+  variables,
+  ...linkProps
+}: CategoryProductsLinkProps) {
+  const { sort = {}, currentPage } = variables
 
   let href = `/shop/browse/${url.join('/')}`
+
+  if (currentPage) href += `/page/${currentPage}`
 
   const [sortBy] = Object.keys(sort)
   if (sortBy) {
@@ -18,8 +25,10 @@ export function CategoryProductsLink({ children, url, variables }: CategoryProdu
   }
 
   return (
-    <Link href={href} metaRobots='NOINDEX_NOFOLLOW'>
-      {children}
-    </Link>
+    <NextLink href='/shop/browse/[...url]' as={href}>
+      <Link rel='nofollow' {...linkProps}>
+        {children}
+      </Link>
+    </NextLink>
   )
 }

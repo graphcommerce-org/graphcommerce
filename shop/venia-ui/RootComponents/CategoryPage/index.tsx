@@ -24,13 +24,13 @@ export default function CategoryPage({
       <CategoryMeta {...category} />
       <CategoryDescription {...category} />
       <CategoryBreadcrumb {...category} />
-      <ProductPagination {...products} />
+      <ProductPagination {...products} categoryVariables={categoryVariables} url={url} />
       {/* <CategorySort {...category} /> */}
       <ProductSort
         {...products}
         categoryVariables={categoryVariables}
-        defaultSort={storeConfig.catalog_default_sort_by}
         url={url}
+        defaultSort={storeConfig.catalog_default_sort_by}
       />
       <ProductList {...products} />
       <ProductFilters
