@@ -17,6 +17,7 @@ const useStyles = makeStyles(
       marginTop: `calc(-1 * calc(${theme.spacings.xxl} + calc(${
         theme.gridSpacing.row
       } * 2 + ${vpCalc(46, 72)} + 3px)))`,
+      marginBottom: `${theme.spacings.xl}`,
     },
     grid: {
       display: `grid`,

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     'left right'
     `,
     gridTemplateColumns: `33.33333% 1fr`,
-    margin: `${theme.spacings.xl} 0`,
+    marginBottom: `${theme.spacings.xl}`,
 
     [theme.breakpoints.down('md')]: {
       gridTemplateColumns: `40% 1fr`,
