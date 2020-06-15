@@ -34,7 +34,6 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
   variants {
     attributes {
       code
-      label
       value_index
     }
     product {

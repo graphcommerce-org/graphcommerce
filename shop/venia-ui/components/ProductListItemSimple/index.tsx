@@ -55,6 +55,7 @@ export const useProductListItemSimpleStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
+      background: '#fff',
     },
     link: {
       textDecoration: 'underline',
