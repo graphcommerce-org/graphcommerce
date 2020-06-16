@@ -21,7 +21,7 @@ const useContactCtaStyles = makeStyles(
     ctaMessage: {
       ...theme.typography.body1,
       color: 'inherit',
-      fontSize: '.9em',
+      fontSize: '1.1em',
       '& a': {
         color: 'inherit',
         textDecorationLine: 'none',
