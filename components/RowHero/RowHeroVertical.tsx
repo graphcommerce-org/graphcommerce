@@ -6,7 +6,7 @@ import { Button } from 'components/Link'
 import { ChevronRight } from 'components/Icons'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import RichText from 'components/RichText'
-// import ContactCta from 'components/ContactCta'
+import ContactCta from 'components/ContactCta'
 import useRowHeroVerticalStyles from './useRowHeroVerticalStyles'
 import { RowHeroProps } from '.'
 
@@ -67,7 +67,7 @@ const RowHeroVertical: React.FC<RowHeroProps> = (props) => {
               return undefined
             })}
           </div>
-          {/* <ContactCta {...props} /> */}
+          <ContactCta {...props} />
         </div>
       </Container>
     </div>
