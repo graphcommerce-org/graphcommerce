@@ -3,6 +3,8 @@ import LayoutFull, { PageLayoutProps, PageWithLayoutFull } from 'components/Page
 import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 import ContentRenderer from 'components/ContentRenderer'
 import RowHeroVertical from 'components/RowHero/RowHeroVertical'
+import RowContactBoxed from 'components/RowContact/RowContactBoxed'
+import { GetStaticProps } from 'next'
 
 const B2Bpage: PageWithLayoutFull = ({ page }) => {
   return (
@@ -11,6 +13,7 @@ const B2Bpage: PageWithLayoutFull = ({ page }) => {
         content={page.content}
         renderers={{
           RowHero: RowHeroVertical,
+          RowContact: RowContactBoxed,
         }}
       />
     </div>
