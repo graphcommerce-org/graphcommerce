@@ -10,7 +10,7 @@ const useRowQuoteStyles = makeStyles(
       alignItems: 'center',
 
       [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: 'repeat(2,1fr)',
+        gridTemplateColumns: '1fr 1fr',
       },
       paddingTop: theme.spacings.lg,
       paddingBottom: theme.spacings.xl,
@@ -20,6 +20,11 @@ const useRowQuoteStyles = makeStyles(
       boxShadow: theme.shadows[24],
       padding: theme.spacings.lg,
       ...theme.typography.body1,
+      marginBottom: theme.spacings.lg,
+
+      [theme.breakpoints.up('md')]: {
+        marginBottom: 0,
+      },
     },
     clientInfo: {
       marginTop: theme.spacings.md,
