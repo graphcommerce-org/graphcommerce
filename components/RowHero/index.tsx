@@ -92,7 +92,7 @@ const RowHero: React.FC<RowHeroProps> = (props) => {
               return undefined
             })}
           </div>
-          <ContactCta {...props} />
+          {contactPeople.length > 0 && <ContactCta {...props} />}
         </div>
       </Container>
     </TriangleBg>
