@@ -3,19 +3,32 @@ import { makeStyles, Theme } from '@material-ui/core'
 const useRowCollaborationStyles = makeStyles(
   (theme: Theme) => ({
     imageGrid: {
-      display: 'grid',
-      gridColumnGap: theme.gridSpacing.gutter,
-      gridRowGap: theme.gridSpacing.row,
-      gridTemplateColumns: 'repeat(5,1fr)',
-      alignItems: 'center',
-      paddingTop: theme.spacings.lg,
-      paddingBottom: theme.spacings.xl,
+      display: 'flex',
+      flexFlow: 'row wrap',
+      paddingTop: theme.spacings.sm,
 
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: 'repeat(9,1fr)',
       },
     },
-    image: {},
+    image: {
+      flexGrow: 1,
+      flexBasis: '25%',
+
+      '& img': {
+        width: '100%',
+        height: 'auto',
+      },
+
+      [theme.breakpoints.between('sm', 'md')]: {
+        flexBasis: '20%',
+      },
+
+      [theme.breakpoints.up('md')]: {
+        flexGrow: 0,
+        flexBasis: 'calc(100% / 9)',
+      },
+    },
   }),
   { name: 'useRowCollaborationStyles' },
 )
