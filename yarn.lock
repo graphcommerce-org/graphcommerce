@@ -1729,13 +1729,14 @@
     winston "3.2.1"
     yargs "15.3.1"
 
-"@graphql-mesh/graphql@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.2.6.tgz#3913980d9ab51122baeea48c49a55450f114ed70"
-  integrity sha512-zXGDCFO4a2n1LU59001pJwulnPVy5hFHnq0ulsZX2GPkC6OMNdyXggetwuILreOYboqrXtoMOm2u2d5MPd4gkg==
+"@graphql-mesh/graphql@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.2.11.tgz#93904610b95caeb296627d125d7a61be08fef137"
+  integrity sha512-2W96l4wII1Fz3q03NtFSbGz3eBuSUfHO6MZfA3UId2xXofH74zsTOeVMdw7twMTWev05//+G+ggjlXKiezdu4w==
   dependencies:
-    "@graphql-mesh/types" "0.2.6"
-    "@graphql-tools/url-loader" "6.0.8"
+    "@graphql-mesh/types" "0.2.11"
+    "@graphql-tools/url-loader" "6.0.10"
+    "@graphql-tools/wrap" "6.0.10"
     fetchache "0.0.3"
 
 "@graphql-mesh/merger-stitching@0.2.11", "@graphql-mesh/merger-stitching@^0.2.11":
@@ -1789,16 +1790,6 @@
   dependencies:
     "@graphql-tools/delegate" "6.0.10"
     "@graphql-tools/utils" "6.0.10"
-    fetchache "0.0.3"
-    tsee "1.3.0"
-
-"@graphql-mesh/types@0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.2.6.tgz#dc8a2084f32424839eee985780ad272d2abb3128"
-  integrity sha512-mL+g1nuINTbmfPwPmskQONc5FFRGYwEw7Op0Fj3u8E/3rravctKG5oJvXJ0gcNpYcoumKx3zo3l1D1N2nlBkbw==
-  dependencies:
-    "@graphql-tools/delegate" "6.0.8"
-    "@graphql-tools/utils" "6.0.8"
     fetchache "0.0.3"
     tsee "1.3.0"
 
@@ -2076,7 +2067,22 @@
     "@graphql-tools/wrap" "6.0.10"
     tslib "~2.0.0"
 
-"@graphql-tools/url-loader@6.0.8", "@graphql-tools/url-loader@^6.0.0":
+"@graphql-tools/url-loader@6.0.10", "@graphql-tools/url-loader@^6.0.0":
+  version "6.0.10"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-6.0.10.tgz#aa66e8b7ad117beb5538af4dab225ae6f7828601"
+  integrity sha512-iaXtj/Rthf1omhFmaA7V+Np3lyEeBiFI6SZ89Pb84NLkgI51ENCaboecFrAW0hwNqAcqfSdCTMv09n/Fx2vXGg==
+  dependencies:
+    "@graphql-tools/delegate" "6.0.10"
+    "@graphql-tools/utils" "6.0.10"
+    "@graphql-tools/wrap" "6.0.10"
+    "@types/websocket" "1.0.0"
+    cross-fetch "3.0.4"
+    subscriptions-transport-ws "0.9.16"
+    tslib "~2.0.0"
+    valid-url "1.0.9"
+    websocket "1.0.31"
+
+"@graphql-tools/url-loader@6.0.8":
   version "6.0.8"
   resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-6.0.8.tgz#65b96282c2a9c3a779733d3d8cfe86545ac9b14a"
   integrity sha512-iQtC8lz6ef9j3wtXPtrE3gZtE4DciX9q64tHx+/60UMyBj6zw0kL+z0OpbaBowzNiherahgqSmpDsM2s8jEgAA==
