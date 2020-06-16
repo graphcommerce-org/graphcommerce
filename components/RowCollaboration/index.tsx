@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { Container, Typography } from '@material-ui/core'
 import { useHeaderSpacing } from 'components/Header'
 import Asset from 'components/Asset'
-import AspectRatioContainer from 'components/AspectRatioContainer'
 import useRowCollaborationStyles from './useRowCollaborationStyles'
 
 const RowCollaboration: React.FC<GQLRowCollaborationFragment> = (props) => {
