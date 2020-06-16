@@ -22,10 +22,6 @@ const useContactCtaStyles = makeStyles(
       ...theme.typography.body1,
       color: 'inherit',
       fontSize: '1.1em',
-      '& a': {
-        color: 'inherit',
-        textDecorationLine: 'none',
-      },
     },
     avatar: {
       width: theme.spacing(6),

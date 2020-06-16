@@ -1,6 +1,7 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import AvatarGroup from '@material-ui/lab/AvatarGroup'
+import { Link } from '@material-ui/core'
 import useContactCtaStyles from './useContactCtaStyles'
 
 const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
@@ -26,7 +27,9 @@ const ContactCta: React.FC<GQLRowHeroFragment> = ({ contactPeople }) => {
         <span className={classes.ctaMessage}>
           <span>Even sparren?</span>{' '}
           <strong>
-            <a href='tel:0717440084'>071 744 0084</a>
+            <Link href='tel:0717440084' color='inherit'>
+              071 - 744 0084
+            </Link>
           </strong>
         </span>
       </div>
