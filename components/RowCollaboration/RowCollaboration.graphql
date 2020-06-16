@@ -1,4 +1,4 @@
-fragment Collaboration on Collaboration {
+fragment RowCollaboration on RowCollaboration {
   title
   companyLogos {
     ...Asset

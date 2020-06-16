@@ -1,25 +1,28 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { useHeaderSpacing } from 'components/Header'
+import Asset from 'components/Asset'
+import AspectRatioContainer from 'components/AspectRatioContainer'
 import useRowCollaborationStyles from './useRowCollaborationStyles'
 
 const RowCollaboration: React.FC<GQLRowCollaborationFragment> = (props) => {
-  const { title } = props
+  const { title, companyLogos } = props
   const headerSpacing = useHeaderSpacing()
   const classes = useRowCollaborationStyles()
 
-  console.log(props)
-
   return (
     <Container className={clsx(headerSpacing.paddingTop, headerSpacing.paddingBottom)}>
-      <h4>{title}</h4>
+      <Typography component='h4' align='center' variant='h4'>
+        {title}
+      </Typography>
       <div className={classes.imageGrid}>
-        {/* {images && images.map(item => {
-          <div className={classes.image}>item.url</div>
-        }} */}
+        {companyLogos.map((item) => (
+          <div className={classes.image} key={item.id}>
+            <Asset asset={item} width={160} />
+          </div>
+        ))}
       </div>
-      >
     </Container>
   )
 }
