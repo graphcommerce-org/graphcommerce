@@ -20,8 +20,10 @@ const useContactCtaStyles = makeStyles(
     },
     ctaMessage: {
       ...theme.typography.body1,
+      color: 'inherit',
+      fontSize: '.9em',
       '& a': {
-        color: theme.palette.primary.contrastText,
+        color: 'inherit',
         textDecorationLine: 'none',
       },
     },
