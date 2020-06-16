@@ -1578,22 +1578,6 @@
     "@graphql-codegen/plugin-helpers" "1.15.3"
     tslib "~2.0.0"
 
-"@graphql-codegen/plugin-helpers@1.15.1":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.15.1.tgz#7fce2f93cf42199ca977018bcb8f67e946d5503a"
-  integrity sha512-DnLD+s4ng+rqbqrcHtV0/jtn/bYSUTqL3tpqPDeIhsqmdDSAtOtelVCeTtPHAJGOO7RI6BQB6rXm/ZgaCObIAg==
-  dependencies:
-    "@graphql-tools/utils" "^6.0.0"
-    camel-case "4.1.1"
-    common-tags "1.8.0"
-    constant-case "3.0.3"
-    import-from "3.0.0"
-    lower-case "2.0.1"
-    param-case "3.0.3"
-    pascal-case "3.1.1"
-    tslib "~2.0.0"
-    upper-case "2.0.1"
-
 "@graphql-codegen/plugin-helpers@1.15.3":
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.15.3.tgz#0e2cf89b8aec3ee7a737157ac1b08fbfce626e07"
@@ -1682,16 +1666,6 @@
     auto-bind "~4.0.0"
     tslib "~2.0.0"
 
-"@graphql-codegen/typescript@1.15.1":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-1.15.1.tgz#dcb9357cd56289d7e98edc76250d8d6c822b34f4"
-  integrity sha512-DfXXHO37Ec/c4uEuFjAYvmDG5tqVgdt20uZ3fbVOCiKyy/mGcc27GkdyDX5UsjbdzQKOAOqQbrRFK4nl4/NWZg==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "1.15.1"
-    "@graphql-codegen/visitor-plugin-common" "1.15.1"
-    auto-bind "~4.0.0"
-    tslib "~2.0.0"
-
 "@graphql-codegen/typescript@1.15.3":
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-1.15.3.tgz#3067ae374c7cc45a17ff30ed12eb8399af78ad93"
@@ -1700,21 +1674,6 @@
     "@graphql-codegen/plugin-helpers" "1.15.3"
     "@graphql-codegen/visitor-plugin-common" "1.15.3"
     auto-bind "~4.0.0"
-    tslib "~2.0.0"
-
-"@graphql-codegen/visitor-plugin-common@1.15.1":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.15.1.tgz#ff01184a0efb02a419e3fb5912f38e94edcbbbe1"
-  integrity sha512-51HybEPeqptIbghtVhJ39W0PjbFtg8hntgIGpzer3882mIL9sY3ButLkJR6Nabu4GyA3pO07uaZIPJ4C85xoYw==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "1.15.1"
-    "@graphql-tools/relay-operation-optimizer" "6.0.6"
-    array.prototype.flatmap "1.2.3"
-    auto-bind "~4.0.0"
-    dependency-graph "0.9.0"
-    graphql-tag "2.10.3"
-    parse-filepath "1.0.2"
-    pascal-case "3.1.1"
     tslib "~2.0.0"
 
 "@graphql-codegen/visitor-plugin-common@1.15.3":
@@ -1779,7 +1738,7 @@
     "@graphql-tools/url-loader" "6.0.8"
     fetchache "0.0.3"
 
-"@graphql-mesh/merger-stitching@0.2.11":
+"@graphql-mesh/merger-stitching@0.2.11", "@graphql-mesh/merger-stitching@^0.2.11":
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.2.11.tgz#a2a122ffff66e4bb5fbe32c1c998c86f3e681da7"
   integrity sha512-1Nf89Ak3zTec5FmVtbpFbe7LMz7w9qvvWGQ0PeftPmcQyoIPsSVL5vCXqO8SQTahKCpBSE8xnzC4MgeLUyWvmw==
@@ -1787,16 +1746,6 @@
     "@graphql-mesh/types" "0.2.11"
     "@graphql-tools/stitch" "6.0.10"
     "@graphql-tools/wrap" "6.0.10"
-    fetchache "0.0.3"
-
-"@graphql-mesh/merger-stitching@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.2.6.tgz#e371face1a3800a354ced753d8c598f616994adc"
-  integrity sha512-zvk9kq6b6reBMJJS+7NKhPmDGMjiNnSGUMoc6lY8+wI0dq4Tr1AhlZZAbBHHNI2dv3MrzdM4GiIUCPF9IxcYEQ==
-  dependencies:
-    "@graphql-mesh/types" "0.2.6"
-    "@graphql-tools/stitch" "6.0.8"
-    "@graphql-tools/utils" "6.0.8"
     fetchache "0.0.3"
 
 "@graphql-mesh/runtime@0.2.11", "@graphql-mesh/runtime@^0.2.6":
@@ -1863,19 +1812,6 @@
     date-fns "2.14.0"
     fetchache "0.0.3"
     fs-extra "9.0.1"
-    is-url "1.2.4"
-    js-yaml "3.14.0"
-    object-hash "2.0.3"
-
-"@graphql-mesh/utils@0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.2.6.tgz#909b612a96df21692429935dc82aaf8ea2210b35"
-  integrity sha512-lPRx9b2QhLyI6SR5J5inyZoSpYLLJlIEIWf5Ukmlds8oHeGyCdjA1hGzlHIOesnpyGqBSEJsxWr5yJL2QXONtA==
-  dependencies:
-    "@ardatan/string-interpolation" "1.2.8"
-    "@graphql-tools/utils" "6.0.8"
-    date-fns "2.14.0"
-    fetchache "0.0.3"
     is-url "1.2.4"
     js-yaml "3.14.0"
     object-hash "2.0.3"
@@ -2096,14 +2032,6 @@
     prisma-yml "1.34.10"
     tslib "~2.0.0"
 
-"@graphql-tools/relay-operation-optimizer@6.0.6":
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/relay-operation-optimizer/-/relay-operation-optimizer-6.0.6.tgz#1da925a70539439f151fcc1cb6049538389da71e"
-  integrity sha512-5WkcAuqYzIP5i+uzz9WK3eKl/cC+BOSGfRjdRVTX4t0IMBReHoNLKAAvr8Vo+DE9qvyXGf+I0fWKs4sabVyF1g==
-  dependencies:
-    "@graphql-tools/utils" "6.0.6"
-    relay-compiler "9.1.0"
-
 "@graphql-tools/relay-operation-optimizer@6.0.9":
   version "6.0.9"
   resolved "https://registry.yarnpkg.com/@graphql-tools/relay-operation-optimizer/-/relay-operation-optimizer-6.0.9.tgz#ec808f00e117a0014410e0091b614072febce5bc"
@@ -2148,17 +2076,6 @@
     "@graphql-tools/wrap" "6.0.10"
     tslib "~2.0.0"
 
-"@graphql-tools/stitch@6.0.8":
-  version "6.0.8"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/stitch/-/stitch-6.0.8.tgz#2a4315f2f1d35fa0f82ab106af137e6734e08963"
-  integrity sha512-Tr7AjTdPM4rQepYC1UBn31KsGprLzbFJdgb6bC1Ua/j1PlbHdNOtfwF2LlrkvTgdDTJnRC8jbeG85ZzTGyjqvw==
-  dependencies:
-    "@graphql-tools/delegate" "6.0.8"
-    "@graphql-tools/schema" "6.0.8"
-    "@graphql-tools/utils" "6.0.8"
-    "@graphql-tools/wrap" "6.0.8"
-    tslib "~2.0.0"
-
 "@graphql-tools/url-loader@6.0.8", "@graphql-tools/url-loader@^6.0.0":
   version "6.0.8"
   resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-6.0.8.tgz#65b96282c2a9c3a779733d3d8cfe86545ac9b14a"
@@ -2180,13 +2097,6 @@
   integrity sha512-1s3vBnYUIDLBGEaV1VF3lv1Xq54lT8Oz7tNNypv7K7cv3auKX7idRtjP8RM6hKpGod46JNZgu3NNOshMUEyEyA==
   dependencies:
     aggregate-error "3.0.1"
-    camel-case "4.1.1"
-
-"@graphql-tools/utils@6.0.6":
-  version "6.0.6"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-6.0.6.tgz#49ef23dc96ee92771115c5b35eebaea0b0e3b71a"
-  integrity sha512-GHRnK7uSBERIoDd4D+RRQucF2eHESDpX4gcPvRuFiJblL+tEsno+I91FzyiTix3vFxnz3bAzWt7p+EN25PE4Xw==
-  dependencies:
     camel-case "4.1.1"
 
 "@graphql-tools/utils@6.0.8":
