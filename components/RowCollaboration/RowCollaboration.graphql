@@ -1,0 +1,6 @@
+fragment Collaboration on Collaboration {
+  title
+  companyLogos {
+    ...Asset
+  }
+}

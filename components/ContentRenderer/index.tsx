@@ -21,6 +21,7 @@ import RowImageOrVideo from 'components/RowImageOrVideo'
 import RowPhonesSlider from 'components/RowPhonesSlider'
 import RowVacancy from 'components/RowVacancy'
 import RowQuote from 'components/RowQuote'
+import RowCollaboration from 'components/RowCollaboration'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -47,6 +48,7 @@ setRenderers({
   RowPhonesSlider,
   RowVacancy,
   RowQuote,
+  RowCollaboration,
 })
 
 export default ContentRenderer

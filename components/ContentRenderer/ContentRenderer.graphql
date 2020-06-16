@@ -27,5 +27,6 @@ fragment ContentRenderer on Page {
     ...RowPhonesSlider
     ...RowVacancy
     ...RowQuote
+    ...RowCollaboration
   }
 }
