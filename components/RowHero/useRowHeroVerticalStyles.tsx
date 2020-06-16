@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme, TextareaAutosize } from '@material-ui/core'
+import { vpCalc } from 'components/Theme'
 
 const useRowHeroLaptopStyles = makeStyles(
   (theme: Theme) => ({
@@ -115,8 +116,13 @@ const useRowHeroLaptopStyles = makeStyles(
     },
     vertical: {
       display: 'block',
-      height: 420,
+      marginBottom: theme.spacings.lg,
       transform: 'rotateY(1.6deg)',
+      transformOrigin: 'right',
+
+      [theme.breakpoints.up('md')]: {
+        marginBottom: 0,
+      },
     },
   }),
   { name: 'RowHeroLaptopStyles' },

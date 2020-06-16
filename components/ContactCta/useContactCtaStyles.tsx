@@ -5,10 +5,11 @@ const useContactCtaStyles = makeStyles(
     root: {
       display: 'flex',
       alignItems: 'center',
-      marginTop: theme.spacings.sm,
+      marginTop: theme.spacings.lg,
       flexDirection: 'column',
       [theme.breakpoints.up('sm')]: {
         flexDirection: 'row',
+        marginTop: theme.spacings.sm,
       },
     },
     persons: {
