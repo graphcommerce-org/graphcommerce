@@ -1,32 +1,20 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { vpCalc } from 'components/Theme'
 
 const useRowCollaborationStyles = makeStyles(
   (theme: Theme) => ({
     imageGrid: {
-      display: 'flex',
-      flexFlow: 'row wrap',
+      display: 'grid',
+      gridTemplateColumns: `repeat(4, minmax(${vpCalc(73, 160)}, 1fr))`,
       paddingTop: theme.spacings.sm,
 
-      [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: 'repeat(9,1fr)',
+      [theme.breakpoints.up('sm')]: {
+        gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(73, 160)}, 1fr))`,
       },
-    },
-    image: {
-      flexGrow: 1,
-      flexBasis: '25%',
 
       '& img': {
         width: '100%',
         height: 'auto',
-      },
-
-      [theme.breakpoints.between('sm', 'md')]: {
-        flexBasis: '20%',
-      },
-
-      [theme.breakpoints.up('md')]: {
-        flexGrow: 0,
-        flexBasis: 'calc(100% / 9)',
       },
     },
   }),
