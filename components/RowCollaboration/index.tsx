@@ -17,8 +17,8 @@ const RowCollaboration: React.FC<GQLRowCollaborationFragment> = (props) => {
         {title}
       </Typography>
       <div className={classes.imageGrid}>
-        {companyLogos.map((item) => (
-          <div className={classes.image} key={item.id}>
+        {companyLogos.map((item, key) => (
+          <div className={classes.image} key={key}>
             <Asset asset={item} width={160} />
           </div>
         ))}
