@@ -27,7 +27,13 @@ const useRowHeroLaptopStyles = makeStyles(
       color: theme.palette.primary.main,
     },
     colOne: { gridArea: 'one' },
-    colTwo: { gridArea: 'two' },
+    colTwo: {
+      gridArea: 'two',
+      color: theme.palette.tertiary.contrastText,
+      '& a': {
+        color: theme.palette.primary.main,
+      },
+    },
     headerWysiwyg: {
       '& a': {
         color: theme.palette.tertiary.contrastText,
