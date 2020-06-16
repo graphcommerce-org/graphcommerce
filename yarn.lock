@@ -1620,12 +1620,12 @@
     tslib "~2.0.0"
     upper-case "2.0.1"
 
-"@graphql-codegen/schema-ast@^1.15.1":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-1.15.1.tgz#208b60951fa230be7713d6fb1344a59307b13028"
-  integrity sha512-bdDweyImgZ070eDU547fURZmS/c05TNRhe9PTAPQgOEmA40TQvbeOXtU2Xna96ccEGCTUEthBb51WieeSJEfdw==
+"@graphql-codegen/schema-ast@^1.15.3":
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/schema-ast/-/schema-ast-1.15.3.tgz#65ce8becd98429a514922d6f70f802a2269dab19"
+  integrity sha512-WNaqqqqa2ZbuAj+meeUcKPdVwjmaydIPKr+4gg0XljAjrWJsYF0qbBAwDAdQMpxFF8/DhdICUMobyVmB2WhBbQ==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.15.1"
+    "@graphql-codegen/plugin-helpers" "1.15.3"
     "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
 
