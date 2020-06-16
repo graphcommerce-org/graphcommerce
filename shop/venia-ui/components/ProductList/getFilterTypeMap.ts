@@ -1,7 +1,6 @@
 import apolloClient from 'node/apolloClient'
 import { gql } from 'apollo-server-micro'
-
-type AllFilterInputTypes = 'FilterEqualTypeInput' | 'FilterMatchTypeInput' | 'FilterRangeTypeInput'
+import { AllFilterInputTypes, FilterTypeMap } from '.'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
   'FilterEqualTypeInput',
@@ -33,7 +32,7 @@ const FilterInputTypesDocument = gql`
   }
 `
 
-export default async function getFilterTypeMap() {
+export default async function getFilterTypeMap(): Promise<FilterTypeMap> {
   const client = await apolloClient()
   const filterInputTypes = client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({
     query: FilterInputTypesDocument,

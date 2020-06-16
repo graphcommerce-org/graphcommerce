@@ -21,6 +21,7 @@ async function parseParams(
     sort: {},
   }
 
+  const typeMap = await filterTypeMap
   query.reduce<string | undefined>((param, value) => {
     // We parse everything in pairs, every second loop we parse
     if (!param) return value
@@ -34,7 +35,7 @@ async function parseParams(
     }
 
     const [from, to] = value.split('-')
-    switch (filterTypeMap[param]) {
+    switch (typeMap[param]) {
       case 'FilterEqualTypeInput':
         categoryVariables.filters[param] = { eq: value } as GQLFilterEqualTypeInput
         break
@@ -42,7 +43,11 @@ async function parseParams(
         categoryVariables.filters[param] = { match: value } as GQLFilterMatchTypeInput
         break
       case 'FilterRangeTypeInput':
-        categoryVariables.filters[param] = { from, to } as GQLFilterRangeTypeInput
+        categoryVariables.filters[param] = {
+          ...(from !== '*' && { from }),
+          ...(to !== '*' && { to }),
+        } as GQLFilterRangeTypeInput
+
         break
     }
 

@@ -15,6 +15,7 @@ export default function CategoryPage({
   products,
   params,
   storeConfig,
+  filterTypeMap,
 }: GetCategoryPageProps) {
   if (!category) return <Error statusCode={404}>404</Error>
   return (
@@ -28,7 +29,7 @@ export default function CategoryPage({
         params={params}
         defaultSort={storeConfig.catalog_default_sort_by}
       />
-      <ProductListFilters {...products} params={params} />
+      <ProductListFilters {...products} params={params} filterTypeMap={filterTypeMap} />
       <ProductListItems {...products} />
     </>
   )

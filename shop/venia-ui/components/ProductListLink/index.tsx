@@ -1,26 +1,34 @@
 import React, { PropsWithChildren } from 'react'
 import { LinkProps, Link } from '@material-ui/core'
 import NextLink from 'next/link'
-import { ProductListParams } from '../ProductList'
+import {
+  ProductListParams,
+  isFilterTypeEqual,
+  isFilterTypeMatch,
+  isFilterTypeRange,
+} from '../ProductList'
 
 type ProductListLinkParams = PropsWithChildren<LinkProps & ProductListParams>
 
 export function ProductListLink(props: ProductListLinkParams) {
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
 
+  // base url path generation
   let href = `/shop/browse/${url}`
 
-  if (currentPage) href += `/page/${currentPage}`
+  if (currentPage && currentPage > 1) href += `/page/${currentPage}`
 
+  // todo(paales): How should the URL look like with multiple sorts?
+  // Something like: /sort/position,price/dir/asc,asc
   const [sortBy] = Object.keys(sort)
-  if (sortBy) {
-    href += `/sort/${sortBy}`
-    if (sort[sortBy] === 'DESC') href += `/dir/desc`
-  }
+  if (sortBy) href += `/sort/${sortBy}`
+  if (sortBy && sort[sortBy] && sort[sortBy] === 'DESC') href += `/dir/desc`
 
+  // Apply filters
   Object.entries(filters).forEach(([param, value]) => {
-    if (param === 'category_id') return
-    if (value?.eq) href += `/${param}/${value.eq}`
+    if (isFilterTypeEqual(value)) href += `/${param}/${value.eq}`
+    if (isFilterTypeMatch(value)) href += `/${param}/${value.match}`
+    if (isFilterTypeRange(value)) href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
   })
 
   return (

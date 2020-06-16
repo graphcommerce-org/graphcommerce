@@ -35,16 +35,17 @@ export default function ProductListSort({
         {currentOption?.label}
       </Button>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        {sort_fields.options.map((option) => (
-          <ProductListLink
-            key={option.value}
-            color='inherit'
-            {...params}
-            sort={{ [option.value]: true }}
-          >
-            <MenuItem onClick={handleClose}>{option.label}</MenuItem>
-          </ProductListLink>
-        ))}
+        {sort_fields.options.map((option) => {
+          const linkParams = { ...params, sort: { ...params.sort } }
+          linkParams.sort = {}
+          if (option.value !== defaultSort) linkParams.sort[option.value] = true
+
+          return (
+            <ProductListLink key={option.value} color='inherit' {...linkParams}>
+              <MenuItem onClick={handleClose}>{option.label}</MenuItem>
+            </ProductListLink>
+          )
+        })}
       </Menu>
       {currentDir}
     </div>
