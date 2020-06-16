@@ -1,18 +1,16 @@
 import React from 'react'
 import clsx from 'clsx'
 import RichText from 'components/RichText'
-import { UseStyles } from 'components/Theme'
 import TriangleBg, { TriangleBgProps } from 'components/TriangleBg'
 import { Container } from '@material-ui/core'
 import { useHeaderSpacing } from 'components/Header'
 import useRowQuoteStyles from './useRowQuoteStyles'
 
-export type RowHeroProps = GQLRowHeroFragment &
-  UseStyles<typeof useStyles> & {
-    triangleBgProps?: Partial<TriangleBgProps>
-  } & ContainerProps
+export type RowQuoteProps = GQLRowQuoteFragment & {
+  triangleBgProps?: Partial<TriangleBgProps>
+}
 
-const RowQuote: React.FC<GQLRowQuoteFragment> = (props) => {
+const RowQuote: React.FC<RowQuoteProps> = (props) => {
   const { triangleBgProps, clientName, clientTitle, clientQuote, functionalities } = props
   const headerSpacing = useHeaderSpacing()
   const classes = useRowQuoteStyles()
