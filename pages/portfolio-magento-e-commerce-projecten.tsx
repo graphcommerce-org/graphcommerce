@@ -1,6 +1,6 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
 import ContentRenderer from 'components/ContentRenderer'
 import PortfolioList from 'components/PortfolioList'
@@ -10,17 +10,26 @@ import { useHeaderSpacing } from 'components/Header'
 import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 import getPortfolioListProps from 'components/PortfolioList/getPortfolioListProps'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     textAlign: 'center',
+    maxWidth: 880,
+    padding: `${theme.spacings.xl} ${theme.spacings.md}`,
+    margin: '0 auto',
   },
-})
+}))
+
+const useRichTextStyles = makeStyles((theme: Theme) => ({
+  h1: { fontWeight: 'normal' },
+}))
 
 const RowHero: React.FC<GQLRowHeroFragment> = ({ text }) => {
+  const richTextClassesAdded = useRichTextStyles()
   const classes = useStyles()
+
   return (
     <div className={classes.root}>
-      <RichText {...text} />
+      <RichText {...text} classes={{ ...richTextClassesAdded }} />
     </div>
   )
 }
