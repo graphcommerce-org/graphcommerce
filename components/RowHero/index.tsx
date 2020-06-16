@@ -45,7 +45,7 @@ export type RowHeroProps = GQLRowHeroFragment &
   } & ContainerProps
 
 const RowHero: React.FC<RowHeroProps> = (props) => {
-  const { text, asset, links, contactPeople, richTextClasses, triangleBgProps, children } = props
+  const { text, asset, links, richTextClasses, triangleBgProps, children } = props
   const { video, colOne, colTwo, ...containerClasses } = useStyles(props)
   const headerSpacing = useHeaderSpacing()
 
