@@ -8,9 +8,6 @@ const useStyles = makeStyles(
     return {
       link: {
         marginBottom: theme.spacings.md,
-        '&:hover': {
-          textDecoration: 'none',
-        },
       },
       image: {
         display: 'block',
@@ -47,7 +44,7 @@ const PortfolioListItem: React.FC<GQLPortfolioListitemFragment> = ({
 }) => {
   const classes = useStyles()
   return (
-    <Link className={classes.link} href={url} metaRobots={metaRobots}>
+    <Link underline='none' className={classes.link} href={url} metaRobots={metaRobots}>
       {asset && <Asset asset={asset} className={classes.image} width={380} />}
       <div className={classes.container}>
         {logo && <Asset asset={logo} className={classes.logo} width={180} />}
