@@ -1,0 +1,8 @@
+fragment RowQuote on RowQuote {
+  clientName
+  clientTitle
+  clientQuote
+  functionalities {
+    ...RichText
+  }
+}

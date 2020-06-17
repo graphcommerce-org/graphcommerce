@@ -5,10 +5,11 @@ const useContactCtaStyles = makeStyles(
     root: {
       display: 'flex',
       alignItems: 'center',
-      marginTop: theme.spacings.sm,
+      marginTop: theme.spacings.lg,
       flexDirection: 'column',
       [theme.breakpoints.up('sm')]: {
         flexDirection: 'row',
+        marginTop: theme.spacings.sm,
       },
     },
     persons: {
@@ -20,10 +21,8 @@ const useContactCtaStyles = makeStyles(
     },
     ctaMessage: {
       ...theme.typography.body1,
-      '& a': {
-        color: theme.palette.primary.contrastText,
-        textDecorationLine: 'none',
-      },
+      color: 'inherit',
+      fontSize: '1.1em',
     },
     avatar: {
       width: theme.spacing(6),
