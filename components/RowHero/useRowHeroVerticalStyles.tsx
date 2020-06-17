@@ -49,6 +49,7 @@ const useRowHeroLaptopStyles = makeStyles(
       margin: '0 auto',
       left: '50%',
       objectFit: 'cover',
+      borderRadius: 4,
     },
     assetArea: {
       width: '100%',
