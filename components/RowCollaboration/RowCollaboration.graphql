@@ -1,6 +1,6 @@
 fragment RowCollaboration on RowCollaboration {
   title
-  companyLogos {
-    ...Asset
+  partners {
+    ...Partner
   }
 }
