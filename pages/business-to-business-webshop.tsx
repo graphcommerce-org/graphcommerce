@@ -27,6 +27,6 @@ export default B2Bpage
 export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => ({
   props: {
     ...(await getPageLayoutProps({ url: '/business-to-business-webshop', locale: 'nl' })),
-    headerTheme: 'on-green',
+    headerTheme: 'on-purple',
   },
 })
