@@ -1,0 +1,8 @@
+fragment Partner on Partner {
+  id
+  name
+  url
+  logo {
+    ...Asset
+  }
+}
