@@ -54,7 +54,7 @@ const useStyles = makeStyles(
       zIndex: 1,
       pointerEvents: 'none',
     },
-    headerDecorationLarge: ({ theme }: HeaderProps) => ({
+    headerDecorationLarge: {
       top: -55,
       left: -70,
       width: '40vw',
@@ -63,12 +63,12 @@ const useStyles = makeStyles(
       zIndex: 0,
       pointerEvents: 'none',
       filter: 'blur(30px)',
-    }),
+    },
   }),
   { name: 'Header' },
 )
 
-export type HeaderTheme = undefined | 'on-green'
+export type HeaderTheme = undefined | 'on-green' | 'on-purple'
 
 type HeaderProps = GQLHeaderFragment &
   GQLPageMetaFragment & {
@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       {!theme && (
         <TriangleBg divProps={{ className: classes.headerDecoration }} color='primary' blur flip />
       )}
-      {theme == 'on-purple' && (
+      {theme === 'on-purple' && (
         <TriangleBg
           divProps={{ className: classes.headerDecorationLarge }}
           color='primary'
