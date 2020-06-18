@@ -1,0 +1,6 @@
+fragment RowIntro on RowIntro {
+  id
+  content {
+    ...RichText
+  }
+}

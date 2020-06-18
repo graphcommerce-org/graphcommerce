@@ -28,5 +28,6 @@ fragment ContentRenderer on Page {
     ...RowVacancy
     ...RowQuote
     ...RowCollaboration
+    ...RowIntro
   }
 }
