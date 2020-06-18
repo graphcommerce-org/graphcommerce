@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: `relative`,
     '& img': {
       maxWidth: '100%',
+      height: `auto`,
     },
   },
   laptopShadow: {
@@ -53,7 +54,7 @@ const RowLaptop: React.FC<GQLRowLaptopFragment> = (props) => {
   const { laptopContent, backgroundImage } = props
 
   return (
-    <Container>
+    <Container style={{ overflow: 'hidden' }}>
       <div className={classes.root}>
         <div className={classes.bgImg}>
           {backgroundImage && <Asset asset={backgroundImage} width='1440' />}
