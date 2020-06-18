@@ -7,7 +7,7 @@ import { VideoMimeTypes } from 'components/PictureResponsive/VideoResponsive'
 import { ImageMimeTypes } from 'components/PictureResponsive'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 
-interface Element {
+export interface Element {
   children: Node[]
   type:
     | 'heading-one'
@@ -32,7 +32,7 @@ interface Element {
   [key: string]: unknown
 }
 
-interface Text {
+export interface Text {
   text: string
   bold?: true
   italic?: true
@@ -73,9 +73,15 @@ interface IframeElement extends Element {
   src: string
 }
 
-type ElementNode = Element | LinkElement | ImageElement | VideoElement | IframeElement | LinkElement
+export type ElementNode =
+  | Element
+  | LinkElement
+  | ImageElement
+  | VideoElement
+  | IframeElement
+  | LinkElement
 
-type Node = ElementNode | Text
+export type Node = ElementNode | Text
 
 const RenderElement = ({ classes, ...element }: ElementNode & Required<UseRichTextStyles>) => {
   const {
@@ -263,14 +269,20 @@ const RenderText = ({ classes, text, ...textProps }: Text & Required<UseRichText
   return result
 }
 
+export function isTextNode(node: Node): node is Text {
+  return (node as Text).text !== undefined
+}
+
+export function isElementNode(node: Node): node is ElementNode {
+  return (node as ElementNode).children !== undefined
+}
+
 const RenderNode = ({ classes, ...node }: Node & Required<UseRichTextStyles>) => {
-  if (node.text !== undefined) {
-    const textNode = node as Text
-    return <RenderText {...textNode} classes={classes} />
+  if (isTextNode(node)) {
+    return <RenderText {...node} classes={classes} />
   }
-  if (node.type) {
-    const elementNode = node as ElementNode
-    return <RenderElement {...elementNode} classes={classes} />
+  if (isElementNode(node)) {
+    return <RenderElement {...node} classes={classes} />
   }
 
   console.error(node)
