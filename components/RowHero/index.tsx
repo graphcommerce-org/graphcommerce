@@ -80,14 +80,19 @@ const RowHero: React.FC<RowHeroProps> = (props) => {
                 )
               if (link.__typename === 'LinkExternal')
                 return (
-                  <a
+                  <Button
                     href={link.url}
                     target='_blank'
-                    rel='noopener nofollow noreferrer'
                     key={link.id}
+                    size='large'
+                    variant='contained'
+                    color='primary'
+                    rel='noopener nofollow noreferrer'
+                    metaRobots='NOINDEX_NOFOLLOW'
+                    endIcon={<ChevronRight />}
                   >
                     {link.title}
-                  </a>
+                  </Button>
                 )
               return undefined
             })}
