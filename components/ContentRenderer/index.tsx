@@ -23,6 +23,7 @@ import RowVacancy from 'components/RowVacancy'
 import RowQuote from 'components/RowQuote'
 import RowCollaboration from 'components/RowCollaboration'
 import RowIntro from 'components/RowIntro'
+import RowTitle from 'components/RowTitle'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -51,6 +52,7 @@ setRenderers({
   RowQuote,
   RowCollaboration,
   RowIntro,
+  RowTitle,
 })
 
 export default ContentRenderer
