@@ -1,7 +1,6 @@
 import React from 'react'
 import { Theme, makeStyles, Container } from '@material-ui/core'
 import RichText from 'components/RichText'
-import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
 import { UseStyles, vpCalc } from 'components/Theme'
 import clsx from 'clsx'
 import { useHeaderSpacing } from 'components/Header'
@@ -45,7 +44,7 @@ const useRowIntroStyles = makeStyles(
   { name: 'RowIntro' },
 )
 
-export type RowIntroProps = GQLRowIntroFragment & UseStyles<typeof useStyles>
+export type RowIntroProps = GQLRowIntroFragment & UseStyles<typeof useRowIntroStyles>
 
 const RowIntro: React.FC<RowIntroProps> = (props) => {
   const { content } = props
