@@ -1,5 +1,11 @@
 import React from 'react'
-import { makeStyles, Container, ContainerProps, Theme } from '@material-ui/core'
+import {
+  makeStyles,
+  Container,
+  ContainerProps,
+  Theme,
+  Button as ExternalButton,
+} from '@material-ui/core'
 import clsx from 'clsx'
 import RichText from 'components/RichText'
 import Asset from 'components/Asset'
@@ -80,14 +86,18 @@ const RowHero: React.FC<RowHeroProps> = (props) => {
                 )
               if (link.__typename === 'LinkExternal')
                 return (
-                  <a
+                  <ExternalButton
                     href={link.url}
-                    target='_blank'
-                    rel='noopener nofollow noreferrer'
                     key={link.id}
+                    size='large'
+                    variant='contained'
+                    color='primary'
+                    endIcon={<ChevronRight />}
+                    rel='noopener nofollow noreferrer'
+                    target='_blank'
                   >
                     {link.title}
-                  </a>
+                  </ExternalButton>
                 )
               return undefined
             })}
