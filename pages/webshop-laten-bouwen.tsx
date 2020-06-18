@@ -6,7 +6,6 @@ import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
 import RowContactBoxed from 'components/RowContact/RowContactBoxed'
 
 const BuildWebshop: PageWithLayoutFull = ({ page }) => {
-  console.log('the: ', page)
   return (
     <div>
       <ContentRenderer
