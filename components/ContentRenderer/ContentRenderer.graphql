@@ -30,5 +30,6 @@ fragment ContentRenderer on Page {
     ...RowCollaboration
     ...RowIntro
     ...RowTitle
+    ...RowReview
   }
 }
