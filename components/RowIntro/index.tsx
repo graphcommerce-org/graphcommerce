@@ -20,8 +20,7 @@ const useRowIntroStyles = makeStyles(
       paddingTop: theme.spacings.xxl,
 
       '& *::selection': {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.dark,
       },
     },
     paragraph: {
