@@ -2,7 +2,7 @@
 import React from 'react'
 import Error from 'next/error'
 import CmsPageMeta from 'shop/venia-ui/components/CmsPageMeta'
-import CmsPageContent from 'CmsPageContent'
+import CmsPageContent from 'shop/venia-ui/components/CmsPageContent'
 import type { GetCmsPageProps } from './getCmsPageProps'
 
 /**
