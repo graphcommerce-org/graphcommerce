@@ -24,18 +24,32 @@ export default function ProductListFilters(props: ProductFiltersProps) {
 
                 const linkParams = { ...params, filters: { ...params.filters } }
                 delete linkParams.currentPage
+                const currentFilter = params.filters[aggregation.attribute_code] ?? {}
 
                 switch (filterTypeMap[aggregation.attribute_code]) {
                   case 'FilterEqualTypeInput':
-                    linkParams.filters[aggregation.attribute_code] = {
-                      eq: option.value,
-                    } as GQLFilterEqualTypeInput
+                    if ((currentFilter as GQLFilterEqualTypeInput).eq === option.value) {
+                      delete linkParams.filters[aggregation.attribute_code]
+                    } else {
+                      linkParams.filters[aggregation.attribute_code] = {
+                        eq: option.value,
+                      } as GQLFilterEqualTypeInput
+                    }
 
                     return (
                       <Chip
                         key={option.value}
                         clickable
-                        variant='outlined'
+                        color={
+                          (currentFilter as GQLFilterEqualTypeInput).eq === option.value
+                            ? 'primary'
+                            : 'default'
+                        }
+                        onDelete={
+                          (currentFilter as GQLFilterEqualTypeInput).eq === option.value
+                            ? () => {}
+                            : undefined
+                        }
                         label={option.label}
                         component={(chipProps) => (
                           <ProductListLink
@@ -90,7 +104,18 @@ export default function ProductListFilters(props: ProductFiltersProps) {
                       <Chip
                         key={option.value}
                         clickable
-                        variant='outlined'
+                        color={
+                          (currentFilter as GQLFilterRangeTypeInput).from === from &&
+                          (currentFilter as GQLFilterRangeTypeInput).to === to
+                            ? 'primary'
+                            : 'default'
+                        }
+                        onDelete={
+                          (currentFilter as GQLFilterRangeTypeInput).from === from &&
+                          (currentFilter as GQLFilterRangeTypeInput).to === to
+                            ? () => {}
+                            : undefined
+                        }
                         label={label}
                         component={(chipProps) => (
                           <ProductListLink
