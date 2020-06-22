@@ -39,7 +39,7 @@ const useStyles = makeStyles(
 
 export type RowColumnThreeProps = GQLRowColumnThreeFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     richTextOneClasses?: UseRichTextStyles['classes']
     richTextTwoClasses?: UseRichTextStyles['classes']
     richTextTheeClasses?: UseRichTextStyles['classes']

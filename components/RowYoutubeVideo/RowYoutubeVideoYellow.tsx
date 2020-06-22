@@ -36,7 +36,7 @@ const useStyles = makeStyles(
 
 export type RowYoutubeVideoProps = GQLRowYoutubeVideoFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps
+  Omit<ContainerProps, 'children'>
 
 const RowYoutubeVideoYellow: React.FC<RowYoutubeVideoProps> = (props) => {
   const { videoId, title } = props

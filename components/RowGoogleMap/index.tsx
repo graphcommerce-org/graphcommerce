@@ -57,7 +57,7 @@ const useRichTextStyles = makeStyles((theme: Theme) => ({
 
 export type RowGoogleMapProps = GQLRowGoogleMapFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     richTextClasses?: UseRichTextStyles['classes']
   }
 

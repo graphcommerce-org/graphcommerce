@@ -100,20 +100,19 @@ const Header: React.FC<HeaderProps> = (props) => {
       <div className={classes.menu}>
         <HeaderMenu menuPages={menuPages} {...page} />
       </div>
-      <div className={classes.contact}>
-        <Badge
-          classes={{ badge: classes.avatarPhone }}
-          badgeContent={<PhoneIcon htmlColor='#fff' classes={{ root: classes.avatarPhoneIcon }} />}
-          overlap='circle'
-          color='primary'
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          variant='standard'
-        >
-          <Fab size='small' classes={{ root: classes.avatarFab }} aria-label={contactPage?.title}>
-            {contactPage && (
+      {contactPage && (
+        <div className={classes.contact}>
+          <Badge
+            classes={{ badge: classes.avatarPhone }}
+            badgeContent={
+              <PhoneIcon htmlColor='#fff' classes={{ root: classes.avatarPhoneIcon }} />
+            }
+            overlap='circle'
+            color='primary'
+            anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+            variant='standard'
+          >
+            <Fab size='small' classes={{ root: classes.avatarFab }} aria-label={contactPage?.title}>
               <Link
                 href={contactPage.url}
                 metaRobots={contactPage.metaRobots}
@@ -130,10 +129,10 @@ const Header: React.FC<HeaderProps> = (props) => {
                   )}
                 </Avatar>
               </Link>
-            )}
-          </Fab>
-        </Badge>
-      </div>
+            </Fab>
+          </Badge>
+        </div>
+      )}
     </header>
   )
 }
