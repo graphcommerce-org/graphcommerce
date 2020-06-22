@@ -1,9 +1,5 @@
 import apolloClient from 'node/apolloClient'
-import {
-  CategoryPageDocument,
-  CategorypageStoreConfigDocument,
-  ProductListDocument,
-} from 'generated/apollo'
+import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
 import getFilterTypeMap from 'shop/venia-ui/components/ProductList/getFilterTypeMap'
@@ -66,10 +62,6 @@ const getCategoryPageProps = async ({
 
   const filterTypeMap = getFilterTypeMap()
 
-  const storeConfig = client.query<GQLCategorypageStoreConfigQuery>({
-    query: CategorypageStoreConfigDocument,
-  })
-
   const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
     query: CategoryPageDocument,
     variables: { id: String((await urlResolve).urlResolver.id) },
@@ -91,7 +83,6 @@ const getCategoryPageProps = async ({
   return {
     ...(await category).data,
     ...(await products).data,
-    ...(await storeConfig).data,
     params: await params,
     filterTypeMap: await filterTypeMap,
   }

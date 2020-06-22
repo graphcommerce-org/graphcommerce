@@ -5,4 +5,7 @@ query CategoryPage($id: String!) {
     ...CategoryChildren
     ...CategoryMeta
   }
+  storeConfig {
+    ...StoreConfigProductSort
+  }
 }
