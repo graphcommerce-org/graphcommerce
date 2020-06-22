@@ -12,14 +12,9 @@ import { ProductListParams } from 'shop/venia-ui/components/ProductList'
 async function parseParams(
   url: string,
   query: string[],
-  urlResolve: Promise<GQLResolveUrlQuery>,
   filterTypeMap: ReturnType<typeof getFilterTypeMap>,
 ) {
-  const categoryVariables: ProductListParams = {
-    url,
-    filters: { category_id: { eq: String((await urlResolve).urlResolver.id) } },
-    sort: {},
-  }
+  const categoryVariables: ProductListParams = { url, filters: {}, sort: {} }
 
   const typeMap = await filterTypeMap
   query.reduce<string | undefined>((param, value) => {
@@ -47,7 +42,6 @@ async function parseParams(
           ...(from !== '*' && { from }),
           ...(to !== '*' && { to }),
         } as GQLFilterRangeTypeInput
-
         break
     }
 
@@ -81,11 +75,17 @@ const getCategoryPageProps = async ({
     variables: { id: (await urlResolve).urlResolver.id },
   })
 
-  const params = parseParams(url.join('/'), urlParams, urlResolve, filterTypeMap)
+  const params = parseParams(url.join('/'), urlParams, filterTypeMap)
 
   const products = client.query<GQLProductListQuery, GQLProductListQueryVariables>({
     query: ProductListDocument,
-    variables: await params,
+    variables: {
+      ...(await params),
+      filters: {
+        category_id: { eq: String((await urlResolve).urlResolver.id) },
+        ...(await params).filters,
+      },
+    },
   })
 
   return {
