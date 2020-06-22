@@ -11,18 +11,18 @@ import ProductListFilters from 'shop/venia-ui/components/ProductListFilters'
 import { GetCategoryPageProps } from './getCategoryPageProps'
 
 export default function CategoryPage({
-  category,
+  categoryList,
   products,
   params,
   storeConfig,
   filterTypeMap,
 }: GetCategoryPageProps) {
-  if (!category) return <Error statusCode={404}>404</Error>
+  if (!categoryList || !categoryList[0]) return <Error statusCode={404}>404</Error>
   return (
     <>
-      <CategoryMeta {...category} />
-      <CategoryDescription {...category} />
-      <CategoryBreadcrumb {...category} />
+      <CategoryMeta {...categoryList[0]} />
+      <CategoryDescription {...categoryList[0]} />
+      <CategoryBreadcrumb {...categoryList[0]} />
       <ProductListPagination {...products} params={params} />
       <ProductListSort
         {...products}

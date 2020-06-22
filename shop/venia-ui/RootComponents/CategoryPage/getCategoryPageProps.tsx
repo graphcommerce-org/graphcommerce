@@ -72,7 +72,7 @@ const getCategoryPageProps = async ({
 
   const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
     query: CategoryPageDocument,
-    variables: { id: (await urlResolve).urlResolver.id },
+    variables: { id: String((await urlResolve).urlResolver.id) },
   })
 
   const params = parseParams(url.join('/'), urlParams, filterTypeMap)

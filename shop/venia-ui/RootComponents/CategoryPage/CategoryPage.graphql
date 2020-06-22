@@ -1,5 +1,5 @@
-query CategoryPage($id: Int!) {
-  category(id: $id) {
+query CategoryPage($id: String!) {
+  categoryList(filters: { ids: { eq: $id } }) {
     ...CategoryBreadcrumb
     ...CategoryDescription
     ...CategoryMeta
