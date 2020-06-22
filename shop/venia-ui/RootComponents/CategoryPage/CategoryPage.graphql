@@ -2,6 +2,7 @@ query CategoryPage($id: String!) {
   categoryList(filters: { ids: { eq: $id } }) {
     ...CategoryBreadcrumb
     ...CategoryDescription
+    ...CategoryChildren
     ...CategoryMeta
   }
 }

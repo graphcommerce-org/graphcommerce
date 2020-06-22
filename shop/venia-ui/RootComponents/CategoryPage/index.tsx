@@ -8,6 +8,7 @@ import ProductListPagination from 'shop/venia-ui/components/ProductListPaginatio
 import ProductListSort from 'shop/venia-ui/components/ProductListSort'
 import ProductListItems from 'shop/venia-ui/components/ProductListItems'
 import ProductListFilters from 'shop/venia-ui/components/ProductListFilters'
+import CategoryChildren from 'shop/venia-ui/components/CategoryChildren'
 import { GetCategoryPageProps } from './getCategoryPageProps'
 
 export default function CategoryPage({
@@ -21,8 +22,9 @@ export default function CategoryPage({
   return (
     <>
       <CategoryMeta {...categoryList[0]} />
-      <CategoryDescription {...categoryList[0]} />
       <CategoryBreadcrumb {...categoryList[0]} />
+      <CategoryDescription {...categoryList[0]} />
+      <CategoryChildren {...categoryList[0]} />
       <ProductListPagination {...products} params={params} />
       <ProductListSort
         {...products}

@@ -1,0 +1,9 @@
+fragment CategoryChildren on CategoryTree {
+  children {
+    id
+    name
+    level
+    url_key
+  }
+  name
+}

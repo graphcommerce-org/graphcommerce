@@ -14,7 +14,7 @@ export default function ProductListFilters(props: ProductFiltersProps) {
   return (
     <List subheader={<li />}>
       {aggregations.map((aggregation) => {
-        // if (aggregation.attribute_code === 'category_id') return null
+        if (aggregation.attribute_code === 'category_id') return null
         return (
           <li key={aggregation.attribute_code}>
             {aggregation.label}
