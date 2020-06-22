@@ -1,0 +1,5 @@
+query GetAllRowIframes($skip: Int!) {
+  rowIframes(first: 1, skip: $skip) {
+    ...RowIframe
+  }
+}

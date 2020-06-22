@@ -7,7 +7,7 @@ import Asset from '../Asset'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    margin: `${theme.spacings.xl} 0 ${theme.spacings.xl}`,
+    marginBottom: `${theme.spacings.xl}`,
   },
   laptopContainer: {
     marginTop: `-50%`,

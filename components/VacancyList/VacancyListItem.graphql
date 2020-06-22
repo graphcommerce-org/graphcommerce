@@ -1,0 +1,11 @@
+fragment VacancyListItem on Page {
+  __typename
+  id
+  title
+  metaRobots
+  url
+  locale
+  content {
+    ...RowVacancyList
+  }
+}

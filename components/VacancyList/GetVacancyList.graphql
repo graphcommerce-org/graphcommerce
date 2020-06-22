@@ -1,0 +1,9 @@
+query GetVacancyList($locale: Locale!) {
+  vacancyPosts: pages(
+    where: { url_starts_with: "/vacature", url_not_in: ["/vacatures", "/vacature-php-developer"] }
+    locales: [$locale]
+    orderBy: createdAt_DESC
+  ) {
+    ...VacancyListItem
+  }
+}

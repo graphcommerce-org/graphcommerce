@@ -13,9 +13,7 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.xl,
       boxShadow: theme.boxShadows.lg,
       overflow: 'hidden',
-      '& h2': {
-        fontSize: vpCalc(18, 25),
-      },
+      paddingTop: theme.spacings.md,
     },
     textContainer: {
       position: 'relative',

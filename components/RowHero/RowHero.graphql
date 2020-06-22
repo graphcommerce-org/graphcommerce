@@ -12,4 +12,7 @@ fragment RowHero on RowHero {
     ...LinkInternal
     ...LinkExternal
   }
+  contactPeople {
+    ...Person
+  }
 }

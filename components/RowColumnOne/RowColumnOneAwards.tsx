@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     marginBottom: theme.spacings.xl,
     boxShadow: theme.boxShadows.lg,
+    paddingTop: theme.spacings.sm,
   },
   awards: {
     display: 'grid',

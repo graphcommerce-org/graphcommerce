@@ -1,5 +1,11 @@
 import React from 'react'
-import { makeStyles, Container, ContainerProps, Theme } from '@material-ui/core'
+import {
+  makeStyles,
+  Container,
+  ContainerProps,
+  Theme,
+  Button as ExternalButton,
+} from '@material-ui/core'
 import clsx from 'clsx'
 import RichText from 'components/RichText'
 import Asset from 'components/Asset'
@@ -9,6 +15,7 @@ import { useHeaderSpacing } from 'components/Header'
 import { Button } from 'components/Link'
 import { ChevronRight } from 'components/Icons'
 import TriangleBg, { TriangleBgProps } from 'components/TriangleBg'
+import ContactCta from 'components/ContactCta'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -44,7 +51,7 @@ export type RowHeroProps = GQLRowHeroFragment &
   } & ContainerProps
 
 const RowHero: React.FC<RowHeroProps> = (props) => {
-  const { text, asset, links, richTextClasses, triangleBgProps, children } = props
+  const { text, asset, links, richTextClasses, contactPeople, triangleBgProps, children } = props
   const { video, colOne, colTwo, ...containerClasses } = useStyles(props)
   const headerSpacing = useHeaderSpacing()
 
@@ -79,18 +86,23 @@ const RowHero: React.FC<RowHeroProps> = (props) => {
                 )
               if (link.__typename === 'LinkExternal')
                 return (
-                  <a
+                  <ExternalButton
                     href={link.url}
-                    target='_blank'
-                    rel='noopener nofollow noreferrer'
                     key={link.id}
+                    size='large'
+                    variant='contained'
+                    color='primary'
+                    endIcon={<ChevronRight />}
+                    rel='noopener nofollow noreferrer'
+                    target='_blank'
                   >
                     {link.title}
-                  </a>
+                  </ExternalButton>
                 )
               return undefined
             })}
           </div>
+          {contactPeople.length > 0 && <ContactCta {...props} />}
         </div>
       </Container>
     </TriangleBg>

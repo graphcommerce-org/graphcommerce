@@ -10,6 +10,7 @@ import RowIconWithTextList from 'components/RowIconWithTextList'
 import RowLinksWithText from 'components/RowLinksWithText'
 import RowContact from 'components/RowContact'
 import RowGoogleMap from 'components/RowGoogleMap'
+import RowIframe from 'components/RowIframe'
 import RowIpadHorizontal from 'components/RowIpadHorizontal'
 import RowIpadVertical from 'components/RowIpadVertical'
 import RowIphoneWithText from 'components/RowIphoneWithText'
@@ -18,6 +19,11 @@ import RowLaptopWithText from 'components/RowLaptopWithText'
 import RowLineHorizontal from 'components/RowLineHorizontal'
 import RowImageOrVideo from 'components/RowImageOrVideo'
 import RowPhonesSlider from 'components/RowPhonesSlider'
+import RowVacancy from 'components/RowVacancy'
+import RowQuote from 'components/RowQuote'
+import RowCollaboration from 'components/RowCollaboration'
+import RowIntro from 'components/RowIntro'
+import RowTitle from 'components/RowTitle'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -33,6 +39,7 @@ setRenderers({
   RowYoutubeVideo,
   RowContact,
   RowGoogleMap,
+  RowIframe,
   RowIpadHorizontal,
   RowIpadVertical,
   RowLaptop,
@@ -41,6 +48,11 @@ setRenderers({
   RowLineHorizontal,
   RowImageOrVideo,
   RowPhonesSlider,
+  RowVacancy,
+  RowQuote,
+  RowCollaboration,
+  RowIntro,
+  RowTitle,
 })
 
 export default ContentRenderer

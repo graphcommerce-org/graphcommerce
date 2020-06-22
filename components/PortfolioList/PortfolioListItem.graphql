@@ -6,4 +6,7 @@ fragment PortfolioListitem on Page {
   asset {
     ...Asset
   }
+  logo {
+    ...Asset
+  }
 }

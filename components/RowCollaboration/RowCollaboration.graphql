@@ -1,0 +1,6 @@
+fragment RowCollaboration on RowCollaboration {
+  title
+  partners {
+    ...Partner
+  }
+}

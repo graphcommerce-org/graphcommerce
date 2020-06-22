@@ -16,6 +16,7 @@ fragment ContentRenderer on Page {
     ...RowLinksWithText
     ...RowContact
     ...RowGoogleMap
+    ...RowIframe
     ...RowIpadHorizontal
     ...RowIpadVertical
     ...RowLaptop
@@ -24,5 +25,10 @@ fragment ContentRenderer on Page {
     ...RowLineHorizontal
     ...RowImageOrVideo
     ...RowPhonesSlider
+    ...RowVacancy
+    ...RowQuote
+    ...RowCollaboration
+    ...RowIntro
+    ...RowTitle
   }
 }

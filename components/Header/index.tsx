@@ -35,7 +35,7 @@ const useStyles = makeStyles(
     logo: ({ theme }: HeaderProps) => ({
       zIndex: zIndex.appBar,
       gridArea: 'logo',
-      filter: theme === 'on-green' ? `invert(1)` : undefined,
+      filter: theme === 'on-green' || theme === 'on-purple' ? `invert(1)` : undefined,
     }),
     logoImg: { maxHeight: vpCalc(46, 72), display: 'block', marginTop: 3 },
     menu: { gridArea: 'menu', zIndex: zIndex.appBar },
@@ -54,11 +54,21 @@ const useStyles = makeStyles(
       zIndex: 1,
       pointerEvents: 'none',
     },
+    headerDecorationLarge: {
+      top: -55,
+      left: -70,
+      width: '40vw',
+      height: '24vw',
+      position: 'absolute',
+      zIndex: 0,
+      pointerEvents: 'none',
+      filter: 'blur(30px)',
+    },
   }),
   { name: 'Header' },
 )
 
-export type HeaderTheme = undefined | 'on-green'
+export type HeaderTheme = undefined | 'on-green' | 'on-purple'
 
 type HeaderProps = GQLHeaderFragment &
   GQLPageMetaFragment & {
@@ -73,6 +83,14 @@ const Header: React.FC<HeaderProps> = (props) => {
     <header className={classes.navigation}>
       {!theme && (
         <TriangleBg divProps={{ className: classes.headerDecoration }} color='primary' blur flip />
+      )}
+      {theme === 'on-purple' && (
+        <TriangleBg
+          divProps={{ className: classes.headerDecorationLarge }}
+          color='primary'
+          blur
+          flip
+        />
       )}
       {homePage && (
         <Link href={homePage.url} metaRobots={homePage.metaRobots} className={classes.logo}>
