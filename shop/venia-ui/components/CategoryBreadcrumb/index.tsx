@@ -9,8 +9,8 @@ export default function CategoryBreadcrumb(props: GQLCategoryBreadcrumbFragment)
         Home
       </Link>
       {breadcrumbs &&
-        breadcrumbs.map(({ category_id, category_name, category_url_path }) => (
-          <Link color='inherit' href={category_url_path} key={category_id}>
+        breadcrumbs.map(({ category_id, category_name, category_url_key }) => (
+          <Link color='inherit' href={category_url_key} key={category_id}>
             {category_name}
           </Link>
         ))}
