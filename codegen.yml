@@ -54,5 +54,5 @@ generates:
       withComponent: false
     hooks:
       afterOneFileWrite:
-        - eslint --fix
+        # - eslint --fix
         - prettier --write

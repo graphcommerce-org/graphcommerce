@@ -61,7 +61,7 @@ const useStyles = makeStyles(
 
 export type RowRecentBlogPostProps = GQLRowRecentBlogPostFragment &
   GQLGetBlogListQuery &
-  ContainerProps &
+  Omit<ContainerProps, 'children'> &
   UseStyles<typeof useStyles>
 
 const RowRecentBlogPost: React.FC<RowRecentBlogPostProps> = (props) => {

@@ -1,10 +1,10 @@
 import React from 'react'
-import { makeStyles, Theme, Container, ContainerProps } from '@material-ui/core'
+import { Container, ContainerProps } from '@material-ui/core'
 import RichText from 'components/RichText'
 import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
 
 export type RowColumnOneProps = GQLRowColumnOneFragment &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     richTextOneClasses?: UseRichTextStyles['classes']
   }
 

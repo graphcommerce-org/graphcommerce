@@ -18,7 +18,7 @@ const useRichTextStyles = makeStyles((theme: Theme) => ({
 
 export type RowContactProps = GQLRowContactFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     richTextClasses?: UseRichTextStyles['classes']
   }
 

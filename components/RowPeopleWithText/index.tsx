@@ -59,9 +59,10 @@ const useRichTextStyles = makeStyles(
 
 export type RowPeopleWithTextProps = GQLRowPeopleWithTextFragment &
   GQLGetAllPeopleQuery &
+  Omit<ContainerProps, 'children'> &
   UseStyles<typeof useStyles> & {
     richTextClasses?: UseRichTextStyles['classes']
-  } & ContainerProps
+  }
 
 const RowPeopleWithText: React.FC<RowPeopleWithTextProps> = (props) => {
   const { links, text, people, richTextClasses, ...containerProps } = props
