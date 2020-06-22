@@ -23,6 +23,7 @@ export default function ProductListFilters(props: ProductFiltersProps) {
                 const [from, to] = option.value.split('_')
 
                 const linkParams = { ...params, filters: { ...params.filters } }
+                delete linkParams.currentPage
 
                 switch (filterTypeMap[aggregation.attribute_code]) {
                   case 'FilterEqualTypeInput':

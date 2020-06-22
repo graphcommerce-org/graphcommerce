@@ -39,6 +39,7 @@ export default function ProductListSort({
           const linkParams = { ...params, sort: { ...params.sort } }
           linkParams.sort = {}
           if (option.value !== defaultSort) linkParams.sort[option.value] = true
+          delete linkParams.currentPage
 
           return (
             <ProductListLink key={option.value} color='inherit' {...linkParams}>
