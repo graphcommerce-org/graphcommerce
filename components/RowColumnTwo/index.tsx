@@ -27,7 +27,7 @@ const useStyles = makeStyles(
 
 export type RowColumnTwoProps = GQLRowColumnTwoFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     richTextOneClasses?: UseRichTextStyles['classes']
     richTextTwoClasses?: UseRichTextStyles['classes']
   }

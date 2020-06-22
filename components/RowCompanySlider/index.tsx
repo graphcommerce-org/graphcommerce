@@ -5,7 +5,7 @@ import Asset from 'components/Asset'
 import { vpCalc } from 'components/Theme'
 
 export type RowCompanySliderProps = GQLRowCompanySliderFragment &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     slider?: ScrollSnapSliderProps
   }
 

@@ -45,10 +45,11 @@ const useStyles = makeStyles(
 )
 
 export type RowHeroProps = GQLRowHeroFragment &
+  Omit<ContainerProps, 'children'> &
   UseStyles<typeof useStyles> & {
     richTextClasses?: UseRichTextStyles['classes']
     triangleBgProps?: Partial<TriangleBgProps>
-  } & ContainerProps
+  }
 
 const RowHero: React.FC<RowHeroProps> = (props) => {
   const { text, asset, links, richTextClasses, contactPeople, triangleBgProps, children } = props

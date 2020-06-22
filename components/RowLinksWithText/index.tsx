@@ -36,7 +36,7 @@ const useStyles = makeStyles(
 
 export type RowLinksWithTextProps = GQLRowLinksWithTextFragment &
   UseStyles<typeof useStyles> &
-  ContainerProps & {
+  Omit<ContainerProps, 'children'> & {
     richTextClasses?: UseRichTextStyles['classes']
   }
 
