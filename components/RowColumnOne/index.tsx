@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import RichText from 'components/RichText'
 import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
+import { UseStyles } from 'components/Theme'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
