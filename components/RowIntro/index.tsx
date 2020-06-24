@@ -17,6 +17,7 @@ const useRowIntroStyles = makeStyles(
       marginLeft: '-50vw',
       left: '50%',
       paddingTop: theme.spacings.xxl,
+      marginBottom: theme.spacings.lg,
 
       '& *::selection': {
         backgroundColor: theme.palette.primary.dark,
