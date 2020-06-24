@@ -24,6 +24,7 @@ import RowQuote from 'components/RowQuote'
 import RowCollaboration from 'components/RowCollaboration'
 import RowIntro from 'components/RowIntro'
 import RowTitle from 'components/RowTitle'
+import RowReview from 'components/RowReview'
 import ContentRenderer, { Renderers, setRenderers } from './ContentRenderer'
 
 setRenderers({
@@ -53,6 +54,7 @@ setRenderers({
   RowCollaboration,
   RowIntro,
   RowTitle,
+  RowReview,
 })
 
 export default ContentRenderer
