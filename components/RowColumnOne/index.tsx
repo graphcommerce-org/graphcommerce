@@ -1,18 +1,29 @@
 import React from 'react'
-import { Container, ContainerProps } from '@material-ui/core'
+import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import RichText from 'components/RichText'
 import { UseRichTextStyles } from 'components/RichText/useRichTextStyles'
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      marginBottom: theme.spacings.xl,
+    },
+  }),
+  { name: 'RowColumnOne' },
+)
+
 export type RowColumnOneProps = GQLRowColumnOneFragment &
+  UseStyles<typeof useStyles> &
   Omit<ContainerProps, 'children'> & {
     richTextOneClasses?: UseRichTextStyles['classes']
   }
 
 const RowColumnOne: React.FC<RowColumnOneProps> = (props) => {
   const { colOne, colOneIcon, richTextOneClasses, ...containerProps } = props
+  const classes = useStyles(props)
 
   return (
-    <Container {...containerProps}>
+    <Container {...containerProps} className={classes.root}>
       <div>
         <RichText {...colOne} classes={richTextOneClasses} />
       </div>
