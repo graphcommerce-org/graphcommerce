@@ -1,20 +1,42 @@
 import React from 'react'
 import { Theme, makeStyles } from '@material-ui/core'
-import { UseStyles } from 'components/Theme'
+import { UseStyles, vpCalc } from 'components/Theme'
 
 const useReviewStyles = makeStyles(
   (theme: Theme) => ({
     review: {
       display: 'grid',
-      gridTemplateColumns: '1.4fr 0.6fr',
+      gridTemplateColumns: '1fr',
       alignItems: 'center',
       paddingTop: theme.spacings.md,
       paddingBottom: theme.spacings.md,
       borderBottom: `1px solid ${theme.palette.divider}`,
       ...theme.typography.body1,
+
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: '1fr 30%',
+      },
+
+      '& blockquote': {
+        paddingLeft: vpCalc(10, 30),
+        borderLeft: `4px solid ${theme.palette.primary.mutedText}`,
+        color: '#777',
+        margin: '0 0 20px',
+
+        [theme.breakpoints.up('md')]: {
+          marginBottom: 0,
+          paddingRight: theme.spacings.md,
+        },
+      },
+    },
+    customer: {
+      fontStyle: 'italic',
+      [theme.breakpoints.up('md')]: {
+        marginLeft: 30,
+      },
     },
     stars: {
-      color: theme.palette.secondary.main,
+      color: '#ffd800',
     },
     customerName: {
       fontStyle: 'italic',
@@ -28,17 +50,12 @@ export type RowReviewProps = GQLRatingFragment & UseStyles<typeof useReviewStyle
 const Rating: React.FC<RowReviewProps> = (props) => {
   const { customerName, rating, quote } = props
   const classes = useReviewStyles()
-  const ratingStars = () => {
-    for (let i = 0; i < rating.length; i++) {
-      return '★'
-    }
-  }
 
   return (
     <div className={classes.review}>
       <blockquote>{quote}</blockquote>
-      <div>
-        <span className={classes.stars}>{ratingStars()}</span> -{' '}
+      <div className={classes.customer}>
+        <span className={classes.stars}>{'★'.repeat(Math.max(0, rating))}</span> -{' '}
         <span className={classes.customerName}>{customerName}</span>
       </div>
     </div>
