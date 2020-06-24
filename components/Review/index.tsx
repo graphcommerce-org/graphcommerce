@@ -45,7 +45,7 @@ const useReviewStyles = makeStyles(
   { name: 'Review' },
 )
 
-export type RowReviewProps = GQLRatingFragment & UseStyles<typeof useReviewStyles>
+export type RowReviewProps = GQLReviewFragment & UseStyles<typeof useReviewStyles>
 
 const Rating: React.FC<RowReviewProps> = (props) => {
   const { customerName, rating, quote } = props
