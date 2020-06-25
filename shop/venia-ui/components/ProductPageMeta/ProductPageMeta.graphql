@@ -1,0 +1,12 @@
+fragment ProductPageMeta on ProductInterface {
+  url_key
+  url_rewrites {
+    url
+    parameters {
+      name
+      value
+    }
+  }
+  meta_title
+  meta_description
+}

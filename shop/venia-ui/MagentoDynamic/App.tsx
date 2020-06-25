@@ -51,8 +51,12 @@ const MagentoWrapper: React.FC = ({ children }) => {
 export default MagentoWrapper
 
 window.addEventListener('online', () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   store.dispatch(app.setOnline())
 })
 window.addEventListener('offline', () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   store.dispatch(app.setOffline())
 })

@@ -1,12 +1,5 @@
-query NavigationMenu($id: Int!) {
-  category(id: $id) {
-    children {
-      id
-      ...NavigationMenuItem
-      children {
-        id
-        ...NavigationMenuItem
-      }
-    }
+query NavigationMenu {
+  menu: categoryList(filters: { ids: { eq: "2" } }) {
+    ...CategoryChildren
   }
 }

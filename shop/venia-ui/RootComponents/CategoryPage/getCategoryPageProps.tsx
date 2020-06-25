@@ -22,7 +22,7 @@ async function parseParams(
     if (param === 'sort') categoryVariables.sort[value] = 'ASC'
     if (param === 'dir') {
       const [sortBy] = Object.keys(categoryVariables.sort)
-      if (sortBy) categoryVariables.sort[sortBy] = value
+      if (sortBy) categoryVariables.sort[sortBy] = value as GQLSortEnum
     }
 
     const [from, to] = value.split('-')

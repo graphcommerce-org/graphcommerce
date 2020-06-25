@@ -40,13 +40,12 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlRe
       <CssBaseline />
       <PageLoadIndicator />
       {menu &&
-        menu.children.map((child) => {
-          return (
-            <Link href='/shop/browse/[...url]' as={`/shop/browse/${child.url_key}`} key={child.id}>
-              <a>{child.name}</a>
-            </Link>
-          )
-        })}
+        menu[0] &&
+        menu[0].children.map((child) => (
+          <Link href='/shop/browse/[...url]' as={`/shop/browse/${child.url_path}`} key={child.id}>
+            <a>{child.name}</a>
+          </Link>
+        ))}
       <MagentoDynamic
         loader={() => import('@magento/venia-ui/lib/components/Header/cartTrigger')}
         skeleton={(ref) => <CartTriggerSkeleton ref={ref} />}

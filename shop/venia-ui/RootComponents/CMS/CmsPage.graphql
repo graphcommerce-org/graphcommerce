@@ -3,4 +3,7 @@ query CmsPage($id: Int!) {
     ...CmsPageMeta
     ...CmsPageContent
   }
+  storeConfig {
+    ...StoreConfigPageMeta
+  }
 }

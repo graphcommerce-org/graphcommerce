@@ -12,7 +12,7 @@ export default function CategoryChildren({ children }: GQLCategoryChildrenFragme
           color='default'
           label={category.name}
           component={(chipProps) => (
-            <NextLink href='/shop/browse/[...url]' as={category.url_key} passHref>
+            <NextLink href='/shop/browse/[...url]' as={category.url_path} passHref>
               <Link {...chipProps} color='inherit' underline='none' />
             </NextLink>
           )}

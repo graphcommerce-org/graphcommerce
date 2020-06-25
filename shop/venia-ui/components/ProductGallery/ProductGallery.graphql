@@ -1,0 +1,10 @@
+fragment ProductGallery on ProductInterface {
+  small_image {
+    url
+  }
+  media_gallery {
+    label
+    url
+    disabled
+  }
+}

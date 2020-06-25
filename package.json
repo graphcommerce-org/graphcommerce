@@ -6,6 +6,9 @@
   "engines": {
     "node": "12.x"
   },
+  "browser": {
+    "@magento/venia-drivers": "shop/driver"
+  },
   "scripts": {
     "dev": "concurrently yarn:dev-* --kill-others",
     "dev-next": "next dev",

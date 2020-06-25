@@ -3,7 +3,6 @@ fragment CategoryChildren on CategoryTree {
     id
     name
     level
-    url_key
+    url_path
   }
-  name
 }
