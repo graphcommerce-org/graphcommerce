@@ -14,7 +14,7 @@ export function ProductListLink(props: ProductListLinkParams) {
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
 
   // base url path generation
-  let href = `/shop/browse/${url}`
+  let href = `/${url}`
 
   if (currentPage && currentPage > 1) href += `/page/${currentPage}`
 
@@ -32,7 +32,7 @@ export function ProductListLink(props: ProductListLinkParams) {
   })
 
   return (
-    <NextLink href='/shop/browse/[...url]' as={href} passHref>
+    <NextLink href='/[...url]' as={href} passHref>
       <Link rel='nofollow' {...linkProps}>
         {children}
       </Link>

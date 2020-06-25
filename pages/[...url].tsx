@@ -1,25 +1,49 @@
 import React from 'react'
-import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
-import ContentRenderer from 'components/ContentRenderer'
-import extractParams, { StaticPageParams } from 'node/staticParams'
-import { useHeaderSpacing } from 'components/Header'
-import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
+import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'shop/venia-ui/ShopLayout'
+import getNavigationProps from 'shop/venia-ui/ShopLayout/getNavigationProps'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+import getCategoryPageProps, {
+  GetCategoryPageProps,
+} from 'shop/venia-ui/RootComponents/CategoryPage/getCategoryPageProps'
+import CategoryPage from 'shop/venia-ui/RootComponents/CategoryPage'
 
-const CatchAll: PageWithLayoutFull = ({ page }) => {
-  const header = useHeaderSpacing()
+const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
+  return <CategoryPage {...props} />
+}
+PageWithLayout.layout = ShopLayout
 
-  return (
-    <div className={header.marginTop}>
-      <ContentRenderer {...page} />
-    </div>
-  )
+export default PageWithLayout
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { url: ['venia-bottoms'] } }],
+    fallback: true,
+  }
 }
 
-CatchAll.layout = LayoutFull
+export const getStaticProps: GetStaticProps<
+  ShopLayoutProps & GetCategoryPageProps,
+  { url: [string] }
+> = async (ctx) => {
+  if (!ctx.params) throw Error('No params')
 
-export default CatchAll
+  // @todo slice everything before queryParam?
+  const url = ctx.params.url.slice(0, 1)
 
-export const getServerSideProps: GetStaticProps<PageLayoutProps, StaticPageParams> = async (
-  ctx,
-) => ({ props: await getPageLayoutProps(extractParams(ctx, '/')) })
+  const urlResolve = getUrlResolveProps({ urlKey: `${url.join('/')}.html` })
+  const navigationProps = getNavigationProps()
+  const categoryPageProps = getCategoryPageProps({
+    urlParams: ctx.params.url.slice(1),
+    urlResolve,
+    url,
+  })
+
+  return {
+    props: {
+      ...(await urlResolve),
+      ...(await navigationProps),
+      ...(await categoryPageProps),
+    },
+  }
+}

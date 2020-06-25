@@ -1,27 +1,28 @@
 import React from 'react'
+import ShopLayout, { PageWithShopLayout } from 'shop/venia-ui/ShopLayout'
+import getNavigationProps from 'shop/venia-ui/ShopLayout/getNavigationProps'
 import { GetStaticProps } from 'next'
-import LayoutFull, { PageWithLayoutFull, PageLayoutProps } from 'components/PageLayout'
-import getPageLayoutProps from 'components/PageLayout/getPageLayoutProps'
-import ContentRenderer from 'components/ContentRenderer'
-import RowHeroHome from 'components/RowHero/RowHeroHome'
+import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
+import getCmsPageProps, { GetCmsPageProps } from 'shop/venia-ui/RootComponents/CMS/getCmsPageProps'
+import CmsPage from 'shop/venia-ui/RootComponents/CMS'
 
-const Home: PageWithLayoutFull = ({ page }) => {
-  return (
-    <>
-      <ContentRenderer
-        content={page.content}
-        renderers={{
-          RowHero: RowHeroHome,
-        }}
-      />
-    </>
-  )
+const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = (props) => {
+  return <CmsPage {...props} />
 }
+PageWithLayout.layout = ShopLayout
 
-Home.layout = LayoutFull
+export default PageWithLayout
 
-export default Home
+export const getStaticProps: GetStaticProps = async () => {
+  const urlResolve = getUrlResolveProps({ urlKey: '/' })
+  const navigationProps = getNavigationProps()
+  const cmsPageProps = getCmsPageProps(urlResolve)
 
-export const getStaticProps: GetStaticProps<PageLayoutProps> = async () => ({
-  props: await getPageLayoutProps({ url: '/', locale: 'nl' }),
-})
+  return {
+    props: {
+      ...(await urlResolve),
+      ...(await navigationProps),
+      ...(await cmsPageProps),
+    },
+  }
+}

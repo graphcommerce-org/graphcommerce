@@ -42,7 +42,7 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlRe
       {menu &&
         menu[0] &&
         menu[0].children.map((child) => (
-          <Link href='/shop/browse/[...url]' as={`/shop/browse/${child.url_path}`} key={child.id}>
+          <Link href='/[...url]' as={`/${child.url_path}`} key={child.id}>
             <a>{child.name}</a>
           </Link>
         ))}

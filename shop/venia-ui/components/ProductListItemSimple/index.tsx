@@ -75,7 +75,7 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
 
   return (
     <div className={classes.item}>
-      <Link href={`/shop/view/${url_key}`} metaRobots='INDEX_FOLLOW' underline='none'>
+      <Link href={`/product/${url_key}`} metaRobots='INDEX_FOLLOW' underline='none'>
         <div className={classes.imageContainer}>
           {small_image ? (
             <PictureResponsive
