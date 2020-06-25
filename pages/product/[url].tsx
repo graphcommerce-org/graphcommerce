@@ -4,11 +4,11 @@ import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/Shop
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getNavigationProps from 'components/ShopLayout/getNavigationProps'
 import getProductPageProps, { GetProductPageProps } from 'components/ProductPage/getProductProps'
-import ProductPage from 'components/ProductPage'
 
 const PageWithLayout: PageWithShopLayout<GetProductPageProps> = (props) => {
-  return <ProductPage {...props} />
+  return <></>
 }
+
 PageWithLayout.layout = ShopLayout
 
 export default PageWithLayout
