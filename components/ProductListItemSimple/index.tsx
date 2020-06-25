@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 
-import { Typography, makeStyles, Theme } from '@material-ui/core'
+import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
@@ -75,24 +75,26 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
 
   return (
     <div className={classes.item}>
-      <Link href={`/product/${url_key}`}>
-        <div className={classes.imageContainer}>
-          {small_image ? (
-            <PictureResponsive
-              alt={small_image.label}
-              width={320}
-              height={320}
-              srcSets={{ 'image/jpeg': small_image.url }}
-              className={classes.image}
-            />
-          ) : (
-            <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
-          )}
-        </div>
+      <Link href={'/product/[url]'} as={`/product/${url_key}`} passHref>
+        <MuiLink underline='none'>
+          <div className={classes.imageContainer}>
+            {small_image ? (
+              <PictureResponsive
+                alt={small_image.label}
+                width={320}
+                height={320}
+                srcSets={{ 'image/jpeg': small_image.url }}
+                className={classes.image}
+              />
+            ) : (
+              <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
+            )}
+          </div>
 
-        <Typography component='h2' className={classes.title}>
-          {name} {sku}
-        </Typography>
+          <Typography component='h2' className={classes.title}>
+            {name} {sku}
+          </Typography>
+        </MuiLink>
       </Link>
       <ProductListPrice {...price_range.minimum_price} />
       {children}
