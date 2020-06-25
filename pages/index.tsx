@@ -4,10 +4,19 @@ import getNavigationProps from 'components/ShopLayout/getNavigationProps'
 import { GetStaticProps } from 'next'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getCmsPageProps, { GetCmsPageProps } from 'components/CmsPage/getCmsPageProps'
-import CmsPage from 'components/CmsPage'
+import { default as NextError } from 'next/error'
+import CmsPageMeta from 'components/CmsPageMeta'
+import CmsPageContent from 'components/CmsPageContent'
 
-const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = (props) => {
-  return <CmsPage {...props} />
+const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeConfig }) => {
+  if (!cmsPage) return <NextError statusCode={404} />
+
+  return (
+    <>
+      <CmsPageMeta {...cmsPage} {...storeConfig} />
+      <CmsPageContent {...cmsPage} />
+    </>
+  )
 }
 PageWithLayout.layout = ShopLayout
 
