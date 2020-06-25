@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
 import Error from 'next/error'
-import CmsPageMeta from 'shop/venia-ui/components/CmsPageMeta'
-import CmsPageContent from 'shop/venia-ui/components/CmsPageContent'
+import CmsPageMeta from 'components/CmsPageMeta'
+import CmsPageContent from 'components/CmsPageContent'
 import type { GetCmsPageProps } from './getCmsPageProps'
 
 /**

@@ -1,14 +1,14 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
 import Error from 'next/error'
-import CategoryMeta from 'shop/venia-ui/components/CategoryMeta'
-import CategoryDescription from 'shop/venia-ui/components/CategoryDescription'
-import CategoryBreadcrumb from 'shop/venia-ui/components/CategoryBreadcrumb'
-import ProductListPagination from 'shop/venia-ui/components/ProductListPagination'
-import ProductListSort from 'shop/venia-ui/components/ProductListSort'
-import ProductListItems from 'shop/venia-ui/components/ProductListItems'
-import ProductListFilters from 'shop/venia-ui/components/ProductListFilters'
-import CategoryChildren from 'shop/venia-ui/components/CategoryChildren'
+import CategoryMeta from 'components/CategoryMeta'
+import CategoryDescription from 'components/CategoryDescription'
+import CategoryBreadcrumb from 'components/CategoryBreadcrumb'
+import ProductListPagination from 'components/ProductListPagination'
+import ProductListSort from 'components/ProductListSort'
+import ProductListItems from 'components/ProductListItems'
+import ProductListFilters from 'components/ProductListFilters'
+import CategoryChildren from 'components/CategoryChildren'
 import { GetCategoryPageProps } from './getCategoryPageProps'
 
 export default function CategoryPage({

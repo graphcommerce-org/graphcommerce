@@ -1,9 +1,9 @@
 import apolloClient from 'node/apolloClient'
 import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
-import getUrlResolveProps from 'shop/venia-ui/ShopLayout/getUrlResolveProps'
-import getFilterTypeMap from 'shop/venia-ui/components/ProductList/getFilterTypeMap'
-import { ProductListParams } from 'shop/venia-ui/components/ProductList'
+import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
+import getFilterTypeMap from 'components/ProductList/getFilterTypeMap'
+import { ProductListParams } from 'components/ProductList'
 
 async function parseParams(
   url: string,
