@@ -1,9 +1,0 @@
-fragment LinkExternal on LinkExternal {
-  __typename
-  id
-  title
-  description {
-    ...RichText
-  }
-  url
-}

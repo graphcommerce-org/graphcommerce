@@ -1,9 +1,0 @@
-query GetPortfolioList($url: String!, $locale: Locale!) {
-  portfolioList: pages(
-    where: { url_starts_with: $url }
-    locales: [$locale]
-    orderBy: createdAt_DESC
-  ) {
-    ...PortfolioListitem
-  }
-}

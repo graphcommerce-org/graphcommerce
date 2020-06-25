@@ -1,5 +1,0 @@
-query GetAllPeople {
-  people {
-    ...Person
-  }
-}

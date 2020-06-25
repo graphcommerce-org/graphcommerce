@@ -1,6 +1,0 @@
-fragment RowTitle on RowTitle {
-  id
-  rowTitle {
-    ...RichText
-  }
-}

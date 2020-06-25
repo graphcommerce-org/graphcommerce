@@ -1,9 +1,0 @@
-fragment RowIpadVertical on RowIpadVertical {
-  id
-  backgroundImage {
-    ...Asset
-  }
-  iPadContent {
-    ...Asset
-  }
-}

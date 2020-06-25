@@ -1,5 +1,0 @@
-query GetRowPeopleWithTexts($skip: Int!) {
-  rowPeopleWithTexts(first: 1, skip: $skip) {
-    ...RowPeopleWithText
-  }
-}

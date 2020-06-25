@@ -1,5 +1,0 @@
-query GetAllRowColumThree($skip: Int!) {
-  rowColumnThrees(first: 1, skip: $skip) {
-    ...RowColumnThree
-  }
-}

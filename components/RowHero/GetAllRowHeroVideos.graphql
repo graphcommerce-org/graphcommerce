@@ -1,5 +1,0 @@
-query GetAllRowHero($skip: Int!) {
-  rowHeroes(first: 1, skip: $skip) {
-    ...RowHero
-  }
-}

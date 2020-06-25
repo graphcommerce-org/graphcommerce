@@ -1,9 +1,0 @@
-fragment RowLaptop on RowLaptop {
-  id
-  backgroundImage {
-    ...Asset
-  }
-  laptopContent {
-    ...Asset
-  }
-}

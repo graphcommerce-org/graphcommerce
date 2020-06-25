@@ -1,9 +1,0 @@
-fragment RowPeopleWithText on RowPeopleWithText {
-  id
-  text {
-    ...RichText
-  }
-  links {
-    ...LinkInternal
-  }
-}

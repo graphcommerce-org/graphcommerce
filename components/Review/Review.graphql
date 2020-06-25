@@ -1,6 +1,0 @@
-fragment Review on Review {
-  id
-  customerName
-  rating
-  quote
-}

@@ -1,5 +1,0 @@
-fragment RowIframe on RowIframe {
-  id
-  title
-  iframeUrl
-}

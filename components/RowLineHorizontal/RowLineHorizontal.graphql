@@ -1,3 +1,0 @@
-fragment RowLineHorizontal on RowLineHorizontal {
-  id
-}

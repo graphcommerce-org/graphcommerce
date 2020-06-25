@@ -1,5 +1,0 @@
-query GetAllRowLinksWithTexts($skip: Int!) {
-  rowLinksWithTexts(first: 1, skip: $skip) {
-    ...RowLinksWithText
-  }
-}

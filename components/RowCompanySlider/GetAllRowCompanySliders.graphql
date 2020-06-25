@@ -1,5 +1,0 @@
-query GetAllRowCompanySliders($skip: Int!) {
-  rowCompanySliders(first: 1, skip: $skip) {
-    ...RowCompanySlider
-  }
-}

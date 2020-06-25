@@ -1,6 +1,0 @@
-fragment RowReview on RowReview {
-  id
-  reviews {
-    ...Review
-  }
-}

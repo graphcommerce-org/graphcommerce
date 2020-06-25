@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from 'react'
 
 import { Typography, makeStyles, Theme } from '@material-ui/core'
-import Link from 'components/Link'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import ProductListPrice from '../ProductListPrice'
 import { ProductListParams } from '../ProductList'
+import Link from 'next/link'
 
 export const useProductListItemSimpleStyles = makeStyles(
   (theme: Theme) => ({
@@ -75,7 +75,7 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
 
   return (
     <div className={classes.item}>
-      <Link href={`/product/${url_key}`} metaRobots='INDEX_FOLLOW' underline='none'>
+      <Link href={`/product/${url_key}`}>
         <div className={classes.imageContainer}>
           {small_image ? (
             <PictureResponsive
