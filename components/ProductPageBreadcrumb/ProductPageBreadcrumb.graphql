@@ -1,4 +1,4 @@
-fragment ProductBreadcrumb on ProductInterface {
+fragment ProductPageBreadcrumb on ProductInterface {
   categories {
     id
     name

@@ -1,0 +1,6 @@
+fragment ProductPageDescription on ProductInterface {
+  name
+  description {
+    html
+  }
+}

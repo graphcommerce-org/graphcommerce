@@ -1,4 +1,4 @@
-fragment ProductGallery on ProductInterface {
+fragment ProductPageGallery on ProductInterface {
   small_image {
     url
   }

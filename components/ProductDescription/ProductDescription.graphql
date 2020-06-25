@@ -1,6 +1,0 @@
-fragment ProductDescription on ProductInterface {
-  name
-  description {
-    html
-  }
-}

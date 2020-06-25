@@ -6,9 +6,9 @@ query ProductPage($urlKey: String) {
       sku
       stock_status
       only_x_left_in_stock
-      ...ProductBreadcrumb
-      ...ProductDescription
-      ...ProductGallery
+      ...ProductPageBreadcrumb
+      ...ProductPageDescription
+      ...ProductPageGallery
       ...ProductPageMeta
       price_range {
         maximum_price {
