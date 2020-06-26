@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Button, FormHelperText, TextField } from '@material-ui/core'
+import ChevronRight from '@material-ui/icons/ChevronRightSharp'
 import { useMutationForm, emailPattern, phonePattern } from 'components/useMutationForm'
 import { SubmitContactFormDocument } from 'generated/apollo'
-import { ChevronRight } from 'components/Icons'
 import useContactStyles from './useContactStyles'
 import sendSlackNotification from './sendSlackNotification'
 

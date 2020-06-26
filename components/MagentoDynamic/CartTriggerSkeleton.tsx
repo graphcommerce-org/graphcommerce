@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from '@magento/venia-ui/lib/components/Header/cartTrigger.css'
+import ShoppingCart from '@material-ui/icons/ShoppingCart'
 import Icon from '@magento/venia-ui/lib/components/Icon'
-import { ShoppingCart as ShoppingCartIcon } from 'react-feather'
 
 const CartTriggerSkeleton: React.ForwardRefRenderFunction<
   HTMLButtonElement,
@@ -9,7 +9,7 @@ const CartTriggerSkeleton: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   return (
     <button type='button' className={classes.root} {...props} ref={ref}>
-      <Icon src={ShoppingCartIcon} attrs={{ stroke: 'rgb(var(--venia-text))' }} />
+      <Icon src={ShoppingCart} attrs={{ stroke: 'rgb(var(--venia-text))' }} />
     </button>
   )
 }
