@@ -3,7 +3,6 @@ import { CssBaseline } from '@material-ui/core'
 import Head from 'next/head'
 import { LayoutPage } from 'components/LayoutPage'
 import ThemedProvider, { defaultTheme } from 'components/Theme'
-import { HeaderTheme } from 'components/Header'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import Link from 'next/link'
 import Error from 'next/error'
@@ -12,8 +11,7 @@ import CartTriggerSkeleton from 'components/MagentoDynamic/CartTriggerSkeleton'
 import { GetNavigationProps } from './getNavigationProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-export type ShopLayoutProps = GetNavigationProps &
-  GetUrlResolveProps & { headerTheme?: HeaderTheme; error?: string }
+export type ShopLayoutProps = GetNavigationProps & GetUrlResolveProps & { error?: string }
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
   ShopLayoutProps & T,
