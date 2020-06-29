@@ -10,8 +10,8 @@ import {
 
 type ProductListLinkParams = PropsWithChildren<LinkProps & ProductListParams>
 
-export function ProductListLink(props: ProductListLinkParams) {
-  const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
+export function createRoute(props: ProductListParams): string {
+  const { url, sort, currentPage, filters } = props
 
   // base url path generation
   let href = `/${url}`
@@ -31,8 +31,14 @@ export function ProductListLink(props: ProductListLinkParams) {
     if (isFilterTypeRange(value)) href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
   })
 
+  return href
+}
+
+export function ProductListLink(props: ProductListLinkParams) {
+  const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
+
   return (
-    <NextLink href='/[...url]' as={href} passHref>
+    <NextLink href='/[...url]' as={createRoute(props)} passHref>
       <Link rel='nofollow' {...linkProps}>
         {children}
       </Link>

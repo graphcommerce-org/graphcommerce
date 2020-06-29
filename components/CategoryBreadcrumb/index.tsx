@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link, Breadcrumbs, Typography } from '@material-ui/core'
+import { Link, Breadcrumbs, Typography, BreadcrumbsProps } from '@material-ui/core'
 
-export default function CategoryBreadcrumb(props: GQLCategoryBreadcrumbFragment) {
-  const { name, breadcrumbs } = props
+type CategoryBreadcrumbProps = GQLCategoryBreadcrumbFragment & BreadcrumbsProps
+
+export default function CategoryBreadcrumb(props: CategoryBreadcrumbProps) {
+  const { name, breadcrumbs, ...breadcrumbProps } = props
   return (
-    <Breadcrumbs aria-label='breadcrumb'>
+    <Breadcrumbs aria-label='breadcrumb' {...breadcrumbProps}>
       <Link color='inherit' href='/'>
         Home
       </Link>

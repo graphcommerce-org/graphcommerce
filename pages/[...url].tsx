@@ -15,6 +15,8 @@ import ProductListSort from 'components/ProductListSort'
 import ProductListFilters from 'components/ProductListFilters'
 import ProductListItems from 'components/ProductListItems'
 import { default as NextError } from 'next/error'
+import { Container } from '@material-ui/core'
+import useProductPageStyles from 'components/ProductPage/useProductPageStyles'
 
 const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = ({
   categoryList,
@@ -23,22 +25,43 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = ({
   storeConfig,
   filterTypeMap,
 }) => {
+  const classes = useProductPageStyles()
   if (!categoryList || !categoryList[0]) return <NextError statusCode={404}>404</NextError>
 
   return (
     <>
       <CategoryMeta {...categoryList[0]} />
-      <CategoryBreadcrumb {...categoryList[0]} />
-      <CategoryDescription {...categoryList[0]} />
-      <CategoryChildren {...categoryList[0]} />
-      <ProductListPagination {...products} params={params} />
-      <ProductListSort
-        {...products}
-        params={params}
-        defaultSort={storeConfig.catalog_default_sort_by}
-      />
-      <ProductListFilters {...products} params={params} filterTypeMap={filterTypeMap} />
-      <ProductListItems {...products} />
+      <Container className={classes.container}>
+        <CategoryBreadcrumb
+          name={categoryList[0].name}
+          breadcrumbs={categoryList[0].breadcrumbs}
+          className={classes.breadcrumb}
+        />
+        <CategoryDescription
+          name={categoryList[0].name}
+          description={categoryList[0].description}
+          className={classes.description}
+        />
+        <CategoryChildren children={categoryList[0].children} className={classes.childCategories} />
+        <ProductListPagination
+          page_info={products.page_info}
+          params={params}
+          className={classes.pagination}
+        />
+        <ProductListSort
+          sort_fields={products.sort_fields}
+          params={params}
+          defaultSort={storeConfig.catalog_default_sort_by}
+          className={classes.sort}
+        />
+        <ProductListFilters
+          aggregations={products.aggregations}
+          params={params}
+          filterTypeMap={filterTypeMap}
+          className={classes.filters}
+        />
+        <ProductListItems items={products.items} className={classes.items} />
+      </Container>
     </>
   )
 }

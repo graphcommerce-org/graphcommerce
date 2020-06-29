@@ -1,9 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { Theme, Container } from '@material-ui/core'
+import { Theme, Container, ContainerProps } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import ProductListItemSimple from '../ProductListItemSimple'
 import ProductListItemConfigurable from '../ProductListItemConfigurable'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -17,14 +18,16 @@ const useStyles = makeStyles(
   { name: 'ProductList' },
 )
 
-type ProductListItemsParams = GQLProductListItemsFragment & UseStyles<typeof useStyles>
+type ProductListItemsParams = GQLProductListItemsFragment &
+  UseStyles<typeof useStyles> &
+  Omit<ContainerProps, 'children'>
 
 export default function ProductListItems(props: ProductListItemsParams) {
-  const { items } = props
+  const { items, ...containerProps } = props
   const classes = useStyles(props)
 
   return (
-    <Container className={classes.productList}>
+    <Container {...containerProps} className={clsx(classes.productList, containerProps.className)}>
       {items.map((item) => {
         switch (item.__typename) {
           case 'ConfigurableProduct':

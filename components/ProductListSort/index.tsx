@@ -6,12 +6,13 @@ import { ProductListParams } from '../ProductList'
 export type ProductListSortProps = GQLProductListSortFragment & {
   params: ProductListParams
   defaultSort: string
-}
+} & JSX.IntrinsicElements['div']
 
 export default function ProductListSort({
   sort_fields,
   defaultSort,
   params,
+  ...divProps
 }: ProductListSortProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -24,7 +25,7 @@ export default function ProductListSort({
   const currentDir = currentOption?.value ? params.sort[currentOption.value] : 'ASC'
 
   return (
-    <div>
+    <div {...divProps}>
       Sort by:
       <Button
         aria-controls='simple-menu'

@@ -2,9 +2,11 @@ import React from 'react'
 import { Chip, Link } from '@material-ui/core'
 import NextLink from 'next/link'
 
-export default function CategoryChildren({ children }: GQLCategoryChildrenFragment) {
+type CategoryChildrenProps = GQLCategoryChildrenFragment & JSX.IntrinsicElements['div']
+
+export default function CategoryChildren({ children, ...divProps }: CategoryChildrenProps) {
   return (
-    <div>
+    <div {...divProps}>
       {children.map((category) => (
         <Chip
           key={category.id}
