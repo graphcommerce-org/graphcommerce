@@ -14,7 +14,6 @@ export default function ProductListPagination({
 }: ProductPaginationProps) {
   const { current_page, total_pages } = page_info
 
-  console.log(paginationProps)
   return (
     <Pagination
       count={total_pages}
