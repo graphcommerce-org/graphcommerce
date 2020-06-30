@@ -1,21 +1,20 @@
 import React from 'react'
 import Router from 'next/router'
-import { createRoute, ProductListLink } from 'components/ProductListLink'
+import { createRoute, CategoryLink } from 'components/CategoryLink'
 import { ListItem, ListItemText } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
-import FilterChip, { FilterChipProps } from './FilterChip'
+import ChipMenu, { ChipMenuProps } from '../ChipMenu'
 
 type FilterEqualTypeProps = GQLProductListFiltersFragment['aggregations'][0] &
-  Omit<FilterChipProps, 'selected'> & {
+  Omit<ChipMenuProps, 'selected'> & {
     params: ProductListParams
   }
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
-  const { attribute_code, count, label, options, params, ...filterChipProps } = props
+  const { attribute_code, count, label, options, params, ...filterMenuProps } = props
   const currentFilter = params.filters[attribute_code] as GQLFilterEqualTypeInput
   const currentLabel = options.find((option) => currentFilter?.eq === option.value)?.label
 
-  // eslint-disable-next-line no-case-declarations
   const removeFilter = () => {
     const linkParams = { ...params, filters: { ...params.filters } }
     delete linkParams.filters[attribute_code]
@@ -25,9 +24,9 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   }
 
   return (
-    <FilterChip
+    <ChipMenu
       key={attribute_code}
-      {...filterChipProps}
+      {...filterMenuProps}
       label={label}
       selected={!!currentLabel}
       selectedLabel={currentLabel}
@@ -50,13 +49,13 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
             dense
             selected={currentFilter?.eq === option.value}
             component={(chipProps) => (
-              <ProductListLink {...chipProps} {...linkParams} color='inherit' underline='none' />
+              <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
             )}
           >
             <ListItemText secondary>{option.label}</ListItemText>
           </ListItem>
         )
       })}
-    </FilterChip>
+    </ChipMenu>
   )
 }

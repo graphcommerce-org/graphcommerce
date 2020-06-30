@@ -1,25 +1,38 @@
 import React from 'react'
-import { Chip, Link } from '@material-ui/core'
-import NextLink from 'next/link'
+import { Chip, ChipProps } from '@material-ui/core'
+import { ProductListParams } from 'components/ProductList'
+import { CategoryLink } from 'components/CategoryLink'
 
-type CategoryChildrenProps = GQLCategoryChildrenFragment & JSX.IntrinsicElements['div']
+type CategoryChildrenProps = GQLCategoryChildrenFragment & ChipProps & { params: ProductListParams }
 
-export default function CategoryChildren({ categoryChildren, ...divProps }: CategoryChildrenProps) {
+export default function CategoryChildren({
+  categoryChildren,
+  params,
+  ...chipProps
+}: CategoryChildrenProps) {
   return (
-    <div {...divProps}>
-      {categoryChildren.map((category) => (
-        <Chip
-          key={category.id}
-          clickable
-          color='default'
-          label={category.name}
-          component={(chipProps) => (
-            <NextLink href='/[...url]' as={category.url_path} passHref>
-              <Link {...chipProps} color='inherit' underline='none' />
-            </NextLink>
-          )}
-        />
-      ))}
-    </div>
+    <>
+      {categoryChildren.map((category) => {
+        const linkParams: ProductListParams = {
+          ...params,
+          filters: { ...params.filters },
+          url: category.url_path,
+        }
+        delete linkParams.currentPage
+
+        return (
+          <Chip
+            key={category.id}
+            clickable
+            color='default'
+            label={category.name}
+            {...chipProps}
+            component={(linkProps) => (
+              <CategoryLink {...linkProps} {...linkParams} underline='none' />
+            )}
+          />
+        )
+      })}
+    </>
   )
 }
