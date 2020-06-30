@@ -77,6 +77,7 @@ const getCategoryPageProps = async ({
         category_id: { eq: String((await urlResolve).urlResolver.id) },
         ...(await params).filters,
       },
+      rootCategory: String((await urlResolve).urlResolver.id),
     },
   })
 

@@ -1,7 +1,7 @@
 # Introductie Reach Digital SSG eCommerce framework
 
-Vandaag introduceren we de nieuwe eCommerce frontend stack waar Reach Digital de
-komende jaren Frontends zal bouwen. De nieuwe stack zit vol fundamenten waarmee
+Vandaag introduceren we een mogelijke nieuwe eCommerce frontend stack waar we
+nieuwe frontends mee kunnen bouwen. De nieuwe stack zit vol fundamenten waarmee
 we sneller, beter, schaalbaarder en sneller kunnen zijn.
 
 ## Design principes en doelstelling
@@ -181,3 +181,5 @@ We maken gebruik van deze tools:
   [schema-dts](https://github.com/google/schema-dts)
 
 [afbeeldingen van al deze tools]
+
+### “Easy to customize, nothing to configure” vs “configure everything customize nothing”

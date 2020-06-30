@@ -21,6 +21,7 @@ import useProductPageStyles from 'components/ProductPage/useProductPageStyles'
 const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = ({
   categoryList,
   products,
+  filters,
   params,
   storeConfig,
   filterTypeMap,
@@ -42,24 +43,29 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = ({
           description={categoryList[0].description}
           className={classes.description}
         />
-        <CategoryChildren children={categoryList[0].children} className={classes.childCategories} />
+        <CategoryChildren
+          categoryChildren={categoryList[0].categoryChildren}
+          className={classes.childCategories}
+        />
         <ProductListPagination
           page_info={products.page_info}
           params={params}
           className={classes.pagination}
         />
+        <div className={classes.filters}>
+          <ProductListFilters
+            aggregations={filters.aggregations}
+            params={params}
+            filterTypeMap={filterTypeMap}
+          />
+        </div>
         <ProductListSort
           sort_fields={products.sort_fields}
           params={params}
           defaultSort={storeConfig.catalog_default_sort_by}
           className={classes.sort}
         />
-        <ProductListFilters
-          aggregations={products.aggregations}
-          params={params}
-          filterTypeMap={filterTypeMap}
-          className={classes.filters}
-        />
+
         <ProductListItems items={products.items} className={classes.items} />
       </Container>
     </>

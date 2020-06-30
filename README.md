@@ -14,10 +14,10 @@
 
 # Install
 
-Make sure you're using Node >= 12 `nvm install 12 && nvm alias default node`
+Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 
 1. `yarn`
-2. `cp .env.example .env` and fill values (see 1Password)
+2. copy `.env` from 1Password "m2-pwa .env"
 
 # Run
 

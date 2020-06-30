@@ -1,5 +1,5 @@
 fragment CategoryChildren on CategoryTree {
-  children {
+  categoryChildren: children {
     id
     name
     level

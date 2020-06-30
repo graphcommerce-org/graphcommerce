@@ -4,6 +4,7 @@ query ProductList(
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
+  $rootCategory: String!
 ) {
   products(
     pageSize: $pageSize
@@ -14,7 +15,9 @@ query ProductList(
   ) {
     ...ProductListPagination
     ...ProductListSort
-    ...ProductListFilters
     ...ProductListItems
+  }
+  filters: products(filter: { category_id: { eq: $rootCategory } }) {
+    ...ProductListFilters
   }
 }

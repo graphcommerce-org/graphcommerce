@@ -4,10 +4,10 @@ import NextLink from 'next/link'
 
 type CategoryChildrenProps = GQLCategoryChildrenFragment & JSX.IntrinsicElements['div']
 
-export default function CategoryChildren({ children, ...divProps }: CategoryChildrenProps) {
+export default function CategoryChildren({ categoryChildren, ...divProps }: CategoryChildrenProps) {
   return (
     <div {...divProps}>
-      {children.map((category) => (
+      {categoryChildren.map((category) => (
         <Chip
           key={category.id}
           clickable
