@@ -2,7 +2,7 @@ import { SetRequired } from 'type-fest'
 
 export type ProductListParams = {
   url: string
-} & SetRequired<GQLProductListQueryVariables, 'filters' | 'sort'>
+} & SetRequired<Omit<GQLProductListQueryVariables, 'rootCategory'>, 'filters' | 'sort'>
 
 type AnyFilterType =
   | GQLFilterEqualTypeInput
