@@ -17,6 +17,7 @@ import ProductListItems from 'components/ProductListItems'
 import NextError from 'next/error'
 import { Container } from '@material-ui/core'
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
+import ScrollSnapSlider from 'components/ScrollSnapSlider'
 
 const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
@@ -39,7 +40,7 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
           description={categoryList[0].description}
           className={classes.description}
         />
-        <div className={classes.filters}>
+        <ScrollSnapSlider classes={{ container: classes.filters }}>
           <CategoryChildren
             categoryChildren={categoryList[0].categoryChildren}
             params={params}
@@ -57,7 +58,7 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             filterTypeMap={filterTypeMap}
             className={classes.filterItem}
           />
-        </div>
+        </ScrollSnapSlider>
         <ProductListItems items={products.items} className={classes.items} />
         <ProductListPagination
           page_info={products.page_info}
