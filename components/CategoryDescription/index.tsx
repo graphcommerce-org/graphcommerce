@@ -7,7 +7,9 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
   const { name, description, ...divProps } = props
   return (
     <div {...divProps}>
-      <Typography variant='h1'>{name}</Typography>
+      <Typography variant='h2' component='h1'>
+        {name}
+      </Typography>
       {/* todo: replace with proper content renderer */}
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: description }} />

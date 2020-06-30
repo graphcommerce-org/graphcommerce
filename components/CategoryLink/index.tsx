@@ -14,7 +14,7 @@ export function createRoute(props: ProductListParams): string {
   const { url, sort, currentPage, filters } = props
 
   // base url path generation
-  let href = `/${url}`
+  let href = ``
 
   if (currentPage && currentPage > 1) href += `/page/${currentPage}`
 
@@ -31,10 +31,11 @@ export function createRoute(props: ProductListParams): string {
     if (isFilterTypeRange(value)) href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
   })
 
+  href = `/${url}${href && `/q${href}`}`
   return href
 }
 
-export function ProductListLink(props: ProductListLinkParams) {
+export function CategoryLink(props: ProductListLinkParams) {
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
 
   return (

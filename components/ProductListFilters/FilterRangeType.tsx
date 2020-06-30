@@ -1,12 +1,12 @@
 import React from 'react'
 import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
-import { createRoute } from 'components/ProductListLink'
+import { createRoute } from 'components/CategoryLink'
 import Router from 'next/router'
-import FilterChip, { FilterChipProps } from './FilterChip'
+import ChipMenu, { ChipMenuProps } from '../ChipMenu'
 
 type FilterRangeTypeProps = GQLProductListFiltersFragment['aggregations'][0] &
-  Omit<FilterChipProps, 'selected'> & {
+  Omit<ChipMenuProps, 'selected'> & {
     params: ProductListParams
   }
 
@@ -22,7 +22,7 @@ const useFilterRangeType = makeStyles(
 )
 
 export function FilterRangeType(props: FilterRangeTypeProps) {
-  const { attribute_code, label, options, params, ...filterChipProps } = props
+  const { attribute_code, label, options, params, ...filterMenuProps } = props
   const classes = useFilterRangeType(props)
 
   // eslint-disable-next-line no-case-declarations
@@ -79,12 +79,12 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     currentLabel = `${currentFilter.from} - ${currentFilter.to}`
 
   return (
-    <FilterChip
+    <ChipMenu
       key={attribute_code}
       label={label}
       selectedLabel={currentLabel}
       selected={!!currentLabel}
-      {...filterChipProps}
+      {...filterMenuProps}
       onDelete={currentLabel ? resetFilter : undefined}
     >
       <div className={classes.container}>
@@ -111,6 +111,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
           Apply
         </Button>
       </div>
-    </FilterChip>
+    </ChipMenu>
   )
 }

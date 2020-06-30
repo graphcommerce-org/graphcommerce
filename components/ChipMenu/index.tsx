@@ -16,12 +16,12 @@ const useFilterChipStyles = makeStyles(
   { name: 'FilterChip' },
 )
 
-export type FilterChipProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
+export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   selectedLabel?: string
   selected: boolean
 }
 
-export default function FilterChip(props: FilterChipProps) {
+export default function ChipMenu(props: ChipMenuProps) {
   const { children, selected, onDelete, label, selectedLabel, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const classes = useFilterChipStyles(props)

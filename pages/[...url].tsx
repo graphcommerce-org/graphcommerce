@@ -14,19 +14,15 @@ import ProductListPagination from 'components/ProductListPagination'
 import ProductListSort from 'components/ProductListSort'
 import ProductListFilters from 'components/ProductListFilters'
 import ProductListItems from 'components/ProductListItems'
-import { default as NextError } from 'next/error'
+import NextError from 'next/error'
 import { Container } from '@material-ui/core'
-import useProductPageStyles from 'components/ProductPage/useProductPageStyles'
+import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 
-const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = ({
-  categoryList,
-  products,
-  filters,
-  params,
-  storeConfig,
-  filterTypeMap,
-}) => {
-  const classes = useProductPageStyles()
+const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
+  const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
+  const classes = useCategoryPageStyles(props)
+
+  // @todo implement skeleton loading
   if (!categoryList || !categoryList[0]) return <NextError statusCode={404}>404</NextError>
 
   return (
@@ -43,30 +39,31 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = ({
           description={categoryList[0].description}
           className={classes.description}
         />
-        <CategoryChildren
-          categoryChildren={categoryList[0].categoryChildren}
-          className={classes.childCategories}
-        />
+        <div className={classes.filters}>
+          <CategoryChildren
+            categoryChildren={categoryList[0].categoryChildren}
+            params={params}
+            className={classes.filterItem}
+          />
+          <ProductListSort
+            sort_fields={products.sort_fields}
+            params={params}
+            defaultSort={storeConfig.catalog_default_sort_by}
+            className={classes.filterItem}
+          />
+          <ProductListFilters
+            aggregations={filters.aggregations}
+            params={params}
+            filterTypeMap={filterTypeMap}
+            className={classes.filterItem}
+          />
+        </div>
+        <ProductListItems items={products.items} className={classes.items} />
         <ProductListPagination
           page_info={products.page_info}
           params={params}
           className={classes.pagination}
         />
-        <div className={classes.filters}>
-          <ProductListFilters
-            aggregations={filters.aggregations}
-            params={params}
-            filterTypeMap={filterTypeMap}
-          />
-        </div>
-        <ProductListSort
-          sort_fields={products.sort_fields}
-          params={params}
-          defaultSort={storeConfig.catalog_default_sort_by}
-          className={classes.sort}
-        />
-
-        <ProductListItems items={products.items} className={classes.items} />
       </Container>
     </>
   )
@@ -88,13 +85,16 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params) throw new Error('No params')
 
-  // @todo slice everything before queryParam?
-  const url = ctx.params.url.slice(0, 1)
+  const qIndex = Math.max(
+    ctx.params.url.findIndex((slug) => slug === 'q'),
+    1,
+  )
+  const url = ctx.params.url.slice(0, qIndex)
 
   const urlResolve = getUrlResolveProps({ urlKey: `${url.join('/')}.html` })
   const navigationProps = getNavigationProps()
   const categoryPageProps = getCategoryPageProps({
-    urlParams: ctx.params.url.slice(1),
+    urlParams: ctx.params.url.slice(qIndex + 1),
     urlResolve,
     url,
   })
