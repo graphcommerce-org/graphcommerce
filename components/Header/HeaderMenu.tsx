@@ -105,7 +105,7 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
         {menu[0].children.map((root) => (
-          <Link key={root.id} href='/[...url]' as={root.url_path} passHref>
+          <Link key={root.id} href='/[...url]' as={`/${root.url_path}`} passHref>
             <MuiLink color='inherit' underline='none' className={classes.menuLink}>
               <ListItem
                 button

@@ -4,9 +4,9 @@ import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/cor
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
+import Link from 'next/link'
 import ProductListPrice from '../ProductListPrice'
 import { ProductListParams } from '../ProductList'
-import Link from 'next/link'
 
 export const useProductListItemSimpleStyles = makeStyles(
   (theme: Theme) => ({
@@ -75,7 +75,7 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
 
   return (
     <div className={classes.item}>
-      <Link href={'/product/[url]'} as={`/product/${url_key}`} passHref>
+      <Link href='/product/[url]' as={`/product/${url_key}`} passHref>
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
