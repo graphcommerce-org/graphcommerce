@@ -2,7 +2,7 @@ import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
-import getNavigationProps from 'components/ShopLayout/getNavigationProps'
+import getHeaderProps from 'components/Header/getHeaderProps'
 import getProductPageProps, { GetProductPageProps } from 'components/ProductPage/getProductProps'
 
 const PageWithLayout: PageWithShopLayout<GetProductPageProps> = (props) => {
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params?.url) throw Error('No params')
   const urlResolve = getUrlResolveProps({ urlKey: `${ctx.params.url}.html` })
-  const navigation = getNavigationProps()
+  const navigation = getHeaderProps()
   const productPage = getProductPageProps({ urlKey: ctx.params.url })
 
   return {

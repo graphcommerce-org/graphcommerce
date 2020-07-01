@@ -1,20 +1,24 @@
 import React from 'react'
 import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'components/ShopLayout'
-import getNavigationProps from 'components/ShopLayout/getNavigationProps'
+import getHeaderProps from 'components/Header/getHeaderProps'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getCmsPageProps, { GetCmsPageProps } from 'components/CmsPage/getCmsPageProps'
 import NextError from 'next/error'
 import CmsPageMeta from 'components/CmsPageMeta'
 import CmsPageContent from 'components/CmsPageContent'
+import { useHeaderSpacing } from 'components/Header'
 
 const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeConfig }) => {
+  const { marginTop } = useHeaderSpacing()
   if (!cmsPage) return <NextError statusCode={404} />
 
   return (
     <>
       <CmsPageMeta {...cmsPage} {...storeConfig} />
-      <CmsPageContent {...cmsPage} />
+      <div className={marginTop}>
+        <CmsPageContent {...cmsPage} />
+      </div>
     </>
   )
 }
@@ -36,7 +40,7 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params) throw Error('No params')
   const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url })
-  const navigationProps = getNavigationProps()
+  const navigationProps = getHeaderProps()
   const cmsPageProps = getCmsPageProps(urlResolve)
 
   return {

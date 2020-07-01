@@ -7,7 +7,7 @@ export default function CmsPageContent(props: GQLCmsPageContentFragment) {
   return (
     <Container>
       {content_heading && (
-        <Typography variant='h1' component='h1'>
+        <Typography variant='h2' component='h1'>
           {content_heading}
         </Typography>
       )}

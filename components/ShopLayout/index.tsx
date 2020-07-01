@@ -4,14 +4,14 @@ import Head from 'next/head'
 import { LayoutPage } from 'components/LayoutPage'
 import ThemedProvider, { defaultTheme } from 'components/Theme'
 import PageLoadIndicator from 'components/PageLoadIndicator'
-import Link from 'next/link'
 import Error from 'next/error'
 import MagentoDynamic from 'components/MagentoDynamic/MagentoDynamic'
 import CartTriggerSkeleton from 'components/MagentoDynamic/CartTriggerSkeleton'
-import { GetNavigationProps } from './getNavigationProps'
+import Header from 'components/Header'
+import { GetHeaderProps } from 'components/Header/getHeaderProps'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-export type ShopLayoutProps = GetNavigationProps & GetUrlResolveProps & { error?: string }
+export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
   ShopLayoutProps & T,
@@ -37,21 +37,8 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlRe
       </Head>
       <CssBaseline />
       <PageLoadIndicator />
-      {menu &&
-        menu[0] &&
-        menu[0].categoryChildren.map((child) => (
-          <Link href='/[...url]' as={`/${child.url_path}`} key={child.id}>
-            <a>{child.name}</a>
-          </Link>
-        ))}
-      <MagentoDynamic
-        loader={() => import('@magento/venia-ui/lib/components/Header/cartTrigger')}
-        skeleton={(ref) => <CartTriggerSkeleton ref={ref} />}
-      />
-      <MagentoDynamic
-        loader={() => import('@magento/venia-ui/lib/components/MiniCart')}
-        skeleton={(ref) => <div ref={ref} />}
-      />
+
+      <Header menu={menu} urlResolver={urlResolver} />
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
