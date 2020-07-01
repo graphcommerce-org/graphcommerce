@@ -11,9 +11,9 @@ type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment &
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
   const { variants, configurable_options, params, filterTypeMap, ...configurableProduct } = props
 
-  configurable_options.map((option) => {
-    const filter = params.filters[option.attribute_code]
-  })
+  // configurable_options.map((option) => {
+  //   const filter = params.filters[option.attribute_code]
+  // })
 
   const [selected, setSelected] = useState<{ [index: string]: number }>({})
 
