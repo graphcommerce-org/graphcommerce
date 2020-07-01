@@ -71,7 +71,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
 
   const currentFilter = params.filters[attribute_code] as GQLFilterRangeTypeInput | undefined
 
-  let currentLabel: string
+  let currentLabel: string | undefined
   if (currentFilter?.from === '*' && currentFilter?.to !== '*')
     currentLabel = `0 - ${currentFilter.to}`
   if (currentFilter?.from !== '*' && currentFilter?.to === '*')
