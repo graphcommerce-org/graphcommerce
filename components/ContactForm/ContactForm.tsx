@@ -4,7 +4,6 @@ import ChevronRight from '@material-ui/icons/ChevronRightSharp'
 import { useMutationForm, emailPattern, phonePattern } from 'components/useMutationForm'
 import { SubmitContactFormDocument } from 'generated/apollo'
 import useContactStyles from './useContactStyles'
-import sendSlackNotification from './sendSlackNotification'
 
 const ContactForm: React.FC = ({ children }) => {
   const classes = useContactStyles()
@@ -17,10 +16,6 @@ const ContactForm: React.FC = ({ children }) => {
   } = useMutationForm<GQLSubmitContactFormMutation, GQLSubmitContactFormMutationVariables>(
     SubmitContactFormDocument,
   )
-
-  useEffect(() => {
-    if (data?.createContactForm?.id) sendSlackNotification(data.createContactForm)
-  }, [data])
 
   const subjects: { [K in GQLContactSubject]: string } = {
     COLLABORATION: 'Samenwerking',
