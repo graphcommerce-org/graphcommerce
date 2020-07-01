@@ -26,7 +26,7 @@ export function createRoute(props: ProductListParams): string {
 
   // Apply filters
   Object.entries(filters).forEach(([param, value]) => {
-    if (isFilterTypeEqual(value)) href += `/${param}/${value.eq}`
+    if (isFilterTypeEqual(value)) href += `/${param}/${value.in?.join(',')}`
     if (isFilterTypeMatch(value)) href += `/${param}/${value.match}`
     if (isFilterTypeRange(value)) href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
   })

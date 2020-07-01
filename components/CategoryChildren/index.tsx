@@ -2,6 +2,7 @@ import React from 'react'
 import { Chip, ChipProps } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
 import CategoryLink from 'components/CategoryLink'
+import cloneDeep from 'clone-deep'
 
 type CategoryChildrenProps = GQLCategoryChildrenFragment &
   Omit<ChipProps, 'children' | 'clickable' | 'color' | 'label' | 'component'> & {
@@ -16,11 +17,8 @@ export default function CategoryChildren({
   return (
     <>
       {children.map((category) => {
-        const linkParams: ProductListParams = {
-          ...params,
-          filters: { ...params.filters },
-          url: category.url_path,
-        }
+        const linkParams = cloneDeep(params)
+        linkParams.url = category.url_path
         delete linkParams.currentPage
 
         return (

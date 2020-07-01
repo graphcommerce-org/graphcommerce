@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Theme, Container, ContainerProps } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import clsx from 'clsx'
+import { ProductListParams, FilterTypeMap } from 'components/ProductList'
 import ProductListItemSimple from '../ProductListItemSimple'
 import ProductListItemConfigurable from '../ProductListItemConfigurable'
 
@@ -20,18 +21,28 @@ const useStyles = makeStyles(
 
 type ProductListItemsParams = GQLProductListItemsFragment &
   UseStyles<typeof useStyles> &
-  JSX.IntrinsicElements['div']
+  JSX.IntrinsicElements['div'] & {
+    params: ProductListParams
+    filterTypeMap: FilterTypeMap
+  }
 
 export default function ProductListItems(props: ProductListItemsParams) {
-  const { items, ...containerProps } = props
+  const { items, params, filterTypeMap, ...divProps } = props
   const classes = useStyles(props)
 
   return (
-    <div {...containerProps} className={clsx(classes.productList, containerProps.className)}>
+    <div {...divProps} className={clsx(classes.productList, divProps.className)}>
       {items.map((item) => {
         switch (item.__typename) {
           case 'ConfigurableProduct':
-            return <ProductListItemConfigurable {...item} key={item.id} />
+            return (
+              <ProductListItemConfigurable
+                {...item}
+                key={item.id}
+                params={params}
+                filterTypeMap={filterTypeMap}
+              />
+            )
           case 'SimpleProduct':
             return <ProductListItemSimple {...item} key={item.id} />
           default:

@@ -1,7 +1,8 @@
 import React from 'react'
-import { MenuItem } from '@material-ui/core'
+import { MenuItem, ListItem, ListItemText } from '@material-ui/core'
 import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
 import Router from 'next/router'
+import cloneDeep from 'clone-deep'
 import CategoryLink, { createRoute } from '../CategoryLink'
 import { ProductListParams } from '../ProductList'
 
@@ -20,7 +21,7 @@ export default function ProductListSort({
   const currentOption = sort_fields.options.find((option) => option.value === currentSort)
 
   const removeFilter = () => {
-    const linkParams = { ...params, filters: { ...params.filters }, sort: {} }
+    const linkParams = cloneDeep(params)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     Router.push('/[...url]', createRoute(linkParams))
   }
@@ -34,23 +35,23 @@ export default function ProductListSort({
       onDelete={currentSort !== defaultSort ? removeFilter : undefined}
     >
       {sort_fields.options.map((option) => {
-        const linkParams = { ...params, sort: { ...params.sort } }
+        const linkParams = cloneDeep(params)
         linkParams.sort = {}
         if (option.value !== defaultSort) linkParams.sort[option.value] = true
         delete linkParams.currentPage
 
-        if (option.value === currentSort) {
-          return (
-            <MenuItem key={option.value} selected>
-              {option.label}
-            </MenuItem>
-          )
-        }
-
         return (
-          <CategoryLink key={option.value} color='inherit' {...linkParams} underline='none'>
-            <MenuItem>{option.label}</MenuItem>
-          </CategoryLink>
+          <ListItem
+            button
+            key={option.value}
+            dense
+            selected={option.value === currentSort}
+            component={(chipProps) => (
+              <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
+            )}
+          >
+            <ListItemText secondary>{option.label}</ListItemText>
+          </ListItem>
         )
       })}
     </ChipMenu>
