@@ -1,5 +1,0 @@
-query NavigationMenu {
-  menu: categoryList(filters: { ids: { eq: "2" } }) {
-    ...CategoryChildren
-  }
-}

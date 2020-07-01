@@ -1,0 +1,5 @@
+query HeaderMenu($rootCategory: String!) {
+  menu: categoryList(filters: { ids: { eq: $rootCategory } }) {
+    ...CategoryChildren
+  }
+}

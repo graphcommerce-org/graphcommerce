@@ -1,6 +1,6 @@
 import React from 'react'
 import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'components/ShopLayout'
-import getNavigationProps from 'components/ShopLayout/getNavigationProps'
+import getHeaderProps from 'components/Header/getHeaderProps'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getCategoryPageProps, {
@@ -18,10 +18,13 @@ import NextError from 'next/error'
 import { Container } from '@material-ui/core'
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
+import { useHeaderSpacing } from 'components/Header'
+import clsx from 'clsx'
 
 const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
   const classes = useCategoryPageStyles(props)
+  const { marginTop } = useHeaderSpacing()
 
   // @todo implement skeleton loading
   if (!categoryList || !categoryList[0]) return <NextError statusCode={404}>404</NextError>
@@ -29,7 +32,7 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   return (
     <>
       <CategoryMeta {...categoryList[0]} />
-      <Container className={classes.container}>
+      <Container className={clsx(classes.container, marginTop)}>
         <CategoryBreadcrumb
           name={categoryList[0].name}
           breadcrumbs={categoryList[0].breadcrumbs}
@@ -41,11 +44,9 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
           className={classes.description}
         />
         <ScrollSnapSlider classes={{ container: classes.filters }}>
-          <CategoryChildren
-            categoryChildren={categoryList[0].categoryChildren}
-            params={params}
-            className={classes.filterItem}
-          />
+          <CategoryChildren params={params} className={classes.filterItem}>
+            {categoryList[0].children}
+          </CategoryChildren>
           <ProductListSort
             sort_fields={products.sort_fields}
             params={params}
@@ -86,14 +87,13 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params) throw new Error('No params')
 
-  const qIndex = Math.max(
-    ctx.params.url.findIndex((slug) => slug === 'q'),
-    1,
-  )
+  const queryIdnex = ctx.params.url.findIndex((slug) => slug === 'q')
+  const qIndex = queryIdnex < 0 ? ctx.params.url.length : queryIdnex
+
   const url = ctx.params.url.slice(0, qIndex)
 
   const urlResolve = getUrlResolveProps({ urlKey: `${url.join('/')}.html` })
-  const navigationProps = getNavigationProps()
+  const navigationProps = getHeaderProps()
   const categoryPageProps = getCategoryPageProps({
     urlParams: ctx.params.url.slice(qIndex + 1),
     urlResolve,

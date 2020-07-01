@@ -3,16 +3,19 @@ import { Chip, ChipProps } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
 import { CategoryLink } from 'components/CategoryLink'
 
-type CategoryChildrenProps = GQLCategoryChildrenFragment & ChipProps & { params: ProductListParams }
+type CategoryChildrenProps = GQLCategoryChildrenFragment &
+  Omit<ChipProps, 'children' | 'clickable' | 'color' | 'label' | 'component'> & {
+    params: ProductListParams
+  }
 
 export default function CategoryChildren({
-  categoryChildren,
+  children,
   params,
   ...chipProps
 }: CategoryChildrenProps) {
   return (
     <>
-      {categoryChildren.map((category) => {
+      {children.map((category) => {
         const linkParams: ProductListParams = {
           ...params,
           filters: { ...params.filters },
