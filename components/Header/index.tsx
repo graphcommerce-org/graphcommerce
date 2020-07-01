@@ -69,7 +69,7 @@ const useStyles = makeStyles(
 type HeaderProps = HeaderMenuProps
 
 export default function Header(props: HeaderProps) {
-  const { menu } = props
+  const { menu, urlResolver } = props
   const classes = useStyles(props)
 
   return (
@@ -82,7 +82,7 @@ export default function Header(props: HeaderProps) {
         </Link>
 
         <div className={classes.menu}>
-          <HeaderMenu menu={menu} />
+          <HeaderMenu menu={menu} urlResolver={urlResolver} />
         </div>
 
         <div className={classes.contact}>

@@ -64,9 +64,9 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type HeaderMenuProps = GQLHeaderMenuQuery
+export type HeaderMenuProps = GQLHeaderMenuQuery & GQLResolveUrlQuery
 
-export default function HeaderMenu({ menu }: HeaderMenuProps) {
+export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
   const classes = useStyles()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -107,7 +107,11 @@ export default function HeaderMenu({ menu }: HeaderMenuProps) {
         {menu[0].children.map((root) => (
           <Link key={root.id} href='/[...url]' as={root.url_path} passHref>
             <MuiLink color='inherit' underline='none' className={classes.menuLink}>
-              <ListItem button classes={{ root: classes.menuItem }}>
+              <ListItem
+                button
+                selected={root.id === urlResolver.id && urlResolver.type === 'CATEGORY'}
+                classes={{ root: classes.menuItem }}
+              >
                 <ListItemText classes={{ primary: classes.menuItemText }}>{root.name}</ListItemText>
               </ListItem>
             </MuiLink>

@@ -38,7 +38,7 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlRe
       <CssBaseline />
       <PageLoadIndicator />
 
-      <Header menu={menu} />
+      <Header menu={menu} urlResolver={urlResolver} />
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
