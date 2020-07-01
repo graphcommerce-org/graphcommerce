@@ -8,7 +8,7 @@ import {
   isFilterTypeRange,
 } from '../ProductList'
 
-type ProductListLinkParams = PropsWithChildren<LinkProps & ProductListParams>
+export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>
 
 export function createRoute(props: ProductListParams): string {
   const { url, sort, currentPage, filters } = props
@@ -35,14 +35,16 @@ export function createRoute(props: ProductListParams): string {
   return href
 }
 
-export function CategoryLink(props: ProductListLinkParams) {
+const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((props, ref) => {
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
 
   return (
     <NextLink href='/[...url]' as={createRoute(props)} passHref>
-      <Link rel='nofollow' {...linkProps}>
+      <Link rel='nofollow' {...linkProps} ref={ref}>
         {children}
       </Link>
     </NextLink>
   )
-}
+})
+
+export default CategoryLink

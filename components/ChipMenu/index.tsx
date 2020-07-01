@@ -6,14 +6,14 @@ import RemoveCircle from '@material-ui/icons/Cancel'
 import clsx from 'clsx'
 import { vpCalc } from 'components/Theme'
 
-const useFilterChipStyles = makeStyles(
+const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
     chip: {},
     menu: {
       minWidth: vpCalc(200, 280),
     },
   }),
-  { name: 'FilterChip' },
+  { name: 'ChipMenu' },
 )
 
 export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
@@ -24,7 +24,7 @@ export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
 export default function ChipMenu(props: ChipMenuProps) {
   const { children, selected, onDelete, label, selectedLabel, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
-  const classes = useFilterChipStyles(props)
+  const classes = useChipMenuStyles(props)
 
   let deleteIcon = selected ? <RemoveCircle fontSize='small' /> : <ExpandMore fontSize='small' />
   if (openEl) deleteIcon = <ExpandLess fontSize='small' />

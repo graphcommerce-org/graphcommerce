@@ -2,7 +2,7 @@ import React from 'react'
 import { MenuItem } from '@material-ui/core'
 import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
 import Router from 'next/router'
-import { CategoryLink, createRoute } from '../CategoryLink'
+import CategoryLink, { createRoute } from '../CategoryLink'
 import { ProductListParams } from '../ProductList'
 
 export type ProductListSortProps = GQLProductListSortFragment & {
@@ -40,7 +40,11 @@ export default function ProductListSort({
         delete linkParams.currentPage
 
         if (option.value === currentSort) {
-          return <MenuItem selected>{option.label}</MenuItem>
+          return (
+            <MenuItem key={option.value} selected>
+              {option.label}
+            </MenuItem>
+          )
         }
 
         return (

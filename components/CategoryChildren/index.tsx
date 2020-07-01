@@ -1,7 +1,7 @@
 import React from 'react'
 import { Chip, ChipProps } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
-import { CategoryLink } from 'components/CategoryLink'
+import CategoryLink from 'components/CategoryLink'
 
 type CategoryChildrenProps = GQLCategoryChildrenFragment &
   Omit<ChipProps, 'children' | 'clickable' | 'color' | 'label' | 'component'> & {
@@ -24,16 +24,9 @@ export default function CategoryChildren({
         delete linkParams.currentPage
 
         return (
-          <Chip
-            key={category.id}
-            clickable
-            color='default'
-            label={category.name}
-            {...chipProps}
-            component={(linkProps) => (
-              <CategoryLink {...linkProps} {...linkParams} underline='none' />
-            )}
-          />
+          <CategoryLink key={category.id} {...linkParams} underline='none'>
+            <Chip clickable color='default' label={category.name} {...chipProps} />
+          </CategoryLink>
         )
       })}
     </>

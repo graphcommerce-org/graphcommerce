@@ -1,6 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
-import { createRoute, CategoryLink } from 'components/CategoryLink'
+import CategoryLink, { createRoute } from 'components/CategoryLink'
 import { ListItem, ListItemText } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
 import ChipMenu, { ChipMenuProps } from '../ChipMenu'
