@@ -60,7 +60,12 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             className={classes.filterItem}
           />
         </ScrollSnapSlider>
-        <ProductListItems items={products.items} className={classes.items} />
+        <ProductListItems
+          items={products.items}
+          className={classes.items}
+          params={params}
+          filterTypeMap={filterTypeMap}
+        />
         <ProductListPagination
           page_info={products.page_info}
           params={params}

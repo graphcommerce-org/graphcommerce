@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
 import { Chip } from '@material-ui/core'
+import { ProductListParams, FilterTypeMap } from 'components/ProductList'
 import ProductListItemSimple from '../ProductListItemSimple'
 
-export default function ProductListItemConfigurable(props: GQLProductListItemConfigurableFragment) {
-  const { variants, configurable_options, ...configurableProduct } = props
+type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
+  params: ProductListParams
+  filterTypeMap: FilterTypeMap
+}
+
+export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
+  const { variants, configurable_options, params, filterTypeMap, ...configurableProduct } = props
+
+  configurable_options.map((option) => {
+    const filter = params.filters[option.attribute_code]
+  })
 
   const [selected, setSelected] = useState<{ [index: string]: number }>({})
 
@@ -21,7 +31,7 @@ export default function ProductListItemConfigurable(props: GQLProductListItemCon
   }
 
   return (
-    <ProductListItemSimple {...productProps}>
+    <ProductListItemSimple {...productProps} params={params}>
       {configurable_options.map((option) => {
         return (
           <div key={option.id}>
@@ -42,7 +52,10 @@ export default function ProductListItemConfigurable(props: GQLProductListItemCon
                       }
                       avatar={
                         <div
-                          style={{ backgroundColor: value.swatch_data.value, borderRadius: '50%' }}
+                          style={{
+                            backgroundColor: value.swatch_data.value,
+                            borderRadius: '50%',
+                          }}
                         />
                       }
                     />

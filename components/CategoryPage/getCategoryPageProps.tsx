@@ -28,7 +28,7 @@ async function parseParams(
     const [from, to] = value.split('-')
     switch (typeMap[param]) {
       case 'FilterEqualTypeInput':
-        categoryVariables.filters[param] = { eq: value } as GQLFilterEqualTypeInput
+        categoryVariables.filters[param] = { in: value.split(',') } as GQLFilterEqualTypeInput
         break
       case 'FilterMatchTypeInput':
         categoryVariables.filters[param] = { match: value } as GQLFilterMatchTypeInput

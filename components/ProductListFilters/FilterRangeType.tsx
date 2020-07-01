@@ -3,6 +3,7 @@ import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
 import { ProductListParams } from 'components/ProductList'
 import { createRoute } from 'components/CategoryLink'
 import Router from 'next/router'
+import cloneDeep from 'clone-deep'
 import ChipMenu, { ChipMenuProps } from '../ChipMenu'
 
 type FilterRangeTypeProps = GQLProductListFiltersFragment['aggregations'][0] &
@@ -49,7 +50,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const handleChange = (event, newValue: [number, number]) => setValue(newValue)
 
   const applyFilter = () => {
-    const linkParams = { ...params, filters: { ...params.filters } }
+    const linkParams = cloneDeep(params)
     delete linkParams.currentPage
     linkParams.filters[attribute_code] = {
       from: String(value[0]),
@@ -59,7 +60,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     Router.push('/[...url]', createRoute(linkParams))
   }
   const resetFilter = () => {
-    const linkParams = { ...params, filters: { ...params.filters } }
+    const linkParams = cloneDeep(params)
     delete linkParams.currentPage
     delete linkParams.filters[attribute_code]
 
@@ -70,7 +71,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
 
   const currentFilter = params.filters[attribute_code] as GQLFilterRangeTypeInput | undefined
 
-  let currentLabel
+  let currentLabel: string
   if (currentFilter?.from === '*' && currentFilter?.to !== '*')
     currentLabel = `0 - ${currentFilter.to}`
   if (currentFilter?.from !== '*' && currentFilter?.to === '*')
