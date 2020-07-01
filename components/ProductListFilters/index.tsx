@@ -36,7 +36,7 @@ export default function ProductListFilters(props: ProductFiltersProps) {
               />
             )
         }
-        return 'FilterMatchTypeInput not implemented'
+        return 'FilterMatchTypeInput not  implemented'
       })}
     </>
   )
