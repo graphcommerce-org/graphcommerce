@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Chip } from '@material-ui/core'
-import { FilterTypeMap } from 'components/ProductList'
+import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductList'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import cloneDeep from 'clone-deep'
 import ProductListItemSimple from '../ProductListItemSimple'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
@@ -12,23 +13,45 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   const { variants, configurable_options, filterTypeMap, ...configurableProduct } = props
   const { params } = useProductListParamsContext()
 
-  // configurable_options.map((option) => {
-  //   const filter = params.filters[option.attribute_code]
-  // })
-
-  const [selected, setSelected] = useState<{ [index: string]: number }>({})
-
-  const selectedEntries = Object.entries(selected)
-  const variant = variants.find(({ attributes }) => {
-    if (!selectedEntries.length) return false
-    return selectedEntries.find(
-      ([code, idx]) => attributes.find((attribute) => attribute.code === code)?.value_index === idx,
+  const options: [string, string[]][] = configurable_options
+    .filter(
+      (option) =>
+        params.filters[option.attribute_code] &&
+        isFilterTypeEqual(params.filters[option.attribute_code]),
     )
+    .map((option) => {
+      const filter = params.filters[option.attribute_code] as GQLFilterEqualTypeInput
+      return [option.attribute_code, filter?.in || []]
+    })
+
+  const [selectedState, setSelected] = useState<{ [index: string]: string[] }>({})
+
+  const selected = cloneDeep(selectedState)
+  options.forEach(([attr, values]) => {
+    if (!selected[attr]) selected[attr] = values
   })
-  const productProps = variant ? variant.product : configurableProduct
+
+  const matchingVariants = variants.filter(
+    ({ attributes }) =>
+      attributes.filter(
+        (attribute) =>
+          selected[attribute.code] !== undefined &&
+          selected[attribute.code].includes(String(attribute.value_index)),
+      ).length,
+  )
+
+  const productProps = matchingVariants.length ? matchingVariants[0].product : configurableProduct
 
   const onClick = (attribute_code: string, value_index: number) => () => {
-    setSelected({ ...selected, [attribute_code]: value_index })
+    const newSelected = cloneDeep(selected)
+    if (newSelected[attribute_code] && newSelected[attribute_code].length) {
+      newSelected[attribute_code] = newSelected[attribute_code].filter(
+        (val) => val !== String(value_index),
+      )
+    } else {
+      newSelected[attribute_code] = [String(value_index)]
+    }
+    setSelected(newSelected)
   }
 
   return (
@@ -47,7 +70,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
                       onClick={onClick(option.attribute_code, value.value_index)}
                       variant='outlined'
                       color={
-                        selected[option.attribute_code] === value.value_index
+                        selected[option.attribute_code]?.includes(String(value.value_index))
                           ? 'primary'
                           : 'default'
                       }
@@ -70,7 +93,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
                       onClick={onClick(option.attribute_code, value.value_index)}
                       variant='outlined'
                       color={
-                        selected[option.attribute_code] === value.value_index
+                        selected[option.attribute_code]?.includes(String(value.value_index))
                           ? 'primary'
                           : 'default'
                       }
@@ -91,7 +114,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
                       key={value.value_index}
                       label={value.store_label}
                       color={
-                        selected[option.attribute_code] === value.value_index
+                        selected[option.attribute_code]?.includes(String(value.value_index))
                           ? 'primary'
                           : 'default'
                       }
