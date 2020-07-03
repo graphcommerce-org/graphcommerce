@@ -13,7 +13,11 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...filterMenuProps } = props
   const { params } = useProductListParamsContext()
   const currentFilter = params.filters[attribute_code] as GQLFilterEqualTypeInput
-  const currentLabel = options.find((option) => currentFilter?.in?.includes(option.value))?.label
+
+  const activeLabels = options
+    .filter((option) => currentFilter?.in?.includes(option.value))
+    .map((option) => option.label)
+
   const pushRoute = useCategoryPushRoute()
 
   const removeFilter = () => {
@@ -28,9 +32,9 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
       key={attribute_code}
       {...filterMenuProps}
       label={label}
-      selected={!!currentLabel}
-      selectedLabel={currentLabel}
-      onDelete={currentLabel ? removeFilter : undefined}
+      selected={activeLabels.length > 0}
+      selectedLabel={activeLabels.length > 0 ? activeLabels.join(', ') : undefined}
+      onDelete={activeLabels.length > 0 ? removeFilter : undefined}
     >
       {options.map((option) => {
         const linkParams = cloneDeep(params)
@@ -44,7 +48,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
         if (currentFilter?.in?.includes(option.value)) {
           filter.in = filter.in.filter((val) => val !== String(option.value))
         } else {
-          filter.in.push(option.value)
+          filter.in = [...filter.in, option.value].sort()
         }
 
         const labelId = `filter-equal-${attribute_code}-${option.value}`
@@ -58,7 +62,11 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
             )}
           >
-            <ListItemIcon style={{ minWidth: 40 }}>
+            <ListItemIcon
+              style={{
+                minWidth: 40,
+              }}
+            >
               <Checkbox
                 edge='start'
                 checked={currentFilter?.in?.includes(option.value)}
@@ -66,7 +74,9 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                 size='small'
                 color='primary'
                 disableRipple
-                inputProps={{ 'aria-labelledby': labelId }}
+                inputProps={{
+                  'aria-labelledby': labelId,
+                }}
               />
             </ListItemIcon>
             <ListItemText primary={option.label} />
