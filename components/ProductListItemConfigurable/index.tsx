@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { Chip } from '@material-ui/core'
-import { ProductListParams, FilterTypeMap } from 'components/ProductList'
+import { FilterTypeMap } from 'components/ProductList'
+import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import ProductListItemSimple from '../ProductListItemSimple'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
-  params: ProductListParams
   filterTypeMap: FilterTypeMap
 }
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
-  const { variants, configurable_options, params, filterTypeMap, ...configurableProduct } = props
+  const { variants, configurable_options, filterTypeMap, ...configurableProduct } = props
+  const { params } = useProductListParamsContext()
 
   // configurable_options.map((option) => {
   //   const filter = params.filters[option.attribute_code]
@@ -31,7 +32,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   }
 
   return (
-    <ProductListItemSimple {...productProps} params={params}>
+    <ProductListItemSimple {...productProps}>
       {configurable_options.map((option) => {
         return (
           <div key={option.id}>

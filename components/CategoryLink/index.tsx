@@ -1,6 +1,8 @@
 import React, { PropsWithChildren } from 'react'
 import { LinkProps, Link } from '@material-ui/core'
 import NextLink from 'next/link'
+import Router from 'next/router'
+import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import {
   ProductListParams,
   isFilterTypeEqual,
@@ -26,7 +28,7 @@ export function createRoute(props: ProductListParams): string {
 
   // Apply filters
   Object.entries(filters).forEach(([param, value]) => {
-    if (isFilterTypeEqual(value)) href += `/${param}/${value.in?.join(',')}`
+    if (isFilterTypeEqual(value) && value.in?.length) href += `/${param}/${value.in?.join(',')}`
     if (isFilterTypeMatch(value)) href += `/${param}/${value.match}`
     if (isFilterTypeRange(value)) href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
   })
@@ -36,11 +38,15 @@ export function createRoute(props: ProductListParams): string {
 }
 
 const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((props, ref) => {
+  const { setParams } = useProductListParamsContext()
+
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
+
+  const updateParams = () => setParams({ filters, sort, url, currentPage, pageSize, search })
 
   return (
     <NextLink href='/[...url]' as={createRoute(props)} passHref>
-      <Link rel='nofollow' {...linkProps} ref={ref}>
+      <Link rel='nofollow' {...linkProps} ref={ref} onClick={updateParams}>
         {children}
       </Link>
     </NextLink>
@@ -48,3 +54,13 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
 })
 
 export default CategoryLink
+
+export const useCategoryPushRoute = () => {
+  const { setParams } = useProductListParamsContext()
+
+  return (params: ProductListParams) => {
+    setParams(params)
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    Router.push('/[...url]', createRoute(params))
+  }
+}

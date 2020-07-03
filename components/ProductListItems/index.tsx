@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { Theme, Container, ContainerProps } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import clsx from 'clsx'
-import { ProductListParams, FilterTypeMap } from 'components/ProductList'
+import { FilterTypeMap } from 'components/ProductList'
 import ProductListItemSimple from '../ProductListItemSimple'
 import ProductListItemConfigurable from '../ProductListItemConfigurable'
 
@@ -22,12 +22,11 @@ const useStyles = makeStyles(
 type ProductListItemsParams = GQLProductListItemsFragment &
   UseStyles<typeof useStyles> &
   JSX.IntrinsicElements['div'] & {
-    params: ProductListParams
     filterTypeMap: FilterTypeMap
   }
 
 export default function ProductListItems(props: ProductListItemsParams) {
-  const { items, params, filterTypeMap, ...divProps } = props
+  const { items, filterTypeMap, ...divProps } = props
   const classes = useStyles(props)
 
   return (
@@ -36,12 +35,7 @@ export default function ProductListItems(props: ProductListItemsParams) {
         switch (item.__typename) {
           case 'ConfigurableProduct':
             return (
-              <ProductListItemConfigurable
-                {...item}
-                key={item.id}
-                params={params}
-                filterTypeMap={filterTypeMap}
-              />
+              <ProductListItemConfigurable {...item} key={item.id} filterTypeMap={filterTypeMap} />
             )
           case 'SimpleProduct':
             return <ProductListItemSimple {...item} key={item.id} />
