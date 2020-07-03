@@ -20,6 +20,7 @@ import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
 import { useHeaderSpacing } from 'components/Header'
 import clsx from 'clsx'
+import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageContext'
 
 const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
@@ -31,47 +32,42 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
 
   return (
     <>
-      <CategoryMeta {...categoryList[0]} />
-      <Container className={clsx(classes.container, marginTop)}>
-        <CategoryBreadcrumb
-          name={categoryList[0].name}
-          breadcrumbs={categoryList[0].breadcrumbs}
-          className={classes.breadcrumb}
-        />
-        <CategoryDescription
-          name={categoryList[0].name}
-          description={categoryList[0].description}
-          className={classes.description}
-        />
-        <ScrollSnapSlider classes={{ container: classes.filters }}>
-          <CategoryChildren params={params} className={classes.filterItem}>
-            {categoryList[0].children}
-          </CategoryChildren>
-          <ProductListSort
-            sort_fields={products.sort_fields}
-            params={params}
-            defaultSort={storeConfig.catalog_default_sort_by}
-            className={classes.filterItem}
+      <ProductListParamsProvider value={params}>
+        <CategoryMeta {...categoryList[0]} />
+        <Container className={clsx(classes.container, marginTop)}>
+          <CategoryBreadcrumb
+            name={categoryList[0].name}
+            breadcrumbs={categoryList[0].breadcrumbs}
+            className={classes.breadcrumb}
           />
-          <ProductListFilters
-            aggregations={filters.aggregations}
-            params={params}
+          <CategoryDescription
+            name={categoryList[0].name}
+            description={categoryList[0].description}
+            className={classes.description}
+          />
+          <ScrollSnapSlider classes={{ container: classes.filters }}>
+            <CategoryChildren params={params} className={classes.filterItem}>
+              {categoryList[0].children}
+            </CategoryChildren>
+            <ProductListSort
+              sort_fields={products.sort_fields}
+              defaultSort={storeConfig.catalog_default_sort_by}
+              className={classes.filterItem}
+            />
+            <ProductListFilters
+              aggregations={filters.aggregations}
+              filterTypeMap={filterTypeMap}
+              className={classes.filterItem}
+            />
+          </ScrollSnapSlider>
+          <ProductListItems
+            items={products.items}
+            className={classes.items}
             filterTypeMap={filterTypeMap}
-            className={classes.filterItem}
           />
-        </ScrollSnapSlider>
-        <ProductListItems
-          items={products.items}
-          className={classes.items}
-          params={params}
-          filterTypeMap={filterTypeMap}
-        />
-        <ProductListPagination
-          page_info={products.page_info}
-          params={params}
-          className={classes.pagination}
-        />
-      </Container>
+          <ProductListPagination page_info={products.page_info} className={classes.pagination} />
+        </Container>
+      </ProductListParamsProvider>
     </>
   )
 }

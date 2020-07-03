@@ -1,29 +1,29 @@
 import React from 'react'
-import { MenuItem, ListItem, ListItemText } from '@material-ui/core'
+import { ListItem, ListItemText } from '@material-ui/core'
 import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
-import Router from 'next/router'
 import cloneDeep from 'clone-deep'
-import CategoryLink, { createRoute } from '../CategoryLink'
-import { ProductListParams } from '../ProductList'
+import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import CategoryLink, { useCategoryPushRoute } from '../CategoryLink'
 
 export type ProductListSortProps = GQLProductListSortFragment & {
-  params: ProductListParams
   defaultSort: string
 } & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
 export default function ProductListSort({
   sort_fields,
   defaultSort,
-  params,
   ...filterMenuProps
 }: ProductListSortProps) {
+  const { params } = useProductListParamsContext()
+  const pushRoute = useCategoryPushRoute()
+
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields.options.find((option) => option.value === currentSort)
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push('/[...url]', createRoute(linkParams))
+    linkParams.sort = {}
+    pushRoute(linkParams)
   }
 
   return (
@@ -37,7 +37,7 @@ export default function ProductListSort({
       {sort_fields.options.map((option) => {
         const linkParams = cloneDeep(params)
         linkParams.sort = {}
-        if (option.value !== defaultSort) linkParams.sort[option.value] = true
+        if (option.value !== defaultSort) linkParams.sort[option.value] = 'ASC'
         delete linkParams.currentPage
 
         return (

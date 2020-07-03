@@ -1,18 +1,16 @@
 import React from 'react'
 import { Pagination, PaginationItem, PaginationProps } from '@material-ui/lab'
+import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import CategoryLink from '../CategoryLink'
-import { ProductListParams } from '../ProductList'
 
-type ProductPaginationProps = GQLProductListPaginationFragment & {
-  params: ProductListParams
-} & PaginationProps
+type ProductPaginationProps = GQLProductListPaginationFragment & PaginationProps
 
 export default function ProductListPagination({
   page_info,
-  params,
   ...paginationProps
 }: ProductPaginationProps) {
   const { current_page, total_pages } = page_info
+  const { params } = useProductListParamsContext()
 
   return (
     <Pagination

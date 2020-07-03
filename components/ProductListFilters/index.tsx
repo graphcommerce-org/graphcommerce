@@ -1,16 +1,15 @@
 import React from 'react'
 import { ChipMenuProps } from 'components/ChipMenu'
-import { ProductListParams, FilterTypeMap } from '../ProductList'
+import { FilterTypeMap } from '../ProductList'
 import { FilterRangeType } from './FilterRangeType'
 import FilterEqualType from './FilterEqualType'
 
 type ProductFiltersProps = GQLProductListFiltersFragment & {
-  params: ProductListParams
   filterTypeMap: FilterTypeMap
 } & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
 export default function ProductListFilters(props: ProductFiltersProps) {
-  const { aggregations, params, filterTypeMap, ...chipMenuProps } = props
+  const { aggregations, filterTypeMap, ...chipMenuProps } = props
 
   return (
     <>
@@ -22,7 +21,6 @@ export default function ProductListFilters(props: ProductFiltersProps) {
               <FilterEqualType
                 key={aggregation.attribute_code}
                 {...aggregation}
-                params={params}
                 {...chipMenuProps}
               />
             )
@@ -31,7 +29,6 @@ export default function ProductListFilters(props: ProductFiltersProps) {
               <FilterRangeType
                 key={aggregation.attribute_code}
                 {...aggregation}
-                params={params}
                 {...chipMenuProps}
               />
             )

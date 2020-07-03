@@ -1,15 +1,12 @@
 import React from 'react'
 import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
-import { ProductListParams } from 'components/ProductList'
-import { createRoute } from 'components/CategoryLink'
-import Router from 'next/router'
+import { useCategoryPushRoute } from 'components/CategoryLink'
 import cloneDeep from 'clone-deep'
+import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import ChipMenu, { ChipMenuProps } from '../ChipMenu'
 
 type FilterRangeTypeProps = GQLProductListFiltersFragment['aggregations'][0] &
-  Omit<ChipMenuProps, 'selected'> & {
-    params: ProductListParams
-  }
+  Omit<ChipMenuProps, 'selected'>
 
 const useFilterRangeType = makeStyles(
   (theme: Theme) => ({
@@ -23,8 +20,10 @@ const useFilterRangeType = makeStyles(
 )
 
 export function FilterRangeType(props: FilterRangeTypeProps) {
-  const { attribute_code, label, options, params, ...filterMenuProps } = props
+  const { attribute_code, label, options, ...filterMenuProps } = props
   const classes = useFilterRangeType(props)
+  const { params } = useProductListParamsContext()
+  const pushRoute = useCategoryPushRoute()
 
   // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: Mark } = {}
@@ -56,8 +55,8 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
       from: String(value[0]),
       to: String(value[1]),
     } as GQLFilterRangeTypeInput
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push('/[...url]', createRoute(linkParams))
+
+    pushRoute(linkParams)
   }
   const resetFilter = () => {
     const linkParams = cloneDeep(params)
@@ -65,8 +64,7 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     delete linkParams.filters[attribute_code]
 
     setValue([min, max])
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push('/[...url]', createRoute(linkParams))
+    pushRoute(linkParams)
   }
 
   const currentFilter = params.filters[attribute_code] as GQLFilterRangeTypeInput | undefined

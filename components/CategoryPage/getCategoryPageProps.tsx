@@ -2,7 +2,7 @@ import apolloClient from 'node/apolloClient'
 import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
-import getFilterTypeMap from 'components/ProductList/getFilterTypeMap'
+import getFilterTypeMap from 'components/CategoryPage/getFilterTypeMap'
 import { ProductListParams } from 'components/ProductList'
 
 async function parseParams(

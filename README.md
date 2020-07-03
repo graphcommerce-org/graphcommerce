@@ -27,7 +27,7 @@ Site:
 
 # Build
 
-- `yarn build CI=true yarn build`
+- `CI=true yarn build`
 - `ANALYZE=true; CI=true yarn build`
 
 # Commits
