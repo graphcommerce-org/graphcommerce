@@ -12,7 +12,7 @@ type AnyFilterType =
 
 export function isFilterTypeEqual(filter: AnyFilterType): filter is GQLFilterEqualTypeInput {
   return Boolean(
-    (filter && (filter as GQLFilterEqualTypeInput).eq) || (filter as GQLFilterEqualTypeInput).in,
+    filter && ((filter as GQLFilterEqualTypeInput).eq || (filter as GQLFilterEqualTypeInput).in),
   )
 }
 
@@ -22,7 +22,7 @@ export function isFilterTypeMatch(filter: AnyFilterType): filter is GQLFilterMat
 
 export function isFilterTypeRange(filter: AnyFilterType): filter is GQLFilterRangeTypeInput {
   return Boolean(
-    (filter && (filter as GQLFilterRangeTypeInput).from) || (filter as GQLFilterRangeTypeInput).to,
+    filter && ((filter as GQLFilterRangeTypeInput).from || (filter as GQLFilterRangeTypeInput).to),
   )
 }
 
