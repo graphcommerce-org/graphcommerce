@@ -1,12 +1,10 @@
 import React, { PropsWithChildren } from 'react'
-
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import Link from 'next/link'
 import ProductListPrice from '../ProductListPrice'
-import { ProductListParams } from '../ProductList'
 
 export const useProductListItemSimpleStyles = makeStyles(
   (theme: Theme) => ({
