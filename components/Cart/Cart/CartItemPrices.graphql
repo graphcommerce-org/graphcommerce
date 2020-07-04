@@ -1,0 +1,20 @@
+fragment CartItemPrices on CartItemPrices {
+  discounts {
+    amount {
+      ...Money
+    }
+    label
+  }
+  price {
+    ...Money
+  }
+  row_total {
+    ...Money
+  }
+  row_total_including_tax {
+    ...Money
+  }
+  total_item_discount {
+    ...Money
+  }
+}

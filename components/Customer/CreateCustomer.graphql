@@ -1,0 +1,33 @@
+mutation CreateCustomer(
+  $email: String!
+  $password: String!
+  $prefix: String
+  $firstname: String!
+  $middlename: String
+  $lastname: String!
+  $suffix: String
+  $taxvat: String
+  $gender: Int
+  $isSubscribed: Boolean!
+  $dataOfBirth: String!
+) {
+  createCustomer(
+    input: {
+      email: $email
+      password: $password
+      prefix: $prefix
+      firstname: $firstname
+      middlename: $middlename
+      lastname: $lastname
+      suffix: $suffix
+      taxvat: $taxvat
+      gender: $gender
+      is_subscribed: $isSubscribed
+      date_of_birth: $dataOfBirth
+    }
+  ) {
+    customer {
+      firstname
+    }
+  }
+}

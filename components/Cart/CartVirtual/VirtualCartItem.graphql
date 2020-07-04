@@ -1,0 +1,13 @@
+fragment VirtualCartItem on VirtualCartItem {
+  id
+  quantity
+  prices {
+    ...CartItemPrices
+  }
+  product {
+    name
+  }
+  customizable_options {
+    ...SelectedCustomizableOption
+  }
+}

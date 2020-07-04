@@ -1,0 +1,20 @@
+fragment CustomerInfo on Customer {
+  default_billing
+  default_shipping
+  addresses {
+    ...CustomerAddress
+  }
+  email
+
+  prefix
+  firstname
+  middlename
+  lastname
+  suffix
+  gender
+
+  is_subscribed
+
+  date_of_birth
+  taxvat
+}

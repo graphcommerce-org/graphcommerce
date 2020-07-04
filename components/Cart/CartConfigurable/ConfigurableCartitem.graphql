@@ -1,0 +1,13 @@
+fragment ConfigurableCartitem on ConfigurableCartItem {
+  id
+  quantity
+  prices {
+    ...CartItemPrices
+  }
+  product {
+    name
+  }
+  configurable_options: customizable_options {
+    ...SelectedCustomizableOption
+  }
+}

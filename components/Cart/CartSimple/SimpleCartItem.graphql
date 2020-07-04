@@ -1,0 +1,13 @@
+fragment SimpleCartItem on SimpleCartItem {
+  id
+  quantity
+  prices {
+    ...CartItemPrices
+  }
+  product {
+    name
+  }
+  customizable_options {
+    ...SelectedCustomizableOption
+  }
+}

@@ -1,0 +1,24 @@
+mutation AddBundleProductToCart(
+  $cartId: String!
+  $sku: String!
+  $quantity: Float!
+  $bundleOptions: [BundleOptionInput!]!
+  $customizableOptions: [CustomizableOptionInput]
+) {
+  addBundleProductsToCart(
+    input: {
+      cart_id: $cartId
+      cart_items: [
+        {
+          data: { quantity: $quantity, sku: $sku }
+          customizable_options: $customizableOptions
+          bundle_options: $bundleOptions
+        }
+      ]
+    }
+  ) {
+    cart {
+      id
+    }
+  }
+}

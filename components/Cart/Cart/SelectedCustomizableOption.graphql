@@ -1,0 +1,15 @@
+fragment SelectedCustomizableOption on SelectedCustomizableOption {
+  id
+  is_required
+  label
+  sort_order
+  values {
+    label
+    price {
+      type
+      units
+      value
+    }
+    value
+  }
+}
