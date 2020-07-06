@@ -4,7 +4,7 @@ import { Theme } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import clsx from 'clsx'
 import { FilterTypeMap } from 'components/ProductList'
-import ProductListItemSimple from '../ProductListItemSimple'
+import ProductListItemSimple from '../ProductSimple/ProductListItemSimple'
 import ProductListItemConfigurable from '../ProductListItemConfigurable'
 
 const useStyles = makeStyles(

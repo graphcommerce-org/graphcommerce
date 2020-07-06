@@ -36,6 +36,8 @@ const preInstantiatedCache = new InMemoryCache({
   }),
 })
 
+let globalClient: ApolloClient<NormalizedCacheObject>
+
 /**
  * The counterpart to `@magento/venia-drivers` is an adapter that provides
  * context objects to the driver dependencies. The default implementation in
@@ -81,10 +83,11 @@ const VeniaAdapter = (
   })
 
   let apolloClient
-  if (apollo.client) {
-    apolloClient = apollo.client
+  if (globalClient) {
+    apolloClient = globalClient
   } else {
     apolloClient = new ApolloClient({ cache, link, resolvers })
+    globalClient = apolloClient
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     apolloClient.apiBase = apiBase

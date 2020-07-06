@@ -2,7 +2,7 @@ mutation AddSimpleProductToCart(
   $cartId: String!
   $sku: String!
   $quantity: Float!
-  $customizableOptions: [CustomizableOptionInput]
+  $customizableOptions: [CustomizableOptionInput] = []
 ) {
   addSimpleProductsToCart(
     input: {
@@ -13,7 +13,7 @@ mutation AddSimpleProductToCart(
     }
   ) {
     cart {
-      id
+      ...Cart
     }
   }
 }
