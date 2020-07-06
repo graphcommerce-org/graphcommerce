@@ -5,7 +5,13 @@ fragment ConfigurableCartitem on ConfigurableCartItem {
     ...CartItemPrices
   }
   product {
+    sku
     name
+    url_key
+    small_image {
+      url
+      label
+    }
   }
   configurable_options: customizable_options {
     ...SelectedCustomizableOption

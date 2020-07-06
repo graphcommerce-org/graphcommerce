@@ -1,7 +1,18 @@
 import React, { PropsWithChildren } from 'react'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
-import { Fab, FabProps, makeStyles, Menu } from '@material-ui/core'
+import {
+  Fab,
+  FabProps,
+  makeStyles,
+  Menu,
+  ListItem,
+  ListItemIcon,
+  IconButton,
+  ListItemText,
+  Divider,
+} from '@material-ui/core'
 import { vpCalc } from 'components/Theme'
+import Close from '@material-ui/icons/Close'
 
 const useStyles = makeStyles(
   {
@@ -10,7 +21,9 @@ const useStyles = makeStyles(
   { name: 'CartSkeleton' },
 )
 
-const CartSkeleton = React.forwardRef<HTMLButtonElement, PropsWithChildren<Omit<FabProps, 'size'>>>(
+type CartSkeletonProps = PropsWithChildren<Omit<FabProps, 'size'> & { total_quantity?: number }>
+
+const CartSkeleton = React.forwardRef<HTMLButtonElement, CartSkeletonProps>(
   ({ children, ...fabProps }, ref) => {
     const classes = useStyles()
     const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
@@ -34,6 +47,15 @@ const CartSkeleton = React.forwardRef<HTMLButtonElement, PropsWithChildren<Omit<
           variant='menu'
           classes={{ paper: classes.menu }}
         >
+          <ListItem>
+            <ListItemIcon>
+              <IconButton edge='end' aria-label='close' onClick={() => setOpenEl(null)}>
+                <Close fontSize='small' />
+              </IconButton>
+            </ListItemIcon>
+            <ListItemText>Cart</ListItemText>
+          </ListItem>
+          <Divider variant='inset' component='li' />
           {children}
         </Menu>
       </>

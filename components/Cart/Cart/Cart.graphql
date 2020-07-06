@@ -2,17 +2,31 @@ fragment Cart on Cart {
   id
 
   email
-  selected_payment_method {
-    code
-    purchase_order_number
-    title
-  }
+  # selected_payment_method {
+  #   code
+  #   purchase_order_number
+  #   title
+  # }
 
   prices {
     ...CartPrices
   }
 
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_title
+      method_title
+      amount {
+        ...Money
+      }
+    }
+  }
+
+  total_quantity
+
   items {
+    __typename
+    ...CartItem
     ...SimpleCartItem
     ...ConfigurableCartitem
     ...VirtualCartItem
@@ -20,12 +34,12 @@ fragment Cart on Cart {
   }
 
   is_virtual
-  shipping_addresses {
-    ...ShippingCartAddress
-  }
-  billing_address {
-    ...BillingCartAddress
-  }
-  ...CartPaymentMethods
-  ...CartCoupon
+  # shipping_addresses {
+  #   ...ShippingCartAddress
+  # }
+  # billing_address {
+  #   ...BillingCartAddress
+  # }
+  # ...CartPaymentMethods
+  # ...CartCoupon
 }

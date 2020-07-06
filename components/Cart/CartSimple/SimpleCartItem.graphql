@@ -5,7 +5,13 @@ fragment SimpleCartItem on SimpleCartItem {
     ...CartItemPrices
   }
   product {
+    sku
     name
+    url_key
+    small_image {
+      url
+      label
+    }
   }
   customizable_options {
     ...SelectedCustomizableOption
