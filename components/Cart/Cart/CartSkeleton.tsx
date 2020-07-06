@@ -10,6 +10,7 @@ import {
   IconButton,
   ListItemText,
   Divider,
+  Badge,
 } from '@material-ui/core'
 import { vpCalc } from 'components/Theme'
 import Close from '@material-ui/icons/Close'
@@ -21,24 +22,28 @@ const useStyles = makeStyles(
   { name: 'CartSkeleton' },
 )
 
-type CartSkeletonProps = PropsWithChildren<Omit<FabProps, 'size'> & { total_quantity?: number }>
+type CartSkeletonProps = PropsWithChildren<
+  Omit<FabProps, 'size'> & { badgeContent?: React.ReactNode }
+>
 
 const CartSkeleton = React.forwardRef<HTMLButtonElement, CartSkeletonProps>(
-  ({ children, ...fabProps }, ref) => {
+  ({ children, badgeContent, ...fabProps }, ref) => {
     const classes = useStyles()
     const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
     return (
       <>
-        <Fab
-          aria-label='Open Cart'
-          size='medium'
-          {...fabProps}
-          onClick={(event) => setOpenEl(event.currentTarget)}
-          ref={ref}
-        >
-          <CartIcon fontSize='small' />
-        </Fab>
+        <Badge badgeContent={badgeContent} color='primary' overlap='circle'>
+          <Fab
+            aria-label='Open Cart'
+            size='medium'
+            {...fabProps}
+            onClick={(event) => setOpenEl(event.currentTarget)}
+            ref={ref}
+          >
+            <CartIcon fontSize='small' />
+          </Fab>
+        </Badge>
         <Menu
           anchorEl={openEl}
           open={!!openEl}
