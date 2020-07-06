@@ -1,0 +1,18 @@
+fragment BillingCartAddress on BillingCartAddress {
+  firstname
+  lastname
+
+  company
+  city
+  postcode
+  street
+  country {
+    code
+    label
+  }
+  region {
+    code
+    label
+  }
+  telephone
+}

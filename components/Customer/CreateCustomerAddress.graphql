@@ -1,0 +1,39 @@
+mutation CreateCustomerAddress(
+  $prefix: String
+  $firstname: String!
+  $middlename: String
+  $lastname: String!
+  $suffix: String
+  $telephone: String
+  $street: [String!]!
+  $city: String!
+  $postcode: String!
+  $region: CustomerAddressRegionInput!
+  $company: String!
+  $countryCode: CountryCodeEnum!
+  $vatId: String!
+  $defaultBilling: Boolean!
+  $defaultShipping: Boolean!
+) {
+  createCustomerAddress(
+    input: {
+      prefix: $prefix
+      firstname: $firstname
+      middlename: $middlename
+      lastname: $lastname
+      telephone: $telephone
+      suffix: $suffix
+      street: $street
+      city: $city
+      postcode: $postcode
+      region: $region
+      company: $company
+      country_code: $countryCode
+      vat_id: $vatId
+      default_billing: $defaultBilling
+      default_shipping: $defaultShipping
+    }
+  ) {
+    id
+  }
+}

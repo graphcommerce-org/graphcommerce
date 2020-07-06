@@ -8,7 +8,7 @@ type DynamicIntersect<P> = {
   debugShowSkeleton?: boolean
 } & P
 
-const AsyncComponent = <T extends {}>({
+const AsyncComponent = <T extends Record<string, unknown>>({
   loader,
   skeleton,
   children,

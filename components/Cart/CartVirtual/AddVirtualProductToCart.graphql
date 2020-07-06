@@ -1,0 +1,19 @@
+mutation AddVirtualProductsToCart(
+  $cartId: String!
+  $sku: String!
+  $quantity: Float!
+  $customizableOptions: [CustomizableOptionInput]
+) {
+  addVirtualProductsToCart(
+    input: {
+      cart_id: $cartId
+      cart_items: [
+        { data: { quantity: $quantity, sku: $sku }, customizable_options: $customizableOptions }
+      ]
+    }
+  ) {
+    cart {
+      ...Cart
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { ProductListParams } from 'components/ProductList'
+import { useRouter } from 'next/router'
 
 const context = React.createContext<{
   params: ProductListParams
@@ -11,6 +12,14 @@ export const ProductListParamsProvider: React.FC<{ value: ProductListParams }> =
   value,
 }) => {
   const [params, setParams] = useState<ProductListParams>(value)
+  const router = useRouter()
+
+  const updateParams = () => setParams(value)
+  useEffect(() => {
+    router.events.on('routeChangeComplete', updateParams)
+    return () => router.events.off('routeChangeComplete', updateParams)
+  })
+
   return <context.Provider value={{ params, setParams }}>{children}</context.Provider>
 }
 

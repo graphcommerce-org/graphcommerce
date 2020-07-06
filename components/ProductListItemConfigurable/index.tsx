@@ -3,7 +3,7 @@ import { Chip } from '@material-ui/core'
 import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductList'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import cloneDeep from 'clone-deep'
-import ProductListItemSimple from '../ProductListItemSimple'
+import ProductListItemSimple from '../ProductSimple/ProductListItemSimple'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
   filterTypeMap: FilterTypeMap

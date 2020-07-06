@@ -1,0 +1,5 @@
+fragment CartCoupon on Cart {
+  applied_coupons {
+    code
+  }
+}

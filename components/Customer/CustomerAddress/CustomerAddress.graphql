@@ -1,0 +1,24 @@
+fragment CustomerAddress on CustomerAddress {
+  id
+
+  prefix
+  firstname
+  middlename
+  lastname
+  suffix
+
+  company
+  vat_id
+
+  city
+  postcode
+  region {
+    region
+    region_code
+  }
+  street
+  telephone
+
+  default_billing
+  default_shipping
+}

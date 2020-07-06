@@ -1,0 +1,3 @@
+fragment AddToCartSimple on SimpleProduct {
+  sku
+}

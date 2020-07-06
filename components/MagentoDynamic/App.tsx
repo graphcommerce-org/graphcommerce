@@ -20,7 +20,7 @@ const apiBase = '/api/graphql'
 // The Venia adapter is not opinionated about auth.
 const authLink = setContext((_, { headers }) => {
   const storage = new BrowserPersistence()
-  const token: string = storage.getItem('signin_token')
+  const token: string = storage.getItem('customer_token')
 
   return {
     headers: {

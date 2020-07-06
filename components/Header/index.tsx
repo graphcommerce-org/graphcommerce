@@ -1,11 +1,9 @@
 import React from 'react'
 import { Theme, makeStyles, Avatar, Badge, Fab } from '@material-ui/core'
 import PhoneIcon from '@material-ui/icons/Phone'
-import zIndex from '@material-ui/core/styles/zIndex'
 import { vpCalc } from 'components/Theme'
 import Link from 'next/link'
-import MagentoDynamic from 'components/MagentoDynamic/MagentoDynamic'
-import CartTriggerSkeleton from 'components/MagentoDynamic/CartTriggerSkeleton'
+import CartLoader from 'components/Cart/Cart'
 import logo from './magento-webshop-reach-digital.svg'
 import HeaderMenu, { HeaderMenuProps } from './HeaderMenu'
 
@@ -86,37 +84,9 @@ export default function Header(props: HeaderProps) {
         </div>
 
         <div className={classes.contact}>
-          <Badge
-            classes={{ badge: classes.avatarPhone }}
-            badgeContent={
-              <PhoneIcon htmlColor='#fff' classes={{ root: classes.avatarPhoneIcon }} />
-            }
-            overlap='circle'
-            color='primary'
-            anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-            variant='standard'
-          >
-            <Fab
-              size='small'
-              classes={{ root: classes.avatarFab }}
-              aria-label='contact'
-              component='div'
-            >
-              <Avatar classes={{ colorDefault: classes.avatar }}>
-                <MagentoDynamic
-                  loader={() => import('@magento/venia-ui/lib/components/Header/cartTrigger')}
-                  skeleton={(ref) => <CartTriggerSkeleton ref={ref} />}
-                />
-              </Avatar>
-            </Fab>
-          </Badge>
+          <CartLoader />
         </div>
       </header>
-
-      <MagentoDynamic
-        loader={() => import('@magento/venia-ui/lib/components/MiniCart')}
-        skeleton={(ref) => <div ref={ref} />}
-      />
     </>
   )
 }

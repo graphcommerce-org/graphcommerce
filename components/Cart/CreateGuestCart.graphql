@@ -1,0 +1,3 @@
+mutation CreateEmptyCart($cartId: String!) {
+  createEmptyCart(input: { cart_id: $cartId })
+}

@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from 'react'
-
-import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
+import React, { PropsWithChildren, useState } from 'react'
+import { Typography, makeStyles, Theme, Link as MuiLink, Button } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import Link from 'next/link'
+import useCartId from 'components/Cart/useCartId'
+import { useAddSimpleProductToCartMutation } from 'generated/apollo'
+import MagentoDynamic from 'components/MagentoDynamic/MagentoDynamic'
 import ProductListPrice from '../ProductListPrice'
-import { ProductListParams } from '../ProductList'
 
 export const useProductListItemSimpleStyles = makeStyles(
   (theme: Theme) => ({
@@ -98,6 +99,16 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
       </Link>
       <ProductListPrice {...price_range.minimum_price} />
       {children}
+
+      <MagentoDynamic
+        loader={() => import('./AddToCart')}
+        skeleton={(ref) => (
+          <Button color='primary' variant='contained' ref={ref}>
+            Add to Cart
+          </Button>
+        )}
+        sku={sku}
+      />
     </div>
   )
 }

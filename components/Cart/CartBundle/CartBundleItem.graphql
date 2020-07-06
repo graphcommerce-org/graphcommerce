@@ -1,0 +1,13 @@
+fragment BundleCartItem on BundleCartItem {
+  id
+  quantity
+  prices {
+    ...CartItemPrices
+  }
+  product {
+    name
+  }
+  bundle_option: customizable_options {
+    ...SelectedCustomizableOption
+  }
+}
