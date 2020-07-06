@@ -49,7 +49,7 @@ export default function Cart() {
   const { cart } = data
 
   return (
-    <CartSkeleton>
+    <CartSkeleton badgeContent={cart.total_quantity}>
       {cart.items.map<React.ReactNode>((item) => {
         switch (item.__typename) {
           case 'SimpleCartItem':

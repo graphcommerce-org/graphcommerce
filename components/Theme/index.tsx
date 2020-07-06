@@ -215,6 +215,11 @@ defaultTheme.overrides = {
       '&:hover': { backgroundColor: '#efefef' },
     },
   },
+  MuiBadge: {
+    badge: {
+      height: 21,
+    },
+  },
 }
 
 const ThemedProvider: React.FC = ({ children }) => (
