@@ -10,9 +10,9 @@ import {
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import Money from 'components/Money'
+import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import useCartId from '../useCartId'
 import CartSkeleton from './CartSkeleton'
-import CartItem from './CartItem'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -31,7 +31,12 @@ const useStyles = makeStyles(
   { name: 'Cart' },
 )
 
-export default function Cart() {
+type CartItemRenderer = GQLTypeRenderer<GQLGuestCartQuery['cart']['items'][0]>
+
+type CartProps = { renderer: CartItemRenderer }
+
+export default function Cart(props: CartProps) {
+  const { renderer } = props
   const { cartId } = useCartId()
   const classes = useStyles()
   const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
@@ -51,19 +56,10 @@ export default function Cart() {
   return (
     <CartSkeleton badgeContent={cart.total_quantity}>
       {cart.items.map<React.ReactNode>((item) => {
-        switch (item.__typename) {
-          case 'SimpleCartItem':
-            return [
-              <CartItem {...item} key={item.id} />,
-              <Divider variant='inset' component='li' key={`${item.id}-divider`} />,
-            ]
-          case 'ConfigurableCartItem':
-            return [
-              <CartItem {...item} key={item.id} />,
-              <Divider variant='inset' component='li' key={`${item.id}-divider`} />,
-            ]
-        }
-        return <div key={item.__typename}>Product type not supported yet {item.__typename}</div>
+        return [
+          <GQLRenderType renderer={renderer} {...item} key={item.id} />,
+          <Divider variant='inset' component='li' key={`${item.id}-divider`} />,
+        ]
       })}
 
       {(cart.shipping_addresses.length > 0 || cart.prices.discounts) && (

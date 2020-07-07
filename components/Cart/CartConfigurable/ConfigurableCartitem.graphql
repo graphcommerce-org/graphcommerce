@@ -1,6 +1,0 @@
-fragment ConfigurableCartitem on ConfigurableCartItem {
-  ...CartItem
-  configurable_options: customizable_options {
-    ...SelectedCustomizableOption
-  }
-}

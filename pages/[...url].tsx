@@ -21,6 +21,9 @@ import ScrollSnapSlider from 'components/ScrollSnapSlider'
 import { useHeaderSpacing } from 'components/Header'
 import clsx from 'clsx'
 import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageContext'
+import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
+import ProductListItemConfigurable from 'components/ProductTypeConfigurable/ProductListItemConfigurable'
+import ProductListItem from 'components/ProductListItems/ProductListItem'
 
 const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
@@ -64,6 +67,15 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             items={products.items}
             className={classes.items}
             filterTypeMap={filterTypeMap}
+            renderers={{
+              SimpleProduct: ProductListItemSimple,
+              ConfigurableProduct: ProductListItemConfigurable,
+              BundleProduct: ProductListItem,
+              VirtualProduct: ProductListItem,
+              DownloadableProduct: ProductListItem,
+              GiftCardProduct: ProductListItem,
+              GroupedProduct: ProductListItem,
+            }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />
         </Container>

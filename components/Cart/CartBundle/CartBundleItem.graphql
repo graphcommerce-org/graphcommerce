@@ -1,6 +1,0 @@
-fragment BundleCartItem on BundleCartItem {
-  ...CartItem
-  bundle_option: customizable_options {
-    ...SelectedCustomizableOption
-  }
-}

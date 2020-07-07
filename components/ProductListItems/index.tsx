@@ -4,9 +4,7 @@ import { Theme } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import clsx from 'clsx'
 import { FilterTypeMap } from 'components/ProductListItems/filterTypes'
-import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
-import typeRenderer from 'components/GraphQL/typeRenderer'
-import ProductListItemConfigurable from '../ProductTypeConfigurable/ProductListItemConfigurable'
+import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -20,31 +18,27 @@ const useStyles = makeStyles(
   { name: 'ProductList' },
 )
 
-type AdditionalItemProps = {
-  filterTypeMap: FilterTypeMap
-}
+type ProductListRenderer = GQLTypeRenderer<
+  GQLProductListItemsFragment['items'][0],
+  { filterTypeMap: FilterTypeMap }
+>
 
 type ProductListItemsParams = GQLProductListItemsFragment &
   UseStyles<typeof useStyles> &
-  JSX.IntrinsicElements['div'] &
-  AdditionalItemProps
-
-const get = typeRenderer<GQLProductListItemsFragment['items'][0], AdditionalItemProps>({
-  ConfigurableProduct: ProductListItemConfigurable,
-  SimpleProduct: ProductListItemSimple,
-  VirtualProduct: ProductListItemSimple,
-})
+  JSX.IntrinsicElements['div'] & {
+    filterTypeMap: FilterTypeMap
+    renderers: ProductListRenderer
+  }
 
 export default function ProductListItems(props: ProductListItemsParams) {
-  const { items, filterTypeMap, ...divProps } = props
+  const { items, filterTypeMap, renderers, ...divProps } = props
   const classes = useStyles(props)
 
   return (
     <div {...divProps} className={clsx(classes.productList, divProps.className)}>
-      {items.map((item) => {
-        const ProductListItem = get(item)
-        return <ProductListItem {...item} key={item.id} filterTypeMap={filterTypeMap} />
-      })}
+      {items.map((item) => (
+        <GQLRenderType renderer={renderers} {...item} key={item.id} filterTypeMap={filterTypeMap} />
+      ))}
     </div>
   )
 }

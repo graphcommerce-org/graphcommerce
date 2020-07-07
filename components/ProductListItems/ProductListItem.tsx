@@ -90,7 +90,7 @@ export default function ProductListItem(props: ProductListItemProps) {
           </div>
 
           <Typography component='h2' className={classes.title}>
-            {name} {sku}
+            {name}
           </Typography>
         </MuiLink>
       </Link>
