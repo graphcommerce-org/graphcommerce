@@ -1,0 +1,3 @@
+fragment ProductListItemSimple on ProductInterface {
+  ...ProductListItem
+}

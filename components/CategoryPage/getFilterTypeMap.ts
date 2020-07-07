@@ -1,6 +1,6 @@
 import apolloClient from 'node/apolloClient'
 import { gql } from 'apollo-server-micro'
-import { AllFilterInputTypes, FilterTypeMap } from '../ProductList'
+import { AllFilterInputTypes, FilterTypeMap } from '../ProductListItems/filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
   'FilterEqualTypeInput',

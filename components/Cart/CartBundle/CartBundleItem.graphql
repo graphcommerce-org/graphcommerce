@@ -1,12 +1,5 @@
 fragment BundleCartItem on BundleCartItem {
-  id
-  quantity
-  prices {
-    ...CartItemPrices
-  }
-  product {
-    name
-  }
+  ...CartItem
   bundle_option: customizable_options {
     ...SelectedCustomizableOption
   }

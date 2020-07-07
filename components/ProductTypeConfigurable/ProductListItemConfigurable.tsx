@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Chip } from '@material-ui/core'
-import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductList'
+import { Chip, Button } from '@material-ui/core'
+import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import cloneDeep from 'clone-deep'
-import ProductListItemSimple from '../ProductSimple/ProductListItemSimple'
+import MagentoDynamic from 'components/MagentoDynamic/MagentoDynamic'
+import ProductListItem from '../ProductListItems/ProductListItem'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
   filterTypeMap: FilterTypeMap
@@ -55,7 +56,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   }
 
   return (
-    <ProductListItemSimple {...productProps}>
+    <ProductListItem {...productProps}>
       {configurable_options.map((option) => {
         return (
           <div key={option.id}>
@@ -126,6 +127,16 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
           </div>
         )
       })}
-    </ProductListItemSimple>
+      <MagentoDynamic
+        loader={() => import('./AddConfigurableProductToCart')}
+        skeleton={(ref) => (
+          <Button color='primary' variant='contained' ref={ref} disabled>
+            Select Options
+          </Button>
+        )}
+        parentSku={configurableProduct.sku}
+        variantSku={matchingVariants.length > 0 ? matchingVariants[0].product.sku : undefined}
+      />
+    </ProductListItem>
   )
 }

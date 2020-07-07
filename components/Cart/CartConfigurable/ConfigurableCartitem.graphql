@@ -1,18 +1,5 @@
 fragment ConfigurableCartitem on ConfigurableCartItem {
-  id
-  quantity
-  prices {
-    ...CartItemPrices
-  }
-  product {
-    sku
-    name
-    url_key
-    small_image {
-      url
-      label
-    }
-  }
+  ...CartItem
   configurable_options: customizable_options {
     ...SelectedCustomizableOption
   }

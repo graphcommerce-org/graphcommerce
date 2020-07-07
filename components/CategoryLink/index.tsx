@@ -8,7 +8,7 @@ import {
   isFilterTypeEqual,
   isFilterTypeMatch,
   isFilterTypeRange,
-} from '../ProductList'
+} from '../ProductListItems/filterTypes'
 
 export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>
 

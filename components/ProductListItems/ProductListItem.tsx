@@ -1,15 +1,12 @@
-import React, { PropsWithChildren, useState } from 'react'
-import { Typography, makeStyles, Theme, Link as MuiLink, Button } from '@material-ui/core'
+import React, { PropsWithChildren } from 'react'
+import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import Link from 'next/link'
-import useCartId from 'components/Cart/useCartId'
-import { useAddSimpleProductToCartMutation } from 'generated/apollo'
-import MagentoDynamic from 'components/MagentoDynamic/MagentoDynamic'
 import ProductListPrice from '../ProductListPrice'
 
-export const useProductListItemSimpleStyles = makeStyles(
+export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
       position: 'relative',
@@ -66,13 +63,13 @@ export const useProductListItemSimpleStyles = makeStyles(
   { name: 'ProductListItemSimple' },
 )
 
-type ProductListItemSimpleProps = PropsWithChildren<
-  GQLProductListItemSimpleFragment & UseStyles<typeof useProductListItemSimpleStyles>
+export type ProductListItemProps = PropsWithChildren<
+  GQLProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles>
 >
 
-export default function ProductListItemSimple(props: ProductListItemSimpleProps) {
+export default function ProductListItem(props: ProductListItemProps) {
   const { small_image, url_key, name, price_range, children, sku } = props
-  const classes = useProductListItemSimpleStyles(props)
+  const classes = useProductListItemStyles(props)
 
   return (
     <div className={classes.item}>
@@ -99,16 +96,6 @@ export default function ProductListItemSimple(props: ProductListItemSimpleProps)
       </Link>
       <ProductListPrice {...price_range.minimum_price} />
       {children}
-
-      <MagentoDynamic
-        loader={() => import('./AddToCart')}
-        skeleton={(ref) => (
-          <Button color='primary' variant='contained' ref={ref}>
-            Add to Cart
-          </Button>
-        )}
-        sku={sku}
-      />
     </div>
   )
 }
