@@ -4,14 +4,40 @@ import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/Shop
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import getProductPageProps, { GetProductPageProps } from 'components/ProductPage/getProductProps'
+import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
+import { useHeaderSpacing } from 'components/Header'
+import { Container } from '@material-ui/core'
+import clsx from 'clsx'
+import { slideUpFade } from 'components/FramerMotion'
+import { motion } from 'framer-motion'
 
-const PageWithLayout: PageWithShopLayout<GetProductPageProps> = (props) => {
-  return <></>
+const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
+  const {
+    products: {
+      items: [product],
+    },
+  } = props
+  const classes = useCategoryPageStyles(props)
+  const { marginTop } = useHeaderSpacing()
+
+  return (
+    <div style={{ height: 400, backgroundColor: 'red' }}>
+      <Container className={clsx(classes.container, marginTop)}>
+        <motion.img
+          src={product.small_image.url}
+          alt=''
+          style={{ width: 500 }}
+          layoutId={`product-${product.sku}`}
+        />
+      </Container>
+    </div>
+  )
 }
 
-PageWithLayout.layout = ShopLayout
+ProductPage.layout = ShopLayout
+ProductPage.pageTransition = slideUpFade
 
-export default PageWithLayout
+export default ProductPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

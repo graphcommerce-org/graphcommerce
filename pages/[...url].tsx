@@ -24,8 +24,9 @@ import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageC
 import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
 import ProductListItemConfigurable from 'components/ProductTypeConfigurable/ProductListItemConfigurable'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
+import { slideUpFade } from 'components/FramerMotion'
 
-const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
+const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
   const classes = useCategoryPageStyles(props)
   const { marginTop } = useHeaderSpacing()
@@ -83,9 +84,10 @@ const PageWithLayout: PageWithShopLayout<GetCategoryPageProps> = (props) => {
     </>
   )
 }
-PageWithLayout.layout = ShopLayout
+CategoryPage.layout = ShopLayout
+CategoryPage.pageTransition = slideUpFade
 
-export default PageWithLayout
+export default CategoryPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CssBaseline } from '@material-ui/core'
+import { CssBaseline, makeStyles } from '@material-ui/core'
 import Head from 'next/head'
 import { LayoutPage } from 'components/LayoutPage'
 import ThemedProvider, { defaultTheme } from 'components/Theme'
@@ -7,17 +7,32 @@ import PageLoadIndicator from 'components/PageLoadIndicator'
 import Error from 'next/error'
 import Header from 'components/Header'
 import { GetHeaderProps } from 'components/Header/getHeaderProps'
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
 export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
 
-export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
-  ShopLayoutProps & T,
-  ShopLayoutProps
->
+export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<T, ShopLayoutProps>
 
-const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlResolver }) => {
+const useStyles = makeStyles({
+  animationDiv: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
+})
+
+const ShopLayout: PageWithShopLayout['layout'] = ({
+  children,
+  menu,
+  error,
+  urlResolver,
+  pageTransition,
+}) => {
+  const classes = useStyles()
   if (!urlResolver || !urlResolver.id) return <Error statusCode={404}>{error}</Error>
+
   return (
     <ThemedProvider>
       <Head>
@@ -37,7 +52,21 @@ const ShopLayout: PageWithShopLayout['layout'] = ({ children, menu, error, urlRe
       <PageLoadIndicator />
 
       <Header menu={menu} urlResolver={urlResolver} />
-      {children}
+
+      <AnimateSharedLayout type='crossfade' transition={{ duration: 1 }}>
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={`${urlResolver.type}-${urlResolver.id}`}
+            variants={pageTransition}
+            initial='initial'
+            animate='enter'
+            exit='exit'
+            className={classes.animationDiv}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      </AnimateSharedLayout>
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )
