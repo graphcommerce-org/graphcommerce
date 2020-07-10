@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core'
 import useRequestCartId from 'components/CartId/useRequestCartId'
+import { useTranslation } from 'components/withi18n/i18n'
 import { useAddConfigurableProductToCartMutation } from 'generated/apollo'
 import React, { useState } from 'react'
 import { SetOptional } from 'type-fest'
@@ -13,6 +14,8 @@ export default function AddConfigurableProductToCart(props: AddConfigurableProdu
   const { parentSku, variantSku, customizableOptions, quantity } = props
 
   const requestCartId = useRequestCartId()
+  const [t] = useTranslation('common')
+
   const [add] = useAddConfigurableProductToCartMutation()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -38,7 +41,7 @@ export default function AddConfigurableProductToCart(props: AddConfigurableProdu
       onClick={addToCart}
       disabled={loading || !variantSku}
     >
-      {variantSku ? 'Add to Cart' : 'Select Options'}
+      {variantSku ? t('add-to-cart') : t('select-options')}
     </Button>
   )
 }
