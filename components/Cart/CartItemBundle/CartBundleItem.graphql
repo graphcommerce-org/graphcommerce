@@ -1,0 +1,17 @@
+fragment BundleCartItem on BundleCartItem {
+  bundle_option: customizable_options {
+    id
+    is_required
+    label
+    sort_order
+    values {
+      label
+      price {
+        type
+        units
+        value
+      }
+      value
+    }
+  }
+}

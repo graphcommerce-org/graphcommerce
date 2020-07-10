@@ -1,0 +1,6 @@
+fragment DownloadableCartItem on DownloadableCartItem {
+  samples {
+    sample_url
+    title
+  }
+}

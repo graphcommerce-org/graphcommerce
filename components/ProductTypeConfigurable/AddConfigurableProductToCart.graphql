@@ -2,8 +2,8 @@ mutation AddConfigurableProductToCart(
   $cartId: String!
   $variantSku: String!
   $parentSku: String!
-  $quantity: Float!
-  $customizableOptions: [CustomizableOptionInput]
+  $quantity: Float = 1
+  $customizableOptions: [CustomizableOptionInput] = []
 ) {
   addConfigurableProductsToCart(
     input: {

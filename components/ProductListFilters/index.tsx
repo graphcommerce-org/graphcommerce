@@ -1,6 +1,6 @@
 import React from 'react'
 import { ChipMenuProps } from 'components/ChipMenu'
-import { FilterTypeMap } from '../ProductList'
+import { FilterTypeMap } from '../ProductListItems/filterTypes'
 import { FilterRangeType } from './FilterRangeType'
 import FilterEqualType from './FilterEqualType'
 

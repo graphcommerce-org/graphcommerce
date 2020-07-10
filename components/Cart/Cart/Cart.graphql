@@ -25,6 +25,7 @@ fragment Cart on Cart {
   total_quantity
 
   items {
+    id
     __typename
     ...CartItem
     ...SimpleCartItem

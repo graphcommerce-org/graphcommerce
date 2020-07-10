@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { ProductListParams } from 'components/ProductList'
+import { ProductListParams } from 'components/ProductListItems/filterTypes'
 import { useRouter } from 'next/router'
 
 const context = React.createContext<{

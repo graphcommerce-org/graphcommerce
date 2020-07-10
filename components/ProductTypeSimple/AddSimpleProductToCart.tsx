@@ -3,14 +3,25 @@ import { Button } from '@material-ui/core'
 import useCartId from 'components/Cart/useCartId'
 import { useAddSimpleProductToCartMutation } from 'generated/apollo'
 
-export default function AddToCart({ sku }: GQLAddToCartSimpleFragment) {
+type AddSimpleProductToCartProps = Omit<GQLAddSimpleProductToCartMutationVariables, 'cartId'>
+
+export default function AddSimpleProductToCart(props: AddSimpleProductToCartProps) {
+  const { sku, customizableOptions, quantity } = props
+
   const { requestCartId: requestCart } = useCartId()
-  const [request] = useAddSimpleProductToCartMutation()
+  const [add] = useAddSimpleProductToCartMutation()
   const [loading, setLoading] = useState<boolean>(false)
 
   const addToCart = async () => {
     setLoading(true)
-    await request({ variables: { cartId: await requestCart(), sku, quantity: 1 } })
+    await add({
+      variables: {
+        cartId: await requestCart(),
+        sku,
+        quantity,
+        customizableOptions,
+      },
+    })
     setLoading(false)
   }
 

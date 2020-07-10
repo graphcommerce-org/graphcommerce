@@ -1,6 +1,6 @@
 import React from 'react'
 import { Chip, ChipProps } from '@material-ui/core'
-import { ProductListParams } from 'components/ProductList'
+import { ProductListParams } from 'components/ProductListItems/filterTypes'
 import CategoryLink from 'components/CategoryLink'
 import cloneDeep from 'clone-deep'
 

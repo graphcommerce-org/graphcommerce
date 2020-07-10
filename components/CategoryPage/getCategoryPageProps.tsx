@@ -3,7 +3,7 @@ import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getFilterTypeMap from 'components/CategoryPage/getFilterTypeMap'
-import { ProductListParams } from 'components/ProductList'
+import { ProductListParams } from 'components/ProductListItems/filterTypes'
 
 async function parseParams(
   url: string,
