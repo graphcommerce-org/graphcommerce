@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core'
 import useCartId from 'components/Cart/useCartId'
 import { useAddConfigurableProductToCartMutation } from 'generated/apollo'
 import { SetOptional } from 'type-fest'
+import { useTranslation } from 'components/withi18n/i18n'
 
 type AddConfigurableProductToCartProps = SetOptional<
   Omit<GQLAddConfigurableProductToCartMutationVariables, 'cartId'>,
@@ -11,6 +12,8 @@ type AddConfigurableProductToCartProps = SetOptional<
 
 export default function AddConfigurableProductToCart(props: AddConfigurableProductToCartProps) {
   const { parentSku, variantSku, customizableOptions, quantity } = props
+
+  const [t] = useTranslation('common')
 
   const { requestCartId: requestCart } = useCartId()
   const [add] = useAddConfigurableProductToCartMutation()
@@ -38,7 +41,7 @@ export default function AddConfigurableProductToCart(props: AddConfigurableProdu
       onClick={addToCart}
       disabled={loading || !variantSku}
     >
-      {variantSku ? 'Add to Cart' : 'Select Options'}
+      {variantSku ? t('add-to-cart') : t('select-options')}
     </Button>
   )
 }

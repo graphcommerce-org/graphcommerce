@@ -13,41 +13,30 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
+const { nextI18NextRewrites } = require('next-i18next/rewrites')
 const withMagento = require('./shop/pwa-buildpack/magento-nextjs')
+
+const localeSubpaths = {
+  de: 'de',
+}
 
 const nextConfig = {
   experimental: {
     modern: true,
     rewrites() {
-      return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
+      return [
+        ...nextI18NextRewrites(localeSubpaths),
+        { source: '/sitemap.xml', destination: '/api/sitemap' },
+      ]
     },
+  },
+  publicRuntimeConfig: {
+    localeSubpaths,
   },
   pwa: {
     dest: 'public',
     disable: process.env.NODE_ENV !== 'production',
     runtimeCaching: [
-      {
-        urlPattern: /^https:\/\/media\.(?:graphcms)\.com\/.*/i,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheName: 'media-graphcms',
-          expiration: {
-            maxEntries: 1000,
-            maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
-          },
-        },
-      },
-      {
-        urlPattern: /\.graphcms\.com\//,
-        handler: 'NetworkFirst',
-        options: {
-          cacheName: 'api-graphcms',
-          expiration: {
-            maxEntries: 1000,
-            maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
-          },
-        },
-      },
       {
         urlPattern: /\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,
         handler: 'StaleWhileRevalidate',

@@ -1,9 +1,10 @@
 import App from 'next/app'
 import { renderLayoutPage } from 'components/LayoutPage'
+import { appWithTranslation } from 'components/withi18n/i18n'
 
 import 'components/ShopLayout/index.global.css'
 
-export default class extends App {
+class ProjectApp extends App {
   componentDidMount(): void {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
@@ -17,3 +18,5 @@ export default class extends App {
     return renderLayoutPage(Component, pageProps)
   }
 }
+
+export default appWithTranslation(ProjectApp)

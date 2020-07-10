@@ -22,5 +22,12 @@
     }
   },
   "exclude": ["node_modules", "public"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "apollo.config.js"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "next.config.js",
+    "apollo.config.js",
+    "components/withi18n/i18n.js"
+  ]
 }
