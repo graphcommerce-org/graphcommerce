@@ -119,4 +119,4 @@ const nextConfig = {
   magento: { drivers: 'shop/drivers' },
 }
 
-module.exports = withPWA(withImages(withMagento(withBundleAnalyzer(nextConfig))))
+module.exports = withBundleAnalyzer(withPWA(withImages(withMagento(nextConfig))))
