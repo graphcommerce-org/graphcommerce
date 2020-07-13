@@ -14,6 +14,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           retryInterval: 2000
-      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} --collect.url=${{ steps.deployment.outputs.deployment }}/contact || echo "failed with errors"
+      - run: lhci autorun --collect.url=${{ steps.deployment.outputs.deployment }} --collect.url=${{ steps.deployment.outputs.deployment }}/venia-bottoms || echo "failed with errors"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
