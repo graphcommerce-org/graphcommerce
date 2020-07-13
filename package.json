@@ -59,7 +59,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.2.0",
     "graphql-tag": "^2.10.1",
-    "history": "^4.10.1",
+    "history": "^5.0.0",
     "informed": "~2.11.17",
     "intl": "^1.2.5",
     "isomorphic-unfetch": "^3.0.0",
