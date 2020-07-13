@@ -58,7 +58,7 @@
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
     "graphql": "^15.2.0",
-    "graphql-tag": "^2.10.1",
+    "graphql-tag": "^2.10.4",
     "history": "^4.10.1",
     "informed": "~2.11.17",
     "intl": "^1.2.5",
