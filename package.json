@@ -81,7 +81,7 @@
     "redux-actions": "^2.6.5",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.6.0",
-    "sitemap": "^6.1.7",
+    "sitemap": "^6.2.0",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
     "type-fest": "^0.16.0",
