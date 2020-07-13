@@ -71,7 +71,7 @@
     "react": "~16.13.1",
     "react-dom": "~16.13.1",
     "react-feather": "^2.0.8",
-    "react-hook-form": "^5.7.1",
+    "react-hook-form": "^6.0.4",
     "react-redux": "~7.2.0",
     "react-router-dom": "~5.2.0",
     "react-schemaorg": "^1.1.0",
