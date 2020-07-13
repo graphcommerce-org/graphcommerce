@@ -116,7 +116,7 @@
     "@storybook/storybook-deployer": "^2.8.6",
     "@types/clone-deep": "^4.0.1",
     "@types/lodash": "^4.14.157",
-    "@types/node": "^14.0.14",
+    "@types/node": "^14.0.22",
     "@types/react": "^16.9.41",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "~5.1.0",
