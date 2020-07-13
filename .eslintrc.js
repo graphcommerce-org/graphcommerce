@@ -33,12 +33,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: [
-          '**/*.test.js',
-          '**/*.stories.tsx',
-          'next.config.js',
-          'shop/pwa-buildpack/magento-nextjs.js',
-        ],
+        devDependencies: ['**/*.test.js', 'next.config.js', 'shop/pwa-buildpack/magento-nextjs.js'],
       },
     ],
     'no-param-reassign': ['error', { props: false }],
