@@ -1334,20 +1334,20 @@
   resolved "https://registry.yarnpkg.com/@braintree/event-emitter/-/event-emitter-0.3.0.tgz#8239ad51c71707b317f30da2d29abb369f91a579"
   integrity sha512-yzC81QgTuL18RK9Da4C5oAyta5OLNZ3mGqiGKZFc8BKxOnGJN5ObhiFiOdbMbvPUYJQ4teZsal7j00o5RFlGcQ==
 
-"@braintree/extended-promise@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@braintree/extended-promise/-/extended-promise-0.3.0.tgz#84e99105e520c6c454c3922848b13222b8999c50"
-  integrity sha512-AOBCcLlDo/JzxKfHN0s3QQjtDjVPgQAQ5INUomloTfg6qq5inEdHOkvts8Z/9RqqoCrOKgEbnRpGgWMQn+z1RA==
+"@braintree/extended-promise@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@braintree/extended-promise/-/extended-promise-0.3.1.tgz#13eb22125c02bd47ff41a68d67639e4b185f03d5"
+  integrity sha512-jYP1hnRviu1MW9uCk0DSU1GMD9/Hkh3EYjHGnwhDbGK7os6XlLSieXxXSH+xSKolp3BPf6KUq0jWa7h6dXDnGA==
 
 "@braintree/iframer@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@braintree/iframer/-/iframer-1.0.3.tgz#21dd1fd4cebd4154aeab1efa4d5b0d5f4384364e"
   integrity sha1-Id0f1M69QVSuqx76TVsNX0OENk4=
 
-"@braintree/sanitize-url@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-4.0.0.tgz#2cda79ffd67b6ea919a63b5e1a883b92d636e844"
-  integrity sha512-bOoFoTxuEUuri/v1q0OXN0HIrZ2EiZlRSKdveU8vS5xf2+g0TmpXhmxkTc1s+XWR5xZNoVU4uvf/Mher98tfLw==
+"@braintree/sanitize-url@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-4.0.1.tgz#16e719eba72693f95989c05f2b3b424f2aabc5b0"
+  integrity sha512-THIQtVN491hY2rTZ/h5boj0CwDKrZQIUnfaj6RbpGwRJKfmEIgNpgcCJC3KZl1Vux9bQmdE2P4Q7cYUoSUQ4MA==
 
 "@braintree/wrap-promise@2.0.0":
   version "2.0.0"
@@ -5867,38 +5867,38 @@ braces@^3.0.1, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-braintree-web-drop-in@~1.22.1:
-  version "1.22.1"
-  resolved "https://registry.yarnpkg.com/braintree-web-drop-in/-/braintree-web-drop-in-1.22.1.tgz#39644b4dc312ebf3072b4646c3196edb0e3b557f"
-  integrity sha512-/WLy3RVJM24OFYbKObkruKPt+jqwJNXSTOXxq/SOKdIn0RFlmg8NlnvQSxp60rDCJD30r4CGG2dEu1RL0BUdwg==
+braintree-web-drop-in@~1.23.0:
+  version "1.23.0"
+  resolved "https://registry.yarnpkg.com/braintree-web-drop-in/-/braintree-web-drop-in-1.23.0.tgz#89b1cb819c513f7faa79bde1d15e0e36826e3353"
+  integrity sha512-uP1z6UI9edwlwxto838awSX1tbRM+vqEErEtsLxk3TuC+XRxIn7u5F9IIILW+y/A0OXa7/2klIbjqy3RMgK7Lw==
   dependencies:
     "@braintree/asset-loader" "0.3.1"
     "@braintree/browser-detection" "1.9.0"
     "@braintree/class-list" "0.1.0"
     "@braintree/event-emitter" "0.3.0"
     "@braintree/wrap-promise" "2.0.0"
-    braintree-web "3.58.0"
+    braintree-web "3.63.0"
     promise-polyfill "8.1.3"
 
-braintree-web@3.58.0:
-  version "3.58.0"
-  resolved "https://registry.yarnpkg.com/braintree-web/-/braintree-web-3.58.0.tgz#1ecc94e51c23d413fe26c32d8b148b70b8592934"
-  integrity sha512-tqhH6XIaTFkOFnPcDK+/h8i2rEH1/QYmsKkmk51TVCL4BRRrWvk5SVzpw2Ueg0wrNbWWpqMG3Kh6gfTMvRwxPA==
+braintree-web@3.63.0:
+  version "3.63.0"
+  resolved "https://registry.yarnpkg.com/braintree-web/-/braintree-web-3.63.0.tgz#c534bfe2c7a88cb052df8912f498c52ba541839a"
+  integrity sha512-dEjhrQmsZGffnrsyg3xMGSk0XgZ+NR7wVpNvCH7ePXnf3bVkOR3FAPJP1jqTLgtX6OvPReyZ5/TcVLFcJ7SktA==
   dependencies:
     "@braintree/asset-loader" "0.3.1"
     "@braintree/browser-detection" "1.9.0"
     "@braintree/class-list" "0.1.0"
     "@braintree/event-emitter" "0.3.0"
-    "@braintree/extended-promise" "0.3.0"
+    "@braintree/extended-promise" "0.3.1"
     "@braintree/iframer" "1.0.3"
-    "@braintree/sanitize-url" "4.0.0"
+    "@braintree/sanitize-url" "4.0.1"
     "@braintree/wrap-promise" "2.0.0"
     card-validator "6.2.0"
     credit-card-type "8.3.0"
-    framebus "3.0.2"
+    framebus "4.0.2"
     inject-stylesheet "2.0.0"
     promise-polyfill "8.1.3"
-    restricted-input "2.1.0"
+    restricted-input "2.1.1"
 
 brorand@^1.0.1:
   version "1.1.0"
@@ -7344,14 +7344,6 @@ css-loader@^3.0.0:
     postcss-value-parser "^4.1.0"
     schema-utils "^2.7.0"
     semver "^6.3.0"
-
-css-modules-typescript-loader@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/css-modules-typescript-loader/-/css-modules-typescript-loader-4.0.0.tgz#17c0924107f45c7d9998fb59be5c59d6398aac5c"
-  integrity sha512-K6ii0+kt2i3sHN+VKTWdF728x+N4PFitsjE8aldUO+N98XlZhanJYIEZrnh4FMTZzDvOjyBialU0LnkCSeeUig==
-  dependencies:
-    line-diff "^2.0.1"
-    loader-utils "^1.2.3"
 
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
@@ -9425,10 +9417,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framebus@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/framebus/-/framebus-3.0.2.tgz#0c99c70cb507522aae6ed485e1317fc913873a8a"
-  integrity sha512-OqhYkhgRYlpKZoSl5EA3whKh8O8omFPCzf7MGzFqC6CtrT8lg7evNgU6QdjC3uY3ATq5saMDiY5HJ8KGiGDYCA==
+framebus@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/framebus/-/framebus-4.0.2.tgz#adaf3827f9aab8849ad62f610d2c1e8bd14aec72"
+  integrity sha512-dgw5CLt70mRejHP5afc32/5MCN1Clx4EVqWlaUf1scRpsVWBHpD2nfGvn3uIRXoix16aG8XT6CM8I8P9BbhPEA==
 
 fresh@0.5.2:
   version "0.5.2"
@@ -11862,11 +11854,6 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-levdist@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/levdist/-/levdist-1.0.0.tgz#91d7a3044964f2ccc421a0477cac827fe75c5718"
-  integrity sha1-kdejBElk8szEIaBHfKyCf+dcVxg=
-
 leven@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
@@ -12028,13 +12015,6 @@ libnpx@^10.2.2:
     which "^1.3.0"
     y18n "^4.0.0"
     yargs "^11.0.0"
-
-line-diff@^2.0.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/line-diff/-/line-diff-2.1.0.tgz#4c407100471b4ebe1617bf37e877554a67abaa08"
-  integrity sha512-EciuZHwQfFG5ITBdIjN+zyJtcJXRVgbDSxtv6sz8BBf16rw4iGRO28AwIDVlNSoKlpDzp1UzRti54j3wBlU9Fw==
-  dependencies:
-    levdist "^1.0.0"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -16510,10 +16490,10 @@ restore-cursor@^3.1.0:
     onetime "^5.1.0"
     signal-exit "^3.0.2"
 
-restricted-input@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/restricted-input/-/restricted-input-2.1.0.tgz#3e2ff79e8fee53d3152cf859063701ded206582f"
-  integrity sha512-dH4cNfdTgChSlqYGff0zMtLSPWj3oU4oph9GvHgWhDEiHftk7/B9Ci5y5mCts2atvcm2a0gTZ8XqNaP9cVzMwg==
+restricted-input@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/restricted-input/-/restricted-input-2.1.1.tgz#8bdb8c924972b73f1bc3f9a91759ecf2ef34c805"
+  integrity sha512-uMQLSfirbhvVGyGiBxWIMwVLw1a839BX5VWqehYxH38r8eKIwIp0WmgzlIpjdM7CH4TG8ymw6GYIkXXC7dgwBQ==
   dependencies:
     "@braintree/browser-detection" "^1.9.0"
 
