@@ -5,7 +5,7 @@ import { GetStaticPathsDocument } from 'generated/apollo'
 import apolloClientInit from 'node/apolloClient'
 
 function getProtocol(req: NextApiRequest) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   let proto = req.connection.encrypted ? 'https' : 'http'
   // only do this if you trust the proxy

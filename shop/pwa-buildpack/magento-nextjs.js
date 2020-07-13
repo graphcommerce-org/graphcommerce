@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
-const { cloneDeep } = require('lodash')
+const cloneDeep = require('clone-deep')
 const webpack = require('webpack')
 const loadEnvironment = require('@magento/pwa-buildpack/lib/Utilities/loadEnvironment')
 

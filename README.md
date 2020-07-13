@@ -12,38 +12,41 @@
 - [react-schemaorg](https://github.com/google/react-schemaorg) +
   [schema-dts](https://github.com/google/schema-dts)
 
-# Install
+## Install
 
 Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 
 1. `yarn`
 2. copy `.env` from 1Password "m2-pwa .env"
 
-# Run
+## Run
 
 Site:
 
 - `yarn dev`
 
-# Build
+## Build
 
-- `CI=true yarn build`
-- `ANALYZE=true; CI=true yarn build`
+- `yarn build`
 
-# Commits
+## Analyze bundle
+
+- `ANALYZE=true yarn build`
+
+## Commits
 
 Commits are validated with https://github.com/conventional-changelog/commitlint
 
 Gittower: Gittower doesn't properly read your PATH variable and thus commit
 validation doesn't work. Use `gittower .` to open this repo.
 
-# Releases
+## Releases
 
 Using https://semantic-release.gitbook.io/.
 
 - Dry-run `GH_TOKEN="bla" SLACK_WEBHOOK="bla" yarn semantic-release`
 
-# Deploy
+## Deploy
 
 - To deploy a testbranch, create a new branch and it will automatically be
   pushed.
