@@ -14,6 +14,7 @@ jobs:
       - run: yarn --frozen-lockfile --cwd ./new
       - run: yarn --cwd ./new build > new.txt
         env:
+          CI: true
           GRAPHCMS: ${{ secrets.GRAPHCMS }}
           GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
           MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
@@ -22,6 +23,7 @@ jobs:
       - run: yarn --frozen-lockfile --cwd ./old
       - run: yarn --cwd ./old build > old.txt
         env:
+          CI: true
           GRAPHCMS: ${{ secrets.GRAPHCMS }}
           GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
           MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
