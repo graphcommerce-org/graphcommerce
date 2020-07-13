@@ -63,7 +63,7 @@
     "informed": "~2.11.17",
     "intl": "^1.2.5",
     "isomorphic-unfetch": "^3.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "next": "9.4.4",
     "next-images": "^1.4.0",
     "next-pwa": "^3.0.1",
