@@ -5,11 +5,12 @@ import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import getProductPageProps, { GetProductPageProps } from 'components/ProductPage/getProductProps'
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
-import { useHeaderSpacing } from 'components/Header'
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
 import { slideUpFade } from 'components/FramerMotion'
 import { motion } from 'framer-motion'
+import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
+import { useHeaderStyles } from 'components/Header/useHeaderStyles'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   const {

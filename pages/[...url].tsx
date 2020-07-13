@@ -18,13 +18,13 @@ import NextError from 'next/error'
 import { Container } from '@material-ui/core'
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
-import { useHeaderSpacing } from 'components/Header'
 import clsx from 'clsx'
 import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageContext'
 import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
 import ProductListItemConfigurable from 'components/ProductTypeConfigurable/ProductListItemConfigurable'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
 import { slideUpFade } from 'components/FramerMotion'
+import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
