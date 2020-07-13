@@ -10,22 +10,26 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: old
-          ref: master # Change this if you want to compare to a different bundle
-      - run: yarn --frozen-lockfile --cwd ./new # install PR depedendencies
-      - run: yarn --cwd ./new build > new.txt # build PR branch
+          ref: master
+      - run: yarn --frozen-lockfile --cwd ./new
+      - run: yarn --cwd ./new build > new.txt
         env:
-          GRAPHCMS: ${{ secrets.GRAPHQL }}
-          GRAPHCMS_BEARER: ${{ secrets.GRAPHQL_BEARER }}
-          NEXT_PUBLIC_GOOGLE_MAPS_API: ${{ secrets.GOOGLE_MAPS_API }}
-      - run: yarn --frozen-lockfile --cwd ./old # install main branch dependencies
-      - run: yarn --cwd ./old build > old.txt # build main branch
+          GRAPHCMS: ${{ secrets.GRAPHCMS }}
+          GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
+          MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
+          IMAGE_OPTIMIZING_ORIGIN: 'backend'
+          CHECKOUT_BRAINTREE_TOKEN: ''
+      - run: yarn --frozen-lockfile --cwd ./old
+      - run: yarn --cwd ./old build > old.txt
         env:
-          GRAPHCMS: ${{ secrets.GRAPHQL }}
-          GRAPHCMS_BEARER: ${{ secrets.GRAPHQL_BEARER }}
-          NEXT_PUBLIC_GOOGLE_MAPS_API: ${{ secrets.GOOGLE_MAPS_API }}
-      - uses: ho-nl/next-bundlesize-action@master # create diff markdown
+          GRAPHCMS: ${{ secrets.GRAPHCMS }}
+          GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
+          MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
+          IMAGE_OPTIMIZING_ORIGIN: 'backend'
+          CHECKOUT_BRAINTREE_TOKEN: ''
+      - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'
-      - uses: unsplash/comment-on-pr@master # create comment on PR
+      - uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

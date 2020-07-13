@@ -142,13 +142,6 @@ module.exports = (nextConfig = {}) => {
       const cssLoader = magentoCssLoader.use.find((loader) => loader.options.modules)
       cssLoader.options.modules.mode = 'local'
 
-      // Emit typescript declarations for css-modules
-      const cssTs = {
-        loader: 'css-modules-typescript-loader',
-        options: { mode: process.env.CI ? 'verify' : 'emit' },
-      }
-      magentoCssLoader.use.splice(magentoCssLoader.use.indexOf(cssLoader), 0, cssTs)
-
       // Add the loader
       nextCssLoaders.oneOf.push(magentoCssLoader)
 
