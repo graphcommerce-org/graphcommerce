@@ -1,5 +1,4 @@
 import React from 'react'
-import { CssBaseline, makeStyles } from '@material-ui/core'
 import Head from 'next/head'
 import { LayoutPage } from 'components/LayoutPage'
 import ThemedProvider, { defaultTheme } from 'components/Theme'
@@ -8,20 +7,30 @@ import Error from 'next/error'
 import Header from 'components/Header'
 import { GetHeaderProps } from 'components/Header/getHeaderProps'
 import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
+import { makeStyles } from '@material-ui/styles'
+import { CssBaseline } from '@material-ui/core'
+import { entryTime } from 'components/FramerMotion'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
 export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<T, ShopLayoutProps>
 
-const useStyles = makeStyles({
-  animationDiv: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
+const useStyles = makeStyles(
+  {
+    header: {
+      zIndex: 1000,
+      position: 'relative',
+    },
+    animationDiv: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+    },
   },
-})
+  { name: 'ShopLayout' },
+)
 
 const ShopLayout: PageWithShopLayout['layout'] = ({
   children,
@@ -51,10 +60,15 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
       <CssBaseline />
       <PageLoadIndicator />
 
-      <Header menu={menu} urlResolver={urlResolver} />
+      <Header menu={menu} urlResolver={urlResolver} className={classes.header} />
 
-      <AnimateSharedLayout type='crossfade' transition={{ duration: 1 }}>
-        <AnimatePresence initial={false}>
+      <AnimateSharedLayout type='crossfade' transition={{ duration: entryTime }}>
+        <AnimatePresence
+          initial={false}
+          onExitComplete={() => {
+            console.log('reset scroll')
+          }}
+        >
           <motion.div
             key={`${urlResolver.type}-${urlResolver.id}`}
             variants={pageTransition}

@@ -1,6 +1,15 @@
 import { Variant } from 'framer-motion'
 
+export const entryTime = 0.25
+export const exitTime = 0.2
+
 // slideUpFade + scale background down + scale foreground up.
+
+/**
+ * Page transitions need to handle scroll position:
+ * - Transition at the same scroll position
+ * - Reset scroll position after navigation
+ */
 
 export type PageTransition = {
   initial: Variant
@@ -13,13 +22,15 @@ export const slideUpFade: PageTransition = {
   enter: {
     opacity: 1,
     transition: {
-      duration: 0.5,
-      delay: 0.5,
+      duration: entryTime,
+      delay: entryTime,
       when: 'beforeChildren',
     },
   },
   exit: {
     opacity: 0,
-    transition: { duration: 0.5 },
+    transition: {
+      duration: exitTime,
+    },
   },
 }
