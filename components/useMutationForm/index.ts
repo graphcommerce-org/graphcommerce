@@ -11,7 +11,6 @@ import {
 } from 'graphql'
 import { useForm, DeepPartial } from 'react-hook-form'
 import { useMutation } from '@apollo/react-hooks'
-import initApolloClient from 'lib/apollo'
 
 function isOperationDefinitionNode(
   node: DefinitionNode | OperationDefinitionNode,
@@ -60,9 +59,7 @@ function fieldRequirements<T = { [index: string]: unknown }>(
  */
 export function useMutationForm<TData, TVariables = {}>(mutation: DocumentNode) {
   const [defaultValues, required] = fieldRequirements<TVariables>(mutation)
-  const [submit, result] = useMutation<TData, TVariables>(mutation, {
-    client: initApolloClient(),
-  })
+  const [submit, result] = useMutation<TData, TVariables>(mutation)
 
   const { register, errors, handleSubmit } = useForm<TVariables>({
     defaultValues: defaultValues as DeepPartial<TVariables>,

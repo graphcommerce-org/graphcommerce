@@ -9,18 +9,37 @@ import {
 import { HttpLink } from 'apollo-link-http'
 import introspectionQueryResultData from 'generated/fragments.json'
 import { ApolloProvider as ApolloProviderBase } from '@apollo/react-hooks'
+import { setContext } from 'apollo-link-context'
+import { ApolloLink } from 'apollo-link'
+import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
+import { RetryLink } from 'apollo-link-retry'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
-export const dataIdFromObject = (value: IdGetterObj & { locale?: string }) =>
-  (value.id ?? '') + (value.locale ?? '')
+export const dataIdFromObject = (value: IdGetterObj) => value.id ?? ''
 
 function createApolloClient(
   initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
+  const authLink = setContext((_, { headers }) => {
+    const token = window.localStorage.getItem('customer_token')
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    }
+  })
+
+  const link = ApolloLink.from([
+    new MutationQueueLink() as ApolloLink,
+    new RetryLink(),
+    authLink,
+    new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
+  ])
+
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
-    link: new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
+    link,
     cache: new InMemoryCache({
       fragmentMatcher: new IntrospectionFragmentMatcher({ introspectionQueryResultData }),
       dataIdFromObject,
@@ -28,7 +47,7 @@ function createApolloClient(
   })
 }
 
-export default function initApolloClient(
+export function initApolloClient(
   initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
   // Make sure to create a new client for every server-side request so that data
@@ -44,8 +63,9 @@ export default function initApolloClient(
 
   return globalApolloClient
 }
-
-export const ApolloProvider: React.FC = ({ children }) => {
+const ApolloProvider: React.FC = ({ children }) => {
   const client = initApolloClient()
   return <ApolloProviderBase client={client}>{children}</ApolloProviderBase>
 }
+
+export default ApolloProvider

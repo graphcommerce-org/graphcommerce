@@ -1,21 +1,21 @@
 import React, { useState, useEffect, PropsWithChildren, useRef } from 'react'
 import dynamic, { Loader } from 'next/dynamic'
 
-type MagentoDynamicProps<P> = {
+type ApolloSessionProps<P> = {
   loader: Loader<P>
   skeleton: (ref: React.RefObject<any>) => React.ComponentType<P> | JSX.Element
   intersectionObserver?: IntersectionObserverInit
   debugShowSkeleton?: boolean
 } & P
 
-const MagentoDynamic = <P extends Record<string, unknown>>({
+const ApolloSession = <P extends Record<string, unknown>>({
   loader,
   skeleton,
   children,
   intersectionObserver,
   debugShowSkeleton,
   ...props
-}: PropsWithChildren<MagentoDynamicProps<P>>): JSX.Element => {
+}: PropsWithChildren<ApolloSessionProps<P>>): JSX.Element => {
   const ref = useRef<any>(null)
   const [intersected, setIntersected] = useState<boolean>(false)
 
@@ -37,15 +37,18 @@ const MagentoDynamic = <P extends Record<string, unknown>>({
   const LoadingComponent = () => <>{skeleton ? skeleton(ref) : null}</>
 
   const DynamicComponent = dynamic(loader, { loading: LoadingComponent, ssr: false })
-  const MagentoProvider = dynamic(() => import('./App'), { loading: LoadingComponent, ssr: false })
+  const ApolloProvider = dynamic(() => import('./ApolloProvider'), {
+    loading: LoadingComponent,
+    ssr: false,
+  })
 
   return !intersected ? (
     <LoadingComponent />
   ) : (
-    <MagentoProvider>
+    <ApolloProvider>
       <DynamicComponent {...(props as never)}>{children}</DynamicComponent>
-    </MagentoProvider>
+    </ApolloProvider>
   )
 }
 
-export default MagentoDynamic
+export default ApolloSession
