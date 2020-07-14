@@ -62,25 +62,25 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
 
       <Header menu={menu} urlResolver={urlResolver} className={classes.header} />
 
-      <AnimateSharedLayout type='crossfade' transition={{ duration: entryTime }}>
-        <AnimatePresence
-          initial={false}
-          onExitComplete={() => {
-            console.log('reset scroll')
-          }}
+      {/* <AnimateSharedLayout transition={{ duration: entryTime }}> */}
+      <AnimatePresence
+        initial={false}
+        onExitComplete={() => {
+          console.log('reset scroll')
+        }}
+      >
+        <motion.div
+          key={`${urlResolver.type}-${urlResolver.id}`}
+          variants={pageTransition}
+          initial='initial'
+          animate='enter'
+          exit='exit'
+          className={classes.animationDiv}
         >
-          <motion.div
-            key={`${urlResolver.type}-${urlResolver.id}`}
-            variants={pageTransition}
-            initial='initial'
-            animate='enter'
-            exit='exit'
-            className={classes.animationDiv}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-      </AnimateSharedLayout>
+          {children}
+        </motion.div>
+      </AnimatePresence>
+      {/* </AnimateSharedLayout> */}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )

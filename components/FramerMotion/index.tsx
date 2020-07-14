@@ -23,8 +23,6 @@ export const slideUpFade: PageTransition = {
     opacity: 1,
     transition: {
       duration: entryTime,
-      delay: entryTime,
-      when: 'beforeChildren',
     },
   },
   exit: {
