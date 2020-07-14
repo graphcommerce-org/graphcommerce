@@ -15,12 +15,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noImplicitAny": false,
-    "jsx": "preserve",
-    "paths": {
-      "@magento/venia-drivers": ["shop/drivers/index"]
-      // "@magento/venia-ui/*": ["@magento/venia-ui/*"]
-    }
+    "jsx": "preserve"
   },
   "exclude": ["node_modules", "public"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js", "apollo.config.js"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "next.config.js",
+    "apollo.config.js",
+    ".eslintrc.js"
+  ]
 }

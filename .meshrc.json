@@ -28,7 +28,7 @@
       "transforms": [
         {
           "snapshot": {
-            "if": "process.env.NODE_ENV !== 'production'",
+            "if": "process.env.CI !== 'true'",
             "apply": [
               "Query.categoryList",
               "Query.urlResolver",

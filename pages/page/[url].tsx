@@ -7,7 +7,7 @@ import getCmsPageProps, { GetCmsPageProps } from 'components/CmsPage/getCmsPageP
 import NextError from 'next/error'
 import CmsPageMeta from 'components/CmsPageMeta'
 import CmsPageContent from 'components/CmsPageContent'
-import { useHeaderSpacing } from 'components/Header'
+import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 
 const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeConfig }) => {
   const { marginTop } = useHeaderSpacing()

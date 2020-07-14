@@ -4,6 +4,7 @@ import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import ProductListPrice from '../ProductListPrice'
 
 export const useProductListItemStyles = makeStyles(
@@ -75,7 +76,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     <div className={classes.item}>
       <Link href='/product/[url]' as={`/product/${url_key}`} passHref>
         <MuiLink underline='none'>
-          <div className={classes.imageContainer}>
+          <motion.div className={classes.imageContainer} layoutId={`product-${sku}`}>
             {small_image ? (
               <PictureResponsive
                 alt={small_image.label}
@@ -87,7 +88,7 @@ export default function ProductListItem(props: ProductListItemProps) {
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
-          </div>
+          </motion.div>
 
           <Typography component='h2' className={classes.title}>
             {name}

@@ -33,12 +33,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: [
-          '**/*.test.js',
-          '**/*.stories.tsx',
-          'next.config.js',
-          'shop/pwa-buildpack/magento-nextjs.js',
-        ],
+        devDependencies: ['**/*.test.js', 'next.config.js', 'shop/pwa-buildpack/magento-nextjs.js'],
       },
     ],
     'no-param-reassign': ['error', { props: false }],
@@ -67,7 +62,7 @@ module.exports = {
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     '@typescript-eslint/explicit-function-return-type': 'off',
 
-    //Magento compatibility
+    // Magento compatibility
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx'] }],
 
     // Prepare for ESLint 7 release
