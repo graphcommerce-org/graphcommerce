@@ -4,8 +4,6 @@ The goal is to create a frontend where Magento is used as a library be able to
 use Magento's functionality on places where we want as little or much as needed.
 
 - As little: Only use Magento's GraphQL API to fetch / send data
-- As much: Use @magento/venia-ui components out of the box and follow the
-  'checkout in a component' model.
 
 Magento's PWA solution consists of the following packages:
 https://github.com/magento/pwa-studio/tree/develop/packages

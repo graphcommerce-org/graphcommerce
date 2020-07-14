@@ -13,7 +13,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
-const withMagento = require('./shop/pwa-buildpack/magento-nextjs')
 
 const nextConfig = {
   experimental: {
@@ -116,7 +115,6 @@ const nextConfig = {
       },
     ],
   },
-  magento: { drivers: 'shop/drivers' },
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(withMagento(nextConfig))))
+module.exports = withBundleAnalyzer(withPWA(withImages(nextConfig)))

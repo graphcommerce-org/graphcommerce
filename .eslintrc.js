@@ -62,7 +62,7 @@ module.exports = {
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     '@typescript-eslint/explicit-function-return-type': 'off',
 
-    //Magento compatibility
+    // Magento compatibility
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx'] }],
 
     // Prepare for ESLint 7 release
