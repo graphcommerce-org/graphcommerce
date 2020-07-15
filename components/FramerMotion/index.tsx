@@ -28,7 +28,7 @@ export const motionProps = (toPage: MotionProps | undefined): MotionProps => {
   return {
     ...(toPage || {}),
     exit: (fromPage: MotionProps | undefined): TargetAndTransition => {
-      return fromPage?.exit as TargetAndTransition
+      return (fromPage?.exit as TargetAndTransition) || {}
     },
   }
 }

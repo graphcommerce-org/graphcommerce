@@ -38,7 +38,6 @@ const useStyles = makeStyles(
     }),
     offsetDiv: ({ scrollOffset }: StyleProps) => ({
       transform: `translate(${scrollOffset[0] ?? 0 * -1}px, ${scrollOffset[1] * -1}px)`,
-      transition: 'transform 0s',
     }),
   },
   { name: 'ShopLayout' },
