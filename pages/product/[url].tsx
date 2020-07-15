@@ -7,10 +7,9 @@ import getProductPageProps, { GetProductPageProps } from 'components/ProductPage
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import { slideUpFade } from 'components/FramerMotion'
+import { overlay } from 'components/FramerMotion'
 import { motion } from 'framer-motion'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
-import { useHeaderStyles } from 'components/Header/useHeaderStyles'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   const {
@@ -36,7 +35,7 @@ const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
 }
 
 ProductPage.layout = ShopLayout
-ProductPage.pageTransition = slideUpFade
+ProductPage.pageTransition = overlay
 
 export default ProductPage
 

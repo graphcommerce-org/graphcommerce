@@ -1,6 +1,6 @@
 import React from 'react'
 import { NextPage, NextComponentType, NextPageContext } from 'next'
-import { PageTransition } from 'components/FramerMotion'
+import { PageTransitionPair } from 'components/FramerMotion'
 
 function isLayoutPage<P = Record<string, unknown>, IP = P>(
   Component: NextPage<P, IP> | LayoutPage<P, IP>,
@@ -9,8 +9,8 @@ function isLayoutPage<P = Record<string, unknown>, IP = P>(
 }
 
 export type LayoutPage<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
-  layout: React.FC<IP & { pageTransition?: PageTransition }>
-  pageTransition?: PageTransition
+  layout: React.FC<IP & { pageTransition?: PageTransitionPair }>
+  pageTransition?: PageTransitionPair
 }
 
 export function renderLayoutPage(

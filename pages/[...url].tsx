@@ -23,7 +23,6 @@ import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageC
 import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
 import ProductListItemConfigurable from 'components/ProductTypeConfigurable/ProductListItemConfigurable'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
-import { slideUpFade } from 'components/FramerMotion'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
@@ -85,7 +84,6 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   )
 }
 CategoryPage.layout = ShopLayout
-CategoryPage.pageTransition = slideUpFade
 
 export default CategoryPage
 

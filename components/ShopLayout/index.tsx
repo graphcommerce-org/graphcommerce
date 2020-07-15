@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { LayoutPage } from 'components/LayoutPage'
 import ThemedProvider, { defaultTheme } from 'components/Theme'
@@ -6,10 +6,12 @@ import PageLoadIndicator from 'components/PageLoadIndicator'
 import Error from 'next/error'
 import Header from 'components/Header'
 import { GetHeaderProps } from 'components/Header/getHeaderProps'
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { makeStyles } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'
-import { entryTime } from 'components/FramerMotion'
+import { useRouter } from 'next/router'
+
+import { PageTransitionPair, addExitHandler as addExitTransHandler } from 'components/FramerMotion'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
 export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
@@ -22,12 +24,13 @@ const useStyles = makeStyles(
       zIndex: 1000,
       position: 'relative',
     },
-    animationDiv: {
+    animationDiv: ({ hasBack }: { hasBack: boolean }) => ({
       position: 'absolute',
       top: 0,
       left: 0,
       right: 0,
-    },
+      zIndex: hasBack ? 0 : 1,
+    }),
   },
   { name: 'ShopLayout' },
 )
@@ -37,9 +40,22 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
   menu,
   error,
   urlResolver,
-  pageTransition,
+  pageTransition: pageTrans,
 }) => {
-  const classes = useStyles()
+  const router = useRouter()
+  const [backTrans, setBackTransition] = useState<PageTransitionPair | undefined>()
+  const classes = useStyles({ hasBack: !!backTrans })
+
+  // Detect if we're animating back so we can do a reverse animation
+  const onTransComplete = () => backTrans && setBackTransition(undefined)
+  useEffect(() => {
+    router.beforePopState(() => {
+      setBackTransition(pageTrans)
+      return true
+    })
+  }, [pageTrans, router])
+
+  // todo(paales) implement a skeleton loader
   if (!urlResolver || !urlResolver.id) return <Error statusCode={404}>{error}</Error>
 
   return (
@@ -65,13 +81,12 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
       {/* <AnimateSharedLayout transition={{ duration: entryTime }}> */}
       <AnimatePresence
         initial={false}
-        onExitComplete={() => {
-          console.log('reset scroll')
-        }}
+        custom={backTrans ? backTrans.foreground : pageTrans?.background}
+        onExitComplete={onTransComplete}
       >
         <motion.div
           key={`${urlResolver.type}-${urlResolver.id}`}
-          variants={pageTransition}
+          variants={addExitTransHandler(backTrans ? backTrans.background : pageTrans?.foreground)}
           initial='initial'
           animate='enter'
           exit='exit'

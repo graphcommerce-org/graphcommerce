@@ -1,34 +1,39 @@
-import { Variant } from 'framer-motion'
+import { TargetAndTransition } from 'framer-motion'
 
 export const entryTime = 0.25
 export const exitTime = 0.2
 
-// slideUpFade + scale background down + scale foreground up.
-
-/**
- * Page transitions need to handle scroll position:
- * - Transition at the same scroll position
- * - Reset scroll position after navigation
- */
-
 export type PageTransition = {
-  initial: Variant
-  enter: Variant
-  exit: Variant
+  initial: TargetAndTransition
+  enter: TargetAndTransition
+  exit: TargetAndTransition
 }
 
-export const slideUpFade: PageTransition = {
-  initial: { opacity: 0 },
-  enter: {
-    opacity: 1,
-    transition: {
-      duration: entryTime,
-    },
+export type PageTransitionPair = {
+  background: PageTransition
+  foreground: PageTransition
+}
+
+const spring = { type: 'spring', damping: 20, stiffness: 300 }
+
+export const overlay: PageTransitionPair = {
+  background: {
+    initial: { scale: 0.95, opacity: 0 },
+    enter: { scale: 1, opacity: 1, transition: { duration: exitTime, ...spring } },
+    exit: { scale: 0.95, opacity: 0, transition: { duration: entryTime } },
   },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: exitTime,
-    },
+  foreground: {
+    initial: { y: '100%', opacity: 0 },
+    enter: { y: 0, opacity: 1, transition: { duration: entryTime, ...spring } },
+    exit: { y: '100%', opacity: 0, transition: { duration: exitTime } },
   },
+}
+
+export const addExitHandler = (toPage: PageTransition | undefined) => {
+  return {
+    ...(toPage || {}),
+    exit: (fromPage: PageTransition | undefined): TargetAndTransition => {
+      return fromPage?.exit || {}
+    },
+  }
 }
