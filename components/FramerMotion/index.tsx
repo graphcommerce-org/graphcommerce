@@ -1,39 +1,34 @@
-import { TargetAndTransition } from 'framer-motion'
+import { TargetAndTransition, MotionProps, Transition } from 'framer-motion'
 
 export const entryTime = 0.25
 export const exitTime = 0.2
 
-export type PageTransition = {
-  initial: TargetAndTransition
-  enter: TargetAndTransition
-  exit: TargetAndTransition
-}
-
 export type PageTransitionPair = {
-  background: PageTransition
-  foreground: PageTransition
+  background: MotionProps
+  foreground: MotionProps
 }
 
-const spring = { type: 'spring', damping: 20, stiffness: 300 }
+// const transition: Transition = { type: 'tween', duration: 20 }
+const transition: Transition = { type: 'spring', damping: 20, stiffness: 300 }
 
 export const overlay: PageTransitionPair = {
   background: {
     initial: { scale: 0.95, opacity: 0 },
-    enter: { scale: 1, opacity: 1, transition: { duration: exitTime, ...spring } },
-    exit: { scale: 0.95, opacity: 0, transition: { duration: entryTime } },
+    animate: { scale: 1, opacity: 1, transition },
+    exit: { scale: 0.95, opacity: 0, transition },
   },
   foreground: {
     initial: { y: '100%', opacity: 0 },
-    enter: { y: 0, opacity: 1, transition: { duration: entryTime, ...spring } },
-    exit: { y: '100%', opacity: 0, transition: { duration: exitTime } },
+    animate: { y: 0, opacity: 1, transition },
+    exit: { y: '100%', opacity: 0, transition },
   },
 }
 
-export const addExitHandler = (toPage: PageTransition | undefined) => {
+export const motionProps = (toPage: MotionProps | undefined): MotionProps => {
   return {
     ...(toPage || {}),
-    exit: (fromPage: PageTransition | undefined): TargetAndTransition => {
-      return fromPage?.exit || {}
+    exit: (fromPage: MotionProps | undefined): TargetAndTransition => {
+      return fromPage?.exit as TargetAndTransition
     },
   }
 }

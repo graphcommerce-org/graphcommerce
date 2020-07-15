@@ -10,13 +10,18 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { makeStyles } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'
 import { useRouter } from 'next/router'
-
-import { PageTransitionPair, addExitHandler as addExitTransHandler } from 'components/FramerMotion'
+import { PageTransitionPair, motionProps } from 'components/FramerMotion'
+import clsx from 'clsx'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
 export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<T, ShopLayoutProps>
+
+type StyleProps = {
+  isBackTrans: boolean
+  scrollOffset: ScrollOffset
+}
 
 const useStyles = makeStyles(
   {
@@ -24,16 +29,22 @@ const useStyles = makeStyles(
       zIndex: 1000,
       position: 'relative',
     },
-    animationDiv: ({ hasBack }: { hasBack: boolean }) => ({
+    animationDiv: ({ isBackTrans }: StyleProps) => ({
       position: 'absolute',
       top: 0,
       left: 0,
       right: 0,
-      zIndex: hasBack ? 0 : 1,
+      zIndex: isBackTrans ? 0 : 1,
+    }),
+    offsetDiv: ({ scrollOffset }: StyleProps) => ({
+      transform: `translate(${scrollOffset[0] ?? 0 * -1}px, ${scrollOffset[1] * -1}px)`,
+      transition: 'transform 0s',
     }),
   },
   { name: 'ShopLayout' },
 )
+
+type ScrollOffset = [number, number]
 
 const ShopLayout: PageWithShopLayout['layout'] = ({
   children,
@@ -42,18 +53,37 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
   urlResolver,
   pageTransition: pageTrans,
 }) => {
+  const key = `${urlResolver?.type}-${urlResolver?.id}`
   const router = useRouter()
   const [backTrans, setBackTransition] = useState<PageTransitionPair | undefined>()
-  const classes = useStyles({ hasBack: !!backTrans })
+  const [oldKey, setOldKey] = useState<string | null>(null)
+  const [scrollOffset, setScrollOffset] = useState<ScrollOffset>([0, 0])
+  const styleProps: StyleProps = {
+    isBackTrans: Boolean(backTrans),
+    scrollOffset,
+  }
+  const classes = useStyles(styleProps)
 
+  // todo(paales): better handling of scroll restauration
   // Detect if we're animating back so we can do a reverse animation
   const onTransComplete = () => backTrans && setBackTransition(undefined)
+
   useEffect(() => {
     router.beforePopState(() => {
       setBackTransition(pageTrans)
       return true
     })
-  }, [pageTrans, router])
+
+    const offsetScrollPosition = () => {
+      setScrollOffset([window.scrollX, window.scrollY])
+      setOldKey(key)
+    }
+
+    router.events.on('beforeHistoryChange', offsetScrollPosition)
+    return () => {
+      router.events.off('beforeHistoryChange', offsetScrollPosition)
+    }
+  }, [key, pageTrans, router])
 
   // todo(paales) implement a skeleton loader
   if (!urlResolver || !urlResolver.id) return <Error statusCode={404}>{error}</Error>
@@ -75,10 +105,8 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
       </Head>
       <CssBaseline />
       <PageLoadIndicator />
-
       <Header menu={menu} urlResolver={urlResolver} className={classes.header} />
 
-      {/* <AnimateSharedLayout transition={{ duration: entryTime }}> */}
       <AnimatePresence
         initial={false}
         custom={backTrans ? backTrans.foreground : pageTrans?.background}
@@ -86,16 +114,12 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
       >
         <motion.div
           key={`${urlResolver.type}-${urlResolver.id}`}
-          variants={addExitTransHandler(backTrans ? backTrans.background : pageTrans?.foreground)}
-          initial='initial'
-          animate='enter'
-          exit='exit'
+          {...motionProps(backTrans ? backTrans.background : pageTrans?.foreground)}
           className={classes.animationDiv}
         >
-          {children}
+          <div className={clsx({ [classes.offsetDiv]: key === oldKey })}>{children}</div>
         </motion.div>
       </AnimatePresence>
-      {/* </AnimateSharedLayout> */}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )
