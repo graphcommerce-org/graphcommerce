@@ -50,7 +50,7 @@
     "clone-deep": "^4.0.1",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "framer-motion": "^2.0.0-beta.77",
+    "framer-motion": "^2.0.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.10.4",
     "intl": "^1.2.5",
@@ -76,8 +76,8 @@
     "use-resize-observer": "^6.1.0"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.10.4",
-    "@babel/core": "^7.10.4",
+    "@babel/compat-data": "^7.10.5",
+    "@babel/core": "^7.10.5",
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
     "@graphql-codegen/cli": "^1.17.0",
