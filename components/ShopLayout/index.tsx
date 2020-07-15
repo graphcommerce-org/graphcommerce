@@ -65,7 +65,10 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
 
   // todo(paales): better handling of scroll restauration
   // Detect if we're animating back so we can do a reverse animation
-  const onTransComplete = () => backTrans && setBackTransition(undefined)
+  const onTransComplete = () => {
+    if (backTrans) setBackTransition(undefined)
+    if (scrollOffset[0] || scrollOffset[1]) setScrollOffset([0, 0])
+  }
 
   useEffect(() => {
     router.beforePopState(() => {

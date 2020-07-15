@@ -9,18 +9,34 @@ export type PageTransitionPair = {
 }
 
 // const transition: Transition = { type: 'tween', duration: 20 }
-const transition: Transition = { type: 'spring', damping: 20, stiffness: 300 }
+const transition: Transition = { type: 'tween' }
 
 export const overlay: PageTransitionPair = {
   background: {
     initial: { scale: 0.95, opacity: 0 },
-    animate: { scale: 1, opacity: 1, transition },
-    exit: { scale: 0.95, opacity: 0, transition },
+    animate: {
+      scale: 1,
+      opacity: 1,
+      transition: { type: 'tween', duration: exitTime, ease: 'easeOut' },
+    },
+    exit: {
+      scale: 0.95,
+      opacity: 0,
+      transition: { type: 'tween', duration: entryTime, ease: 'easeIn' },
+    },
   },
   foreground: {
     initial: { y: '100%', opacity: 0 },
-    animate: { y: 0, opacity: 1, transition },
-    exit: { y: '100%', opacity: 0, transition },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: { type: 'tween', duration: entryTime, ease: 'easeOut' },
+    },
+    exit: {
+      y: '100%',
+      opacity: 0,
+      transition: { type: 'tween', duration: exitTime, ease: 'easeIn' },
+    },
   },
 }
 
