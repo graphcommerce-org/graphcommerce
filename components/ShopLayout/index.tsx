@@ -24,10 +24,6 @@ type StyleProps = {
 
 const useStyles = makeStyles(
   {
-    header: {
-      zIndex: 1000,
-      position: 'relative',
-    },
     animationDiv: ({ isBackTrans }: StyleProps) => ({
       position: 'absolute',
       top: 0,
@@ -111,7 +107,7 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
       </Head>
       <CssBaseline />
       <PageLoadIndicator />
-      <Header menu={menu} urlResolver={urlResolver} className={classes.header} />
+      <Header menu={menu} urlResolver={urlResolver} />
 
       <AnimatePresence
         initial={false}

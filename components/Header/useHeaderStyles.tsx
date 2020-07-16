@@ -3,7 +3,7 @@ import { Theme } from '@material-ui/core'
 import { vpCalc } from 'components/Theme'
 
 export const useHeaderStyles = makeStyles(
-  ({ gridSpacing }: Theme) => ({
+  ({ gridSpacing, zIndex }: Theme) => ({
     navigation: {
       position: 'fixed',
       top: 0,
@@ -15,6 +15,7 @@ export const useHeaderStyles = makeStyles(
       gridTemplateRows: `auto`,
       justifyItems: 'center',
       width: '100%',
+      zIndex: zIndex.appBar,
       // 2xGridspacing, Logo Height, Logo Margin
       marginBottom: `calc(${gridSpacing.row} * -2 + ${vpCalc(46, 72)} * -1 - 3px)`,
     },
