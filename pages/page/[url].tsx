@@ -45,6 +45,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
+      url: ctx.params.url,
       ...(await urlResolve),
       ...(await navigationProps),
       ...(await cmsPageProps),

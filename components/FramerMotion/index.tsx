@@ -8,9 +8,6 @@ export type PageTransitionPair = {
   foreground: MotionProps
 }
 
-// const transition: Transition = { type: 'tween', duration: 20 }
-const transition: Transition = { type: 'tween' }
-
 export const overlay: PageTransitionPair = {
   background: {
     initial: { scale: 0.95, opacity: 0 },

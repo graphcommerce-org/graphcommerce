@@ -5,6 +5,8 @@ import { vpCalc } from 'components/Theme'
 export const useHeaderStyles = makeStyles(
   ({ gridSpacing }: Theme) => ({
     navigation: {
+      position: 'fixed',
+      top: 0,
       display: 'grid',
       gridTemplateAreas: `
       'menu logo contact'`,

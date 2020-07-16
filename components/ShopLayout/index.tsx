@@ -11,16 +11,15 @@ import { makeStyles } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import { PageTransitionPair, motionProps } from 'components/FramerMotion'
-import clsx from 'clsx'
 import { GetUrlResolveProps } from './getUrlResolveProps'
+import { saveScrollPos, getScrollPos } from './scrollPosStorage'
 
-export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
+export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string; url: string }
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<T, ShopLayoutProps>
 
 type StyleProps = {
   isBackTrans: boolean
-  scrollOffset: ScrollOffset
 }
 
 const useStyles = makeStyles(
@@ -36,14 +35,9 @@ const useStyles = makeStyles(
       right: 0,
       zIndex: isBackTrans ? 0 : 1,
     }),
-    offsetDiv: ({ scrollOffset }: StyleProps) => ({
-      transform: `translate(${scrollOffset[0] ?? 0 * -1}px, ${scrollOffset[1] * -1}px)`,
-    }),
   },
   { name: 'ShopLayout' },
 )
-
-type ScrollOffset = [number, number]
 
 const ShopLayout: PageWithShopLayout['layout'] = ({
   children,
@@ -51,44 +45,54 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
   error,
   urlResolver,
   pageTransition: pageTrans,
+  url,
 }) => {
-  const key = `${urlResolver?.type}-${urlResolver?.id}`
   const router = useRouter()
   const [backTrans, setBackTransition] = useState<PageTransitionPair | undefined>()
-  const [oldKey, setOldKey] = useState<string | null>(null)
-  const [scrollOffset, setScrollOffset] = useState<ScrollOffset>([0, 0])
-  const styleProps: StyleProps = {
-    isBackTrans: Boolean(backTrans),
-    scrollOffset,
-  }
-  const classes = useStyles(styleProps)
+  const [toUrl, setToUrl] = useState<string | null>(null)
+  const [fromUrl, setFromUrl] = useState<string | null>(null)
+  const classes = useStyles({ isBackTrans: Boolean(backTrans) })
 
-  // todo(paales): better handling of scroll restauration
-  // Detect if we're animating back so we can do a reverse animation
   const onTransComplete = () => {
     if (backTrans) setBackTransition(undefined)
-    if (scrollOffset[0] || scrollOffset[1]) setScrollOffset([0, 0])
+    const scroll = getScrollPos(url)
+    window.scrollTo(scroll.x, scroll.y)
+    setToUrl(null)
+    setFromUrl(null)
   }
 
   useEffect(() => {
+    window.history.scrollRestoration = 'manual'
+
     router.beforePopState(() => {
       setBackTransition(pageTrans)
       return true
     })
 
-    const offsetScrollPosition = () => {
-      setScrollOffset([window.scrollX, window.scrollY])
-      setOldKey(key)
+    const offsetScrollPosition = (newToUrl: string) => {
+      setToUrl(newToUrl)
+      setFromUrl(url)
+      saveScrollPos(url)
+      window.scrollTo(0, 0)
     }
 
     router.events.on('beforeHistoryChange', offsetScrollPosition)
     return () => {
       router.events.off('beforeHistoryChange', offsetScrollPosition)
     }
-  }, [key, pageTrans, router])
+  }, [url, pageTrans, router])
 
   // todo(paales) implement a skeleton loader
   if (!urlResolver || !urlResolver.id) return <Error statusCode={404}>{error}</Error>
+
+  let transform: string | undefined
+  if (fromUrl && url === fromUrl) {
+    transform = `translate(${window.scrollX * -1}px, ${window.scrollY * -1}px)`
+  }
+  if (toUrl && url === toUrl) {
+    const scrollPos = getScrollPos(toUrl)
+    transform = `translate(${scrollPos.x * -1}px, ${scrollPos.y * -1}px)`
+  }
 
   return (
     <ThemedProvider>
@@ -115,11 +119,11 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
         onExitComplete={onTransComplete}
       >
         <motion.div
-          key={`${urlResolver.type}-${urlResolver.id}`}
+          key={url}
           {...motionProps(backTrans ? backTrans.background : pageTrans?.foreground)}
           className={classes.animationDiv}
         >
-          <div className={clsx({ [classes.offsetDiv]: key === oldKey })}>{children}</div>
+          <div style={{ transform }}>{children}</div>
         </motion.div>
       </AnimatePresence>
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />

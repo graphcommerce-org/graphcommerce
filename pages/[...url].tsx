@@ -115,6 +115,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
+      url: `/${ctx.params.url.join('/')}`,
       ...(await urlResolve),
       ...(await navigationProps),
       ...(await categoryPageProps),

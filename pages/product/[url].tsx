@@ -23,12 +23,68 @@ const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   return (
     <div style={{ height: 400, backgroundColor: 'red' }}>
       <Container className={clsx(classes.container, marginTop)}>
-        <motion.img
-          src={product.small_image.url}
-          alt=''
-          style={{ width: 500 }}
-          layoutId={`product-${product.sku}`}
-        />
+        <img src={product.small_image.url} alt='' style={{ width: 500 }} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        hoi
       </Container>
     </div>
   )
@@ -57,6 +113,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
+      url: `/product/${ctx.params.url}`,
       ...(await urlResolve),
       ...(await navigation),
       ...(await productPage),
