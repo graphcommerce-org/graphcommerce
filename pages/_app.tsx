@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
-import { LayoutPage, assertLayoutPage } from 'components/LayoutPage'
+import { LayoutPage, isLayoutPage } from 'components/LayoutPage'
 import PageTransition, { TransitionPage } from 'components/PageTransition'
 
 export default function App({
@@ -12,14 +12,15 @@ export default function App({
     if (styles) styles.remove()
   })
 
-  // Since we can't actually force a page to honor the LayoutPage contract we runtime check here.
-  assertLayoutPage(Component)
-
-  return (
-    <Component.Layout {...pageProps}>
-      <PageTransition pageTransition={Component.pageTransition}>
-        <Component {...pageProps} />
-      </PageTransition>
-    </Component.Layout>
+  const children = (
+    <PageTransition pageTransition={Component.pageTransition}>
+      <Component {...pageProps} />
+    </PageTransition>
   )
+
+  if (isLayoutPage(Component)) {
+    return <Component.Layout {...pageProps}>{children}</Component.Layout>
+  }
+
+  return children
 }
