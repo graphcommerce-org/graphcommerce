@@ -3,45 +3,22 @@ import Head from 'next/head'
 import { LayoutPage } from 'components/LayoutPage'
 import ThemedProvider, { defaultTheme } from 'components/Theme'
 import PageLoadIndicator from 'components/PageLoadIndicator'
-import Error from 'next/error'
 import Header from 'components/Header'
 import { GetHeaderProps } from 'components/Header/getHeaderProps'
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
-import { makeStyles } from '@material-ui/styles'
 import { CssBaseline } from '@material-ui/core'
-import { entryTime } from 'components/FramerMotion'
+import { SetOptional } from 'type-fest'
+import { TransitionPage } from 'components/PageTransition'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-export type ShopLayoutProps = GetHeaderProps & GetUrlResolveProps & { error?: string }
+export type ShopLayoutProps = SetOptional<GetHeaderProps & GetUrlResolveProps>
 
-export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<T, ShopLayoutProps>
+export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
+  SetOptional<T>,
+  ShopLayoutProps
+> &
+  TransitionPage<SetOptional<T>>
 
-const useStyles = makeStyles(
-  {
-    header: {
-      zIndex: 1000,
-      position: 'relative',
-    },
-    animationDiv: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-    },
-  },
-  { name: 'ShopLayout' },
-)
-
-const ShopLayout: PageWithShopLayout['layout'] = ({
-  children,
-  menu,
-  error,
-  urlResolver,
-  pageTransition,
-}) => {
-  const classes = useStyles()
-  if (!urlResolver || !urlResolver.id) return <Error statusCode={404}>{error}</Error>
-
+const ShopLayout: PageWithShopLayout['Layout'] = ({ children, menu, urlResolver }) => {
   return (
     <ThemedProvider>
       <Head>
@@ -59,28 +36,9 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
       </Head>
       <CssBaseline />
       <PageLoadIndicator />
+      <Header menu={menu} urlResolver={urlResolver} />
 
-      <Header menu={menu} urlResolver={urlResolver} className={classes.header} />
-
-      {/* <AnimateSharedLayout transition={{ duration: entryTime }}> */}
-      <AnimatePresence
-        initial={false}
-        onExitComplete={() => {
-          console.log('reset scroll')
-        }}
-      >
-        <motion.div
-          key={`${urlResolver.type}-${urlResolver.id}`}
-          variants={pageTransition}
-          initial='initial'
-          animate='enter'
-          exit='exit'
-          className={classes.animationDiv}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-      {/* </AnimateSharedLayout> */}
+      {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )

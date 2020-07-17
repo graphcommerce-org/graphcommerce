@@ -45,12 +45,12 @@
     "apollo-link-http": "^1.5.17",
     "apollo-link-retry": "^2.2.16",
     "apollo-link-schema": "^1.2.5",
-    "apollo-server-micro": "^2.15.1",
+    "apollo-server-micro": "^2.16.0",
     "apollo-utilities": "^1.3.3",
     "clone-deep": "^4.0.1",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "framer-motion": "^2.0.0-beta.77",
+    "framer-motion": "^2.1.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.10.4",
     "intl": "^1.2.5",
@@ -76,8 +76,8 @@
     "use-resize-observer": "^6.1.0"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.10.4",
-    "@babel/core": "^7.10.4",
+    "@babel/compat-data": "^7.10.5",
+    "@babel/core": "^7.10.5",
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
     "@graphql-codegen/cli": "^1.17.0",
@@ -116,7 +116,7 @@
     "pretty-quick": "^2.0.1",
     "semantic-release": "^17.1.1",
     "semantic-release-slack-bot": "^1.6.2",
-    "typescript": "^3.9.6",
+    "typescript": "^3.9.7",
     "webpack": "^4.43.0"
   },
   "prettier": {

@@ -1,29 +1,13 @@
 import React from 'react'
-import { NextPage, NextComponentType, NextPageContext } from 'next'
-import { PageTransition } from 'components/FramerMotion'
+import { NextPage } from 'next'
+import { SetRequired } from 'type-fest'
 
-function isLayoutPage<P = Record<string, unknown>, IP = P>(
-  Component: NextPage<P, IP> | LayoutPage<P, IP>,
-): Component is LayoutPage<P, IP> {
-  return (Component as LayoutPage<P, IP>).layout !== undefined
+export function isLayoutPage<P = Record<string, unknown>, IP = P>(
+  Component: NextPage<P, IP> | SetRequired<LayoutPage<P, IP>, 'Layout'>,
+): Component is SetRequired<LayoutPage<P, IP>, 'Layout'> {
+  return (Component as LayoutPage<P, IP>).Layout !== undefined
 }
 
 export type LayoutPage<P = Record<string, unknown>, IP = P> = NextPage<P, IP> & {
-  layout: React.FC<IP & { pageTransition?: PageTransition }>
-  pageTransition?: PageTransition
-}
-
-export function renderLayoutPage(
-  Component: NextComponentType<NextPageContext>,
-  pageProps: Record<string, unknown>,
-): JSX.Element {
-  if (isLayoutPage(Component)) {
-    const LayoutComponent = Component.layout
-    return (
-      <LayoutComponent {...pageProps} pageTransition={Component.pageTransition}>
-        <Component {...pageProps} />
-      </LayoutComponent>
-    )
-  }
-  return <Component {...pageProps} />
+  Layout?: React.FC<IP>
 }

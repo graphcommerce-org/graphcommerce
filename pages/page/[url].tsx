@@ -11,7 +11,10 @@ import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 
 const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeConfig }) => {
   const { marginTop } = useHeaderSpacing()
-  if (!cmsPage) return <NextError statusCode={404} />
+
+  if (!cmsPage || !storeConfig) return <NextError statusCode={503} title='Loading skeleton' />
+
+  if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
 
   return (
     <>
@@ -23,7 +26,7 @@ const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeCon
   )
 }
 
-PageWithLayout.layout = ShopLayout
+PageWithLayout.Layout = ShopLayout
 
 export default PageWithLayout
 
@@ -45,6 +48,7 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
+      url: ctx.params.url,
       ...(await urlResolve),
       ...(await navigationProps),
       ...(await cmsPageProps),

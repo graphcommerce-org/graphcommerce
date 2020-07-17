@@ -7,36 +7,95 @@ import getProductPageProps, { GetProductPageProps } from 'components/ProductPage
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import { slideUpFade } from 'components/FramerMotion'
-import { motion } from 'framer-motion'
+import overlay from 'components/PageTransition/overlay'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
-import { useHeaderStyles } from 'components/Header/useHeaderStyles'
+import NextError from 'next/error'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
-  const {
-    products: {
-      items: [product],
-    },
-  } = props
+  const { products } = props
   const classes = useCategoryPageStyles(props)
   const { marginTop } = useHeaderSpacing()
+
+  if (!products) return <NextError statusCode={503} title='Loading skeleton' />
+
+  const {
+    items: [product],
+  } = products
+
+  if (!product) return <NextError statusCode={404} title='Product not found' />
 
   return (
     <div style={{ height: 400, backgroundColor: 'red' }}>
       <Container className={clsx(classes.container, marginTop)}>
-        <motion.img
-          src={product.small_image.url}
-          alt=''
-          style={{ width: 500 }}
-          layoutId={`product-${product.sku}`}
-        />
+        <img src={product.small_image.url} alt='' style={{ width: 500 }} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        hoi
       </Container>
     </div>
   )
 }
 
-ProductPage.layout = ShopLayout
-ProductPage.pageTransition = slideUpFade
+ProductPage.Layout = ShopLayout
+ProductPage.pageTransition = overlay
 
 export default ProductPage
 

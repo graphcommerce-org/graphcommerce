@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core'
 import Link from 'next/link'
 import { vpCalc } from 'components/Theme'
+import { SetOptional } from 'type-fest'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -64,7 +65,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type HeaderMenuProps = GQLHeaderMenuQuery & GQLResolveUrlQuery
+export type HeaderMenuProps = SetOptional<GQLHeaderMenuQuery & GQLResolveUrlQuery>
 
 export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
   const classes = useStyles()
@@ -104,19 +105,24 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-        {menu[0].children.map((root) => (
-          <Link key={root.id} href='/[...url]' as={`/${root.url_path}`} passHref>
-            <MuiLink color='inherit' underline='none' className={classes.menuLink}>
-              <ListItem
-                button
-                selected={root.id === urlResolver.id && urlResolver.type === 'CATEGORY'}
-                classes={{ root: classes.menuItem }}
-              >
-                <ListItemText classes={{ primary: classes.menuItemText }}>{root.name}</ListItemText>
-              </ListItem>
-            </MuiLink>
-          </Link>
-        ))}
+        {menu &&
+          menu[0].children.map((root) => (
+            <Link key={root.id} href='/[...url]' as={`/${root.url_path}`} passHref>
+              <MuiLink color='inherit' underline='none' className={classes.menuLink}>
+                <ListItem
+                  button
+                  selected={
+                    urlResolver && root.id === urlResolver.id && urlResolver.type === 'CATEGORY'
+                  }
+                  classes={{ root: classes.menuItem }}
+                >
+                  <ListItemText classes={{ primary: classes.menuItemText }}>
+                    {root.name}
+                  </ListItemText>
+                </ListItem>
+              </MuiLink>
+            </Link>
+          ))}
       </Menu>
     </>
   )

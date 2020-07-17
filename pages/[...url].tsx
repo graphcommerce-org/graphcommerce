@@ -23,16 +23,23 @@ import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageC
 import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
 import ProductListItemConfigurable from 'components/ProductTypeConfigurable/ProductListItemConfigurable'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
-import { slideUpFade } from 'components/FramerMotion'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
-  const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
   const classes = useCategoryPageStyles(props)
   const { marginTop } = useHeaderSpacing()
+  const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
 
-  // @todo implement skeleton loading
-  if (!categoryList || !categoryList[0]) return <NextError statusCode={404}>404</NextError>
+  if (
+    !categoryList ||
+    !categoryList[0] ||
+    !products ||
+    !params ||
+    !storeConfig ||
+    !filters ||
+    !filterTypeMap
+  )
+    return <NextError statusCode={503} title='Loading skeleton' />
 
   return (
     <>
@@ -84,8 +91,7 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
     </>
   )
 }
-CategoryPage.layout = ShopLayout
-CategoryPage.pageTransition = slideUpFade
+CategoryPage.Layout = ShopLayout
 
 export default CategoryPage
 

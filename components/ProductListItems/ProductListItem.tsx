@@ -76,7 +76,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     <div className={classes.item}>
       <Link href='/product/[url]' as={`/product/${url_key}`} passHref>
         <MuiLink underline='none'>
-          <motion.div className={classes.imageContainer} layoutId={`product-${sku}`}>
+          <div className={classes.imageContainer}>
             {small_image ? (
               <PictureResponsive
                 alt={small_image.label}
@@ -88,7 +88,7 @@ export default function ProductListItem(props: ProductListItemProps) {
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
-          </motion.div>
+          </div>
 
           <Typography component='h2' className={classes.title}>
             {name}
