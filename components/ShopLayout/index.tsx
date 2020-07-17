@@ -60,6 +60,10 @@ const ShopLayout: PageWithShopLayout['layout'] = ({
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
 
+    window.addEventListener('beforeunload', () => {
+      window.history.scrollRestoration = 'auto'
+    })
+
     router.beforePopState(() => {
       setBackTransition(pageTrans)
       return true
