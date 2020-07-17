@@ -1,14 +1,6 @@
-import { TargetAndTransition, MotionProps, Transition } from 'framer-motion'
+import { PageTransitionPair, exitTime, entryTime } from './index'
 
-export const entryTime = 0.25
-export const exitTime = 0.2
-
-export type PageTransitionPair = {
-  background: MotionProps
-  foreground: MotionProps
-}
-
-export const overlay: PageTransitionPair = {
+const overlay: PageTransitionPair = {
   background: {
     initial: { scale: 0.95, opacity: 0 },
     animate: {
@@ -37,11 +29,4 @@ export const overlay: PageTransitionPair = {
   },
 }
 
-export const motionProps = (toPage: MotionProps | undefined): MotionProps => {
-  return {
-    ...(toPage || {}),
-    exit: (fromPage: MotionProps | undefined): TargetAndTransition => {
-      return (fromPage?.exit as TargetAndTransition) || {}
-    },
-  }
-}
+export default overlay

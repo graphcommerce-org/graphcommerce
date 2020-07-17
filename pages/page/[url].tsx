@@ -23,7 +23,7 @@ const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeCon
   )
 }
 
-PageWithLayout.layout = ShopLayout
+PageWithLayout.Layout = ShopLayout
 
 export default PageWithLayout
 

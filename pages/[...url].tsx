@@ -26,12 +26,20 @@ import ProductListItem from 'components/ProductListItems/ProductListItem'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
-  const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
   const classes = useCategoryPageStyles(props)
   const { marginTop } = useHeaderSpacing()
+  const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
 
-  // @todo implement skeleton loading
-  if (!categoryList || !categoryList[0]) return <NextError statusCode={404}>404</NextError>
+  if (
+    !categoryList ||
+    !categoryList[0] ||
+    !products ||
+    !params ||
+    !storeConfig ||
+    !filters ||
+    !filterTypeMap
+  )
+    return <NextError statusCode={503} title='Loading skeleton' />
 
   return (
     <>
@@ -83,7 +91,7 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
     </>
   )
 }
-CategoryPage.layout = ShopLayout
+CategoryPage.Layout = ShopLayout
 
 export default CategoryPage
 
@@ -115,7 +123,6 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      url: `/${ctx.params.url.join('/')}`,
       ...(await urlResolve),
       ...(await navigationProps),
       ...(await categoryPageProps),

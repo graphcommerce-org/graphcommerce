@@ -7,18 +7,22 @@ import getProductPageProps, { GetProductPageProps } from 'components/ProductPage
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import { overlay } from 'components/FramerMotion'
-import { motion } from 'framer-motion'
+import overlay from 'components/PageTransition/overlay'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
+import NextError from 'next/error'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
-  const {
-    products: {
-      items: [product],
-    },
-  } = props
+  const { products } = props
   const classes = useCategoryPageStyles(props)
   const { marginTop } = useHeaderSpacing()
+
+  if (!products) return <NextError statusCode={503} title='Loading skeleton' />
+
+  const {
+    items: [product],
+  } = products
+
+  if (!product) return <NextError statusCode={404} title='Product not found' />
 
   return (
     <div style={{ height: 400, backgroundColor: 'red' }}>
@@ -90,7 +94,7 @@ const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   )
 }
 
-ProductPage.layout = ShopLayout
+ProductPage.Layout = ShopLayout
 ProductPage.pageTransition = overlay
 
 export default ProductPage
@@ -113,7 +117,6 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      url: `/product/${ctx.params.url}`,
       ...(await urlResolve),
       ...(await navigation),
       ...(await productPage),
