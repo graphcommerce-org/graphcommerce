@@ -1,12 +1,17 @@
 import apolloClient from 'node/apolloClient'
 import { HeaderMenuDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
+import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 
 export default async function getHeaderProps() {
-  const client = await apolloClient()
-  const menu = client.query<GQLHeaderMenuQuery, GQLHeaderMenuQueryVariables>({
+  const client = apolloClient()
+  const config = getStoreConfig()
+
+  const menu = (await client).query<GQLHeaderMenuQuery, GQLHeaderMenuQueryVariables>({
     query: HeaderMenuDocument,
-    variables: { rootCategory: '2' },
+    variables: {
+      rootCategory: String((await config).storeConfig.root_category_id),
+    },
   })
 
   return (await menu).data
