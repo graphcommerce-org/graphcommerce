@@ -1,0 +1,23 @@
+query StoreConfig {
+  storeConfig {
+    base_url
+    secure_base_url
+    cms_home_page
+    cms_no_route
+
+    base_currency_code
+    default_display_currency_code
+
+    catalog_default_sort_by
+    title_suffix
+    title_prefix
+    title_separator
+    default_title
+
+    category_url_suffix
+    product_url_suffix
+
+    weight_unit
+    root_category_id
+  }
+}

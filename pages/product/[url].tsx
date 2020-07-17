@@ -10,6 +10,7 @@ import clsx from 'clsx'
 import overlay from 'components/PageTransition/overlay'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 import NextError from 'next/error'
+import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   const { products } = props
@@ -101,7 +102,7 @@ export default ProductPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { url: 'isadora-skirt' } }],
+    paths: [{ params: { url: 'ninebot-by-segway-kickscooter-es1' } }],
     fallback: true,
   }
 }
@@ -111,7 +112,11 @@ export const getStaticProps: GetStaticProps<
   { url: string }
 > = async (ctx) => {
   if (!ctx.params?.url) throw Error('No params')
-  const urlResolve = getUrlResolveProps({ urlKey: `${ctx.params.url}.html` })
+
+  const config = getStoreConfig()
+  const urlResolve = getUrlResolveProps({
+    urlKey: ctx.params.url + ((await config).storeConfig.product_url_suffix ?? ''),
+  })
   const navigation = getHeaderProps()
   const productPage = getProductPageProps({ urlKey: ctx.params.url })
 
