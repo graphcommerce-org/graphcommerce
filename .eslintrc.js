@@ -33,7 +33,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.js', 'next.config.js', 'shop/pwa-buildpack/magento-nextjs.js'],
+        devDependencies: ['**/*.test.js', 'next.config.js'],
       },
     ],
     'no-param-reassign': ['error', { props: false }],
@@ -73,9 +73,9 @@ module.exports = {
      * If we don't allow this we get a bunch of errors all over the place.
      */
     '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-unsafe-call': 'off',
-    '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
+    // '@typescript-eslint/no-unsafe-call': 'off',
+    // '@typescript-eslint/no-unsafe-member-access': 'off',
+    // '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/naming-convention': 'off',
