@@ -3,11 +3,13 @@ require:
   - ts-node/register/transpile-only
   - tsconfig-paths/register
   - dotenv/config
-schema: ./node/meshSchema.ts
+schema:
+  - ./node/meshSchema.ts
+  - '**/*.graphqls'
 documents:
   - '**/*.graphql'
-  - '!generated/*.graphql'
   - '!node_modules/**'
+  - '!generated/*.graphql'
 generates:
   generated/fragments.json:
     plugins:
@@ -16,6 +18,7 @@ generates:
       afterOneFileWrite:
         - prettier --write
     config:
+      apolloClientVersion: 3
   generated/schema.graphql:
     plugins:
       - schema-ast
@@ -48,6 +51,9 @@ generates:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
       - typescript-react-apollo
     config:
+      apolloClientVersion: 3
+      apolloReactHooksImportFrom: '@apollo/client'
+      apolloReactCommonImportFrom: '@apollo/client'
       typesPrefix: GQL
       withHOC: false
       withHooks: true

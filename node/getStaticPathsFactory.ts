@@ -14,7 +14,7 @@ const getStaticPathsFactory: (baseUrl: string, locale: GQLLocale) => GetStaticPa
     variables: { startsWith: `${baseUrl}`, locale },
   })
 
-  const paths = queryResult.data.pages.map((page) => page.url)
+  const paths = queryResult.data?.pages.map((page) => page.url) ?? []
   return {
     paths,
     fallback: false,

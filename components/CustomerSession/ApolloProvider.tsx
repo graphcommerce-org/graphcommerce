@@ -1,22 +1,17 @@
 import React from 'react'
-import { ApolloClient } from 'apollo-client'
+import fragments from 'generated/fragments.json'
 import {
-  InMemoryCache,
+  ApolloProvider as ApolloProviderBase,
+  ApolloClient,
+  ApolloLink,
+  HttpLink,
   NormalizedCacheObject,
-  IntrospectionFragmentMatcher,
-  IdGetterObj,
-} from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
-import introspectionQueryResultData from 'generated/fragments.json'
-import { ApolloProvider as ApolloProviderBase } from '@apollo/react-hooks'
-import { setContext } from 'apollo-link-context'
-import { ApolloLink } from 'apollo-link'
-import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
-import { RetryLink } from 'apollo-link-retry'
+  InMemoryCache,
+} from '@apollo/client'
+import { RetryLink } from '@apollo/client/link/retry'
+import { setContext } from '@apollo/client/link/context'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
-
-export const dataIdFromObject = (value: IdGetterObj) => value.id ?? ''
 
 function createApolloClient(
   initialState: NormalizedCacheObject = {},
@@ -31,8 +26,9 @@ function createApolloClient(
     }
   })
 
+  // todo: implement queue link
   const link = ApolloLink.from([
-    new MutationQueueLink() as ApolloLink,
+    // new MutationQueueLink() as ApolloLink,
     new RetryLink(),
     authLink,
     new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
@@ -41,8 +37,7 @@ function createApolloClient(
   return new ApolloClient({
     link,
     cache: new InMemoryCache({
-      fragmentMatcher: new IntrospectionFragmentMatcher({ introspectionQueryResultData }),
-      dataIdFromObject,
+      possibleTypes: fragments.possibleTypes,
     }).restore(initialState),
   })
 }

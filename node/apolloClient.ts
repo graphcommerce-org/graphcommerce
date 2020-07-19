@@ -1,10 +1,9 @@
 /* eslint-disable no-plusplus */
-import ApolloClient from 'apollo-client'
-import { InMemoryCache, IntrospectionFragmentMatcher, IdGetterObj } from 'apollo-cache-inmemory'
-import introspectionQueryResultData from 'generated/fragments.json'
-import { SchemaLink } from 'apollo-link-schema'
+import fragments from 'generated/fragments.json'
+import { SchemaLink } from '@apollo/client/link/schema'
 import meshSchema from 'node/meshSchema'
-import { onError } from 'apollo-link-error'
+import { onError } from '@apollo/client/link/error'
+import { ApolloClient, InMemoryCache, IdGetterObj } from '@apollo/client'
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -22,9 +21,7 @@ export default async function apolloClient() {
     ssrMode: true,
     link: errorLink.concat(link),
     cache: new InMemoryCache({
-      fragmentMatcher: new IntrospectionFragmentMatcher({ introspectionQueryResultData }),
-      dataIdFromObject: (value: IdGetterObj & { locale?: string }) =>
-        (value.id ?? '') + (value.locale ?? ''),
+      possibleTypes: fragments.possibleTypes,
     }),
   })
 }

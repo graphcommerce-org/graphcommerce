@@ -3,7 +3,7 @@ import { Chip, Button } from '@material-ui/core'
 import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import cloneDeep from 'clone-deep'
-import ApolloSession from 'components/ApolloSession'
+import CustomerSession from 'components/CustomerSession'
 import ProductListItem from '../ProductListItems/ProductListItem'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
@@ -127,7 +127,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
           </div>
         )
       })}
-      <ApolloSession
+      <CustomerSession
         loader={() => import('./AddConfigurableProductToCart')}
         skeleton={(ref) => (
           <Button color='primary' variant='contained' ref={ref} disabled>

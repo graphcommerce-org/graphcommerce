@@ -1,5 +1,5 @@
 import apolloClient from 'node/apolloClient'
-import { gql } from 'apollo-server-micro'
+import { gql } from '@apollo/client'
 import { AllFilterInputTypes, FilterTypeMap } from '../ProductListItems/filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
@@ -39,7 +39,8 @@ export default async function getFilterTypeMap(): Promise<FilterTypeMap> {
   })
 
   const typeMap: { [index: string]: typeof allFilterInputTypes[0] } = {}
-  ;(await filterInputTypes).data.__type.inputFields.forEach(({ name, type }) => {
+
+  ;(await filterInputTypes).data?.__type.inputFields.forEach(({ name, type }) => {
     if (!allFilterInputTypes.includes(type.name))
       throw new Error(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
 

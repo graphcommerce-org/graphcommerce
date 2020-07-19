@@ -81,9 +81,15 @@ const getCategoryPageProps = async ({
     },
   })
 
+  const categoryData = (await category).data
+  const productsData = (await products).data
+
+  if (!categoryData) throw new Error('Could not fetch category')
+  if (!productsData) throw new Error('Could not fetch category products')
+
   return {
-    ...(await category).data,
-    ...(await products).data,
+    ...categoryData,
+    ...productsData,
     params: await params,
     filterTypeMap: await filterTypeMap,
   }

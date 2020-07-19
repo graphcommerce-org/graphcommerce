@@ -1,23 +1,24 @@
-import { useState, useEffect } from 'react'
-import { useApolloClient } from '@apollo/react-hooks'
 import useIsLoggedIn from 'components/Customer/useIsLoggedIn'
 import { GetCustomerCartDocument, CreateEmptyCartDocument } from 'generated/apollo'
+import { useApolloClient } from '@apollo/client'
+import { useState } from 'react'
 
-function generateId(len = 32) {
-  const arr = new Uint8Array(len / 2)
-  window.crypto.getRandomValues(arr)
-  return Array.from(arr, (dec) => (dec < 10 ? `0${String(dec)}` : dec.toString(16))).join('')
+function generateId() {
+  return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    // eslint-disable-next-line no-bitwise
+    const r = (Math.random() * 16) | 0
+    // eslint-disable-next-line no-bitwise
+    const v = c === 'x' ? r : (r & 0x3) | 0x8
+    return v.toString(16)
+  })
 }
 
 export default function useCartId() {
-  const [cartId, setCartId] = useState<string | null>(null)
+  const [cartId, setCartId] = useState<string | null>(
+    typeof window !== 'undefined' ? window.localStorage.getItem('cart_id') : null,
+  )
   const client = useApolloClient()
   const isLoggedIn = useIsLoggedIn()
-
-  useEffect(() => {
-    const newCartId = window.localStorage.getItem('cart_id')
-    if (newCartId) setCartId(newCartId)
-  }, [])
 
   async function requestCartId(): Promise<string> {
     if (cartId) {
@@ -30,7 +31,7 @@ export default function useCartId() {
         GQLGetCustomerCartQueryVariables
       >({ query: GetCustomerCartDocument })
 
-      if (customerCartQuery.data.customerCart.id) {
+      if (customerCartQuery.data?.customerCart.id) {
         window.localStorage.setItem('cart_id', customerCartQuery.data.customerCart.id)
         setCartId(customerCartQuery.data.customerCart.id)
         return customerCartQuery.data.customerCart.id

@@ -34,10 +34,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       GQLGetStaticPathsQueryVariables
     >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: 'en' } })
 
-    let pagesEn = resultEn.pages
+    let pagesEn = resultEn?.pages
 
     // Add NL Pages with hreflang alternative
-    resultNl.pages.forEach((page) => {
+    resultNl?.pages.forEach((page) => {
       const item: SitemapItemLoose = { url: page.url, links: [] }
 
       page.localizations.forEach((localization) => {
@@ -47,7 +47,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             lang: localization.locale,
           })
 
-          pagesEn = pagesEn.filter((pageEn) => pageEn.url !== localization.url)
+          pagesEn = pagesEn?.filter((pageEn) => pageEn.url !== localization.url)
         }
       })
 
@@ -55,7 +55,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     // Add other EN pages
-    pagesEn.forEach((page) => sm.write({ url: page.url }))
+    pagesEn?.forEach((page) => sm.write({ url: page.url }))
 
     sm.end()
 

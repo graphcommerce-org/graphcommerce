@@ -9,7 +9,10 @@ const getProductPageProps = async (variables: GQLProductPageQueryVariables) => {
     query: ProductPageDocument,
     variables,
   })
-  return (await productPage).data
+
+  const productData = (await productPage).data
+  if (!productData) throw Error('No product')
+  return productData
 }
 
 export default getProductPageProps

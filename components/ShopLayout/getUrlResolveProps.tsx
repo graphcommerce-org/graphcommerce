@@ -8,7 +8,7 @@ export default async function getUrlResolveProps(variables: GQLResolveUrlQueryVa
     GQLResolveUrlQueryVariables
   >({ query: ResolveUrlDocument, variables })
 
-  if (!data.urlResolver?.id) throw Error('Page not found')
+  if (!data?.urlResolver?.id) throw Error('Page not found')
   return data
 }
 

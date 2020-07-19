@@ -10,9 +10,11 @@ const getCmsPageProps = async (urlResolve: ReturnType<typeof getUrlResolveProps>
     query: CmsPageDocument,
     variables: { id: (await urlResolve).urlResolver.id },
   })
-  return {
-    ...(await cmsPage).data,
-  }
+
+  const cmsPageData = (await cmsPage).data
+  if (!cmsPageData) throw Error('Could not fetch category')
+
+  return cmsPageData
 }
 
 export default getCmsPageProps

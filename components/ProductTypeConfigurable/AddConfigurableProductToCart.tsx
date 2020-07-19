@@ -12,7 +12,7 @@ type AddConfigurableProductToCartProps = SetOptional<
 export default function AddConfigurableProductToCart(props: AddConfigurableProductToCartProps) {
   const { parentSku, variantSku, customizableOptions, quantity } = props
 
-  const { requestCartId: requestCart } = useCartId()
+  const { requestCartId } = useCartId()
   const [add] = useAddConfigurableProductToCartMutation()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -21,7 +21,7 @@ export default function AddConfigurableProductToCart(props: AddConfigurableProdu
     setLoading(true)
     await add({
       variables: {
-        cartId: await requestCart(),
+        cartId: await requestCartId(),
         parentSku,
         variantSku,
         customizableOptions,
