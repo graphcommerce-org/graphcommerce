@@ -13,6 +13,12 @@ jobs:
           ref: master
       - run: yarn --frozen-lockfile --cwd ./new
       - run: DEBUG=1 yarn --cwd ./new build
+        env:
+          GRAPHCMS: ${{ secrets.GRAPHCMS }}
+          GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
+          MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
+          IMAGE_OPTIMIZING_ORIGIN: 'backend'
+          CHECKOUT_BRAINTREE_TOKEN: ''
         # if: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
       - run: yarn --cwd ./new build > new.txt
         env:
@@ -23,7 +29,12 @@ jobs:
           CHECKOUT_BRAINTREE_TOKEN: ''
       - run: yarn --frozen-lockfile --cwd ./old
       - run: DEBUG=1 yarn --cwd ./old build
-        # if: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
+        env:
+          GRAPHCMS: ${{ secrets.GRAPHCMS }}
+          GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
+          MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
+          IMAGE_OPTIMIZING_ORIGIN: 'backend'
+          CHECKOUT_BRAINTREE_TOKEN: ''
       - run: yarn --cwd ./old build > old.txt
         env:
           GRAPHCMS: ${{ secrets.GRAPHCMS }}
