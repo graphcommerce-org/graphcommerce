@@ -10,6 +10,9 @@ documents:
   - '**/*.graphql'
   - '!node_modules/**'
   - '!generated/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
 generates:
   generated/fragments.json:
     plugins:
@@ -25,9 +28,6 @@ generates:
     config:
       includeDirectives: true
       commentDescriptions: false
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
   generated/graphql.d.ts:
     plugins:
       - typescript
@@ -43,9 +43,6 @@ generates:
         inputValue: false
         object: true
       maybeValue: 'T'
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
   generated/apollo.ts:
     plugins:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
@@ -58,7 +55,15 @@ generates:
       withHOC: false
       withHooks: true
       withComponent: false
-    hooks:
-      afterOneFileWrite:
-        # - eslint --fix
-        - prettier --write
+  # generated/page.tsx:
+  #   plugins:
+  #     - apollo-next-ssr
+  #   # preset: import-types
+  #   # presetConfig:
+  #   #   typesPath: ./graphql
+  #   config:
+  #     documentMode: external
+  #     importDocumentNodeExternallyFrom: ./apollo.ts
+  #     typesPrefix: GQL
+  #     reactApolloVersion: 3
+  #     # apolloCacheImportFrom: '@apollo/client'

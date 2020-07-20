@@ -12,7 +12,8 @@ jobs:
           path: old
           ref: master
       - run: yarn --frozen-lockfile --cwd ./new
-      - run: yarn --cwd ./new build
+      - run: DEBUG=1 yarn --cwd ./new build
+        if: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
       - run: yarn --cwd ./new build > new.txt
         env:
           GRAPHCMS: ${{ secrets.GRAPHCMS }}
@@ -21,6 +22,8 @@ jobs:
           IMAGE_OPTIMIZING_ORIGIN: 'backend'
           CHECKOUT_BRAINTREE_TOKEN: ''
       - run: yarn --frozen-lockfile --cwd ./old
+      - run: DEBUG=1 yarn --cwd ./old build
+        if: ${{ secrets.ACTIONS_RUNNER_DEBUG }}
       - run: yarn --cwd ./old build > old.txt
         env:
           GRAPHCMS: ${{ secrets.GRAPHCMS }}

@@ -1393,6 +1393,14 @@
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
+"@graphql-codegen/add@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-1.17.0.tgz#7b91f18b9ec1a7afb15b2fc5e26fd2d420fd2655"
+  integrity sha512-vxZfgUKNBPwd/TrZqSvo7t5Lq9bXtCInaj+MOly4E/omHBNRJ6Yf/EvDqN/OYvYnk6JApp5M/OFGAg9v5bapig==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.17.0"
+    tslib "~2.0.0"
+
 "@graphql-codegen/cli@^1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.17.0.tgz#ab1c61928060a3ed3835b9d82e7e505add221a68"
@@ -1470,6 +1478,16 @@
     "@graphql-codegen/plugin-helpers" "1.17.0"
     tslib "~2.0.0"
 
+"@graphql-codegen/import-types-preset@^1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/import-types-preset/-/import-types-preset-1.17.0.tgz#7370695f3cdd9fb5fc2c6de2a2693bfee2b0528c"
+  integrity sha512-uHlbgehmJ1zxGy2Lt1J4dVTqDWJXgJU9uBR3Gy4OzI+DRnv/jKovfuj3PIBPa9+9pY75uWx7eMvZWP9znUuUtw==
+  dependencies:
+    "@graphql-codegen/add" "1.17.0"
+    "@graphql-codegen/plugin-helpers" "1.17.0"
+    "@graphql-codegen/visitor-plugin-common" "1.17.0"
+    tslib "~2.0.0"
+
 "@graphql-codegen/introspection@1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/introspection/-/introspection-1.17.0.tgz#4ae2de758338674cd080faa21c06154dfc4bae42"
@@ -1510,7 +1528,7 @@
     tslib "~2.0.0"
     upper-case "2.0.1"
 
-"@graphql-codegen/plugin-helpers@1.17.0":
+"@graphql-codegen/plugin-helpers@1.17.0", "@graphql-codegen/plugin-helpers@^1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.17.0.tgz#8c244fdcb2d14d5a50b5d962566845e262ac9c4b"
   integrity sha512-vEZSXklrJYxPrXaFCdFP1bnv999kKdi+StnDjLGOpfXW1/JxsmN1q64DZJCZBXqV0I54dCrgcYWXPH0Ysdwb0w==
@@ -1661,7 +1679,7 @@
     pascal-case "3.1.1"
     tslib "~2.0.0"
 
-"@graphql-codegen/visitor-plugin-common@1.17.0":
+"@graphql-codegen/visitor-plugin-common@1.17.0", "@graphql-codegen/visitor-plugin-common@^1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.17.0.tgz#a6237c47d45318c8a7a79ed43556b0e282e95f96"
   integrity sha512-uX2Smv89aaD3P5BpVbuuwfPJMKRfgZam7kV9iDhHAb4XsrzEsG70a+cbPWPzd8Q11fvZAKn98L1XatkX8BRSxg==
@@ -7464,6 +7482,15 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+
+graphql-codegen-apollo-next-ssr@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/graphql-codegen-apollo-next-ssr/-/graphql-codegen-apollo-next-ssr-0.0.10.tgz#27e9ceca635f2d1866300e3b5ccfb57097aaea81"
+  integrity sha512-uA1bTYMKQt2xPywkhaDF3mdH5Hh74MRs8cJggfGEbwtaJj6/O6WUloXE4y3cgWZc2Knru6/jlqLe/nsdRdBbMA==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^1.17.0"
+    "@graphql-codegen/visitor-plugin-common" "^1.17.0"
+    auto-bind "~4.0.0"
 
 graphql-config@^3.0.2:
   version "3.0.3"
