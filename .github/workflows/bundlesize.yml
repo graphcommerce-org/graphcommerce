@@ -12,6 +12,7 @@ jobs:
           path: old
           ref: master
       - run: yarn --frozen-lockfile --cwd ./new
+      - run: yarn --cwd ./new build
       - run: yarn --cwd ./new build > new.txt
         env:
           GRAPHCMS: ${{ secrets.GRAPHCMS }}
