@@ -1,0 +1,3 @@
+fragment ProductListItemVirtual on VirtualProduct {
+  ...ProductListItem
+}

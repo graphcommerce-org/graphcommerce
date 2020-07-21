@@ -1,8 +1,8 @@
 mutation AddVirtualProductsToCart(
   $cartId: String!
   $sku: String!
-  $quantity: Float!
-  $customizableOptions: [CustomizableOptionInput]
+  $quantity: Float = 1
+  $customizableOptions: [CustomizableOptionInput] = []
 ) {
   addVirtualProductsToCart(
     input: {

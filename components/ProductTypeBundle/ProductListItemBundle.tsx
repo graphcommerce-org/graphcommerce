@@ -1,12 +1,12 @@
 import React from 'react'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
-import AddSimpleProductToCart from './AddSimpleProductToCart'
+import AddBundleProductToCart from './AddBundleProductToCart'
 
-export default function ProductListItemSimple(props: GQLProductListItemSimpleFragment) {
+export default function ProductListItemBundle(props: GQLProductListItemSimpleFragment) {
   const { sku } = props
   return (
     <ProductListItem {...props}>
-      <AddSimpleProductToCart sku={sku} />
+      <AddBundleProductToCart sku={sku} />
     </ProductListItem>
   )
 }

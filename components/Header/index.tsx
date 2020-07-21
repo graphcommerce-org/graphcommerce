@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import CartLoader from 'components/Cart/Cart'
 import clsx from 'clsx'
+import Cart from 'components/Cart'
+import CartItem from 'components/Cart/CartItem'
 import logo from './magento-webshop-reach-digital.svg'
 import HeaderMenu, { HeaderMenuProps } from './HeaderMenu'
 import { useHeaderStyles } from './useHeaderStyles'
@@ -25,7 +26,15 @@ export default function Header(props: HeaderProps) {
       </div>
 
       <div className={classes.contact}>
-        <CartLoader />
+        <Cart
+          renderer={{
+            BundleCartItem: CartItem,
+            ConfigurableCartItem: CartItem,
+            DownloadableCartItem: CartItem,
+            SimpleCartItem: CartItem,
+            VirtualCartItem: CartItem,
+          }}
+        />
       </div>
     </header>
   )

@@ -25,6 +25,10 @@ export type GQLTypeRenderer<
   A extends Record<string, unknown> = Record<string, unknown>
 > = EventTypeMap<T, T['__typename'], A>
 
+/**
+ * A simple array with renderers but with strict typing that validates of the
+ * provided Renderer is actually able to render the Type
+ */
 export default function GQLRenderType<
   T extends TypeObject,
   A extends Record<string, unknown> = Record<string, unknown>

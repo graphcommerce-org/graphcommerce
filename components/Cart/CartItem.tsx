@@ -14,10 +14,11 @@ import {
 import DeleteIcon from '@material-ui/icons/RemoveCircleOutline'
 import {
   useRemoveItemFromCartMutation,
-  useUpdateItemQuantityMutation,
   useCartIdQuery,
+  useUpdateItemQuantityMutation,
 } from 'generated/apollo'
 import Money from 'components/Money'
+import useUpdateItemQuantity from './useUpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
