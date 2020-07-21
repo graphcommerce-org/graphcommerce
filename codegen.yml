@@ -55,15 +55,3 @@ generates:
       withHOC: false
       withHooks: true
       withComponent: false
-  # generated/page.tsx:
-  #   plugins:
-  #     - apollo-next-ssr
-  #   # preset: import-types
-  #   # presetConfig:
-  #   #   typesPath: ./graphql
-  #   config:
-  #     documentMode: external
-  #     importDocumentNodeExternallyFrom: ./apollo.ts
-  #     typesPrefix: GQL
-  #     reactApolloVersion: 3
-  #     # apolloCacheImportFrom: '@apollo/client'

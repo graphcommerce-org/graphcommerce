@@ -1,19 +1,13 @@
-import apolloClient from 'node/apolloClient'
 import { PromiseValue } from 'type-fest'
 import { StoreConfigDocument } from 'generated/apollo'
-import { ApolloQueryResult } from '@apollo/client'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
-let storeConfig: Promise<ApolloQueryResult<GQLStoreConfigQuery>> | undefined
+export default async function getStoreConfig(client: ApolloClient<NormalizedCacheObject>) {
+  const { data } = await client.query<GQLStoreConfigQuery, GQLStoreConfigQueryVariables>({
+    query: StoreConfigDocument,
+  })
 
-export default async function getStoreConfig() {
-  if (!storeConfig) {
-    storeConfig = (await apolloClient()).query<GQLStoreConfigQuery, GQLStoreConfigQueryVariables>({
-      query: StoreConfigDocument,
-    })
-  }
-  const { data } = await storeConfig
-  if (!data) throw Error('hahaha')
-
+  if (!data) throw Error('Store Config could not be loaded')
   return data
 }
 

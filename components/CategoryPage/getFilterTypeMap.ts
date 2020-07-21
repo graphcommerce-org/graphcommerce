@@ -1,5 +1,4 @@
-import apolloClient from 'node/apolloClient'
-import { gql } from '@apollo/client'
+import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { AllFilterInputTypes, FilterTypeMap } from '../ProductListItems/filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
@@ -32,8 +31,9 @@ const FilterInputTypesDocument = gql`
   }
 `
 
-export default async function getFilterTypeMap(): Promise<FilterTypeMap> {
-  const client = await apolloClient()
+export default async function getFilterTypeMap(
+  client: ApolloClient<NormalizedCacheObject>,
+): Promise<FilterTypeMap> {
   const filterInputTypes = client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({
     query: FilterInputTypesDocument,
   })

@@ -1,10 +1,11 @@
-query CmsPage($id: Int!) {
-  cmsPage(id: $id) {
+query CmsPage($identifier: String!) {
+  cmsPage(identifier: $identifier) {
     identifier
     ...CmsPageMeta
     ...CmsPageContent
   }
   storeConfig {
+    id
     ...StoreConfigPageMeta
   }
 }

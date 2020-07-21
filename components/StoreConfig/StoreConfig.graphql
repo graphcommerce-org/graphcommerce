@@ -1,5 +1,6 @@
 query StoreConfig {
   storeConfig {
+    id
     base_url
     secure_base_url
     cms_home_page

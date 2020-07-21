@@ -13,6 +13,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
+const withTM = require('next-transpile-modules')(['@apollo/client'])
 
 const nextConfig = {
   experimental: {
@@ -117,4 +118,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(nextConfig)))
+module.exports = withBundleAnalyzer(withPWA(withImages(withTM(nextConfig))))

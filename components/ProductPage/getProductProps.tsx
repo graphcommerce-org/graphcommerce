@@ -1,10 +1,11 @@
-import apolloClient from 'node/apolloClient'
 import { PromiseValue } from 'type-fest'
 import { ProductPageDocument } from 'generated/apollo'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
-const getProductPageProps = async (variables: GQLProductPageQueryVariables) => {
-  const client = await apolloClient()
-
+const getProductPageProps = async (
+  variables: GQLProductPageQueryVariables,
+  client: ApolloClient<NormalizedCacheObject>,
+) => {
   const productPage = client.query<GQLProductPageQuery, GQLProductPageQueryVariables>({
     query: ProductPageDocument,
     variables,

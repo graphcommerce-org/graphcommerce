@@ -11,6 +11,7 @@ import overlay from 'components/PageTransition/overlay'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 import NextError from 'next/error'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
+import apolloClient from 'lib/apolloClient'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   const { products } = props
@@ -113,18 +114,21 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params?.url) throw Error('No params')
 
-  const config = getStoreConfig()
-  const urlResolve = getUrlResolveProps({
-    urlKey: ctx.params.url + ((await config).storeConfig.product_url_suffix ?? ''),
-  })
-  const navigation = getHeaderProps()
-  const productPage = getProductPageProps({ urlKey: ctx.params.url })
+  const client = apolloClient()
+  const config = getStoreConfig(client)
+  const urlResolve = getUrlResolveProps(
+    { urlKey: ctx.params.url + ((await config).storeConfig.product_url_suffix ?? '') },
+    client,
+  )
+  const navigation = getHeaderProps(client)
+  const productPage = getProductPageProps({ urlKey: ctx.params.url }, client)
 
   return {
     props: {
       ...(await urlResolve),
       ...(await navigation),
       ...(await productPage),
+      apolloState: client.cache.extract(),
     },
   }
 }
