@@ -98,7 +98,7 @@
     "@types/resize-observer-browser": "^0.1.3",
     "@types/use-resize-observer": "^6.0.0",
     "@types/webpack": "^4.41.21",
-    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
     "@typescript-eslint/parser": "^3.6.1",
     "babel-loader": "^8.1.0",
     "concurrently": "^5.2.0",
