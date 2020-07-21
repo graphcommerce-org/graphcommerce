@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGuestCartLazyQuery } from 'generated/apollo'
+import { useGuestCartLazyQuery, useCartIdQuery } from 'generated/apollo'
 import {
   ListItem,
   ListItemText,
@@ -11,7 +11,6 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import Money from 'components/Money'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
-import useCartId from '../useCartId'
 import CartSkeleton from './CartSkeleton'
 
 const useStyles = makeStyles(
@@ -37,15 +36,13 @@ type CartProps = { renderer: CartItemRenderer }
 
 export default function Cart(props: CartProps) {
   const { renderer } = props
-  const { cartId } = useCartId()
+  const { data: cartIdData } = useCartIdQuery()
   const classes = useStyles()
   const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
 
-  if (cartId && !called) loadCart({ variables: { cartId } })
+  if (!cartIdData?.cartId) return <CartSkeleton>nothing in your cart</CartSkeleton>
 
-  if (!cartId || !called) {
-    return <CartSkeleton>nothing in your cart</CartSkeleton>
-  }
+  if (!called) loadCart({ variables: { cartId: cartIdData.cartId } })
 
   if (loading || !data) {
     return <CartSkeleton>loading your cart</CartSkeleton>

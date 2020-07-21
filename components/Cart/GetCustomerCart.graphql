@@ -1,5 +1,5 @@
 query GetCustomerCart {
   customerCart {
-    id
+    ...Cart
   }
 }

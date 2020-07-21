@@ -12,9 +12,12 @@ import {
   TextFieldProps,
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/RemoveCircleOutline'
-import { useRemoveItemFromCartMutation, useUpdateItemQuantityMutation } from 'generated/apollo'
+import {
+  useRemoveItemFromCartMutation,
+  useUpdateItemQuantityMutation,
+  useCartIdQuery,
+} from 'generated/apollo'
 import Money from 'components/Money'
-import useCartId from '../useCartId'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,26 +44,26 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 export default function CartItem({ id, quantity, product, prices }: GQLCartItemFragment) {
-  const { cartId } = useCartId()
+  const { data: cartIdData } = useCartIdQuery()
   const classes = useStyles()
   const [remove] = useRemoveItemFromCartMutation()
   const [update] = useUpdateItemQuantityMutation()
 
   const removeItemFromCart = async () => {
-    if (!cartId) return
+    if (!cartIdData?.cartId) return
     await remove({
       variables: {
-        cartId,
+        cartId: cartIdData.cartId,
         cartItemId: Number(id),
       },
     })
   }
 
   const updateQuantity: TextFieldProps['onChange'] = async (event) => {
-    if (!cartId) return
+    if (!cartIdData?.cartId) return
     await update({
       variables: {
-        cartId,
+        cartId: cartIdData.cartId,
         cartItemId: Number(id),
         quantity: Number(event.target.value),
       },

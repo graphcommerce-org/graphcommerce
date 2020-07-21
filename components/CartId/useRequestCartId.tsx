@@ -1,7 +1,6 @@
 import useIsLoggedIn from 'components/Customer/useIsLoggedIn'
-import { GetCustomerCartDocument, CreateEmptyCartDocument } from 'generated/apollo'
+import { GetCustomerCartDocument, CreateEmptyCartDocument, useCartIdQuery } from 'generated/apollo'
 import { useApolloClient } from '@apollo/client'
-import { useState } from 'react'
 
 function generateId() {
   return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -13,12 +12,12 @@ function generateId() {
   })
 }
 
-export default function useCartId() {
-  const [cartId, setCartId] = useState<string | null>(
-    typeof window !== 'undefined' ? window.localStorage.getItem('cart_id') : null,
-  )
+export default function useRequestCartId() {
+  const cartIdQuery = useCartIdQuery()
   const client = useApolloClient()
   const isLoggedIn = useIsLoggedIn()
+
+  const cartId = cartIdQuery.data?.cartId
 
   async function requestCartId(): Promise<string> {
     if (cartId) {
@@ -33,7 +32,6 @@ export default function useCartId() {
 
       if (customerCartQuery.data?.customerCart.id) {
         window.localStorage.setItem('cart_id', customerCartQuery.data.customerCart.id)
-        setCartId(customerCartQuery.data.customerCart.id)
         return customerCartQuery.data.customerCart.id
       }
     }
@@ -47,7 +45,6 @@ export default function useCartId() {
 
       if (createEmptyCart.data?.createEmptyCart) {
         window.localStorage.setItem('cart_id', createEmptyCart.data.createEmptyCart)
-        setCartId(createEmptyCart.data.createEmptyCart)
         return createEmptyCart.data.createEmptyCart
       }
       throw new Error('Could not create a cart')
@@ -56,5 +53,5 @@ export default function useCartId() {
     return cartId
   }
 
-  return { cartId, requestCartId }
+  return requestCartId
 }
