@@ -18,7 +18,6 @@ import {
   useUpdateItemQuantityMutation,
 } from 'generated/apollo'
 import Money from 'components/Money'
-import useUpdateItemQuantity from './useUpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -72,7 +71,7 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
   }
 
   return (
-    <ListItem alignItems='flex-start' key={id}>
+    <ListItem alignItems='flex-start'>
       <ListItemAvatar>
         <IconButton
           edge='end'

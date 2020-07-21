@@ -92,6 +92,7 @@ export default function PageTransition({
     // Detect that the user is hitting the back button
     // use the reverse transition
     router.beforePopState(() => {
+      // todo(paales) Isn't actually navigating back, will also fire when navigating forward.
       setBackTransition(pageTransition)
       return true
     })

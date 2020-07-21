@@ -11,6 +11,7 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import Money from 'components/Money'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
+import { motion, AnimatePresence, MotionProps } from 'framer-motion'
 import CartSkeleton from './CartSkeleton'
 
 const useStyles = makeStyles(
@@ -50,55 +51,73 @@ export default function Cart(props: CartProps) {
 
   const { cart } = data
 
+  const animation: MotionProps = {
+    initial: { opacity: 0, y: 50, scale: 0.3 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, scale: 0.5, transition: { type: 'inertia' } },
+    layout: true,
+  }
+
   return (
-    <CartSkeleton badgeContent={cart.total_quantity}>
+    <AnimatePresence>
       {cart.items.map<React.ReactNode>((item) => {
-        return [
-          <GQLRenderType renderer={renderer} {...item} key={item.id} />,
-          <Divider variant='inset' component='li' key={`${item.id}-divider`} />,
-        ]
+        return (
+          <motion.div key={item.id} {...animation}>
+            <GQLRenderType renderer={renderer} {...item} />
+            <Divider variant='inset' component='li' />
+          </motion.div>
+        )
       })}
 
       {(cart.shipping_addresses.length > 0 || cart.prices.discounts) && (
-        <ListItem>
-          <ListItemText inset>Subtotal</ListItemText>
-          <ListItemSecondaryAction>
-            <Money {...cart.prices.subtotal_including_tax} />
-          </ListItemSecondaryAction>
-        </ListItem>
+        <motion.div {...animation} key='subtotal'>
+          <ListItem>
+            <ListItemText inset>Subtotal</ListItemText>
+            <ListItemSecondaryAction>
+              <Money {...cart.prices.subtotal_including_tax} />
+            </ListItemSecondaryAction>
+          </ListItem>
+        </motion.div>
       )}
 
       {cart.prices.discounts?.map((discount, idx) => (
-        <ListItem key={idx}>
-          <ListItemText inset>{discount.label}</ListItemText>
-          <ListItemSecondaryAction>
-            <Money {...discount.amount} key={idx} />
-          </ListItemSecondaryAction>
-        </ListItem>
+        <motion.div {...animation} key={`price${idx}`}>
+          <ListItem>
+            <ListItemText inset>{discount.label}</ListItemText>
+            <ListItemSecondaryAction>
+              <Money {...discount.amount} key={idx} />
+            </ListItemSecondaryAction>
+          </ListItem>
+        </motion.div>
       ))}
 
       {cart.shipping_addresses?.map((address, idx) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <ListItem key={idx}>
-          <ListItemText inset>{address.selected_shipping_method.carrier_title}</ListItemText>
-          <ListItemSecondaryAction>
-            <Money {...address.selected_shipping_method.amount} key={idx} />
-          </ListItemSecondaryAction>
-        </ListItem>
+        <motion.div {...animation} key={`shipping_addresses_${idx}`}>
+          <ListItem>
+            <ListItemText inset>{address.selected_shipping_method.carrier_title}</ListItemText>
+            <ListItemSecondaryAction>
+              <Money {...address.selected_shipping_method.amount} key={idx} />
+            </ListItemSecondaryAction>
+          </ListItem>
+        </motion.div>
       ))}
 
-      <ListItem>
-        <ListItemText inset>Total</ListItemText>
-        <ListItemSecondaryAction>
-          <Money {...cart.prices.grand_total} />
-        </ListItemSecondaryAction>
-      </ListItem>
+      <motion.div {...animation} key='total'>
+        <ListItem key='total'>
+          <ListItemText inset>Total</ListItemText>
+          <ListItemSecondaryAction>
+            <Money {...cart.prices.grand_total} />
+          </ListItemSecondaryAction>
+        </ListItem>
+      </motion.div>
 
-      <ListItem className={classes.buttonContainer}>
-        <Button variant='contained' color='primary' size='large' className={classes.button}>
-          Proceed to checkout
-        </Button>
-      </ListItem>
-    </CartSkeleton>
+      <motion.div {...animation} key='checkout'>
+        <ListItem className={classes.buttonContainer}>
+          <Button variant='contained' color='primary' size='large' className={classes.button}>
+            Proceed to checkout
+          </Button>
+        </ListItem>
+      </motion.div>
+    </AnimatePresence>
   )
 }
