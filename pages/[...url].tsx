@@ -115,13 +115,14 @@ export const getStaticProps: GetStaticProps<
   const url = ctx.params.url.slice(0, qIndex)
 
   const client = apolloClient()
+  const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigationProps = getHeaderProps(client)
+  const navigationProps = getHeaderProps(staticClient)
   const urlResolve = getUrlResolveProps(
     {
       urlKey: url.join('/') + ((await config).storeConfig.category_url_suffix ?? ''),
     },
-    client,
+    staticClient,
   )
   const categoryPageProps = getCategoryPageProps(
     {
@@ -129,7 +130,7 @@ export const getStaticProps: GetStaticProps<
       urlResolve,
       url,
     },
-    client,
+    staticClient,
   )
 
   return {

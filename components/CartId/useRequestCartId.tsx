@@ -31,7 +31,6 @@ export default function useRequestCartId() {
       >({ query: GetCustomerCartDocument })
 
       if (customerCartQuery.data?.customerCart.id) {
-        window.localStorage.setItem('cart_id', customerCartQuery.data.customerCart.id)
         return customerCartQuery.data.customerCart.id
       }
     }
@@ -44,7 +43,6 @@ export default function useRequestCartId() {
       >({ mutation: CreateEmptyCartDocument, variables: { cartId: newId } })
 
       if (createEmptyCart.data?.createEmptyCart) {
-        window.localStorage.setItem('cart_id', createEmptyCart.data.createEmptyCart)
         return createEmptyCart.data.createEmptyCart
       }
       throw new Error('Could not create a cart')

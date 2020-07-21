@@ -44,13 +44,14 @@ export const getStaticProps: GetStaticProps<
   { url: string }
 > = async (ctx: { params: { url: string } }) => {
   const client = apolloClient()
+  const staticClient = apolloClient()
 
   const config = getStoreConfig(client)
-  const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, client)
-  const navigationProps = getHeaderProps(client)
+  const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)
+  const navigationProps = getHeaderProps(staticClient)
   const cmsPageProps = getCmsPageProps(
     ctx.params.url === '/' ? (await config).storeConfig.cms_home_page : ctx.params.url,
-    client,
+    staticClient,
   )
 
   return {

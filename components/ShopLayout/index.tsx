@@ -9,8 +9,6 @@ import { CssBaseline } from '@material-ui/core'
 import { SetOptional } from 'type-fest'
 import { TransitionPage } from 'components/PageTransition'
 import { NormalizedCacheObject } from '@apollo/client'
-import IsLoggedIn from 'components/IsLoggedIn'
-import CartId from 'components/CartId'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
 export type ShopLayoutProps = SetOptional<GetHeaderProps & GetUrlResolveProps> & {
@@ -43,8 +41,6 @@ const ShopLayout: PageWithShopLayout['Layout'] = ({ children, menu, urlResolver 
       <PageLoadIndicator />
       <Header menu={menu} urlResolver={urlResolver} />
 
-      {/* <IsLoggedIn /> */}
-      <CartId />
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>

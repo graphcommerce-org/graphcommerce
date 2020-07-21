@@ -115,13 +115,14 @@ export const getStaticProps: GetStaticProps<
   if (!ctx.params?.url) throw Error('No params')
 
   const client = apolloClient()
+  const staticClient = apolloClient()
   const config = getStoreConfig(client)
   const urlResolve = getUrlResolveProps(
     { urlKey: ctx.params.url + ((await config).storeConfig.product_url_suffix ?? '') },
-    client,
+    staticClient,
   )
-  const navigation = getHeaderProps(client)
-  const productPage = getProductPageProps({ urlKey: ctx.params.url }, client)
+  const navigation = getHeaderProps(staticClient)
+  const productPage = getProductPageProps({ urlKey: ctx.params.url }, staticClient)
 
   return {
     props: {
