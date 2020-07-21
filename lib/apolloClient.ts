@@ -72,6 +72,10 @@ export function createApolloClient(
     }),
   ])
 
+  // todo(paales): Make sure the typePolicies are configured instead of hardcoded here.
+  // What other type policies could we need?
+  // Currency?
+  // Customer Group?
   const cache = new InMemoryCache({
     possibleTypes,
     typePolicies: mergeDeep(cartIdtypePolicies, isLoggedInTypePolicies),
