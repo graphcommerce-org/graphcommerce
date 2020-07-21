@@ -3,11 +3,16 @@ require:
   - ts-node/register/transpile-only
   - tsconfig-paths/register
   - dotenv/config
-schema: ./node/meshSchema.ts
+schema:
+  - ./node/meshSchema.ts
+  - '**/*.graphqls'
 documents:
   - '**/*.graphql'
-  - '!generated/*.graphql'
   - '!node_modules/**'
+  - '!generated/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - prettier --write
 generates:
   generated/fragments.json:
     plugins:
@@ -16,15 +21,13 @@ generates:
       afterOneFileWrite:
         - prettier --write
     config:
+      apolloClientVersion: 3
   generated/schema.graphql:
     plugins:
       - schema-ast
     config:
       includeDirectives: true
       commentDescriptions: false
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
   generated/graphql.d.ts:
     plugins:
       - typescript
@@ -40,19 +43,15 @@ generates:
         inputValue: false
         object: true
       maybeValue: 'T'
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
   generated/apollo.ts:
     plugins:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
       - typescript-react-apollo
     config:
+      apolloClientVersion: 3
+      apolloReactHooksImportFrom: '@apollo/client'
+      apolloReactCommonImportFrom: '@apollo/client'
       typesPrefix: GQL
       withHOC: false
       withHooks: true
       withComponent: false
-    hooks:
-      afterOneFileWrite:
-        # - eslint --fix
-        - prettier --write

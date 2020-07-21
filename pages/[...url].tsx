@@ -25,6 +25,7 @@ import ProductListItemConfigurable from 'components/ProductTypeConfigurable/Prod
 import ProductListItem from 'components/ProductListItems/ProductListItem'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
+import apolloClient from 'lib/apolloClient'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const classes = useCategoryPageStyles(props)
@@ -113,23 +114,31 @@ export const getStaticProps: GetStaticProps<
 
   const url = ctx.params.url.slice(0, qIndex)
 
-  const config = getStoreConfig()
-  const navigationProps = getHeaderProps()
-  const urlResolve = getUrlResolveProps({
-    urlKey: url.join('/') + ((await config).storeConfig.category_url_suffix ?? ''),
-  })
-  const categoryPageProps = getCategoryPageProps({
-    urlParams: ctx.params.url.slice(qIndex + 1),
-    urlResolve,
-    url,
-  })
+  const client = apolloClient()
+  const staticClient = apolloClient()
+  const config = getStoreConfig(client)
+  const navigationProps = getHeaderProps(staticClient)
+  const urlResolve = getUrlResolveProps(
+    {
+      urlKey: url.join('/') + ((await config).storeConfig.category_url_suffix ?? ''),
+    },
+    staticClient,
+  )
+  const categoryPageProps = getCategoryPageProps(
+    {
+      urlParams: ctx.params.url.slice(qIndex + 1),
+      urlResolve,
+      url,
+    },
+    staticClient,
+  )
 
   return {
     props: {
-      ...(await config),
       ...(await urlResolve),
       ...(await navigationProps),
       ...(await categoryPageProps),
+      apolloState: client.cache.extract(),
     },
   }
 }

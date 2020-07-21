@@ -1,20 +1,20 @@
-import apolloClient from 'node/apolloClient'
 import { CmsPageDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
-import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
-const getCmsPageProps = async (urlResolve: ReturnType<typeof getUrlResolveProps>) => {
-  const client = await apolloClient()
-
+export default async function getCmsPageProps(
+  identifier: string,
+  client: ApolloClient<NormalizedCacheObject>,
+) {
   const cmsPage = client.query<GQLCmsPageQuery, GQLCmsPageQueryVariables>({
     query: CmsPageDocument,
-    variables: { id: (await urlResolve).urlResolver.id },
+    variables: { identifier },
   })
-  return {
-    ...(await cmsPage).data,
-  }
-}
 
-export default getCmsPageProps
+  const cmsPageData = (await cmsPage).data
+  if (!cmsPageData) throw Error('Could not fetch category')
+
+  return cmsPageData
+}
 
 export type GetCmsPageProps = PromiseValue<ReturnType<typeof getCmsPageProps>>

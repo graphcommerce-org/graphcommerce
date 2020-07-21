@@ -1,20 +1,18 @@
 import { GetStaticPaths } from 'next'
 import { GetStaticPathsDocument } from 'generated/apollo'
-import apolloClient from './apolloClient'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
-const getStaticPathsFactory: (baseUrl: string, locale: GQLLocale) => GetStaticPaths = (
-  baseUrl,
-  locale,
-) => async () => {
-  const queryResult = await (await apolloClient()).query<
-    GQLGetStaticPathsQuery,
-    GQLGetStaticPathsQueryVariables
-  >({
+const getStaticPathsFactory: (
+  baseUrl: string,
+  locale: GQLLocale,
+  client: ApolloClient<NormalizedCacheObject>,
+) => GetStaticPaths = (baseUrl, locale, client) => async () => {
+  const queryResult = await client.query<GQLGetStaticPathsQuery, GQLGetStaticPathsQueryVariables>({
     query: GetStaticPathsDocument,
     variables: { startsWith: `${baseUrl}`, locale },
   })
 
-  const paths = queryResult.data.pages.map((page) => page.url)
+  const paths = queryResult.data?.pages.map((page) => page.url) ?? []
   return {
     paths,
     fallback: false,

@@ -1,9 +1,9 @@
-import apolloClient from 'node/apolloClient'
 import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getFilterTypeMap from 'components/CategoryPage/getFilterTypeMap'
 import { ProductListParams } from 'components/ProductListItems/filterTypes'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
 async function parseParams(
   url: string,
@@ -53,14 +53,11 @@ type GetCategoryPagePropsArguments = {
   urlResolve: ReturnType<typeof getUrlResolveProps>
 }
 
-const getCategoryPageProps = async ({
-  url,
-  urlParams,
-  urlResolve,
-}: GetCategoryPagePropsArguments) => {
-  const client = await apolloClient()
-
-  const filterTypeMap = getFilterTypeMap()
+const getCategoryPageProps = async (
+  { url, urlParams, urlResolve }: GetCategoryPagePropsArguments,
+  client: ApolloClient<NormalizedCacheObject>,
+) => {
+  const filterTypeMap = getFilterTypeMap(client)
 
   const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
     query: CategoryPageDocument,
@@ -81,9 +78,15 @@ const getCategoryPageProps = async ({
     },
   })
 
+  const categoryData = (await category).data
+  const productsData = (await products).data
+
+  if (!categoryData) throw new Error('Could not fetch category')
+  if (!productsData) throw new Error('Could not fetch category products')
+
   return {
-    ...(await category).data,
-    ...(await products).data,
+    ...categoryData,
+    ...productsData,
     params: await params,
     filterTypeMap: await filterTypeMap,
   }

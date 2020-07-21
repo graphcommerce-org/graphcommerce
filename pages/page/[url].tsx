@@ -8,6 +8,8 @@ import NextError from 'next/error'
 import CmsPageMeta from 'components/CmsPageMeta'
 import CmsPageContent from 'components/CmsPageContent'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
+import apolloClient from 'lib/apolloClient'
+import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 
 const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeConfig }) => {
   const { marginTop } = useHeaderSpacing()
@@ -40,18 +42,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<
   ShopLayoutProps & GetCmsPageProps,
   { url: string }
-> = async (ctx) => {
-  if (!ctx.params) throw Error('No params')
-  const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url })
-  const navigationProps = getHeaderProps()
-  const cmsPageProps = getCmsPageProps(urlResolve)
+> = async (ctx: { params: { url: string } }) => {
+  const client = apolloClient()
+  const staticClient = apolloClient()
+
+  const config = getStoreConfig(client)
+  const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)
+  const navigationProps = getHeaderProps(staticClient)
+  const cmsPageProps = getCmsPageProps(
+    ctx.params.url === '/' ? (await config).storeConfig.cms_home_page : ctx.params.url,
+    staticClient,
+  )
 
   return {
     props: {
-      url: ctx.params.url,
       ...(await urlResolve),
       ...(await navigationProps),
       ...(await cmsPageProps),
+      apolloState: client.cache.extract(),
     },
   }
 }

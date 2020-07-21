@@ -1,5 +1,0 @@
-query CustomerCart {
-  customerCart {
-    ...Cart
-  }
-}

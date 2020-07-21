@@ -37,17 +37,11 @@ const ApolloSession = <P extends Record<string, unknown>>({
   const LoadingComponent = () => <>{skeleton ? skeleton(ref) : null}</>
 
   const DynamicComponent = dynamic(loader, { loading: LoadingComponent, ssr: false })
-  const ApolloProvider = dynamic(() => import('./ApolloProvider'), {
-    loading: LoadingComponent,
-    ssr: false,
-  })
 
   return !intersected ? (
     <LoadingComponent />
   ) : (
-    <ApolloProvider>
-      <DynamicComponent {...(props as never)}>{children}</DynamicComponent>
-    </ApolloProvider>
+    <DynamicComponent {...(props as never)}>{children}</DynamicComponent>
   )
 }
 

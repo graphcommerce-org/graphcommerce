@@ -10,7 +10,7 @@ import {
   VariableDefinitionNode,
 } from 'graphql'
 import { useForm, DeepPartial } from 'react-hook-form'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/client'
 
 function isOperationDefinitionNode(
   node: DefinitionNode | OperationDefinitionNode,
@@ -66,6 +66,7 @@ export function useMutationForm<TData, TVariables = {}>(mutation: DocumentNode) 
   })
 
   const onSubmit = handleSubmit((variables: TVariables) => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     submit({ variables })
   })
 

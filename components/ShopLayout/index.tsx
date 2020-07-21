@@ -8,9 +8,12 @@ import { GetHeaderProps } from 'components/Header/getHeaderProps'
 import { CssBaseline } from '@material-ui/core'
 import { SetOptional } from 'type-fest'
 import { TransitionPage } from 'components/PageTransition'
+import { NormalizedCacheObject } from '@apollo/client'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-export type ShopLayoutProps = SetOptional<GetHeaderProps & GetUrlResolveProps>
+export type ShopLayoutProps = SetOptional<GetHeaderProps & GetUrlResolveProps> & {
+  apolloState: NormalizedCacheObject
+}
 
 export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
   SetOptional<T>,

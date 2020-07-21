@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 export default function useIsLoggedIn() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
   useEffect(() => {
     // todo: check for token invalidation timeout

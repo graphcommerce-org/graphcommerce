@@ -1,19 +1,14 @@
-import apolloClient from 'node/apolloClient'
 import { PromiseValue } from 'type-fest'
 import { StoreConfigDocument } from 'generated/apollo'
-import { ApolloQueryResult } from 'apollo-client'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
-let storeConfig: Promise<ApolloQueryResult<GQLStoreConfigQuery>> | undefined
+export default async function getStoreConfig(client: ApolloClient<NormalizedCacheObject>) {
+  const { data } = await client.query<GQLStoreConfigQuery, GQLStoreConfigQueryVariables>({
+    query: StoreConfigDocument,
+  })
 
-export default async function getStoreConfig() {
-  if (!storeConfig) {
-    const client = await apolloClient()
-    storeConfig = client.query<GQLStoreConfigQuery, GQLStoreConfigQueryVariables>({
-      query: StoreConfigDocument,
-    })
-  }
-
-  return (await storeConfig).data
+  if (!data) throw Error('Store Config could not be loaded')
+  return data
 }
 
 export type GetUrlResolveProps = PromiseValue<ReturnType<typeof getStoreConfig>>

@@ -1,14 +1,17 @@
-import apolloClient from 'node/apolloClient'
 import { PromiseValue } from 'type-fest'
 import { ResolveUrlDocument } from 'generated/apollo'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
-export default async function getUrlResolveProps(variables: GQLResolveUrlQueryVariables) {
-  const { data } = await (await apolloClient()).query<
-    GQLResolveUrlQuery,
-    GQLResolveUrlQueryVariables
-  >({ query: ResolveUrlDocument, variables })
+export default async function getUrlResolveProps(
+  variables: GQLResolveUrlQueryVariables,
+  client: ApolloClient<NormalizedCacheObject>,
+) {
+  const { data } = await client.query<GQLResolveUrlQuery, GQLResolveUrlQueryVariables>({
+    query: ResolveUrlDocument,
+    variables,
+  })
 
-  if (!data.urlResolver?.id) throw Error('Page not found')
+  if (!data?.urlResolver?.id) throw Error('Page not found')
   return data
 }
 
