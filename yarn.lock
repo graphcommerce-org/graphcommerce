@@ -1785,16 +1785,16 @@
     "@graphql-tools/wrap" "6.0.11"
     micromatch "4.0.2"
 
-"@graphql-mesh/transform-snapshot@^0.2.12":
-  version "0.2.13"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-snapshot/-/transform-snapshot-0.2.13.tgz#26b301df6c254bf7da3dffd9ff52049c736a6f96"
-  integrity sha512-VKuhvGeRyINKGZbK7YZIAZLwePeZtlb3OqwLMga1fCGIRkb1nYO5gEdqdDneLtrjZO8prW6sIue5ReiHUyPtaw==
+"@graphql-mesh/transform-snapshot@^0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-snapshot/-/transform-snapshot-0.2.14.tgz#e098a9f7f589335e28e402c16ee6a2c38cfc8699"
+  integrity sha512-6asVr+aUv5skzIv+27kMW3fMi6LahLL2P1P7t2afYn4uyzK6ctJquIDfQr7B7+uaKuMVuffKka2z6oR0dDbhXQ==
   dependencies:
-    "@graphql-mesh/types" "0.2.13"
-    "@graphql-mesh/utils" "0.2.13"
-    "@graphql-tools/resolvers-composition" "6.0.11"
-    "@graphql-tools/schema" "6.0.11"
-    "@graphql-tools/utils" "6.0.11"
+    "@graphql-mesh/types" "0.2.14"
+    "@graphql-mesh/utils" "0.2.14"
+    "@graphql-tools/resolvers-composition" "6.0.14"
+    "@graphql-tools/schema" "6.0.14"
+    "@graphql-tools/utils" "6.0.14"
     fs-extra "9.0.1"
     object-hash "2.0.3"
 
@@ -1808,6 +1808,16 @@
     fetchache "0.0.3"
     tsee "1.3.0"
 
+"@graphql-mesh/types@0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.2.14.tgz#6090037e3a23b56ab420678580e5c2d73dd7d04e"
+  integrity sha512-f2aZhQn2FatnyuRLjW3ZqbRmm+XjCpbvGHwB3b9iM/v36Qi5QhS3WMcOdOy/m5VnCtZd8ncbVe8IZ2019VNcdg==
+  dependencies:
+    "@graphql-tools/delegate" "6.0.14"
+    "@graphql-tools/utils" "6.0.14"
+    fetchache "0.0.3"
+    tsee "1.3.0"
+
 "@graphql-mesh/utils@0.2.13":
   version "0.2.13"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.2.13.tgz#d4952c8796f8afc932b8c4d5df570c9a6f425f3e"
@@ -1816,6 +1826,20 @@
     "@ardatan/string-interpolation" "1.2.8"
     "@graphql-tools/utils" "6.0.11"
     date-fns "2.14.0"
+    fetchache "0.0.3"
+    fs-extra "9.0.1"
+    is-url "1.2.4"
+    js-yaml "3.14.0"
+    object-hash "2.0.3"
+
+"@graphql-mesh/utils@0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.2.14.tgz#354abd37a156a7af6795396e9d0cba031dc4e67d"
+  integrity sha512-9LHWYZ2kRepDdNKfmcjCqmBx/yxCX88K93SECyK9aiQ9bwYqK2464pa2/JyUIyYIvskOMs8G82i32KEClRBTgw==
+  dependencies:
+    "@ardatan/string-interpolation" "1.2.8"
+    "@graphql-tools/utils" "6.0.14"
+    date-fns "2.15.0"
     fetchache "0.0.3"
     fs-extra "9.0.1"
     is-url "1.2.4"
@@ -2048,6 +2072,14 @@
   dependencies:
     "@graphql-tools/utils" "6.0.11"
     lodash "4.17.15"
+
+"@graphql-tools/resolvers-composition@6.0.14":
+  version "6.0.14"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/resolvers-composition/-/resolvers-composition-6.0.14.tgz#c5784fb0fc1036c8765f8d555aa87ef869b15bf2"
+  integrity sha512-Tagrkj/Cf7J2N9vhp8dUBootdkQ+cNG0vSUbzgQQC4JsnK761Ckqj9K0zlnL7n8UJUI/fGCjL8I6VCDfXvwiww==
+  dependencies:
+    "@graphql-tools/utils" "6.0.14"
+    lodash "4.17.19"
 
 "@graphql-tools/schema@6.0.11":
   version "6.0.11"
@@ -5720,15 +5752,15 @@ date-fns@2.14.0:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
   integrity sha512-1zD+68jhFgDIM0rF05rcwYO8cExdNqxjq4xP1QKM60Q45mnO6zaMWB4tOzrIr4M4GSLntsKeE4c9Bdl2jhL/yw==
 
+date-fns@2.15.0, date-fns@^2.0.1:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.15.0.tgz#424de6b3778e4e69d3ff27046ec136af58ae5d5f"
+  integrity sha512-ZCPzAMJZn3rNUvvQIMlXhDr4A+Ar07eLeGsGREoWU19a3Pqf5oYa+ccd+B3F6XVtQY6HANMFdOQ8A+ipFnvJdQ==
+
 date-fns@^1.27.2:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
-
-date-fns@^2.0.1:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.15.0.tgz#424de6b3778e4e69d3ff27046ec136af58ae5d5f"
-  integrity sha512-ZCPzAMJZn3rNUvvQIMlXhDr4A+Ar07eLeGsGREoWU19a3Pqf5oYa+ccd+B3F6XVtQY6HANMFdOQ8A+ipFnvJdQ==
 
 dateformat@^3.0.0:
   version "3.0.3"
@@ -9375,7 +9407,7 @@ lodash@4.17.15:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.19, lodash@^4.17.4:
+lodash@4.17.19, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.19, lodash@^4.17.4:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
