@@ -10,9 +10,10 @@ import { RetryLink } from '@apollo/client/link/retry'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { persistCache } from 'apollo-cache-persist'
+import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
 import isLoggedInTypePolicies from 'components/IsLoggedIn/typePolicies'
 import cartIdtypePolicies from 'components/CartId/typePolicies'
-import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
+import cartTypePolicies from 'components/Cart/typePolicies'
 import { deferLink } from './deferLink'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
@@ -78,7 +79,7 @@ export function createApolloClient(
   // Customer Group?
   const cache = new InMemoryCache({
     possibleTypes,
-    typePolicies: mergeDeep(cartIdtypePolicies, isLoggedInTypePolicies),
+    typePolicies: mergeDeep(cartIdtypePolicies, isLoggedInTypePolicies, cartTypePolicies),
   }).restore(initialState)
 
   // eslint-disable-next-line @typescript-eslint/no-floating-promises

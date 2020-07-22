@@ -1,24 +1,24 @@
-mutation AddBundleProductToCart(
+mutation AddDownloadableProductToCart(
   $cartId: String!
   $sku: String!
-  $bundleOptions: [BundleOptionInput!]!
+  $downloadableProductLinks: [DownloadableProductLinksInput]
   $quantity: Float = 1
   $customizableOptions: [CustomizableOptionInput] = []
 ) {
-  addBundleProductsToCart(
+  addDownloadableProductsToCart(
     input: {
       cart_id: $cartId
       cart_items: [
         {
           data: { quantity: $quantity, sku: $sku }
           customizable_options: $customizableOptions
-          bundle_options: $bundleOptions
+          downloadable_product_links: $downloadableProductLinks
         }
       ]
     }
   ) {
     cart {
-      ...Cart
+      id
     }
   }
 }

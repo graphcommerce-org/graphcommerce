@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Chip, Button } from '@material-ui/core'
+import { Chip } from '@material-ui/core'
 import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import cloneDeep from 'clone-deep'
-import CustomerSession from 'components/CustomerSession'
 import ProductListItem from '../ProductListItems/ProductListItem'
+import AddConfigurableProductToCart from './AddConfigurableProductToCart'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
   filterTypeMap: FilterTypeMap
@@ -127,13 +127,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
           </div>
         )
       })}
-      <CustomerSession
-        loader={() => import('./AddConfigurableProductToCart')}
-        skeleton={(ref) => (
-          <Button color='primary' variant='contained' ref={ref} disabled>
-            Select Options
-          </Button>
-        )}
+      <AddConfigurableProductToCart
         parentSku={configurableProduct.sku}
         variantSku={matchingVariants.length > 0 ? matchingVariants[0].product.sku : undefined}
       />

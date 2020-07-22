@@ -26,6 +26,9 @@ import ProductListItem from 'components/ProductListItems/ProductListItem'
 import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
+import ProductListItemBundle from 'components/ProductTypeBundle/ProductListItemBundle'
+import ProductListItemVirtual from 'components/ProductTypeVirtual/ProductListItemVirtual'
+import ProductListItemDownloadable from 'components/ProductTypeDownloadable/ProductListItemDownloadable'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const classes = useCategoryPageStyles(props)
@@ -80,9 +83,9 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             renderers={{
               SimpleProduct: ProductListItemSimple,
               ConfigurableProduct: ProductListItemConfigurable,
-              BundleProduct: ProductListItem,
-              VirtualProduct: ProductListItem,
-              DownloadableProduct: ProductListItem,
+              BundleProduct: ProductListItemBundle,
+              VirtualProduct: ProductListItemVirtual,
+              DownloadableProduct: ProductListItemDownloadable,
               GroupedProduct: ProductListItem,
             }}
           />

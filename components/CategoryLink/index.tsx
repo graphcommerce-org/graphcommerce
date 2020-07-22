@@ -3,6 +3,7 @@ import { LinkProps, Link } from '@material-ui/core'
 import NextLink from 'next/link'
 import Router from 'next/router'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { useStoreConfigQuery } from 'generated/apollo'
 import {
   ProductListParams,
   isFilterTypeEqual,
@@ -39,6 +40,9 @@ export function createRoute(props: ProductListParams): string {
 
 const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((props, ref) => {
   const { setParams } = useProductListParamsContext()
+  // const { data: storeConfigData } = useStoreConfigQuery()
+
+  // storeConfigData?.storeConfig.category_url_suffix
 
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
 
