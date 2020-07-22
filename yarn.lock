@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@adobe/apollo-link-mutation-queue@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@adobe/apollo-link-mutation-queue/-/apollo-link-mutation-queue-1.0.1.tgz#7f6259dbdd086d9008aab1bcb7cac965045afa6a"
-  integrity sha512-h3GzflZT4UTgIe2x+LhuWn5MgywVdK6YparZJnb3UMnlqS1pb6DRjgbtKPUVd610Jg3b/Vh4+zYu/dsuIPvjzg==
+"@adobe/apollo-link-mutation-queue@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@adobe/apollo-link-mutation-queue/-/apollo-link-mutation-queue-1.0.2.tgz#0c589ffb970b9917ba52c38812740c613c0a40da"
+  integrity sha512-CukTL1XhV0BWuQFK34aSxFBTsavrgw80C0dpVRlhuOXUNmEpFJOHzaVoFjz/1ISRYoYeMWBVMjt9GDopw2oSnA==
   dependencies:
     apollo-link "~1.2.13"
 
