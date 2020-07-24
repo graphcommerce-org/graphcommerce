@@ -89,7 +89,6 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
         anchorEl={openEl}
         open={!!openEl}
         onClose={() => setOpenEl(null)}
-        keepMounted
         getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
         // todo(paales) positioning isn't correct on mobile at it reserves space on the sides, should probably measure the position
         anchorOrigin={{ horizontal: -16, vertical: -16 }}
