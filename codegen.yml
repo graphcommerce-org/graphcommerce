@@ -36,6 +36,7 @@ generates:
       typesPrefix: GQL
       noExport: true
       enumsAsTypes: true
+      skipTypename: true
   generated/apollo.ts:
     plugins:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'

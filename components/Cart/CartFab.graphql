@@ -1,3 +1,0 @@
-fragment CartFab on Cart {
-  total_quantity
-}
