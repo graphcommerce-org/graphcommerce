@@ -104,14 +104,15 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-        {menu &&
-          menu[0].children.map((root) => (
+        {menu?.[0]?.children?.map((root) => {
+          if (!root || !root.id || !root.url_path) return null
+          return (
             <Link key={root.id} href='/[...url]' as={`/${root.url_path}`} passHref>
               <MuiLink color='inherit' underline='none' className={classes.menuLink}>
                 <ListItem
                   button
                   selected={
-                    urlResolver && root.id === urlResolver.id && urlResolver.type === 'CATEGORY'
+                    !!urlResolver && root.id === urlResolver.id && urlResolver.type === 'CATEGORY'
                   }
                   classes={{ root: classes.menuItem }}
                 >
@@ -121,7 +122,8 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
                 </ListItem>
               </MuiLink>
             </Link>
-          ))}
+          )
+        })}
       </Menu>
     </>
   )

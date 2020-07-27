@@ -7,7 +7,9 @@ export default function ProductListItemDownloadable(props: GQLProductListItemDow
   // @todo implement logic to select the downloadable product
   return (
     <ProductListItem {...props}>
-      <AddDownloadableProductToCart sku={sku} downloadableProductLinks={[{ link_id: 123 }]} />
+      {sku && (
+        <AddDownloadableProductToCart sku={sku} downloadableProductLinks={[{ link_id: 123 }]} />
+      )}
     </ProductListItem>
   )
 }

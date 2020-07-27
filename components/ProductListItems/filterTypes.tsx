@@ -1,8 +1,14 @@
-import { SetRequired } from 'type-fest'
-
-export type ProductListParams = {
+/**
+ * This is mainly based on GQLProductListQueryVariables
+ */
+export type ProductListParams = Exact<{
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+  filters: GQLProductAttributeFilterInput
+  sort: GQLProductAttributeSortInput
+  search?: Maybe<Scalars['String']>
   url: string
-} & SetRequired<Omit<GQLProductListQueryVariables, 'rootCategory'>, 'filters' | 'sort'>
+}>
 
 type AnyFilterType =
   | GQLFilterEqualTypeInput

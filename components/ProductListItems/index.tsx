@@ -19,7 +19,7 @@ const useStyles = makeStyles(
 )
 
 type ProductListRenderer = GQLTypeRenderer<
-  GQLProductListItemsFragment['items'][0],
+  NonNullable<NonNullable<GQLProductListItemsFragment['items']>[0]>,
   { filterTypeMap: FilterTypeMap }
 >
 
@@ -36,9 +36,17 @@ export default function ProductListItems(props: ProductListItemsParams) {
 
   return (
     <div {...divProps} className={clsx(classes.productList, divProps.className)}>
-      {items.map((item) => (
-        <GQLRenderType renderer={renderers} {...item} key={item.id} filterTypeMap={filterTypeMap} />
-      ))}
+      {items?.map((item) => {
+        if (!item) return null
+        return (
+          <GQLRenderType
+            renderer={renderers}
+            {...item}
+            key={item?.id ?? ''}
+            filterTypeMap={filterTypeMap}
+          />
+        )
+      })}
     </div>
   )
 }

@@ -16,7 +16,8 @@ export default function CategoryChildren({
 }: CategoryChildrenProps) {
   return (
     <>
-      {children.map((category) => {
+      {children?.map((category) => {
+        if (!category?.url_path || !category.id || !category.name) return null
         const linkParams = cloneDeep(params)
         linkParams.url = category.url_path
         delete linkParams.currentPage

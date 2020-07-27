@@ -12,7 +12,7 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
       </Typography>
       {/* todo: replace with proper content renderer */}
       {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: description }} />
+      {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
     </div>
   )
 }

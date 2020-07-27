@@ -3,7 +3,6 @@ import { LinkProps, Link } from '@material-ui/core'
 import NextLink from 'next/link'
 import Router from 'next/router'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
-import { useStoreConfigQuery } from 'generated/apollo'
 import {
   ProductListParams,
   isFilterTypeEqual,
@@ -24,15 +23,18 @@ export function createRoute(props: ProductListParams): string {
   // todo(paales): How should the URL look like with multiple sorts?
   // Something like: /sort/position,price/dir/asc,asc
   const [sortBy] = Object.keys(sort)
-  if (sortBy) href += `/sort/${sortBy}`
-  if (sortBy && sort[sortBy] && sort[sortBy] === 'DESC') href += `/dir/desc`
+  if (sort && sortBy) href += `/sort/${sortBy}`
+  if (sort && sortBy && sort[sortBy] && sort[sortBy] === 'DESC') href += `/dir/desc`
 
   // Apply filters
-  Object.entries(filters).forEach(([param, value]) => {
-    if (isFilterTypeEqual(value) && value.in?.length) href += `/${param}/${value.in?.join(',')}`
-    if (isFilterTypeMatch(value)) href += `/${param}/${value.match}`
-    if (isFilterTypeRange(value)) href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
-  })
+  if (filters)
+    Object.entries(filters).forEach(([param, value]) => {
+      if (value && isFilterTypeEqual(value) && value.in?.length)
+        href += `/${param}/${value.in?.join(',')}`
+      if (value && isFilterTypeMatch(value)) href += `/${param}/${value.match}`
+      if (value && isFilterTypeRange(value))
+        href += `/${param}/${value.from ?? '*'}-${value.to ?? '*'}`
+    })
 
   href = `/${url}${href && `/q${href}`}`
   return href

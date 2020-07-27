@@ -13,8 +13,9 @@ export default function ProductListFilters(props: ProductFiltersProps) {
 
   return (
     <>
-      {aggregations.map((aggregation) => {
-        if (aggregation.attribute_code === 'category_id') return null
+      {aggregations?.map((aggregation) => {
+        if (!aggregation?.attribute_code || aggregation?.attribute_code === 'category_id')
+          return null
         switch (filterTypeMap[aggregation.attribute_code]) {
           case 'FilterEqualTypeInput':
             return (

@@ -31,7 +31,9 @@ const useStyles = makeStyles(
   { name: 'Cart' },
 )
 
-type CartItemRenderer = GQLTypeRenderer<GQLGuestCartQuery['cart']['items'][0]>
+type CartItemRenderer = GQLTypeRenderer<
+  NonNullable<NonNullable<NonNullable<GQLGuestCartQuery['cart']>['items']>[0]>
+>
 
 type CartProps = { renderer: CartItemRenderer }
 
@@ -60,16 +62,17 @@ export default function Cart(props: CartProps) {
 
   return (
     <AnimatePresence>
-      {cart.items.map<React.ReactNode>((item) => {
+      {cart?.items?.map<React.ReactNode>((item) => {
+        if (!item) return null
         return (
-          <motion.div key={item.id} {...animation}>
+          <motion.div key={item?.id} {...animation}>
             <GQLRenderType renderer={renderer} {...item} />
             <Divider variant='inset' component='li' />
           </motion.div>
         )
       })}
 
-      {(cart.shipping_addresses.length > 0 || cart.prices.discounts) && (
+      {cart?.prices?.subtotal_including_tax && (
         <motion.div {...animation} key='subtotal'>
           <ListItem>
             <ListItemText inset>Subtotal</ListItemText>
@@ -80,23 +83,25 @@ export default function Cart(props: CartProps) {
         </motion.div>
       )}
 
-      {cart.prices.discounts?.map((discount, idx) => (
+      {cart?.prices?.discounts?.map((discount, idx) => (
         <motion.div {...animation} key={`price${idx}`}>
           <ListItem>
-            <ListItemText inset>{discount.label}</ListItemText>
+            <ListItemText inset>{discount?.label}</ListItemText>
             <ListItemSecondaryAction>
-              <Money {...discount.amount} key={idx} />
+              {discount?.amount && <Money {...discount?.amount} key={idx} />}
             </ListItemSecondaryAction>
           </ListItem>
         </motion.div>
       ))}
 
-      {cart.shipping_addresses?.map((address, idx) => (
+      {cart?.shipping_addresses?.map((address, idx) => (
         <motion.div {...animation} key={`shipping_addresses_${idx}`}>
           <ListItem>
-            <ListItemText inset>{address.selected_shipping_method.carrier_title}</ListItemText>
+            <ListItemText inset>{address?.selected_shipping_method?.carrier_title}</ListItemText>
             <ListItemSecondaryAction>
-              <Money {...address.selected_shipping_method.amount} key={idx} />
+              {address?.selected_shipping_method?.amount && (
+                <Money {...address.selected_shipping_method.amount} key={idx} />
+              )}
             </ListItemSecondaryAction>
           </ListItem>
         </motion.div>
@@ -106,7 +111,7 @@ export default function Cart(props: CartProps) {
         <ListItem key='total'>
           <ListItemText inset>Total</ListItemText>
           <ListItemSecondaryAction>
-            <Money {...cart.prices.grand_total} />
+            {cart?.prices?.grand_total && <Money {...cart.prices.grand_total} />}
           </ListItemSecondaryAction>
         </ListItem>
       </motion.div>
