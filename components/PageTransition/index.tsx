@@ -1,5 +1,11 @@
 import React, { useState, useEffect, PropsWithChildren } from 'react'
-import { TargetAndTransition, MotionProps, AnimatePresence, motion } from 'framer-motion'
+import {
+  TargetAndTransition,
+  MotionProps,
+  AnimatePresence,
+  m as motion,
+  AnimateSharedLayout,
+} from 'framer-motion'
 import { useRouter } from 'next/router'
 
 import { makeStyles } from '@material-ui/styles'
@@ -128,6 +134,7 @@ export default function PageTransition({
   const offsetProps = offsetDivProps(router.asPath, fromUrl, toUrl)
 
   return (
+    // <AnimateSharedLayout type='crossfade'>
     <AnimatePresence
       initial={false}
       custom={backTrans ? backTrans.foreground : pageTransition?.background}
@@ -141,5 +148,6 @@ export default function PageTransition({
         <div {...offsetProps}>{children}</div>
       </motion.div>
     </AnimatePresence>
+    // </AnimateSharedLayout>
   )
 }

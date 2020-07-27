@@ -1,0 +1,5 @@
+fragment ProductPageUpsell on ProductInterface {
+  upsell_products {
+    ...ProductListItem
+  }
+}

@@ -1,0 +1,4 @@
+fragment ProductLink on ProductInterface {
+  url_key
+  canonical_url
+}

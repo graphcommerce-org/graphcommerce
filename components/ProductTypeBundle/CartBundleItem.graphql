@@ -1,4 +1,4 @@
-fragment BundleCartItem on BundleCartItem {
+fragment CartItemBundle on BundleCartItem {
   bundle_option: customizable_options {
     id
     is_required

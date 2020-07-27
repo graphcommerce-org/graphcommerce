@@ -1,0 +1,11 @@
+fragment ProductPageDownloadable on DownloadableProduct {
+  downloadable_product_links {
+    price
+    sample_url
+    title
+  }
+  downloadable_product_samples {
+    title
+    sample_url
+  }
+}

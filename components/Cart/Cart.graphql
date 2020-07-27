@@ -1,4 +1,5 @@
 fragment Cart on Cart {
+  __typename
   id
 
   email
@@ -28,10 +29,10 @@ fragment Cart on Cart {
     id
     __typename
     ...CartItem
-    ...SimpleCartItem
-    ...ConfigurableCartitem
-    ...VirtualCartItem
-    ...BundleCartItem
+    ...CartItemSimple
+    ...CartItemConfigurable
+    ...CartItemVirtual
+    ...CartItemBundle
   }
 
   is_virtual

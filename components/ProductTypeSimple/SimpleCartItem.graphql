@@ -1,3 +1,0 @@
-fragment SimpleCartItem on SimpleCartItem {
-  id
-}

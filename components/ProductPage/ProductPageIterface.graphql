@@ -1,0 +1,11 @@
+fragment ProductPageInterface on ProductInterface {
+  sku
+  name
+  ...ProductPageBreadcrumb
+  ...ProductPageDescription
+  ...ProductPageGallery
+  ...ProductPageMeta
+  ...ProductPagePrices
+  ...ProductPageRelated
+  ...ProductPageUpsell
+}

@@ -1,5 +1,4 @@
-fragment ProductListItemConfigurable on ConfigurableProduct {
-  ...ProductListItem
+fragment ProductPageConfigurable on ConfigurableProduct {
   configurable_options {
     attribute_code
     attribute_id
@@ -21,6 +20,7 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
     attributes {
       code
       value_index
+      label
     }
     product {
       ...ProductListItem

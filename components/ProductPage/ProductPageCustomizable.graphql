@@ -1,0 +1,8 @@
+fragment ProductPageCustomizable on CustomizableProductInterface {
+  options {
+    option_id
+    required
+    sort_order
+    title
+  }
+}

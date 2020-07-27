@@ -3,6 +3,7 @@ import { LinkProps, Link } from '@material-ui/core'
 import NextLink from 'next/link'
 import Router from 'next/router'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { useStoreConfigQuery } from 'generated/apollo'
 import {
   ProductListParams,
   isFilterTypeEqual,
@@ -10,9 +11,7 @@ import {
   isFilterTypeRange,
 } from '../ProductListItems/filterTypes'
 
-export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>
-
-export function createRoute(props: ProductListParams): string {
+function createCategoryLink(props: ProductListParams): string {
   const { url, sort, currentPage, filters } = props
 
   // base url path generation
@@ -40,19 +39,30 @@ export function createRoute(props: ProductListParams): string {
   return href
 }
 
+export function useCategoryLink(props: ProductListParams): string {
+  const { data: storeConfigData } = useStoreConfigQuery()
+  const urlSuffix = storeConfigData?.storeConfig?.category_url_suffix
+  return `${createCategoryLink(props)}${urlSuffix ?? ''}`
+}
+
+export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>
+
 const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((props, ref) => {
   const { setParams } = useProductListParamsContext()
-  // const { data: storeConfigData } = useStoreConfigQuery()
-
-  // storeConfigData?.storeConfig.category_url_suffix
-
   const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
+  const newParams = { filters, sort, url, currentPage, pageSize, search }
 
-  const updateParams = () => setParams({ filters, sort, url, currentPage, pageSize, search })
+  const categoryLink = useCategoryLink(newParams)
+  const updateParams = () => setParams(newParams)
+
+  // We're setting nofollow if a custom sort, pageSize, filters or search is set.
+  let rel: string | undefined
+  if (Object.keys(sort).length || pageSize || Object.keys(filters).length || search)
+    rel = 'nofollow'
 
   return (
-    <NextLink href='/[...url]' as={createRoute(props)} passHref>
-      <Link rel='nofollow' {...linkProps} ref={ref} onClick={updateParams}>
+    <NextLink href='/[...url]' as={categoryLink} passHref>
+      <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams}>
         {children}
       </Link>
     </NextLink>
@@ -63,10 +73,13 @@ export default CategoryLink
 
 export const useCategoryPushRoute = () => {
   const { setParams } = useProductListParamsContext()
+  const { data: storeConfigData } = useStoreConfigQuery()
+  const urlSuffix = storeConfigData?.storeConfig?.category_url_suffix ?? ''
 
   return (params: ProductListParams) => {
     setParams(params)
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push('/[...url]', createRoute(params))
+    Router.push('/[...url]', `${createCategoryLink(params)}${urlSuffix ?? ''}`)
   }
 }

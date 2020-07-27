@@ -1,10 +1,10 @@
 fragment ProductPageGallery on ProductInterface {
-  small_image {
-    url
-  }
   media_gallery {
+    __typename
     label
-    url
+    position
     disabled
+    ...ProductImage
+    ...ProductVideo
   }
 }

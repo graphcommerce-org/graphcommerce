@@ -1,0 +1,3 @@
+fragment CartItemSimple on SimpleCartItem {
+  id
+}

@@ -33,17 +33,9 @@ import ProductListItemDownloadable from 'components/ProductTypeDownloadable/Prod
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const classes = useCategoryPageStyles(props)
   const { marginTop } = useHeaderSpacing()
-  const { categoryList, products, filters, params, storeConfig, filterTypeMap } = props
+  const { categoryList, products, filters, params, filterTypeMap } = props
 
-  if (
-    !categoryList ||
-    !categoryList[0] ||
-    !products ||
-    !params ||
-    !storeConfig ||
-    !filters ||
-    !filterTypeMap
-  )
+  if (!categoryList || !categoryList[0] || !products || !params || !filters || !filterTypeMap)
     return <NextError statusCode={503} title='Loading skeleton' />
 
   return (
@@ -116,14 +108,8 @@ export const getStaticProps: GetStaticProps<
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigationProps = getHeaderProps(staticClient)
-  const urlResolve = getUrlResolveProps(
-    {
-      urlKey: url.join('/') + ((await config)?.storeConfig?.category_url_suffix ?? ''),
-    },
-    staticClient,
-  )
-  const categoryPageProps = getCategoryPageProps(
+  const urlResolve = getUrlResolveProps({ urlKey: url.join('/') }, staticClient)
+  const categoryPage = getCategoryPageProps(
     {
       urlParams: ctx.params.url.slice(qIndex + 1),
       urlResolve,
@@ -131,12 +117,15 @@ export const getStaticProps: GetStaticProps<
     },
     staticClient,
   )
+  const navigation = getHeaderProps(staticClient, {
+    rootCategory: String((await config).storeConfig?.root_category_id),
+  })
 
   return {
     props: {
       ...(await urlResolve),
-      ...(await navigationProps),
-      ...(await categoryPageProps),
+      ...(await navigation),
+      ...(await categoryPage),
       apolloState: client.cache.extract(),
     },
   }

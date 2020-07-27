@@ -1,5 +1,23 @@
 # Magento 2 PWA as a library
 
+### The failure
+
+The idea to use peregrine as a library to build our own PWA solution has failed
+because of a few reasons:
+
+Magento's PWA packages are supposed to be router-agnostic by using
+@venia/drivers, but it is impossible to do that because `react-router-dom` is
+directly used in the peregrine library. Issue:
+https://github.com/magento/pwa-studio/issues/2479
+
+It doesn't support typescript: https://github.com/magento/pwa-studio/issues/2171
+https://github.com/magento/pwa-studio/pull/2471
+
+GraphQL is a second-class citizen: They are using GraphQL as if it is a REST API
+to fetch data instead of building the application around GraphQL.
+
+### The idea
+
 The goal is to create a frontend where Magento is used as a library be able to
 use Magento's functionality on places where we want as little or much as needed.
 

@@ -4,7 +4,7 @@ import { vpCalc, UseStyles } from 'components/Theme'
 import PictureResponsive from 'components/PictureResponsive'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { m as motion } from 'framer-motion'
 import ProductListPrice from '../ProductListPrice'
 
 export const useProductListItemStyles = makeStyles(
