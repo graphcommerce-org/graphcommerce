@@ -22,8 +22,10 @@
       "handler": {
         "graphql": {
           "endpoint": "${MAGENTO_BACKEND_URL}graphql",
-          "cacheIntrospection": true,
-          "headers": {
+          "schemaHeaders": {
+            "Store": "segway_nl_nl"
+          },
+          "operationHeaders": {
             "Store": "segway_nl_nl"
           }
         }
