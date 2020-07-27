@@ -1,4 +1,7 @@
-import { PageTransitionPair, exitTime, entryTime } from './index'
+import { PageTransitionPair } from './index'
+
+const entryTime = 0.25
+const exitTime = 0.2
 
 const overlay: PageTransitionPair = {
   background: {
