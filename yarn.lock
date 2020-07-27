@@ -7099,17 +7099,17 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.1.2.tgz#e685cb70c34e746199e2442280ad192b634d137a"
-  integrity sha512-wh50DVBVtJWfu4HXdTf0WKK+T75+m6Blv0shZ3aq2t34zd7E9pY0nkaIyy60afC9O2o8qjzdNeapMamTV1Feiw==
+framer-motion@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-2.1.4.tgz#cc31c4c5906d8e535db8b1edf96a2cb09c317f9f"
+  integrity sha512-9HKuNO4YH09OxHevjmJwpzbbh6BKJnw/28JcpGNEyPWAu5QdOLo2Btjkxo1w3XzjeDZ4DVduvcycgkZZSYG8dw==
   dependencies:
     "@popmotion/easing" "^1.0.2"
     "@popmotion/popcorn" "^0.4.2"
     framesync "^4.0.4"
     hey-listen "^1.0.8"
     popmotion "9.0.0-beta-8"
-    style-value-types "^3.1.6"
+    style-value-types "^3.1.9"
     tslib "^1.10.0"
   optionalDependencies:
     "@emotion/is-prop-valid" "^0.8.2"
@@ -13704,7 +13704,7 @@ style-loader@1.2.1:
     loader-utils "^2.0.0"
     schema-utils "^2.6.6"
 
-style-value-types@^3.1.6, style-value-types@^3.1.7:
+style-value-types@^3.1.6, style-value-types@^3.1.7, style-value-types@^3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-3.1.9.tgz#faf7da660d3f284ed695cff61ea197d85b9122cc"
   integrity sha512-050uqgB7WdvtgacoQKm+4EgKzJExVq0sieKBQQtJiU3Muh6MYcCp4T3M8+dfl6VOF2LR0NNwXBP1QYEed8DfIw==
