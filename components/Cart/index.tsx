@@ -11,7 +11,7 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import Money from 'components/Money'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
-import { motion, AnimatePresence, MotionProps } from 'framer-motion'
+import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import CartSkeleton from './CartSkeleton'
 
 const useStyles = makeStyles(
