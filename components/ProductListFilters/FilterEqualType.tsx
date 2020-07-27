@@ -6,7 +6,9 @@ import cloneDeep from 'clone-deep'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import ChipMenu, { ChipMenuProps } from '../ChipMenu'
 
-type FilterEqualTypeProps = GQLProductListFiltersFragment['aggregations'][0] &
+type FilterEqualTypeProps = NonNullable<
+  NonNullable<GQLProductListFiltersFragment['aggregations']>[0]
+> &
   Omit<ChipMenuProps, 'selected'>
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
@@ -14,9 +16,10 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { params } = useProductListParamsContext()
   const currentFilter = params.filters[attribute_code] as GQLFilterEqualTypeInput
 
-  const activeLabels = options
-    .filter((option) => currentFilter?.in?.includes(option.value))
-    .map((option) => option.label)
+  const activeLabels =
+    options
+      ?.filter((option) => option && currentFilter?.in?.includes(option.value))
+      .map((option) => option && option.label) ?? []
 
   const pushRoute = useCategoryPushRoute()
 
@@ -36,7 +39,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
       selectedLabel={activeLabels.length > 0 ? activeLabels.join(', ') : undefined}
       onDelete={activeLabels.length > 0 ? removeFilter : undefined}
     >
-      {options.map((option) => {
+      {options?.map((option) => {
         const linkParams = cloneDeep(params)
         delete linkParams.currentPage
 
@@ -45,18 +48,18 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
         if (!linkParams.filters[attribute_code]?.in) linkParams.filters[attribute_code] = { in: [] }
         const filter: FilterIn = linkParams.filters[attribute_code]
 
-        if (currentFilter?.in?.includes(option.value)) {
-          filter.in = filter.in.filter((val) => val !== String(option.value))
+        if (currentFilter?.in?.includes(option?.value ?? '')) {
+          filter.in = filter?.in?.filter((val) => val !== (option?.value ?? '')) ?? []
         } else {
-          filter.in = [...filter.in, option.value].sort()
+          filter.in = [...(filter.in ?? []), option?.value ?? ''].sort()
         }
 
-        const labelId = `filter-equal-${attribute_code}-${option.value}`
+        const labelId = `filter-equal-${attribute_code}-${option?.value}`
 
         return (
           <ListItem
             button
-            key={option.value}
+            key={option?.value}
             dense
             component={(chipProps) => (
               <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
@@ -69,7 +72,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
             >
               <Checkbox
                 edge='start'
-                checked={currentFilter?.in?.includes(option.value)}
+                checked={currentFilter?.in?.includes(option?.value ?? '')}
                 tabIndex={-1}
                 size='small'
                 color='primary'
@@ -79,7 +82,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                 }}
               />
             </ListItemIcon>
-            <ListItemText primary={option.label} />
+            <ListItemText primary={option?.label} />
           </ListItem>
         )
       })}

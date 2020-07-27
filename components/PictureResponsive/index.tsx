@@ -89,6 +89,8 @@ const PictureResponsive: React.FC<PictureResponsiveProps> = ({ srcSets, alt, ...
   useEffect(() => {
     // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
     if (!ref.current || !width) return
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     requestUpgrade(ref.current).then(() => {
       // If the connection is slow, request a lower quality image
       setSize(Math.round(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))

@@ -12,6 +12,7 @@ import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 import NextError from 'next/error'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
+import { motion } from 'framer-motion'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   const { products } = props
@@ -20,16 +21,19 @@ const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
 
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
-  const {
-    items: [product],
-  } = products
+  const product = products?.items?.[0]
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
   return (
     <div style={{ height: 400, backgroundColor: 'red' }}>
       <Container className={clsx(classes.container, marginTop)}>
-        <img src={product.small_image.url} alt='' style={{ width: 500 }} />
+        <motion.img
+          src={product?.small_image?.url ?? ''}
+          alt=''
+          style={{ width: 500 }}
+          layoutId={product?.sku ?? ''}
+        />
         <br />
         <br />
         <br />
@@ -118,7 +122,7 @@ export const getStaticProps: GetStaticProps<
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
   const urlResolve = getUrlResolveProps(
-    { urlKey: ctx.params.url + ((await config).storeConfig.product_url_suffix ?? '') },
+    { urlKey: ctx.params.url + ((await config)?.storeConfig?.product_url_suffix ?? '') },
     staticClient,
   )
   const navigation = getHeaderProps(staticClient)

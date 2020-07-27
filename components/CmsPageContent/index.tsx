@@ -10,7 +10,7 @@ export default function CmsPageContent(props: GQLCmsPageContentFragment) {
           {content_heading}
         </Typography>
       )}
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
     </Container>
   )
 }

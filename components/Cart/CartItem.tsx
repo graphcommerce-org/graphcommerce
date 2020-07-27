@@ -84,20 +84,22 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
           <DeleteIcon fontSize='small' />
         </IconButton>
       </ListItemAvatar>
-      <ListItemAvatar>
-        <Avatar
-          alt={product.thumbnail.label}
-          src={product.thumbnail.url}
-          variant='rounded'
-          className={classes.avatar}
-        />
-      </ListItemAvatar>
+      {product?.thumbnail?.url && product.thumbnail.label && (
+        <ListItemAvatar>
+          <Avatar
+            alt={product.thumbnail.label}
+            src={product.thumbnail.url}
+            variant='rounded'
+            className={classes.avatar}
+          />
+        </ListItemAvatar>
+      )}
       <ListItemText
         primary={product.name}
         secondaryTypographyProps={{ component: 'div' }}
         secondary={
           <div className={classes.totals}>
-            <Money {...prices.price} />
+            {prices?.price && <Money {...prices.price} />}
             {' ⨉ '}
             <TextField
               defaultValue={quantity}
@@ -110,7 +112,7 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
                 className: classes.quantityInput,
               }}
             />
-            <Money {...prices.row_total_including_tax} />
+            {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
           </div>
         }
       />

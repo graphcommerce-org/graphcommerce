@@ -34,15 +34,9 @@ generates:
       - typescript-operations
     config:
       typesPrefix: GQL
-      immutableTypes: false
       noExport: true
       enumsAsTypes: true
       skipTypename: true
-      avoidOptionals:
-        field: true
-        inputValue: false
-        object: true
-      maybeValue: 'T'
   generated/apollo.ts:
     plugins:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'

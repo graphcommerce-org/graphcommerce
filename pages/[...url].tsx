@@ -65,11 +65,7 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             <CategoryChildren params={params} className={classes.filterItem}>
               {categoryList[0].children}
             </CategoryChildren>
-            <ProductListSort
-              sort_fields={products.sort_fields}
-              defaultSort={storeConfig.catalog_default_sort_by}
-              className={classes.filterItem}
-            />
+            <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
               aggregations={filters.aggregations}
               filterTypeMap={filterTypeMap}
@@ -123,7 +119,7 @@ export const getStaticProps: GetStaticProps<
   const navigationProps = getHeaderProps(staticClient)
   const urlResolve = getUrlResolveProps(
     {
-      urlKey: url.join('/') + ((await config).storeConfig.category_url_suffix ?? ''),
+      urlKey: url.join('/') + ((await config)?.storeConfig?.category_url_suffix ?? ''),
     },
     staticClient,
   )

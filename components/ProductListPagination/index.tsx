@@ -9,8 +9,9 @@ export default function ProductListPagination({
   page_info,
   ...paginationProps
 }: ProductPaginationProps) {
-  const { current_page, total_pages } = page_info
   const { params } = useProductListParamsContext()
+  if (!page_info || !page_info.total_pages || !page_info.current_page) return null
+  const { current_page, total_pages } = page_info
 
   return (
     <Pagination

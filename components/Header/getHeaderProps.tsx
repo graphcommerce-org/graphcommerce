@@ -9,7 +9,7 @@ export default async function getHeaderProps(client: ApolloClient<NormalizedCach
   const menu = client.query<GQLHeaderMenuQuery, GQLHeaderMenuQueryVariables>({
     query: HeaderMenuDocument,
     variables: {
-      rootCategory: String((await config).storeConfig.root_category_id),
+      rootCategory: String((await config).storeConfig?.root_category_id),
     },
   })
 

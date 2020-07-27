@@ -14,16 +14,17 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   const { variants, configurable_options, filterTypeMap, ...configurableProduct } = props
   const { params } = useProductListParamsContext()
 
-  const options: [string, string[]][] = configurable_options
-    .filter(
-      (option) =>
-        params.filters[option.attribute_code] &&
-        isFilterTypeEqual(params.filters[option.attribute_code]),
-    )
-    .map((option) => {
-      const filter = params.filters[option.attribute_code] as GQLFilterEqualTypeInput
-      return [option.attribute_code, filter?.in || []]
-    })
+  const options: [string, string[]][] =
+    configurable_options
+      ?.filter(
+        (option) =>
+          params.filters[option?.attribute_code ?? ''] &&
+          isFilterTypeEqual(params.filters[option?.attribute_code ?? '']),
+      )
+      .map((option) => {
+        const filter = params.filters[option?.attribute_code ?? ''] as GQLFilterEqualTypeInput
+        return [option?.attribute_code ?? '', (filter?.in as string[]) ?? []]
+      }) ?? []
 
   const [selectedState, setSelected] = useState<{ [index: string]: string[] }>({})
 
@@ -32,18 +33,19 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     if (!selected[attr]) selected[attr] = values
   })
 
-  const matchingVariants = variants.filter(
-    ({ attributes }) =>
-      attributes.filter(
+  const matchingVariants = variants?.filter(
+    (variant) =>
+      variant?.attributes?.filter(
         (attribute) =>
-          selected[attribute.code] !== undefined &&
-          selected[attribute.code].includes(String(attribute.value_index)),
+          selected[attribute?.code ?? ''] !== undefined &&
+          selected[attribute?.code ?? ''].includes(String(attribute?.value_index)),
       ).length,
   )
 
-  const productProps = matchingVariants.length ? matchingVariants[0].product : configurableProduct
+  const productProps = matchingVariants?.[0]?.product ?? configurableProduct
 
-  const onClick = (attribute_code: string, value_index: number) => () => {
+  const onClick = (attribute_code?: string | null, value_index?: number | null) => () => {
+    if (!attribute_code || !value_index) return
     const newSelected = cloneDeep(selected)
     if (newSelected[attribute_code] && newSelected[attribute_code].length) {
       newSelected[attribute_code] = newSelected[attribute_code].filter(
@@ -57,28 +59,30 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
 
   return (
     <ProductListItem {...productProps}>
-      {configurable_options.map((option) => {
+      {configurable_options?.map((option) => {
+        if (!option) return null
         return (
-          <div key={option.id}>
-            {option.values.map((value) => {
-              switch (value.swatch_data.__typename) {
+          <div key={option.id ?? ''}>
+            {option.values?.map((value) => {
+              if (!value) return null
+              switch (value?.swatch_data?.__typename) {
                 case 'ColorSwatchData':
                   return (
                     <Chip
-                      key={value.value_index}
+                      key={value.value_index ?? ''}
                       label={value.store_label}
                       clickable
-                      onClick={onClick(option.attribute_code, value.value_index)}
+                      onClick={onClick(option?.attribute_code, value.value_index)}
                       variant='outlined'
                       color={
-                        selected[option.attribute_code]?.includes(String(value.value_index))
+                        selected[option?.attribute_code ?? '']?.includes(String(value.value_index))
                           ? 'primary'
                           : 'default'
                       }
                       avatar={
                         <div
                           style={{
-                            backgroundColor: value.swatch_data.value,
+                            backgroundColor: value?.swatch_data?.value ?? undefined,
                             borderRadius: '50%',
                           }}
                         />
@@ -88,21 +92,21 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
                 case 'ImageSwatchData':
                   return (
                     <Chip
-                      key={value.value_index}
+                      key={value.value_index ?? ''}
                       label={value.store_label}
                       clickable
                       onClick={onClick(option.attribute_code, value.value_index)}
                       variant='outlined'
                       color={
-                        selected[option.attribute_code]?.includes(String(value.value_index))
+                        selected[option?.attribute_code ?? '']?.includes(String(value.value_index))
                           ? 'primary'
                           : 'default'
                       }
                       avatar={
                         <img
-                          src={value.swatch_data.thumbnail}
-                          key={value.value_index}
-                          alt={value.swatch_data.value}
+                          src={value.swatch_data.thumbnail ?? ''}
+                          key={value.value_index ?? ''}
+                          alt={value.swatch_data.value ?? ''}
                         />
                       }
                     />
@@ -112,10 +116,10 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
                     <Chip
                       variant='outlined'
                       onClick={onClick(option.attribute_code, value.value_index)}
-                      key={value.value_index}
+                      key={value.value_index ?? ''}
                       label={value.store_label}
                       color={
-                        selected[option.attribute_code]?.includes(String(value.value_index))
+                        selected[option.attribute_code ?? '']?.includes(String(value.value_index))
                           ? 'primary'
                           : 'default'
                       }
@@ -127,10 +131,12 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
           </div>
         )
       })}
-      <AddConfigurableProductToCart
-        parentSku={configurableProduct.sku}
-        variantSku={matchingVariants.length > 0 ? matchingVariants[0].product.sku : undefined}
-      />
+      {matchingVariants?.[0]?.product?.sku && configurableProduct.sku && (
+        <AddConfigurableProductToCart
+          parentSku={configurableProduct.sku}
+          variantSku={matchingVariants[0].product.sku}
+        />
+      )}
     </ProductListItem>
   )
 }

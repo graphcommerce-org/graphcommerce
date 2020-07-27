@@ -3,22 +3,20 @@ import { ListItem, ListItemText } from '@material-ui/core'
 import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
 import cloneDeep from 'clone-deep'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { useStoreConfigQuery } from 'generated/apollo'
 import CategoryLink, { useCategoryPushRoute } from '../CategoryLink'
 
-export type ProductListSortProps = GQLProductListSortFragment & {
-  defaultSort: string
-} & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
+export type ProductListSortProps = GQLProductListSortFragment &
+  Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
-export default function ProductListSort({
-  sort_fields,
-  defaultSort,
-  ...filterMenuProps
-}: ProductListSortProps) {
+export default function ProductListSort({ sort_fields, ...filterMenuProps }: ProductListSortProps) {
   const { params } = useProductListParamsContext()
   const pushRoute = useCategoryPushRoute()
+  const { data: storeConfigQuery } = useStoreConfigQuery()
+  const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
 
   const [currentSort = defaultSort] = Object.keys(params.sort)
-  const currentOption = sort_fields.options.find((option) => option.value === currentSort)
+  const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
@@ -31,26 +29,26 @@ export default function ProductListSort({
       selected={currentSort !== defaultSort}
       label='Sort by'
       {...filterMenuProps}
-      selectedLabel={currentOption?.label}
+      selectedLabel={currentOption?.label ?? ''}
       onDelete={currentSort !== defaultSort ? removeFilter : undefined}
     >
-      {sort_fields.options.map((option) => {
+      {sort_fields?.options?.map((option) => {
         const linkParams = cloneDeep(params)
         linkParams.sort = {}
-        if (option.value !== defaultSort) linkParams.sort[option.value] = 'ASC'
+        if (option?.value !== defaultSort) linkParams.sort[option?.value ?? ''] = 'ASC'
         delete linkParams.currentPage
 
         return (
           <ListItem
             button
-            key={option.value}
+            key={option?.value ?? ''}
             dense
-            selected={option.value === currentSort}
+            selected={option?.value === currentSort}
             component={(chipProps) => (
               <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
             )}
           >
-            <ListItemText secondary>{option.label}</ListItemText>
+            <ListItemText secondary>{option?.label}</ListItemText>
           </ListItem>
         )
       })}

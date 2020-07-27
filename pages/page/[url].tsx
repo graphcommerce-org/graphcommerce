@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<
   const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)
   const navigationProps = getHeaderProps(staticClient)
   const cmsPageProps = getCmsPageProps(
-    ctx.params.url === '/' ? (await config).storeConfig.cms_home_page : ctx.params.url,
+    (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
     staticClient,
   )
 

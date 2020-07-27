@@ -4,9 +4,5 @@ import AddBundleProductToCart from './AddBundleProductToCart'
 
 export default function ProductListItemBundle(props: GQLProductListItemSimpleFragment) {
   const { sku } = props
-  return (
-    <ProductListItem {...props}>
-      <AddBundleProductToCart sku={sku} />
-    </ProductListItem>
-  )
+  return <ProductListItem {...props}>{sku && <AddBundleProductToCart sku={sku} />}</ProductListItem>
 }

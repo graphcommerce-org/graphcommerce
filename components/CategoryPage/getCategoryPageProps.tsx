@@ -59,9 +59,10 @@ const getCategoryPageProps = async (
 ) => {
   const filterTypeMap = getFilterTypeMap(client)
 
+  const rootCategory = String((await urlResolve).urlResolver?.id)
   const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
     query: CategoryPageDocument,
-    variables: { id: String((await urlResolve).urlResolver.id) },
+    variables: { id: rootCategory },
   })
 
   const params = parseParams(url.join('/'), urlParams, filterTypeMap)
@@ -70,11 +71,8 @@ const getCategoryPageProps = async (
     query: ProductListDocument,
     variables: {
       ...(await params),
-      filters: {
-        category_id: { eq: String((await urlResolve).urlResolver.id) },
-        ...(await params).filters,
-      },
-      rootCategory: String((await urlResolve).urlResolver.id),
+      filters: { category_id: { eq: rootCategory }, ...(await params).filters },
+      rootCategory,
     },
   })
 
