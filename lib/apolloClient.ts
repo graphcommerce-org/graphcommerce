@@ -11,10 +11,9 @@ import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { persistCache } from 'apollo-cache-persist'
 import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
-import isLoggedInTypePolicies from 'components/IsLoggedIn/typePolicies'
-import cartIdtypePolicies from 'components/CartId/typePolicies'
-import cartTypePolicies from 'components/Cart/typePolicies'
+// import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import { deferLink } from './deferLink'
+import typePolicies from './typePolicies'
 
 let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
@@ -64,7 +63,7 @@ export function createApolloClient(
   })
 
   link = ApolloLink.from([
-    // new MutationQueueLink() as ApolloLink,
+    // new MutationQueueLink(),
     new RetryLink(),
     authLink,
     new HttpLink({
@@ -73,14 +72,7 @@ export function createApolloClient(
     }),
   ])
 
-  // todo(paales): Make sure the typePolicies are configured instead of hardcoded here.
-  // What other type policies could we need?
-  // Currency?
-  // Customer Group?
-  const cache = new InMemoryCache({
-    possibleTypes,
-    typePolicies: mergeDeep(cartIdtypePolicies, isLoggedInTypePolicies, cartTypePolicies),
-  }).restore(initialState)
+  const cache = new InMemoryCache({ possibleTypes, typePolicies }).restore(initialState)
 
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   persistCache({ cache, storage: window.localStorage })
