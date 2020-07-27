@@ -1,4 +1,4 @@
-fragment ConfigurableCartitem on ConfigurableCartItem {
+fragment CartItemConfigurable on ConfigurableCartItem {
   configurable_options: customizable_options {
     id
     is_required
