@@ -55,6 +55,10 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
   const categoryLink = useCategoryLink(newParams)
   const updateParams = () => setParams(newParams)
 
+  // We're setting nofollow if a custom sort, pageSize, filters or search is set.
+  let rel: string | undefined
+  if (Object.keys(sort).length || pageSize || Object.keys(filters).length || search)
+    rel = 'nofollow'
 
   return (
     <NextLink href='/[...url]' as={categoryLink} passHref>
