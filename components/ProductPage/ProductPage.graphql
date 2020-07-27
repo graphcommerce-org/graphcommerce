@@ -3,68 +3,14 @@ query ProductPage($urlKey: String) {
     items {
       __typename
       id
-      sku
-      stock_status
-      only_x_left_in_stock
-      ...ProductPageBreadcrumb
-      ...ProductPageDescription
-      ...ProductPageGallery
-      ...ProductPageMeta
-      price_range {
-        maximum_price {
-          ...ProductPagePrice
-        }
-        minimum_price {
-          ...ProductPagePrice
-        }
-      }
-      ... on ConfigurableProduct {
-        configurable_options {
-          attribute_code
-          attribute_id
-          id
-          label
-          values {
-            default_label
-            label
-            store_label
-            use_default_value
-            value_index
-            swatch_data {
-              ... on ImageSwatchData {
-                thumbnail
-              }
-              value
-            }
-          }
-        }
-        variants {
-          attributes {
-            code
-            value_index
-          }
-          product {
-            id
-            media_gallery_entries {
-              id
-              disabled
-              file
-              label
-              position
-            }
-            sku
-            stock_status
-            price {
-              regularPrice {
-                amount {
-                  currency
-                  value
-                }
-              }
-            }
-          }
-        }
-      }
+      ...ProductPageInterface
+      ...ProductPagePhysical
+      ...ProductPageCustomizable
+      ...ProductPageVirtual
+      ...ProductPageSimple
+      ...ProductPageDownloadable
+      ...ProductPageConfigurable
+      ...ProductPageBundle
     }
   }
 }

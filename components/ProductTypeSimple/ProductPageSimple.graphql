@@ -1,0 +1,3 @@
+fragment ProductPageSimple on SimpleProduct {
+  id
+}

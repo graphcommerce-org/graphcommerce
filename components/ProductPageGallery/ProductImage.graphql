@@ -1,0 +1,3 @@
+fragment ProductImage on ProductImage {
+  url
+}

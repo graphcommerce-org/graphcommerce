@@ -12,7 +12,12 @@ import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
 import NextError from 'next/error'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
-import { motion } from 'framer-motion'
+import { ProductPageBreadcrumb } from 'components/ProductPageBreadcrumb'
+import { ProductPageDescription } from 'components/ProductPageDescription'
+import { ProductPageMeta } from 'components/ProductPageMeta'
+import ProductPageUpsell from 'components/ProductPageUpsell'
+import ProductPageRelated from 'components/ProductPageRelated'
+import ProductPageGallery from 'components/ProductPageGallery'
 
 const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   const { products } = props
@@ -26,77 +31,24 @@ const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
   return (
-    <div style={{ height: 400, backgroundColor: 'red' }}>
-      <Container className={clsx(classes.container, marginTop)}>
-        <motion.img
-          src={product?.small_image?.url ?? ''}
-          alt=''
-          style={{ width: 500 }}
-          layoutId={product?.sku ?? ''}
-        />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        hoi
-      </Container>
-    </div>
+    <Container className={clsx(classes.container, marginTop)}>
+      <ProductPageMeta
+        canonical_url={product.canonical_url}
+        meta_description={product.meta_description}
+        meta_title={product.meta_title}
+        name={product.name}
+        url_key={product.url_key}
+      />
+      <ProductPageBreadcrumb categories={product.categories} name={product.name} />
+      <ProductPageDescription
+        name={product.name}
+        description={product.description}
+        short_description={product.short_description}
+      />
+      <ProductPageGallery media_gallery={product.media_gallery} />
+      <ProductPageUpsell upsell_products={product.upsell_products} />
+      <ProductPageRelated related_products={product.related_products} />
+    </Container>
   )
 }
 

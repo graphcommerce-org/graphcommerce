@@ -1,0 +1,3 @@
+fragment ProductPagePhysical on PhysicalProductInterface {
+  weight
+}

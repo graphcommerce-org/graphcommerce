@@ -1,12 +1,7 @@
 fragment ProductPageMeta on ProductInterface {
+  ...ProductLink
+  name
   url_key
-  url_rewrites {
-    url
-    parameters {
-      name
-      value
-    }
-  }
   meta_title
   meta_description
 }
