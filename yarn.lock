@@ -1468,12 +1468,12 @@
     "@graphql-codegen/visitor-plugin-common" "1.17.4"
     tslib "~2.0.0"
 
-"@graphql-codegen/introspection@1.17.4":
-  version "1.17.4"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/introspection/-/introspection-1.17.4.tgz#a94f57b49e61bb1c163bf478733252c2b49343a1"
-  integrity sha512-QjyjpJMlpECz1eP5iJHLGyoQC6xAGVXakBp6QkO6LzJmnpybZATrws9tao60SC5LMmHMCbDtvXxUNCnuMv+h7Q==
+"@graphql-codegen/introspection@1.17.6":
+  version "1.17.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/introspection/-/introspection-1.17.6.tgz#1c012df7dd206b096f656fd5d39414f4596dbb49"
+  integrity sha512-XtkvjITzcOapL2fEFY7z6jajIlGkkf78ligCCw8C9by0kKFzzUW276GTFt7e6mrpQvZTz7YR51sHoiAa8sDgZQ==
   dependencies:
-    "@graphql-codegen/plugin-helpers" "1.17.4"
+    "@graphql-codegen/plugin-helpers" "1.17.6"
     tslib "~2.0.0"
 
 "@graphql-codegen/plugin-helpers@1.15.3":
@@ -1512,6 +1512,23 @@
   version "1.17.4"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.17.4.tgz#720fcd31126b0d2af6f820414ec88e4e6c230d79"
   integrity sha512-7fycmjHZBhlHgHPzxJdEdB33cBSfmtqe7biS9HW6EtArvcG0rFXtDlA+nwKEdO7O39XfnR83A8FJkMw6x0h/gg==
+  dependencies:
+    "@graphql-tools/utils" "^6.0.0"
+    camel-case "4.1.1"
+    common-tags "1.8.0"
+    constant-case "3.0.3"
+    import-from "3.0.0"
+    lodash "~4.17.15"
+    lower-case "2.0.1"
+    param-case "3.0.3"
+    pascal-case "3.1.1"
+    tslib "~2.0.0"
+    upper-case "2.0.1"
+
+"@graphql-codegen/plugin-helpers@1.17.6":
+  version "1.17.6"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.17.6.tgz#533eff5acdf5ddd5b361d5b4f04ed778235432b3"
+  integrity sha512-ULt9VhERutfyg2UmYLAV37MsItL1tCP16OkUrXluoEPsinRhtBmSVn2F0JeZoNdtb2ZQO/uvg6qnj1xBvTwh+Q==
   dependencies:
     "@graphql-tools/utils" "^6.0.0"
     camel-case "4.1.1"
