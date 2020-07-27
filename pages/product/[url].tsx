@@ -77,8 +77,10 @@ export const getStaticProps: GetStaticProps<
     { urlKey: ctx.params.url + ((await config)?.storeConfig?.product_url_suffix ?? '') },
     staticClient,
   )
-  const navigation = getHeaderProps(staticClient)
   const productPage = getProductPageProps({ urlKey: ctx.params.url }, staticClient)
+  const navigation = getHeaderProps(staticClient, {
+    rootCategory: String((await config).storeConfig?.root_category_id),
+  })
 
   return {
     props: {

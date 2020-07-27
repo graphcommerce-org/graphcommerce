@@ -37,7 +37,9 @@ export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigation = getHeaderProps(staticClient)
+  const navigation = getHeaderProps(staticClient, {
+    rootCategory: String((await config).storeConfig?.root_category_id),
+  })
 
   await config
   return {

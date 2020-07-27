@@ -48,16 +48,18 @@ export const getStaticProps: GetStaticProps<
 
   const config = getStoreConfig(client)
   const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)
-  const navigationProps = getHeaderProps(staticClient)
   const cmsPageProps = getCmsPageProps(
     (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
     staticClient,
   )
+  const navigation = getHeaderProps(staticClient, {
+    rootCategory: String((await config).storeConfig?.root_category_id),
+  })
 
   return {
     props: {
       ...(await urlResolve),
-      ...(await navigationProps),
+      ...(await navigation),
       ...(await cmsPageProps),
       apolloState: client.cache.extract(),
     },
