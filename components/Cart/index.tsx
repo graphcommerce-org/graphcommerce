@@ -12,7 +12,6 @@ import { makeStyles } from '@material-ui/styles'
 import Money from 'components/Money'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
-import CartSkeleton from './CartSkeleton'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -43,12 +42,12 @@ export default function Cart(props: CartProps) {
   const classes = useStyles()
   const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
 
-  if (!cartIdData?.cartId) return <CartSkeleton>nothing in your cart</CartSkeleton>
+  if (!cartIdData?.cartId) return <>nothing in your cart</>
 
   if (!called) loadCart({ variables: { cartId: cartIdData.cartId } })
 
   if (loading || !data) {
-    return <CartSkeleton>loading your cart</CartSkeleton>
+    return <>loading...</>
   }
 
   const { cart } = data

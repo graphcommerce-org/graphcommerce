@@ -8,8 +8,9 @@ export default function CartFab() {
   const { data: cartIdData } = useCartIdQuery()
   const { data: cartData } = useGuestCartQuery({
     variables: { cartId: cartIdData?.cartId || '' },
-    fetchPolicy: 'cache-first',
+    fetchPolicy: 'cache-only',
   })
+
   const router = useRouter()
   const isCart = router.pathname === '/cart'
   const canGoBack =

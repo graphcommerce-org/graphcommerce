@@ -21,6 +21,7 @@ const createEmptyCart: FieldPolicy<GQLMutation['createEmptyCart']> = {
       variables: { cartId },
       data: {
         cart: {
+          __typename: 'Cart',
           id: cartId,
           is_virtual: false,
           total_quantity: 0,
