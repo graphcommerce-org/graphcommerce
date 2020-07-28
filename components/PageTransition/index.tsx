@@ -1,19 +1,10 @@
 import React, { useState, useEffect, PropsWithChildren } from 'react'
-import {
-  TargetAndTransition,
-  MotionProps,
-  AnimatePresence,
-  m as motion,
-  AnimateSharedLayout,
-} from 'framer-motion'
+import { TargetAndTransition, MotionProps, AnimatePresence, m as motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 
 import { makeStyles } from '@material-ui/styles'
 import { NextPage } from 'next'
 import { getScrollPos, saveScrollPos } from './scrollPosStorage'
-
-export const entryTime = 0.25
-export const exitTime = 0.2
 
 export type PageTransitionPair = {
   background: MotionProps
@@ -29,20 +20,21 @@ function motionDivProps(toPage: MotionProps | undefined): MotionProps {
   }
 }
 
-function offsetDivProps(
+function containerOffset(
   url: string,
   fromUrl?: string,
   toUrl?: string,
-): JSX.IntrinsicElements['div'] {
-  let transform: string | undefined
+): JSX.IntrinsicElements['div']['style'] {
+  let style: JSX.IntrinsicElements['div']['style']
   if (fromUrl && url === fromUrl) {
-    transform = `translate(${window.scrollX * -1}px, ${window.scrollY * -1}px)`
-  }
-  if (toUrl && url === toUrl) {
+    style = { left: `${window.scrollX * -1}px`, top: `${window.scrollY * -1}px` }
+  } else if (toUrl && url === toUrl) {
     const scrollPos = getScrollPos(toUrl)
-    transform = `translate(${scrollPos.x * -1}px, ${scrollPos.y * -1}px)`
+    style = { left: `${scrollPos.x * -1}px`, top: `${scrollPos.y * -1}px` }
+  } else {
+    style = { left: 0, top: 0 }
   }
-  return { style: { transform } }
+  return style
 }
 
 type StyleProps = {
@@ -108,9 +100,9 @@ export default function PageTransition({
       if (router.asPath === newToUrl) {
         return
       }
+      saveScrollPos(router.asPath)
       setToUrl(newToUrl)
       setFromUrl(router.asPath)
-      saveScrollPos(router.asPath)
       window.scrollTo(0, 0)
       document.body.style.overflow = 'hidden'
     }
@@ -131,10 +123,9 @@ export default function PageTransition({
     document.body.style.overflow = ''
   }
 
-  const offsetProps = offsetDivProps(router.asPath, fromUrl, toUrl)
+  const offsetStyle = containerOffset(router.asPath, fromUrl, toUrl)
 
   return (
-    // <AnimateSharedLayout type='crossfade'>
     <AnimatePresence
       initial={false}
       custom={backTrans ? backTrans.foreground : pageTransition?.background}
@@ -144,10 +135,10 @@ export default function PageTransition({
         key={router.asPath}
         {...motionDivProps(backTrans ? backTrans.background : pageTransition?.foreground)}
         className={classes.animationDiv}
+        style={offsetStyle}
       >
-        <div {...offsetProps}>{children}</div>
+        {children}
       </motion.div>
     </AnimatePresence>
-    // </AnimateSharedLayout>
   )
 }
