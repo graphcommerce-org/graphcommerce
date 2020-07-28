@@ -2,7 +2,11 @@ type ScrollPosition = { x: number; y: number }
 
 export function saveScrollPos(url: string) {
   const scrollPos: ScrollPosition = { x: window.scrollX, y: window.scrollY }
-  sessionStorage.setItem(`SCROLLPOS-${url}`, JSON.stringify(scrollPos))
+  if (scrollPos.x === 0 && scrollPos.y === 0) {
+    sessionStorage.removeItem(`SCROLLPOS-${url}`)
+  } else {
+    sessionStorage.setItem(`SCROLLPOS-${url}`, JSON.stringify(scrollPos))
+  }
 }
 
 export function getScrollPos(url: string) {
@@ -10,6 +14,5 @@ export function getScrollPos(url: string) {
   if (!item) {
     return { x: 0, y: 0 }
   }
-  const parsed: ScrollPosition = JSON.parse(item)
-  return parsed
+  return JSON.parse(item) as ScrollPosition
 }
