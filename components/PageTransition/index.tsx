@@ -8,8 +8,8 @@ import { getScrollPos, saveScrollPos } from './scrollPosStorage'
 import useNavigationSwipe from './useNavigationSwipe'
 
 export type PageTransitionPair = {
-  background: Omit<MotionProps, 'initial'>
-  foreground: Omit<MotionProps, 'initial'>
+  background: MotionProps
+  foreground: MotionProps
 }
 
 function motionDivProps(toPage: MotionProps | undefined): MotionProps {
