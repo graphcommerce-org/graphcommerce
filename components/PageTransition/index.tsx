@@ -5,10 +5,11 @@ import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/styles'
 import { NextPage } from 'next'
 import { getScrollPos, saveScrollPos } from './scrollPosStorage'
+import useNavigationSwipe from './useNavigationSwipe'
 
 export type PageTransitionPair = {
-  background: MotionProps
-  foreground: MotionProps
+  background: Omit<MotionProps, 'initial'>
+  foreground: Omit<MotionProps, 'initial'>
 }
 
 function motionDivProps(toPage: MotionProps | undefined): MotionProps {
@@ -69,6 +70,7 @@ export default function PageTransition({
   const [toUrl, setToUrl] = useState<string | undefined>(undefined)
   const [fromUrl, setFromUrl] = useState<string | undefined>(undefined)
   const classes = usePageTransitionStyles({ isBackTrans: Boolean(backTrans) })
+  const navigationSwipe = useNavigationSwipe()
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -97,7 +99,7 @@ export default function PageTransition({
 
     // When a user navigates to a new page
     const onTransStart = (newToUrl: string) => {
-      if (router.asPath === newToUrl) {
+      if (router.asPath === newToUrl || navigationSwipe !== 0) {
         return
       }
       saveScrollPos(router.asPath)
@@ -111,7 +113,7 @@ export default function PageTransition({
     return () => {
       router.events.off('beforeHistoryChange', onTransStart)
     }
-  }, [backTrans, pageTransition, router])
+  }, [backTrans, navigationSwipe, pageTransition, router])
 
   // When a transition is complete
   const onTransComplete = () => {
@@ -125,15 +127,16 @@ export default function PageTransition({
 
   const offsetStyle = containerOffset(router.asPath, fromUrl, toUrl)
 
+  let exitAnimation = backTrans ? backTrans.foreground : pageTransition?.background
+  let entryAnimation = backTrans ? backTrans.background : pageTransition?.foreground
+  if (navigationSwipe !== 0) exitAnimation = {}
+  if (navigationSwipe !== 0) entryAnimation = {}
+
   return (
-    <AnimatePresence
-      initial={false}
-      custom={backTrans ? backTrans.foreground : pageTransition?.background}
-      onExitComplete={onTransComplete}
-    >
+    <AnimatePresence initial={false} custom={exitAnimation} onExitComplete={onTransComplete}>
       <motion.div
         key={router.asPath}
-        {...motionDivProps(backTrans ? backTrans.background : pageTransition?.foreground)}
+        {...motionDivProps(entryAnimation)}
         className={classes.animationDiv}
         style={offsetStyle}
       >
