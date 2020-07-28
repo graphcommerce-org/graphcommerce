@@ -43,7 +43,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'import/prefer-default-export': 'off',
+    'react/react-in-jsx-scope': 'off',
     'no-console': [
       1,
       {
@@ -58,20 +58,11 @@ module.exports = {
         markers: ['/'],
       },
     ],
+
     'no-underscore-dangle': ['error', { allow: ['__typename', '__type'] }],
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
+
     '@typescript-eslint/explicit-function-return-type': 'off',
-
-    // Magento compatibility
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx'] }],
-
-    // Prepare for ESLint 7 release
-    '@typescript-eslint/camelcase': 'off',
-
-    /**
-     * Because we import Magento's declarations we get a bunch of any declarations.
-     * If we don't allow this we get a bunch of errors all over the place.
-     */
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
