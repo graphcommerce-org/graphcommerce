@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
 import { Button } from '@material-ui/core'
 import useRequestCartId from 'components/CartId/useRequestCartId'
 import { useAddSimpleProductToCartMutation } from 'generated/apollo'
 import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 
 type AddSimpleProductToCartProps = Omit<GQLAddSimpleProductToCartMutationVariables, 'cartId'>
 

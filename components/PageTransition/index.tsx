@@ -1,10 +1,10 @@
-import React, { useState, useEffect, PropsWithChildren } from 'react'
-import { TargetAndTransition, MotionProps, AnimatePresence, m as motion } from 'framer-motion'
-import { useRouter } from 'next/router'
-
 import { makeStyles } from '@material-ui/styles'
+import { TargetAndTransition, MotionProps, AnimatePresence, m as motion } from 'framer-motion'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import React, { useState, useEffect, PropsWithChildren } from 'react'
 import { getScrollPos, saveScrollPos } from './scrollPosStorage'
+import useNavigationDirection from './useNavigationDirection'
 import useNavigationSwipe from './useNavigationSwipe'
 
 export type PageTransitionPair = {
@@ -52,7 +52,7 @@ const usePageTransitionStyles = makeStyles(
       zIndex: isBackTrans ? 0 : 1,
     }),
   },
-  { name: 'ShopLayout' },
+  { name: 'PageTransition' },
 )
 
 type PageTransitionProps = { pageTransition?: PageTransitionPair }
@@ -71,6 +71,7 @@ export default function PageTransition({
   const [fromUrl, setFromUrl] = useState<string | undefined>(undefined)
   const classes = usePageTransitionStyles({ isBackTrans: Boolean(backTrans) })
   const navigationSwipe = useNavigationSwipe()
+  const navigationDirection = useNavigationDirection()
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -89,19 +90,12 @@ export default function PageTransition({
   })
 
   useEffect(() => {
-    // Detect that the user is hitting the back button
-    // use the reverse transition
-    router.beforePopState(() => {
-      // todo(paales) Isn't actually navigating back, will also fire when navigating forward.
-      setBackTransition(pageTransition)
-      return true
-    })
-
     // When a user navigates to a new page
     const onTransStart = (newToUrl: string) => {
       if (router.asPath === newToUrl || navigationSwipe !== 0) {
         return
       }
+      if (navigationDirection === -1) setBackTransition(pageTransition)
       saveScrollPos(router.asPath)
       setToUrl(newToUrl)
       setFromUrl(router.asPath)
@@ -113,7 +107,7 @@ export default function PageTransition({
     return () => {
       router.events.off('beforeHistoryChange', onTransStart)
     }
-  }, [backTrans, navigationSwipe, pageTransition, router])
+  }, [backTrans, navigationDirection, navigationSwipe, pageTransition, router])
 
   // When a transition is complete
   const onTransComplete = () => {

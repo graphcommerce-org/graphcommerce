@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 
 /**
  * Detect if iOS user is swiping to a page from the edge of the screen to navigate back or forward.

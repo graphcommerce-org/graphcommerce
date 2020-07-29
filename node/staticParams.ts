@@ -1,4 +1,5 @@
 import { GetStaticProps as NextGetStaticProps } from 'next'
+import {} from 'type-fest'
 
 type ArgumentTypes<F extends Function> = F extends (...args: infer A) => unknown ? A : never
 
@@ -8,7 +9,7 @@ export type StaticPageVariables = { url: string; locale: GQLLocale }
 export type GQLGetStaticProps<T> = (variables: StaticPageVariables) => Promise<T>
 
 const extractParams = (
-  ctx: ArgumentTypes<NextGetStaticProps<{}, StaticPageParams>>[0],
+  ctx: ArgumentTypes<NextGetStaticProps<Record<string, unknown>, StaticPageParams>>[0],
   base: string,
 ): StaticPageVariables => {
   if (!ctx.params) throw new Error('Can not extract params')

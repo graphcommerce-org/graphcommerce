@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react'
 import { ProductListParams } from 'components/ProductListItems/filterTypes'
 import { useRouter } from 'next/router'
+import React, { useState, useContext, useEffect } from 'react'
 
 const context = React.createContext<{
   params: ProductListParams

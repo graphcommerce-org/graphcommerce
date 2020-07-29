@@ -1,6 +1,6 @@
+import { useApolloClient } from '@apollo/client'
 import useIsLoggedIn from 'components/Customer/useIsLoggedIn'
 import { GetCustomerCartDocument, CreateEmptyCartDocument, useCartIdQuery } from 'generated/apollo'
-import { useApolloClient } from '@apollo/client'
 
 function generateId() {
   return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

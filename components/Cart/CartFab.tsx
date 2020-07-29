@@ -1,8 +1,8 @@
-import React from 'react'
+import { Badge, Fab } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import { useCartIdQuery, useGuestCartQuery } from 'generated/apollo'
-import { Badge, Fab } from '@material-ui/core'
 import { useRouter } from 'next/router'
+import React from 'react'
 
 export default function CartFab() {
   const router = useRouter()

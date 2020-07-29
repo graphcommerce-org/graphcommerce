@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { LinearProgress, makeStyles, Fade } from '@material-ui/core'
 import zIndex from '@material-ui/core/styles/zIndex'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 const useStyles = makeStyles(
   {

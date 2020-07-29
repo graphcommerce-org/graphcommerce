@@ -1,3 +1,4 @@
+import { useMutation } from '@apollo/client'
 import {
   DefinitionNode,
   OperationDefinitionNode,
@@ -10,7 +11,6 @@ import {
   VariableDefinitionNode,
 } from 'graphql'
 import { useForm, DeepPartial } from 'react-hook-form'
-import { useMutation } from '@apollo/client'
 
 function isOperationDefinitionNode(
   node: DefinitionNode | OperationDefinitionNode,
@@ -57,7 +57,9 @@ function fieldRequirements<T = { [index: string]: unknown }>(
  *
  * Automatically extracts all required arguments for a queryw
  */
-export function useMutationForm<TData, TVariables = {}>(mutation: DocumentNode) {
+export function useMutationForm<TData, TVariables = Record<string, unknown>>(
+  mutation: DocumentNode,
+) {
   const [defaultValues, required] = fieldRequirements<TVariables>(mutation)
   const [submit, result] = useMutation<TData, TVariables>(mutation)
 

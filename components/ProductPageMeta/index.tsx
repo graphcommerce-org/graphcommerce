@@ -1,9 +1,9 @@
+import { useProductLink } from 'components/ProductLink'
+import { useStoreConfigQuery } from 'generated/apollo'
 import Head from 'next/head'
 import React from 'react'
-import { useStoreConfigQuery } from 'generated/apollo'
-import { useProductLink } from 'components/ProductLink'
 
-export function ProductPageMeta(props: GQLProductPageMetaFragment) {
+export default function ProductPageMeta(props: GQLProductPageMetaFragment) {
   const { name, meta_title, meta_description, url_key, canonical_url } = props
   const { data: storeConfigQuery } = useStoreConfigQuery()
   const productLink = useProductLink({ url_key, canonical_url })

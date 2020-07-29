@@ -1,10 +1,10 @@
-import React from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
 import CartFab from 'components/Cart/CartFab'
-import logo from './magento-webshop-reach-digital.svg'
+import Link from 'next/link'
+import React from 'react'
 import HeaderMenu, { HeaderMenuProps } from './HeaderMenu'
-import { useHeaderStyles } from './useHeaderStyles'
+import logo from './magento-webshop-reach-digital.svg'
+import useHeaderStyles from './useHeaderStyles'
 
 type HeaderProps = HeaderMenuProps & JSX.IntrinsicElements['header']
 

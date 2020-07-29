@@ -36,6 +36,7 @@ module.exports = {
         devDependencies: ['**/*.test.js', 'next.config.js'],
       },
     ],
+    'import/order': ['warn', { alphabetize: { order: 'asc' } }],
     'no-param-reassign': ['error', { props: false }],
     'jsx-a11y/anchor-is-valid': 'off',
     'default-case': 'off',

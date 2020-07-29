@@ -1,6 +1,6 @@
-import { PromiseValue } from 'type-fest'
-import { ProductPageDocument } from 'generated/apollo'
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { ProductPageDocument } from 'generated/apollo'
+import { PromiseValue } from 'type-fest'
 
 const getProductPageProps = async (
   variables: GQLProductPageQueryVariables,

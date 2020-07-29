@@ -1,8 +1,8 @@
-import { makeStyles } from '@material-ui/styles'
 import { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import { vpCalc } from 'components/Theme'
 
-export const useHeaderStyles = makeStyles(
+const useHeaderStyles = makeStyles(
   ({ gridSpacing, zIndex }: Theme) => ({
     navigation: {
       position: 'fixed',
@@ -52,3 +52,5 @@ export const useHeaderStyles = makeStyles(
   }),
   { name: 'Header' },
 )
+
+export default useHeaderStyles

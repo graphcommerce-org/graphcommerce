@@ -1,6 +1,6 @@
-import React from 'react'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import Head from 'next/head'
+import React from 'react'
 import fonts from './fonts'
 import shadows from './shadows'
 

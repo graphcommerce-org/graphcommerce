@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   ListItem,
   ListItemAvatar,
@@ -12,12 +11,13 @@ import {
   TextFieldProps,
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/RemoveCircleOutline'
+import Money from 'components/Money'
 import {
   useRemoveItemFromCartMutation,
   useCartIdQuery,
   useUpdateItemQuantityMutation,
 } from 'generated/apollo'
-import Money from 'components/Money'
+import React from 'react'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,6 +1,6 @@
-import React from 'react'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
+import React from 'react'
 
 export default function ProductPageUpsell(props: GQLProductPageUpsellFragment) {
   const { upsell_products } = props

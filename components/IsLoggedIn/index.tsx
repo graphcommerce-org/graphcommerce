@@ -1,5 +1,5 @@
-import React from 'react'
 import { useIsLoggedInQuery } from 'generated/apollo'
+import React from 'react'
 
 export default function IsLoggedIn() {
   const { data, loading, error } = useIsLoggedInQuery()

@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { AppProps } from 'next/app'
-import { LayoutPage, isLayoutPage } from 'components/LayoutPage'
-import PageTransition, { TransitionPage } from 'components/PageTransition'
 import { ApolloProvider, NormalizedCacheObject } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
-import apolloClient from 'lib/apolloClient'
+import { LayoutPage, isLayoutPage } from 'components/LayoutPage'
+import PageTransition, { TransitionPage } from 'components/PageTransition'
 import { MotionConfig, AnimationFeature, ExitFeature, AnimateLayoutFeature } from 'framer-motion'
+import apolloClient from 'lib/apolloClient'
+import { AppProps } from 'next/app'
+import React, { useEffect } from 'react'
 
 export default function App({
   Component,

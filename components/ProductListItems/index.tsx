@@ -1,10 +1,10 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/styles'
 import { Theme } from '@material-ui/core'
-import { vpCalc, UseStyles } from 'components/Theme'
+import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
-import { FilterTypeMap } from 'components/ProductListItems/filterTypes'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
+import { FilterTypeMap } from 'components/ProductListItems/filterTypes'
+import { vpCalc, UseStyles } from 'components/Theme'
+import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

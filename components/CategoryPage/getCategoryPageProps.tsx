@@ -1,9 +1,9 @@
-import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
-import { PromiseValue } from 'type-fest'
-import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import getFilterTypeMap from 'components/CategoryPage/getFilterTypeMap'
 import { ProductListParams } from 'components/ProductListItems/filterTypes'
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
+import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
+import { PromiseValue } from 'type-fest'
 
 async function parseParams(
   url: string,

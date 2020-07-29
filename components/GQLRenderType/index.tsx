@@ -10,7 +10,7 @@ type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A ext
     : never
   : never
 
-type TypeRenderMethod<P> = (props: P) => React.ReactElement<any, any> | null
+type TypeRenderMethod<P> = (props: P) => React.ReactElement | null
 
 type EventTypeMap<
   T extends TypeObject,

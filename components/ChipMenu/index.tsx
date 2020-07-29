@@ -1,18 +1,18 @@
-import React, { useState, PropsWithChildren } from 'react'
-import { Chip, Menu, ChipProps, makeStyles, Theme, ListSubheader } from '@material-ui/core'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import ExpandLess from '@material-ui/icons/ExpandLess'
+import { Chip, Menu, ChipProps, makeStyles, ListSubheader } from '@material-ui/core'
 import RemoveCircle from '@material-ui/icons/Cancel'
+import ExpandLess from '@material-ui/icons/ExpandLess'
+import ExpandMore from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import { vpCalc } from 'components/Theme'
+import React, { useState, PropsWithChildren } from 'react'
 
 const useChipMenuStyles = makeStyles(
-  (theme: Theme) => ({
+  {
     chip: {},
     menu: {
       minWidth: vpCalc(200, 280),
     },
-  }),
+  },
   { name: 'ChipMenu' },
 )
 

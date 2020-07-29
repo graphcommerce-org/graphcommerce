@@ -1,4 +1,3 @@
-import { possibleTypes } from 'generated/fragments.json'
 import {
   ApolloClient,
   ApolloLink,
@@ -6,11 +5,11 @@ import {
   NormalizedCacheObject,
   InMemoryCache,
 } from '@apollo/client'
-import { RetryLink } from '@apollo/client/link/retry'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
+import { RetryLink } from '@apollo/client/link/retry'
 import { persistCache } from 'apollo-cache-persist'
-import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
+import { possibleTypes } from 'generated/fragments.json'
 // import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import { deferLink } from './deferLink'
 import typePolicies from './typePolicies'
@@ -24,13 +23,16 @@ export function createApolloClient(
 
   if (typeof window === 'undefined') {
     const errorLink = onError(({ graphQLErrors, networkError }) => {
-      if (graphQLErrors)
+      if (graphQLErrors) {
         graphQLErrors.forEach(({ message, locations, path }) =>
-          console.log(
+          console.error(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         )
-      if (networkError) console.log(`[Network error]: ${networkError}`)
+      }
+      if (networkError) {
+        console.error(`[Network error]: ${networkError}`)
+      }
     })
 
     link = deferLink(async () => {
