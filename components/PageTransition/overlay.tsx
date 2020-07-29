@@ -9,25 +9,25 @@ const overlay: PageTransitionPair = {
     animate: {
       scale: 1,
       opacity: 1,
-      transition: { type: 'tween', duration: exitTime, ease: 'easeOut', when: 'beforeChildren' },
+      transition: { type: 'tween', duration: exitTime, ease: 'circOut', when: 'beforeChildren' },
     },
     exit: {
       scale: 0.95,
       opacity: 0,
-      transition: { type: 'tween', duration: entryTime, ease: 'easeIn', when: 'beforeChildren' },
+      transition: { type: 'tween', duration: entryTime, ease: 'circIn', when: 'beforeChildren' },
     },
   },
   foreground: {
-    initial: { y: '100%', opacity: 0 },
+    initial: { y: '20%', opacity: 0 },
     animate: {
       y: 0,
       opacity: 1,
-      transition: { type: 'tween', duration: entryTime, ease: 'easeOut', when: 'beforeChildren' },
+      transition: { type: 'tween', duration: entryTime, ease: 'circOut', when: 'beforeChildren' },
     },
     exit: {
-      y: '100%',
+      y: '20%',
       opacity: 0,
-      transition: { type: 'tween', duration: exitTime, ease: 'easeIn', when: 'beforeChildren' },
+      transition: { type: 'tween', duration: exitTime, ease: 'circIn', when: 'beforeChildren' },
     },
   },
 }
