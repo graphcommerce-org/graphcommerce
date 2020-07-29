@@ -3,7 +3,7 @@ import React, { useState, useEffect, PropsWithChildren, useRef } from 'react'
 
 type DynamicIntersect<P> = {
   loader: Loader<P>
-  skeleton: (ref: React.RefObject<Record<string, unknown>>) => React.ComponentType<P> | JSX.Element
+  skeleton: (ref: React.RefObject<any>) => React.ComponentType<P> | JSX.Element
   intersectionObserver?: IntersectionObserverInit
   debugShowSkeleton?: boolean
 } & P
@@ -16,7 +16,7 @@ const AsyncComponent = <T extends Record<string, unknown>>({
   debugShowSkeleton,
   ...props
 }: PropsWithChildren<DynamicIntersect<T>>) => {
-  const measureRef = useRef<HTMLElement>(null)
+  const measureRef = useRef<any>(null)
   const [intersected, setIntersected] = useState<boolean>(false)
 
   useEffect(() => {
