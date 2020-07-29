@@ -73,18 +73,22 @@ class DeferLink extends ApolloLink {
  * Simple helper method for determining if the input is a Observable
  * @param {any | Observable<T>} value
  */
-export function isObservable<T>(value: any | Observable<T>): value is Observable<T> {
-  return value && typeof value.subscribe === 'function' && typeof value.then !== 'function'
+export function isObservable<T>(value: unknown | Observable<T>): value is Observable<T> {
+  return (
+    value &&
+    typeof (value as Observable<T>).subscribe === 'function' &&
+    typeof (value as Promise<Observable<T>>).then !== 'function'
+  )
 }
 
 export function isSubscription(
-  value: ZenObservable.Subscription | any,
+  value: ZenObservable.Subscription | unknown,
 ): value is ZenObservable.Subscription {
-  return value && typeof value.unsubscribe === 'function'
+  return value && typeof (value as ZenObservable.Subscription).unsubscribe === 'function'
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function isNullaryFunction(value: any): value is Function {
+function isNullaryFunction(value: unknown): value is Function {
   return value && typeof value === 'function'
 }
 

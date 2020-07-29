@@ -1,8 +1,8 @@
-import React from 'react'
 import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
-import { useCategoryPushRoute } from 'components/CategoryLink'
 import cloneDeep from 'clone-deep'
+import { useCategoryPushRoute } from 'components/CategoryLink'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../ChipMenu'
 
 type FilterRangeTypeProps = NonNullable<
@@ -21,7 +21,7 @@ const useFilterRangeType = makeStyles(
   { name: 'FilterRangeType' },
 )
 
-export function FilterRangeType(props: FilterRangeTypeProps) {
+export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...filterMenuProps } = props
   const classes = useFilterRangeType(props)
   const { params } = useProductListParamsContext()

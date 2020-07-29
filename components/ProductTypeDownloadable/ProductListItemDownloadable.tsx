@@ -1,5 +1,5 @@
-import React from 'react'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
+import React from 'react'
 import AddDownloadableProductToCart from './AddDownloadableProductToCart'
 
 export default function ProductListItemDownloadable(props: GQLProductListItemDownloadableFragment) {

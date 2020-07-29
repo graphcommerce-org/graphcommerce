@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
 import { Chip } from '@material-ui/core'
-import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import cloneDeep from 'clone-deep'
+import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
+import React, { useState } from 'react'
 import ProductListItem from '../ProductListItems/ProductListItem'
 import AddConfigurableProductToCart from './AddConfigurableProductToCart'
 

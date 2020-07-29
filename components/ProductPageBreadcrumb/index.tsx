@@ -1,7 +1,7 @@
-import React from 'react'
 import CategoryBreadcrumb from 'components/CategoryBreadcrumb'
+import React from 'react'
 
-export function ProductPageBreadcrumb(props: GQLProductPageBreadcrumbFragment) {
+export default function ProductPageBreadcrumb(props: GQLProductPageBreadcrumbFragment) {
   const { categories, name } = props
 
   return (

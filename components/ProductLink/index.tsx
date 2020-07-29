@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react'
-import NextLink from 'next/link'
 import { Link, LinkProps } from '@material-ui/core'
 import { useStoreConfigQuery } from 'generated/apollo'
+import NextLink from 'next/link'
+import React, { PropsWithChildren } from 'react'
 
 export function useProductLink(props: GQLProductLinkFragment) {
   const { data: storeConfigData } = useStoreConfigQuery()

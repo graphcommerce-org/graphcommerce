@@ -1,8 +1,8 @@
-import React from 'react'
 import { Chip, ChipProps } from '@material-ui/core'
-import { ProductListParams } from 'components/ProductListItems/filterTypes'
-import CategoryLink from 'components/CategoryLink'
 import cloneDeep from 'clone-deep'
+import CategoryLink from 'components/CategoryLink'
+import { ProductListParams } from 'components/ProductListItems/filterTypes'
+import React from 'react'
 
 type CategoryChildrenProps = GQLCategoryChildrenFragment &
   Omit<ChipProps, 'children' | 'clickable' | 'color' | 'label' | 'component'> & {

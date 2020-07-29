@@ -1,14 +1,14 @@
-import React from 'react'
-import { GetStaticProps } from 'next'
-import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
-import getHeaderProps from 'components/Header/getHeaderProps'
 import { Container } from '@material-ui/core'
-import overlay from 'components/PageTransition/overlay'
-import { useHeaderSpacing } from 'components/Header/useHeaderSpacing'
-import getStoreConfig from 'components/StoreConfig/getStoreConfig'
-import apolloClient from 'lib/apolloClient'
 import Cart from 'components/Cart'
 import CartItem from 'components/Cart/CartItem'
+import getHeaderProps from 'components/Header/getHeaderProps'
+import useHeaderSpacing from 'components/Header/useHeaderSpacing'
+import overlay from 'components/PageTransition/overlay'
+import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
+import getStoreConfig from 'components/StoreConfig/getStoreConfig'
+import apolloClient from 'lib/apolloClient'
+import { GetStaticProps } from 'next'
+import React from 'react'
 
 const ProductPage: PageWithShopLayout = () => {
   const { marginTop } = useHeaderSpacing()

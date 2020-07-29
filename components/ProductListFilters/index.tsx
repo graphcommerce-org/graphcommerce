@@ -1,8 +1,8 @@
-import React from 'react'
 import { ChipMenuProps } from 'components/ChipMenu'
+import React from 'react'
 import { FilterTypeMap } from '../ProductListItems/filterTypes'
-import { FilterRangeType } from './FilterRangeType'
 import FilterEqualType from './FilterEqualType'
+import FilterRangeType from './FilterRangeType'
 
 type ProductFiltersProps = GQLProductListFiltersFragment & {
   filterTypeMap: FilterTypeMap

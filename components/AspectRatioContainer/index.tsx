@@ -1,6 +1,6 @@
-import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { UseStyles } from 'components/Theme'
+import React from 'react'
 
 const useStyles = makeStyles({
   root: ({ width, height }: Props) => ({

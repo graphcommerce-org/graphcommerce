@@ -1,5 +1,5 @@
-import React from 'react'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
+import React from 'react'
 import AddSimpleProductToCart from './AddSimpleProductToCart'
 
 export default function ProductListItemSimple(props: GQLProductListItemSimpleFragment) {

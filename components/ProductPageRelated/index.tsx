@@ -1,6 +1,6 @@
-import React from 'react'
 import ProductListItem from 'components/ProductListItems/ProductListItem'
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
+import React from 'react'
 
 export default function ProductPageRelated(props: GQLProductPageRelatedFragment) {
   const { related_products } = props

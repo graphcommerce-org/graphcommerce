@@ -1,9 +1,8 @@
-import React, { useState, useEffect, PropsWithChildren } from 'react'
-import { TargetAndTransition, MotionProps, AnimatePresence, m as motion } from 'framer-motion'
-import { useRouter } from 'next/router'
-
 import { makeStyles } from '@material-ui/styles'
+import { TargetAndTransition, MotionProps, AnimatePresence, m as motion } from 'framer-motion'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import React, { useState, useEffect, PropsWithChildren } from 'react'
 import { getScrollPos, saveScrollPos } from './scrollPosStorage'
 import useNavigationSwipe from './useNavigationSwipe'
 

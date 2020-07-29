@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import useConnectionType from './useConnectionType'
+import React from 'react'
 
 // @todo incomplete list
 export type VideoMimeTypes = 'video/mp4' | 'image/webv'

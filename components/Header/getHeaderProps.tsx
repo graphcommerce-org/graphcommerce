@@ -1,6 +1,6 @@
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { HeaderMenuDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 
 export default async function getHeaderProps(
   client: ApolloClient<NormalizedCacheObject>,

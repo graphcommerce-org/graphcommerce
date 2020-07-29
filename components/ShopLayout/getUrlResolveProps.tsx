@@ -1,6 +1,6 @@
-import { PromiseValue } from 'type-fest'
-import { ResolveUrlDocument } from 'generated/apollo'
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { ResolveUrlDocument } from 'generated/apollo'
+import { PromiseValue } from 'type-fest'
 
 export default async function getUrlResolveProps(
   variables: GQLResolveUrlQueryVariables,

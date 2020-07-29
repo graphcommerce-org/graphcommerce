@@ -1,6 +1,6 @@
-import { GetStaticPaths } from 'next'
-import { GetStaticPathsDocument } from 'generated/apollo'
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { GetStaticPathsDocument } from 'generated/apollo'
+import { GetStaticPaths } from 'next'
 
 const getStaticPathsFactory: (
   baseUrl: string,

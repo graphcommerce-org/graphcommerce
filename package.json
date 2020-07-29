@@ -14,6 +14,7 @@
     "build": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen && next build",
     "start": "next start",
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
+    "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,css,html}'",
     "mesh": "node -r dotenv/config node_modules/.bin/mesh serve"
   },

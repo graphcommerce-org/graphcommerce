@@ -1,5 +1,3 @@
-import React from 'react'
-import { useGuestCartLazyQuery, useCartIdQuery } from 'generated/apollo'
 import {
   ListItem,
   ListItemText,
@@ -9,9 +7,11 @@ import {
   Button,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import Money from 'components/Money'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
+import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
+import { useGuestCartLazyQuery, useCartIdQuery } from 'generated/apollo'
+import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

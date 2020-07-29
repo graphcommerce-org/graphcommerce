@@ -1,9 +1,9 @@
-import React from 'react'
 import { ListItem, ListItemText } from '@material-ui/core'
-import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
 import cloneDeep from 'clone-deep'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
 import { useStoreConfigQuery } from 'generated/apollo'
+import React from 'react'
 import CategoryLink, { useCategoryPushRoute } from '../CategoryLink'
 
 export type ProductListSortProps = GQLProductListSortFragment &

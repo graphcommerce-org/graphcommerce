@@ -1,9 +1,9 @@
-import React, { PropsWithChildren } from 'react'
 import { LinkProps, Link } from '@material-ui/core'
-import NextLink from 'next/link'
-import Router from 'next/router'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import { useStoreConfigQuery } from 'generated/apollo'
+import NextLink from 'next/link'
+import Router from 'next/router'
+import React, { PropsWithChildren } from 'react'
 import {
   ProductListParams,
   isFilterTypeEqual,

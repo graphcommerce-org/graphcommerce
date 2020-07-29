@@ -1,7 +1,3 @@
-import React from 'react'
-import MenuIcon from '@material-ui/icons/Menu'
-import CloseIcon from '@material-ui/icons/Close'
-import { Router } from 'next/router'
 import {
   Theme,
   makeStyles,
@@ -11,8 +7,12 @@ import {
   Menu,
   Link as MuiLink,
 } from '@material-ui/core'
-import Link from 'next/link'
+import CloseIcon from '@material-ui/icons/Close'
+import MenuIcon from '@material-ui/icons/Menu'
 import { vpCalc } from 'components/Theme'
+import Link from 'next/link'
+import { Router } from 'next/router'
+import React from 'react'
 import { SetOptional } from 'type-fest'
 
 const useStyles = makeStyles(

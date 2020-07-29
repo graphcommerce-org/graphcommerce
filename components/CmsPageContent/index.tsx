@@ -1,5 +1,5 @@
-import React from 'react'
 import { Typography, Container } from '@material-ui/core'
+import React from 'react'
 
 export default function CmsPageContent(props: GQLCmsPageContentFragment) {
   const { content_heading, content } = props
@@ -10,6 +10,7 @@ export default function CmsPageContent(props: GQLCmsPageContentFragment) {
           {content_heading}
         </Typography>
       )}
+      {/* eslint-disable-next-line react/no-danger */}
       {content && <div dangerouslySetInnerHTML={{ __html: content }} />}
     </Container>
   )

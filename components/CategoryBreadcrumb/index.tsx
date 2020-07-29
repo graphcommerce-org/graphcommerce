@@ -1,6 +1,6 @@
-import React from 'react'
 import { Link as MuiLink, Breadcrumbs, Typography, BreadcrumbsProps } from '@material-ui/core'
 import Link from 'next/link'
+import React from 'react'
 
 type CategoryBreadcrumbProps = GQLCategoryBreadcrumbFragment & BreadcrumbsProps
 
