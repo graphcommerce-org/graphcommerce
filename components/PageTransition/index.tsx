@@ -52,7 +52,7 @@ const usePageTransitionStyles = makeStyles(
       zIndex: isBackTrans ? 0 : 1,
     }),
   },
-  { name: 'ShopLayout' },
+  { name: 'PageTransition' },
 )
 
 type PageTransitionProps = { pageTransition?: PageTransitionPair }
