@@ -25,7 +25,7 @@
     "@graphql-codegen/import-types-preset": "^1.17.6",
     "@graphql-mesh/cli": "^0.2.12",
     "@graphql-mesh/graphql": "^0.2.12",
-    "@graphql-mesh/merger-stitching": "^0.2.12",
+    "@graphql-mesh/merger-stitching": "^0.2.15",
     "@graphql-mesh/runtime": "^0.2.12",
     "@graphql-mesh/transform-filter-schema": "^0.2.12",
     "@graphql-mesh/transform-snapshot": "^0.2.12",

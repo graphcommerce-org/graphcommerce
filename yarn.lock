@@ -1704,7 +1704,7 @@
     "@graphql-tools/wrap" "6.0.14"
     fetchache "0.0.3"
 
-"@graphql-mesh/merger-stitching@0.2.14", "@graphql-mesh/merger-stitching@^0.2.12":
+"@graphql-mesh/merger-stitching@0.2.14":
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.2.14.tgz#bea75747b7c212168cce66d2976aa9e173835102"
   integrity sha512-yO1Z25qQoiO8ZtYzLM9QfjoYCEP0uEu8YzdKoPhYw/c7xUfGTLXeh898INi4MuSvRWJTCexS5rgl1U0VicgQZA==
@@ -1712,6 +1712,16 @@
     "@graphql-mesh/types" "0.2.14"
     "@graphql-tools/stitch" "6.0.14"
     "@graphql-tools/wrap" "6.0.14"
+    fetchache "0.0.3"
+
+"@graphql-mesh/merger-stitching@^0.2.15":
+  version "0.2.15"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.2.15.tgz#fef6b1c4cb51e8a6cca354c0cc07e70474398774"
+  integrity sha512-TCHbHIHNOqQ20mwDjJRLT55JAFNJcC9itH9BlEMzBLIQT63/Jkbr0YYIC3Gwyl84nUOWdB+YO+OjfHOE6qxe/Q==
+  dependencies:
+    "@graphql-mesh/types" "0.2.15"
+    "@graphql-tools/stitch" "6.0.15"
+    "@graphql-tools/wrap" "6.0.15"
     fetchache "0.0.3"
 
 "@graphql-mesh/runtime@0.2.14", "@graphql-mesh/runtime@^0.2.12":
@@ -1770,6 +1780,16 @@
     fetchache "0.0.3"
     tsee "1.3.0"
 
+"@graphql-mesh/types@0.2.15":
+  version "0.2.15"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.2.15.tgz#d377cfd1c826db899a096e78437441d9a35ddd78"
+  integrity sha512-V9lA+hWnNorrgACM46hwOL6EuOVnDevV1VnDHim42yjSk/FBkPG2Ycl+v22rIvsKBUPaxle71wI2mQcMB5+8zA==
+  dependencies:
+    "@graphql-tools/delegate" "6.0.15"
+    "@graphql-tools/utils" "6.0.15"
+    fetchache "0.0.3"
+    tsee "1.3.0"
+
 "@graphql-mesh/utils@0.2.14":
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.2.14.tgz#354abd37a156a7af6795396e9d0cba031dc4e67d"
@@ -1799,6 +1819,15 @@
   integrity sha512-46jE3qd58i3GAOW1vLTDAV4e962m4hFqVmM/snVBPdedg2PZhLzx+hY3KoSxh1Ei92epRlNGzaffCDoPQ9nS7g==
   dependencies:
     "@graphql-tools/delegate" "6.0.14"
+    dataloader "2.0.0"
+    tslib "~2.0.0"
+
+"@graphql-tools/batch-delegate@6.0.15":
+  version "6.0.15"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/batch-delegate/-/batch-delegate-6.0.15.tgz#2c31b2a997ef8cadd6e7d41cc2e5f3fe88a669c8"
+  integrity sha512-/wU9q/ZLdMkvxNHD2PUk3qwBleWcZfsU5Ity5a6E1wRRsxqcl74pDMoZFHZhF5uioHuGZ5ebdA+v78PpEaDOhQ==
+  dependencies:
+    "@graphql-tools/delegate" "6.0.15"
     dataloader "2.0.0"
     tslib "~2.0.0"
 
@@ -2038,6 +2067,19 @@
     "@graphql-tools/schema" "6.0.14"
     "@graphql-tools/utils" "6.0.14"
     "@graphql-tools/wrap" "6.0.14"
+    tslib "~2.0.0"
+
+"@graphql-tools/stitch@6.0.15":
+  version "6.0.15"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/stitch/-/stitch-6.0.15.tgz#aa0c7718d970bea2586930fd05eced178f3e4d68"
+  integrity sha512-ooqPaDiBGLBtGlf0aEDHTCBofTjTUjuh/j5B7PwRFT4Tt6kzNpCcp3uAvbfQ+zjv/aTZNHK80CBKqI+vdTTZWA==
+  dependencies:
+    "@graphql-tools/batch-delegate" "6.0.15"
+    "@graphql-tools/delegate" "6.0.15"
+    "@graphql-tools/merge" "6.0.15"
+    "@graphql-tools/schema" "6.0.15"
+    "@graphql-tools/utils" "6.0.15"
+    "@graphql-tools/wrap" "6.0.15"
     tslib "~2.0.0"
 
 "@graphql-tools/url-loader@6.0.14":
