@@ -2,6 +2,7 @@ import { ApolloProvider, NormalizedCacheObject } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
 import { LayoutPage, isLayoutPage } from 'components/LayoutPage'
 import PageTransition, { TransitionPage } from 'components/PageTransition'
+import { MotionConfig, AnimationFeature, ExitFeature, AnimateLayoutFeature } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
 import { AppProps } from 'next/app'
 import React, { useEffect } from 'react'
@@ -16,9 +17,11 @@ export default function App({
   })
 
   let pageComponents = (
-    <PageTransition pageTransition={Component.pageTransition}>
-      <Component {...pageProps} />
-    </PageTransition>
+    <MotionConfig features={[AnimationFeature, ExitFeature, AnimateLayoutFeature]}>
+      <PageTransition pageTransition={Component.pageTransition}>
+        <Component {...pageProps} />
+      </PageTransition>
+    </MotionConfig>
   )
 
   if (isLayoutPage(Component)) {
