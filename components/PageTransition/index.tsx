@@ -95,7 +95,6 @@ export default function PageTransition({
       if (router.asPath === newToUrl || navigationSwipe !== 0) {
         return
       }
-      console.log('navigationDirection', getDirection(newToUrl))
       setBackTransition(getDirection(newToUrl) === -1 ? pageTransition : undefined)
       saveScrollPos(router.asPath)
       setToUrl(newToUrl)
