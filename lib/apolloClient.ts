@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { persistCache } from 'apollo-cache-persist'
-import { possibleTypes } from 'generated/fragments.json'
+import fragments from 'generated/fragments.json'
 // import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import { deferLink } from './deferLink'
 import typePolicies from './typePolicies'
@@ -43,7 +43,7 @@ export function createApolloClient(
     })
 
     const cache = new InMemoryCache({
-      possibleTypes,
+      possibleTypes: fragments.possibleTypes,
     }).restore(initialState)
 
     return new ApolloClient({
@@ -74,7 +74,10 @@ export function createApolloClient(
     }),
   ])
 
-  const cache = new InMemoryCache({ possibleTypes, typePolicies }).restore(initialState)
+  const cache = new InMemoryCache({
+    possibleTypes: fragments.possibleTypes,
+    typePolicies,
+  }).restore(initialState)
 
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   persistCache({ cache, storage: window.localStorage })
