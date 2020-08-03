@@ -70,7 +70,7 @@
     "@graphql-codegen/cli": "^1.17.6",
     "@graphql-codegen/fragment-matcher": "1.17.6",
     "@graphql-codegen/introspection": "1.17.6",
-    "@graphql-codegen/schema-ast": "^1.17.6",
+    "@graphql-codegen/schema-ast": "^1.17.7",
     "@graphql-codegen/typescript": "1.17.6",
     "@graphql-codegen/typescript-document-nodes": "1.17.6",
     "@graphql-codegen/typescript-operations": "1.17.6",
