@@ -23,7 +23,10 @@ const nextConfig = {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
   },
   publicRuntimeConfig: {
-    localeSubpaths,
+    localeSubpaths: {
+      en: 'en',
+      de: 'de',
+    },
   },
   pwa: {
     dest: 'public',
