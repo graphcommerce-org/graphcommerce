@@ -14,19 +14,11 @@ jobs:
       - run: yarn --frozen-lockfile --cwd ./new
       - run: yarn --cwd ./new build > new.txt
         env:
-          GRAPHCMS: ${{ secrets.GRAPHCMS }}
           GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
-          MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
-          IMAGE_OPTIMIZING_ORIGIN: 'backend'
-          CHECKOUT_BRAINTREE_TOKEN: ''
       - run: yarn --frozen-lockfile --cwd ./old
       - run: yarn --cwd ./old build > old.txt
         env:
-          GRAPHCMS: ${{ secrets.GRAPHCMS }}
           GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
-          MAGENTO_BACKEND_URL: ${{ secrets.MAGENTO_BACKEND_URL }}
-          IMAGE_OPTIMIZING_ORIGIN: 'backend'
-          CHECKOUT_BRAINTREE_TOKEN: ''
       - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'
       - uses: unsplash/comment-on-pr@master

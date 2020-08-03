@@ -1,7 +1,6 @@
 {
   "build": {
     "env": {
-      "GRAPHCMS": "@graphql",
       "GRAPHCMS_BEARER": "@graphql_bearer"
     }
   }
