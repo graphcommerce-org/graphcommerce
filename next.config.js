@@ -18,9 +18,9 @@ const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
   experimental: {
     modern: true,
-    rewrites() {
-      return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
-    },
+  },
+  rewrites() {
+    return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
   },
   pwa: {
     dest: 'public',

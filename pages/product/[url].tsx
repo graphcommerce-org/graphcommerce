@@ -45,7 +45,7 @@ const ProductPage: PageWithShopLayout<GetProductPageProps> = (props) => {
         description={product.description}
         short_description={product.short_description}
       />
-      <ProductPageGallery media_gallery={product.media_gallery} />
+      <ProductPageGallery media_gallery={product.media_gallery} sku={product.sku} />
       <ProductPageUpsell upsell_products={product.upsell_products} />
       <ProductPageRelated related_products={product.related_products} />
     </Container>
