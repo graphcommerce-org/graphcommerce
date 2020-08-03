@@ -1,6 +1,10 @@
+import { useMutation } from '@apollo/client'
 import { Button } from '@material-ui/core'
 import useRequestCartId from 'components/CartId/useRequestCartId'
-import { useAddSimpleProductToCartMutation } from 'generated/apollo'
+import {
+  AddSimpleProductToCartDocument,
+  GQLAddSimpleProductToCartMutationVariables,
+} from 'generated/graphql'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
@@ -10,7 +14,7 @@ export default function AddSimpleProductToCart(props: AddSimpleProductToCartProp
   const { sku, customizableOptions, quantity } = props
 
   const requestCartId = useRequestCartId()
-  const [add] = useAddSimpleProductToCartMutation()
+  const [add] = useMutation(AddSimpleProductToCartDocument)
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
 

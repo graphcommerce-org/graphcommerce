@@ -1,3 +1,4 @@
+import { GQLCmsPageMetaFragment, GQLStoreConfigPageMetaFragment } from 'generated/graphql'
 import Head from 'next/head'
 import React from 'react'
 

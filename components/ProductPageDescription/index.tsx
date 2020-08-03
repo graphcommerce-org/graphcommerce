@@ -1,4 +1,5 @@
 import { Typography } from '@material-ui/core'
+import { GQLProductPageDescriptionFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function ProductPageDescription(props: GQLProductPageDescriptionFragment) {

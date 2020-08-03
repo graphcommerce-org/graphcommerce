@@ -1,4 +1,5 @@
 import CategoryBreadcrumb from 'components/CategoryBreadcrumb'
+import { GQLProductPageBreadcrumbFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function ProductPageBreadcrumb(props: GQLProductPageBreadcrumbFragment) {

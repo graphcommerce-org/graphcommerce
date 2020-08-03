@@ -1,4 +1,5 @@
 import ProductListItem from 'components/ProductListItems/ProductListItem'
+import { GQLProductListItemVirtualFragment } from 'generated/graphql'
 import React from 'react'
 import AddVirtualProductToCart from './AddVirtualProductToCart'
 

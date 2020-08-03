@@ -1,10 +1,11 @@
+import { useQuery } from '@apollo/client'
 import { Link, LinkProps } from '@material-ui/core'
-import { useStoreConfigQuery } from 'generated/apollo'
+import { GQLProductLinkFragment, StoreConfigDocument } from 'generated/graphql'
 import NextLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 
 export function useProductLink(props: GQLProductLinkFragment) {
-  const { data: storeConfigData } = useStoreConfigQuery()
+  const { data: storeConfigData } = useQuery(StoreConfigDocument)
   const urlSuffix = storeConfigData?.storeConfig?.product_url_suffix
 
   const { canonical_url, url_key } = props

@@ -1,11 +1,12 @@
+import { useQuery } from '@apollo/client'
 import { useProductLink } from 'components/ProductLink'
-import { useStoreConfigQuery } from 'generated/apollo'
+import { GQLProductPageMetaFragment, StoreConfigDocument } from 'generated/graphql'
 import Head from 'next/head'
 import React from 'react'
 
 export default function ProductPageMeta(props: GQLProductPageMetaFragment) {
   const { name, meta_title, meta_description, url_key, canonical_url } = props
-  const { data: storeConfigQuery } = useStoreConfigQuery()
+  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const productLink = useProductLink({ url_key, canonical_url })
 
   const title_prefix = storeConfigQuery?.storeConfig?.title_prefix

@@ -1,4 +1,5 @@
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
+import { GQLProductPageGalleryFragment } from 'generated/graphql'
 import React from 'react'
 import ProductImage from './ProductImage'
 import ProductVideo from './ProductVideo'

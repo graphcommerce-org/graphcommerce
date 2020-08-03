@@ -1,6 +1,7 @@
+import { useQuery } from '@apollo/client'
 import { LinkProps, Link } from '@material-ui/core'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
-import { useStoreConfigQuery } from 'generated/apollo'
+import { StoreConfigDocument } from 'generated/graphql'
 import NextLink from 'next/link'
 import Router from 'next/router'
 import React, { PropsWithChildren } from 'react'
@@ -40,7 +41,7 @@ function createCategoryLink(props: ProductListParams): string {
 }
 
 export function useCategoryLink(props: ProductListParams): string {
-  const { data: storeConfigData } = useStoreConfigQuery()
+  const { data: storeConfigData } = useQuery(StoreConfigDocument)
   const urlSuffix = storeConfigData?.storeConfig?.category_url_suffix
   return `${createCategoryLink(props)}${urlSuffix ?? ''}`
 }

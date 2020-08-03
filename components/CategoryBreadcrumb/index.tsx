@@ -1,4 +1,5 @@
 import { Link as MuiLink, Breadcrumbs, Typography, BreadcrumbsProps } from '@material-ui/core'
+import { GQLCategoryBreadcrumbFragment } from 'generated/graphql'
 import Link from 'next/link'
 import React from 'react'
 

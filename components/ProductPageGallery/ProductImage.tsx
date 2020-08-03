@@ -1,4 +1,5 @@
 import { m as motion } from 'framer-motion'
+import { GQLProductImageFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function ProductImage(props: GQLProductImageFragment & { layoutId?: string }) {

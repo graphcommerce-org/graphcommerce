@@ -1,3 +1,14 @@
+import {
+  Exact,
+  Scalars,
+  GQLProductAttributeFilterInput,
+  GQLProductAttributeSortInput,
+  GQLFilterEqualTypeInput,
+  GQLFilterMatchTypeInput,
+  GQLFilterRangeTypeInput,
+} from 'generated/graphql'
+import { Maybe } from 'graphql/jsutils/Maybe'
+
 /**
  * This is mainly based on GQLProductListQueryVariables
  */

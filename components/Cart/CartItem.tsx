@@ -1,3 +1,4 @@
+import { useMutation, useQuery } from '@apollo/client'
 import {
   ListItem,
   ListItemAvatar,
@@ -13,10 +14,11 @@ import {
 import DeleteIcon from '@material-ui/icons/RemoveCircleOutline'
 import Money from 'components/Money'
 import {
-  useRemoveItemFromCartMutation,
-  useCartIdQuery,
-  useUpdateItemQuantityMutation,
-} from 'generated/apollo'
+  UpdateItemQuantityDocument,
+  RemoveItemFromCartDocument,
+  GQLCartItemFragment,
+  CartIdDocument,
+} from 'generated/graphql'
 import React from 'react'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,10 +46,10 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 export default function CartItem({ id, quantity, product, prices }: GQLCartItemFragment) {
-  const { data: cartIdData } = useCartIdQuery()
+  const { data: cartIdData } = useQuery(CartIdDocument)
   const classes = useStyles()
-  const [remove] = useRemoveItemFromCartMutation()
-  const [update] = useUpdateItemQuantityMutation()
+  const [remove] = useMutation(RemoveItemFromCartDocument)
+  const [update] = useMutation(UpdateItemQuantityDocument)
 
   const removeItemFromCart = async () => {
     if (!cartIdData?.cartId) return

@@ -1,8 +1,9 @@
-import { useIsLoggedInQuery } from 'generated/apollo'
+import { useQuery } from '@apollo/client'
+import { IsLoggedInDocument } from 'generated/graphql'
 import React from 'react'
 
 export default function IsLoggedIn() {
-  const { data, loading, error } = useIsLoggedInQuery()
+  const { data, loading, error } = useQuery(IsLoggedInDocument)
 
   return (
     <div>

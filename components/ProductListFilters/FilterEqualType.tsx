@@ -2,6 +2,7 @@ import { ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/cor
 import cloneDeep from 'clone-deep'
 import CategoryLink, { useCategoryPushRoute } from 'components/CategoryLink'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { GQLProductListFiltersFragment, GQLFilterEqualTypeInput } from 'generated/graphql'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../ChipMenu'

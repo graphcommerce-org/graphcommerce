@@ -1,4 +1,5 @@
 import { Typography, Container } from '@material-ui/core'
+import { GQLCmsPageContentFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function CmsPageContent(props: GQLCmsPageContentFragment) {

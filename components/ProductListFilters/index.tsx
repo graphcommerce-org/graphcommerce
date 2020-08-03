@@ -1,4 +1,5 @@
 import { ChipMenuProps } from 'components/ChipMenu'
+import { GQLProductListFiltersFragment } from 'generated/graphql'
 import React from 'react'
 import { FilterTypeMap } from '../ProductListItems/filterTypes'
 import FilterEqualType from './FilterEqualType'

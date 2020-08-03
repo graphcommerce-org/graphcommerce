@@ -1,5 +1,5 @@
 import { createGzip } from 'zlib'
-import { GetStaticPathsDocument } from 'generated/apollo'
+import { GetStaticPathsDocument } from 'generated/graphql'
 import apolloClient from 'lib/apolloClient'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { SitemapStream, SitemapItemLoose } from 'sitemap'
@@ -25,15 +25,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const client = apolloClient()
 
-    const { data: resultNl } = await client.query<
-      GQLGetStaticPathsQuery,
-      GQLGetStaticPathsQueryVariables
-    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: 'nl' } })
+    const { data: resultNl } = await client.query({
+      query: GetStaticPathsDocument,
+      variables: { startsWith: '', locale: 'nl' },
+    })
 
-    const { data: resultEn } = await client.query<
-      GQLGetStaticPathsQuery,
-      GQLGetStaticPathsQueryVariables
-    >({ query: GetStaticPathsDocument, variables: { startsWith: '', locale: 'en' } })
+    const { data: resultEn } = await client.query({
+      query: GetStaticPathsDocument,
+      variables: { startsWith: '', locale: 'en' },
+    })
 
     let pagesEn = resultEn?.pages
 

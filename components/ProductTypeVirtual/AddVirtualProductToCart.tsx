@@ -1,6 +1,10 @@
+import { useMutation } from '@apollo/client'
 import { Button } from '@material-ui/core'
 import useRequestCartId from 'components/CartId/useRequestCartId'
-import { useAddVirtualProductsToCartMutation } from 'generated/apollo'
+import {
+  AddVirtualProductsToCartDocument,
+  GQLAddVirtualProductsToCartMutationVariables,
+} from 'generated/graphql'
 import React, { useState } from 'react'
 
 type AddVirtualProductToCartProps = Omit<GQLAddVirtualProductsToCartMutationVariables, 'cartId'>
@@ -9,7 +13,7 @@ export default function AddVirtualProductToCart(props: AddVirtualProductToCartPr
   const { sku, customizableOptions, quantity } = props
 
   const requestCartId = useRequestCartId()
-  const [add] = useAddVirtualProductsToCartMutation()
+  const [add] = useMutation(AddVirtualProductsToCartDocument)
   const [loading, setLoading] = useState<boolean>(false)
 
   const addToCart = async () => {

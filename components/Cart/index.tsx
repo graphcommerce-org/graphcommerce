@@ -1,3 +1,4 @@
+import { useQuery, useLazyQuery } from '@apollo/client'
 import {
   ListItem,
   ListItemText,
@@ -10,7 +11,7 @@ import { makeStyles } from '@material-ui/styles'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
-import { useGuestCartLazyQuery, useCartIdQuery } from 'generated/apollo'
+import { CartIdDocument, GuestCartDocument, GQLGuestCartQuery } from 'generated/graphql'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -38,9 +39,9 @@ type CartProps = { renderer: CartItemRenderer }
 
 export default function Cart(props: CartProps) {
   const { renderer } = props
-  const { data: cartIdData } = useCartIdQuery()
+  const { data: cartIdData } = useQuery(CartIdDocument)
   const classes = useStyles()
-  const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
+  const [loadCart, { data, loading, called }] = useLazyQuery(GuestCartDocument)
 
   if (!cartIdData?.cartId) return <>nothing in your cart</>
 

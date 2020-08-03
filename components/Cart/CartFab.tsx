@@ -1,13 +1,14 @@
+import { useQuery } from '@apollo/client'
 import { Badge, Fab } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
-import { useCartIdQuery, useGuestCartQuery } from 'generated/apollo'
+import { GuestCartDocument, CartIdDocument } from 'generated/graphql'
 import { useRouter } from 'next/router'
 import React from 'react'
 
 export default function CartFab() {
   const router = useRouter()
-  const { data: cartIdData } = useCartIdQuery()
-  const { data: cartData } = useGuestCartQuery({
+  const { data: cartIdData } = useQuery(CartIdDocument)
+  const { data: cartData } = useQuery(GuestCartDocument, {
     variables: { cartId: cartIdData?.cartId || '' },
     fetchPolicy: 'cache-only',
   })

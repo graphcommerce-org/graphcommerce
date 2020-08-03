@@ -14,38 +14,20 @@ hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
-  generated/fragments.json:
-    plugins:
-      - fragment-matcher
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
-    config:
-      apolloClientVersion: 3
   generated/schema.graphql:
     plugins:
       - schema-ast
     config:
       includeDirectives: true
       commentDescriptions: false
-  generated/graphql.d.ts:
+  generated/graphql.ts:
     plugins:
       - typescript
       - typescript-operations
-    config:
-      typesPrefix: GQL
-      noExport: true
-      enumsAsTypes: true
-      skipTypename: true
-  generated/apollo.ts:
-    plugins:
-      - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
-      - typescript-react-apollo
+      - typed-document-node
+      - fragment-matcher
     config:
       apolloClientVersion: 3
-      apolloReactHooksImportFrom: '@apollo/client'
-      apolloReactCommonImportFrom: '@apollo/client'
       typesPrefix: GQL
-      withHOC: false
-      withHooks: true
-      withComponent: false
+      enumsAsTypes: true
+      skipTypename: true

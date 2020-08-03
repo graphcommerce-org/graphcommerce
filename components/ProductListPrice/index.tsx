@@ -1,3 +1,4 @@
+import { GQLProductListPriceFragment } from 'generated/graphql'
 import React from 'react'
 import Money from '../Money'
 

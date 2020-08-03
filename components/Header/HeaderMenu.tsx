@@ -10,6 +10,7 @@ import {
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 import { vpCalc } from 'components/Theme'
+import { GQLHeaderMenuQuery, GQLResolveUrlQuery } from 'generated/graphql'
 import Link from 'next/link'
 import { Router } from 'next/router'
 import React from 'react'

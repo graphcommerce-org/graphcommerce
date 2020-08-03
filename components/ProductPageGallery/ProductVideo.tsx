@@ -1,3 +1,4 @@
+import { GQLProductVideoFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function ProductVideo(props: GQLProductVideoFragment) {

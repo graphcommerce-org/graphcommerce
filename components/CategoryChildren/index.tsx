@@ -2,6 +2,7 @@ import { Chip, ChipProps } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
 import CategoryLink from 'components/CategoryLink'
 import { ProductListParams } from 'components/ProductListItems/filterTypes'
+import { GQLCategoryChildrenFragment } from 'generated/graphql'
 import React from 'react'
 
 type CategoryChildrenProps = GQLCategoryChildrenFragment &

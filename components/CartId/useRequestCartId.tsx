@@ -1,6 +1,6 @@
-import { useApolloClient } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import useIsLoggedIn from 'components/Customer/useIsLoggedIn'
-import { GetCustomerCartDocument, CreateEmptyCartDocument, useCartIdQuery } from 'generated/apollo'
+import { GetCustomerCartDocument, CreateEmptyCartDocument, CartIdDocument } from 'generated/graphql'
 
 function generateId() {
   return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -13,7 +13,7 @@ function generateId() {
 }
 
 export default function useRequestCartId() {
-  const cartIdQuery = useCartIdQuery()
+  const cartIdQuery = useQuery(CartIdDocument)
   const client = useApolloClient()
   const isLoggedIn = useIsLoggedIn()
 
@@ -25,10 +25,7 @@ export default function useRequestCartId() {
     }
 
     if (!cartId && isLoggedIn) {
-      const customerCartQuery = await client.query<
-        GQLGetCustomerCartQuery,
-        GQLGetCustomerCartQueryVariables
-      >({ query: GetCustomerCartDocument })
+      const customerCartQuery = await client.query({ query: GetCustomerCartDocument })
 
       if (customerCartQuery.data?.customerCart.id) {
         return customerCartQuery.data.customerCart.id
@@ -37,10 +34,10 @@ export default function useRequestCartId() {
 
     if (!cartId) {
       const newId = generateId()
-      const createEmptyCart = await client.mutate<
-        GQLCreateEmptyCartMutation,
-        GQLCreateEmptyCartMutationVariables
-      >({ mutation: CreateEmptyCartDocument, variables: { cartId: newId } })
+      const createEmptyCart = await client.mutate({
+        mutation: CreateEmptyCartDocument,
+        variables: { cartId: newId },
+      })
 
       if (createEmptyCart.data?.createEmptyCart) {
         return createEmptyCart.data.createEmptyCart

@@ -1,5 +1,6 @@
 import { Pagination, PaginationItem, PaginationProps } from '@material-ui/lab'
 import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { GQLProductListPaginationFragment } from 'generated/graphql'
 import React from 'react'
 import CategoryLink from '../CategoryLink'
 

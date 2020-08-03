@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import { FilterTypeMap } from 'components/ProductListItems/filterTypes'
 import { vpCalc, UseStyles } from 'components/Theme'
+import { GQLProductListItemsFragment } from 'generated/graphql'
 import React from 'react'
 
 const useStyles = makeStyles(

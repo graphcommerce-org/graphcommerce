@@ -1,3 +1,4 @@
+import { GQLMoneyFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function Money(props: GQLMoneyFragment) {

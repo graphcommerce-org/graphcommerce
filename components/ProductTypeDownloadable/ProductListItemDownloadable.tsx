@@ -1,4 +1,5 @@
 import ProductListItem from 'components/ProductListItems/ProductListItem'
+import { GQLProductListItemDownloadableFragment } from 'generated/graphql'
 import React from 'react'
 import AddDownloadableProductToCart from './AddDownloadableProductToCart'
 

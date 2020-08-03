@@ -1,5 +1,6 @@
 import ProductListItem from 'components/ProductListItems/ProductListItem'
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
+import { GQLProductPageRelatedFragment } from 'generated/graphql'
 import React from 'react'
 
 export default function ProductPageRelated(props: GQLProductPageRelatedFragment) {
