@@ -1,7 +1,14 @@
 {
   "ci": {
     "collect": {
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "url": [
+        "__LHCI_BASE_URL__/",
+        "__LHCI_BASE_URL__/page/home",
+        "__LHCI_BASE_URL__/cart",
+        "__LHCI_BASE_URL__/product/ninebot-by-segway-kickscooter-es1",
+        "__LHCI_BASE_URL__/producten"
+      ]
     },
     "assert": {
       "preset": "lighthouse:recommended",
