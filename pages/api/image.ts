@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import fetch from 'node-fetch'
-import sharp from 'sharp'
+import sharp, { OutputOptions, WebpOptions } from 'sharp'
 
 /**
  * Parameters required for the endpoint to work
@@ -10,6 +10,12 @@ function parseQuery(query: NextApiRequest['query']) {
   if (!width || !type || !url) throw Error('Please provide width, type and url')
 
   const options: OutputOptions = {}
+  if (inputOptions.qualty) options.quality = Number(options.quality)
+
+  if (type === 'webp') {
+    if (inputOptions.lossless) (options as WebpOptions).lossless = true
+  }
+
   return {
     width: Number(query.width),
     type: query.type as 'jpeg' | 'png' | 'webp' | 'gif' | 'svg',
