@@ -18,7 +18,7 @@ jobs:
         env:
           LHCI_BASE_URL: ${{ steps.deployment.outputs.deployment }} 
         with:
-          filename: /lighthouserc.json
+          filename: ./lighthouserc.json
       - run: lhci autorun || echo "failed with errors"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
