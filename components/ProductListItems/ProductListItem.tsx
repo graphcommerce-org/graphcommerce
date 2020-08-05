@@ -1,6 +1,7 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import clsx from 'clsx'
 import PictureResponsive from 'components/PictureResponsive'
+import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
 import { vpCalc, UseStyles } from 'components/Theme'
 import { m as motion } from 'framer-motion'
 import Link from 'next/link'
@@ -78,11 +79,12 @@ export default function ProductListItem(props: ProductListItemProps) {
         <MuiLink underline='none'>
           <motion.div className={classes.imageContainer} layoutId={sku ?? ''}>
             {small_image ? (
-              <PictureResponsive
+              <PictureResponsiveSharp
                 alt={small_image.label ?? ''}
                 width={320}
                 height={320}
-                srcSets={{ 'image/jpeg': small_image.url ?? '' }}
+                src={small_image.url ?? ''}
+                type='image/jpeg'
                 className={classes.image}
               />
             ) : (
