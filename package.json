@@ -12,6 +12,7 @@
     "codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen",
     "dev-codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen -w",
     "build": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen && next build",
+    "postbuild": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
     "start": "next start",
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",

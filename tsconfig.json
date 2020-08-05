@@ -24,6 +24,7 @@
     "**/*.tsx",
     "next.config.js",
     "apollo.config.js",
+    ".lighthouserc.js",
     ".eslintrc.js"
   ]
 }
