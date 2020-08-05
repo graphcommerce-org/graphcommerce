@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react'
 
 const possibleWidths = [25, 50, 75, 100, 150, 200, 250, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
 
-export type FilestackPictureProps = Omit<PictureResponsiveProps, 'srcSets'> & {
+export type PictureResponsiveSharpProps = Omit<PictureResponsiveProps, 'srcSets'> & {
   src: string
   type: ImageMimeTypes
 
@@ -16,12 +16,12 @@ export type FilestackPictureProps = Omit<PictureResponsiveProps, 'srcSets'> & {
 }
 
 type UseCompressionReturn = {
-  compression: FilestackPictureProps['compression']
+  compression: PictureResponsiveSharpProps['compression']
   quality: number
 }
 
 const useImageOptions = (
-  compression: FilestackPictureProps['compression'],
+  compression: PictureResponsiveSharpProps['compression'],
   type: ImageMimeTypes,
 ): UseCompressionReturn => {
   const connectionType = useConnectionType()
@@ -44,6 +44,8 @@ const useImageOptions = (
         setCompress({ compression: connectionType !== '4g' ? 'lossy' : 'lossless', quality })
         break
       case 'image/gif':
+        setCompress({ compression: 'none', quality })
+        break
       case 'image/svg+xml':
         setCompress({ compression: 'none', quality })
         break
@@ -56,7 +58,7 @@ const useImageOptions = (
   return compress
 }
 
-const PictureResponsiveSharp: React.FC<FilestackPictureProps> = ({
+const PictureResponsiveSharp: React.FC<PictureResponsiveSharpProps> = ({
   src,
   type,
   compression,
@@ -77,15 +79,28 @@ const PictureResponsiveSharp: React.FC<FilestackPictureProps> = ({
     case 'lossy':
       // Generate webp + jpeg for all lossy images.
       srcSets['image/webp'] = widths
-        .map((width) => `/api/image?width=${width}&type=webp&url=${src} ${width}w`)
+        .map(
+          (width) =>
+            `/api/image?width=${width}&type=webp&url=${src}&quality=${imageOptions.quality} ${width}w`,
+        )
         .join(', ')
 
       srcSets['image/jpeg'] = widths
-        .map((width) => `/api/image?width=${width}&type=jpeg&url=${src} ${width}w`)
+        .map(
+          (width) =>
+            `/api/image?width=${width}&type=jpeg&url=${src}&quality=${imageOptions.quality} ${width}w`,
+        )
         .join(', ')
 
       break
     case 'lossless':
+      // Generate webp lossless + png for all lossless images.
+      srcSets['image/webp'] = widths
+        .map(
+          (width) =>
+            `/api/image?width=${width}&type=webp&url=${src}&quality=${imageOptions.quality}&lossless=1 ${width}w`,
+        )
+        .join(', ')
       srcSets['image/png'] = widths
         .map((width) => `/api/image?width=${width}&type=png&url=${src} ${width}w`)
         .join(', ')
