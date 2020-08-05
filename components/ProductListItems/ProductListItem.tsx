@@ -1,6 +1,5 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import clsx from 'clsx'
-import PictureResponsive from 'components/PictureResponsive'
 import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
 import { vpCalc, UseStyles } from 'components/Theme'
 import { m as motion } from 'framer-motion'
