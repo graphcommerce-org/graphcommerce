@@ -8,6 +8,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
+import { mergeDeep } from '@apollo/client/utilities'
 import { persistCache } from 'apollo-cache-persist'
 import fragments from 'generated/fragments.json'
 // import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
@@ -77,10 +78,20 @@ export function createApolloClient(
   const cache = new InMemoryCache({
     possibleTypes: fragments.possibleTypes,
     typePolicies,
-  }).restore(initialState)
+  })
+
+  let state = initialState
+  if (window.localStorage.getItem('apollo-cache-persist')) {
+    state = mergeDeep(
+      JSON.parse(window.localStorage.getItem('apollo-cache-persist') ?? '{}'),
+      initialState,
+    )
+    window.localStorage.setItem('apollo-cache-persist', JSON.stringify(state))
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   persistCache({ cache, storage: window.localStorage })
+  cache.restore(state)
 
   return new ApolloClient({ link, cache })
 }

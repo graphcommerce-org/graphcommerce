@@ -1,5 +1,5 @@
 import { ApolloProvider, NormalizedCacheObject } from '@apollo/client'
-import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
+import { mergeDeep } from '@apollo/client/utilities'
 import { LayoutPage, isLayoutPage } from 'components/LayoutPage'
 import PageTransition, { TransitionPage } from 'components/PageTransition'
 import { MotionConfig, AnimationFeature, ExitFeature, AnimateLayoutFeature } from 'framer-motion'
