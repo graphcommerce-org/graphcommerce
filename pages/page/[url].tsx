@@ -11,16 +11,16 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
 
-const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage, storeConfig }) => {
+const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage }) => {
   const { marginTop } = useHeaderSpacing()
 
-  if (!cmsPage || !storeConfig) return <NextError statusCode={503} title='Loading skeleton' />
+  if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
 
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
 
   return (
     <>
-      <CmsPageMeta {...cmsPage} {...storeConfig} />
+      <CmsPageMeta {...cmsPage} />
       <div className={marginTop}>
         <CmsPageContent {...cmsPage} />
       </div>

@@ -4,8 +4,4 @@ query CmsPage($identifier: String!) {
     ...CmsPageMeta
     ...CmsPageContent
   }
-  storeConfig {
-    id
-    ...StoreConfigPageMeta
-  }
 }
