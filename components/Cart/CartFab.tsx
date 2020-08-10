@@ -1,4 +1,4 @@
-import { Badge, Fab } from '@material-ui/core'
+import { Badge, Fab, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import { useCartIdQuery, useGuestCartQuery } from 'generated/apollo'
 import { useRouter } from 'next/router'
@@ -14,15 +14,21 @@ export default function CartFab() {
 
   const isCart = router.pathname === '/cart'
 
+  const fab = (
+    <Fab
+      aria-label={isCart ? 'Close Cart' : 'Open Cart'}
+      size='medium'
+      onClick={() => (isCart ? router.back() : router.push('/cart'))}
+    >
+      <CartIcon fontSize='small' />
+    </Fab>
+  )
+
   return (
-    <Badge badgeContent={cartData?.cart?.total_quantity || 0} color='primary' overlap='circle'>
-      <Fab
-        aria-label={isCart ? 'Close Cart' : 'Open Cart'}
-        size='medium'
-        onClick={() => (isCart ? router.back() : router.push('/cart'))}
-      >
-        <CartIcon fontSize='small' />
-      </Fab>
-    </Badge>
+    <NoSsr fallback={fab}>
+      <Badge badgeContent={cartData?.cart?.total_quantity || 0} color='primary' overlap='circle'>
+        {fab}
+      </Badge>
+    </NoSsr>
   )
 }

@@ -5,6 +5,7 @@ import {
   Theme,
   ListItemSecondaryAction,
   Button,
+  NoSsr,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
@@ -42,12 +43,12 @@ export default function Cart(props: CartProps) {
   const classes = useStyles()
   const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
 
-  if (!cartIdData?.cartId) return <>nothing in your cart</>
+  if (!cartIdData?.cartId) return <NoSsr>nothing in your cart</NoSsr>
 
   if (!called) loadCart({ variables: { cartId: cartIdData.cartId } })
 
   if (loading || !data) {
-    return <>loading...</>
+    return <NoSsr>loading...</NoSsr>
   }
 
   const { cart } = data

@@ -7,17 +7,12 @@ import {
   makeStyles,
   Theme,
   createStyles,
-  TextField,
-  TextFieldProps,
 } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/RemoveCircleOutline'
 import Money from 'components/Money'
-import {
-  useRemoveItemFromCartMutation,
-  useCartIdQuery,
-  useUpdateItemQuantityMutation,
-} from 'generated/apollo'
+import { useRemoveItemFromCartMutation, useCartIdQuery } from 'generated/apollo'
 import React from 'react'
+import UpdateItemQuantity from './UpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,12 +29,6 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
     },
-    quantity: {
-      width: 40,
-    },
-    quantityInput: {
-      textAlign: 'center',
-    },
   }),
 )
 
@@ -47,7 +36,6 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
   const { data: cartIdData } = useCartIdQuery()
   const classes = useStyles()
   const [remove] = useRemoveItemFromCartMutation()
-  const [update] = useUpdateItemQuantityMutation()
 
   const removeItemFromCart = async () => {
     if (!cartIdData?.cartId) return
@@ -55,17 +43,6 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
       variables: {
         cartId: cartIdData.cartId,
         cartItemId: Number(id),
-      },
-    })
-  }
-
-  const updateQuantity: TextFieldProps['onChange'] = async (event) => {
-    if (!cartIdData?.cartId) return
-    await update({
-      variables: {
-        cartId: cartIdData.cartId,
-        cartItemId: Number(id),
-        quantity: Number(event.target.value),
       },
     })
   }
@@ -101,16 +78,10 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
           <div className={classes.totals}>
             {prices?.price && <Money {...prices.price} />}
             {' ⨉ '}
-            <TextField
-              defaultValue={quantity}
-              variant='standard'
-              size='small'
-              type='number'
-              onChange={updateQuantity}
-              className={classes.quantity}
-              inputProps={{
-                className: classes.quantityInput,
-              }}
+            <UpdateItemQuantity
+              cartId={cartIdData?.cartId ?? ''}
+              quantity={quantity}
+              cartItemId={Number(id)}
             />
             {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
           </div>

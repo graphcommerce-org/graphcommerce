@@ -3,6 +3,7 @@ import Cart from 'components/Cart'
 import CartItem from 'components/Cart/CartItem'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
+import PageMeta from 'components/PageMeta/PageMeta'
 import overlay from 'components/PageTransition/overlay'
 import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
@@ -14,17 +15,20 @@ const ProductPage: PageWithShopLayout = () => {
   const { marginTop } = useHeaderSpacing()
 
   return (
-    <Container className={marginTop}>
-      <Cart
-        renderer={{
-          BundleCartItem: CartItem,
-          ConfigurableCartItem: CartItem,
-          DownloadableCartItem: CartItem,
-          SimpleCartItem: CartItem,
-          VirtualCartItem: CartItem,
-        }}
-      />
-    </Container>
+    <>
+      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+      <Container className={marginTop}>
+        <Cart
+          renderer={{
+            BundleCartItem: CartItem,
+            ConfigurableCartItem: CartItem,
+            DownloadableCartItem: CartItem,
+            SimpleCartItem: CartItem,
+            VirtualCartItem: CartItem,
+          }}
+        />
+      </Container>
+    </>
   )
 }
 

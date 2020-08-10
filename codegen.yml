@@ -42,10 +42,4 @@ generates:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
       - typescript-react-apollo
     config:
-      apolloClientVersion: 3
-      apolloReactHooksImportFrom: '@apollo/client'
-      apolloReactCommonImportFrom: '@apollo/client'
       typesPrefix: GQL
-      withHOC: false
-      withHooks: true
-      withComponent: false

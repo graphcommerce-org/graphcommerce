@@ -1,4 +1,4 @@
-import { mergeDeep } from '@apollo/client/utilities/common/mergeDeep'
+import { mergeDeep } from '@apollo/client/utilities'
 import cartTypePolicies from 'components/Cart/typePolicies'
 import cartIdtypePolicies from 'components/CartId/typePolicies'
 import isLoggedInTypePolicies from 'components/IsLoggedIn/typePolicies'
