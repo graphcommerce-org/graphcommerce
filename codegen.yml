@@ -20,8 +20,6 @@ generates:
     hooks:
       afterOneFileWrite:
         - prettier --write
-    config:
-      apolloClientVersion: 3
   generated/schema.graphql:
     plugins:
       - schema-ast
@@ -42,10 +40,4 @@ generates:
       - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
       - typescript-react-apollo
     config:
-      apolloClientVersion: 3
-      apolloReactHooksImportFrom: '@apollo/client'
-      apolloReactCommonImportFrom: '@apollo/client'
       typesPrefix: GQL
-      withHOC: false
-      withHooks: true
-      withComponent: false
