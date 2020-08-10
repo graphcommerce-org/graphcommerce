@@ -20,6 +20,8 @@ generates:
     hooks:
       afterOneFileWrite:
         - prettier --write
+    config:
+      apolloClientVersion: 3
   generated/schema.graphql:
     plugins:
       - schema-ast
