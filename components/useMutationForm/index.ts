@@ -65,7 +65,9 @@ function fieldRequirements<T = { [index: string]: unknown }>(
 /**
  * Combines useMutation with react-hook-form:
  *
- * Automatically extracts all required arguments for a queryw
+ * - Automatically extracts all required arguments for a query
+ * - Casts Float/Int mutation input variables to a Number
+ * - Updates the form when the query updates
  */
 export function useMutationForm<TData, TVariables = Record<string, unknown>>({
   mutation,
