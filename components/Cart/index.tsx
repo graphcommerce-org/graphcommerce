@@ -43,7 +43,8 @@ export default function Cart(props: CartProps) {
   const classes = useStyles()
   const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
 
-  if (!cartIdData?.cartId) return <NoSsr>nothing in your cart</NoSsr>
+  if (!cartIdData?.cartId || (data?.cart?.items && data?.cart?.items.length <= 0))
+    return <NoSsr>nothing in your cart</NoSsr>
 
   if (!called) loadCart({ variables: { cartId: cartIdData.cartId } })
 
