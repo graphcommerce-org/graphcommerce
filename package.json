@@ -72,7 +72,7 @@
     "@commitlint/config-conventional": "^9.1.1",
     "@graphql-codegen/cli": "^1.17.7",
     "@graphql-codegen/fragment-matcher": "1.17.7",
-    "@graphql-codegen/introspection": "1.17.7",
+    "@graphql-codegen/introspection": "1.17.8",
     "@graphql-codegen/schema-ast": "^1.17.7",
     "@graphql-codegen/typescript": "1.17.7",
     "@graphql-codegen/typescript-document-nodes": "1.17.7",
