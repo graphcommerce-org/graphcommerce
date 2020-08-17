@@ -69,7 +69,7 @@
     "@babel/compat-data": "^7.11.0",
     "@babel/core": "^7.11.1",
     "@commitlint/cli": "^9.1.1",
-    "@commitlint/config-conventional": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.2",
     "@graphql-codegen/cli": "^1.17.7",
     "@graphql-codegen/fragment-matcher": "1.17.7",
     "@graphql-codegen/introspection": "1.17.7",
