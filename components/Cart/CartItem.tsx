@@ -27,6 +27,22 @@ const useStyles = makeStyles((theme: Theme) =>
     totals: {
       display: 'flex',
       alignItems: 'center',
+      flexDirection: 'column',
+    },
+    wrapper: {
+      flex: '0 0 auto',
+    },
+    inner: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    qtyTotalsWrapper: {
+      display: 'flex',
+      alignItems: 'center',
+      marginRight: `${theme.spacings.sm}`,
+    },
+    productPrice: {
+      marginRight: `${theme.spacings.xs}`,
     },
   }),
 )
@@ -36,7 +52,7 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
   const classes = useStyles()
 
   return (
-    <ListItem alignItems='flex-start'>
+    <ListItem>
       <ListItemAvatar>
         <RemoveItemFromCart cartId={cartIdData?.cartId ?? ''} cartItemId={Number(id)} />
       </ListItemAvatar>
@@ -50,19 +66,25 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
           />
         </ListItemAvatar>
       )}
+      <ListItemText primary={product.name} secondaryTypographyProps={{ component: 'div' }} />
       <ListItemText
-        primary={product.name}
-        secondaryTypographyProps={{ component: 'div' }}
-        secondary={
-          <div className={classes.totals}>
-            {prices?.price && <Money {...prices.price} />}
-            {' ⨉ '}
-            <UpdateItemQuantity
-              cartId={cartIdData?.cartId ?? ''}
-              cartItemId={Number(id)}
-              quantity={quantity}
-            />
-            {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
+        classes={{ root: classes.wrapper }}
+        primary={
+          <div className={classes.inner}>
+            <div className={classes.qtyTotalsWrapper}>
+              <div className={classes.productPrice}>
+                {prices?.price && <Money {...prices.price} />}
+                {' ⨉ '}
+              </div>
+              <UpdateItemQuantity
+                cartId={cartIdData?.cartId ?? ''}
+                cartItemId={Number(id)}
+                quantity={quantity}
+              />
+            </div>
+            <div>
+              {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
+            </div>
           </div>
         }
       />
