@@ -103,8 +103,8 @@ export default function TextInputNumber(props: TextInputNumberProps) {
           <IconButton
             aria-label='step down'
             size='small'
-            onMouseDown={() => setDirection('down')}
-            onMouseUp={() => setDirection(null)}
+            onPointerDown={() => setDirection('down')}
+            onPointerUp={() => setDirection(null)}
             disabled={textFieldProps.disabled || disabled === 'min'}
             tabIndex='-1'
             {...DownProps}
@@ -116,8 +116,8 @@ export default function TextInputNumber(props: TextInputNumberProps) {
           <IconButton
             aria-label='step up'
             size='small'
-            onMouseDown={() => setDirection('up')}
-            onMouseUp={() => setDirection(null)}
+            onPointerDown={() => setDirection('up')}
+            onPointerUp={() => setDirection(null)}
             disabled={textFieldProps.disabled || disabled === 'max'}
             tabIndex='-1'
             {...UpProps}
