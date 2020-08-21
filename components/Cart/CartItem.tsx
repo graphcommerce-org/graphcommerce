@@ -15,6 +15,10 @@ import UpdateItemQuantity from './UpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    itemWrapper: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
     inline: {
       display: 'inline',
     },
@@ -24,17 +28,25 @@ const useStyles = makeStyles((theme: Theme) =>
       border: `1px solid ${theme.palette.divider}`,
       marginRight: 10,
     },
+    avatarImg: {
+      objectFit: 'contain',
+    },
+    itemName: {
+      flex: '100 1 0',
+      minWidth: '250px',
+    },
     totals: {
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',
     },
-    wrapper: {
-      flex: '0 0 auto',
+    itemPriceWrapper: {
+      flex: '1 1 auto',
     },
-    inner: {
+    itemPriceInner: {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-between',
     },
     qtyTotalsWrapper: {
       display: 'flex',
@@ -56,7 +68,7 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
   const classes = useStyles()
 
   return (
-    <ListItem>
+    <ListItem className={classes.itemWrapper}>
       {product?.thumbnail?.url && product.thumbnail.label && (
         <ListItemAvatar>
           <Avatar
@@ -64,14 +76,19 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
             src={product.thumbnail.url}
             variant='rounded'
             className={classes.avatar}
+            classes={{ img: classes.avatarImg }}
           />
         </ListItemAvatar>
       )}
-      <ListItemText primary={product.name} secondaryTypographyProps={{ component: 'div' }} />
       <ListItemText
-        classes={{ root: classes.wrapper }}
+        className={classes.itemName}
+        primary={product.name}
+        secondaryTypographyProps={{ component: 'div' }}
+      />
+      <ListItemText
+        classes={{ root: classes.itemPriceWrapper }}
         primary={
-          <div className={classes.inner}>
+          <div className={classes.itemPriceInner}>
             <div className={classes.qtyTotalsWrapper}>
               <div className={classes.productPrice}>
                 {prices?.price && <Money {...prices.price} />}
