@@ -62,6 +62,7 @@ module.exports = {
 
     'no-underscore-dangle': ['error', { allow: ['__typename', '__type'] }],
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
+    'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
 
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',

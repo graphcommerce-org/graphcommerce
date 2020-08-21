@@ -68,14 +68,14 @@ export default function Cart(props: CartProps) {
         return (
           <motion.div key={item?.id} {...animation}>
             <GQLRenderType renderer={renderer} {...item} />
-            <Divider variant='inset' component='li' />
+            <Divider variant='inset' component='div' />
           </motion.div>
         )
       })}
 
       {cart?.prices?.subtotal_including_tax && (
         <motion.div {...animation} key='subtotal'>
-          <ListItem>
+          <ListItem ContainerComponent='div'>
             <ListItemText inset>Subtotal</ListItemText>
             <ListItemSecondaryAction>
               <Money {...cart.prices.subtotal_including_tax} />
@@ -86,7 +86,7 @@ export default function Cart(props: CartProps) {
 
       {cart?.prices?.discounts?.map((discount, idx) => (
         <motion.div {...animation} key={`price${idx}`}>
-          <ListItem>
+          <ListItem ContainerComponent='div'>
             <ListItemText inset>{discount?.label}</ListItemText>
             <ListItemSecondaryAction>
               {discount?.amount && <Money {...discount?.amount} key={idx} />}
@@ -97,7 +97,7 @@ export default function Cart(props: CartProps) {
 
       {cart?.shipping_addresses?.map((address, idx) => (
         <motion.div {...animation} key={`shipping_addresses_${idx}`}>
-          <ListItem>
+          <ListItem ContainerComponent='div'>
             <ListItemText inset>{address?.selected_shipping_method?.carrier_title}</ListItemText>
             <ListItemSecondaryAction>
               {address?.selected_shipping_method?.amount && (
@@ -109,7 +109,7 @@ export default function Cart(props: CartProps) {
       ))}
 
       <motion.div {...animation} key='total'>
-        <ListItem key='total'>
+        <ListItem key='total' ContainerComponent='div'>
           <ListItemText inset>Total</ListItemText>
           <ListItemSecondaryAction>
             {cart?.prices?.grand_total && <Money {...cart.prices.grand_total} />}
@@ -118,7 +118,7 @@ export default function Cart(props: CartProps) {
       </motion.div>
 
       <motion.div {...animation} key='checkout'>
-        <ListItem className={classes.buttonContainer}>
+        <ListItem className={classes.buttonContainer} ContainerComponent='div'>
           <Button variant='contained' color='primary' size='large' className={classes.button}>
             Proceed to checkout
           </Button>
