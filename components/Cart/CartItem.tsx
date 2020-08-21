@@ -15,6 +15,10 @@ import UpdateItemQuantity from './UpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    itemWrapper: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
     inline: {
       display: 'inline',
     },
@@ -27,17 +31,22 @@ const useStyles = makeStyles((theme: Theme) =>
     avatarImg: {
       objectFit: 'contain',
     },
+    itemName: {
+      flex: '100 1 0',
+      minWidth: '250px',
+    },
     totals: {
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',
     },
     itemPriceWrapper: {
-      flex: '0 0 auto',
+      flex: '1 1 auto',
     },
     itemPriceInner: {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'space-between',
     },
     qtyTotalsWrapper: {
       display: 'flex',
@@ -71,7 +80,11 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
           />
         </ListItemAvatar>
       )}
-      <ListItemText primary={product.name} secondaryTypographyProps={{ component: 'div' }} />
+      <ListItemText
+        className={classes.itemName}
+        primary={product.name}
+        secondaryTypographyProps={{ component: 'div' }}
+      />
       <ListItemText
         classes={{ root: classes.itemPriceWrapper }}
         primary={
