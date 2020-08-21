@@ -39,10 +39,14 @@ const useStyles = makeStyles((theme: Theme) =>
     qtyTotalsWrapper: {
       display: 'flex',
       alignItems: 'center',
+      flexDirection: 'column',
       marginRight: `${theme.spacings.sm}`,
     },
     productPrice: {
-      marginRight: `${theme.spacings.xs}`,
+      marginBottom: `calc(${theme.spacings.xs} / 2)`,
+    },
+    removeItem: {
+      marginLeft: `calc(${theme.spacings.xs} / 2)`,
     },
   }),
 )
@@ -53,9 +57,6 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
 
   return (
     <ListItem>
-      <ListItemAvatar>
-        <RemoveItemFromCart cartId={cartIdData?.cartId ?? ''} cartItemId={Number(id)} />
-      </ListItemAvatar>
       {product?.thumbnail?.url && product.thumbnail.label && (
         <ListItemAvatar>
           <Avatar
@@ -84,6 +85,9 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
             </div>
             <div>
               {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
+            </div>
+            <div className={classes.removeItem}>
+              <RemoveItemFromCart cartId={cartIdData?.cartId ?? ''} cartItemId={Number(id)} />
             </div>
           </div>
         }
