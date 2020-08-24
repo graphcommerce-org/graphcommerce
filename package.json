@@ -104,7 +104,7 @@
     "pretty-quick": "^2.0.1",
     "semantic-release": "^17.1.1",
     "semantic-release-slack-bot": "^1.6.2",
-    "typescript": "^3.9.7",
+    "typescript": "^4.0.2",
     "webpack": "^5.0.0-beta.24"
   },
   "prettier": {
