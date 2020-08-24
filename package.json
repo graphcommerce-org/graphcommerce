@@ -60,7 +60,7 @@
     "schema-dts": "^0.6.0",
     "sharp": "^0.25.4",
     "sitemap": "^6.2.0",
-    "ts-node": "^8.10.2",
+    "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "type-fest": "^0.16.0",
     "use-resize-observer": "^6.1.0"
