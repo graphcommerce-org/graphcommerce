@@ -11895,7 +11895,7 @@ postcss@7.0.32, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.26
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-prebuild-install@^5.3.4:
+prebuild-install@^5.3.5:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-5.3.5.tgz#e7e71e425298785ea9d22d4f958dbaccf8bb0e1b"
   integrity sha512-YmMO7dph9CYKi5IR/BzjOJlRzpxGGVo1EsLSUZ0mt/Mq0HWZIHOKHHcHdT69yG54C9m6i45GpItwRHpk0Py7Uw==
@@ -13270,19 +13270,19 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
-sharp@^0.25.4:
-  version "0.25.4"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.25.4.tgz#1a8e542144a07ab7e9316ab89de80182b827c363"
-  integrity sha512-umSzJJ1oBwIOfwFFt/fJ7JgCva9FvrEU2cbbm7u/3hSDZhXvkME8WE5qpaJqLIe2Har5msF5UG4CzYlEg5o3BQ==
+sharp@^0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.26.0.tgz#ff4c8d3200a7a1f76c69c53fd11879609d2ff062"
+  integrity sha512-MNldekb9ZnliJAD+qP6uBTf3Wd6HaDVhKYbxXG+SQDvit9fa+2X4wECJvMRF8FLdY4saojrz3BHsnt4OmJw7xg==
   dependencies:
     color "^3.1.2"
     detect-libc "^1.0.3"
     node-addon-api "^3.0.0"
     npmlog "^4.1.2"
-    prebuild-install "^5.3.4"
+    prebuild-install "^5.3.5"
     semver "^7.3.2"
     simple-get "^4.0.0"
-    tar "^6.0.2"
+    tar-fs "^2.1.0"
     tunnel-agent "^0.6.0"
 
 shebang-command@^1.2.0:
@@ -14092,7 +14092,7 @@ tapable@^2.0.0-beta.10:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.0.0-beta.11.tgz#5a6bd5e0353fad4da9e94942206bb596639e8cf7"
   integrity sha512-cAhRzCvMdyJsxmdrSXG8/SUlJG4WJUxD/csuYAybUFjKVt74Y6pTyZ/I1ZK+enmCkWZN0JWxh14G69temaGSiA==
 
-tar-fs@^2.0.0:
+tar-fs@^2.0.0, tar-fs@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.0.tgz#d1cdd121ab465ee0eb9ccde2d35049d3f3daf0d5"
   integrity sha512-9uW5iDvrIMCVpvasdFHW0wJPez0K4JnMZtsuIeDI7HyMGJNxmDZDOCQROr7lXyS+iL/QMpj07qcjGYTSdRFXUg==
