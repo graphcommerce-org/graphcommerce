@@ -50,7 +50,7 @@
     "next-pwa": "^3.1.1",
     "next-transpile-modules": "^4.0.2",
     "node-fetch": "^2.6.0",
-    "now": "^19.2.0",
+    "now": "^20.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.3.1",
