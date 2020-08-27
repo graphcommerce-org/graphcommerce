@@ -100,7 +100,7 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.1",
     "pretty-quick": "^2.0.1",
     "semantic-release": "^17.1.1",
     "semantic-release-slack-bot": "^1.6.2",
