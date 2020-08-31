@@ -9,22 +9,23 @@ import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const AccountPage: PageWithShopLayout = () => {
+const AccountIndexPage: PageWithShopLayout = () => {
   const signedIn = useSignedInGuard()
   const { data } = useCustomerQuery()
 
   if (!signedIn) return <div>Not signed in, redirecting...</div>
   return (
     <>
+      {data?.customer?.prefix} {data?.customer?.firstname} {data?.customer?.lastname}
       <PageMeta title='Account' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
     </>
   )
 }
 
-AccountPage.Layout = ShopLayout
-AccountPage.pageTransition = overlay
+AccountIndexPage.Layout = ShopLayout
+AccountIndexPage.pageTransition = overlay
 
-export default AccountPage
+export default AccountIndexPage
 
 export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()

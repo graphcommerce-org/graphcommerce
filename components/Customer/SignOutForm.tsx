@@ -1,6 +1,6 @@
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import { useMutationForm } from 'components/useMutationForm'
-import { LogoutDocument } from 'generated/apollo'
+import { SignOutDocument } from 'generated/apollo'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -26,10 +26,10 @@ const useStyles = makeStyles(
   { name: 'SignOut' },
 )
 
-export default function SignOut() {
+export default function SignOutForm() {
   const classes = useStyles()
-  const { onSubmit, result } = useMutationForm<GQLLogoutMutation, GQLLogoutMutationVariables>({
-    mutation: LogoutDocument,
+  const { onSubmit, result } = useMutationForm<GQLSignOutMutation, GQLSignOutMutationVariables>({
+    mutation: SignOutDocument,
   })
 
   return (

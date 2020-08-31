@@ -8,7 +8,6 @@ const useStyles = makeStyles(
     form: {
       display: 'grid',
       alignItems: 'center',
-      // gridTemplateColumns: 'repeat(4, 1fr)',
       gridRowGap: theme.spacings.sm,
       gridColumnGap: theme.spacings.xs,
     },
@@ -27,7 +26,7 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-export default function SignIn() {
+export default function SignInForm() {
   const classes = useStyles()
   const { register, errors, onSubmit, required, result } = useMutationForm<
     GQLSignInMutation,
@@ -69,7 +68,6 @@ export default function SignIn() {
         disabled={result.loading}
         color='primary'
         variant='contained'
-        className={classes.submit}
         size='large'
       >
         Log in

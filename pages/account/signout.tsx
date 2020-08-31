@@ -1,5 +1,5 @@
 import { DialogTitle, DialogContent, Paper, Container, Typography } from '@material-ui/core'
-import SignOut from 'components/Customer/SignOut'
+import SignOutForm from 'components/Customer/SignOutForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
@@ -33,7 +33,7 @@ const AccountSignOutPage: PageWithShopLayout = () => {
             </Typography>
           </DialogTitle>
           <DialogContent>
-            <SignOut />
+            <SignOutForm />
           </DialogContent>
         </Paper>
       </Container>

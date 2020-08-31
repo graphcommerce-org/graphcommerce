@@ -1,15 +1,17 @@
 import { useCustomerTokenQuery } from 'generated/apollo'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { isCustomerTokenValid } from './useSignedInGuard'
 
 export default function useSignedOutGuard() {
   const router = useRouter()
   const { data } = useCustomerTokenQuery()
+  const isValid = isCustomerTokenValid(data?.customerToken)
+
   useEffect(() => {
-    if (data?.customerToken?.token) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('/account')
-    }
-  })
-  return !data?.customerToken?.token
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (isValid) router.push('/account')
+  }, [isValid, router])
+
+  return !isValid
 }
