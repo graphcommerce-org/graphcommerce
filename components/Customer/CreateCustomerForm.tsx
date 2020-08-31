@@ -1,13 +1,7 @@
 import { useApolloClient } from '@apollo/client'
 import { TextField, Button, makeStyles, Theme, MenuItem } from '@material-ui/core'
 import { useMutationForm, emailPattern } from 'components/useMutationForm'
-import {
-  CreateCustomerDocument,
-  IsEmailAvailableDocument,
-  useLoginMutation,
-} from 'generated/apollo'
-import { useRouter } from 'next/router'
-import { FormEventHandler } from 'react'
+import { CreateCustomerDocument, IsEmailAvailableDocument } from 'generated/apollo'
 import useSignedOutGuard from './useSignedOutGuard'
 
 const useStyles = makeStyles(
@@ -46,8 +40,6 @@ const useStyles = makeStyles(
 )
 
 export default function CreateCustomerForm() {
-  useSignedOutGuard()
-
   const classes = useStyles()
   const client = useApolloClient()
   const { register, errors, onSubmit, required, result, watch } = useMutationForm<
