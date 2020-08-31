@@ -22,6 +22,7 @@
       "handler": {
         "graphql": {
           "endpoint": "https://segway.reachdigital.io/nl/graphql",
+          "useGETForQueries": true,
           "schemaHeaders": {
             "Store": "segway_nl_nl"
           },

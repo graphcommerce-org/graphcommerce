@@ -17,7 +17,8 @@
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,css,html}'",
-    "mesh": "node -r dotenv/config node_modules/.bin/mesh serve"
+    "mesh": "node -r dotenv/config node_modules/.bin/mesh serve",
+    "postinstall": "patch-package"
   },
   "sideEffects": false,
   "dependencies": {
@@ -52,6 +53,8 @@
     "next-transpile-modules": "^4.1.0",
     "node-fetch": "^2.6.0",
     "now": "^20.1.0",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.7.0",
