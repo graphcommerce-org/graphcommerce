@@ -1,29 +1,43 @@
 import { TypePolicies, FieldPolicy } from '@apollo/client'
 import { CustomerTokenDocument } from 'generated/apollo'
 
+const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
+  merge(_existing, incoming, options) {
+    console.log('huhshs')
+    // options.cache.evict({ id: 'CustomerToken', broadcast: true })
+    // options.cache.writeQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
+    //   query: CustomerTokenDocument,
+    //   broadcast: true,
+    //   data: { customerToken: { __typename: 'CustomerToken', token: '' } },
+    // })
+    return incoming
+  },
+}
+
 const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> = {
   keyArgs: () => '',
   merge(_existing, token, options) {
     if (!options.isReference(token)) {
       return token
     }
+
     options.cache.writeQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
       query: CustomerTokenDocument,
+      broadcast: true,
       data: {
         customerToken: {
           __typename: 'CustomerToken',
           token: options.readField('token', token),
-          createdAt: new Date().toISOString(),
+          createdAt: new Date().toUTCString(),
         },
       },
-      broadcast: true,
     })
     return token
   },
 }
 
 const typePolicies: TypePolicies = {
-  Mutation: { fields: { generateCustomerToken } },
+  Mutation: { fields: { generateCustomerToken, revokeCustomerToken } },
   CustomerToken: {
     keyFields: (object) => object.__typename,
   },

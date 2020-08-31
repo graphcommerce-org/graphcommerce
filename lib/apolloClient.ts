@@ -71,7 +71,6 @@ export function createApolloClient(
         authorization = `Bearer ${query?.customerToken?.token}`
       }
     } catch (error) {
-      console.log('hoi')
       // nothing to do
     }
 

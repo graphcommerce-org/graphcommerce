@@ -6,9 +6,8 @@ const createHandler = async () => {
   const apolloServer = new ApolloServer({
     schema: await meshSchema,
     tracing: true,
-    engine: {
-      reportSchema: true,
-    },
+    engine: { reportSchema: true },
+    context: ({ req }) => req,
   })
   return apolloServer.createHandler({ path: '/api/graphql' })
 }

@@ -24,10 +24,12 @@
           "endpoint": "https://segway.reachdigital.io/nl/graphql",
           "useGETForQueries": true,
           "schemaHeaders": {
-            "Store": "segway_nl_nl"
+            "Store": "segway_nl_nl",
+            "Authorization": "{context.headers.authorization}"
           },
           "operationHeaders": {
-            "Store": "segway_nl_nl"
+            "Store": "segway_nl_nl",
+            "Authorization": "{context.headers.authorization}"
           }
         }
       }
