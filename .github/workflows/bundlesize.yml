@@ -15,10 +15,12 @@ jobs:
       - run: yarn --cwd ./new build > new.txt
         env:
           GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
+      - run: cat new.txt
       - run: yarn --frozen-lockfile --cwd ./old
       - run: yarn --cwd ./old build > old.txt
         env:
           GRAPHCMS_BEARER: ${{ secrets.GRAPHCMS_BEARER }}
+      - run: cat old.txt
       - uses: ho-nl/next-bundlesize-action@master
         id: 'bundlesize'
       - uses: unsplash/comment-on-pr@master
