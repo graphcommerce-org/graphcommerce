@@ -3,12 +3,13 @@ import { useStoreConfigQuery } from 'generated/apollo'
 import NextLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 
-export function useProductLink(props: GQLProductLinkFragment) {
+export function useProductLink(props: GQLProductLinkFragment & { canonical?: boolean }) {
   const { data: storeConfigData } = useStoreConfigQuery()
   const urlSuffix = storeConfigData?.storeConfig?.product_url_suffix
+  const { canonical_url, url_key, canonical = false } = props
 
-  const { canonical_url, url_key } = props
-  return `/product/${canonical_url ?? url_key}${urlSuffix ?? ''}`
+  const base = canonical ? storeConfigData?.storeConfig?.base_link_url : '/'
+  return `${base}product/${canonical_url ?? url_key}${urlSuffix ?? ''}`
 }
 
 export type ProductLinkProps = PropsWithChildren<LinkProps & GQLProductLinkFragment>
