@@ -3,7 +3,13 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import meshSchema from 'node/meshSchema'
 
 const createHandler = async () => {
-  const apolloServer = new ApolloServer({ schema: await meshSchema })
+  const apolloServer = new ApolloServer({
+    schema: await meshSchema,
+    tracing: true,
+    engine: {
+      reportSchema: true,
+    },
+  })
   return apolloServer.createHandler({ path: '/api/graphql' })
 }
 const handler = createHandler()

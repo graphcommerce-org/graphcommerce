@@ -1,6 +1,6 @@
-import { Container } from '@material-ui/core'
-import Cart from 'components/Cart'
-import CartItem from 'components/Cart/CartItem'
+import { Container, Paper, DialogTitle, Typography, DialogContent } from '@material-ui/core'
+import CreateCustomerForm from 'components/Customer/CreateCustomerForm'
+import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import PageMeta from 'components/PageMeta/PageMeta'
@@ -11,31 +11,36 @@ import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const CartPage: PageWithShopLayout = () => {
+const AccountCreatePage: PageWithShopLayout = () => {
+  const signedOut = useSignedOutGuard()
   const { marginTop } = useHeaderSpacing()
+
+  if (!signedOut) return <div>Already signed in, redirecting...</div>
 
   return (
     <>
-      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
-      <Container className={marginTop}>
-        <Cart
-          renderer={{
-            BundleCartItem: CartItem,
-            ConfigurableCartItem: CartItem,
-            DownloadableCartItem: CartItem,
-            SimpleCartItem: CartItem,
-            VirtualCartItem: CartItem,
-          }}
-        />
+      <PageMeta title='Create Account' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+
+      <Container maxWidth='sm' className={marginTop}>
+        <Paper elevation={10}>
+          <DialogTitle disableTypography>
+            <Typography variant='h2' component='h1'>
+              Create Account
+            </Typography>
+          </DialogTitle>
+          <DialogContent>
+            <CreateCustomerForm />
+          </DialogContent>
+        </Paper>
       </Container>
     </>
   )
 }
 
-CartPage.Layout = ShopLayout
-CartPage.pageTransition = overlay
+AccountCreatePage.Layout = ShopLayout
+AccountCreatePage.pageTransition = overlay
 
-export default CartPage
+export default AccountCreatePage
 
 export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()

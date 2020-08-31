@@ -37,9 +37,8 @@ function getType(type: TypeNode) {
 }
 
 type RequiredFields<T> = { [key in keyof T]?: boolean }
-function fieldRequirements<T = { [index: string]: unknown }>(
-  gql: DocumentNode,
-): [Partial<T>, RequiredFields<T>] {
+
+function fieldRequirements<T = { [index: string]: unknown }>(gql: DocumentNode) {
   const variables: Partial<T> = {}
   const required: RequiredFields<T> = {}
 
@@ -59,7 +58,7 @@ function fieldRequirements<T = { [index: string]: unknown }>(
     }
   })
 
-  return [variables, required]
+  return [variables, required] as const
 }
 
 /**
@@ -69,7 +68,7 @@ function fieldRequirements<T = { [index: string]: unknown }>(
  * - Casts Float/Int mutation input variables to a Number
  * - Updates the form when the query updates
  */
-export function useMutationForm<TData, TVariables = Record<string, unknown>>({
+export function useMutationForm<TData, TVariables = { [index: string]: unknown }>({
   mutation,
   values,
   ...useFormProps
@@ -78,22 +77,22 @@ export function useMutationForm<TData, TVariables = Record<string, unknown>>({
   values?: UnpackNestedValue<DeepPartial<TVariables>>
 } & Omit<UseFormOptions<TVariables>, 'defaultValues'>) {
   const [defaultValues, required] = fieldRequirements<TVariables>(mutation)
-  const [submit, result] = useMutation<TData, TVariables>(mutation)
+  const [submit, result] = useMutation<TData, TVariables>(mutation, { errorPolicy: 'all' })
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { register, errors, handleSubmit, reset } = useForm<TVariables>({
+  const { register, errors, handleSubmit, reset, watch, formState } = useForm<TVariables>({
     defaultValues: mergeDeep(defaultValues, values),
     ...useFormProps,
   })
 
-  const valuesJson = JSON.stringify(values)
+  const valuesJson = JSON.stringify(values || '{}')
   useEffect(() => {
     const changeValues = JSON.parse(valuesJson) as UnpackNestedValue<DeepPartial<TVariables>>
     reset(changeValues, { dirtyFields: true })
   }, [valuesJson, reset])
 
   const onSubmit = handleSubmit((variables) => {
-    const submitValues = { ...values }
+    const submitValues = { ...values } as TVariables
 
     mutation.definitions.forEach((definition) => {
       if (isOperationDefinitionNode(definition) && Array.isArray(definition.variableDefinitions)) {
@@ -109,11 +108,14 @@ export function useMutationForm<TData, TVariables = Record<string, unknown>>({
       }
     })
 
+    const missingFields = Object.keys(required).filter((x) => submitValues[x] === undefined)
+    if (missingFields.length) throw new Error(`Missing fields in form ${missingFields.join(', ')}`)
+
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    submit({ variables: submitValues as TVariables })
+    submit({ variables: submitValues })
   })
 
-  return { required, result, register, errors, onSubmit }
+  return { required, result, register, errors, onSubmit, watch }
 }
 
 export const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

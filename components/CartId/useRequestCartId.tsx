@@ -1,5 +1,4 @@
 import { useApolloClient } from '@apollo/client'
-import useIsLoggedIn from 'components/Customer/useIsLoggedIn'
 import { GetCustomerCartDocument, CreateEmptyCartDocument, useCartIdQuery } from 'generated/apollo'
 
 function generateId() {
@@ -15,7 +14,6 @@ function generateId() {
 export default function useRequestCartId() {
   const cartIdQuery = useCartIdQuery()
   const client = useApolloClient()
-  const isLoggedIn = useIsLoggedIn()
 
   const cartId = cartIdQuery.data?.cartId
 
@@ -24,7 +22,7 @@ export default function useRequestCartId() {
       return cartId
     }
 
-    if (!cartId && isLoggedIn) {
+    if (!cartId) {
       const customerCartQuery = await client.query<
         GQLGetCustomerCartQuery,
         GQLGetCustomerCartQueryVariables

@@ -1,6 +1,6 @@
-import { Container } from '@material-ui/core'
-import Cart from 'components/Cart'
-import CartItem from 'components/Cart/CartItem'
+import { DialogTitle, DialogContent, Paper, Container, Typography } from '@material-ui/core'
+import SignIn from 'components/Customer/SignInForm'
+import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import PageMeta from 'components/PageMeta/PageMeta'
@@ -11,31 +11,36 @@ import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const CartPage: PageWithShopLayout = () => {
+const AccountSignInPage: PageWithShopLayout = () => {
   const { marginTop } = useHeaderSpacing()
+  const signedOut = useSignedOutGuard()
+
+  if (!signedOut) return <div>Already signed in, redirecting...</div>
 
   return (
     <>
-      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
-      <Container className={marginTop}>
-        <Cart
-          renderer={{
-            BundleCartItem: CartItem,
-            ConfigurableCartItem: CartItem,
-            DownloadableCartItem: CartItem,
-            SimpleCartItem: CartItem,
-            VirtualCartItem: CartItem,
-          }}
-        />
+      <PageMeta title='Sign in' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+
+      <Container maxWidth='xs' className={marginTop}>
+        <Paper elevation={10}>
+          <DialogTitle disableTypography>
+            <Typography variant='h2' component='h1'>
+              Login
+            </Typography>
+          </DialogTitle>
+          <DialogContent>
+            <SignIn />
+          </DialogContent>
+        </Paper>
       </Container>
     </>
   )
 }
 
-CartPage.Layout = ShopLayout
-CartPage.pageTransition = overlay
+AccountSignInPage.Layout = ShopLayout
+AccountSignInPage.pageTransition = overlay
 
-export default CartPage
+export default AccountSignInPage
 
 export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()
