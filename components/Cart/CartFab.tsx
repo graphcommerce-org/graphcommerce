@@ -1,24 +1,22 @@
 import { Badge, Fab, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
+import useNavigationSection from 'components/useNavigationSection'
 import { useCartIdQuery, useGuestCartQuery } from 'generated/apollo'
-import { useRouter } from 'next/router'
 import React from 'react'
 
 export default function CartFab() {
-  const router = useRouter()
+  const { isInSection, toggleSection } = useNavigationSection('/cart')
   const { data: cartIdData } = useCartIdQuery()
   const { data: cartData } = useGuestCartQuery({
     variables: { cartId: cartIdData?.cartId || '' },
     fetchPolicy: 'cache-only',
   })
 
-  const isCart = router.pathname === '/cart'
-
   const fab = (
     <Fab
-      aria-label={isCart ? 'Close Cart' : 'Open Cart'}
+      aria-label={isInSection ? 'Close Cart' : 'Open Cart'}
       size='medium'
-      onClick={() => (isCart ? router.back() : router.push('/cart'))}
+      onClick={toggleSection}
     >
       <CartIcon fontSize='small' />
     </Fab>
@@ -26,7 +24,12 @@ export default function CartFab() {
 
   return (
     <NoSsr fallback={fab}>
-      <Badge badgeContent={cartData?.cart?.total_quantity || 0} color='primary' overlap='circle'>
+      <Badge
+        badgeContent={cartData?.cart?.total_quantity || 0}
+        color='primary'
+        overlap='circle'
+        variant='dot'
+      >
         {fab}
       </Badge>
     </NoSsr>
