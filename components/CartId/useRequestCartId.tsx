@@ -1,5 +1,10 @@
 import { useApolloClient } from '@apollo/client'
-import { GetCustomerCartDocument, CreateEmptyCartDocument, useCartIdQuery } from 'generated/apollo'
+import {
+  GetCustomerCartDocument,
+  CreateEmptyCartDocument,
+  useCartIdQuery,
+  useCustomerQuery,
+} from 'generated/apollo'
 
 function generateId() {
   return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -13,16 +18,15 @@ function generateId() {
 
 export default function useRequestCartId() {
   const cartIdQuery = useCartIdQuery()
+  const { data: customerQuery } = useCustomerQuery({ fetchPolicy: 'cache-only' })
   const client = useApolloClient()
 
   const cartId = cartIdQuery.data?.cartId
 
   async function requestCartId(): Promise<string> {
-    if (cartId) {
-      return cartId
-    }
+    if (cartId) return cartId
 
-    if (!cartId) {
+    if (!cartId && customerQuery?.customer) {
       const customerCartQuery = await client.query<
         GQLGetCustomerCartQuery,
         GQLGetCustomerCartQueryVariables
@@ -33,7 +37,7 @@ export default function useRequestCartId() {
       }
     }
 
-    if (!cartId) {
+    if (!cartId && !customerQuery?.customer) {
       const newId = generateId()
       const createEmptyCart = await client.mutate<
         GQLCreateEmptyCartMutation,
@@ -46,7 +50,7 @@ export default function useRequestCartId() {
       throw new Error('Could not create a cart')
     }
 
-    return cartId
+    return cartId || ''
   }
 
   return requestCartId
