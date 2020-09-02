@@ -79,13 +79,13 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 export const defaultTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#13e4ad',
+      main: '#F65C5E',
       contrastText: '#000',
       mutedText: '#b8b8b8',
-      dark: '#0edda7',
+      dark: '#DC0000',
     },
     secondary: {
-      main: '#fffe00',
+      main: '#0049FF',
       contrastText: '#000',
       mutedText: '#b8b8b8',
     },

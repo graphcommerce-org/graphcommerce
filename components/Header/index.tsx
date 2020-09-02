@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import CartFab from 'components/Cart/CartFab'
+import AccountFab from 'components/Customer/AccountFab'
 import Link from 'next/link'
 import React from 'react'
 import HeaderMenu, { HeaderMenuProps } from './HeaderMenu'
@@ -16,7 +17,7 @@ export default function Header(props: HeaderProps) {
     <header {...headerProps} className={clsx(classes.navigation, headerProps.className)}>
       <Link href='/' passHref>
         <a className={classes.logo}>
-          <img src={logo} alt='Logo' className={classes.logoImg} />
+          <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
         </a>
       </Link>
 
@@ -24,7 +25,8 @@ export default function Header(props: HeaderProps) {
         <HeaderMenu menu={menu} urlResolver={urlResolver} />
       </div>
 
-      <div className={classes.contact}>
+      <div className={classes.secondary}>
+        <AccountFab />
         <CartFab />
       </div>
     </header>
