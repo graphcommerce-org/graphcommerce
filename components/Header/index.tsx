@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import CartFab from 'components/Cart/CartFab'
-import AccountFab from 'components/Customer/AccountFab'
+import CustomerFab from 'components/Customer/AccountFab'
 import Link from 'next/link'
 import React from 'react'
 import HeaderMenu, { HeaderMenuProps } from './HeaderMenu'
@@ -26,7 +26,7 @@ export default function Header(props: HeaderProps) {
       </div>
 
       <div className={classes.secondary}>
-        <AccountFab />
+        <CustomerFab />
         <CartFab />
       </div>
     </header>
