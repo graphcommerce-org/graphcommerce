@@ -1,6 +1,7 @@
+import { useApolloClient } from '@apollo/client'
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import { useMutationForm } from 'components/useMutationForm'
-import { SignOutDocument } from 'generated/apollo'
+import { SignOutDocument, useCartQuery, useCustomerQuery } from 'generated/apollo'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -27,9 +28,22 @@ const useStyles = makeStyles(
 )
 
 export default function SignOutForm() {
+  const client = useApolloClient()
+  const { data: cart } = useCartQuery()
+  const { data: customer } = useCustomerQuery()
   const classes = useStyles()
   const { onSubmit, result } = useMutationForm<GQLSignOutMutation, GQLSignOutMutationVariables>({
     mutation: SignOutDocument,
+    onComplete: (data) => {
+      if (!data.revokeCustomerToken?.result) throw Error('Could not sign out')
+
+      if (cart?.cart) {
+        client.cache.evict({ id: client.cache.identify(cart.cart), broadcast: true })
+      }
+      if (customer?.customer) {
+        client.cache.evict({ id: client.cache.identify(customer.customer), broadcast: true })
+      }
+    },
   })
 
   return (

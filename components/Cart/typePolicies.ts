@@ -12,7 +12,6 @@ const createEmptyCart: FieldPolicy<GQLMutation['createEmptyCart']> = {
     options.cache.writeQuery<GQLCartQuery, GQLCartQueryVariables>({
       query: CartDocument,
       broadcast: true,
-      variables: { cartId },
       data: {
         cart: {
           __typename: 'Cart',
