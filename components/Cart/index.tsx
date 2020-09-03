@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/styles'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
-import { useGuestCartLazyQuery, useCartIdQuery } from 'generated/apollo'
+import { useCartQuery } from 'generated/apollo'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -36,18 +36,15 @@ const useStyles = makeStyles(
 )
 
 type CartItemRenderer = GQLTypeRenderer<
-  NonNullable<NonNullable<NonNullable<GQLGuestCartQuery['cart']>['items']>[0]>
+  NonNullable<NonNullable<NonNullable<GQLCartQuery['cart']>['items']>[0]>
 >
 
 type CartProps = { renderer: CartItemRenderer }
 
 export default function Cart(props: CartProps) {
   const { renderer } = props
-  const { data: cartIdData } = useCartIdQuery()
   const classes = useStyles()
-  const [loadCart, { data, loading, called }] = useGuestCartLazyQuery()
-
-  if (cartIdData?.cartId && !called) loadCart({ variables: { cartId: cartIdData.cartId } })
+  const { data, loading } = useCartQuery()
 
   let content = <></>
 
@@ -58,7 +55,7 @@ export default function Cart(props: CartProps) {
     layout: true,
   }
 
-  if (!cartIdData?.cartId || (data?.cart?.items && data?.cart?.items.length <= 0))
+  if (!data?.cart?.items?.length)
     content = (
       <motion.div key='empty-cart' {...{ ...animation, layout: false }}>
         <CartIcon className={classes.emptyCartIcon} />

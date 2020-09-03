@@ -124,7 +124,6 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
             </Link>
           )
         })}
-        Accountntttt
       </Menu>
     </>
   )

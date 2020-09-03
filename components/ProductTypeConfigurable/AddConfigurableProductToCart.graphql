@@ -18,7 +18,7 @@ mutation AddConfigurableProductToCart(
     }
   ) {
     cart {
-      ...Cart
+      ...CartData
     }
   }
 }

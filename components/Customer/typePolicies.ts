@@ -16,10 +16,8 @@ const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
 
 const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> = {
   keyArgs: () => '',
-  merge(_existing, token, options) {
-    if (!options.isReference(token)) {
-      return token
-    }
+  merge(_existing, incoming, options) {
+    if (!options.isReference(incoming)) return incoming
 
     options.cache.writeQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
       query: CustomerTokenDocument,
@@ -27,20 +25,18 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
       data: {
         customerToken: {
           __typename: 'CustomerToken',
-          token: options.readField('token', token),
+          token: options.readField('token', incoming),
           createdAt: new Date().toUTCString(),
         },
       },
     })
-    return token
+    return incoming
   },
 }
 
 const typePolicies: TypePolicies = {
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken } },
-  CustomerToken: {
-    keyFields: (object) => object.__typename,
-  },
+  CustomerToken: { keyFields: (object) => object.__typename },
 }
 
 export default typePolicies

@@ -1,16 +1,12 @@
 import { Badge, Fab, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import useNavigationSection from 'components/useNavigationSection'
-import { useCartIdQuery, useGuestCartQuery } from 'generated/apollo'
+import { useCartQuery } from 'generated/apollo'
 import React from 'react'
 
 export default function CartFab() {
   const { isInSection, toggleSection } = useNavigationSection('/cart')
-  const { data: cartIdData } = useCartIdQuery()
-  const { data: cartData } = useGuestCartQuery({
-    variables: { cartId: cartIdData?.cartId || '' },
-    fetchPolicy: 'cache-only',
-  })
+  const { data: cartData } = useCartQuery()
 
   const fab = (
     <Fab
