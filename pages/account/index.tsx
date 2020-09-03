@@ -1,3 +1,5 @@
+import { Link, NoSsr } from '@material-ui/core'
+import SignOutForm from 'components/Customer/SignOutForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import PageMeta from 'components/PageMeta/PageMeta'
@@ -16,8 +18,11 @@ const AccountIndexPage: PageWithShopLayout = () => {
   if (!signedIn) return <div>Not signed in, redirecting...</div>
   return (
     <>
-      {data?.customer?.prefix} {data?.customer?.firstname} {data?.customer?.lastname}
       <PageMeta title='Account' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+      <NoSsr>
+        {data?.customer?.prefix} {data?.customer?.firstname} {data?.customer?.lastname}
+        <SignOutForm />
+      </NoSsr>
     </>
   )
 }

@@ -3,13 +3,10 @@ import { CustomerTokenDocument } from 'generated/apollo'
 
 const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {
-    console.log('huhshs')
-    // options.cache.evict({ id: 'CustomerToken', broadcast: true })
-    // options.cache.writeQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
-    //   query: CustomerTokenDocument,
-    //   broadcast: true,
-    //   data: { customerToken: { __typename: 'CustomerToken', token: '' } },
-    // })
+    options.cache.evict({ id: 'Cart', broadcast: true })
+    options.cache.evict({ id: 'Customer', broadcast: true })
+    options.cache.evict({ id: 'CustomerToken', broadcast: true })
+
     return incoming
   },
 }
@@ -36,6 +33,7 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
 
 const typePolicies: TypePolicies = {
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken } },
+  Customer: { keyFields: (object) => object.__typename },
   CustomerToken: { keyFields: (object) => object.__typename },
 }
 

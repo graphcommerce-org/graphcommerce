@@ -45,20 +45,23 @@ export default function SignInForm() {
 
       const { data: currentCart } = await client.query<GQLCartQuery>({ query: CartDocument })
 
-      // If the visitor doesn't already have a cart we don't need to create one right now
-      if (!currentCart?.cart?.id) return
-
+      // Fetch the customer cart
       const { data: customerCart, error } = await client.query<GQLCustomerCartQuery>({
         query: CustomerCartDocument,
       })
-
       if (!customerCart?.customerCart.id) {
         if (error) throw error
         else throw Error("Cart can't be initialized")
       }
 
-      if (customerCart.customerCart.id === currentCart.cart.id) return
+      // Write the result of the customerCart to the cart query so it gets displayed
+      client.cache.writeQuery<GQLCartQuery, GQLCartQueryVariables>({
+        query: CartDocument,
+        data: { cart: customerCart.customerCart },
+      })
 
+      // Merge carts if a customer as a cart
+      if (!currentCart?.cart?.id || customerCart.customerCart.id === currentCart.cart.id) return
       await client.mutate<GQLMergeCartsMutation, GQLMergeCartsMutationVariables>({
         mutation: MergeCartsDocument,
         variables: {
