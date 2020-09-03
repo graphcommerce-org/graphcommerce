@@ -1,46 +1,30 @@
-import { Button, makeStyles, Theme } from '@material-ui/core'
+import { Button, ButtonProps, makeStyles, Theme } from '@material-ui/core'
+import { UseStyles } from 'components/Theme'
 import { useMutationForm } from 'components/useMutationForm'
 import { SignOutDocument } from 'generated/apollo'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    form: {
-      display: 'grid',
-      alignItems: 'center',
-      gridRowGap: theme.spacings.sm,
-      gridColumnGap: theme.spacings.xs,
-      paddingBottom: theme.spacings.xs,
-    },
     error: {
       color: theme.palette.error.main,
-    },
-    actions: {
-      display: 'grid',
-      gridTemplateColumns: 'auto auto',
-      paddingBottom: theme.spacings.xs,
-      '& :last-child': {
-        textAlign: 'right',
-      },
     },
   }),
   { name: 'SignOut' },
 )
 
-export default function SignOutForm() {
-  const classes = useStyles()
+type SignOutFormProps = UseStyles<typeof useStyles> &
+  Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
+
+export default function SignOutForm(props: SignOutFormProps) {
+  const classes = useStyles(props)
   const { onSubmit, result } = useMutationForm<GQLSignOutMutation, GQLSignOutMutationVariables>({
     mutation: SignOutDocument,
   })
+  const { buttonProps = {}, ...formProps } = props
 
   return (
-    <form onSubmit={onSubmit} noValidate className={classes.form}>
-      <Button
-        type='submit'
-        disabled={result.loading}
-        color='primary'
-        variant='contained'
-        size='large'
-      >
+    <form onSubmit={onSubmit} noValidate {...formProps}>
+      <Button {...buttonProps} type='submit' disabled={result.loading}>
         Sign out
       </Button>
 

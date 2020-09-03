@@ -4,6 +4,7 @@ import { useMutationForm, emailPattern } from 'components/useMutationForm'
 import {
   CartDocument,
   CustomerCartDocument,
+  CustomerDocument,
   MergeCartsDocument,
   SignInDocument,
 } from 'generated/apollo'
@@ -41,34 +42,44 @@ export default function SignInForm() {
   >({
     mutation: SignInDocument,
     onComplete: async (data) => {
+      // Check succesfull login
       if (!data.generateCustomerToken?.token) return
 
-      const { data: currentCart } = await client.query<GQLCartQuery>({ query: CartDocument })
-
-      // Fetch the customer cart
-      const { data: customerCart, error } = await client.query<GQLCustomerCartQuery>({
-        query: CustomerCartDocument,
+      const awaitCustomerQuery = client.query<GQLCustomerQuery>({
+        query: CustomerDocument,
+        fetchPolicy: 'network-only',
       })
+      const awaitCart = client.query<GQLCartQuery>({ query: CartDocument })
+      const awaitCustomerCart = client.query<GQLCustomerCartQuery>({ query: CustomerCartDocument })
+
+      const { data: customerCart, error } = await awaitCustomerCart
+
       if (!customerCart?.customerCart.id) {
         if (error) throw error
         else throw Error("Cart can't be initialized")
       }
 
-      // Write the result of the customerCart to the cart query so it gets displayed
+      // Write the result of the customerCart to the cart query so it can be used
       client.cache.writeQuery<GQLCartQuery, GQLCartQueryVariables>({
         query: CartDocument,
         data: { cart: customerCart.customerCart },
+        broadcast: true,
       })
 
+      const { data: currentCart } = await awaitCart
+
       // Merge carts if a customer as a cart
-      if (!currentCart?.cart?.id || customerCart.customerCart.id === currentCart.cart.id) return
-      await client.mutate<GQLMergeCartsMutation, GQLMergeCartsMutationVariables>({
-        mutation: MergeCartsDocument,
-        variables: {
-          sourceCartId: currentCart.cart.id,
-          destinationCartId: customerCart.customerCart.id,
-        },
-      })
+      if (currentCart?.cart?.id && customerCart.customerCart.id !== currentCart.cart.id) {
+        await client.mutate<GQLMergeCartsMutation, GQLMergeCartsMutationVariables>({
+          mutation: MergeCartsDocument,
+          variables: {
+            sourceCartId: currentCart.cart.id,
+            destinationCartId: customerCart.customerCart.id,
+          },
+        })
+      }
+
+      await awaitCustomerQuery
     },
   })
 
@@ -117,9 +128,9 @@ export default function SignInForm() {
       )}
 
       <div className={classes.actions}>
-        <NextLink href='/account/forgot' passHref>
-          <Link>Forgot password?</Link>
-        </NextLink>
+        {/* <NextLink href='/account/forgot' passHref> */}
+        <Link>Forgot password? (todo)</Link>
+        {/* </NextLink> */}
         <NextLink href='/account/create' passHref>
           <Link>Create a new account?</Link>
         </NextLink>
