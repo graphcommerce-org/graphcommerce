@@ -57,6 +57,8 @@ export default function SignInForm() {
         else throw Error("Cart can't be initialized")
       }
 
+      if (customerCart.customerCart.id === currentCart.cart.id) return
+
       await client.mutate<GQLMergeCartsMutation, GQLMergeCartsMutationVariables>({
         mutation: MergeCartsDocument,
         variables: {
