@@ -20,11 +20,11 @@ export default function SignOutForm(props: SignOutFormProps) {
   const { onSubmit, result } = useMutationForm<GQLSignOutMutation, GQLSignOutMutationVariables>({
     mutation: SignOutDocument,
   })
-  const { buttonProps = {}, ...formProps } = props
+  const { ...formProps } = props
 
   return (
     <form onSubmit={onSubmit} noValidate {...formProps}>
-      <Button {...buttonProps} type='submit' disabled={result.loading}>
+      <Button type='submit' disabled={result.loading}>
         Sign out
       </Button>
 
