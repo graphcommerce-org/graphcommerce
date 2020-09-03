@@ -61,7 +61,7 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
     rel = 'nofollow'
 
   return (
-    <NextLink href='/[...url]' as={categoryLink} passHref>
+    <NextLink href={categoryLink} passHref>
       <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams}>
         {children}
       </Link>

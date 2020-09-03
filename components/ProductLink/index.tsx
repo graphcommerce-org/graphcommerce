@@ -22,7 +22,7 @@ const ProductLink = React.forwardRef<HTMLAnchorElement, ProductLinkProps>(functi
   const productLink = useProductLink({ url_key, canonical_url })
 
   return (
-    <NextLink href='/product/[url]' as={productLink} passHref>
+    <NextLink href={productLink} passHref>
       <Link {...linkProps} ref={ref}>
         {children}
       </Link>
