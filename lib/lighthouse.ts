@@ -13,7 +13,7 @@ async function main() {
   })
 
   const newUrls = Object.values(urls).map((url) => `__LHCI_BASE_URL__${url}`)
-  lighthouse.ci.collect.url = newUrls
+  lighthouse.ci.collect.url = newUrls.sort()
 
   await fs.writeFile('./lighthouserc.json', `${JSON.stringify(lighthouse, null, '  ')}\n`)
 }

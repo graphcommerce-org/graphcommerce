@@ -2,7 +2,7 @@ module.exports = {
   client: {
     includes: ['./components/**/*.graphql'],
     service: {
-      name: 'graphcms',
+      name: 'm2-pwa',
       localSchemaFile: './generated/schema.graphql',
     },
   },

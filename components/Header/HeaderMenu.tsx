@@ -107,7 +107,7 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
         {menu?.[0]?.children?.map((root) => {
           if (!root || !root.id || !root.url_path) return null
           return (
-            <Link key={root.id} href='/[...url]' as={`/${root.url_path}`} passHref>
+            <Link key={root.id} href={`/${root.url_path}`} passHref>
               <MuiLink color='inherit' underline='none' className={classes.menuLink}>
                 <ListItem
                   button

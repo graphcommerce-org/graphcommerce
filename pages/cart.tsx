@@ -11,7 +11,7 @@ import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const ProductPage: PageWithShopLayout = () => {
+const CartPage: PageWithShopLayout = () => {
   const { marginTop } = useHeaderSpacing()
 
   return (
@@ -32,10 +32,10 @@ const ProductPage: PageWithShopLayout = () => {
   )
 }
 
-ProductPage.Layout = ShopLayout
-ProductPage.pageTransition = overlay
+CartPage.Layout = ShopLayout
+CartPage.pageTransition = overlay
 
-export default ProductPage
+export default CartPage
 
 export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()

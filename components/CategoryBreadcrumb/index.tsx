@@ -21,12 +21,7 @@ export default function CategoryBreadcrumb(props: CategoryBreadcrumbProps) {
           return null
 
         return (
-          <Link
-            href='/[...url]'
-            as={`/${breadcrumb.category_url_path}`}
-            key={breadcrumb.category_id}
-            passHref
-          >
+          <Link href={`/${breadcrumb.category_url_path}`} key={breadcrumb.category_id} passHref>
             <MuiLink color='inherit'>{breadcrumb.category_name}</MuiLink>
           </Link>
         )

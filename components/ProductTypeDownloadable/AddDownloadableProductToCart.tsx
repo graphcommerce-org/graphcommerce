@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import useRequestCartId from 'components/CartId/useRequestCartId'
+import useRequestCartId from 'components/Cart/useRequestCartId'
 import { useAddDownloadableProductToCartMutation } from 'generated/apollo'
 import React, { useState } from 'react'
 

@@ -10,6 +10,7 @@ import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
 import { persistCache } from 'apollo-cache-persist'
+import { CustomerTokenDocument } from 'generated/apollo'
 import fragments from 'generated/fragments.json'
 // import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import { deferLink } from './deferLink'
@@ -54,13 +55,29 @@ export function createApolloClient(
     })
   }
 
+  const cache = new InMemoryCache({
+    possibleTypes: fragments.possibleTypes,
+    typePolicies,
+  })
+
   const authLink = setContext((_, { headers }) => {
-    const token =
-      typeof window !== 'undefined' ? window.localStorage.getItem('customer_token') : null
+    let authorization = ''
+    try {
+      const query = cache.readQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
+        query: CustomerTokenDocument,
+      })
+
+      if (query?.customerToken?.token) {
+        authorization = `Bearer ${query?.customerToken?.token}`
+      }
+    } catch (error) {
+      // nothing to do
+    }
+
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : '',
+        authorization,
       },
     }
   })
@@ -74,11 +91,6 @@ export function createApolloClient(
       credentials: 'same-origin',
     }),
   ])
-
-  const cache = new InMemoryCache({
-    possibleTypes: fragments.possibleTypes,
-    typePolicies,
-  })
 
   let state = initialState
   if (window.localStorage.getItem('apollo-cache-persist')) {

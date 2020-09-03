@@ -100,8 +100,8 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   if (!ctx.params) throw new Error('No params')
 
-  const queryIdnex = ctx.params.url.findIndex((slug) => slug === 'q')
-  const qIndex = queryIdnex < 0 ? ctx.params.url.length : queryIdnex
+  const queryIndex = ctx.params.url.findIndex((slug) => slug === 'q')
+  const qIndex = queryIndex < 0 ? ctx.params.url.length : queryIndex
 
   const url = ctx.params.url.slice(0, qIndex)
 

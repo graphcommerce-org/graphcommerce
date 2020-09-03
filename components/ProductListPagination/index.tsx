@@ -3,7 +3,8 @@ import { useProductListParamsContext } from 'components/CategoryPage/CategoryPag
 import React from 'react'
 import CategoryLink from '../CategoryLink'
 
-type ProductPaginationProps = GQLProductListPaginationFragment & PaginationProps
+type ProductPaginationProps = GQLProductListPaginationFragment &
+  Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>
 
 export default function ProductListPagination({
   page_info,
@@ -19,6 +20,7 @@ export default function ProductListPagination({
       defaultPage={1}
       page={current_page}
       renderItem={(item) => {
+        if (item.page === 0 || item.page > total_pages) return null
         return (
           <PaginationItem
             {...item}

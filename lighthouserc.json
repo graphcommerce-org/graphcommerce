@@ -4,8 +4,12 @@
       "numberOfRuns": 3,
       "url": [
         "__LHCI_BASE_URL__/",
-        "__LHCI_BASE_URL__/page/home",
+        "__LHCI_BASE_URL__/account",
+        "__LHCI_BASE_URL__/account/change-password",
+        "__LHCI_BASE_URL__/account/create",
+        "__LHCI_BASE_URL__/account/signin",
         "__LHCI_BASE_URL__/cart",
+        "__LHCI_BASE_URL__/page/home",
         "__LHCI_BASE_URL__/product/ninebot-by-segway-kickscooter-es1",
         "__LHCI_BASE_URL__/producten"
       ]
@@ -18,7 +22,9 @@
         "tap-targets": "off",
         "mainthread-work-breakdown": "off",
         "max-potential-fid": "off",
-        "uses-long-cache-ttl": "off"
+        "uses-long-cache-ttl": "off",
+        "canonical": "off",
+        "image-size-responsive": "off"
       }
     },
     "upload": {

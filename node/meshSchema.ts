@@ -3,7 +3,8 @@ import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-snapshot'
 
-import { getMesh, processConfig } from '@graphql-mesh/runtime'
+import { processConfig } from '@graphql-mesh/config'
+import { getMesh } from '@graphql-mesh/runtime'
 import meshrc from '../.meshrc.json'
 
 function injectEnv<T extends Record<string, unknown>>(json: T): T {

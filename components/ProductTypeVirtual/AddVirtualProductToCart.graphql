@@ -13,7 +13,7 @@ mutation AddVirtualProductsToCart(
     }
   ) {
     cart {
-      ...Cart
+      ...CartData
     }
   }
 }

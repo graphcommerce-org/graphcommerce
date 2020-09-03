@@ -13,7 +13,7 @@ mutation AddSimpleProductToCart(
     }
   ) {
     cart {
-      ...Cart
+      ...CartData
     }
   }
 }
