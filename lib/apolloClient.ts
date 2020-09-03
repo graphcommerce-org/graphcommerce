@@ -63,10 +63,7 @@ export function createApolloClient(
   const authLink = setContext((_, { headers }) => {
     let authorization = ''
     try {
-      const query = cache.readQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
-        query: CustomerTokenDocument,
-      })
-
+      const query = cache.readQuery<GQLCustomerTokenQuery>({ query: CustomerTokenDocument })
       if (query?.customerToken?.token) {
         authorization = `Bearer ${query?.customerToken?.token}`
       }
@@ -111,13 +108,7 @@ export function createApolloClient(
 export default function apolloClient(
   initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
-  if (typeof window === 'undefined') {
-    return createApolloClient(initialState)
-  }
-  // Reuse client on the client-side
-  if (!globalApolloClient) {
-    globalApolloClient = createApolloClient(initialState)
-  }
-
+  if (typeof window === 'undefined') return createApolloClient(initialState)
+  if (!globalApolloClient) globalApolloClient = createApolloClient(initialState)
   return globalApolloClient
 }

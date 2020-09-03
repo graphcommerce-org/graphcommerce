@@ -10,7 +10,7 @@ export default function useSignedOutGuard() {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    if (isValid) router.push('/account')
+    if (isValid && router.pathname !== '/account') router.push('/account')
   }, [isValid, router])
 
   return !isValid
