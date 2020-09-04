@@ -46,12 +46,12 @@ export default function Cart(props: CartProps) {
   const classes = useStyles()
   const { data, loading } = useCartQuery()
 
-  let content = <></>
+  let content
 
   const cartItemAnimation: MotionProps = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0, x: -100, transition: { ease: 'easeInOut' } },
+    initial: { opacity: 0, x: 0 },
+    animate: { opacity: 1, x: 0 },
+    exit: { x: -100 },
     layout: true,
   }
 
@@ -62,14 +62,14 @@ export default function Cart(props: CartProps) {
     layout: true,
   }
 
-  if (!data?.cart?.items?.length)
+  if (!data?.cart?.items?.length) {
     content = (
       <motion.div key='empty-cart' {...{ ...animation, layout: false }}>
         <CartIcon className={classes.emptyCartIcon} />
         Nothin in your cart
       </motion.div>
     )
-  else if (loading) {
+  } else if (loading) {
     content = (
       <motion.div key='loading-cart' {...{ ...animation, layout: false }}>
         loading...
@@ -79,11 +79,11 @@ export default function Cart(props: CartProps) {
     const { cart } = data
     content = (
       <>
-        {cart?.items?.map<React.ReactNode>((item) => {
+        {cart?.items?.map((item) => {
           if (!item) return null
           return (
-            <motion.div key={item?.id} {...cartItemAnimation}>
-              <GQLRenderType renderer={renderer} {...item} />
+            <motion.div key={`item${item.id}`} {...cartItemAnimation}>
+              <GQLRenderType renderer={renderer} {...item} cartId={cart.id} />
               <Divider variant='inset' component='div' />
             </motion.div>
           )
@@ -143,8 +143,6 @@ export default function Cart(props: CartProps) {
       </>
     )
   }
-
-  const [showTestDiv, changeShowTestDiv] = useState(true)
 
   return (
     <NoSsr>
