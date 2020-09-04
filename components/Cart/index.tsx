@@ -36,7 +36,7 @@ const useStyles = makeStyles(
 )
 
 type CartItemRenderer = GQLTypeRenderer<
-  NonNullable<NonNullable<NonNullable<GQLCartQuery['cart']>['items']>[0]>
+  NonNullable<NonNullable<NonNullable<GQLCartQuery['cart']>['items']>[0]> & { cartId: string }
 >
 
 type CartProps = { renderer: CartItemRenderer }

@@ -63,7 +63,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-export default function CartItem({ id, quantity, product, prices }: GQLCartItemFragment) {
+export default function CartItem({
+  id,
+  quantity,
+  product,
+  prices,
+  cartId,
+}: GQLCartItemFragment & { cartId: string }) {
   const classes = useStyles()
 
   return (
@@ -93,13 +99,13 @@ export default function CartItem({ id, quantity, product, prices }: GQLCartItemF
                 {prices?.price && <Money {...prices.price} />}
                 {' ⨉ '}
               </div>
-              <UpdateItemQuantity cartItemId={Number(id)} quantity={quantity} />
+              <UpdateItemQuantity cartItemId={Number(id)} cartId={cartId} quantity={quantity} />
             </div>
             <div>
               {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
             </div>
             <div className={classes.removeItem}>
-              <RemoveItemFromCart cartItemId={Number(id)} />
+              <RemoveItemFromCart cartItemId={Number(id)} cartId={cartId} />
             </div>
           </div>
         }
