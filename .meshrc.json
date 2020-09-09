@@ -23,6 +23,7 @@
         "graphql": {
           "endpoint": "https://segway.reachdigital.io/nl/graphql",
           "useGETForQueries": true,
+          "cacheIntrospection": true,
           "schemaHeaders": {
             "Store": "segway_nl_nl",
             "Authorization": "{context.headers.authorization}"
