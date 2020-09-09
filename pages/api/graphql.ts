@@ -15,6 +15,4 @@ const handler = createHandler()
 
 export const config = { api: { bodyParser: false } }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  return (await handler)(req, res)
-}
+export default async (req: NextApiRequest, res: NextApiResponse) => (await handler)(req, res)
