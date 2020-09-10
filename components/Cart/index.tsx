@@ -6,14 +6,17 @@ import {
   ListItemSecondaryAction,
   Button,
   NoSsr,
+  Link,
 } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import { makeStyles } from '@material-ui/styles'
+import clsx from 'clsx'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
+import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import { useCartQuery } from 'generated/apollo'
-import React from 'react'
+import React, { useState } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -28,6 +31,12 @@ const useStyles = makeStyles(
     button: {
       width: '100%',
     },
+    emptyCart: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     emptyCartIcon: {
       fontSize: 200,
     },
@@ -36,33 +45,52 @@ const useStyles = makeStyles(
 )
 
 type CartItemRenderer = GQLTypeRenderer<
-  NonNullable<NonNullable<NonNullable<GQLCartQuery['cart']>['items']>[0]>
+  NonNullable<NonNullable<NonNullable<GQLCartQuery['cart']>['items']>[0]> & { cartId: string }
 >
 
 type CartProps = { renderer: CartItemRenderer }
 
 export default function Cart(props: CartProps) {
+  const { fullHeight } = useHeaderSpacing()
+
   const { renderer } = props
   const classes = useStyles()
   const { data, loading } = useCartQuery()
 
-  let content = <></>
+  let content
 
-  const animation: MotionProps = {
-    initial: { opacity: 0, y: 50, scale: 0.3 },
-    animate: { opacity: 1, y: 0, scale: 1 },
-    exit: { opacity: 0, scale: 0.5, transition: { type: 'inertia' } },
+  const cartItemAnimation: MotionProps = {
+    initial: { opacity: 0, x: 0 },
+    animate: { opacity: 1, x: 0 },
+    exit: { x: -100 },
     layout: true,
   }
 
-  if (!data?.cart?.items?.length)
+  const animation: MotionProps = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0, transition: { type: 'inertia' } },
+    layout: true,
+  }
+
+  if (!data?.cart?.items?.length) {
     content = (
-      <motion.div key='empty-cart' {...{ ...animation, layout: false }}>
+      <motion.div
+        className={clsx(classes.emptyCart, fullHeight)}
+        key='empty-cart'
+        {...{ ...animation, layout: false }}
+      >
         <CartIcon className={classes.emptyCartIcon} />
-        Nothin in your cart
+        <h2>There is nothing in your cart</h2>
+        <p>Looks like you did not add anything to your cart yet.</p>
+        <Link underline='none' href='/'>
+          <Button variant='contained' color='primary' size='large' className={classes.button}>
+            Back to homepage
+          </Button>
+        </Link>
       </motion.div>
     )
-  else if (loading) {
+  } else if (loading) {
     content = (
       <motion.div key='loading-cart' {...{ ...animation, layout: false }}>
         loading...
@@ -72,11 +100,11 @@ export default function Cart(props: CartProps) {
     const { cart } = data
     content = (
       <>
-        {cart?.items?.map<React.ReactNode>((item) => {
+        {cart?.items?.map((item) => {
           if (!item) return null
           return (
-            <motion.div key={item?.id} {...animation}>
-              <GQLRenderType renderer={renderer} {...item} />
+            <motion.div key={`item${item.id}`} {...cartItemAnimation}>
+              <GQLRenderType renderer={renderer} {...item} cartId={cart.id} />
               <Divider variant='inset' component='div' />
             </motion.div>
           )

@@ -1,19 +1,13 @@
 import { IconButton } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { useMutationForm } from 'components/useMutationForm'
-import { RemoveItemFromCartDocument, useCartQuery } from 'generated/apollo'
+import { RemoveItemFromCartDocument } from 'generated/apollo'
 
-export default function RemoveItemFromCart(
-  props: Omit<GQLRemoveItemFromCartMutationVariables, 'cartId'>,
-) {
-  const { data: cartData } = useCartQuery()
+export default function RemoveItemFromCart(values: GQLRemoveItemFromCartMutationVariables) {
   const { onSubmit, result } = useMutationForm<
     GQLRemoveItemFromCartMutation,
     GQLRemoveItemFromCartMutationVariables
-  >({
-    mutation: RemoveItemFromCartDocument,
-    values: { ...props, cartId: cartData?.cart?.id },
-  })
+  >({ mutation: RemoveItemFromCartDocument, values })
 
   return (
     <form noValidate onSubmit={onSubmit}>

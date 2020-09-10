@@ -1,21 +1,14 @@
 import { debounce } from '@material-ui/core'
 import TextInputNumber from 'components/TextInputNumber'
 import { useMutationForm } from 'components/useMutationForm'
-import { UpdateItemQuantityDocument, useCartQuery } from 'generated/apollo'
+import { UpdateItemQuantityDocument } from 'generated/apollo'
 import React, { useRef } from 'react'
 
-export default function UpdateItemQuantity(
-  props: Omit<GQLUpdateItemQuantityMutationVariables, 'cartId'>,
-) {
-  const { data: cartData } = useCartQuery()
+export default function UpdateItemQuantity(values: GQLUpdateItemQuantityMutationVariables) {
   const { register, errors, onSubmit, required, result } = useMutationForm<
     GQLUpdateItemQuantityMutation,
     GQLUpdateItemQuantityMutationVariables
-  >({
-    mutation: UpdateItemQuantityDocument,
-    values: { ...props, cartId: cartData?.cart?.id },
-    mode: 'onChange',
-  })
+  >({ mutation: UpdateItemQuantityDocument, values, mode: 'onChange' })
 
   const ref = useRef<HTMLInputElement>(null)
   register(ref.current, { required: required.quantity })

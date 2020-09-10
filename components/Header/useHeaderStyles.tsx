@@ -10,7 +10,7 @@ const useHeaderStyles = makeStyles(
       display: 'grid',
       gridTemplateAreas: `'menu logo secondary'`,
       padding: `${gridSpacing.row} ${gridSpacing.column}`,
-      gridTemplateColumns: `46px auto calc(46px * 3)`,
+      gridTemplateColumns: `minmax(46px, 1fr) auto minmax(calc(46px * 3), 1fr)`,
       gridTemplateRows: `auto`,
       justifyItems: 'center',
       width: '100%',
@@ -30,11 +30,17 @@ const useHeaderStyles = makeStyles(
       width: 'auto',
       height: 'auto',
     },
-    menu: { gridArea: 'menu', pointerEvents: 'all' },
+    menu: {
+      gridArea: 'menu',
+      pointerEvents: 'all',
+      justifySelf: 'flex-start',
+    },
     secondary: {
       gridArea: 'secondary',
       justifySelf: 'flex-end',
-      '& > * > *': { pointerEvents: 'all' },
+      '& > * > *': {
+        pointerEvents: 'all',
+      },
     },
   }),
   { name: 'Header' },
