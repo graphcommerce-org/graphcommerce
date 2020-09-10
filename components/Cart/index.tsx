@@ -66,6 +66,8 @@ export default function Cart(props: CartProps) {
     layout: true,
   }
 
+  const pageAnimation: MotionProps = {}
+
   const animation: MotionProps = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
@@ -167,7 +169,7 @@ export default function Cart(props: CartProps) {
 
   return (
     <NoSsr>
-      <AnimatePresence>{content}</AnimatePresence>
+      <AnimatePresence exitBeforeEnter>{content}</AnimatePresence>
     </NoSsr>
   )
 }
