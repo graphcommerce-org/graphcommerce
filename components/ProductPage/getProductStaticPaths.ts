@@ -30,7 +30,7 @@ const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>
       .flat(10)
       .map((url: string) => ({ params: { url } })) ?? []
 
-  return { paths, fallback: true }
+  return { paths, fallback: 'unstable_blocking', revalidate: 60 * 20 }
 }
 
 export default getProductStaticPaths
