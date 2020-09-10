@@ -1,10 +1,8 @@
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { GetCategoryStaticPathsDocument } from 'generated/apollo'
-import apolloClient from 'lib/apolloClient'
-import { GetStaticPaths } from 'next'
 
-const getCategoryStaticPaths: GetStaticPaths = async () => {
-  const client = apolloClient()
+const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
   const config = getStoreConfig(client)
 
   const { data } = await client.query<
@@ -30,7 +28,7 @@ const getCategoryStaticPaths: GetStaticPaths = async () => {
       .filter((v) => !!v)
       .map((url) => ({
         params: {
-          url: url.split('/').filter((v: string) => !!v),
+          url: url.split('/').filter((v: string) => !!v) as string[],
         },
       })) ?? []
 

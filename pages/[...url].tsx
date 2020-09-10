@@ -88,7 +88,10 @@ CategoryPage.Layout = ShopLayout
 
 export default CategoryPage
 
-export const getStaticPaths: GetStaticPaths = getCategoryStaticPaths
+export const getStaticPaths: GetStaticPaths<{ url: string[] }> = () => {
+  const client = apolloClient()
+  return getCategoryStaticPaths(client)
+}
 
 export const getStaticProps: GetStaticProps<
   ShopLayoutProps & GetCategoryPageProps,
