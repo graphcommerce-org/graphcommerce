@@ -6,10 +6,13 @@ import {
   ListItemSecondaryAction,
   Button,
   NoSsr,
+  Link,
 } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import { makeStyles } from '@material-ui/styles'
+import clsx from 'clsx'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
+import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import { useCartQuery } from 'generated/apollo'
@@ -28,6 +31,12 @@ const useStyles = makeStyles(
     button: {
       width: '100%',
     },
+    emptyCart: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     emptyCartIcon: {
       fontSize: 200,
     },
@@ -42,6 +51,8 @@ type CartItemRenderer = GQLTypeRenderer<
 type CartProps = { renderer: CartItemRenderer }
 
 export default function Cart(props: CartProps) {
+  const { fullHeight } = useHeaderSpacing()
+
   const { renderer } = props
   const classes = useStyles()
   const { data, loading } = useCartQuery()
@@ -64,9 +75,19 @@ export default function Cart(props: CartProps) {
 
   if (!data?.cart?.items?.length) {
     content = (
-      <motion.div key='empty-cart' {...{ ...animation, layout: false }}>
+      <motion.div
+        className={clsx(classes.emptyCart, fullHeight)}
+        key='empty-cart'
+        {...{ ...animation, layout: false }}
+      >
         <CartIcon className={classes.emptyCartIcon} />
-        Nothin in your cart
+        <h2>There is nothing in your cart</h2>
+        <p>Looks like you did not add anything to your cart yet.</p>
+        <Link underline='none' href='/'>
+          <Button variant='contained' color='primary' size='large' className={classes.button}>
+            Back to homepage
+          </Button>
+        </Link>
       </motion.div>
     )
   } else if (loading) {
