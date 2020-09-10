@@ -58,7 +58,10 @@ ProductPage.pageTransition = overlay
 
 export default ProductPage
 
-export const getStaticPaths: GetStaticPaths = getProductStaticPaths
+export const getStaticPaths: GetStaticPaths<{ url: string }> = () => {
+  const client = apolloClient()
+  return getProductStaticPaths(client)
+}
 
 export const getStaticProps: GetStaticProps<
   ShopLayoutProps & GetProductPageProps,
