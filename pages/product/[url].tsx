@@ -5,6 +5,7 @@ import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import overlay from 'components/PageTransition/overlay'
 import getProductPageProps, { GetProductPageProps } from 'components/ProductPage/getProductProps'
+import getProductStaticPaths from 'components/ProductPage/getProductStaticPaths'
 import ProductPageBreadcrumb from 'components/ProductPageBreadcrumb'
 import ProductPageDescription from 'components/ProductPageDescription'
 import ProductPageGallery from 'components/ProductPageGallery'
@@ -57,12 +58,7 @@ ProductPage.pageTransition = overlay
 
 export default ProductPage
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [{ params: { url: 'ninebot-by-segway-kickscooter-es1' } }],
-    fallback: true,
-  }
-}
+export const getStaticPaths: GetStaticPaths = getProductStaticPaths
 
 export const getStaticProps: GetStaticProps<
   ShopLayoutProps & GetProductPageProps,

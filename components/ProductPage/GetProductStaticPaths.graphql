@@ -1,0 +1,32 @@
+query GetProductStaticPaths($rootCategory: String!) {
+  categoryList(filters: { ids: { eq: $rootCategory } }) {
+    children {
+      products {
+        items {
+          url_key
+        }
+      }
+      children {
+        products {
+          items {
+            url_key
+          }
+        }
+        children {
+          products {
+            items {
+              url_key
+            }
+          }
+          children {
+            products {
+              items {
+                url_key
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
