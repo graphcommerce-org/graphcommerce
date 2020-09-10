@@ -1,0 +1,19 @@
+query GetCategoryStaticPaths($rootCategory: String!) {
+  categoryList(filters: { ids: { eq: $rootCategory } }) {
+    children {
+      url_key
+      children {
+        url_key
+        children {
+          url_key
+          children {
+            url_key
+            children {
+              url_key
+            }
+          }
+        }
+      }
+    }
+  }
+}
