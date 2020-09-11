@@ -1,19 +1,22 @@
-import { IconButton } from '@material-ui/core'
-import DeleteIcon from '@material-ui/icons/Delete'
+import { Fab } from '@material-ui/core'
+import DeleteOutlineOutlined from '@material-ui/icons/DeleteOutlineOutlined'
 import { useMutationForm } from 'components/useMutationForm'
 import { RemoveItemFromCartDocument } from 'generated/apollo'
 
-export default function RemoveItemFromCart(values: GQLRemoveItemFromCartMutationVariables) {
+type RemoveItemFromCartProps = GQLRemoveItemFromCartMutationVariables &
+  React.HTMLAttributes<HTMLDivElement>
+
+export default function RemoveItemFromCart(values: RemoveItemFromCartProps) {
   const { onSubmit, result } = useMutationForm<
     GQLRemoveItemFromCartMutation,
     GQLRemoveItemFromCartMutationVariables
   >({ mutation: RemoveItemFromCartDocument, values })
 
   return (
-    <form noValidate onSubmit={onSubmit}>
-      <IconButton edge='end' aria-label='delete' type='submit' disabled={result.loading}>
-        <DeleteIcon fontSize='small' />
-      </IconButton>
+    <form noValidate onSubmit={onSubmit} className={values.className}>
+      <Fab aria-label='Remove Product' size='small' type='submit' disabled={result.loading}>
+        <DeleteOutlineOutlined fontSize='small' />
+      </Fab>
       {result.error?.message}
     </form>
   )
