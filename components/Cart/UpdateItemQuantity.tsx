@@ -17,7 +17,6 @@ export default function UpdateItemQuantity(values: GQLUpdateItemQuantityMutation
     <form noValidate onChange={debounce(onSubmit, 600)}>
       <TextInputNumber
         size='small'
-        label='Quantity'
         variant='outlined'
         inputProps={{ min: 1 }}
         error={!!errors.quantity}
