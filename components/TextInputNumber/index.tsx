@@ -16,13 +16,17 @@ import { useRef, RefObject, useState, useEffect, ChangeEvent } from 'react'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     quantity: {
-      width: 130,
+      width: 100,
     },
     quantityInput: {
       textAlign: 'center',
       '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
         appearance: 'none',
       },
+    },
+    root: {
+      paddingLeft: 0,
+      paddingRight: 0,
     },
   }),
 )
@@ -97,8 +101,13 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       type='number'
       inputRef={ref}
       className={clsx(textFieldProps.className, classes.quantity)}
+      classes={{ root: classes.root }}
       InputProps={{
         ...InputProps,
+        classes: {
+          adornedStart: classes.root,
+          adornedEnd: classes.root,
+        },
         startAdornment: (
           <IconButton
             aria-label='step down'
