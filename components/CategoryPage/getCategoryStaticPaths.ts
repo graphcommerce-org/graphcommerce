@@ -32,7 +32,7 @@ const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject
         },
       })) ?? []
 
-  return { paths, fallback: 'unstable_blocking', revalidate: 60 * 20 }
+  return { paths, fallback: true, revalidate: 60 * 20 } as const
 }
 
 export default getCategoryStaticPaths

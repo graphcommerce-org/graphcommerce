@@ -36,7 +36,7 @@ export default PageWithLayout
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [{ params: { url: 'home' } }],
-    fallback: 'unstable_blocking',
+    fallback: true,
     revalidate: 60 * 20,
   }
 }
