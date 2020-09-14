@@ -17,6 +17,7 @@
     "assert": {
       "preset": "lighthouse:recommended",
       "assertions": {
+        "html-has-lang": "off",
         "color-contrast": "off",
         "is-crawlable": "off",
         "tap-targets": "off",
