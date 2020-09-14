@@ -128,9 +128,9 @@ export default function SignInForm() {
       )}
 
       <div className={classes.actions}>
-        {/* <NextLink href='/account/forgot' passHref> */}
-        <Link>Forgot password? (todo)</Link>
-        {/* </NextLink> */}
+        <NextLink href='/' passHref>
+          <Link>Forgot password? (todo)</Link>
+        </NextLink>
         <NextLink href='/account/create' passHref>
           <Link>Create a new account?</Link>
         </NextLink>
