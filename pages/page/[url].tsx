@@ -37,7 +37,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [{ params: { url: 'home' } }],
     fallback: true,
-    revalidate: 60 * 20,
   }
 }
 
@@ -65,5 +64,6 @@ export const getStaticProps: GetStaticProps<
       ...(await cmsPageProps),
       apolloState: client.cache.extract(),
     },
+    revalidate: 60 * 20,
   }
 }

@@ -88,5 +88,6 @@ export const getStaticProps: GetStaticProps<
       ...(await productPage),
       apolloState: client.cache.extract(),
     },
+    revalidate: 60 * 20,
   }
 }

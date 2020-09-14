@@ -127,5 +127,6 @@ export const getStaticProps: GetStaticProps<
       ...(await categoryPage),
       apolloState: client.cache.extract(),
     },
+    revalidate: 60 * 20,
   }
 }
