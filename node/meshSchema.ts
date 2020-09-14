@@ -1,7 +1,6 @@
 import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
-import '@graphql-mesh/transform-snapshot'
 
 import { processConfig } from '@graphql-mesh/config'
 import { getMesh } from '@graphql-mesh/runtime'

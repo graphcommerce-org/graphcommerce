@@ -8,6 +8,7 @@ import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageC
 import getCategoryPageProps, {
   GetCategoryPageProps,
 } from 'components/CategoryPage/getCategoryPageProps'
+import getCategoryStaticPaths from 'components/CategoryPage/getCategoryStaticPaths'
 import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
@@ -87,11 +88,9 @@ CategoryPage.Layout = ShopLayout
 
 export default CategoryPage
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [{ params: { url: ['producten'] } }],
-    fallback: true,
-  }
+export const getStaticPaths: GetStaticPaths<{ url: string[] }> = () => {
+  const client = apolloClient()
+  return getCategoryStaticPaths(client)
 }
 
 export const getStaticProps: GetStaticProps<
@@ -128,5 +127,6 @@ export const getStaticProps: GetStaticProps<
       ...(await categoryPage),
       apolloState: client.cache.extract(),
     },
+    revalidate: 60 * 20,
   }
 }

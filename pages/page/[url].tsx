@@ -32,6 +32,7 @@ PageWithLayout.Layout = ShopLayout
 
 export default PageWithLayout
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [{ params: { url: 'home' } }],
@@ -63,5 +64,6 @@ export const getStaticProps: GetStaticProps<
       ...(await cmsPageProps),
       apolloState: client.cache.extract(),
     },
+    revalidate: 60 * 20,
   }
 }
