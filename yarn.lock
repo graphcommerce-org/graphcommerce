@@ -1688,19 +1688,6 @@
     "@graphql-tools/wrap" "6.2.1"
     micromatch "4.0.2"
 
-"@graphql-mesh/transform-snapshot@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-snapshot/-/transform-snapshot-0.5.2.tgz#8f8642581c3f900398a0d25878d75e5d86b81c41"
-  integrity sha512-c8jL5GlwC3zr3GT2ocxC87sFXiLaWEw6nXH092Oi3dUIore8bwbYrjrktiZUgoIJ/9zaElp3+oug9+oaHS2rOQ==
-  dependencies:
-    "@graphql-mesh/types" "0.9.0"
-    "@graphql-mesh/utils" "0.5.1"
-    "@graphql-tools/resolvers-composition" "6.2.1"
-    "@graphql-tools/schema" "6.2.1"
-    "@graphql-tools/utils" "6.2.1"
-    fs-extra "9.0.1"
-    object-hash "2.0.3"
-
 "@graphql-mesh/types@0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.9.0.tgz#80d0cd94ad4daa4f2ebe96eb091eb6d079ab1365"
