@@ -77,7 +77,6 @@ export default function CreateCustomerForm() {
         disabled={result.loading}
       />
 
-      {console.log(errors.prefix)}
       <TextField
         variant='filled'
         select
