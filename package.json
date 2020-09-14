@@ -10,7 +10,7 @@
     "dev": "concurrently yarn:dev-* --kill-others",
     "dev-next": "next dev",
     "codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen",
-    "dev-codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen -w",
+    "dev-codegen": "CHOKIDAR_USEPOLLING=0 TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen -w",
     "build": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen && next build",
     "postbuild": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
     "start": "next start",

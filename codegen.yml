@@ -5,11 +5,9 @@ require:
   - dotenv/config
 schema:
   - ./node/meshSchema.ts
-  - '**/*.graphqls'
+  - 'components/**/*.graphqls'
 documents:
-  - '**/*.graphql'
-  - '!node_modules/**'
-  - '!generated/*.graphql'
+  - 'components/**/*.graphql'
 hooks:
   afterAllFileWrite:
     - prettier --write
