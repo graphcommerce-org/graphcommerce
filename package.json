@@ -72,7 +72,7 @@
   "devDependencies": {
     "@babel/compat-data": "^7.11.0",
     "@babel/core": "^7.11.5",
-    "@commitlint/cli": "^9.1.2",
+    "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^9.1.2",
     "@graphql-codegen/cli": "^1.17.8",
     "@graphql-codegen/fragment-matcher": "1.17.8",
