@@ -25,7 +25,7 @@
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
     "@apollo/client": "^3.1.5",
     "@graphql-codegen/import-types-preset": "^1.17.9",
-    "@graphql-mesh/cli": "^0.8.0",
+    "@graphql-mesh/cli": "^0.8.2",
     "@graphql-mesh/config": "^0.8.1",
     "@graphql-mesh/graphql": "^0.5.2",
     "@graphql-mesh/merger-stitching": "^0.6.1",
