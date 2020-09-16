@@ -1,22 +1,22 @@
 import {
   TextField,
-  TextFieldProps,
   makeStyles,
   Theme,
   createStyles,
   IconButton,
   IconButtonProps,
+  TextFieldProps,
 } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import clsx from 'clsx'
 import { UseStyles } from 'components/Theme'
-import { useRef, RefObject, useState, useEffect, ChangeEvent } from 'react'
+import { useRef, RefObject, useState, useEffect, ChangeEvent, useCallback } from 'react'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     quantity: {
-      width: 130,
+      width: 100,
     },
     quantityInput: {
       textAlign: 'center',
@@ -51,12 +51,28 @@ export default function TextInputNumber(props: TextInputNumberProps) {
   const [direction, setDirection] = useState<'up' | 'down' | 'runUp' | 'runDown' | null>(null)
   const [disabled, setDisabled] = useState<'min' | 'max' | null>(null)
 
+  const stop = useCallback(() => {
+    setDirection(null)
+    ref.current?.focus()
+  }, [ref])
+
   useEffect(() => {
+    let clear: NodeJS.Timeout
+
     const down = () => {
+      if ((ref.current?.value ?? 0) <= inputProps.min) {
+        stop()
+        return
+      }
       ref.current?.stepDown()
       ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
     }
     const up = () => {
+      if ((ref.current?.value ?? Infinity) >= inputProps.max) {
+        stop()
+        return
+      }
+
       ref.current?.stepUp()
       ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
     }
@@ -66,21 +82,18 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       setTimeout(() => setDirection((old) => (old === 'up' ? 'runUp' : null)), 500)
     }
     if (direction === 'runUp') {
-      const clear = setInterval(up, 50)
-      return () => clearInterval(clear)
+      clear = setInterval(up, 50)
     }
-
     if (direction === 'down') {
       down()
       setTimeout(() => setDirection((old) => (old === 'down' ? 'runDown' : null)), 500)
     }
     if (direction === 'runDown') {
-      const clear = setInterval(down, 50)
-      return () => clearInterval(clear)
+      clear = setInterval(down, 50)
     }
 
-    return () => {}
-  }, [direction, ref])
+    return () => clearInterval(clear)
+  }, [direction, inputProps.max, inputProps.min, ref, stop])
 
   const updateDisabled = (target: HTMLInputElement) => {
     if (target.value === target.min) setDisabled('min')
@@ -88,8 +101,9 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     else setDisabled(null)
   }
   useEffect(() => {
+    if (!ref.current) return
     setTimeout(() => ref.current && updateDisabled(ref.current))
-  }, [ref])
+  }, [ref, inputProps.min, inputProps.max])
 
   return (
     <TextField
@@ -103,26 +117,38 @@ export default function TextInputNumber(props: TextInputNumberProps) {
           <IconButton
             aria-label='step down'
             size='small'
+            edge='start'
             onPointerDown={() => setDirection('down')}
-            onPointerUp={() => setDirection(null)}
+            onPointerUp={stop}
             disabled={textFieldProps.disabled || disabled === 'min'}
             tabIndex='-1'
+            color='inherit'
             {...DownProps}
           >
-            {DownProps.children ?? <RemoveIcon />}
+            {DownProps.children ?? (
+              <RemoveIcon
+                shapeRendering='geometricPrecision'
+                titleAccess='Step down'
+                fontSize='small'
+              />
+            )}
           </IconButton>
         ),
         endAdornment: (
           <IconButton
             aria-label='step up'
             size='small'
+            edge='end'
             onPointerDown={() => setDirection('up')}
             onPointerUp={() => setDirection(null)}
             disabled={textFieldProps.disabled || disabled === 'max'}
             tabIndex='-1'
+            color='inherit'
             {...UpProps}
           >
-            {UpProps.children ?? <AddIcon />}
+            {UpProps.children ?? (
+              <AddIcon shapeRendering='geometricPrecision' titleAccess='Step up' fontSize='small' />
+            )}
           </IconButton>
         ),
       }}

@@ -1,64 +1,64 @@
 import {
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
   makeStyles,
   Theme,
   createStyles,
+  Card,
+  CardContent,
+  CardActions,
+  Divider,
 } from '@material-ui/core'
 import Money from 'components/Money'
-import { useCartQuery } from 'generated/apollo'
+import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
+import { vpCalc } from 'components/Theme'
 import React from 'react'
-import RemoveItemFromCart from './RemoveItemFromCart'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    itemWrapper: {
-      display: 'flex',
-      flexWrap: 'wrap',
+    productWrapper: {
+      display: 'grid',
+      gridTemplateColumns: '150px 1fr',
+      backgroundColor: theme.palette.background.default,
+      marginBottom: theme.spacings.md,
     },
-    inline: {
-      display: 'inline',
-    },
-    avatar: {
-      width: 60,
-      height: 60,
-      border: `1px solid ${theme.palette.divider}`,
-      marginRight: 10,
-    },
-    avatarImg: {
+    productImg: {
+      gridColumn: 1,
+      width: vpCalc(100, 150),
+      height: 'auto',
+      backgroundColor: theme.palette.background.paper,
       objectFit: 'contain',
+      display: 'block',
     },
-    itemName: {
-      flex: '100 1 0',
-      minWidth: '250px',
+    productRemove: {
+      margin: theme.spacings.xs,
     },
-    totals: {
+    productContent: {
+      gridColumn: 2,
+      paddingBottom: 0,
+    },
+    productInfo: {},
+    productName: {
+      ...theme.typography.h5,
+    },
+    productDetails: {},
+    divider: {
+      gridColumn: '1 / 3',
+      gridRow: 2,
+    },
+    productActions: {
+      gridColumn: '1 / 3',
+      gridRow: 3,
       display: 'flex',
-      alignItems: 'center',
-      flexDirection: 'column',
-    },
-    itemPriceWrapper: {
-      flex: '1 1 auto',
-    },
-    itemPriceInner: {
-      display: 'flex',
-      alignItems: 'center',
       justifyContent: 'space-between',
     },
-    qtyTotalsWrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      flexDirection: 'column',
-      marginRight: `${theme.spacings.sm}`,
-    },
     productPrice: {
-      marginBottom: `calc(${theme.spacings.xs} / 2)`,
+      flex: '1 1 50%',
+      ...theme.typography.body1,
     },
-    removeItem: {
-      marginLeft: `calc(${theme.spacings.xs} / 2)`,
+    productSubTotal: {
+      flex: '1 1 50%',
+      textAlign: 'right',
+      ...theme.typography.body1,
     },
   }),
 )
@@ -73,43 +73,40 @@ export default function CartItem({
   const classes = useStyles()
 
   return (
-    <ListItem className={classes.itemWrapper}>
+    <Card className={classes.productWrapper}>
       {product?.thumbnail?.url && product.thumbnail.label && (
-        <ListItemAvatar>
-          <Avatar
-            alt={product.thumbnail.label}
-            src={product.thumbnail.url}
-            variant='rounded'
-            className={classes.avatar}
-            classes={{ img: classes.avatarImg }}
-          />
-        </ListItemAvatar>
+        <PictureResponsiveSharp
+          alt={product.thumbnail.label ?? ''}
+          width={104}
+          height={86}
+          src={product.thumbnail.url ?? ''}
+          type='image/jpeg'
+          className={classes.productImg}
+        />
       )}
-      <ListItemText
-        className={classes.itemName}
-        primary={product.name}
-        secondaryTypographyProps={{ component: 'div' }}
-      />
-      <ListItemText
-        classes={{ root: classes.itemPriceWrapper }}
-        primary={
-          <div className={classes.itemPriceInner}>
-            <div className={classes.qtyTotalsWrapper}>
-              <div className={classes.productPrice}>
-                {prices?.price && <Money {...prices.price} />}
-                {' ⨉ '}
-              </div>
-              <UpdateItemQuantity cartItemId={Number(id)} cartId={cartId} quantity={quantity} />
-            </div>
-            <div>
-              {prices?.row_total_including_tax && <Money {...prices.row_total_including_tax} />}
-            </div>
-            <div className={classes.removeItem}>
-              <RemoveItemFromCart cartItemId={Number(id)} cartId={cartId} />
-            </div>
+
+      <CardContent className={classes.productContent}>
+        <div className={classes.productInfo}>
+          <div className={classes.productName}>{product.name}</div>
+          <div className={classes.productDetails} />
+        </div>
+      </CardContent>
+
+      <Divider className={classes.divider} />
+
+      <CardActions className={classes.productActions}>
+        {prices?.price && (
+          <div className={classes.productPrice}>
+            <Money {...prices.price} />
           </div>
-        }
-      />
-    </ListItem>
+        )}
+        <UpdateItemQuantity cartItemId={Number(id)} cartId={cartId} quantity={quantity} />
+        {prices?.row_total_including_tax && (
+          <div className={classes.productSubTotal}>
+            <Money {...prices.row_total_including_tax} />
+          </div>
+        )}
+      </CardActions>
+    </Card>
   )
 }

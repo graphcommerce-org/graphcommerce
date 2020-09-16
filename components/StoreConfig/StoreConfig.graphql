@@ -2,6 +2,7 @@ query StoreConfig {
   storeConfig {
     id
 
+    locale
     base_currency_code
     default_display_currency_code
 
