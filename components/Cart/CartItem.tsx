@@ -3,15 +3,14 @@ import {
   Theme,
   createStyles,
   Card,
-  CardMedia,
   CardContent,
   CardActions,
   Divider,
 } from '@material-ui/core'
 import Money from 'components/Money'
-import { useCartQuery } from 'generated/apollo'
+import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
+import { vpCalc } from 'components/Theme'
 import React from 'react'
-import RemoveItemFromCart from './RemoveItemFromCart'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,10 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     productImg: {
       gridColumn: 1,
-      minHeight: 150,
-      width: 150,
+      width: vpCalc(100, 150),
+      height: 'auto',
       backgroundColor: theme.palette.background.paper,
-      backgroundSize: 'contain',
+      objectFit: 'contain',
+      display: 'block',
     },
     productRemove: {
       margin: theme.spacings.xs,
@@ -53,10 +53,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     productPrice: {
       flex: '1 1 50%',
+      ...theme.typography.body1,
     },
     productSubTotal: {
       flex: '1 1 50%',
       textAlign: 'right',
+      ...theme.typography.body1,
     },
   }),
 )
@@ -73,17 +75,14 @@ export default function CartItem({
   return (
     <Card className={classes.productWrapper}>
       {product?.thumbnail?.url && product.thumbnail.label && (
-        <CardMedia
+        <PictureResponsiveSharp
+          alt={product.thumbnail.label ?? ''}
+          width={104}
+          height={86}
+          src={product.thumbnail.url ?? ''}
+          type='image/jpeg'
           className={classes.productImg}
-          image={product.thumbnail.url}
-          title={product.thumbnail.label}
-        >
-          <RemoveItemFromCart
-            className={classes.productRemove}
-            cartItemId={Number(id)}
-            cartId={cartId}
-          />
-        </CardMedia>
+        />
       )}
 
       <CardContent className={classes.productContent}>
