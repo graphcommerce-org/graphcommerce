@@ -1640,15 +1640,15 @@
     lodash "4.17.20"
     param-case "3.0.3"
 
-"@graphql-mesh/graphql@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.5.2.tgz#4d98f751ff0d1858c16373f6ab59e837259cfb1b"
-  integrity sha512-t+vd+gvhZ8zxhvcSVHEwB/l/ShePnO1wLCv03XoMUSeJuv2P5w/iD3lehvMXP9OGQc+mCi6fRPX5ntv/FvggjA==
+"@graphql-mesh/graphql@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.5.5.tgz#87f1705f08e0a5f02fd66cee05d40ed13a6af4d7"
+  integrity sha512-AxqibSXlIzvEThpyvnc1QTiOZy+pxs250s2Sr7St5b6eyIRsqi4bSuxj12BCakR8pjdBVfdYkEi9RGCCvbr0vg==
   dependencies:
-    "@graphql-mesh/types" "0.9.0"
-    "@graphql-mesh/utils" "0.5.1"
-    "@graphql-tools/url-loader" "6.2.1"
-    "@graphql-tools/wrap" "6.2.1"
+    "@graphql-mesh/types" "0.9.2"
+    "@graphql-mesh/utils" "0.5.2"
+    "@graphql-tools/url-loader" "6.2.2"
+    "@graphql-tools/wrap" "6.2.2"
     fetchache "0.0.3"
 
 "@graphql-mesh/merger-stitching@0.6.1", "@graphql-mesh/merger-stitching@^0.6.1":
@@ -1698,6 +1698,16 @@
     fetchache "0.0.3"
     tsee "1.3.0"
 
+"@graphql-mesh/types@0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.9.2.tgz#690663d20d429fddca54bfd6f63ba0c7ac945168"
+  integrity sha512-bqnqtDuo4jNHptZPH60o8Qzqjy5gYRQwm4wbWWCnZm3YAZNDPpXj5TMPUYgXJUfS29SRkzozUUj3JcwS+fxIYQ==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.2"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.3"
+    tsee "1.3.0"
+
 "@graphql-mesh/utils@0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.5.1.tgz#3e251eb2a55e2ed4d8a00c1691043a7eed9c4fd0"
@@ -1705,6 +1715,20 @@
   dependencies:
     "@ardatan/string-interpolation" "1.2.8"
     "@graphql-tools/utils" "6.2.1"
+    date-fns "2.16.1"
+    fetchache "0.0.3"
+    fs-extra "9.0.1"
+    is-url "1.2.4"
+    js-yaml "3.14.0"
+    object-hash "2.0.3"
+
+"@graphql-mesh/utils@0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.5.2.tgz#0111c5e37b74ec17af8ed1cbbc4ef59705902c43"
+  integrity sha512-1h1ON0WXVs4rfLEQSMmnxj+IoiLrLsxJ9rD85ZUerj3GcqlOkQm60MpLEk6BPjkxuPdDCmSWxngc90chl4Ck9Q==
+  dependencies:
+    "@ardatan/string-interpolation" "1.2.8"
+    "@graphql-tools/utils" "6.2.2"
     date-fns "2.16.1"
     fetchache "0.0.3"
     fs-extra "9.0.1"
@@ -1999,21 +2023,6 @@
     "@graphql-tools/wrap" "6.2.1"
     is-promise "4.0.0"
     tslib "~2.0.1"
-
-"@graphql-tools/url-loader@6.2.1":
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/url-loader/-/url-loader-6.2.1.tgz#9265dc6578263a79d386ea307bbb733740c9a0d2"
-  integrity sha512-6NTibFENUn02oI53VhW2Dcas0QdHYDyqRD5yxk0D+rQUP558t4eoYLJ8/hhdqbJ5t+2/lBRkzVU/5oJkZQosMQ==
-  dependencies:
-    "@graphql-tools/delegate" "6.2.1"
-    "@graphql-tools/utils" "6.2.1"
-    "@graphql-tools/wrap" "6.2.1"
-    "@types/websocket" "1.0.1"
-    cross-fetch "3.0.5"
-    subscriptions-transport-ws "0.9.18"
-    tslib "~2.0.1"
-    valid-url "1.0.9"
-    websocket "1.0.32"
 
 "@graphql-tools/url-loader@6.2.2", "@graphql-tools/url-loader@^6.0.0", "@graphql-tools/url-loader@^6.0.18":
   version "6.2.2"
