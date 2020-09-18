@@ -30,7 +30,7 @@
     "@graphql-mesh/graphql": "^0.5.2",
     "@graphql-mesh/merger-stitching": "^0.6.1",
     "@graphql-mesh/runtime": "^0.6.1",
-    "@graphql-mesh/transform-filter-schema": "^0.5.2",
+    "@graphql-mesh/transform-filter-schema": "^0.5.5",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
