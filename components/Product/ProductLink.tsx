@@ -5,11 +5,10 @@ import React, { PropsWithChildren } from 'react'
 
 export function useProductLink(props: GQLProductLinkFragment & { canonical?: boolean }) {
   const { data: storeConfigData } = useStoreConfigQuery()
-  const urlSuffix = storeConfigData?.storeConfig?.product_url_suffix
   const { canonical_url, url_key, canonical = false } = props
 
   const base = canonical ? storeConfigData?.storeConfig?.base_link_url : '/'
-  return `${base}product/${canonical_url ?? url_key}${urlSuffix ?? ''}`
+  return `${base}product/${canonical_url ?? url_key}`
 }
 
 export type ProductLinkProps = PropsWithChildren<LinkProps & GQLProductLinkFragment>

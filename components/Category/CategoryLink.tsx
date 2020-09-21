@@ -40,9 +40,7 @@ function createCategoryLink(props: ProductListParams): string {
 }
 
 export function useCategoryLink(props: ProductListParams): string {
-  const { data: storeConfigData } = useStoreConfigQuery()
-  const urlSuffix = storeConfigData?.storeConfig?.category_url_suffix
-  return createCategoryLink({ ...props, url: `${props.url}${urlSuffix ?? ''}` })
+  return createCategoryLink({ ...props, url: `${props.url}` })
 }
 
 export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>
@@ -73,13 +71,11 @@ export default CategoryLink
 
 export const useCategoryPushRoute = () => {
   const { setParams } = useProductListParamsContext()
-  const { data: storeConfigData } = useStoreConfigQuery()
-  const urlSuffix = storeConfigData?.storeConfig?.category_url_suffix ?? ''
 
   return (params: ProductListParams) => {
     setParams(params)
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push('/[...url]', `${createCategoryLink(params)}${urlSuffix ?? ''}`)
+    Router.push('/[...url]', `${createCategoryLink(params)}`)
   }
 }

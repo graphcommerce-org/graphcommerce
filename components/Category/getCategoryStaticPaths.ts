@@ -6,8 +6,6 @@ const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject
   const config = getStoreConfig(client)
 
   const rootCategory = String((await config).storeConfig?.root_category_id)
-  const suffix = (await config).storeConfig?.category_url_suffix ?? ''
-
   const { data } = await client.query<
     GQLGetCategoryStaticPathsQuery,
     GQLGetCategoryStaticPathsQueryVariables
@@ -20,7 +18,7 @@ const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject
     const url = category.url_key ? `${baseUrl}/${category.url_key ?? ''}` : baseUrl
     const children = category.children?.map((value) => extractChildren(value, url)) ?? []
 
-    return url ? [`${url}${suffix}`, ...children] : children
+    return url ? [`${url}`, ...children] : children
   }
 
   const paths =
