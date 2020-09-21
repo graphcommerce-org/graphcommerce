@@ -20,7 +20,7 @@ export default function AddToCartSuccessSnackbar(props: AddToCartSuccessSnackbar
       )}
       {...messageSnackbarProps}
     >
-      &lsquo;{name}&rsquo; added to cart
+      <em>&lsquo;{name}&rsquo;</em> added to cart
     </MessageSnackbar>
   )
 }
