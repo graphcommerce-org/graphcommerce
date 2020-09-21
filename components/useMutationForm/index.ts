@@ -72,11 +72,13 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   mutation,
   values,
   onComplete,
+  beforeSubmit,
   ...useFormProps
 }: {
   mutation: DocumentNode
   values?: UnpackNestedValue<DeepPartial<TVariables>>
   onComplete?: (data: TData, variables: TVariables) => void | Promise<void>
+  beforeSubmit?: (variables: TVariables) => TVariables | Promise<TVariables>
 } & Omit<UseFormOptions<TVariables>, 'defaultValues'>) {
   const [defaultValues, required] = fieldRequirements<TVariables>(mutation)
   const [submit, result] = useMutation<TData, TVariables>(mutation, { errorPolicy: 'all' })
@@ -96,7 +98,8 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   }, [valuesJson, reset])
 
   const onSubmit = handleSubmit(async (formValues) => {
-    const variables = { ...values } as TVariables
+    let variables = { ...values } as TVariables
+    if (beforeSubmit) variables = await beforeSubmit(variables)
 
     mutation.definitions.forEach((definition) => {
       if (isOperationDefinitionNode(definition) && Array.isArray(definition.variableDefinitions)) {
@@ -116,6 +119,9 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
     if (missingFields.length) throw new Error(`Missing fields in form ${missingFields.join(', ')}`)
 
     const queryResult = await submit({ variables })
+
+    // todo add field specific error handling to form fields.
+
     if (onComplete && queryResult.data) await onComplete(queryResult.data, variables)
   })
 
