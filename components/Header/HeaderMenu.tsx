@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
+import CategoryLink from 'components/Category/CategoryLink'
 import { vpCalc } from 'components/Theme'
 import Link from 'next/link'
 import { Router } from 'next/router'
@@ -107,21 +108,25 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
         {menu?.[0]?.children?.map((root) => {
           if (!root || !root.id || !root.url_path) return null
           return (
-            <Link key={root.id} href={`/${root.url_path}`} passHref>
-              <MuiLink color='inherit' underline='none' className={classes.menuLink}>
-                <ListItem
-                  button
-                  selected={
-                    !!urlResolver && root.id === urlResolver.id && urlResolver.type === 'CATEGORY'
-                  }
-                  classes={{ root: classes.menuItem }}
-                >
-                  <ListItemText classes={{ primary: classes.menuItemText }}>
-                    {root.name}
-                  </ListItemText>
-                </ListItem>
-              </MuiLink>
-            </Link>
+            <CategoryLink
+              key={root.id}
+              url={root.url_path}
+              filters={{}}
+              sort={{}}
+              color='inherit'
+              underline='none'
+              className={classes.menuLink}
+            >
+              <ListItem
+                button
+                selected={
+                  !!urlResolver && root.id === urlResolver.id && urlResolver.type === 'CATEGORY'
+                }
+                classes={{ root: classes.menuItem }}
+              >
+                <ListItemText classes={{ primary: classes.menuItemText }}>{root.name}</ListItemText>
+              </ListItem>
+            </CategoryLink>
           )
         })}
       </Menu>

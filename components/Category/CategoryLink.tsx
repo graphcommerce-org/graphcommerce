@@ -1,4 +1,4 @@
-import { LinkProps, Link } from '@material-ui/core'
+import { Link, LinkProps } from '@material-ui/core'
 import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import { useStoreConfigQuery } from 'generated/apollo'
 import NextLink from 'next/link'
@@ -42,7 +42,7 @@ function createCategoryLink(props: ProductListParams): string {
 export function useCategoryLink(props: ProductListParams): string {
   const { data: storeConfigData } = useStoreConfigQuery()
   const urlSuffix = storeConfigData?.storeConfig?.category_url_suffix
-  return `${createCategoryLink(props)}${urlSuffix ?? ''}`
+  return createCategoryLink({ ...props, url: `${props.url}${urlSuffix ?? ''}` })
 }
 
 export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>

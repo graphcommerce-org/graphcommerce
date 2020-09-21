@@ -2,6 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import getFilterTypeMap from 'components/Category/getFilterTypeMap'
 import { ProductListParams } from 'components/Product/ProductListItems/filterTypes'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
+import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 
@@ -58,6 +59,7 @@ const getCategoryPageProps = async (
   client: ApolloClient<NormalizedCacheObject>,
 ) => {
   const filterTypeMap = getFilterTypeMap(client)
+  const config = getStoreConfig(client)
 
   const rootCategory = String((await urlResolve).urlResolver?.id)
   const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
@@ -65,7 +67,8 @@ const getCategoryPageProps = async (
     variables: { id: rootCategory },
   })
 
-  const params = parseParams(url.join('/'), urlParams, filterTypeMap)
+  const urlKey = url.join('/').replace((await config).storeConfig?.category_url_suffix ?? '', '')
+  const params = parseParams(urlKey, urlParams, filterTypeMap)
 
   const products = client.query<GQLProductListQuery, GQLProductListQueryVariables>({
     query: ProductListDocument,
