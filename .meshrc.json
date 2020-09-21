@@ -21,15 +21,15 @@
       "name": "Magento GraphQL",
       "handler": {
         "graphql": {
-          "endpoint": "https://segway.reachdigital.io/nl/graphql",
+          "endpoint": "https://develop.pwa-venia.com/graphql",
           "useGETForQueries": true,
           "cacheIntrospection": true,
           "schemaHeaders": {
-            "Store": "segway_nl_nl",
+            "Store": "default",
             "Authorization": "{context.headers.authorization}"
           },
           "operationHeaders": {
-            "Store": "segway_nl_nl",
+            "Store": "default",
             "Authorization": "{context.headers.authorization}"
           }
         }
