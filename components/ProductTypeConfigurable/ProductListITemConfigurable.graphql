@@ -21,8 +21,5 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
       code
       value_index
     }
-    product {
-      ...ProductListItem
-    }
   }
 }
