@@ -1,7 +1,6 @@
 fragment ProductPageConfigurable on ConfigurableProduct {
   configurable_options {
     attribute_code
-    attribute_id
     id
     label
     values {

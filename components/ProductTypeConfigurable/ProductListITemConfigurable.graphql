@@ -2,7 +2,6 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
   ...ProductListItem
   configurable_options {
     attribute_code
-    attribute_id
     id
     label
     values {
