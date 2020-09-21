@@ -1,10 +1,10 @@
 import { ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
-import CategoryLink, { useCategoryPushRoute } from 'components/CategoryLink'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import CategoryLink, { useCategoryPushRoute } from 'components/Category/CategoryLink'
+import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import React from 'react'
 import { SetRequired } from 'type-fest'
-import ChipMenu, { ChipMenuProps } from '../ChipMenu'
+import ChipMenu, { ChipMenuProps } from '../../ChipMenu'
 
 type FilterEqualTypeProps = NonNullable<
   NonNullable<GQLProductListFiltersFragment['aggregations']>[0]

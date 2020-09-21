@@ -1,4 +1,4 @@
-import ProductListItem from 'components/ProductListItems/ProductListItem'
+import ProductListItem from 'components/Product/ProductListItem'
 import ScrollSnapSlider from 'components/ScrollSnapSlider'
 import React from 'react'
 

@@ -1,4 +1,4 @@
-import ProductListItem from 'components/ProductListItems/ProductListItem'
+import ProductListItem from 'components/Product/ProductListItem'
 import React from 'react'
 import AddDownloadableProductToCart from './AddDownloadableProductToCart'
 

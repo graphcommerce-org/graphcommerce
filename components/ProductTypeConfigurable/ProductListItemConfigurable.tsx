@@ -1,9 +1,9 @@
 import { Chip } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
-import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
+import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
+import { FilterTypeMap, isFilterTypeEqual } from 'components/Product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
-import ProductListItem from '../ProductListItems/ProductListItem'
+import ProductListItem from '../Product/ProductListItem'
 import AddConfigurableProductToCart from './AddConfigurableProductToCart'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {

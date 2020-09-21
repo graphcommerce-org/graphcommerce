@@ -1,5 +1,5 @@
 import PageMeta from 'components/PageMeta/PageMeta'
-import { useProductLink } from 'components/ProductLink'
+import { useProductLink } from 'components/Product/ProductLink'
 import Head from 'next/head'
 import React from 'react'
 

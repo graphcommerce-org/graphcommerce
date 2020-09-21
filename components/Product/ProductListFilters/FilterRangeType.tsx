@@ -1,9 +1,9 @@
 import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
-import { useCategoryPushRoute } from 'components/CategoryLink'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { useCategoryPushRoute } from 'components/Category/CategoryLink'
+import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import React from 'react'
-import ChipMenu, { ChipMenuProps } from '../ChipMenu'
+import ChipMenu, { ChipMenuProps } from '../../ChipMenu'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<GQLProductListFiltersFragment['aggregations']>[0]

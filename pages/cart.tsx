@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core'
-import Cart from 'components/Cart'
+import Cart from 'components/Cart/Cart'
 import CartItem from 'components/Cart/CartItem'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'

@@ -1,12 +1,12 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import clsx from 'clsx'
 import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
-import { useProductLink } from 'components/ProductLink'
 import { vpCalc, UseStyles } from 'components/Theme'
 import { m as motion } from 'framer-motion'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
-import ProductListPrice from '../ProductListPrice'
+import { useProductLink } from './ProductLink'
+import ProductListPrice from './ProductListPrice'
 
 export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({

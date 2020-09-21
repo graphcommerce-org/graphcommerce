@@ -1,7 +1,7 @@
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import React from 'react'
-import ProductImage from './ProductImage'
 import ProductVideo from './ProductVideo'
+import ProductImage from './ProductImage'
 
 export type ProductPageGalleryRenderers = GQLTypeRenderer<
   NonNullable<NonNullable<GQLProductPageGalleryFragment['media_gallery']>[0]>

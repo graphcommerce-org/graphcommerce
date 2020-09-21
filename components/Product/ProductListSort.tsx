@@ -1,10 +1,10 @@
 import { ListItem, ListItemText } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
 import { useStoreConfigQuery } from 'generated/apollo'
 import React from 'react'
-import CategoryLink, { useCategoryPushRoute } from '../CategoryLink'
+import CategoryLink, { useCategoryPushRoute } from '../Category/CategoryLink'
 
 export type ProductListSortProps = GQLProductListSortFragment &
   Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>

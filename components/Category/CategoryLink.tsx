@@ -1,5 +1,5 @@
 import { LinkProps, Link } from '@material-ui/core'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
+import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import { useStoreConfigQuery } from 'generated/apollo'
 import NextLink from 'next/link'
 import Router from 'next/router'
@@ -9,7 +9,7 @@ import {
   isFilterTypeEqual,
   isFilterTypeMatch,
   isFilterTypeRange,
-} from '../ProductListItems/filterTypes'
+} from '../Product/ProductListItems/filterTypes'
 
 function createCategoryLink(props: ProductListParams): string {
   const { url, sort, currentPage, filters } = props

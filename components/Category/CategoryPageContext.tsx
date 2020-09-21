@@ -1,4 +1,4 @@
-import { ProductListParams } from 'components/ProductListItems/filterTypes'
+import { ProductListParams } from 'components/Product/ProductListItems/filterTypes'
 import { useRouter } from 'next/router'
 import React, { useState, useContext, useEffect } from 'react'
 

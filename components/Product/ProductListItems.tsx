@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
-import { FilterTypeMap } from 'components/ProductListItems/filterTypes'
+import { FilterTypeMap } from 'components/Product/ProductListItems/filterTypes'
 import { vpCalc, UseStyles } from 'components/Theme'
 import React from 'react'
 

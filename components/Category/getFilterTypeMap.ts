@@ -1,5 +1,5 @@
 import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { AllFilterInputTypes, FilterTypeMap } from '../ProductListItems/filterTypes'
+import { AllFilterInputTypes, FilterTypeMap } from '../Product/ProductListItems/filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
   'FilterEqualTypeInput',

@@ -1,7 +1,7 @@
 import { Pagination, PaginationItem, PaginationProps } from '@material-ui/lab'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
 import React from 'react'
-import CategoryLink from '../CategoryLink'
+import CategoryLink from '../Category/CategoryLink'
+import { useProductListParamsContext } from '../Category/CategoryPageContext'
 
 type ProductPaginationProps = GQLProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>
