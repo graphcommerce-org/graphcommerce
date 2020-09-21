@@ -14,6 +14,7 @@ export default function ProductListPagination({
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
   const { current_page, total_pages } = page_info
 
+  if (total_pages === 1) return null
   return (
     <Pagination
       count={total_pages}
