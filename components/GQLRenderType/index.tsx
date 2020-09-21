@@ -12,18 +12,18 @@ type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A ext
 
 type TypeRenderMethod<P> = (props: P) => React.ReactElement | null
 
-type EventTypeMap<
+type TypeRenderMap<
   T extends TypeObject,
   TypeNames extends string,
-  A extends Record<string, unknown>
+  TAdd extends Record<string, unknown>
 > = {
-  [K in TypeNames]: TypeRenderMethod<FilterTypeByTypename<T, K> & A>
+  [K in TypeNames]: TypeRenderMethod<FilterTypeByTypename<T, K> & TAdd>
 }
 
 export type GQLTypeRenderer<
   T extends TypeObject,
-  A extends Record<string, unknown> = Record<string, unknown>
-> = EventTypeMap<T, T['__typename'], A>
+  TAdd extends Record<string, unknown> = Record<string, unknown>
+> = TypeRenderMap<T, T['__typename'], TAdd>
 
 /**
  * A simple array with renderers but with strict typing that validates of the
@@ -36,7 +36,7 @@ export default function GQLRenderType<
   const { renderer, __typename, ...typeItemProps } = props
   const TypeItem: TypeRenderMethod<typeof typeItemProps> = renderer[__typename]
     ? renderer[__typename]
-    : () => <div>{__typename}</div>
+    : () => <>{__typename}</>
 
   return <TypeItem {...typeItemProps} />
 }
