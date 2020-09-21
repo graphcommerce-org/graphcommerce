@@ -42,7 +42,9 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
       ).length,
   )
 
-  const productProps = matchingVariants?.[0]?.product ?? configurableProduct
+  const productProps = matchingVariants?.[0]?.product
+    ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
+    : configurableProduct
 
   const onClick = (attribute_code?: string | null, value_index?: number | null) => () => {
     if (!attribute_code || !value_index) return

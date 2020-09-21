@@ -21,5 +21,13 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
       code
       value_index
     }
+    product {
+      sku
+      name
+      small_image {
+        label
+        url
+      }
+    }
   }
 }
