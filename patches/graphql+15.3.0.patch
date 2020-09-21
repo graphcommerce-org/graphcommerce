@@ -1,5 +1,5 @@
 diff --git a/node_modules/graphql/language/printer.js b/node_modules/graphql/language/printer.js
-index f77b1cc..fac5ab1 100644
+index f77b1cc..641d309 100644
 --- a/node_modules/graphql/language/printer.js
 +++ b/node_modules/graphql/language/printer.js
 @@ -303,7 +303,7 @@ function wrap(start, maybeString) {
@@ -7,7 +7,7 @@ index f77b1cc..fac5ab1 100644
  
  function indent(maybeString) {
 -  return maybeString && '  ' + maybeString.replace(/\n/g, '\n  ');
-+  return maybeString && '  ' + maybeString.replace(/\n/g, ' ');
++  return maybeString && '' + maybeString.replace(/\n/g, ' ');
  }
  
  function isMultiline(string) {
