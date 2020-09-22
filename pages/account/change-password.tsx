@@ -22,8 +22,7 @@ import React from 'react'
 const AccountChangePasswordPage: PageWithShopLayout = () => {
   const { marginTop } = useHeaderSpacing()
   const signedIn = useSignedInGuard()
-
-  if (!signedIn) return <div>Not signed in, redirecting...</div>
+  if (!signedIn) return null
 
   return (
     <>

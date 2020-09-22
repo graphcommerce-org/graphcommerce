@@ -12,7 +12,8 @@ import React from 'react'
 
 const AccountIndexPage: PageWithShopLayout = () => {
   const signedIn = useSignedInGuard()
-  if (!signedIn) return <div>Not signed in, redirecting...</div>
+  if (!signedIn) return null
+
   return (
     <>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
