@@ -69,7 +69,7 @@ export type ProductListItemProps = PropsWithChildren<
 >
 
 export default function ProductListItem(props: ProductListItemProps) {
-  const { small_image, name, price_range, children, sku } = props
+  const { small_image, name, price_range, children } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
 
@@ -77,7 +77,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     <div className={classes.item}>
       <Link href={productLink} passHref>
         <MuiLink underline='none'>
-          <div className={classes.imageContainer} layoutId={sku ?? ''}>
+          <div className={classes.imageContainer}>
             {small_image ? (
               <PictureResponsiveSharp
                 alt={small_image.label ?? ''}
