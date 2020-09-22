@@ -1,11 +1,5 @@
 import { makeStyles } from '@material-ui/styles'
-import {
-  TargetAndTransition,
-  MotionProps,
-  AnimatePresence,
-  m as motion,
-  AnimateSharedLayout,
-} from 'framer-motion'
+import { TargetAndTransition, MotionProps, AnimatePresence, m as motion } from 'framer-motion'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect, PropsWithChildren } from 'react'
@@ -133,17 +127,15 @@ export default function PageTransition({
   if (navigationSwipe !== 0) newPageTransition = {}
 
   return (
-    <AnimateSharedLayout>
-      <AnimatePresence initial={false} custom={oldPageTransition} onExitComplete={onTransComplete}>
-        <motion.div
-          key={router.asPath}
-          {...motionDivProps(newPageTransition)}
-          className={classes.animationDiv}
-          style={offsetStyle}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </AnimateSharedLayout>
+    <AnimatePresence initial={false} custom={oldPageTransition} onExitComplete={onTransComplete}>
+      <motion.div
+        key={router.asPath}
+        {...motionDivProps(newPageTransition)}
+        className={classes.animationDiv}
+        style={offsetStyle}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   )
 }

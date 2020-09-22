@@ -2,7 +2,6 @@ import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/cor
 import clsx from 'clsx'
 import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
 import { vpCalc, UseStyles } from 'components/Theme'
-import { m as motion } from 'framer-motion'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { useProductLink } from './ProductLink'
@@ -78,7 +77,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     <div className={classes.item}>
       <Link href={productLink} passHref>
         <MuiLink underline='none'>
-          <motion.div className={classes.imageContainer} layoutId={sku ?? ''}>
+          <div className={classes.imageContainer} layoutId={sku ?? ''}>
             {small_image ? (
               <PictureResponsiveSharp
                 alt={small_image.label ?? ''}
@@ -91,7 +90,7 @@ export default function ProductListItem(props: ProductListItemProps) {
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
-          </motion.div>
+          </div>
 
           <Typography component='h2' className={classes.title}>
             {name}
