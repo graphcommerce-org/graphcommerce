@@ -1,5 +1,5 @@
 import { Container, Paper, DialogTitle, Typography, DialogContent } from '@material-ui/core'
-import CreateCustomerForm from 'components/Customer/CreateCustomerForm'
+import SignUpForm from 'components/Customer/SignUpForm'
 import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
@@ -11,7 +11,7 @@ import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const AccountCreatePage: PageWithShopLayout = () => {
+const AccountSignUpPage: PageWithShopLayout = () => {
   const signedOut = useSignedOutGuard()
   const { marginTop } = useHeaderSpacing()
 
@@ -19,17 +19,21 @@ const AccountCreatePage: PageWithShopLayout = () => {
 
   return (
     <>
-      <PageMeta title='Create Account' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+      <PageMeta
+        title='Sign Up'
+        metaDescription='Sign up for an account'
+        metaRobots='NOINDEX, FOLLOW'
+      />
 
       <Container maxWidth='sm' className={marginTop}>
         <Paper elevation={10}>
           <DialogTitle disableTypography>
             <Typography variant='h2' component='h1'>
-              Create Account
+              Sign Up
             </Typography>
           </DialogTitle>
           <DialogContent>
-            <CreateCustomerForm />
+            <SignUpForm />
           </DialogContent>
         </Paper>
       </Container>
@@ -37,10 +41,10 @@ const AccountCreatePage: PageWithShopLayout = () => {
   )
 }
 
-AccountCreatePage.Layout = ShopLayout
-AccountCreatePage.pageTransition = overlay
+AccountSignUpPage.Layout = ShopLayout
+AccountSignUpPage.pageTransition = overlay
 
-export default AccountCreatePage
+export default AccountSignUpPage
 
 export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()

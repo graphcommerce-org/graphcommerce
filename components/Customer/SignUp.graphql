@@ -1,4 +1,4 @@
-mutation CreateCustomer(
+mutation SignUp(
   $email: String!
   $password: String!
   $prefix: String!

@@ -1,51 +1,38 @@
 import { useApolloClient } from '@apollo/client'
-import { TextField, Button, makeStyles, Theme, MenuItem } from '@material-ui/core'
+import {
+  TextField,
+  Button,
+  makeStyles,
+  Theme,
+  MenuItem,
+  FormControlLabel,
+  FormHelperText,
+  Checkbox,
+  FormControl,
+} from '@material-ui/core'
 import { useMutationForm, emailPattern } from 'components/useMutationForm'
-import { CreateCustomerDocument, IsEmailAvailableDocument } from 'generated/apollo'
-import useSignedOutGuard from './useSignedOutGuard'
+import { IsEmailAvailableDocument, SignUpDocument } from 'generated/apollo'
+import { Controller } from 'react-hook-form'
+import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     form: {
       display: 'grid',
-      gridTemplateAreas: `
-        "email email ."
-        "prefix . ."
-        "firstname middlename lastname"
-        "password confirmPassword ."
-        "submit error error"
-      `,
-      alignItems: 'center',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      // gridTemplateRows: '1fr 1fr 1fr',
-
       gridRowGap: theme.spacings.sm,
       gridColumnGap: theme.spacings.xs,
     },
-    email: { gridArea: 'email' },
-    prefix: { gridArea: 'prefix' },
-    firstname: { gridArea: 'firstname' },
-    middlename: { gridArea: 'middlename' },
-    lastname: { gridArea: 'lastname' },
-    suffix: { gridArea: 'suffix' },
-    password: { gridArea: 'password' },
-    confirmPassword: { gridArea: 'confirmPassword' },
-    submit: { gridArea: 'submit' },
-    error: {
-      gridArea: 'error',
-      color: theme.palette.error.main,
-    },
   }),
-  { name: 'CreateCustomer' },
+  { name: 'SignUpForm' },
 )
 
-export default function CreateCustomerForm() {
+export default function SignUpForm() {
   const classes = useStyles()
   const client = useApolloClient()
-  const { register, errors, onSubmit, required, result, watch } = useMutationForm<
-    GQLCreateCustomerMutation,
-    GQLCreateCustomerMutationVariables & { confirmPassword: string }
-  >({ mutation: CreateCustomerDocument })
+  const { register, errors, onSubmit, required, result, watch, control } = useMutationForm<
+    GQLSignUpMutation,
+    GQLSignUpMutationVariables & { confirmPassword: string }
+  >({ mutation: SignUpDocument, onComplete: onCompleteSignInUp })
 
   return (
     <form onSubmit={onSubmit} noValidate className={classes.form}>
@@ -57,7 +44,6 @@ export default function CreateCustomerForm() {
         name='email'
         label='Email'
         required={required.email}
-        className={classes.email}
         inputRef={register({
           required: required.email,
           pattern: { value: emailPattern, message: 'Invalid email address' },
@@ -76,28 +62,34 @@ export default function CreateCustomerForm() {
         helperText={errors.email?.message}
         disabled={result.loading}
       />
-
-      <TextField
-        variant='filled'
-        select
-        error={!!errors.prefix}
-        id='prefix'
+      <Controller
+        defaultValue='Dhr.'
+        control={control}
         name='prefix'
-        label='Prefix'
-        required={required.prefix}
-        className={classes.prefix}
-        inputRef={register({ required: required.prefix })}
-        helperText={errors.prefix?.message}
-        disabled={result.loading}
-      >
-        <MenuItem value={undefined} />
-        {['Dhr.', 'Mevr.'].map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </TextField>
-
+        render={({ onChange, name, value, onBlur }) => (
+          <TextField
+            variant='filled'
+            select
+            error={!!errors.prefix}
+            id='prefix'
+            name={name}
+            label='Prefix'
+            required={required.prefix}
+            helperText={errors.prefix?.message}
+            disabled={result.loading}
+            onChange={(e) => onChange(e.target.value)}
+            onBlur={onBlur}
+            value={value}
+          >
+            {/* <MenuItem value={undefined} /> */}
+            {['Dhr.', 'Mevr.'].map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+        )}
+      />
       <TextField
         variant='filled'
         type='text'
@@ -106,12 +98,10 @@ export default function CreateCustomerForm() {
         name='firstname'
         label='First Name'
         required={required.firstname}
-        className={classes.firstname}
         inputRef={register({ required: required.firstname })}
         helperText={errors.firstname?.message}
         disabled={result.loading}
       />
-
       <TextField
         variant='filled'
         type='text'
@@ -120,12 +110,10 @@ export default function CreateCustomerForm() {
         name='middlename'
         label='Middle Name'
         required={required.middlename}
-        className={classes.middlename}
         inputRef={register({ required: required.middlename })}
         helperText={errors.middlename?.message}
         disabled={result.loading}
       />
-
       <TextField
         variant='filled'
         type='text'
@@ -134,27 +122,22 @@ export default function CreateCustomerForm() {
         name='lastname'
         label='Last Name'
         required={required.lastname}
-        className={classes.lastname}
         inputRef={register({ required: required.lastname })}
         helperText={errors.lastname?.message}
         disabled={result.loading}
       />
-
-      {/* <TextField
-          variant='filled'
-          type='text'
-          // inputProps={{ className: classes.quantityInput, min: 1 }}
-          error={!!errors.suffix}
-          id='suffix'
-          name='suffix'
-          label='Suffix'
-          required={required.suffix}
-          className={classes.suffix}
-          inputRef={register({ required: required.suffix })}
-          helperText={errors.suffix?.message}
-          disabled={result.loading}
-        /> */}
-
+      <TextField
+        variant='filled'
+        type='text'
+        error={!!errors.suffix}
+        id='suffix'
+        name='suffix'
+        label='Suffix'
+        required={required.suffix}
+        inputRef={register({ required: required.suffix })}
+        helperText={errors.suffix?.message}
+        disabled={result.loading}
+      />
       <TextField
         variant='filled'
         type='password'
@@ -164,18 +147,15 @@ export default function CreateCustomerForm() {
         name='password'
         label='Password'
         required={required.password}
-        className={classes.password}
         inputRef={register({ required: required.password })}
         helperText={errors.password?.message}
         disabled={result.loading}
       />
-
       <TextField
         variant='filled'
         type='password'
         error={!!errors.confirmPassword}
         id='confirmPassword'
-        className={classes.confirmPassword}
         name='confirmPassword'
         label='Confirm Password'
         required
@@ -187,18 +167,26 @@ export default function CreateCustomerForm() {
         disabled={result.loading}
       />
 
-      <Button
-        type='submit'
+      <FormControlLabel
+        control={<Checkbox name='checkedB' color='primary' />}
+        name='isSubscribed'
+        inputRef={register({ required: required.isSubscribed })}
         disabled={result.loading}
-        className={classes.submit}
-        variant='contained'
-        color='primary'
-        size='large'
-      >
-        Submit
-      </Button>
+        label='Subscribe to newsletter'
+      />
 
-      {result.error?.message && <div className={classes.error}>{result.error?.message}</div>}
+      <FormControl>
+        <Button
+          type='submit'
+          disabled={result.loading}
+          variant='contained'
+          color='primary'
+          size='large'
+        >
+          Submit
+        </Button>
+        <FormHelperText error={!!result.error?.message}>{result.error?.message}</FormHelperText>
+      </FormControl>
     </form>
   )
 }
