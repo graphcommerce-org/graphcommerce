@@ -3,9 +3,8 @@ import { CustomerTokenDocument } from 'generated/apollo'
 
 const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {
-    options.cache.evict({ id: 'Cart', broadcast: true })
-    options.cache.evict({ id: 'Customer', broadcast: true })
-    options.cache.evict({ id: 'CustomerToken', broadcast: true })
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    options.cache.reset()
     return incoming
   },
 }
