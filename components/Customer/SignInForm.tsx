@@ -7,8 +7,9 @@ import {
   FormControl,
   FormHelperText,
 } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import { useMutationForm, emailPattern } from 'components/useMutationForm'
-import { SignInDocument } from 'generated/apollo'
+import { SignInDocument, useCustomerTokenQuery } from 'generated/apollo'
 import NextLink from 'next/link'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -34,13 +35,21 @@ const useStyles = makeStyles(
 
 export default function SignInForm() {
   const classes = useStyles()
+  const { data } = useCustomerTokenQuery()
   const { register, errors, onSubmit, required, result } = useMutationForm<
     GQLSignInMutation,
     GQLSignInMutationVariables
   >({ mutation: SignInDocument, onComplete: onCompleteSignInUp })
 
+  const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
+
   return (
     <form onSubmit={onSubmit} noValidate className={classes.form}>
+      {requireAuth && (
+        <Alert severity='error' variant='standard'>
+          Your session has expired, please reauthenticate
+        </Alert>
+      )}
       <TextField
         variant='filled'
         type='text'
