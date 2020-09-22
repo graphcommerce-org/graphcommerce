@@ -10,8 +10,8 @@
         "__LHCI_BASE_URL__/account/signin",
         "__LHCI_BASE_URL__/cart",
         "__LHCI_BASE_URL__/page/home",
-        "__LHCI_BASE_URL__/product/ninebot-by-segway-kickscooter-es1",
-        "__LHCI_BASE_URL__/producten"
+        "__LHCI_BASE_URL__/product/augusta-trio",
+        "__LHCI_BASE_URL__/venia-accessories"
       ]
     },
     "assert": {
