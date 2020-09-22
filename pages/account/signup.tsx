@@ -1,21 +1,25 @@
 import { Container, Paper, DialogTitle, Typography, DialogContent } from '@material-ui/core'
 import SignUpForm from 'components/Customer/SignUpForm'
-import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import PageMeta from 'components/PageMeta/PageMeta'
 import overlay from 'components/PageTransition/overlay'
 import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
+import { useCustomerTokenQuery } from 'generated/apollo'
 import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 
 const AccountSignUpPage: PageWithShopLayout = () => {
-  const signedOut = useSignedOutGuard()
+  const { data: tokenQuery } = useCustomerTokenQuery()
   const { marginTop } = useHeaderSpacing()
+  const router = useRouter()
 
-  if (!signedOut) return <div>Already signed in, redirecting...</div>
+  useEffect(() => {
+    if (tokenQuery?.customerToken && router.pathname === '/account/signup') router.back()
+  }, [router, tokenQuery?.customerToken])
 
   return (
     <>
