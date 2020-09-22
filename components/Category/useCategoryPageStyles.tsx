@@ -12,7 +12,7 @@ const useCategoryPageStyles = makeStyles(
         "pagination"
       `,
       gridTemplateColumns: 'minmax(0, 1fr)',
-      gridColumnGap: theme.gridSpacing.column,
+      gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.sm,
     },
     breadcrumb: {

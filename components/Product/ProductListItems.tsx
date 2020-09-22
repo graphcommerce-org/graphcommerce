@@ -10,8 +10,8 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
-      gridColumnGap: theme.gridSpacing.column,
-      gridRowGap: theme.gridSpacing.gutter,
+      gridColumnGap: theme.spacings.md,
+      gridRowGap: theme.spacings.lg,
       gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(150, 285)}, 1fr))`,
     },
   }),

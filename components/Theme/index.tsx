@@ -38,11 +38,6 @@ declare module '@material-ui/core/styles/createPalette' {
 }
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
-    gridSpacing: {
-      row: string
-      column: string
-      gutter: string
-    }
     spacings: {
       xs: string
       sm: string
@@ -50,17 +45,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       lg: string
       xl: string
       xxl: string
-    }
-    boxShadows: {
-      lg: string
     }
   }
   interface ThemeOptions {
-    gridSpacing: {
-      row: string
-      column: string
-      gutter: string
-    }
     spacings: {
       xs: string
       sm: string
@@ -68,9 +55,6 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       lg: string
       xl: string
       xxl: string
-    }
-    boxShadows: {
-      lg: string
     }
   }
 }
@@ -116,9 +100,6 @@ export const defaultTheme = createMuiTheme({
   shadows,
   typography: {
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
-    fontSize: 18,
-    body1: { fontSize: vpCalc(15, 20) },
-    body2: { fontSize: vpCalc(13, 15) },
     subtitle1: {},
     subtitle2: {},
     h1: {
@@ -155,11 +136,6 @@ export const defaultTheme = createMuiTheme({
     h6: {},
     fontWeightBold: 600,
   },
-  gridSpacing: {
-    column: vpCalc(18, 60),
-    row: vpCalc(12, 40),
-    gutter: vpCalc(27, 90),
-  },
   spacings: {
     xs: vpCalc(6, 20),
     sm: vpCalc(10, 30),
@@ -167,9 +143,6 @@ export const defaultTheme = createMuiTheme({
     lg: vpCalc(24, 80),
     xl: vpCalc(48, 160),
     xxl: vpCalc(104, 250),
-  },
-  boxShadows: {
-    lg: `rgba(0, 0, 0, 0.04) 0px 2px 15px 0px, rgba(0, 0, 0, 0.14) 0px 60px 70px -20px;`,
   },
 })
 
