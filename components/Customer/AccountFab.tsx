@@ -1,7 +1,7 @@
 import { Badge, Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/PersonOutline'
-import useNavigationSection from 'components/useNavigationSection'
 import { useCustomerTokenQuery } from 'generated/apollo'
+import Link from 'next/link'
 import React from 'react'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -12,17 +12,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function CustomerFab() {
   const classes = useStyles()
-  const { isInSection, toggleSection } = useNavigationSection('/account')
   const { data } = useCustomerTokenQuery()
 
+  const requireAuth = Boolean(!data?.customerToken || !data?.customerToken.valid)
   const fab = (
-    <Fab
-      aria-label={isInSection ? 'Close Account' : 'Open Account'}
-      size='medium'
-      onClick={toggleSection}
-    >
-      <PersonIcon />
-    </Fab>
+    <Link passHref href={requireAuth ? '/account/signin' : '/account'}>
+      <Fab aria-label='Account' size='medium'>
+        <PersonIcon />
+      </Fab>
+    </Link>
   )
 
   return (
