@@ -1,9 +1,9 @@
 import { Chip } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
-import { useProductListParamsContext } from 'components/CategoryPage/CategoryPageContext'
-import { FilterTypeMap, isFilterTypeEqual } from 'components/ProductListItems/filterTypes'
+import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
+import { FilterTypeMap, isFilterTypeEqual } from 'components/Product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
-import ProductListItem from '../ProductListItems/ProductListItem'
+import ProductListItem from '../Product/ProductListItem'
 import AddConfigurableProductToCart from './AddConfigurableProductToCart'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
@@ -42,7 +42,9 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
       ).length,
   )
 
-  const productProps = matchingVariants?.[0]?.product ?? configurableProduct
+  const productProps = matchingVariants?.[0]?.product
+    ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
+    : configurableProduct
 
   const onClick = (attribute_code?: string | null, value_index?: number | null) => () => {
     if (!attribute_code || !value_index) return

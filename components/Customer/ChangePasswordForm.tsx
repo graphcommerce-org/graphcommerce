@@ -1,7 +1,13 @@
-import { TextField, Button, makeStyles, Theme, Link } from '@material-ui/core'
-import { useMutationForm, emailPattern } from 'components/useMutationForm'
+import {
+  TextField,
+  Button,
+  makeStyles,
+  Theme,
+  FormControl,
+  FormHelperText,
+} from '@material-ui/core'
+import { useMutationForm } from 'components/useMutationForm'
 import { ChangePasswordDocument } from 'generated/apollo'
-import NextLink from 'next/link'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -10,9 +16,6 @@ const useStyles = makeStyles(
       alignItems: 'center',
       gridRowGap: theme.spacings.sm,
       gridColumnGap: theme.spacings.xs,
-    },
-    error: {
-      color: theme.palette.error.main,
     },
   }),
   { name: 'SignIn' },
@@ -75,19 +78,18 @@ export default function ChangePasswordForm() {
         disabled={result.loading}
       />
 
-      <Button
-        type='submit'
-        disabled={result.loading}
-        color='primary'
-        variant='contained'
-        size='large'
-      >
-        Change Password
-      </Button>
-
-      {!result.loading && result.error?.message && (
-        <div className={classes.error}>{result.error?.message}</div>
-      )}
+      <FormControl>
+        <Button
+          type='submit'
+          disabled={result.loading}
+          color='primary'
+          variant='contained'
+          size='large'
+        >
+          Change
+        </Button>
+        <FormHelperText error={!!result.error?.message}>{result.error?.message}</FormHelperText>
+      </FormControl>
     </form>
   )
 }

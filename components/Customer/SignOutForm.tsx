@@ -1,36 +1,25 @@
-import { Button, ButtonProps, makeStyles, Theme } from '@material-ui/core'
-import { UseStyles } from 'components/Theme'
+import { Button, FormControl, FormHelperText } from '@material-ui/core'
 import { useMutationForm } from 'components/useMutationForm'
 import { SignOutDocument } from 'generated/apollo'
+import { useRouter } from 'next/router'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    error: {
-      color: theme.palette.error.main,
-    },
-  }),
-  { name: 'SignOut' },
-)
-
-type SignOutFormProps = UseStyles<typeof useStyles> &
-  Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
+type SignOutFormProps = Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
 
 export default function SignOutForm(props: SignOutFormProps) {
-  const classes = useStyles(props)
+  const router = useRouter()
   const { onSubmit, result } = useMutationForm<GQLSignOutMutation, GQLSignOutMutationVariables>({
     mutation: SignOutDocument,
+    onComplete: () => router.back(),
   })
-  const { ...formProps } = props
 
   return (
-    <form onSubmit={onSubmit} noValidate {...formProps}>
-      <Button type='submit' disabled={result.loading}>
-        Sign out
-      </Button>
-
-      {!result.loading && result.error?.message && (
-        <div className={classes.error}>{result.error?.message}</div>
-      )}
+    <form onSubmit={onSubmit} noValidate {...props}>
+      <FormControl>
+        <Button type='submit' disabled={result.loading} variant='outlined'>
+          Sign out
+        </Button>
+        <FormHelperText error={!!result.error?.message}>{result.error?.message}</FormHelperText>
+      </FormControl>
     </form>
   )
 }

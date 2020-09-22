@@ -15,7 +15,7 @@ const AccountSignInPage: PageWithShopLayout = () => {
   const { marginTop } = useHeaderSpacing()
   const signedOut = useSignedOutGuard()
 
-  if (!signedOut) return <div>Already signed in, redirecting...</div>
+  if (!signedOut) return null
 
   return (
     <>

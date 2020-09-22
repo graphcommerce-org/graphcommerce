@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client'
+import { FetchResult, MutationResult, useMutation } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import {
   DefinitionNode,
@@ -72,17 +72,19 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   mutation,
   values,
   onComplete,
+  beforeSubmit,
   ...useFormProps
 }: {
   mutation: DocumentNode
   values?: UnpackNestedValue<DeepPartial<TVariables>>
-  onComplete?: (data: TData, variables: TVariables) => void | Promise<void>
+  onComplete?: (data: MutationResult<TData>) => void | Promise<void>
+  beforeSubmit?: (variables: TVariables) => TVariables | Promise<TVariables>
 } & Omit<UseFormOptions<TVariables>, 'defaultValues'>) {
   const [defaultValues, required] = fieldRequirements<TVariables>(mutation)
   const [submit, result] = useMutation<TData, TVariables>(mutation, { errorPolicy: 'all' })
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { register, errors, handleSubmit, reset, watch } = useForm<TVariables>({
+  const { register, errors, handleSubmit, reset, watch, control } = useForm<TVariables>({
     defaultValues: mergeDeep(defaultValues, values),
     ...useFormProps,
   })
@@ -96,7 +98,8 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   }, [valuesJson, reset])
 
   const onSubmit = handleSubmit(async (formValues) => {
-    const variables = { ...values } as TVariables
+    let variables = { ...values } as TVariables
+    if (beforeSubmit) variables = await beforeSubmit(variables)
 
     mutation.definitions.forEach((definition) => {
       if (isOperationDefinitionNode(definition) && Array.isArray(definition.variableDefinitions)) {
@@ -116,10 +119,14 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
     if (missingFields.length) throw new Error(`Missing fields in form ${missingFields.join(', ')}`)
 
     const queryResult = await submit({ variables })
-    if (onComplete && queryResult.data) await onComplete(queryResult.data, variables)
+
+    // todo add field specific error handling to form fields.
+
+    if (onComplete && queryResult.data)
+      await onComplete({ ...queryResult, loading: false, called: true, client: result.client })
   })
 
-  return { required, result, register, errors, onSubmit, watch }
+  return { required, result, register, errors, onSubmit, watch, control }
 }
 
 export const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

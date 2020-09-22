@@ -1,30 +1,36 @@
-import { Badge, Fab, NoSsr } from '@material-ui/core'
+import { Badge, Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/PersonOutline'
-import useNavigationSection from 'components/useNavigationSection'
-import { useCustomerQuery } from 'generated/apollo'
+import { useCustomerTokenQuery } from 'generated/apollo'
+import Link from 'next/link'
 import React from 'react'
 
-export default function CustomerFab() {
-  const { isInSection, toggleSection } = useNavigationSection('/account')
-  const { data } = useCustomerQuery({ fetchPolicy: 'cache-only' })
+const useStyles = makeStyles((theme: Theme) => ({
+  colorError: {
+    backgroundColor: theme.palette.grey['500'],
+  },
+}))
 
+export default function CustomerFab() {
+  const classes = useStyles()
+  const { data } = useCustomerTokenQuery()
+
+  const requireAuth = Boolean(!data?.customerToken || !data?.customerToken.valid)
   const fab = (
-    <Fab
-      aria-label={isInSection ? 'Close Account' : 'Open Account'}
-      size='medium'
-      onClick={toggleSection}
-    >
-      <PersonIcon />
-    </Fab>
+    <Link passHref href={requireAuth ? '/account/signin' : '/account'}>
+      <Fab aria-label='Account' size='medium'>
+        <PersonIcon />
+      </Fab>
+    </Link>
   )
 
   return (
     <NoSsr fallback={fab}>
       <Badge
-        badgeContent={data?.customer?.firstname?.slice(0, 1) || 0}
-        color='primary'
+        badgeContent={data?.customerToken?.token ? 1 : 0}
+        color={data?.customerToken?.valid ? 'primary' : 'error'}
         overlap='circle'
         variant='dot'
+        classes={classes}
       >
         {fab}
       </Badge>

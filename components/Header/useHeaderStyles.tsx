@@ -3,20 +3,20 @@ import { makeStyles } from '@material-ui/styles'
 import { vpCalc } from 'components/Theme'
 
 const useHeaderStyles = makeStyles(
-  ({ gridSpacing, zIndex }: Theme) => ({
+  ({ spacings, zIndex }: Theme) => ({
     navigation: {
       position: 'fixed',
       top: 0,
       display: 'grid',
       gridTemplateAreas: `'menu logo secondary'`,
-      padding: `${gridSpacing.row} ${gridSpacing.column}`,
+      padding: `${spacings.md} ${spacings.sm}`,
       gridTemplateColumns: `minmax(46px, 1fr) auto minmax(calc(46px * 3), 1fr)`,
       gridTemplateRows: `auto`,
       justifyItems: 'center',
       width: '100%',
       zIndex: zIndex.appBar,
-      // 2xGridspacing, Logo Height, Logo Margin
-      marginBottom: `calc(${gridSpacing.row} * -2 + ${vpCalc(46, 72)} * -1 - 3px)`,
+      // 2x spacing.md, Logo Height, Logo Margin
+      marginBottom: `calc(${spacings.md} * -2 + ${vpCalc(46, 72)} * -1 - 3px)`,
       pointerEvents: 'none',
     },
     logo: {

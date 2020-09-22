@@ -1,22 +1,22 @@
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import CategoryBreadcrumb from 'components/CategoryBreadcrumb'
-import CategoryChildren from 'components/CategoryChildren'
-import CategoryDescription from 'components/CategoryDescription'
-import CategoryMeta from 'components/CategoryMeta'
-import { ProductListParamsProvider } from 'components/CategoryPage/CategoryPageContext'
+import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
+import CategoryChildren from 'components/Category/CategoryChildren'
+import CategoryDescription from 'components/Category/CategoryDescription'
+import CategoryMeta from 'components/Category/CategoryMeta'
+import { ProductListParamsProvider } from 'components/Category/CategoryPageContext'
 import getCategoryPageProps, {
   GetCategoryPageProps,
-} from 'components/CategoryPage/getCategoryPageProps'
-import getCategoryStaticPaths from 'components/CategoryPage/getCategoryStaticPaths'
-import useCategoryPageStyles from 'components/CategoryPage/useCategoryPageStyles'
+} from 'components/Category/getCategoryPageProps'
+import getCategoryStaticPaths from 'components/Category/getCategoryStaticPaths'
+import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import getHeaderProps from 'components/Header/getHeaderProps'
 import useHeaderSpacing from 'components/Header/useHeaderSpacing'
-import ProductListFilters from 'components/ProductListFilters'
-import ProductListItems from 'components/ProductListItems'
-import ProductListItem from 'components/ProductListItems/ProductListItem'
-import ProductListPagination from 'components/ProductListPagination'
-import ProductListSort from 'components/ProductListSort'
+import ProductListFilters from 'components/Product/ProductListFilters'
+import ProductListItem from 'components/Product/ProductListItem'
+import ProductListItems from 'components/Product/ProductListItems'
+import ProductListPagination from 'components/Product/ProductListPagination'
+import ProductListSort from 'components/Product/ProductListSort'
 import ProductListItemBundle from 'components/ProductTypeBundle/ProductListItemBundle'
 import ProductListItemConfigurable from 'components/ProductTypeConfigurable/ProductListItemConfigurable'
 import ProductListItemDownloadable from 'components/ProductTypeDownloadable/ProductListItemDownloadable'
@@ -76,6 +76,7 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
               VirtualProduct: ProductListItemVirtual,
               DownloadableProduct: ProductListItemDownloadable,
               GroupedProduct: ProductListItem,
+              GiftCardProduct: ProductListItem,
             }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />
@@ -107,13 +108,10 @@ export const getStaticProps: GetStaticProps<
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const urlResolve = getUrlResolveProps({ urlKey: url.join('/') }, staticClient)
+  const suffix = (await config).storeConfig?.category_url_suffix ?? ''
+  const urlResolve = getUrlResolveProps({ urlKey: `${url.join('/')}${suffix}` }, staticClient)
   const categoryPage = getCategoryPageProps(
-    {
-      urlParams: ctx.params.url.slice(qIndex + 1),
-      urlResolve,
-      url,
-    },
+    { urlParams: ctx.params.url.slice(qIndex + 1), urlResolve, url },
     staticClient,
   )
   const navigation = getHeaderProps(staticClient, {
