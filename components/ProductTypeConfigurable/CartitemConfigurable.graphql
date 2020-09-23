@@ -1,17 +1,8 @@
 fragment CartItemConfigurable on ConfigurableCartItem {
-  configurable_options: customizable_options {
+  configurable_options {
     id
-    is_required
-    label
-    sort_order
-    values {
-      label
-      price {
-        type
-        units
-        value
-      }
-      value
-    }
+    option_label
+    value_id
+    value_label
   }
 }
