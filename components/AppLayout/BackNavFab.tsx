@@ -48,11 +48,11 @@ const useStyles = makeStyles(
   { name: 'CategoryBreadcrumb' },
 )
 
-export type BreadcrumbFabProps = UseStyles<typeof useStyles> & {
+export type BackNavFabProps = UseStyles<typeof useStyles> & {
   href: string
 } & FabProps
 
-export default function BreadcrumbFab(props: BreadcrumbFabProps) {
+export default function BackNavFab(props: BackNavFabProps) {
   const classes = useStyles(props)
   const { href, children, ...fabProps } = props
 

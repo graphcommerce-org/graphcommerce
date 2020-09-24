@@ -1,7 +1,7 @@
 import { NoSsr } from '@material-ui/core'
 import AccountDashboard from 'components/Customer/AccountDashboard'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
-import getHeaderProps from 'components/Header/getHeaderProps'
+import getHeaderProps from 'components/AppLayout/getHeaderProps'
 import PageMeta from 'components/PageMeta/PageMeta'
 import overlay from 'components/PageTransition/overlay'
 import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'

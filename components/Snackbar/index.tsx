@@ -1,7 +1,7 @@
 import { Snackbar as MuiSnackbar, SnackbarProps } from '@material-ui/core'
 import { Alert, AlertProps } from '@material-ui/lab'
 import clsx from 'clsx'
-import useHeaderSpacing from 'components/Header/useHeaderSpacing'
+import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import React, { PropsWithChildren, useEffect, useState } from 'react'
 import { SetRequired } from 'type-fest'
 

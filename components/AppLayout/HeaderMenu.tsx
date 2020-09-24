@@ -57,7 +57,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type HeaderMenuProps = SetOptional<GQLHeaderMenuQuery & GQLResolveUrlQuery>
+export type HeaderMenuProps = GQLHeaderMenuQuery & GQLResolveUrlQuery
 
 export default function HeaderMenuFab({ menu, urlResolver }: HeaderMenuProps) {
   const classes = useStyles()

@@ -97,12 +97,15 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'Header' },
+  { name: 'AppLayout' },
 )
 
-type HeaderProps = HeaderMenuProps & JSX.IntrinsicElements['header'] & UseStyles<typeof useStyles>
+type HeaderProps = GQLHeaderMenuQuery &
+  GQLResolveUrlQuery &
+  JSX.IntrinsicElements['header'] &
+  UseStyles<typeof useStyles>
 
-export default function Header(props: HeaderProps) {
+export default function AppLayout(props: HeaderProps) {
   const classes = useStyles(props)
   const { menu, urlResolver, ...headerProps } = props
 

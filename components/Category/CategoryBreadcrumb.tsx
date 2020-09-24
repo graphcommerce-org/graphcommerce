@@ -1,5 +1,5 @@
 import { BreadcrumbsProps } from '@material-ui/core'
-import BreadcrumbFab from 'components/Header/BreadcrumbFab'
+import BackNavFab from 'components/AppLayout/BackNavFab'
 import React from 'react'
 
 type CategoryBreadcrumbProps = GQLCategoryBreadcrumbFragment & BreadcrumbsProps
@@ -8,7 +8,7 @@ export default function CategoryBreadcrumb(props: CategoryBreadcrumbProps) {
   const { breadcrumbs } = props
 
   if (!breadcrumbs) {
-    return <BreadcrumbFab href='/'>Home</BreadcrumbFab>
+    return <BackNavFab href='/'>Home</BackNavFab>
   }
 
   const breadcrumb = breadcrumbs[breadcrumbs.length - 1]
@@ -16,8 +16,6 @@ export default function CategoryBreadcrumb(props: CategoryBreadcrumbProps) {
     return null
 
   return (
-    <BreadcrumbFab href={`/${breadcrumb.category_url_path}`}>
-      {breadcrumb.category_name}
-    </BreadcrumbFab>
+    <BackNavFab href={`/${breadcrumb.category_url_path}`}>{breadcrumb.category_name}</BackNavFab>
   )
 }
