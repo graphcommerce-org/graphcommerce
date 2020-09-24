@@ -17,10 +17,9 @@ export type MessageSnackbarProps = PropsWithChildren<
 
 export default function MessageSnackbar(props: MessageSnackbarProps) {
   const [showSnackbar, setSnackbar] = useState<boolean>(false)
-  const headerSpacing = useHeaderSpacing()
+  const { top } = useHeaderSpacing()
   const {
     autoHide,
-    className,
     open,
     children,
     Action,
@@ -40,7 +39,7 @@ export default function MessageSnackbar(props: MessageSnackbarProps) {
       autoHideDuration={autoHide ? 6000 : null}
       onClose={() => setSnackbar(false)}
       anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-      className={clsx(headerSpacing.top, className)}
+      classes={{ anchorOriginTopCenter: top }}
     >
       <Alert
         variant={variant}

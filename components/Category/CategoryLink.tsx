@@ -43,11 +43,23 @@ export function useCategoryLink(props: ProductListParams): string {
   return createCategoryLink({ ...props, url: `${props.url}` })
 }
 
-export type CategoryLinkProps = PropsWithChildren<LinkProps & ProductListParams>
+export type CategoryLinkProps = PropsWithChildren<
+  LinkProps & ProductListParams & { noLink?: boolean }
+>
 
 const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((props, ref) => {
   const { setParams } = useProductListParamsContext()
-  const { children, url, sort, currentPage, pageSize, filters, search, ...linkProps } = props
+  const {
+    children,
+    url,
+    sort,
+    currentPage,
+    pageSize,
+    filters,
+    search,
+    noLink,
+    ...linkProps
+  } = props
   const newParams = { filters, sort, url, currentPage, pageSize, search }
 
   const categoryLink = useCategoryLink(newParams)
@@ -60,9 +72,13 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
 
   return (
     <NextLink href={categoryLink} passHref>
-      <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams}>
-        {children}
-      </Link>
+      {noLink ? (
+        children
+      ) : (
+        <Link rel={rel} {...linkProps} ref={ref} onClick={updateParams}>
+          {children}
+        </Link>
+      )}
     </NextLink>
   )
 })

@@ -1,17 +1,8 @@
-import {
-  Theme,
-  makeStyles,
-  Fab,
-  ListItem,
-  ListItemText,
-  Menu,
-  Link as MuiLink,
-} from '@material-ui/core'
+import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 import CategoryLink from 'components/Category/CategoryLink'
 import { vpCalc } from 'components/Theme'
-import Link from 'next/link'
 import { Router } from 'next/router'
 import React from 'react'
 import { SetOptional } from 'type-fest'
@@ -68,7 +59,7 @@ const useStyles = makeStyles(
 
 export type HeaderMenuProps = SetOptional<GQLHeaderMenuQuery & GQLResolveUrlQuery>
 
-export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
+export default function HeaderMenuFab({ menu, urlResolver }: HeaderMenuProps) {
   const classes = useStyles()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -105,12 +96,12 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-        {menu?.[0]?.children?.map((root) => {
-          if (!root || !root.id || !root.url_path) return null
+        {menu?.[0]?.children?.map((cat) => {
+          if (!cat || !cat.id || !cat.url_path) return null
           return (
             <CategoryLink
-              key={root.id}
-              url={root.url_path}
+              key={cat.id}
+              url={cat.url_path}
               filters={{}}
               sort={{}}
               color='inherit'
@@ -120,11 +111,11 @@ export default function HeaderMenu({ menu, urlResolver }: HeaderMenuProps) {
               <ListItem
                 button
                 selected={
-                  !!urlResolver && root.id === urlResolver.id && urlResolver.type === 'CATEGORY'
+                  !!urlResolver && cat.id === urlResolver.id && urlResolver.type === 'CATEGORY'
                 }
                 classes={{ root: classes.menuItem }}
               >
-                <ListItemText classes={{ primary: classes.menuItemText }}>{root.name}</ListItemText>
+                <ListItemText classes={{ primary: classes.menuItemText }}>{cat.name}</ListItemText>
               </ListItem>
             </CategoryLink>
           )

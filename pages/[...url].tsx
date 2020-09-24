@@ -1,5 +1,4 @@
 import { Container } from '@material-ui/core'
-import clsx from 'clsx'
 import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
 import CategoryChildren from 'components/Category/CategoryChildren'
 import CategoryDescription from 'components/Category/CategoryDescription'
@@ -33,22 +32,30 @@ import React from 'react'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const classes = useCategoryPageStyles(props)
-  const { marginTop } = useHeaderSpacing()
   const { categoryList, products, filters, params, filterTypeMap } = props
 
   if (!categoryList || !categoryList[0] || !products || !params || !filters || !filterTypeMap)
     return <NextError statusCode={503} title='Loading skeleton' />
 
-  return (
-    <>
-      <ProductListParamsProvider value={params}>
-        <CategoryMeta {...categoryList[0]} />
-        <Container className={clsx(classes.container, marginTop)}>
-          <CategoryBreadcrumb
+  let content: React.ReactNode
+  if (categoryList[0].display_mode === 'PAGE') {
+    content = (
+      <>
+        <Container className={classes.container}>
+          <CategoryDescription
             name={categoryList[0].name}
-            breadcrumbs={categoryList[0].breadcrumbs}
-            className={classes.breadcrumb}
+            description={categoryList[0].description}
           />
+          <div>
+            <CategoryChildren params={params}>{categoryList[0].children}</CategoryChildren>
+          </div>
+        </Container>
+      </>
+    )
+  } else {
+    content = (
+      <ProductListParamsProvider value={params}>
+        <Container className={classes.container}>
           <CategoryDescription
             name={categoryList[0].name}
             description={categoryList[0].description}
@@ -76,12 +83,22 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
               VirtualProduct: ProductListItemVirtual,
               DownloadableProduct: ProductListItemDownloadable,
               GroupedProduct: ProductListItem,
-              GiftCardProduct: ProductListItem,
             }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />
         </Container>
       </ProductListParamsProvider>
+    )
+  }
+
+  return (
+    <>
+      <CategoryMeta {...categoryList[0]} />
+      <CategoryBreadcrumb
+        breadcrumbs={categoryList[0].breadcrumbs}
+        className={classes.breadcrumb}
+      />
+      {content}
     </>
   )
 }

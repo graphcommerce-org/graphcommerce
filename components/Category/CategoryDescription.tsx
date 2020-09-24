@@ -4,7 +4,8 @@ import React from 'react'
 type CategoryDescriptionProps = GQLCategoryDescriptionFragment & JSX.IntrinsicElements['div']
 
 export default function CategoryDescription(props: CategoryDescriptionProps) {
-  const { name, description, ...divProps } = props
+  const { name, description, display_mode, ...divProps } = props
+
   return (
     <div {...divProps}>
       <Typography variant='h2' component='h1'>
