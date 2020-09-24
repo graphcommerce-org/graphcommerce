@@ -50,6 +50,10 @@ const usePageTransitionStyles = makeStyles(
       left: 0,
       right: 0,
       zIndex: isBackTrans ? 0 : 1,
+      pointerEvents: 'none',
+      '& > *': {
+        pointerEvents: 'all',
+      },
     }),
   },
   { name: 'PageTransition' },

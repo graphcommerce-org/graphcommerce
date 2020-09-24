@@ -7,6 +7,7 @@ import React from 'react'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     stickyContainer: {
+      pointerEvents: 'none',
       width: 'min-content',
       zIndex: theme.zIndex.appBar,
       position: 'sticky',
