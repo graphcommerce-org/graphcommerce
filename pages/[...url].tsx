@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core'
-import getHeaderProps from 'components/AppLayout/getHeaderProps'
+import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
 import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
 import CategoryChildren from 'components/Category/CategoryChildren'
@@ -131,7 +131,7 @@ export const getStaticProps: GetStaticProps<
     { urlParams: ctx.params.url.slice(qIndex + 1), urlResolve, url },
     staticClient,
   )
-  const navigation = getHeaderProps(staticClient, {
+  const navigation = getAppLayoutProps(staticClient, {
     rootCategory: String((await config).storeConfig?.root_category_id),
   })
 

@@ -1,7 +1,7 @@
 import { NormalizedCacheObject } from '@apollo/client'
 import { CssBaseline } from '@material-ui/core'
 import AppLayout from 'components/AppLayout'
-import { GetHeaderProps } from 'components/AppLayout/getHeaderProps'
+import { GetHeaderProps } from 'components/AppLayout/getAppLayoutProps'
 import { LayoutPage } from 'components/LayoutPage'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import { TransitionPage } from 'components/PageTransition'

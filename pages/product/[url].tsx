@@ -1,8 +1,8 @@
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
-import getHeaderProps from 'components/AppLayout/getHeaderProps'
+import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
 import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
+import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import overlay from 'components/PageTransition/overlay'
 import ProductPageBreadcrumb from 'components/Product/ProductPageBreadcrumb'
 import ProductPageDescription from 'components/Product/ProductPageDescription'
@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps<
     staticClient,
   )
   const productPage = getProductPageProps({ urlKey: ctx.params.url }, staticClient)
-  const navigation = getHeaderProps(staticClient, {
+  const navigation = getAppLayoutProps(staticClient, {
     rootCategory: String((await config).storeConfig?.root_category_id),
   })
 

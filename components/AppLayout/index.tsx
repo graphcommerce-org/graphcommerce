@@ -7,7 +7,7 @@ import SearchButton from 'components/Search/SearchButton'
 import { UseStyles, vpCalc } from 'components/Theme'
 import Link from 'next/link'
 import React from 'react'
-import HeaderMenuFab, { HeaderMenuProps } from './HeaderMenu'
+import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
 import logo from './logo.svg'
 
@@ -126,7 +126,7 @@ export default function AppLayout(props: HeaderProps) {
       </div>
 
       <div className={classes.mobileMenu}>
-        <HeaderMenuFab menu={menu} urlResolver={urlResolver} />
+        <MenuFab menu={menu} urlResolver={urlResolver} />
       </div>
       <div className={clsx(classes.actions, classes.mobileActions)}>
         <CartFab />

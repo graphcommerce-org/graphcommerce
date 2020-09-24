@@ -45,7 +45,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'CategoryBreadcrumb' },
+  { name: 'BackNavFab' },
 )
 
 export type BackNavFabProps = UseStyles<typeof useStyles> & {
