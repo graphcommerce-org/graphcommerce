@@ -1,17 +1,13 @@
 fragment CartItemBundle on BundleCartItem {
-  bundle_option: customizable_options {
+  bundle_options {
     id
-    is_required
     label
-    sort_order
+    type
     values {
+      id
       label
-      price {
-        type
-        units
-        value
-      }
-      value
+      price
+      quantity
     }
   }
 }

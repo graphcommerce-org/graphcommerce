@@ -32,6 +32,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
 
   return (
     <ChipMenu
+      variant='outlined'
       key={attribute_code}
       {...filterMenuProps}
       label={label}

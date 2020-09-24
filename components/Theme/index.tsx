@@ -39,6 +39,7 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     spacings: {
+      xxs: string
       xs: string
       sm: string
       md: string
@@ -46,15 +47,32 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       xl: string
       xxl: string
     }
+    page: {
+      horizontal: string
+      vertical: string
+      headerHeight: {
+        xs: string
+        sm: string
+      }
+    }
   }
   interface ThemeOptions {
     spacings: {
+      xxs: string
       xs: string
       sm: string
       md: string
       lg: string
       xl: string
       xxl: string
+    }
+    page: {
+      horizontal: string | number
+      vertical: string | number
+      headerHeight: {
+        xs: string
+        sm: string
+      }
     }
   }
 }
@@ -102,6 +120,8 @@ export const defaultTheme = createMuiTheme({
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     subtitle1: {},
     subtitle2: {},
+    fontSize: 15,
+    body1: { fontSize: vpCalc(15, 18) },
     h1: {
       fontSize: vpCalc(36, 74),
       fontWeight: 600,
@@ -137,12 +157,21 @@ export const defaultTheme = createMuiTheme({
     fontWeightBold: 600,
   },
   spacings: {
+    xxs: vpCalc(5, 16),
     xs: vpCalc(6, 20),
     sm: vpCalc(10, 30),
     md: vpCalc(16, 50),
     lg: vpCalc(24, 80),
     xl: vpCalc(48, 160),
     xxl: vpCalc(104, 250),
+  },
+  page: {
+    horizontal: vpCalc(15, 40),
+    vertical: vpCalc(15, 40),
+    headerHeight: {
+      xs: vpCalc(21, 33),
+      sm: `48px`,
+    },
   },
 })
 
@@ -158,6 +187,16 @@ defaultTheme.overrides = {
       })),
       '::selection': { background: `rgba(20, 227, 173, 0.5)` },
       '::-moz-selection': { background: `rgba(20, 227, 173, 0.5)` },
+    },
+  },
+  MuiContainer: {
+    root: {
+      paddingLeft: defaultTheme.page.horizontal,
+      paddingRight: defaultTheme.page.horizontal,
+      [defaultTheme.breakpoints.up('sm')]: {
+        paddingLeft: undefined,
+        paddingRight: undefined,
+      },
     },
   },
   MuiButton: {
@@ -187,6 +226,8 @@ defaultTheme.overrides = {
     root: {
       backgroundColor: '#fff',
       '&:hover': { backgroundColor: '#efefef' },
+      fontWeight: 400,
+      textTransform: 'none',
     },
   },
   MuiBadge: {

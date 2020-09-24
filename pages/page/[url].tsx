@@ -1,8 +1,8 @@
+import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
+import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import CmsPageContent from 'components/Cms/CmsPageContent'
 import CmsPageMeta from 'components/Cms/CmsPageMeta'
 import getCmsPageProps, { GetCmsPageProps } from 'components/Cms/getCmsPageProps'
-import getHeaderProps from 'components/Header/getHeaderProps'
-import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'components/ShopLayout'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps<
     (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
     staticClient,
   )
-  const navigation = getHeaderProps(staticClient, {
+  const navigation = getAppLayoutProps(staticClient, {
     rootCategory: String((await config).storeConfig?.root_category_id),
   })
 

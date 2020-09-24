@@ -2,7 +2,7 @@ import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
 import React from 'react'
 
 export default function ProductPageBreadcrumb(props: GQLProductPageBreadcrumbFragment) {
-  const { categories, name } = props
+  const { categories } = props
 
   return (
     <>
@@ -11,7 +11,6 @@ export default function ProductPageBreadcrumb(props: GQLProductPageBreadcrumbFra
         return (
           <div key={category.id}>
             <CategoryBreadcrumb
-              name={name}
               breadcrumbs={[
                 ...(category.breadcrumbs ?? []),
                 {

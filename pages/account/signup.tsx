@@ -1,7 +1,7 @@
 import { Container, Paper, DialogTitle, Typography, DialogContent } from '@material-ui/core'
+import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
+import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import SignUpForm from 'components/Customer/SignUpForm'
-import getHeaderProps from 'components/Header/getHeaderProps'
-import useHeaderSpacing from 'components/Header/useHeaderSpacing'
 import PageMeta from 'components/PageMeta/PageMeta'
 import overlay from 'components/PageTransition/overlay'
 import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigation = getHeaderProps(staticClient, {
+  const navigation = getAppLayoutProps(staticClient, {
     rootCategory: String((await config).storeConfig?.root_category_id),
   })
 

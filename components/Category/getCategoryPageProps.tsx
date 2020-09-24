@@ -2,7 +2,6 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import getFilterTypeMap from 'components/Category/getFilterTypeMap'
 import { ProductListParams } from 'components/Product/ProductListItems/filterTypes'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
-import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 

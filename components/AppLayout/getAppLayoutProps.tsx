@@ -2,7 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { HeaderMenuDocument } from 'generated/apollo'
 import { PromiseValue } from 'type-fest'
 
-export default async function getHeaderProps(
+export default async function getAppLayoutProps(
   client: ApolloClient<NormalizedCacheObject>,
   variables: GQLHeaderMenuQueryVariables,
 ) {
@@ -14,4 +14,4 @@ export default async function getHeaderProps(
   return (await menu).data
 }
 
-export type GetHeaderProps = PromiseValue<ReturnType<typeof getHeaderProps>>
+export type GetHeaderProps = PromiseValue<ReturnType<typeof getAppLayoutProps>>

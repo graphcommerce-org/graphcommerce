@@ -1,7 +1,7 @@
 import { NormalizedCacheObject } from '@apollo/client'
 import { CssBaseline } from '@material-ui/core'
-import Header from 'components/Header'
-import { GetHeaderProps } from 'components/Header/getHeaderProps'
+import AppLayout from 'components/AppLayout'
+import { GetHeaderProps } from 'components/AppLayout/getAppLayoutProps'
 import { LayoutPage } from 'components/LayoutPage'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import { TransitionPage } from 'components/PageTransition'
@@ -39,7 +39,7 @@ const ShopLayout: PageWithShopLayout['Layout'] = ({ children, menu, urlResolver 
       </Head>
       <CssBaseline />
       <PageLoadIndicator />
-      <Header menu={menu} urlResolver={urlResolver} />
+      <AppLayout menu={menu} urlResolver={urlResolver} />
 
       {children}
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
