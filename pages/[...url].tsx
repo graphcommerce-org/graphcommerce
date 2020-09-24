@@ -83,6 +83,7 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
               VirtualProduct: ProductListItemVirtual,
               DownloadableProduct: ProductListItemDownloadable,
               GroupedProduct: ProductListItem,
+              GiftCardProduct: ProductListItem,
             }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />
