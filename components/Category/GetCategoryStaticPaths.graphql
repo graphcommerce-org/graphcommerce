@@ -1,7 +1,6 @@
-query GetCategoryStaticPaths($rootCategory: String!) {
-  categoryList(filters: { ids: { eq: $rootCategory } }) {
-    children {
-      url_key
+query GetCategoryStaticPaths {
+  categories {
+    items {
       children {
         url_key
         children {
@@ -10,6 +9,9 @@ query GetCategoryStaticPaths($rootCategory: String!) {
             url_key
             children {
               url_key
+              children {
+                url_key
+              }
             }
           }
         }

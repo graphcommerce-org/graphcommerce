@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core'
-import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
+import getAppShellProps from 'components/AppLayout/getAppShellProps'
 import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
 import CategoryChildren from 'components/Category/CategoryChildren'
 import CategoryDescription from 'components/Category/CategoryDescription'
@@ -31,22 +31,21 @@ import React from 'react'
 
 const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   const classes = useCategoryPageStyles(props)
-  const { categoryList, products, filters, params, filterTypeMap } = props
+  const { categories, products, filters, params, filterTypeMap } = props
 
-  if (!categoryList || !categoryList[0] || !products || !params || !filters || !filterTypeMap)
+  if (!categories?.items?.[0] || !products || !params || !filters || !filterTypeMap)
     return <NextError statusCode={503} title='Loading skeleton' />
 
+  const category = categories.items[0]
+
   let content: React.ReactNode
-  if (categoryList[0].display_mode === 'PAGE') {
+  if (categories.items[0].display_mode === 'PAGE') {
     content = (
       <>
         <Container className={classes.container}>
-          <CategoryDescription
-            name={categoryList[0].name}
-            description={categoryList[0].description}
-          />
+          <CategoryDescription name={category.name} description={category.description} />
           <div>
-            <CategoryChildren params={params}>{categoryList[0].children}</CategoryChildren>
+            <CategoryChildren params={params}>{category.children}</CategoryChildren>
           </div>
         </Container>
       </>
@@ -56,13 +55,13 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
       <ProductListParamsProvider value={params}>
         <Container className={classes.container}>
           <CategoryDescription
-            name={categoryList[0].name}
-            description={categoryList[0].description}
+            name={category.name}
+            description={category.description}
             className={classes.description}
           />
           <ScrollSnapSlider classes={{ container: classes.filters }}>
             <CategoryChildren params={params} className={classes.filterItem}>
-              {categoryList[0].children}
+              {category.children}
             </CategoryChildren>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
@@ -95,11 +94,8 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
 
   return (
     <>
-      <CategoryMeta {...categoryList[0]} />
-      <CategoryBreadcrumb
-        breadcrumbs={categoryList[0].breadcrumbs}
-        className={classes.breadcrumb}
-      />
+      <CategoryMeta {...category} />
+      <CategoryBreadcrumb breadcrumbs={category.breadcrumbs} className={classes.breadcrumb} />
       {content}
     </>
   )
@@ -133,9 +129,7 @@ export const getStaticProps: GetStaticProps<
     { urlParams: ctx.params.url.slice(qIndex + 1), urlResolve, url },
     staticClient,
   )
-  const navigation = getAppLayoutProps(staticClient, {
-    rootCategory: String((await config).storeConfig?.root_category_id),
-  })
+  const navigation = getAppShellProps(staticClient)
 
   return {
     props: {

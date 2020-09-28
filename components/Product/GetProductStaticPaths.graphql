@@ -1,11 +1,6 @@
-query GetProductStaticPaths($rootCategory: String!) {
-  categoryList(filters: { ids: { eq: $rootCategory } }) {
-    children {
-      products {
-        items {
-          url_key
-        }
-      }
+query GetProductStaticPaths {
+  categories {
+    items {
       children {
         products {
           items {
@@ -22,6 +17,13 @@ query GetProductStaticPaths($rootCategory: String!) {
             products {
               items {
                 url_key
+              }
+            }
+            children {
+              products {
+                items {
+                  url_key
+                }
               }
             }
           }

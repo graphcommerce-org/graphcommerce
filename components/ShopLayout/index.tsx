@@ -1,7 +1,7 @@
 import { NormalizedCacheObject } from '@apollo/client'
 import { CssBaseline } from '@material-ui/core'
 import AppLayout from 'components/AppLayout'
-import { GetHeaderProps } from 'components/AppLayout/getAppLayoutProps'
+import { GetAppShellProps } from 'components/AppLayout/getAppShellProps'
 import { LayoutPage } from 'components/LayoutPage'
 import PageLoadIndicator from 'components/PageLoadIndicator'
 import { TransitionPage } from 'components/PageTransition'
@@ -11,7 +11,7 @@ import React from 'react'
 import { SetOptional } from 'type-fest'
 import { GetUrlResolveProps } from './getUrlResolveProps'
 
-export type ShopLayoutProps = SetOptional<GetHeaderProps & GetUrlResolveProps> & {
+export type ShopLayoutProps = SetOptional<GetAppShellProps & GetUrlResolveProps> & {
   apolloState: NormalizedCacheObject
 }
 

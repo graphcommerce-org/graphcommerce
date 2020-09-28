@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
+import getAppShellProps from 'components/AppLayout/getAppShellProps'
 import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import overlay from 'components/PageTransition/overlay'
@@ -78,9 +78,7 @@ export const getStaticProps: GetStaticProps<
     staticClient,
   )
   const productPage = getProductPageProps({ urlKey: ctx.params.url }, staticClient)
-  const navigation = getAppLayoutProps(staticClient, {
-    rootCategory: String((await config).storeConfig?.root_category_id),
-  })
+  const navigation = getAppShellProps(staticClient)
 
   return {
     props: {

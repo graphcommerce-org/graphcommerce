@@ -1,4 +1,4 @@
-import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
+import getAppShellProps from 'components/AppLayout/getAppShellProps'
 import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import CmsPageContent from 'components/Cms/CmsPageContent'
 import CmsPageMeta from 'components/Cms/CmsPageMeta'
@@ -53,9 +53,7 @@ export const getStaticProps: GetStaticProps<
     (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
     staticClient,
   )
-  const navigation = getAppLayoutProps(staticClient, {
-    rootCategory: String((await config).storeConfig?.root_category_id),
-  })
+  const navigation = getAppShellProps(staticClient)
 
   return {
     props: {

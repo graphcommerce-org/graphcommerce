@@ -56,7 +56,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = GQLHeaderMenuQuery & GQLResolveUrlQuery
+export type MenuFabProps = GQLAppShellQuery & GQLResolveUrlQuery
 
 export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
   const classes = useStyles()
@@ -95,7 +95,7 @@ export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
         >
           <CloseIcon htmlColor='#fff' fontSize='small' />
         </Fab>
-        {menu?.[0]?.children?.map((cat) => {
+        {menu?.items?.[0]?.children?.map((cat) => {
           if (!cat || !cat.id || !cat.url_path) return null
           return (
             <CategoryLink

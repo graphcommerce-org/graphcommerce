@@ -100,7 +100,7 @@ const useStyles = makeStyles(
   { name: 'AppLayout' },
 )
 
-type HeaderProps = GQLHeaderMenuQuery &
+type HeaderProps = GQLAppShellQuery &
   GQLResolveUrlQuery &
   JSX.IntrinsicElements['header'] &
   UseStyles<typeof useStyles>

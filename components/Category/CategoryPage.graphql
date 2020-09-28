@@ -1,8 +1,10 @@
-query CategoryPage($id: String!) {
-  categoryList(filters: { ids: { eq: $id } }) {
-    ...CategoryBreadcrumb
-    ...CategoryDescription
-    ...CategoryChildren
-    ...CategoryMeta
+query CategoryPage($urlPath: String!) {
+  categories(filters: { url_path: { eq: $urlPath } }) {
+    items {
+      ...CategoryBreadcrumb
+      ...CategoryDescription
+      ...CategoryChildren
+      ...CategoryMeta
+    }
   }
 }

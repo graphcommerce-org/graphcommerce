@@ -38,7 +38,7 @@ const useTabStyles = makeStyles(
   { name: 'DesktopMenuTab' },
 )
 
-export type MenuTabsProps = GQLHeaderMenuQuery &
+export type MenuTabsProps = GQLAppShellQuery &
   GQLResolveUrlQuery &
   Omit<TabsProps<'menu'>, 'component' | 'value' | 'children'> & {
     tabProps?: Omit<TabProps<'a'>, 'label' | 'component' | 'value'>
@@ -50,7 +50,7 @@ export default function MenuTabs(props: MenuTabsProps) {
   const tabClasses = useTabStyles(props)
 
   const selectedId = urlResolver && urlResolver.type === 'CATEGORY' && urlResolver.id
-  const selectedIdx = menu?.[0]?.children?.findIndex((cat) => cat?.id === selectedId) ?? 0
+  const selectedIdx = menu?.items?.[0]?.children?.findIndex((cat) => cat?.id === selectedId) ?? 0
 
   return (
     <Tabs
@@ -63,7 +63,7 @@ export default function MenuTabs(props: MenuTabsProps) {
       classes={{ ...tabsClasses, ...tabsProps.classes }}
       TabIndicatorProps={{ children: <span /> }}
     >
-      {menu?.[0]?.children?.map((cat) => {
+      {menu?.items?.[0]?.children?.map((cat) => {
         if (!cat || !cat.id || !cat.url_path) return null
         return (
           <CategoryLink key={cat.id} url={cat.url_path} filters={{}} sort={{}} noLink>
