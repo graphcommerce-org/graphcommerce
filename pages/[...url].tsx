@@ -1,6 +1,5 @@
 import { Container } from '@material-ui/core'
 import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
-import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
 import CategoryChildren from 'components/Category/CategoryChildren'
 import CategoryDescription from 'components/Category/CategoryDescription'
