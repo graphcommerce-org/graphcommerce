@@ -23,6 +23,7 @@ const useStyles = makeStyles(
       },
     },
     fabRoot: {
+      pointerEvents: 'all',
       [theme.breakpoints.down('sm')]: {
         height: 40,
         minWidth: 40,
