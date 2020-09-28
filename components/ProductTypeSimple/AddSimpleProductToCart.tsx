@@ -12,15 +12,16 @@ type AddSimpleProductToCartProps = Omit<GQLAddSimpleProductToCartMutationVariabl
 
 export default function AddSimpleProductToCart(props: AddSimpleProductToCartProps) {
   const { name, ...values } = props
-  const { data: tokenQuery } = useCustomerTokenQuery()
+  const { data: tokenQuery, loading: loadingToken } = useCustomerTokenQuery()
   const requestCartId = useRequestCartId()
-  const { onSubmit, result } = useMutationForm<
+
+  const { onSubmit, called, loading, error } = useMutationForm<
     GQLAddSimpleProductToCartMutation,
     GQLAddSimpleProductToCartMutationVariables
   >({
     mutation: AddSimpleProductToCartDocument,
     values,
-    beforeSubmit: async (variables) => ({ ...variables, cartId: await requestCartId() }),
+    onBeforeSubmit: async (variables) => ({ ...variables, cartId: await requestCartId() }),
   })
 
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
@@ -33,7 +34,7 @@ export default function AddSimpleProductToCart(props: AddSimpleProductToCartProp
     </Link>
   ) : (
     <form onSubmit={onSubmit} noValidate>
-      <Button type='submit' disabled={result.loading} color='primary' variant='contained'>
+      <Button type='submit' disabled={loadingToken || loading} color='primary' variant='contained'>
         Add to Cart
       </Button>
 

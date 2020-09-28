@@ -36,7 +36,7 @@ const useStyles = makeStyles(
 export default function SignInForm() {
   const classes = useStyles()
   const { data } = useCustomerTokenQuery()
-  const { register, errors, onSubmit, required, result } = useMutationForm<
+  const { register, errors, onSubmit, required, loading, error } = useMutationForm<
     GQLSignInMutation,
     GQLSignInMutationVariables
   >({ mutation: SignInDocument, onComplete: onCompleteSignInUp })
@@ -63,7 +63,7 @@ export default function SignInForm() {
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
         helperText={errors?.email?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <TextField
         variant='filled'
@@ -75,20 +75,14 @@ export default function SignInForm() {
         required={required.password}
         inputRef={register({ required: required.password })}
         helperText={errors?.password?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
 
       <FormControl>
-        <Button
-          type='submit'
-          disabled={result.loading}
-          color='primary'
-          variant='contained'
-          size='large'
-        >
+        <Button type='submit' disabled={loading} color='primary' variant='contained' size='large'>
           Log In
         </Button>
-        <FormHelperText error={!!result.error?.message}>{result.error?.message}</FormHelperText>
+        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
       </FormControl>
 
       <div className={classes.actions}>

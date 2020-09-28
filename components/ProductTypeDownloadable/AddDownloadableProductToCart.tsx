@@ -17,13 +17,13 @@ export default function AddDownloadableProductToCart(props: AddDownloadableProdu
   const { name, ...values } = props
   const { data: tokenQuery } = useCustomerTokenQuery()
   const requestCartId = useRequestCartId()
-  const { onSubmit, result } = useMutationForm<
+  const { onSubmit, loading, called, error } = useMutationForm<
     GQLAddDownloadableProductToCartMutation,
     GQLAddDownloadableProductToCartMutationVariables
   >({
     mutation: AddDownloadableProductToCartDocument,
     values,
-    beforeSubmit: async (variables) => ({ ...variables, cartId: await requestCartId() }),
+    onBeforeSubmit: async (variables) => ({ ...variables, cartId: await requestCartId() }),
   })
 
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
@@ -36,7 +36,7 @@ export default function AddDownloadableProductToCart(props: AddDownloadableProdu
     </Link>
   ) : (
     <form onSubmit={onSubmit} noValidate>
-      <Button type='submit' disabled={result.loading} color='primary' variant='contained'>
+      <Button type='submit' disabled={loading} color='primary' variant='contained'>
         Add to Cart
       </Button>
 
