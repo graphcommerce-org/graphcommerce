@@ -1,7 +1,9 @@
 import { Chip } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
+import AddToCartButton from 'components/Cart/AddToCartButton'
 import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import { FilterTypeMap, isFilterTypeEqual } from 'components/Product/ProductListItems/filterTypes'
+import { AddConfigurableProductToCartDocument } from 'generated/apollo'
 import React, { useState } from 'react'
 import ProductListItem from '../Product/ProductListItem'
 import AddConfigurableProductToCart from './AddConfigurableProductToCart'
@@ -134,9 +136,16 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
         )
       })}
       {matchingVariants?.[0]?.product?.sku && configurableProduct.sku && (
-        <AddConfigurableProductToCart
-          parentSku={configurableProduct.sku}
-          variantSku={matchingVariants[0].product.sku}
+        <AddToCartButton<
+          GQLAddConfigurableProductToCartMutation,
+          GQLAddConfigurableProductToCartMutationVariables
+        >
+          mutation={AddConfigurableProductToCartDocument}
+          variables={{
+            parentSku: configurableProduct.sku,
+            variantSku: matchingVariants[0].product.sku,
+          }}
+          name={matchingVariants[0].product.name}
         />
       )}
     </ProductListItem>
