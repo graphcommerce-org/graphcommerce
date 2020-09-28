@@ -6,7 +6,6 @@ import { FilterTypeMap, isFilterTypeEqual } from 'components/Product/ProductList
 import { AddConfigurableProductToCartDocument } from 'generated/apollo'
 import React, { useState } from 'react'
 import ProductListItem from '../Product/ProductListItem'
-import AddConfigurableProductToCart from './AddConfigurableProductToCart'
 
 type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
   filterTypeMap: FilterTypeMap
