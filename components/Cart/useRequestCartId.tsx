@@ -1,5 +1,4 @@
-import { useApolloClient } from '@apollo/client'
-import { CreateEmptyCartDocument, useCartQuery } from 'generated/apollo'
+import { useCartQuery, useCreateEmptyCartMutation } from 'generated/apollo'
 
 function generateId() {
   return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -13,18 +12,14 @@ function generateId() {
 
 export default function useRequestCartId() {
   const { data: cartQuery } = useCartQuery()
-  const client = useApolloClient()
+  const [create] = useCreateEmptyCartMutation()
 
   const cartId = cartQuery?.cart?.id
 
   async function requestCartId(): Promise<string> {
     if (cartId) return cartId
 
-    const { data } = await client.mutate<
-      GQLCreateEmptyCartMutation,
-      GQLCreateEmptyCartMutationVariables
-    >({ mutation: CreateEmptyCartDocument, variables: { cartId: generateId() } })
-
+    const { data } = await create({ variables: { cartId: generateId() } })
     if (!data?.createEmptyCart) throw Error('Could not create an empty cart')
 
     return data.createEmptyCart
