@@ -2,24 +2,20 @@ import { Container, Paper, DialogTitle, Typography, DialogContent } from '@mater
 import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
 import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
 import SignUpForm from 'components/Customer/SignUpForm'
+import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import PageMeta from 'components/PageMeta/PageMeta'
 import overlay from 'components/PageTransition/overlay'
 import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
-import { useCustomerTokenQuery } from 'generated/apollo'
 import apolloClient from 'lib/apolloClient'
 import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 const AccountSignUpPage: PageWithShopLayout = () => {
-  const { data: tokenQuery } = useCustomerTokenQuery()
+  const signedOut = useSignedOutGuard()
   const { marginTop } = useHeaderSpacing()
-  const router = useRouter()
 
-  useEffect(() => {
-    if (tokenQuery?.customerToken && router.pathname === '/account/signup') router.back()
-  }, [router, tokenQuery?.customerToken])
+  if (!signedOut) return null
 
   return (
     <>
