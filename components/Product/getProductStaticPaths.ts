@@ -1,20 +1,15 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { GetProductStaticPathsDocument } from 'generated/apollo'
 
 const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
-  const config = getStoreConfig(client)
-
-  const { data } = await client.query<
-    GQLGetProductStaticPathsQuery,
-    GQLGetProductStaticPathsQueryVariables
-  >({
+  const { data } = await client.query<GQLGetProductStaticPathsQuery>({
     query: GetProductStaticPathsDocument,
-    variables: { rootCategory: String((await config).storeConfig?.root_category_id) },
   })
 
   type CategoryWithProducts = NonNullable<
-    NonNullable<NonNullable<GQLGetProductStaticPathsQuery['categoryList']>[0]>['children']
+    NonNullable<
+      NonNullable<NonNullable<GQLGetProductStaticPathsQuery['categories']>['items']>[0]
+    >['children']
   >[0]
 
   const extractChildren = (category?: CategoryWithProducts | null) => {
@@ -25,7 +20,7 @@ const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>
     return [...products, ...children]
   }
   const paths =
-    data?.categoryList
+    data?.categories?.items
       ?.map((category) => extractChildren(category))
       .flat(10)
       .map((url: string) => ({ params: { url } })) ?? []

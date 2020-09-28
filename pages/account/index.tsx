@@ -1,5 +1,5 @@
 import { NoSsr } from '@material-ui/core'
-import getAppLayoutProps from 'components/AppLayout/getAppLayoutProps'
+import getAppShellProps from 'components/AppLayout/getAppShellProps'
 import AccountDashboard from 'components/Customer/AccountDashboard'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import PageMeta from 'components/PageMeta/PageMeta'
@@ -33,9 +33,7 @@ export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigation = getAppLayoutProps(staticClient, {
-    rootCategory: String((await config).storeConfig?.root_category_id),
-  })
+  const navigation = getAppShellProps(staticClient)
 
   await config
   return {

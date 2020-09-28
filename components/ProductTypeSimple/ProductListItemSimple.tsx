@@ -1,12 +1,22 @@
+import AddToCartButton from 'components/Cart/AddToCartButton'
 import ProductListItem from 'components/Product/ProductListItem'
+import { AddSimpleProductToCartDocument } from 'generated/apollo'
 import React from 'react'
-import AddSimpleProductToCart from './AddSimpleProductToCart'
 
 export default function ProductListItemSimple(props: GQLProductListItemSimpleFragment) {
   const { sku, name } = props
   return (
     <ProductListItem {...props}>
-      {sku && <AddSimpleProductToCart sku={sku} name={name} />}
+      {sku && (
+        <AddToCartButton<
+          GQLAddSimpleProductToCartMutation,
+          GQLAddSimpleProductToCartMutationVariables
+        >
+          mutation={AddSimpleProductToCartDocument}
+          variables={{ sku }}
+          name={name}
+        />
+      )}
     </ProductListItem>
   )
 }

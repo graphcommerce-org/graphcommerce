@@ -23,12 +23,13 @@ const useStyles = makeStyles(
 
 export default function ChangePasswordForm() {
   const classes = useStyles()
-  const { register, errors, onSubmit, required, result, watch } = useMutationForm<
+  const mutationForm = useMutationForm<
     GQLChangePasswordMutation,
     GQLChangePasswordMutationVariables & { confirmPassword: string }
   >({ mutation: ChangePasswordDocument })
+  const { register, errors, onSubmit, required, watch, loading, error, called, data } = mutationForm
 
-  if (result.called && result.data) {
+  if (called && data) {
     return <div>Password changed!</div>
   }
 
@@ -45,7 +46,7 @@ export default function ChangePasswordForm() {
         required={required.currentPassword}
         inputRef={register({ required: required.currentPassword })}
         helperText={errors.currentPassword?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
 
       <TextField
@@ -59,7 +60,7 @@ export default function ChangePasswordForm() {
         required={required.newPassword}
         inputRef={register({ required: required.newPassword })}
         helperText={errors.newPassword?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
 
       <TextField
@@ -75,20 +76,14 @@ export default function ChangePasswordForm() {
           validate: (value) => value === watch('newPassword') || "Paswords don't match",
         })}
         helperText={errors.confirmPassword?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
 
       <FormControl>
-        <Button
-          type='submit'
-          disabled={result.loading}
-          color='primary'
-          variant='contained'
-          size='large'
-        >
+        <Button type='submit' disabled={loading} color='primary' variant='contained' size='large'>
           Change
         </Button>
-        <FormHelperText error={!!result.error?.message}>{result.error?.message}</FormHelperText>
+        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
       </FormControl>
     </form>
   )

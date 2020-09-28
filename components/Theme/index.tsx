@@ -1,4 +1,5 @@
-import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { createMuiTheme, StyleRules, ThemeProvider } from '@material-ui/core'
+import { CreateCSSProperties } from '@material-ui/styles'
 import Head from 'next/head'
 import React from 'react'
 import fonts from './fonts'
@@ -50,7 +51,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     page: {
       horizontal: string
       vertical: string
-      headerHeight: {
+      headerInnerHeight: {
         xs: string
         sm: string
       }
@@ -69,7 +70,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     page: {
       horizontal: string | number
       vertical: string | number
-      headerHeight: {
+      headerInnerHeight: {
         xs: string
         sm: string
       }
@@ -168,7 +169,7 @@ export const defaultTheme = createMuiTheme({
   page: {
     horizontal: vpCalc(15, 40),
     vertical: vpCalc(15, 40),
-    headerHeight: {
+    headerInnerHeight: {
       xs: vpCalc(21, 33),
       sm: `48px`,
     },

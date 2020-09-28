@@ -29,7 +29,7 @@ const useStyles = makeStyles(
 export default function SignUpForm() {
   const classes = useStyles()
   const client = useApolloClient()
-  const { register, errors, onSubmit, required, result, watch, control } = useMutationForm<
+  const { register, errors, onSubmit, required, watch, control, loading, error } = useMutationForm<
     GQLSignUpMutation,
     GQLSignUpMutationVariables & { confirmPassword: string }
   >({ mutation: SignUpDocument, onComplete: onCompleteSignInUp })
@@ -60,7 +60,7 @@ export default function SignUpForm() {
           },
         })}
         helperText={errors.email?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <Controller
         defaultValue='Dhr.'
@@ -76,7 +76,7 @@ export default function SignUpForm() {
             label='Prefix'
             required={required.prefix}
             helperText={errors.prefix?.message}
-            disabled={result.loading}
+            disabled={loading}
             onChange={(e) => onChange(e.target.value)}
             onBlur={onBlur}
             value={value}
@@ -100,7 +100,7 @@ export default function SignUpForm() {
         required={required.firstname}
         inputRef={register({ required: required.firstname })}
         helperText={errors.firstname?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <TextField
         variant='filled'
@@ -112,7 +112,7 @@ export default function SignUpForm() {
         required={required.middlename}
         inputRef={register({ required: required.middlename })}
         helperText={errors.middlename?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <TextField
         variant='filled'
@@ -124,7 +124,7 @@ export default function SignUpForm() {
         required={required.lastname}
         inputRef={register({ required: required.lastname })}
         helperText={errors.lastname?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <TextField
         variant='filled'
@@ -136,7 +136,7 @@ export default function SignUpForm() {
         required={required.suffix}
         inputRef={register({ required: required.suffix })}
         helperText={errors.suffix?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <TextField
         variant='filled'
@@ -149,7 +149,7 @@ export default function SignUpForm() {
         required={required.password}
         inputRef={register({ required: required.password })}
         helperText={errors.password?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
       <TextField
         variant='filled'
@@ -164,28 +164,22 @@ export default function SignUpForm() {
           validate: (value) => value === watch('password') || "Paswords don't match",
         })}
         helperText={errors.confirmPassword?.message}
-        disabled={result.loading}
+        disabled={loading}
       />
 
       <FormControlLabel
         control={<Checkbox name='checkedB' color='primary' />}
         name='isSubscribed'
         inputRef={register({ required: required.isSubscribed })}
-        disabled={result.loading}
+        disabled={loading}
         label='Subscribe to newsletter'
       />
 
       <FormControl>
-        <Button
-          type='submit'
-          disabled={result.loading}
-          variant='contained'
-          color='primary'
-          size='large'
-        >
+        <Button type='submit' disabled={loading} variant='contained' color='primary' size='large'>
           Submit
         </Button>
-        <FormHelperText error={!!result.error?.message}>{result.error?.message}</FormHelperText>
+        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
       </FormControl>
     </form>
   )

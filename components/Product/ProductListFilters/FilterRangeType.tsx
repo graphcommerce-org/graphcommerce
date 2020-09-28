@@ -22,7 +22,7 @@ const useFilterRangeType = makeStyles(
 )
 
 export default function FilterRangeType(props: FilterRangeTypeProps) {
-  const { attribute_code, label, options, ...filterMenuProps } = props
+  const { attribute_code, label, options, ...chipProps } = props
   const classes = useFilterRangeType(props)
   const { params } = useProductListParamsContext()
   const pushRoute = useCategoryPushRoute()
@@ -81,11 +81,11 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
 
   return (
     <ChipMenu
-      key={attribute_code}
+      variant='outlined'
       label={label}
       selectedLabel={currentLabel}
       selected={!!currentLabel}
-      {...filterMenuProps}
+      {...chipProps}
       onDelete={currentLabel ? resetFilter : undefined}
     >
       <div className={classes.container}>

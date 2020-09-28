@@ -1,16 +1,15 @@
+import { OnCompleteFn } from 'components/useMutationForm'
 import {
   CustomerDocument,
   CartDocument,
   CustomerCartDocument,
   MergeCartsDocument,
-  SignUpMutationResult,
-  SignInMutationResult,
 } from 'generated/apollo'
 
-export default async function onCompleteSignInUp(
-  result: SignUpMutationResult | SignInMutationResult,
-) {
-  const { data, client } = result
+type OnCompleteSignInUp = OnCompleteFn<GQLSignUpMutation | GQLSignInMutation>
+
+const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
+  const { data } = result
   // Check succesfull login
   if (!data?.generateCustomerToken?.token) return
 
@@ -50,3 +49,5 @@ export default async function onCompleteSignInUp(
 
   await awaitCustomerQuery
 }
+
+export default onCompleteSignInUp

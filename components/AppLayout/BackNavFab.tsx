@@ -15,14 +15,15 @@ const useStyles = makeStyles(
       top: 0,
       left: 0,
       [theme.breakpoints.down('sm')]: {
-        paddingTop: `calc(${theme.page.headerHeight.xs} / 2 + ${theme.page.vertical} - 22px)`,
+        paddingTop: `calc(${theme.page.headerInnerHeight.xs} / 2 + ${theme.page.vertical} - 22px)`,
       },
       [theme.breakpoints.up('md')]: {
         paddingTop: theme.page.vertical,
-        marginTop: `calc(${theme.page.headerHeight.sm} + ${theme.page.vertical} * 2 - ${theme.page.vertical})`,
+        marginTop: `calc(${theme.page.headerInnerHeight.sm} + ${theme.page.vertical} * 2 - ${theme.page.vertical})`,
       },
     },
     fabRoot: {
+      pointerEvents: 'all',
       [theme.breakpoints.down('sm')]: {
         height: 40,
         minWidth: 40,

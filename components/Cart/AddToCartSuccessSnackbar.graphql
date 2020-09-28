@@ -1,3 +1,0 @@
-fragment AddToCartSuccessSnackbar on ProductInterface {
-  name
-}

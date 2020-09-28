@@ -3,10 +3,5 @@
     "env": {
       "GRAPHCMS_BEARER": "@graphql_bearer"
     }
-  },
-  "functions": {
-    "pages/api/**/*.ts": {
-      "maxDuration": 60
-    }
   }
 }

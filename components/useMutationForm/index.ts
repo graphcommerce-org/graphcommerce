@@ -1,4 +1,10 @@
-import { FetchResult, MutationResult, useMutation } from '@apollo/client'
+import {
+  ApolloClient,
+  FetchResult,
+  MutationResult,
+  NormalizedCache,
+  useMutation,
+} from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import {
   DefinitionNode,
@@ -12,7 +18,7 @@ import {
   VariableDefinitionNode,
   TypeNode,
 } from 'graphql'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { UnpackNestedValue, UseFormOptions } from 'react-hook-form/dist/types/form'
 import { DeepPartial } from 'react-hook-form/dist/types/utils'
@@ -61,6 +67,20 @@ function fieldRequirements<T = { [index: string]: unknown }>(gql: DocumentNode) 
   return [variables, required] as const
 }
 
+export type OnCompleteFn<TData> = (
+  data: FetchResult<TData>,
+  client: ApolloClient<NormalizedCache>,
+) => void | Promise<void>
+
+export type BeforeSubmitFn<TVariables> = (variables: TVariables) => TVariables | Promise<TVariables>
+
+type UseMutationForm<TData, TVariables = { [index: string]: unknown }> = {
+  mutation: DocumentNode
+  values?: UnpackNestedValue<DeepPartial<TVariables>>
+  onBeforeSubmit?: BeforeSubmitFn<TVariables>
+  onComplete?: OnCompleteFn<TData>
+} & Omit<UseFormOptions<TVariables>, 'defaultValues'>
+
 /**
  * Combines useMutation with react-hook-form:
  *
@@ -72,16 +92,12 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   mutation,
   values,
   onComplete,
-  beforeSubmit,
+  onBeforeSubmit: beforeSubmit,
   ...useFormProps
-}: {
-  mutation: DocumentNode
-  values?: UnpackNestedValue<DeepPartial<TVariables>>
-  onComplete?: (data: MutationResult<TData>) => void | Promise<void>
-  beforeSubmit?: (variables: TVariables) => TVariables | Promise<TVariables>
-} & Omit<UseFormOptions<TVariables>, 'defaultValues'>) {
+}: UseMutationForm<TData, TVariables>) {
   const [defaultValues, required] = fieldRequirements<TVariables>(mutation)
   const [submit, result] = useMutation<TData, TVariables>(mutation, { errorPolicy: 'all' })
+  const [loading, setLoading] = useState<boolean>(false)
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { register, errors, handleSubmit, reset, watch, control } = useForm<TVariables>({
@@ -98,6 +114,7 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   }, [valuesJson, reset])
 
   const onSubmit = handleSubmit(async (formValues) => {
+    setLoading(true)
     let variables = { ...values } as TVariables
     if (beforeSubmit) variables = await beforeSubmit(variables)
 
@@ -123,10 +140,21 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
     // todo add field specific error handling to form fields.
 
     if (onComplete && queryResult.data)
-      await onComplete({ ...queryResult, loading: false, called: true, client: result.client })
+      await onComplete(queryResult, result.client as ApolloClient<NormalizedCache>)
+
+    setLoading(false)
   })
 
-  return { required, result, register, errors, onSubmit, watch, control }
+  return {
+    required,
+    register,
+    errors,
+    onSubmit,
+    watch,
+    control,
+    ...result,
+    loading: loading || result.loading,
+  }
 }
 
 export const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

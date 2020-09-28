@@ -6,7 +6,7 @@ import { UpdateItemQuantityDocument } from 'generated/apollo'
 import React, { useRef } from 'react'
 
 export default function UpdateItemQuantity(values: GQLUpdateItemQuantityMutationVariables) {
-  const { register, errors, onSubmit, required, result, watch } = useMutationForm<
+  const { register, errors, onSubmit, required, watch, loading } = useMutationForm<
     GQLUpdateItemQuantityMutation,
     GQLUpdateItemQuantityMutationVariables
   >({ mutation: UpdateItemQuantityDocument, values, mode: 'onChange' })
@@ -28,7 +28,7 @@ export default function UpdateItemQuantity(values: GQLUpdateItemQuantityMutation
         required={required.quantity}
         inputRef={ref}
         helperText={errors?.quantity?.message}
-        disabled={result.loading}
+        disabled={loading}
         {...(isTrash && {
           DownProps: {
             children: (

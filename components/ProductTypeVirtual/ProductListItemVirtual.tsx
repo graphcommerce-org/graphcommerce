@@ -1,10 +1,21 @@
+import AddToCartButton from 'components/Cart/AddToCartButton'
 import ProductListItem from 'components/Product/ProductListItem'
+import { AddVirtualProductsToCartDocument } from 'generated/apollo'
 import React from 'react'
-import AddVirtualProductToCart from './AddVirtualProductToCart'
 
 export default function ProductListItemVirtual(props: GQLProductListItemVirtualFragment) {
   const { sku } = props
   return (
-    <ProductListItem {...props}>{sku && <AddVirtualProductToCart sku={sku} />}</ProductListItem>
+    <ProductListItem {...props}>
+      {sku && (
+        <AddToCartButton<
+          GQLAddVirtualProductsToCartMutation,
+          GQLAddVirtualProductsToCartMutationVariables
+        >
+          mutation={AddVirtualProductsToCartDocument}
+          variables={{ sku }}
+        />
+      )}
+    </ProductListItem>
   )
 }

@@ -1,8 +1,23 @@
+import AddToCartButton from 'components/Cart/AddToCartButton'
 import ProductListItem from 'components/Product/ProductListItem'
+import { AddBundleProductToCartDocument } from 'generated/apollo'
 import React from 'react'
-import AddBundleProductToCart from './AddBundleProductToCart'
 
 export default function ProductListItemBundle(props: GQLProductListItemSimpleFragment) {
-  const { sku } = props
-  return <ProductListItem {...props}>{sku && <AddBundleProductToCart sku={sku} />}</ProductListItem>
+  const { sku, name } = props
+  return (
+    <ProductListItem {...props}>
+      {sku && (
+        <AddToCartButton<
+          GQLAddBundleProductToCartMutation,
+          GQLAddBundleProductToCartMutationVariables
+        >
+          mutation={AddBundleProductToCartDocument}
+          // todo: implement available bundle options.
+          variables={{ sku, bundleOptions: [] }}
+          name={name}
+        />
+      )}
+    </ProductListItem>
+  )
 }
