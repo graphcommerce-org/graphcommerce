@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core'
-import AddToCartSuccessSnackbar from 'components/Cart/AddToCartSuccessSnackbar'
 import useRequestCartId from 'components/Cart/useRequestCartId'
-import ErrorSnackbar from 'components/Snackbar/ErrorSnackbar'
+import ErrorSnackbarLoader from 'components/Snackbar/ErrorSnackbarLoader'
+import MessageSnackbarLoader from 'components/Snackbar/MessageSnackbarLoader'
 import { useMutationForm } from 'components/useMutationForm'
 import { AddDownloadableProductToCartDocument, useCustomerTokenQuery } from 'generated/apollo'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ type AddDownloadableProductToCartProps = Omit<
   GQLAddDownloadableProductToCartMutationVariables,
   'cartId'
 > &
-  GQLAddToCartSuccessSnackbarFragment
+  Pick<GQLProductInterface, 'name'>
 
 export default function AddDownloadableProductToCart(props: AddDownloadableProductToCartProps) {
   const { name, ...values } = props
@@ -40,12 +40,17 @@ export default function AddDownloadableProductToCart(props: AddDownloadableProdu
         Add to Cart
       </Button>
 
-      <ErrorSnackbar open={result.called && !result.loading && !!result.error?.message}>
-        {result.error?.message}
-      </ErrorSnackbar>
-      <AddToCartSuccessSnackbar
-        open={result.called && !result.loading && !result.error?.message}
-        name={name}
+      <ErrorSnackbarLoader
+        open={called && !loading && !!error?.message}
+        message={<>result.error?.message</>}
+      />
+      <MessageSnackbarLoader
+        open={called && !loading && !error?.message}
+        message={
+          <>
+            Added <em>&lsquo;{name ?? 'Product'}&rsquo;</em> to cart
+          </>
+        }
       />
     </form>
   )

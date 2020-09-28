@@ -1,18 +1,18 @@
 import { Button } from '@material-ui/core'
-import AddToCartSuccessSnackbar from 'components/Cart/AddToCartSuccessSnackbar'
 import useRequestCartId from 'components/Cart/useRequestCartId'
-import ErrorSnackbar from 'components/Snackbar/ErrorSnackbar'
+import ErrorSnackbarLoader from 'components/Snackbar/ErrorSnackbarLoader'
+import MessageSnackbarLoader from 'components/Snackbar/MessageSnackbarLoader'
 import { useMutationForm } from 'components/useMutationForm'
 import { AddSimpleProductToCartDocument, useCustomerTokenQuery } from 'generated/apollo'
 import Link from 'next/link'
 import React from 'react'
 
 type AddSimpleProductToCartProps = Omit<GQLAddSimpleProductToCartMutationVariables, 'cartId'> &
-  GQLAddToCartSuccessSnackbarFragment
+  Pick<GQLProductInterface, 'name'>
 
 export default function AddSimpleProductToCart(props: AddSimpleProductToCartProps) {
   const { name, ...values } = props
-  const { data: tokenQuery, loading: loadingToken } = useCustomerTokenQuery()
+  const { data: tokenQuery } = useCustomerTokenQuery()
   const requestCartId = useRequestCartId()
 
   const { onSubmit, called, loading, error } = useMutationForm<
@@ -34,16 +34,21 @@ export default function AddSimpleProductToCart(props: AddSimpleProductToCartProp
     </Link>
   ) : (
     <form onSubmit={onSubmit} noValidate>
-      <Button type='submit' disabled={loadingToken || loading} color='primary' variant='contained'>
+      <Button type='submit' disabled={loading} color='primary' variant='contained'>
         Add to Cart
       </Button>
 
-      <ErrorSnackbar open={result.called && !result.loading && !!result.error?.message}>
-        {result.error?.message}
-      </ErrorSnackbar>
-      <AddToCartSuccessSnackbar
-        open={result.called && !result.loading && !result.error?.message}
-        name={name}
+      <ErrorSnackbarLoader
+        open={called && !loading && !!error?.message}
+        message={<>result.error?.message</>}
+      />
+      <MessageSnackbarLoader
+        open={called && !loading && !error?.message}
+        message={
+          <>
+            Added <em>&lsquo;{name ?? 'Product'}&rsquo;</em> to cart
+          </>
+        }
       />
     </form>
   )
