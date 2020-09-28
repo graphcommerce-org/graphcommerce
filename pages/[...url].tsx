@@ -20,7 +20,6 @@ import ProductListItemConfigurable from 'components/ProductTypeConfigurable/Prod
 import ProductListItemDownloadable from 'components/ProductTypeDownloadable/ProductListItemDownloadable'
 import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
 import ProductListItemVirtual from 'components/ProductTypeVirtual/ProductListItemVirtual'
-import ScrollSnapSlider from 'components/ScrollSnapSlider'
 import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'components/ShopLayout'
 import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
@@ -59,17 +58,17 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             description={category.description}
             className={classes.description}
           />
-          <ScrollSnapSlider classes={{ container: classes.filters }}>
-            <CategoryChildren params={params} className={classes.filterItem}>
-              {category.children}
-            </CategoryChildren>
+          <CategoryChildren params={params} className={classes.filterItem}>
+            {category.children}
+          </CategoryChildren>
+          <div className={classes.filters}>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
               aggregations={filters.aggregations}
               filterTypeMap={filterTypeMap}
               className={classes.filterItem}
             />
-          </ScrollSnapSlider>
+          </div>
           <ProductListItems
             items={products.items}
             className={classes.items}

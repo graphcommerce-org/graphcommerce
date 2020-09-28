@@ -26,6 +26,7 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
 
   return (
     <ChipMenu
+      variant='outlined'
       selected={currentSort !== defaultSort}
       label='Sort by'
       {...filterMenuProps}

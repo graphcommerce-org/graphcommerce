@@ -6,13 +6,15 @@ import React from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../ChipMenu'
 
+export type FilterIn = SetRequired<Omit<GQLFilterEqualTypeInput, 'eq'>, 'in'>
+
 type FilterEqualTypeProps = NonNullable<
   NonNullable<GQLProductListFiltersFragment['aggregations']>[0]
 > &
   Omit<ChipMenuProps, 'selected'>
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
-  const { attribute_code, count, label, options, ...filterMenuProps } = props
+  const { attribute_code, count, label, options, ...chipProps } = props
   const { params } = useProductListParamsContext()
   const currentFilter = params.filters[attribute_code] as GQLFilterEqualTypeInput
 
@@ -33,8 +35,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   return (
     <ChipMenu
       variant='outlined'
-      key={attribute_code}
-      {...filterMenuProps}
+      {...chipProps}
       label={label}
       selected={activeLabels.length > 0}
       selectedLabel={activeLabels.length > 0 ? activeLabels.join(', ') : undefined}
@@ -43,8 +44,6 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
       {options?.map((option) => {
         const linkParams = cloneDeep(params)
         delete linkParams.currentPage
-
-        type FilterIn = SetRequired<Omit<GQLFilterEqualTypeInput, 'eq'>, 'in'>
 
         if (!linkParams.filters[attribute_code]?.in) linkParams.filters[attribute_code] = { in: [] }
         const filter: FilterIn = linkParams.filters[attribute_code]
@@ -62,8 +61,13 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
             button
             key={option?.value}
             dense
-            component={(chipProps) => (
-              <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
+            component={(categoryLinkProps) => (
+              <CategoryLink
+                {...categoryLinkProps}
+                {...linkParams}
+                color='inherit'
+                underline='none'
+              />
             )}
           >
             <ListItemIcon
