@@ -18,10 +18,8 @@ const useStyles = makeStyles(
   { name: 'ProductList' },
 )
 
-type ProductListRenderer = GQLTypeRenderer<
-  NonNullable<NonNullable<GQLProductListItemsFragment['items']>[0]>,
-  { filterTypeMap: FilterTypeMap }
->
+type Items = NonNullable<NonNullable<GQLProductListItemsFragment['items']>[0]>
+type ProductListRenderer = GQLTypeRenderer<Items, { filterTypeMap: FilterTypeMap }>
 
 type ProductListItemsParams = GQLProductListItemsFragment &
   UseStyles<typeof useStyles> &

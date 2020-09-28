@@ -5,7 +5,6 @@ import CategoryLink from 'components/Category/CategoryLink'
 import { vpCalc } from 'components/Theme'
 import { Router } from 'next/router'
 import React from 'react'
-import { SetOptional } from 'type-fest'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
