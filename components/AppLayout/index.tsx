@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       },
     },
     logoImg: {
-      height: theme.page.headerHeight.xs,
+      height: theme.page.headerInnerHeight.xs,
       display: 'block',
       width: 'auto',
       paddingBottom: vpCalc(4, 7), // todo(paales): should be removed when we have a proper logo
