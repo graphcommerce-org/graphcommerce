@@ -83,6 +83,7 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
               VirtualProduct: ProductListItemVirtual,
               DownloadableProduct: ProductListItemDownloadable,
               GroupedProduct: ProductListItem,
+              // @ts-expect-error GiftCardProduct is only available in Commerce
               GiftCardProduct: ProductListItem,
             }}
           />
