@@ -74,7 +74,7 @@
     "@babel/core": "^7.11.6",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@graphql-codegen/cli": "^1.17.8",
+    "@graphql-codegen/cli": "^1.17.10",
     "@graphql-codegen/fragment-matcher": "1.17.8",
     "@graphql-codegen/introspection": "1.17.8",
     "@graphql-codegen/schema-ast": "^1.17.8",
