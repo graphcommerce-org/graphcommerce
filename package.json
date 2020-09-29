@@ -81,7 +81,7 @@
     "@graphql-codegen/typescript": "1.17.9",
     "@graphql-codegen/typescript-document-nodes": "1.17.8",
     "@graphql-codegen/typescript-operations": "1.17.8",
-    "@graphql-codegen/typescript-react-apollo": "2.0.6",
+    "@graphql-codegen/typescript-react-apollo": "2.0.7",
     "@semantic-release/git": "^9.0.0",
     "@types/clone-deep": "^4.0.1",
     "@types/lodash": "^4.14.161",
