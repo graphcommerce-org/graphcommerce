@@ -21,7 +21,7 @@ export type PageWithShopLayout<T = Record<string, unknown>> = LayoutPage<
 > &
   TransitionPage<SetOptional<T>>
 
-const ShopLayout: PageWithShopLayout['Layout'] = ({ children, menu, urlResolver }) => {
+export default function ShopLayout({ children, menu, urlResolver }) {
   return (
     <ThemedProvider>
       <Head>
@@ -46,5 +46,3 @@ const ShopLayout: PageWithShopLayout['Layout'] = ({ children, menu, urlResolver 
     </ThemedProvider>
   )
 }
-
-export default ShopLayout
