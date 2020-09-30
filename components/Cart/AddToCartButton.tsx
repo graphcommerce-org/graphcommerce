@@ -44,7 +44,7 @@ export default function AddToCartButton<
 
       <ErrorSnackbarLoader
         open={called && !loading && !!error?.message}
-        message={<>${error?.message}</>}
+        message={<>{error?.message}</>}
       />
       <MessageSnackbarLoader
         open={called && !loading && !error?.message}
