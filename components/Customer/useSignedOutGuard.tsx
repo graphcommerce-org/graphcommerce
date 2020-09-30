@@ -13,7 +13,7 @@ export default function useSignedOutGuard() {
         router.back()
       } else {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push('/account')
+        router.replace('/account')
       }
     }
   }, [isValid, router])

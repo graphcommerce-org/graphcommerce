@@ -9,7 +9,7 @@ export default function useSignedInGuard() {
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    if (!isValid && router.pathname !== '/account/signin') router.push('/account/signin')
+    if (!isValid && router.pathname !== '/account/signin') router.replace('/account/signin?back=1')
   }, [isValid, router])
 
   return isValid
