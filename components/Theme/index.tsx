@@ -121,7 +121,7 @@ export const defaultTheme = createMuiTheme({
     fontFamily: ['Graphic', 'sans-serif'].join(', '),
     subtitle1: {},
     subtitle2: {},
-    fontSize: 15,
+    fontSize: 16,
     body1: { fontSize: vpCalc(15, 18) },
     h1: {
       fontSize: vpCalc(36, 74),
@@ -227,13 +227,10 @@ defaultTheme.overrides = {
     root: {
       backgroundColor: '#fff',
       '&:hover': { backgroundColor: '#efefef' },
+    },
+    extended: {
       fontWeight: 400,
       textTransform: 'none',
-    },
-  },
-  MuiBadge: {
-    badge: {
-      height: 21,
     },
   },
 }
