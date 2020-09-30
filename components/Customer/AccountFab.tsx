@@ -15,7 +15,7 @@ function CustomerFabContent({ customerToken }: GQLCustomerTokenQuery) {
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
-    <Link passHref href={requireAuth ? '/account/signin' : '/account'}>
+    <Link passHref href={requireAuth ? '/account/signin?back=1' : '/account'}>
       <IconButton aria-label='Account' color='inherit'>
         <Badge
           badgeContent={customerToken?.token ? 1 : 0}
