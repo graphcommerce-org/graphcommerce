@@ -33,7 +33,14 @@
             "Authorization": "{context.headers.authorization}"
           }
         }
-      }
+      },
+      "transforms": [
+        {
+          "cache": {
+            "field": "Query.storeConfig"
+          }
+        }
+      ]
     }
   ]
 }
