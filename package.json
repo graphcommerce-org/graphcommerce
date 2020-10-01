@@ -66,7 +66,7 @@
     "sitemap": "^6.3.2",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "type-fest": "^0.16.0",
+    "type-fest": "^0.17.0",
     "use-resize-observer": "^6.1.0"
   },
   "devDependencies": {
