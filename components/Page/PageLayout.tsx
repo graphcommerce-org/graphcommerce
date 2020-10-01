@@ -4,7 +4,7 @@ import { useStoreConfigQuery } from 'generated/apollo'
 import Head from 'next/head'
 import React from 'react'
 
-const PageLayout: PageLayoutFC<{ color?: string }> = ({ children, color }) => {
+const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColor }) => {
   const storeConfig = useStoreConfigQuery()
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
@@ -12,7 +12,7 @@ const PageLayout: PageLayoutFC<{ color?: string }> = ({ children, color }) => {
   return (
     <>
       <Head>
-        {color && <meta name='theme-color' content={color} />}
+        {themeColor && <meta name='theme-color' content={themeColor} />}
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
         <meta name='application-name' content={name} />
         <meta name='apple-mobile-web-app-capable' content='yes' />
