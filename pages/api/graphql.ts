@@ -1,6 +1,7 @@
+import { TypedDocumentNode } from '@apollo/client'
 import { ApolloServer } from 'apollo-server-micro'
 import * as queries from 'generated/documents'
-import { DocumentNode, print } from 'graphql'
+import { print } from 'graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { mesh } from 'node/meshSchema'
 
@@ -8,7 +9,7 @@ const tabs = Object.entries(queries)
   .filter(([name]) => name.endsWith('Document'))
   .map(([name, gql]) => ({
     name: name.replace('Document', ''),
-    query: print(gql as DocumentNode),
+    query: print(gql as TypedDocumentNode),
     endpoint: '/api/graphql',
   }))
   .filter(({ query }) => query.includes('@client') === false)

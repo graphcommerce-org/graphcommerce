@@ -7,10 +7,10 @@ type SignOutFormProps = Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noVali
 
 export default function SignOutForm(props: SignOutFormProps) {
   const router = useRouter()
-  const { onSubmit, loading, error } = useMutationForm<
-    GQLSignOutMutation,
-    GQLSignOutMutationVariables
-  >({ mutation: SignOutDocument, onComplete: () => router.back() })
+  const { onSubmit, loading, error } = useMutationForm({
+    mutation: SignOutDocument,
+    onComplete: () => router.back(),
+  })
 
   return (
     <form onSubmit={onSubmit} noValidate {...props}>

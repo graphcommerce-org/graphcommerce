@@ -7,10 +7,10 @@ type RemoveItemFromCartProps = GQLRemoveItemFromCartMutationVariables &
   React.HTMLAttributes<HTMLDivElement>
 
 export default function RemoveItemFromCart(values: RemoveItemFromCartProps) {
-  const { onSubmit, error, loading } = useMutationForm<
-    GQLRemoveItemFromCartMutation,
-    GQLRemoveItemFromCartMutationVariables
-  >({ mutation: RemoveItemFromCartDocument, values })
+  const { onSubmit, error, loading } = useMutationForm({
+    mutation: RemoveItemFromCartDocument,
+    values,
+  })
 
   return (
     <form noValidate onSubmit={onSubmit} className={values.className}>

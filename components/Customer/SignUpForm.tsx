@@ -31,7 +31,7 @@ export default function SignUpForm() {
   const client = useApolloClient()
   const { register, errors, onSubmit, required, watch, control, loading, error } = useMutationForm<
     GQLSignUpMutation,
-    GQLSignUpMutationVariables & { confirmPassword: string }
+    GQLSignUpMutationVariables & { confirmPassword?: string }
   >({ mutation: SignUpDocument, onComplete: onCompleteSignInUp })
 
   return (

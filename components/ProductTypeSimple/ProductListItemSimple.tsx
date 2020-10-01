@@ -8,10 +8,7 @@ export default function ProductListItemSimple(props: GQLProductListItemSimpleFra
   return (
     <ProductListItem {...props}>
       {sku && (
-        <AddToCartButton<
-          GQLAddSimpleProductToCartMutation,
-          GQLAddSimpleProductToCartMutationVariables
-        >
+        <AddToCartButton
           mutation={AddSimpleProductToCartDocument}
           variables={{ sku }}
           name={name}

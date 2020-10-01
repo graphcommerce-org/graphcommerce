@@ -9,10 +9,7 @@ export default function ProductListItemDownloadable(props: GQLProductListItemDow
   return (
     <ProductListItem {...props}>
       {sku && (
-        <AddToCartButton<
-          GQLAddDownloadableProductToCartMutation,
-          GQLAddDownloadableProductToCartMutationVariables
-        >
+        <AddToCartButton
           mutation={AddDownloadableProductToCartDocument}
           variables={{ sku }}
           name={name}

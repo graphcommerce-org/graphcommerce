@@ -1,4 +1,4 @@
-import { DocumentNode, useQuery } from '@apollo/client'
+import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
 import useRequestCartId from 'components/Cart/useRequestCartId'
 import ErrorSnackbarLoader from 'components/Snackbar/ErrorSnackbarLoader'
@@ -14,7 +14,7 @@ export default function AddToCartButton<
   TVariables = { cartId: string; [index: string]: unknown }
 >(
   props: Pick<GQLProductInterface, 'name'> & {
-    mutation: DocumentNode
+    mutation: TypedDocumentNode<TData, TVariables>
     variables: Omit<TVariables, 'cartId'>
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {

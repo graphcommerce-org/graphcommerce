@@ -37,10 +37,10 @@ const useStyles = makeStyles(
 export default function SignInForm() {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const { register, errors, onSubmit, required, loading, error } = useMutationForm<
-    GQLSignInMutation,
-    GQLSignInMutationVariables
-  >({ mutation: SignInDocument, onComplete: onCompleteSignInUp })
+  const { register, errors, onSubmit, required, loading, error } = useMutationForm({
+    mutation: SignInDocument,
+    onComplete: onCompleteSignInUp,
+  })
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 

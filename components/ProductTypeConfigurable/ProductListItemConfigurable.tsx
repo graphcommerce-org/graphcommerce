@@ -135,10 +135,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
         )
       })}
       {matchingVariants?.[0]?.product?.sku && configurableProduct.sku && (
-        <AddToCartButton<
-          GQLAddConfigurableProductToCartMutation,
-          GQLAddConfigurableProductToCartMutationVariables
-        >
+        <AddToCartButton
           mutation={AddConfigurableProductToCartDocument}
           variables={{
             parentSku: configurableProduct.sku,

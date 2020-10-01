@@ -7,15 +7,7 @@ export default function ProductListItemVirtual(props: GQLProductListItemVirtualF
   const { sku } = props
   return (
     <ProductListItem {...props}>
-      {sku && (
-        <AddToCartButton<
-          GQLAddVirtualProductsToCartMutation,
-          GQLAddVirtualProductsToCartMutationVariables
-        >
-          mutation={AddVirtualProductsToCartDocument}
-          variables={{ sku }}
-        />
-      )}
+      {sku && <AddToCartButton mutation={AddVirtualProductsToCartDocument} variables={{ sku }} />}
     </ProductListItem>
   )
 }

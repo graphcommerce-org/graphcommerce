@@ -8,10 +8,7 @@ export default function ProductListItemBundle(props: GQLProductListItemSimpleFra
   return (
     <ProductListItem {...props}>
       {sku && (
-        <AddToCartButton<
-          GQLAddBundleProductToCartMutation,
-          GQLAddBundleProductToCartMutationVariables
-        >
+        <AddToCartButton
           mutation={AddBundleProductToCartDocument}
           // todo: implement available bundle options.
           variables={{ sku, bundleOptions: [] }}
