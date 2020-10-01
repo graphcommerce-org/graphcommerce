@@ -27,6 +27,9 @@ const CartPage: PageComponent = () => {
             DownloadableCartItem: CartItem,
             SimpleCartItem: CartItem,
             VirtualCartItem: CartItem,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore GiftCardProduct is only available in Commerce
+            GiftCardCartItem: CartITem,
           }}
         />
       </Container>
