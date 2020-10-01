@@ -15,7 +15,7 @@ type PageComponent = PageFC<GetCmsPageProps, LayoutHeaderProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
 
-const PageWithLayout: PageComponent = ({ cmsPage }) => {
+const CmsPage: PageComponent = ({ cmsPage }) => {
   const { marginTop } = useHeaderSpacing()
 
   if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
@@ -32,9 +32,9 @@ const PageWithLayout: PageComponent = ({ cmsPage }) => {
   )
 }
 
-PageWithLayout.Layout = LayoutHeader
+CmsPage.Layout = LayoutHeader
 
-export default PageWithLayout
+export default CmsPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async () => {
