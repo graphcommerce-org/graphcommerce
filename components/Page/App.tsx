@@ -15,9 +15,13 @@ export default function App({ Component, pageProps }: AppProps) {
     <ApolloProvider client={apolloClient(apolloState)}>
       <MotionConfig features={[AnimationFeature, ExitFeature, AnimateLayoutFeature]}>
         <PageTransition pageTransition={Layout?.pageTransition}>
-          <Layout {...layoutPageProps}>
+          {Layout ? (
+            <Layout {...layoutPageProps}>
+              <Component {...layoutPageProps} />
+            </Layout>
+          ) : (
             <Component {...layoutPageProps} />
-          </Layout>
+          )}
         </PageTransition>
       </MotionConfig>
     </ApolloProvider>
