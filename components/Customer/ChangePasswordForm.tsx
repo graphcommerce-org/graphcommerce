@@ -7,7 +7,7 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { useMutationForm } from 'components/useMutationForm'
-import { ChangePasswordDocument } from 'generated/apollo'
+import { ChangePasswordDocument } from 'generated/documents'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -27,6 +27,7 @@ export default function ChangePasswordForm() {
     GQLChangePasswordMutation,
     GQLChangePasswordMutationVariables & { confirmPassword: string }
   >({ mutation: ChangePasswordDocument })
+
   const { register, errors, onSubmit, required, watch, loading, error, called, data } = mutationForm
 
   if (called && data) {

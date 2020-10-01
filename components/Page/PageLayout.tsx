@@ -1,11 +1,12 @@
+import { useQuery } from '@apollo/client'
 import { PageLayoutFC } from 'components/Page/types'
 import PageLoadIndicator from 'components/PageLoadIndicator'
-import { useStoreConfigQuery } from 'generated/apollo'
+import { StoreConfigDocument } from 'generated/documents'
 import Head from 'next/head'
 import React from 'react'
 
 const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColor }) => {
-  const storeConfig = useStoreConfigQuery()
+  const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
   // todo: update with https://github.com/shadowwalker/next-pwa#step-3-add-head-meta-example

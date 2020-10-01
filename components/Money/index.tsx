@@ -1,8 +1,9 @@
-import { useStoreConfigQuery } from 'generated/apollo'
+import { useQuery } from '@apollo/client'
+import { StoreConfigDocument } from 'generated/documents'
 import React, { useMemo } from 'react'
 
 export default function Money({ currency, value }: GQLMoneyFragment) {
-  const { data: config } = useStoreConfigQuery()
+  const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale
 
   const numberFormatter = useMemo(() => {

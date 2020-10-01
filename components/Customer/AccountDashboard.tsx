@@ -1,10 +1,11 @@
+import { useQuery } from '@apollo/client'
 import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
-import { useCustomerQuery } from 'generated/apollo'
+import { CustomerDocument } from 'generated/documents'
 import React from 'react'
 import SignOutForm from './SignOutForm'
 
 export default function AccountDashboard() {
-  const { data } = useCustomerQuery()
+  const { data } = useQuery(CustomerDocument)
   const asdf = useHeaderSpacing()
   return (
     <div className={asdf.marginTop}>

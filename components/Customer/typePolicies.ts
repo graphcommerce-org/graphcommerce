@@ -1,5 +1,5 @@
 import { TypePolicies, FieldPolicy, FieldReadFunction } from '@apollo/client'
-import { CustomerTokenDocument, IsEmailAvailableDocument } from 'generated/apollo'
+import { CustomerTokenDocument, IsEmailAvailableDocument } from 'generated/documents'
 
 const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {
@@ -30,13 +30,13 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
     if (!options.isReference(incoming)) return incoming
 
     const write = () => {
-      options.cache.writeQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
+      options.cache.writeQuery({
         query: CustomerTokenDocument,
         broadcast: true,
         data: {
           customerToken: {
             __typename: 'CustomerToken',
-            token: options.readField('token', incoming),
+            token: options.readField('token', incoming) as string,
             createdAt: new Date().toUTCString(),
             valid: true,
           },
@@ -54,7 +54,7 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
 const createCustomer: FieldPolicy<GQLMutation['createCustomer']> = {
   merge(_existing, incoming, options) {
     if (incoming?.customer.email) {
-      options.cache.writeQuery<GQLIsEmailAvailableQuery, GQLIsEmailAvailableQueryVariables>({
+      options.cache.writeQuery({
         query: IsEmailAvailableDocument,
         variables: { email: incoming?.customer.email },
         data: { isEmailAvailable: { is_email_available: false } },

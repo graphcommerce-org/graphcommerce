@@ -2,7 +2,7 @@ import { debounce } from '@material-ui/core'
 import ClearIcon from '@material-ui/icons/Delete'
 import TextInputNumber from 'components/TextInputNumber'
 import { useMutationForm } from 'components/useMutationForm'
-import { UpdateItemQuantityDocument } from 'generated/apollo'
+import { UpdateItemQuantityDocument } from 'generated/documents'
 import React, { useRef } from 'react'
 
 export default function UpdateItemQuantity(values: GQLUpdateItemQuantityMutationVariables) {

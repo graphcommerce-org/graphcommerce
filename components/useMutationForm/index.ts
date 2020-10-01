@@ -1,10 +1,4 @@
-import {
-  ApolloClient,
-  FetchResult,
-  MutationResult,
-  NormalizedCache,
-  useMutation,
-} from '@apollo/client'
+import { ApolloClient, FetchResult, NormalizedCache, useMutation } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import {
   DefinitionNode,

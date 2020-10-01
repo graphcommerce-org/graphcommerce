@@ -1,6 +1,6 @@
 import AddToCartButton from 'components/Cart/AddToCartButton'
 import ProductListItem from 'components/Product/ProductListItem'
-import { AddSimpleProductToCartDocument } from 'generated/apollo'
+import { AddSimpleProductToCartDocument } from 'generated/documents'
 import React from 'react'
 
 export default function ProductListItemSimple(props: GQLProductListItemSimpleFragment) {

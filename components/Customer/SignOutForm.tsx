@@ -1,6 +1,6 @@
 import { Button, FormControl, FormHelperText } from '@material-ui/core'
 import { useMutationForm } from 'components/useMutationForm'
-import { SignOutDocument } from 'generated/apollo'
+import { SignOutDocument } from 'generated/documents'
 import { useRouter } from 'next/router'
 
 type SignOutFormProps = Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>

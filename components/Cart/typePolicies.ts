@@ -1,5 +1,5 @@
 import { FieldPolicy, TypePolicies } from '@apollo/client'
-import { CartDocument } from 'generated/apollo'
+import { CartDocument } from 'generated/documents'
 
 /**
  * When an empty cart is created, we store the cartId separately
@@ -9,7 +9,7 @@ const createEmptyCart: FieldPolicy<GQLMutation['createEmptyCart']> = {
     if (!cartId) return cartId
 
     // When creating a new cart we create an empty cart for the customer
-    options.cache.writeQuery<GQLCartQuery, GQLCartQueryVariables>({
+    options.cache.writeQuery({
       query: CartDocument,
       broadcast: true,
       data: {

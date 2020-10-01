@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server-micro'
-import * as queries from 'generated/apollo'
+import * as queries from 'generated/documents'
 import { DocumentNode, print } from 'graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { mesh } from 'node/meshSchema'

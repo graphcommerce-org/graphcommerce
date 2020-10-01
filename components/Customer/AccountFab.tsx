@@ -1,6 +1,7 @@
+import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/PersonOutline'
-import { useCustomerTokenQuery } from 'generated/apollo'
+import { CustomerTokenDocument } from 'generated/documents'
 import Link from 'next/link'
 import React from 'react'
 
@@ -31,7 +32,7 @@ function CustomerFabContent({ customerToken }: GQLCustomerTokenQuery) {
 }
 
 export default function CustomerFab() {
-  const { data } = useCustomerTokenQuery()
+  const { data } = useQuery(CustomerTokenDocument)
 
   return (
     <NoSsr fallback={<CustomerFabContent />}>

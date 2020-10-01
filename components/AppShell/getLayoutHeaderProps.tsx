@@ -1,7 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { LayoutHeaderDocument } from 'generated/apollo'
+import { LayoutHeaderDocument } from 'generated/documents'
 
 export default async function getLayoutHeaderProps(client: ApolloClient<NormalizedCacheObject>) {
-  const menu = client.query<GQLLayoutHeaderQuery>({ query: LayoutHeaderDocument })
-  return (await menu).data
+  return (await client.query({ query: LayoutHeaderDocument })).data
 }

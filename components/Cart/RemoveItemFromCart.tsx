@@ -1,7 +1,7 @@
 import { Fab } from '@material-ui/core'
 import DeleteOutlineOutlined from '@material-ui/icons/DeleteOutlineOutlined'
 import { useMutationForm } from 'components/useMutationForm'
-import { RemoveItemFromCartDocument } from 'generated/apollo'
+import { RemoveItemFromCartDocument } from 'generated/documents'
 
 type RemoveItemFromCartProps = GQLRemoveItemFromCartMutationVariables &
   React.HTMLAttributes<HTMLDivElement>

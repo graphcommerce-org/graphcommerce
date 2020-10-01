@@ -11,7 +11,7 @@ import {
   FormControl,
 } from '@material-ui/core'
 import { useMutationForm, emailPattern } from 'components/useMutationForm'
-import { IsEmailAvailableDocument, SignUpDocument } from 'generated/apollo'
+import { IsEmailAvailableDocument, SignUpDocument } from 'generated/documents'
 import { Controller } from 'react-hook-form'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -48,10 +48,10 @@ export default function SignUpForm() {
           required: required.email,
           pattern: { value: emailPattern, message: 'Invalid email address' },
           validate: async (email) => {
-            const { data } = await client.query<
-              GQLIsEmailAvailableQuery,
-              GQLIsEmailAvailableQueryVariables
-            >({ query: IsEmailAvailableDocument, variables: { email } })
+            const { data } = await client.query({
+              query: IsEmailAvailableDocument,
+              variables: { email },
+            })
 
             return (
               Boolean(data?.isEmailAvailable?.is_email_available) ||

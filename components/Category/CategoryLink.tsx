@@ -1,6 +1,5 @@
 import { Link, LinkProps } from '@material-ui/core'
 import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
-import { useStoreConfigQuery } from 'generated/apollo'
 import NextLink from 'next/link'
 import Router from 'next/router'
 import React, { PropsWithChildren } from 'react'
