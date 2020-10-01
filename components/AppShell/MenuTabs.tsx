@@ -38,7 +38,7 @@ const useTabStyles = makeStyles(
   { name: 'DesktopMenuTab' },
 )
 
-export type MenuTabsProps = GQLAppShellQuery &
+export type MenuTabsProps = GQLLayoutHeaderQuery &
   GQLResolveUrlQuery &
   Omit<TabsProps<'menu'>, 'component' | 'value' | 'children'> & {
     tabProps?: Omit<TabProps<'a'>, 'label' | 'component' | 'value'>

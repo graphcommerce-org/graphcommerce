@@ -56,7 +56,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = GQLAppShellQuery & GQLResolveUrlQuery
+export type MenuFabProps = GQLLayoutHeaderQuery & GQLResolveUrlQuery
 
 export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
   const classes = useStyles()
