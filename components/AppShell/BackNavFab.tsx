@@ -1,6 +1,6 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
-import { UseStyles } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
 import Link from 'next/link'
 import React from 'react'
 

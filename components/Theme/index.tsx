@@ -1,26 +1,9 @@
-import { createMuiTheme, StyleRules, ThemeProvider } from '@material-ui/core'
-import { CreateCSSProperties } from '@material-ui/styles'
+import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+import responsiveVal from 'components/Styles/responsiveVal'
 import Head from 'next/head'
 import React from 'react'
 import fonts from './fonts'
 import shadows from './shadows'
-
-export type UseStyles<T extends (...args: never[]) => unknown> = {
-  classes?: Partial<ReturnType<T>>
-}
-
-export const vpCalc = (min: number, max: number, axis: 'vw' | 'vh' = 'vw'): string => {
-  const round = (x: number, n: number): number => Math.round(x * 10 ** n) / 10 ** n
-
-  const minBreakpoint = axis === 'vw' ? 320 : 560
-  const maxBreakpoint = axis === 'vw' ? 1280 : 720
-  const growth = (max - min) / (maxBreakpoint - minBreakpoint)
-  const base = round(min - growth * minBreakpoint, 2)
-  const vsize = round(growth * 100, 2)
-
-  const calc = `(${base}px + ${vsize}${axis})`
-  return `max(${min}px, min(${calc}, ${max}px))`
-}
 
 declare module '@material-ui/core/styles/createPalette' {
   interface PaletteOptions {
@@ -122,9 +105,9 @@ export const defaultTheme = createMuiTheme({
     subtitle1: {},
     subtitle2: {},
     fontSize: 16,
-    body1: { fontSize: vpCalc(15, 18) },
+    body1: { fontSize: responsiveVal(15, 18) },
     h1: {
-      fontSize: vpCalc(36, 74),
+      fontSize: responsiveVal(36, 74),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       marginTop: '0.24em',
@@ -132,24 +115,24 @@ export const defaultTheme = createMuiTheme({
       lineHeight: 1.16,
     },
     h2: {
-      fontSize: vpCalc(24, 48),
+      fontSize: responsiveVal(24, 48),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.42,
     },
     h3: {
-      fontSize: vpCalc(22, 30),
+      fontSize: responsiveVal(22, 30),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h4: {
-      fontSize: vpCalc(18, 25),
+      fontSize: responsiveVal(18, 25),
       fontWeight: 500,
       letterSpacing: '-0.0375em',
     },
     h5: {
-      fontSize: vpCalc(15, 22),
+      fontSize: responsiveVal(15, 22),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
@@ -158,19 +141,19 @@ export const defaultTheme = createMuiTheme({
     fontWeightBold: 600,
   },
   spacings: {
-    xxs: vpCalc(5, 16),
-    xs: vpCalc(6, 20),
-    sm: vpCalc(10, 30),
-    md: vpCalc(16, 50),
-    lg: vpCalc(24, 80),
-    xl: vpCalc(48, 160),
-    xxl: vpCalc(104, 250),
+    xxs: responsiveVal(5, 16),
+    xs: responsiveVal(6, 20),
+    sm: responsiveVal(10, 30),
+    md: responsiveVal(16, 50),
+    lg: responsiveVal(24, 80),
+    xl: responsiveVal(48, 160),
+    xxl: responsiveVal(104, 250),
   },
   page: {
-    horizontal: vpCalc(15, 40),
-    vertical: vpCalc(15, 40),
+    horizontal: responsiveVal(15, 40),
+    vertical: responsiveVal(15, 40),
     headerInnerHeight: {
-      xs: vpCalc(21, 33),
+      xs: responsiveVal(21, 33),
       sm: `48px`,
     },
   },
@@ -244,6 +227,7 @@ const ThemedProvider: React.FC = ({ children }) => (
           <link key={font} rel='preload' href={`/fonts/${font}.woff2`} as='font' crossOrigin='' />
         ))}
     </Head>
+    <CssBaseline />
     {children}
   </ThemeProvider>
 )

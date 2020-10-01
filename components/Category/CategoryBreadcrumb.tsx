@@ -1,5 +1,5 @@
 import { BreadcrumbsProps } from '@material-ui/core'
-import BackNavFab from 'components/AppLayout/BackNavFab'
+import BackNavFab from 'components/AppShell/BackNavFab'
 import React from 'react'
 
 type CategoryBreadcrumbProps = GQLCategoryBreadcrumbFragment & BreadcrumbsProps

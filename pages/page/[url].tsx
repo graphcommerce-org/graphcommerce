@@ -1,17 +1,21 @@
-import getAppShellProps from 'components/AppLayout/getAppShellProps'
-import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
+import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
+import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import CmsPageContent from 'components/Cms/CmsPageContent'
 import CmsPageMeta from 'components/Cms/CmsPageMeta'
 import getCmsPageProps, { GetCmsPageProps } from 'components/Cms/getCmsPageProps'
-import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'components/ShopLayout'
-import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
+import getUrlResolveProps from 'components/Page/getUrlResolveProps'
+import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
-import { GetStaticProps, GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
 
-const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage }) => {
+type PageComponent = PageFC<GetCmsPageProps, LayoutHeaderProps>
+type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
+type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
+
+const PageWithLayout: PageComponent = ({ cmsPage }) => {
   const { marginTop } = useHeaderSpacing()
 
   if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
@@ -28,22 +32,19 @@ const PageWithLayout: PageWithShopLayout<GetCmsPageProps> = ({ cmsPage }) => {
   )
 }
 
-PageWithLayout.Layout = ShopLayout
+PageWithLayout.Layout = LayoutHeader
 
 export default PageWithLayout
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetPageStaticPaths = async () => {
   return {
     paths: [{ params: { url: 'home' } }],
     fallback: true,
   }
 }
 
-export const getStaticProps: GetStaticProps<
-  ShopLayoutProps & GetCmsPageProps,
-  { url: string }
-> = async (ctx: { params: { url: string } }) => {
+export const getStaticProps: GetPageStaticProps = async (ctx: { params: { url: string } }) => {
   const client = apolloClient()
   const staticClient = apolloClient()
 
@@ -53,12 +54,12 @@ export const getStaticProps: GetStaticProps<
     (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
     staticClient,
   )
-  const navigation = getAppShellProps(staticClient)
+  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   return {
     props: {
       ...(await urlResolve),
-      ...(await navigation),
+      ...(await layoutHeader),
       ...(await cmsPageProps),
       apolloState: client.cache.extract(),
     },

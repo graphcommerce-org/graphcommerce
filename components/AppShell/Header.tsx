@@ -4,7 +4,8 @@ import clsx from 'clsx'
 import CartFab from 'components/Cart/CartFab'
 import CustomerFab from 'components/Customer/AccountFab'
 import SearchButton from 'components/Search/SearchButton'
-import { UseStyles, vpCalc } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
+import responsiveVal from 'components/Styles/responsiveVal'
 import Link from 'next/link'
 import React from 'react'
 import MenuFab from './MenuFab'
@@ -35,7 +36,7 @@ const useStyles = makeStyles(
       height: theme.page.headerInnerHeight.xs,
       display: 'block',
       width: 'auto',
-      paddingBottom: vpCalc(4, 7), // todo(paales): should be removed when we have a proper logo
+      paddingBottom: responsiveVal(4, 7), // todo(paales): should be removed when we have a proper logo
       [theme.breakpoints.down('sm')]: {},
       [theme.breakpoints.up('md')]: {},
     },
@@ -58,7 +59,7 @@ const useStyles = makeStyles(
         alignItems: 'center',
         marginLeft: `${theme.spacings.sm}`,
         '& > *': {
-          marginLeft: vpCalc(0, 20),
+          marginLeft: responsiveVal(0, 20),
         },
         '& :first-child': {
           marginLeft: 0,
@@ -100,12 +101,12 @@ const useStyles = makeStyles(
   { name: 'AppLayout' },
 )
 
-type HeaderProps = GQLAppShellQuery &
+type HeaderProps = GQLLayoutHeaderQuery &
   GQLResolveUrlQuery &
   JSX.IntrinsicElements['header'] &
   UseStyles<typeof useStyles>
 
-export default function AppLayout(props: HeaderProps) {
+export default function Header(props: HeaderProps) {
   const classes = useStyles(props)
   const { menu, urlResolver, ...headerProps } = props
 

@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
-import getAppShellProps from 'components/AppLayout/getAppShellProps'
-import CategoryBreadcrumb from 'components/Category/CategoryBreadcrumb'
+import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import CategoryChildren from 'components/Category/CategoryChildren'
 import CategoryDescription from 'components/Category/CategoryDescription'
 import CategoryMeta from 'components/Category/CategoryMeta'
@@ -10,6 +10,8 @@ import getCategoryPageProps, {
 } from 'components/Category/getCategoryPageProps'
 import getCategoryStaticPaths from 'components/Category/getCategoryStaticPaths'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
+import getUrlResolveProps from 'components/Page/getUrlResolveProps'
+import { PageStaticPropsFn, PageFC, PageStaticPathsFn } from 'components/Page/types'
 import ProductListFilters from 'components/Product/ProductListFilters'
 import ProductListItem from 'components/Product/ProductListItem'
 import ProductListItems from 'components/Product/ProductListItems'
@@ -20,15 +22,16 @@ import ProductListItemConfigurable from 'components/ProductTypeConfigurable/Prod
 import ProductListItemDownloadable from 'components/ProductTypeDownloadable/ProductListItemDownloadable'
 import ProductListItemSimple from 'components/ProductTypeSimple/ProductListItemSimple'
 import ProductListItemVirtual from 'components/ProductTypeVirtual/ProductListItemVirtual'
-import ShopLayout, { PageWithShopLayout, ShopLayoutProps } from 'components/ShopLayout'
-import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
-import { GetStaticProps, GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
 
-const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
+type PageComponent = PageFC<GetCategoryPageProps, LayoutHeaderProps>
+type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
+type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
+
+const CategoryPage: PageComponent = (props) => {
   const classes = useCategoryPageStyles(props)
   const { categories, products, filters, params, filterTypeMap } = props
 
@@ -58,9 +61,11 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
             description={category.description}
             className={classes.description}
           />
-          <CategoryChildren params={params} className={classes.filterItem}>
-            {category.children}
-          </CategoryChildren>
+          <div>
+            <CategoryChildren params={params} className={classes.filterItem}>
+              {category.children}
+            </CategoryChildren>
+          </div>
           <div className={classes.filters}>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
@@ -94,24 +99,20 @@ const CategoryPage: PageWithShopLayout<GetCategoryPageProps> = (props) => {
   return (
     <>
       <CategoryMeta {...category} />
-      <CategoryBreadcrumb breadcrumbs={category.breadcrumbs} className={classes.breadcrumb} />
       {content}
     </>
   )
 }
-CategoryPage.Layout = ShopLayout
+CategoryPage.Layout = LayoutHeader
 
 export default CategoryPage
 
-export const getStaticPaths: GetStaticPaths<{ url: string[] }> = () => {
+export const getStaticPaths: GetPageStaticPaths = () => {
   const client = apolloClient()
   return getCategoryStaticPaths(client)
 }
 
-export const getStaticProps: GetStaticProps<
-  ShopLayoutProps & GetCategoryPageProps,
-  { url: [string] }
-> = async (ctx) => {
+export const getStaticProps: GetPageStaticProps = async (ctx) => {
   if (!ctx.params) throw new Error('No params')
 
   const queryIndex = ctx.params.url.findIndex((slug) => slug === 'q')
@@ -128,12 +129,12 @@ export const getStaticProps: GetStaticProps<
     { urlParams: ctx.params.url.slice(qIndex + 1), urlResolve, url },
     staticClient,
   )
-  const navigation = getAppShellProps(staticClient)
+  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   return {
     props: {
       ...(await urlResolve),
-      ...(await navigation),
+      ...(await layoutHeader),
       ...(await categoryPage),
       apolloState: client.cache.extract(),
     },

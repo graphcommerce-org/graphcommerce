@@ -11,7 +11,7 @@ import {
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
-import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
+import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'

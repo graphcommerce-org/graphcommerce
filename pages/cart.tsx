@@ -1,17 +1,19 @@
 import { Container } from '@material-ui/core'
-import getAppShellProps from 'components/AppLayout/getAppShellProps'
-import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
+import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
+import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import Cart from 'components/Cart/Cart'
 import CartItem from 'components/Cart/CartItem'
+import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
-import overlay from 'components/PageTransition/overlay'
-import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
-import { GetStaticProps } from 'next'
 import React from 'react'
 
-const CartPage: PageWithShopLayout = () => {
+type PageComponent = PageFC<unknown, LayoutHeaderProps>
+type GetPageStaticProps = PageStaticPropsFn<PageComponent>
+
+const CartPage: PageComponent = () => {
   const { marginTop } = useHeaderSpacing()
 
   return (
@@ -32,21 +34,20 @@ const CartPage: PageWithShopLayout = () => {
   )
 }
 
-CartPage.Layout = ShopLayout
-CartPage.pageTransition = overlay
+CartPage.Layout = LayoutHeader
 
 export default CartPage
 
-export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
+export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigation = getAppShellProps(staticClient)
+  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   await config
   return {
     props: {
-      ...(await navigation),
+      ...(await layoutHeader),
       apolloState: client.cache.extract(),
     },
   }

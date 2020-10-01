@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core'
 import Money from 'components/Money'
 import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
-import { vpCalc } from 'components/Theme'
+import responsiveVal from 'components/Styles/responsiveVal'
 import React from 'react'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     productImg: {
       gridColumn: 1,
-      width: vpCalc(100, 150),
+      width: responsiveVal(100, 150),
       height: 'auto',
       backgroundColor: theme.palette.background.paper,
       objectFit: 'contain',

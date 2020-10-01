@@ -10,7 +10,7 @@ import {
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import clsx from 'clsx'
-import { UseStyles } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
 import { useRef, RefObject, useState, useEffect, ChangeEvent, useCallback } from 'react'
 
 const useStyles = makeStyles((theme: Theme) =>

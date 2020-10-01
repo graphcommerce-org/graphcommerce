@@ -1,7 +1,8 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import clsx from 'clsx'
 import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
-import { vpCalc, UseStyles } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
+import responsiveVal from 'components/Styles/responsiveVal'
 import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { useProductLink } from './ProductLink'
@@ -22,7 +23,7 @@ export const useProductListItemStyles = makeStyles(
       display: 'block',
       position: 'relative',
       marginBottom: '50px',
-      height: vpCalc(120, 200),
+      height: responsiveVal(120, 200),
       '&::before': {
         content: '""',
         height: '100%',

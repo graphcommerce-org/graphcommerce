@@ -2,7 +2,7 @@ import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu } from '@material-
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 import CategoryLink from 'components/Category/CategoryLink'
-import { vpCalc } from 'components/Theme'
+import responsiveVal from 'components/Styles/responsiveVal'
 import { Router } from 'next/router'
 import React from 'react'
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     menu: {
       backgroundColor: theme.palette.tertiary.main,
       color: theme.palette.tertiary.contrastText,
-      minWidth: vpCalc(200, 280),
+      minWidth: responsiveVal(200, 280),
     },
     menuClose: {
       marginLeft: 16,

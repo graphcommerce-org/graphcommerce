@@ -1,17 +1,19 @@
 import { Container, Paper, DialogTitle, Typography, DialogContent } from '@material-ui/core'
-import getAppShellProps from 'components/AppLayout/getAppShellProps'
-import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
+import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
+import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import SignUpForm from 'components/Customer/SignUpForm'
 import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
+import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
-import overlay from 'components/PageTransition/overlay'
-import ShopLayout, { ShopLayoutProps, PageWithShopLayout } from 'components/ShopLayout'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
-import { GetStaticProps } from 'next'
 import React from 'react'
 
-const AccountSignUpPage: PageWithShopLayout = () => {
+type PageComponent = PageFC<unknown, LayoutHeaderProps>
+type GetPageStaticProps = PageStaticPropsFn<PageComponent>
+
+const AccountSignUpPage: PageComponent = () => {
   const signedOut = useSignedOutGuard()
   const { marginTop } = useHeaderSpacing()
 
@@ -41,21 +43,20 @@ const AccountSignUpPage: PageWithShopLayout = () => {
   )
 }
 
-AccountSignUpPage.Layout = ShopLayout
-AccountSignUpPage.pageTransition = overlay
+AccountSignUpPage.Layout = LayoutHeader
 
 export default AccountSignUpPage
 
-export const getStaticProps: GetStaticProps<ShopLayoutProps> = async () => {
+export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
   const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const navigation = getAppShellProps(staticClient)
+  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   await config
   return {
     props: {
-      ...(await navigation),
+      ...(await layoutHeader),
       apolloState: client.cache.extract(),
     },
   }

@@ -3,14 +3,14 @@ import RemoveCircle from '@material-ui/icons/Cancel'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
-import { vpCalc } from 'components/Theme'
+import responsiveVal from 'components/Styles/responsiveVal'
 import React, { useState, PropsWithChildren } from 'react'
 
 const useChipMenuStyles = makeStyles(
   {
     chip: {},
     menu: {
-      minWidth: vpCalc(200, 280),
+      minWidth: responsiveVal(200, 280),
     },
   },
   { name: 'ChipMenu' },

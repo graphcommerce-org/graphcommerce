@@ -1,6 +1,7 @@
 query StoreConfig {
   storeConfig {
     id
+    store_name
 
     locale
     base_currency_code

@@ -1,7 +1,8 @@
 import { makeStyles, Grow, Fab } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
-import { vpCalc, UseStyles } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
+import responsiveVal from 'components/Styles/responsiveVal'
 import React, { ReactNode, useEffect, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useResizeObserver from 'use-resize-observer'
@@ -35,20 +36,20 @@ const useStyles = makeStyles(
       overflowY: `hidden`,
     }),
     prevFab: {
-      width: vpCalc(40, 60),
-      height: vpCalc(40, 60),
+      width: responsiveVal(40, 60),
+      height: responsiveVal(40, 60),
       willChange: 'opacity, transform',
       position: 'absolute',
       left: '0',
-      top: `calc(50% - (${vpCalc(40, 60)} / 2))`,
+      top: `calc(50% - (${responsiveVal(40, 60)} / 2))`,
     },
     nextFab: {
-      width: vpCalc(40, 60),
-      height: vpCalc(40, 60),
+      width: responsiveVal(40, 60),
+      height: responsiveVal(40, 60),
       willChange: 'opacity, transform',
       position: 'absolute',
       right: '0',
-      top: `calc(50% - (${vpCalc(40, 60)} / 2))`,
+      top: `calc(50% - (${responsiveVal(40, 60)} / 2))`,
     },
   },
   { name: 'ScrollSnapSlider' },

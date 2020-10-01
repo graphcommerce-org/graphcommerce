@@ -1,4 +1,4 @@
-import useHeaderSpacing from 'components/AppLayout/useHeaderSpacing'
+import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import { useCustomerQuery } from 'generated/apollo'
 import React from 'react'
 import SignOutForm from './SignOutForm'

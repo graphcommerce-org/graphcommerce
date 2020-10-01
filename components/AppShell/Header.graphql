@@ -1,4 +1,4 @@
-query AppShell {
+query LayoutHeader {
   menu: categories {
     items {
       ...CategoryChildren
