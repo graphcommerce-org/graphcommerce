@@ -4217,7 +4217,7 @@ browserslist@4.13.0:
     escalade "^3.0.1"
     node-releases "^1.1.58"
 
-browserslist@^4.12.0, browserslist@^4.8.5:
+browserslist@^4.12.0, browserslist@^4.14.3, browserslist@^4.8.5:
   version "4.14.5"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.14.5.tgz#1c751461a102ddc60e40993639b709be7f2c4015"
   integrity sha512-Z+vsCZIvCBvqLoYkBFTwEYH3v5MCQbsAjp50ERycpOjnPmolg1Gjy4+KaWWpm8QOJt9GHkhdqAl14NpCX73CWA==
@@ -5525,7 +5525,7 @@ debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
-debuglog@*, debuglog@^1.0.1:
+debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
   integrity sha1-qiT/uaw9+aI1GDfPstJ5NgzXhJI=
@@ -6014,10 +6014,10 @@ enhanced-resolve@^4.3.0:
     memory-fs "^0.5.0"
     tapable "^1.0.0"
 
-enhanced-resolve@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.0.0.tgz#4737e6ebd4f2fd13fe23f4cec9d02146afc2c527"
-  integrity sha512-6F037vvK16tgLlRgUx6ZEZISMysNvnnk09SILFrx3bNa1UsSLpIXFzWOmtiDxf1ISPAG6/wHBI61PEkeuTLVNA==
+enhanced-resolve@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.2.0.tgz#3db3307a608f236f33aeea79303d32915792cbab"
+  integrity sha512-NZlGLl8DxmZoq0uqPPtJfsCAir68uR047+Udsh1FH4+5ydGQdMurn/A430A1BtxASVmMEuS7/XiJ5OxJ9apAzQ==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.0.0"
@@ -7835,7 +7835,7 @@ import-lazy@^2.1.0:
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
   integrity sha1-BWmOPUXIjo1+nZLLBYTnfwlvPkM=
 
-imurmurhash@*, imurmurhash@^0.1.4:
+imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
@@ -9029,10 +9029,10 @@ loader-runner@^2.4.0:
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
   integrity sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw==
 
-loader-runner@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-4.0.0.tgz#02abcfd9fe6ff7a5aeb3547464746c4dc6ba333d"
-  integrity sha512-Rqf48ufrr48gFjnaqss04QesoXB7VenbpFFIV/0yOKGnpbejrVlOPqTsoX42FG5goXM5Ixekcs4DqDzHOX2z7Q==
+loader-runner@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-4.1.0.tgz#f70bc0c29edbabdf2043e7ee73ccc3fe1c96b42d"
+  integrity sha512-oR4lB4WvwFoC70ocraKhn5nkKSs23t57h9udUgw8o0iH8hMXeEoRuUgfcvgUwAJ1ZpRqBvcou4N2SMvM1DwMrA==
 
 loader-utils@1.2.3:
   version "1.2.3"
@@ -9107,11 +9107,6 @@ lockfile@^1.0.4:
   dependencies:
     signal-exit "^3.0.2"
 
-lodash._baseindexof@*:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/lodash._baseindexof/-/lodash._baseindexof-3.1.0.tgz#fe52b53a1c6761e42618d654e4a25789ed61822c"
-  integrity sha1-/lK1OhxnYeQmGNZU5KJXie1hgiw=
-
 lodash._baseuniq@~4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash._baseuniq/-/lodash._baseuniq-4.6.0.tgz#0ebb44e456814af7905c6212fa2c9b2d51b841e8"
@@ -9120,32 +9115,10 @@ lodash._baseuniq@~4.6.0:
     lodash._createset "~4.0.0"
     lodash._root "~3.0.0"
 
-lodash._bindcallback@*:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
-  integrity sha1-5THCdkTPi1epnhftlbNcdIeJOS4=
-
-lodash._cacheindexof@*:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lodash._cacheindexof/-/lodash._cacheindexof-3.0.2.tgz#3dc69ac82498d2ee5e3ce56091bafd2adc7bde92"
-  integrity sha1-PcaayCSY0u5ePOVgkbr9Ktx73pI=
-
-lodash._createcache@*:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/lodash._createcache/-/lodash._createcache-3.1.2.tgz#56d6a064017625e79ebca6b8018e17440bdcf093"
-  integrity sha1-VtagZAF2JeeevKa4AY4XRAvc8JM=
-  dependencies:
-    lodash._getnative "^3.0.0"
-
 lodash._createset@~4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/lodash._createset/-/lodash._createset-4.0.3.tgz#0f4659fbb09d75194fa9e2b88a6644d363c9fe26"
   integrity sha1-D0ZZ+7CddRlPqeK4imZE02PJ/iY=
-
-lodash._getnative@*, lodash._getnative@^3.0.0:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/lodash._getnative/-/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
-  integrity sha1-VwvH3t5G1hzc3mh9ZdPuy6o6r/U=
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
@@ -9211,11 +9184,6 @@ lodash.once@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
-
-lodash.restparam@*:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
-  integrity sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
@@ -14326,10 +14294,10 @@ webpack-sources@1.4.3, webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-s
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack-sources@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-2.0.0.tgz#602d4bc7ff2e630ceb753a09ef49f260fa4ae7f0"
-  integrity sha512-CpCkDjEKa5vYVRDFDRABBkBomz+82lz9bpXViN1LBc8L/WDXvSyELKcBvBnTeDEiRfMJCGAFG9+04406PLSsIA==
+webpack-sources@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-2.0.1.tgz#1467f6e692ddce91e88b8044c44347b1087bbd4f"
+  integrity sha512-A9oYz7ANQBK5EN19rUXbvNgfdfZf5U2gP0769OXsj9CvYkCR6OHOsd6OKyEy4H38GGxpsQPKIL83NC64QY6Xmw==
   dependencies:
     source-list-map "^2.0.1"
     source-map "^0.6.1"
@@ -14363,10 +14331,10 @@ webpack@4.44.1:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-webpack@^5.0.0-beta.29:
-  version "5.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.0.0-rc.0.tgz#166f6d9cd65912ff021695d82256b2f1e6e858ee"
-  integrity sha512-tHUFu4vaZxJuyKYf8FKkDZmxnf0txy6twNewxUlviFo+GYjFoGW3szD71cOw0NtJBiyGAQ9zLGVzfb2pXBSKVA==
+webpack@^5.0.0-rc.3:
+  version "5.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.0.0-rc.3.tgz#534afa7ef8b54c62ea393492dfa2e05b4491d773"
+  integrity sha512-z07btJiDKZjtbHz1d/jbWBw+cV+ZEAIDZx/rHGJIj2I1jC/zWg0TxH0wg33v9GSVGTkVo48KcQ4AM5QnpN0yYQ==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"
@@ -14375,14 +14343,15 @@ webpack@^5.0.0-beta.29:
     "@webassemblyjs/wasm-edit" "1.9.0"
     "@webassemblyjs/wasm-parser" "1.9.0"
     acorn "^7.4.0"
+    browserslist "^4.14.3"
     chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.0.0"
+    enhanced-resolve "^5.2.0"
     eslint-scope "^5.1.0"
     events "^3.2.0"
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.2.4"
     json-parse-better-errors "^1.0.2"
-    loader-runner "^4.0.0"
+    loader-runner "^4.1.0"
     mime-types "^2.1.27"
     neo-async "^2.6.2"
     pkg-dir "^4.2.0"
@@ -14390,7 +14359,7 @@ webpack@^5.0.0-beta.29:
     tapable "^2.0.0"
     terser-webpack-plugin "^4.1.0"
     watchpack "^2.0.0"
-    webpack-sources "^2.0.0"
+    webpack-sources "^2.0.1"
 
 websocket@1.0.32:
   version "1.0.32"
