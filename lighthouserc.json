@@ -9,9 +9,9 @@
         "__LHCI_BASE_URL__/account/signin",
         "__LHCI_BASE_URL__/account/signup",
         "__LHCI_BASE_URL__/cart",
+        "__LHCI_BASE_URL__/men",
         "__LHCI_BASE_URL__/page/home",
-        "__LHCI_BASE_URL__/product/augusta-trio",
-        "__LHCI_BASE_URL__/venia-accessories"
+        "__LHCI_BASE_URL__/product/cassius-sparring-tank"
       ]
     },
     "assert": {
@@ -25,7 +25,8 @@
         "max-potential-fid": "off",
         "uses-long-cache-ttl": "off",
         "canonical": "off",
-        "image-size-responsive": "off"
+        "image-size-responsive": "off",
+        "meta-description": "off"
       }
     },
     "upload": {

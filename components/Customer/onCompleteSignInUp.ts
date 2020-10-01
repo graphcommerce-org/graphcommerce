@@ -4,7 +4,7 @@ import {
   CartDocument,
   CustomerCartDocument,
   MergeCartsDocument,
-} from 'generated/apollo'
+} from 'generated/documents'
 
 type OnCompleteSignInUp = OnCompleteFn<GQLSignUpMutation | GQLSignInMutation>
 
@@ -13,12 +13,12 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
   // Check succesfull login
   if (!data?.generateCustomerToken?.token) return
 
-  const awaitCustomerQuery = client.query<GQLCustomerQuery>({
+  const awaitCustomerQuery = client.query({
     query: CustomerDocument,
     fetchPolicy: 'network-only',
   })
-  const awaitCart = client.query<GQLCartQuery>({ query: CartDocument })
-  const awaitCustomerCart = client.query<GQLCustomerCartQuery>({ query: CustomerCartDocument })
+  const awaitCart = client.query({ query: CartDocument })
+  const awaitCustomerCart = client.query({ query: CustomerCartDocument })
 
   const { data: customerCart, error } = await awaitCustomerCart
 
@@ -28,7 +28,7 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
   }
 
   // Write the result of the customerCart to the cart query so it can be used
-  client.cache.writeQuery<GQLCartQuery, GQLCartQueryVariables>({
+  client.cache.writeQuery({
     query: CartDocument,
     data: { cart: customerCart.customerCart },
     broadcast: true,
@@ -38,7 +38,7 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
 
   // Merge carts if a customer as a cart
   if (currentCart?.cart?.id && customerCart.customerCart.id !== currentCart.cart.id) {
-    await client.mutate<GQLMergeCartsMutation, GQLMergeCartsMutationVariables>({
+    await client.mutate({
       mutation: MergeCartsDocument,
       variables: {
         sourceCartId: currentCart.cart.id,

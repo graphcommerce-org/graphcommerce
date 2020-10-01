@@ -1,8 +1,8 @@
 import {
   ApolloClient,
   FetchResult,
-  MutationResult,
   NormalizedCache,
+  TypedDocumentNode,
   useMutation,
 } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
@@ -14,7 +14,6 @@ import {
   ObjectValueNode,
   ListValueNode,
   VariableNode,
-  DocumentNode,
   VariableDefinitionNode,
   TypeNode,
 } from 'graphql'
@@ -44,7 +43,7 @@ function getType(type: TypeNode) {
 
 type RequiredFields<T> = { [key in keyof T]?: boolean }
 
-function fieldRequirements<T = { [index: string]: unknown }>(gql: DocumentNode) {
+function fieldRequirements<T = { [index: string]: unknown }>(gql: TypedDocumentNode) {
   const variables: Partial<T> = {}
   const required: RequiredFields<T> = {}
 
@@ -75,7 +74,7 @@ export type OnCompleteFn<TData> = (
 export type BeforeSubmitFn<TVariables> = (variables: TVariables) => TVariables | Promise<TVariables>
 
 type UseMutationForm<TData, TVariables = { [index: string]: unknown }> = {
-  mutation: DocumentNode
+  mutation: TypedDocumentNode<TData, TVariables>
   values?: UnpackNestedValue<DeepPartial<TVariables>>
   onBeforeSubmit?: BeforeSubmitFn<TVariables>
   onComplete?: OnCompleteFn<TData>

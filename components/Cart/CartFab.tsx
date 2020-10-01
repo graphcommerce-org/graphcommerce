@@ -1,6 +1,7 @@
+import { useQuery } from '@apollo/client'
 import { Badge, Fab, IconButton, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
-import { useCartQuery } from 'generated/apollo'
+import { CartDocument } from 'generated/documents'
 import Link from 'next/link'
 import React from 'react'
 
@@ -28,7 +29,7 @@ function CartFabContent({ qty, asIcon }: CartFabProps & { qty?: number }) {
 }
 
 export default function CartFab(props: CartFabProps) {
-  const { data: cartData } = useCartQuery()
+  const { data: cartData } = useQuery(CartDocument)
 
   return (
     <NoSsr fallback={<CartFabContent {...props} />}>

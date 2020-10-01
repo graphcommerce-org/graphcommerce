@@ -1,16 +1,16 @@
 import { Fab } from '@material-ui/core'
 import DeleteOutlineOutlined from '@material-ui/icons/DeleteOutlineOutlined'
 import { useMutationForm } from 'components/useMutationForm'
-import { RemoveItemFromCartDocument } from 'generated/apollo'
+import { RemoveItemFromCartDocument } from 'generated/documents'
 
 type RemoveItemFromCartProps = GQLRemoveItemFromCartMutationVariables &
   React.HTMLAttributes<HTMLDivElement>
 
 export default function RemoveItemFromCart(values: RemoveItemFromCartProps) {
-  const { onSubmit, error, loading } = useMutationForm<
-    GQLRemoveItemFromCartMutation,
-    GQLRemoveItemFromCartMutationVariables
-  >({ mutation: RemoveItemFromCartDocument, values })
+  const { onSubmit, error, loading } = useMutationForm({
+    mutation: RemoveItemFromCartDocument,
+    values,
+  })
 
   return (
     <form noValidate onSubmit={onSubmit} className={values.className}>

@@ -1,4 +1,5 @@
-import { useStoreConfigQuery } from 'generated/apollo'
+import { useQuery } from '@apollo/client'
+import { StoreConfigDocument } from 'generated/documents'
 import Head from 'next/head'
 
 type PageMetaProps = {
@@ -8,7 +9,7 @@ type PageMetaProps = {
 }
 
 export default function PageMeta({ title, metaDescription, metaRobots }: PageMetaProps) {
-  const { data: storeConfigQuery } = useStoreConfigQuery()
+  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
 
   const title_prefix = storeConfigQuery?.storeConfig?.title_prefix
   const title_separator = storeConfigQuery?.storeConfig?.title_separator

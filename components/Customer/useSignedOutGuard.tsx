@@ -1,10 +1,11 @@
-import { useCustomerTokenQuery } from 'generated/apollo'
+import { useQuery } from '@apollo/client'
+import { CustomerTokenDocument } from 'generated/documents'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 export default function useSignedOutGuard() {
   const router = useRouter()
-  const { data } = useCustomerTokenQuery()
+  const { data } = useQuery(CustomerTokenDocument)
   const isValid = !!data?.customerToken?.valid
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function useSignedOutGuard() {
         router.back()
       } else {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        router.push('/account')
+        router.replace('/account')
       }
     }
   }, [isValid, router])

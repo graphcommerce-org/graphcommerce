@@ -1,10 +1,10 @@
-import { DocumentNode } from '@apollo/client'
+import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
 import useRequestCartId from 'components/Cart/useRequestCartId'
 import ErrorSnackbarLoader from 'components/Snackbar/ErrorSnackbarLoader'
 import MessageSnackbarLoader from 'components/Snackbar/MessageSnackbarLoader'
 import { useMutationForm } from 'components/useMutationForm'
-import { useCustomerTokenQuery } from 'generated/apollo'
+import { CustomerTokenDocument } from 'generated/documents'
 import Link from 'next/link'
 import React from 'react'
 import { UnpackNestedValue, DeepPartial } from 'react-hook-form'
@@ -14,7 +14,7 @@ export default function AddToCartButton<
   TVariables = { cartId: string; [index: string]: unknown }
 >(
   props: Pick<GQLProductInterface, 'name'> & {
-    mutation: DocumentNode
+    mutation: TypedDocumentNode<TData, TVariables>
     variables: Omit<TVariables, 'cartId'>
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
@@ -27,7 +27,7 @@ export default function AddToCartButton<
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
 
-  const { data: tokenQuery } = useCustomerTokenQuery()
+  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
   return requireAuth ? (
@@ -44,7 +44,7 @@ export default function AddToCartButton<
 
       <ErrorSnackbarLoader
         open={called && !loading && !!error?.message}
-        message={<>${error?.message}</>}
+        message={<>{error?.message}</>}
       />
       <MessageSnackbarLoader
         open={called && !loading && !error?.message}

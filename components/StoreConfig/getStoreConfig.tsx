@@ -1,9 +1,9 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { StoreConfigDocument } from 'generated/apollo'
+import { StoreConfigDocument } from 'generated/documents'
 import { PromiseValue } from 'type-fest'
 
 export default async function getStoreConfig(client: ApolloClient<NormalizedCacheObject>) {
-  const { data } = await client.query<GQLStoreConfigQuery, GQLStoreConfigQueryVariables>({
+  const { data } = await client.query({
     query: StoreConfigDocument,
   })
 

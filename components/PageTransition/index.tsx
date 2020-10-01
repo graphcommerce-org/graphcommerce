@@ -61,8 +61,7 @@ const usePageTransitionStyles = makeStyles(
 
 type PageTransitionProps = { pageTransition?: PageTransitionPair }
 
-export type TransitionPage<P = Record<string, unknown>, IP = P> = NextPage<P, IP> &
-  PageTransitionProps
+export type WithTransition<P> = P & PageTransitionProps
 
 export default function PageTransition({
   pageTransition,
@@ -88,9 +87,6 @@ export default function PageTransition({
     // When a visitor leaves the website and navigates back
     // let the browser determine the scroll position
     window.addEventListener('beforeunload', reset)
-    return () => {
-      window.removeEventListener('beforeunload', reset)
-    }
   })
 
   useEffect(() => {
@@ -104,7 +100,6 @@ export default function PageTransition({
       setToUrl(newToUrl)
       setFromUrl(router.asPath)
       window.scrollTo(0, 0)
-      document.body.style.overflow = 'hidden'
     }
 
     router.events.on('beforeHistoryChange', onTransStart)
@@ -120,7 +115,6 @@ export default function PageTransition({
     setFromUrl(undefined)
     const scroll = getScrollPos(router.asPath)
     window.scrollTo(scroll.x, scroll.y)
-    document.body.style.overflow = ''
   }
 
   const offsetStyle = containerOffset(router.asPath, fromUrl, toUrl)

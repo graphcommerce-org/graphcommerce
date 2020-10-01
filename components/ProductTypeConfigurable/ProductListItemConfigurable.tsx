@@ -3,7 +3,7 @@ import cloneDeep from 'clone-deep'
 import AddToCartButton from 'components/Cart/AddToCartButton'
 import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import { FilterTypeMap, isFilterTypeEqual } from 'components/Product/ProductListItems/filterTypes'
-import { AddConfigurableProductToCartDocument } from 'generated/apollo'
+import { AddConfigurableProductToCartDocument } from 'generated/documents'
 import React, { useState } from 'react'
 import ProductListItem from '../Product/ProductListItem'
 
@@ -135,10 +135,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
         )
       })}
       {matchingVariants?.[0]?.product?.sku && configurableProduct.sku && (
-        <AddToCartButton<
-          GQLAddConfigurableProductToCartMutation,
-          GQLAddConfigurableProductToCartMutationVariables
-        >
+        <AddToCartButton
           mutation={AddConfigurableProductToCartDocument}
           variables={{
             parentSku: configurableProduct.sku,

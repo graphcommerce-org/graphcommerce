@@ -1,5 +1,5 @@
 import { TypePolicies, FieldPolicy, FieldReadFunction } from '@apollo/client'
-import { CustomerTokenDocument } from 'generated/apollo'
+import { CustomerTokenDocument, IsEmailAvailableDocument } from 'generated/documents'
 
 const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {
@@ -30,13 +30,13 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
     if (!options.isReference(incoming)) return incoming
 
     const write = () => {
-      options.cache.writeQuery<GQLCustomerTokenQuery, GQLCustomerTokenQueryVariables>({
+      options.cache.writeQuery({
         query: CustomerTokenDocument,
         broadcast: true,
         data: {
           customerToken: {
             __typename: 'CustomerToken',
-            token: options.readField('token', incoming),
+            token: options.readField('token', incoming) as string,
             createdAt: new Date().toUTCString(),
             valid: true,
           },
@@ -51,6 +51,21 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
   },
 }
 
+const createCustomer: FieldPolicy<GQLMutation['createCustomer']> = {
+  merge(_existing, incoming, options) {
+    if (incoming?.customer.email) {
+      options.cache.writeQuery({
+        query: IsEmailAvailableDocument,
+        variables: { email: incoming?.customer.email },
+        data: { isEmailAvailable: { is_email_available: false } },
+        broadcast: true,
+      })
+    }
+
+    return incoming
+  },
+}
+
 const customer: FieldReadFunction<GQLQuery['customer']> = (incoming, options) => {
   if (!options.canRead(incoming)) return null
   return incoming
@@ -58,7 +73,7 @@ const customer: FieldReadFunction<GQLQuery['customer']> = (incoming, options) =>
 
 const typePolicies: TypePolicies = {
   Query: { fields: { customer } },
-  Mutation: { fields: { generateCustomerToken, revokeCustomerToken } },
+  Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
   Customer: { keyFields: (object) => object.__typename },
   CustomerToken: { keyFields: (object) => object.__typename, fields: { valid } },
 }

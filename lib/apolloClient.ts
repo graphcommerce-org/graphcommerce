@@ -10,13 +10,11 @@ import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
 import { persistCache } from 'apollo-cache-persist'
-import { CustomerTokenDocument } from 'generated/apollo'
+import { CustomerTokenDocument } from 'generated/documents'
 import fragments from 'generated/fragments.json'
-// import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import { deferLink } from './deferLink'
+// import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import typePolicies from './typePolicies'
-
-let globalApolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
 export function createApolloClient(
   initialState: NormalizedCacheObject = {},
@@ -63,7 +61,7 @@ export function createApolloClient(
   const authLink = setContext((_, { headers }) => {
     let authorization = ''
     try {
-      const query = cache.readQuery<GQLCustomerTokenQuery>({ query: CustomerTokenDocument })
+      const query = cache.readQuery({ query: CustomerTokenDocument })
       if (query?.customerToken?.token) {
         authorization = `Bearer ${query?.customerToken?.token}`
       }
@@ -105,10 +103,13 @@ export function createApolloClient(
   return new ApolloClient({ link, cache })
 }
 
+let globalClient: ApolloClient<NormalizedCacheObject> | undefined
+
 export default function apolloClient(
-  initialState: NormalizedCacheObject = {},
+  state: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
-  if (typeof window === 'undefined') return createApolloClient(initialState)
-  if (!globalApolloClient) globalApolloClient = createApolloClient(initialState)
-  return globalApolloClient
+  if (typeof window === 'undefined') return createApolloClient(state)
+  if (globalClient) globalClient.cache.restore(mergeDeep(globalClient.cache.extract(), state))
+  else globalClient = createApolloClient(state)
+  return globalClient
 }

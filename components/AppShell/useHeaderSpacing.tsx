@@ -1,5 +1,5 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import { vpCalc } from 'components/Theme'
+import responsiveVal from 'components/Styles/responsiveVal'
 
 const useHeaderSpacing = makeStyles(
   (theme: Theme) => ({
@@ -16,14 +16,16 @@ const useHeaderSpacing = makeStyles(
         top: 0,
       },
       [theme.breakpoints.up('md')]: {
-        left: vpCalc(20, 30),
-        top: `calc(${vpCalc(20, 30)} * 2 + 50px)`,
+        left: responsiveVal(20, 30),
+        top: `calc(${responsiveVal(20, 30)} * 2 + 50px)`,
       },
       // top: `calc(${theme.spacings.md} * 2 + ${vpCalc(46, 72)} + 3px)`,
     },
-    paddingBottom: { paddingBottom: `calc(${theme.spacings.md} * 2 + ${vpCalc(46, 72)} + 3px)` },
+    paddingBottom: {
+      paddingBottom: `calc(${theme.spacings.md} * 2 + ${responsiveVal(46, 72)} + 3px)`,
+    },
     fullHeight: {
-      minHeight: `calc(100vh - calc(${theme.spacings.md} * 2 + ${vpCalc(46, 72)} + 3px))`,
+      minHeight: `calc(100vh - calc(${theme.spacings.md} * 2 + ${responsiveVal(46, 72)} + 3px))`,
     },
   }),
   { name: 'HeaderSpacing' },

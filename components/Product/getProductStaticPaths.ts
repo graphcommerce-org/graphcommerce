@@ -1,10 +1,8 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { GetProductStaticPathsDocument } from 'generated/apollo'
+import { GetProductStaticPathsDocument } from 'generated/documents'
 
 const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
-  const { data } = await client.query<GQLGetProductStaticPathsQuery>({
-    query: GetProductStaticPathsDocument,
-  })
+  const { data } = await client.query({ query: GetProductStaticPathsDocument })
 
   type CategoryWithProducts = NonNullable<
     NonNullable<

@@ -1,8 +1,8 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import getFilterTypeMap from 'components/Category/getFilterTypeMap'
+import getUrlResolveProps from 'components/Page/getUrlResolveProps'
 import { ProductListParams } from 'components/Product/ProductListItems/filterTypes'
-import getUrlResolveProps from 'components/ShopLayout/getUrlResolveProps'
-import { CategoryPageDocument, ProductListDocument } from 'generated/apollo'
+import { CategoryPageDocument, ProductListDocument } from 'generated/documents'
 import { PromiseValue } from 'type-fest'
 
 async function parseParams(
@@ -59,14 +59,14 @@ const getCategoryPageProps = async (
 ) => {
   const filterTypeMap = getFilterTypeMap(client)
 
-  const category = client.query<GQLCategoryPageQuery, GQLCategoryPageQueryVariables>({
+  const category = client.query({
     query: CategoryPageDocument,
     variables: { urlPath: url.join('/') },
   })
 
   const params = parseParams(url.join('/'), urlParams, filterTypeMap)
   const rootCategory = String((await urlResolve).urlResolver?.id)
-  const products = client.query<GQLProductListQuery, GQLProductListQueryVariables>({
+  const products = client.query({
     query: ProductListDocument,
     variables: {
       ...(await params),

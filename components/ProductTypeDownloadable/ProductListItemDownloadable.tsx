@@ -1,6 +1,6 @@
 import AddToCartButton from 'components/Cart/AddToCartButton'
 import ProductListItem from 'components/Product/ProductListItem'
-import { AddDownloadableProductToCartDocument } from 'generated/apollo'
+import { AddDownloadableProductToCartDocument } from 'generated/documents'
 import React from 'react'
 
 export default function ProductListItemDownloadable(props: GQLProductListItemDownloadableFragment) {
@@ -9,10 +9,7 @@ export default function ProductListItemDownloadable(props: GQLProductListItemDow
   return (
     <ProductListItem {...props}>
       {sku && (
-        <AddToCartButton<
-          GQLAddDownloadableProductToCartMutation,
-          GQLAddDownloadableProductToCartMutationVariables
-        >
+        <AddToCartButton
           mutation={AddDownloadableProductToCartDocument}
           variables={{ sku }}
           name={name}

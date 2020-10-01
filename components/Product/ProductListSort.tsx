@@ -1,8 +1,9 @@
+import { useQuery } from '@apollo/client'
 import { ListItem, ListItemText } from '@material-ui/core'
 import cloneDeep from 'clone-deep'
 import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
 import ChipMenu, { ChipMenuProps } from 'components/ChipMenu'
-import { useStoreConfigQuery } from 'generated/apollo'
+import { StoreConfigDocument } from 'generated/documents'
 import React from 'react'
 import CategoryLink, { useCategoryPushRoute } from '../Category/CategoryLink'
 
@@ -12,7 +13,7 @@ export type ProductListSortProps = GQLProductListSortFragment &
 export default function ProductListSort({ sort_fields, ...filterMenuProps }: ProductListSortProps) {
   const { params } = useProductListParamsContext()
   const pushRoute = useCategoryPushRoute()
-  const { data: storeConfigQuery } = useStoreConfigQuery()
+  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
   const defaultSort = storeConfigQuery?.storeConfig?.catalog_default_sort_by
 
   const [currentSort = defaultSort] = Object.keys(params.sort)

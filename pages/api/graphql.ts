@@ -1,13 +1,27 @@
+import { TypedDocumentNode } from '@apollo/client'
 import { ApolloServer } from 'apollo-server-micro'
+import * as queries from 'generated/documents'
+import { print } from 'graphql'
 import { NextApiRequest, NextApiResponse } from 'next'
-import meshSchema from 'node/meshSchema'
+import { mesh } from 'node/meshSchema'
+
+const tabs = Object.entries(queries)
+  .filter(([name]) => name.endsWith('Document'))
+  .map(([name, gql]) => ({
+    name: name.replace('Document', ''),
+    query: print(gql as TypedDocumentNode),
+    endpoint: '/api/graphql',
+  }))
+  .filter(({ query }) => query.includes('@client') === false)
 
 const createHandler = async () => {
   const apolloServer = new ApolloServer({
-    schema: await meshSchema,
     tracing: true,
     engine: { reportSchema: true },
-    context: ({ req }) => req,
+    context: (await mesh).contextBuilder,
+    introspection: true,
+    playground: { tabs },
+    ...(await mesh),
   })
   return apolloServer.createHandler({ path: '/api/graphql' })
 }

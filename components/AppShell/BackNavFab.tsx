@@ -1,9 +1,28 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
-import { UseStyles } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
 import Link from 'next/link'
 import React from 'react'
 
+/**
+ * When navigating, store the previous page.
+ *
+ * default:
+ * - Show a back arrow icon
+ * - Show the previous page if available
+ * - Show the default previous page if not available
+ *
+ * isOverlay
+ * - Show a close icon
+ * - Remember the navigation section that the user last was in a certain section.
+ * - Show a back arrow when navigating in the same overlay area?
+ *
+ * Example sections
+ * - /account or /account/*
+ * - /cart or /checkout
+ *
+ * Register area
+ */
 const useStyles = makeStyles(
   (theme: Theme) => ({
     stickyContainer: {

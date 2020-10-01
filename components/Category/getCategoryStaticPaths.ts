@@ -1,11 +1,8 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { GetCategoryStaticPathsDocument } from 'generated/apollo'
+import { GetCategoryStaticPathsDocument } from 'generated/documents'
 
 const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
-  const { data } = await client.query<
-    GQLGetCategoryStaticPathsQuery,
-    GQLGetCategoryStaticPathsQueryVariables
-  >({ query: GetCategoryStaticPathsDocument })
+  const { data } = await client.query({ query: GetCategoryStaticPathsDocument })
 
   type Category = { children?: Array<Category | null> | null; url_key?: string | null }
   const extractChildren = (category?: Category | null, baseUrl = '') => {

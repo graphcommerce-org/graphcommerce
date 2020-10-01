@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import { FilterTypeMap } from 'components/Product/ProductListItems/filterTypes'
-import { vpCalc, UseStyles } from 'components/Theme'
+import { UseStyles } from 'components/Styles'
+import responsiveVal from 'components/Styles/responsiveVal'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -12,7 +13,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${vpCalc(150, 285)}, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 285)}, 1fr))`,
     },
   }),
   { name: 'ProductList' },

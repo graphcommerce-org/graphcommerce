@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client'
 import {
   TextField,
   Button,
@@ -9,7 +10,7 @@ import {
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useMutationForm, emailPattern } from 'components/useMutationForm'
-import { SignInDocument, useCustomerTokenQuery } from 'generated/apollo'
+import { CustomerTokenDocument, SignInDocument } from 'generated/documents'
 import NextLink from 'next/link'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -35,11 +36,11 @@ const useStyles = makeStyles(
 
 export default function SignInForm() {
   const classes = useStyles()
-  const { data } = useCustomerTokenQuery()
-  const { register, errors, onSubmit, required, loading, error } = useMutationForm<
-    GQLSignInMutation,
-    GQLSignInMutationVariables
-  >({ mutation: SignInDocument, onComplete: onCompleteSignInUp })
+  const { data } = useQuery(CustomerTokenDocument)
+  const { register, errors, onSubmit, required, loading, error } = useMutationForm({
+    mutation: SignInDocument,
+    onComplete: onCompleteSignInUp,
+  })
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
