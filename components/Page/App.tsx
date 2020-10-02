@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient(apolloState)}>
       <MotionConfig features={[AnimationFeature, ExitFeature, AnimateLayoutFeature]}>
-        <PageTransition pageTransition={Layout?.pageTransition}>
+        <PageTransition>
           {Layout ? (
             <Layout {...layoutPageProps}>
               <Component {...layoutPageProps} />

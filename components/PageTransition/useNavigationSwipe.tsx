@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 
+export type NavigationSwipe = -1 | 0 | 1
+
 /**
  * Detect if iOS user is swiping to a page from the edge of the screen to navigate back or forward.
  */
 export default function useNavigationSwipe() {
   const router = useRouter()
   const [touchStart, setTouchStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
-  const [navigationSwipe, setNavigationSwipe] = useState<0 | -1 | 1>(0)
+  const [navigationSwipe, setNavigationSwipe] = useState<NavigationSwipe>(0)
 
   useEffect(() => {
     function handleTouchStart(evt: TouchEvent) {

@@ -1,7 +1,5 @@
 import { DialogTitle, DialogContent, Paper, Container, Typography, NoSsr } from '@material-ui/core'
-import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
-import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
-import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
+import LayoutDrawer, { LayoutDrawerProps } from 'components/AppShell/LayoutDrawer'
 import ChangePasswordForm from 'components/Customer/ChangePasswordForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -10,11 +8,10 @@ import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
 
-type PageComponent = PageFC<unknown, LayoutHeaderProps>
+type PageComponent = PageFC<unknown, LayoutDrawerProps>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const AccountChangePasswordPage: PageComponent = () => {
-  const { marginTop } = useHeaderSpacing()
   const signedIn = useSignedInGuard()
   if (!signedIn) return null
 
@@ -26,7 +23,7 @@ const AccountChangePasswordPage: PageComponent = () => {
         metaRobots='NOINDEX, FOLLOW'
       />
 
-      <Container maxWidth='sm' className={marginTop}>
+      <Container maxWidth='sm'>
         <Paper elevation={10}>
           <DialogTitle disableTypography>
             <Typography variant='h2' component='h1'>
@@ -44,20 +41,18 @@ const AccountChangePasswordPage: PageComponent = () => {
   )
 }
 
-AccountChangePasswordPage.Layout = LayoutHeader
+AccountChangePasswordPage.Layout = LayoutDrawer
 
 export default AccountChangePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
-  const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   await config
   return {
     props: {
-      ...(await layoutHeader),
+      title: 'Change Password',
       apolloState: client.cache.extract(),
     },
   }

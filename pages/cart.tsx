@@ -1,7 +1,5 @@
 import { Container } from '@material-ui/core'
-import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
-import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
-import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
+import LayoutDrawer, { LayoutDrawerProps } from 'components/AppShell/LayoutDrawer'
 import Cart from 'components/Cart/Cart'
 import CartItem from 'components/Cart/CartItem'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -10,16 +8,14 @@ import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
 
-type PageComponent = PageFC<unknown, LayoutHeaderProps>
+type PageComponent = PageFC<unknown, LayoutDrawerProps>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const CartPage: PageComponent = () => {
-  const { marginTop } = useHeaderSpacing()
-
   return (
     <>
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
-      <Container className={marginTop}>
+      <Container>
         <Cart
           renderer={{
             BundleCartItem: CartItem,
@@ -37,20 +33,18 @@ const CartPage: PageComponent = () => {
   )
 }
 
-CartPage.Layout = LayoutHeader
+CartPage.Layout = LayoutDrawer
 
 export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
-  const staticClient = apolloClient()
   const config = getStoreConfig(client)
-  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   await config
   return {
     props: {
-      ...(await layoutHeader),
+      title: 'Cart',
       apolloState: client.cache.extract(),
     },
   }
