@@ -1,7 +1,7 @@
 import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
-import usePhaseMode from 'components/PageTransition/usePhaseMode'
+import useLayoutTransition from 'components/PageTransition/usePageTransition'
 import { m as motion } from 'framer-motion'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const LayoutDrawer: PageLayoutFC<{ title: string }> = ({ children, urlResolver, title }) => {
+const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
+  const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { mode } = usePhaseMode()
+  const { mode } = useLayoutTransition('overlay')
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>

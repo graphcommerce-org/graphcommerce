@@ -1,6 +1,6 @@
 import { MotionProps, AnimatePresence, m as motion } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useState, useEffect, PropsWithChildren } from 'react'
+import { useState, useEffect } from 'react'
 import { getScrollPos, saveScrollPos } from './scrollPosStorage'
 import { NavigationContextProvider } from './useNavigationContext'
 import useNavigationSwipe from './useNavigationSwipe'
@@ -31,7 +31,6 @@ const PageTransition: React.FC = ({ children }) => {
   const router = useRouter()
   const urls = useState<[string | undefined, string | undefined]>([undefined, undefined])
   const [[from, to], setUrls] = urls
-
   const swipe = useNavigationSwipe()
 
   useEffect(() => {

@@ -1,19 +1,14 @@
 import { useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
-import usePhaseMode from 'components/PageTransition/usePhaseMode'
-import { m as motion, usePresence } from 'framer-motion'
-import { useEffect } from 'react'
+import usePageTransition from 'components/PageTransition/usePageTransition'
+import { m as motion } from 'framer-motion'
 import Header from './Header'
 
-const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = ({ children, urlResolver, menu }) => {
+const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
+  const { children, urlResolver, menu } = props
   const theme = useTheme()
-  const [, safeToRemove] = usePresence()
-  const { mode } = usePhaseMode()
-
-  useEffect(() => {
-    if (safeToRemove && mode === 'shallow') safeToRemove()
-  }, [mode, safeToRemove])
+  const { mode } = usePageTransition('normal')
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
