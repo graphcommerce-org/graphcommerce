@@ -22,11 +22,11 @@
           "cacheIntrospection": true,
           "schemaHeaders": {
             "Store": "default",
-            "Authorization": "{context.headers.authorization}"
+            "Authorization": "{context.req.headers.authorization}"
           },
           "operationHeaders": {
             "Store": "default",
-            "Authorization": "{context.headers.authorization}"
+            "Authorization": "{context.req.headers.authorization}"
           }
         }
       },
