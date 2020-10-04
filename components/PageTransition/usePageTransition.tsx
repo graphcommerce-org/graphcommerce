@@ -56,8 +56,6 @@ export default function usePageTransition(layoutType: LayoutType) {
         setPhaseMode({ phase: 'exiting', mode: getMode(navigationContext) })
       if (to === router.asPath)
         setPhaseMode({ phase: 'entering', mode: getMode(navigationContext) })
-    } else {
-      setPhaseMode({ phase: undefined, mode: undefined })
     }
   }, [from, isPresent, navigationContext, router.asPath, swipe, to])
 
