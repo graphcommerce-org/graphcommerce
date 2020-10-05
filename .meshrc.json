@@ -16,7 +16,11 @@
           "cacheIntrospection": true
         }
       },
-      "transforms": [{ "filterSchema": ["Mutation.createContactForm"] }]
+      "transforms": [
+        {
+          "filterSchema": ["Mutation.createContactForm"]
+        }
+      ]
     },
     {
       "name": "Magento GraphQL",
@@ -39,7 +43,8 @@
         {
           "cache": [
             {
-              "field": "Query.storeConfig"
+              "field": "Query.storeConfig",
+              "invalidate": { "ttl": 300 }
             }
           ]
         }
