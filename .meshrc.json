@@ -1,4 +1,9 @@
 {
+  "cache": {
+    "file": {
+      "path": "/tmp/graphql-mesh-cache.json"
+    }
+  },
   "sources": [
     {
       "name": "GraphCMS",
@@ -30,7 +35,15 @@
           }
         }
       },
-      "transforms": [{ "cache": [{ "field": "Query.storeConfig" }] }]
+      "transforms": [
+        {
+          "cache": [
+            {
+              "field": "Query.storeConfig"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

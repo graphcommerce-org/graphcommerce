@@ -2,7 +2,9 @@ import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
+import '@graphql-mesh/cache-file'
 
+import { performance } from 'perf_hooks'
 import { processConfig } from '@graphql-mesh/config'
 import { getMesh } from '@graphql-mesh/runtime'
 import meshrc from '../.meshrc.json'
@@ -34,7 +36,20 @@ function injectEnv<T extends Record<string, unknown>>(json: T): T {
   return JSON.parse(content)
 }
 
-export const mesh = (async () => getMesh(await processConfig(injectEnv(meshrc))))()
+export const mesh = (async () => {
+  performance.mark('start-conf')
+  const conf = await processConfig(injectEnv(meshrc))
+  performance.mark('end-conf')
+
+  performance.measure('conf', 'start-conf', 'end-conf')
+
+  performance.mark('start-mesh')
+  const resMesh = await getMesh(conf)
+  performance.mark('end-mesh')
+
+  performance.measure('mesh', 'start-mesh', 'end-mesh')
+  return resMesh
+})()
 
 const meshSchema = mesh.then(({ schema }) => schema)
 

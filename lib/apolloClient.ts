@@ -108,7 +108,7 @@ let globalClient: ApolloClient<NormalizedCacheObject> | undefined
 export default function apolloClient(
   state: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
-  // if (typeof window === 'undefined') return createApolloClient(state)
+  if (typeof window === 'undefined') return createApolloClient(state)
   if (globalClient) globalClient.cache.restore(mergeDeep(globalClient.cache.extract(), state))
   else globalClient = createApolloClient(state)
   return globalClient

@@ -53,8 +53,6 @@ const useStyles = makeStyles(
         marginLeft: -16,
         paddingRight: `9px`,
         paddingLeft: `14px`,
-        // borderTopLeftRadius: 0,
-        // borderBottomLeftRadius: 0,
       },
     },
     icon: { fontSize: 18 },
