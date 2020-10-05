@@ -1,11 +1,21 @@
-import { usePresence } from 'framer-motion'
+import { MotionProps, usePresence } from 'framer-motion'
 import { SafeToRemove } from 'framer-motion/types/components/AnimatePresence/use-presence'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import useNavigationContext, { NavigationContext } from './useNavigationContext'
 
-export type Phase = undefined | 'exiting' | 'entering'
-export type Mode = undefined | 'shallow' | 'deep'
+export type Phase = 'enter' | 'exit' | 'hold'
+export type Mode = 'shallow' | 'deep'
+
+// todo: can be removed in typescript 4.1
+export type PhaseMode =
+  | 'enter-shallow'
+  | 'exit-shallow'
+  | 'hold-shallow'
+  | 'enter-deep'
+  | 'exit-deep'
+  | 'hold-deep'
+
 export type LayoutType = 'normal' | 'overlay'
 
 const toRemove = new Set<SafeToRemove>()
@@ -27,21 +37,20 @@ const safeToRemoveHandler = (safeToRemove: true | ReturnType<typeof usePresence>
   }
 }
 
-function getMode({ from, to }: NavigationContext): Mode {
-  if (!to || !from) return undefined
+function getMode({ from, to }: Pick<NavigationContext, 'from' | 'to'>): Mode {
+  if (!to || !from) return 'deep'
   return to?.split('/')[1] === from?.split('/')[1] ? 'shallow' : 'deep'
 }
 
 export default function usePageTransition(layoutType: LayoutType) {
-  const [isPresent, safeToRemove] = usePresence()
+  const [, safeToRemove] = usePresence()
   const navigationContext = useNavigationContext()
   const { from, to, swipe } = navigationContext
   const router = useRouter()
+  const [asPath] = useState<string>(router.asPath)
 
-  const [phaseMode, setPhaseMode] = useState<{ phase: Phase; mode: Mode }>({
-    phase: 'entering',
-    mode: getMode(navigationContext),
-  })
+  const mode = getMode({ from, to })
+  const [phase, setPhase] = useState<Phase>('enter')
 
   useEffect(() => {
     if (layoutType === 'normal') safeToRemoveHandler(safeToRemove)
@@ -50,14 +59,15 @@ export default function usePageTransition(layoutType: LayoutType) {
   }, [layoutType, safeToRemove])
 
   useEffect(() => {
-    if (swipe || !isPresent) return
+    if (swipe) return
     if (to && from) {
-      if (from === router.asPath)
-        setPhaseMode({ phase: 'exiting', mode: getMode(navigationContext) })
-      if (to === router.asPath)
-        setPhaseMode({ phase: 'entering', mode: getMode(navigationContext) })
+      if (from === asPath && !canRemove) setPhase('hold')
+      if (from === asPath && canRemove) {
+        setPhase((current) => (current === 'hold' ? current : 'exit'))
+      }
+      if (to === asPath) setPhase('enter')
     }
-  }, [from, isPresent, navigationContext, router.asPath, swipe, to])
+  }, [asPath, from, safeToRemove, swipe, to])
 
-  return phaseMode
+  return `${phase}-${mode}` as PhaseMode
 }

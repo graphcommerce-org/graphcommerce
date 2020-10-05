@@ -1,8 +1,10 @@
 import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
+import instantAnimation from 'components/PageTransition/animation/instant'
+import keepAnimation from 'components/PageTransition/animation/keep'
 import usePageTransition from 'components/PageTransition/usePageTransition'
-import { m as motion } from 'framer-motion'
+import { m as motion, MotionProps } from 'framer-motion'
 import Header from './Header'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -21,37 +23,41 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const { children, urlResolver, menu } = props
   const classes = useStyles(props)
   const theme = useTheme()
-  const { mode } = usePageTransition('normal')
+  const phaseMode = usePageTransition('normal')
+
+  let headerAnimation: MotionProps
+  let contentAnimation: MotionProps
+  switch (phaseMode) {
+    case 'hold-deep':
+    case 'hold-shallow':
+      headerAnimation = keepAnimation
+      contentAnimation = keepAnimation
+      break
+    case 'enter-deep':
+    case 'exit-deep':
+      headerAnimation = instantAnimation
+      contentAnimation = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+      break
+    case 'enter-shallow':
+    case 'exit-shallow':
+      headerAnimation = instantAnimation
+      contentAnimation = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+  }
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div
-        {...(mode === 'deep' && {
-          initial: { opacity: 1 },
-          animate: { opacity: 1, transition: { duration: 0 } },
-          exit: { opacity: 1, transition: { duration: 0 } },
-        })}
-        {...(mode === 'shallow' && {
-          initial: { opacity: 0 },
-          animate: { opacity: 1, transition: { duration: 0 } },
-          exit: { opacity: 0, transition: { duration: 0 } },
-        })}
-      >
+      <motion.div {...headerAnimation}>
         <Header menu={menu} urlResolver={urlResolver} />
       </motion.div>
-      <motion.div
-        className={classes.content}
-        // {...(mode === 'deep' && {
-        //   initial: { opacity: 1 },
-        //   animate: { opacity: 1, transition: { duration: 0 } },
-        //   exit: { opacity: 1, transition: { duration: 0 } },
-        // })}
-        {...(mode === 'shallow' && {
-          initial: { opacity: 0 },
-          animate: { opacity: 1 },
-          exit: { opacity: 0 },
-        })}
-      >
+      <motion.div className={classes.content} {...contentAnimation}>
         {children}
       </motion.div>
     </PageLayout>
