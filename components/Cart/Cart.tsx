@@ -12,7 +12,6 @@ import {
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
-import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
 import Money from 'components/Money'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
@@ -52,8 +51,6 @@ type CartItemRenderer = GQLTypeRenderer<
 type CartProps = { renderer: CartItemRenderer }
 
 export default function Cart(props: CartProps) {
-  const { fullHeight } = useHeaderSpacing()
-
   const { renderer } = props
   const classes = useStyles()
   const { data, loading } = useQuery(CartDocument)
@@ -79,7 +76,7 @@ export default function Cart(props: CartProps) {
   if (!data?.cart?.items?.length) {
     content = (
       <motion.div
-        className={clsx(classes.emptyCart, fullHeight)}
+        className={clsx(classes.emptyCart)}
         key='empty-cart'
         {...{ ...animation, layout: false }}
       >
@@ -136,6 +133,7 @@ export default function Cart(props: CartProps) {
         ))}
 
         {cart?.shipping_addresses?.map((address, idx) => (
+          // eslint-disable-next-line react/no-array-index-key
           <motion.div {...animation} key={`shipping_addresses_${idx}`}>
             <ListItem ContainerComponent='div'>
               <ListItemText inset>{address?.selected_shipping_method?.carrier_title}</ListItemText>

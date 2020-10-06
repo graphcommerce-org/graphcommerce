@@ -1,24 +1,47 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+export type NavigationDirection = -1 | 0 | 1
+
+const item =
+  typeof window !== 'undefined' ? window.sessionStorage.getItem(`__historyState`) : undefined
+let historyState: string[] = item ? JSON.parse(item) : []
 
 export default function useNavigationDirection() {
   const router = useRouter()
-  const [historyState, setNavigationState] = useState<string[]>([router.asPath])
+  const [direction, setDirection] = useState<NavigationDirection>(0)
 
-  function getDirection(url: string): 1 | 0 | -1 {
+  useEffect(() => {
+    const onRouteChangeStart = (toUrl: string) => {
+      // Navigated to previous page
+      if (historyState[historyState.length - 2] === toUrl) {
+        setDirection(-1)
+        return
+      }
+
+      // Navigated to next page
+      if (historyState[historyState.length - 1] === toUrl) {
+        setDirection(0)
+        return
+      }
+
+      setDirection(1)
+    }
+
     // Navigated to previous page
-    if (historyState[historyState.length - 2] === url) {
-      setNavigationState(historyState.slice(0, -1))
-      return -1
+    if (historyState[historyState.length - 2] === router.asPath) {
+      historyState = historyState.slice(0, -1)
     }
-    // Navigated to same page, do nothing
-    if (historyState[historyState.length - 1] === url) {
-      return 0
-    }
-    // Navigated to next page
-    setNavigationState([...historyState, url])
-    return 1
-  }
 
-  return getDirection
+    // Navigated to next page
+    if (historyState[historyState.length - 1] !== router.asPath) {
+      historyState = [...historyState, router.asPath]
+    }
+
+    window.sessionStorage.setItem(`__historyState`, JSON.stringify(historyState))
+    router.events.on('routeChangeStart', onRouteChangeStart)
+    return () => router.events.off('routeChangeStart', onRouteChangeStart)
+  }, [router.events, router.asPath])
+
+  return direction
 }

@@ -2,7 +2,6 @@ import { Container } from '@material-ui/core'
 import clsx from 'clsx'
 import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
-import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import getUrlResolveProps from 'components/Page/getUrlResolveProps'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
@@ -26,7 +25,6 @@ type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
 const ProductPage: PageComponent = (props) => {
   const { products } = props
   const classes = useCategoryPageStyles(props)
-  const { marginTop } = useHeaderSpacing()
 
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
@@ -35,7 +33,7 @@ const ProductPage: PageComponent = (props) => {
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
   return (
-    <Container className={clsx(classes.container, marginTop)}>
+    <Container className={clsx(classes.container)}>
       <ProductPageMeta
         canonical_url={product.canonical_url}
         meta_description={product.meta_description}

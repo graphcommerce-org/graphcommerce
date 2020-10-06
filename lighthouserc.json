@@ -9,9 +9,11 @@
         "__LHCI_BASE_URL__/account/signin",
         "__LHCI_BASE_URL__/account/signup",
         "__LHCI_BASE_URL__/cart",
-        "__LHCI_BASE_URL__/men",
         "__LHCI_BASE_URL__/page/home",
-        "__LHCI_BASE_URL__/product/cassius-sparring-tank"
+        "__LHCI_BASE_URL__/product/selena-pants",
+        "__LHCI_BASE_URL__/test/index",
+        "__LHCI_BASE_URL__/test/overlay/index",
+        "__LHCI_BASE_URL__/venia-bottoms"
       ]
     },
     "assert": {

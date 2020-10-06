@@ -27,7 +27,6 @@ const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColo
       </Head>
       <PageLoadIndicator />
       {children}
-      <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </>
   )
 }

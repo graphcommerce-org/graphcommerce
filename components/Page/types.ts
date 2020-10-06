@@ -1,6 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
 import { NormalizedCacheObject } from '@apollo/client'
-import { WithTransition } from 'components/PageTransition'
 import { GetStaticPaths, GetStaticProps as GetStaticPropsNext } from 'next'
 import { AppProps as NextAppProps } from 'next/app'
 
@@ -12,7 +11,7 @@ type BasePage<T = AnyObj> = React.FC<BasePageLayoutComponentProps & T>
 
 type ApolloStateProps = { apolloState: NormalizedCacheObject }
 
-export type PageLayoutFC<T = AnyObj> = WithTransition<BasePage<T>>
+export type PageLayoutFC<T = AnyObj> = BasePage<T>
 
 export type GetProps<T extends React.FC> = Omit<Parameters<T>['0'], 'children'>
 

@@ -1,4 +1,9 @@
 {
+  "cache": {
+    "file": {
+      "path": "/tmp/graphql-mesh-cache.json"
+    }
+  },
   "sources": [
     {
       "name": "GraphCMS",
@@ -11,7 +16,11 @@
           "cacheIntrospection": true
         }
       },
-      "transforms": [{ "filterSchema": ["Mutation.createContactForm"] }]
+      "transforms": [
+        {
+          "filterSchema": ["Mutation.createContactForm"]
+        }
+      ]
     },
     {
       "name": "Magento GraphQL",
@@ -22,15 +31,24 @@
           "cacheIntrospection": true,
           "schemaHeaders": {
             "Store": "default",
-            "Authorization": "{context.headers.authorization}"
+            "Authorization": "{context.req.headers.authorization}"
           },
           "operationHeaders": {
             "Store": "default",
-            "Authorization": "{context.headers.authorization}"
+            "Authorization": "{context.req.headers.authorization}"
           }
         }
       },
-      "transforms": [{ "cache": [{ "field": "Query.storeConfig" }] }]
+      "transforms": [
+        {
+          "cache": [
+            {
+              "field": "Query.storeConfig",
+              "invalidate": { "ttl": 300 }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

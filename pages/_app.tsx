@@ -6,6 +6,7 @@ export default function ThemedApp(props: AppProps) {
   return (
     <ThemedProvider>
       <App {...props} />
+      <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
   )
 }

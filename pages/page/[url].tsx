@@ -1,6 +1,5 @@
 import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
-import useHeaderSpacing from 'components/AppShell/useHeaderSpacing'
 import CmsPageContent from 'components/Cms/CmsPageContent'
 import CmsPageMeta from 'components/Cms/CmsPageMeta'
 import getCmsPageProps, { GetCmsPageProps } from 'components/Cms/getCmsPageProps'
@@ -16,8 +15,6 @@ type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
 
 const CmsPage: PageComponent = ({ cmsPage }) => {
-  const { marginTop } = useHeaderSpacing()
-
   if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
 
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
@@ -25,9 +22,7 @@ const CmsPage: PageComponent = ({ cmsPage }) => {
   return (
     <>
       <CmsPageMeta {...cmsPage} />
-      <div className={marginTop}>
-        <CmsPageContent {...cmsPage} />
-      </div>
+      <CmsPageContent {...cmsPage} />
     </>
   )
 }
