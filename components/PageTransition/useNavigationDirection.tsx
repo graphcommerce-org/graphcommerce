@@ -12,6 +12,8 @@ export default function useNavigationDirection() {
   const [direction, setDirection] = useState<NavigationDirection>(0)
 
   useEffect(() => {
+    if (!historyState) historyState = [router.asPath]
+
     const onRouteChangeStart = (toUrl: string) => {
       // Navigated to previous page
       if (historyState[historyState.length - 2] === toUrl) {
@@ -21,7 +23,7 @@ export default function useNavigationDirection() {
 
       // Navigated to next page
       if (historyState[historyState.length - 1] === toUrl) {
-        setDirection(0)
+        // setDirection(0)
         return
       }
 

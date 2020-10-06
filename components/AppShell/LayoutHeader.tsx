@@ -39,6 +39,7 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   let contentAnimation: MotionProps
   switch (phaseMode) {
     case 'hold-deep':
+    case 'hold-shallow':
       headerAnimation = keepAnimation
       contentAnimation = keepAnimation
       break
@@ -52,7 +53,7 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
       headerAnimation = instantAnimation
       contentAnimation = opacityAnination
   }
-  const position = phaseMode === 'hold-deep' ? 'fixed' : 'absolute'
+  const position = phaseMode === 'hold-deep' || phaseMode === 'hold-shallow' ? 'fixed' : 'absolute'
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>

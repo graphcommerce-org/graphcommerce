@@ -10,7 +10,13 @@ export type Phase = 'enter' | 'exit' | 'hold'
 export type Mode = 'shallow' | 'deep'
 
 // todo: can be removed in typescript 4.1
-export type PhaseMode = 'enter-shallow' | 'exit-shallow' | 'enter-deep' | 'exit-deep' | 'hold-deep'
+export type PhaseMode =
+  | 'enter-shallow'
+  | 'exit-shallow'
+  | 'hold-shallow'
+  | 'enter-deep'
+  | 'exit-deep'
+  | 'hold-deep'
 
 export type LayoutType = 'normal' | 'overlay'
 
