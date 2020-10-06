@@ -1,43 +1,46 @@
-import { makeStyles, Theme, useTheme } from '@material-ui/core'
+import { makeStyles, Paper, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
 import instantAnimation from 'components/PageTransition/animation/instant'
-import keepAnimation from 'components/PageTransition/animation/keep'
 import useLayoutTransition from 'components/PageTransition/usePageTransition'
 import { m as motion, MotionProps } from 'framer-motion'
+import React from 'react'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  backdrop: {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    position: 'absolute',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    WebkitTapHighlightColor: 'transparent',
-  },
-  drawer: {
-    top: 70,
-    left: 20,
-    right: 20,
-    bottom: 70,
-    position: 'absolute',
-    background: theme.palette.background.paper,
-    borderRadius: 16,
-  },
-}))
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    backdrop: {
+      top: 0,
+      left: 0,
+      right: 0,
+      position: 'absolute',
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      WebkitTapHighlightColor: 'transparent',
+      minHeight: '100vh',
+      backdropFilter: `blur(3px)`,
+    },
+    drawer: {
+      marginTop: 70,
+      marginLeft: 70,
+      marginRight: 70,
+      background: theme.palette.background.paper,
+    },
+    drawerContent: {
+      // minHeight: `calc(100vh - 70px)`,
+    },
+  }),
+  { name: 'LayoutDrawer' },
+)
 
 const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const phaseMode = useLayoutTransition('overlay')
+  const { phaseMode, offset } = useLayoutTransition('overlay')
 
   let backdropAnimation: MotionProps
   let contentAnimation: MotionProps
   switch (phaseMode) {
     case 'hold-deep':
-    case 'hold-shallow':
       backdropAnimation = instantAnimation
       contentAnimation = instantAnimation
       break
@@ -45,13 +48,13 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
     case 'exit-deep':
       backdropAnimation = {
         initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { opacity: 0, transition: { type: 'tween', ease: 'easeIn' } },
+        animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
+        exit: { opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
       }
       contentAnimation = {
-        initial: { opacity: 0, y: '100%' },
-        animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { opacity: 0, y: '100%', transition: { type: 'tween', ease: 'easeIn' } },
+        initial: { opacity: 0, y: '50%' },
+        animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'circOut' } },
+        exit: { opacity: 0, y: '50%', transition: { type: 'tween', ease: 'circIn' } },
       }
       break
     case 'enter-shallow':
@@ -62,10 +65,21 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div className={classes.backdrop} {...backdropAnimation} />
-      <motion.div className={classes.drawer} {...contentAnimation}>
-        {title}
-        {children}
+      <motion.div data-phase={phaseMode} className={classes.backdrop} {...backdropAnimation}>
+        <motion.div
+          {...{
+            initial: { y: offset },
+            animate: { y: offset, transition: { duration: 0 } },
+            exit: { y: offset, transition: { duration: 0 } },
+          }}
+        >
+          <motion.div className={classes.drawer} {...contentAnimation}>
+            <Paper elevation={12} className={classes.drawerContent}>
+              {title}
+              {children}
+            </Paper>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </PageLayout>
   )

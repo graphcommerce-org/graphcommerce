@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => document.getElementById('jss-server-side')?.remove())
 
+  // todo(paales): Because Layout is inside the PageTransition, it effectively isn't a layout any more.
   return (
     <ApolloProvider client={apolloClient(apolloState)}>
       <MotionConfig features={[AnimationFeature, ExitFeature, AnimateLayoutFeature]}>

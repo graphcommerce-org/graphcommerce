@@ -1,15 +1,14 @@
 import React, { useContext } from 'react'
-import { NavigationSwipe } from './useNavigationSwipe'
+import { NavigationDirection } from './useNavigationDirection'
 
 export type NavigationContext = {
-  swipe: NavigationSwipe
   from?: string
+  fromRoute?: string
   to?: string
+  toRoute?: string
 }
 
-const navigationContext = React.createContext<NavigationContext>({
-  swipe: 0,
-})
+const navigationContext = React.createContext<NavigationContext>({})
 
 export const NavigationContextProvider = navigationContext.Provider
 

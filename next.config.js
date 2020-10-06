@@ -27,6 +27,7 @@ const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
   experimental: {
     modern: true,
+    scrollRestoration: true,
   },
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]

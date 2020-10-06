@@ -18,7 +18,6 @@ const useStyles = makeStyles(
       position: 'absolute',
       top: 0,
       display: 'flex',
-      zIndex: theme.zIndex.appBar,
       padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       pointerEvents: 'none',
       alignItems: 'center',
