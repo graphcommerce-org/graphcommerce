@@ -49,7 +49,7 @@
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "intl": "^1.2.5",
-    "next": "9.5.3",
+    "next": "9.5.4",
     "next-images": "^1.6.0",
     "next-pwa": "^3.1.5",
     "next-transpile-modules": "^4.1.0",
