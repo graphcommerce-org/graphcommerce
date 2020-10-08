@@ -29,7 +29,7 @@
     "@graphql-mesh/cli": "^0.11.3",
     "@graphql-mesh/config": "^0.10.9",
     "@graphql-mesh/graphql": "^0.7.3",
-    "@graphql-mesh/merger-stitching": "^0.6.13",
+    "@graphql-mesh/merger-stitching": "^0.6.14",
     "@graphql-mesh/runtime": "^0.7.9",
     "@graphql-mesh/transform-cache": "^0.7.7",
     "@graphql-mesh/transform-filter-schema": "^0.6.8",
