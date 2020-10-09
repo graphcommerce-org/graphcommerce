@@ -1,0 +1,15 @@
+query HistoryState {
+  historyState @client {
+    __typename
+    idx
+    pages {
+      holdPrevious
+      href
+      as
+      x
+      y
+    }
+    direction
+    phase
+  }
+}

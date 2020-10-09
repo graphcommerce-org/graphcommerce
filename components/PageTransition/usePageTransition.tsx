@@ -1,10 +1,8 @@
+import { useQuery } from '@apollo/client'
 import { usePresence } from 'framer-motion'
-import { SafeToRemove } from 'framer-motion/types/components/AnimatePresence/use-presence'
-import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
-import useNavigationContext, { NavigationContext } from './useNavigationContext'
-import useNavigationDirection from './useNavigationDirection'
-import { HistoryState } from '.'
+import { HistoryStateDocument } from 'generated/documents'
+import { useState } from 'react'
+import { defaultHistoryState } from './useHistoryState'
 
 export type Phase = 'enter' | 'exit' | 'hold'
 export type Mode = 'shallow' | 'deep'
@@ -20,82 +18,99 @@ export type PhaseMode =
 
 export type LayoutType = 'normal' | 'overlay'
 
-const toRemove = new Set<SafeToRemove>()
-let canRemove = true
-
-const safeToRemoveHandler = (safeToRemove: true | ReturnType<typeof usePresence>[1]) => {
-  if (safeToRemove === true) {
-    canRemove = false
-  } else if (typeof safeToRemove === 'function') {
-    toRemove.add(safeToRemove)
-    canRemove = true
-  } else {
-    setTimeout(() => {
-      if (!canRemove) return
-      toRemove.forEach((remove) => remove())
-      toRemove.clear()
-      canRemove = false
-    }, 0)
-  }
-}
-
-function useScrollStates() {
-  const router = useRouter()
-  const [pos, setState] = useState<[number, number]>([0, 0])
-
-  useEffect(() => {
-    const onPopState = (e: PopStateEvent): void => {
-      const state = e.state as HistoryState
-      if (!state?.__N) return
-      setState([window.scrollY, state.options._N_Y ?? 0])
-    }
-    const onRouteChangeStart = () => {
-      const state = window.history.state as HistoryState
-      if (!state?.__N) return
-      setState([state.options._N_Y, 0])
-    }
-    window.addEventListener('popstate', onPopState)
-    router.events.on('routeChangeStart', onRouteChangeStart)
-    return () => {
-      window.removeEventListener('popstate', onPopState)
-      router.events.off('routeChangeStart', onRouteChangeStart)
-    }
-  }, [router.events])
-
-  return pos
-}
-
 export default function usePageTransition(layoutType: LayoutType) {
-  const [, safeToRemove] = usePresence()
-  const { from, to, fromRoute, toRoute } = useNavigationContext()
-  const router = useRouter()
-  const [asPath] = useState<string>(router.asPath)
-  const mode: Mode = fromRoute === toRoute ? 'shallow' : 'deep'
-  const [fromPx, toPx] = useScrollStates()
-  const direction = useNavigationDirection()
+  // eslint-disable-next-line prefer-const
+  let { data = defaultHistoryState, client } = useQuery(HistoryStateDocument)
 
-  let phase: Phase = 'enter'
+  try {
+    // Use most recent data
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    data = client.readQuery({ query: HistoryStateDocument })!
+    // eslint-disable-next-line no-empty
+  } catch {}
+  const { historyState: state } = data
+
+  const [thisIdx] = useState<number>(data?.historyState.idx ?? 0)
+  const nextIdx = thisIdx + 1
+  const prevIdx = thisIdx - 1
+
+  const [, safeToRemove] = usePresence()
+
+  const thisPage = state.pages[thisIdx] as GQLHistoryStatePage | undefined
+  const prevPage = state.pages[prevIdx] as GQLHistoryStatePage | undefined
+  const nextPage = state.pages[nextIdx] as GQLHistoryStatePage | undefined
+  // const page = historyState.pages[historyState.idx]
+
+  if (typeof window !== 'undefined' && layoutType === 'normal' && thisPage?.holdPrevious === true) {
+    const pages = [...state.pages]
+    pages[thisIdx] = { ...pages[thisIdx], holdPrevious: false }
+    client.writeQuery({
+      query: HistoryStateDocument,
+      data: { ...data, historyState: { ...state, pages } },
+      broadcast: true,
+    })
+  }
+
+  // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
+  //       Because all previous state is removed at that point with the current implementation
+  //       It isn't viable to keep all old state around?
+  const isActive = state.idx === thisIdx
+  const nextPages = state.pages.slice(nextIdx, state.idx + 1)
+  const hold = nextPages.length > 0 && nextPages.every((page) => page.holdPrevious)
+
+  // If we do not need to keep the layout, we can mark it for removal
+  if (!isActive && !hold && safeToRemove) safeToRemove()
+  let mode: Mode = 'deep'
   let offset = 0
 
-  if (from === asPath) {
-    phase = 'exit'
-  }
-  if (from === asPath && !canRemove) {
-    phase = 'hold'
-  }
+  const isVisible = false
+  if (state.direction === 'FORWARD') {
+    if (thisPage?.href && thisPage.href === nextPage?.href) mode = 'shallow'
 
-  if (layoutType === 'normal' && (phase === 'hold' || phase === 'exit')) {
-    offset = direction === 1 ? fromPx * -1 : (toPx - fromPx) * -1
-  }
-  if (layoutType === 'overlay' && phase === 'exit') {
-    offset = direction === 1 ? 0 : toPx
-  }
+    // forground
+    if (isActive) {
+      switch (state.phase) {
+        case 'LOADING':
+          offset = (prevPage?.y ?? 0) * -1
+          break
+        case 'LOCATION_CHANGED':
+        case 'BEFORE_SCROLL':
+        case 'FINISHED':
+      }
+    }
 
-  useEffect(() => {
-    if (layoutType === 'normal') safeToRemoveHandler(safeToRemove)
-    if (layoutType === 'overlay' && !safeToRemove) safeToRemoveHandler(true)
-    if (layoutType === 'overlay' && safeToRemove) safeToRemove()
-  }, [layoutType, safeToRemove])
+    // background
+    if (!isActive) {
+      switch (state.phase) {
+        case 'LOADING':
+          break
+        case 'LOCATION_CHANGED':
+        case 'BEFORE_SCROLL':
+        case 'FINISHED':
+          offset = (thisPage?.y ?? 0) * -1
+      }
+    }
+  } else if (thisPage?.href && thisPage.href === prevPage?.href) mode = 'shallow'
 
-  return { phaseMode: `${phase}-${mode}` as PhaseMode, phase, mode, offset }
+  return { isActive, isVisible, offset, mode, state, hold }
+  // if (state.phase === 'BEFORE_SCROLL' || state.phase === 'FINISHED') {
+  //   if (layoutType === 'normal' && phase !== 'enter' && state.direction === 'FORWARD') {
+  //     offset = (thisPage?.y ?? 0) * -1
+  //   }
+  // }
+
+  // if (layoutType === 'normal' && phase !== 'enter' && state.direction === 'BACK') {
+  //   offset = ((prevPage?.y ?? 0) - (thisPage?.y ?? 0)) * -1
+  // }
+  // // if (state.phase === 'LOADING')
+  // if (layoutType === 'overlay' && phase === 'exit' && state.direction === 'BACK') {
+  //   offset = prevPage?.y ?? 0
+  // }
+  // // }
+
+  // nog niet scroll positie aangepast, doe een offset
+
+  // console.log(thisPage?.as, isActive, state.phase, phase, state.idx)
+  //
+  // return { phaseMode: `${phase}-${mode}` as PhaseMode, phase, mode, offset }
 }

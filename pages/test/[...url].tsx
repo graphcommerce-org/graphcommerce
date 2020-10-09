@@ -17,10 +17,14 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
       hallo! {url}
       <ul>
         <li>
-          <Link href='/test/other'>Sibling Page</Link>
+          <Link href='/test/other' scroll={false}>
+            Sibling Page
+          </Link>
         </li>
         <li>
-          <Link href='/test/overlay/index'>Overlay</Link>
+          <Link href='/test/overlay/index' scroll={false}>
+            Overlay
+          </Link>
         </li>
       </ul>
       <DebugSpacer height={2000} />

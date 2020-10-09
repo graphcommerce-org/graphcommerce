@@ -15,14 +15,23 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
       overlay {url}
       <ul>
         <li>
+          <Link href='/test/deeper' scroll={false}>
+            To default layout
+          </Link>
+        </li>
+        <li>
           {url === 'index' ? (
-            <Link href='/test/overlay/deeper'>Deeper</Link>
+            <Link href='/test/overlay/deeper' scroll={false}>
+              Deeper
+            </Link>
           ) : (
-            <Link href='/test/overlay/index'>Shallower</Link>
+            <Link href='/test/overlay/index' scroll={false}>
+              Shallower
+            </Link>
           )}
         </li>
       </ul>
-      <DebugSpacer height={2000} />
+      <DebugSpacer height={2000} color='#ecf1c8' />
     </>
   )
 }

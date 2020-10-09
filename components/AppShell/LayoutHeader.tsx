@@ -1,4 +1,3 @@
-import { off } from 'process'
 import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
@@ -32,33 +31,16 @@ const useStyles = makeStyles(
 const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const { children, urlResolver, menu } = props
   const theme = useTheme()
-  const { phaseMode, offset, phase } = usePageTransition('normal')
   const classes = useStyles(props)
+  const { isActive, mode, offset, state, hold } = usePageTransition('normal')
 
-  let headerAnimation: MotionProps
-  let contentAnimation: MotionProps
-  switch (phaseMode) {
-    case 'hold-deep':
-    case 'hold-shallow':
-      headerAnimation = keepAnimation
-      contentAnimation = keepAnimation
-      break
-    case 'enter-deep':
-    case 'exit-deep':
-      headerAnimation = instantAnimation
-      contentAnimation = opacityAnination
-      break
-    case 'enter-shallow':
-    case 'exit-shallow':
-      headerAnimation = instantAnimation
-      contentAnimation = opacityAnination
-  }
-  const position = phaseMode === 'hold-deep' || phaseMode === 'hold-shallow' ? 'fixed' : 'absolute'
+  const headerAnimation: MotionProps = hold ? keepAnimation : instantAnimation
+  const contentAnimation: MotionProps = hold ? keepAnimation : instantAnimation
 
+  const position = offset ? 'fixed' : 'absolute'
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
       <motion.div
-        data-phase={phaseMode}
         className={classes.root}
         {...{
           initial: { y: offset, position },
