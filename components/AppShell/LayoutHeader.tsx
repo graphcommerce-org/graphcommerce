@@ -10,11 +10,6 @@ import Header from './Header'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-    },
     content: {
       position: 'absolute',
       top: `calc(${theme.page.headerInnerHeight.xs} + ${theme.page.vertical})`,
@@ -32,22 +27,15 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const { children, urlResolver, menu } = props
   const theme = useTheme()
   const classes = useStyles(props)
-  const { offset, hold } = usePageTransition('normal')
+  const { offsetDiv, hold } = usePageTransition('normal')
 
   const headerAnimation: MotionProps = hold ? keepAnimation : instantAnimation
   const contentAnimation: MotionProps = hold ? keepAnimation : instantAnimation
 
-  const position = offset ? 'fixed' : 'absolute'
+  // const position = offset ? 'fixed' : 'absolute'
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div
-        className={classes.root}
-        {...{
-          initial: { y: offset, position },
-          animate: { y: offset, position, transition: { duration: 0 } },
-          exit: { y: offset, transition: { duration: 0 } },
-        }}
-      >
+      <motion.div {...offsetDiv}>
         <motion.div {...headerAnimation}>
           <Header menu={menu} urlResolver={urlResolver} />
         </motion.div>

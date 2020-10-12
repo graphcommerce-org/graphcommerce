@@ -1,12 +1,12 @@
 import { makeStyles, Paper, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
-import { untillPhase } from 'components/PageTransition/HistoryState'
 import keepAnimation from 'components/PageTransition/animation/keep'
+import { untillPhase } from 'components/PageTransition/historyHelpers'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { m as motion, MotionProps } from 'framer-motion'
 import { HistoryStateDocument } from 'generated/documents'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -37,9 +37,7 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { offset, state } = usePageTransition('overlay')
-
-  if (untillPhase('BEFORE_SCROLL')) return
+  const { offsetDiv, state } = usePageTransition('overlay')
 
   const backdropAnimation = keepAnimation
   // const backdropAnimation: MotionProps = {
@@ -72,14 +70,8 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div className={classes.backdrop} {...backdropAnimation}>
-        <motion.div
-          {...{
-            initial: { y: offset },
-            animate: { y: offset, transition: { duration: 0 } },
-            exit: { y: offset, transition: { duration: 0 } },
-          }}
-        >
+      <motion.div {...offsetDiv}>
+        <motion.div className={classes.backdrop} {...backdropAnimation}>
           <motion.div className={classes.drawer} {...contentAnimation}>
             <Paper elevation={12} className={classes.drawerContent}>
               {title}
@@ -87,7 +79,6 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
             </Paper>
           </motion.div>
         </motion.div>
-        f
       </motion.div>
     </PageLayout>
   )

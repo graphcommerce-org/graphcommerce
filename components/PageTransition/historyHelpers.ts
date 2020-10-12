@@ -6,7 +6,8 @@ const phases: GQLPhase[] = [
   'LOCATION_CHANGED',
   'REGISTERED',
   'SCROLL_SAVED',
-  'BEFORE_SCROLL',
+  'SCROLLING',
+  'SCROLLED',
   'FINISHED',
 ]
 
@@ -22,14 +23,14 @@ export function betweenPhases(start: GQLPhase, end: GQLPhase) {
   return afterPhase(start) && untillPhase(end)
 }
 
-export function updateHistory(incomming: PartialDeep<GQLHistoryStateQuery['historyState']>): void {
+export function updateHistory(incomming: PartialDeep<GQLHistoryStateQuery['historyState']>) {
   const history = historyStateVar()
   const historyState: GQLHistoryStateQuery['historyState'] = {
     ...history,
     ...(incomming as GQLHistoryStateQuery['historyState']),
   }
 
-  historyStateVar(historyState)
+  return historyStateVar(historyState)
 }
 
 export function getPage(idx?: number) {

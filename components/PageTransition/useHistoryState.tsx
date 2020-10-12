@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { HistoryStateDocument } from 'generated/documents'
 import Router, { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { updatePage, getPage, updateHistory, getPrevIdx, getNextIdx } from './historyState'
+import { useEffect, useLayoutEffect } from 'react'
+import { updatePage, getPage, updateHistory, getPrevIdx, getNextIdx } from './historyHelpers'
 import resolveHref from './resolveHref'
 import { historyStateVar } from './typePolicies'
 
@@ -17,10 +17,7 @@ export default function useHistoryState() {
   }, [router.asPath])
 
   if (data?.historyState.pages.length === 0) {
-    historyStateVar({
-      ...data.historyState,
-      pages: [{ as: Router.asPath, href: Router.route, x: 0, y: 0, holdPrevious: true }],
-    })
+    updatePage({}, { as: Router.asPath, href: Router.route, x: 0, y: 0, holdPrevious: true }, 0)
   }
 
   // Watch all route changes so we can track forward/backward navigation
@@ -68,14 +65,23 @@ export default function useHistoryState() {
 
   // When the location has changed, change the scroll position
   useEffect(() => {
-    if (data?.historyState.phase === 'SCROLL_SAVED') {
-      updateHistory({ phase: 'BEFORE_SCROLL' })
-      const page = getPage()
-      window.scrollTo(page?.x ?? 0, page?.y ?? 0)
-    }
-
-    if (data?.historyState.phase === 'BEFORE_SCROLL') {
+    if (data?.historyState.phase === 'SCROLLED') {
       updateHistory({ phase: 'FINISHED' })
     }
   }, [data?.historyState.phase])
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (historyStateVar().phase === 'SCROLLING') {
+        console.log('scroll', window.scrollY)
+        updateHistory({ phase: 'SCROLLED' })
+      }
+    }
+
+    window.addEventListener('scroll', onScroll)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  })
 }

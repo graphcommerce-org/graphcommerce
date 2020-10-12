@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { usePresence } from 'framer-motion'
+import { MotionProps, usePresence } from 'framer-motion'
+import { Target } from 'framer-motion/types/types'
 import { HistoryStateDocument } from 'generated/documents'
 import { useEffect, useState } from 'react'
 import {
@@ -11,7 +12,8 @@ import {
   untillPhase,
   updatePage,
   betweenPhases,
-} from './historyState'
+  updateHistory,
+} from './historyHelpers'
 import { historyStateVar } from './typePolicies'
 
 export type Mode = 'shallow' | 'deep'
@@ -79,40 +81,48 @@ export default function usePageTransition(layoutType: LayoutType) {
   if (!isActive && !hold && safeToRemove) safeToRemove()
 
   const mode: Mode = 'deep'
-  let offset = 0
+  let target: Target = { y: 0, visibility: 'visible', position: 'absolute', left: 0, right: 0 }
 
   if (thisIdx === getFromIdx() && state.direction === 'FORWARD' && afterPhase('REGISTERED')) {
-    offset = (thisPage?.y ?? 0) * -1
+    target = { ...target, y: (thisPage?.y ?? 0) * -1 }
+
+    if (layoutType === 'normal') {
+      target = { ...target, position: 'fixed' }
+    }
   }
 
-  if (
-    layoutType === 'overlay' &&
-    thisIdx === currentIdx &&
-    state.direction === 'FORWARD' &&
-    untillPhase('LOADING')
-  ) {
-    offset = prevPage?.y ?? 0
-    console.log(offset)
+  if (thisIdx === currentIdx && state.direction === 'FORWARD' && untillPhase('SCROLLING')) {
+    target = { ...target, visibility: 'hidden' }
   }
 
-  if (thisIdx === currentIdx && typeof window !== 'undefined') {
-    // console.log(thisPage?.as, state.phase, window.scrollY)
+  // We move the scroll handling inline so we can immediately use the result
+  if (thisIdx === currentIdx && state.phase === 'SCROLL_SAVED') {
+    console.log(state.phase)
+    state = updateHistory({ phase: 'SCROLLING' })
+    const page = getPage()
+    window.scrollTo(page?.x ?? 0, page?.y ?? 0)
   }
 
-  if (thisIdx === currentIdx && state.direction === 'BACK' && untillPhase('BEFORE_SCROLL')) {
-    offset = (thisPage?.y ?? 0) * -1
+  // incomming page
+  if (thisIdx === currentIdx && state.direction === 'BACK' && untillPhase('SCROLLING')) {
+    target = { ...target, y: (thisPage?.y ?? 0) * -1 }
+    console.log(thisPage?.as, state.phase, (thisPage?.y ?? 0) * -1)
   }
 
-  // The page we're navigating from
-  if (thisIdx === fromIdx && state.direction === 'BACK' && afterPhase('BEFORE_SCROLL')) {
-    offset = prevPage?.y ?? 0 * -1
+  if (thisIdx === currentIdx) {
+    console.log(thisPage?.as, state.phase, target.y)
+  }
+
+  // leaving page
+  if (thisIdx === fromIdx && state.direction === 'BACK' && afterPhase('SCROLLING')) {
+    target = { ...target, y: (thisPage?.y ?? 0) + (prevPage?.y ?? 0) * -1 }
   }
 
   // const bla2 =
   //   state.phase === 'LOADING' ||
   //   state.phase === 'LOCATION_CHANGED' ||
   //   state.phase === 'REGISTERED' ||
-  //   state.phase === 'BEFORE_SCROLL'
+  //   state.phase === 'SCROLLING'
   // if (currentIdx === thisIdx && state.direction === 'BACK' && bla2) {
   //   console.log(nextPage?.as, 'hoi')
   //   offset = (nextPage?.y ?? 0) * -1
@@ -143,7 +153,7 @@ export default function usePageTransition(layoutType: LayoutType) {
   //     switch (state?.phase) {
   //       case 'LOADING':
   //       case 'LOCATION_CHANGED':
-  //       case 'BEFORE_SCROLL':
+  //       case 'SCROLLING':
   //       case 'FINISHED':
   //     }
   //   }
@@ -153,7 +163,7 @@ export default function usePageTransition(layoutType: LayoutType) {
   //     switch (state?.phase) {
   //       case 'LOADING':
   //       case 'LOCATION_CHANGED':
-  //       case 'BEFORE_SCROLL':
+  //       case 'SCROLLING':
   //       case 'FINISHED':
   //     }
   //   }
@@ -167,8 +177,13 @@ export default function usePageTransition(layoutType: LayoutType) {
   //   `offset:${offset}`,
   // )
 
-  return { isActive, offset, mode, state: data?.historyState, hold }
-  // if (state.phase === 'BEFORE_SCROLL' || state.phase === 'FINISHED') {
+  const offsetDiv: MotionProps = {
+    initial: target,
+    animate: { ...target, transition: { duration: 0 } },
+    exit: { ...target, transition: { duration: 0 } },
+  }
+  return { isActive, offsetDiv, mode, state: data?.historyState, hold }
+  // if (state.phase === 'SCROLLING' || state.phase === 'FINISHED') {
   //   if (layoutType === 'normal' && phase !== 'enter' && state.direction === 'FORWARD') {
   //     offset = (thisPage?.y ?? 0) * -1
   //   }

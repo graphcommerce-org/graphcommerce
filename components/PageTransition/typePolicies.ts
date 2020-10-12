@@ -4,7 +4,7 @@ export const historyStateVar = makeVar<GQLQuery['historyState']>({
   direction: 'FORWARD',
   idx: 0,
   pages: [],
-  phase: 'LOADING',
+  phase: 'FINISHED',
 })
 
 const typePolicies: TypePolicies = {
