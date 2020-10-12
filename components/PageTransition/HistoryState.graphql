@@ -1,6 +1,5 @@
 query HistoryState {
   historyState @client {
-    __typename
     idx
     pages {
       holdPrevious

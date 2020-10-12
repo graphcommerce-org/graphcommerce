@@ -29,10 +29,11 @@ export default function DebugSpacer({
               borderTop: `3px solid ${color}`,
               width: '100%',
               textAlign: 'center',
+              fontSize: 50,
             }}
             key={nr}
           >
-            {nr}
+            {nr} {typeof window !== 'undefined' ? window.scrollY : 0}px
           </div>
         )
       })}

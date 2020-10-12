@@ -32,7 +32,7 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const { children, urlResolver, menu } = props
   const theme = useTheme()
   const classes = useStyles(props)
-  const { isActive, mode, offset, state, hold } = usePageTransition('normal')
+  const { offset, hold } = usePageTransition('normal')
 
   const headerAnimation: MotionProps = hold ? keepAnimation : instantAnimation
   const contentAnimation: MotionProps = hold ? keepAnimation : instantAnimation

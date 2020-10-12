@@ -1,9 +1,11 @@
 import { makeStyles, Paper, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
-import instantAnimation from 'components/PageTransition/animation/instant'
+import { untillPhase } from 'components/PageTransition/HistoryState'
+import keepAnimation from 'components/PageTransition/animation/keep'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { m as motion, MotionProps } from 'framer-motion'
+import { HistoryStateDocument } from 'generated/documents'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -35,18 +37,22 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { offset } = usePageTransition('overlay')
+  const { offset, state } = usePageTransition('overlay')
 
-  const backdropAnimation: MotionProps = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
-    exit: { opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
-  }
-  const contentAnimation: MotionProps = {
-    initial: { opacity: 0, y: '50%' },
-    animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'circOut' } },
-    exit: { opacity: 0, y: '50%', transition: { type: 'tween', ease: 'circIn' } },
-  }
+  if (untillPhase('BEFORE_SCROLL')) return
+
+  const backdropAnimation = keepAnimation
+  // const backdropAnimation: MotionProps = {
+  //   initial: { opacity: 0 },
+  //   animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
+  //   exit: { opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
+  // }
+  const contentAnimation = keepAnimation
+  // const contentAnimation: MotionProps = {
+  //   initial: { opacity: 0, y: '50%' },
+  //   animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'circOut' } },
+  //   exit: { opacity: 0, y: '50%', transition: { type: 'tween', ease: 'circIn' } },
+  // }
   // switch (phaseMode) {
   //   case 'hold-deep':
   //   case 'hold-shallow':
@@ -81,6 +87,7 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
             </Paper>
           </motion.div>
         </motion.div>
+        f
       </motion.div>
     </PageLayout>
   )
