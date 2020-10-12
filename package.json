@@ -39,7 +39,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/styles": "^4.10.0",
     "@n1ru4l/graphql-codegen-relay-optimizer-plugin": "^5.0.0-alpha.0",
-    "@next/bundle-analyzer": "^9.5.3",
+    "@next/bundle-analyzer": "^9.5.5",
     "apollo-cache-persist": "^0.1.1",
     "apollo-server-micro": "^2.18.2",
     "clone-deep": "^4.0.1",
