@@ -31,7 +31,7 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
           )}
         </li>
       </ul>
-      <DebugSpacer height={2000} color='#ecf1c8' />
+      <DebugSpacer height={200} color='#ecf1c8' />
     </>
   )
 }
