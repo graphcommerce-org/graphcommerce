@@ -6,7 +6,7 @@ import ThemedProvider from 'components/Theme'
 export default function ThemedApp(props: AppProps) {
   return (
     <ThemedProvider>
-      {/* <PageLoadIndicator /> */}
+      <PageLoadIndicator />
       <App {...props} />
       <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
     </ThemedProvider>
