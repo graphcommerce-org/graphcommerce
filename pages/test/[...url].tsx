@@ -34,11 +34,11 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
           </Link>
         </li>
       </ul>
-      {/* {url === 'index' ? (
+      {url === 'index' ? (
         <motion.img src='/manifest/icon.png' alt='' layoutId='img' width='366 ' height='344' />
       ) : (
         <motion.img src='/manifest/icon.png' alt='' layoutId='img' width='366 ' height='344' />
-      )} */}
+      )}
       <DebugSpacer height={2000} />
     </Container>
   )
