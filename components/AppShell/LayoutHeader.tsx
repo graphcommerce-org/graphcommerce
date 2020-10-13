@@ -9,18 +9,13 @@ import Header from './Header'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    offsetDiv: {
-      backdropFilter: 'blur(3px)',
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    },
     content: {
-      // position: 'absolute',
       marginTop: `calc(${theme.page.headerInnerHeight.xs} + ${theme.page.vertical})`,
-      // left: 0,
-      // right: 0,
       [theme.breakpoints.up('md')]: {
         marginTop: `calc(${theme.page.headerInnerHeight.sm} + ${theme.page.vertical} * 2)`,
       },
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      backdropFilter: 'blur(4px)',
     },
   }),
   { name: 'LayoutHeader' },
@@ -32,13 +27,12 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const classes = useStyles(props)
   const { offsetDiv, hold, inFront } = usePageTransition('normal')
 
-  const headerAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
-  const contentAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
+  const headerAnimation: MotionProps = keepAnimation
+  const contentAnimation: MotionProps = keepAnimation
 
-  // theme.zIndex.modal
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div className={classes.offsetDiv} {...offsetDiv} style={{ zIndex: inFront ? 1 : 0 }}>
+      <motion.div {...offsetDiv} style={{ zIndex: inFront ? 1 : 0 }}>
         <motion.div {...headerAnimation}>
           <Header menu={menu} urlResolver={urlResolver} />
         </motion.div>

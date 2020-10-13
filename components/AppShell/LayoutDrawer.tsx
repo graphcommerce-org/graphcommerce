@@ -39,34 +39,16 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   const theme = useTheme()
   const { offsetDiv, inFront } = usePageTransition('overlay')
 
-  // const backdropAnimation = keepAnimation
   const backdropAnimation: MotionProps = {
     initial: { opacity: 0 },
     animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
     exit: { opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
   }
-  // const contentAnimation = keepAnimation
   const contentAnimation: MotionProps = {
     initial: { opacity: 0, y: '50%' },
     animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'circOut' } },
     exit: { opacity: 0, y: '50%', transition: { type: 'tween', ease: 'circIn' } },
   }
-  // switch (phaseMode) {
-  //   case 'hold-deep':
-  //   case 'hold-shallow':
-  //     backdropAnimation = instantAnimation
-  //     contentAnimation = instantAnimation
-  //     break
-  //   case 'enter-deep':
-  //   case 'exit-deep':
-  //     backdropAnimation =
-  //     contentAnimation =
-  //     break
-  //   case 'enter-shallow':
-  //   case 'exit-shallow':
-  //     backdropAnimation = instantAnimation
-  //     contentAnimation = instantAnimation
-  // }
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
