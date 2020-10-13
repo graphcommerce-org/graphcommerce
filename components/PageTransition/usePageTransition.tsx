@@ -46,9 +46,9 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
   const fromPage = getPage(fromIdx)
 
   const isFromInFront = isFromPage && untillPhase('LOCATION_CHANGED')
-  const isFromInBg = isFromPage && afterPhase('REGISTERED')
+  const isFromInBack = isFromPage && afterPhase('REGISTERED')
   const isToInFront = isToPage && afterPhase('REGISTERED')
-  const isToInBg = isToPage && untillPhase('LOCATION_CHANGED')
+  const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
@@ -56,9 +56,8 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
   const hold = isHold(thisIdx)
 
   // If we do not need to keep the layout, we can mark it for removal
-  if (isFromInBg && !hold && safeToRemove && afterPhase('FINISHED')) {
-    console.log(fromPage?.as, 'remove')
-    setTimeout(() => safeToRemove(), 1000)
+  if (isFromInBack && !hold && safeToRemove && afterPhase('FINISHED')) {
+    setTimeout(() => safeToRemove(), 500)
   }
 
   let target: Target = {
@@ -70,22 +69,23 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
   }
 
   const inFront = isFromInFront || isToInFront
+  const inBack = isFromInBack || isFromInBack
 
   if (isFromInFront) {
     target = { ...target }
-    console.log(fromPage?.as, 'fromInFront', target.y, state.phase, state.direction)
+    console.log(fromPage?.as, 'fromInFront', target.y, state.phase, hold)
   }
-  if (isFromInBg) {
+  if (isFromInBack) {
     target = { ...target, y: (fromPage?.y ?? 0) * -1, position: 'fixed' }
-    console.log(fromPage?.as, 'fromInBg', target.y, state.phase, state.direction)
+    console.log(fromPage?.as, 'fromInBg', target.y, state.phase, hold)
   }
-  if (isToInBg) {
+  if (isToInBack) {
     target = { ...target, y: (toPage?.y ?? 0) * -1, position: 'fixed' }
-    console.log(toPage?.as, 'toInBg', target.y, state.phase, state.direction)
+    console.log(toPage?.as, 'toInBg', target.y, state.phase, hold)
   }
   if (isToInFront) {
     target = { ...target }
-    console.log(toPage?.as, 'toInFront', target.y, state.phase, state.direction)
+    console.log(toPage?.as, 'toInFront', target.y, state.phase, hold)
   }
 
   const offsetDiv: MotionProps = {
@@ -93,5 +93,5 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
     animate: { ...target, transition: { duration: 0 } },
     exit: { ...target, transition: { duration: 0 } },
   }
-  return { offsetDiv, hold, inFront }
+  return { offsetDiv, hold, inFront, inBack }
 }
