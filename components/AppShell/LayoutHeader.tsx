@@ -27,8 +27,8 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const classes = useStyles(props)
   const { offsetDiv, hold, inFront } = usePageTransition('normal')
 
-  const headerAnimation: MotionProps = keepAnimation
-  const contentAnimation: MotionProps = keepAnimation
+  const headerAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
+  const contentAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>

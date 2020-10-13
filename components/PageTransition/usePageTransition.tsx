@@ -37,18 +37,9 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
   if (isBrowser && isToPage && layoutType === 'normal' && getPage(thisIdx)?.holdPrevious === true) {
     state = updatePage({}, { holdPrevious: false }, thisIdx)
   }
-
+  // Register the scroll position of the previous page
   if (isBrowser && state.phase === 'LOCATION_CHANGED') {
-    const scroll = { x: window.scrollX, y: window.scrollY }
-
-    if (isToPage && state.direction === 'BACK') {
-      state = updatePage({ phase: 'SCROLL_SAVED' }, scroll, fromIdx)
-    }
-
-    // if state === back AND toPage is new?
-    if (isFromPage && state.direction === 'FORWARD') {
-      state = updatePage({ phase: 'SCROLL_SAVED' }, scroll, thisIdx)
-    }
+    state = updatePage({ phase: 'SCROLL_SAVED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
   }
 
   const toPage = getPage()
