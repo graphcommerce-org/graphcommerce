@@ -64,25 +64,16 @@ export default function useHistoryState() {
     return () => router.events.off('beforeHistoryChange', beforeHistoryChange)
   }, [router.events])
 
-  // Track when an error happenss
-  useEffect(() => {
-    function routeChangeError(error: Error) {
-      console.error('error while changing route', error)
-    }
-    router.events.on('routeChangeError', routeChangeError)
-    return () => router.events.off('routeChangeError', routeChangeError)
-  }, [router.events])
-
   useEffect(() => {
     const routeChangeComplete = () => {
       const fromPage = getFromPage()
       const page = getPage()
       const skipScroll = page?.y === fromPage?.y && page?.x === fromPage?.x
+      document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
       if (skipScroll) {
         updateHistory({ phase: 'SCROLLED' })
       } else {
         updateHistory({ phase: 'SCROLLING' })
-        document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
         window.scrollTo(page?.x ?? 0, page?.y ?? 0)
         updateHistory({ phase: 'SCROLLED' })
       }
