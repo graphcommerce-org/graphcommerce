@@ -19,6 +19,10 @@ export type PageFC<TProps = AnyObj, TPropsLayout = AnyObj> = BasePage<TProps> & 
   Layout: PageLayoutFC<TPropsLayout>
 }
 
+export type PageTransitionFC<TPropsLayout = AnyObj> = React.FC<
+  { Layout: PageLayoutFC<TPropsLayout> } & TPropsLayout
+>
+
 export type PageStaticPropsFn<
   TPage extends PageFC,
   Q extends ParsedUrlQuery = ParsedUrlQuery

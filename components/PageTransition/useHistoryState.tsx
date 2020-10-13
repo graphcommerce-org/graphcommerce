@@ -1,8 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { HistoryStateDocument } from 'generated/documents'
 import Router, { useRouter } from 'next/router'
-import { useEffect, useLayoutEffect } from 'react'
-import { updatePage, getPage, updateHistory, getPrevIdx, getNextIdx } from './historyHelpers'
+import { useEffect } from 'react'
+import {
+  updatePage,
+  getPage,
+  updateHistory,
+  getPrevIdx,
+  getNextIdx,
+  getFromPage,
+} from './historyHelpers'
 import resolveHref from './resolveHref'
 import { historyStateVar } from './typePolicies'
 
@@ -29,16 +36,15 @@ export default function useHistoryState() {
       // Navigated to previous page
       const prevIdx = getPrevIdx()
       if (getPage(prevIdx)?.as === newUrl) {
-        updateHistory({ idx: prevIdx, direction: 'BACK', phase: 'LOADING' })
+        updateHistory({ direction: 'BACK', phase: 'LOADING', idx: prevIdx })
         return
       }
 
       const href = (await resolveHref(newUrl)).pathname
-      const nextIdx = getNextIdx()
       updatePage(
-        { direction: 'FORWARD', phase: 'LOADING', idx: nextIdx },
+        { direction: 'FORWARD', phase: 'LOADING', idx: getNextIdx() },
         { as: newUrl, href, holdPrevious: true },
-        nextIdx,
+        getNextIdx(),
       )
     }
 
@@ -63,6 +69,24 @@ export default function useHistoryState() {
     return () => router.events.off('routeChangeError', routeChangeError)
   }, [router.events])
 
+  useEffect(() => {
+    const routeChangeComplete = () => {
+      const fromPage = getFromPage()
+      const page = getPage()
+      const skipScroll = page?.y === fromPage?.y && page?.x === fromPage?.x
+      if (skipScroll) {
+        updateHistory({ phase: 'SCROLLED' })
+      } else {
+        updateHistory({ phase: 'SCROLLING' })
+        console.log('scrolling', page?.y)
+        window.scrollTo(page?.x ?? 0, page?.y ?? 0)
+        updateHistory({ phase: 'SCROLLED' })
+      }
+    }
+    router.events.on('routeChangeComplete', routeChangeComplete)
+    return () => router.events.off('routeChangeComplete', routeChangeComplete)
+  })
+
   // When the location has changed, change the scroll position
   useEffect(() => {
     if (data?.historyState.phase === 'SCROLLED') {
@@ -78,7 +102,7 @@ export default function useHistoryState() {
       }
     }
 
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
       window.removeEventListener('scroll', onScroll)

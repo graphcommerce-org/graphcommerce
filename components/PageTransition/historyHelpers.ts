@@ -53,6 +53,9 @@ export function getFromIdx() {
   const history = historyStateVar()
   return history?.direction === 'FORWARD' ? getPrevIdx() : getNextIdx()
 }
+export function getFromPage() {
+  return getPage(getFromIdx())
+}
 
 export function updatePage(
   incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,

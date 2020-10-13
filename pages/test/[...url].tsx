@@ -4,6 +4,7 @@ import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
+import { m as motion } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
 import Link from 'next/link'
 
@@ -17,9 +18,15 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
       hallo! {url}
       <ul>
         <li>
-          <Link href='/test/other' scroll={false}>
-            Sibling Page
-          </Link>
+          {url === 'index' ? (
+            <Link href='/test/deeper' scroll={false}>
+              Sibling
+            </Link>
+          ) : (
+            <Link href='/test/index' scroll={false}>
+              Index
+            </Link>
+          )}
         </li>
         <li>
           <Link href='/test/overlay/index' scroll={false}>
@@ -27,6 +34,11 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
           </Link>
         </li>
       </ul>
+      {/* {url === 'index' ? (
+        <motion.img src='/manifest/icon.png' alt='' layoutId='img' width='366 ' height='344' />
+      ) : (
+        <motion.img src='/manifest/icon.png' alt='' layoutId='img' width='366 ' height='344' />
+      )} */}
       <DebugSpacer height={2000} />
     </Container>
   )

@@ -1,16 +1,25 @@
-import { AnimatePresence } from 'framer-motion'
+import { PageTransitionFC } from 'components/Page/types'
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 import useHistoryState from './useHistoryState'
 
-const PageTransition: React.FC = ({ children }) => {
+const PageTransition: PageTransitionFC = ({ children, Layout, ...pageLayoutProps }) => {
   const router = useRouter()
   useHistoryState()
 
   return (
-    <AnimatePresence initial={false}>
-      <Fragment key={router.asPath}>{children}</Fragment>
-    </AnimatePresence>
+    <AnimateSharedLayout type='crossfade'>
+      <AnimatePresence initial={false}>
+        {Layout ? (
+          <Layout key={router.asPath} {...pageLayoutProps}>
+            {children}
+          </Layout>
+        ) : (
+          <Fragment key={router.asPath}>{children}</Fragment>
+        )}
+      </AnimatePresence>
+    </AnimateSharedLayout>
   )
 }
 
