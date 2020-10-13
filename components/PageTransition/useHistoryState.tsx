@@ -82,6 +82,7 @@ export default function useHistoryState() {
         updateHistory({ phase: 'SCROLLED' })
       } else {
         updateHistory({ phase: 'SCROLLING' })
+        document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
         window.scrollTo(page?.x ?? 0, page?.y ?? 0)
         updateHistory({ phase: 'SCROLLED' })
       }
