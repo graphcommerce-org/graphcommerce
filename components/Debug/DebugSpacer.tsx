@@ -33,7 +33,7 @@ export default function DebugSpacer({
             }}
             key={nr}
           >
-            {nr} {typeof window !== 'undefined' ? window.scrollY : 0}px
+            {nr}
           </div>
         )
       })}
