@@ -5,7 +5,7 @@ import { AppProps as NextAppProps } from 'next/app'
 
 type AnyObj = Record<string, unknown>
 
-type BasePageLayoutComponentProps = GQLResolveUrlQuery
+export type BasePageLayoutComponentProps = GQLResolveUrlQuery
 
 type BasePage<T = AnyObj> = React.FC<BasePageLayoutComponentProps & T>
 
@@ -18,10 +18,6 @@ export type GetProps<T extends React.FC> = Omit<Parameters<T>['0'], 'children'>
 export type PageFC<TProps = AnyObj, TPropsLayout = AnyObj> = BasePage<TProps> & {
   Layout: PageLayoutFC<TPropsLayout>
 }
-
-export type PageTransitionFC<TPropsLayout = AnyObj> = React.FC<
-  { Layout: PageLayoutFC<TPropsLayout> } & TPropsLayout
->
 
 export type PageStaticPropsFn<
   TPage extends PageFC,
