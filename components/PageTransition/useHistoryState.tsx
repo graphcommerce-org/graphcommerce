@@ -9,6 +9,7 @@ import {
   getPrevIdx,
   getNextIdx,
   getFromPage,
+  addPage,
 } from './historyHelpers'
 import resolveHref from './resolveHref'
 import { historyStateVar } from './typePolicies'
@@ -29,23 +30,26 @@ export default function useHistoryState() {
 
   // Watch all route changes so we can track forward/backward navigation
   useEffect(() => {
-    const routeChangeStart = async (newUrl: string) => {
+    const routeChangeStart = async (as: string) => {
       // Navigated to same page
-      if (getPage()?.as === newUrl) return
+      if (getPage()?.as === as) return
 
       // Navigated to previous page
       const prevIdx = getPrevIdx()
-      if (getPage(prevIdx)?.as === newUrl) {
+      if (getPage(prevIdx)?.as === as) {
         updateHistory({ direction: 'BACK', phase: 'LOADING', idx: prevIdx })
         return
       }
 
-      const href = (await resolveHref(newUrl)).pathname
-      updatePage(
-        { direction: 'FORWARD', phase: 'LOADING', idx: getNextIdx() },
-        { as: newUrl, href, holdPrevious: true },
-        getNextIdx(),
-      )
+      const href = (await resolveHref(as)).pathname
+      const idx = getNextIdx()
+      const nextPage = getPage(idx)
+      const state = { direction: 'FORWARD', phase: 'LOADING', idx } as const
+      if (nextPage && nextPage.as === as) {
+        updatePage(state, { as, href, holdPrevious: true }, idx)
+      } else {
+        addPage(state, { as, href, holdPrevious: true, x: 0, y: 0 }, idx)
+      }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -78,7 +82,6 @@ export default function useHistoryState() {
         updateHistory({ phase: 'SCROLLED' })
       } else {
         updateHistory({ phase: 'SCROLLING' })
-        console.log('scrolling', page?.y)
         window.scrollTo(page?.x ?? 0, page?.y ?? 0)
         updateHistory({ phase: 'SCROLLED' })
       }
@@ -89,21 +92,15 @@ export default function useHistoryState() {
 
   // When the location has changed, change the scroll position
   useEffect(() => {
-    if (data?.historyState.phase === 'SCROLLED') {
-      updateHistory({ phase: 'FINISHED' })
-    }
+    if (data?.historyState.phase === 'SCROLLED') updateHistory({ phase: 'FINISHED' })
   }, [data?.historyState.phase])
 
   useEffect(() => {
     const onScroll = () => {
-      if (historyStateVar().phase === 'SCROLLING') {
-        console.log('scroll', window.scrollY)
-        updateHistory({ phase: 'SCROLLED' })
-      }
+      if (historyStateVar().phase === 'SCROLLING') updateHistory({ phase: 'SCROLLED' })
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
-
     return () => {
       window.removeEventListener('scroll', onScroll)
     }

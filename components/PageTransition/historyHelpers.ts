@@ -63,12 +63,12 @@ export function updatePage(
   pageIdx?: number,
 ) {
   const actual = historyStateVar()
-  const idx = pageIdx ?? actual.idx
   const historyState: GQLHistoryStateQuery['historyState'] = {
     ...actual,
     ...(incomming as GQLHistoryStateQuery['historyState']),
   }
 
+  const idx = pageIdx ?? actual.idx
   const pages = [...historyState.pages]
   pages[idx] = {
     ...{ holdPrevious: true, x: 0, y: 0 },
@@ -76,6 +76,22 @@ export function updatePage(
     ...page,
   }
 
+  historyStateVar({ ...historyState, pages })
+  return historyStateVar()
+}
+
+export function addPage(
+  incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
+  page: GQLHistoryStateQuery['historyState']['pages'][0],
+  pageIdx: number,
+) {
+  const actual = historyStateVar()
+  const historyState: GQLHistoryStateQuery['historyState'] = {
+    ...actual,
+    ...(incomming as GQLHistoryStateQuery['historyState']),
+  }
+
+  const pages = [...historyState.pages.slice(0, pageIdx), page]
   historyStateVar({ ...historyState, pages })
   return historyStateVar()
 }
