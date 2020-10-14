@@ -11,7 +11,7 @@ const PageTransition: PageTransitionFC = ({ children, Layout, ...pageLayoutProps
   useHistoryState()
 
   return (
-    <AnimateSharedLayout type='crossfade'>
+    <AnimateSharedLayout type='switch'>
       <AnimatePresence initial={false}>
         {Layout ? (
           <Layout key={router.asPath} {...pageLayoutProps}>
