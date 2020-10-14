@@ -1,9 +1,4 @@
 {
-  "cache": {
-    "file": {
-      "path": "/tmp/graphql-mesh-cache.json"
-    }
-  },
   "sources": [
     {
       "name": "GraphCMS",

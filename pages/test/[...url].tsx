@@ -4,6 +4,7 @@ import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
+import { m as motion } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
 import Link from 'next/link'
 
@@ -17,12 +18,35 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
       hallo! {url}
       <ul>
         <li>
-          <Link href='/test/other'>Sibling Page</Link>
+          {url === 'index' ? (
+            <Link href='/test/deeper' scroll={false}>
+              Sibling
+            </Link>
+          ) : (
+            <Link href='/test/index' scroll={false}>
+              Index
+            </Link>
+          )}
         </li>
         <li>
-          <Link href='/test/overlay/index'>Overlay</Link>
+          <Link href='/test/overlay/index' scroll={false}>
+            Overlay
+          </Link>
         </li>
       </ul>
+      <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
+        <motion.img
+          layout
+          src='/manifest/icon.png'
+          alt=''
+          layoutId='img1'
+          width='183'
+          height='172'
+          style={{ position: 'relative', zIndex: 5 }}
+          // animate={url === 'index' ? { filter: `hue-rotate(0deg)` } : { filter: `hue-rotate(45deg)` }}
+          transition={{ type: 'tween' }}
+        />
+      </div>
       <DebugSpacer height={2000} />
     </Container>
   )

@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { PageLayoutFC } from 'components/Page/types'
-import PageLoadIndicator from 'components/PageLoadIndicator'
 import { StoreConfigDocument } from 'generated/documents'
 import Head from 'next/head'
 import React from 'react'
@@ -25,7 +24,6 @@ const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColo
         <link rel='manifest' href='/manifest.webmanifest' />
         <link rel='shortcut icon' href='/manifest/favicon.ico' />
       </Head>
-      <PageLoadIndicator />
       {children}
     </>
   )

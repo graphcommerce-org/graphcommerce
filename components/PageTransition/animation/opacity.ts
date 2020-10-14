@@ -1,9 +1,9 @@
 import { MotionProps } from 'framer-motion'
 
-const opacityAnination: MotionProps = {
+const opacityAnimation: MotionProps = {
   initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
+  animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
+  exit: { opacity: 0, transition: { type: 'tween', ease: 'circOut' } },
 }
 
-export default opacityAnination
+export default opacityAnimation

@@ -5,7 +5,7 @@ import { AppProps as NextAppProps } from 'next/app'
 
 type AnyObj = Record<string, unknown>
 
-type BasePageLayoutComponentProps = GQLResolveUrlQuery
+export type BasePageLayoutComponentProps = GQLResolveUrlQuery
 
 type BasePage<T = AnyObj> = React.FC<BasePageLayoutComponentProps & T>
 

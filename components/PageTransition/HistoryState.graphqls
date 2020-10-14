@@ -1,0 +1,33 @@
+type HistoryStatePage {
+  holdPrevious: Boolean!
+  href: String!
+  as: String!
+  x: Int!
+  y: Int!
+}
+
+enum Direction {
+  BACK
+  FORWARD
+}
+
+enum Phase {
+  LOADING
+  LOCATION_CHANGED
+  REGISTERED
+  SCROLL_SAVED
+  SCROLLING
+  SCROLLED
+  FINISHED
+}
+
+type HistoryState {
+  idx: Int!
+  pages: [HistoryStatePage!]!
+  direction: Direction!
+  phase: Phase!
+}
+
+extend type Query {
+  historyState: HistoryState!
+}

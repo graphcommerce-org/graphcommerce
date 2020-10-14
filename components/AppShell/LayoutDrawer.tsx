@@ -1,8 +1,8 @@
 import { makeStyles, Paper, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
-import instantAnimation from 'components/PageTransition/animation/instant'
-import useLayoutTransition from 'components/PageTransition/usePageTransition'
+import keepAnimation from 'components/PageTransition/animation/keep'
+import usePageTransition from 'components/PageTransition/usePageTransition'
 import { m as motion, MotionProps } from 'framer-motion'
 import React from 'react'
 
@@ -17,12 +17,14 @@ const useStyles = makeStyles(
       WebkitTapHighlightColor: 'transparent',
       minHeight: '100vh',
       backdropFilter: `blur(3px)`,
+      zIndex: 2,
     },
     drawer: {
       marginTop: 70,
       marginLeft: 70,
       marginRight: 70,
       background: theme.palette.background.paper,
+      zIndex: 3,
     },
     drawerContent: {
       // minHeight: `calc(100vh - 70px)`,
@@ -35,44 +37,23 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { phaseMode, offset } = useLayoutTransition('overlay')
+  const { offsetDiv, inFront } = usePageTransition(true)
 
-  let backdropAnimation: MotionProps
-  let contentAnimation: MotionProps
-  switch (phaseMode) {
-    case 'hold-deep':
-      backdropAnimation = instantAnimation
-      contentAnimation = instantAnimation
-      break
-    case 'enter-deep':
-    case 'exit-deep':
-      backdropAnimation = {
-        initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
-        exit: { opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
-      }
-      contentAnimation = {
-        initial: { opacity: 0, y: '50%' },
-        animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'circOut' } },
-        exit: { opacity: 0, y: '50%', transition: { type: 'tween', ease: 'circIn' } },
-      }
-      break
-    case 'enter-shallow':
-    case 'exit-shallow':
-      backdropAnimation = instantAnimation
-      contentAnimation = instantAnimation
+  const backdropAnimation: MotionProps = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
+    exit: { opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
+  }
+  const contentAnimation: MotionProps = {
+    initial: { opacity: 0, y: '50%' },
+    animate: { opacity: 1, y: 0, transition: { type: 'tween', ease: 'circOut' } },
+    exit: { opacity: 0, y: '50%', transition: { type: 'tween', ease: 'circIn' } },
   }
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div data-phase={phaseMode} className={classes.backdrop} {...backdropAnimation}>
-        <motion.div
-          {...{
-            initial: { y: offset },
-            animate: { y: offset, transition: { duration: 0 } },
-            exit: { y: offset, transition: { duration: 0 } },
-          }}
-        >
+      <motion.div {...offsetDiv} style={{ zIndex: inFront ? 3 : 2 }}>
+        <motion.div className={classes.backdrop} {...backdropAnimation}>
           <motion.div className={classes.drawer} {...contentAnimation}>
             <Paper elevation={12} className={classes.drawerContent}>
               {title}
