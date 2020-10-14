@@ -35,7 +35,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const image = await fetch(url)
     status = image.status
 
-    res.setHeader('Cache-Control', image.headers.get('Cache-Control') || '')
+    const cacheControl = image.headers.get('Cache-Control')?.includes('s-maxage')
+      ? (image.headers.get('Cache-Control') as string)
+      : `s-maxage=${30 * 24 * 60 * 60}`
+
+    res.setHeader('Cache-Control', cacheControl)
     res.setHeader('Etag', image.headers.get('Etag') || '')
 
     const imageBuffer = await image.buffer()
