@@ -20,7 +20,7 @@ function isHold(thisIdx: number) {
   return nextPages && nextPages.length > 0 && nextPages.every((page) => page.holdPrevious)
 }
 
-export default function usePageTransition(layoutType: 'normal' | 'overlay') {
+const usePageTransition = (holdBackground = false, safeToRemoveAfter = 0.3) => {
   useQuery(HistoryStateDocument)
   let state = historyStateVar()
 
@@ -34,7 +34,7 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
   const [, safeToRemove] = usePresence()
 
   // Register that we want to keep the prevous page
-  if (isBrowser && isToPage && layoutType === 'normal' && getPage(thisIdx)?.holdPrevious === true) {
+  if (isBrowser && isToPage && !holdBackground && getPage(thisIdx)?.holdPrevious === true) {
     state = updatePage({}, { holdPrevious: false }, thisIdx)
   }
   // Register the scroll position of the previous page
@@ -57,7 +57,7 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
 
   // If we do not need to keep the layout, we can mark it for removal
   if (isFromInBack && !hold && safeToRemove && afterPhase('FINISHED')) {
-    setTimeout(() => safeToRemove(), 500)
+    setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
   let target: Target = {
@@ -95,3 +95,5 @@ export default function usePageTransition(layoutType: 'normal' | 'overlay') {
   }
   return { offsetDiv, hold, inFront, inBack }
 }
+
+export default usePageTransition

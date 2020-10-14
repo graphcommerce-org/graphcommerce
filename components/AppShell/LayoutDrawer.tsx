@@ -37,7 +37,7 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { offsetDiv, inFront } = usePageTransition('overlay')
+  const { offsetDiv, inFront } = usePageTransition(true)
 
   const backdropAnimation: MotionProps = {
     initial: { opacity: 0 },

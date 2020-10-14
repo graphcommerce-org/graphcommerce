@@ -1,6 +1,7 @@
 import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
+import instantAnimation from 'components/PageTransition/animation/instant'
 import keepAnimation from 'components/PageTransition/animation/keep'
 import opacityAnimation from 'components/PageTransition/animation/opacity'
 import usePageTransition from 'components/PageTransition/usePageTransition'
@@ -25,7 +26,7 @@ const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
   const { children, urlResolver, menu } = props
   const theme = useTheme()
   const classes = useStyles(props)
-  const { offsetDiv, hold, inFront } = usePageTransition('normal')
+  const { offsetDiv, hold, inFront } = usePageTransition()
 
   const headerAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
   const contentAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
