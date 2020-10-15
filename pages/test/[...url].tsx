@@ -36,15 +36,28 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
       </ul>
       <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
         <motion.img
-          layout
           src='/manifest/icon.png'
           alt=''
           layoutId='img1'
           width='183'
           height='172'
-          style={{ position: 'relative', zIndex: 5 }}
-          // animate={url === 'index' ? { filter: `hue-rotate(0deg)` } : { filter: `hue-rotate(45deg)` }}
+          style={{ position: 'relative', marginLeft: 10 }}
           transition={{ type: 'tween' }}
+          initial={{ zIndex: 0 }}
+          animate={{ zIndex: 5 }}
+          exit={{ zIndex: 0 }}
+        />
+        <motion.img
+          src='/manifest/icon.png'
+          alt=''
+          layoutId='img2'
+          width='183'
+          height='172'
+          style={{ position: 'relative', marginLeft: 10 }}
+          transition={{ type: 'tween' }}
+          initial={{ zIndex: 0 }}
+          animate={{ zIndex: 5 }}
+          exit={{ zIndex: 0 }}
         />
       </div>
       <DebugSpacer height={2000} />

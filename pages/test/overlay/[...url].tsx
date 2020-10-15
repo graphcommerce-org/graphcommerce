@@ -34,15 +34,16 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
       </ul>
       <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
         <motion.img
-          layout
           src='/manifest/icon.png'
           alt=''
           layoutId='img1'
-          width='183'
-          height='172'
+          width={366}
+          height={344}
           style={{ position: 'relative', zIndex: 5 }}
-          // animate={url === 'index' ? { filter: `hue-rotate(0deg)` } : { filter: `hue-rotate(45deg)` }}
           transition={{ type: 'tween' }}
+          initial={{ zIndex: 0, y: -1000 }}
+          animate={{ zIndex: 5, y: 0 }}
+          exit={{ zIndex: 0 }}
         />
       </div>
       <DebugSpacer height={200} color='#ecf1c8' />
