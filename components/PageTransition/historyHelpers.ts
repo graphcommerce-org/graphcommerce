@@ -1,15 +1,7 @@
 import { PartialDeep } from 'type-fest'
 import { historyStateVar } from './typePolicies'
 
-const phases: GQLPhase[] = [
-  'LOADING',
-  'LOCATION_CHANGED',
-  'REGISTERED',
-  'SCROLL_SAVED',
-  'SCROLLING',
-  'SCROLLED',
-  'FINISHED',
-]
+const phases: GQLPhase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
 
 export function afterPhase(after: GQLPhase) {
   return phases.indexOf(historyStateVar().phase) >= phases.indexOf(after)
@@ -57,6 +49,13 @@ export function getFromPage() {
   return getPage(getFromIdx())
 }
 
+// To close all overlays in one go, we find the first page that doesn't require the background to be holded.
+export function getUpPage(idx: number) {
+  const history = historyStateVar()
+  const upPages = history.pages.slice(0, idx).filter((page) => page.holdBackground === false)
+  return upPages?.[upPages.length - 1] as GQLHistoryStatePage | undefined
+}
+
 export function updatePage(
   incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
   page: PartialDeep<GQLHistoryStateQuery['historyState']['pages'][0]>,
@@ -71,7 +70,7 @@ export function updatePage(
   const idx = pageIdx ?? actual.idx
   const pages = [...historyState.pages]
   pages[idx] = {
-    ...{ holdPrevious: true, x: 0, y: 0 },
+    ...{ holdBackground: true, x: 0, y: 0 },
     ...historyState.pages[idx],
     ...page,
   }

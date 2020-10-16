@@ -5,7 +5,8 @@ import { AppProps as NextAppProps } from 'next/app'
 
 type AnyObj = Record<string, unknown>
 
-export type BasePageLayoutComponentProps = GQLResolveUrlQuery
+export type BasePageLayoutComponentProps = GQLResolveUrlQuery &
+  GQLLayoutHeaderQuery & { title: string }
 
 type BasePage<T = AnyObj> = React.FC<BasePageLayoutComponentProps & T>
 
@@ -31,5 +32,5 @@ export type PageStaticPathsFn<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetSt
  */
 export type AppProps = Omit<NextAppProps, 'Component' | 'pageProps'> & {
   Component: PageFC
-  pageProps: ApolloStateProps & AnyObj
+  pageProps: ApolloStateProps & BasePageLayoutComponentProps
 }

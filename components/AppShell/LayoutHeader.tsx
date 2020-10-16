@@ -1,11 +1,9 @@
 import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
-import instantAnimation from 'components/PageTransition/animation/instant'
-import keepAnimation from 'components/PageTransition/animation/keep'
-import opacityAnimation from 'components/PageTransition/animation/opacity'
+import Backdrop from 'components/PageTransition/Backdrop'
 import usePageTransition from 'components/PageTransition/usePageTransition'
-import { m as motion, MotionProps } from 'framer-motion'
+import { m as motion } from 'framer-motion'
 import Header from './Header'
 
 const useStyles = makeStyles(
@@ -15,31 +13,23 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         marginTop: `calc(${theme.page.headerInnerHeight.sm} + ${theme.page.vertical} * 2)`,
       },
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      backdropFilter: 'blur(4px)',
     },
   }),
   { name: 'LayoutHeader' },
 )
 
-const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
-  const { children, urlResolver, menu } = props
+const LayoutHeader: PageLayoutFC = (props) => {
+  const { children, urlResolver, menu, title } = props
   const theme = useTheme()
   const classes = useStyles(props)
-  const { offsetDiv, hold, inFront } = usePageTransition()
-
-  const headerAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
-  const contentAnimation: MotionProps = hold ? keepAnimation : opacityAnimation
+  const { offsetDiv, inFront } = usePageTransition({ title })
 
   return (
-    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
-      <motion.div {...offsetDiv} style={{ zIndex: inFront ? 1 : 0 }}>
-        <motion.div {...headerAnimation}>
-          <Header menu={menu} urlResolver={urlResolver} />
-        </motion.div>
-        <motion.div className={classes.content} {...contentAnimation}>
-          {children}
-        </motion.div>
+    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
+      <Backdrop inFront={inFront} />
+      <motion.div {...offsetDiv}>
+        <Header menu={menu} urlResolver={urlResolver} />
+        <div className={classes.content}>{children}</div>
       </motion.div>
     </PageLayout>
   )

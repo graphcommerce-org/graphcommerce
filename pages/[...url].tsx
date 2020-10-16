@@ -133,6 +133,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
 
   return {
     props: {
+      title: (await categoryPage).categories?.items?.[0]?.name || '',
       ...(await urlResolve),
       ...(await layoutHeader),
       ...(await categoryPage),
