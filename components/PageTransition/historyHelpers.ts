@@ -1,15 +1,7 @@
 import { PartialDeep } from 'type-fest'
 import { historyStateVar } from './typePolicies'
 
-const phases: GQLPhase[] = [
-  'LOADING',
-  'LOCATION_CHANGED',
-  'REGISTERED',
-  'SCROLL_SAVED',
-  'SCROLLING',
-  'SCROLLED',
-  'FINISHED',
-]
+const phases: GQLPhase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
 
 export function afterPhase(after: GQLPhase) {
   return phases.indexOf(historyStateVar().phase) >= phases.indexOf(after)
