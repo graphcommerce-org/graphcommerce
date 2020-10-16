@@ -53,6 +53,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx: { params: { url: s
 
   return {
     props: {
+      title: (await cmsPageProps).cmsPage?.title ?? '',
       ...(await urlResolve),
       ...(await layoutHeader),
       ...(await cmsPageProps),

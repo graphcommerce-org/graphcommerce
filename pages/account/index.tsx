@@ -39,6 +39,7 @@ export const getStaticProps: GetPageStaticProps = async () => {
   await config
   return {
     props: {
+      title: 'Account',
       ...(await layoutHeader),
       apolloState: client.cache.extract(),
     },
