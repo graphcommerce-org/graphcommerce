@@ -38,7 +38,10 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { offsetDiv, inFront } = usePageTransition({ holdBackground: true, title })
+  const { offsetDiv, inFront, prevPage, upPage } = usePageTransition({
+    holdBackground: true,
+    title,
+  })
 
   const contentAnimation: MotionProps = {
     initial: { y: '100%' },
@@ -52,7 +55,12 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
       <motion.div {...offsetDiv}>
         <div className={classes.drawerContainer}>
           <motion.div className={classes.drawer} {...contentAnimation}>
-            {title}
+            title: {title}
+            <br />
+            prevPage: {prevPage?.title}
+            <br />
+            upPage: {upPage?.title}
+            <br />
             {children}
           </motion.div>
         </div>

@@ -32,7 +32,7 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
           )}
         </li>
       </ul>
-      <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
+      {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
         <motion.img
           src='/manifest/icon.png'
           alt=''
@@ -41,12 +41,12 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
           height={344}
           style={{ position: 'relative', zIndex: 5 }}
           transition={{ type: 'tween' }}
-          initial={{ zIndex: 0, y: -1000 }}
-          animate={{ zIndex: 5, y: 0 }}
+          initial={{ zIndex: 0 }}
+          animate={{ zIndex: 5 }}
           exit={{ zIndex: 0 }}
         />
-      </div>
-      <DebugSpacer height={200} color='#ecf1c8' />
+      </div> */}
+      <DebugSpacer height={url === 'index' ? 200 : 2000} color='#ecf1c8' />
     </>
   )
 }
@@ -75,7 +75,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
     props: {
       ...(await layoutHeader),
       url: ctx.params.url.join('/'),
-      title: ctx.params.url.join(' '),
+      title: `Overlaypage ${ctx.params.url.join(' ')}`,
       apolloState: client.cache.extract(),
     },
   }

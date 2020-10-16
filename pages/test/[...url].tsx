@@ -56,7 +56,10 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
           style={{ position: 'relative', marginLeft: 10 }}
           transition={{ type: 'tween' }}
           initial={{ zIndex: 0 }}
-          animate={{ zIndex: 5 }}
+          animate={{
+            zIndex: 5,
+            filter: url === 'index' ? 'hue-rotate(0deg)' : 'hue-rotate(45deg)',
+          }}
           exit={{ zIndex: 0 }}
         />
       </div>
@@ -85,7 +88,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
   const layoutHeader = getLayoutHeaderProps(staticClient)
 
   let title = ctx.params.url.join(' ')
-  title = title.charAt(0).toUpperCase() + title.slice(1)
+  title = `Testpage ${title.charAt(0).toUpperCase() + title.slice(1)}`
 
   return {
     props: {

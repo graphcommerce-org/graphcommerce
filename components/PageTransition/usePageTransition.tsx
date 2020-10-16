@@ -9,22 +9,16 @@ import {
   afterPhase,
   untillPhase,
   updatePage,
-  getCurrentIdx,
+  getUpPage,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
 
 const isBrowser = typeof window !== 'undefined'
 
-function isHold(thisIdx: number) {
-  const nextPages = historyStateVar().pages.slice(thisIdx + 1, getCurrentIdx() + 1)
-  return nextPages && nextPages.length > 0 && nextPages.every((page) => page.holdBackground)
-}
-
-type UsePageTransitionProps = {
-  holdBackground?: boolean
-  safeToRemoveAfter?: number
-  title: string
-}
+type UsePageTransitionProps = { safeToRemoveAfter?: number } & Pick<
+  GQLHistoryStatePage,
+  'holdBackground' | 'title'
+>
 
 const usePageTransition = ({
   holdBackground = false,
@@ -44,8 +38,8 @@ const usePageTransition = ({
   const [, safeToRemove] = usePresence()
 
   // Register that we want to keep the prevous page
-  if (isBrowser && isToPage && !holdBackground && getPage(thisIdx)?.holdBackground === true) {
-    state = updatePage({}, { holdBackground: false, title }, thisIdx)
+  if (isBrowser && isToPage && getPage(thisIdx)?.title === '') {
+    state = updatePage({}, { holdBackground, title }, thisIdx)
   }
 
   // Register the scroll position of the previous page
@@ -53,50 +47,32 @@ const usePageTransition = ({
     state = updatePage({ phase: 'SCROLL_SAVED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
   }
 
-  const toPage = getPage()
-  const fromPage = getPage(fromIdx)
+  const thisPage = getPage(thisIdx)
 
-  const isFromInFront = isFromPage && untillPhase('LOCATION_CHANGED')
-  const isFromInBack = isFromPage && afterPhase('REGISTERED')
+  const isFarInBack = thisIdx < fromIdx && thisIdx !== toIdx
+  const isFromInFront = isFromPage && untillPhase('LOCATION_CHANGED') && !isFarInBack
+  const isFromInBack = (isFromPage && afterPhase('REGISTERED')) || isFarInBack
   const isToInFront = isToPage && afterPhase('REGISTERED')
   const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
   //       It isn't viable to keep all old state around?
-  const hold = isHold(thisIdx)
+  const nextPages = state.pages.slice(thisIdx + 1, toIdx + 1)
+  const hold = nextPages && nextPages.length > 0 && nextPages.every((page) => page.holdBackground)
 
   // If we do not need to keep the layout, we can mark it for removal
-  if (isFromInBack && !hold && safeToRemove && afterPhase('FINISHED')) {
-    setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
+  if (isFromInBack && !hold && safeToRemove && afterPhase('REGISTERED')) {
+    setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000 + 300)
   }
 
-  let target: Target = {
-    y: 0,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    minHeight: '100vh',
-  }
+  let target: Target = { y: 0, position: 'absolute', left: 0, right: 0, minHeight: '100vh' }
 
   const inFront = isFromInFront || isToInFront
   const inBack = isFromInBack || isFromInBack
 
-  if (isFromInFront) {
-    target = { ...target }
-    console.log(fromPage?.as, 'fromInFront', target.y, state.phase, hold)
-  }
-  if (isFromInBack) {
-    target = { ...target, y: (fromPage?.y ?? 0) * -1, position: 'fixed' }
-    console.log(fromPage?.as, 'fromInBg', target.y, state.phase, hold)
-  }
-  if (isToInBack) {
-    target = { ...target, y: (toPage?.y ?? 0) * -1, position: 'fixed' }
-    console.log(toPage?.as, 'toInBg', target.y, state.phase, hold)
-  }
-  if (isToInFront) {
-    target = { ...target }
-    console.log(toPage?.as, 'toInFront', target.y, state.phase, hold)
+  if (isFromInBack || isToInBack) {
+    target = { ...target, y: (thisPage?.y ?? 0) * -1, position: 'fixed' }
   }
 
   const offsetDiv: MotionProps = {
@@ -104,7 +80,10 @@ const usePageTransition = ({
     animate: { ...target, transition: { duration: 0 } },
     exit: { ...target, transition: { duration: 0 } },
   }
-  return { offsetDiv, hold, inFront, inBack }
+
+  const prevPage = getPage(thisIdx - 1)
+  const upPage = getUpPage(thisIdx)
+  return { offsetDiv, hold, inFront, inBack, prevPage, upPage }
 }
 
 export default usePageTransition

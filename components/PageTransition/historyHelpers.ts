@@ -57,6 +57,13 @@ export function getFromPage() {
   return getPage(getFromIdx())
 }
 
+// To close all overlays in one go, we find the first page that doesn't require the background to be holded.
+export function getUpPage(idx: number) {
+  const history = historyStateVar()
+  const upPages = history.pages.slice(0, idx).filter((page) => page.holdBackground === false)
+  return upPages?.[upPages.length - 1] as GQLHistoryStatePage | undefined
+}
+
 export function updatePage(
   incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
   page: PartialDeep<GQLHistoryStateQuery['historyState']['pages'][0]>,

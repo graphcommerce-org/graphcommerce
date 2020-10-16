@@ -16,8 +16,6 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         marginTop: `calc(${theme.page.headerInnerHeight.sm} + ${theme.page.vertical} * 2)`,
       },
-      // backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      // backdropFilter: 'blur(4px)',
     },
   }),
   { name: 'LayoutHeader' },
