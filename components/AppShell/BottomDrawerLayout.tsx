@@ -69,6 +69,6 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   )
 }
 
-export type LayoutDrawerProps = GetProps<typeof BottomDrawerLayout>
+export type BottomDrawerLayoutProps = GetProps<typeof BottomDrawerLayout>
 
 export default BottomDrawerLayout

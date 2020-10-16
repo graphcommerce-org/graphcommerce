@@ -1,4 +1,4 @@
-import BottomDrawerLayout, { LayoutDrawerProps } from 'components/AppShell/BottomDrawerLayout'
+import BottomDrawerLayout, { BottomDrawerLayoutProps } from 'components/AppShell/BottomDrawerLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
@@ -6,7 +6,7 @@ import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import Link from 'next/link'
 
-type PageComponent = PageFC<{ url: string }, LayoutDrawerProps>
+type PageComponent = PageFC<{ url: string }, BottomDrawerLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
