@@ -15,9 +15,9 @@ import { historyStateVar } from './typePolicies'
 
 const isBrowser = typeof window !== 'undefined'
 
-type UsePageTransitionProps = { safeToRemoveAfter?: number } & Pick<
+type UsePageTransitionProps = { holdBackground?: boolean; safeToRemoveAfter?: number } & Omit<
   GQLHistoryStatePage,
-  'holdBackground' | 'title'
+  'href' | 'as' | 'x' | 'y' | 'holdBackground'
 >
 
 const usePageTransition = ({
@@ -83,6 +83,7 @@ const usePageTransition = ({
 
   const prevPage = getPage(thisIdx - 1)
   const upPage = getUpPage(thisIdx)
+
   return { offsetDiv, hold, inFront, inBack, prevPage, upPage }
 }
 

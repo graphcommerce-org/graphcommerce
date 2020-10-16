@@ -46,7 +46,7 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
           exit={{ zIndex: 0 }}
         />
       </div> */}
-      <DebugSpacer height={url === 'index' ? 200 : 2000} color='#ecf1c8' />
+      <DebugSpacer height={url === 'index' ? 200 : 2000} />
     </>
   )
 }

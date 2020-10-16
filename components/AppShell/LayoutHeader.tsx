@@ -2,11 +2,8 @@ import { makeStyles, Theme, useTheme } from '@material-ui/core'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
 import Backdrop from 'components/PageTransition/Backdrop'
-import instantAnimation from 'components/PageTransition/animation/instant'
-import keepAnimation from 'components/PageTransition/animation/keep'
-import opacityAnimation from 'components/PageTransition/animation/opacity'
 import usePageTransition from 'components/PageTransition/usePageTransition'
-import { m as motion, MotionProps } from 'framer-motion'
+import { m as motion } from 'framer-motion'
 import Header from './Header'
 
 const useStyles = makeStyles(
