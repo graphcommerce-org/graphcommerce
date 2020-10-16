@@ -86,7 +86,6 @@ export const defaultTheme = createMuiTheme({
     },
     background: {
       default: '#fff',
-      paper: '#f8f8f8',
     },
     divider: '#f2f2f2',
   },
