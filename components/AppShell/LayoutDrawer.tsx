@@ -27,11 +27,11 @@ const useStyles = makeStyles(
   { name: 'LayoutDrawer' },
 )
 
-const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
+const LayoutDrawer: PageLayoutFC = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
-  const { offsetDiv, inFront } = usePageTransition(true)
+  const { offsetDiv, inFront } = usePageTransition({ holdBackground: true, title })
 
   const contentAnimation: MotionProps = {
     initial: { y: '100%' },
@@ -40,7 +40,7 @@ const LayoutDrawer: PageLayoutFC<{ title: string }> = (props) => {
   }
 
   return (
-    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
+    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
       <Backdrop inFront={inFront} classes={{ backdrop: classes.backdrop }} />
       <motion.div {...offsetDiv}>
         <motion.div className={classes.drawer} {...contentAnimation}>

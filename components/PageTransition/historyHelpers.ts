@@ -71,7 +71,7 @@ export function updatePage(
   const idx = pageIdx ?? actual.idx
   const pages = [...historyState.pages]
   pages[idx] = {
-    ...{ holdPrevious: true, x: 0, y: 0 },
+    ...{ holdBackground: true, x: 0, y: 0 },
     ...historyState.pages[idx],
     ...page,
   }

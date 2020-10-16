@@ -17,10 +17,20 @@ const isBrowser = typeof window !== 'undefined'
 
 function isHold(thisIdx: number) {
   const nextPages = historyStateVar().pages.slice(thisIdx + 1, getCurrentIdx() + 1)
-  return nextPages && nextPages.length > 0 && nextPages.every((page) => page.holdPrevious)
+  return nextPages && nextPages.length > 0 && nextPages.every((page) => page.holdBackground)
 }
 
-const usePageTransition = (holdBackground = false, safeToRemoveAfter = 0.3) => {
+type UsePageTransitionProps = {
+  holdBackground?: boolean
+  safeToRemoveAfter?: number
+  title: string
+}
+
+const usePageTransition = ({
+  holdBackground = false,
+  safeToRemoveAfter = 0.3,
+  title,
+}: UsePageTransitionProps) => {
   useQuery(HistoryStateDocument)
   let state = historyStateVar()
 
@@ -34,9 +44,10 @@ const usePageTransition = (holdBackground = false, safeToRemoveAfter = 0.3) => {
   const [, safeToRemove] = usePresence()
 
   // Register that we want to keep the prevous page
-  if (isBrowser && isToPage && !holdBackground && getPage(thisIdx)?.holdPrevious === true) {
-    state = updatePage({}, { holdPrevious: false }, thisIdx)
+  if (isBrowser && isToPage && !holdBackground && getPage(thisIdx)?.holdBackground === true) {
+    state = updatePage({}, { holdBackground: false, title }, thisIdx)
   }
+
   // Register the scroll position of the previous page
   if (isBrowser && state.phase === 'LOCATION_CHANGED') {
     state = updatePage({ phase: 'SCROLL_SAVED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)

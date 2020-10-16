@@ -23,14 +23,14 @@ const useStyles = makeStyles(
   { name: 'LayoutHeader' },
 )
 
-const LayoutHeader: PageLayoutFC<GQLLayoutHeaderQuery> = (props) => {
-  const { children, urlResolver, menu } = props
+const LayoutHeader: PageLayoutFC = (props) => {
+  const { children, urlResolver, menu, title } = props
   const theme = useTheme()
   const classes = useStyles(props)
-  const { offsetDiv, inFront } = usePageTransition()
+  const { offsetDiv, inFront } = usePageTransition({ title })
 
   return (
-    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main}>
+    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
       <Backdrop inFront={inFront} />
       <motion.div {...offsetDiv}>
         <Header menu={menu} urlResolver={urlResolver} />
