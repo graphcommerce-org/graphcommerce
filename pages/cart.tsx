@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core'
-import LayoutDrawer, { LayoutDrawerProps } from 'components/AppShell/LayoutDrawer'
+import BottomDrawerLayout, { LayoutDrawerProps } from 'components/AppShell/BottomDrawerLayout'
 import Cart from 'components/Cart/Cart'
 import CartItem from 'components/Cart/CartItem'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -33,7 +33,7 @@ const CartPage: PageComponent = () => {
   )
 }
 
-CartPage.Layout = LayoutDrawer
+CartPage.Layout = BottomDrawerLayout
 
 export default CartPage
 

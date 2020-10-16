@@ -4,6 +4,7 @@ import { PageLayoutFC, GetProps } from 'components/Page/types'
 import Backdrop from 'components/PageTransition/Backdrop'
 import keepAnimation from 'components/PageTransition/animation/keep'
 import usePageTransition from 'components/PageTransition/usePageTransition'
+import { UseStyles } from 'components/Styles'
 import { m as motion, MotionProps } from 'framer-motion'
 import React from 'react'
 
@@ -13,21 +14,27 @@ const useStyles = makeStyles(
       backgroundColor: 'rgba(255, 255, 255, 0.7)',
       backdropFilter: `blur(3px)`,
     },
-    drawer: {
+    drawerContainer: {
       marginTop: 70,
-      marginLeft: 70,
-      marginRight: 70,
-      background: theme.palette.background.paper,
-      zIndex: 3,
+      minHeight: 'calc(100vh - 70px)',
+      display: 'flex',
+      alignItems: 'flex-end',
+      justifyContent: 'stretch',
     },
-    drawerContent: {
-      // minHeight: `calc(100vh - 70px)`,
+    drawer: {
+      background: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+      borderTopLeftRadius: theme.spacings.xs,
+      borderTopRightRadius: theme.spacings.xs,
+      boxShadow: theme.shadows[10],
+      // zIndex: 3,
+      width: '100%',
     },
   }),
   { name: 'LayoutDrawer' },
 )
 
-const LayoutDrawer: PageLayoutFC = (props) => {
+const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) => {
   const { children, urlResolver, title } = props
   const classes = useStyles()
   const theme = useTheme()
@@ -43,17 +50,17 @@ const LayoutDrawer: PageLayoutFC = (props) => {
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
       <Backdrop inFront={inFront} classes={{ backdrop: classes.backdrop }} />
       <motion.div {...offsetDiv}>
-        <motion.div className={classes.drawer} {...contentAnimation}>
-          <Paper elevation={12} className={classes.drawerContent}>
+        <div className={classes.drawerContainer}>
+          <motion.div className={classes.drawer} {...contentAnimation}>
             {title}
             {children}
-          </Paper>
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
     </PageLayout>
   )
 }
 
-export type LayoutDrawerProps = GetProps<typeof LayoutDrawer>
+export type LayoutDrawerProps = GetProps<typeof BottomDrawerLayout>
 
-export default LayoutDrawer
+export default BottomDrawerLayout

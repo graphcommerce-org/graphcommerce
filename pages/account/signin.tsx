@@ -1,5 +1,5 @@
 import { DialogTitle, DialogContent, Paper, Container, Typography } from '@material-ui/core'
-import LayoutDrawer, { LayoutDrawerProps } from 'components/AppShell/LayoutDrawer'
+import BottomDrawerLayout, { LayoutDrawerProps } from 'components/AppShell/BottomDrawerLayout'
 import SignInForm from 'components/Customer/SignInForm'
 import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -36,7 +36,7 @@ const AccountSignInPage: PageComponent = () => {
   )
 }
 
-AccountSignInPage.Layout = LayoutDrawer
+AccountSignInPage.Layout = BottomDrawerLayout
 
 export default AccountSignInPage
 

@@ -1,5 +1,5 @@
 import { DialogTitle, DialogContent, Paper, Container, Typography, NoSsr } from '@material-ui/core'
-import LayoutDrawer, { LayoutDrawerProps } from 'components/AppShell/LayoutDrawer'
+import BottomDrawerLayout, { LayoutDrawerProps } from 'components/AppShell/BottomDrawerLayout'
 import ChangePasswordForm from 'components/Customer/ChangePasswordForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -41,7 +41,7 @@ const AccountChangePasswordPage: PageComponent = () => {
   )
 }
 
-AccountChangePasswordPage.Layout = LayoutDrawer
+AccountChangePasswordPage.Layout = BottomDrawerLayout
 
 export default AccountChangePasswordPage
 

@@ -1,8 +1,7 @@
-import LayoutDrawer, { LayoutDrawerProps } from 'components/AppShell/LayoutDrawer'
+import BottomDrawerLayout, { LayoutDrawerProps } from 'components/AppShell/BottomDrawerLayout'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
-import { m as motion } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
 import Link from 'next/link'
 
@@ -50,7 +49,7 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
     </>
   )
 }
-AppShellTextOverlay.Layout = LayoutDrawer
+AppShellTextOverlay.Layout = BottomDrawerLayout
 
 export default AppShellTextOverlay
 
