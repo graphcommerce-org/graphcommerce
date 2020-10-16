@@ -84,11 +84,15 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
   await getStoreConfig(client)
   const layoutHeader = getLayoutHeaderProps(staticClient)
 
+  let title = ctx.params.url.join(' ')
+  title = title.charAt(0).toUpperCase() + title.slice(1)
+
   return {
     props: {
-      url: ctx.params.url.join('/'),
-      ...(await layoutHeader),
       apolloState: client.cache.extract(),
+      ...(await layoutHeader),
+      title,
+      url: ctx.params.url.join('/'),
     },
   }
 }

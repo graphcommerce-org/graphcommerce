@@ -32,5 +32,5 @@ export type PageStaticPathsFn<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetSt
  */
 export type AppProps = Omit<NextAppProps, 'Component' | 'pageProps'> & {
   Component: PageFC
-  pageProps: ApolloStateProps & AnyObj
+  pageProps: ApolloStateProps & BasePageLayoutComponentProps
 }

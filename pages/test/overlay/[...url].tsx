@@ -1,4 +1,5 @@
 import BottomDrawerLayout, { LayoutDrawerProps } from 'components/AppShell/BottomDrawerLayout'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
@@ -67,9 +68,12 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
   const client = apolloClient()
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   await getStoreConfig(client)
+  const staticClient = apolloClient()
+  const layoutHeader = getLayoutHeaderProps(staticClient)
 
   return {
     props: {
+      ...(await layoutHeader),
       url: ctx.params.url.join('/'),
       title: ctx.params.url.join(' '),
       apolloState: client.cache.extract(),
