@@ -84,7 +84,7 @@ const usePageTransition = ({
   const prevPage = getPage(thisIdx - 1)
   const upPage = getUpPage(thisIdx)
 
-  return { offsetDiv, hold, inFront, inBack, prevPage, upPage }
+  return { offsetDiv, hold, inFront, inBack, prevPage, upPage, isFromPage }
 }
 
 export default usePageTransition

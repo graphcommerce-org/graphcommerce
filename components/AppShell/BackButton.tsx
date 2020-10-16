@@ -5,7 +5,7 @@ import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    fabRoot: {
+    root: {
       pointerEvents: 'all',
       [theme.breakpoints.down('sm')]: {
         height: 40,
@@ -19,8 +19,15 @@ const useStyles = makeStyles(
         paddingLeft: `14px`,
       },
     },
-    icon: { fontSize: 18 },
-    fabText: {
+    label: {
+      pointerEvents: 'none',
+      whiteSpace: 'nowrap',
+    },
+    icon: {
+      fontSize: 18,
+    },
+    text: {
+      pointerEvents: 'none',
       display: 'none',
       [theme.breakpoints.up('sm')]: {
         display: 'unset',
@@ -30,26 +37,17 @@ const useStyles = makeStyles(
   { name: 'BackNavFab' },
 )
 
-export type BackButtonProps = UseStyles<typeof useStyles> & FabProps
+export type BackButtonProps = UseStyles<typeof useStyles> & FabProps & { down?: boolean }
 
-export default function BackButton(props: BackButtonProps) {
-  const classes = useStyles(props)
-  const { children, ...fabProps } = props
+const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
+  const { text, icon, ...classes } = useStyles(props)
+  const { children, down, ...fabProps } = props
 
   return (
-    <Fab
-      variant='extended'
-      size='large'
-      classes={{ root: classes.fabRoot }}
-      aria-label='Previous page'
-      {...fabProps}
-    >
-      <ArrowBack
-        shapeRendering='geometricPrecision'
-        fontSize='inherit'
-        classes={{ root: classes.icon }}
-      />
-      <span className={classes.fabText}>{children}</span>
+    <Fab variant='extended' size='large' classes={classes} aria-label='Previous page' {...fabProps}>
+      <ArrowBack shapeRendering='geometricPrecision' fontSize='inherit' classes={{ root: icon }} />
+      <span className={text}>{children}</span>
     </Fab>
   )
-}
+})
+export default BackButton
