@@ -1,4 +1,5 @@
-import { makeStyles, Theme, useTheme } from '@material-ui/core'
+import { makeStyles, Theme, useTheme, Unstable_TrapFocus as TrapFocus } from '@material-ui/core'
+import Link from 'components/Link'
 import PageLayout from 'components/Page/PageLayout'
 import { PageLayoutFC, GetProps } from 'components/Page/types'
 import Backdrop from 'components/PageTransition/Backdrop'
@@ -6,7 +7,8 @@ import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { KeyboardEventHandler, MouseEventHandler, useEffect, useState } from 'react'
+import BackButton from './BackButton'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -20,7 +22,6 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'flex-end',
       justifyContent: 'stretch',
-      '&:focus': { outline: 'none' },
     },
     drawer: {
       background: theme.palette.background.paper,
@@ -30,6 +31,14 @@ const useStyles = makeStyles(
       boxShadow: theme.shadows[10],
       // zIndex: 3,
       width: '100%',
+      position: 'relative',
+      '&:focus': { outline: 'none' },
+    },
+    drawerHeader: {
+      position: 'sticky',
+      top: 0,
+      left: 0,
+      right: 0,
     },
   }),
   { name: 'LayoutDrawer' },
@@ -44,6 +53,11 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
     holdBackground: true,
     title,
   })
+  const [focus, setFocus] = useState(false)
+  useEffect(() => {
+    if (inFront) setTimeout(() => setFocus(true), 10)
+    else setFocus(false)
+  }, [inFront])
 
   const contentAnimation: MotionProps = {
     initial: { y: '100%' },
@@ -51,13 +65,13 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
     exit: { y: '100%', transition: { type: 'tween', ease: 'circIn' } },
   }
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick: MouseEventHandler<HTMLDivElement> = (event) => {
     if (event.target !== event.currentTarget) return
     router.back()
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.target !== event.currentTarget || inBack) return
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (inBack || event.key !== 'Escape') return
     router.back()
   }
 
@@ -70,17 +84,25 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
           onClick={handleClick}
           onKeyDown={handleKeyDown}
           role='none'
-          tabIndex={-1}
         >
-          <motion.div className={classes.drawer} {...contentAnimation}>
-            title: {title}
-            <br />
-            prevPage: {prevPage?.title}
-            <br />
-            upPage: {upPage?.title}
-            <br />
-            {children}
-          </motion.div>
+          <TrapFocus open={focus} getDoc={() => document} isEnabled={() => focus}>
+            <motion.div className={classes.drawer} {...contentAnimation} tabIndex={-1}>
+              <div className={classes.drawerHeader}>
+                {prevPage?.title ? (
+                  <BackButton>{prevPage.title}</BackButton>
+                ) : (
+                  <Link href='/' replace>
+                    <BackButton>Home</BackButton>
+                  </Link>
+                )}
+                title: {title}
+                <br />
+                upPage: {upPage?.title}
+                <br />
+              </div>
+              {children}
+            </motion.div>
+          </TrapFocus>
         </div>
       </motion.div>
     </PageLayout>
