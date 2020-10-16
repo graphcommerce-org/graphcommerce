@@ -16,10 +16,6 @@ enum Phase {
   LOADING
   LOCATION_CHANGED
   REGISTERED
-  SCROLL_SAVED
-  SCROLLING
-  SCROLLED
-  FINISHED
 }
 
 type HistoryState {

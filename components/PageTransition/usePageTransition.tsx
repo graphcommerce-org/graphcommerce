@@ -44,7 +44,7 @@ const usePageTransition = ({
 
   // Register the scroll position of the previous page
   if (isBrowser && state.phase === 'LOCATION_CHANGED') {
-    state = updatePage({ phase: 'SCROLL_SAVED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
+    state = updatePage({ phase: 'REGISTERED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
   }
 
   const thisPage = getPage(thisIdx)
@@ -63,7 +63,7 @@ const usePageTransition = ({
 
   // If we do not need to keep the layout, we can mark it for removal
   if (isFromInBack && !hold && safeToRemove && afterPhase('REGISTERED')) {
-    setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000 + 300)
+    setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
   let target: Target = { y: 0, position: 'absolute', left: 0, right: 0, minHeight: '100vh' }

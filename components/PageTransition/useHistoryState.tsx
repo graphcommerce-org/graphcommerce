@@ -8,11 +8,9 @@ import {
   updateHistory,
   getPrevIdx,
   getNextIdx,
-  getFromPage,
   addPage,
 } from './historyHelpers'
 import resolveHref from './resolveHref'
-import { historyStateVar } from './typePolicies'
 
 // How should we handle a navigation swipe back / forward?
 export default function useHistoryState() {
@@ -74,35 +72,11 @@ export default function useHistoryState() {
 
   useEffect(() => {
     const routeChangeComplete = () => {
-      const fromPage = getFromPage()
       const page = getPage()
-      const skipScroll = page?.y === fromPage?.y && page?.x === fromPage?.x
       document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
-      if (skipScroll) {
-        updateHistory({ phase: 'SCROLLED' })
-      } else {
-        updateHistory({ phase: 'SCROLLING' })
-        window.scrollTo(page?.x ?? 0, page?.y ?? 0)
-        updateHistory({ phase: 'SCROLLED' })
-      }
+      window.scrollTo(page?.x ?? 0, page?.y ?? 0)
     }
     router.events.on('routeChangeComplete', routeChangeComplete)
     return () => router.events.off('routeChangeComplete', routeChangeComplete)
-  })
-
-  // When the location has changed, change the scroll position
-  useEffect(() => {
-    if (data?.historyState.phase === 'SCROLLED') updateHistory({ phase: 'FINISHED' })
-  }, [data?.historyState.phase])
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (historyStateVar().phase === 'SCROLLING') updateHistory({ phase: 'SCROLLED' })
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-    }
   })
 }
