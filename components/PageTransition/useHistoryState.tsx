@@ -19,8 +19,10 @@ export default function useHistoryState() {
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
-    // todo: add unload event to restore the scroll restoration?
-  }, [router.asPath])
+    window.addEventListener('unload', () => {
+      window.history.scrollRestoration = 'auto'
+    })
+  }, [])
 
   if (data?.historyState.pages.length === 0) {
     const page = {
