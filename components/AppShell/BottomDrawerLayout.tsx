@@ -49,12 +49,15 @@ const useStyles = makeStyles(
       display: 'grid',
       padding: theme.spacings.sm,
       alignItems: 'center',
-      gridTemplateColumns: `${responsiveVal(50, 200)} 1fr ${responsiveVal(50, 200)}`,
+      gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
     },
     headerBack: {
       pointerEvents: 'all',
-      // flex: 0,
+      width: 'min-content',
+    },
+    headerForward: {
+      width: 'min-content',
     },
     headerTitle: {
       pointerEvents: 'all',
@@ -78,6 +81,7 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
     isFromPage,
     isShallow,
   } = usePageTransition({ holdBackground: true, title })
+
   const [focus, setFocus] = useState(false)
   useEffect(() => {
     if (inFront) setTimeout(() => setFocus(true), 400)
@@ -85,9 +89,9 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   }, [inFront])
 
   const contentAnimation: MotionProps = {
-    initial: { y: '300px', opacity: 0 },
+    initial: { y: 300, opacity: 0 },
     animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
-    exit: { y: '300px', opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
+    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
   }
 
   const navigateBack = () => {
@@ -130,13 +134,13 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
                 </BackButton>
               ) : (
                 <Link href='/' replace>
-                  <BackButton>Home</BackButton>
+                  <BackButton className={classes.headerBack}>Home</BackButton>
                 </Link>
               )}
               <Typography variant='h4' component='h2' className={classes.headerTitle}>
                 {title}
               </Typography>
-              <div />
+              <div className={classes.headerForward} />
             </div>
             {children}
           </motion.section>
