@@ -54,6 +54,8 @@ const usePageTransition = ({
   const isFromInBack = (isFromPage && afterPhase('REGISTERED')) || isFarInBack
   const isToInFront = isToPage && afterPhase('REGISTERED')
   const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
+  const inFront = isFromInFront || isToInFront
+  const inBack = isFromInBack || isFromInBack
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
@@ -67,9 +69,6 @@ const usePageTransition = ({
   }
 
   let target: Target = { y: 0, position: 'absolute', left: 0, right: 0, minHeight: '100vh' }
-
-  const inFront = isFromInFront || isToInFront
-  const inBack = isFromInBack || isFromInBack
 
   if (isFromInBack || isToInBack) {
     target = { ...target, y: (thisPage?.y ?? 0) * -1, position: 'fixed' }

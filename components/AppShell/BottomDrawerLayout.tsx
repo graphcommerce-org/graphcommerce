@@ -14,7 +14,7 @@ import { UseStyles } from 'components/Styles'
 import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, MouseEventHandler, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
