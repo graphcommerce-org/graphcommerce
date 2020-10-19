@@ -1,22 +1,25 @@
 import { makeVar, ReactiveVar, TypePolicies } from '@apollo/client'
 
-function makeSessionVar<T>(key: string, defaultValue: T): ReactiveVar<T> {
-  if (typeof window === 'undefined') return makeVar<T>(defaultValue)
-
-  const sessionString = window.sessionStorage.getItem(key)
+function makeSessionVar<T>(key: string, defaultValue: T) {
   let sessionValue: T | undefined
-  if (sessionString) sessionValue = JSON.parse(sessionString)
+  if (typeof window !== 'undefined') {
+    const sessionString = window.sessionStorage.getItem(key)
+    if (sessionString) sessionValue = JSON.parse(sessionString)
+  }
 
   const reactiveVar = makeVar(sessionValue ?? defaultValue)
 
-  const sessionVar: ReactiveVar<T> = (value) => {
+  const sessionVar: ReactiveVar<T> & { reset: () => void } = (value) => {
     if (value) {
-      window.sessionStorage.setItem(key, JSON.stringify(value))
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem(key, JSON.stringify(value))
+      }
       return reactiveVar(value)
     }
     return reactiveVar()
   }
   sessionVar.onNextChange = (listener) => reactiveVar.onNextChange(listener)
+  sessionVar.reset = () => sessionVar(defaultValue)
 
   return sessionVar
 }

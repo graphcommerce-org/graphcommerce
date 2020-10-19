@@ -15,6 +15,12 @@ export default function useHistoryState() {
     })
   }, [])
 
+  // Resets the historyStateVar when a wrong state has been found.
+  // todo: check if we can find a page that we can set the idx to?
+  if (historyStateVar().pages[historyStateVar().idx]?.as !== router.asPath) {
+    historyStateVar.reset()
+  }
+
   if (historyStateVar().pages.length === 0) {
     addPage({}, { as: router.asPath, href: router.route }, 0)
   }
