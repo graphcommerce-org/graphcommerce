@@ -37,7 +37,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const cacheControl = image.headers.get('Cache-Control')?.includes('s-maxage')
       ? (image.headers.get('Cache-Control') as string)
-      : `max=age=${30 * 24 * 60 * 60}, public`
+      : `max-age=${30 * 24 * 60 * 60}, public`
 
     res.setHeader('Cache-Control', cacheControl)
     res.setHeader('Etag', image.headers.get('Etag') || '')
