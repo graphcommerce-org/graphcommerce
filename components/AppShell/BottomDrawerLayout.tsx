@@ -53,11 +53,11 @@ const useStyles = makeStyles(
       pointerEvents: 'none',
     },
     headerBack: {
-      pointerEvents: 'unset',
+      pointerEvents: 'all',
       // flex: 0,
     },
     headerTitle: {
-      pointerEvents: 'unset',
+      pointerEvents: 'all',
       textAlign: 'center',
     },
   }),
@@ -85,33 +85,37 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
     exit: { y: '300px', opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
   }
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.target)
-    if (event.target !== event.currentTarget) return
-    router.back()
+  const navigateBack = () => {
+    if (inFront) router.back()
   }
 
-  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+  const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (inBack || event.key !== 'Escape') return
+    event.preventDefault()
     router.back()
   }
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
-      <Backdrop inFront={inFront} classes={{ backdrop: classes.backdrop }} />
+      <Backdrop
+        inFront={inFront}
+        classes={{ backdrop: classes.backdrop }}
+        onClick={navigateBack}
+        role='none'
+      />
       <motion.div {...offsetDiv}>
-        <div
-          className={classes.drawerContainer}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
-          role='none'
-        >
+        <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
           {/* <TrapFocus open={focus} getDoc={() => document} isEnabled={() => inFront}> */}
-          <motion.section className={classes.drawer} {...contentAnimation} tabIndex={-1}>
+          <motion.section
+            className={classes.drawer}
+            {...contentAnimation}
+            tabIndex={-1}
+            style={{ pointerEvents: inFront ? 'all' : 'none' }}
+          >
             <div className={classes.header}>
               {prevPage?.title ? (
                 <BackButton
-                  onClick={handleClick}
+                  onClick={navigateBack}
                   disabled={isFromPage}
                   down={prevPage === upPage}
                   className={classes.headerBack}

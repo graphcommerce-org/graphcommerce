@@ -10,6 +10,7 @@ import {
   untillPhase,
   updatePage,
   getUpPage,
+  getUpIdx,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
 
@@ -68,7 +69,14 @@ const usePageTransition = ({
     setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
-  let target: Target = { y: 0, position: 'absolute', left: 0, right: 0, minHeight: '100vh' }
+  let target: Target = {
+    y: 0,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    minHeight: '100vh',
+    pointerEvents: 'none',
+  }
 
   if (isFromInBack || isToInBack) {
     target = { ...target, y: (thisPage?.y ?? 0) * -1, position: 'fixed' }
@@ -80,10 +88,17 @@ const usePageTransition = ({
     exit: { ...target, transition: { duration: 0 } },
   }
 
-  const prevPage = getPage(thisIdx - 1)
-  const upPage = getUpPage(thisIdx)
-
-  return { offsetDiv, hold, inFront, inBack, prevPage, upPage, isFromPage }
+  return {
+    offsetDiv,
+    hold,
+    inFront,
+    inBack,
+    isFromPage,
+    toIdx,
+    prevPage: getPage(thisIdx - 1),
+    upPage: getUpPage(thisIdx),
+    upIdx: getUpIdx(thisIdx),
+  }
 }
 
 export default usePageTransition

@@ -20,7 +20,6 @@ const useStyles = makeStyles(
       },
     },
     label: {
-      pointerEvents: 'none',
       whiteSpace: 'nowrap',
     },
     icon: {

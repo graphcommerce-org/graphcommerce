@@ -22,11 +22,16 @@ const useStyles = makeStyles(
   { name: 'Backdrop' },
 )
 
-export type BackdropProps = BackdropPropsBase & UseStyles<typeof useStyles> & HTMLMotionProps<'div'>
+export type BackdropProps = BackdropPropsBase &
+  UseStyles<typeof useStyles> &
+  Omit<
+    HTMLMotionProps<'div'>,
+    'className' | 'initial' | 'transition' | 'animate' | 'exit' | 'onAnimationComplete'
+  >
 
 const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
   const classes = useStyles(props)
-  const { inFront } = props
+  const { inFront, ...divProps } = props
   const [zIndex, setZIndex] = useState(inFront ? 0 : -1)
   return (
     <motion.div
@@ -37,6 +42,7 @@ const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
       animate={{ opacity: 1, zIndex }}
       exit={{ opacity: 0, transition: { ease: 'circIn' } }}
       onAnimationComplete={() => setZIndex(inFront ? 0 : -1)}
+      {...divProps}
     />
   )
 })

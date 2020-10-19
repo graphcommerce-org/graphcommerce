@@ -36,6 +36,12 @@ export function getUpPage(idx: number) {
   return upPages?.[upPages.length - 1] as GQLHistoryStatePage | undefined
 }
 
+export function getUpIdx(idx: number) {
+  const upPage = getUpPage(idx)
+  if (!upPage) return 0
+  return historyStateVar().pages.indexOf(upPage)
+}
+
 export function updatePage(
   incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
   page: Partial<GQLHistoryStateQuery['historyState']['pages'][0]>,
