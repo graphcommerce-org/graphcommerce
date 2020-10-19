@@ -1,15 +1,15 @@
 import { NoSsr } from '@material-ui/core'
-import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import AccountDashboard from 'components/Customer/AccountDashboard'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
 
-type PageComponent = PageFC<unknown, LayoutHeaderProps>
+type PageComponent = PageFC<unknown, PageLayoutProps>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const AccountIndexPage: PageComponent = () => {
@@ -26,7 +26,7 @@ const AccountIndexPage: PageComponent = () => {
   )
 }
 
-AccountIndexPage.Layout = LayoutHeader
+AccountIndexPage.Layout = PageLayout
 
 export default AccountIndexPage
 

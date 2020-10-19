@@ -1,4 +1,5 @@
-import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import FullPageUi, { FullPageUiProps } from 'components/AppShell/FullPageUi'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import CmsPageContent from 'components/Cms/CmsPageContent'
 import CmsPageMeta from 'components/Cms/CmsPageMeta'
@@ -10,7 +11,7 @@ import apolloClient from 'lib/apolloClient'
 import NextError from 'next/error'
 import React from 'react'
 
-type PageComponent = PageFC<GetCmsPageProps, LayoutHeaderProps>
+type PageComponent = PageFC<GetCmsPageProps, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
 
@@ -20,14 +21,14 @@ const CmsPage: PageComponent = ({ cmsPage }) => {
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
 
   return (
-    <>
+    <FullPageUi title={cmsPage.title ?? ''}>
       <CmsPageMeta {...cmsPage} />
       <CmsPageContent {...cmsPage} />
-    </>
+    </FullPageUi>
   )
 }
 
-CmsPage.Layout = LayoutHeader
+CmsPage.Layout = PageLayout
 
 export default CmsPage
 

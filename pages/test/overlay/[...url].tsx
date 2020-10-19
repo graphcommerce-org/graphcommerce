@@ -1,4 +1,5 @@
-import BottomDrawerLayout, { BottomDrawerLayoutProps } from 'components/AppShell/BottomDrawerLayout'
+import BottomDrawerUi from 'components/AppShell/BottomDrawerUi'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
@@ -6,14 +7,15 @@ import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import Link from 'next/link'
 
-type PageComponent = PageFC<{ url: string }, BottomDrawerLayoutProps>
+type PageComponent = PageFC<{ url: string }, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
 const AppShellTextOverlay: PageComponent = ({ url }) => {
+  const title = `Overlay ${url.charAt(0).toUpperCase() + url.slice(1)}`
+
   return (
-    <>
-      overlay {url}
+    <BottomDrawerUi title={title}>
       <ul>
         <li>
           <Link href='/test/deeper' scroll={false}>
@@ -47,10 +49,10 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
         />
       </div> */}
       <DebugSpacer height={url === 'index' ? 200 : 2000} />
-    </>
+    </BottomDrawerUi>
   )
 }
-AppShellTextOverlay.Layout = BottomDrawerLayout
+AppShellTextOverlay.Layout = PageLayout
 
 export default AppShellTextOverlay
 
@@ -75,7 +77,6 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
     props: {
       ...(await layoutHeader),
       url: ctx.params.url.join('/'),
-      title: `Overlaypage ${ctx.params.url.join(' ')}`,
       apolloState: client.cache.extract(),
     },
   }

@@ -1,5 +1,7 @@
 import { DialogTitle, DialogContent, Paper, Container, Typography } from '@material-ui/core'
-import BottomDrawerLayout, { BottomDrawerLayoutProps } from 'components/AppShell/BottomDrawerLayout'
+import BottomDrawerUi, { BottomDrawerUiProps } from 'components/AppShell/BottomDrawerUi'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import SignInForm from 'components/Customer/SignInForm'
 import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -8,7 +10,7 @@ import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
 
-type PageComponent = PageFC<unknown, BottomDrawerLayoutProps>
+type PageComponent = PageFC<unknown, PageLayoutProps>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const AccountSignInPage: PageComponent = () => {
@@ -17,26 +19,16 @@ const AccountSignInPage: PageComponent = () => {
   if (!signedOut) return null
 
   return (
-    <>
+    <BottomDrawerUi title='Sign In'>
       <PageMeta title='Sign in' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
-
       <Container maxWidth='xs'>
-        <Paper elevation={10}>
-          <DialogTitle disableTypography>
-            <Typography variant='h2' component='h1'>
-              Login
-            </Typography>
-          </DialogTitle>
-          <DialogContent>
-            <SignInForm />
-          </DialogContent>
-        </Paper>
+        <SignInForm />
       </Container>
-    </>
+    </BottomDrawerUi>
   )
 }
 
-AccountSignInPage.Layout = BottomDrawerLayout
+AccountSignInPage.Layout = PageLayout
 
 export default AccountSignInPage
 
@@ -44,10 +36,13 @@ export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
   const config = getStoreConfig(client)
 
+  const staticClient = apolloClient()
+  const layoutHeader = getLayoutHeaderProps(staticClient)
+
   await config
   return {
     props: {
-      title: 'Sign In',
+      ...(await layoutHeader),
       apolloState: client.cache.extract(),
     },
   }

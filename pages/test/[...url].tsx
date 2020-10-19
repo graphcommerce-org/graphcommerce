@@ -1,5 +1,6 @@
 import { Container } from '@material-ui/core'
-import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import FullPageUi from 'components/AppShell/FullPageUi'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
@@ -8,66 +9,70 @@ import { m as motion } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
 import Link from 'next/link'
 
-type PageComponent = PageFC<{ url: string }, LayoutHeaderProps>
+type PageComponent = PageFC<{ url: string }, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
 const AppShellTestIndex: PageComponent = ({ url }) => {
+  const title = `Testpage ${url.charAt(0).toUpperCase() + url.slice(1)}`
+
   return (
-    <Container>
-      hallo! {url}
-      <ul>
-        <li>
-          {url === 'index' ? (
-            <Link href='/test/deeper' scroll={false}>
-              Sibling
+    <FullPageUi title={title}>
+      <Container>
+        hallo! {url}
+        <ul>
+          <li>
+            {url === 'index' ? (
+              <Link href='/test/deeper' scroll={false}>
+                Sibling
+              </Link>
+            ) : (
+              <Link href='/test/index' scroll={false}>
+                Index
+              </Link>
+            )}
+          </li>
+          <li>
+            <Link href='/test/overlay/index' scroll={false}>
+              Overlay
             </Link>
-          ) : (
-            <Link href='/test/index' scroll={false}>
-              Index
-            </Link>
-          )}
-        </li>
-        <li>
-          <Link href='/test/overlay/index' scroll={false}>
-            Overlay
-          </Link>
-        </li>
-      </ul>
-      <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
-        <motion.img
-          src='/manifest/icon.png'
-          alt=''
-          layoutId='img1'
-          width='183'
-          height='172'
-          style={{ position: 'relative', marginLeft: 10 }}
-          transition={{ type: 'tween' }}
-          initial={{ zIndex: 0 }}
-          animate={{ zIndex: 5 }}
-          exit={{ zIndex: 0 }}
-        />
-        <motion.img
-          src='/manifest/icon.png'
-          alt=''
-          layoutId='img2'
-          width='183'
-          height='172'
-          style={{ position: 'relative', marginLeft: 10 }}
-          transition={{ type: 'tween' }}
-          initial={{ zIndex: 0 }}
-          animate={{
-            zIndex: 5,
-            filter: url === 'index' ? 'hue-rotate(0deg)' : 'hue-rotate(45deg)',
-          }}
-          exit={{ zIndex: 0 }}
-        />
-      </div>
-      <DebugSpacer height={2000} />
-    </Container>
+          </li>
+        </ul>
+        <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
+          <motion.img
+            src='/manifest/icon.png'
+            alt=''
+            layoutId='img1'
+            width='183'
+            height='172'
+            style={{ position: 'relative', marginLeft: 10 }}
+            transition={{ type: 'tween' }}
+            initial={{ zIndex: 0 }}
+            animate={{ zIndex: 5 }}
+            exit={{ zIndex: 0 }}
+          />
+          <motion.img
+            src='/manifest/icon.png'
+            alt=''
+            layoutId='img2'
+            width='183'
+            height='172'
+            style={{ position: 'relative', marginLeft: 10 }}
+            transition={{ type: 'tween' }}
+            initial={{ zIndex: 0 }}
+            animate={{
+              zIndex: 5,
+              filter: url === 'index' ? 'hue-rotate(0deg)' : 'hue-rotate(45deg)',
+            }}
+            exit={{ zIndex: 0 }}
+          />
+        </div>
+        <DebugSpacer height={2000} />
+      </Container>
+    </FullPageUi>
   )
 }
-AppShellTestIndex.Layout = LayoutHeader
+AppShellTestIndex.Layout = PageLayout
 
 export default AppShellTestIndex
 
@@ -87,14 +92,10 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
   await getStoreConfig(client)
   const layoutHeader = getLayoutHeaderProps(staticClient)
 
-  let title = ctx.params.url.join(' ')
-  title = `Testpage ${title.charAt(0).toUpperCase() + title.slice(1)}`
-
   return {
     props: {
       apolloState: client.cache.extract(),
       ...(await layoutHeader),
-      title,
       url: ctx.params.url.join('/'),
     },
   }

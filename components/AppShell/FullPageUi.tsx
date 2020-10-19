@@ -1,10 +1,8 @@
-import { makeStyles, Theme, useTheme } from '@material-ui/core'
-import PageLayout from 'components/Page/PageLayout'
-import { PageLayoutFC, GetProps } from 'components/Page/types'
+import { makeStyles, Theme } from '@material-ui/core'
 import Backdrop from 'components/PageTransition/Backdrop'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { m as motion } from 'framer-motion'
-import Header from './Header'
+import { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -18,29 +16,23 @@ const useStyles = makeStyles(
   { name: 'LayoutHeader' },
 )
 
-const LayoutHeader: PageLayoutFC = (props) => {
-  const { children, urlResolver, menu, title } = props
-  const theme = useTheme()
+export type FullPageUiProps = { title: string }
+
+const FullPageUi = (props: PropsWithChildren<FullPageUiProps>) => {
+  const { children, title } = props
   const classes = useStyles(props)
   const { offsetDiv, inFront } = usePageTransition({ title })
 
   return (
-    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
+    <>
       <Backdrop inFront={inFront} />
       <motion.div {...offsetDiv}>
-        <Header
-          menu={menu}
-          urlResolver={urlResolver}
-          style={{ pointerEvents: inFront ? 'all' : 'none' }}
-        />
         <div className={classes.content} style={{ pointerEvents: inFront ? 'all' : 'none' }}>
           {children}
         </div>
       </motion.div>
-    </PageLayout>
+    </>
   )
 }
 
-export type LayoutHeaderProps = GetProps<typeof LayoutHeader>
-
-export default LayoutHeader
+export default FullPageUi

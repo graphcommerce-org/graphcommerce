@@ -15,8 +15,7 @@ import logo from './logo.svg'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
-      position: 'absolute',
-      top: 0,
+      position: 'fixed',
       display: 'flex',
       padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       pointerEvents: 'none',
@@ -25,6 +24,7 @@ const useStyles = makeStyles(
       width: '100%',
       [theme.breakpoints.down('sm')]: {},
       [theme.breakpoints.up('md')]: {},
+      zIndex: 1,
     },
     logo: {
       pointerEvents: 'all',
@@ -102,10 +102,11 @@ const useStyles = makeStyles(
   { name: 'AppLayout' },
 )
 
-type HeaderProps = GQLLayoutHeaderQuery &
-  GQLResolveUrlQuery &
-  JSX.IntrinsicElements['header'] &
-  UseStyles<typeof useStyles>
+type HeaderElementProps = JSX.IntrinsicElements['header'] & UseStyles<typeof useStyles>
+
+type HeaderDataProps = GQLLayoutHeaderQuery & GQLResolveUrlQuery
+
+export type HeaderProps = HeaderDataProps & HeaderElementProps
 
 export default function Header(props: HeaderProps) {
   const classes = useStyles(props)

@@ -1,20 +1,11 @@
-import {
-  makeStyles,
-  Theme,
-  useTheme,
-  Unstable_TrapFocus as TrapFocus,
-  Typography,
-} from '@material-ui/core'
+import { makeStyles, Theme, Unstable_TrapFocus as TrapFocus, Typography } from '@material-ui/core'
 import Link from 'components/Link'
-import PageLayout from 'components/Page/PageLayout'
-import { PageLayoutFC, GetProps } from 'components/Page/types'
 import Backdrop from 'components/PageTransition/Backdrop'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
-import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler, PropsWithChildren, useEffect, useState } from 'react'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
@@ -40,6 +31,11 @@ const useStyles = makeStyles(
       width: '100%',
       position: 'relative',
       '&:focus': { outline: 'none' },
+      padding: theme.spacings.sm,
+      paddingBottom: 0,
+      '&> *': {
+        marginBottom: theme.spacings.sm,
+      },
     },
     header: {
       position: 'sticky',
@@ -47,7 +43,7 @@ const useStyles = makeStyles(
       left: 0,
       right: 0,
       display: 'grid',
-      padding: theme.spacings.sm,
+      // margin: `0 ${theme.spacings.sm}`,
       alignItems: 'center',
       gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
@@ -67,11 +63,12 @@ const useStyles = makeStyles(
   { name: 'LayoutDrawer' },
 )
 
-const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) => {
-  const { children, urlResolver, title } = props
+export type BottomDrawerUiProps = UseStyles<typeof useStyles> & { title: string }
+
+const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
+  const { children, title } = props
   const classes = useStyles()
   const router = useRouter()
-  const theme = useTheme()
   const {
     offsetDiv,
     inFront,
@@ -105,7 +102,7 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   }
 
   return (
-    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
+    <>
       <Backdrop
         inFront={inFront}
         classes={{ backdrop: classes.backdrop }}
@@ -147,10 +144,8 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
           {/* </TrapFocus> */}
         </div>
       </motion.div>
-    </PageLayout>
+    </>
   )
 }
 
-export type BottomDrawerLayoutProps = GetProps<typeof BottomDrawerLayout>
-
-export default BottomDrawerLayout
+export default BottomDrawerUi
