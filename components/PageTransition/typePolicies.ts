@@ -28,6 +28,10 @@ export const historyStateVar = makeSessionVar<GQLQuery['historyState']>('history
   phase: 'REGISTERED',
 })
 
+if (historyStateVar().phase !== 'REGISTERED') {
+  historyStateVar({ ...historyStateVar(), phase: 'REGISTERED' })
+}
+
 const typePolicies: TypePolicies = {
   Query: { fields: { historyState: () => historyStateVar() } },
 }

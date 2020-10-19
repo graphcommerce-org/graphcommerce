@@ -11,10 +11,6 @@ export function untillPhase(before: GQLPhase) {
   return phases.indexOf(historyStateVar().phase) <= phases.indexOf(before)
 }
 
-export function betweenPhases(start: GQLPhase, end: GQLPhase) {
-  return afterPhase(start) && untillPhase(end)
-}
-
 export function updateHistory(incomming: Partial<GQLHistoryStateQuery['historyState']>) {
   return historyStateVar({
     ...historyStateVar(),
@@ -25,25 +21,12 @@ export function updateHistory(incomming: Partial<GQLHistoryStateQuery['historySt
 export function getPage(idx?: number) {
   const history = historyStateVar()
   const currIdx = idx ?? history.idx
-  if (history.pages[currIdx]) return history.pages[currIdx]
-  return undefined
+  return history.pages?.[currIdx] as GQLHistoryStatePage | undefined
 }
 
-export function getCurrentIdx() {
-  return historyStateVar().idx
-}
-export function getPrevIdx() {
-  return historyStateVar().idx - 1
-}
-export function getNextIdx() {
-  return historyStateVar().idx + 1
-}
 export function getFromIdx() {
   const history = historyStateVar()
-  return history?.direction === 'FORWARD' ? getPrevIdx() : getNextIdx()
-}
-export function getFromPage() {
-  return getPage(getFromIdx())
+  return history?.direction === 'FORWARD' ? history.idx - 1 : history.idx + 1
 }
 
 // To close all overlays in one go, we find the first page that doesn't require the background to be holded.

@@ -1,21 +1,12 @@
-import { useQuery } from '@apollo/client'
-import { HistoryStateDocument } from 'generated/documents'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import {
-  updatePage,
-  getPage,
-  updateHistory,
-  getPrevIdx,
-  getNextIdx,
-  addPage,
-} from './historyHelpers'
+import { updatePage, getPage, updateHistory, addPage } from './historyHelpers'
 import resolveHref from './resolveHref'
+import { historyStateVar } from './typePolicies'
 
-// How should we handle a navigation swipe back / forward?
+// todo: How should we handle a navigation swipe back / forward?
 export default function useHistoryState() {
   const router = useRouter()
-  const { data } = useQuery(HistoryStateDocument)
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
@@ -24,8 +15,8 @@ export default function useHistoryState() {
     })
   }, [])
 
-  if (data?.historyState.pages.length === 0) {
-    addPage({}, { as: Router.asPath, href: Router.route }, 0)
+  if (historyStateVar().pages.length === 0) {
+    addPage({}, { as: router.asPath, href: router.route }, 0)
   }
 
   // Watch all route changes so we can track forward/backward navigation
@@ -35,14 +26,14 @@ export default function useHistoryState() {
       if (getPage()?.as === as) return
 
       // Navigated to previous page
-      const prevIdx = getPrevIdx()
+      const prevIdx = historyStateVar().idx - 1
       if (getPage(prevIdx)?.as === as) {
         updateHistory({ direction: 'BACK', phase: 'LOADING', idx: prevIdx })
         return
       }
 
       const href = (await resolveHref(as)).pathname
-      const idx = getNextIdx()
+      const idx = historyStateVar().idx + 1
       const nextPage = getPage(idx)
       const state = { direction: 'FORWARD', phase: 'LOADING', idx } as const
       if (nextPage && nextPage.as === as) {
