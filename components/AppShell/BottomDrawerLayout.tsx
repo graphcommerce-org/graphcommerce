@@ -69,10 +69,15 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   const classes = useStyles()
   const router = useRouter()
   const theme = useTheme()
-  const { offsetDiv, inFront, inBack, prevPage, upPage, isFromPage } = usePageTransition({
-    holdBackground: true,
-    title,
-  })
+  const {
+    offsetDiv,
+    inFront,
+    inBack,
+    prevPage,
+    upPage,
+    isFromPage,
+    isShallow,
+  } = usePageTransition({ holdBackground: true, title })
   const [focus, setFocus] = useState(false)
   useEffect(() => {
     if (inFront) setTimeout(() => setFocus(true), 400)
@@ -102,6 +107,7 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
         classes={{ backdrop: classes.backdrop }}
         onClick={navigateBack}
         role='none'
+        instant={isShallow}
       />
       <motion.div {...offsetDiv}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
