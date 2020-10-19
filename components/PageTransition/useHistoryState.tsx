@@ -1,37 +1,28 @@
-import { useQuery } from '@apollo/client'
-import { HistoryStateDocument } from 'generated/documents'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import {
-  updatePage,
-  getPage,
-  updateHistory,
-  getPrevIdx,
-  getNextIdx,
-  addPage,
-} from './historyHelpers'
+import { updatePage, getPage, updateHistory, addPage } from './historyHelpers'
 import resolveHref from './resolveHref'
+import { historyStateVar } from './typePolicies'
 
-// How should we handle a navigation swipe back / forward?
+// todo: How should we handle a navigation swipe back / forward?
 export default function useHistoryState() {
   const router = useRouter()
-  const { data } = useQuery(HistoryStateDocument)
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual'
-    // todo: add unload event to restore the scroll restoration?
-  }, [router.asPath])
+    window.addEventListener('unload', () => {
+      window.history.scrollRestoration = 'auto'
+    })
+  }, [])
 
-  if (data?.historyState.pages.length === 0) {
-    const page = {
-      as: Router.asPath,
-      href: Router.route,
-      x: 0,
-      y: 0,
-      holdBackground: true,
-      title: '',
-    }
-    addPage({}, page, 0)
+  // Resets the historyStateVar when a wrong state has been found.
+  // todo: check if we can find a page that we can set the idx to?
+  if (historyStateVar().pages[historyStateVar().idx]?.as !== router.asPath) {
+    historyStateVar.reset()
+  }
+
+  if (historyStateVar().pages.length === 0) {
+    addPage({}, { as: router.asPath, href: router.route }, 0)
   }
 
   // Watch all route changes so we can track forward/backward navigation
@@ -41,20 +32,20 @@ export default function useHistoryState() {
       if (getPage()?.as === as) return
 
       // Navigated to previous page
-      const prevIdx = getPrevIdx()
+      const prevIdx = historyStateVar().idx - 1
       if (getPage(prevIdx)?.as === as) {
         updateHistory({ direction: 'BACK', phase: 'LOADING', idx: prevIdx })
         return
       }
 
       const href = (await resolveHref(as)).pathname
-      const idx = getNextIdx()
+      const idx = historyStateVar().idx + 1
       const nextPage = getPage(idx)
       const state = { direction: 'FORWARD', phase: 'LOADING', idx } as const
       if (nextPage && nextPage.as === as) {
         updatePage(state, { as, href, holdBackground: true }, idx)
       } else {
-        addPage(state, { as, href, holdBackground: true, x: 0, y: 0, title: '' }, idx)
+        addPage(state, { as, href }, idx)
       }
     }
 

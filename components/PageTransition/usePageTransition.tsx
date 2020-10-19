@@ -10,6 +10,7 @@ import {
   untillPhase,
   updatePage,
   getUpPage,
+  getUpIdx,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
 
@@ -54,6 +55,9 @@ const usePageTransition = ({
   const isFromInBack = (isFromPage && afterPhase('REGISTERED')) || isFarInBack
   const isToInFront = isToPage && afterPhase('REGISTERED')
   const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
+  const inFront = isFromInFront || isToInFront
+  const inBack = isFromInBack || isFromInBack
+  const isShallow = getPage(fromIdx)?.href === getPage(toIdx)?.href
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
@@ -66,10 +70,14 @@ const usePageTransition = ({
     setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
-  let target: Target = { y: 0, position: 'absolute', left: 0, right: 0, minHeight: '100vh' }
-
-  const inFront = isFromInFront || isToInFront
-  const inBack = isFromInBack || isFromInBack
+  let target: Target = {
+    y: 0,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    minHeight: '100vh',
+    pointerEvents: 'none',
+  }
 
   if (isFromInBack || isToInBack) {
     target = { ...target, y: (thisPage?.y ?? 0) * -1, position: 'fixed' }
@@ -81,10 +89,18 @@ const usePageTransition = ({
     exit: { ...target, transition: { duration: 0 } },
   }
 
-  const prevPage = getPage(thisIdx - 1)
-  const upPage = getUpPage(thisIdx)
-
-  return { offsetDiv, hold, inFront, inBack, prevPage, upPage, isFromPage }
+  return {
+    offsetDiv,
+    hold,
+    inFront,
+    inBack,
+    isFromPage,
+    toIdx,
+    prevPage: getPage(thisIdx - 1),
+    upPage: getUpPage(thisIdx),
+    upIdx: getUpIdx(thisIdx),
+    isShallow,
+  }
 }
 
 export default usePageTransition

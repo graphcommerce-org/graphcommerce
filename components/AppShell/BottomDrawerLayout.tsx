@@ -14,7 +14,7 @@ import { UseStyles } from 'components/Styles'
 import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, MouseEventHandler, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
@@ -49,15 +49,18 @@ const useStyles = makeStyles(
       display: 'grid',
       padding: theme.spacings.sm,
       alignItems: 'center',
-      gridTemplateColumns: `${responsiveVal(50, 200)} 1fr ${responsiveVal(50, 200)}`,
+      gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
     },
     headerBack: {
-      pointerEvents: 'unset',
-      // flex: 0,
+      pointerEvents: 'all',
+      width: 'min-content',
+    },
+    headerForward: {
+      width: 'min-content',
     },
     headerTitle: {
-      pointerEvents: 'unset',
+      pointerEvents: 'all',
       textAlign: 'center',
     },
   }),
@@ -69,10 +72,16 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   const classes = useStyles()
   const router = useRouter()
   const theme = useTheme()
-  const { offsetDiv, inFront, inBack, prevPage, upPage, isFromPage } = usePageTransition({
-    holdBackground: true,
-    title,
-  })
+  const {
+    offsetDiv,
+    inFront,
+    inBack,
+    prevPage,
+    upPage,
+    isFromPage,
+    isShallow,
+  } = usePageTransition({ holdBackground: true, title })
+
   const [focus, setFocus] = useState(false)
   useEffect(() => {
     if (inFront) setTimeout(() => setFocus(true), 400)
@@ -80,38 +89,43 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   }, [inFront])
 
   const contentAnimation: MotionProps = {
-    initial: { y: '300px', opacity: 0 },
+    initial: { y: 300, opacity: 0 },
     animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
-    exit: { y: '300px', opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
+    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
   }
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    console.log(event.target)
-    if (event.target !== event.currentTarget) return
-    router.back()
+  const navigateBack = () => {
+    if (inFront) router.back()
   }
 
-  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+  const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (inBack || event.key !== 'Escape') return
+    event.preventDefault()
     router.back()
   }
 
   return (
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
-      <Backdrop inFront={inFront} classes={{ backdrop: classes.backdrop }} />
+      <Backdrop
+        inFront={inFront}
+        classes={{ backdrop: classes.backdrop }}
+        onClick={navigateBack}
+        role='none'
+        instant={isShallow}
+      />
       <motion.div {...offsetDiv}>
-        <div
-          className={classes.drawerContainer}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
-          role='none'
-        >
+        <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
           {/* <TrapFocus open={focus} getDoc={() => document} isEnabled={() => inFront}> */}
-          <motion.section className={classes.drawer} {...contentAnimation} tabIndex={-1}>
+          <motion.section
+            className={classes.drawer}
+            {...contentAnimation}
+            tabIndex={-1}
+            style={{ pointerEvents: inFront ? 'all' : 'none' }}
+          >
             <div className={classes.header}>
               {prevPage?.title ? (
                 <BackButton
-                  onClick={handleClick}
+                  onClick={navigateBack}
                   disabled={isFromPage}
                   down={prevPage === upPage}
                   className={classes.headerBack}
@@ -120,13 +134,13 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
                 </BackButton>
               ) : (
                 <Link href='/' replace>
-                  <BackButton>Home</BackButton>
+                  <BackButton className={classes.headerBack}>Home</BackButton>
                 </Link>
               )}
               <Typography variant='h4' component='h2' className={classes.headerTitle}>
                 {title}
               </Typography>
-              <div />
+              <div className={classes.headerForward} />
             </div>
             {children}
           </motion.section>

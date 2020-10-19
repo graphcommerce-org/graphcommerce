@@ -1,4 +1,4 @@
-import { PartialDeep } from 'type-fest'
+import { SetRequired } from 'type-fest'
 import { historyStateVar } from './typePolicies'
 
 const phases: GQLPhase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
@@ -11,42 +11,22 @@ export function untillPhase(before: GQLPhase) {
   return phases.indexOf(historyStateVar().phase) <= phases.indexOf(before)
 }
 
-export function betweenPhases(start: GQLPhase, end: GQLPhase) {
-  return afterPhase(start) && untillPhase(end)
-}
-
-export function updateHistory(incomming: PartialDeep<GQLHistoryStateQuery['historyState']>) {
-  const history = historyStateVar()
-  const historyState: GQLHistoryStateQuery['historyState'] = {
-    ...history,
-    ...(incomming as GQLHistoryStateQuery['historyState']),
-  }
-
-  return historyStateVar(historyState)
+export function updateHistory(incomming: Partial<GQLHistoryStateQuery['historyState']>) {
+  return historyStateVar({
+    ...historyStateVar(),
+    ...incomming,
+  })
 }
 
 export function getPage(idx?: number) {
   const history = historyStateVar()
   const currIdx = idx ?? history.idx
-  if (history.pages[currIdx]) return history.pages[currIdx]
-  return undefined
+  return history.pages?.[currIdx] as GQLHistoryStatePage | undefined
 }
 
-export function getCurrentIdx() {
-  return historyStateVar().idx
-}
-export function getPrevIdx() {
-  return historyStateVar().idx - 1
-}
-export function getNextIdx() {
-  return historyStateVar().idx + 1
-}
 export function getFromIdx() {
   const history = historyStateVar()
-  return history?.direction === 'FORWARD' ? getPrevIdx() : getNextIdx()
-}
-export function getFromPage() {
-  return getPage(getFromIdx())
+  return history?.direction === 'FORWARD' ? history.idx - 1 : history.idx + 1
 }
 
 // To close all overlays in one go, we find the first page that doesn't require the background to be holded.
@@ -56,16 +36,19 @@ export function getUpPage(idx: number) {
   return upPages?.[upPages.length - 1] as GQLHistoryStatePage | undefined
 }
 
+export function getUpIdx(idx: number) {
+  const upPage = getUpPage(idx)
+  if (!upPage) return 0
+  return historyStateVar().pages.indexOf(upPage)
+}
+
 export function updatePage(
-  incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
-  page: PartialDeep<GQLHistoryStateQuery['historyState']['pages'][0]>,
+  incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
+  page: Partial<GQLHistoryStateQuery['historyState']['pages'][0]>,
   pageIdx?: number,
 ) {
   const actual = historyStateVar()
-  const historyState: GQLHistoryStateQuery['historyState'] = {
-    ...actual,
-    ...(incomming as GQLHistoryStateQuery['historyState']),
-  }
+  const historyState = { ...actual, ...incomming }
 
   const idx = pageIdx ?? actual.idx
   const pages = [...historyState.pages]
@@ -75,22 +58,20 @@ export function updatePage(
     ...page,
   }
 
-  historyStateVar({ ...historyState, pages })
-  return historyStateVar()
+  return historyStateVar({ ...historyState, pages })
 }
 
 export function addPage(
-  incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
-  page: GQLHistoryStateQuery['historyState']['pages'][0],
+  incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
+  page: SetRequired<Partial<GQLHistoryStateQuery['historyState']['pages'][0]>, 'href' | 'as'>,
   pageIdx: number,
 ) {
-  const actual = historyStateVar()
-  const historyState: GQLHistoryStateQuery['historyState'] = {
-    ...actual,
-    ...(incomming as GQLHistoryStateQuery['historyState']),
-  }
-
-  const pages = [...historyState.pages.slice(0, pageIdx), page]
-  historyStateVar({ ...historyState, pages })
-  return historyStateVar()
+  return historyStateVar({
+    ...historyStateVar(),
+    ...incomming,
+    pages: [
+      ...historyStateVar().pages.slice(0, pageIdx),
+      { x: 0, y: 0, holdBackground: true, title: '', ...page },
+    ],
+  })
 }

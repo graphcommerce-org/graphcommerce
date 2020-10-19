@@ -14,13 +14,11 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.down('xs')]: {
         boxShadow: 'unset',
-        marginLeft: -16,
         paddingRight: `9px`,
         paddingLeft: `14px`,
       },
     },
     label: {
-      pointerEvents: 'none',
       whiteSpace: 'nowrap',
     },
     icon: {

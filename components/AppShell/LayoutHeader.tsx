@@ -28,8 +28,14 @@ const LayoutHeader: PageLayoutFC = (props) => {
     <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
       <Backdrop inFront={inFront} />
       <motion.div {...offsetDiv}>
-        <Header menu={menu} urlResolver={urlResolver} />
-        <div className={classes.content}>{children}</div>
+        <Header
+          menu={menu}
+          urlResolver={urlResolver}
+          style={{ pointerEvents: inFront ? 'all' : 'none' }}
+        />
+        <div className={classes.content} style={{ pointerEvents: inFront ? 'all' : 'none' }}>
+          {children}
+        </div>
       </motion.div>
     </PageLayout>
   )
