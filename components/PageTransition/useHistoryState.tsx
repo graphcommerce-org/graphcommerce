@@ -25,15 +25,7 @@ export default function useHistoryState() {
   }, [])
 
   if (data?.historyState.pages.length === 0) {
-    const page = {
-      as: Router.asPath,
-      href: Router.route,
-      x: 0,
-      y: 0,
-      holdBackground: true,
-      title: '',
-    }
-    addPage({}, page, 0)
+    addPage({}, { as: Router.asPath, href: Router.route }, 0)
   }
 
   // Watch all route changes so we can track forward/backward navigation
@@ -56,7 +48,7 @@ export default function useHistoryState() {
       if (nextPage && nextPage.as === as) {
         updatePage(state, { as, href, holdBackground: true }, idx)
       } else {
-        addPage(state, { as, href, holdBackground: true, x: 0, y: 0, title: '' }, idx)
+        addPage(state, { as, href }, idx)
       }
     }
 

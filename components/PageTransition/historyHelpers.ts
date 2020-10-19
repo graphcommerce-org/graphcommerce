@@ -1,4 +1,4 @@
-import { PartialDeep } from 'type-fest'
+import { SetRequired } from 'type-fest'
 import { historyStateVar } from './typePolicies'
 
 const phases: GQLPhase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
@@ -15,14 +15,11 @@ export function betweenPhases(start: GQLPhase, end: GQLPhase) {
   return afterPhase(start) && untillPhase(end)
 }
 
-export function updateHistory(incomming: PartialDeep<GQLHistoryStateQuery['historyState']>) {
-  const history = historyStateVar()
-  const historyState: GQLHistoryStateQuery['historyState'] = {
-    ...history,
-    ...(incomming as GQLHistoryStateQuery['historyState']),
-  }
-
-  return historyStateVar(historyState)
+export function updateHistory(incomming: Partial<GQLHistoryStateQuery['historyState']>) {
+  return historyStateVar({
+    ...historyStateVar(),
+    ...incomming,
+  })
 }
 
 export function getPage(idx?: number) {
@@ -57,15 +54,12 @@ export function getUpPage(idx: number) {
 }
 
 export function updatePage(
-  incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
-  page: PartialDeep<GQLHistoryStateQuery['historyState']['pages'][0]>,
+  incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
+  page: Partial<GQLHistoryStateQuery['historyState']['pages'][0]>,
   pageIdx?: number,
 ) {
   const actual = historyStateVar()
-  const historyState: GQLHistoryStateQuery['historyState'] = {
-    ...actual,
-    ...(incomming as GQLHistoryStateQuery['historyState']),
-  }
+  const historyState = { ...actual, ...incomming }
 
   const idx = pageIdx ?? actual.idx
   const pages = [...historyState.pages]
@@ -75,22 +69,20 @@ export function updatePage(
     ...page,
   }
 
-  historyStateVar({ ...historyState, pages })
-  return historyStateVar()
+  return historyStateVar({ ...historyState, pages })
 }
 
 export function addPage(
-  incomming: Omit<PartialDeep<GQLHistoryStateQuery['historyState']>, 'pages'>,
-  page: GQLHistoryStateQuery['historyState']['pages'][0],
+  incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
+  page: SetRequired<Partial<GQLHistoryStateQuery['historyState']['pages'][0]>, 'href' | 'as'>,
   pageIdx: number,
 ) {
-  const actual = historyStateVar()
-  const historyState: GQLHistoryStateQuery['historyState'] = {
-    ...actual,
-    ...(incomming as GQLHistoryStateQuery['historyState']),
-  }
-
-  const pages = [...historyState.pages.slice(0, pageIdx), page]
-  historyStateVar({ ...historyState, pages })
-  return historyStateVar()
+  return historyStateVar({
+    ...historyStateVar(),
+    ...incomming,
+    pages: [
+      ...historyStateVar().pages.slice(0, pageIdx),
+      { x: 0, y: 0, holdBackground: true, title: '', ...page },
+    ],
+  })
 }
