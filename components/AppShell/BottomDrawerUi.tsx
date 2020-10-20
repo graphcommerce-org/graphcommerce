@@ -11,8 +11,8 @@ import BackButton from './BackButton'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     backdrop: {
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      backdropFilter: `blur(3px)`,
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      backdropFilter: 'blur(3px)',
     },
     drawerContainer: {
       paddingTop: 70,
@@ -87,8 +87,8 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
 
   const contentAnimation: MotionProps = {
     initial: { y: 300, opacity: 0 },
-    animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
-    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
+    animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
+    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
   }
 
   const navigateBack = () => {
