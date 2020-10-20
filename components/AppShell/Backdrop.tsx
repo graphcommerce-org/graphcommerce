@@ -22,30 +22,24 @@ const useStyles = makeStyles(
   { name: 'Backdrop' },
 )
 
-export type BackdropProps = BackdropPropsBase &
+export type BackdropProps = { instant?: boolean; zOffset?: number } & BackdropPropsBase &
   UseStyles<typeof useStyles> &
-  Omit<
-    HTMLMotionProps<'div'>,
-    'className' | 'initial' | 'transition' | 'animate' | 'exit' | 'onAnimationComplete'
-  > & { instant?: boolean }
+  Omit<HTMLMotionProps<'div'>, 'className' | 'onAnimationComplete'>
 
 const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
   const classes = useStyles(props)
-  const { inFront, instant, ...divProps } = props
-  const [zIndex, setZIndex] = useState(inFront ? 0 : -1)
+  const { inFront, instant, zOffset = 0, ...divProps } = props
+  const zIndex = inFront ? zOffset : zOffset - 1
+  const [zIndexDeferred, setZIndex] = useState(zIndex)
 
   if (instant) {
     return (
       <motion.div
         ref={ref}
         className={classes.backdrop}
-        initial={{ opacity: 0, zIndex: inFront ? 0 : -1 }}
-        animate={{
-          opacity: 1,
-          zIndex: inFront ? 0 : -1,
-          transition: { type: 'tween', ease: 'circOut', duration: 0 },
-        }}
-        exit={{ opacity: 0, transition: { type: 'tween', ease: 'circIn', duration: 0 } }}
+        initial={{ opacity: 0, zIndex }}
+        animate={{ opacity: 1, zIndex, transition: { type: 'tween', duration: 0 } }}
+        exit={{ opacity: 0, transition: { type: 'tween', duration: 0 } }}
         {...divProps}
       />
     )
@@ -55,10 +49,14 @@ const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
     <motion.div
       ref={ref}
       className={classes.backdrop}
-      initial={{ opacity: 0, zIndex }}
-      animate={{ opacity: 1, zIndex, transition: { type: 'tween', ease: 'circOut' } }}
+      initial={{ opacity: 0, zIndex: zIndexDeferred }}
+      animate={{
+        opacity: 1,
+        zIndex: zIndexDeferred,
+        transition: { type: 'tween', ease: 'circOut' },
+      }}
       exit={{ opacity: 0, transition: { type: 'tween', ease: 'circIn' } }}
-      onAnimationComplete={() => setZIndex(inFront ? 0 : -1)}
+      onAnimationComplete={() => setZIndex(zIndex)}
       {...divProps}
     />
   )

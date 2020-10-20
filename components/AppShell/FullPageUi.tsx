@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import Backdrop from 'components/PageTransition/Backdrop'
 import usePageTransition from 'components/PageTransition/usePageTransition'
-import { m as motion } from 'framer-motion'
+import { m as motion, MotionProps } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles(
@@ -21,15 +20,30 @@ export type FullPageUiProps = { title: string }
 const FullPageUi = (props: PropsWithChildren<FullPageUiProps>) => {
   const { children, title } = props
   const classes = useStyles(props)
-  const { offsetDiv, inFront } = usePageTransition({ title })
+  const { offsetDiv, inFront, isShallow } = usePageTransition({ title })
+
+  const contentAnimation: MotionProps = isShallow
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
+        exit: { opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
+      }
+    : {
+        initial: { opacity: 1 },
+        animate: { opacity: 1, transition: { duration: 0 } },
+        exit: { opacity: 1, transition: { duration: 0 } },
+      }
 
   return (
     <>
-      <Backdrop inFront={inFront} />
       <motion.div {...offsetDiv}>
-        <div className={classes.content} style={{ pointerEvents: inFront ? 'all' : 'none' }}>
+        <motion.div
+          className={classes.content}
+          style={{ pointerEvents: inFront ? 'all' : 'none' }}
+          {...contentAnimation}
+        >
           {children}
-        </div>
+        </motion.div>
       </motion.div>
     </>
   )

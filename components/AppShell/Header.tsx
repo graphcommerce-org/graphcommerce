@@ -15,7 +15,7 @@ import logo from './logo.svg'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
-      position: 'fixed',
+      position: 'absolute',
       display: 'flex',
       padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       pointerEvents: 'none',

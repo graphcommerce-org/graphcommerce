@@ -1,6 +1,6 @@
 import { makeStyles, Theme, Unstable_TrapFocus as TrapFocus, Typography } from '@material-ui/core'
+import Backdrop from 'components/AppShell/Backdrop'
 import Link from 'components/Link'
-import Backdrop from 'components/PageTransition/Backdrop'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
 import { m as motion, MotionProps } from 'framer-motion'
@@ -12,7 +12,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     backdrop: {
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      backdropFilter: 'blur(3px)',
+      backdropFilter: 'blur(6px)',
     },
     drawerContainer: {
       paddingTop: 70,
@@ -22,6 +22,7 @@ const useStyles = makeStyles(
       justifyContent: 'stretch',
     },
     drawer: {
+      zIndex: 2,
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       borderTopLeftRadius: theme.spacings.sm,
@@ -109,6 +110,7 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
         onClick={navigateBack}
         role='none'
         instant={isShallow}
+        zOffset={1}
       />
       <motion.div {...offsetDiv}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
