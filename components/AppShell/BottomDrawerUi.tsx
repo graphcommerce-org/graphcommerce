@@ -1,4 +1,10 @@
-import { makeStyles, Theme, Unstable_TrapFocus as TrapFocus, Typography } from '@material-ui/core'
+import {
+  makeStyles,
+  Theme,
+  Unstable_TrapFocus as TrapFocus,
+  Typography,
+  TypographyProps,
+} from '@material-ui/core'
 import Backdrop from 'components/AppShell/Backdrop'
 import PageLink from 'components/PageTransition/PageLink'
 import usePageTransition from 'components/PageTransition/usePageTransition'
@@ -66,11 +72,23 @@ const useStyles = makeStyles(
 
 export type BottomDrawerUiProps = UseStyles<typeof useStyles> & {
   title: string
+  titleProps?: TypographyProps<'h2'>
+  titleComponent?: React.ElementType
+  backFallbackHref?: string | null
+  backFallbackTitle?: string | null
   headerForward?: React.ReactNode
 }
 
 const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
-  const { children, headerForward, title } = props
+  const {
+    children,
+    title,
+    titleProps,
+    titleComponent,
+    backFallbackHref,
+    backFallbackTitle,
+    headerForward,
+  } = props
   const classes = useStyles()
   const router = useRouter()
   const {
@@ -135,11 +153,18 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
                   {prevPage.title}
                 </BackButton>
               ) : (
-                <PageLink href='/' replace>
-                  <BackButton className={classes.headerBack}>Home</BackButton>
+                <PageLink href={backFallbackHref ?? '/'}>
+                  <BackButton className={classes.headerBack}>
+                    {backFallbackTitle ?? 'Home'}
+                  </BackButton>
                 </PageLink>
               )}
-              <Typography variant='h4' component='h2' className={classes.headerTitle}>
+              <Typography
+                variant='h4'
+                component={titleComponent ?? 'h1'}
+                className={classes.headerTitle}
+                {...titleProps}
+              >
                 {title}
               </Typography>
               <div className={classes.headerForward}>{headerForward}</div>

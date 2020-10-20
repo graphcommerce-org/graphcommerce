@@ -1,0 +1,7 @@
+fragment ProductPageCategory on ProductInterface {
+  categories {
+    name
+    url_path
+    include_in_menu
+  }
+}

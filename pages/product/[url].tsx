@@ -1,11 +1,11 @@
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
+import BottomDrawerUi from 'components/AppShell/BottomDrawerUi'
 import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import getUrlResolveProps from 'components/Page/getUrlResolveProps'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
-import ProductPageBreadcrumb from 'components/Product/ProductPageBreadcrumb'
 import ProductPageDescription from 'components/Product/ProductPageDescription'
 import ProductPageGallery from 'components/Product/ProductPageGallery'
 import ProductPageMeta from 'components/Product/ProductPageMeta'
@@ -13,6 +13,7 @@ import ProductPageRelated from 'components/Product/ProductPageRelated'
 import ProductPageUpsell from 'components/Product/ProductPageUpsell'
 import getProductPageProps from 'components/Product/getProductProps'
 import getProductStaticPaths from 'components/Product/getProductStaticPaths'
+import productPageCategory from 'components/Product/productPageCategory'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import NextError from 'next/error'
@@ -32,25 +33,31 @@ const ProductPage: PageComponent = (props) => {
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
+  const category = productPageCategory(product)
   return (
-    <Container className={clsx(classes.container)}>
-      <ProductPageMeta
-        canonical_url={product.canonical_url}
-        meta_description={product.meta_description}
-        meta_title={product.meta_title}
-        name={product.name}
-        url_key={product.url_key}
-      />
-      <ProductPageBreadcrumb categories={product.categories} name={product.name} />
-      <ProductPageDescription
-        name={product.name}
-        description={product.description}
-        short_description={product.short_description}
-      />
-      <ProductPageGallery media_gallery={product.media_gallery} sku={product.sku} />
-      <ProductPageUpsell upsell_products={product.upsell_products} />
-      <ProductPageRelated related_products={product.related_products} />
-    </Container>
+    <BottomDrawerUi
+      title={product.name ?? ''}
+      backFallbackHref={`/${category?.url_path}`}
+      backFallbackTitle={category?.name}
+    >
+      <Container className={clsx(classes.container)}>
+        <ProductPageMeta
+          canonical_url={product.canonical_url}
+          meta_description={product.meta_description}
+          meta_title={product.meta_title}
+          name={product.name}
+          url_key={product.url_key}
+        />
+        <ProductPageDescription
+          name={product.name}
+          description={product.description}
+          short_description={product.short_description}
+        />
+        <ProductPageGallery media_gallery={product.media_gallery} sku={product.sku} />
+        <ProductPageUpsell upsell_products={product.upsell_products} />
+        <ProductPageRelated related_products={product.related_products} />
+      </Container>
+    </BottomDrawerUi>
   )
 }
 ProductPage.Layout = PageLayout
