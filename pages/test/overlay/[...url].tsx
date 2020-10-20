@@ -12,7 +12,7 @@ type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
 const AppShellTextOverlay: PageComponent = ({ url }) => {
-  const title = `Overlay ${url.charAt(0).toUpperCase() + url.slice(1)}`
+  const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
     <BottomDrawerUi title={title}>

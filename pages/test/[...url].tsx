@@ -14,7 +14,7 @@ type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
 const AppShellTestIndex: PageComponent = ({ url }) => {
-  const title = `Testpage ${url.charAt(0).toUpperCase() + url.slice(1)}`
+  const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
     <FullPageUi title={title}>
