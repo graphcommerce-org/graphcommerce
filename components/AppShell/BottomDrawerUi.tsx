@@ -1,6 +1,6 @@
 import { makeStyles, Theme, Unstable_TrapFocus as TrapFocus, Typography } from '@material-ui/core'
 import Backdrop from 'components/AppShell/Backdrop'
-import Link from 'components/Link'
+import PageLink from 'components/PageTransition/PageLink'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
 import { m as motion, MotionProps } from 'framer-motion'
@@ -12,7 +12,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     backdrop: {
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      backdropFilter: 'blur(6px)',
+      backdropFilter: 'blur(4px)',
     },
     drawerContainer: {
       paddingTop: 70,
@@ -51,23 +51,26 @@ const useStyles = makeStyles(
     },
     headerBack: {
       pointerEvents: 'all',
-      width: 'min-content',
     },
     headerForward: {
-      width: 'min-content',
+      pointerEvents: 'all',
+      display: 'flex',
+      justifyContent: 'flex-end',
     },
     headerTitle: {
       pointerEvents: 'all',
-      textAlign: 'center',
     },
   }),
   { name: 'LayoutDrawer' },
 )
 
-export type BottomDrawerUiProps = UseStyles<typeof useStyles> & { title: string }
+export type BottomDrawerUiProps = UseStyles<typeof useStyles> & {
+  title: string
+  headerForward?: React.ReactNode
+}
 
 const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
-  const { children, title } = props
+  const { children, headerForward, title } = props
   const classes = useStyles()
   const router = useRouter()
   const {
@@ -132,14 +135,14 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
                   {prevPage.title}
                 </BackButton>
               ) : (
-                <Link href='/' replace>
+                <PageLink href='/' replace>
                   <BackButton className={classes.headerBack}>Home</BackButton>
-                </Link>
+                </PageLink>
               )}
               <Typography variant='h4' component='h2' className={classes.headerTitle}>
                 {title}
               </Typography>
-              <div className={classes.headerForward} />
+              <div className={classes.headerForward}>{headerForward}</div>
             </div>
             {children}
           </motion.section>

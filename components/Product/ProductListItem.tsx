@@ -1,9 +1,9 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import clsx from 'clsx'
+import PageLink from 'components/PageTransition/PageLink'
 import PictureResponsiveSharp from 'components/PictureResponsiveSharp'
 import { UseStyles } from 'components/Styles'
 import responsiveVal from 'components/Styles/responsiveVal'
-import Link from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { useProductLink } from './ProductLink'
 import ProductListPrice from './ProductListPrice'
@@ -76,7 +76,7 @@ export default function ProductListItem(props: ProductListItemProps) {
 
   return (
     <div className={classes.item}>
-      <Link href={productLink} passHref>
+      <PageLink href={productLink}>
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
@@ -97,7 +97,7 @@ export default function ProductListItem(props: ProductListItemProps) {
             {name}
           </Typography>
         </MuiLink>
-      </Link>
+      </PageLink>
       <ProductListPrice {...price_range.minimum_price} />
       {children}
     </div>

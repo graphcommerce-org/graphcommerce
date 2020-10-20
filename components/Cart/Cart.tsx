@@ -7,9 +7,8 @@ import {
   ListItemSecondaryAction,
   Button,
   NoSsr,
-  Link,
 } from '@material-ui/core'
-import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
+import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import GQLRenderType, { GQLTypeRenderer } from 'components/GQLRenderType'
@@ -36,6 +35,7 @@ const useStyles = makeStyles(
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      color: theme.palette.primary.mutedText,
     },
     emptyCartIcon: {
       fontSize: 200,
@@ -80,14 +80,8 @@ export default function Cart(props: CartProps) {
         key='empty-cart'
         {...{ ...animation, layout: false }}
       >
-        <CartIcon className={classes.emptyCartIcon} />
-        <h2>There is nothing in your cart</h2>
+        <CartIcon className={classes.emptyCartIcon} color='disabled' />
         <p>Looks like you did not add anything to your cart yet.</p>
-        <Link underline='none' href='/'>
-          <Button variant='contained' color='primary' size='large' className={classes.button}>
-            Back to homepage
-          </Button>
-        </Link>
       </motion.div>
     )
   } else if (loading) {
@@ -152,14 +146,6 @@ export default function Cart(props: CartProps) {
             <ListItemSecondaryAction>
               {cart?.prices?.grand_total && <Money {...cart.prices.grand_total} />}
             </ListItemSecondaryAction>
-          </ListItem>
-        </motion.div>
-
-        <motion.div {...animation} key='checkout'>
-          <ListItem className={classes.buttonContainer} ContainerComponent='div'>
-            <Button variant='contained' color='primary' size='large' className={classes.button}>
-              Proceed to checkout
-            </Button>
           </ListItem>
         </motion.div>
       </>

@@ -4,14 +4,13 @@ import {
   Button,
   makeStyles,
   Theme,
-  Link,
   FormControl,
   FormHelperText,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useMutationForm, emailPattern } from 'components/useMutationForm'
 import { CustomerTokenDocument, SignInDocument } from 'generated/documents'
-import NextLink from 'next/link'
+import { PropsWithChildren } from 'react'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
@@ -34,7 +33,7 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-export default function SignInForm() {
+export default function SignInForm({ children }: PropsWithChildren<unknown>) {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const { register, errors, onSubmit, required, loading, error } = useMutationForm({
@@ -52,7 +51,7 @@ export default function SignInForm() {
         </Alert>
       )}
       <TextField
-        variant='filled'
+        variant='outlined'
         type='text'
         error={!!errors.email}
         id='email'
@@ -67,7 +66,7 @@ export default function SignInForm() {
         disabled={loading}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='password'
         error={!!errors.password}
         id='password'
@@ -86,14 +85,7 @@ export default function SignInForm() {
         <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
       </FormControl>
 
-      <div className={classes.actions}>
-        <NextLink href='/' passHref>
-          <Link>Forgot password? (todo)</Link>
-        </NextLink>
-        <NextLink href='/account/signup' passHref>
-          <Link>Create a new account?</Link>
-        </NextLink>
-      </div>
+      <div className={classes.actions}>{children}</div>
     </form>
   )
 }

@@ -37,7 +37,7 @@ export default function SignUpForm() {
   return (
     <form onSubmit={onSubmit} noValidate className={classes.form}>
       <TextField
-        variant='filled'
+        variant='outlined'
         type='text'
         error={!!errors.email}
         id='email'
@@ -68,7 +68,7 @@ export default function SignUpForm() {
         name='prefix'
         render={({ onChange, name, value, onBlur }) => (
           <TextField
-            variant='filled'
+            variant='outlined'
             select
             error={!!errors.prefix}
             id='prefix'
@@ -91,7 +91,7 @@ export default function SignUpForm() {
         )}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='text'
         error={!!errors.firstname}
         id='firstname'
@@ -103,7 +103,7 @@ export default function SignUpForm() {
         disabled={loading}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='text'
         error={!!errors.middlename}
         id='middlename'
@@ -115,7 +115,7 @@ export default function SignUpForm() {
         disabled={loading}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='text'
         error={!!errors.lastname}
         id='lastname'
@@ -127,7 +127,7 @@ export default function SignUpForm() {
         disabled={loading}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='text'
         error={!!errors.suffix}
         id='suffix'
@@ -139,7 +139,7 @@ export default function SignUpForm() {
         disabled={loading}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='password'
         // inputProps={{ className: classes.quantityInput, min: 1 }}
         error={!!errors.password}
@@ -152,7 +152,7 @@ export default function SignUpForm() {
         disabled={loading}
       />
       <TextField
-        variant='filled'
+        variant='outlined'
         type='password'
         error={!!errors.confirmPassword}
         id='confirmPassword'

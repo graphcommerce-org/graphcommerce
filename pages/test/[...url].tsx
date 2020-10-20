@@ -4,10 +4,10 @@ import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
+import PageLink from 'components/PageTransition/PageLink'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { m as motion } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
-import Link from 'next/link'
 
 type PageComponent = PageFC<{ url: string }, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
@@ -23,19 +23,13 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
         <ul>
           <li>
             {url === 'index' ? (
-              <Link href='/test/deeper' scroll={false}>
-                Sibling
-              </Link>
+              <PageLink href='/test/deeper'>Sibling</PageLink>
             ) : (
-              <Link href='/test/index' scroll={false}>
-                Index
-              </Link>
+              <PageLink href='/test/index'>Index</PageLink>
             )}
           </li>
           <li>
-            <Link href='/test/overlay/index' scroll={false}>
-              Overlay
-            </Link>
+            <PageLink href='/test/overlay/index'>Overlay</PageLink>
           </li>
         </ul>
         <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>

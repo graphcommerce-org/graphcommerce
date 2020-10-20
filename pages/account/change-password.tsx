@@ -1,5 +1,5 @@
-import { DialogTitle, DialogContent, Paper, Container, Typography, NoSsr } from '@material-ui/core'
-import BottomDrawerUi, { BottomDrawerUiProps } from 'components/AppShell/BottomDrawerUi'
+import { Container, NoSsr } from '@material-ui/core'
+import BottomDrawerUi from 'components/AppShell/BottomDrawerUi'
 import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import ChangePasswordForm from 'components/Customer/ChangePasswordForm'

@@ -3,9 +3,9 @@ import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
+import PageLink from 'components/PageTransition/PageLink'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
-import Link from 'next/link'
 
 type PageComponent = PageFC<{ url: string }, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
@@ -18,19 +18,13 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
     <BottomDrawerUi title={title}>
       <ul>
         <li>
-          <Link href='/test/deeper' scroll={false}>
-            To default layout
-          </Link>
+          <PageLink href='/test/deeper'>To default layout</PageLink>
         </li>
         <li>
           {url === 'index' ? (
-            <Link href='/test/overlay/deeper' scroll={false}>
-              Deeper
-            </Link>
+            <PageLink href='/test/overlay/deeper'>Deeper</PageLink>
           ) : (
-            <Link href='/test/overlay/index' scroll={false}>
-              Shallower
-            </Link>
+            <PageLink href='/test/overlay/index'>Shallower</PageLink>
           )}
         </li>
       </ul>

@@ -22,7 +22,7 @@ const useStyles = makeStyles(
 export default function SearchButton() {
   const classes = useStyles()
   return (
-    // <Link href='/search'>
+    // <PageLink href='/search'>
     <TextField
       variant='outlined'
       size='small'
@@ -33,6 +33,6 @@ export default function SearchButton() {
       }}
       placeholder='Search'
     />
-    // </Link>
+    // </PageLink>
   )
 }

@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import CartFab from 'components/Cart/CartFab'
 import CustomerFab from 'components/Customer/AccountFab'
+import PageLink from 'components/PageTransition/PageLink'
 import SearchButton from 'components/Search/SearchButton'
 import { UseStyles } from 'components/Styles'
 import responsiveVal from 'components/Styles/responsiveVal'
-import Link from 'next/link'
 import React from 'react'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
@@ -114,11 +114,11 @@ export default function Header(props: HeaderProps) {
 
   return (
     <header {...headerProps} className={clsx(classes.header, headerProps.className)}>
-      <Link href='/' passHref>
+      <PageLink href='/'>
         <a className={classes.logo}>
           <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
         </a>
-      </Link>
+      </PageLink>
 
       <MenuTabs menu={menu} urlResolver={urlResolver} className={classes.menuTabs} />
 

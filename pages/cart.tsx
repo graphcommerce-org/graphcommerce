@@ -1,11 +1,13 @@
 import { Container } from '@material-ui/core'
 import BottomDrawerUi from 'components/AppShell/BottomDrawerUi'
+import ForwardButton from 'components/AppShell/ForwardButton'
 import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import Cart from 'components/Cart/Cart'
 import CartItem from 'components/Cart/CartItem'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
+import PageLink from 'components/PageTransition/PageLink'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
@@ -15,7 +17,14 @@ type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const CartPage: PageComponent = () => {
   return (
-    <BottomDrawerUi title='Cart'>
+    <BottomDrawerUi
+      title='Cart'
+      headerForward={
+        // <PageLink href='/checkout'>
+        <ForwardButton color='primary'>Checkout</ForwardButton>
+        // </PageLink>
+      }
+    >
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container>
         <Cart

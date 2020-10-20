@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Badge, Fab, IconButton, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
+import PageLink from 'components/PageTransition/PageLink'
 import { CartDocument } from 'generated/documents'
-import Link from 'next/link'
 import React from 'react'
 
 type CartFabProps = { asIcon?: boolean }
@@ -14,7 +14,7 @@ function CartFabContent({ qty, asIcon }: CartFabProps & { qty?: number }) {
     </Badge>
   )
   return (
-    <Link passHref href='/cart'>
+    <PageLink href='/cart'>
       {asIcon ? (
         <IconButton aria-label='Cart' color='inherit'>
           {badge}
@@ -24,7 +24,7 @@ function CartFabContent({ qty, asIcon }: CartFabProps & { qty?: number }) {
           {badge}
         </Fab>
       )}
-    </Link>
+    </PageLink>
   )
 }
 

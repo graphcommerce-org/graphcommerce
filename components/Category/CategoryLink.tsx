@@ -1,6 +1,6 @@
 import { Link, LinkProps } from '@material-ui/core'
 import { useProductListParamsContext } from 'components/Category/CategoryPageContext'
-import NextLink from 'next/link'
+import PageLink from 'components/PageTransition/PageLink'
 import Router from 'next/router'
 import React, { PropsWithChildren } from 'react'
 import {
@@ -70,7 +70,7 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
     rel = 'nofollow'
 
   return (
-    <NextLink href={categoryLink} passHref>
+    <PageLink href={categoryLink}>
       {noLink ? (
         children
       ) : (
@@ -78,7 +78,7 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
           {children}
         </Link>
       )}
-    </NextLink>
+    </PageLink>
   )
 })
 
