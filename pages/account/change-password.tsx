@@ -1,5 +1,7 @@
-import { DialogTitle, DialogContent, Paper, Container, Typography, NoSsr } from '@material-ui/core'
-import BottomDrawerLayout, { BottomDrawerLayoutProps } from 'components/AppShell/BottomDrawerLayout'
+import { Container, NoSsr } from '@material-ui/core'
+import BottomDrawerUi from 'components/AppShell/BottomDrawerUi'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
+import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import ChangePasswordForm from 'components/Customer/ChangePasswordForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
@@ -8,7 +10,7 @@ import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
 
-type PageComponent = PageFC<unknown, BottomDrawerLayoutProps>
+type PageComponent = PageFC<unknown, PageLayoutProps>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const AccountChangePasswordPage: PageComponent = () => {
@@ -16,32 +18,22 @@ const AccountChangePasswordPage: PageComponent = () => {
   if (!signedIn) return null
 
   return (
-    <>
+    <BottomDrawerUi title='Change Password'>
       <PageMeta
         title='Change Password'
         metaDescription='Change your password'
         metaRobots='NOINDEX, FOLLOW'
       />
-
       <Container maxWidth='sm'>
-        <Paper elevation={10}>
-          <DialogTitle disableTypography>
-            <Typography variant='h2' component='h1'>
-              Change Password
-            </Typography>
-          </DialogTitle>
-          <DialogContent>
-            <NoSsr>
-              <ChangePasswordForm />
-            </NoSsr>
-          </DialogContent>
-        </Paper>
+        <NoSsr>
+          <ChangePasswordForm />
+        </NoSsr>
       </Container>
-    </>
+    </BottomDrawerUi>
   )
 }
 
-AccountChangePasswordPage.Layout = BottomDrawerLayout
+AccountChangePasswordPage.Layout = PageLayout
 
 export default AccountChangePasswordPage
 
@@ -49,10 +41,13 @@ export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
   const config = getStoreConfig(client)
 
+  const staticClient = apolloClient()
+  const layoutHeader = getLayoutHeaderProps(staticClient)
+
   await config
   return {
     props: {
-      title: 'Change Password',
+      ...(await layoutHeader),
       apolloState: client.cache.extract(),
     },
   }

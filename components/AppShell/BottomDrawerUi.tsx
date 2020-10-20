@@ -1,27 +1,18 @@
-import {
-  makeStyles,
-  Theme,
-  useTheme,
-  Unstable_TrapFocus as TrapFocus,
-  Typography,
-} from '@material-ui/core'
-import Link from 'components/Link'
-import PageLayout from 'components/Page/PageLayout'
-import { PageLayoutFC, GetProps } from 'components/Page/types'
-import Backdrop from 'components/PageTransition/Backdrop'
+import { makeStyles, Theme, Unstable_TrapFocus as TrapFocus, Typography } from '@material-ui/core'
+import Backdrop from 'components/AppShell/Backdrop'
+import PageLink from 'components/PageTransition/PageLink'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
-import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler, PropsWithChildren, useEffect, useState } from 'react'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     backdrop: {
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
-      backdropFilter: `blur(3px)`,
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+      backdropFilter: 'blur(4px)',
     },
     drawerContainer: {
       paddingTop: 70,
@@ -31,6 +22,7 @@ const useStyles = makeStyles(
       justifyContent: 'stretch',
     },
     drawer: {
+      zIndex: 2,
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       borderTopLeftRadius: theme.spacings.sm,
@@ -40,6 +32,11 @@ const useStyles = makeStyles(
       width: '100%',
       position: 'relative',
       '&:focus': { outline: 'none' },
+      padding: theme.spacings.sm,
+      paddingBottom: 0,
+      '&> *': {
+        marginBottom: theme.spacings.sm,
+      },
     },
     header: {
       position: 'sticky',
@@ -47,31 +44,35 @@ const useStyles = makeStyles(
       left: 0,
       right: 0,
       display: 'grid',
-      padding: theme.spacings.sm,
+      // margin: `0 ${theme.spacings.sm}`,
       alignItems: 'center',
       gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
     },
     headerBack: {
       pointerEvents: 'all',
-      width: 'min-content',
     },
     headerForward: {
-      width: 'min-content',
+      pointerEvents: 'all',
+      display: 'flex',
+      justifyContent: 'flex-end',
     },
     headerTitle: {
       pointerEvents: 'all',
-      textAlign: 'center',
     },
   }),
   { name: 'LayoutDrawer' },
 )
 
-const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) => {
-  const { children, urlResolver, title } = props
+export type BottomDrawerUiProps = UseStyles<typeof useStyles> & {
+  title: string
+  headerForward?: React.ReactNode
+}
+
+const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
+  const { children, headerForward, title } = props
   const classes = useStyles()
   const router = useRouter()
-  const theme = useTheme()
   const {
     offsetDiv,
     inFront,
@@ -90,8 +91,8 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
 
   const contentAnimation: MotionProps = {
     initial: { y: 300, opacity: 0 },
-    animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'circOut' } },
-    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'circIn' } },
+    animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
+    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
   }
 
   const navigateBack = () => {
@@ -105,13 +106,14 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
   }
 
   return (
-    <PageLayout urlResolver={urlResolver} themeColor={theme.palette.primary.main} title={title}>
+    <>
       <Backdrop
         inFront={inFront}
         classes={{ backdrop: classes.backdrop }}
         onClick={navigateBack}
         role='none'
         instant={isShallow}
+        zOffset={1}
       />
       <motion.div {...offsetDiv}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
@@ -133,24 +135,22 @@ const BottomDrawerLayout: PageLayoutFC<UseStyles<typeof useStyles>> = (props) =>
                   {prevPage.title}
                 </BackButton>
               ) : (
-                <Link href='/' replace>
+                <PageLink href='/' replace>
                   <BackButton className={classes.headerBack}>Home</BackButton>
-                </Link>
+                </PageLink>
               )}
               <Typography variant='h4' component='h2' className={classes.headerTitle}>
                 {title}
               </Typography>
-              <div className={classes.headerForward} />
+              <div className={classes.headerForward}>{headerForward}</div>
             </div>
             {children}
           </motion.section>
           {/* </TrapFocus> */}
         </div>
       </motion.div>
-    </PageLayout>
+    </>
   )
 }
 
-export type BottomDrawerLayoutProps = GetProps<typeof BottomDrawerLayout>
-
-export default BottomDrawerLayout
+export default BottomDrawerUi

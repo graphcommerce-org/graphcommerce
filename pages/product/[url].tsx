@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
 import clsx from 'clsx'
-import BottomDrawerLayout, { BottomDrawerLayoutProps } from 'components/AppShell/BottomDrawerLayout'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import getUrlResolveProps from 'components/Page/getUrlResolveProps'
@@ -18,7 +18,7 @@ import apolloClient from 'lib/apolloClient'
 import NextError from 'next/error'
 import React from 'react'
 
-type PageComponent = PageFC<GQLProductPageQuery, BottomDrawerLayoutProps>
+type PageComponent = PageFC<GQLProductPageQuery, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
 
@@ -53,7 +53,7 @@ const ProductPage: PageComponent = (props) => {
     </Container>
   )
 }
-ProductPage.Layout = BottomDrawerLayout
+ProductPage.Layout = PageLayout
 
 export default ProductPage
 

@@ -1,5 +1,5 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
-import ArrowBack from '@material-ui/icons/ArrowBackIos'
+import ArrowForward from '@material-ui/icons/ArrowForwardIos'
 import { UseStyles } from 'components/Styles'
 import React from 'react'
 
@@ -15,8 +15,8 @@ const useStyles = makeStyles(
       },
       [theme.breakpoints.down('xs')]: {
         boxShadow: 'unset',
-        paddingRight: `8px`,
-        paddingLeft: `14px`,
+        paddingLeft: `12px`,
+        paddingRight: `10px`,
       },
     },
     label: {
@@ -38,15 +38,19 @@ const useStyles = makeStyles(
 
 export type BackButtonProps = UseStyles<typeof useStyles> & FabProps & { down?: boolean }
 
-const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
+const ForwardButton = React.forwardRef((props: BackButtonProps, ref) => {
   const { text, icon, ...classes } = useStyles(props)
   const { children, down, ...fabProps } = props
 
   return (
-    <Fab variant='extended' size='large' classes={classes} aria-label='Previous page' {...fabProps}>
-      <ArrowBack shapeRendering='geometricPrecision' fontSize='inherit' classes={{ root: icon }} />
+    <Fab variant='extended' size='large' classes={classes} {...fabProps}>
       <span className={text}>{children}</span>
+      <ArrowForward
+        shapeRendering='geometricPrecision'
+        fontSize='inherit'
+        classes={{ root: icon }}
+      />
     </Fab>
   )
 })
-export default BackButton
+export default ForwardButton

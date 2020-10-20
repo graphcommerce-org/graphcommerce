@@ -37,7 +37,7 @@ export default function ChangePasswordForm() {
   return (
     <form onSubmit={onSubmit} noValidate className={classes.form}>
       <TextField
-        variant='filled'
+        variant='outlined'
         type='password'
         // inputProps={{ className: classes.quantityInput, min: 1 }}
         error={!!errors.currentPassword}
@@ -51,7 +51,7 @@ export default function ChangePasswordForm() {
       />
 
       <TextField
-        variant='filled'
+        variant='outlined'
         type='password'
         // inputProps={{ className: classes.quantityInput, min: 1 }}
         error={!!errors.newPassword}
@@ -65,7 +65,7 @@ export default function ChangePasswordForm() {
       />
 
       <TextField
-        variant='filled'
+        variant='outlined'
         type='password'
         error={!!errors.confirmPassword}
         id='confirmPassword'

@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
-import { PageLayoutFC } from 'components/Page/types'
 import { StoreConfigDocument } from 'generated/documents'
 import Head from 'next/head'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
-const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColor }) => {
+const PageLayoutBase = (props: PropsWithChildren<unknown>) => {
+  const { children } = props
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
@@ -12,7 +12,6 @@ const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColo
   return (
     <>
       <Head>
-        {themeColor && <meta name='theme-color' content={themeColor} />}
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
         <meta name='application-name' content={name} />
         <meta name='apple-mobile-web-app-capable' content='yes' />
@@ -29,4 +28,4 @@ const PageLayout: PageLayoutFC<{ themeColor?: string }> = ({ children, themeColo
   )
 }
 
-export default PageLayout
+export default PageLayoutBase

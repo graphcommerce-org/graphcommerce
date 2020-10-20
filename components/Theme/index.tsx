@@ -210,6 +210,10 @@ defaultTheme.overrides = {
       backgroundColor: '#fff',
       '&:hover': { backgroundColor: '#efefef' },
     },
+    primary: {
+      color: '#fff',
+      '& .MuiSvgIcon-root': { color: '#fff' },
+    },
     extended: {
       fontWeight: 400,
       textTransform: 'none',

@@ -15,7 +15,7 @@ export default function SignOutForm(props: SignOutFormProps) {
   return (
     <form onSubmit={onSubmit} noValidate {...props}>
       <FormControl>
-        <Button type='submit' disabled={loading} variant='outlined'>
+        <Button type='submit' disabled={loading} color='primary'>
           Sign out
         </Button>
         <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>

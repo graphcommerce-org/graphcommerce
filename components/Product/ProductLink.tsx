@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Link, LinkProps } from '@material-ui/core'
+import PageLink from 'components/PageTransition/PageLink'
 import { StoreConfigDocument } from 'generated/documents'
-import NextLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 
 export function useProductLink(props: GQLProductLinkFragment & { canonical?: boolean }) {
@@ -22,11 +22,11 @@ const ProductLink = React.forwardRef<HTMLAnchorElement, ProductLinkProps>(functi
   const productLink = useProductLink({ url_key, canonical_url })
 
   return (
-    <NextLink href={productLink} passHref>
+    <PageLink href={productLink}>
       <Link {...linkProps} ref={ref}>
         {children}
       </Link>
-    </NextLink>
+    </PageLink>
   )
 })
 

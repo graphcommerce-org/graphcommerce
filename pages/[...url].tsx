@@ -1,5 +1,6 @@
 import { Container } from '@material-ui/core'
-import LayoutHeader, { LayoutHeaderProps } from 'components/AppShell/LayoutHeader'
+import FullPageUi from 'components/AppShell/FullPageUi'
+import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import CategoryChildren from 'components/Category/CategoryChildren'
 import CategoryDescription from 'components/Category/CategoryDescription'
@@ -27,7 +28,7 @@ import apolloClient from 'lib/apolloClient'
 import NextError from 'next/error'
 import React from 'react'
 
-type PageComponent = PageFC<GetCategoryPageProps, LayoutHeaderProps>
+type PageComponent = PageFC<GetCategoryPageProps, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
@@ -97,13 +98,13 @@ const CategoryPage: PageComponent = (props) => {
   }
 
   return (
-    <>
+    <FullPageUi title={category.name ?? ''}>
       <CategoryMeta {...category} />
       {content}
-    </>
+    </FullPageUi>
   )
 }
-CategoryPage.Layout = LayoutHeader
+CategoryPage.Layout = PageLayout
 
 export default CategoryPage
 
@@ -133,7 +134,6 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
 
   return {
     props: {
-      title: (await categoryPage).categories?.items?.[0]?.name || '',
       ...(await urlResolve),
       ...(await layoutHeader),
       ...(await categoryPage),

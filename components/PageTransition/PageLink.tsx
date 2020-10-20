@@ -1,9 +1,9 @@
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
+import NextLink, { LinkProps as PageLinkProps } from 'next/link'
 import { PropsWithChildren } from 'react'
 
-type LinkProps = PropsWithChildren<Omit<NextLinkProps, 'scroll' | 'passHref'>>
+type LinkProps = PropsWithChildren<Omit<PageLinkProps, 'scroll' | 'passHref'>>
 
-export default function Link(props: LinkProps) {
+export default function PageLink(props: LinkProps) {
   // todo(paales): When we are in an overlay page, make sure that all links replace the current state.
   return <NextLink {...props} scroll={false} passHref />
 }

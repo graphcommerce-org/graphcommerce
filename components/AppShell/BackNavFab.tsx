@@ -1,7 +1,7 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
+import PageLink from 'components/PageTransition/PageLink'
 import { UseStyles } from 'components/Styles'
-import Link from 'next/link'
 import React from 'react'
 
 /**
@@ -77,7 +77,7 @@ export default function BackNavFab(props: BackNavFabProps) {
 
   return (
     <div className={classes.stickyContainer}>
-      <Link href={href} passHref>
+      <PageLink href={href}>
         <Fab
           variant='extended'
           size='large'
@@ -92,7 +92,7 @@ export default function BackNavFab(props: BackNavFabProps) {
           />
           <span className={classes.fabText}>{children}</span>
         </Fab>
-      </Link>
+      </PageLink>
     </div>
   )
 }

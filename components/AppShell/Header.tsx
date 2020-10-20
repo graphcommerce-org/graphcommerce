@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import CartFab from 'components/Cart/CartFab'
 import CustomerFab from 'components/Customer/AccountFab'
+import PageLink from 'components/PageTransition/PageLink'
 import SearchButton from 'components/Search/SearchButton'
 import { UseStyles } from 'components/Styles'
 import responsiveVal from 'components/Styles/responsiveVal'
-import Link from 'next/link'
 import React from 'react'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
@@ -16,7 +16,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
       position: 'absolute',
-      top: 0,
       display: 'flex',
       padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       pointerEvents: 'none',
@@ -25,6 +24,7 @@ const useStyles = makeStyles(
       width: '100%',
       [theme.breakpoints.down('sm')]: {},
       [theme.breakpoints.up('md')]: {},
+      zIndex: 1,
     },
     logo: {
       pointerEvents: 'all',
@@ -102,10 +102,11 @@ const useStyles = makeStyles(
   { name: 'AppLayout' },
 )
 
-type HeaderProps = GQLLayoutHeaderQuery &
-  GQLResolveUrlQuery &
-  JSX.IntrinsicElements['header'] &
-  UseStyles<typeof useStyles>
+type HeaderElementProps = JSX.IntrinsicElements['header'] & UseStyles<typeof useStyles>
+
+type HeaderDataProps = GQLLayoutHeaderQuery & GQLResolveUrlQuery
+
+export type HeaderProps = HeaderDataProps & HeaderElementProps
 
 export default function Header(props: HeaderProps) {
   const classes = useStyles(props)
@@ -113,11 +114,11 @@ export default function Header(props: HeaderProps) {
 
   return (
     <header {...headerProps} className={clsx(classes.header, headerProps.className)}>
-      <Link href='/' passHref>
+      <PageLink href='/'>
         <a className={classes.logo}>
           <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
         </a>
-      </Link>
+      </PageLink>
 
       <MenuTabs menu={menu} urlResolver={urlResolver} className={classes.menuTabs} />
 
