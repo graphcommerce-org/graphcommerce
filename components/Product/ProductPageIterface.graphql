@@ -1,7 +1,7 @@
 fragment ProductPageInterface on ProductInterface {
   sku
   name
-  ...ProductPageBreadcrumb
+  ...ProductPageCategory
   ...ProductPageDescription
   ...ProductPageGallery
   ...ProductPageMeta

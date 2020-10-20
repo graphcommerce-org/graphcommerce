@@ -1,9 +1,0 @@
-fragment ProductPageBreadcrumb on ProductInterface {
-  name
-  categories {
-    id
-    name
-    url_path
-    ...CategoryBreadcrumb
-  }
-}

@@ -5,7 +5,6 @@ export default function ProductPageDescription(props: GQLProductPageDescriptionF
   const { name, short_description, description } = props
   return (
     <>
-      <Typography variant='h1'>{name}</Typography>
       {/* eslint-disable-next-line react/no-danger */}
       {short_description && <div dangerouslySetInnerHTML={{ __html: short_description.html }} />}
       {/* eslint-disable-next-line react/no-danger */}
