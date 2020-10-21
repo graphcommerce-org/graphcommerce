@@ -63,7 +63,7 @@ const ProductPage: PageComponent = (props) => {
 }
 ProductPage.Layout = PageLayout
 
-registerRoute('/[url]', BottomDrawerUi)
+registerRoute('/product/[url]', BottomDrawerUi)
 
 export default ProductPage
 
