@@ -25,8 +25,8 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const contentAnimation: MotionProps = !hold
     ? {
         initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
-        exit: { opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
+        animate: { opacity: 1, transition: { type: 'tween' } },
+        exit: { opacity: 0, transition: { type: 'tween' } },
       }
     : {
         initial: { opacity: 1 },

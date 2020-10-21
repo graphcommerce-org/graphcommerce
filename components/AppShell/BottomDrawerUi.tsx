@@ -11,6 +11,7 @@ import PageLink from 'components/PageTransition/PageLink'
 import { UiFC } from 'components/PageTransition/types'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
+import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler, useEffect, useState } from 'react'
@@ -22,21 +23,19 @@ const useStyles = makeStyles(
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
     },
     drawerContainer: {
-      paddingTop: 70,
+      paddingTop: responsiveVal(10, 70),
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'flex-end',
       justifyContent: 'stretch',
     },
     drawer: {
-      zIndex: 2,
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       borderTopLeftRadius: theme.spacings.sm,
       borderTopRightRadius: theme.spacings.sm,
       boxShadow: theme.shadows[10],
       width: '100%',
-      position: 'relative',
       '&:focus': { outline: 'none' },
       padding: theme.spacings.sm,
       paddingBottom: 0,
@@ -102,8 +101,8 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
 
   const contentAnimation: MotionProps = {
     initial: { y: 300, opacity: 0 },
-    animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
-    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
+    animate: { y: 0, opacity: 1, transition: { type: 'tween' } },
+    exit: { y: 300, opacity: 0, transition: { type: 'tween' } },
   }
 
   const navigateBack = () => {
@@ -123,10 +122,9 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         classes={{ backdrop: classes.backdrop }}
         onClick={navigateBack}
         role='none'
-        instant={hold}
         zOffset={1}
       />
-      <motion.div {...offsetDiv}>
+      <motion.div {...offsetDiv} style={{ zIndex: 2 }}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
           {/* <TrapFocus open={focus} getDoc={() => document} isEnabled={() => inFront}> */}
           <motion.section
