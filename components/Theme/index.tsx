@@ -193,7 +193,6 @@ defaultTheme.overrides = {
       boxShadow: defaultTheme.shadows[8],
       '&:hover': { boxShadow: defaultTheme.shadows[10] },
       '&:focus': { boxShadow: defaultTheme.shadows[12] },
-      '& .MuiSvgIcon-root': { color: defaultTheme.palette.primary.main },
     },
     containedPrimary: {
       color: '#fff',
