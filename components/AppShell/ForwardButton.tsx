@@ -1,4 +1,4 @@
-import { FabProps, makeStyles, Theme } from '@material-ui/core'
+import { ButtonProps, FabProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowForward from '@material-ui/icons/ArrowForwardIos'
 import Button from 'components/Button'
 import { UseStyles } from 'components/Styles'
@@ -37,7 +37,7 @@ const useStyles = makeStyles(
   { name: 'BackNavFab' },
 )
 
-export type BackButtonProps = UseStyles<typeof useStyles> & FabProps & { down?: boolean }
+export type BackButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
 
 const ForwardButton = React.forwardRef((props: BackButtonProps, ref) => {
   const { text, icon, ...classes } = useStyles(props)
