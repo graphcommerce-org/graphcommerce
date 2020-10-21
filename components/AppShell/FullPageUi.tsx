@@ -2,7 +2,6 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { UiFC } from 'components/PageTransition/types'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { m as motion, MotionProps } from 'framer-motion'
-import { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -10,7 +10,6 @@ import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
 import { registerRoute } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
-import { CustomerDocument } from 'generated/documents'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
 
@@ -19,7 +18,6 @@ type GetPageStaticProps = PageStaticPropsFn<PageComponent>
 
 const AccountIndexPage: PageComponent = () => {
   const signedIn = useSignedInGuard()
-  const { data } = useQuery(CustomerDocument)
   if (!signedIn) return null
 
   return (

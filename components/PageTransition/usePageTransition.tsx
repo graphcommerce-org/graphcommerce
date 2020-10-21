@@ -26,7 +26,17 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
   useQuery(HistoryStateDocument)
   let state = historyStateVar()
 
+  /**
+   * todo: fix component recreation when navigating back multiple steps.
+   *
+   * 1. Navigate from /test/index to test/overlay/index -> /test/overlay/deeper
+   * 2. Navigate back to /test/index (back -> back)
+   * 3. /test/index has now been recreated instead of reused, causes the thisIdx to be wrong.
+   *
+   * Should probably create a sandbox environment
+   */
   const [thisIdx] = useState(state?.idx ?? 0)
+
   const toIdx = state?.idx ?? 0
   const fromIdx = getFromIdx()
 
