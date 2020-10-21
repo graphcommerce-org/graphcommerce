@@ -3,7 +3,6 @@ type HistoryStatePage {
   as: String!
   x: Int!
   y: Int!
-  holdBackground: Boolean!
   title: String!
 }
 

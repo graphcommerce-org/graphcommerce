@@ -6,6 +6,7 @@ import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import getUrlResolveProps from 'components/Page/getUrlResolveProps'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import ProductPageDescription from 'components/Product/ProductPageDescription'
 import ProductPageGallery from 'components/Product/ProductPageGallery'
 import ProductPageMeta from 'components/Product/ProductPageMeta'
@@ -61,6 +62,8 @@ const ProductPage: PageComponent = (props) => {
   )
 }
 ProductPage.Layout = PageLayout
+
+registerRoute('/[url]', BottomDrawerUi)
 
 export default ProductPage
 

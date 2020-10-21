@@ -6,6 +6,7 @@ import ChangePasswordForm from 'components/Customer/ChangePasswordForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
@@ -34,6 +35,8 @@ const AccountChangePasswordPage: PageComponent = () => {
 }
 
 AccountChangePasswordPage.Layout = PageLayout
+
+registerRoute('/account/change-password', BottomDrawerUi)
 
 export default AccountChangePasswordPage
 

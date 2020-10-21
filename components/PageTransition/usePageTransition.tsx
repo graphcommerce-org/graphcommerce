@@ -11,21 +11,18 @@ import {
   updatePage,
   getUpPage,
   getUpIdx,
+  holdRoute,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
 
 const isBrowser = typeof window !== 'undefined'
 
-type UsePageTransitionProps = { holdBackground?: boolean; safeToRemoveAfter?: number } & Omit<
+type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
   GQLHistoryStatePage,
-  'href' | 'as' | 'x' | 'y' | 'holdBackground'
+  'href' | 'as' | 'x' | 'y'
 >
 
-const usePageTransition = ({
-  holdBackground = false,
-  safeToRemoveAfter = 0.3,
-  title,
-}: UsePageTransitionProps) => {
+const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransitionProps) => {
   useQuery(HistoryStateDocument)
   let state = historyStateVar()
 
@@ -39,8 +36,8 @@ const usePageTransition = ({
   const [, safeToRemove] = usePresence()
 
   // Register that we want to keep the prevous page
-  if (isBrowser && isToPage && getPage(thisIdx)?.title === '') {
-    state = updatePage({}, { holdBackground, title }, thisIdx)
+  if (isToPage && getPage(thisIdx)?.title !== title) {
+    state = updatePage({}, { title }, thisIdx)
   }
 
   // Register the scroll position of the previous page
@@ -49,7 +46,6 @@ const usePageTransition = ({
   }
 
   const thisPage = getPage(thisIdx)
-
   const isFarInBack = thisIdx < fromIdx && thisIdx !== toIdx
   const isFromInFront = isFromPage && untillPhase('LOCATION_CHANGED') && !isFarInBack
   const isFromInBack = (isFromPage && afterPhase('REGISTERED')) || isFarInBack
@@ -57,13 +53,26 @@ const usePageTransition = ({
   const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
   const inFront = isFromInFront || isToInFront
   const inBack = isFromInBack || isFromInBack
-  const isShallow = getPage(fromIdx)?.href === getPage(toIdx)?.href
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
   //       It isn't viable to keep all old state around?
   const nextPages = state.pages.slice(thisIdx + 1, toIdx + 1)
-  const hold = nextPages && nextPages.length > 0 && nextPages.every((page) => page.holdBackground)
+  const hold =
+    nextPages &&
+    nextPages.length > 0 &&
+    nextPages.every((page) => {
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        typeof holdRoute[page.href] === 'undefined' &&
+        afterPhase('REGISTERED')
+      ) {
+        console.warn(
+          `route ${page.href} not registered, please call registerRoute in /pages${page.href}`,
+        )
+      }
+      return holdRoute[page.href] ?? false
+    })
 
   // If we do not need to keep the layout, we can mark it for removal
   if (isFromInBack && !hold && safeToRemove && afterPhase('REGISTERED')) {
@@ -99,7 +108,6 @@ const usePageTransition = ({
     prevPage: getPage(thisIdx - 1),
     upPage: getUpPage(thisIdx),
     upIdx: getUpIdx(thisIdx),
-    isShallow,
   }
 }
 

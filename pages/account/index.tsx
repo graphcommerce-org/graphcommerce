@@ -8,6 +8,7 @@ import SignOutForm from 'components/Customer/SignOutForm'
 import useSignedInGuard from 'components/Customer/useSignedInGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { CustomerDocument } from 'generated/documents'
 import apolloClient from 'lib/apolloClient'
@@ -32,6 +33,8 @@ const AccountIndexPage: PageComponent = () => {
 }
 
 AccountIndexPage.Layout = PageLayout
+
+registerRoute('/account', BottomDrawerUi)
 
 export default AccountIndexPage
 

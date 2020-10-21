@@ -5,7 +5,6 @@ import '@graphql-mesh/transform-cache'
 import '@graphql-mesh/cache-file'
 
 import { performance } from 'perf_hooks'
-import { mergeDeep } from '@apollo/client/utilities'
 import { processConfig } from '@graphql-mesh/config'
 import { getMesh } from '@graphql-mesh/runtime'
 import meshrc from '../.meshrc.json'
