@@ -43,7 +43,7 @@ export default function useHistoryState() {
       const nextPage = getPage(idx)
       const state = { direction: 'FORWARD', phase: 'LOADING', idx } as const
       if (nextPage && nextPage.as === as) {
-        updatePage(state, { as, href, holdBackground: true }, idx)
+        updatePage(state, { as, href }, idx)
       } else {
         addPage(state, { as, href }, idx)
       }

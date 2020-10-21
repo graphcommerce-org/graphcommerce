@@ -4,39 +4,38 @@ import {
   Unstable_TrapFocus as TrapFocus,
   Typography,
   TypographyProps,
+  NoSsr,
 } from '@material-ui/core'
 import Backdrop from 'components/AppShell/Backdrop'
 import PageLink from 'components/PageTransition/PageLink'
+import { UiFC } from 'components/PageTransition/types'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
+import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, PropsWithChildren, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     backdrop: {
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      backdropFilter: 'blur(4px)',
     },
     drawerContainer: {
-      paddingTop: 70,
+      paddingTop: responsiveVal(10, 70),
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'flex-end',
       justifyContent: 'stretch',
     },
     drawer: {
-      zIndex: 2,
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
       borderTopLeftRadius: theme.spacings.sm,
       borderTopRightRadius: theme.spacings.sm,
       boxShadow: theme.shadows[10],
-      // zIndex: 3,
       width: '100%',
-      position: 'relative',
       '&:focus': { outline: 'none' },
       padding: theme.spacings.sm,
       paddingBottom: 0,
@@ -71,15 +70,12 @@ const useStyles = makeStyles(
 )
 
 export type BottomDrawerUiProps = UseStyles<typeof useStyles> & {
-  title: string
   titleProps?: TypographyProps<'h2'>
   titleComponent?: React.ElementType
-  backFallbackHref?: string | null
-  backFallbackTitle?: string | null
   headerForward?: React.ReactNode
 }
 
-const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
+const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
   const {
     children,
     title,
@@ -89,17 +85,13 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
     backFallbackTitle,
     headerForward,
   } = props
+
   const classes = useStyles()
   const router = useRouter()
-  const {
-    offsetDiv,
-    inFront,
-    inBack,
-    prevPage,
-    upPage,
-    isFromPage,
-    isShallow,
-  } = usePageTransition({ holdBackground: true, title })
+
+  const { offsetDiv, inFront, inBack, prevPage, upPage, isFromPage, hold } = usePageTransition({
+    title,
+  })
 
   const [focus, setFocus] = useState(false)
   useEffect(() => {
@@ -109,8 +101,8 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
 
   const contentAnimation: MotionProps = {
     initial: { y: 300, opacity: 0 },
-    animate: { y: 0, opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
-    exit: { y: 300, opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
+    animate: { y: 0, opacity: 1, transition: { type: 'tween' } },
+    exit: { y: 300, opacity: 0, transition: { type: 'tween' } },
   }
 
   const navigateBack = () => {
@@ -130,10 +122,9 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
         classes={{ backdrop: classes.backdrop }}
         onClick={navigateBack}
         role='none'
-        instant={isShallow}
         zOffset={1}
       />
-      <motion.div {...offsetDiv}>
+      <motion.div {...offsetDiv} style={{ zIndex: 2 }}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
           {/* <TrapFocus open={focus} getDoc={() => document} isEnabled={() => inFront}> */}
           <motion.section
@@ -143,22 +134,25 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
             style={{ pointerEvents: inFront ? 'all' : 'none' }}
           >
             <div className={classes.header}>
-              {prevPage?.title ? (
-                <BackButton
-                  onClick={navigateBack}
-                  disabled={isFromPage}
-                  down={prevPage === upPage}
-                  className={classes.headerBack}
-                >
-                  {prevPage.title}
-                </BackButton>
-              ) : (
-                <PageLink href={backFallbackHref ?? '/'}>
-                  <BackButton className={classes.headerBack}>
-                    {backFallbackTitle ?? 'Home'}
+              <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                {prevPage?.title ? (
+                  <BackButton
+                    onClick={navigateBack}
+                    disabled={isFromPage}
+                    down={prevPage === upPage}
+                    className={classes.headerBack}
+                  >
+                    {prevPage.title}
                   </BackButton>
-                </PageLink>
-              )}
+                ) : (
+                  <PageLink href={backFallbackHref ?? '/'}>
+                    <BackButton className={classes.headerBack}>
+                      {backFallbackTitle ?? 'Home'}
+                    </BackButton>
+                  </PageLink>
+                )}
+              </NoSsr>
+
               <Typography
                 variant='h4'
                 component={titleComponent ?? 'h1'}
@@ -177,5 +171,6 @@ const BottomDrawerUi = (props: PropsWithChildren<BottomDrawerUiProps>) => {
     </>
   )
 }
+BottomDrawerUi.holdBackground = true
 
 export default BottomDrawerUi

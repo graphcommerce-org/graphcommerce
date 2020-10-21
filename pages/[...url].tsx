@@ -13,6 +13,7 @@ import getCategoryStaticPaths from 'components/Category/getCategoryStaticPaths'
 import useCategoryPageStyles from 'components/Category/useCategoryPageStyles'
 import getUrlResolveProps from 'components/Page/getUrlResolveProps'
 import { PageStaticPropsFn, PageFC, PageStaticPathsFn } from 'components/Page/types'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import ProductListFilters from 'components/Product/ProductListFilters'
 import ProductListItem from 'components/Product/ProductListItem'
 import ProductListItems from 'components/Product/ProductListItems'
@@ -105,6 +106,8 @@ const CategoryPage: PageComponent = (props) => {
   )
 }
 CategoryPage.Layout = PageLayout
+
+registerRoute('/[...url]', FullPageUi)
 
 export default CategoryPage
 

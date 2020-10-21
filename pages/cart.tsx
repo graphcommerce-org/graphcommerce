@@ -8,6 +8,7 @@ import CartItem from 'components/Cart/CartItem'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
 import PageLink from 'components/PageTransition/PageLink'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
@@ -45,6 +46,8 @@ const CartPage: PageComponent = () => {
 }
 
 CartPage.Layout = PageLayout
+
+registerRoute('/cart', BottomDrawerUi)
 
 export default CartPage
 

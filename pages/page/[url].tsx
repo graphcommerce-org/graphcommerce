@@ -6,6 +6,7 @@ import CmsPageMeta from 'components/Cms/CmsPageMeta'
 import getCmsPageProps, { GetCmsPageProps } from 'components/Cms/getCmsPageProps'
 import getUrlResolveProps from 'components/Page/getUrlResolveProps'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import NextError from 'next/error'
@@ -29,6 +30,8 @@ const CmsPage: PageComponent = ({ cmsPage }) => {
 }
 
 CmsPage.Layout = PageLayout
+
+registerRoute('/page', FullPageUi)
 
 export default CmsPage
 

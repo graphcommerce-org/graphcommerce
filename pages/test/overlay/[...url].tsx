@@ -4,6 +4,7 @@ import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import PageLink from 'components/PageTransition/PageLink'
+import { registerRoute } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 
@@ -47,6 +48,8 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
   )
 }
 AppShellTextOverlay.Layout = PageLayout
+
+registerRoute('/test/overlay/[...url]', BottomDrawerUi)
 
 export default AppShellTextOverlay
 

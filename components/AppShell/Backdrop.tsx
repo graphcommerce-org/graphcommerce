@@ -22,28 +22,15 @@ const useStyles = makeStyles(
   { name: 'Backdrop' },
 )
 
-export type BackdropProps = { instant?: boolean; zOffset?: number } & BackdropPropsBase &
+export type BackdropProps = { zOffset?: number } & BackdropPropsBase &
   UseStyles<typeof useStyles> &
   Omit<HTMLMotionProps<'div'>, 'className' | 'onAnimationComplete'>
 
 const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
   const classes = useStyles(props)
-  const { inFront, instant, zOffset = 0, ...divProps } = props
+  const { inFront, zOffset = 0, ...divProps } = props
   const zIndex = inFront ? zOffset : zOffset - 1
   const [zIndexDeferred, setZIndex] = useState(zIndex)
-
-  if (instant) {
-    return (
-      <motion.div
-        ref={ref}
-        className={classes.backdrop}
-        initial={{ opacity: 0, zIndex }}
-        animate={{ opacity: 1, zIndex, transition: { type: 'tween', duration: 0 } }}
-        exit={{ opacity: 0, transition: { type: 'tween', duration: 0 } }}
-        {...divProps}
-      />
-    )
-  }
 
   return (
     <motion.div
@@ -53,9 +40,9 @@ const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
       animate={{
         opacity: 1,
         zIndex: zIndexDeferred,
-        transition: { type: 'tween', ease: 'circOut' },
+        transition: { type: 'tween' },
       }}
-      exit={{ opacity: 0, transition: { type: 'tween', ease: 'circIn' } }}
+      exit={{ opacity: 0, transition: { type: 'tween' } }}
       onAnimationComplete={() => setZIndex(zIndex)}
       {...divProps}
     />

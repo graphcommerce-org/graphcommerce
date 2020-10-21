@@ -6,7 +6,6 @@ query HistoryState {
       as
       x
       y
-      holdBackground
       title
     }
     direction

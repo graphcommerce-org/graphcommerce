@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { UiFC } from 'components/PageTransition/types'
 import usePageTransition from 'components/PageTransition/usePageTransition'
 import { m as motion, MotionProps } from 'framer-motion'
-import { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -15,18 +15,18 @@ const useStyles = makeStyles(
   { name: 'LayoutHeader' },
 )
 
-export type FullPageUiProps = { title: string }
+export type FullPageUiProps = unknown
 
-const FullPageUi = (props: PropsWithChildren<FullPageUiProps>) => {
+const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const { children, title } = props
   const classes = useStyles(props)
-  const { offsetDiv, inFront, isShallow } = usePageTransition({ title })
+  const { offsetDiv, inFront, hold } = usePageTransition({ title })
 
-  const contentAnimation: MotionProps = isShallow
+  const contentAnimation: MotionProps = !hold
     ? {
         initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { type: 'tween', ease: 'anticipate' } },
-        exit: { opacity: 0, transition: { type: 'tween', ease: 'anticipate' } },
+        animate: { opacity: 1, transition: { type: 'tween' } },
+        exit: { opacity: 0, transition: { type: 'tween' } },
       }
     : {
         initial: { opacity: 1 },
@@ -48,5 +48,6 @@ const FullPageUi = (props: PropsWithChildren<FullPageUiProps>) => {
     </>
   )
 }
+FullPageUi.holdBackground = false
 
 export default FullPageUi

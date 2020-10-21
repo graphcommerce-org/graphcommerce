@@ -112,6 +112,7 @@ export default function Header(props: HeaderProps) {
   const classes = useStyles(props)
   const { menu, urlResolver, ...headerProps } = props
 
+  // @todo implement with a stable useMemo: 'use-custom-compare'
   return (
     <header {...headerProps} className={clsx(classes.header, headerProps.className)}>
       <PageLink href='/'>
