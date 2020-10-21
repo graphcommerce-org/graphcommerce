@@ -45,7 +45,7 @@
     "clone-deep": "^4.0.1",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "framer-motion": "^2.9.1",
+    "framer-motion": "^2.9.3",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "intl": "^1.2.5",
