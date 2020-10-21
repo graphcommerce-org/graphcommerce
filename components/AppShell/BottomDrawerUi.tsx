@@ -13,14 +13,13 @@ import usePageTransition from 'components/PageTransition/usePageTransition'
 import { UseStyles } from 'components/Styles'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, PropsWithChildren, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     backdrop: {
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      backdropFilter: 'blur(4px)',
     },
     drawerContainer: {
       paddingTop: 70,
@@ -36,7 +35,6 @@ const useStyles = makeStyles(
       borderTopLeftRadius: theme.spacings.sm,
       borderTopRightRadius: theme.spacings.sm,
       boxShadow: theme.shadows[10],
-      // zIndex: 3,
       width: '100%',
       position: 'relative',
       '&:focus': { outline: 'none' },
