@@ -23,7 +23,7 @@
   "sideEffects": false,
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
-    "@apollo/client": "^3.2.4",
+    "@apollo/client": "^3.2.5",
     "@graphql-codegen/import-types-preset": "^1.18.0",
     "@graphql-mesh/cache-file": "^0.4.17",
     "@graphql-mesh/cli": "^0.11.6",
