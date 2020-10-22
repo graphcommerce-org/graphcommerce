@@ -5,7 +5,7 @@ import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import DebugSpacer from 'components/Debug/DebugSpacer'
 import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from 'components/Page/types'
 import PageLink from 'components/PageTransition/PageLink'
-import { registerRoute } from 'components/PageTransition/historyHelpers'
+import { registerRouteUi } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import { m as motion } from 'framer-motion'
 import apolloClient from 'lib/apolloClient'
@@ -69,7 +69,7 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
 }
 AppShellTestIndex.Layout = PageLayout
 
-registerRoute('/test/[...url]', FullPageUi)
+registerRouteUi('/test/[...url]', FullPageUi)
 
 export default AppShellTestIndex
 

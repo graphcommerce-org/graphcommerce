@@ -4,7 +4,7 @@ import { UiFC } from './types'
 
 const phases: GQLPhase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
 
-export const holdRoute: { [index: string]: boolean } = {}
+export const routeUi: { [index: string]: UiFC } = {}
 
 export function afterPhase(after: GQLPhase) {
   return phases.indexOf(historyStateVar().phase) >= phases.indexOf(after)
@@ -35,7 +35,9 @@ export function getFromIdx() {
 // To close all overlays in one go, we find the first page that doesn't require the background to be holded.
 export function getUpPage(idx: number) {
   const history = historyStateVar()
-  const upPages = history.pages.slice(0, idx).filter((page) => holdRoute[page.href] === false)
+  const upPages = history.pages
+    .slice(0, idx)
+    .filter((page) => routeUi[page.href]?.holdBackground === false)
   return upPages?.[upPages.length - 1] as GQLHistoryStatePage | undefined
 }
 
@@ -76,6 +78,6 @@ export function addPage(
   })
 }
 
-export function registerRoute(route: string, ui: UiFC) {
-  holdRoute[route] = ui.holdBackground
+export function registerRouteUi(route: string, ui: UiFC) {
+  routeUi[route] = ui
 }

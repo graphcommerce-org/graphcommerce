@@ -6,7 +6,7 @@ import ForgotPasswordForm from 'components/Customer/ForgotPasswordForm'
 import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
-import { registerRoute } from 'components/PageTransition/historyHelpers'
+import { registerRouteUi } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
@@ -36,7 +36,7 @@ const AccountForgotPasswordPage: PageComponent = () => {
 
 AccountForgotPasswordPage.Layout = PageLayout
 
-registerRoute('/account/forgot-password', BottomDrawerUi)
+registerRouteUi('/account/forgot-password', BottomDrawerUi)
 
 export default AccountForgotPasswordPage
 
