@@ -21,13 +21,26 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
         <li>
           <PageLink href='/test/deeper'>To default layout</PageLink>
         </li>
-        <li>
-          {url === 'index' ? (
+        {url === 'index' && (
+          <li>
             <PageLink href='/test/overlay/deeper'>Deeper</PageLink>
-          ) : (
+          </li>
+        )}
+        {url === 'deeper' && (
+          <>
+            <li>
+              <PageLink href='/test/overlay/index'>Shallower</PageLink>
+            </li>
+            <li>
+              <PageLink href='/test/overlay/even-deeper'>Even deeper</PageLink>
+            </li>
+          </>
+        )}
+        {url === 'even-deeper' && (
+          <li>
             <PageLink href='/test/overlay/index'>Shallower</PageLink>
-          )}
-        </li>
+          </li>
+        )}
       </ul>
       {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
         <motion.img
