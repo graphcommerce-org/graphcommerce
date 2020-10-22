@@ -11,7 +11,7 @@ import {
   updatePage,
   getUpPage,
   getUpIdx,
-  holdRoute,
+  routeUi,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
 
@@ -74,14 +74,14 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
     nextPages.every((page) => {
       if (
         process.env.NODE_ENV !== 'production' &&
-        typeof holdRoute[page.href] === 'undefined' &&
+        typeof routeUi[page.href] === 'undefined' &&
         afterPhase('REGISTERED')
       ) {
         console.warn(
           `route ${page.href} not registered, please call registerRoute in /pages${page.href}`,
         )
       }
-      return holdRoute[page.href] ?? false
+      return routeUi[page.href]?.holdBackground ?? false
     })
 
   // If we do not need to keep the layout, we can mark it for removal

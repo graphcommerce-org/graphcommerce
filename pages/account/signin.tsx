@@ -7,7 +7,7 @@ import useSignedOutGuard from 'components/Customer/useSignedOutGuard'
 import { PageFC, PageStaticPropsFn } from 'components/Page/types'
 import PageMeta from 'components/PageMeta/PageMeta'
 import PageLink from 'components/PageTransition/PageLink'
-import { registerRoute } from 'components/PageTransition/historyHelpers'
+import { registerRouteUi } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
 import React from 'react'
@@ -43,7 +43,7 @@ const AccountSignInPage: PageComponent = () => {
 
 AccountSignInPage.Layout = PageLayout
 
-registerRoute('/account/signin', BottomDrawerUi)
+registerRouteUi('/account/signin', BottomDrawerUi)
 
 export default AccountSignInPage
 
