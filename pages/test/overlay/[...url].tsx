@@ -7,13 +7,17 @@ import PageLink from 'components/PageTransition/PageLink'
 import { registerRouteUi } from 'components/PageTransition/historyHelpers'
 import getStoreConfig from 'components/StoreConfig/getStoreConfig'
 import apolloClient from 'lib/apolloClient'
+import { useState } from 'react'
 
 type PageComponent = PageFC<{ url: string }, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
 
+const cycles = [100, 200, 1000, 2000]
+
 const AppShellTextOverlay: PageComponent = ({ url }) => {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
+  const [cycle, setCycle] = useState(url === 'index' ? 0 : 3)
 
   return (
     <BottomDrawerUi title={title}>
@@ -56,7 +60,7 @@ const AppShellTextOverlay: PageComponent = ({ url }) => {
           exit={{ zIndex: 0 }}
         />
       </div> */}
-      <DebugSpacer height={url === 'index' ? 200 : 2000} />
+      <DebugSpacer height={cycles[cycle]} onClick={() => setCycle((cycle + 1) % cycles.length)} />
     </BottomDrawerUi>
   )
 }

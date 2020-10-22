@@ -1,11 +1,4 @@
-import {
-  makeStyles,
-  Theme,
-  Unstable_TrapFocus as TrapFocus,
-  Typography,
-  TypographyProps,
-  NoSsr,
-} from '@material-ui/core'
+import { makeStyles, Theme, Typography, TypographyProps, NoSsr } from '@material-ui/core'
 import Backdrop from 'components/AppShell/Backdrop'
 import PageLink from 'components/PageTransition/PageLink'
 import { UiFC } from 'components/PageTransition/types'
@@ -15,6 +8,7 @@ import responsiveVal from 'components/Styles/responsiveVal'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler, useEffect, useState } from 'react'
+import FocusLock from 'react-focus-lock'
 import BackButton from './BackButton'
 
 const useStyles = makeStyles(
@@ -126,46 +120,46 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
       />
       <motion.div {...offsetDiv} style={{ zIndex: 2 }}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
-          {/* <TrapFocus open={focus} getDoc={() => document} isEnabled={() => inFront}> */}
           <motion.section
             className={classes.drawer}
             {...contentAnimation}
             tabIndex={-1}
             style={{ pointerEvents: inFront ? 'all' : 'none' }}
           >
-            <div className={classes.header}>
-              <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
-                {prevPage?.title ? (
-                  <BackButton
-                    onClick={navigateBack}
-                    disabled={isFromPage}
-                    down={prevPage === upPage}
-                    className={classes.headerBack}
-                  >
-                    {prevPage.title}
-                  </BackButton>
-                ) : (
-                  <PageLink href={backFallbackHref ?? '/'}>
-                    <BackButton className={classes.headerBack}>
-                      {backFallbackTitle ?? 'Home'}
+            <FocusLock returnFocus={{ preventScroll: true }} disabled={!inFront}>
+              <div className={classes.header} role='presentation'>
+                <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                  {prevPage?.title ? (
+                    <BackButton
+                      onClick={navigateBack}
+                      disabled={isFromPage}
+                      down={prevPage === upPage}
+                      className={classes.headerBack}
+                    >
+                      {prevPage.title}
                     </BackButton>
-                  </PageLink>
-                )}
-              </NoSsr>
+                  ) : (
+                    <PageLink href={backFallbackHref ?? '/'}>
+                      <BackButton className={classes.headerBack}>
+                        {backFallbackTitle ?? 'Home'}
+                      </BackButton>
+                    </PageLink>
+                  )}
+                </NoSsr>
 
-              <Typography
-                variant='h4'
-                component={titleComponent ?? 'h1'}
-                className={classes.headerTitle}
-                {...titleProps}
-              >
-                {title}
-              </Typography>
-              <div className={classes.headerForward}>{headerForward}</div>
-            </div>
-            {children}
+                <Typography
+                  variant='h4'
+                  component={titleComponent ?? 'h1'}
+                  className={classes.headerTitle}
+                  {...titleProps}
+                >
+                  {title}
+                </Typography>
+                <div className={classes.headerForward}>{headerForward}</div>
+              </div>
+              {children}
+            </FocusLock>
           </motion.section>
-          {/* </TrapFocus> */}
         </div>
       </motion.div>
     </>
