@@ -22,8 +22,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js",
-    "apollo.config.js",
+    "**/next.config.js",
+    "**/apollo.config.js",
     ".lighthouserc.js",
     ".eslintrc.js"
   ]

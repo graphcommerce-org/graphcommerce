@@ -3,6 +3,9 @@
   "homepage": "https://project-reachdigital-nl.now.sh/",
   "version": "1.42.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": "12.x"
   },
