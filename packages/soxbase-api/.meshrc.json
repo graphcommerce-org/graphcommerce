@@ -4,7 +4,7 @@
       "name": "GraphCMS",
       "handler": {
         "graphql": {
-          "endpoint": "https://api-eu-central-1.graphcms.com/v2/ck7yo9viw00l901xqc4luccsb/master",
+          "endpoint": "${GRAPHCMS_URL}",
           "headers": {
             "Authorization": "${GRAPHCMS_BEARER}"
           },
@@ -21,7 +21,7 @@
       "name": "Magento GraphQL",
       "handler": {
         "graphql": {
-          "endpoint": "https://develop.pwa-venia.com/graphql",
+          "endpoint": "${MAGENTO_URL}",
           "useGETForQueries": true,
           "cacheIntrospection": true,
           "schemaHeaders": {

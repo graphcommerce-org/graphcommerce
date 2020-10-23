@@ -16,8 +16,8 @@
 
 Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 
-1. `yarn`
-2. copy `.env` from 1Password "m2-pwa .env"
+1. `yarn && cp .env.example .env`
+2. copy 1Password "m2-pwa .env" to `packages/soxbase-api/.env`
 
 ## Run
 

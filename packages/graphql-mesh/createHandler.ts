@@ -1,15 +1,15 @@
+// import { TypedDocumentNode } from '@apollo/client'
+import { processConfig } from '@graphql-mesh/config'
+import { getMesh } from '@graphql-mesh/runtime'
+import { YamlConfig } from '@graphql-mesh/types'
+import { ApolloServer } from 'apollo-server-micro'
 import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
 import '@graphql-mesh/cache-file'
 
-import { performance } from 'perf_hooks'
-import { processConfig } from '@graphql-mesh/config'
-import { getMesh } from '@graphql-mesh/runtime'
-import meshrc from '../.meshrc.json'
-
-function injectEnv<T extends Record<string, unknown>>(json: T): T {
+function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
   let content = JSON.stringify(json)
 
   if (typeof process === 'undefined' || 'env' in process === false) {
@@ -36,17 +36,20 @@ function injectEnv<T extends Record<string, unknown>>(json: T): T {
   return JSON.parse(content)
 }
 
-export const mesh = (async () => {
-  const conf = await processConfig(injectEnv(meshrc))
+async function createMesh(config: YamlConfig.Config) {
+  return getMesh(await processConfig(injectEnv(config)))
+}
 
-  performance.mark('start-mesh')
-  const resMesh = await getMesh(conf)
-  performance.mark('end-mesh')
+export default async function createHandler(config: YamlConfig.Config, path: string) {
+  const mesh = await createMesh(config)
 
-  performance.measure('mesh', 'start-mesh', 'end-mesh')
-  return resMesh
-})()
-
-const meshSchema = mesh.then(({ schema }) => schema)
-
-export default meshSchema
+  const apolloServer = new ApolloServer({
+    tracing: true,
+    // engine: { reportSchema: true },
+    context: mesh.contextBuilder,
+    introspection: true,
+    playground: true,
+    ...mesh,
+  })
+  return apolloServer.createHandler({ path })
+}
