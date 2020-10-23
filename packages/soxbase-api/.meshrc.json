@@ -1,0 +1,49 @@
+{
+  "sources": [
+    {
+      "name": "GraphCMS",
+      "handler": {
+        "graphql": {
+          "endpoint": "${GRAPHCMS_URL}",
+          "headers": {
+            "Authorization": "${GRAPHCMS_BEARER}"
+          },
+          "cacheIntrospection": true
+        }
+      },
+      "transforms": [
+        {
+          "filterSchema": ["Mutation.createContactForm"]
+        }
+      ]
+    },
+    {
+      "name": "Magento GraphQL",
+      "handler": {
+        "graphql": {
+          "endpoint": "${MAGENTO_URL}",
+          "useGETForQueries": true,
+          "cacheIntrospection": true,
+          "schemaHeaders": {
+            "Store": "default",
+            "Authorization": "{context.req.headers.authorization}"
+          },
+          "operationHeaders": {
+            "Store": "default",
+            "Authorization": "{context.req.headers.authorization}"
+          }
+        }
+      },
+      "transforms": [
+        {
+          "cache": [
+            {
+              "field": "Query.storeConfig",
+              "invalidate": { "ttl": 300 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

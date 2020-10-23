@@ -1,10 +1,5 @@
-overwrite: true
-require:
-  - ts-node/register/transpile-only
-  - tsconfig-paths/register
-  - dotenv/config
 schema:
-  - ./node/meshSchema.ts
+  - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
   - 'components/**/*.graphqls'
 documents:
   - 'components/**/*.graphql'

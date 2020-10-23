@@ -3,22 +3,31 @@
   "homepage": "https://project-reachdigital-nl.now.sh/",
   "version": "1.42.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": "12.x"
   },
   "scripts": {
-    "dev": "concurrently yarn:dev-* --kill-others",
-    "dev-next": "next dev",
-    "codegen": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen",
-    "dev-codegen": "CHOKIDAR_USEPOLLING=0 TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen -w",
-    "build": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' graphql-codegen && next build",
-    "postbuild": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
+    "postinstall": "patch-package && patch-typed-document-node",
+    "dev:api": "yarn pm2 start -s --name api \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase-api dev \" && sleep 5",
+    "dev:codegen": "yarn pm2 start -s --name codegen \"CHOKIDAR_USEPOLLING=0 yarn node -r dotenv/config node_modules/.bin/graphql-codegen -w \"",
+    "dev:next": "yarn pm2 start -s --name next \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn next dev\"",
+    "dev:log": "yarn pm2 monit",
+    "dev": "yarn dev:api && yarn dev:codegen && yarn dev:next && yarn dev:log",
+    "postdev": "yarn stop",
+    "build:api-start": "yarn workspace @reachdigital/soxbase-api build && yarn pm2 start -s --name api \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase-api start\" && sleep 2",
+    "build:codegen": "node -r dotenv/config node_modules/.bin/graphql-codegen",
+    "build:next": "next build",
+    "build:lighthouse": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
+    "build": "yarn build:api-start && yarn build:codegen && yarn build:next && yarn build:lighthouse",
+    "postbuild": "yarn stop",
+    "stop": "yarn pm2 delete -s all",
     "start": "next start",
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
-    "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,css,html}'",
-    "mesh": "node -r dotenv/config node_modules/.bin/mesh serve",
-    "postinstall": "patch-package && patch-typed-document-node"
+    "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,css,html}'"
   },
   "sideEffects": false,
   "dependencies": {
@@ -54,8 +63,8 @@
     "next-pwa": "^3.1.5",
     "next-transpile-modules": "^4.1.0",
     "node-fetch": "^2.6.1",
-    "now": "^20.1.2",
     "patch-package": "^6.2.2",
+    "pm2": "^4.5.0",
     "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -70,7 +79,8 @@
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "type-fest": "^0.18.0",
-    "use-resize-observer": "^6.1.0"
+    "use-resize-observer": "^6.1.0",
+    "vercel": "^20.1.2"
   },
   "devDependencies": {
     "@babel/compat-data": "^7.12.1",
