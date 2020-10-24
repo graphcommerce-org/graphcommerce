@@ -57,7 +57,7 @@ const CategoryPage: PageComponent = (props) => {
   } else {
     content = (
       <ProductListParamsProvider value={params}>
-        <Container className={classes.container}>
+        <Container className={classes.container} maxWidth='xl'>
           <CategoryDescription
             name={category.name}
             description={category.description}
