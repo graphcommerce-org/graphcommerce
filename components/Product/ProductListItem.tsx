@@ -17,20 +17,21 @@ export const useProductListItemStyles = makeStyles(
     title: {
       color: theme.palette.primary.contrastText,
       ...theme.typography.h4,
-      margin: `0 0 ${theme.spacings.sm}`,
+      display: 'inline',
+      marginRight: '20px',
     },
     imageContainer: {
       display: 'block',
       position: 'relative',
-      marginBottom: '50px',
-      height: responsiveVal(120, 200),
+      marginBottom: '20px',
+      border: '1px solid #efefef',
+      height: responsiveVal(180, 380),
       '&::before': {
         content: '""',
         height: '100%',
         width: '100%',
         position: 'absolute',
         display: 'block',
-        boxShadow: '0 30px 60px 0 rgba(0, 0, 0, 0.25)',
         transform: 'scale(.85, 0.95)',
         top: 0,
         left: 0,
@@ -56,7 +57,6 @@ export const useProductListItemStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
-      background: '#fff',
     },
     link: {
       textDecoration: 'underline',
@@ -66,19 +66,19 @@ export const useProductListItemStyles = makeStyles(
 )
 
 export type ProductListItemProps = PropsWithChildren<
-  GQLProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles>
+  GQLProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles> & { isbig: number }
 >
 
 export default function ProductListItem(props: ProductListItemProps) {
-  const { small_image, name, price_range, children } = props
+  const { small_image, name, price_range, children, isbig } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
 
   return (
-    <div className={classes.item}>
+    <div className={clsx(classes.item, isbig && 'big')}>
       <PageLink href={productLink}>
         <MuiLink underline='none'>
-          <div className={classes.imageContainer}>
+          <div className={clsx(classes.imageContainer, isbig && 'bigimg')}>
             {small_image ? (
               <PictureResponsiveSharp
                 alt={small_image.label ?? ''}
