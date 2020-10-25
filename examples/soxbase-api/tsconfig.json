@@ -1,0 +1,11 @@
+{
+  "extends": "@reachdigital/typescript-config-pwa/nextjs.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

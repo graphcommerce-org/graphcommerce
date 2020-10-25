@@ -4,6 +4,7 @@
   "version": "1.43.0",
   "private": true,
   "workspaces": [
+    "packagesDev/*",
     "packages/*",
     "examples/*"
   ],
@@ -31,12 +32,15 @@
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,css,html}'"
   },
   "sideEffects": false,
-  "prettier": "@reachdigital/prettier-config",
-  "browserlist": [
-    "extends @reachdigital/browserslist-config"
+  "prettier": "@reachdigital/prettier-config-pwa",
+  "browserslist": [
+    "extends @reachdigital/browserslist-config-pwa"
   ],
   "eslintConfig": {
-    "extends": "@reachdigital/eslint-config"
+    "extends": "@reachdigital/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
@@ -57,10 +61,6 @@
     "@material-ui/styles": "^4.10.0",
     "@n1ru4l/graphql-codegen-relay-optimizer-plugin": "^5.0.0-alpha.0",
     "@next/bundle-analyzer": "^9.5.5",
-    "@reachdigital/browserslist-config": "0.1.0",
-    "@reachdigital/create-app": "0.1.0",
-    "@reachdigital/eslint-config": "0.1.0",
-    "@reachdigital/prettier-config": "0.1.0",
     "apollo-cache-persist": "^0.1.1",
     "apollo-server-micro": "^2.18.2",
     "clone-deep": "^4.0.1",
@@ -108,6 +108,10 @@
     "@graphql-codegen/typescript-document-nodes": "1.17.8",
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@graphql-typed-document-node/patch-cli": "^3.0.8",
+    "@reachdigital/browserslist-config-pwa": "0.1.0",
+    "@reachdigital/create-package": "0.1.0",
+    "@reachdigital/eslint-config-pwa": "0.1.0",
+    "@reachdigital/prettier-config-pwa": "0.1.0",
     "@semantic-release/git": "^9.0.0",
     "@types/clone-deep": "^4.0.1",
     "@types/lodash": "^4.14.162",
@@ -117,18 +121,8 @@
     "@types/sharp": "^0.26.0",
     "@types/use-resize-observer": "^6.0.0",
     "@types/webpack": "^4.41.23",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
-    "@typescript-eslint/parser": "^4.5.0",
     "concurrently": "^5.3.0",
     "eslint": "^7.11.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-airbnb-typescript": "^12.0.0",
-    "eslint-config-prettier": "^6.14.0",
-    "eslint-import-resolver-webpack": "^0.13.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.0",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.1.0",

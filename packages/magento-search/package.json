@@ -1,0 +1,28 @@
+{
+  "name": "@reachdigital/magento-search",
+  "version": "0.1.0",
+  "private": true,
+  "sideEffects": false,
+  "engines": {
+    "node": "12.x"
+  },
+  "prettier": "@reachdigital/prettier-config-pwa",
+  "browserslist": [
+    "extends @reachdigital/browserslist-config-pwa"
+  ],
+  "eslintConfig": {
+    "extends": "@reachdigital/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@reachdigital/browserslist-config-pwa": "^0.1.0",
+    "@reachdigital/eslint-config-pwa": "^0.1.0",
+    "@reachdigital/typescript-config-pwa": "^0.1.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1"
+  }
+}
