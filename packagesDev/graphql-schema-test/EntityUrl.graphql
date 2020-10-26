@@ -1,0 +1,3 @@
+fragment EntityUrl on EntityUrl {
+  ...EntityUrlDeeper
+}

@@ -1,13 +1,15 @@
 schema:
   - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-  - 'components/**/*.graphqls'
+  - 'packages/**/*.graphqls'
+  - 'packagesDev/**/*.graphqls'
 documents:
-  - 'components/**/*.graphql'
+  - 'packages/**/*.graphql'
+  - 'packagesDev/graphql-schema-test/*.graphql'
 hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
-  generated/fragments.json:
+  examples/soxbase/lib/fragments.json:
     plugins:
       - fragment-matcher
     hooks:
@@ -15,24 +17,27 @@ generates:
         - prettier --write
     config:
       apolloClientVersion: 3
-  generated/schema.graphql:
+  examples/soxbase-api/schema.graphql:
     plugins:
       - schema-ast
     config:
       includeDirectives: true
       commentDescriptions: false
-  generated/graphql.d.ts:
+  packages/magento-graphql/index.ts:
     plugins:
       - typescript
-      - typescript-operations
     config:
-      typesPrefix: GQL
-      noExport: true
+      flattenGeneratedTypes: true
       enumsAsTypes: true
-      skipTypename: true
-  generated/documents.ts:
+  /:
     plugins:
-      - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
+      - '@reachdigital/graphql-codegen-relay-optimizer-plugin'
       - typed-document-node
+      - typescript-operations
+    preset: './packagesDev/graphql-codegen-near-operation-file/dist/index.js'
+    presetConfig:
+      extension: .graphql.ts
+      baseTypesPath: ~@reachdigital/magento-graphql
     config:
-      typesPrefix: GQL
+      # flattenGeneratedTypes: true
+      skipTypename: true
