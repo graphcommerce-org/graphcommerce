@@ -11,6 +11,7 @@ import Money from '@reachdigital/magento-store/Money'
 import PictureResponsiveSharp from '@reachdigital/next-ui/PictureResponsiveSharp'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
+import { CartItemFragment } from './CartItem.graphql'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -69,7 +70,7 @@ export default function CartItem({
   product,
   prices,
   cartId,
-}: GQLCartItemFragment & { cartId: string }) {
+}: CartItemFragment & { cartId: string }) {
   const classes = useStyles()
 
   return (

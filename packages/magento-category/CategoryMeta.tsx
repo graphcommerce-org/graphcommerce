@@ -1,7 +1,8 @@
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import React from 'react'
+import { CategoryMetaFragment } from './CategoryMeta.graphql'
 
-export default function CategoryMeta(props: GQLCategoryMetaFragment) {
+export default function CategoryMeta(props: CategoryMetaFragment) {
   const { name, meta_title, meta_description } = props
 
   return (

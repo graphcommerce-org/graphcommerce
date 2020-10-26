@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { Link, LinkProps } from '@material-ui/core'
-import { StoreConfigDocument } from '@reachdigital/magento-customer/node_modules/generated/documents'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.graphql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React, { PropsWithChildren } from 'react'
+import { ProductLinkFragment } from './ProductLink.graphql'
 
-export function useProductLink(props: GQLProductLinkFragment & { canonical?: boolean }) {
+export function useProductLink(props: ProductLinkFragment & { canonical?: boolean }) {
   const { data: storeConfigData } = useQuery(StoreConfigDocument)
   const { canonical_url, url_key, canonical = false } = props
 
@@ -12,7 +13,7 @@ export function useProductLink(props: GQLProductLinkFragment & { canonical?: boo
   return `${base}product/${canonical_url ?? url_key}`
 }
 
-export type ProductLinkProps = PropsWithChildren<LinkProps & GQLProductLinkFragment>
+export type ProductLinkProps = PropsWithChildren<LinkProps & ProductLinkFragment>
 
 const ProductLink = React.forwardRef<HTMLAnchorElement, ProductLinkProps>(function ProductLink(
   props,

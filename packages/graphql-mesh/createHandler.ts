@@ -1,4 +1,3 @@
-// import { TypedDocumentNode } from '@apollo/client'
 import { processConfig } from '@graphql-mesh/config'
 import { getMesh } from '@graphql-mesh/runtime'
 import { YamlConfig } from '@graphql-mesh/types'

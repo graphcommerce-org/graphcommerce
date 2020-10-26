@@ -1,7 +1,9 @@
 import { TypePolicies, FieldPolicy, FieldReadFunction } from '@apollo/client'
-import { CustomerTokenDocument, IsEmailAvailableDocument } from 'generated/documents'
+import { CustomerToken, Mutation } from '@reachdigital/magento-graphql'
+import { CustomerTokenDocument } from './CustomerToken.graphql'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.graphql'
 
-const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
+const revokeCustomerToken: FieldPolicy<Mutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     options.cache.reset()
@@ -11,7 +13,7 @@ const revokeCustomerToken: FieldPolicy<GQLMutation['revokeCustomerToken']> = {
 
 const TOKEN_EXPIRATION_MS = 60 * 60 * 1000
 
-const valid: FieldPolicy<GQLCustomerToken['valid']> = {
+const valid: FieldPolicy<CustomerToken['valid']> = {
   read(existing, options) {
     if (existing === undefined) return existing
 
@@ -24,7 +26,7 @@ const valid: FieldPolicy<GQLCustomerToken['valid']> = {
   },
 }
 
-const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> = {
+const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
   keyArgs: () => '',
   merge(_existing, incoming, options) {
     if (!options.isReference(incoming)) return incoming
@@ -51,7 +53,7 @@ const generateCustomerToken: FieldPolicy<GQLMutation['generateCustomerToken']> =
   },
 }
 
-const createCustomer: FieldPolicy<GQLMutation['createCustomer']> = {
+const createCustomer: FieldPolicy<Mutation['createCustomer']> = {
   merge(_existing, incoming, options) {
     if (incoming?.customer.email) {
       options.cache.writeQuery({
@@ -66,7 +68,7 @@ const createCustomer: FieldPolicy<GQLMutation['createCustomer']> = {
   },
 }
 
-const customer: FieldReadFunction<GQLQuery['customer']> = (incoming, options) => {
+const customer: FieldReadFunction<Query['customer']> = (incoming, options) => {
   if (!options.canRead(incoming)) return null
   return incoming
 }

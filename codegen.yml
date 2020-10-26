@@ -4,7 +4,7 @@ schema:
   - 'packagesDev/**/*.graphqls'
 documents:
   - 'packages/**/*.graphql'
-  - 'packagesDev/graphql-schema-test/*.graphql'
+  # - 'packagesDev/graphql-schema-test/*.graphql'
 hooks:
   afterAllFileWrite:
     - prettier --write

@@ -9,8 +9,9 @@ import {
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { useMutationForm, emailPattern } from '@reachdigital/next-ui/useMutationForm'
-import { CustomerTokenDocument, SignInDocument } from 'generated/documents'
 import { PropsWithChildren } from 'react'
+import { CustomerTokenDocument } from './CustomerToken.graphql'
+import { SignInDocument } from './SignIn.graphql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(

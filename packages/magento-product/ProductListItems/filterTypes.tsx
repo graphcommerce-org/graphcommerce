@@ -1,34 +1,41 @@
+import {
+  Exact,
+  Maybe,
+  Scalars,
+  ProductAttributeFilterInput,
+  ProductAttributeSortInput,
+  FilterEqualTypeInput,
+  FilterMatchTypeInput,
+  FilterRangeTypeInput,
+} from '@reachdigital/magento-graphql'
+
 /**
- * This is mainly based on GQLProductListQueryVariables
+ * This is mainly based on ProductListQueryVariables
  */
 export type ProductListParams = Exact<{
   pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
-  filters: GQLProductAttributeFilterInput
-  sort: GQLProductAttributeSortInput
+  filters: ProductAttributeFilterInput
+  sort: ProductAttributeSortInput
   search?: Maybe<Scalars['String']>
   url: string
 }>
 
-type AnyFilterType =
-  | GQLFilterEqualTypeInput
-  | GQLFilterMatchTypeInput
-  | GQLFilterRangeTypeInput
-  | undefined
+type AnyFilterType = FilterEqualTypeInput | FilterMatchTypeInput | FilterRangeTypeInput | undefined
 
-export function isFilterTypeEqual(filter: AnyFilterType): filter is GQLFilterEqualTypeInput {
+export function isFilterTypeEqual(filter: AnyFilterType): filter is FilterEqualTypeInput {
   return Boolean(
-    filter && ((filter as GQLFilterEqualTypeInput).eq || (filter as GQLFilterEqualTypeInput).in),
+    filter && ((filter as FilterEqualTypeInput).eq || (filter as FilterEqualTypeInput).in),
   )
 }
 
-export function isFilterTypeMatch(filter: AnyFilterType): filter is GQLFilterMatchTypeInput {
-  return Boolean(filter && (filter as GQLFilterMatchTypeInput).match)
+export function isFilterTypeMatch(filter: AnyFilterType): filter is FilterMatchTypeInput {
+  return Boolean(filter && (filter as FilterMatchTypeInput).match)
 }
 
-export function isFilterTypeRange(filter: AnyFilterType): filter is GQLFilterRangeTypeInput {
+export function isFilterTypeRange(filter: AnyFilterType): filter is FilterRangeTypeInput {
   return Boolean(
-    filter && ((filter as GQLFilterRangeTypeInput).from || (filter as GQLFilterRangeTypeInput).to),
+    filter && ((filter as FilterRangeTypeInput).from || (filter as FilterRangeTypeInput).to),
   )
 }
 

@@ -7,7 +7,11 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { ChangePasswordDocument } from 'generated/documents'
+import {
+  ChangePasswordDocument,
+  ChangePasswordMutation,
+  ChangePasswordMutationVariables,
+} from './ChangePassword.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -24,8 +28,8 @@ const useStyles = makeStyles(
 export default function ChangePasswordForm() {
   const classes = useStyles()
   const mutationForm = useMutationForm<
-    GQLChangePasswordMutation,
-    GQLChangePasswordMutationVariables & { confirmPassword?: string }
+    ChangePasswordMutation,
+    ChangePasswordMutationVariables & { confirmPassword?: string }
   >({ mutation: ChangePasswordDocument })
 
   const { register, errors, onSubmit, required, watch, loading, error, called, data } = mutationForm

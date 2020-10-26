@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { CustomerDocument } from 'generated/documents'
 import React from 'react'
+import { CustomerDocument } from './Customer.graphql'
 
 export default function AccountDashboard() {
   const { data } = useQuery(CustomerDocument)

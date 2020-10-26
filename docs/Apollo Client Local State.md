@@ -48,11 +48,11 @@ function MyComponent() {
  * When an empty cart is created, we store the cartId separately
  */
 const createEmptyCart: FieldPolicy<
-  GQLCreateEmptyCartMutation['createEmptyCart']
+  CreateEmptyCartMutation['createEmptyCart']
 > = {
   merge(_existing, cartId, options) {
     // We write the result of the above query
-    options.cache.writeQuery<GQLCartIdQuery, GQLCartIdQueryVariables>({
+    options.cache.writeQuery({
       query: CartIdDocument,
       data: { cartId },
       broadcast: true,

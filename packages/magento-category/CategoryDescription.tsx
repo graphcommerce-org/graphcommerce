@@ -1,7 +1,8 @@
 import { Typography } from '@material-ui/core'
 import React from 'react'
+import { CategoryDescriptionFragment } from './CategoryDescription.graphql'
 
-type CategoryDescriptionProps = GQLCategoryDescriptionFragment & JSX.IntrinsicElements['div']
+type CategoryDescriptionProps = CategoryDescriptionFragment & JSX.IntrinsicElements['div']
 
 export default function CategoryDescription(props: CategoryDescriptionProps) {
   const { name, description, display_mode, ...divProps } = props

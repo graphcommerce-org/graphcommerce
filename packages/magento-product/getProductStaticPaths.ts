@@ -1,12 +1,15 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { GetProductStaticPathsDocument } from '@reachdigital/magento-customer/node_modules/generated/documents'
+import {
+  GetProductStaticPathsDocument,
+  GetProductStaticPathsQuery,
+} from './GetProductStaticPaths.graphql'
 
 const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
   const { data } = await client.query({ query: GetProductStaticPathsDocument })
 
   type CategoryWithProducts = NonNullable<
     NonNullable<
-      NonNullable<NonNullable<GQLGetProductStaticPathsQuery['categories']>['items']>[0]
+      NonNullable<NonNullable<GetProductStaticPathsQuery['categories']>['items']>[0]
     >['children']
   >[0]
 

@@ -11,7 +11,8 @@ import {
   FormControl,
 } from '@material-ui/core'
 import { useMutationForm, emailPattern, Controller } from '@reachdigital/next-ui/useMutationForm'
-import { IsEmailAvailableDocument, SignUpDocument } from 'generated/documents'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.graphql'
+import { SignUpMutation, SignUpMutationVariables, SignUpDocument } from './SignUp.graphql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
@@ -29,8 +30,8 @@ export default function SignUpForm() {
   const classes = useStyles()
   const client = useApolloClient()
   const { register, errors, onSubmit, required, watch, control, loading, error } = useMutationForm<
-    GQLSignUpMutation,
-    GQLSignUpMutationVariables & { confirmPassword?: string }
+    SignUpMutation,
+    SignUpMutationVariables & { confirmPassword?: string }
   >({ mutation: SignUpDocument, onComplete: onCompleteSignInUp })
 
   return (

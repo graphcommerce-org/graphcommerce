@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client'
 import { NoSsr } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'

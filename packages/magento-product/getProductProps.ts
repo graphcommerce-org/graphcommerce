@@ -1,9 +1,8 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { ProductPageDocument } from '@reachdigital/magento-customer/node_modules/generated/documents'
-import { PromiseValue } from 'type-fest'
+import { ProductPageQueryVariables, ProductPageDocument } from './ProductPage.graphql'
 
 const getProductPageProps = async (
-  variables: GQLProductPageQueryVariables,
+  variables: ProductPageQueryVariables,
   client: ApolloClient<NormalizedCacheObject>,
 ) => {
   const productPage = client.query({ query: ProductPageDocument, variables })
@@ -13,5 +12,3 @@ const getProductPageProps = async (
 }
 
 export default getProductPageProps
-
-export type GetProductPageProps = PromiseValue<ReturnType<typeof getProductPageProps>>

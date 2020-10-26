@@ -1,7 +1,8 @@
 import { Typography } from '@material-ui/core'
 import React from 'react'
+import { ProductPageDescriptionFragment } from './ProductPageDescription.graphql'
 
-export default function ProductPageDescription(props: GQLProductPageDescriptionFragment) {
+export default function ProductPageDescription(props: ProductPageDescriptionFragment) {
   const { name, short_description, description } = props
   return (
     <>

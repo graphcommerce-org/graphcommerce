@@ -1,8 +1,9 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { PromiseValue } from 'type-fest'
+import { ResolveUrlDocument, ResolveUrlQueryVariables } from './ResolveUrl.graphql'
 
 export default async function getUrlResolveProps(
-  variables: GQLResolveUrlQueryVariables,
+  variables: ResolveUrlQueryVariables,
   client: ApolloClient<NormalizedCacheObject>,
 ) {
   const { data } = await client.query({ query: ResolveUrlDocument, variables })

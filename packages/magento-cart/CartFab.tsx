@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Badge, Fab, IconButton, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { CartDocument } from 'generated/documents'
 import React from 'react'
+import { CartDocument } from './Cart.graphql'
 
 type CartFabProps = { asIcon?: boolean }
 

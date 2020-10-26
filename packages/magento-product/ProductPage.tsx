@@ -1,5 +1,6 @@
-import { GQLTypeRenderer } from '@reachdigital/next-ui/GQLRenderType'
+import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import { ProductPageQuery } from './ProductPage.graphql'
 
-export type ProductPageRenderer = GQLTypeRenderer<
-  NonNullable<NonNullable<NonNullable<GQLProductPageQuery['products']>['items']>[0]>
+export type ProductPageRenderer = TypeRenderer<
+  NonNullable<NonNullable<NonNullable<ProductPageQuery['products']>['items']>[0]>
 >

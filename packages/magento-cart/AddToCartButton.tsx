@@ -1,5 +1,7 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
+import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.graphql'
+import { ProductInterface } from '@reachdigital/magento-graphql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
@@ -8,7 +10,6 @@ import {
   UnpackNestedValue,
   DeepPartial,
 } from '@reachdigital/next-ui/useMutationForm'
-import { CustomerTokenDocument } from 'generated/documents'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
 
@@ -16,7 +17,7 @@ export default function AddToCartButton<
   TData,
   TVariables = { cartId: string; [index: string]: unknown }
 >(
-  props: Pick<GQLProductInterface, 'name'> & {
+  props: Pick<ProductInterface, 'name'> & {
     mutation: TypedDocumentNode<TData, TVariables>
     variables: Omit<TVariables, 'cartId'>
   } & Omit<ButtonProps, 'type' | 'name'>,

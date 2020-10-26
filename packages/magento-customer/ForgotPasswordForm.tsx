@@ -8,8 +8,12 @@ import {
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { emailPattern, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { ForgotPasswordDocument } from 'generated/documents'
 import React from 'react'
+import {
+  ForgotPasswordMutation,
+  ForgotPasswordMutationVariables,
+  ForgotPasswordDocument,
+} from './ForgotPassword.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -26,8 +30,8 @@ const useStyles = makeStyles(
 export default function ForgotPasswordForm() {
   const classes = useStyles()
   const mutationForm = useMutationForm<
-    GQLForgotPasswordMutation,
-    GQLForgotPasswordMutationVariables & { confirmEmail?: string }
+    ForgotPasswordMutation,
+    ForgotPasswordMutationVariables & { confirmEmail?: string }
   >({ mutation: ForgotPasswordDocument })
 
   const { register, errors, onSubmit, required, watch, loading, error, called, data } = mutationForm

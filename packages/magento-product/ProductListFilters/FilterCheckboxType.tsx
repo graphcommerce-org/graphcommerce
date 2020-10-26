@@ -2,10 +2,11 @@ import { Chip, ChipProps, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import React from 'react'
+import { ProductListFiltersFragment } from '../ProductListFilters.graphql'
 import { FilterIn } from './FilterEqualType'
 
 export type FilterCheckboxTypeProps = NonNullable<
-  NonNullable<GQLProductListFiltersFragment['aggregations']>[0]
+  NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
   Omit<ChipProps, 'selected'>
 

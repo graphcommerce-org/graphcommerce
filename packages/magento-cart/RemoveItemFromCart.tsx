@@ -1,9 +1,12 @@
 import { Fab } from '@material-ui/core'
 import DeleteOutlineOutlined from '@material-ui/icons/DeleteOutlineOutlined'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { RemoveItemFromCartDocument } from 'generated/documents'
+import {
+  RemoveItemFromCartMutationVariables,
+  RemoveItemFromCartDocument,
+} from './RemoveItemFromCart.graphql'
 
-type RemoveItemFromCartProps = GQLRemoveItemFromCartMutationVariables &
+type RemoveItemFromCartProps = RemoveItemFromCartMutationVariables &
   React.HTMLAttributes<HTMLDivElement>
 
 export default function RemoveItemFromCart(values: RemoveItemFromCartProps) {

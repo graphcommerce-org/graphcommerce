@@ -11,10 +11,11 @@ import {
 } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
-import GQLRenderType, { GQLTypeRenderer } from '@reachdigital/next-ui/GQLRenderType'
+import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import clsx from 'clsx'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import React from 'react'
+import { CartDocument, CartQuery } from './Cart.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -43,8 +44,8 @@ const useStyles = makeStyles(
   { name: 'Cart' },
 )
 
-type CartItemRenderer = GQLTypeRenderer<
-  NonNullable<NonNullable<NonNullable<GQLCartQuery['cart']>['items']>[0]> & { cartId: string }
+type CartItemRenderer = TypeRenderer<
+  NonNullable<NonNullable<NonNullable<CartQuery['cart']>['items']>[0]> & { cartId: string }
 >
 
 type CartProps = { renderer: CartItemRenderer }
@@ -97,7 +98,7 @@ export default function Cart(props: CartProps) {
           if (!item) return null
           return (
             <motion.div key={`item${item.id}`} {...cartItemAnimation}>
-              <GQLRenderType renderer={renderer} {...item} cartId={cart.id} />
+              <RenderType renderer={renderer} {...item} cartId={cart.id} />
               <Divider variant='inset' component='div' />
             </motion.div>
           )

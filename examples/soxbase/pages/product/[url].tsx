@@ -2,6 +2,7 @@ import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
+import { ProductPageQuery } from '@reachdigital/magento-product/ProductPage.graphql'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
@@ -20,7 +21,7 @@ import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type PageComponent = PageFC<GQLProductPageQuery, PageLayoutProps>
+type PageComponent = PageFC<ProductPageQuery, PageLayoutProps>
 type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
 type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
 

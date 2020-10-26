@@ -1,12 +1,10 @@
 import { OnCompleteFn } from '@reachdigital/next-ui/useMutationForm'
-import {
-  CustomerDocument,
-  CartDocument,
-  CustomerCartDocument,
-  MergeCartsDocument,
-} from 'generated/documents'
+import { CustomerDocument } from './Customer.graphql'
+import { CustomerCartDocument } from './CustomerCart.graphql'
+import { SignInMutation } from './SignIn.graphql'
+import { SignUpMutation } from './SignUp.graphql'
 
-type OnCompleteSignInUp = OnCompleteFn<GQLSignUpMutation | GQLSignInMutation>
+type OnCompleteSignInUp = OnCompleteFn<SignUpMutation | SignInMutation>
 
 const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
   const { data } = result

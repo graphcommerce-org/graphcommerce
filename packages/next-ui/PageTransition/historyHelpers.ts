@@ -1,20 +1,22 @@
+import { Phase } from '@reachdigital/magento-graphql'
 import { SetRequired } from 'type-fest'
+import { HistoryStateQuery } from './HistoryState.graphql'
 import { historyStateVar } from './typePolicies'
 import { UiFC } from './types'
 
-const phases: GQLPhase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
+const phases: Phase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
 
 export const routeUi: { [index: string]: UiFC } = {}
 
-export function afterPhase(after: GQLPhase) {
+export function afterPhase(after: Phase) {
   return phases.indexOf(historyStateVar().phase) >= phases.indexOf(after)
 }
 
-export function untillPhase(before: GQLPhase) {
+export function untillPhase(before: Phase) {
   return phases.indexOf(historyStateVar().phase) <= phases.indexOf(before)
 }
 
-export function updateHistory(incomming: Partial<GQLHistoryStateQuery['historyState']>) {
+export function updateHistory(incomming: Partial<HistoryStateQuery['historyState']>) {
   return historyStateVar({
     ...historyStateVar(),
     ...incomming,
@@ -24,7 +26,7 @@ export function updateHistory(incomming: Partial<GQLHistoryStateQuery['historySt
 export function getPage(idx?: number) {
   const history = historyStateVar()
   const currIdx = idx ?? history.idx
-  return history.pages?.[currIdx] as GQLHistoryStatePage | undefined
+  return history.pages?.[currIdx]
 }
 
 export function getFromIdx() {
@@ -38,7 +40,7 @@ export function getUpPage(idx: number) {
   const upPages = history.pages
     .slice(0, idx)
     .filter((page) => routeUi[page.href]?.holdBackground === false)
-  return upPages?.[upPages.length - 1] as GQLHistoryStatePage | undefined
+  return upPages?.[upPages.length - 1]
 }
 
 export function getUpIdx(idx: number) {
@@ -48,8 +50,8 @@ export function getUpIdx(idx: number) {
 }
 
 export function updatePage(
-  incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
-  page: Partial<GQLHistoryStateQuery['historyState']['pages'][0]>,
+  incomming: Omit<Partial<HistoryStateQuery['historyState']>, 'pages'>,
+  page: Partial<HistoryStateQuery['historyState']['pages'][0]>,
   pageIdx?: number,
 ) {
   const actual = historyStateVar()
@@ -67,8 +69,8 @@ export function updatePage(
 }
 
 export function addPage(
-  incomming: Omit<Partial<GQLHistoryStateQuery['historyState']>, 'pages'>,
-  page: SetRequired<Partial<GQLHistoryStateQuery['historyState']['pages'][0]>, 'href' | 'as'>,
+  incomming: Omit<Partial<HistoryStateQuery['historyState']>, 'pages'>,
+  page: SetRequired<Partial<HistoryStateQuery['historyState']['pages'][0]>, 'href' | 'as'>,
   pageIdx: number,
 ) {
   return historyStateVar({

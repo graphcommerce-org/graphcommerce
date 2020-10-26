@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { CustomerTokenDocument } from 'generated/documents'
 import React from 'react'
+import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.graphql'
 
 const useBadgeStyles = makeStyles((theme: Theme) => ({
   colorError: {
@@ -11,7 +11,7 @@ const useBadgeStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-function CustomerFabContent({ customerToken }: GQLCustomerTokenQuery) {
+function CustomerFabContent({ customerToken }: CustomerTokenQuery) {
   const badgeClasses = useBadgeStyles()
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 

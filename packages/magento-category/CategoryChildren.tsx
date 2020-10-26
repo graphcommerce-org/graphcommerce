@@ -2,9 +2,10 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { Chip, ChipProps } from '@material-ui/core'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React from 'react'
+import { CategoryChildrenFragment } from './CategoryChildren.graphql'
 import CategoryLink from './CategoryLink'
 
-type CategoryChildrenProps = GQLCategoryChildrenFragment &
+type CategoryChildrenProps = CategoryChildrenFragment &
   Omit<ChipProps, 'children' | 'clickable' | 'color' | 'label' | 'component'> & {
     params: ProductListParams
   }

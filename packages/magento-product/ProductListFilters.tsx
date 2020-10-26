@@ -1,11 +1,12 @@
 import { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import React from 'react'
+import { ProductListFiltersFragment } from './ProductListFilters.graphql'
 import FilterCheckboxType from './ProductListFilters/FilterCheckboxType'
 import FilterEqualType from './ProductListFilters/FilterEqualType'
 import FilterRangeType from './ProductListFilters/FilterRangeType'
 import { FilterTypeMap } from './ProductListItems/filterTypes'
 
-type ProductFiltersProps = GQLProductListFiltersFragment & {
+type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypeMap: FilterTypeMap
 } & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 

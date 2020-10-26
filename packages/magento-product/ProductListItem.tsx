@@ -1,10 +1,11 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
-import clsx from 'clsx'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveSharp from '@reachdigital/next-ui/PictureResponsiveSharp'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
+import { ProductListItemSimpleFragment } from '../magento-product-simple/ProductListItemSimple.graphql'
 import { useProductLink } from './ProductLink'
 import ProductListPrice from './ProductListPrice'
 
@@ -66,7 +67,7 @@ export const useProductListItemStyles = makeStyles(
 )
 
 export type ProductListItemProps = PropsWithChildren<
-  GQLProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles>
+  ProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles>
 >
 
 export default function ProductListItem(props: ProductListItemProps) {

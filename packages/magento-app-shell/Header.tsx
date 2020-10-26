@@ -2,11 +2,13 @@ import { Theme, makeStyles } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import SearchButton from '@reachdigital/magento-search/SearchButton'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.graphql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
+import { LayoutHeaderQuery } from './Header.graphql'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
 import logo from './logo.svg'
@@ -103,7 +105,7 @@ const useStyles = makeStyles(
 
 type HeaderElementProps = JSX.IntrinsicElements['header'] & UseStyles<typeof useStyles>
 
-type HeaderDataProps = GQLLayoutHeaderQuery & GQLResolveUrlQuery
+type HeaderDataProps = LayoutHeaderQuery & ResolveUrlQuery
 
 export type HeaderProps = HeaderDataProps & HeaderElementProps
 

@@ -8,8 +8,9 @@ import {
   isFilterTypeEqual,
 } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
+import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.graphql'
 
-type ProdustListItemConfigurableProps = GQLProductListItemConfigurableFragment & {
+type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment & {
   filterTypeMap: FilterTypeMap
 }
 

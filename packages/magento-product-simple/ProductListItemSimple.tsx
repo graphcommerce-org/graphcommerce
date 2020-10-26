@@ -1,9 +1,10 @@
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
-import { AddSimpleProductToCartDocument } from '@reachdigital/magento-customer/node_modules/generated/documents'
 import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
+import { AddSimpleProductToCartDocument } from './AddSimpleProductToCart.graphql'
+import { ProductListItemSimpleFragment } from './ProductListItemSimple.graphql'
 
-export default function ProductListItemSimple(props: GQLProductListItemSimpleFragment) {
+export default function ProductListItemSimple(props: ProductListItemSimpleFragment) {
   const { sku, name } = props
   return (
     <ProductListItem {...props}>

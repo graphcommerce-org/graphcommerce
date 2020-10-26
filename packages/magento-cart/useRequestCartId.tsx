@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CartDocument, CreateEmptyCartDocument } from 'generated/documents'
+import { CartDocument } from './Cart.graphql'
+import { CreateEmptyCartDocument } from './CreateEmptyCart.graphql'
 
 function generateId() {
   return 'xxxxxxxxxxxxxxxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, (c) => {

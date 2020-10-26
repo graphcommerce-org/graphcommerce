@@ -1,4 +1,5 @@
 import { makeVar, ReactiveVar, TypePolicies } from '@apollo/client'
+import { Query } from '@reachdigital/magento-graphql'
 
 function makeSessionVar<T>(key: string, defaultValue: T) {
   let sessionValue: T | undefined
@@ -24,7 +25,7 @@ function makeSessionVar<T>(key: string, defaultValue: T) {
   return sessionVar
 }
 
-export const historyStateVar = makeSessionVar<GQLQuery['historyState']>('historyState', {
+export const historyStateVar = makeSessionVar<Query['historyState']>('historyState', {
   direction: 'FORWARD',
   idx: 0,
   pages: [],

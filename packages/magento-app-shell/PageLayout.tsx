@@ -1,12 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { useTheme } from '@material-ui/core'
 import Header from '@reachdigital/magento-app-shell/Header'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.graphql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.graphql'
 import PageLayoutBase from '@reachdigital/next-ui/Page/PageLayoutBase'
 import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'
 import Head from 'next/head'
 import React, { PropsWithChildren } from 'react'
+import { LayoutHeaderQuery } from './Header.graphql'
 
-export type PageLayoutProps = Required<GQLLayoutHeaderQuery> & GQLResolveUrlQuery
+export type PageLayoutProps = Required<LayoutHeaderQuery> & ResolveUrlQuery
 
 const PageLayout = ({ children, menu, urlResolver }: PropsWithChildren<PageLayoutProps>) => {
   const theme = useTheme()

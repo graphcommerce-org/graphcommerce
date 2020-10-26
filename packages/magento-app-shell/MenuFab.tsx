@@ -1,9 +1,11 @@
 import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.graphql'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { Router } from 'next/router'
 import React from 'react'
+import { LayoutHeaderQuery } from './Header.graphql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -55,7 +57,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = GQLLayoutHeaderQuery & GQLResolveUrlQuery
+export type MenuFabProps = LayoutHeaderQuery & ResolveUrlQuery
 
 export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
   const classes = useStyles()

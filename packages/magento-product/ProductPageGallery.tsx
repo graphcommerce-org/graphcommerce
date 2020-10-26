@@ -1,14 +1,15 @@
-import GQLRenderType, { GQLTypeRenderer } from '@reachdigital/next-ui/GQLRenderType'
+import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import React from 'react'
 import ProductImage from './ProductImage'
+import { ProductPageGalleryFragment } from './ProductPageGallery.graphql'
 import ProductVideo from './ProductVideo'
 
-export type ProductPageGalleryRenderers = GQLTypeRenderer<
-  NonNullable<NonNullable<GQLProductPageGalleryFragment['media_gallery']>[0]>
+export type ProductPageGalleryRenderers = TypeRenderer<
+  NonNullable<NonNullable<ProductPageGalleryFragment['media_gallery']>[0]>
 >
 const renderers: ProductPageGalleryRenderers = { ProductImage, ProductVideo }
 
-export default function ProductPageGallery(props: GQLProductPageGalleryFragment) {
+export default function ProductPageGallery(props: ProductPageGalleryFragment) {
   const { media_gallery, sku } = props
 
   return (
@@ -16,7 +17,7 @@ export default function ProductPageGallery(props: GQLProductPageGalleryFragment)
       {media_gallery?.map((item) => {
         if (!item?.position) return null
         return (
-          <GQLRenderType
+          <RenderType
             key={item.position}
             renderer={renderers}
             {...item}

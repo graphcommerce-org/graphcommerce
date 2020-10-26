@@ -1,8 +1,9 @@
-import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import React from 'react'
+import ProductListItem from './ProductListItem'
+import { ProductPageUpsellFragment } from './ProductPageUpsell.graphql'
 
-export default function ProductPageUpsell(props: GQLProductPageUpsellFragment) {
+export default function ProductPageUpsell(props: ProductPageUpsellFragment) {
   const { upsell_products } = props
 
   if (!upsell_products || !upsell_products.length) return null

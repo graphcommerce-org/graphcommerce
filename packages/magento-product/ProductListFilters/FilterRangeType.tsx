@@ -2,11 +2,13 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
 import { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
+import { FilterRangeTypeInput } from '@reachdigital/magento-graphql'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
+import { ProductListFiltersFragment } from '../ProductListFilters.graphql'
 
 type FilterRangeTypeProps = NonNullable<
-  NonNullable<GQLProductListFiltersFragment['aggregations']>[0]
+  NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
   Omit<ChipMenuProps, 'selected'>
 
@@ -56,7 +58,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     linkParams.filters[attribute_code] = {
       from: String(value[0]),
       to: String(value[1]),
-    } as GQLFilterRangeTypeInput
+    } as FilterRangeTypeInput
 
     pushRoute(linkParams)
   }
@@ -69,7 +71,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     pushRoute(linkParams)
   }
 
-  const currentFilter = params.filters[attribute_code] as GQLFilterRangeTypeInput | undefined
+  const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
 
   let currentLabel: string | undefined
   if (currentFilter?.from === '*' && currentFilter?.to !== '*')

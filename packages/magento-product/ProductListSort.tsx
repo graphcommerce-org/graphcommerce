@@ -1,13 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { cloneDeep } from '@apollo/client/utilities'
 import { ListItem, ListItemText } from '@material-ui/core'
+import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
-import { StoreConfigDocument } from '@reachdigital/magento-customer/node_modules/generated/documents'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.graphql'
 import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import React from 'react'
-import CategoryLink, { useCategoryPushRoute } from '../Category/CategoryLink'
+import { ProductListSortFragment } from './ProductListSort.graphql'
 
-export type ProductListSortProps = GQLProductListSortFragment &
+export type ProductListSortProps = ProductListSortFragment &
   Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
 export default function ProductListSort({ sort_fields, ...filterMenuProps }: ProductListSortProps) {

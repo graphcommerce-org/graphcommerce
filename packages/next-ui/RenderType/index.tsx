@@ -20,7 +20,7 @@ type TypeRenderMap<
   [K in TypeNames]: TypeRenderMethod<FilterTypeByTypename<T, K> & TAdd>
 }
 
-export type GQLTypeRenderer<
+export type TypeRenderer<
   T extends TypeObject,
   TAdd extends Record<string, unknown> = Record<string, unknown>
 > = TypeRenderMap<T, T['__typename'], TAdd>
@@ -29,10 +29,10 @@ export type GQLTypeRenderer<
  * A simple array with renderers but with strict typing that validates of the
  * provided Renderer is actually able to render the Type
  */
-export default function GQLRenderType<
+export default function RenderType<
   T extends TypeObject,
   A extends Record<string, unknown> = Record<string, unknown>
->(props: { renderer: GQLTypeRenderer<T, A> } & FilterTypeByTypename<T, T['__typename']> & A) {
+>(props: { renderer: TypeRenderer<T, A> } & FilterTypeByTypename<T, T['__typename']> & A) {
   const { renderer, __typename, ...typeItemProps } = props
   const TypeItem: TypeRenderMethod<typeof typeItemProps> = renderer[__typename]
     ? renderer[__typename]

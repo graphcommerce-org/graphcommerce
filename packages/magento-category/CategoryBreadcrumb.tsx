@@ -1,7 +1,8 @@
 import { BreadcrumbsProps } from '@material-ui/core'
 import React from 'react'
+import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.graphql'
 
-type CategoryBreadcrumbProps = GQLCategoryBreadcrumbFragment & BreadcrumbsProps
+type CategoryBreadcrumbProps = CategoryBreadcrumbFragment & BreadcrumbsProps
 
 export default function CategoryBreadcrumb(props: CategoryBreadcrumbProps) {
   const { breadcrumbs } = props

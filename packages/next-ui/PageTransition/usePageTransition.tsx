@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client'
+import { HistoryStatePage } from '@reachdigital/magento-graphql'
 import { MotionProps, usePresence } from 'framer-motion'
 import { Target } from 'framer-motion/types/types'
 import { useState } from 'react'
+import { HistoryStateDocument } from './HistoryState.graphql'
 import {
   getFromIdx,
   getPage,
@@ -17,7 +19,7 @@ import { historyStateVar } from './typePolicies'
 const isBrowser = typeof window !== 'undefined'
 
 type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
-  GQLHistoryStatePage,
+  HistoryStatePage,
   'href' | 'as' | 'x' | 'y'
 >
 

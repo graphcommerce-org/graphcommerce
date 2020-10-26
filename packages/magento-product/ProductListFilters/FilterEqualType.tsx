@@ -2,14 +2,16 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
+import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
+import { ProductListFiltersFragment } from '../ProductListFilters.graphql'
 
-export type FilterIn = SetRequired<Omit<GQLFilterEqualTypeInput, 'eq'>, 'in'>
+export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
 type FilterEqualTypeProps = NonNullable<
-  NonNullable<GQLProductListFiltersFragment['aggregations']>[0]
+  NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
   Omit<ChipMenuProps, 'selected'>
 

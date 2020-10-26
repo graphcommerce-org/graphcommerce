@@ -2,10 +2,13 @@ import { debounce } from '@material-ui/core'
 import ClearIcon from '@material-ui/icons/Delete'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { UpdateItemQuantityDocument } from 'generated/documents'
 import React, { useRef } from 'react'
+import {
+  UpdateItemQuantityDocument,
+  UpdateItemQuantityMutationVariables,
+} from './UpdateItemQuantity.graphql'
 
-export default function UpdateItemQuantity(values: GQLUpdateItemQuantityMutationVariables) {
+export default function UpdateItemQuantity(values: UpdateItemQuantityMutationVariables) {
   const { register, errors, onSubmit, required, watch, loading } = useMutationForm({
     mutation: UpdateItemQuantityDocument,
     values,
