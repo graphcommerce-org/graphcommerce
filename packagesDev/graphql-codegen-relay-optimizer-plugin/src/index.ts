@@ -1,5 +1,13 @@
 import { Types, PluginFunction } from '@graphql-codegen/plugin-helpers'
-import { GraphQLSchema, parse, printSchema, DefinitionNode } from 'graphql'
+import {
+  GraphQLSchema,
+  parse,
+  printSchema,
+  DefinitionNode,
+  visit,
+  FragmentDefinitionNode,
+  Kind,
+} from 'graphql'
 
 import { Parser as RelayParser } from 'relay-compiler'
 import CompilerContext from 'relay-compiler/lib/core/CompilerContext'
@@ -14,14 +22,29 @@ import { transform as skipRedundantNodesTransform } from 'relay-compiler/lib/tra
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RelayOptimizerPluginConfig {}
 
+function isFragment(documentFile: Types.DocumentFile) {
+  let name = false
+
+  console.log(documentFile.document?.kind)
+  visit(documentFile.document!, {
+    enter: {
+      FragmentDefinition: (node: FragmentDefinitionNode) => {
+        name = true
+      },
+    },
+  })
+  return name
+}
+
 export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   schema: GraphQLSchema,
   documents: Types.DocumentFile[],
   _config: RelayOptimizerPluginConfig,
 ) => {
-  return {
-    content: '',
-  }
+  const isFrag = documents.every((d) => isFragment(d))
+
+  if (isFrag) return { content: '' }
+
   // @TODO way for users to define directives they use, otherwise relay will throw an unknown directive error
   // Maybe we can scan the queries and add them dynamically without users having to do some extra stuff
   // transformASTSchema creates a new schema instance instead of mutating the old one

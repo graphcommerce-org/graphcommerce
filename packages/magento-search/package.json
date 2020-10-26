@@ -22,7 +22,9 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
+    "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1"
+    "@material-ui/icons": "^4.9.1",
+    "@reachdigital/magento-graphql": "0.1.0"
   }
 }

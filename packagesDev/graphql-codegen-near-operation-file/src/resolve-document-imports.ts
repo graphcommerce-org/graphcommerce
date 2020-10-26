@@ -47,7 +47,7 @@ interface ResolveDocumentImportResult {
   }>[]
 }
 
-function fragmentName(documentFile: Types.DocumentFile) {
+function getFragmentName(documentFile: Types.DocumentFile) {
   let name: string | undefined
   visit(documentFile.document!, {
     enter: {
@@ -70,66 +70,58 @@ export function resolveDocumentImports<T>(
   schemaObject: GraphQLSchema,
   importResolverOptions: DocumentImportResolverOptions,
 ): Array<ResolveDocumentImportResult> {
-  const { baseOutputDir, documents, config } = presetOptions
+  const { baseOutputDir, documents, config, pluginMap } = presetOptions
   const { generateFilePath, schemaTypesSource, baseDir, typesImport } = importResolverOptions
 
   const resolveFragments = buildFragmentResolver(importResolverOptions, presetOptions, schemaObject)
   const fragmentRegistry = buildFragmentRegistry(importResolverOptions, presetOptions, schemaObject)
 
-  if (config.flattenGeneratedTypes) {
-    return (
-      documents
-        // .filter((documentFile) => typeof fragmentName(documentFile) === 'undefined')
-        .map((documentFile) => {
-          const generatedFilePath = generateFilePath(documentFile.location!)
-
-          if (typeof fragmentName(documentFile) === 'undefined') {
-            return {
-              filename: generatedFilePath,
-              documents: [documentFile],
-              importStatements: [],
-              fragmentImports: [],
-              externalFragments: [],
-            }
-          }
-
-          const externalFragments = extractExternalFragmentsInUse(
-            documentFile.document!,
-            fragmentRegistry,
-          )
-
-          const fragments = documents.filter(
-            (d) => typeof externalFragments[fragmentName(d) ?? ''] !== 'undefined',
-          )
-
-          const importStatements: string[] = []
-
-          if (isUsingTypes(documentFile.document!, [], schemaObject)) {
-            const schemaTypesImportStatement = generateImportStatement({
-              baseDir,
-              importSource: resolveImportSource(schemaTypesSource),
-              baseOutputDir,
-              outputPath: generatedFilePath,
-              typesImport,
-            })
-            importStatements.unshift(schemaTypesImportStatement)
-          }
-
-          // const newDocument = [...fragments.map((f) => f.rawSDL), documentFile.rawSDL].join('\n')
-
-          return {
-            filename: generatedFilePath,
-            documents: [...fragments, documentFile],
-            importStatements,
-            fragmentImports: [],
-            externalFragments: [],
-          } as ResolveDocumentImportResult
-        })
-    )
-  }
+  const isRelayOptimizer =
+    typeof pluginMap['@reachdigital/graphql-codegen-relay-optimizer-plugin'] !== 'undefined'
 
   return documents.map((documentFile) => {
     try {
+      const isFragment = typeof getFragmentName(documentFile) !== 'undefined'
+      if (!isFragment && isRelayOptimizer) {
+        const generatedFilePath = generateFilePath(documentFile.location!)
+
+        let externalFragments = extractExternalFragmentsInUse(
+          documentFile.document!,
+          fragmentRegistry,
+        )
+        // Sort the entries in the right order so fragments are defined when using
+        externalFragments = Object.fromEntries(
+          Object.entries(externalFragments).sort(([, levelA], [, levelB]) => levelB - levelA),
+        )
+
+        const fragments = documents.filter(
+          (d) => typeof externalFragments[getFragmentName(d) ?? ''] !== 'undefined',
+        )
+
+        const importStatements: string[] = []
+
+        if (isUsingTypes(documentFile.document!, [], schemaObject)) {
+          const schemaTypesImportStatement = generateImportStatement({
+            baseDir,
+            importSource: resolveImportSource(schemaTypesSource),
+            baseOutputDir,
+            outputPath: generatedFilePath,
+            typesImport,
+          })
+          importStatements.unshift(schemaTypesImportStatement)
+        }
+
+        // const newDocument = [...fragments.map((f) => f.rawSDL), documentFile.rawSDL].join('\n')
+
+        return {
+          filename: generatedFilePath,
+          documents: [...fragments, documentFile],
+          importStatements,
+          fragmentImports: [],
+          externalFragments: [],
+        } as ResolveDocumentImportResult
+      }
+
       const generatedFilePath = generateFilePath(documentFile.location!)
       const importStatements: string[] = []
       const { externalFragments, fragmentImports } = resolveFragments(

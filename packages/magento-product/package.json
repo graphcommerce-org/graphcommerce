@@ -21,5 +21,9 @@
     "@reachdigital/eslint-config-pwa": "^0.1.0",
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0"
+  },
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.1.0",
+    "@reachdigital/magento-graphql": "0.1.0"
   }
 }

@@ -10,11 +10,9 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "ncc build ./src/index.ts -w -o dist/",
-    "prerelease": "rimraf ./dist/",
-    "release": "ncc build ./src/index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
-    "prepublish": "yarn release"
+    "dev": "tsc --watch --sourceMap --outDir dist/main",
+    "build:module": "tsc --target es2017 --outDir dist/module",
+    "build": "tsc --target es5 --outDir dist"
   },
   "prettier": "@reachdigital/prettier-config-pwa",
   "browserslist": [

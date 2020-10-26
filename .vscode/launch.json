@@ -5,6 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "command": "yarn build:codegen",
+      "name": "Run yarn build:codegen",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",

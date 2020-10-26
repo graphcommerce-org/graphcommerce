@@ -28,3 +28,7 @@ yarn-error.log*
 /public/sw.js
 
 .vercel
+
+# build
+dist
+build
