@@ -4,6 +4,7 @@ import PageLayout, { PageLayoutProps } from 'components/AppShell/PageLayout'
 import getLayoutHeaderProps from 'components/AppShell/getLayoutHeaderProps'
 import CategoryChildren from 'components/Category/CategoryChildren'
 import CategoryDescription from 'components/Category/CategoryDescription'
+import CategoryMenu from 'components/Category/CategoryMenu'
 import CategoryMeta from 'components/Category/CategoryMeta'
 import { ProductListParamsProvider } from 'components/Category/CategoryPageContext'
 import getCategoryPageProps, {
@@ -50,6 +51,18 @@ const CategoryPage: PageComponent = (props) => {
           <CategoryDescription name={category.name} description={category.description} />
           <div>
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
+          </div>
+        </Container>
+      </>
+    )
+  } else if (categories.items[0].display_mode === 'PRODUCTS') {
+    content = (
+      <>
+        <Container className={classes.container} maxWidth='xl'>
+          <div>
+            <CategoryMenu params={params} name={category.name}>
+              {category.children}
+            </CategoryMenu>
           </div>
         </Container>
       </>
