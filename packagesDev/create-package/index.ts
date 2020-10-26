@@ -132,7 +132,9 @@ async function run(): Promise<void> {
   }
 
   const paths = globSync(projectPath)
-  if (!paths.length) console.error(`Couldn't find any paths with ${projectPath}`)
+  if (!paths.length) {
+    return runItem(projectPath)
+  }
   const originalDirectory = process.cwd()
   for (const projPath of paths) {
     process.chdir(originalDirectory)
