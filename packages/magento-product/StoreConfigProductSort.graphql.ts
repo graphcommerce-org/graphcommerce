@@ -2,13 +2,16 @@
 import * as Types from '@reachdigital/magento-graphql'
 
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
-export const EntityUrlDeeperFragmentDoc: DocumentNode<EntityUrlDeeperFragment, unknown> = {
+export const StoreConfigProductSortFragmentDoc: DocumentNode<
+  StoreConfigProductSortFragment,
+  unknown
+> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'EntityUrlDeeper' },
-      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'EntityUrl' } },
+      name: { kind: 'Name', value: 'StoreConfigProductSort' },
+      typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'StoreConfig' } },
       directives: [],
       selectionSet: {
         kind: 'SelectionSet',
@@ -16,14 +19,16 @@ export const EntityUrlDeeperFragmentDoc: DocumentNode<EntityUrlDeeperFragment, u
           { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'relative_url' },
+            name: { kind: 'Name', value: 'catalog_default_sort_by' },
             arguments: [],
             directives: [],
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'type' }, arguments: [], directives: [] },
         ],
       },
     },
   ],
 }
-export type EntityUrlDeeperFragment = Pick<Types.EntityUrl, 'id' | 'relative_url' | 'type'>
+export type StoreConfigProductSortFragment = Pick<
+  Types.StoreConfig,
+  'id' | 'catalog_default_sort_by'
+>
