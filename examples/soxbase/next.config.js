@@ -36,6 +36,10 @@ const nextConfig = {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
   },
+  images: {
+    domains: ['m2-pwa-demo.localhost.reachdigital.io'],
+    imageSizes: [16, 32, 64, 128],
+  },
 }
 
 module.exports = withBundleAnalyzer(withPWA(withImages(withTM(nextConfig))))

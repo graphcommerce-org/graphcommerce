@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import PictureResponsive, { PictureResponsiveProps, ImageMimeTypes } from '../PictureResponsive'
 import useConnectionType from '../PictureResponsive/useConnectionType'
 
-const possibleWidths = [25, 50, 75, 100, 150, 200, 250, 300, 400, 600, 800, 1200, 1600, 2000, 2800]
+// eslint-disable-next-line no-underscore-dangle
+const { deviceSizes, imageSizes, loader, path, domains } = process.env.__NEXT_IMAGE_OPTS
 
-export type PictureResponsiveSharpProps = Omit<PictureResponsiveProps, 'srcSets'> & {
+const possibleWidths = [...imageSizes, ...deviceSizes]
+
+export type PictureResponsiveNextProps = Omit<PictureResponsiveProps, 'srcSets'> & {
   src: string
   type: ImageMimeTypes
 
@@ -13,12 +16,12 @@ export type PictureResponsiveSharpProps = Omit<PictureResponsiveProps, 'srcSets'
 }
 
 type UseCompressionReturn = {
-  compression: PictureResponsiveSharpProps['compression']
+  compression: PictureResponsiveNextProps['compression']
   quality: number
 }
 
 const useImageOptions = (
-  compression: PictureResponsiveSharpProps['compression'],
+  compression: PictureResponsiveNextProps['compression'],
   type: ImageMimeTypes,
 ): UseCompressionReturn => {
   const connectionType = useConnectionType()
@@ -55,17 +58,16 @@ const useImageOptions = (
   return compress
 }
 
-const PictureResponsiveSharp: React.FC<PictureResponsiveSharpProps> = ({
+function PictureResponsiveNext({
   src,
   type,
   compression,
   ...imgProps
-}) => {
+}: PictureResponsiveNextProps) {
   const srcSets: PictureResponsiveProps['srcSets'] = {}
 
   // The smallest possible image is the supplied img size, remove smaller sizes.
-  const widths = possibleWidths.filter((width) => imgProps.width < width - 20)
-  widths.unshift(imgProps.width)
+  const widths = possibleWidths.filter((width) => imgProps.width < width - 50)
 
   const imageOptions = useImageOptions(compression, type)
 
@@ -77,15 +79,13 @@ const PictureResponsiveSharp: React.FC<PictureResponsiveSharpProps> = ({
       // Generate webp + jpeg for all lossy images.
       srcSets['image/webp'] = widths
         .map(
-          (width) =>
-            `/api/image?width=${width}&type=webp&url=${src}&quality=${imageOptions.quality} ${width}w`,
+          (width) => `${path}?w=${width}&type=webp&url=${src}&q=${imageOptions.quality} ${width}w`,
         )
         .join(', ')
 
       srcSets['image/jpeg'] = widths
         .map(
-          (width) =>
-            `/api/image?width=${width}&type=jpeg&url=${src}&quality=${imageOptions.quality} ${width}w`,
+          (width) => `${path}?w=${width}&type=jpeg&url=${src}&q=${imageOptions.quality} ${width}w`,
         )
         .join(', ')
 
@@ -95,15 +95,15 @@ const PictureResponsiveSharp: React.FC<PictureResponsiveSharpProps> = ({
       srcSets['image/webp'] = widths
         .map(
           (width) =>
-            `/api/image?width=${width}&type=webp&url=${src}&quality=${imageOptions.quality}&lossless=1 ${width}w`,
+            `${path}?w=${width}&type=webp&url=${src}&q=${imageOptions.quality}&lossless=1 ${width}w`,
         )
         .join(', ')
       srcSets['image/png'] = widths
-        .map((width) => `/api/image?width=${width}&type=png&url=${src} ${width}w`)
+        .map((width) => `/_next/image?w=${width}&type=png&url=${src} ${width}w`)
         .join(', ')
   }
 
   return <PictureResponsive {...imgProps} srcSets={srcSets} />
 }
 
-export default PictureResponsiveSharp
+export default PictureResponsiveNext

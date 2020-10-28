@@ -59,7 +59,10 @@ module.exports = {
       },
     ],
 
-    'no-underscore-dangle': ['error', { allow: ['__typename', '__type', '_N_X', '_N_Y', '__N'] }],
+    'no-underscore-dangle': [
+      'error',
+      { allow: ['__typename', '__type', '_N_X', '_N_Y', '__N', '__NEXT'] },
+    ],
     'react/jsx-key': ['error', { checkFragmentShorthand: true }],
     'react/jsx-no-duplicate-props': ['error', { ignoreCase: false }],
     'react/require-default-props': 'off',

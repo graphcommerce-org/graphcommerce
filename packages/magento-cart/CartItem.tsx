@@ -8,7 +8,7 @@ import {
   Divider,
 } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
-import PictureResponsiveSharp from '@reachdigital/next-ui/PictureResponsiveSharp'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { CartItemFragment } from './CartItem.gql'
@@ -76,7 +76,7 @@ export default function CartItem({
   return (
     <Card className={classes.productWrapper}>
       {product?.thumbnail?.url && product.thumbnail.label && (
-        <PictureResponsiveSharp
+        <PictureResponsiveNext
           alt={product.thumbnail.label ?? ''}
           width={104}
           height={86}

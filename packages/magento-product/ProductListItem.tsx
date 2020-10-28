@@ -1,6 +1,6 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import PictureResponsiveSharp from '@reachdigital/next-ui/PictureResponsiveSharp'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
@@ -81,7 +81,7 @@ export default function ProductListItem(props: ProductListItemProps) {
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
-              <PictureResponsiveSharp
+              <PictureResponsiveNext
                 alt={small_image.label ?? ''}
                 width={320}
                 height={320}
