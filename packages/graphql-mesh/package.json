@@ -20,7 +20,7 @@
     "@graphql-mesh/transform-filter-schema": "^0.6.10",
     "@graphql-mesh/types": "^0.16.0",
     "apollo-server-micro": "^2.16.1",
-    "graphql": "15.3.0",
+    "graphql": "15.4.0",
     "next": "latest",
     "next-transpile-modules": "^4.1.0",
     "react": "^17.0.1",
