@@ -5,4 +5,6 @@ import meshConfig from '../../.meshrc.json'
 const handler = createHandler(meshConfig, '/api/graphql')
 
 export { config }
-export default async (req: NextApiRequest, res: NextApiResponse) => (await handler)(req, res)
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  return req.method === 'OPTIONS' ? res.end() : (await handler)(req, res)
+}
