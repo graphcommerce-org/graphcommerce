@@ -1,6 +1,6 @@
 import Money from '@reachdigital/magento-store/Money'
 import React from 'react'
-import { ProductListPriceFragment } from './ProductListPrice.graphql'
+import { ProductListPriceFragment } from './ProductListPrice.gql'
 
 export default function ProductListPrice({ regular_price, final_price }: ProductListPriceFragment) {
   return (

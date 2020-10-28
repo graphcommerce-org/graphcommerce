@@ -5,11 +5,11 @@ import {
   FilterRangeTypeInput,
   SortEnum,
 } from '@reachdigital/magento-graphql'
-import { ProductListDocument } from '@reachdigital/magento-product/ProductList.graphql'
+import { ProductListDocument } from '@reachdigital/magento-product/ProductList.gql'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
 import { PromiseValue } from 'type-fest'
-import { CategoryPageDocument } from './CategoryPage.graphql'
+import { CategoryPageDocument } from './CategoryPage.gql'
 import getFilterTypeMap from './getFilterTypeMap'
 
 async function parseParams(

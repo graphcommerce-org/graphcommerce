@@ -2,7 +2,7 @@ import { Pagination, PaginationItem, PaginationProps } from '@material-ui/lab'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import React from 'react'
-import { ProductListPaginationFragment } from './ProductListPagination.graphql'
+import { ProductListPaginationFragment } from './ProductListPagination.gql'
 
 type ProductPaginationProps = ProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>

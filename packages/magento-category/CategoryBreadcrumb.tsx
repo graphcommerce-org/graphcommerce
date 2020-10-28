@@ -1,6 +1,6 @@
 import { BreadcrumbsProps } from '@material-ui/core'
 import React from 'react'
-import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.graphql'
+import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
 type CategoryBreadcrumbProps = CategoryBreadcrumbFragment & BreadcrumbsProps
 

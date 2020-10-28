@@ -1,6 +1,6 @@
 import { FieldPolicy, TypePolicies } from '@apollo/client'
 import { Mutation } from '@reachdigital/magento-graphql'
-import { CartDocument } from './Cart.graphql'
+import { CartDocument } from './Cart.gql'
 
 /**
  * When an empty cart is created, we store the cartId separately

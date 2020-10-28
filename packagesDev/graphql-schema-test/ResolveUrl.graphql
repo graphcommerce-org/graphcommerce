@@ -1,5 +1,0 @@
-query ResolveUrl($urlKey: String!) {
-  urlResolver(url: $urlKey) {
-    ...EntityUrl
-  }
-}

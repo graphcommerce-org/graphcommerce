@@ -2,11 +2,13 @@
 
 ## Description
 
-[GraphQL Codegen Plugin](https://github.com/dotansimha/graphql-code-generator) for bringing the benefits of Relay to GraphQL Codegen.
+[GraphQL Codegen Plugin](https://github.com/dotansimha/graphql-code-generator)
+for bringing the benefits of Relay to GraphQL Codegen.
 
 ### Current List of Features
 
-- [Optimize Queries](https://relay.dev/docs/en/compiler-architecture#transforms) TL;DR: reduce query size
+- [Optimize Queries](https://relay.dev/docs/en/compiler-architecture#transforms)
+  TL;DR: reduce query size
   - Inline Fragments
   - Flatten Transform
   - Skip Redundant Node Transform
@@ -27,12 +29,12 @@ overwrite: true
 schema: schema.graphql
 generates:
   src/generated-types.tsx:
-    documents: "src/documents/**/*.graphql"
+    documents: 'src/documents/**/*.graphql'
     config:
       skipDocumentsValidation: true
     plugins:
-      - "@n1ru4l/graphql-codegen-relay-optimizer-plugin"
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - '@n1ru4l/graphql-codegen-relay-optimizer-plugin'
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
 ```

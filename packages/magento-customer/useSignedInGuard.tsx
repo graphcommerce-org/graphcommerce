@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { CustomerTokenDocument } from './CustomerToken.graphql'
+import { CustomerTokenDocument } from './CustomerToken.gql'
 
 export default function useSignedInGuard() {
   const router = useRouter()

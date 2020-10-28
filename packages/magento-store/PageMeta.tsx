@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import Head from 'next/head'
+import { StoreConfigDocument } from './StoreConfig.gql'
 
 type PageMetaProps = {
   title: string

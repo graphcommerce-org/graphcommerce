@@ -3,7 +3,7 @@ import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/PersonOutline'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
-import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.graphql'
+import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.gql'
 
 const useBadgeStyles = makeStyles((theme: Theme) => ({
   colorError: {

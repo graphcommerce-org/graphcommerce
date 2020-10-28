@@ -4,7 +4,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
-import { ProductListItemsFragment } from './ProductListItems.graphql'
+import { ProductListItemsFragment } from './ProductListItems.gql'
 import { FilterTypeMap } from './ProductListItems/filterTypes'
 
 const useStyles = makeStyles(

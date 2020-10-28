@@ -1,7 +1,7 @@
 import { makeStyles, Theme, Typography, TypographyProps, NoSsr } from '@material-ui/core'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, useEffect, useState } from 'react'
+import React, { KeyboardEventHandler } from 'react'
 import FocusLock from 'react-focus-lock'
 import PageLink from '../PageTransition/PageLink'
 import { UiFC } from '../PageTransition/types'
@@ -83,15 +83,9 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
   const classes = useStyles()
   const router = useRouter()
 
-  const { offsetDiv, inFront, inBack, prevPage, upPage, isFromPage, hold } = usePageTransition({
+  const { offsetDiv, inFront, inBack, prevPage, upPage, isFromPage } = usePageTransition({
     title,
   })
-
-  const [focus, setFocus] = useState(false)
-  useEffect(() => {
-    if (inFront) setTimeout(() => setFocus(true), 400)
-    else setFocus(false)
-  }, [inFront])
 
   const contentAnimation: MotionProps = {
     initial: { y: 300, opacity: 0 },

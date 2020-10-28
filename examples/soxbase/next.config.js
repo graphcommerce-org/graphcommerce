@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-var-requires */
+const { PerformanceObserver, performance } = require('perf_hooks')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -7,7 +9,6 @@ const IntlPolyfill = require('intl')
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
 const withTM = require('next-transpile-modules')(['@apollo/client', '@reachdigital'])
-const { PerformanceObserver, performance } = require('perf_hooks')
 
 Intl.NumberFormat = IntlPolyfill.NumberFormat
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat

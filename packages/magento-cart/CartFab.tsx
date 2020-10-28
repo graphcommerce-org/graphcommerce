@@ -3,7 +3,7 @@ import { Badge, Fab, IconButton, NoSsr } from '@material-ui/core'
 import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
-import { CartDocument } from './Cart.graphql'
+import { CartDocument } from './Cart.gql'
 
 type CartFabProps = { asIcon?: boolean }
 

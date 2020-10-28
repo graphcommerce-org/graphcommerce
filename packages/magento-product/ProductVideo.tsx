@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductVideoFragment } from './ProductVideo.graphql'
+import { ProductVideoFragment } from './ProductVideo.gql'
 
 export default function ProductVideo(props: ProductVideoFragment) {
   const { video_content } = props

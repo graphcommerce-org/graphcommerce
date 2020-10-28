@@ -2,7 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import {
   GetProductStaticPathsDocument,
   GetProductStaticPathsQuery,
-} from './GetProductStaticPaths.graphql'
+} from './GetProductStaticPaths.gql'
 
 const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
   const { data } = await client.query({ query: GetProductStaticPathsDocument })

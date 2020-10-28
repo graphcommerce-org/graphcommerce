@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { ProductPageQueryVariables, ProductPageDocument } from './ProductPage.graphql'
+import { ProductPageQueryVariables, ProductPageDocument } from './ProductPage.gql'
 
 const getProductPageProps = async (
   variables: ProductPageQueryVariables,

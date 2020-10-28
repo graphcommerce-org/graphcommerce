@@ -5,7 +5,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
-import { ProductListItemSimpleFragment } from '../magento-product-simple/ProductListItemSimple.graphql'
+import { ProductListItemSimpleFragment } from '../magento-product-simple/ProductListItemSimple.gql'
 import { useProductLink } from './ProductLink'
 import ProductListPrice from './ProductListPrice'
 

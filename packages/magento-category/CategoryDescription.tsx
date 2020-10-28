@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core'
 import React from 'react'
-import { CategoryDescriptionFragment } from './CategoryDescription.graphql'
+import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
 type CategoryDescriptionProps = CategoryDescriptionFragment & JSX.IntrinsicElements['div']
 

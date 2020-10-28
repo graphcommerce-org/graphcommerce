@@ -6,7 +6,7 @@ import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import React from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
-import { ProductListFiltersFragment } from '../ProductListFilters.graphql'
+import { ProductListFiltersFragment } from '../ProductListFilters.gql'
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 

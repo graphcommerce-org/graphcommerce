@@ -1,9 +1,9 @@
 /* eslint-env node */
-"use strict";
+'use strict'
 
 module.exports = {
-  roots: ["<rootDir>/src"],
+  roots: ['<rootDir>/src'],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
-  }
-};
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+}

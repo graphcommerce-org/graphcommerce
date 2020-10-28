@@ -1,4 +1,4 @@
-import { ButtonProps, FabProps, makeStyles, Theme } from '@material-ui/core'
+import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowForward from '@material-ui/icons/ArrowForwardIos'
 import React from 'react'
 import Button from '../Button'
@@ -44,7 +44,7 @@ const ForwardButton = React.forwardRef((props: BackButtonProps, ref) => {
   const { children, down, ...fabProps } = props
 
   return (
-    <Button variant='pill' classes={classes} {...fabProps}>
+    <Button variant='pill' classes={classes} {...fabProps} ref={ref}>
       <span className={text}>{children}</span>
       <ArrowForward
         shapeRendering='geometricPrecision'

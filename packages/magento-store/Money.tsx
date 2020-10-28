@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import React, { useMemo } from 'react'
-import { MoneyFragment } from './Money.graphql'
-import { StoreConfigDocument } from './StoreConfig.graphql'
+import { MoneyFragment } from './Money.gql'
+import { StoreConfigDocument } from './StoreConfig.gql'
 
 export default function Money({ currency, value }: MoneyFragment) {
   const { data: config } = useQuery(StoreConfigDocument)

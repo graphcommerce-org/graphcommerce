@@ -2,7 +2,7 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { Chip, ChipProps } from '@material-ui/core'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React from 'react'
-import { CategoryChildrenFragment } from './CategoryChildren.graphql'
+import { CategoryChildrenFragment } from './CategoryChildren.gql'
 import CategoryLink from './CategoryLink'
 
 type CategoryChildrenProps = CategoryChildrenFragment &

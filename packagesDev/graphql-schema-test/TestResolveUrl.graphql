@@ -1,0 +1,5 @@
+query TestResolveUrl($urlKey: String!) {
+  urlResolver(url: $urlKey) {
+    ...TestEntityUrl
+  }
+}

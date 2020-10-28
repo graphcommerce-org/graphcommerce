@@ -1,6 +1,6 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.graphql'
+import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'

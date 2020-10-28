@@ -1,4 +1,5 @@
 import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { Exact } from '@reachdigital/magento-graphql'
 import {
   AllFilterInputTypes,
   FilterTypeMap,

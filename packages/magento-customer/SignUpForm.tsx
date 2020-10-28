@@ -11,8 +11,8 @@ import {
   FormControl,
 } from '@material-ui/core'
 import { useMutationForm, emailPattern, Controller } from '@reachdigital/next-ui/useMutationForm'
-import { IsEmailAvailableDocument } from './IsEmailAvailable.graphql'
-import { SignUpMutation, SignUpMutationVariables, SignUpDocument } from './SignUp.graphql'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
+import { SignUpMutation, SignUpMutationVariables, SignUpDocument } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(

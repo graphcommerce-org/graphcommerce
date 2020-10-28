@@ -1,5 +1,0 @@
-fragment EntityUrlDeeper on EntityUrl {
-  id
-  relative_url
-  type
-}

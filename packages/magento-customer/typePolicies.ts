@@ -1,7 +1,7 @@
 import { TypePolicies, FieldPolicy, FieldReadFunction } from '@apollo/client'
-import { CustomerToken, Mutation } from '@reachdigital/magento-graphql'
-import { CustomerTokenDocument } from './CustomerToken.graphql'
-import { IsEmailAvailableDocument } from './IsEmailAvailable.graphql'
+import { CustomerToken, Mutation, Query } from '@reachdigital/magento-graphql'
+import { CustomerTokenDocument } from './CustomerToken.gql'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 
 const revokeCustomerToken: FieldPolicy<Mutation['revokeCustomerToken']> = {
   merge(_existing, incoming, options) {

@@ -1,8 +1,10 @@
+import { CartDocument } from '@reachdigital/magento-cart/Cart.gql'
+import { MergeCartsDocument } from '@reachdigital/magento-cart/MergeCarts.gql'
 import { OnCompleteFn } from '@reachdigital/next-ui/useMutationForm'
-import { CustomerDocument } from './Customer.graphql'
-import { CustomerCartDocument } from './CustomerCart.graphql'
-import { SignInMutation } from './SignIn.graphql'
-import { SignUpMutation } from './SignUp.graphql'
+import { CustomerDocument } from './Customer.gql'
+import { CustomerCartDocument } from './CustomerCart.gql'
+import { SignInMutation } from './SignIn.gql'
+import { SignUpMutation } from './SignUp.gql'
 
 type OnCompleteSignInUp = OnCompleteFn<SignUpMutation | SignInMutation>
 

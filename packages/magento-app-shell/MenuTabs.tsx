@@ -1,7 +1,7 @@
 import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.graphql'
-import { LayoutHeaderQuery } from './Header.graphql'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { LayoutHeaderQuery } from './Header.gql'
 
 const useTabsStyles = makeStyles(
   (theme: Theme) => ({

@@ -1,7 +1,7 @@
 import { Button, FormControl, FormHelperText } from '@material-ui/core'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import { useRouter } from 'next/router'
-import { SignOutDocument } from './SignOut.graphql'
+import { SignOutDocument } from './SignOut.gql'
 
 type SignOutFormProps = Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
 

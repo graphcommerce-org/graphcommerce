@@ -1,5 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { PromiseValue } from 'type-fest'
+import { CmsPageDocument } from './CmsPage.gql'
 
 export default async function getCmsPageProps(
   identifier: string,

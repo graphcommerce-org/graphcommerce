@@ -3,10 +3,10 @@ import { cloneDeep } from '@apollo/client/utilities'
 import { ListItem, ListItemText } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.graphql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import React from 'react'
-import { ProductListSortFragment } from './ProductListSort.graphql'
+import { ProductListSortFragment } from './ProductListSort.gql'
 
 export type ProductListSortProps = ProductListSortFragment &
   Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>

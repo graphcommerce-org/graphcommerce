@@ -32,3 +32,4 @@ yarn-error.log*
 # build
 dist
 build
+generated

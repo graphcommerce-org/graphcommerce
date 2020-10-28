@@ -1,13 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Types, PluginFunction } from '@graphql-codegen/plugin-helpers'
-import {
-  GraphQLSchema,
-  parse,
-  printSchema,
-  DefinitionNode,
-  visit,
-  FragmentDefinitionNode,
-  Kind,
-} from 'graphql'
+import { GraphQLSchema, parse, printSchema, DefinitionNode, visit } from 'graphql'
 
 import { Parser as RelayParser } from 'relay-compiler'
 import CompilerContext from 'relay-compiler/lib/core/CompilerContext'
@@ -25,10 +18,9 @@ export interface RelayOptimizerPluginConfig {}
 function isFragment(documentFile: Types.DocumentFile) {
   let name = false
 
-  console.log(documentFile.document?.kind)
   visit(documentFile.document!, {
     enter: {
-      FragmentDefinition: (node: FragmentDefinitionNode) => {
+      FragmentDefinition: () => {
         name = true
       },
     },

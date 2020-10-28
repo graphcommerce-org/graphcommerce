@@ -1,8 +1,8 @@
 import PictureResponsiveSharp from '@reachdigital/next-ui/PictureResponsiveSharp'
-import { ProductImageFragment } from './ProductImage.graphql'
+import { ProductImageFragment } from './ProductImage.gql'
 
-export default function ProductImage(props: ProductImageFragment & { layoutId?: string }) {
-  const { url, layoutId } = props
+export default function ProductImage(props: ProductImageFragment) {
+  const { url } = props
 
   if (!url) return null
 

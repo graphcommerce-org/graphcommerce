@@ -1,7 +1,7 @@
 import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import React from 'react'
 import ProductListItem from './ProductListItem'
-import { ProductPageUpsellFragment } from './ProductPageUpsell.graphql'
+import { ProductPageUpsellFragment } from './ProductPageUpsell.gql'
 
 export default function ProductPageUpsell(props: ProductPageUpsellFragment) {
   const { upsell_products } = props

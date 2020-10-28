@@ -6,7 +6,11 @@
   "engines": {
     "node": "12.x"
   },
-  "scripts": {},
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
   "sideEffects": false,
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",

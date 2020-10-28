@@ -1,9 +1,8 @@
-import { Typography } from '@material-ui/core'
 import React from 'react'
-import { ProductPageDescriptionFragment } from './ProductPageDescription.graphql'
+import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
 export default function ProductPageDescription(props: ProductPageDescriptionFragment) {
-  const { name, short_description, description } = props
+  const { short_description, description } = props
   return (
     <>
       {/* eslint-disable-next-line react/no-danger */}

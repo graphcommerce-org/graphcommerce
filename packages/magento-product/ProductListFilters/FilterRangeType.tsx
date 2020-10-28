@@ -5,7 +5,7 @@ import { useProductListParamsContext } from '@reachdigital/magento-category/Cate
 import { FilterRangeTypeInput } from '@reachdigital/magento-graphql'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
-import { ProductListFiltersFragment } from '../ProductListFilters.graphql'
+import { ProductListFiltersFragment } from '../ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]

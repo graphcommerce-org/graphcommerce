@@ -1,11 +1,12 @@
 import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.graphql'
+import CategoryLink from '@reachdigital/magento-category/CategoryLink'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { Router } from 'next/router'
 import React from 'react'
-import { LayoutHeaderQuery } from './Header.graphql'
+import { LayoutHeaderQuery } from './Header.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -1,7 +1,7 @@
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import React from 'react'
 import ProductImage from './ProductImage'
-import { ProductPageGalleryFragment } from './ProductPageGallery.graphql'
+import { ProductPageGalleryFragment } from './ProductPageGallery.gql'
 import ProductVideo from './ProductVideo'
 
 export type ProductPageGalleryRenderers = TypeRenderer<

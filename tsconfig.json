@@ -1,5 +1,5 @@
 {
   "extends": "@reachdigital/typescript-config-pwa/nextjs.json",
   "exclude": ["node_modules", "packages/soxbase/public"],
-  "include": ["**/*.ts", "**/*.tsx", "**/next.config.js", "**/apollo.config.js"]
+  "include": ["**/*.ts", "**/*.tsx", "**/next.config.js", "**/apollo.config.js", "**/index.js"]
 }

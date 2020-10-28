@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { Link, LinkProps } from '@material-ui/core'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.graphql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React, { PropsWithChildren } from 'react'
-import { ProductLinkFragment } from './ProductLink.graphql'
+import { ProductLinkFragment } from './ProductLink.gql'
 
 export function useProductLink(props: ProductLinkFragment & { canonical?: boolean }) {
   const { data: storeConfigData } = useQuery(StoreConfigDocument)

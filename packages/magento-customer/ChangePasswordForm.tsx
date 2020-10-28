@@ -11,7 +11,7 @@ import {
   ChangePasswordDocument,
   ChangePasswordMutation,
   ChangePasswordMutationVariables,
-} from './ChangePassword.graphql'
+} from './ChangePassword.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

@@ -4,17 +4,14 @@ schema:
   - 'packagesDev/**/*.graphqls'
 documents:
   - 'packages/**/*.graphql'
-  # - 'packagesDev/graphql-schema-test/*.graphql'
-hooks:
-  afterAllFileWrite:
-    - prettier --write
+  - 'packagesDev/graphql-schema-test/*.graphql'
 generates:
-  examples/soxbase/lib/fragments.json:
+  examples/soxbase/generated/fragments.json:
     plugins:
       - fragment-matcher
     config:
       apolloClientVersion: 3
-  examples/soxbase-api/schema.graphql:
+  examples/soxbase-api/generated/schema.graphql:
     plugins:
       - schema-ast
       - add
@@ -37,7 +34,7 @@ generates:
       - add
     preset: './packagesDev/graphql-codegen-near-operation-file/dist/index.js'
     presetConfig:
-      extension: .graphql.ts
+      extension: .gql.ts
       baseTypesPath: ~@reachdigital/magento-graphql
     config:
       skipTypename: true

@@ -1,6 +1,6 @@
 import { Phase } from '@reachdigital/magento-graphql'
 import { SetRequired } from 'type-fest'
-import { HistoryStateQuery } from './HistoryState.graphql'
+import { HistoryStateQuery } from './HistoryState.gql'
 import { historyStateVar } from './typePolicies'
 import { UiFC } from './types'
 

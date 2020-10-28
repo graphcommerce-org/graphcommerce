@@ -1,8 +1,8 @@
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
-import { AddBundleProductToCartDocument } from './AddBundleProductToCart.graphql'
-import { ProductListItemBundleFragment } from './ProductListItemBundle.graphql'
+import { AddBundleProductToCartDocument } from './AddBundleProductToCart.gql'
+import { ProductListItemBundleFragment } from './ProductListItemBundle.gql'
 
 export default function ProductListItemBundle(props: ProductListItemBundleFragment) {
   const { sku, name } = props

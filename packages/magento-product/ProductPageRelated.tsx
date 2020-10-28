@@ -1,7 +1,7 @@
 import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import React from 'react'
 import ProductListItem from './ProductListItem'
-import { ProductPageRelatedFragment } from './ProductPageRelated.graphql'
+import { ProductPageRelatedFragment } from './ProductPageRelated.gql'
 
 export default function ProductPageRelated(props: ProductPageRelatedFragment) {
   const { related_products } = props

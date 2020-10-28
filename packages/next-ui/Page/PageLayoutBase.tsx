@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React, { PropsWithChildren } from 'react'
 
 const PageLayoutBase = (props: PropsWithChildren<{ name: string }>) => {
-  const { children } = props
+  const { children, name } = props
 
   // todo: update with https://github.com/shadowwalker/next-pwa#step-3-add-head-meta-example
   return (

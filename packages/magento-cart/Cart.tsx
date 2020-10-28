@@ -5,7 +5,6 @@ import {
   Divider,
   Theme,
   ListItemSecondaryAction,
-  Button,
   NoSsr,
   makeStyles,
 } from '@material-ui/core'
@@ -15,7 +14,7 @@ import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import clsx from 'clsx'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import React from 'react'
-import { CartDocument, CartQuery } from './Cart.graphql'
+import { CartDocument, CartQuery } from './Cart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -63,8 +62,6 @@ export default function Cart(props: CartProps) {
     exit: { x: -100 },
     layout: true,
   }
-
-  const pageAnimation: MotionProps = {}
 
   const animation: MotionProps = {
     initial: { opacity: 0 },

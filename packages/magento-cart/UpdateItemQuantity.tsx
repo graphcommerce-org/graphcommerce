@@ -6,7 +6,7 @@ import React, { useRef } from 'react'
 import {
   UpdateItemQuantityDocument,
   UpdateItemQuantityMutationVariables,
-} from './UpdateItemQuantity.graphql'
+} from './UpdateItemQuantity.gql'
 
 export default function UpdateItemQuantity(values: UpdateItemQuantityMutationVariables) {
   const { register, errors, onSubmit, required, watch, loading } = useMutationForm({

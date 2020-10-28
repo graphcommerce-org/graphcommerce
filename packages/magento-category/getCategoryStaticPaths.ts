@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.graphql'
+import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.gql'
 
 const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
   const { data } = await client.query({ query: GetCategoryStaticPathsDocument })

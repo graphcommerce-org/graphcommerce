@@ -1,5 +1,4 @@
 import { Container } from '@material-ui/core'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
@@ -23,6 +22,7 @@ import ProductListPagination from '@reachdigital/magento-product/ProductListPagi
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
+import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { PageStaticPropsFn, PageFC, PageStaticPathsFn } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'

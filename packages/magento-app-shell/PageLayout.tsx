@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { useTheme } from '@material-ui/core'
 import Header from '@reachdigital/magento-app-shell/Header'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.graphql'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.graphql'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import PageLayoutBase from '@reachdigital/next-ui/Page/PageLayoutBase'
 import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'
 import Head from 'next/head'
 import React, { PropsWithChildren } from 'react'
-import { LayoutHeaderQuery } from './Header.graphql'
+import { LayoutHeaderQuery } from './Header.gql'
 
 export type PageLayoutProps = Required<LayoutHeaderQuery> & ResolveUrlQuery
 

@@ -1,8 +1,8 @@
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
-import { AddDownloadableProductToCartDocument } from './AddDownloadableProductToCart.graphql'
-import { ProductListItemDownloadableFragment } from './ProductListItemDownloadable.graphql'
+import { AddDownloadableProductToCartDocument } from './AddDownloadableProductToCart.gql'
+import { ProductListItemDownloadableFragment } from './ProductListItemDownloadable.gql'
 
 export default function ProductListItemDownloadable(props: ProductListItemDownloadableFragment) {
   const { sku, name } = props

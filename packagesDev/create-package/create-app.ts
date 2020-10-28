@@ -3,7 +3,6 @@
 import path from 'path'
 import { URL } from 'url'
 import chalk from 'chalk'
-import { sync } from 'rimraf'
 import { getRepoInfo, hasExample, hasRepo, RepoInfo } from './helpers/examples'
 import install from './helpers/install'
 import isFolderEmpty from './helpers/is-folder-empty'
