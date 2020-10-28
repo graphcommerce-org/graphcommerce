@@ -37,7 +37,7 @@ const nextConfig = {
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
-    domains: ['m2-pwa-demo.localhost.reachdigital.io'],
+    domains: process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim()),
     imageSizes: [16, 32, 64, 128],
   },
 }
