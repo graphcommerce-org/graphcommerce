@@ -59,6 +59,18 @@ export const TestResolveUrlDocument: DocumentNode<
                   arguments: [],
                   directives: [],
                 },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'redirectCode' },
+                  arguments: [],
+                  directives: [],
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'canonical_url' },
+                  arguments: [],
+                  directives: [],
+                },
               ],
             },
           },
@@ -72,5 +84,7 @@ export type TestResolveUrlQueryVariables = Types.Exact<{
 }>
 
 export type TestResolveUrlQuery = {
-  urlResolver?: Types.Maybe<Pick<Types.EntityUrl, 'id' | 'relative_url' | 'type'>>
+  urlResolver?: Types.Maybe<
+    Pick<Types.EntityUrl, 'id' | 'relative_url' | 'type' | 'redirectCode' | 'canonical_url'>
+  >
 }
