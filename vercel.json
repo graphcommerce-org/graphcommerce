@@ -1,7 +1,0 @@
-{
-  "build": {
-    "env": {
-      "GRAPHCMS_BEARER": "@graphql_bearer"
-    }
-  }
-}
