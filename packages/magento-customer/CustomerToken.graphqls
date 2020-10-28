@@ -3,6 +3,6 @@ extend type Query {
 }
 
 extend type CustomerToken {
-  createdAt: DateTime
+  createdAt: String
   valid: Boolean
 }

@@ -21,7 +21,7 @@
       "name": "Magento GraphQL",
       "handler": {
         "graphql": {
-          "endpoint": "${MAGENTO_URL}",
+          "endpoint": "${MAGENTO_ENDPOINT}",
           "useGETForQueries": true,
           "cacheIntrospection": true,
           "schemaHeaders": {
