@@ -14,6 +14,7 @@ module.exports = {
     'prettier/react',
     'prettier/@typescript-eslint',
   ],
+  ignorePatterns: ['**/dist/**/*.js'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

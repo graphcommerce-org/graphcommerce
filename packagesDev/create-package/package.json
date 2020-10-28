@@ -8,11 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "ncc build ./index.ts -w -o dist/ -w",
-    "build": "ncc build ./index.ts -w -o dist/",
-    "prerelease": "rimraf ./dist/",
-    "release": "ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
-    "prepublish": "yarn release"
+    "dev": "tsc --watch --sourceMap --outDir dist",
+    "build": "tsc --target es5 --outDir dist"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
@@ -33,7 +30,7 @@
     "cpy": "8.1.1",
     "cross-spawn": "7.0.3",
     "got": "11.8.0",
-    "prompts": "2.3.2",
+    "prompts": "2.4.0",
     "rimraf": "3.0.2",
     "tar": "6.0.5",
     "typescript": "^4.0.3",

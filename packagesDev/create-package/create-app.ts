@@ -191,11 +191,27 @@ export async function createApp({
     ]
 
     console.log(
-      `Installing ${devDependencies
+      `Installing devDependencies ${devDependencies
         .map((val) => chalk.cyan(val))
         .join(', ')} using ${displayedCommand}...`,
     )
+
     await install(root, devDependencies, { useYarn, isOnline, isDev: true })
+
+    const dependencies = [
+      // todo: remove version constraint when actual versions are being published
+      'next',
+      'react',
+      'react-dom',
+    ]
+
+    console.log(
+      `Installing ${dependencies
+        .map((val) => chalk.cyan(val))
+        .join(', ')} using ${displayedCommand}...`,
+    )
+
+    await install(root, dependencies, { useYarn, isOnline, isDev: true })
 
     // console.log()
     // await cpy('**', root, {

@@ -19,14 +19,18 @@
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
     "@reachdigital/eslint-config-pwa": "^0.1.0",
-    "@reachdigital/typescript-config-pwa": "^0.1.0"
+    "@reachdigital/typescript-config-pwa": "^0.1.0",
+    "next": "10.0.0",
+    "react": "17.0.1"
   },
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/magento-graphql": "0.1.0",
-    "next": "^9.5.5",
+    "@reachdigital/prettier-config-pwa": "^0.1.0",
+    "next": "^10.0.0",
     "react": "^17.0.1",
+    "react-dom": "17.0.1",
     "type-fest": "^0.18.0"
   }
 }

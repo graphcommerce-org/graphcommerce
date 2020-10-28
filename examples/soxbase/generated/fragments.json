@@ -1,13 +1,7 @@
 {
   "possibleTypes": {
-    "Node": [
-      "Page",
-      "Asset"
-    ],
-    "CartAddressInterface": [
-      "BillingCartAddress",
-      "ShippingCartAddress"
-    ],
+    "Node": ["Page", "Asset"],
+    "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
       "SimpleCartItem",
       "VirtualCartItem",
@@ -23,42 +17,19 @@
       "GroupedProduct",
       "ConfigurableProduct"
     ],
-    "CategoryInterface": [
-      "CategoryTree"
-    ],
-    "MediaGalleryInterface": [
-      "ProductImage",
-      "ProductVideo"
-    ],
-    "ProductLinksInterface": [
-      "ProductLinks"
-    ],
+    "CategoryInterface": ["CategoryTree"],
+    "MediaGalleryInterface": ["ProductImage", "ProductVideo"],
+    "ProductLinksInterface": ["ProductLinks"],
     "CreditMemoItemInterface": [
       "DownloadableCreditMemoItem",
       "BundleCreditMemoItem",
       "CreditMemoItem"
     ],
-    "OrderItemInterface": [
-      "DownloadableOrderItem",
-      "BundleOrderItem",
-      "OrderItem"
-    ],
-    "InvoiceItemInterface": [
-      "DownloadableInvoiceItem",
-      "BundleInvoiceItem",
-      "InvoiceItem"
-    ],
-    "ShipmentItemInterface": [
-      "BundleShipmentItem",
-      "ShipmentItem"
-    ],
-    "AggregationOptionInterface": [
-      "AggregationOption"
-    ],
-    "LayerFilterItemInterface": [
-      "LayerFilterItem",
-      "SwatchLayerFilterItem"
-    ],
+    "OrderItemInterface": ["DownloadableOrderItem", "BundleOrderItem", "OrderItem"],
+    "InvoiceItemInterface": ["DownloadableInvoiceItem", "BundleInvoiceItem", "InvoiceItem"],
+    "ShipmentItemInterface": ["BundleShipmentItem", "ShipmentItem"],
+    "AggregationOptionInterface": ["AggregationOption"],
+    "LayerFilterItemInterface": ["LayerFilterItem", "SwatchLayerFilterItem"],
     "PhysicalProductInterface": [
       "SimpleProduct",
       "BundleProduct",
@@ -82,13 +53,7 @@
       "BundleProduct",
       "ConfigurableProduct"
     ],
-    "SwatchDataInterface": [
-      "ImageSwatchData",
-      "TextSwatchData",
-      "ColorSwatchData"
-    ],
-    "SwatchLayerFilterItemInterface": [
-      "SwatchLayerFilterItem"
-    ]
+    "SwatchDataInterface": ["ImageSwatchData", "TextSwatchData", "ColorSwatchData"],
+    "SwatchLayerFilterItemInterface": ["SwatchLayerFilterItem"]
   }
 }

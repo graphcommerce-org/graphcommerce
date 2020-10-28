@@ -33,7 +33,7 @@
     "start": "yarn start:soxbase-api && yarn start:soxbase",
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
-    "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html}'",
+    "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc:lint": "tsc --noEmit -p ."
   },
   "sideEffects": false,
