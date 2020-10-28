@@ -52,7 +52,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
     ...mesh,
   })
   return cors({
-    allowMethods: ['GET', 'POST'],
+    allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: [
       'X-CSRF-Token',
       'X-Requested-With',
