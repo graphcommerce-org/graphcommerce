@@ -8,6 +8,7 @@ import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
 import '@graphql-mesh/cache-file'
 import cors from 'micro-cors'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
   let content = JSON.stringify(json)
@@ -51,7 +52,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
     playground: true,
     ...mesh,
   })
-  return cors({
+  const corsHandler = cors({
     allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: [
       'X-CSRF-Token',
@@ -67,5 +68,9 @@ export default async function createHandler(config: YamlConfig.Config, path: str
       'X-HTTP-Method-Override',
       'Authorization',
     ],
-  })(apolloServer.createHandler({ path }))
+  })
+  const apoloHandler = apolloServer.createHandler({ path })
+  return corsHandler((req: NextApiRequest, res: NextApiResponse) => {
+    return req.method === 'OPTIONS' ? res.end() : apoloHandler(req, res)
+  })
 }
