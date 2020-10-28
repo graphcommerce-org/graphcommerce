@@ -19,7 +19,7 @@ jobs:
           retryInterval: 2000
       - uses: falnyr/replace-env-vars-action@v1.2.1
         env:
-          LHCI_BASE_URL: ${{ steps.deployment.outputs.deployment }} 
+          LHCI_BASE_URL: ${{ steps.deployment.outputs.deployment }}
         with:
           filename: ./lighthouserc.json
       - run: lhci autorun || echo "failed with errors"

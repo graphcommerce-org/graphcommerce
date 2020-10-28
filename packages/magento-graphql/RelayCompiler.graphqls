@@ -1,0 +1,5 @@
+# Relay compiler specific extensions else it wont compile
+directive @client on FIELD
+
+#__schema: __Schema!
+#__type(name: String!): __Type

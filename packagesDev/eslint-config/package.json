@@ -1,0 +1,40 @@
+{
+  "name": "@reachdigital/eslint-config-pwa",
+  "version": "0.1.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "@reachdigital/browserslist-config-pwa": "^0.1.0",
+    "@reachdigital/eslint-config-pwa": "^0.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-import-resolver-webpack": "^0.13.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "@reachdigital/browserslist-config-pwa": "^0.1.0",
+    "@reachdigital/eslint-config-pwa": "^0.1.0",
+    "@reachdigital/typescript-config-pwa": "^0.1.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "prettier": "@reachdigital/prettier-config-pwa",
+  "browserslist": [
+    "extends @reachdigital/browserslist-config-pwa"
+  ],
+  "eslintConfig": {
+    "extends": "@reachdigital/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}

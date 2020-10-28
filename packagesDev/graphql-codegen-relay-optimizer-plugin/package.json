@@ -1,0 +1,55 @@
+{
+  "name": "@reachdigital/graphql-codegen-relay-optimizer-plugin",
+  "version": "0.1.0",
+  "description": "GraphQL Code Generator plugin for optimizing your GraphQL queries relay style.",
+  "license": "MIT",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "author": {
+    "name": "Laurin Quast",
+    "email": "laurinquast@googlemail.com",
+    "url": "https://github.com/n1ru4l"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n1ru4l/graphql-codegen-relay-plugins"
+  },
+  "bugs": {
+    "url": "https://github.com/n1ru4l/graphql-codegen-relay-plugins/issues"
+  },
+  "keywords": [
+    "graphql",
+    "codegen",
+    "graphql-codegen",
+    "plugin",
+    "relay"
+  ],
+  "peerDependencies": {
+    "graphql": "14.x.x || 15.x.x"
+  },
+  "dependencies": {
+    "@graphql-codegen/plugin-helpers": "1.17.9",
+    "relay-compiler": "10.0.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/testing": "1.17.7",
+    "@types/jest": "24.9.1",
+    "@types/relay-compiler": "8.0.0",
+    "graphql": "15.3.0",
+    "jest": "24.7.1",
+    "ts-jest": "25.5.1",
+    "typescript": "4.0.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "dev": "tsc --watch --sourceMap --outDir dist/main",
+    "build:module": "tsc --target es2017 --outDir dist/module",
+    "build:main": "tsc --target es5 --outDir dist/main",
+    "build": "yarn build:module && yarn build:main"
+  },
+  "files": [
+    "dist/**/*",
+    "LICENSE",
+    "README.md"
+  ]
+}

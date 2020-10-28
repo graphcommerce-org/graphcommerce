@@ -1,0 +1,68 @@
+import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
+import CmsPageMeta from '@reachdigital/magento-cms/CmsPageMeta'
+import getCmsPageProps, { GetCmsPageProps } from '@reachdigital/magento-cms/getCmsPageProps'
+import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
+import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
+import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
+import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import NextError from 'next/error'
+import React from 'react'
+import apolloClient from '../../lib/apolloClient'
+
+type PageComponent = PageFC<GetCmsPageProps, PageLayoutProps>
+type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
+type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
+
+const CmsPage: PageComponent = ({ cmsPage }) => {
+  if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
+
+  if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
+
+  return (
+    <FullPageUi title={cmsPage.title ?? ''}>
+      <CmsPageMeta {...cmsPage} />
+      <CmsPageContent {...cmsPage} />
+    </FullPageUi>
+  )
+}
+
+CmsPage.Layout = PageLayout
+
+registerRouteUi('/page', FullPageUi)
+
+export default CmsPage
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getStaticPaths: GetPageStaticPaths = async () => {
+  return {
+    paths: [{ params: { url: 'home' } }],
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetPageStaticProps = async (ctx: { params: { url: string } }) => {
+  const client = apolloClient()
+  const staticClient = apolloClient()
+
+  const config = getStoreConfig(client)
+  const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)
+  const cmsPageProps = getCmsPageProps(
+    (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
+    staticClient,
+  )
+  const layoutHeader = getLayoutHeaderProps(staticClient)
+
+  return {
+    props: {
+      title: (await cmsPageProps).cmsPage?.title ?? '',
+      ...(await urlResolve),
+      ...(await layoutHeader),
+      ...(await cmsPageProps),
+      apolloState: client.cache.extract(),
+    },
+    revalidate: 60 * 20,
+  }
+}

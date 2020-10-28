@@ -1,0 +1,57 @@
+{
+  "name": "@reachdigital/next-ui",
+  "private": true,
+  "version": "0.1.0",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.2.5",
+    "@graphql-typed-document-node/core": "^3.1.0",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.10.0",
+    "@reachdigital/magento-graphql": "0.1.0",
+    "clsx": "^1.1.1",
+    "framer-motion": "^2.9.4",
+    "graphql": "15.3.0",
+    "next": "9.5.5",
+    "next-transpile-modules": "^4.1.0",
+    "node-fetch": "^2.6.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-focus-lock": "^2.4.1",
+    "react-hook-form": "^6.9.6",
+    "react-spring": "^8.0.27",
+    "sharp": "^0.26.2",
+    "type-fest": "^0.18.0",
+    "use-resize-observer": "^6.1.0"
+  },
+  "devDependencies": {
+    "@reachdigital/browserslist-config-pwa": "^0.1.0",
+    "@reachdigital/eslint-config-pwa": "^0.1.0",
+    "@reachdigital/typescript-config-pwa": "^0.1.0",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
+    "graphql-tag": "2.11.0",
+    "typescript": "^4.0.3"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": "12.x"
+  },
+  "prettier": "@reachdigital/prettier-config-pwa",
+  "browserslist": [
+    "extends @reachdigital/browserslist-config-pwa"
+  ],
+  "eslintConfig": {
+    "extends": "@reachdigital/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  }
+}

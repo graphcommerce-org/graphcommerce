@@ -1,30 +1,5 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "strict": true,
-    "strictFunctionTypes": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noImplicitAny": false,
-    "jsx": "preserve"
-  },
-  "exclude": ["node_modules", "public"],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/next.config.js",
-    "**/apollo.config.js",
-    ".lighthouserc.js",
-    ".eslintrc.js"
-  ]
+  "extends": "@reachdigital/typescript-config-pwa/nextjs.json",
+  "exclude": ["node_modules", "packages/soxbase/public"],
+  "include": ["**/*.ts", "**/*.tsx", "**/next.config.js", "**/apollo.config.js", "**/index.js"]
 }

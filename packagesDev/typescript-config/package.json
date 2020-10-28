@@ -1,0 +1,12 @@
+{
+  "name": "@reachdigital/typescript-config-pwa",
+  "version": "0.1.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": "12.x"
+  },
+  "dependencies": {
+    "@tsconfig/node12": "^1.0.7"
+  }
+}
