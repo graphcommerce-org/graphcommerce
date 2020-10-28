@@ -1643,7 +1643,6 @@ export type ProductPageQuery = {
         Types.Maybe<
           | ({ __typename: 'VirtualProduct' } & Pick<
               Types.VirtualProduct,
-              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -2381,7 +2380,6 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'DownloadableProduct' } & Pick<
               Types.DownloadableProduct,
-              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
