@@ -16,22 +16,25 @@
 
 Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 
-1. `yarn && cp .env.example .env`
-2. copy 1Password "m2-pwa .env" to `packages/soxbase-api/.env`
+1. `yarn`
+2. `cp .env.example .env`
+3. `cp examples/soxbase-api/.env.example examples/soxbase-api/.env`
+4. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
+   `soxbase-api`
+5. `cp examples/soxbase/.env.example examples/soxbase/.env`
+
+## Customize endpoint:
+
+Replace MAGENTO_ENDPOINT in `.env` and `examples/soxbase-api/.env` with your own
+endpoint.
 
 ## Run
 
-Site:
-
 - `yarn dev`
 
-## Build
+## Local build
 
 - `yarn build`
-
-## Analyze bundle
-
-- `ANALYZE=true yarn build`
 
 ## Commits
 

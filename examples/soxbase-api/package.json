@@ -4,9 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next -p 3001",
+    "dev": "next -p 3001",
     "build": "next build",
-    "start": "next start -p 3001"
+    "start": "next start",
+    "start-local": "next start -p 3001"
   },
   "dependencies": {
     "@reachdigital/graphql-mesh": "0.1.0",

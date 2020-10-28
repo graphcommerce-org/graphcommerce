@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 node_modules
 /.pnp
@@ -10,7 +8,7 @@ node_modules
 
 # next.js
 .next/
-/out/
+out/
 
 # misc
 .DS_Store
@@ -23,9 +21,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # application
-/generated
-/public/workbox-*.js
-/public/sw.js
+**/public/workbox-*.js
+**/public/sw.js
 
 .vercel
 
