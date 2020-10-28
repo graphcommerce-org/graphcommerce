@@ -49,7 +49,6 @@ const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
       }}
       aria-label='Previous page'
       {...fabProps}
-      ref={ref}
     >
       <ArrowBack
         shapeRendering='geometricPrecision'

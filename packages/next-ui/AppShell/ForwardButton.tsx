@@ -44,7 +44,7 @@ const ForwardButton = React.forwardRef((props: BackButtonProps, ref) => {
   const { children, down, ...fabProps } = props
 
   return (
-    <Button variant='pill' classes={classes} {...fabProps} ref={ref}>
+    <Button variant='pill' classes={classes} {...fabProps}>
       <span className={text}>{children}</span>
       <ArrowForward
         shapeRendering='geometricPrecision'
