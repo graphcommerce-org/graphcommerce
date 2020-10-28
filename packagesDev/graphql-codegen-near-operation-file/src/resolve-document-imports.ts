@@ -70,18 +70,20 @@ export function resolveDocumentImports<T>(
   schemaObject: GraphQLSchema,
   importResolverOptions: DocumentImportResolverOptions,
 ): Array<ResolveDocumentImportResult> {
-  const { baseOutputDir, documents, config, pluginMap } = presetOptions
+  const { baseOutputDir, documents, pluginMap } = presetOptions
   const { generateFilePath, schemaTypesSource, baseDir, typesImport } = importResolverOptions
 
   const resolveFragments = buildFragmentResolver(importResolverOptions, presetOptions, schemaObject)
   const fragmentRegistry = buildFragmentRegistry(importResolverOptions, presetOptions, schemaObject)
 
-  const isRelayOptimizer =
-    typeof pluginMap['@reachdigital/graphql-codegen-relay-optimizer-plugin'] !== 'undefined'
+  const isRelayOptimizer = !!Object.keys(pluginMap).find((plugin) =>
+    plugin.includes('relay-optimizer-plugin'),
+  )
 
   return documents.map((documentFile) => {
     try {
       const isFragment = typeof getFragmentName(documentFile) !== 'undefined'
+
       if (!isFragment && isRelayOptimizer) {
         const generatedFilePath = generateFilePath(documentFile.location!)
 
@@ -130,6 +132,7 @@ export function resolveDocumentImports<T>(
       )
 
       if (
+        isRelayOptimizer ||
         isUsingTypes(
           documentFile.document!,
           externalFragments.map((m) => m.name),

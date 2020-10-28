@@ -5,8 +5,8 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "yarn build:codegen",
-      "name": "Run yarn build:codegen",
+      "command": "yarn build:codegen-run",
+      "name": "Run yarn build:codegen-run",
       "request": "launch",
       "type": "node-terminal"
     },
