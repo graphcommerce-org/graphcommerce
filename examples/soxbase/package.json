@@ -1,7 +1,7 @@
 {
   "name": "@reachdigital/soxbase",
-  "homepage": "https://project-reachdigital-nl.now.sh/",
-  "version": "1.42.0",
+  "homepage": "https://soxbase.vercel.app/",
+  "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "12.x"
