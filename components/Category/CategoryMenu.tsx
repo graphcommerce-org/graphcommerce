@@ -10,12 +10,17 @@ const useStyles = makeStyles(
       borderBottom: '1px solid rgba(0,0,0,0.2)',
       padding: `${theme.page.vertical} 0`,
     },
+    margin: {
+      margin: `${theme.page.vertical} 0`,
+    },
+    menumargin: {
+      padding: '0 6vw',
+    },
     border: {
       border: '1px solid red;',
     },
-    placeholder: {
-      background: '#efefef',
-      height: '25vw',
+    categoryimage: {
+      height: '38vw',
     },
     [theme.breakpoints.down('xs')]: {
       placeholder: {
@@ -37,8 +42,8 @@ export default function CategoryMenu({ children, params, name }) {
       alignItems='center'
       className={classes.wrapper}
     >
-      <Grid container xs={12} sm={6}>
-        <Grid item xs={12}>
+      <Grid container xs={12} sm={5} className={classes.menumargin}>
+        <Grid item xs={12} className={classes.margin}>
           <Typography variant='h2' component='h1'>
             {name}
           </Typography>
@@ -50,9 +55,9 @@ export default function CategoryMenu({ children, params, name }) {
           delete linkParams.currentPage
 
           return (
-            <Grid key={category.id} {...linkParams} item xs={6}>
+            <Grid key={category.id} {...linkParams} item xs={6} className={classes.margin}>
               <CategoryLink key={category.id} {...linkParams} underline='none' color='textPrimary'>
-                <Typography variant='h3' component='span'>
+                <Typography variant='h4' component='span'>
                   {category.name}
                 </Typography>
               </CategoryLink>
@@ -61,7 +66,7 @@ export default function CategoryMenu({ children, params, name }) {
         })}
       </Grid>
 
-      <Grid className={classes.placeholder} container xs={12} sm={6} />
+      <Grid className={classes.categoryimage} container xs={12} sm={7} />
     </Grid>
   )
 }
