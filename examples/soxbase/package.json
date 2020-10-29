@@ -65,7 +65,7 @@
     "@reachdigital/eslint-config-pwa": "^0.1.0",
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0",
-    "@types/node": "^14.14.2",
+    "@types/node": "^14.14.6",
     "@types/react": "^16.9.53",
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.0",
