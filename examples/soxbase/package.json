@@ -66,7 +66,7 @@
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0",
     "@types/node": "^14.14.2",
-    "@types/react": "^16.9.53",
+    "@types/react": "^16.9.55",
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.0",
     "@types/use-resize-observer": "^6.0.0",
