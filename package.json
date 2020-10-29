@@ -84,7 +84,7 @@
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.0",
     "@types/use-resize-observer": "^6.0.0",
-    "@types/webpack": "^4.41.23",
+    "@types/webpack": "^4.41.24",
     "eslint": "^7.12.1",
     "husky": "^4.3.0",
     "prettier": "^2.1.2",
