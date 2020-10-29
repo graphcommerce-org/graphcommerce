@@ -142,6 +142,10 @@ defaultTheme.overrides = {
       color: '#fff',
       '& .MuiSvgIcon-root': { color: '#fff' },
     },
+    containedSecondary: {
+      color: '#fff',
+      '& .MuiSvgIcon-root': { color: '#fff' },
+    },
     containedSizeLarge: { padding: '15px 30px' },
     endIcon: { marginLeft: 20 },
     iconSizeLarge: {
@@ -160,6 +164,20 @@ defaultTheme.overrides = {
     extended: {
       fontWeight: 400,
       textTransform: 'none',
+    },
+  },
+  MuiInputLabel: {
+    root: {
+      '&$focused:not($error)': {
+        color: defaultTheme.palette.secondary.main,
+      },
+    },
+  },
+  MuiOutlinedInput: {
+    root: {
+      '&$focused $notchedOutline': {
+        borderColor: defaultTheme.palette.secondary.main,
+      },
     },
   },
 }

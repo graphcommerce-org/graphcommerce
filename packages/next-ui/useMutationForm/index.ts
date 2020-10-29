@@ -101,7 +101,7 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   const [loading, setLoading] = useState<boolean>(false)
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { register, errors, handleSubmit, reset, watch, control } = useForm<TVariables>({
+  const { register, errors, handleSubmit, reset, watch, control, formState } = useForm<TVariables>({
     defaultValues: mergeDeep(defaultValues, values),
     ...useFormProps,
   })
@@ -153,7 +153,9 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
     onSubmit,
     watch,
     control,
+    formState,
     ...result,
+    // todo: replace by formState.isSubmitting?
     loading: loading || result.loading,
   }
 }

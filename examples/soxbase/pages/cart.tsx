@@ -8,6 +8,7 @@ import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { PageFC, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import apolloClient from '../lib/apolloClient'
@@ -20,9 +21,9 @@ const CartPage: PageComponent = () => {
     <BottomDrawerUi
       title='Cart'
       headerForward={
-        // <PageLink href='/checkout'>
-        <ForwardButton color='primary'>Checkout</ForwardButton>
-        // </PageLink>
+        <PageLink href='/checkout'>
+          <ForwardButton color='primary'>Checkout</ForwardButton>
+        </PageLink>
       }
     >
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
