@@ -110,7 +110,7 @@ export function useMutationForm<TData, TVariables = { [index: string]: unknown }
   useEffect(() => {
     if (valuesJson) {
       const changeValues = JSON.parse(valuesJson) as UnpackNestedValue<DeepPartial<TVariables>>
-      reset(changeValues, { dirtyFields: true })
+      reset(changeValues)
     }
   }, [valuesJson, reset])
 

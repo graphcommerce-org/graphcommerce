@@ -1,0 +1,16 @@
+mutation TestShippingAddressForm(
+  $cartId: String!
+  $address: CartAddressInput!
+  $customerNote: String = "joi"
+) {
+  setShippingAddressesOnCart(
+    input: {
+      cart_id: $cartId
+      shipping_addresses: [{ address: $address, customer_notes: $customerNote }]
+    }
+  ) {
+    cart {
+      id
+    }
+  }
+}
