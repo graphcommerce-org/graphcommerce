@@ -19,7 +19,7 @@
     "@graphql-mesh/transform-cache": "^0.7.9",
     "@graphql-mesh/transform-filter-schema": "^0.6.10",
     "@graphql-mesh/types": "^0.16.0",
-    "apollo-server-micro": "^2.16.1",
+    "apollo-server-micro": "^2.19.0",
     "graphql": "15.4.0",
     "micro-cors": "^0.1.1"
   },
