@@ -2,7 +2,7 @@ import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
 import Cart from '@reachdigital/magento-cart/Cart'
-import CartItem from '@reachdigital/magento-cart/CartItem'
+import CartItem2 from '@reachdigital/magento-cart/CartItem2'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
@@ -30,14 +30,14 @@ const CartPage: PageComponent = () => {
       <Container>
         <Cart
           renderer={{
-            BundleCartItem: CartItem,
-            ConfigurableCartItem: CartItem,
-            DownloadableCartItem: CartItem,
-            SimpleCartItem: CartItem,
-            VirtualCartItem: CartItem,
+            BundleCartItem: CartItem2,
+            ConfigurableCartItem: CartItem2,
+            DownloadableCartItem: CartItem2,
+            SimpleCartItem: CartItem2,
+            VirtualCartItem: CartItem2,
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore GiftCardProduct is only available in Commerce
-            GiftCardCartItem: CartItem,
+            GiftCardCartItem: CartItem2,
           }}
         />
       </Container>

@@ -1,9 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, CircularProgress, debounce } from '@material-ui/core'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import { useMutationForm, emailPattern } from '@reachdigital/next-ui/useMutationForm'
-import React, { PropsWithChildren, useEffect, useState } from 'react'
+import React, { PropsWithChildren, useEffect } from 'react'
 import { CartDocument } from '../Cart.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
@@ -39,11 +38,14 @@ export default function GuestEmailForm({
   const classes = useStyles()
   const { data: cartQuery } = useQuery(CartDocument)
 
-  const { register, errors, onSubmit, required, loading, watch, formState } = useMutationForm({
-    mutation: SetGuestEmailOnCartDocument,
+  const mutationForm = useMutationForm(SetGuestEmailOnCartDocument, {
     mode: 'onBlur',
-    values: { cartId: cartQuery?.cart?.id, email: cartQuery?.cart?.email ?? '' },
+    defaultValues: {
+      cartId: cartQuery?.cart?.id,
+      email: cartQuery?.cart?.email ?? '',
+    },
   })
+  const { register, errors, handleSubmit, required, watch, formState, Field } = mutationForm
 
   const isValidEmail = !!emailPattern.exec(watch('email'))
   const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {
@@ -69,17 +71,17 @@ export default function GuestEmailForm({
   return (
     <form
       noValidate
-      {...(canSubmit && { onChange: debounce(onSubmit, 500) })}
+      {...(canSubmit && { onChange: debounce(handleSubmit, 500) })}
       className={classes.form}
     >
-      <TextField
+      <Field
+        Component={TextField}
         variant='outlined'
         type='text'
         error={formState.isSubmitted && !!errors.email}
         id='email'
         name='email'
         label='Email'
-        required={required.email}
         inputRef={register({
           required: required.email,
           pattern: { value: emailPattern, message: 'Invalid email address' },

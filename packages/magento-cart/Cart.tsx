@@ -117,7 +117,12 @@ export default function Cart(props: CartProps) {
             <ListItem ContainerComponent='div'>
               <ListItemText inset>{discount?.label}</ListItemText>
               <ListItemSecondaryAction>
-                {discount?.amount && <Money {...discount?.amount} key={idx} />}
+                {discount?.amount && (
+                  <Money
+                    currency={discount?.amount.currency}
+                    value={(discount?.amount.value ?? 0) * -1}
+                  />
+                )}
               </ListItemSecondaryAction>
             </ListItem>
           </motion.div>

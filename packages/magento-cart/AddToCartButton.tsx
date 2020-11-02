@@ -1,3 +1,4 @@
+import { error } from 'console'
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
@@ -13,23 +14,20 @@ import {
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
 
-export default function AddToCartButton<
-  TData,
-  TVariables = { cartId: string; [index: string]: unknown }
->(
+export default function AddToCartButton<Q, V extends { cartId: string; [index: string]: unknown }>(
   props: Pick<ProductInterface, 'name'> & {
-    mutation: TypedDocumentNode<TData, TVariables>
-    variables: Omit<TVariables, 'cartId'>
+    mutation: TypedDocumentNode<Q, V>
+    variables: Omit<V, 'cartId'>
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
   const { name, mutation, variables, ...buttonProps } = props
 
   const requestCartId = useRequestCartId()
-  const { onSubmit, loading, called, error } = useMutationForm<TData, TVariables>({
-    mutation,
-    values: (variables as unknown) as UnpackNestedValue<DeepPartial<TVariables>>,
+  const mutationForm = useMutationForm<Q, V>(mutation, {
+    defaultValues: { ...variables },
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
+  const { handleSubmit, errors, formState } = mutationForm
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
@@ -41,17 +39,23 @@ export default function AddToCartButton<
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={onSubmit} noValidate>
-      <Button type='submit' disabled={loading} color='primary' variant='contained' {...buttonProps}>
+    <form onSubmit={handleSubmit} noValidate>
+      <Button
+        type='submit'
+        disabled={formState.isSubmitting}
+        color='primary'
+        variant='contained'
+        {...buttonProps}
+      >
         Add to Cart
       </Button>
 
       <ErrorSnackbarLoader
-        open={called && !loading && !!error?.message}
-        message={<>{error?.message}</>}
+        open={formState.isSubmitted && !!errors.submission}
+        message={<>{errors.submission?.message}</>}
       />
       <MessageSnackbarLoader
-        open={called && !loading && !error?.message}
+        open={called && !formState.isSubmitting && !error?.message}
         message={
           <>
             Added <em>&lsquo;{name ?? 'Product'}&rsquo;</em> to cart

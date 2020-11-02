@@ -14,11 +14,13 @@ import {
   ListTypeNode,
   NamedTypeNode,
   NonNullTypeNode,
+  OperationTypeNode,
 } from 'graphql'
+import { useMemo } from 'react'
 import { LiteralUnion } from 'type-fest'
 import { Path } from './getter'
 
-function isOperationDefinitionNode(
+function isOperationDefinition(
   node: DefinitionNode | OperationDefinitionNode,
 ): node is OperationDefinitionNode {
   return (node as OperationDefinitionNode).variableDefinitions !== undefined
@@ -37,6 +39,14 @@ type OptionalKeys<T> = { [k in keyof T]-?: undefined extends T[k] ? never : k }[
 
 type IsRequired<V> = {
   [k in keyof V]-?: undefined extends V[k] ? false : true
+}
+
+export type DeepIsRequired<V> = {
+  [k in keyof V]-?: undefined extends V[k]
+    ? false
+    : V[k] extends Record<string, unknown>
+    ? DeepIsRequired<V[k]>
+    : true
 }
 
 type DeepStringify<V> = {
@@ -60,58 +70,48 @@ function variableType<T extends TypeNode>(type: T): FieldTypes {
   return (type as NamedTypeNode).name.value as keyof Scalars
 }
 
-export type FormPaths<D extends TypedDocumentNode> = Path<VariablesOf<D>>
-
-type Entries<T> = {
-  [K in keyof T]: [K, T[K]]
-}[keyof T][]
-
-function entries<T extends Record<string, unknown>>(obj: T) {
-  return Object.entries(obj) as Entries<T>
-}
-
-export default function handlerFactory<D extends TypedDocumentNode>(document: D) {
-  type V = VariablesOf<D>
+export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>
   type Encoding = { [k in keyof V]: FieldTypes }
   type Required = IsRequired<V>
-  type Paths = FormPaths<D>
   let requiredPartial: Partial<Required> = {}
   let encodingPartial: Partial<Encoding> = {}
   let defaults: Defaults = {}
+  let type: OperationTypeNode | undefined
 
   document.definitions.forEach((definition) => {
-    if (isOperationDefinitionNode(definition) && Array.isArray(definition.variableDefinitions)) {
-      definition.variableDefinitions.forEach((variable: VariableDefinitionNode) => {
-        const name = variable.variable.name.value as keyof V
+    if (!isOperationDefinition(definition)) return
+    if (!definition.variableDefinitions) return
 
-        requiredPartial = { ...requiredPartial, [name]: variable.type.kind === 'NonNullType' }
-        encodingPartial = { ...encodingPartial, [name]: variableType(variable.type) }
+    type = definition.operation
+    definition.variableDefinitions.forEach((variable: VariableDefinitionNode) => {
+      const name = variable.variable.name.value as keyof V
 
-        if (variable.defaultValue && isWithValueNode(variable.defaultValue)) {
-          defaults = {
-            ...defaults,
-            [name]: variable.defaultValue.value as Defaults[keyof Defaults],
-          }
+      requiredPartial = { ...requiredPartial, [name]: variable.type.kind === 'NonNullType' }
+      encodingPartial = { ...encodingPartial, [name]: variableType(variable.type) }
+
+      if (variable.defaultValue && isWithValueNode(variable.defaultValue)) {
+        defaults = {
+          ...defaults,
+          [name]: (variable.defaultValue.value as unknown) as Defaults[keyof Defaults],
         }
-      })
-    }
+      }
+    })
   })
 
   const required = requiredPartial as Required
   const encoding = encodingPartial as Encoding
 
+  /**
+   * Returns an array of missing fields
+   */
   function validate(variables: DeepStringify<V>) {
-    let valid = true
-    entries(required).forEach(([key]) => {
-      if (!variables[key]) valid = false
-    })
-    return valid
+    return Object.entries(variables)
+      .filter(([name]) => !variables[name])
+      .map(([name]) => name)
   }
 
-  const name = (string: Paths) => string
-
-  function heuristicEncode(val: unknown) {
+  function heuristicEncode(val: string) {
     if (Number(val).toString() === val) return Number(val)
     if (val === 'true') return true
     if (val === 'false') return false
@@ -133,10 +133,26 @@ export default function handlerFactory<D extends TypedDocumentNode>(document: D)
       Object.entries(variables).map(([key, val]) => {
         return [key, encodeItem(enc[key], val)]
       }),
+    ) as V
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const Field = <P extends {}>(
+    props: Omit<P, 'required'> & { Component: React.ComponentType<P>; name: Path<V> },
+  ) => {
+    const { Component, name, ...other } = props
+    return (
+      <Component
+        {...((other as unknown) as P)}
+        name={name}
+        required={required[name as keyof IsRequired<V>]}
+      />
     )
   }
 
-  function shape() {}
+  return { type, required, defaults, validate, encode, Field }
+}
 
-  return { required, encoding, defaults, validate, encode, name }
+export function useGqlDocumentHandler<Q, V>(document: TypedDocumentNode<Q, V>) {
+  return useMemo(() => handlerFactory<Q, V>(document), [document])
 }

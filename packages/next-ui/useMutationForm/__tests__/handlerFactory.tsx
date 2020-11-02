@@ -1,8 +1,9 @@
+import { TextField } from '@material-ui/core'
 import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.gql'
-import handlerFactory from '../nestedToFlat'
+import handlerFactory from '../handlerFactory'
 
 describe('useMutationForm/nestedToFlat', () => {
-  const { required, defaults, name, encode, validate } = handlerFactory(
+  const { required, defaults, encode, validate, Field } = handlerFactory(
     TestShippingAddressFormDocument,
   )
 
@@ -49,7 +50,17 @@ describe('useMutationForm/nestedToFlat', () => {
         save_in_address_book: true,
       },
     })
+  })
+  it('Field component', () => {
+    const myField = <Field Component={TextField} name='customerNote' />
+    const cartComponent = <Field Component={TextField} name='cartId' />
+    const customerNode = <Field Component={TextField} name='customerNote' />
+    const firstName = <Field Component={TextField} name='address.firstname' />
+    const streetOne = <Field Component={TextField} name='address.street[0]' />
 
-    name('address')
+    // @ts-expect-error the field is not allowed
+    const wrongNestedField = <Field Component={TextField} name='address.street[]' />
+    // @ts-expect-error the field is not allowed
+    const wrongField = <Field Component={TextField} name='asdf' />
   })
 })

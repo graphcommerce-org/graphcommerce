@@ -24,11 +24,15 @@ export default function ShippingAddressForm() {
   })
   const isCustomer = !!customerQuery?.customer
 
-  const { register, errors, onSubmit, required, loading, watch, formState } = useMutationForm({
-    mutation: ShippingAddressFormDocument,
-  })
-
-  console.log(required)
+  const {
+    register,
+    errors,
+    handleSubmit: onSubmit,
+    required,
+    loading,
+    watch,
+    formState,
+  } = useMutationForm(ShippingAddressFormDocument)
 
   return (
     <>

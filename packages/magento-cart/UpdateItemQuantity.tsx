@@ -1,5 +1,4 @@
 import { debounce } from '@material-ui/core'
-import ClearIcon from '@material-ui/icons/Delete'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import React, { useRef } from 'react'
@@ -8,42 +7,31 @@ import {
   UpdateItemQuantityMutationVariables,
 } from './UpdateItemQuantity.gql'
 
-export default function UpdateItemQuantity(values: UpdateItemQuantityMutationVariables) {
-  const { register, errors, onSubmit, required, watch, loading } = useMutationForm({
-    mutation: UpdateItemQuantityDocument,
-    values,
+export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVariables) {
+  const { cartId, cartItemId, quantity } = props
+  const mutationForm = useMutationForm(UpdateItemQuantityDocument, {
+    defaultValues: { cartId, cartItemId, quantity },
     mode: 'onChange',
   })
+  const { register, errors, handleSubmit, required, formState } = mutationForm
 
+  // @todo TextInputNumber can't handle an input ref
   const ref = useRef<HTMLInputElement>(null)
   register(ref.current, { required: required.quantity })
 
-  const isTrash = watch('quantity') <= 1
-
   return (
-    <form noValidate onChange={debounce(onSubmit, 600)}>
+    <form noValidate onChange={debounce(handleSubmit, 600)}>
       <TextInputNumber
         size='small'
-        variant='standard'
-        inputProps={{ min: isTrash ? 0 : 1 }}
+        variant='outlined'
+        inputProps={{ min: 1 }}
         error={!!errors.quantity}
-        id='quantity'
+        id={`quantity-${cartItemId}`}
         name='quantity'
         required={required.quantity}
         inputRef={ref}
-        helperText={errors?.quantity?.message}
-        disabled={loading}
-        {...(isTrash && {
-          DownProps: {
-            children: (
-              <ClearIcon
-                shapeRendering='geometricPrecision'
-                titleAccess='Remove item'
-                fontSize='small'
-              />
-            ),
-          },
-        })}
+        helperText={errors.quantity?.message}
+        disabled={formState.isSubmitting}
       />
     </form>
   )

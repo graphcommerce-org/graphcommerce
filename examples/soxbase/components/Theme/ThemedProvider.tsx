@@ -161,6 +161,10 @@ defaultTheme.overrides = {
       color: '#fff',
       '& .MuiSvgIcon-root': { color: '#fff' },
     },
+    secondary: {
+      color: '#fff',
+      '& .MuiSvgIcon-root': { color: '#fff' },
+    },
     extended: {
       fontWeight: 400,
       textTransform: 'none',

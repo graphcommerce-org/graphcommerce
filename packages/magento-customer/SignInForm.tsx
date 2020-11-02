@@ -37,15 +37,13 @@ const useStyles = makeStyles(
 export default function SignInForm({ children }: PropsWithChildren<unknown>) {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const { register, errors, onSubmit, required, loading, error } = useMutationForm({
-    mutation: SignInDocument,
-    onComplete: onCompleteSignInUp,
-  })
+  const mutationForm = useMutationForm(SignInDocument, { onComplete: onCompleteSignInUp })
+  const { register, errors, handleSubmit, required, formState } = mutationForm
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
   return (
-    <form onSubmit={onSubmit} noValidate className={classes.form}>
+    <form onSubmit={handleSubmit} noValidate className={classes.form}>
       {requireAuth && (
         <Alert severity='error' variant='standard'>
           Your session has expired, please reauthenticate
@@ -63,8 +61,8 @@ export default function SignInForm({ children }: PropsWithChildren<unknown>) {
           required: required.email,
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
-        helperText={errors?.email?.message}
-        disabled={loading}
+        helperText={errors.email?.message}
+        disabled={formState.isSubmitting}
       />
       <TextField
         variant='outlined'
@@ -75,15 +73,21 @@ export default function SignInForm({ children }: PropsWithChildren<unknown>) {
         label='Password'
         required={required.password}
         inputRef={register({ required: required.password })}
-        helperText={errors?.password?.message}
-        disabled={loading}
+        helperText={errors.password?.message}
+        disabled={formState.isSubmitting}
       />
 
       <FormControl>
-        <Button type='submit' disabled={loading} color='primary' variant='contained' size='large'>
+        <Button
+          type='submit'
+          disabled={formState.isSubmitting}
+          color='primary'
+          variant='contained'
+          size='large'
+        >
           Log In
         </Button>
-        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
+        <FormHelperText error={!!errors.submission}>{errors.submission?.message}</FormHelperText>
       </FormControl>
 
       <div className={classes.actions}>{children}</div>

@@ -31,10 +31,10 @@ fragment CartData on Cart {
     ...CartItem
     ...CartItemSimple
     ...CartItemConfigurable
+    ...CartItemDownloadable
     ...CartItemVirtual
     ...CartItemBundle
   }
-
   is_virtual
   # shipping_addresses {
   #   ...ShippingCartAddress

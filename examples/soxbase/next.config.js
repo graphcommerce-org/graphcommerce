@@ -38,7 +38,7 @@ const nextConfig = {
   },
   images: {
     domains: process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim()),
-    imageSizes: [16, 32, 64, 128],
+    imageSizes: [16, 32, 64, 128, 256],
   },
 }
 

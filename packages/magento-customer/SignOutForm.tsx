@@ -7,18 +7,19 @@ type SignOutFormProps = Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noVali
 
 export default function SignOutForm(props: SignOutFormProps) {
   const router = useRouter()
-  const { onSubmit, loading, error } = useMutationForm({
-    mutation: SignOutDocument,
+  const { handleSubmit, formState, errors } = useMutationForm(SignOutDocument, {
     onComplete: () => router.back(),
   })
 
   return (
-    <form onSubmit={onSubmit} noValidate {...props}>
+    <form onSubmit={handleSubmit} noValidate {...props}>
       <FormControl>
-        <Button type='submit' disabled={loading} color='primary'>
+        <Button type='submit' disabled={formState.isSubmitting} color='primary'>
           Sign out
         </Button>
-        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
+        <FormHelperText error={!!errors.submission?.message}>
+          {errors.submission?.message}
+        </FormHelperText>
       </FormControl>
     </form>
   )

@@ -25,11 +25,11 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const { register, errors, onSubmit, required, loading, error } = useMutationForm({
-    mutation: SignInDocument,
-    values: { email },
+  const mutationForm = useMutationForm(SignInDocument, {
+    defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
+  const { register, errors, handleSubmit: onSubmit, required, formState } = mutationForm
 
   const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
 
@@ -46,13 +46,13 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         label='Password'
         required={required.password}
         inputRef={register({ required: required.password })}
-        helperText={errors?.password?.message || error?.message}
-        disabled={loading}
+        helperText={errors.password?.message || errors.submission?.message}
+        disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
             <Button
               type='submit'
-              disabled={loading}
+              disabled={formState.isSubmitting}
               color='secondary'
               variant='pill'
               // size='small'

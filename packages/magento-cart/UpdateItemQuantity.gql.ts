@@ -637,6 +637,42 @@ export const UpdateItemQuantityDocument: DocumentNode<
                               kind: 'InlineFragment',
                               typeCondition: {
                                 kind: 'NamedType',
+                                name: { kind: 'Name', value: 'DownloadableCartItem' },
+                              },
+                              directives: [],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'samples' },
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'sample_url' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'title' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
                                 name: { kind: 'Name', value: 'BundleCartItem' },
                               },
                               directives: [],
@@ -860,6 +896,11 @@ export type UpdateItemQuantityMutation = {
                   Types.DownloadableCartItem,
                   'id' | 'quantity'
                 > & {
+                    samples?: Types.Maybe<
+                      Array<
+                        Types.Maybe<Pick<Types.DownloadableProductSamples, 'sample_url' | 'title'>>
+                      >
+                    >
                     product:
                       | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
                           thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>

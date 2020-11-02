@@ -32,11 +32,11 @@ export default function ForgotPasswordForm() {
   const mutationForm = useMutationForm<
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
-  >({ mutation: ForgotPasswordDocument })
+  >(ForgotPasswordDocument)
 
-  const { register, errors, onSubmit, required, watch, loading, error, called, data } = mutationForm
+  const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
 
-  if (called && data) {
+  if (formState.isSubmitSuccessful && data) {
     return (
       <Alert severity='success' variant='standard'>
         We&apos;ve send a password reset link to your account!
@@ -45,7 +45,7 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className={classes.form}>
+    <form onSubmit={handleSubmit} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='text'
@@ -60,7 +60,7 @@ export default function ForgotPasswordForm() {
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
         helperText={errors.email?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
 
       <TextField
@@ -76,14 +76,22 @@ export default function ForgotPasswordForm() {
           validate: (value) => value === watch('email') || "Emails don't match",
         })}
         helperText={errors.confirmEmail?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
 
       <FormControl>
-        <Button type='submit' disabled={loading} color='primary' variant='contained' size='large'>
+        <Button
+          type='submit'
+          disabled={formState.isSubmitting}
+          color='primary'
+          variant='contained'
+          size='large'
+        >
           Send email
         </Button>
-        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
+        <FormHelperText error={!!errors.submission?.message}>
+          {errors.submission?.message}
+        </FormHelperText>
       </FormControl>
     </form>
   )

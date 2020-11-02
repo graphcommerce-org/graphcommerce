@@ -11,6 +11,10 @@ import {
   CartItemConfigurableFragmentDoc,
 } from '../magento-product-configurable/CartitemConfigurable.gql'
 import {
+  CartItemDownloadableFragment,
+  CartItemDownloadableFragmentDoc,
+} from '../magento-product-downloadable/CartItemDownloadable.gql'
+import {
   CartItemSimpleFragment,
   CartItemSimpleFragmentDoc,
 } from '../magento-product-simple/CartItemSimple.gql'
@@ -19,6 +23,7 @@ import {
   CartItemVirtualFragmentDoc,
 } from '../magento-product-virtual/CartItemVirtual.gql'
 import { MoneyFragment, MoneyFragmentDoc } from '../magento-store/Money.gql'
+import { CartPricesFragment } from './CartPrices.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
@@ -27,7 +32,6 @@ import {
   CartItem_ConfigurableCartItem_Fragment,
   CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragment } from './CartPrices.gql'
 import { CartPricesFragmentDoc } from './CartPrices.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
@@ -158,6 +162,11 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
                 },
                 {
                   kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'CartItemDownloadable' },
+                  directives: [],
+                },
+                {
+                  kind: 'FragmentSpread',
                   name: { kind: 'Name', value: 'CartItemVirtual' },
                   directives: [],
                 },
@@ -183,6 +192,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
     ...CartItemFragmentDoc.definitions,
     ...CartItemSimpleFragmentDoc.definitions,
     ...CartItemConfigurableFragmentDoc.definitions,
+    ...CartItemDownloadableFragmentDoc.definitions,
     ...CartItemVirtualFragmentDoc.definitions,
     ...CartItemBundleFragmentDoc.definitions,
   ],
@@ -211,7 +221,8 @@ export type CartDataFragment = { __typename: 'Cart' } & Pick<
               CartItem_VirtualCartItem_Fragment &
               CartItemVirtualFragment)
           | ({ __typename: 'DownloadableCartItem' } & Pick<Types.DownloadableCartItem, 'id'> &
-              CartItem_DownloadableCartItem_Fragment)
+              CartItem_DownloadableCartItem_Fragment &
+              CartItemDownloadableFragment)
           | ({ __typename: 'BundleCartItem' } & Pick<Types.BundleCartItem, 'id'> &
               CartItem_BundleCartItem_Fragment &
               CartItemBundleFragment)
