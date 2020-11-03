@@ -8,7 +8,8 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { useMutationForm, emailPattern } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'

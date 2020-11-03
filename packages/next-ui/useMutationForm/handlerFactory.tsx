@@ -137,15 +137,13 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  const Field = <P extends {}>(
-    props: Omit<P, 'required'> & { Component: React.ComponentType<P>; name: Path<V> },
-  ) => {
+  const Field = <P extends {}>(props: P & { Component: React.ComponentType<P>; name: Path<V> }) => {
     const { Component, name, ...other } = props
     return (
       <Component
+        required={required[name as keyof IsRequired<V>]}
         {...((other as unknown) as P)}
         name={name}
-        required={required[name as keyof IsRequired<V>]}
       />
     )
   }

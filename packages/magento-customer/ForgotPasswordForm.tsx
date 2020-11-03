@@ -7,7 +7,8 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { emailPattern, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import React from 'react'
 import {
   ForgotPasswordMutation,

@@ -10,7 +10,8 @@ import {
   Checkbox,
   FormControl,
 } from '@material-ui/core'
-import { useMutationForm, emailPattern, Controller } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm, Controller } from '@reachdigital/next-ui/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 import { SignUpMutation, SignUpMutationVariables, SignUpDocument } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'

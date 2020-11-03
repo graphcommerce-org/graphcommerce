@@ -29,18 +29,18 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit: onSubmit, required, formState } = mutationForm
+  const { register, errors, handleSubmit, required, formState } = mutationForm
 
   const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
 
   if (validToken) return <Alert severity='info'>Already logged in</Alert>
 
   return (
-    <form onSubmit={onSubmit} noValidate className={classes.form}>
+    <form onSubmit={handleSubmit} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'
-        error={!!errors.password || !!error?.message}
+        error={!!errors.password || !!errors.submission?.message}
         id='password'
         name='password'
         label='Password'

@@ -1,24 +1,6 @@
-import {
-  ApolloClient,
-  FetchResult,
-  NormalizedCache,
-  TypedDocumentNode,
-  useMutation,
-} from '@apollo/client'
+import { ApolloClient, FetchResult, TypedDocumentNode, useMutation } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
-import { VariablesOf } from '@graphql-typed-document-node/core'
-import {
-  DefinitionNode,
-  OperationDefinitionNode,
-  ValueNode,
-  NullValueNode,
-  ObjectValueNode,
-  ListValueNode,
-  VariableNode,
-  VariableDefinitionNode,
-  TypeNode,
-} from 'graphql'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect } from 'react'
 import { FieldName, useForm } from 'react-hook-form'
 import { UnpackNestedValue, UseFormOptions } from 'react-hook-form/dist/types/form'
 import { DeepPartial } from 'react-hook-form/dist/types/utils'
@@ -94,6 +76,3 @@ export function useMutationForm<Q, V>(
 
   return { Field, required, data, reset, handleSubmit, ...useFormMethods }
 }
-
-export const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-export const phonePattern = /([(+]*[0-9]+[()+. -]*)/
