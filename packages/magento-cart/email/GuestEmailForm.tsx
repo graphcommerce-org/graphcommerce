@@ -5,7 +5,7 @@ import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { CartDocument } from '../Cart.gql'
-import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
+import { SetGuestEmailOnCartDocument } from './operation/SetGuestEmailOnCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

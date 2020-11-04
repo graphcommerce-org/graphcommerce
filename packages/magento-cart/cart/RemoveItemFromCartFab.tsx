@@ -4,12 +4,12 @@ import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import {
   RemoveItemFromCartMutationVariables,
   RemoveItemFromCartDocument,
-} from './RemoveItemFromCart.gql'
+} from './operation/RemoveItemFromCart.gql'
 
 type RemoveItemFromCartProps = RemoveItemFromCartMutationVariables &
   Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit'>
 
-export default function RemoveItemFromCart(props: RemoveItemFromCartProps) {
+export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { cartId, cartItemId, ...formProps } = props
   const mutationForm = useMutationForm(RemoveItemFromCartDocument, {
     defaultValues: { cartId, cartItemId },

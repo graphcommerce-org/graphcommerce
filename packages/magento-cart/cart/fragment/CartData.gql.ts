@@ -5,24 +5,24 @@ import * as Types from '@reachdigital/magento-graphql'
 import {
   CartItemBundleFragment,
   CartItemBundleFragmentDoc,
-} from '../magento-product-bundle/CartBundleItem.gql'
+} from '../../../magento-product-bundle/CartBundleItem.gql'
 import {
   CartItemConfigurableFragment,
   CartItemConfigurableFragmentDoc,
-} from '../magento-product-configurable/CartitemConfigurable.gql'
+} from '../../../magento-product-configurable/CartitemConfigurable.gql'
 import {
   CartItemDownloadableFragment,
   CartItemDownloadableFragmentDoc,
-} from '../magento-product-downloadable/CartItemDownloadable.gql'
+} from '../../../magento-product-downloadable/CartItemDownloadable.gql'
 import {
   CartItemSimpleFragment,
   CartItemSimpleFragmentDoc,
-} from '../magento-product-simple/CartItemSimple.gql'
+} from '../../../magento-product-simple/CartItemSimple.gql'
 import {
   CartItemVirtualFragment,
   CartItemVirtualFragmentDoc,
-} from '../magento-product-virtual/CartItemVirtual.gql'
-import { MoneyFragment, MoneyFragmentDoc } from '../magento-store/Money.gql'
+} from '../../../magento-product-virtual/CartItemVirtual.gql'
+import { MoneyFragment, MoneyFragmentDoc } from '../../../magento-store/Money.gql'
 import { CartPricesFragment } from './CartPrices.gql'
 import {
   CartItem_SimpleCartItem_Fragment,

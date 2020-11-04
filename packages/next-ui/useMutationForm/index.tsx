@@ -60,18 +60,18 @@ export function useMutationForm<Q, V>(
     if (missing.length) throw new Error(`Missing fields in form: ${missing.join(', ')}`)
 
     // Encode and submit the values
-    const queryResult = await mutate({ variables })
+    const result = await mutate({ variables })
 
     // Register submission errors
-    if (queryResult.errors) {
+    if (result.errors) {
       useFormMethods.setError('submission' as FieldName<FieldValues>, {
         type: 'validate',
-        message: queryResult.errors.map((error) => error.message).join(', '),
+        message: result.errors.map((error) => error.message).join(', '),
       })
     }
 
     // Wait for the onComplete result
-    if (onComplete && queryResult.data) await onComplete(queryResult, client)
+    if (onComplete && result.data) await onComplete(result, client)
   })
 
   return { Field, required, data, reset, handleSubmit, ...useFormMethods }

@@ -14,7 +14,7 @@ import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import clsx from 'clsx'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import React from 'react'
-import { CartDocument, CartQuery } from './Cart.gql'
+import { CartDocument, CartQuery } from '../Cart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

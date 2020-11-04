@@ -282,6 +282,234 @@ export const CartDocument: DocumentNode<CartQuery, CartQueryVariables> = {
                                 ],
                               },
                             },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'method_code' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'carrier_code' },
+                              arguments: [],
+                              directives: [],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'firstname' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'lastname' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'company' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'city' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'postcode' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'street' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'country' },
+                        arguments: [],
+                        directives: [],
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'code' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'label' },
+                              arguments: [],
+                              directives: [],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'region' },
+                        arguments: [],
+                        directives: [],
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'code' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'label' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'region_id' },
+                              arguments: [],
+                              directives: [],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'telephone' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'customer_notes' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'available_shipping_methods' },
+                        arguments: [],
+                        directives: [],
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'amount' },
+                              arguments: [],
+                              directives: [],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'currency' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'value' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'available' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'carrier_code' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'carrier_title' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'error_message' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'method_code' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'method_title' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'price_excl_tax' },
+                              arguments: [],
+                              directives: [],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'currency' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'value' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'price_incl_tax' },
+                              arguments: [],
+                              directives: [],
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'currency' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'value' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -717,13 +945,47 @@ export type CartQuery = {
           >
         }>
         shipping_addresses: Array<
-          Types.Maybe<{
-            selected_shipping_method?: Types.Maybe<
-              Pick<Types.SelectedShippingMethod, 'carrier_title' | 'method_title'> & {
-                amount: Pick<Types.Money, 'currency' | 'value'>
-              }
-            >
-          }>
+          Types.Maybe<
+            Pick<
+              Types.ShippingCartAddress,
+              | 'firstname'
+              | 'lastname'
+              | 'company'
+              | 'city'
+              | 'postcode'
+              | 'street'
+              | 'telephone'
+              | 'customer_notes'
+            > & {
+              selected_shipping_method?: Types.Maybe<
+                Pick<
+                  Types.SelectedShippingMethod,
+                  'carrier_title' | 'method_title' | 'method_code' | 'carrier_code'
+                > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+              >
+              country: Pick<Types.CartAddressCountry, 'code' | 'label'>
+              region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
+              available_shipping_methods?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<
+                      Types.AvailableShippingMethod,
+                      | 'available'
+                      | 'carrier_code'
+                      | 'carrier_title'
+                      | 'error_message'
+                      | 'method_code'
+                      | 'method_title'
+                    > & {
+                      amount: Pick<Types.Money, 'currency' | 'value'>
+                      price_excl_tax: Pick<Types.Money, 'currency' | 'value'>
+                      price_incl_tax: Pick<Types.Money, 'currency' | 'value'>
+                    }
+                  >
+                >
+              >
+            }
+          >
         >
         items?: Types.Maybe<
           Array<

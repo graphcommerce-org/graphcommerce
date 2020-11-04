@@ -10,7 +10,7 @@ mutation ShippingAddressForm(
     }
   ) {
     cart {
-      ...CartData
+      ...CartShippingResult
     }
   }
 }

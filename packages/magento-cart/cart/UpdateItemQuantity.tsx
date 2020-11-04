@@ -3,9 +3,9 @@ import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import React, { useRef } from 'react'
 import {
-  UpdateItemQuantityDocument,
   UpdateItemQuantityMutationVariables,
-} from './UpdateItemQuantity.gql'
+  UpdateItemQuantityDocument,
+} from './operation/UpdateItemQuantity.gql'
 
 export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVariables) {
   const { cartId, cartItemId, quantity } = props

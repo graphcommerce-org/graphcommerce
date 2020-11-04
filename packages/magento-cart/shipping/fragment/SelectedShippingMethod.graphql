@@ -1,0 +1,10 @@
+fragment SelectedShippingMethod on SelectedShippingMethod {
+  method_title
+  method_code
+  carrier_title
+  carrier_code
+  amount {
+    currency
+    value
+  }
+}

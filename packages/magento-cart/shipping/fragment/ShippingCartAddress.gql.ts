@@ -2,7 +2,14 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-import { MoneyFragment, MoneyFragmentDoc } from '../magento-store/Money.gql'
+import {
+  AvailableShippingMethodFragment,
+  AvailableShippingMethodFragmentDoc,
+} from './AvailableShippingMethod.gql'
+import {
+  SelectedShippingMethodFragment,
+  SelectedShippingMethodFragmentDoc,
+} from './SelectedShippingMethod.gql'
 
 export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFragment, unknown> = {
   kind: 'Document',
@@ -84,6 +91,12 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
                   arguments: [],
                   directives: [],
                 },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'region_id' },
+                  arguments: [],
+                  directives: [],
+                },
               ],
             },
           },
@@ -95,6 +108,28 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
           },
           {
             kind: 'Field',
+            name: { kind: 'Name', value: 'customer_notes' },
+            arguments: [],
+            directives: [],
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'selected_shipping_method' },
+            arguments: [],
+            directives: [],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'SelectedShippingMethod' },
+                  directives: [],
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
             name: { kind: 'Name', value: 'available_shipping_methods' },
             arguments: [],
             directives: [],
@@ -102,88 +137,9 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
               kind: 'SelectionSet',
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'amount' },
-                  arguments: [],
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'AvailableShippingMethod' },
                   directives: [],
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Money' },
-                        directives: [],
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'available' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'carrier_code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'carrier_title' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'error_message' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'method_code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'method_title' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'price_excl_tax' },
-                  arguments: [],
-                  directives: [],
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Money' },
-                        directives: [],
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'price_incl_tax' },
-                  arguments: [],
-                  directives: [],
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Money' },
-                        directives: [],
-                      },
-                    ],
-                  },
                 },
               ],
             },
@@ -191,28 +147,23 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
         ],
       },
     },
-    ...MoneyFragmentDoc.definitions,
+    ...SelectedShippingMethodFragmentDoc.definitions,
+    ...AvailableShippingMethodFragmentDoc.definitions,
   ],
 }
 export type ShippingCartAddressFragment = Pick<
   Types.ShippingCartAddress,
-  'firstname' | 'lastname' | 'company' | 'city' | 'postcode' | 'street' | 'telephone'
+  | 'firstname'
+  | 'lastname'
+  | 'company'
+  | 'city'
+  | 'postcode'
+  | 'street'
+  | 'telephone'
+  | 'customer_notes'
 > & {
   country: Pick<Types.CartAddressCountry, 'code' | 'label'>
-  region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label'>>
-  available_shipping_methods?: Types.Maybe<
-    Array<
-      Types.Maybe<
-        Pick<
-          Types.AvailableShippingMethod,
-          | 'available'
-          | 'carrier_code'
-          | 'carrier_title'
-          | 'error_message'
-          | 'method_code'
-          | 'method_title'
-        > & { amount: MoneyFragment; price_excl_tax: MoneyFragment; price_incl_tax: MoneyFragment }
-      >
-    >
-  >
+  region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
+  selected_shipping_method?: Types.Maybe<SelectedShippingMethodFragment>
+  available_shipping_methods?: Types.Maybe<Array<Types.Maybe<AvailableShippingMethodFragment>>>
 }

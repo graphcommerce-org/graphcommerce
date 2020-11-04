@@ -57,7 +57,7 @@ export function createApolloClient(
 
   const link = ApolloLink.from([
     // new MutationQueueLink(),
-    new RetryLink(),
+    new RetryLink({ attempts: { max: 2 } }),
     errorLink,
     authLink,
     new HttpLink({

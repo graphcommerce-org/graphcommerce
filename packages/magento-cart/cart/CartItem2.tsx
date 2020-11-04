@@ -5,7 +5,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { CartItemFragment } from './CartItem.gql'
-import RemoveItemFromCart from './RemoveItemFromCartFab'
+import RemoveItemFromCartFab from './RemoveItemFromCartFab'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
 type CartItemBaseProps = CartItemFragment & { cartId: string }
@@ -95,7 +95,7 @@ export default function CartItem2(props: CartItemProps) {
     <div className={classes.root}>
       <Badge
         color='default'
-        badgeContent={<RemoveItemFromCart cartId={cartId} cartItemId={Number(id)} />}
+        badgeContent={<RemoveItemFromCartFab cartId={cartId} cartItemId={Number(id)} />}
         component='div'
         className={classes.picture}
         overlap='circle'

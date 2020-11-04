@@ -2,17 +2,24 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const CartPaymentMethodsFragmentDoc: DocumentNode<CartPaymentMethodsFragment, unknown> = {
+export const ShippingMethodDataFragmentDoc: DocumentNode<ShippingMethodDataFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CartPaymentMethods' },
+      name: { kind: 'Name', value: 'ShippingMethodData' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
       directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: '__typename' },
+            arguments: [],
+            directives: [],
+          },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'available_payment_methods' },
@@ -41,8 +48,8 @@ export const CartPaymentMethodsFragmentDoc: DocumentNode<CartPaymentMethodsFragm
     },
   ],
 }
-export type CartPaymentMethodsFragment = {
-  available_payment_methods?: Types.Maybe<
-    Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
-  >
-}
+export type ShippingMethodDataFragment = { __typename: 'Cart' } & Pick<Types.Cart, 'id'> & {
+    available_payment_methods?: Types.Maybe<
+      Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
+    >
+  }

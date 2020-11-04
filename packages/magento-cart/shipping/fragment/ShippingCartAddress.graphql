@@ -13,23 +13,16 @@ fragment ShippingCartAddress on ShippingCartAddress {
   region {
     code
     label
+    region_id
   }
   telephone
+
+  customer_notes
+
+  selected_shipping_method {
+    ...SelectedShippingMethod
+  }
   available_shipping_methods {
-    amount {
-      ...Money
-    }
-    available
-    carrier_code
-    carrier_title
-    error_message
-    method_code
-    method_title
-    price_excl_tax {
-      ...Money
-    }
-    price_incl_tax {
-      ...Money
-    }
+    ...AvailableShippingMethod
   }
 }

@@ -31,8 +31,8 @@ export default function EmailForm() {
   return (
     <>
       {tokenQuery?.customerToken?.valid || (
-        <AnimatedRow key='email' className={clsx(classes.form, classes.formContained)}>
-          <AnimatePresence>
+        <AnimatedRow className={clsx(classes.form, classes.formContained)}>
+          <AnimatePresence initial={false}>
             {!isCustomer && (
               <AnimatedRow key='guest-email-form'>
                 <div className={classes.formRow}>

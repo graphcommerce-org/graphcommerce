@@ -1,4 +1,3 @@
-import { error } from 'console'
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
@@ -55,7 +54,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         message={<>{errors.submission?.message}</>}
       />
       <MessageSnackbarLoader
-        open={called && !formState.isSubmitting && !error?.message}
+        open={formState.isSubmitSuccessful && !errors?.submission?.message}
         message={
           <>
             Added <em>&lsquo;{name ?? 'Product'}&rsquo;</em> to cart

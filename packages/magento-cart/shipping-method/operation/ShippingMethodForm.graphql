@@ -1,0 +1,22 @@
+mutation ShippingMethodForm($cartId: String!, $carrier: String!, $method: String!) {
+  setShippingMethodsOnCart(
+    input: {
+      cart_id: $cartId
+      shipping_methods: [{ carrier_code: $carrier, method_code: $method }]
+    }
+  ) {
+    cart {
+      id
+      __typename
+      selected_payment_method {
+        code
+        purchase_order_number
+        title
+      }
+      available_payment_methods {
+        code
+        title
+      }
+    }
+  }
+}
