@@ -57,7 +57,7 @@
     "vercel": "^20.1.2"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.12.1",
+    "@babel/compat-data": "^7.12.5",
     "@babel/core": "^7.12.3",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
