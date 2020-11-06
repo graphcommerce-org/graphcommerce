@@ -66,7 +66,7 @@
     "@graphql-codegen/fragment-matcher": "2.0.0",
     "@graphql-codegen/introspection": "1.18.0",
     "@graphql-codegen/schema-ast": "^1.17.8",
-    "@graphql-codegen/typed-document-node": "^1.17.9",
+    "@graphql-codegen/typed-document-node": "^1.17.10",
     "@graphql-codegen/typescript": "^1.17.11",
     "@graphql-codegen/typescript-document-nodes": "1.17.8",
     "@graphql-codegen/typescript-operations": "1.17.8",
