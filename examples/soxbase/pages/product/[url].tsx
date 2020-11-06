@@ -14,20 +14,20 @@ import productPageCategory from '@reachdigital/magento-product/productPageCatego
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
-import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type PageComponent = PageFC<ProductPageQuery, PageLayoutProps>
-type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
-type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
+type Props = ProductPageQuery
+type RouteProps = { url: string }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
+type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const ProductPage: PageComponent = (props) => {
-  const { products } = props
-  const classes = useCategoryPageStyles(props)
+function ProductPage({ products }: Props) {
+  const classes = useCategoryPageStyles()
 
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
@@ -62,6 +62,7 @@ const ProductPage: PageComponent = (props) => {
     </BottomDrawerUi>
   )
 }
+
 ProductPage.Layout = PageLayout
 
 registerRouteUi('/product/[url]', BottomDrawerUi)

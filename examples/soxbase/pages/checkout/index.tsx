@@ -11,16 +11,16 @@ import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAdd
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
-import { PageFC, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type PageComponent = PageFC<CountryRegionsQuery, PageLayoutProps>
-type GetPageStaticProps = PageStaticPropsFn<PageComponent>
+type Props = CountryRegionsQuery
+type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
-const ShippingPage: PageComponent = ({ countries }) => {
+function ShippingPage({ countries }: Props) {
   return (
     <BottomDrawerUi title='Checkout' fullHeight>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />

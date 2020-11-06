@@ -6,15 +6,14 @@ import useSignedInGuard from '@reachdigital/magento-customer/useSignedInGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
-import { PageFC, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type PageComponent = PageFC<unknown, PageLayoutProps>
-type GetPageStaticProps = PageStaticPropsFn<PageComponent>
+type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
-const AccountChangePasswordPage: PageComponent = () => {
+function AccountChangePasswordPage() {
   const signedIn = useSignedInGuard()
   if (!signedIn) return null
 

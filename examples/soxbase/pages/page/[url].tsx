@@ -1,22 +1,24 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import { CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
 import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import CmsPageMeta from '@reachdigital/magento-cms/CmsPageMeta'
-import getCmsPageProps, { GetCmsPageProps } from '@reachdigital/magento-cms/getCmsPageProps'
+import getCmsPageProps from '@reachdigital/magento-cms/getCmsPageProps'
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
-import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type PageComponent = PageFC<GetCmsPageProps, PageLayoutProps>
-type GetPageStaticPaths = PageStaticPathsFn<{ url: string }>
-type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string }>
+type Props = CmsPageQuery
+type RouteProps = { url: string }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
+type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const CmsPage: PageComponent = ({ cmsPage }) => {
+const CmsPage = ({ cmsPage }: Props) => {
   if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
 
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
@@ -43,9 +45,11 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetPageStaticProps = async (ctx: { params: { url: string } }) => {
+export const getStaticProps: GetPageStaticProps = async (ctx) => {
   const client = apolloClient()
   const staticClient = apolloClient()
+
+  if (!ctx.params?.url) throw Error('noo')
 
   const config = getStoreConfig(client)
   const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)

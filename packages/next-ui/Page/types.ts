@@ -1,33 +1,28 @@
 import { ParsedUrlQuery } from 'querystring'
 import { NormalizedCacheObject } from '@apollo/client'
-import { GetStaticPaths, GetStaticProps as GetStaticPropsNext } from 'next'
+import { GetStaticPaths as GetStaticPathsNext, GetStaticProps as GetStaticPropsNext } from 'next'
 import { AppProps as NextAppProps } from 'next/app'
 
 type AnyObj = Record<string, unknown>
 
-export type BasePageLayoutComponentProps = AnyObj
-
-type BasePage<T = AnyObj> = React.FC<BasePageLayoutComponentProps & T>
-
 type ApolloStateProps = { apolloState: NormalizedCacheObject }
 
-export type GetProps<T extends React.FC> = Omit<Parameters<T>['0'], 'children'>
-
-export type PageFC<TProps = AnyObj, TPropsLayout = AnyObj> = BasePage<TProps> & {
-  Layout: React.FC<TPropsLayout>
+export type PageFC<P extends AnyObj = AnyObj, PL extends AnyObj = AnyObj> = React.FC<P> & {
+  Layout: React.FC<PL>
 }
 
-export type PageStaticPropsFn<
-  TPage extends PageFC,
+export type GetStaticProps<
+  PL extends AnyObj,
+  P extends AnyObj = AnyObj,
   Q extends ParsedUrlQuery = ParsedUrlQuery
-> = GetStaticPropsNext<GetProps<TPage> & GetProps<TPage['Layout']> & ApolloStateProps, Q>
+> = GetStaticPropsNext<PL & P & ApolloStateProps, Q>
 
-export type PageStaticPathsFn<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetStaticPaths<Q>
+export type GetStaticPaths<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetStaticPathsNext<Q>
 
 /**
  * Used by _app
  */
 export type AppProps = Omit<NextAppProps, 'Component' | 'pageProps'> & {
   Component: PageFC
-  pageProps: ApolloStateProps & BasePageLayoutComponentProps
+  pageProps: ApolloStateProps
 }

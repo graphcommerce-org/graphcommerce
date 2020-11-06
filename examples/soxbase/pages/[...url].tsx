@@ -23,17 +23,18 @@ import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
-import { PageStaticPropsFn, PageFC, PageStaticPathsFn } from '@reachdigital/next-ui/Page/types'
+import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../lib/apolloClient'
 
-type PageComponent = PageFC<GetCategoryPageProps, PageLayoutProps>
-type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
-type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
+type Props = GetCategoryPageProps
+type RouteProps = { url: string[] }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
+type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const CategoryPage: PageComponent = (props) => {
+function CategoryPage(props: Props) {
   const classes = useCategoryPageStyles(props)
   const { categories, products, filters, params, filterTypeMap } = props
 
@@ -105,6 +106,7 @@ const CategoryPage: PageComponent = (props) => {
     </FullPageUi>
   )
 }
+
 CategoryPage.Layout = PageLayout
 
 registerRouteUi('/[...url]', FullPageUi)
@@ -134,6 +136,8 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
     staticClient,
   )
   const layoutHeader = getLayoutHeaderProps(staticClient)
+
+  if (!(await categoryPage).categories?.[0]) return { notFound: true }
 
   return {
     props: {
