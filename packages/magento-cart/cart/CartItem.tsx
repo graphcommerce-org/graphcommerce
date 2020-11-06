@@ -14,55 +14,53 @@ import React from 'react'
 import { CartItemFragment } from './CartItem.gql'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    productWrapper: {
-      display: 'grid',
-      gridTemplateColumns: '150px 1fr',
-      backgroundColor: theme.palette.background.default,
-      marginBottom: theme.spacings.md,
-    },
-    productImg: {
-      gridColumn: 1,
-      width: responsiveVal(100, 150),
-      height: 'auto',
-      backgroundColor: theme.palette.background.paper,
-      objectFit: 'contain',
-      display: 'block',
-    },
-    productRemove: {
-      margin: theme.spacings.xs,
-    },
-    productContent: {
-      gridColumn: 2,
-      paddingBottom: 0,
-    },
-    productInfo: {},
-    productName: {
-      ...theme.typography.h5,
-    },
-    productDetails: {},
-    divider: {
-      gridColumn: '1 / 3',
-      gridRow: 2,
-    },
-    productActions: {
-      gridColumn: '1 / 3',
-      gridRow: 3,
-      display: 'flex',
-      justifyContent: 'space-between',
-    },
-    productPrice: {
-      flex: '1 1 50%',
-      ...theme.typography.body1,
-    },
-    productSubTotal: {
-      flex: '1 1 50%',
-      textAlign: 'right',
-      ...theme.typography.body1,
-    },
-  }),
-)
+const useStyles = makeStyles((theme: Theme) => ({
+  productWrapper: {
+    display: 'grid',
+    gridTemplateColumns: '150px 1fr',
+    backgroundColor: theme.palette.background.default,
+    marginBottom: theme.spacings.md,
+  },
+  productImg: {
+    gridColumn: 1,
+    width: responsiveVal(100, 150),
+    height: 'auto',
+    backgroundColor: theme.palette.background.paper,
+    objectFit: 'contain',
+    display: 'block',
+  },
+  productRemove: {
+    margin: theme.spacings.xs,
+  },
+  productContent: {
+    gridColumn: 2,
+    paddingBottom: 0,
+  },
+  productInfo: {},
+  productName: {
+    ...theme.typography.h5,
+  },
+  productDetails: {},
+  divider: {
+    gridColumn: '1 / 3',
+    gridRow: 2,
+  },
+  productActions: {
+    gridColumn: '1 / 3',
+    gridRow: 3,
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  productPrice: {
+    flex: '1 1 50%',
+    ...theme.typography.body1,
+  },
+  productSubTotal: {
+    flex: '1 1 50%',
+    textAlign: 'right',
+    ...theme.typography.body1,
+  },
+}))
 
 export default function CartItem({
   id,

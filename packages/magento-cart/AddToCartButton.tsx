@@ -6,9 +6,10 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import {
-  useMutationForm,
-  UnpackNestedValue,
   DeepPartial,
+  FieldError,
+  UnpackNestedValue,
+  useMutationForm,
 } from '@reachdigital/next-ui/useMutationForm'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
@@ -23,7 +24,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
 
   const requestCartId = useRequestCartId()
   const mutationForm = useMutationForm<Q, V>(mutation, {
-    defaultValues: { ...variables },
+    defaultValues: { ...variables } as UnpackNestedValue<DeepPartial<V>>,
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
   const { handleSubmit, errors, formState } = mutationForm
@@ -31,6 +32,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
+  const submissionError = errors.submission as FieldError | undefined
   return requireAuth ? (
     <PageLink href='/account/signin?back=1'>
       <Button color='primary' variant='contained' {...buttonProps}>
@@ -50,11 +52,11 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
       </Button>
 
       <ErrorSnackbarLoader
-        open={formState.isSubmitted && !!errors.submission}
-        message={<>{errors.submission?.message}</>}
+        open={formState.isSubmitted && !!submissionError}
+        message={<>{submissionError?.message}</>}
       />
       <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !errors?.submission?.message}
+        open={formState.isSubmitSuccessful && !submissionError?.message}
         message={
           <>
             Added <em>&lsquo;{name ?? 'Product'}&rsquo;</em> to cart

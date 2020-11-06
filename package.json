@@ -26,7 +26,7 @@
     "build:soxbase-api": "yarn workspace @reachdigital/soxbase-api build && yarn start:soxbase-api",
     "build:soxbase": "yarn workspace @reachdigital/soxbase build",
     "build:lighthouse": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
-    "build": "yarn stop; yarn build:soxbase-api && yarn build:soxbase && yarn build:lighthouse; yarn stop",
+    "build": "yarn stop; yarn build:soxbase-api && yarn build:soxbase; yarn stop",
     "stop": "yarn pm2 delete all",
     "start:soxbase-api": "yarn pm2 start -s --name soxbase-api \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase-api start-local\" && sleep 2",
     "start:soxbase": "NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase start",

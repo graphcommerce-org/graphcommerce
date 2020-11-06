@@ -11,76 +11,75 @@ import UpdateItemQuantity from './UpdateItemQuantity'
 type CartItemBaseProps = CartItemFragment & { cartId: string }
 
 const useStyles = makeStyles(
-  (theme: Theme) =>
-    createStyles({
-      root: {
-        display: 'grid',
-        gridTemplate: `
+  (theme: Theme) => ({
+    root: {
+      display: 'grid',
+      gridTemplate: `
           "picture content itemPrice quantity rowPrice"
           "picture content discount discount discount"
         `,
-        gridTemplateColumns: `${responsiveVal(70, 125)} auto auto min-content 70px`,
-        // gridTemplateRows: `1fr 1fr`,
-        columnGap: theme.spacings.sm,
-        alignItems: 'center',
-        ...theme.typography.body1,
-      },
-      picture: {
-        gridArea: 'picture',
-        width: responsiveVal(70, 125),
-        height: responsiveVal(70, 125),
-        padding: responsiveVal(5, 10),
-        border: `1px solid rgba(0,0,0,0.15)`,
-        borderRadius: '50%',
-      },
-      pictureSpacing: {
-        overflow: 'hidden',
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        position: 'relative',
-        alignItems: 'center',
-        flexShrink: 0,
-        userSelect: 'none',
-        borderRadius: '50%',
-        justifyContent: 'center',
-        backgroundColor: 'rgb(248,248,248)',
-      },
-      pictureResponsive: {
-        gridColumn: 1,
-        width: '100%',
-        height: 'auto',
-        backgroundColor: theme.palette.background.paper,
-        objectFit: 'contain',
-        display: 'block',
-        mixBlendMode: 'multiply',
-      },
-      itemContent: {
-        gridArea: 'content',
-      },
-      itemName: {
-        // ...theme.typography.h5,
-        ...theme.typography.body1,
-        fontWeight: 500,
-      },
-      itemDiscount: {
-        gridArea: 'discount',
-        ...theme.typography.body2,
-        color: theme.palette.primary.mutedText,
-        textAlign: 'right',
-      },
-      itemPrice: {
-        gridArea: 'itemPrice',
-        textAlign: 'right',
-      },
-      quantity: {
-        gridArea: 'quantity',
-      },
-      rowPrice: {
-        gridArea: 'rowPrice',
-        textAlign: 'right',
-      },
-    }),
+      gridTemplateColumns: `${responsiveVal(70, 125)} auto auto min-content 70px`,
+      // gridTemplateRows: `1fr 1fr`,
+      columnGap: theme.spacings.sm,
+      alignItems: 'center',
+      ...theme.typography.body1,
+    },
+    picture: {
+      gridArea: 'picture',
+      width: responsiveVal(70, 125),
+      height: responsiveVal(70, 125),
+      padding: responsiveVal(5, 10),
+      border: `1px solid rgba(0,0,0,0.15)`,
+      borderRadius: '50%',
+    },
+    pictureSpacing: {
+      overflow: 'hidden',
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      position: 'relative',
+      alignItems: 'center',
+      flexShrink: 0,
+      userSelect: 'none',
+      borderRadius: '50%',
+      justifyContent: 'center',
+      backgroundColor: 'rgb(248,248,248)',
+    },
+    pictureResponsive: {
+      gridColumn: 1,
+      width: '100%',
+      height: 'auto',
+      backgroundColor: theme.palette.background.paper,
+      objectFit: 'contain',
+      display: 'block',
+      mixBlendMode: 'multiply',
+    },
+    itemContent: {
+      gridArea: 'content',
+    },
+    itemName: {
+      // ...theme.typography.h5,
+      ...theme.typography.body1,
+      fontWeight: 500,
+    },
+    itemDiscount: {
+      gridArea: 'discount',
+      ...theme.typography.body2,
+      color: theme.palette.primary.mutedText,
+      textAlign: 'right',
+    },
+    itemPrice: {
+      gridArea: 'itemPrice',
+      textAlign: 'right',
+    },
+    quantity: {
+      gridArea: 'quantity',
+    },
+    rowPrice: {
+      gridArea: 'rowPrice',
+      textAlign: 'right',
+    },
+  }),
   { name: 'CartItem' },
 )
 
@@ -88,7 +87,7 @@ type CartItemProps = CartItemBaseProps & UseStyles<typeof useStyles>
 
 export default function CartItem2(props: CartItemProps) {
   const { product, cartId, id, prices, quantity } = props
-  const { name, sku } = product
+  const { name } = product
   const classes = useStyles()
 
   return (
@@ -114,9 +113,7 @@ export default function CartItem2(props: CartItemProps) {
         </div>
       </Badge>
       <div className={classes.itemContent}>
-        <div className={classes.itemName}>
-          {name} {sku}
-        </div>
+        <div className={classes.itemName}>{name}</div>
         Children
         <br />
         Children

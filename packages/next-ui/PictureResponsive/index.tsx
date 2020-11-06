@@ -43,15 +43,15 @@ function requestUpgrade(img: HTMLImageElement) {
       // Wait for the in-viewport image to be loaded before start upgrading the image.
       // Because if the initial image hasn't loaded it will cancel the download and restart a new
       // download causing a FOUC
-      img.onload = () => resolve()
+      img.onload = () => resolve(true)
     } else if (inViewport) {
       // Image in the viewport is loaded, we can directly start upgrading it to enhance the experience
       // as soon as possible.
-      resolve()
+      resolve(true)
     } else if (!inViewport && 'loading' in HTMLImageElement.prototype === true) {
       // Native support for lazy loading.
       // Since the image isn't in the viewport, it's ok for the current download to be cancelled
-      resolve()
+      resolve(true)
     } else if (!inViewport && 'IntersectionObserver' in window) {
       // Fallback when loading="lazy" is not supported but IntersectionObserver is supported
       const intersectionObserver = new IntersectionObserver(
@@ -60,7 +60,7 @@ function requestUpgrade(img: HTMLImageElement) {
             .filter((entry) => entry.isIntersecting === undefined || entry.isIntersecting)
             .forEach(() => {
               intersectionObserver.unobserve(img)
-              resolve()
+              resolve(true)
             })
         },
         { rootMargin: '3000px' },
@@ -71,7 +71,7 @@ function requestUpgrade(img: HTMLImageElement) {
     } else if (!inViewport) {
       // Browsers that don't support loading="lazy" or the IntersectionObserver will download
       // everything.
-      resolve()
+      resolve(true)
     }
   })
 }

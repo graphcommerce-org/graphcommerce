@@ -70,7 +70,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
     ],
   })
   const apoloHandler = apolloServer.createHandler({ path })
-  return corsHandler((req: NextApiRequest, res: NextApiResponse) => {
+  return corsHandler((req, res) => {
     return req.method === 'OPTIONS' ? res.end() : apoloHandler(req, res)
   })
 }
