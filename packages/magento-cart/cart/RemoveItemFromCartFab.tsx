@@ -4,7 +4,7 @@ import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import {
   RemoveItemFromCartMutationVariables,
   RemoveItemFromCartDocument,
-} from './operation/RemoveItemFromCart.gql'
+} from './RemoveItemFromCart.gql'
 
 type RemoveItemFromCartProps = RemoveItemFromCartMutationVariables &
   Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit'>

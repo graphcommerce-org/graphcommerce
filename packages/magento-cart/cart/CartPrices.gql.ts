@@ -2,7 +2,7 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-import { MoneyFragment, MoneyFragmentDoc } from '../../../magento-store/Money.gql'
+import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
 
 export const CartPricesFragmentDoc: DocumentNode<CartPricesFragment, unknown> = {
   kind: 'Document',

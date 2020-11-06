@@ -14,7 +14,7 @@ import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import clsx from 'clsx'
 import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
 import React from 'react'
-import { CartDocument, CartQuery } from '../Cart.gql'
+import { ClientCartDocument, ClientCartQuery } from '../ClientCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -44,7 +44,7 @@ const useStyles = makeStyles(
 )
 
 type CartItemRenderer = TypeRenderer<
-  NonNullable<NonNullable<NonNullable<CartQuery['cart']>['items']>[0]> & { cartId: string }
+  NonNullable<NonNullable<NonNullable<ClientCartQuery['cart']>['items']>[0]> & { cartId: string }
 >
 
 type CartProps = { renderer: CartItemRenderer }
@@ -52,7 +52,7 @@ type CartProps = { renderer: CartItemRenderer }
 export default function Cart(props: CartProps) {
   const { renderer } = props
   const classes = useStyles()
-  const { data, loading } = useQuery(CartDocument)
+  const { data, loading } = useQuery(ClientCartDocument)
 
   let content
 

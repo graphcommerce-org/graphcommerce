@@ -4,7 +4,7 @@ import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeade
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/operation/CountryRegions.gql'
+} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
 import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'

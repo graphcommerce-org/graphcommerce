@@ -1,22 +1,23 @@
 import { useQuery } from '@apollo/client'
-import { Button, TextField } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import Button from '@reachdigital/next-ui/Button'
 import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import React, { useMemo, useState } from 'react'
-import { CartDocument } from '../Cart.gql'
-import { CountryRegionsQuery } from '../countries/operation/CountryRegions.gql'
-import { ShippingAddressFormDocument } from './operation/ShippingAddressForm.gql'
+import { ClientCartDocument } from '../ClientCart.gql'
+import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
+import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
 type ShippingAddressFormProps = CountryRegionsQuery
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { countries } = props
   const classes = useFormStyles()
-  const { data: cartQuery } = useQuery(CartDocument)
+  const { data: cartQuery } = useQuery(ClientCartDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
 
   const isCustomer = !!customerQuery?.customer
@@ -169,7 +170,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
                 value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
                 options={countryList}
                 getOptionLabel={(option) =>
-                  `${option?.full_name_locale ?? option?.three_letter_abbreviation}`
+                  `${option?.full_name_locale} (${option?.three_letter_abbreviation})`
                 }
                 onChange={(e, input) => {
                   onChange(input?.two_letter_abbreviation)
@@ -245,8 +246,8 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           disabled={formState.isSubmitting}
         />
       </div>
-      <Button type='submit' disabled={formState.isSubmitting} color='primary' variant='contained'>
-        Submit
+      <Button type='submit' disabled={formState.isSubmitting} variant='pill' disableElevation>
+        Save shipping
       </Button>
       {errors.submission?.message}
     </form>

@@ -1,5 +1,6 @@
 {
   "possibleTypes": {
+    "Node": ["Page", "Asset"],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
       "SimpleCartItem",
@@ -53,7 +54,6 @@
       "ConfigurableProduct"
     ],
     "SwatchDataInterface": ["ImageSwatchData", "TextSwatchData", "ColorSwatchData"],
-    "SwatchLayerFilterItemInterface": ["SwatchLayerFilterItem"],
-    "Node": ["Page", "Asset"]
+    "SwatchLayerFilterItemInterface": ["SwatchLayerFilterItem"]
   }
 }

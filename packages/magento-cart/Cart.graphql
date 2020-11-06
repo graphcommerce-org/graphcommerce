@@ -1,7 +1,0 @@
-query Cart {
-  # Make sure _only_ execute the query on the client
-  cart(cart_id: "") @client {
-    ...CartData
-    ...CartShippingResult
-  }
-}

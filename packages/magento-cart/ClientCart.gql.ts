@@ -2,13 +2,13 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const CartDocument: DocumentNode<CartQuery, CartQueryVariables> = {
+export const ClientCartDocument: DocumentNode<ClientCartQuery, ClientCartQueryVariables> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'Cart' },
+      name: { kind: 'Name', value: 'ClientCart' },
       variableDefinitions: [],
       directives: [],
       selectionSet: {
@@ -915,9 +915,9 @@ export const CartDocument: DocumentNode<CartQuery, CartQueryVariables> = {
     },
   ],
 }
-export type CartQueryVariables = Types.Exact<{ [key: string]: never }>
+export type ClientCartQueryVariables = Types.Exact<{ [key: string]: never }>
 
-export type CartQuery = {
+export type ClientCartQuery = {
   cart?: Types.Maybe<
     { __typename: 'Cart' } & Pick<Types.Cart, 'id' | 'email' | 'total_quantity' | 'is_virtual'> & {
         prices?: Types.Maybe<{

@@ -10,12 +10,12 @@ import Button from '@reachdigital/next-ui/Button'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import React, { useMemo, useRef, useState } from 'react'
-import { CartDocument } from '../Cart.gql'
-import { ShippingMethodFormDocument } from './operation/ShippingMethodForm.gql'
+import { ClientCartDocument } from '../ClientCart.gql'
+import { ShippingMethodFormDocument } from './ShippingMethodForm.gql'
 
 export default function ShippingMethodForm() {
   const classes = useFormStyles()
-  const { data: cartQuery } = useQuery(CartDocument)
+  const { data: cartQuery } = useQuery(ClientCartDocument)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods

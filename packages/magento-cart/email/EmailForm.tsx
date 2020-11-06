@@ -9,13 +9,13 @@ import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
-import { CartDocument } from '../Cart.gql'
+import { ClientCartDocument } from '../ClientCart.gql'
 import GuestEmailForm from './GuestEmailForm'
 
 export default function EmailForm() {
   const [expand, setExpand] = useState(false)
   const classes = useFormStyles()
-  const { data: cartQuery } = useQuery(CartDocument)
+  const { data: cartQuery } = useQuery(ClientCartDocument)
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
   const { data: emailQuery } = useQuery(IsEmailAvailableDocument, {

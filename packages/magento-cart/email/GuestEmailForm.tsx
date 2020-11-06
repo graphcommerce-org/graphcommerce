@@ -4,8 +4,8 @@ import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmail
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import React, { PropsWithChildren, useEffect } from 'react'
-import { CartDocument } from '../Cart.gql'
-import { SetGuestEmailOnCartDocument } from './operation/SetGuestEmailOnCart.gql'
+import { ClientCartDocument } from '../ClientCart.gql'
+import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -37,7 +37,7 @@ export default function GuestEmailForm({
   signUpAdornment,
 }: PropsWithChildren<GuestEmailFormProps>) {
   const classes = useStyles()
-  const { data: cartQuery } = useQuery(CartDocument)
+  const { data: cartQuery } = useQuery(ClientCartDocument)
 
   const mutationForm = useMutationForm(SetGuestEmailOnCartDocument, {
     mode: 'onBlur',

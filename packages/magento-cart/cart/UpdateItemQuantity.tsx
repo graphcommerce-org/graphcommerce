@@ -5,7 +5,7 @@ import React, { useRef } from 'react'
 import {
   UpdateItemQuantityMutationVariables,
   UpdateItemQuantityDocument,
-} from './operation/UpdateItemQuantity.gql'
+} from './UpdateItemQuantity.gql'
 
 export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVariables) {
   const { cartId, cartItemId, quantity } = props
