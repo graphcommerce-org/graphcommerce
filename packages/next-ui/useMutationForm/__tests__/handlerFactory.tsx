@@ -57,10 +57,14 @@ describe('useMutationForm/nestedToFlat', () => {
     const customerNode = <Field Component={TextField} name='customerNote' />
     const firstName = <Field Component={TextField} name='address.firstname' />
     const streetOne = <Field Component={TextField} name='address.street[0]' />
+    const streetTwo = <Field Component={TextField} name='address.street[1]' />
 
-    // @ts-expect-error the field is not allowed
     const wrongNestedField = <Field Component={TextField} name='address.street[]' />
-    // @ts-expect-error the field is not allowed
+
+    // typescript 4.1 support not yet available. @-ts-expect-error the field is not allowed
     const wrongField = <Field Component={TextField} name='asdf' />
+
+    // typescript 4.1 support not yet available. @-ts-expect-error the field is not allowed, should use address.street[]
+    const wrongField2 = <Field Component={TextField} name='address.street[1000]' />
   })
 })

@@ -18,7 +18,7 @@ import {
 } from 'graphql'
 import { useMemo } from 'react'
 import { LiteralUnion } from 'type-fest'
-import { Path } from './getter'
+import type { ObjectToPath } from './ObjectToPath'
 
 function isOperationDefinition(
   node: DefinitionNode | OperationDefinitionNode,
@@ -137,7 +137,9 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  const Field = <P extends {}>(props: P & { Component: React.ComponentType<P>; name: Path<V> }) => {
+  const Field = <P extends {}>(
+    props: P & { Component: React.ComponentType<P>; name: ObjectToPath<V> },
+  ) => {
     const { Component, name, ...other } = props
     return (
       <Component
