@@ -128,7 +128,7 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
     return val
   }
 
-  function encode(variables: { [k in keyof V]: DeepStringify<V[k]> }, enc = encoding) {
+  function encode(variables: { [k in keyof V]?: DeepStringify<V[k]> }, enc = encoding) {
     return Object.fromEntries(
       Object.entries(variables).map(([key, val]) => {
         return [key, encodeItem(enc[key], val)]
