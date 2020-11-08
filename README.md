@@ -1,16 +1,25 @@
 # Reach Digital
 
+Stack:
+
 - [Next.js](https://nextjs.org/) + [React](https://reactjs.org/)
 - [GraphQL](https://graphql.org/) +
   [GraphQL Code Generator](https://graphql-code-generator.com/) +
   [Apollo](https://www.apollographql.com/docs/react/)
 - [GraphQL Mesh](https://graphql-mesh.com/)
-- [GraphCMS](https://graphcms.com/)
 - [Material UI](https://material-ui.com/)
-- [React-spring](https://www.react-spring.io/)
-- [Zeit](https://vercel.com/reachdigital)
+- [Framer motion](https://www.framer.com/motion/)
 - [react-schemaorg](https://github.com/google/react-schemaorg) +
   [schema-dts](https://github.com/google/schema-dts)
+
+Backends:
+
+- [GraphCMS](https://graphcms.com/)
+- [Magento 2](https://github.com/magento/magento2)
+
+Hosting:
+
+- [Vercel](https://vercel.com/reachdigital)
 
 ## Install
 
@@ -30,7 +39,7 @@ endpoint.
 
 ## Run
 
-- `yarn dev`
+`yarn dev` + `yarn stop`
 
 ## Local build
 

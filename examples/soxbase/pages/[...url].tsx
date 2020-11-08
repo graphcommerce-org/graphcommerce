@@ -137,7 +137,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
   )
   const layoutHeader = getLayoutHeaderProps(staticClient)
 
-  if (!(await categoryPage).categories?.[0]) return { notFound: true }
+  if (!(await categoryPage).categories?.items?.[0]) return { notFound: true }
 
   return {
     props: {
