@@ -11,6 +11,7 @@ import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { persistCache } from 'apollo-cache-persist'
+import { PersistentStorage } from 'apollo-cache-persist/types'
 import fragments from '../generated/fragments.json'
 // import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import typePolicies from './typePolicies'
@@ -57,7 +58,7 @@ export function createApolloClient(
 
   const link = ApolloLink.from([
     // new MutationQueueLink(),
-    new RetryLink(),
+    new RetryLink({ attempts: { max: 2 } }),
     errorLink,
     authLink,
     new HttpLink({
@@ -77,7 +78,7 @@ export function createApolloClient(
       window.localStorage.setItem('apollo-cache-persist', JSON.stringify(state))
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    persistCache({ cache, storage: window.localStorage })
+    persistCache({ cache, storage: window.localStorage as PersistentStorage<unknown> })
   }
 
   cache.restore(state)

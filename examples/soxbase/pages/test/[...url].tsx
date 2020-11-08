@@ -4,18 +4,19 @@ import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeade
 import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
-import { PageFC, PageStaticPathsFn, PageStaticPropsFn } from '@reachdigital/next-ui/Page/types'
+import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { m as motion } from 'framer-motion'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type PageComponent = PageFC<{ url: string }, PageLayoutProps>
-type GetPageStaticPaths = PageStaticPathsFn<{ url: string[] }>
-type GetPageStaticProps = PageStaticPropsFn<PageComponent, { url: string[] }>
+type Props = { url: string }
+type RouteProps = { url: string[] }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
+type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const AppShellTestIndex: PageComponent = ({ url }) => {
+function AppShellTestIndex({ url }: Props) {
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
@@ -68,6 +69,7 @@ const AppShellTestIndex: PageComponent = ({ url }) => {
     </FullPageUi>
   )
 }
+
 AppShellTestIndex.Layout = PageLayout
 
 registerRouteUi('/test/[...url]', FullPageUi)

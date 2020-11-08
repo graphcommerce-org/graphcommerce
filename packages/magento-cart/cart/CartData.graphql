@@ -1,0 +1,47 @@
+fragment CartData on Cart {
+  __typename
+  id
+
+  email
+  # selected_payment_method {
+  #   code
+  #   purchase_order_number
+  #   title
+  # }
+
+  prices {
+    ...CartPrices
+  }
+
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_title
+      method_title
+      amount {
+        ...Money
+      }
+    }
+  }
+
+  total_quantity
+
+  items {
+    id
+    __typename
+    ...CartItem
+    ...CartItemSimple
+    ...CartItemConfigurable
+    ...CartItemDownloadable
+    ...CartItemVirtual
+    ...CartItemBundle
+  }
+  is_virtual
+  # shipping_addresses {
+  #   ...ShippingCartAddress
+  # }
+  # billing_address {
+  #   ...BillingCartAddress
+  # }
+  # ...CartPaymentMethods
+  # ...CartCoupon
+}

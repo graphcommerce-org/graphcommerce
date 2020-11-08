@@ -16,13 +16,16 @@ import { UseStyles } from '../Styles'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     quantity: {
-      width: 100,
+      width: 120,
     },
     quantityInput: {
       textAlign: 'center',
       '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
         appearance: 'none',
       },
+    },
+    button: {
+      fontSize: 22,
     },
   }),
 )
@@ -123,13 +126,14 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             disabled={textFieldProps.disabled || disabled === 'min'}
             tabIndex='-1'
             color='inherit'
+            className={clsx(classes.button, DownProps.className)}
             {...DownProps}
           >
             {DownProps.children ?? (
               <RemoveIcon
                 shapeRendering='geometricPrecision'
                 titleAccess='Step down'
-                fontSize='small'
+                fontSize='inherit'
               />
             )}
           </IconButton>
@@ -144,10 +148,15 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             disabled={textFieldProps.disabled || disabled === 'max'}
             tabIndex='-1'
             color='inherit'
+            className={clsx(classes.button, UpProps.className)}
             {...UpProps}
           >
             {UpProps.children ?? (
-              <AddIcon shapeRendering='geometricPrecision' titleAccess='Step up' fontSize='small' />
+              <AddIcon
+                shapeRendering='geometricPrecision'
+                titleAccess='Step up'
+                fontSize='inherit'
+              />
             )}
           </IconButton>
         ),

@@ -1,0 +1,8 @@
+fragment ShippingMethodData on Cart {
+  id
+  __typename
+  available_payment_methods {
+    code
+    title
+  }
+}

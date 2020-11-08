@@ -4,6 +4,10 @@ schema:
 documents:
   - 'packages/**/*.graphql'
   - 'packagesDev/graphql-schema-test/*.graphql'
+hooks:
+  afterAllFileWrite:
+    - yarn eslint --fix --ignore-path .gitignore '**/*.gql.ts' || echo "1"
+    - yarn prettier --ignore-path .gitignore --write
 generates:
   examples/soxbase/generated/fragments.json:
     schema:

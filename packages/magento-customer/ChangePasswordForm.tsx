@@ -30,16 +30,15 @@ export default function ChangePasswordForm() {
   const mutationForm = useMutationForm<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
-  >({ mutation: ChangePasswordDocument })
+  >(ChangePasswordDocument)
+  const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
 
-  const { register, errors, onSubmit, required, watch, loading, error, called, data } = mutationForm
-
-  if (called && data) {
+  if (formState.isSubmitSuccessful && data) {
     return <div>Password changed!</div>
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className={classes.form}>
+    <form onSubmit={handleSubmit} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'
@@ -51,7 +50,7 @@ export default function ChangePasswordForm() {
         required={required.currentPassword}
         inputRef={register({ required: required.currentPassword })}
         helperText={errors.currentPassword?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
 
       <TextField
@@ -65,7 +64,7 @@ export default function ChangePasswordForm() {
         required={required.newPassword}
         inputRef={register({ required: required.newPassword })}
         helperText={errors.newPassword?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
 
       <TextField
@@ -81,14 +80,22 @@ export default function ChangePasswordForm() {
           validate: (value) => value === watch('newPassword') || "Paswords don't match",
         })}
         helperText={errors.confirmPassword?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
 
       <FormControl>
-        <Button type='submit' disabled={loading} color='primary' variant='contained' size='large'>
+        <Button
+          type='submit'
+          disabled={formState.isSubmitting}
+          color='primary'
+          variant='contained'
+          size='large'
+        >
           Change
         </Button>
-        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
+        <FormHelperText error={!!errors.submission?.message}>
+          {errors.submission?.message}
+        </FormHelperText>
       </FormControl>
     </form>
   )

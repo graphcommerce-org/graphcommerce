@@ -1,6 +1,6 @@
 import { FieldPolicy, TypePolicies } from '@apollo/client'
 import { Mutation } from '@reachdigital/magento-graphql'
-import { CartDocument } from './Cart.gql'
+import { ClientCartDocument } from './ClientCart.gql'
 
 /**
  * When an empty cart is created, we store the cartId separately
@@ -11,7 +11,7 @@ const createEmptyCart: FieldPolicy<Mutation['createEmptyCart']> = {
 
     // When creating a new cart we create an empty cart for the customer
     options.cache.writeQuery({
-      query: CartDocument,
+      query: ClientCartDocument,
       broadcast: true,
       data: {
         cart: {

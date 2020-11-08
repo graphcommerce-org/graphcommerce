@@ -10,7 +10,8 @@ import {
   Checkbox,
   FormControl,
 } from '@material-ui/core'
-import { useMutationForm, emailPattern, Controller } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm, Controller } from '@reachdigital/next-ui/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 import { SignUpMutation, SignUpMutationVariables, SignUpDocument } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
@@ -29,13 +30,14 @@ const useStyles = makeStyles(
 export default function SignUpForm() {
   const classes = useStyles()
   const client = useApolloClient()
-  const { register, errors, onSubmit, required, watch, control, loading, error } = useMutationForm<
+  const mutationForm = useMutationForm<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
-  >({ mutation: SignUpDocument, onComplete: onCompleteSignInUp })
+  >(SignUpDocument, { onComplete: onCompleteSignInUp })
+  const { register, errors, handleSubmit, required, watch, control, formState } = mutationForm
 
   return (
-    <form onSubmit={onSubmit} noValidate className={classes.form}>
+    <form onSubmit={handleSubmit} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='text'
@@ -60,7 +62,7 @@ export default function SignUpForm() {
           },
         })}
         helperText={errors.email?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
       <Controller
         defaultValue='Dhr.'
@@ -76,7 +78,7 @@ export default function SignUpForm() {
             label='Prefix'
             required={required.prefix}
             helperText={errors.prefix?.message}
-            disabled={loading}
+            disabled={formState.isSubmitting}
             onChange={(e) => onChange(e.target.value)}
             onBlur={onBlur}
             value={value}
@@ -100,7 +102,7 @@ export default function SignUpForm() {
         required={required.firstname}
         inputRef={register({ required: required.firstname })}
         helperText={errors.firstname?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
       <TextField
         variant='outlined'
@@ -112,7 +114,7 @@ export default function SignUpForm() {
         required={required.middlename}
         inputRef={register({ required: required.middlename })}
         helperText={errors.middlename?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
       <TextField
         variant='outlined'
@@ -124,7 +126,7 @@ export default function SignUpForm() {
         required={required.lastname}
         inputRef={register({ required: required.lastname })}
         helperText={errors.lastname?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
       <TextField
         variant='outlined'
@@ -136,7 +138,7 @@ export default function SignUpForm() {
         required={required.suffix}
         inputRef={register({ required: required.suffix })}
         helperText={errors.suffix?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
       <TextField
         variant='outlined'
@@ -149,7 +151,7 @@ export default function SignUpForm() {
         required={required.password}
         inputRef={register({ required: required.password })}
         helperText={errors.password?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
       <TextField
         variant='outlined'
@@ -164,22 +166,30 @@ export default function SignUpForm() {
           validate: (value) => value === watch('password') || "Paswords don't match",
         })}
         helperText={errors.confirmPassword?.message}
-        disabled={loading}
+        disabled={formState.isSubmitting}
       />
 
       <FormControlLabel
         control={<Checkbox name='checkedB' color='primary' />}
         name='isSubscribed'
         inputRef={register({ required: required.isSubscribed })}
-        disabled={loading}
+        disabled={formState.isSubmitting}
         label='Subscribe to newsletter'
       />
 
       <FormControl>
-        <Button type='submit' disabled={loading} variant='contained' color='primary' size='large'>
+        <Button
+          type='submit'
+          disabled={formState.isSubmitting}
+          variant='contained'
+          color='primary'
+          size='large'
+        >
           Submit
         </Button>
-        <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
+        <FormHelperText error={!!errors.submission?.message}>
+          {errors.submission?.message}
+        </FormHelperText>
       </FormControl>
     </form>
   )

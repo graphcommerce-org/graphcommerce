@@ -50,7 +50,6 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   marks[max] = { value: max, label: max }
 
   const [value, setValue] = React.useState<[number, number]>([min, max])
-  const handleChange = (_, newValue: [number, number]) => setValue(newValue)
 
   const applyFilter = () => {
     const linkParams = cloneDeep(params)
@@ -98,7 +97,9 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           step={Math.floor(max / 20)}
           aria-labelledby='range-slider'
           value={value}
-          onChange={handleChange}
+          onChangeCommitted={(e, newValue) => {
+            setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
+          }}
           valueLabelDisplay='auto'
         />
         <Button onClick={resetFilter} size='small'>

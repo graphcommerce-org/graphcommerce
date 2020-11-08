@@ -1,0 +1,28 @@
+fragment ShippingCartAddress on ShippingCartAddress {
+  firstname
+  lastname
+
+  company
+  city
+  postcode
+  street
+  country {
+    code
+    label
+  }
+  region {
+    code
+    label
+    region_id
+  }
+  telephone
+
+  customer_notes
+
+  selected_shipping_method {
+    ...SelectedShippingMethod
+  }
+  available_shipping_methods {
+    ...AvailableShippingMethod
+  }
+}

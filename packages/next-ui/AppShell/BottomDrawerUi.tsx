@@ -1,4 +1,5 @@
 import { makeStyles, Theme, Typography, TypographyProps, NoSsr } from '@material-ui/core'
+import clsx from 'clsx'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler } from 'react'
@@ -31,11 +32,13 @@ const useStyles = makeStyles(
       boxShadow: theme.shadows[10],
       width: '100%',
       '&:focus': { outline: 'none' },
-      padding: theme.spacings.sm,
       paddingBottom: 0,
       '&> *': {
         marginBottom: theme.spacings.sm,
       },
+    },
+    drawerFullHeight: {
+      minHeight: `calc(100vh - ${responsiveVal(10, 70)})`,
     },
     header: {
       position: 'sticky',
@@ -43,6 +46,9 @@ const useStyles = makeStyles(
       left: 0,
       right: 0,
       display: 'grid',
+      padding: theme.spacings.sm,
+      paddingBottom: 0,
+      marginBottom: theme.spacings.sm,
       // margin: `0 ${theme.spacings.sm}`,
       alignItems: 'center',
       gridTemplateColumns: `1fr auto 1fr`,
@@ -64,6 +70,7 @@ const useStyles = makeStyles(
 )
 
 export type BottomDrawerUiProps = UseStyles<typeof useStyles> & {
+  fullHeight?: boolean
   titleProps?: TypographyProps<'h2'>
   titleComponent?: React.ElementType
   headerForward?: React.ReactNode
@@ -78,6 +85,7 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
     backFallbackHref,
     backFallbackTitle,
     headerForward,
+    fullHeight,
   } = props
 
   const classes = useStyles()
@@ -115,7 +123,7 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
       <motion.div {...offsetDiv} style={{ zIndex: 2 }}>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
           <motion.section
-            className={classes.drawer}
+            className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
             {...contentAnimation}
             tabIndex={-1}
             style={{ pointerEvents: inFront ? 'all' : 'none' }}

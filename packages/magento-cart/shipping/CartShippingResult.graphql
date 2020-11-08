@@ -1,0 +1,7 @@
+fragment CartShippingResult on Cart {
+  id
+  __typename
+  shipping_addresses {
+    ...ShippingCartAddress
+  }
+}

@@ -1,5 +1,5 @@
-import { CartDocument } from '@reachdigital/magento-cart/Cart.gql'
-import { MergeCartsDocument } from '@reachdigital/magento-cart/MergeCarts.gql'
+import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
+import { MergeCartsDocument } from '@reachdigital/magento-cart/cart/MergeCarts.gql'
 import { OnCompleteFn } from '@reachdigital/next-ui/useMutationForm'
 import { CustomerDocument } from './Customer.gql'
 import { CustomerCartDocument } from './CustomerCart.gql'
@@ -17,7 +17,7 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
     query: CustomerDocument,
     fetchPolicy: 'network-only',
   })
-  const awaitCart = client.query({ query: CartDocument })
+  const awaitCart = client.query({ query: ClientCartDocument })
   const awaitCustomerCart = client.query({ query: CustomerCartDocument })
 
   const { data: customerCart, error } = await awaitCustomerCart
@@ -29,8 +29,8 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
 
   // Write the result of the customerCart to the cart query so it can be used
   client.cache.writeQuery({
-    query: CartDocument,
-    data: { cart: customerCart.customerCart },
+    query: ClientCartDocument,
+    data: { cart: { ...customerCart.customerCart, shipping_addresses: [] } },
     broadcast: true,
   })
 
