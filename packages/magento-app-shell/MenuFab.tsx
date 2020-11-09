@@ -6,7 +6,7 @@ import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { Router } from 'next/router'
 import React from 'react'
-import { LayoutHeaderQuery } from './Header.gql'
+import { PageLayoutQuery } from './PageLayout.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -58,7 +58,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = LayoutHeaderQuery & ResolveUrlQuery
+export type MenuFabProps = PageLayoutQuery & ResolveUrlQuery
 
 export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
   const classes = useStyles()

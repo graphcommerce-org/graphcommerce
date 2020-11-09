@@ -44,6 +44,4 @@ export type AllFilterInputTypes =
   | 'FilterMatchTypeInput'
   | 'FilterRangeTypeInput'
 
-export type FilterTypeMap = {
-  [index: string]: AllFilterInputTypes
-}
+export type FilterTypes = Partial<Record<string, AllFilterInputTypes>>

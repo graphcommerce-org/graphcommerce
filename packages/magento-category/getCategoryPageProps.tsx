@@ -1,78 +1,108 @@
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@apollo/client'
 import {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
   SortEnum,
 } from '@reachdigital/magento-graphql'
-import { ProductListDocument } from '@reachdigital/magento-product/ProductList.gql'
+import {
+  ProductListDocument,
+  ProductListQuery,
+} from '@reachdigital/magento-product/ProductList.gql'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { PromiseValue } from 'type-fest'
 import { CategoryPageDocument } from './CategoryPage.gql'
-import getFilterTypeMap from './getFilterTypeMap'
+import getFilterTypes from './getFilterTypes'
 
 async function parseParams(
   url: string,
   query: string[],
-  filterTypeMap: ReturnType<typeof getFilterTypeMap>,
+  filterTypes: ReturnType<typeof getFilterTypes>,
 ) {
   const categoryVariables: ProductListParams = { url, filters: {}, sort: {} }
 
-  const typeMap = await filterTypeMap
+  const typeMap = await filterTypes
+
   query.reduce<string | undefined>((param, value) => {
     // We parse everything in pairs, every second loop we parse
     if (!param) return value
 
-    if (param === 'page') categoryVariables.currentPage = Number(value)
-    if (param === 'size') categoryVariables.pageSize = Number(param)
-    if (param === 'sort') categoryVariables.sort[value] = 'ASC'
+    if (param === 'page') {
+      categoryVariables.currentPage = Number(value)
+      return undefined
+    }
+    if (param === 'size') {
+      categoryVariables.pageSize = Number(param)
+      return undefined
+    }
+    if (param === 'sort') {
+      categoryVariables.sort[value] = 'ASC'
+      return undefined
+    }
     if (param === 'dir') {
       const [sortBy] = Object.keys(categoryVariables.sort)
       if (sortBy) categoryVariables.sort[sortBy] = value as SortEnum
+      return undefined
     }
 
     const [from, to] = value.split('-')
     switch (typeMap[param]) {
-      case 'FilterEqualTypeInput':
-        categoryVariables.filters[param] = { in: value.split(',') } as FilterEqualTypeInput
-        break
       case 'FilterMatchTypeInput':
         categoryVariables.filters[param] = { match: value } as FilterMatchTypeInput
-        break
+        return undefined
       case 'FilterRangeTypeInput':
         categoryVariables.filters[param] = {
           ...(from !== '*' && { from }),
           ...(to !== '*' && { to }),
         } as FilterRangeTypeInput
-        break
+        return undefined
+      case 'FilterEqualTypeInput':
+        categoryVariables.filters[param] = { in: value.split(',') } as FilterEqualTypeInput
+        return undefined
     }
 
-    return undefined
+    throw new ResultError({ notFound: true })
   }, undefined)
 
   return categoryVariables
 }
 
+// function assertAllowedParams(params: ProductListParams, productList: ProductListQuery) {
+//   const aggregations = productList.filters?.aggregations
+
+//   Object.entries(params.filters).forEach(([key, val]) => {
+//     const found = aggregations?.some(
+//       (aggregation) =>
+//         aggregation?.attribute_code === key &&
+//         aggregation.options?.some((option) => {
+
+//           console.log(val, option?.value)
+//           return option?.value === val
+//         }),
+//     )
+//     console.log(found, key, val)
+//   })
+// }
+
 type GetCategoryPagePropsArguments = {
-  url: string[]
+  urlPath: string
   urlParams: string[]
-  urlResolve: ReturnType<typeof getUrlResolveProps>
+  resolveUrl: Promise<ApolloQueryResult<ResolveUrlQuery>>
 }
 
 const getCategoryPageProps = async (
-  { url, urlParams, urlResolve }: GetCategoryPagePropsArguments,
+  { urlPath, urlParams, resolveUrl }: GetCategoryPagePropsArguments,
   client: ApolloClient<NormalizedCacheObject>,
 ) => {
-  const filterTypeMap = getFilterTypeMap(client)
+  const filterTypes = getFilterTypes(client)
 
-  const category = client.query({
-    query: CategoryPageDocument,
-    variables: { urlPath: url.join('/') },
-  })
+  const category = client.query({ query: CategoryPageDocument, variables: { urlPath } })
 
-  const params = parseParams(url.join('/'), urlParams, filterTypeMap)
-  const rootCategory = String((await urlResolve).urlResolver?.id)
+  const params = parseParams(urlPath, urlParams, filterTypes)
+
+  const rootCategory = String((await resolveUrl).data.urlResolver?.id ?? 0)
   const products = client.query({
     query: ProductListDocument,
     variables: {
@@ -82,20 +112,15 @@ const getCategoryPageProps = async (
     },
   })
 
-  const categoryData = (await category).data
-  const productsData = (await products).data
-
-  if (!categoryData) throw new Error('Could not fetch category')
-  if (!productsData) throw new Error('Could not fetch category products')
-
+  // assertAllowedParams(await params, (await products).data)
   return {
-    ...categoryData,
-    ...productsData,
+    ...(await category).data,
+    ...(await products).data,
     params: await params,
-    filterTypeMap: await filterTypeMap,
+    filterTypes: await filterTypes,
   }
 }
 
 export default getCategoryPageProps
 
-export type GetCategoryPageProps = PromiseValue<ReturnType<typeof getCategoryPageProps>>
+export type CategoryPageProps = PromiseValue<ReturnType<typeof getCategoryPageProps>>

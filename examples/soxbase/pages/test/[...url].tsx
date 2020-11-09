@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -85,18 +85,20 @@ export const getStaticPaths: GetPageStaticPaths = async () => {
 }
 
 export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  if (!ctx.params) throw new Error('No params')
+  const url = ctx.params?.url.join('/') ?? ''
 
   const client = apolloClient()
   const staticClient = apolloClient()
-  await getStoreConfig(client)
-  const layoutHeader = getLayoutHeaderProps(staticClient)
 
+  const config = client.query({ query: StoreConfigDocument })
+  const pageLayout = staticClient.query({ query: PageLayoutDocument })
+
+  await config
   return {
     props: {
+      ...(await pageLayout).data,
+      url,
       apolloState: client.cache.extract(),
-      ...(await layoutHeader),
-      url: ctx.params.url.join('/'),
     },
   }
 }

@@ -1,11 +1,10 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
-import { CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { CmsPageDocument, CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
 import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import CmsPageMeta from '@reachdigital/magento-cms/CmsPageMeta'
-import getCmsPageProps from '@reachdigital/magento-cms/getCmsPageProps'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
-import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
+import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -41,30 +40,29 @@ export default CmsPage
 export const getStaticPaths: GetPageStaticPaths = async () => {
   return {
     paths: [{ params: { url: 'home' } }],
-    fallback: true,
+    fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetPageStaticProps = async (ctx) => {
+  const urlKey = ctx.params?.url ?? '??'
   const client = apolloClient()
   const staticClient = apolloClient()
 
-  if (!ctx.params?.url) throw Error('noo')
+  const config = client.query({ query: StoreConfigDocument })
+  const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
+  const pageLayout = staticClient.query({ query: PageLayoutDocument })
+  const cmsPage = staticClient.query({ query: CmsPageDocument, variables: { urlKey } })
 
-  const config = getStoreConfig(client)
-  const urlResolve = getUrlResolveProps({ urlKey: ctx.params.url }, staticClient)
-  const cmsPageProps = getCmsPageProps(
-    (ctx.params.url === '/' && (await config)?.storeConfig?.cms_home_page) || ctx.params.url,
-    staticClient,
-  )
-  const layoutHeader = getLayoutHeaderProps(staticClient)
+  const { urlResolver } = (await resolveUrl).data
+  if (!urlResolver?.id || urlResolver?.type !== 'CMS_PAGE') return { notFound: true }
 
+  await config
   return {
     props: {
-      title: (await cmsPageProps).cmsPage?.title ?? '',
-      ...(await urlResolve),
-      ...(await layoutHeader),
-      ...(await cmsPageProps),
+      ...(await resolveUrl).data,
+      ...(await pageLayout).data,
+      ...(await cmsPage).data,
       apolloState: client.cache.extract(),
     },
     revalidate: 60 * 20,

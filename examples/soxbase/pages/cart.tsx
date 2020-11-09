@@ -1,10 +1,10 @@
 import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import Cart from '@reachdigital/magento-cart/cart/Cart'
 import CartItem2 from '@reachdigital/magento-cart/cart/CartItem2'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -52,14 +52,15 @@ export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
-  const config = getStoreConfig(client)
   const staticClient = apolloClient()
-  const layoutHeader = getLayoutHeaderProps(staticClient)
+
+  const config = client.query({ query: StoreConfigDocument })
+  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
   await config
   return {
     props: {
-      ...(await layoutHeader),
+      ...(await pageLayout).data,
       apolloState: client.cache.extract(),
     },
   }

@@ -15,7 +15,7 @@ export type GetStaticProps<
   PL extends AnyObj,
   P extends AnyObj = AnyObj,
   Q extends ParsedUrlQuery = ParsedUrlQuery
-> = GetStaticPropsNext<PL & P & ApolloStateProps, Q>
+> = GetStaticPropsNext<P & PL & ApolloStateProps, Q>
 
 export type GetStaticPaths<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetStaticPathsNext<Q>
 

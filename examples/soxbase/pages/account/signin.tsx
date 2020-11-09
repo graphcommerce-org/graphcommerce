@@ -1,10 +1,10 @@
 import { Button, Container, Link } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import SignInForm from '@reachdigital/magento-customer/SignInForm'
 import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -48,15 +48,15 @@ export default AccountSignInPage
 
 export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
-  const config = getStoreConfig(client)
-
   const staticClient = apolloClient()
-  const layoutHeader = getLayoutHeaderProps(staticClient)
+
+  const config = client.query({ query: StoreConfigDocument })
+  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
   await config
   return {
     props: {
-      ...(await layoutHeader),
+      ...(await pageLayout).data,
       apolloState: client.cache.extract(),
     },
   }

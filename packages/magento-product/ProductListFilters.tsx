@@ -4,21 +4,21 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 import FilterCheckboxType from './ProductListFilters/FilterCheckboxType'
 import FilterEqualType from './ProductListFilters/FilterEqualType'
 import FilterRangeType from './ProductListFilters/FilterRangeType'
-import { FilterTypeMap } from './ProductListItems/filterTypes'
+import { FilterTypes } from './ProductListItems/filterTypes'
 
 type ProductFiltersProps = ProductListFiltersFragment & {
-  filterTypeMap: FilterTypeMap
+  filterTypes: FilterTypes
 } & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 
 export default function ProductListFilters(props: ProductFiltersProps) {
-  const { aggregations, filterTypeMap, ...chipMenuProps } = props
+  const { aggregations, filterTypes, ...chipMenuProps } = props
 
   return (
     <>
       {aggregations?.map((aggregation) => {
         if (!aggregation?.attribute_code || aggregation?.attribute_code === 'category_id')
           return null
-        switch (filterTypeMap[aggregation.attribute_code]) {
+        switch (filterTypes[aggregation.attribute_code]) {
           case 'FilterEqualTypeInput':
             if (aggregation.options?.[0]?.label === '1') {
               return (

@@ -4,7 +4,7 @@ import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import {
-  FilterTypeMap,
+  FilterTypes,
   isFilterTypeEqual,
 } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
@@ -12,11 +12,11 @@ import { AddConfigurableProductToCartDocument } from './AddConfigurableProductTo
 import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.gql'
 
 type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment & {
-  filterTypeMap: FilterTypeMap
+  filterTypes: FilterTypes
 }
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
-  const { variants, configurable_options, filterTypeMap, ...configurableProduct } = props
+  const { variants, configurable_options, filterTypes, ...configurableProduct } = props
   const { params } = useProductListParamsContext()
 
   const options: [string, string[]][] =
