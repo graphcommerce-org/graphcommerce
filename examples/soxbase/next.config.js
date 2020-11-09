@@ -25,9 +25,10 @@ const obs = new PerformanceObserver((entryList) => {
 obs.observe({ entryTypes: ['measure'] })
 
 let domains = []
-if (process.env.IMAGE_DOMAINS) {
-  domains = process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim())
-}
+if (process.env.IMAGE_DOMAINS) domains = process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim())
+
+const locales = Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))
+const defaultLocale = locales[0]
 
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
@@ -44,6 +45,10 @@ const nextConfig = {
   images: {
     domains,
     imageSizes: [16, 32, 64, 128, 256],
+  },
+  i18n: {
+    locales,
+    defaultLocale,
   },
 }
 

@@ -5,6 +5,7 @@ import Cart from '@reachdigital/magento-cart/cart/Cart'
 import CartItem2 from '@reachdigital/magento-cart/cart/CartItem2'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -50,9 +51,9 @@ registerRouteUi('/cart', BottomDrawerUi)
 
 export default CartPage
 
-export const getStaticProps: GetPageStaticProps = async () => {
-  const client = apolloClient()
-  const staticClient = apolloClient()
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })

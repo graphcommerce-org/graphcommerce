@@ -1,4 +1,5 @@
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import apolloClient from '../lib/apolloClient'
@@ -8,8 +9,8 @@ export default CmsPage
 
 registerRouteUi('/', FullPageUi)
 
-export const getStaticProps = async () => {
-  const client = apolloClient()
+export const getStaticProps = async ({ locale }) => {
+  const client = apolloClient(localeToStore(locale))
   const config = (await client.query({ query: StoreConfigDocument })).data
   const url = config?.storeConfig?.cms_home_page ?? ''
   return getCmsPageStaticProps({ params: { url } })

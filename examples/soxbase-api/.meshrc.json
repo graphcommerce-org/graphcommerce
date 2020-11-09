@@ -25,11 +25,11 @@
           "useGETForQueries": true,
           "cacheIntrospection": true,
           "schemaHeaders": {
-            "Store": "default",
+            "Store": "{context.req.headers.store}",
             "Authorization": "{context.req.headers.authorization}"
           },
           "operationHeaders": {
-            "Store": "default",
+            "Store": "{context.req.headers.store}",
             "Authorization": "{context.req.headers.authorization}"
           }
         }

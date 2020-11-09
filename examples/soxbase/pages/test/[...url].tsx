@@ -2,6 +2,7 @@ import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -77,18 +78,25 @@ registerRouteUi('/test/[...url]', FullPageUi)
 export default AppShellTestIndex
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async () => {
-  return {
-    paths: [{ params: { url: ['index'] } }, { params: { url: ['other'] } }],
-    fallback: true,
-  }
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  const urls = ['index', 'other']
+
+  const paths = locales
+    .map((locale) =>
+      urls.map((url) => {
+        return { params: { url: [url] }, locale }
+      }),
+    )
+    .flat(1)
+
+  return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  const url = ctx.params?.url.join('/') ?? ''
+export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+  const url = params?.url.join('/') ?? ''
 
-  const client = apolloClient()
-  const staticClient = apolloClient()
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })

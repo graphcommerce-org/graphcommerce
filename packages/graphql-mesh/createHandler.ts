@@ -6,9 +6,7 @@ import '@graphql-mesh/transform-filter-schema'
 import '@graphql-mesh/graphql'
 import '@graphql-mesh/merger-stitching'
 import '@graphql-mesh/transform-cache'
-import '@graphql-mesh/cache-file'
 import cors from 'micro-cors'
-import { NextApiRequest, NextApiResponse } from 'next'
 
 function injectEnv(json: YamlConfig.Config): YamlConfig.Config {
   let content = JSON.stringify(json)

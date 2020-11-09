@@ -9,7 +9,8 @@ type Return = GetStaticPathsResult<{ url: string }>
 
 const getProductStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
-): Promise<Return> => {
+  locale: string,
+) => {
   const query = client.query({
     query: GetProductStaticPathsDocument,
     variables: { currentPage: 1 },
@@ -23,15 +24,12 @@ const getProductStaticPaths = async (
       pages.push(client.query({ query: GetProductStaticPathsDocument, variables: { currentPage } }))
     })
   }
-  const paths = (await Promise.all(pages))
+  const paths: Return['paths'] = (await Promise.all(pages))
     .map((q) => q.data.products?.items)
     .flat(1)
-    .map((p) => ({ params: { url: `${p?.url_key}` } }))
+    .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 
-  return {
-    paths,
-    fallback: 'blocking',
-  }
+  return paths
 }
 
 export default getProductStaticPaths
