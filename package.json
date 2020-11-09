@@ -99,7 +99,7 @@
     "react-test-renderer": "^17.0.1",
     "semantic-release": "^17.2.2",
     "semantic-release-slack-bot": "^1.6.2",
-    "ts-jest": "^26.4.3",
+    "ts-jest": "^26.4.4",
     "typescript": "^4.0.0",
     "webpack": "^5.4.0"
   },
