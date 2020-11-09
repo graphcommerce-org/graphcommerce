@@ -1,29 +1,22 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { GetStaticPathsResult } from 'next'
 import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.gql'
 
-const getCategoryStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
+type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
+
+const getCategoryStaticPaths = async (
+  client: ApolloClient<NormalizedCacheObject>,
+): Promise<StaticPathsResult> => {
   const { data } = await client.query({ query: GetCategoryStaticPathsDocument })
 
-  type Category = { children?: Array<Category | null> | null; url_key?: string | null }
-  const extractChildren = (category?: Category | null, baseUrl = '') => {
-    if (!category) return []
-
-    const url = category.url_key ? `${baseUrl}/${category.url_key ?? ''}` : baseUrl
-    const children = category.children?.map((value) => extractChildren(value, url)) ?? []
-
-    return url ? [`${url}`, ...children] : children
-  }
-
-  const paths =
-    data?.categories?.items
-      ?.map((category) => extractChildren(category))
-      .flat(10)
-      .filter((v) => !!v)
-      .map((url) => ({
-        params: { url: url.split('/').filter((v: string) => !!v) as string[] },
+  const paths: StaticPathsResult['paths'] =
+    data.categories?.items
+      ?.filter((category) => category?.url_path)
+      .map((category) => ({
+        params: { url: `${category?.url_path}${category?.url_suffix}`.split('/') },
       })) ?? []
 
-  return { paths, fallback: true } as const
+  return { paths, fallback: 'blocking' }
 }
 
 export default getCategoryStaticPaths
