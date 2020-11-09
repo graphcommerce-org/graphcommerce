@@ -15,6 +15,7 @@ import getProductStaticPaths from '@reachdigital/magento-product/getProductStati
 import productPageCategory from '@reachdigital/magento-product/productPageCategory'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -71,16 +72,22 @@ registerRouteUi('/product/[url]', BottomDrawerUi)
 
 export default ProductPage
 
-export const getStaticPaths: GetPageStaticPaths = () => {
-  const client = apolloClient()
-  return getProductStaticPaths(client)
+export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
+  const localePaths =
+    locales?.map((locale) => {
+      const client = apolloClient(localeToStore(locale))
+      return getProductStaticPaths(client, locale)
+    }) ?? []
+  const paths = (await Promise.all(localePaths)).flat(1)
+
+  return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  let urlKey = ctx.params?.url ?? '??'
+export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+  let urlKey = params?.url ?? '??'
 
-  const client = apolloClient()
-  const staticClient = apolloClient()
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
   const config = client.query({ query: StoreConfigDocument })
 
   const productPage = staticClient.query({ query: ProductPageDocument, variables: { urlKey } })

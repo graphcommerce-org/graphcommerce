@@ -10,6 +10,7 @@ import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/Shipp
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -43,9 +44,9 @@ registerRouteUi('/checkout', BottomDrawerUi)
 
 export default ShippingPage
 
-export const getStaticProps: GetPageStaticProps = async () => {
-  const client = apolloClient()
-  const staticClient = apolloClient()
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })

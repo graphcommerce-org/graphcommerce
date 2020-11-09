@@ -1,6 +1,7 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -73,16 +74,25 @@ registerRouteUi('/test/overlay/[...url]', BottomDrawerUi)
 export default AppShellTextOverlay
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async () => {
-  return {
-    paths: [{ params: { url: ['index'] } }, { params: { url: ['deeper'] } }],
-    fallback: true,
-  }
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  const urls = ['index', 'deeper']
+
+  const paths = locales
+    .map((locale) =>
+      urls.map((url) => {
+        return { params: { url: [url] }, locale }
+      }),
+    )
+    .flat(1)
+
+  return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  const client = apolloClient()
-  const staticClient = apolloClient()
+export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
+  const url = params?.url.join('/') ?? ''
+
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
@@ -91,7 +101,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
   return {
     props: {
       ...(await pageLayout).data,
-      url: ctx.params?.url.join('/') ?? '',
+      url,
       apolloState: client.cache.extract(),
     },
   }

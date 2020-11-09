@@ -22,6 +22,7 @@ import ProductListPagination from '@reachdigital/magento-product/ProductListPagi
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -114,21 +115,30 @@ registerRouteUi('/[...url]', FullPageUi)
 
 export default CategoryPage
 
-export const getStaticPaths: GetPageStaticPaths = () => getCategoryStaticPaths(apolloClient())
+export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
+  const localePaths =
+    locales?.map((locale) => {
+      const client = apolloClient(localeToStore(locale))
+      return getCategoryStaticPaths(client, locale)
+    }) ?? []
+  const paths = (await Promise.all(localePaths)).flat(1)
 
-export const getStaticProps: GetPageStaticProps = async (ctx) => {
+  return { paths, fallback: 'blocking' }
+}
+
+export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
   try {
-    if (!ctx.params?.url) throw new ResultError({ notFound: true })
+    if (!params?.url) throw new ResultError({ notFound: true })
 
-    const queryIndex = ctx.params.url.findIndex((slug) => slug === 'q')
-    const qIndex = queryIndex < 0 ? ctx.params.url.length : queryIndex
-    const urlPath = ctx.params.url.slice(0, qIndex).join('/')
-    const urlParams = ctx.params.url.slice(qIndex + 1)
+    const queryIndex = params.url.findIndex((slug) => slug === 'q')
+    const qIndex = queryIndex < 0 ? params.url.length : queryIndex
+    const urlPath = params.url.slice(0, qIndex).join('/')
+    const urlParams = params.url.slice(qIndex + 1)
 
     if (queryIndex > 0 && !urlParams.length) throw new ResultError({ notFound: true })
 
-    const client = apolloClient()
-    const staticClient = apolloClient()
+    const client = apolloClient(localeToStore(locale))
+    const staticClient = apolloClient(localeToStore(locale))
     const config = client.query({ query: StoreConfigDocument })
     const suffix = (await config).data?.storeConfig?.category_url_suffix ?? ''
     const urlKey = `${urlPath}${suffix}`

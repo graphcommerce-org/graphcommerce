@@ -5,6 +5,7 @@ import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import CmsPageMeta from '@reachdigital/magento-cms/CmsPageMeta'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -32,22 +33,29 @@ const CmsPage = ({ cmsPage }: Props) => {
 
 CmsPage.Layout = PageLayout
 
-registerRouteUi('/page', FullPageUi)
+registerRouteUi('/page/[url]', FullPageUi)
 
 export default CmsPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async () => {
-  return {
-    paths: [{ params: { url: 'home' } }],
-    fallback: 'blocking',
-  }
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  const urls = ['home', 'no-route']
+
+  const paths = locales
+    .map((locale) =>
+      urls.map((url) => {
+        return { params: { url }, locale }
+      }),
+    )
+    .flat(1)
+
+  return { paths, fallback: 'blocking' }
 }
 
-export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  const urlKey = ctx.params?.url ?? '??'
-  const client = apolloClient()
-  const staticClient = apolloClient()
+export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
+  const urlKey = params?.url ?? '??'
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
   const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })

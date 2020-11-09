@@ -17,6 +17,7 @@ import fragments from '../generated/fragments.json'
 import typePolicies from './typePolicies'
 
 export function createApolloClient(
+  store: string,
   initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
   const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -48,12 +49,10 @@ export function createApolloClient(
       // nothing to do
     }
 
-    return {
-      headers: {
-        ...headers,
-        authorization,
-      },
-    }
+    // todo: Content-Currency
+    // todo: Preview-Version
+    // tood: X-Captcha
+    return { headers: { ...headers, authorization, store } }
   })
 
   const link = ApolloLink.from([
@@ -89,10 +88,11 @@ export function createApolloClient(
 let globalClient: ApolloClient<NormalizedCacheObject> | undefined
 
 export default function apolloClient(
+  store: string,
   state: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
-  if (typeof window === 'undefined') return createApolloClient(state)
+  if (typeof window === 'undefined') return createApolloClient(store, state)
   if (globalClient) globalClient.cache.restore(mergeDeep(globalClient.cache.extract(), state))
-  else globalClient = createApolloClient(state)
+  else globalClient = createApolloClient(store, state)
   return globalClient
 }
