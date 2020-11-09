@@ -125,7 +125,7 @@ export const getStaticProps: GetPageStaticProps = async (ctx) => {
     const urlPath = ctx.params.url.slice(0, qIndex).join('/')
     const urlParams = ctx.params.url.slice(qIndex + 1)
 
-    if (qIndex && !urlParams.length) throw new ResultError({ notFound: true })
+    if (queryIndex > 0 && !urlParams.length) throw new ResultError({ notFound: true })
 
     const client = apolloClient()
     const staticClient = apolloClient()
