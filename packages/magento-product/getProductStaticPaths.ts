@@ -10,7 +10,10 @@ type Return = GetStaticPathsResult<{ url: string }>
 const getProductStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
 ): Promise<Return> => {
-  const query = client.query({ query: GetProductStaticPathsDocument })
+  const query = client.query({
+    query: GetProductStaticPathsDocument,
+    variables: { currentPage: 1 },
+  })
   const pages: Promise<ApolloQueryResult<GetProductStaticPathsQuery>>[] = [query]
 
   const totalPages = (await query).data?.products?.page_info?.total_pages ?? 0
