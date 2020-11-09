@@ -24,6 +24,11 @@ const obs = new PerformanceObserver((entryList) => {
 })
 obs.observe({ entryTypes: ['measure'] })
 
+let domains = []
+if (process.env.IMAGE_DOMAINS) {
+  domains = process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim())
+}
+
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
   experimental: {
@@ -37,7 +42,7 @@ const nextConfig = {
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
-    domains: process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim()),
+    domains,
     imageSizes: [16, 32, 64, 128, 256],
   },
 }
