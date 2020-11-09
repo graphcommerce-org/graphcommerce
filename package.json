@@ -102,5 +102,71 @@
     "ts-jest": "^26.4.3",
     "typescript": "^4.0.0",
     "webpack": "^5.4.0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "docs",
+                "section": "Documentation"
+              },
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Fixes"
+              },
+              {
+                "type": "perf",
+                "section": "Performance Improvements"
+              },
+              {
+                "type": "build",
+                "section": "Build"
+              },
+              {
+                "type": "refactor",
+                "section": "Refactor"
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github",
+      [
+        "semantic-release-slack-bot",
+        {
+          "notifyOnSuccess": true,
+          "notifyOnFail": true,
+          "markdownReleaseNotes": true,
+          "onSuccessTemplate": {
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*New release for $repo_url 🎉*\n$release_notes"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    ],
+    "branches": [
+      {
+        "name": "master"
+      }
+    ]
   }
 }
