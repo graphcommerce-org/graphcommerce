@@ -1,12 +1,12 @@
 import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryPageProps, {
-  GetCategoryPageProps,
+  CategoryPageProps,
 } from '@reachdigital/magento-category/getCategoryPageProps'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
@@ -20,25 +20,26 @@ import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import ProductListItems from '@reachdigital/magento-product/ProductListItems'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
-import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
+import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
+import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../lib/apolloClient'
 
-type Props = GetCategoryPageProps
+type Props = CategoryPageProps
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const classes = useCategoryPageStyles(props)
-  const { categories, products, filters, params, filterTypeMap } = props
+  const { categories, products, filters, params, filterTypes } = props
 
-  if (!categories?.items?.[0] || !products || !params || !filters || !filterTypeMap)
+  if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
     return <NextError statusCode={503} title='Loading skeleton' />
 
   const category = categories.items[0]
@@ -73,14 +74,14 @@ function CategoryPage(props: Props) {
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
               aggregations={filters.aggregations}
-              filterTypeMap={filterTypeMap}
+              filterTypes={filterTypes}
               className={classes.filterItem}
             />
           </div>
           <ProductListItems
             items={products.items}
             className={classes.items}
-            filterTypeMap={filterTypeMap}
+            filterTypes={filterTypes}
             renderers={{
               SimpleProduct: ProductListItemSimple,
               ConfigurableProduct: ProductListItemConfigurable,
@@ -113,39 +114,55 @@ registerRouteUi('/[...url]', FullPageUi)
 
 export default CategoryPage
 
-export const getStaticPaths: GetPageStaticPaths = () => {
-  const client = apolloClient()
-  return getCategoryStaticPaths(client)
-}
+export const getStaticPaths: GetPageStaticPaths = () => getCategoryStaticPaths(apolloClient())
 
 export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  if (!ctx.params) throw new Error('No params')
+  try {
+    if (!ctx.params?.url) throw new ResultError({ notFound: true })
 
-  const queryIndex = ctx.params.url.findIndex((slug) => slug === 'q')
-  const qIndex = queryIndex < 0 ? ctx.params.url.length : queryIndex
+    const queryIndex = ctx.params.url.findIndex((slug) => slug === 'q')
+    const qIndex = queryIndex < 0 ? ctx.params.url.length : queryIndex
+    const urlPath = ctx.params.url.slice(0, qIndex).join('/')
+    const urlParams = ctx.params.url.slice(qIndex + 1)
 
-  const url = ctx.params.url.slice(0, qIndex)
+    if (qIndex && !urlParams.length) throw new ResultError({ notFound: true })
 
-  const client = apolloClient()
-  const staticClient = apolloClient()
-  const config = getStoreConfig(client)
-  const suffix = (await config).storeConfig?.category_url_suffix ?? ''
-  const urlResolve = getUrlResolveProps({ urlKey: `${url.join('/')}${suffix}` }, staticClient)
-  const categoryPage = getCategoryPageProps(
-    { urlParams: ctx.params.url.slice(qIndex + 1), urlResolve, url },
-    staticClient,
-  )
-  const layoutHeader = getLayoutHeaderProps(staticClient)
+    const client = apolloClient()
+    const staticClient = apolloClient()
+    const config = client.query({ query: StoreConfigDocument })
+    const suffix = (await config).data?.storeConfig?.category_url_suffix ?? ''
+    const urlKey = `${urlPath}${suffix}`
 
-  if (!(await categoryPage).categories?.items?.[0]) return { notFound: true }
+    const resolveUrl = client.query({ query: ResolveUrlDocument, variables: { urlKey } })
+    const categoryPage = getCategoryPageProps({ urlPath, urlParams, resolveUrl }, staticClient)
+    const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
-  return {
-    props: {
-      ...(await urlResolve),
-      ...(await layoutHeader),
-      ...(await categoryPage),
-      apolloState: client.cache.extract(),
-    },
-    revalidate: 60 * 20,
+    const { urlResolver } = (await resolveUrl).data
+
+    // 404 and redirect handling
+    if (urlResolver?.type === 'CMS_PAGE') {
+      throw new ResultError({
+        redirect: { destination: `/page${urlResolver.relative_url}`, permanent: false },
+      })
+    }
+    if (urlResolver?.type === 'PRODUCT') {
+      throw new ResultError({
+        redirect: { destination: `/page${urlResolver.relative_url}`, permanent: false },
+      })
+    }
+    if (!urlResolver?.id) throw new ResultError({ notFound: true })
+
+    return {
+      props: {
+        ...(await resolveUrl).data,
+        ...(await pageLayout).data,
+        ...(await categoryPage),
+        apolloState: client.cache.extract(),
+      },
+      revalidate: 60 * 20,
+    }
+  } catch (e) {
+    if (e instanceof ResultError) return e.result
+    throw e
   }
 }

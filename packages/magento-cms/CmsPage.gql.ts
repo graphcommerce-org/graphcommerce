@@ -12,7 +12,7 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'identifier' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'urlKey' } },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
@@ -31,7 +31,7 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'identifier' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'identifier' } },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'urlKey' } },
               },
             ],
             directives: [],
@@ -83,7 +83,7 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
   ],
 }
 export type CmsPageQueryVariables = Types.Exact<{
-  identifier: Types.Scalars['String']
+  urlKey: Types.Scalars['String']
 }>
 
 export type CmsPageQuery = {

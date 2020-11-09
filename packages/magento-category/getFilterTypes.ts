@@ -2,7 +2,7 @@ import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { Exact } from '@reachdigital/magento-graphql'
 import {
   AllFilterInputTypes,
-  FilterTypeMap,
+  FilterTypes,
 } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
@@ -35,19 +35,16 @@ const FilterInputTypesDocument = gql`
   }
 `
 
-export default async function getFilterTypeMap(
-  client: ApolloClient<NormalizedCacheObject>,
-): Promise<FilterTypeMap> {
+export default async function getFilterTypes(client: ApolloClient<NormalizedCacheObject>) {
   const filterInputTypes = client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({
     query: FilterInputTypesDocument,
   })
 
-  const typeMap: { [index: string]: typeof allFilterInputTypes[0] } = {}
+  const typeMap: FilterTypes = {}
 
   ;(await filterInputTypes).data?.__type.inputFields.forEach(({ name, type }) => {
     if (!allFilterInputTypes.includes(type.name))
       throw new Error(`filter ${name} with FilterTypeInput ${type.name} not implemented`)
-
     typeMap[name] = type.name
   })
 

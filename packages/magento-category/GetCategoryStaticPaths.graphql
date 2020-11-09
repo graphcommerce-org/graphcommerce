@@ -1,21 +1,7 @@
 query GetCategoryStaticPaths {
-  categories {
+  categories(filters: {}) {
     items {
-      children {
-        url_key
-        children {
-          url_key
-          children {
-            url_key
-            children {
-              url_key
-              children {
-                url_key
-              }
-            }
-          }
-        }
-      }
+      url_path
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
-import { LayoutHeaderQuery } from './Header.gql'
+import { PageLayoutQuery } from './PageLayout.gql'
 
 const useTabsStyles = makeStyles(
   (theme: Theme) => ({
@@ -39,7 +39,7 @@ const useTabStyles = makeStyles(
   { name: 'DesktopMenuTab' },
 )
 
-export type MenuTabsProps = LayoutHeaderQuery &
+export type MenuTabsProps = PageLayoutQuery &
   ResolveUrlQuery &
   Omit<TabsProps<'menu'>, 'component' | 'value' | 'children'> & {
     tabProps?: Omit<TabProps<'a'>, 'label' | 'component' | 'value'>

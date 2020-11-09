@@ -7,9 +7,9 @@ import PageLayoutBase from '@reachdigital/next-ui/Page/PageLayoutBase'
 import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'
 import Head from 'next/head'
 import React, { PropsWithChildren } from 'react'
-import { LayoutHeaderQuery } from './Header.gql'
+import { PageLayoutQuery } from './PageLayout.gql'
 
-export type PageLayoutProps = Required<LayoutHeaderQuery> & ResolveUrlQuery
+export type PageLayoutProps = PageLayoutQuery & ResolveUrlQuery
 
 const PageLayout = ({ children, menu, urlResolver }: PropsWithChildren<PageLayoutProps>) => {
   const theme = useTheme()

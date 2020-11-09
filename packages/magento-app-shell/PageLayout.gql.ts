@@ -2,13 +2,13 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const LayoutHeaderDocument: DocumentNode<LayoutHeaderQuery, LayoutHeaderQueryVariables> = {
+export const PageLayoutDocument: DocumentNode<PageLayoutQuery, PageLayoutQueryVariables> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'LayoutHeader' },
+      name: { kind: 'Name', value: 'PageLayout' },
       variableDefinitions: [],
       directives: [],
       selectionSet: {
@@ -77,9 +77,9 @@ export const LayoutHeaderDocument: DocumentNode<LayoutHeaderQuery, LayoutHeaderQ
     },
   ],
 }
-export type LayoutHeaderQueryVariables = Types.Exact<{ [key: string]: never }>
+export type PageLayoutQueryVariables = Types.Exact<{ [key: string]: never }>
 
-export type LayoutHeaderQuery = {
+export type PageLayoutQuery = {
   menu?: Types.Maybe<{
     items?: Types.Maybe<
       Array<

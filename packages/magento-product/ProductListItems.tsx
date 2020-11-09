@@ -5,7 +5,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
 import { ProductListItemsFragment } from './ProductListItems.gql'
-import { FilterTypeMap } from './ProductListItems/filterTypes'
+import { FilterTypes } from './ProductListItems/filterTypes'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -20,17 +20,17 @@ const useStyles = makeStyles(
 )
 
 type Items = NonNullable<NonNullable<ProductListItemsFragment['items']>[0]>
-type ProductListRenderer = TypeRenderer<Items, { filterTypeMap: FilterTypeMap }>
+type ProductListRenderer = TypeRenderer<Items, { filterTypes: FilterTypes }>
 
 type ProductListItemsParams = ProductListItemsFragment &
   UseStyles<typeof useStyles> &
   JSX.IntrinsicElements['div'] & {
-    filterTypeMap: FilterTypeMap
+    filterTypes: FilterTypes
     renderers: ProductListRenderer
   }
 
 export default function ProductListItems(props: ProductListItemsParams) {
-  const { items, filterTypeMap, renderers, ...divProps } = props
+  const { items, filterTypes, renderers, ...divProps } = props
   const classes = useStyles(props)
 
   return (
@@ -42,7 +42,7 @@ export default function ProductListItems(props: ProductListItemsParams) {
             renderer={renderers}
             {...item}
             key={item?.id ?? ''}
-            filterTypeMap={filterTypeMap}
+            filterTypes={filterTypes}
           />
         )
       })}

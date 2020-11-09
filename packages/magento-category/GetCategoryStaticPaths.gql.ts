@@ -20,7 +20,13 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'categories' },
-            arguments: [],
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: { kind: 'ObjectValue', fields: [] },
+              },
+            ],
             directives: [],
             selectionSet: {
               kind: 'SelectionSet',
@@ -35,88 +41,9 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
                     selections: [
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'children' },
+                        name: { kind: 'Name', value: 'url_path' },
                         arguments: [],
                         directives: [],
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url_key' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'children' },
-                              arguments: [],
-                              directives: [],
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'url_key' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'children' },
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'url_key' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'children' },
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'url_key' },
-                                                arguments: [],
-                                                directives: [],
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'children' },
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'url_key' },
-                                                      arguments: [],
-                                                      directives: [],
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
                       },
                     ],
                   },
@@ -133,46 +60,6 @@ export type GetCategoryStaticPathsQueryVariables = Types.Exact<{ [key: string]: 
 
 export type GetCategoryStaticPathsQuery = {
   categories?: Types.Maybe<{
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<{
-          children?: Types.Maybe<
-            Array<
-              Types.Maybe<
-                Pick<Types.CategoryTree, 'url_key'> & {
-                  children?: Types.Maybe<
-                    Array<
-                      Types.Maybe<
-                        Pick<Types.CategoryTree, 'url_key'> & {
-                          children?: Types.Maybe<
-                            Array<
-                              Types.Maybe<
-                                Pick<Types.CategoryTree, 'url_key'> & {
-                                  children?: Types.Maybe<
-                                    Array<
-                                      Types.Maybe<
-                                        Pick<Types.CategoryTree, 'url_key'> & {
-                                          children?: Types.Maybe<
-                                            Array<Types.Maybe<Pick<Types.CategoryTree, 'url_key'>>>
-                                          >
-                                        }
-                                      >
-                                    >
-                                  >
-                                }
-                              >
-                            >
-                          >
-                        }
-                      >
-                    >
-                  >
-                }
-              >
-            >
-          >
-        }>
-      >
-    >
+    items?: Types.Maybe<Array<Types.Maybe<Pick<Types.CategoryTree, 'url_path'>>>>
   }>
 }

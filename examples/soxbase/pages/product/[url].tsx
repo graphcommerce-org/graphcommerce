@@ -1,18 +1,20 @@
 import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import { ProductPageQuery } from '@reachdigital/magento-product/ProductPage.gql'
+import {
+  ProductPageDocument,
+  ProductPageQuery,
+} from '@reachdigital/magento-product/ProductPage.gql'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import ProductPageRelated from '@reachdigital/magento-product/ProductPageRelated'
 import ProductPageUpsell from '@reachdigital/magento-product/ProductPageUpsell'
-import getProductPageProps from '@reachdigital/magento-product/getProductProps'
 import getProductStaticPaths from '@reachdigital/magento-product/getProductStaticPaths'
 import productPageCategory from '@reachdigital/magento-product/productPageCategory'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
-import getUrlResolveProps from '@reachdigital/magento-store/getUrlResolveProps'
+import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -75,25 +77,23 @@ export const getStaticPaths: GetPageStaticPaths = () => {
 }
 
 export const getStaticProps: GetPageStaticProps = async (ctx) => {
-  if (!ctx.params?.url) throw Error('No params')
+  let urlKey = ctx.params?.url ?? '??'
 
   const client = apolloClient()
   const staticClient = apolloClient()
-  const config = getStoreConfig(client)
+  const config = client.query({ query: StoreConfigDocument })
 
-  const urlResolve = getUrlResolveProps(
-    { urlKey: `${ctx.params.url}${(await config)?.storeConfig?.product_url_suffix}` },
-    staticClient,
-  )
-  const productPage = getProductPageProps({ urlKey: ctx.params.url }, staticClient)
-  const layoutHeader = getLayoutHeaderProps(staticClient)
+  const productPage = staticClient.query({ query: ProductPageDocument, variables: { urlKey } })
+  const pageLayout = staticClient.query({ query: PageLayoutDocument })
+
+  urlKey = `${urlKey}${(await config)?.data.storeConfig?.product_url_suffix}`
+  const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
 
   return {
     props: {
-      title: (await productPage).products?.items?.[0]?.name || '',
-      ...(await urlResolve),
-      ...(await layoutHeader),
-      ...(await productPage),
+      ...(await resolveUrl).data,
+      ...(await pageLayout).data,
+      ...(await productPage).data,
       apolloState: client.cache.extract(),
     },
     revalidate: 60 * 20,

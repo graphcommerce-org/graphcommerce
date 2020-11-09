@@ -1,32 +1,37 @@
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@apollo/client'
+import { GetStaticPathsResult } from 'next'
 import {
   GetProductStaticPathsDocument,
   GetProductStaticPathsQuery,
 } from './GetProductStaticPaths.gql'
 
-const getProductStaticPaths = async (client: ApolloClient<NormalizedCacheObject>) => {
-  const { data } = await client.query({ query: GetProductStaticPathsDocument })
+type Return = GetStaticPathsResult<{ url: string }>
 
-  type CategoryWithProducts = NonNullable<
-    NonNullable<
-      NonNullable<NonNullable<GetProductStaticPathsQuery['categories']>['items']>[0]
-    >['children']
-  >[0]
+const getProductStaticPaths = async (
+  client: ApolloClient<NormalizedCacheObject>,
+): Promise<Return> => {
+  const query = client.query({
+    query: GetProductStaticPathsDocument,
+    variables: { currentPage: 1 },
+  })
+  const pages: Promise<ApolloQueryResult<GetProductStaticPathsQuery>>[] = [query]
 
-  const extractChildren = (category?: CategoryWithProducts | null) => {
-    if (!category) return []
-
-    const products = category.products?.items?.map((product) => `${product?.url_key}`) ?? []
-    const children = category.children?.map((value) => extractChildren(value)) ?? []
-    return [...products, ...children]
+  const totalPages = (await query).data?.products?.page_info?.total_pages ?? 0
+  if (totalPages > 1) {
+    const pageNrs = Array.from({ length: totalPages - 1 }, (_, i) => i + 2)
+    pageNrs.forEach((currentPage) => {
+      pages.push(client.query({ query: GetProductStaticPathsDocument, variables: { currentPage } }))
+    })
   }
-  const paths =
-    data?.categories?.items
-      ?.map((category) => extractChildren(category))
-      .flat(10)
-      .map((url: string) => ({ params: { url } })) ?? []
+  const paths = (await Promise.all(pages))
+    .map((q) => q.data.products?.items)
+    .flat(1)
+    .map((p) => ({ params: { url: `${p?.url_key}` } }))
 
-  return { paths, fallback: true } as const
+  return {
+    paths,
+    fallback: 'blocking',
+  }
 }
 
 export default getProductStaticPaths

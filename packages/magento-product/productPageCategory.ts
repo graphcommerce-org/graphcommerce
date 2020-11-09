@@ -6,6 +6,7 @@ import { ProductPageCategoryFragment } from './ProductPageCategory.gql'
  * - Prefers categoriese that have a longer path than shorter ones.
  */
 export default function productPageCategory(product: ProductPageCategoryFragment) {
+  if (!product?.categories?.length) return undefined
   return product?.categories?.reduce((carry, value) => {
     if (!carry?.include_in_menu && value?.include_in_menu) return value
     const carryL = carry?.url_path?.split('/')?.length ?? 0

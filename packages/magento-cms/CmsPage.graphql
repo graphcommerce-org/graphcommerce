@@ -1,5 +1,5 @@
-query CmsPage($identifier: String!) {
-  cmsPage(identifier: $identifier) {
+query CmsPage($urlKey: String!) {
+  cmsPage(identifier: $urlKey) {
     identifier
     ...CmsPageMeta
     ...CmsPageContent

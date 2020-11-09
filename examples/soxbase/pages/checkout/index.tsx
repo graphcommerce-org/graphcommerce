@@ -1,6 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import getLayoutHeaderProps from '@reachdigital/magento-app-shell/getLayoutHeaderProps'
+import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -9,7 +9,7 @@ import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
 import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
-import getStoreConfig from '@reachdigital/magento-store/getStoreConfig'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -45,15 +45,17 @@ export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async () => {
   const client = apolloClient()
-  const config = getStoreConfig(client)
   const staticClient = apolloClient()
-  const layoutHeader = getLayoutHeaderProps(staticClient)
+
+  const config = client.query({ query: StoreConfigDocument })
+  const pageLayout = staticClient.query({ query: PageLayoutDocument })
+  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   await config
   return {
     props: {
-      ...(await layoutHeader),
-      ...(await staticClient.query({ query: CountryRegionsDocument })).data,
+      ...(await pageLayout).data,
+      ...(await countryRegions).data,
       apolloState: client.cache.extract(),
     },
   }

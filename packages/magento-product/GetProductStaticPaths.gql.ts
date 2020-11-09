@@ -12,19 +12,74 @@ export const GetProductStaticPathsDocument: DocumentNode<
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'GetProductStaticPaths' },
-      variableDefinitions: [],
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'currentPage' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+          directives: [],
+        },
+      ],
       directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'categories' },
-            arguments: [],
+            name: { kind: 'Name', value: 'products' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: { kind: 'ObjectValue', fields: [] },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'pageSize' },
+                value: { kind: 'IntValue', value: '1000' },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'currentPage' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'currentPage' } },
+              },
+            ],
             directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'page_info' },
+                  arguments: [],
+                  directives: [],
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'current_page' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'total_pages' },
+                        arguments: [],
+                        directives: [],
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'total_count' },
+                  arguments: [],
+                  directives: [],
+                },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
@@ -35,162 +90,9 @@ export const GetProductStaticPathsDocument: DocumentNode<
                     selections: [
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'children' },
+                        name: { kind: 'Name', value: 'url_key' },
                         arguments: [],
                         directives: [],
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'products' },
-                              arguments: [],
-                              directives: [],
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'items' },
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'url_key' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'children' },
-                              arguments: [],
-                              directives: [],
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'products' },
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'items' },
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'url_key' },
-                                                arguments: [],
-                                                directives: [],
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'children' },
-                                    arguments: [],
-                                    directives: [],
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'products' },
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'items' },
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'url_key' },
-                                                      arguments: [],
-                                                      directives: [],
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'children' },
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'products' },
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'items' },
-                                                      arguments: [],
-                                                      directives: [],
-                                                      selectionSet: {
-                                                        kind: 'SelectionSet',
-                                                        selections: [
-                                                          {
-                                                            kind: 'Field',
-                                                            name: {
-                                                              kind: 'Name',
-                                                              value: 'url_key',
-                                                            },
-                                                            arguments: [],
-                                                            directives: [],
-                                                          },
-                                                        ],
-                                                      },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
                       },
                     ],
                   },
@@ -203,95 +105,26 @@ export const GetProductStaticPathsDocument: DocumentNode<
     },
   ],
 }
-export type GetProductStaticPathsQueryVariables = Types.Exact<{ [key: string]: never }>
+export type GetProductStaticPathsQueryVariables = Types.Exact<{
+  currentPage: Types.Scalars['Int']
+}>
 
 export type GetProductStaticPathsQuery = {
-  categories?: Types.Maybe<{
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<{
-          children?: Types.Maybe<
-            Array<
-              Types.Maybe<{
-                products?: Types.Maybe<{
-                  items?: Types.Maybe<
-                    Array<
-                      Types.Maybe<
-                        | Pick<Types.VirtualProduct, 'url_key'>
-                        | Pick<Types.SimpleProduct, 'url_key'>
-                        | Pick<Types.DownloadableProduct, 'url_key'>
-                        | Pick<Types.BundleProduct, 'url_key'>
-                        | Pick<Types.GroupedProduct, 'url_key'>
-                        | Pick<Types.ConfigurableProduct, 'url_key'>
-                      >
-                    >
-                  >
-                }>
-                children?: Types.Maybe<
-                  Array<
-                    Types.Maybe<{
-                      products?: Types.Maybe<{
-                        items?: Types.Maybe<
-                          Array<
-                            Types.Maybe<
-                              | Pick<Types.VirtualProduct, 'url_key'>
-                              | Pick<Types.SimpleProduct, 'url_key'>
-                              | Pick<Types.DownloadableProduct, 'url_key'>
-                              | Pick<Types.BundleProduct, 'url_key'>
-                              | Pick<Types.GroupedProduct, 'url_key'>
-                              | Pick<Types.ConfigurableProduct, 'url_key'>
-                            >
-                          >
-                        >
-                      }>
-                      children?: Types.Maybe<
-                        Array<
-                          Types.Maybe<{
-                            products?: Types.Maybe<{
-                              items?: Types.Maybe<
-                                Array<
-                                  Types.Maybe<
-                                    | Pick<Types.VirtualProduct, 'url_key'>
-                                    | Pick<Types.SimpleProduct, 'url_key'>
-                                    | Pick<Types.DownloadableProduct, 'url_key'>
-                                    | Pick<Types.BundleProduct, 'url_key'>
-                                    | Pick<Types.GroupedProduct, 'url_key'>
-                                    | Pick<Types.ConfigurableProduct, 'url_key'>
-                                  >
-                                >
-                              >
-                            }>
-                            children?: Types.Maybe<
-                              Array<
-                                Types.Maybe<{
-                                  products?: Types.Maybe<{
-                                    items?: Types.Maybe<
-                                      Array<
-                                        Types.Maybe<
-                                          | Pick<Types.VirtualProduct, 'url_key'>
-                                          | Pick<Types.SimpleProduct, 'url_key'>
-                                          | Pick<Types.DownloadableProduct, 'url_key'>
-                                          | Pick<Types.BundleProduct, 'url_key'>
-                                          | Pick<Types.GroupedProduct, 'url_key'>
-                                          | Pick<Types.ConfigurableProduct, 'url_key'>
-                                        >
-                                      >
-                                    >
-                                  }>
-                                }>
-                              >
-                            >
-                          }>
-                        >
-                      >
-                    }>
-                  >
-                >
-              }>
-            >
+  products?: Types.Maybe<
+    Pick<Types.Products, 'total_count'> & {
+      page_info?: Types.Maybe<Pick<Types.SearchResultPageInfo, 'current_page' | 'total_pages'>>
+      items?: Types.Maybe<
+        Array<
+          Types.Maybe<
+            | Pick<Types.VirtualProduct, 'url_key'>
+            | Pick<Types.SimpleProduct, 'url_key'>
+            | Pick<Types.DownloadableProduct, 'url_key'>
+            | Pick<Types.BundleProduct, 'url_key'>
+            | Pick<Types.GroupedProduct, 'url_key'>
+            | Pick<Types.ConfigurableProduct, 'url_key'>
           >
-        }>
+        >
       >
-    >
-  }>
+    }
+  >
 }
