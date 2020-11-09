@@ -2,7 +2,6 @@ query GetCategoryStaticPaths {
   categories(filters: {}) {
     items {
       url_path
-      url_suffix
     }
   }
 }

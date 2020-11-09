@@ -7,7 +7,6 @@ query GetProductStaticPaths($currentPage: Int!) {
     total_count
     items {
       url_key
-      url_suffix
     }
   }
 }

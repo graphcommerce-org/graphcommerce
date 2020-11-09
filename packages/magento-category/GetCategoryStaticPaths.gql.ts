@@ -45,12 +45,6 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
                         arguments: [],
                         directives: [],
                       },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'url_suffix' },
-                        arguments: [],
-                        directives: [],
-                      },
                     ],
                   },
                 },
@@ -66,6 +60,6 @@ export type GetCategoryStaticPathsQueryVariables = Types.Exact<{ [key: string]: 
 
 export type GetCategoryStaticPathsQuery = {
   categories?: Types.Maybe<{
-    items?: Types.Maybe<Array<Types.Maybe<Pick<Types.CategoryTree, 'url_path' | 'url_suffix'>>>>
+    items?: Types.Maybe<Array<Types.Maybe<Pick<Types.CategoryTree, 'url_path'>>>>
   }>
 }

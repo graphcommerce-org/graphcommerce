@@ -12,9 +12,7 @@ const getCategoryStaticPaths = async (
   const paths: StaticPathsResult['paths'] =
     data.categories?.items
       ?.filter((category) => category?.url_path)
-      .map((category) => ({
-        params: { url: `${category?.url_path}${category?.url_suffix}`.split('/') },
-      })) ?? []
+      .map((category) => ({ params: { url: `${category?.url_path}`.split('/') } })) ?? []
 
   return { paths, fallback: 'blocking' }
 }

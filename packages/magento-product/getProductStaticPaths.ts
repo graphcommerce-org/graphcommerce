@@ -26,11 +26,7 @@ const getProductStaticPaths = async (
   const paths = (await Promise.all(pages))
     .map((q) => q.data.products?.items)
     .flat(1)
-    .map((p) => ({
-      params: {
-        url: `${p?.url_key}${p?.url_suffix}`,
-      },
-    }))
+    .map((p) => ({ params: { url: `${p?.url_key}` } }))
 
   return {
     paths,

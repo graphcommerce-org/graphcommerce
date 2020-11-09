@@ -94,12 +94,6 @@ export const GetProductStaticPathsDocument: DocumentNode<
                         arguments: [],
                         directives: [],
                       },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'url_suffix' },
-                        arguments: [],
-                        directives: [],
-                      },
                     ],
                   },
                 },
@@ -122,12 +116,12 @@ export type GetProductStaticPathsQuery = {
       items?: Types.Maybe<
         Array<
           Types.Maybe<
-            | Pick<Types.VirtualProduct, 'url_key' | 'url_suffix'>
-            | Pick<Types.SimpleProduct, 'url_key' | 'url_suffix'>
-            | Pick<Types.DownloadableProduct, 'url_key' | 'url_suffix'>
-            | Pick<Types.BundleProduct, 'url_key' | 'url_suffix'>
-            | Pick<Types.GroupedProduct, 'url_key' | 'url_suffix'>
-            | Pick<Types.ConfigurableProduct, 'url_key' | 'url_suffix'>
+            | Pick<Types.VirtualProduct, 'url_key'>
+            | Pick<Types.SimpleProduct, 'url_key'>
+            | Pick<Types.DownloadableProduct, 'url_key'>
+            | Pick<Types.BundleProduct, 'url_key'>
+            | Pick<Types.GroupedProduct, 'url_key'>
+            | Pick<Types.ConfigurableProduct, 'url_key'>
           >
         >
       >
