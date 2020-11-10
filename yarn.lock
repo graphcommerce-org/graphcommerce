@@ -1885,18 +1885,18 @@
     graphql-fields "2.0.3"
     object-hash "2.0.3"
 
-"@graphql-mesh/transform-filter-schema@^0.6.10":
-  version "0.6.10"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.6.10.tgz#a16eec69134dd1dd5f3d1cb5364396e01f0a97cf"
-  integrity sha512-estPVK30qnecjSQdguokjcUcIR6ErkA5MJ8xH6d71jUvTb9TlvG1LVGR6GQeSQM7jXwrvhxE/IeMY3140uUwug==
+"@graphql-mesh/transform-filter-schema@^0.6.11":
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.6.11.tgz#7820f6a677bb9e6d60d36a528f80c9b5623ba6d7"
+  integrity sha512-iTtEbkbMHT4GwdoWN0qyc7PEcq055gA4TUsgnc4xmhpVNnrFO8pED6NhzeuP9hFOa05FSEMz6t3lFo7jJwn3PQ==
   dependencies:
-    "@graphql-mesh/types" "0.16.0"
+    "@graphql-mesh/types" "0.16.1"
     "@graphql-mesh/utils" "0.6.0"
     "@graphql-tools/utils" "6.2.2"
     "@graphql-tools/wrap" "6.2.3"
     micromatch "4.0.2"
 
-"@graphql-mesh/types@0.16.0", "@graphql-mesh/types@^0.16.0":
+"@graphql-mesh/types@0.16.0":
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.0.tgz#e784814004f8905a580691b62b762b4cc5b29127"
   integrity sha512-ZZH7x4EWhZ9c2Ft/W+UYgthhsuonQwLF5s3giQvx53+1LY8g0F4WPQb6AWIwqA6fECawt8/aLbA7Jy/8VB7R3w==
@@ -1904,6 +1904,15 @@
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
     fetchache "0.0.3"
+
+"@graphql-mesh/types@0.16.1", "@graphql-mesh/types@^0.16.0":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
+  integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
 
 "@graphql-mesh/utils@0.6.0":
   version "0.6.0"
@@ -8675,6 +8684,14 @@ fetchache@0.0.3:
   integrity sha512-OGj9xCJHAnfXE6zxTYALE15pQHMs+NrCLTrFbTzCuaQAffQXG4ZR0oOQ9i94v2R0arcxsEnwF2Xa7Pbj3R5Wjw==
   dependencies:
     cross-fetch "3.0.4"
+    http-cache-semantics "4.1.0"
+
+fetchache@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/fetchache/-/fetchache-0.0.4.tgz#6da0c6de56547d894a005be3f48925096e46f5b3"
+  integrity sha512-pRK9fnr54S3orRp2ApQE0rVlrt5j4zAze4McogdEupN2oMPy+USPR1O1isYTuGNiNi5H4k725+1SCopD8LWWzw==
+  dependencies:
+    cross-fetch "3.0.6"
     http-cache-semantics "4.1.0"
 
 figgy-pudding@^3.4.1, figgy-pudding@^3.5.1:
