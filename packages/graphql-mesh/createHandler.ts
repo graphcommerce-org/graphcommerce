@@ -65,6 +65,10 @@ export default async function createHandler(config: YamlConfig.Config, path: str
       'Access-Control-Allow-Origin',
       'X-HTTP-Method-Override',
       'Authorization',
+      'Store',
+      'Preview-Version',
+      'Content-Currency',
+      'X-Captcha',
     ],
   })
   const apoloHandler = apolloServer.createHandler({ path })
