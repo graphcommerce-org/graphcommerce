@@ -1,0 +1,6 @@
+fragment StoreLocale on StoreConfig {
+  code
+  store_name
+  locale
+  base_currency_code
+}

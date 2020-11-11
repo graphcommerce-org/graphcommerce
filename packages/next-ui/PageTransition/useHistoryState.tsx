@@ -1,3 +1,4 @@
+import { delLocale } from 'next/dist/next-server/lib/router/router'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { updatePage, getPage, updateHistory, addPage } from './historyHelpers'
@@ -27,7 +28,9 @@ export default function useHistoryState() {
 
   // Watch all route changes so we can track forward/backward navigation
   useEffect(() => {
-    const routeChangeStart = async (as: string) => {
+    const routeChangeStart = async (asFull: string) => {
+      const as = delLocale(asFull, router.locale)
+
       // Navigated to same page
       if (getPage()?.as === as) return
 
@@ -53,7 +56,7 @@ export default function useHistoryState() {
     router.events.on('routeChangeStart', routeChangeStart)
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     return () => router.events.off('routeChangeStart', routeChangeStart)
-  }, [router.events])
+  }, [router.events, router.locale])
 
   useEffect(() => {
     const beforeHistoryChange = () => updateHistory({ phase: 'LOCATION_CHANGED' })

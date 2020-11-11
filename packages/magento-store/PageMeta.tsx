@@ -9,24 +9,22 @@ type PageMetaProps = {
 }
 
 export default function PageMeta({ title, metaDescription, metaRobots }: PageMetaProps) {
-  const { data: storeConfigQuery } = useQuery(StoreConfigDocument)
+  const config = useQuery(StoreConfigDocument)
 
-  const title_prefix = storeConfigQuery?.storeConfig?.title_prefix
-  const title_separator = storeConfigQuery?.storeConfig?.title_separator
-  const default_title = storeConfigQuery?.storeConfig?.default_title
-  const title_suffix = storeConfigQuery?.storeConfig?.title_suffix
+  const prefix = config.data?.storeConfig?.title_prefix
+  const separator = config.data?.storeConfig?.title_separator
+  const defaultTitle = config.data?.storeConfig?.default_title
+  const suffix = config.data?.storeConfig?.title_suffix
 
   // todo migrate to PageMeta component that accepts the cms page meta as child
-  let resultingTitle = title_prefix ?? ''
-  const metaTitle = title ?? default_title
-  if (metaTitle) resultingTitle += ` ${metaTitle}`
-
-  if (title_separator && title_suffix) resultingTitle += ` ${title_separator}`
-  if (title_suffix) resultingTitle += ` ${title_suffix}`
+  let pageTitle = prefix ?? ''
+  if (title ?? defaultTitle) pageTitle += ` ${title ?? defaultTitle}`
+  if (separator && suffix) pageTitle += ` ${separator}`
+  if (suffix) pageTitle += ` ${suffix}`
 
   return (
     <Head>
-      <title>{resultingTitle}</title>
+      <title>{pageTitle}</title>
       <meta name='description' content={metaDescription} />
       <meta name='robots' content={metaRobots} />
     </Head>
