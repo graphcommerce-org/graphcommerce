@@ -7,6 +7,7 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
+import { useViewportScroll, m, useTransform, useMotionValue } from 'framer-motion'
 import React from 'react'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
@@ -16,7 +17,7 @@ import logo from './logo.svg'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
-      position: 'absolute',
+      top: 0,
       display: 'flex',
       padding: `${theme.page.vertical} ${theme.page.horizontal}`,
       pointerEvents: 'none',
@@ -25,7 +26,6 @@ const useStyles = makeStyles(
       width: '100%',
       [theme.breakpoints.down('sm')]: {},
       [theme.breakpoints.up('md')]: {},
-      zIndex: 1,
     },
     logo: {
       pointerEvents: 'all',
@@ -103,7 +103,7 @@ const useStyles = makeStyles(
   { name: 'AppLayout' },
 )
 
-type HeaderElementProps = JSX.IntrinsicElements['header'] & UseStyles<typeof useStyles>
+type HeaderElementProps = UseStyles<typeof useStyles>
 
 type HeaderDataProps = PageLayoutQuery & ResolveUrlQuery
 
@@ -111,31 +111,35 @@ export type HeaderProps = HeaderDataProps & HeaderElementProps
 
 export default function Header(props: HeaderProps) {
   const classes = useStyles(props)
+  const { scrollY } = useViewportScroll()
   const { menu, urlResolver, ...headerProps } = props
 
+  const y = useTransform(scrollY, [0, 40], [0, -40])
   // @todo implement with a stable useMemo: 'use-custom-compare'
   return (
-    <header {...headerProps} className={clsx(classes.header, headerProps.className)}>
-      <PageLink href='/'>
-        <a className={classes.logo}>
-          <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
-        </a>
-      </PageLink>
+    <m.div style={{ y, position: 'sticky', zIndex: 1, width: '100%' }} layout>
+      <m.header {...headerProps} className={clsx(classes.header)} layout>
+        <PageLink href='/'>
+          <a className={classes.logo}>
+            <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
+          </a>
+        </PageLink>
 
-      <MenuTabs menu={menu} urlResolver={urlResolver} className={classes.menuTabs} />
+        <MenuTabs menu={menu} urlResolver={urlResolver} className={classes.menuTabs} />
 
-      <div className={clsx(classes.actions, classes.desktopActions)}>
-        <SearchButton />
-        <CustomerFab />
-        <CartFab asIcon />
-      </div>
+        <div className={clsx(classes.actions, classes.desktopActions)}>
+          <SearchButton />
+          <CustomerFab />
+          <CartFab asIcon />
+        </div>
 
-      <div className={classes.mobileMenu}>
-        <MenuFab menu={menu} urlResolver={urlResolver} />
-      </div>
-      <div className={clsx(classes.actions, classes.mobileActions)}>
-        <CartFab />
-      </div>
-    </header>
+        <div className={classes.mobileMenu}>
+          <MenuFab menu={menu} urlResolver={urlResolver} />
+        </div>
+        <div className={clsx(classes.actions, classes.mobileActions)}>
+          <CartFab />
+        </div>
+      </m.header>
+    </m.div>
   )
 }
