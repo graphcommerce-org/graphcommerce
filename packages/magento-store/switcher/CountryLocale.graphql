@@ -1,0 +1,5 @@
+fragment CountryLocale on Country {
+  id
+  two_letter_abbreviation
+  full_name_locale
+}

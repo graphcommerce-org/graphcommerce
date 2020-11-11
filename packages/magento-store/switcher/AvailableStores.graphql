@@ -1,0 +1,8 @@
+query AvailableStores {
+  availableStores {
+    ...StoreLocale
+  }
+  countries {
+    ...CountryLocale
+  }
+}
