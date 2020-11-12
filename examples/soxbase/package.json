@@ -70,7 +70,7 @@
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.1",
     "@types/use-resize-observer": "^6.0.0",
-    "@types/webpack": "^4.41.23",
+    "@types/webpack": "^4.41.25",
     "typescript": "^4.0.0",
     "webpack": "^5.1.3"
   },
