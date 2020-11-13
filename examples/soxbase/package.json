@@ -58,7 +58,7 @@
     "ts-node": "^9.0.0",
     "type-fest": "^0.18.0",
     "use-resize-observer": "^6.1.0",
-    "vercel": "^20.1.2"
+    "vercel": "^20.1.4"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
