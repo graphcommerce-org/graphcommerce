@@ -56,7 +56,7 @@
     "schema-dts": "^0.7.1",
     "sharp": "^0.26.2",
     "ts-node": "^9.0.0",
-    "type-fest": "^0.18.0",
+    "type-fest": "^0.18.1",
     "use-resize-observer": "^6.1.0",
     "vercel": "^20.1.2"
   },
