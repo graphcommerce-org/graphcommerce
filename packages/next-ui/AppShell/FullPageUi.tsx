@@ -12,7 +12,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'LayoutHeader' },
+  { name: 'FullPageUi' },
 )
 
 export type FullPageUiProps = unknown
@@ -20,18 +20,20 @@ export type FullPageUiProps = unknown
 const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const { children, title } = props
   const classes = useStyles(props)
-  const { offsetDiv, inFront, hold } = usePageTransition({ title })
+  const pageTransition = usePageTransition({ title })
+  const { offsetDiv, inFront, hold, backLevel } = pageTransition
 
+  const z = backLevel * -30
   const contentAnimation: MotionProps = !hold
     ? {
-        initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { type: 'tween' } },
-        exit: { opacity: 0, transition: { type: 'tween' } },
+        initial: { opacity: 0, z },
+        animate: { opacity: 1, z, transition: { duration: 0 } },
+        exit: { opacity: 0, z, transition: { duration: 0 } },
       }
     : {
-        initial: { opacity: 1 },
-        animate: { opacity: 1, transition: { duration: 0 } },
-        exit: { opacity: 1, transition: { duration: 0 } },
+        initial: { opacity: 1, z },
+        animate: { opacity: 1, z, transition: { type: 'tween', ease: 'easeOut' } },
+        exit: { opacity: 1, z, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
   return (

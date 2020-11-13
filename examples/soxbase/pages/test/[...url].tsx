@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { Button, Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -8,7 +8,6 @@ import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import { m as motion } from 'framer-motion'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
@@ -23,20 +22,26 @@ function AppShellTestIndex({ url }: Props) {
   return (
     <FullPageUi title={title}>
       <Container>
-        hallo! {url}
-        <ul>
-          <li>
-            {url === 'index' ? (
-              <PageLink href='/test/deeper'>Sibling</PageLink>
-            ) : (
-              <PageLink href='/test/index'>Index</PageLink>
-            )}
-          </li>
-          <li>
-            <PageLink href='/test/overlay/index'>Overlay</PageLink>
-          </li>
-        </ul>
-        <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
+        {url === 'index' ? (
+          <PageLink href='/test/deeper'>
+            <Button variant='outlined' color='secondary'>
+              Sibling
+            </Button>
+          </PageLink>
+        ) : (
+          <PageLink href='/test/index'>
+            <Button variant='outlined' color='secondary'>
+              Index
+            </Button>
+          </PageLink>
+        )}
+
+        <PageLink href='/test/overlay/1'>
+          <Button variant='outlined' color='secondary'>
+            Overlay
+          </Button>
+        </PageLink>
+        {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
           <motion.img
             src='/manifest/icon.png'
             alt=''
@@ -64,7 +69,7 @@ function AppShellTestIndex({ url }: Props) {
             }}
             exit={{ zIndex: 0 }}
           />
-        </div>
+        </div> */}
         <DebugSpacer height={2000} />
       </Container>
     </FullPageUi>

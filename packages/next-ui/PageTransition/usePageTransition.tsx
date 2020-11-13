@@ -63,7 +63,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
   const isToInFront = isToPage && afterPhase('REGISTERED')
   const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
   const inFront = isFromInFront || isToInFront
-  const inBack = isFromInBack || isFromInBack
+  const inBack = isFromInBack || isToInBack
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
@@ -85,14 +85,22 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
       return routeUi[page.href]?.holdBackground ?? false
     })
 
+  // calculate how far a page is in the back
+  let backLevel = nextPages.length
+  if (untillPhase('LOCATION_CHANGED')) {
+    if (thisIdx <= fromIdx && state.direction === 'FORWARD') backLevel -= 1
+    if (thisIdx < fromIdx && state.direction === 'BACK') backLevel += 1
+  }
+
   // If we do not need to keep the layout, we can mark it for removal
   if (isFromInBack && !hold && safeToRemove && afterPhase('REGISTERED')) {
     setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
   let target: Target = {
+    top: 0,
     y: 0,
-    position: 'absolute',
+    position: 'relative',
     left: 0,
     right: 0,
     minHeight: '100vh',
@@ -116,6 +124,8 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
     inBack,
     isFromPage,
     toIdx,
+    thisIdx,
+    backLevel,
     prevPage: getPage(thisIdx - 1),
     upPage: getUpPage(thisIdx),
     upIdx: getUpIdx(thisIdx),
