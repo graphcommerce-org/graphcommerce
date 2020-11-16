@@ -5,8 +5,8 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
-import { ProductListItemSimpleFragment } from '../magento-product-simple/ProductListItemSimple.gql'
 import { useProductLink } from './ProductLink'
+import { ProductListItemFragment } from './ProductListItem.gql'
 import ProductListPrice from './ProductListPrice'
 
 export const useProductListItemStyles = makeStyles(
@@ -67,7 +67,7 @@ export const useProductListItemStyles = makeStyles(
 )
 
 export type ProductListItemProps = PropsWithChildren<
-  ProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles>
+  ProductListItemFragment & UseStyles<typeof useProductListItemStyles>
 >
 
 export default function ProductListItem(props: ProductListItemProps) {
