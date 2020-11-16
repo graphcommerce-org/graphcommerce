@@ -50,7 +50,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-focus-lock": "^2.4.1",
-    "react-hook-form": "^6.9.5",
+    "react-hook-form": "^6.11.2",
     "react-schemaorg": "^1.2.0",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.7.1",
