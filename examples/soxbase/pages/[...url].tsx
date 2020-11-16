@@ -116,9 +116,9 @@ function CategoryPage(props: Props) {
 
 CategoryPage.Layout = PageLayout
 
-registerRouteUi('/[...url]', FullPageUi)
-
 export default CategoryPage
+
+registerRouteUi('/[...url]', FullPageUi)
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
   const localePaths =
