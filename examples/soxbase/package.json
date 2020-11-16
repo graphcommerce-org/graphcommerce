@@ -49,16 +49,16 @@
     "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-focus-lock": "^2.4.1",
-    "react-hook-form": "^6.9.5",
+    "react-focus-lock": "^2.5.0",
+    "react-hook-form": "^6.11.2",
     "react-schemaorg": "^1.2.0",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.7.1",
     "sharp": "^0.26.2",
     "ts-node": "^9.0.0",
-    "type-fest": "^0.18.0",
-    "use-resize-observer": "^6.1.0",
-    "vercel": "^20.1.2"
+    "type-fest": "^0.18.1",
+    "use-resize-observer": "^7.0.0",
+    "vercel": "^20.1.4"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
@@ -70,7 +70,6 @@
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.1",
     "@types/use-resize-observer": "^6.0.0",
-    "@types/webpack": "^4.41.23",
     "typescript": "^4.0.0",
     "webpack": "^5.1.3"
   },
