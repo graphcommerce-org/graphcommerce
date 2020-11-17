@@ -33,7 +33,7 @@ export default function ChipMenu(props: ChipMenuProps) {
     <>
       <Chip
         variant={selected ? 'default' : 'default'}
-        color={selected ? 'primary' : 'default'}
+        color={selected || openEl ? 'primary' : 'default'}
         clickable
         onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
         onClick={(event) => setOpenEl(event.currentTarget)}

@@ -32,13 +32,13 @@ const useCategoryPageStyles = makeStyles(
     },
     filters: {
       gridArea: 'filters',
-      marginLeft: -16,
-      marginRight: -16,
+      margin: '0 auto 32px auto',
       paddingLeft: 16,
-      paddingRight: 16,
+      paddingRight: 16
     },
     filterItem: {
-      marginRight: 6,
+      marginRight: 16,
+      marginBottom: 16
     },
     items: {
       gridArea: 'items',
