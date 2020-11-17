@@ -6961,7 +6961,7 @@ cross-fetch@3.0.5:
   dependencies:
     node-fetch "2.6.0"
 
-cross-fetch@3.0.6, cross-fetch@^3.0.6:
+cross-fetch@3.0.6, cross-fetch@^3.0.4, cross-fetch@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.6.tgz#3a4040bc8941e653e0e9cf17f29ebcd177d3365c"
   integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
@@ -8570,6 +8570,19 @@ fbjs@^1.0.0:
     core-js "^2.4.1"
     fbjs-css-vars "^1.0.0"
     isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
+
+fbjs@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-3.0.0.tgz#0907067fb3f57a78f45d95f1eacffcacd623c165"
+  integrity sha512-dJd4PiDOFuhe7vk4F80Mba83Vr2QuK86FoxtgPmzBqEJahncp+13YCmfoa53KHCo6OnlXLG7eeMWPfB5CrpVKg==
+  dependencies:
+    cross-fetch "^3.0.4"
+    fbjs-css-vars "^1.0.0"
     loose-envify "^1.0.0"
     object-assign "^4.1.0"
     promise "^7.1.1"
@@ -14857,6 +14870,28 @@ relay-compiler@10.0.1:
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
+relay-compiler@10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-10.1.0.tgz#fb4672cdbe9b54869a3a79759edd8c2d91609cbe"
+  integrity sha512-HPqc3N3tNgEgUH5+lTr5lnLbgnsZMt+MRiyS0uAVNhuPY2It0X1ZJG+9qdA3L9IqKFUNwVn6zTO7RArjMZbARQ==
+  dependencies:
+    "@babel/core" "^7.0.0"
+    "@babel/generator" "^7.5.0"
+    "@babel/parser" "^7.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.0.0"
+    babel-preset-fbjs "^3.3.0"
+    chalk "^4.0.0"
+    fb-watchman "^2.0.0"
+    fbjs "^3.0.0"
+    glob "^7.1.1"
+    immutable "~3.7.6"
+    nullthrows "^1.1.1"
+    relay-runtime "10.1.0"
+    signedsource "^1.0.0"
+    yargs "^15.3.1"
+
 relay-runtime@10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-10.0.1.tgz#c83bd7e6e37234ece2a62a254e37dd199a4f74f9"
@@ -14864,6 +14899,14 @@ relay-runtime@10.0.1:
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
+
+relay-runtime@10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-10.1.0.tgz#4753bf36e95e8d862cef33608e3d98b4ed730d16"
+  integrity sha512-bxznLnQ1ST6APN/cFi7l0FpjbZVchWQjjhj9mAuJBuUqNNCh9uV+UTRhpQF7Q8ycsPp19LHTpVyGhYb0ustuRQ==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    fbjs "^3.0.0"
 
 remark-parse@^5.0.0:
   version "5.0.0"

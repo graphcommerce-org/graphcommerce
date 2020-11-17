@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@graphql-codegen/plugin-helpers": "1.18.1",
-    "relay-compiler": "10.0.1"
+    "relay-compiler": "10.1.0"
   },
   "devDependencies": {
     "@graphql-codegen/testing": "1.17.7",
