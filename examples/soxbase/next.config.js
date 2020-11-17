@@ -8,7 +8,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const IntlPolyfill = require('intl')
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
-const withTM = require('next-transpile-modules')(['@apollo/client', '@reachdigital'])
+const withTM = require('next-transpile-modules')(['@apollo/client', '@reachdigital'], {
+  unstable_webpack5: true,
+})
 
 Intl.NumberFormat = IntlPolyfill.NumberFormat
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
