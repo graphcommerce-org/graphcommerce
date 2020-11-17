@@ -23,6 +23,9 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0",
     "typescript": "^4.0.0"
   },
+  "resolutions": {
+    "webpack": "^5.4.0"
+  },
   "sideEffects": false,
   "engines": {
     "node": "12.x"
