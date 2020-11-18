@@ -57,7 +57,6 @@
     "sharp": "^0.26.2",
     "ts-node": "^9.0.0",
     "type-fest": "^0.18.1",
-    "use-resize-observer": "^7.0.0",
     "vercel": "^20.1.4"
   },
   "devDependencies": {
@@ -69,7 +68,6 @@
     "@types/react": "^16.9.53",
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.1",
-    "@types/use-resize-observer": "^6.0.0",
     "typescript": "^4.0.0",
     "webpack": "^5.1.3"
   },
