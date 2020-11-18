@@ -24,19 +24,19 @@ export const useProductListItemStyles = makeStyles(
       display: 'block',
       position: 'relative',
       marginBottom: '50px',
-      height: responsiveVal(120, 200),
+      height: responsiveVal(120, 300),
+      paddingTop: 'calc(100% / 3 * 2)',
+      background: 'rgba(0, 0, 0, 0.04)',
       '&::before': {
         content: '""',
         height: '100%',
         width: '100%',
         position: 'absolute',
         display: 'block',
-        boxShadow: '0 30px 60px 0 rgba(0, 0, 0, 0.25)',
         transform: 'scale(.85, 0.95)',
         top: 0,
-        left: 0,
-      },
-      paddingTop: 'calc(100% / 3 * 2)',
+        left: 0
+      }
     },
     placeholder: {
       display: 'flex',
@@ -57,7 +57,6 @@ export const useProductListItemStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
-      background: '#fff',
     },
     link: {
       textDecoration: 'underline',
