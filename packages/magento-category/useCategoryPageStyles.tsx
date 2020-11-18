@@ -26,6 +26,32 @@ const useCategoryPageStyles = makeStyles(
     },
     pagination: {
       gridArea: 'pagination',
+      margin: '32px auto 0 auto',
+      marginBottom: responsiveVal(40, 80),
+      display: 'flex',
+      alignItems: 'left',
+      '& span': {
+        padding: '10px 10px 0 10px'
+      },
+      '& a': {
+        transition: 'background .25s ease',
+        borderRadius: '100%',
+        height: 40,
+        width: 40,
+        '& svg': {
+          color: '#000'
+        },
+        '&:hover': {
+          background: 'rgba(0, 0, 0, 0.04)'
+        }
+      },
+      '& svg': {
+        borderRadius: '100%',
+        padding: 6,
+        height: 40,
+        width: 40,
+        color: '#ddd'
+      }
     },
     sort: {
       gridArea: 'sort',
