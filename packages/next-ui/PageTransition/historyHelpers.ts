@@ -4,7 +4,7 @@ import { HistoryStateQuery } from './HistoryState.gql'
 import { historyStateVar } from './typePolicies'
 import { UiFC } from './types'
 
-const phases: Phase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED']
+const phases: Phase[] = ['LOADING', 'LOCATION_CHANGED', 'REGISTERED', 'FINISHED']
 
 export const routeUi: { [index: string]: UiFC } = {}
 

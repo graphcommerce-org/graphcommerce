@@ -1,4 +1,5 @@
 import { Button, Container } from '@material-ui/core'
+import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -8,19 +9,21 @@ import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { m } from 'framer-motion'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string }
+type Props = { url: string } & HeaderProps
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function AppShellTestIndex({ url }: Props) {
+function AppShellTestIndex({ url, menu, urlResolver }: Props) {
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
     <FullPageUi title={title}>
+      <Header menu={menu} urlResolver={urlResolver} />
       <Container>
         {url === 'index' ? (
           <PageLink href='/test/deeper'>
@@ -41,8 +44,8 @@ function AppShellTestIndex({ url }: Props) {
             Overlay
           </Button>
         </PageLink>
-        {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
-          <motion.img
+        <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
+          <m.img
             src='/manifest/icon.png'
             alt=''
             layoutId='img1'
@@ -54,7 +57,7 @@ function AppShellTestIndex({ url }: Props) {
             animate={{ zIndex: 5 }}
             exit={{ zIndex: 0 }}
           />
-          <motion.img
+          <m.img
             src='/manifest/icon.png'
             alt=''
             layoutId='img2'
@@ -69,7 +72,7 @@ function AppShellTestIndex({ url }: Props) {
             }}
             exit={{ zIndex: 0 }}
           />
-        </div> */}
+        </div>
         <DebugSpacer height={2000} />
       </Container>
     </FullPageUi>

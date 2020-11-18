@@ -1,9 +1,8 @@
-import { useQuery } from '@apollo/client'
+import { useReactiveVar } from '@apollo/client'
 import { HistoryStatePage } from '@reachdigital/magento-graphql'
 import { MotionProps, usePresence } from 'framer-motion'
 import { Target } from 'framer-motion/types/types'
-import { useState } from 'react'
-import { HistoryStateDocument } from './HistoryState.gql'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import {
   getFromIdx,
   getPage,
@@ -15,6 +14,7 @@ import {
   routeUi,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
+import useHistoryState from './useHistoryState'
 
 const isBrowser = typeof window !== 'undefined'
 
@@ -24,8 +24,7 @@ type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
 >
 
 const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransitionProps) => {
-  useQuery(HistoryStateDocument)
-  let state = historyStateVar()
+  let state = useReactiveVar(historyStateVar)
 
   /**
    * todo: fix component recreation when navigating back multiple steps.
@@ -53,6 +52,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
 
   // Register the scroll position of the previous page
   if (isBrowser && state.phase === 'LOCATION_CHANGED') {
+    console.log('save scroll')
     state = updatePage({ phase: 'REGISTERED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
   }
 
@@ -97,18 +97,43 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
     setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      const { phase } = historyStateVar()
+      if (phase !== 'REGISTERED' || !isToPage) return
+      updatePage({ phase: 'FINISHED' }, {})
+      const page = getPage()
+      document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
+      window.scrollTo(page?.x ?? 0, page?.y ?? 0)
+    }, safeToRemoveAfter * 1000)
+  })
+
   let target: Target = {
-    top: 0,
     y: 0,
-    position: 'relative',
+    position: 'fixed',
+    top: 0,
     left: 0,
     right: 0,
-    minHeight: '100vh',
-    pointerEvents: 'none',
+    pointerEvents: 'all',
   }
 
-  if (isFromInBack || isToInBack) {
-    target = { ...target, y: (thisPage?.y ?? 0) * -1, position: 'fixed' }
+  if (isFromPage) {
+    if (state.phase === 'LOADING') {
+      target = { ...target, position: 'relative' }
+    } else {
+      const y = (thisPage?.y ?? 0) * -1 + getPage(toIdx).y
+      target = { ...target, pointerEvents: 'none', y }
+    }
+  }
+
+  if (isToPage) {
+    if (untillPhase('REGISTERED')) {
+      const y = (thisPage?.y ?? 0) * -1
+      target = { ...target, y }
+    }
+    if (state.phase === 'FINISHED') {
+      target = { ...target, position: 'relative' }
+    }
   }
 
   const offsetDiv: MotionProps = {
@@ -128,7 +153,6 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
     backLevel,
     prevPage: getPage(thisIdx - 1),
     upPage: getUpPage(thisIdx),
-    upIdx: getUpIdx(thisIdx),
   }
 }
 

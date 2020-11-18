@@ -17,7 +17,7 @@ export default function useHistoryState() {
   }, [])
 
   // Resets the historyStateVar when a wrong state has been found.
-  // todo: check if we can find a page that we can set the idx to?
+  // todo: check if we can find a page that we can set the idx to? Always reset?
   if (historyStateVar().pages[historyStateVar().idx]?.as !== router.asPath) {
     historyStateVar.reset()
   }
@@ -31,7 +31,7 @@ export default function useHistoryState() {
     const routeChangeStart = async (asFull: string) => {
       const as = delLocale(asFull, router.locale)
 
-      // Navigated to same page
+      // Navigated to same page, we're done
       if (getPage()?.as === as) return
 
       // Navigated to previous page
@@ -45,9 +45,12 @@ export default function useHistoryState() {
       const idx = historyStateVar().idx + 1
       const nextPage = getPage(idx)
       const state = { direction: 'FORWARD', phase: 'LOADING', idx } as const
+      // If the next page is found, update it
       if (nextPage && nextPage.as === as) {
         updatePage(state, { as, href }, idx)
-      } else {
+      }
+      // Add a new page
+      else {
         addPage(state, { as, href }, idx)
       }
     }
@@ -63,14 +66,4 @@ export default function useHistoryState() {
     router.events.on('beforeHistoryChange', beforeHistoryChange)
     return () => router.events.off('beforeHistoryChange', beforeHistoryChange)
   }, [router.events])
-
-  useEffect(() => {
-    const routeChangeComplete = () => {
-      const page = getPage()
-      document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
-      window.scrollTo(page?.x ?? 0, page?.y ?? 0)
-    }
-    router.events.on('routeChangeComplete', routeChangeComplete)
-    return () => router.events.off('routeChangeComplete', routeChangeComplete)
-  })
 }

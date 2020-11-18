@@ -1,12 +1,10 @@
 import { Container } from '@material-ui/core'
-import Forward from '@material-ui/icons/ArrowForwardIos'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
-import Button from '@reachdigital/next-ui/Button'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -36,7 +34,7 @@ function AppShellTextOverlay({ url }: Props) {
       }
     >
       {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
-        <motion.img
+        <m.img
           src='/manifest/icon.png'
           alt=''
           layoutId='img1'

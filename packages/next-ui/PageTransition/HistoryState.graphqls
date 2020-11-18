@@ -15,6 +15,7 @@ enum Phase {
   LOADING
   LOCATION_CHANGED
   REGISTERED
+  FINISHED
 }
 
 type HistoryState {

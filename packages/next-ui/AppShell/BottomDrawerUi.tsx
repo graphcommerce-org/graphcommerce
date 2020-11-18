@@ -1,4 +1,4 @@
-import { makeStyles, Theme, Typography, TypographyProps, NoSsr, useTheme } from '@material-ui/core'
+import { makeStyles, Theme, Typography, TypographyProps, NoSsr } from '@material-ui/core'
 import clsx from 'clsx'
 import { m as motion, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -8,7 +8,6 @@ import PageLink from '../PageTransition/PageLink'
 import { UiFC } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
-import responsiveVal from '../Styles/responsiveVal'
 import BackButton from './BackButton'
 import Backdrop from './Backdrop'
 
@@ -23,6 +22,8 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'flex-end',
       justifyContent: 'stretch',
+      perspective: '500px',
+      perspectiveOrigin: 'center -250px',
     },
     drawer: {
       background: theme.palette.background.paper,
@@ -91,15 +92,30 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
   const classes = useStyles()
   const router = useRouter()
 
-  const pageTransition = usePageTransition({ title })
-  const { offsetDiv, inFront, inBack, prevPage, upPage, hold, thisIdx, backLevel } = pageTransition
+  const {
+    offsetDiv,
+    inFront,
+    inBack,
+    prevPage,
+    upPage,
+    hold,
+    thisIdx,
+    backLevel,
+    phase,
+  } = usePageTransition({ title })
 
   const z = backLevel * -30
   const contentAnimation: MotionProps = !hold
     ? {
-        initial: { y: '100%', z, opacity: 0, scale: 1, originY: 0 },
-        animate: { y: 0, z, opacity: 1, scale: 1, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { y: '100%', z, opacity: 0, scale: 1, transition: { type: 'tween', ease: 'easeIn' } },
+        initial: { y: '100%', z, opacity: 0, originY: 0 },
+        animate: { y: 0, z, opacity: 1, transition: { type: 'tween', ease: 'easeOut' } },
+        exit: {
+          y: '100%',
+          z,
+          opacity: 0,
+          transition: { type: 'tween', ease: 'easeIn' },
+          transitionEnd: { display: 'none' },
+        },
       }
     : {
         initial: { opacity: 1, z },
@@ -119,14 +135,15 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
 
   return (
     <>
-      {/* <Backdrop
+      <Backdrop
         inFront={inFront}
         classes={{ backdrop: classes.backdrop }}
         onClick={navigateBack}
         role='none'
         zOffset={thisIdx * 2 - 1}
-      /> */}
-      <motion.div {...offsetDiv} style={{ zIndex: thisIdx * 2 }}>
+        hold={hold}
+      />
+      <motion.div {...offsetDiv} style={{ zIndex: thisIdx * 2 }} layout>
         <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
           <motion.section
             className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
@@ -135,7 +152,10 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
             style={{ pointerEvents: inFront ? 'all' : 'none' }}
             // drag='y'
           >
-            <FocusLock returnFocus={{ preventScroll: true }} disabled={!inFront}>
+            <FocusLock
+              returnFocus={{ preventScroll: true }}
+              disabled={!inFront || phase !== 'FINISHED'}
+            >
               <div className={classes.header} role='presentation'>
                 <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
                   {prevPage?.title ? (

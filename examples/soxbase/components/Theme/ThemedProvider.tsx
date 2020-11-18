@@ -114,10 +114,6 @@ defaultTheme.overrides = {
       })),
       '::selection': { background: `rgba(20, 227, 173, 0.5)` },
       '::-moz-selection': { background: `rgba(20, 227, 173, 0.5)` },
-      html: {
-        perspective: '500px',
-        perspectiveOrigin: 'center -250px',
-      },
     },
   },
   MuiContainer: {

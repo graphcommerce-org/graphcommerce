@@ -7,11 +7,10 @@ import PageLayoutBase from '@reachdigital/next-ui/Page/PageLayoutBase'
 import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'
 import Head from 'next/head'
 import React, { PropsWithChildren } from 'react'
-import { PageLayoutQuery } from './PageLayout.gql'
 
-export type PageLayoutProps = PageLayoutQuery & ResolveUrlQuery
+export type PageLayoutProps = Record<string, unknown>
 
-const PageLayout = ({ children, menu, urlResolver }: PropsWithChildren<PageLayoutProps>) => {
+const PageLayout = ({ children }: PropsWithChildren<PageLayoutProps>) => {
   const theme = useTheme()
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
@@ -22,7 +21,6 @@ const PageLayout = ({ children, menu, urlResolver }: PropsWithChildren<PageLayou
         <meta name='theme-color' content={theme.palette.primary.main} />
       </Head>
       <PageLoadIndicator />
-      <Header menu={menu} urlResolver={urlResolver} />
       {children}
     </PageLayoutBase>
   )

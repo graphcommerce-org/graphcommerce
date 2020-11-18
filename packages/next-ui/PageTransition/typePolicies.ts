@@ -29,7 +29,7 @@ export const historyStateVar = makeSessionVar<Query['historyState']>('historySta
   direction: 'FORWARD',
   idx: 0,
   pages: [],
-  phase: 'REGISTERED',
+  phase: 'FINISHED',
 })
 
 if (historyStateVar().phase !== 'REGISTERED') {
