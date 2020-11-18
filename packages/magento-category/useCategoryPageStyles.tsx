@@ -67,8 +67,9 @@ const useCategoryPageStyles = makeStyles(
       paddingRight: 16
     },
     filterItem: {
-      marginRight: 16,
-      marginBottom: 16
+      marginRight: 8,
+      marginBottom: 16,
+      marginLeft: 8
     },
     items: {
       gridArea: 'items',
