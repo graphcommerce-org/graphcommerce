@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 import { CSSProperties } from '@material-ui/styles'
-import { AnimatePresence, HTMLMotionProps, m as motion } from 'framer-motion'
+import { AnimatePresence, HTMLMotionProps, m } from 'framer-motion'
 
 type DebugSpacerProps = {
   height?: number
@@ -33,7 +33,7 @@ export default function DebugSpacer({ height = 250, ...divProps }: DebugSpacerPr
   })
 
   return (
-    <motion.div className={classes.root} {...divProps} animate={{ height }}>
+    <m.div className={classes.root} {...divProps} animate={{ height }}>
       <AnimatePresence>
         {rows.map((nr) => (
           <div
@@ -46,6 +46,6 @@ export default function DebugSpacer({ height = 250, ...divProps }: DebugSpacerPr
           </div>
         ))}
       </AnimatePresence>
-    </motion.div>
+    </m.div>
   )
 }

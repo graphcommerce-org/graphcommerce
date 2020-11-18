@@ -1,4 +1,4 @@
-import { m as motion, MotionProps } from 'framer-motion'
+import { m, MotionProps } from 'framer-motion'
 import { UiFC } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
 
@@ -23,11 +23,11 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
 
   return (
     <>
-      <motion.div {...offsetDiv}>
-        <motion.div style={{ pointerEvents: inFront ? 'all' : 'none' }} {...contentAnimation}>
+      <m.div {...offsetDiv}>
+        <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }} {...contentAnimation}>
           {children}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </>
   )
 }

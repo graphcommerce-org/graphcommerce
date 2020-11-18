@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import { HistoryStatePage } from '@reachdigital/magento-graphql'
 import { MotionProps, usePresence } from 'framer-motion'
 import { Target } from 'framer-motion/types/types'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   getFromIdx,
   getPage,
@@ -10,11 +10,9 @@ import {
   untillPhase,
   updatePage,
   getUpPage,
-  getUpIdx,
   routeUi,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
-import useHistoryState from './useHistoryState'
 
 const isBrowser = typeof window !== 'undefined'
 
@@ -23,7 +21,7 @@ type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
   'href' | 'as' | 'x' | 'y'
 >
 
-const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransitionProps) => {
+const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransitionProps) => {
   let state = useReactiveVar(historyStateVar)
 
   /**
@@ -143,6 +141,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
   }
 
   return {
+    phase: state.phase,
     offsetDiv,
     hold,
     inFront,

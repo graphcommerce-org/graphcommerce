@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { m as motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { HTMLMotionProps } from 'framer-motion/types/render/dom/types'
 import { forwardRef, useState } from 'react'
 import { UseStyles } from '../Styles'
@@ -33,7 +33,7 @@ const Backdrop = forwardRef<HTMLDivElement, BackdropProps>((props, ref) => {
   const [zIndex, setZIndex] = useState(zIdx)
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       className={classes.backdrop}
       initial={{ opacity: 0, zIndex }}
