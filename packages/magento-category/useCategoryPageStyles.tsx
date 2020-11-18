@@ -1,4 +1,5 @@
 import { Theme, makeStyles } from '@material-ui/core'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 
 const useCategoryPageStyles = makeStyles(
   (theme: Theme) => ({
@@ -20,6 +21,9 @@ const useCategoryPageStyles = makeStyles(
     },
     description: {
       gridArea: 'description',
+      margin: '0 auto',
+      textAlign: 'center',
+      maxWidth: 732
     },
     childCategories: {
       gridArea: 'children',
