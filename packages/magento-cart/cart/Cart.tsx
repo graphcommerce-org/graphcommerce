@@ -102,7 +102,7 @@ export default function Cart(props: CartProps) {
         })}
 
         {cart?.prices?.subtotal_including_tax && (
-          <mask.div {...animation} key='subtotal'>
+          <m.div {...animation} key='subtotal'>
             <ListItem ContainerComponent='div'>
               <ListItemText inset>Subtotal</ListItemText>
               <ListItemSecondaryAction>
