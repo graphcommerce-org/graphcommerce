@@ -25,7 +25,7 @@
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-focus-lock": "^2.4.1",
+    "react-focus-lock": "^2.5.0",
     "react-hook-form": "^6.9.6",
     "react-is": "^17.0.1",
     "react-spring": "^8.0.27",
