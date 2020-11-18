@@ -1754,12 +1754,12 @@
     pascal-case "^3.1.1"
     tslib "~2.0.1"
 
-"@graphql-mesh/cache-file@^0.4.18":
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-file/-/cache-file-0.4.18.tgz#ceb494ecfc0d543a65e0dee1f30bfea6f5e4860d"
-  integrity sha512-dFA9L1FM9t9aDSrAwSkPQSoy/dNLEsjoo371s/2cC6yXAE1n480jr1YCShQjpM3qRovyGd42H95Dspp7QzSaKA==
+"@graphql-mesh/cache-file@^0.4.19":
+  version "0.4.19"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-file/-/cache-file-0.4.19.tgz#8248d1f8db30ab344ac686a66ef35d0579b09113"
+  integrity sha512-/smj3Q5tYh6b2eGqvEyFKPXhcJbfoWJADSJNEUA9KHxgXkCsmvp+qPqcPkWPUEUvfdTlcxZEiVDHRX2VuqQS/g==
   dependencies:
-    "@graphql-mesh/types" "0.16.1"
+    "@graphql-mesh/types" "0.17.0"
     dataloader "2.0.0"
     fs-extra "9.0.1"
     lodash "4.17.20"
@@ -1894,6 +1894,15 @@
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
   integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.17.0":
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.17.0.tgz#2369eff0086126704193d1cc246a4197f6127987"
+  integrity sha512-0Ddj1t81fRb1T800j8Yq/kATU2CUT0sFbFEAaT8VGvSVmZ/712O7vg0omIac8h8jvQN5thLF8rr/3SuzEgmjJA==
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
