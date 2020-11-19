@@ -1828,12 +1828,12 @@
     lodash "4.17.20"
     param-case "3.0.3"
 
-"@graphql-mesh/graphql@^0.7.6":
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.7.6.tgz#e3310fda14f4daa15764cd53b1ee06b87cc0226d"
-  integrity sha512-uh0yKGVO8K7yxyPuh6VS+WxwhDVaAygH2/1OmTd0NvgBOMzwFV4rg0LbIECUABTqf4maqmqPFYm+day8a7nKrA==
+"@graphql-mesh/graphql@^0.7.8":
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.7.8.tgz#ab43eb6c37f4d026a95d84a93c2d92d3b27c0fff"
+  integrity sha512-pq2LlSPsEX7drNHkBVVptZ1vx1KR3ExVtPg9WdFmgcyWsqvqRsuG7gAF9gCnYTBvNpff98KriuHPCHZA7N26bA==
   dependencies:
-    "@graphql-mesh/types" "0.16.1"
+    "@graphql-mesh/types" "0.17.1"
     "@graphql-mesh/utils" "0.6.0"
     "@graphql-tools/url-loader" "6.3.0"
     "@graphql-tools/wrap" "6.2.3"
@@ -1894,6 +1894,15 @@
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
   integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.17.1.tgz#527c974ab3c311c13688259124d9d3f506a8908e"
+  integrity sha512-15OqZf9I5N58u0wkgDb2lxq6c1Ooihns72STGf3aGtZXJ6GRIwa8mggkWA3oqs7zppBv+1WGTxozQtjGxtKEcA==
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
