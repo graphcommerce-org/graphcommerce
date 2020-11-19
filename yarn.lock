@@ -1839,12 +1839,25 @@
     "@graphql-tools/wrap" "6.2.3"
     fetchache "0.0.4"
 
-"@graphql-mesh/merger-stitching@0.6.17", "@graphql-mesh/merger-stitching@^0.6.17":
+"@graphql-mesh/merger-stitching@0.6.17":
   version "0.6.17"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.6.17.tgz#44829faac84c01860ffda9da5480e34ba76d4deb"
   integrity sha512-3J59HSVlMhPILLxfe6zehm5DYZFNVPUwy8jz4A05yHOH/KNeh+M7UvBP2VcxfFhVU8Mpoyg+aHKpCay2Dao2rQ==
   dependencies:
     "@graphql-mesh/types" "0.16.1"
+    "@graphql-mesh/utils" "0.6.0"
+    "@graphql-tools/schema" "6.2.2"
+    "@graphql-tools/stitch" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    "@graphql-tools/wrap" "6.2.3"
+    fetchache "0.0.4"
+
+"@graphql-mesh/merger-stitching@^0.6.19":
+  version "0.6.19"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/merger-stitching/-/merger-stitching-0.6.19.tgz#549f52209cbd340a8f8cb60af585107c1e60400c"
+  integrity sha512-MqrgqU9ib1E/eAhkfgyfBxYqZ8CufsTlcRL4IEd71UZFVsGk743YHkXvN/T7vGQ/vKN25VCEyNYDR9DMeKzQew==
+  dependencies:
+    "@graphql-mesh/types" "0.17.1"
     "@graphql-mesh/utils" "0.6.0"
     "@graphql-tools/schema" "6.2.2"
     "@graphql-tools/stitch" "6.2.4"
@@ -1894,6 +1907,15 @@
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
   integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.17.1.tgz#527c974ab3c311c13688259124d9d3f506a8908e"
+  integrity sha512-15OqZf9I5N58u0wkgDb2lxq6c1Ooihns72STGf3aGtZXJ6GRIwa8mggkWA3oqs7zppBv+1WGTxozQtjGxtKEcA==
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
