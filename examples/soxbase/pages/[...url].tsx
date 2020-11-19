@@ -12,9 +12,7 @@ import getCategoryPageProps, {
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
 import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
-import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
 import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
-import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductListItemSimple'
 import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListItem from '@reachdigital/magento-product/ProductListItem'
@@ -32,6 +30,8 @@ import NextError from 'next/error'
 import React from 'react'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
+import ProductListItemConfigurable from '../components/Products/ProductListItemConfigurable'
+import ProductListItemSimple from '../components/Products/ProductListItemSimple'
 import apolloClient from '../lib/apolloClient'
 
 type Props = CategoryPageProps & HeaderProps & PageByUrlQuery

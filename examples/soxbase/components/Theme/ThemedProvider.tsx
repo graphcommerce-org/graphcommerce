@@ -80,7 +80,11 @@ export const defaultTheme = createMuiTheme({
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
-    h6: {},
+    h6: {
+      fontSize: responsiveVal(14, 17),
+      fontWeight: 500,
+      letterSpacing: '-0.0375em',
+    },
     fontWeightBold: 600,
   },
   spacings: {

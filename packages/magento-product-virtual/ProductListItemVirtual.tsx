@@ -8,7 +8,7 @@ export default function ProductListItemVirtual(props: ProductListItemVirtualFrag
   const { sku } = props
   return (
     <ProductListItem {...props}>
-      {sku && <AddToCartButton mutation={AddVirtualProductsToCartDocument} variables={{ sku }} />}
+      <AddToCartButton mutation={AddVirtualProductsToCartDocument} variables={{ sku: sku ?? '' }} />
     </ProductListItem>
   )
 }

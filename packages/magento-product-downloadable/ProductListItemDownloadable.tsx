@@ -9,13 +9,11 @@ export default function ProductListItemDownloadable(props: ProductListItemDownlo
   // @todo implement logic to select the downloadable product
   return (
     <ProductListItem {...props}>
-      {sku && (
-        <AddToCartButton
-          mutation={AddDownloadableProductToCartDocument}
-          variables={{ sku }}
-          name={name}
-        />
-      )}
+      <AddToCartButton
+        mutation={AddDownloadableProductToCartDocument}
+        variables={{ sku: sku ?? '' }}
+        name={name}
+      />
     </ProductListItem>
   )
 }

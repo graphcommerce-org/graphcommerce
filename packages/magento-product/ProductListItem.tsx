@@ -17,13 +17,18 @@ export const useProductListItemStyles = makeStyles(
     },
     title: {
       color: theme.palette.primary.contrastText,
-      ...theme.typography.h4,
-      margin: `0 0 ${theme.spacings.sm}`,
+      ...theme.typography.h6,
+      // margin: `0 0 ${theme.spacings.sm}`,
+    },
+    itemTitleContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginTop: 10,
     },
     imageContainer: {
       display: 'block',
       position: 'relative',
-      marginBottom: '50px',
       height: responsiveVal(120, 300),
       paddingTop: 'calc(100% / 3 * 2)',
       background: 'rgba(0, 0, 0, 0.04)',
@@ -35,8 +40,8 @@ export const useProductListItemStyles = makeStyles(
         display: 'block',
         transform: 'scale(.85, 0.95)',
         top: 0,
-        left: 0
-      }
+        left: 0,
+      },
     },
     placeholder: {
       display: 'flex',
@@ -65,12 +70,31 @@ export const useProductListItemStyles = makeStyles(
   { name: 'ProductListItemSimple' },
 )
 
+export type Area = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
+
 export type ProductListItemProps = PropsWithChildren<
-  ProductListItemFragment & UseStyles<typeof useProductListItemStyles>
+  {
+    subTitle?: React.ReactNode
+    topLeft?: React.ReactNode[]
+    topRight?: React.ReactNode[]
+    bottomLeft?: React.ReactNode[]
+    bottomRight?: React.ReactNode[]
+  } & ProductListItemFragment &
+    UseStyles<typeof useProductListItemStyles>
 >
 
 export default function ProductListItem(props: ProductListItemProps) {
-  const { small_image, name, price_range, children } = props
+  const {
+    subTitle,
+    topLeft,
+    topRight,
+    bottomLeft,
+    bottomRight,
+    small_image,
+    name,
+    price_range,
+    children,
+  } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
 
@@ -92,13 +116,24 @@ export default function ProductListItem(props: ProductListItemProps) {
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
           </div>
-
-          <Typography component='h2' className={classes.title}>
-            {name}
-          </Typography>
         </MuiLink>
       </PageLink>
-      <ProductListPrice {...price_range.minimum_price} />
+
+      <div className={classes.itemTitleContainer}>
+        <Typography component='h2' className={classes.title}>
+          {name}
+        </Typography>
+        {subTitle}
+        <ProductListPrice {...price_range.minimum_price} />
+      </div>
+
+      {topLeft}
+      {topRight}
+      {bottomLeft}
+      {bottomRight}
+
+      {/* {price_range.minimum_price.discount?.percent_off} */}
+
       {children}
     </div>
   )

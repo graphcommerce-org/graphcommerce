@@ -1,23 +1,42 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { Chip } from '@material-ui/core'
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
-import ProductListItem from '@reachdigital/magento-product/ProductListItem'
+import ProductListItem, {
+  Area,
+  ProductListItemProps,
+} from '@reachdigital/magento-product/ProductListItem'
 import {
   FilterTypes,
   isFilterTypeEqual,
 } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
-import { AddConfigurableProductToCartDocument } from './AddConfigurableProductToCart.gql'
 import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.gql'
+import ColorSwatch from './Swatches/ColorSwatch'
+import ImageSwatch from './Swatches/ImageSwatch'
+import Swatch from './Swatches/Swatch'
 
-type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment & {
-  filterTypes: FilterTypes
+export type ActionsComponentProps = ProductListItemConfigurableFragment & {
+  variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
 }
 
+export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
+  ProductListItemProps & {
+    filterTypes: FilterTypes
+    Actions?: React.VFC<ActionsComponentProps>
+    swatchesRecord: Record<Area, string[]>
+  }
+
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
-  const { variants, configurable_options, filterTypes, ...configurableProduct } = props
+  const {
+    Actions,
+    variants,
+    configurable_options,
+    filterTypes,
+    children,
+    swatchesRecord,
+    ...configurableProduct
+  } = props
   const { params } = useProductListParamsContext()
+  const [selectedState, setSelected] = useState<{ [index: string]: string[] }>({})
 
   const options: [string, string[]][] =
     configurable_options
@@ -31,9 +50,8 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
         return [option?.attribute_code ?? '', (filter?.in as string[]) ?? []]
       }) ?? []
 
-  const [selectedState, setSelected] = useState<{ [index: string]: string[] }>({})
-
   const selected = cloneDeep(selectedState)
+
   options.forEach(([attr, values]) => {
     if (!selected[attr]) selected[attr] = values
   })
@@ -51,9 +69,14 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
     : configurableProduct
 
-  const onClick = (attribute_code?: string | null, value_index?: number | null) => () => {
+  const onSelectProductVariant = (
+    attribute_code?: string | null,
+    value_index?: number | null,
+  ) => () => {
     if (!attribute_code || !value_index) return
+
     const newSelected = cloneDeep(selected)
+
     if (newSelected[attribute_code] && newSelected[attribute_code].length) {
       newSelected[attribute_code] = newSelected[attribute_code].filter(
         (val) => val !== String(value_index),
@@ -61,93 +84,68 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     } else {
       newSelected[attribute_code] = [String(value_index)]
     }
+
     setSelected(newSelected)
   }
 
-  return (
-    <ProductListItem {...productProps}>
-      {configurable_options?.map((option) => {
-        if (!option) return null
-        return (
-          <div key={option.id ?? ''}>
-            {option.values?.map((value) => {
-              if (!value) return null
-              switch (value?.swatch_data?.__typename) {
-                case 'ColorSwatchData':
-                  return (
-                    <Chip
-                      key={value.value_index ?? ''}
-                      label={value.store_label}
-                      clickable
-                      onClick={onClick(option?.attribute_code, value.value_index)}
-                      variant='outlined'
-                      color={
-                        selected[option?.attribute_code ?? '']?.includes(String(value.value_index))
-                          ? 'primary'
-                          : 'default'
-                      }
-                      avatar={
-                        <div
-                          style={{
-                            backgroundColor: value?.swatch_data?.value ?? undefined,
-                            borderRadius: '50%',
-                          }}
-                        />
-                      }
-                    />
-                  )
-                case 'ImageSwatchData':
-                  return (
-                    <Chip
-                      key={value.value_index ?? ''}
-                      label={value.store_label}
-                      clickable
-                      onClick={onClick(option.attribute_code, value.value_index)}
-                      variant='outlined'
-                      color={
-                        selected[option?.attribute_code ?? '']?.includes(String(value.value_index))
-                          ? 'primary'
-                          : 'default'
-                      }
-                      avatar={
-                        <img
-                          src={value.swatch_data.thumbnail ?? ''}
-                          key={value.value_index ?? ''}
-                          alt={value.swatch_data.value ?? ''}
-                        />
-                      }
-                    />
-                  )
-                default:
-                  return (
-                    <Chip
-                      variant='outlined'
-                      onClick={onClick(option.attribute_code, value.value_index)}
-                      key={value.value_index ?? ''}
-                      label={value.store_label}
-                      color={
-                        selected[option.attribute_code ?? '']?.includes(String(value.value_index))
-                          ? 'primary'
-                          : 'default'
-                      }
-                      clickable
-                    />
-                  )
-              }
-            })}
-          </div>
+  const convertSwatchDataToComponents = (
+    swRecord: Record<Area, string[]>,
+  ): Record<Area, React.ReactNode[]> => {
+    const locationSwatchPair: Record<Area, React.ReactNode[]> = {
+      topLeft: [],
+      topRight: [],
+      bottomLeft: [],
+      bottomRight: [],
+    }
+
+    for (const [cornerLocation, swatchesAttrCodes] of Object.entries(swRecord)) {
+      swatchesAttrCodes.forEach((swatchAttrCode) => {
+        const confOption = configurable_options?.find(
+          (swData) => swData?.attribute_code === swatchAttrCode,
         )
-      })}
-      {matchingVariants?.[0]?.product?.sku && configurableProduct.sku && (
-        <AddToCartButton
-          mutation={AddConfigurableProductToCartDocument}
-          variables={{
-            parentSku: configurableProduct.sku,
-            variantSku: matchingVariants[0].product.sku,
-          }}
-          name={matchingVariants[0].product.name}
-        />
-      )}
+        const swatchType = confOption?.values?.[0]?.swatch_data?.__typename
+
+        switch (swatchType) {
+          case 'ColorSwatchData':
+            locationSwatchPair[cornerLocation].push(
+              <ColorSwatch
+                option={confOption}
+                key={confOption?.id}
+                onChange={onSelectProductVariant}
+                selected={selectedState}
+              />,
+            )
+            break
+          case 'ImageSwatchData':
+            locationSwatchPair[cornerLocation].push(
+              <ImageSwatch
+                option={confOption}
+                key={confOption?.id}
+                onChange={onSelectProductVariant}
+                selected={selectedState}
+              />,
+            )
+            break
+          default:
+            locationSwatchPair[cornerLocation].push(
+              <Swatch
+                option={confOption}
+                key={confOption?.id}
+                onChange={onSelectProductVariant}
+                selected={selectedState}
+              />,
+            )
+        }
+      })
+    }
+
+    return locationSwatchPair
+  }
+
+  return (
+    <ProductListItem {...productProps} {...convertSwatchDataToComponents(swatchesRecord)}>
+      {Actions && <Actions {...configurableProduct} variant={matchingVariants?.[0]} />}
+      {children}
     </ProductListItem>
   )
 }

@@ -29,9 +29,6 @@ export default function ProductListPagination({
   const prevBtnProps = items[0]
   const nextBtnProps = items[items.length - 1]
 
-  console.log(page_info)
-  console.log(paginationProps)
-
   const chevronLeft = <ChevronLeft color='primary' />
   const chevronRight = <ChevronRight color='primary' />
 
