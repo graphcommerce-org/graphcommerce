@@ -124,6 +124,9 @@ export type CartItem_SimpleCartItem_Fragment = Pick<Types.SimpleCartItem, 'id' |
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
+    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
@@ -153,6 +156,9 @@ export type CartItem_VirtualCartItem_Fragment = Pick<Types.VirtualCartItem, 'id'
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
@@ -189,6 +195,9 @@ export type CartItem_DownloadableCartItem_Fragment = Pick<
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
+    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
@@ -209,7 +218,7 @@ export type CartItem_DownloadableCartItem_Fragment = Pick<
   }>
 }
 
-export type CartItem_BundleCartItem_Fragment = Pick<Types.BundleCartItem, 'id' | 'quantity'> & {
+export type CartItem_GiftCardCartItem_Fragment = Pick<Types.GiftCardCartItem, 'id' | 'quantity'> & {
   product:
     | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
@@ -218,6 +227,9 @@ export type CartItem_BundleCartItem_Fragment = Pick<Types.BundleCartItem, 'id' |
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
@@ -254,6 +266,43 @@ export type CartItem_ConfigurableCartItem_Fragment = Pick<
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
+    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+  prices?: Types.Maybe<{
+    discounts?: Types.Maybe<
+      Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
+    >
+    price: MoneyFragment
+    row_total: MoneyFragment
+    row_total_including_tax: MoneyFragment
+    total_item_discount?: Types.Maybe<MoneyFragment>
+  }>
+}
+
+export type CartItem_BundleCartItem_Fragment = Pick<Types.BundleCartItem, 'id' | 'quantity'> & {
+  product:
+    | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
+    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+      })
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
       })
@@ -278,5 +327,6 @@ export type CartItemFragment =
   | CartItem_SimpleCartItem_Fragment
   | CartItem_VirtualCartItem_Fragment
   | CartItem_DownloadableCartItem_Fragment
-  | CartItem_BundleCartItem_Fragment
+  | CartItem_GiftCardCartItem_Fragment
   | CartItem_ConfigurableCartItem_Fragment
+  | CartItem_BundleCartItem_Fragment

@@ -6,6 +6,7 @@ import {
   ProductPageCategory_VirtualProduct_Fragment,
   ProductPageCategory_SimpleProduct_Fragment,
   ProductPageCategory_DownloadableProduct_Fragment,
+  ProductPageCategory_GiftCardProduct_Fragment,
   ProductPageCategory_BundleProduct_Fragment,
   ProductPageCategory_GroupedProduct_Fragment,
   ProductPageCategory_ConfigurableProduct_Fragment,
@@ -15,6 +16,7 @@ import {
   ProductPageDescription_VirtualProduct_Fragment,
   ProductPageDescription_SimpleProduct_Fragment,
   ProductPageDescription_DownloadableProduct_Fragment,
+  ProductPageDescription_GiftCardProduct_Fragment,
   ProductPageDescription_BundleProduct_Fragment,
   ProductPageDescription_GroupedProduct_Fragment,
   ProductPageDescription_ConfigurableProduct_Fragment,
@@ -24,6 +26,7 @@ import {
   ProductPageGallery_VirtualProduct_Fragment,
   ProductPageGallery_SimpleProduct_Fragment,
   ProductPageGallery_DownloadableProduct_Fragment,
+  ProductPageGallery_GiftCardProduct_Fragment,
   ProductPageGallery_BundleProduct_Fragment,
   ProductPageGallery_GroupedProduct_Fragment,
   ProductPageGallery_ConfigurableProduct_Fragment,
@@ -33,6 +36,7 @@ import {
   ProductPageMeta_VirtualProduct_Fragment,
   ProductPageMeta_SimpleProduct_Fragment,
   ProductPageMeta_DownloadableProduct_Fragment,
+  ProductPageMeta_GiftCardProduct_Fragment,
   ProductPageMeta_BundleProduct_Fragment,
   ProductPageMeta_GroupedProduct_Fragment,
   ProductPageMeta_ConfigurableProduct_Fragment,
@@ -42,6 +46,7 @@ import {
   ProductPagePrices_VirtualProduct_Fragment,
   ProductPagePrices_SimpleProduct_Fragment,
   ProductPagePrices_DownloadableProduct_Fragment,
+  ProductPagePrices_GiftCardProduct_Fragment,
   ProductPagePrices_BundleProduct_Fragment,
   ProductPagePrices_GroupedProduct_Fragment,
   ProductPagePrices_ConfigurableProduct_Fragment,
@@ -51,6 +56,7 @@ import {
   ProductPageRelated_VirtualProduct_Fragment,
   ProductPageRelated_SimpleProduct_Fragment,
   ProductPageRelated_DownloadableProduct_Fragment,
+  ProductPageRelated_GiftCardProduct_Fragment,
   ProductPageRelated_BundleProduct_Fragment,
   ProductPageRelated_GroupedProduct_Fragment,
   ProductPageRelated_ConfigurableProduct_Fragment,
@@ -60,6 +66,7 @@ import {
   ProductPageUpsell_VirtualProduct_Fragment,
   ProductPageUpsell_SimpleProduct_Fragment,
   ProductPageUpsell_DownloadableProduct_Fragment,
+  ProductPageUpsell_GiftCardProduct_Fragment,
   ProductPageUpsell_BundleProduct_Fragment,
   ProductPageUpsell_GroupedProduct_Fragment,
   ProductPageUpsell_ConfigurableProduct_Fragment,
@@ -136,6 +143,18 @@ export type ProductPageInterface_DownloadableProduct_Fragment = Pick<
   ProductPageRelated_DownloadableProduct_Fragment &
   ProductPageUpsell_DownloadableProduct_Fragment
 
+export type ProductPageInterface_GiftCardProduct_Fragment = Pick<
+  Types.GiftCardProduct,
+  'sku' | 'name'
+> &
+  ProductPageCategory_GiftCardProduct_Fragment &
+  ProductPageDescription_GiftCardProduct_Fragment &
+  ProductPageGallery_GiftCardProduct_Fragment &
+  ProductPageMeta_GiftCardProduct_Fragment &
+  ProductPagePrices_GiftCardProduct_Fragment &
+  ProductPageRelated_GiftCardProduct_Fragment &
+  ProductPageUpsell_GiftCardProduct_Fragment
+
 export type ProductPageInterface_BundleProduct_Fragment = Pick<
   Types.BundleProduct,
   'sku' | 'name'
@@ -176,6 +195,7 @@ export type ProductPageInterfaceFragment =
   | ProductPageInterface_VirtualProduct_Fragment
   | ProductPageInterface_SimpleProduct_Fragment
   | ProductPageInterface_DownloadableProduct_Fragment
+  | ProductPageInterface_GiftCardProduct_Fragment
   | ProductPageInterface_BundleProduct_Fragment
   | ProductPageInterface_GroupedProduct_Fragment
   | ProductPageInterface_ConfigurableProduct_Fragment

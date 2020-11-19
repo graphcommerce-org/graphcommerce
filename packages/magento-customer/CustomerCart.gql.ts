@@ -406,6 +406,9 @@ export type CustomerCartQuery = {
                     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
+                    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
                     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
@@ -443,6 +446,9 @@ export type CustomerCartQuery = {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
                     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
                     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
@@ -487,6 +493,101 @@ export type CustomerCartQuery = {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
                     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                  prices?: Types.Maybe<{
+                    discounts?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.Discount, 'label'> & {
+                            amount: Pick<Types.Money, 'currency' | 'value'>
+                          }
+                        >
+                      >
+                    >
+                    price: Pick<Types.Money, 'currency' | 'value'>
+                    row_total: Pick<Types.Money, 'currency' | 'value'>
+                    row_total_including_tax: Pick<Types.Money, 'currency' | 'value'>
+                    total_item_discount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                  }>
+                })
+            | ({ __typename: 'GiftCardCartItem' } & Pick<
+                Types.GiftCardCartItem,
+                'id' | 'quantity'
+              > & {
+                  product:
+                    | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                  prices?: Types.Maybe<{
+                    discounts?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.Discount, 'label'> & {
+                            amount: Pick<Types.Money, 'currency' | 'value'>
+                          }
+                        >
+                      >
+                    >
+                    price: Pick<Types.Money, 'currency' | 'value'>
+                    row_total: Pick<Types.Money, 'currency' | 'value'>
+                    row_total_including_tax: Pick<Types.Money, 'currency' | 'value'>
+                    total_item_discount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                  }>
+                })
+            | ({ __typename: 'ConfigurableCartItem' } & Pick<
+                Types.ConfigurableCartItem,
+                'id' | 'quantity'
+              > & {
+                  configurable_options: Array<
+                    Types.Maybe<
+                      Pick<
+                        Types.SelectedConfigurableOption,
+                        'id' | 'option_label' | 'value_id' | 'value_label'
+                      >
+                    >
+                  >
+                  product:
+                    | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                      })
+                    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
                     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
@@ -539,51 +640,7 @@ export type CustomerCartQuery = {
                     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
-                    | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
-                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-                      })
-                    | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
-                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-                      })
-                    | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
-                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-                      })
-                  prices?: Types.Maybe<{
-                    discounts?: Types.Maybe<
-                      Array<
-                        Types.Maybe<
-                          Pick<Types.Discount, 'label'> & {
-                            amount: Pick<Types.Money, 'currency' | 'value'>
-                          }
-                        >
-                      >
-                    >
-                    price: Pick<Types.Money, 'currency' | 'value'>
-                    row_total: Pick<Types.Money, 'currency' | 'value'>
-                    row_total_including_tax: Pick<Types.Money, 'currency' | 'value'>
-                    total_item_discount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
-                  }>
-                })
-            | ({ __typename: 'ConfigurableCartItem' } & Pick<
-                Types.ConfigurableCartItem,
-                'id' | 'quantity'
-              > & {
-                  configurable_options: Array<
-                    Types.Maybe<
-                      Pick<
-                        Types.SelectedConfigurableOption,
-                        'id' | 'option_label' | 'value_id' | 'value_label'
-                      >
-                    >
-                  >
-                  product:
-                    | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
-                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-                      })
-                    | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
-                        thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-                      })
-                    | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
+                    | (Pick<Types.GiftCardProduct, 'name' | 'url_key'> & {
                         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                       })
                     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {

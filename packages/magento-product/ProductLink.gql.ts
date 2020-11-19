@@ -34,6 +34,11 @@ export type ProductLink_DownloadableProduct_Fragment = Pick<
   'url_key' | 'canonical_url'
 >
 
+export type ProductLink_GiftCardProduct_Fragment = Pick<
+  Types.GiftCardProduct,
+  'url_key' | 'canonical_url'
+>
+
 export type ProductLink_BundleProduct_Fragment = Pick<
   Types.BundleProduct,
   'url_key' | 'canonical_url'
@@ -53,6 +58,7 @@ export type ProductLinkFragment =
   | ProductLink_VirtualProduct_Fragment
   | ProductLink_SimpleProduct_Fragment
   | ProductLink_DownloadableProduct_Fragment
+  | ProductLink_GiftCardProduct_Fragment
   | ProductLink_BundleProduct_Fragment
   | ProductLink_GroupedProduct_Fragment
   | ProductLink_ConfigurableProduct_Fragment

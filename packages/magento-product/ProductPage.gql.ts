@@ -14,8 +14,10 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'urlKey' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          directives: [],
         },
       ],
+      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -47,67 +49,153 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                 },
               },
             ],
+            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
+                  arguments: [],
+                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: '__typename' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'id' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'sku' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'name' },
+                        arguments: [],
+                        directives: [],
+                      },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'categories' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'include_in_menu' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'url_path' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'include_in_menu' },
+                              arguments: [],
+                              directives: [],
+                            },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'short_description' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
-                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'html' } }],
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'html' },
+                              arguments: [],
+                              directives: [],
+                            },
+                          ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'description' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
-                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'html' } }],
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'html' },
+                              arguments: [],
+                              directives: [],
+                            },
+                          ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'media_gallery' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'position' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'disabled' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: '__typename' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'label' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'position' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'disabled' },
+                              arguments: [],
+                              directives: [],
+                            },
                             {
                               kind: 'InlineFragment',
                               typeCondition: {
                                 kind: 'NamedType',
                                 name: { kind: 'Name', value: 'ProductImage' },
                               },
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
@@ -117,38 +205,53 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                 kind: 'NamedType',
                                 name: { kind: 'Name', value: 'ProductVideo' },
                               },
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'video_content' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'media_type' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'video_description' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'video_metadata' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'video_provider' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'video_title' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'video_url' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                       ],
                                     },
@@ -159,49 +262,88 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                           ],
                         },
                       },
-                      { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'canonical_url' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'url_key' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'canonical_url' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'meta_title' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'meta_description' },
+                        arguments: [],
+                        directives: [],
+                      },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'price_range' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'maximum_price' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'regular_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
+                                          arguments: [],
+                                          directives: [],
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'value' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'discount' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'amount_off' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'percent_off' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                       ],
                                     },
@@ -209,41 +351,63 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'final_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
+                                          arguments: [],
+                                          directives: [],
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'value' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'fixed_product_taxes' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'amount' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'label' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
@@ -253,36 +417,53 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'minimum_price' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'regular_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
+                                          arguments: [],
+                                          directives: [],
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'value' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'discount' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'amount_off' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'percent_off' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                       ],
                                     },
@@ -290,41 +471,63 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'final_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
+                                          arguments: [],
+                                          directives: [],
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'value' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'fixed_product_taxes' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'amount' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'label' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
@@ -337,80 +540,150 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'price_tiers' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'discount' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'amount_off' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'percent_off' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'amount_off' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'percent_off' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'final_price' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'currency' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'value' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
-                            { kind: 'Field', name: { kind: 'Name', value: 'quantity' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'quantity' },
+                              arguments: [],
+                              directives: [],
+                            },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'related_products' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sku' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'url_key' },
+                              arguments: [],
+                              directives: [],
+                            },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'small_image' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'label' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'price_range' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'maximum_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'regular_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -418,16 +691,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'discount' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'amount_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'percent_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -435,16 +714,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'final_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -455,22 +740,30 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'minimum_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'regular_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -478,16 +771,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'discount' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'amount_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'percent_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -495,16 +794,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'final_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -521,48 +826,87 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'upsell_products' },
+                        arguments: [],
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sku' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                              arguments: [],
+                              directives: [],
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'url_key' },
+                              arguments: [],
+                              directives: [],
+                            },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'small_image' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'url' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'label' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'price_range' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'maximum_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'regular_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -570,16 +914,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'discount' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'amount_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'percent_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -587,16 +937,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'final_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -607,22 +963,30 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'minimum_price' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'regular_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -630,16 +994,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'discount' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'amount_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'percent_off' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -647,16 +1017,22 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'final_price' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'currency' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                             ],
                                           },
@@ -674,21 +1050,63 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                         kind: 'InlineFragment',
                         typeCondition: {
                           kind: 'NamedType',
+                          name: { kind: 'Name', value: 'PhysicalProductInterface' },
+                        },
+                        directives: [],
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'weight' },
+                              arguments: [],
+                              directives: [],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
                           name: { kind: 'Name', value: 'CustomizableProductInterface' },
                         },
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'options' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'option_id' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'required' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sort_order' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'option_id' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'required' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sort_order' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
@@ -701,29 +1119,59 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'DownloadableProduct' },
                         },
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'downloadable_product_links' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'price' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sample_url' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'price' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sample_url' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'downloadable_product_samples' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sample_url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sample_url' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                 ],
                               },
                             },
@@ -736,48 +1184,75 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'ConfigurableProduct' },
                         },
+                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'configurable_options' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'attribute_code' },
+                                    arguments: [],
+                                    directives: [],
                                   },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'id' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'label' },
+                                    arguments: [],
+                                    directives: [],
+                                  },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'values' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'store_label' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'value_index' },
+                                          arguments: [],
+                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'swatch_data' },
+                                          arguments: [],
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: '__typename' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'InlineFragment',
@@ -785,12 +1260,15 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                   kind: 'NamedType',
                                                   name: { kind: 'Name', value: 'ImageSwatchData' },
                                                 },
+                                                directives: [],
                                                 selectionSet: {
                                                   kind: 'SelectionSet',
                                                   selections: [
                                                     {
                                                       kind: 'Field',
                                                       name: { kind: 'Name', value: 'thumbnail' },
+                                                      arguments: [],
+                                                      directives: [],
                                                     },
                                                   ],
                                                 },
@@ -807,27 +1285,45 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'variants' },
+                              arguments: [],
+                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'attributes' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'code' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'value_index' },
+                                          arguments: [],
+                                          directives: [],
                                         },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'label' },
+                                          arguments: [],
+                                          directives: [],
+                                        },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'product' },
+                                    arguments: [],
+                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
@@ -837,34 +1333,47 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                             kind: 'NamedType',
                                             name: { kind: 'Name', value: 'ProductInterface' },
                                           },
+                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'sku' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'name' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'url_key' },
+                                                arguments: [],
+                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'small_image' },
+                                                arguments: [],
+                                                directives: [],
                                                 selectionSet: {
                                                   kind: 'SelectionSet',
                                                   selections: [
                                                     {
                                                       kind: 'Field',
                                                       name: { kind: 'Name', value: 'url' },
+                                                      arguments: [],
+                                                      directives: [],
                                                     },
                                                     {
                                                       kind: 'Field',
                                                       name: { kind: 'Name', value: 'label' },
+                                                      arguments: [],
+                                                      directives: [],
                                                     },
                                                   ],
                                                 },
@@ -872,6 +1381,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'price_range' },
+                                                arguments: [],
+                                                directives: [],
                                                 selectionSet: {
                                                   kind: 'SelectionSet',
                                                   selections: [
@@ -881,6 +1392,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                         kind: 'Name',
                                                         value: 'maximum_price',
                                                       },
+                                                      arguments: [],
+                                                      directives: [],
                                                       selectionSet: {
                                                         kind: 'SelectionSet',
                                                         selections: [
@@ -890,6 +1403,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                               kind: 'Name',
                                                               value: 'regular_price',
                                                             },
+                                                            arguments: [],
+                                                            directives: [],
                                                             selectionSet: {
                                                               kind: 'SelectionSet',
                                                               selections: [
@@ -899,6 +1414,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'currency',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                                 {
                                                                   kind: 'Field',
@@ -906,6 +1423,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'value',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                               ],
                                                             },
@@ -916,6 +1435,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                               kind: 'Name',
                                                               value: 'discount',
                                                             },
+                                                            arguments: [],
+                                                            directives: [],
                                                             selectionSet: {
                                                               kind: 'SelectionSet',
                                                               selections: [
@@ -925,6 +1446,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'amount_off',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                                 {
                                                                   kind: 'Field',
@@ -932,6 +1455,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'percent_off',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                               ],
                                                             },
@@ -942,6 +1467,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                               kind: 'Name',
                                                               value: 'final_price',
                                                             },
+                                                            arguments: [],
+                                                            directives: [],
                                                             selectionSet: {
                                                               kind: 'SelectionSet',
                                                               selections: [
@@ -951,6 +1478,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'currency',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                                 {
                                                                   kind: 'Field',
@@ -958,6 +1487,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'value',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                               ],
                                                             },
@@ -971,6 +1502,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                         kind: 'Name',
                                                         value: 'minimum_price',
                                                       },
+                                                      arguments: [],
+                                                      directives: [],
                                                       selectionSet: {
                                                         kind: 'SelectionSet',
                                                         selections: [
@@ -980,6 +1513,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                               kind: 'Name',
                                                               value: 'regular_price',
                                                             },
+                                                            arguments: [],
+                                                            directives: [],
                                                             selectionSet: {
                                                               kind: 'SelectionSet',
                                                               selections: [
@@ -989,6 +1524,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'currency',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                                 {
                                                                   kind: 'Field',
@@ -996,6 +1533,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'value',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                               ],
                                                             },
@@ -1006,6 +1545,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                               kind: 'Name',
                                                               value: 'discount',
                                                             },
+                                                            arguments: [],
+                                                            directives: [],
                                                             selectionSet: {
                                                               kind: 'SelectionSet',
                                                               selections: [
@@ -1015,6 +1556,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'amount_off',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                                 {
                                                                   kind: 'Field',
@@ -1022,6 +1565,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'percent_off',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                               ],
                                                             },
@@ -1032,6 +1577,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                               kind: 'Name',
                                                               value: 'final_price',
                                                             },
+                                                            arguments: [],
+                                                            directives: [],
                                                             selectionSet: {
                                                               kind: 'SelectionSet',
                                                               selections: [
@@ -1041,6 +1588,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'currency',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                                 {
                                                                   kind: 'Field',
@@ -1048,6 +1597,8 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                                                     kind: 'Name',
                                                                     value: 'value',
                                                                   },
+                                                                  arguments: [],
+                                                                  directives: [],
                                                                 },
                                                               ],
                                                             },
@@ -1092,6 +1643,7 @@ export type ProductPageQuery = {
         Types.Maybe<
           | ({ __typename: 'VirtualProduct' } & Pick<
               Types.VirtualProduct,
+              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -1277,6 +1829,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -1379,6 +1950,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{
@@ -1460,6 +2050,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'SimpleProduct' } & Pick<
               Types.SimpleProduct,
+              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -1645,6 +2236,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -1765,6 +2375,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -1828,6 +2457,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'DownloadableProduct' } & Pick<
               Types.DownloadableProduct,
+              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -2023,6 +2653,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2143,6 +2792,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2204,8 +2872,9 @@ export type ProductPageQuery = {
                   >
                 >
               })
-          | ({ __typename: 'BundleProduct' } & Pick<
-              Types.BundleProduct,
+          | ({ __typename: 'GiftCardProduct' } & Pick<
+              Types.GiftCardProduct,
+              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -2391,6 +3060,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2511,6 +3199,432 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GroupedProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.ConfigurableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                    >
+                  >
+                >
+              })
+          | ({ __typename: 'BundleProduct' } & Pick<
+              Types.BundleProduct,
+              | 'weight'
+              | 'id'
+              | 'sku'
+              | 'name'
+              | 'url_key'
+              | 'canonical_url'
+              | 'meta_title'
+              | 'meta_description'
+            > & {
+                options?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | Pick<
+                          Types.CustomizableAreaOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableDateOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableDropDownOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableMultipleOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableFieldOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableFileOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableRadioOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableCheckboxOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                    >
+                  >
+                >
+                categories?: Types.Maybe<
+                  Array<
+                    Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>
+                  >
+                >
+                short_description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+                description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+                media_gallery?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | ({ __typename: 'ProductImage' } & Pick<
+                          Types.ProductImage,
+                          'url' | 'label' | 'position' | 'disabled'
+                        >)
+                      | ({ __typename: 'ProductVideo' } & Pick<
+                          Types.ProductVideo,
+                          'label' | 'position' | 'disabled'
+                        > & {
+                            video_content?: Types.Maybe<
+                              Pick<
+                                Types.ProductMediaGalleryEntriesVideoContent,
+                                | 'media_type'
+                                | 'video_description'
+                                | 'video_metadata'
+                                | 'video_provider'
+                                | 'video_title'
+                                | 'video_url'
+                              >
+                            >
+                          })
+                    >
+                  >
+                >
+                price_range: {
+                  maximum_price?: Types.Maybe<{
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                    fixed_product_taxes?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.FixedProductTax, 'label'> & {
+                            amount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                          }
+                        >
+                      >
+                    >
+                  }>
+                  minimum_price: {
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                    fixed_product_taxes?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.FixedProductTax, 'label'> & {
+                            amount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                          }
+                        >
+                      >
+                    >
+                  }
+                }
+                price_tiers?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      Pick<Types.TierPrice, 'quantity'> & {
+                        discount?: Types.Maybe<
+                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                        >
+                        final_price?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                      }
+                    >
+                  >
+                >
+                related_products?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | (Pick<Types.VirtualProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.SimpleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GroupedProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.ConfigurableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                    >
+                  >
+                >
+                upsell_products?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | (Pick<Types.VirtualProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.SimpleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2574,6 +3688,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'GroupedProduct' } & Pick<
               Types.GroupedProduct,
+              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -2721,6 +3836,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2841,6 +3975,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2904,6 +4057,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'ConfigurableProduct' } & Pick<
               Types.ConfigurableProduct,
+              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -3159,6 +4313,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -3261,6 +4434,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{

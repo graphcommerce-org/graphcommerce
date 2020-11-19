@@ -96,6 +96,17 @@ export type ProductListItem_DownloadableProduct_Fragment = Pick<
   }
 }
 
+export type ProductListItem_GiftCardProduct_Fragment = Pick<
+  Types.GiftCardProduct,
+  'sku' | 'name' | 'url_key'
+> & {
+  small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+  price_range: {
+    maximum_price?: Types.Maybe<ProductListPriceFragment>
+    minimum_price: ProductListPriceFragment
+  }
+}
+
 export type ProductListItem_BundleProduct_Fragment = Pick<
   Types.BundleProduct,
   'sku' | 'name' | 'url_key'
@@ -133,6 +144,7 @@ export type ProductListItemFragment =
   | ProductListItem_VirtualProduct_Fragment
   | ProductListItem_SimpleProduct_Fragment
   | ProductListItem_DownloadableProduct_Fragment
+  | ProductListItem_GiftCardProduct_Fragment
   | ProductListItem_BundleProduct_Fragment
   | ProductListItem_GroupedProduct_Fragment
   | ProductListItem_ConfigurableProduct_Fragment
