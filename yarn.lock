@@ -1865,12 +1865,12 @@
     "@graphql-tools/utils" "6.2.2"
     "@graphql-tools/wrap" "6.2.3"
 
-"@graphql-mesh/transform-cache@^0.7.10":
-  version "0.7.10"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-cache/-/transform-cache-0.7.10.tgz#361830bf48a5a6aa87af41023b89f286aacac172"
-  integrity sha512-FR91vZqr2RelY2D8mQIdJytYWawATkuVAkhSvae+d30IxkixyT7GCeuUxuFHeuzFSX4Kq5L1NcL6K+fRyZPcBQ==
+"@graphql-mesh/transform-cache@^0.7.12":
+  version "0.7.12"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-cache/-/transform-cache-0.7.12.tgz#47c576c166c91a1dfdd98f3bd7cfa838240eff26"
+  integrity sha512-LTiInHK0zv6abnf9pH8gM2fxyeJ2OtQead7Y2cTP4VtxNqI/UsDneJwerfT5dYASVCqPn38/FEtdTv1gu7SkKQ==
   dependencies:
-    "@graphql-mesh/types" "0.16.1"
+    "@graphql-mesh/types" "0.17.1"
     "@graphql-mesh/utils" "0.6.0"
     "@graphql-tools/resolvers-composition" "6.2.4"
     "@graphql-tools/schema" "6.2.2"
@@ -1894,6 +1894,15 @@
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
   integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.17.1.tgz#527c974ab3c311c13688259124d9d3f506a8908e"
+  integrity sha512-15OqZf9I5N58u0wkgDb2lxq6c1Ooihns72STGf3aGtZXJ6GRIwa8mggkWA3oqs7zppBv+1WGTxozQtjGxtKEcA==
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
