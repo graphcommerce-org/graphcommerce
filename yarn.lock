@@ -1879,12 +1879,12 @@
     graphql-fields "2.0.3"
     object-hash "2.0.3"
 
-"@graphql-mesh/transform-filter-schema@^0.6.11":
-  version "0.6.11"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.6.11.tgz#7820f6a677bb9e6d60d36a528f80c9b5623ba6d7"
-  integrity sha512-iTtEbkbMHT4GwdoWN0qyc7PEcq055gA4TUsgnc4xmhpVNnrFO8pED6NhzeuP9hFOa05FSEMz6t3lFo7jJwn3PQ==
+"@graphql-mesh/transform-filter-schema@^0.6.13":
+  version "0.6.13"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-filter-schema/-/transform-filter-schema-0.6.13.tgz#064bb82bc2ba4f852cda3312867fccf500816a6b"
+  integrity sha512-HMYagJ9RnTyFgTUsbpeN+xGxAB6zUxv1VUOPYp0SjQhIMCj0QI+2S9GW7mkDMNblxzq3HjkERJ/DL/AnOfnQAg==
   dependencies:
-    "@graphql-mesh/types" "0.16.1"
+    "@graphql-mesh/types" "0.17.1"
     "@graphql-mesh/utils" "0.6.0"
     "@graphql-tools/utils" "6.2.2"
     "@graphql-tools/wrap" "6.2.3"
@@ -1894,6 +1894,15 @@
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
   integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.17.1.tgz#527c974ab3c311c13688259124d9d3f506a8908e"
+  integrity sha512-15OqZf9I5N58u0wkgDb2lxq6c1Ooihns72STGf3aGtZXJ6GRIwa8mggkWA3oqs7zppBv+1WGTxozQtjGxtKEcA==
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
