@@ -52,7 +52,7 @@
     "pm2": "^4.5.0",
     "postinstall-postinstall": "^2.1.0",
     "ts-node": "^9.0.0",
-    "type-fest": "^0.18.1",
+    "type-fest": "^0.19.0",
     "vercel": "^20.1.4"
   },
   "devDependencies": {

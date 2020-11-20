@@ -30,7 +30,7 @@
     "react-is": "^17.0.1",
     "react-spring": "^8.0.27",
     "sharp": "^0.26.2",
-    "type-fest": "^0.18.1",
+    "type-fest": "^0.19.0",
     "use-resize-observer": "^6.0.0"
   },
   "devDependencies": {

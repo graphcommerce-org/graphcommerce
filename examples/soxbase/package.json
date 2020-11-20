@@ -56,7 +56,7 @@
     "schema-dts": "^0.7.1",
     "sharp": "^0.26.2",
     "ts-node": "^9.0.0",
-    "type-fest": "^0.18.1",
+    "type-fest": "^0.19.0",
     "vercel": "^20.1.4"
   },
   "devDependencies": {
