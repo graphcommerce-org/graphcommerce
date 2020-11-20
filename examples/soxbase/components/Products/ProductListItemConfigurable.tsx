@@ -4,7 +4,7 @@ import ProductListItemConfigurableBase, {
   ActionsComponentProps,
   ProdustListItemConfigurableProps,
 } from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
-import { Area } from '@reachdigital/magento-product/ProductListItem'
+import { SwatchLocationKeys } from '@reachdigital/magento-product/ProductListItem'
 
 function AddToCartAction(props: ActionsComponentProps) {
   const { variant, sku } = props
@@ -25,10 +25,10 @@ function AddToCartAction(props: ActionsComponentProps) {
 }
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
-  const swatchesRecord: Record<Area, string[]> = {
+  const swatchLocations: Record<SwatchLocationKeys, string[]> = {
     topLeft: [],
-    topRight: ['fashion_color'],
-    bottomLeft: ['fashion_size'],
+    topRight: ['fashion_size'],
+    bottomLeft: ['fashion_color'],
     bottomRight: [],
   }
 
@@ -36,7 +36,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     <>
       <ProductListItemConfigurableBase
         {...props}
-        swatchesRecord={swatchesRecord}
+        swatchLocations={swatchLocations}
         subTitle='By Soxbase'
         Actions={AddToCartAction}
       />
