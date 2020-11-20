@@ -1,8 +1,8 @@
 import { makeStyles, Theme, Typography, TypographyProps, NoSsr } from '@material-ui/core'
 import clsx from 'clsx'
-import { m as motion, MotionProps } from 'framer-motion'
+import { m, MotionProps, useTransform, useViewportScroll } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler } from 'react'
+import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import FocusLock from 'react-focus-lock'
 import PageLink from '../PageTransition/PageLink'
 import { UiFC } from '../PageTransition/types'
@@ -47,24 +47,37 @@ const useStyles = makeStyles(
       left: 0,
       right: 0,
       display: 'grid',
-      padding: theme.spacings.sm,
-      paddingBottom: 0,
+      padding: `0 ${theme.spacings.sm}`,
       marginBottom: theme.spacings.sm,
       // margin: `0 ${theme.spacings.sm}`,
       alignItems: 'center',
-      gridTemplateColumns: `1fr auto 1fr`,
+      gridTemplate: `
+        ". handle ." ${theme.spacings.sm}
+        "back title forward" auto / 1fr auto 1fr
+      `,
+      // gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
     },
     headerBack: {
       pointerEvents: 'all',
+      gridArea: 'back',
+    },
+    headerTitle: {
+      pointerEvents: 'all',
+      gridArea: 'title',
+    },
+    dragHandle: {
+      width: 100,
+      height: 6,
+      borderRadius: 3,
+      backgroundColor: theme.palette.grey[300],
+      gridArea: 'handle',
     },
     headerForward: {
       pointerEvents: 'all',
       display: 'flex',
       justifyContent: 'flex-end',
-    },
-    headerTitle: {
-      pointerEvents: 'all',
+      gridArea: 'forward',
     },
   }),
   { name: 'BottomDrawerUi' },
@@ -78,6 +91,8 @@ export type BottomDrawerUiProps = UseStyles<typeof useStyles> & {
 }
 
 const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
+  const classes = useStyles(props)
+  const router = useRouter()
   const {
     children,
     title,
@@ -88,9 +103,6 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
     headerForward,
     fullHeight,
   } = props
-
-  const classes = useStyles()
-  const router = useRouter()
 
   const {
     offsetDiv,
@@ -104,11 +116,38 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
     phase,
   } = usePageTransition({ title })
 
+  const { scrollY } = useViewportScroll()
+  const [drag, setDrag] = useState<boolean>(scrollY.get() < 50)
+
+  // disable drag functionality when scrolled down
+  useEffect(() => scrollY.onChange((s) => setDrag(s < 50)), [scrollY])
+
+  const opacity = useTransform(scrollY, [25, 50], [1, 0])
+  const [dismissedDrawer, dismiss] = useState<boolean>(false)
+
   const z = backLevel * -30
+
+  useEffect(() => {
+    if (!dismissedDrawer || !inFront) return
+    router.back()
+  }, [dismissedDrawer, inFront, router])
+
+  const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (inBack || e.key !== 'Escape') return
+    e.preventDefault()
+    dismiss(true)
+  }
+
   const contentAnimation: MotionProps = !hold
     ? {
         initial: { y: '100%', z, opacity: 0, originY: 0 },
-        animate: { y: 0, z, opacity: 1, transition: { type: 'tween', ease: 'easeOut' } },
+        animate: {
+          y: dismissedDrawer ? '100%' : 0,
+          z,
+          opacity: 1,
+          display: 'block',
+          transition: { type: 'tween', ease: 'easeOut' },
+        },
         exit: {
           y: '100%',
           z,
@@ -123,73 +162,77 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         exit: { opacity: 1, z, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
-  const navigateBack = () => {
-    if (inFront) router.back()
-  }
-
-  const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (event) => {
-    if (inBack || event.key !== 'Escape') return
-    event.preventDefault()
-    router.back()
-  }
-
   return (
     <>
       <Backdrop
         inFront={inFront}
         classes={{ backdrop: classes.backdrop }}
-        onClick={navigateBack}
+        onClick={() => dismiss(true)}
         role='none'
         zOffset={thisIdx * 2 - 1}
         hold={hold}
       />
-      <motion.div {...offsetDiv} style={{ zIndex: thisIdx * 2 }} layout>
-        <div className={classes.drawerContainer} onKeyDown={onPressEscape} role='presentation'>
-          <motion.section
+      <m.div {...offsetDiv} style={{ zIndex: thisIdx * 2 }}>
+        <m.div
+          className={classes.drawerContainer}
+          onKeyDown={onPressEscape}
+          role='presentation'
+          drag={drag && inFront ? 'y' : false}
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={0.5}
+          onDragEnd={(e, info) => {
+            const isFlick = info.offset.y > 100 && info.velocity.y > 0
+            const isClose = info.offset.y > window.innerHeight / 3 - 50
+            dismiss(isFlick || isClose)
+          }}
+        >
+          <m.section
             className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
             {...contentAnimation}
             tabIndex={-1}
             style={{ pointerEvents: inFront ? 'all' : 'none' }}
-            // drag='y'
           >
             <FocusLock
               returnFocus={{ preventScroll: true }}
-              disabled={!inFront || phase !== 'FINISHED'}
+              disabled={!inFront && phase === 'FINISHED'}
             >
               <div className={classes.header} role='presentation'>
-                <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
-                  {prevPage?.title ? (
-                    <BackButton
-                      onClick={navigateBack}
-                      down={prevPage === upPage}
-                      className={classes.headerBack}
-                    >
-                      {prevPage.title}
-                    </BackButton>
-                  ) : (
-                    <PageLink href={backFallbackHref ?? '/'}>
-                      <BackButton className={classes.headerBack}>
-                        {backFallbackTitle ?? 'Home'}
-                      </BackButton>
-                    </PageLink>
-                  )}
-                </NoSsr>
+                <m.div className={classes.dragHandle} style={{ opacity }} />
 
-                <Typography
-                  variant='h4'
-                  component={titleComponent ?? 'h1'}
-                  className={classes.headerTitle}
-                  {...titleProps}
-                >
-                  {title}
-                </Typography>
+                <div className={classes.headerBack}>
+                  <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                    {prevPage?.title ? (
+                      <BackButton onClick={() => dismiss(true)} down={prevPage === upPage}>
+                        {prevPage.title}
+                      </BackButton>
+                    ) : (
+                      <PageLink href={backFallbackHref ?? '/'}>
+                        <BackButton className={classes.headerBack}>
+                          {backFallbackTitle ?? 'Home'}
+                        </BackButton>
+                      </PageLink>
+                    )}
+                  </NoSsr>
+                </div>
+
+                <div className={classes.headerTitle}>
+                  <Typography
+                    variant='h4'
+                    component={titleComponent ?? 'h1'}
+                    align='center'
+                    {...titleProps}
+                  >
+                    {title}
+                  </Typography>
+                </div>
+
                 <div className={classes.headerForward}>{headerForward}</div>
               </div>
               {children}
             </FocusLock>
-          </motion.section>
-        </div>
-      </motion.div>
+          </m.section>
+        </m.div>
+      </m.div>
     </>
   )
 }

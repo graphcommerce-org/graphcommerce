@@ -50,7 +50,6 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
 
   // Register the scroll position of the previous page
   if (isBrowser && state.phase === 'LOCATION_CHANGED') {
-    console.log('save scroll')
     state = updatePage({ phase: 'REGISTERED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
   }
 

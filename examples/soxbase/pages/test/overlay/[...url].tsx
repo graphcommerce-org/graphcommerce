@@ -48,7 +48,7 @@ function AppShellTextOverlay({ url }: Props) {
         />
       </div> */}
       <Container>
-        <DebugSpacer height={cycles[cycle]} onClick={() => setCycle((cycle + 1) % cycles.length)} />
+        <DebugSpacer height={cycles[cycle]} />
       </Container>
     </BottomDrawerUi>
   )
