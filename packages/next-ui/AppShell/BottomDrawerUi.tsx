@@ -72,6 +72,7 @@ const useStyles = makeStyles(
       borderRadius: 3,
       backgroundColor: theme.palette.grey[300],
       gridArea: 'handle',
+      justifySelf: 'center',
     },
     headerForward: {
       pointerEvents: 'all',
