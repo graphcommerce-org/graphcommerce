@@ -1,4 +1,11 @@
-import { MotionConfig, AnimationFeature, ExitFeature, AnimateLayoutFeature } from 'framer-motion'
+import {
+  MotionConfig,
+  AnimationFeature,
+  ExitFeature,
+  AnimateLayoutFeature,
+  DragFeature,
+  MotionFeature,
+} from 'framer-motion'
 import React, { useEffect } from 'react'
 import PageTransition from '../PageTransition'
 import { AppProps } from './types'
@@ -9,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => document.getElementById('jss-server-side')?.remove())
 
   return (
-    <MotionConfig features={[AnimationFeature, ExitFeature, AnimateLayoutFeature]}>
+    <MotionConfig features={[AnimationFeature, ExitFeature, AnimateLayoutFeature, DragFeature]}>
       {Layout ? (
         <Layout {...pageProps}>
           <PageTransition {...pageProps}>

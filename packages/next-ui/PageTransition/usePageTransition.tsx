@@ -1,9 +1,8 @@
-import { useQuery } from '@apollo/client'
+import { useReactiveVar } from '@apollo/client'
 import { HistoryStatePage } from '@reachdigital/magento-graphql'
 import { MotionProps, usePresence } from 'framer-motion'
 import { Target } from 'framer-motion/types/types'
-import { useState } from 'react'
-import { HistoryStateDocument } from './HistoryState.gql'
+import { useEffect, useState } from 'react'
 import {
   getFromIdx,
   getPage,
@@ -11,7 +10,6 @@ import {
   untillPhase,
   updatePage,
   getUpPage,
-  getUpIdx,
   routeUi,
 } from './historyHelpers'
 import { historyStateVar } from './typePolicies'
@@ -23,9 +21,8 @@ type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
   'href' | 'as' | 'x' | 'y'
 >
 
-const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransitionProps) => {
-  useQuery(HistoryStateDocument)
-  let state = historyStateVar()
+const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransitionProps) => {
+  let state = useReactiveVar(historyStateVar)
 
   /**
    * todo: fix component recreation when navigating back multiple steps.
@@ -63,7 +60,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
   const isToInFront = isToPage && afterPhase('REGISTERED')
   const isToInBack = isToPage && untillPhase('LOCATION_CHANGED')
   const inFront = isFromInFront || isToInFront
-  const inBack = isFromInBack || isFromInBack
+  const inBack = isFromInBack || isToInBack
 
   // todo: Should we warn for the case when one navigates from an overlay to a page directly instead of replacing state?
   //       Because all previous state is removed at that point with the current implementation
@@ -85,22 +82,55 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
       return routeUi[page.href]?.holdBackground ?? false
     })
 
+  // calculate how far a page is in the back
+  let backLevel = nextPages.length
+  if (untillPhase('LOCATION_CHANGED')) {
+    if (thisIdx <= fromIdx && state.direction === 'FORWARD') backLevel -= 1
+    if (thisIdx < fromIdx && state.direction === 'BACK') backLevel += 1
+  }
+
   // If we do not need to keep the layout, we can mark it for removal
   if (isFromInBack && !hold && safeToRemove && afterPhase('REGISTERED')) {
     setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      const { phase } = historyStateVar()
+      if (phase !== 'REGISTERED' || !isToPage) return
+      updatePage({ phase: 'FINISHED' }, {})
+      const page = getPage()
+      document.body.style.minHeight = `calc(100vh + ${page?.y}px)`
+      window.scrollTo(page?.x ?? 0, page?.y ?? 0)
+    }, safeToRemoveAfter * 1000)
+  })
+
   let target: Target = {
     y: 0,
-    position: 'absolute',
+    position: 'fixed',
+    top: 0,
     left: 0,
     right: 0,
-    minHeight: '100vh',
-    pointerEvents: 'none',
+    pointerEvents: 'all',
   }
 
-  if (isFromInBack || isToInBack) {
-    target = { ...target, y: (thisPage?.y ?? 0) * -1, position: 'fixed' }
+  if (isFromPage) {
+    if (state.phase === 'LOADING') {
+      target = { ...target, position: 'relative' }
+    } else {
+      const y = (thisPage?.y ?? 0) * -1 + getPage(toIdx).y
+      target = { ...target, pointerEvents: 'none', y }
+    }
+  }
+
+  if (isToPage) {
+    if (untillPhase('REGISTERED')) {
+      const y = (thisPage?.y ?? 0) * -1
+      target = { ...target, y }
+    }
+    if (state.phase === 'FINISHED') {
+      target = { ...target, position: 'relative' }
+    }
   }
 
   const offsetDiv: MotionProps = {
@@ -110,15 +140,17 @@ const usePageTransition = ({ safeToRemoveAfter = 0.3, title }: UsePageTransition
   }
 
   return {
+    phase: state.phase,
     offsetDiv,
     hold,
     inFront,
     inBack,
     isFromPage,
     toIdx,
+    thisIdx,
+    backLevel,
     prevPage: getPage(thisIdx - 1),
     upPage: getUpPage(thisIdx),
-    upIdx: getUpIdx(thisIdx),
   }
 }
 

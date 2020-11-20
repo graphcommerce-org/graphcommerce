@@ -1,4 +1,5 @@
 import { Container } from '@material-ui/core'
+import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
@@ -31,14 +32,14 @@ import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps
+type Props = CategoryPageProps & HeaderProps
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const classes = useCategoryPageStyles(props)
-  const { categories, products, filters, params, filterTypes } = props
+  const { categories, products, filters, params, filterTypes, menu, urlResolver } = props
 
   if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
     return <NextError statusCode={503} title='Loading skeleton' />
@@ -103,6 +104,7 @@ function CategoryPage(props: Props) {
 
   return (
     <FullPageUi title={category.name ?? ''}>
+      <Header menu={menu} urlResolver={urlResolver} />
       <CategoryMeta {...category} />
       {content}
     </FullPageUi>

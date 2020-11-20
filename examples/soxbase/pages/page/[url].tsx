@@ -1,3 +1,4 @@
+import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { CmsPageDocument, CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
@@ -13,18 +14,19 @@ import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CmsPageQuery
+type Props = CmsPageQuery & HeaderProps
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const CmsPage = ({ cmsPage }: Props) => {
+const CmsPage = ({ cmsPage, menu, urlResolver }: Props) => {
   if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
 
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
 
   return (
     <FullPageUi title={cmsPage.title ?? ''}>
+      <Header menu={menu} urlResolver={urlResolver} />
       <CmsPageMeta {...cmsPage} />
       <CmsPageContent {...cmsPage} />
     </FullPageUi>

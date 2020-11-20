@@ -12,7 +12,7 @@ import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import clsx from 'clsx'
-import { m as motion, AnimatePresence, MotionProps } from 'framer-motion'
+import { m, AnimatePresence, MotionProps } from 'framer-motion'
 import React from 'react'
 import { ClientCartDocument, ClientCartQuery } from '../ClientCart.gql'
 
@@ -72,20 +72,20 @@ export default function Cart(props: CartProps) {
 
   if (!data?.cart?.items?.length) {
     content = (
-      <motion.div
+      <m.div
         className={clsx(classes.emptyCart)}
         key='empty-cart'
         {...{ ...animation, layout: false }}
       >
         <CartIcon className={classes.emptyCartIcon} color='disabled' />
         <p>Looks like you did not add anything to your cart yet.</p>
-      </motion.div>
+      </m.div>
     )
   } else if (loading) {
     content = (
-      <motion.div key='loading-cart' {...{ ...animation, layout: false }}>
+      <m.div key='loading-cart' {...{ ...animation, layout: false }}>
         loading...
-      </motion.div>
+      </m.div>
     )
   } else if (data) {
     const { cart } = data
@@ -94,26 +94,26 @@ export default function Cart(props: CartProps) {
         {cart?.items?.map((item) => {
           if (!item) return null
           return (
-            <motion.div key={`item${item.id}`} {...cartItemAnimation}>
+            <m.div key={`item${item.id}`} {...cartItemAnimation}>
               <RenderType renderer={renderer} {...item} cartId={cart.id} />
               <Divider variant='inset' component='div' />
-            </motion.div>
+            </m.div>
           )
         })}
 
         {cart?.prices?.subtotal_including_tax && (
-          <motion.div {...animation} key='subtotal'>
+          <m.div {...animation} key='subtotal'>
             <ListItem ContainerComponent='div'>
               <ListItemText inset>Subtotal</ListItemText>
               <ListItemSecondaryAction>
                 <Money {...cart.prices.subtotal_including_tax} />
               </ListItemSecondaryAction>
             </ListItem>
-          </motion.div>
+          </m.div>
         )}
 
         {cart?.prices?.discounts?.map((discount, idx) => (
-          <motion.div {...animation} key={`price${idx}`}>
+          <m.div {...animation} key={`price${idx}`}>
             <ListItem ContainerComponent='div'>
               <ListItemText inset>{discount?.label}</ListItemText>
               <ListItemSecondaryAction>
@@ -125,12 +125,12 @@ export default function Cart(props: CartProps) {
                 )}
               </ListItemSecondaryAction>
             </ListItem>
-          </motion.div>
+          </m.div>
         ))}
 
         {cart?.shipping_addresses?.map((address, idx) => (
           // eslint-disable-next-line react/no-array-index-key
-          <motion.div {...animation} key={`shipping_addresses_${idx}`}>
+          <m.div {...animation} key={`shipping_addresses_${idx}`}>
             <ListItem ContainerComponent='div'>
               <ListItemText inset>{address?.selected_shipping_method?.carrier_title}</ListItemText>
               <ListItemSecondaryAction>
@@ -139,17 +139,17 @@ export default function Cart(props: CartProps) {
                 )}
               </ListItemSecondaryAction>
             </ListItem>
-          </motion.div>
+          </m.div>
         ))}
 
-        <motion.div {...animation} key='total'>
+        <m.div {...animation} key='total'>
           <ListItem key='total' ContainerComponent='div'>
             <ListItemText inset>Total</ListItemText>
             <ListItemSecondaryAction>
               {cart?.prices?.grand_total && <Money {...cart.prices.grand_total} />}
             </ListItemSecondaryAction>
           </ListItem>
-        </motion.div>
+        </m.div>
       </>
     )
   }

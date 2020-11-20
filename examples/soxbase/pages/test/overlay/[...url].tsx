@@ -1,8 +1,10 @@
+import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -21,35 +23,18 @@ function AppShellTextOverlay({ url }: Props) {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const [cycle, setCycle] = useState(url === 'index' ? 0 : 3)
 
+  const next = Number(url) + 1
   return (
-    <BottomDrawerUi title={title}>
-      <ul>
-        <li>
-          <PageLink href='/test/deeper'>To default layout</PageLink>
-        </li>
-        {url === 'index' && (
-          <li>
-            <PageLink href='/test/overlay/deeper'>Deeper</PageLink>
-          </li>
-        )}
-        {url === 'deeper' && (
-          <>
-            <li>
-              <PageLink href='/test/overlay/index'>Shallower</PageLink>
-            </li>
-            <li>
-              <PageLink href='/test/overlay/even-deeper'>Even deeper</PageLink>
-            </li>
-          </>
-        )}
-        {url === 'even-deeper' && (
-          <li>
-            <PageLink href='/test/overlay/index'>Shallower</PageLink>
-          </li>
-        )}
-      </ul>
+    <BottomDrawerUi
+      title={title}
+      headerForward={
+        <PageLink href={`/test/overlay/${next}`}>
+          <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
+        </PageLink>
+      }
+    >
       {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
-        <motion.img
+        <m.img
           src='/manifest/icon.png'
           alt=''
           layoutId='img1'
@@ -62,7 +47,9 @@ function AppShellTextOverlay({ url }: Props) {
           exit={{ zIndex: 0 }}
         />
       </div> */}
-      <DebugSpacer height={cycles[cycle]} onClick={() => setCycle((cycle + 1) % cycles.length)} />
+      <Container>
+        <DebugSpacer height={cycles[cycle]} />
+      </Container>
     </BottomDrawerUi>
   )
 }
@@ -75,7 +62,7 @@ export default AppShellTextOverlay
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  const urls = ['index', 'deeper']
+  const urls = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
   const paths = locales
     .map((locale) =>

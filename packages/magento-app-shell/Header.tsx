@@ -1,4 +1,4 @@
-import { Theme, makeStyles, useTheme, useMediaQuery } from '@material-ui/core'
+import { Theme, makeStyles } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import SearchButton from '@reachdigital/magento-search/SearchButton'
@@ -7,7 +7,7 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { useViewportScroll, m, useTransform, useMotionTemplate } from 'framer-motion'
+import { m } from 'framer-motion'
 import React from 'react'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
@@ -16,11 +16,6 @@ import logo from './logo.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    wrapper: {
-      position: 'fixed',
-      zIndex: 1,
-      width: '100%',
-    },
     header: {
       padding: `${theme.page.vertical} ${theme.page.horizontal} 7px`,
       top: 0,
@@ -84,6 +79,9 @@ const useStyles = makeStyles(
       },
     },
     mobileMenu: {
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
       zIndex: theme.zIndex.appBar,
       position: 'fixed',
       bottom: theme.page.vertical,
@@ -91,20 +89,15 @@ const useStyles = makeStyles(
       '& > *': {
         pointerEvents: 'all',
       },
-      display: 'unset',
+    },
+    mobileActions: {
       [theme.breakpoints.up('md')]: {
         display: 'none',
       },
-    },
-    mobileActions: {
-      zIndex: 99999,
+      zIndex: theme.zIndex.appBar,
       position: 'fixed',
       bottom: theme.page.vertical,
       right: theme.page.horizontal,
-      display: 'unset',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
     },
   }),
   { name: 'AppLayout' },
@@ -118,19 +111,17 @@ export type HeaderProps = HeaderDataProps & HeaderElementProps
 
 export default function Header(props: HeaderProps) {
   const classes = useStyles(props)
-  const { scrollY } = useViewportScroll()
-  const theme = useTheme()
-  const matches = useMediaQuery(theme.breakpoints.up('md'))
   const { menu, urlResolver, ...headerProps } = props
-
-  const y = useTransform(scrollY, [0, 60], [0, -30])
-  const shadow = useTransform(scrollY, [0, 60], [-40, 30])
-  const filter = useMotionTemplate`drop-shadow(${shadow}px ${shadow}px 20px rgba(0,0,0,0.1))`
 
   // @todo implement with a stable useMemo: 'use-custom-compare'
   return (
-    <m.div style={matches ? { y, filter } : {}} layout className={classes.wrapper}>
-      <m.header {...headerProps} className={clsx(classes.header)} layout drag>
+    <>
+      <m.header
+        {...headerProps}
+        className={clsx(classes.header)}
+        layoutId='header'
+        transition={{ type: 'tween' }}
+      >
         <PageLink href='/'>
           <a className={classes.logo}>
             <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
@@ -144,14 +135,13 @@ export default function Header(props: HeaderProps) {
           <CustomerFab />
           <CartFab asIcon />
         </div>
-
-        <div className={classes.mobileMenu}>
-          <MenuFab menu={menu} urlResolver={urlResolver} />
-        </div>
-        <div className={clsx(classes.actions, classes.mobileActions)}>
-          <CartFab />
-        </div>
       </m.header>
-    </m.div>
+      <div className={classes.mobileMenu}>
+        <MenuFab menu={menu} urlResolver={urlResolver} />
+      </div>
+      <div className={clsx(classes.actions, classes.mobileActions)}>
+        <CartFab />
+      </div>
+    </>
   )
 }
