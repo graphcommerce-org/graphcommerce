@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
     },
     drawerContainer: {
-      paddingTop: 50,
+      marginTop: 50,
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'flex-end',
@@ -123,38 +123,42 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
   // disable drag functionality when scrolled down
   useEffect(() => scrollY.onChange((s) => setDrag(s < 50)), [scrollY])
 
-  const opacity = useTransform(scrollY, [25, 50], [1, 0])
   const [dismissedDrawer, dismiss] = useState<boolean>(false)
+  // Reset the dismiss value when navigating back
+  useEffect(() => {
+    if (inFront) dismiss(false)
+  }, [inFront])
+
+  const opacity = useTransform(scrollY, [25, 50], [1, 0])
 
   const z = backLevel * -30
 
-  useEffect(() => {
-    if (!dismissedDrawer || !inFront) return
+  const back = () => {
+    dismiss(true)
     router.back()
-  }, [dismissedDrawer, inFront, router])
+  }
 
   const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (inBack || e.key !== 'Escape') return
     e.preventDefault()
-    dismiss(true)
+    back()
   }
 
   const contentAnimation: MotionProps = !hold
     ? {
         initial: { y: '100%', z, opacity: 0, originY: 0 },
         animate: {
-          y: dismissedDrawer ? '100%' : 0,
+          y: 0,
           z,
           opacity: 1,
           display: 'block',
           transition: { type: 'tween', ease: 'easeOut' },
-        },
-        exit: {
-          y: '100%',
-          z,
-          opacity: 0,
-          transition: { type: 'tween', ease: 'easeIn' },
-          transitionEnd: { display: 'none' },
+          ...(dismissedDrawer && {
+            y: '100%',
+            opacity: 0,
+            transition: { type: 'tween', ease: 'easeIn' },
+            transitionEnd: { display: 'none' },
+          }),
         },
       }
     : {
@@ -184,7 +188,7 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
           onDragEnd={(e, info) => {
             const isFlick = info.offset.y > 100 && info.velocity.y > 0
             const isClose = info.offset.y > window.innerHeight / 3 - 50
-            dismiss(isFlick || isClose)
+            if (isFlick || isClose) back()
           }}
         >
           <m.section
@@ -203,7 +207,7 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
                 <div className={classes.headerBack}>
                   <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
                     {prevPage?.title ? (
-                      <BackButton onClick={() => dismiss(true)} down={prevPage === upPage}>
+                      <BackButton onClick={back} down={prevPage === upPage}>
                         {prevPage.title}
                       </BackButton>
                     ) : (
