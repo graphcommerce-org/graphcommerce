@@ -54,7 +54,7 @@
     "react-schemaorg": "^1.2.0",
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.7.1",
-    "sharp": "^0.26.2",
+    "sharp": "^0.26.3",
     "ts-node": "^9.0.0",
     "type-fest": "^0.18.1",
     "vercel": "^20.1.4"

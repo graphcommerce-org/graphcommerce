@@ -29,7 +29,7 @@
     "react-hook-form": "^6.11.2",
     "react-is": "^17.0.1",
     "react-spring": "^8.0.27",
-    "sharp": "^0.26.2",
+    "sharp": "^0.26.3",
     "type-fest": "^0.18.1",
     "use-resize-observer": "^6.0.0"
   },
