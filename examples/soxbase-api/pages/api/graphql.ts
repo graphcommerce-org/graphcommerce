@@ -1,4 +1,4 @@
-import createHandler, { config } from '@reachdigital/graphql-mesh'
+import createHandler, { config } from '@reachdigital/graphql-mesh/handler'
 import { NextApiRequest, NextApiResponse } from 'next'
 import meshConfig from '../../.meshrc.json'
 

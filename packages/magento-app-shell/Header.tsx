@@ -12,7 +12,6 @@ import React from 'react'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
 import { PageLayoutQuery } from './PageLayout.gql'
-import logo from './logo.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -124,7 +123,14 @@ export default function Header(props: HeaderProps) {
       >
         <PageLink href='/'>
           <a className={classes.logo}>
-            <img src={logo} alt='Logo' className={classes.logoImg} width={192} height={72} />
+            <img
+              src='/logo.svg'
+              alt='Logo'
+              className={classes.logoImg}
+              width={192}
+              height={72}
+              loading='eager'
+            />
           </a>
         </PageLink>
 
