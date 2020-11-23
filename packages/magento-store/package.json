@@ -32,9 +32,9 @@
     "@reachdigital/magento-graphql": "0.1.0",
     "@reachdigital/next-ui": "0.1.0",
     "@reachdigital/prettier-config-pwa": "^0.1.0",
-    "next": "^10.0.0",
+    "next": "^10.0.2",
     "react": "^17.0.1",
     "react-dom": "17.0.1",
-    "type-fest": "^0.18.1"
+    "type-fest": "^0.19.0"
   }
 }

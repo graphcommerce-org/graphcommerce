@@ -123,38 +123,42 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
   // disable drag functionality when scrolled down
   useEffect(() => scrollY.onChange((s) => setDrag(s < 50)), [scrollY])
 
+  const [dismissed, dismiss] = useState<boolean>(false)
+  // Reset the dismiss value when navigating back
+  useEffect(() => {
+    if (inFront) dismiss(false)
+  }, [inFront])
+
   const opacity = useTransform(scrollY, [25, 50], [1, 0])
-  const [dismissedDrawer, dismiss] = useState<boolean>(false)
 
   const z = backLevel * -30
 
-  useEffect(() => {
-    if (!dismissedDrawer || !inFront) return
+  const back = () => {
+    dismiss(true)
     router.back()
-  }, [dismissedDrawer, inFront, router])
+  }
 
   const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (inBack || e.key !== 'Escape') return
     e.preventDefault()
-    dismiss(true)
+    back()
   }
 
   const contentAnimation: MotionProps = !hold
     ? {
         initial: { y: '100%', z, opacity: 0, originY: 0 },
         animate: {
-          y: dismissedDrawer ? '100%' : 0,
+          y: 0,
           z,
           opacity: 1,
           display: 'block',
           transition: { type: 'tween', ease: 'easeOut' },
-        },
-        exit: {
-          y: '100%',
-          z,
-          opacity: 0,
-          transition: { type: 'tween', ease: 'easeIn' },
-          transitionEnd: { display: 'none' },
+          ...(dismissed && {
+            y: '100%',
+            opacity: 0,
+            transition: { type: 'tween', ease: 'easeIn' },
+            transitionEnd: { display: 'none' },
+          }),
         },
       }
     : {
@@ -173,66 +177,66 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         zOffset={thisIdx * 2 - 1}
         hold={hold}
       />
-      <m.div {...offsetDiv} style={{ zIndex: thisIdx * 2 }}>
-        <m.div
-          className={classes.drawerContainer}
-          onKeyDown={onPressEscape}
-          role='presentation'
-          drag={drag && inFront ? 'y' : false}
-          dragConstraints={{ top: 0, bottom: 0 }}
-          dragElastic={0.5}
-          onDragEnd={(e, info) => {
-            const isFlick = info.offset.y > 100 && info.velocity.y > 0
-            const isClose = info.offset.y > window.innerHeight / 3 - 50
-            dismiss(isFlick || isClose)
-          }}
+      <m.div
+        {...offsetDiv}
+        style={{ zIndex: thisIdx * 2 }}
+        className={classes.drawerContainer}
+        onKeyDown={onPressEscape}
+        role='presentation'
+        drag={drag && inFront ? 'y' : false}
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={0.5}
+        onDragEnd={(e, info) => {
+          const isFlick = info.offset.y > 100 && info.velocity.y > 0
+          const isClose = info.offset.y > window.innerHeight / 3 - 50
+          if (isFlick || isClose) back()
+        }}
+      >
+        <m.section
+          className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
+          {...contentAnimation}
+          tabIndex={-1}
+          style={{ pointerEvents: inFront ? 'all' : 'none' }}
         >
-          <m.section
-            className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
-            {...contentAnimation}
-            tabIndex={-1}
-            style={{ pointerEvents: inFront ? 'all' : 'none' }}
+          <FocusLock
+            returnFocus={{ preventScroll: true }}
+            disabled={!inFront && phase === 'FINISHED'}
           >
-            <FocusLock
-              returnFocus={{ preventScroll: true }}
-              disabled={!inFront && phase === 'FINISHED'}
-            >
-              <div className={classes.header} role='presentation'>
-                <m.div className={classes.dragHandle} style={{ opacity }} />
+            <div className={classes.header} role='presentation'>
+              <m.div className={classes.dragHandle} style={{ opacity }} />
 
-                <div className={classes.headerBack}>
-                  <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
-                    {prevPage?.title ? (
-                      <BackButton onClick={() => dismiss(true)} down={prevPage === upPage}>
-                        {prevPage.title}
+              <div className={classes.headerBack}>
+                <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                  {prevPage?.title ? (
+                    <BackButton onClick={back} down={prevPage === upPage}>
+                      {prevPage.title}
+                    </BackButton>
+                  ) : (
+                    <PageLink href={backFallbackHref ?? '/'}>
+                      <BackButton className={classes.headerBack}>
+                        {backFallbackTitle ?? 'Home'}
                       </BackButton>
-                    ) : (
-                      <PageLink href={backFallbackHref ?? '/'}>
-                        <BackButton className={classes.headerBack}>
-                          {backFallbackTitle ?? 'Home'}
-                        </BackButton>
-                      </PageLink>
-                    )}
-                  </NoSsr>
-                </div>
-
-                <div className={classes.headerTitle}>
-                  <Typography
-                    variant='h4'
-                    component={titleComponent ?? 'h1'}
-                    align='center'
-                    {...titleProps}
-                  >
-                    {title}
-                  </Typography>
-                </div>
-
-                <div className={classes.headerForward}>{headerForward}</div>
+                    </PageLink>
+                  )}
+                </NoSsr>
               </div>
-              {children}
-            </FocusLock>
-          </m.section>
-        </m.div>
+
+              <div className={classes.headerTitle}>
+                <Typography
+                  variant='h4'
+                  component={titleComponent ?? 'h1'}
+                  align='center'
+                  {...titleProps}
+                >
+                  {title}
+                </Typography>
+              </div>
+
+              <div className={classes.headerForward}>{headerForward}</div>
+            </div>
+            {children}
+          </FocusLock>
+        </m.section>
       </m.div>
     </>
   )

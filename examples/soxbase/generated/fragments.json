@@ -1,6 +1,6 @@
 {
   "possibleTypes": {
-    "Node": ["Page", "Asset"],
+    "Node": ["Asset", "Page"],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
       "SimpleCartItem",
