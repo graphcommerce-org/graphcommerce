@@ -43,7 +43,7 @@
     "@types/react-is": "^16.7.1",
     "@types/use-resize-observer": "^6.0.0",
     "graphql-tag": "2.11.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.1.2"
   },
   "sideEffects": false,
   "engines": {
