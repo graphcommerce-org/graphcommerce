@@ -1739,12 +1739,12 @@
     pascal-case "^3.1.1"
     tslib "~2.0.1"
 
-"@graphql-mesh/cache-file@^0.4.18":
-  version "0.4.19"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-file/-/cache-file-0.4.19.tgz#8248d1f8db30ab344ac686a66ef35d0579b09113"
-  integrity sha512-/smj3Q5tYh6b2eGqvEyFKPXhcJbfoWJADSJNEUA9KHxgXkCsmvp+qPqcPkWPUEUvfdTlcxZEiVDHRX2VuqQS/g==
+"@graphql-mesh/cache-file@^0.4.22":
+  version "0.4.22"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/cache-file/-/cache-file-0.4.22.tgz#6996f7d5b1d4c1f2414b363c3a212ac81f9dc5fd"
+  integrity sha512-7pe0vWg8hKkVRN7/H/H7hFDe89G0sWKiiKGWZXHeJKABr7CKPIRpYYXCpl2FW7WwUNeJ+0yJ5fsW4AK5MV9WjA==
   dependencies:
-    "@graphql-mesh/types" "0.17.0"
+    "@graphql-mesh/types" "0.19.0"
     dataloader "2.0.0"
     fs-extra "9.0.1"
     lodash "4.17.20"
@@ -1882,6 +1882,16 @@
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.19.0":
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.19.0.tgz#2f98c78878d2570327b9351ec3c541acfb0c3efe"
+  integrity sha512-uHHbGiG8n7kJ8mLokbHU0/J2tKplhh53aTerOLYpfJCNTd/a00INTfxdUyGBZra1zCdR/H+C297QgVjO7Jn1RA==
+  dependencies:
+    "@graphql-tools/delegate" "6.2.4"
+    "@graphql-tools/utils" "6.2.2"
+    "@graphql-typed-document-node/core" "3.1.0"
     fetchache "0.0.4"
 
 "@graphql-mesh/types@^0.16.1":
@@ -2270,7 +2280,7 @@
     is-promise "4.0.0"
     tslib "~2.0.1"
 
-"@graphql-typed-document-node/core@^3.0.0", "@graphql-typed-document-node/core@^3.1.0":
+"@graphql-typed-document-node/core@3.1.0", "@graphql-typed-document-node/core@^3.0.0", "@graphql-typed-document-node/core@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
