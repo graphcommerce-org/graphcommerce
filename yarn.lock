@@ -1884,13 +1884,14 @@
     "@graphql-tools/utils" "6.2.2"
     fetchache "0.0.4"
 
-"@graphql-mesh/types@^0.16.1":
-  version "0.16.1"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.16.1.tgz#d8d58ed52643192433c333a33df66fc400211b2b"
-  integrity sha512-NjTMVGVf7czeMRJ5/Bamziosnq97KtjWB2eROM9XnnyG9F7zAkCixvQFmuocOrCuWEiBcigSmFa5Ob0x0blxJw==
+"@graphql-mesh/types@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.19.0.tgz#2f98c78878d2570327b9351ec3c541acfb0c3efe"
+  integrity sha512-uHHbGiG8n7kJ8mLokbHU0/J2tKplhh53aTerOLYpfJCNTd/a00INTfxdUyGBZra1zCdR/H+C297QgVjO7Jn1RA==
   dependencies:
     "@graphql-tools/delegate" "6.2.4"
     "@graphql-tools/utils" "6.2.2"
+    "@graphql-typed-document-node/core" "3.1.0"
     fetchache "0.0.4"
 
 "@graphql-mesh/utils@0.6.0":
@@ -2270,7 +2271,7 @@
     is-promise "4.0.0"
     tslib "~2.0.1"
 
-"@graphql-typed-document-node/core@^3.0.0", "@graphql-typed-document-node/core@^3.1.0":
+"@graphql-typed-document-node/core@3.1.0", "@graphql-typed-document-node/core@^3.0.0", "@graphql-typed-document-node/core@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
