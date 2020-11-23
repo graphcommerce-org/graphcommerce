@@ -10,15 +10,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphql-mesh/cache-file": "^0.4.18",
-    "@graphql-mesh/cli": "^0.11.8",
-    "@graphql-mesh/config": "^0.10.13",
-    "@graphql-mesh/graphql": "^0.7.6",
-    "@graphql-mesh/merger-stitching": "^0.6.17",
-    "@graphql-mesh/runtime": "^0.7.12",
-    "@graphql-mesh/transform-cache": "^0.7.10",
-    "@graphql-mesh/transform-filter-schema": "^0.6.11",
-    "@graphql-mesh/types": "^0.16.1",
+    "@graphql-mesh/cache-file": "^0.4.22",
+    "@graphql-mesh/cli": "^0.11.12",
+    "@graphql-mesh/config": "^0.10.17",
+    "@graphql-mesh/graphql": "^0.7.10",
+    "@graphql-mesh/merger-stitching": "^0.6.21",
+    "@graphql-mesh/runtime": "^0.8.0",
+    "@graphql-mesh/transform-cache": "^0.7.14",
+    "@graphql-mesh/transform-filter-schema": "^0.6.15",
+    "@graphql-mesh/types": "^0.19.0",
     "apollo-server-micro": "^2.16.1",
     "graphql": "15.4.0",
     "micro-cors": "^0.1.1"
@@ -29,10 +29,10 @@
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0",
     "@types/micro-cors": "^0.1.1",
-    "@types/react": "^16.9.46",
-    "@types/react-dom": "^16.9.8",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "graphql-tag": "2.11.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.1.2"
   },
   "sideEffects": false,
   "engines": {
