@@ -1,4 +1,5 @@
 import { Button, Container } from '@material-ui/core'
+import Footer, { FooterProps } from '@reachdigital/magento-app-shell/Footer'
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -13,7 +14,7 @@ import { m } from 'framer-motion'
 import React from 'react'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string } & HeaderProps
+type Props = { url: string } & HeaderProps & FooterProps
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -75,6 +76,7 @@ function AppShellTestIndex({ url, menu, urlResolver }: Props) {
         </div>
         <DebugSpacer height={2000} />
       </Container>
+      <Footer />
     </FullPageUi>
   )
 }

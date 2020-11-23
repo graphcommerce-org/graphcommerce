@@ -111,7 +111,6 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
     top: 0,
     left: 0,
     right: 0,
-    pointerEvents: 'all',
   }
 
   if (isFromPage) {
