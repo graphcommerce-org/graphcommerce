@@ -8,24 +8,27 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const IntlPolyfill = require('intl')
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
-const withTM = require('next-transpile-modules')([
-  '@apollo/client',
-  '@reachdigital/magento-app-shell',
-  '@reachdigital/magento-cart',
-  '@reachdigital/magento-category',
-  '@reachdigital/magento-cms',
-  '@reachdigital/magento-customer',
-  '@reachdigital/magento-graphql',
-  '@reachdigital/magento-product',
-  '@reachdigital/magento-product-bundle',
-  '@reachdigital/magento-product-configurable',
-  '@reachdigital/magento-product-downloadable',
-  '@reachdigital/magento-product-simple',
-  '@reachdigital/magento-product-virtual',
-  '@reachdigital/magento-search',
-  '@reachdigital/magento-store',
-  '@reachdigital/next-ui',
-])
+const withTM = require('next-transpile-modules')(
+  [
+    '@apollo/client',
+    '@reachdigital/magento-app-shell',
+    '@reachdigital/magento-cart',
+    '@reachdigital/magento-category',
+    '@reachdigital/magento-cms',
+    '@reachdigital/magento-customer',
+    '@reachdigital/magento-graphql',
+    '@reachdigital/magento-product',
+    '@reachdigital/magento-product-bundle',
+    '@reachdigital/magento-product-configurable',
+    '@reachdigital/magento-product-downloadable',
+    '@reachdigital/magento-product-simple',
+    '@reachdigital/magento-product-virtual',
+    '@reachdigital/magento-search',
+    '@reachdigital/magento-store',
+    '@reachdigital/next-ui',
+  ],
+  { unstable_webpack5: true },
+)
 
 Intl.NumberFormat = IntlPolyfill.NumberFormat
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
