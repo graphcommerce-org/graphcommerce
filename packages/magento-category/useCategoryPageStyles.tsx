@@ -8,6 +8,7 @@ const useCategoryPageStyles = makeStyles(
       gridTemplate: `
         "breadcrumb"
         "description"
+        "children"
         "filters"
         "items"
         "pagination"
@@ -23,10 +24,12 @@ const useCategoryPageStyles = makeStyles(
       gridArea: 'description',
       margin: '0 auto',
       textAlign: 'center',
-      maxWidth: 732
+      maxWidth: 732,
     },
     childCategories: {
       gridArea: 'children',
+      margin: '0 auto',
+      maxWidth: '100%',
     },
     pagination: {
       gridArea: 'pagination',
@@ -35,7 +38,7 @@ const useCategoryPageStyles = makeStyles(
       display: 'flex',
       alignItems: 'left',
       '& span': {
-        padding: '10px 10px 0 10px'
+        padding: '10px 10px 0 10px',
       },
       '& a': {
         transition: 'background .25s ease',
@@ -43,19 +46,19 @@ const useCategoryPageStyles = makeStyles(
         height: 40,
         width: 40,
         '& svg': {
-          color: '#000'
+          color: '#000',
         },
         '&:hover': {
-          background: 'rgba(0, 0, 0, 0.04)'
-        }
+          background: 'rgba(0, 0, 0, 0.04)',
+        },
       },
       '& svg': {
         borderRadius: '100%',
         padding: 6,
         height: 40,
         width: 40,
-        color: '#ddd'
-      }
+        color: '#ddd',
+      },
     },
     sort: {
       gridArea: 'sort',
@@ -64,12 +67,12 @@ const useCategoryPageStyles = makeStyles(
       gridArea: 'filters',
       margin: '0 auto 32px auto',
       paddingLeft: 16,
-      paddingRight: 16
+      paddingRight: 16,
     },
     filterItem: {
       marginRight: 8,
       marginBottom: 16,
-      marginLeft: 8
+      marginLeft: 8,
     },
     items: {
       gridArea: 'items',

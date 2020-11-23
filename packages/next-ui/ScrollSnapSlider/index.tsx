@@ -1,6 +1,7 @@
-import { makeStyles, Grow, Fab } from '@material-ui/core'
-import ArrowBack from '@material-ui/icons/ArrowBack'
-import ArrowForward from '@material-ui/icons/ArrowForward'
+import { makeStyles, Grow, Fab, FabProps } from '@material-ui/core'
+import ArrowBack from '@material-ui/icons/ChevronLeft'
+import ArrowForward from '@material-ui/icons/ChevronRight'
+import clsx from 'clsx'
 import React, { ReactNode, useEffect, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useResizeObserver from 'use-resize-observer'
@@ -10,7 +11,11 @@ import responsiveVal from '../Styles/responsiveVal'
 // @todo cancel all animatins on touch down, cancellation of animations doesn't work with react-spring 8.0 yet.
 
 type State = { isScrolling: boolean }
-type Props = { scrollbar?: boolean; pagination?: boolean }
+type Props = {
+  scrollbar?: boolean
+  pagination?: boolean
+  fabProps?: Omit<FabProps, 'children' | 'onClick'>
+}
 
 const useStyles = makeStyles(
   {
@@ -36,20 +41,22 @@ const useStyles = makeStyles(
       overflowY: `hidden`,
     }),
     prevFab: {
-      width: responsiveVal(40, 60),
-      height: responsiveVal(40, 60),
+      width: responsiveVal(30, 50),
+      height: responsiveVal(30, 50),
+      minHeight: 'auto',
       willChange: 'opacity, transform',
       position: 'absolute',
-      left: '0',
-      top: `calc(50% - (${responsiveVal(40, 60)} / 2))`,
+      left: `calc((${responsiveVal(30, 50)} / -2))`,
+      top: `calc((${responsiveVal(30, 50)} * 0.25) * -1)`,
     },
     nextFab: {
-      width: responsiveVal(40, 60),
-      height: responsiveVal(40, 60),
+      width: responsiveVal(30, 50),
+      height: responsiveVal(30, 50),
+      minHeight: 'auto',
       willChange: 'opacity, transform',
       position: 'absolute',
-      right: '0',
-      top: `calc(50% - (${responsiveVal(40, 60)} / 2))`,
+      right: `calc((${responsiveVal(30, 50)} / -2))`,
+      top: `calc((${responsiveVal(30, 50)} * 0.25) * -1)`,
     },
   },
   { name: 'ScrollSnapSlider' },
@@ -58,7 +65,7 @@ const useStyles = makeStyles(
 export type ScrollSnapSliderProps = Props & UseStyles<typeof useStyles>
 
 const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = (props) => {
-  const { children, pagination } = props
+  const { children, pagination, fabProps } = props
   const { ref, width = 0 } = useResizeObserver<HTMLDivElement>()
   const [intersects, setIntersects] = useState<boolean[]>([])
   const [isScrolling, setScrolling] = useState<boolean>(false)
@@ -145,12 +152,24 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
         {children}
       </animated.div>
       <Grow in={!intersects[0]}>
-        <Fab className={classes.prevFab} size='large' onClick={onPrev} aria-label='previous'>
+        <Fab
+          size='large'
+          {...fabProps}
+          className={clsx(classes.prevFab, fabProps?.className)}
+          onClick={onPrev}
+          aria-label='previous'
+        >
           <ArrowBack />
         </Fab>
       </Grow>
       <Grow in={!intersects[intersects.length - 1]}>
-        <Fab className={classes.nextFab} size='large' onClick={onNext} aria-label='next'>
+        <Fab
+          size='large'
+          {...fabProps}
+          className={clsx(classes.nextFab, fabProps?.className)}
+          onClick={onNext}
+          aria-label='next'
+        >
           <ArrowForward />
         </Fab>
       </Grow>

@@ -1,34 +1,88 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { Chip, ChipProps } from '@material-ui/core'
+import { Tabs, Tab, makeStyles, Link, Theme } from '@material-ui/core'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 import CategoryLink from './CategoryLink'
 
-type CategoryChildrenProps = CategoryChildrenFragment &
-  Omit<ChipProps, 'children' | 'clickable' | 'color' | 'label' | 'component'> & {
-    params: ProductListParams
-  }
+type CategoryChildrenProps = CategoryChildrenFragment & {
+  params: ProductListParams
+}
 
-export default function CategoryChildren({
-  children,
-  params,
-  ...chipProps
-}: CategoryChildrenProps) {
+const useSubcategoryMenuStyles = makeStyles(
+  (theme: Theme) => ({
+    slider: {},
+    link: {
+      whiteSpace: 'nowrap',
+      display: 'block',
+      marginRight: `calc(${theme.spacings.sm} * 0.5)`,
+      marginLeft: `calc(${theme.spacings.sm} * 0.5)`,
+      ...theme.typography.h6,
+      position: 'relative',
+      paddingBottom: 8,
+      '&:before': {
+        content: '""',
+        width: 40,
+        height: 2,
+        background: theme.palette.primary.main,
+        position: 'absolute',
+        bottom: -8,
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+        opacity: 0,
+        transition: 'opacity .2s ease, bottom .2s ease',
+      },
+      '&:hover': {
+        '&:before': {
+          opacity: 1,
+          bottom: 5,
+        },
+      },
+    },
+    fab: {
+      boxShadow: 'none',
+    },
+  }),
+  {
+    name: 'SubcategoryMenuStyles',
+  },
+)
+
+export default function CategoryChildren(props: CategoryChildrenProps) {
+  const { children, params } = props
+  const classes = useSubcategoryMenuStyles(props)
+
   return (
     <>
-      {children?.map((category) => {
-        if (!category?.url_path || !category.id || !category.name) return null
-        const linkParams = cloneDeep(params)
-        linkParams.url = category.url_path
-        delete linkParams.currentPage
+      <ScrollSnapSlider
+        classes={{
+          container: classes.slider,
+          prevFab: classes.fab,
+          nextFab: classes.fab,
+        }}
+      >
+        {children?.map((cat) => {
+          if (!cat?.url_path || !cat.id || !cat.name) return null
 
-        return (
-          <CategoryLink key={category.id} {...linkParams} underline='none'>
-            <Chip clickable color='default' label={category.name} {...chipProps} />
-          </CategoryLink>
-        )
-      })}
+          const linkParams = cloneDeep(params)
+          linkParams.url = cat.url_path
+          delete linkParams.currentPage
+
+          return (
+            <CategoryLink
+              key={cat.id}
+              underline='none'
+              color='inherit'
+              {...linkParams}
+              className={classes.link}
+            >
+              {cat.name}
+            </CategoryLink>
+          )
+        })}
+      </ScrollSnapSlider>
     </>
   )
 }

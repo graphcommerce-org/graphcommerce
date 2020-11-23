@@ -54,9 +54,7 @@ function CategoryPage(props: Props) {
       <>
         <Container className={classes.container}>
           <CategoryDescription name={category.name} description={category.description} />
-          <div>
-            <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          </div>
+          <CategoryChildren params={params}>{category.children}</CategoryChildren>
         </Container>
       </>
     )
@@ -69,7 +67,7 @@ function CategoryPage(props: Props) {
             description={category.description}
             className={classes.description}
           />
-          <div>
+          <div className={classes.childCategories}>
             <CategoryChildren params={params} className={classes.filterItem}>
               {category.children}
             </CategoryChildren>
