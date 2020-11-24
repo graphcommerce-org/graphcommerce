@@ -1,8 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { Maybe } from '@reachdigital/magento-graphql'
 
 type ProductCountProps = {
-  totalProducts: Maybe<number>
+  totalProducts: number | undefined
 }
 
 const useProductCountStyles = makeStyles(

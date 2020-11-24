@@ -3,6 +3,7 @@ import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
 import { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterRangeTypeInput } from '@reachdigital/magento-graphql'
+import Money from '@reachdigital/magento-store/Money'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from '../ProductListFilters.gql'
@@ -15,9 +16,23 @@ type FilterRangeTypeProps = NonNullable<
 const useFilterRangeType = makeStyles(
   (theme: Theme) => ({
     container: {
-      padding: theme.spacings.sm,
-      paddingBottom: theme.spacings.xs,
-      paddingTop: 0,
+      // paddingBottom: theme.spacings.xs,
+      paddingTop: 16,
+      paddingBottom: 40,
+    },
+    filterValueLabel: {
+      position: 'absolute',
+      top: 20,
+      right: 0,
+      ...theme.typography.body2,
+    },
+    slider: {
+      paddingBottom: 32,
+    },
+    button: {
+      borderRadius: 40,
+      float: 'right',
+      marginLeft: 8,
     },
   }),
   { name: 'FilterRangeType' },
@@ -42,8 +57,8 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       return [minVal, maxVal]
     })
     .reduce(([prevMin, prevMax], [curMin, curMax]) => {
-      return [Math.min(prevMin, curMin), Math.max(curMax, prevMax)]
-    }) ?? [0, 0]
+      return [Math.max(Math.min(prevMin, curMin), 1), Math.max(curMax, prevMax)]
+    }) ?? [1, 1]
 
   // eslint-disable-next-line no-case-declarations
   const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
@@ -90,29 +105,36 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       onDelete={currentLabel ? resetFilter : undefined}
     >
       <div className={classes.container}>
+        <div className={classes.filterValueLabel}>
+          <Money value={value[0]} /> - <Money value={value[1]} />
+        </div>
+
         <Slider
           min={min}
           max={max}
-          marks={Object.values(marks)}
-          step={Math.floor(max / 20)}
+          // marks={Object.values(marks)}
+          // step={Math.floor(max / 20)}
           aria-labelledby='range-slider'
           value={value}
-          onChangeCommitted={(e, newValue) => {
+          onChange={(e, newValue) => {
             setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
           }}
-          valueLabelDisplay='auto'
+          valueLabelDisplay='off'
+          className={classes.slider}
         />
-        <Button onClick={resetFilter} size='small'>
-          Reset
-        </Button>
+
         <Button
           variant='contained'
           size='small'
           color='primary'
           disableElevation
           onClick={applyFilter}
+          className={classes.button}
         >
           Apply
+        </Button>
+        <Button onClick={resetFilter} size='small' className={classes.button}>
+          Reset
         </Button>
       </div>
     </ChipMenu>
