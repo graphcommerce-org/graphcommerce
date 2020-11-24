@@ -1,4 +1,4 @@
-import { Chip, Menu, ChipProps, makeStyles, ListSubheader } from '@material-ui/core'
+import { Chip, Menu, ChipProps, makeStyles, ListSubheader, Theme } from '@material-ui/core'
 import RemoveCircle from '@material-ui/icons/Cancel'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
@@ -7,13 +7,18 @@ import React, { useState, PropsWithChildren } from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 
 const useChipMenuStyles = makeStyles(
-  {
+  (theme: Theme) => ({
     chip: {},
     menu: {
-      minWidth: responsiveVal(200, 280),
+      minWidth: responsiveVal(200, 456),
       padding: '8px 24px',
+      marginTop: 16,
       '& a': {
         padding: '4px 16px',
+      },
+      [theme.breakpoints.down('sm')]: {
+        minWidth: 0,
+        width: '100%',
       },
     },
     listSubHeader: {
@@ -24,7 +29,7 @@ const useChipMenuStyles = makeStyles(
       position: 'relative',
       '&:after': {
         content: '""',
-        background: '#ddd',
+        background: theme.palette.divider,
         height: 1,
         width: '100%',
         display: 'block',
@@ -32,7 +37,7 @@ const useChipMenuStyles = makeStyles(
         top: 40,
       },
     },
-  },
+  }),
   { name: 'ChipMenu' },
 )
 

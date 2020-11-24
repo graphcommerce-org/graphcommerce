@@ -16,9 +16,10 @@ type FilterRangeTypeProps = NonNullable<
 const useFilterRangeType = makeStyles(
   (theme: Theme) => ({
     container: {
-      // paddingBottom: theme.spacings.xs,
       paddingTop: 16,
       paddingBottom: 40,
+      paddingLeft: 16,
+      paddingRight: 16,
     },
     filterValueLabel: {
       position: 'absolute',
@@ -28,6 +29,23 @@ const useFilterRangeType = makeStyles(
     },
     slider: {
       paddingBottom: 32,
+      '& .MuiSlider-rail': {
+        color: theme.palette.secondary.mutedText,
+        height: 4,
+        borderRadius: 10,
+      },
+      '& .MuiSlider-track': {
+        color: theme.palette.primary.main,
+        height: 4,
+      },
+      '& .MuiSlider-thumb': {
+        width: 28,
+        height: 28,
+        marginLeft: -14,
+        marginTop: -14,
+        background: theme.palette.background.default,
+        boxShadow: theme.shadows[4],
+      },
     },
     button: {
       borderRadius: 40,

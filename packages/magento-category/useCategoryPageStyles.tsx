@@ -69,6 +69,9 @@ const useCategoryPageStyles = makeStyles(
       margin: '0 auto 32px auto',
       paddingLeft: 16,
       paddingRight: 16,
+      [theme.breakpoints.down('sm')]: {
+        padding: 0,
+      },
     },
     filterItem: {
       marginRight: 8,
