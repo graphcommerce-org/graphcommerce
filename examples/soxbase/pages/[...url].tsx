@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -28,6 +28,8 @@ import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
 import apolloClient from '../lib/apolloClient'
@@ -37,7 +39,45 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
+const useProductListStyles = makeStyles(
+  (theme: Theme) => ({
+    productList: (props: Props) => {
+      let big = 3
+      let index = 0
+      let toggle = false
+      let selector = ''
+      const count = props.products?.items?.length ?? 0
+      for (index = 0; index <= count; index++) {
+        if (index === big) {
+          selector += `& >:nth-child(${big}),`
+          if (toggle === false) {
+            big = index + 7
+            toggle = !toggle
+          } else {
+            big = index + 11
+            toggle = !toggle
+          }
+        }
+      }
+      selector = selector.slice(0, -1)
+      return {
+        [theme.breakpoints.up('xl')]: {
+          [`${selector}`]: {
+            gridColumn: `span 2`,
+            gridRow: 'span 2;',
+            '& a > div': {
+              height: responsiveVal(180, 840),
+            },
+          },
+        },
+      }
+    },
+  }),
+  { name: 'ProductList' },
+)
+
 function CategoryPage(props: Props) {
+  const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
   const { categories, products, filters, params, filterTypes, menu, urlResolver } = props
 
@@ -61,7 +101,7 @@ function CategoryPage(props: Props) {
   } else {
     content = (
       <ProductListParamsProvider value={params}>
-        <Container className={classes.container}>
+        <Container className={classes.container} maxWidth='xl'>
           <CategoryDescription
             name={category.name}
             description={category.description}
@@ -82,7 +122,7 @@ function CategoryPage(props: Props) {
           </div>
           <ProductListItems
             items={products.items}
-            className={classes.items}
+            className={clsx(classes.items, productListClasses.productList)}
             filterTypes={filterTypes}
             renderers={{
               SimpleProduct: ProductListItemSimple,
