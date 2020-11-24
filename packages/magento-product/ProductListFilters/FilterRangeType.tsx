@@ -20,6 +20,7 @@ const useFilterRangeType = makeStyles(
       paddingBottom: 40,
       paddingLeft: 16,
       paddingRight: 16,
+      width: '100%',
     },
     filterValueLabel: {
       position: 'absolute',

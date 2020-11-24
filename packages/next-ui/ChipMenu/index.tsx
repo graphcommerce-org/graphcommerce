@@ -8,9 +8,14 @@ import responsiveVal from '../Styles/responsiveVal'
 
 const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
-    chip: {},
+    chip: {
+      '& .MuiChip-label': {
+        maxWidth: 148,
+      },
+    },
     menu: {
-      minWidth: responsiveVal(200, 456),
+      minWidth: responsiveVal(200, 560),
+      maxWidth: 560,
       padding: '8px 24px',
       marginTop: 16,
       '& a': {
@@ -18,15 +23,18 @@ const useChipMenuStyles = makeStyles(
       },
       [theme.breakpoints.down('sm')]: {
         minWidth: 0,
+        maxWidth: '100%',
         width: '100%',
+        left: '0 !important',
       },
     },
     listSubHeader: {
-      paddingLeft: 0,
-      paddingRight: 0,
-      fontWeight: 400,
+      fontWeight: 500,
+      letterSpacing: 1,
       textTransform: 'uppercase',
+      fontSize: 14,
       position: 'relative',
+      color: theme.palette.secondary.mutedText,
       '&:after': {
         content: '""',
         background: theme.palette.divider,
@@ -34,7 +42,7 @@ const useChipMenuStyles = makeStyles(
         width: '100%',
         display: 'block',
         position: 'absolute',
-        top: 40,
+        top: 42,
       },
     },
   }),
@@ -80,6 +88,7 @@ export default function ChipMenu(props: ChipMenuProps) {
         <ListSubheader component='div' className={classes.listSubHeader}>
           {label}
         </ListSubheader>
+
         {children}
       </Menu>
     </>

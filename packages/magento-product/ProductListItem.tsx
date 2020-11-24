@@ -46,8 +46,8 @@ export const useProductListItemStyles = makeStyles(
       height: imageContainerHeight,
       alignContent: 'space-between',
       width: '100%',
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gridTemplateRows: 'repeat(2, 1fr)',
+      gridTemplateColumns: 'repeat(2, minmax(0,1fr))',
+      gridTemplateRows: 'repeat(2, minmax(0,1fr))',
       padding: responsiveVal(8, 12),
     },
     cellAlignRight: {

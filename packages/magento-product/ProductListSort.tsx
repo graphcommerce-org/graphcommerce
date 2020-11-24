@@ -19,7 +19,7 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
 
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
-  const selected = (currentSort !== defaultSort)
+  const selected = currentSort !== defaultSort
   const label = 'Sort by'
 
   const removeFilter = () => {
@@ -34,7 +34,11 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
       selected={selected}
       label={label}
       {...filterMenuProps}
-      selectedLabel={(selected && currentOption?.label) ? `Sorted by ${currentOption?.label?.toLowerCase()}` : label}
+      selectedLabel={
+        selected && currentOption?.label
+          ? `Sorted by ${currentOption?.label?.toLowerCase()}`
+          : label
+      }
       onDelete={selected ? removeFilter : undefined}
     >
       {sort_fields?.options?.map((option) => {
