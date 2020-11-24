@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 285)}, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 340)}, 1fr))`,
     },
   }),
   { name: 'ProductList' },
