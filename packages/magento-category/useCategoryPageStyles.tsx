@@ -10,6 +10,7 @@ const useCategoryPageStyles = makeStyles(
         "description"
         "children"
         "filters"
+        "count"
         "items"
         "pagination"
       `,

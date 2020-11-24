@@ -6,6 +6,7 @@ import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
+import ProductCount from '@reachdigital/magento-category/ProductCount'
 import getCategoryPageProps, {
   CategoryPageProps,
 } from '@reachdigital/magento-category/getCategoryPageProps'
@@ -68,9 +69,7 @@ function CategoryPage(props: Props) {
             className={classes.description}
           />
           <div className={classes.childCategories}>
-            <CategoryChildren params={params} className={classes.filterItem}>
-              {category.children}
-            </CategoryChildren>
+            <CategoryChildren params={params}>{category.children}</CategoryChildren>
           </div>
           <div className={classes.filters}>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
@@ -80,6 +79,7 @@ function CategoryPage(props: Props) {
               className={classes.filterItem}
             />
           </div>
+          <ProductCount totalProducts={products?.items?.length} />
           <ProductListItems
             items={products.items}
             className={classes.items}
