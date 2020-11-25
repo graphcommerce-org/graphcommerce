@@ -8,31 +8,10 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
-  Date: any
-  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
-  DateTime: any
-  /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: any
-  /** Slate-compatible RichText AST */
-  RichTextAST: any
-  Hex: any
-  RGBAHue: any
-  RGBATransparency: any
-  /** Raw JSON value */
-  Json: any
 }
 
 export type Query = {
   __typename?: 'Query'
-  /** Retrieve a single asset */
-  asset?: Maybe<Asset>
-  /** Retrieve document version */
-  assetVersion?: Maybe<DocumentVersion>
-  /** Retrieve multiple assets */
-  assets: Array<Asset>
-  /** Retrieve multiple assets using the Relay connection interface */
-  assetsConnection: AssetConnection
   /** Get a list of available store views and their config information. */
   availableStores?: Maybe<Array<Maybe<StoreConfig>>>
   /** Returns information about shopping cart */
@@ -76,16 +55,6 @@ export type Query = {
   getPayflowLinkToken?: Maybe<PayflowLinkToken>
   historyState: HistoryState
   isEmailAvailable?: Maybe<IsEmailAvailableOutput>
-  /** Fetches an object given its ID */
-  node?: Maybe<Node>
-  /** Retrieve a single page */
-  page?: Maybe<Page>
-  /** Retrieve document version */
-  pageVersion?: Maybe<DocumentVersion>
-  /** Retrieve multiple pages */
-  pages: Array<Page>
-  /** Retrieve multiple pages using the Relay connection interface */
-  pagesConnection: PageConnection
   /** The pickup locations query searches for locations that match the search request requirements. */
   pickupLocations?: Maybe<PickupLocations>
   /** Retrieves metadata required by clients to render the Reviews section. */
@@ -103,48 +72,14 @@ export type Query = {
   wishlist?: Maybe<WishlistOutput>
 }
 
-export type QueryAssetArgs = {
-  where: AssetWhereUniqueInput
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
-export type QueryAssetVersionArgs = {
-  where: VersionWhereInput
-}
-
-export type QueryAssetsArgs = {
-  where?: Maybe<AssetWhereInput>
-  orderBy?: Maybe<AssetOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
-export type QueryAssetsConnectionArgs = {
-  where?: Maybe<AssetWhereInput>
-  orderBy?: Maybe<AssetOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
 export type QueryCartArgs = {
   cart_id: Scalars['String']
 }
 
 export type QueryCategoriesArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   filters?: Maybe<CategoryFilterInput>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 export type QueryCategoryArgs = {
@@ -184,1371 +119,24 @@ export type QueryIsEmailAvailableArgs = {
   email: Scalars['String']
 }
 
-export type QueryNodeArgs = {
-  id: Scalars['ID']
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
-export type QueryPageArgs = {
-  where: PageWhereUniqueInput
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
-export type QueryPageVersionArgs = {
-  where: VersionWhereInput
-}
-
-export type QueryPagesArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
-export type QueryPagesConnectionArgs = {
-  where?: Maybe<PageWhereInput>
-  orderBy?: Maybe<PageOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  stage?: Stage
-  locales?: Array<Locale>
-}
-
 export type QueryPickupLocationsArgs = {
   area?: Maybe<AreaInput>
-  currentPage?: Maybe<Scalars['Int']>
   filters?: Maybe<PickupLocationFilterInput>
-  pageSize?: Maybe<Scalars['Int']>
   sort?: Maybe<PickupLocationSortInput>
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 export type QueryProductsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
+  search?: Maybe<Scalars['String']>
   filter?: Maybe<ProductAttributeFilterInput>
   pageSize?: Maybe<Scalars['Int']>
-  search?: Maybe<Scalars['String']>
+  currentPage?: Maybe<Scalars['Int']>
   sort?: Maybe<ProductAttributeSortInput>
 }
 
 export type QueryUrlResolverArgs = {
   url: Scalars['String']
-}
-
-/** An object with an ID */
-export type Node = {
-  /** The id of the object. */
-  id: Scalars['ID']
-  /** The Stage of an object */
-  stage: Stage
-}
-
-export type PublishLocaleInput = {
-  /** Locales to publish */
-  locale: Locale
-  /** Stages to publish selected locales to */
-  stages: Array<Stage>
-}
-
-export type VersionWhereInput = {
-  id: Scalars['ID']
-  stage: Stage
-  revision: Scalars['Int']
-}
-
-/** Transformations for Images */
-export type ImageTransformationInput = {
-  /** Resizes the image */
-  resize?: Maybe<ImageResizeInput>
-}
-
-export type AssetCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  handle: Scalars['String']
-  fileName: Scalars['String']
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: Maybe<AssetCreateLocalizationsInput>
-}
-
-export type AssetUpdateInput = {
-  handle?: Maybe<Scalars['String']>
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-  /** Manage document localizations */
-  localizations?: Maybe<AssetUpdateLocalizationsInput>
-}
-
-export type _RelationInputCardinality = 'one' | 'many'
-
-export type ImageFit =
-  /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
-  | 'clip'
-  /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
-  | 'crop'
-  /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
-  | 'scale'
-  /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
-  | 'max'
-
-export type AssetUpdateManyLocalizationInput = {
-  data: AssetUpdateManyLocalizationDataInput
-  locale: Locale
-}
-
-export type PageUpdateInput = {
-  /** No fields in update input */
-  _?: Maybe<Scalars['String']>
-}
-
-export type _RelationInputKind = 'create' | 'update'
-
-/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
-export type Rgba = {
-  __typename?: 'RGBA'
-  r: Scalars['RGBAHue']
-  g: Scalars['RGBAHue']
-  b: Scalars['RGBAHue']
-  a: Scalars['RGBATransparency']
-}
-
-/** Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
-export type RgbaInput = {
-  r: Scalars['RGBAHue']
-  g: Scalars['RGBAHue']
-  b: Scalars['RGBAHue']
-  a: Scalars['RGBATransparency']
-}
-
-export type ConnectPositionInput = {
-  /** Connect document after specified document */
-  after?: Maybe<Scalars['ID']>
-  /** Connect document before specified document */
-  before?: Maybe<Scalars['ID']>
-  /** Connect document at first position */
-  start?: Maybe<Scalars['Boolean']>
-  /** Connect document at last position */
-  end?: Maybe<Scalars['Boolean']>
-}
-
-/** Identifies documents */
-export type AssetWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<AssetWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<AssetWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<AssetWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-  handle?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  handle_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  handle_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  handle_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  handle_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  handle_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  handle_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  handle_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  handle_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  handle_not_ends_with?: Maybe<Scalars['String']>
-  fileName?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  fileName_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  fileName_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  fileName_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  fileName_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  fileName_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  fileName_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  fileName_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  fileName_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  fileName_not_ends_with?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  /** All values that are not equal to given value. */
-  height_not?: Maybe<Scalars['Float']>
-  /** All values that are contained in given list. */
-  height_in?: Maybe<Array<Scalars['Float']>>
-  /** All values that are not contained in given list. */
-  height_not_in?: Maybe<Array<Scalars['Float']>>
-  /** All values less than the given value. */
-  height_lt?: Maybe<Scalars['Float']>
-  /** All values less than or equal the given value. */
-  height_lte?: Maybe<Scalars['Float']>
-  /** All values greater than the given value. */
-  height_gt?: Maybe<Scalars['Float']>
-  /** All values greater than or equal the given value. */
-  height_gte?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  /** All values that are not equal to given value. */
-  width_not?: Maybe<Scalars['Float']>
-  /** All values that are contained in given list. */
-  width_in?: Maybe<Array<Scalars['Float']>>
-  /** All values that are not contained in given list. */
-  width_not_in?: Maybe<Array<Scalars['Float']>>
-  /** All values less than the given value. */
-  width_lt?: Maybe<Scalars['Float']>
-  /** All values less than or equal the given value. */
-  width_lte?: Maybe<Scalars['Float']>
-  /** All values greater than the given value. */
-  width_gt?: Maybe<Scalars['Float']>
-  /** All values greater than or equal the given value. */
-  width_gte?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  /** All values that are not equal to given value. */
-  size_not?: Maybe<Scalars['Float']>
-  /** All values that are contained in given list. */
-  size_in?: Maybe<Array<Scalars['Float']>>
-  /** All values that are not contained in given list. */
-  size_not_in?: Maybe<Array<Scalars['Float']>>
-  /** All values less than the given value. */
-  size_lt?: Maybe<Scalars['Float']>
-  /** All values less than or equal the given value. */
-  size_lte?: Maybe<Scalars['Float']>
-  /** All values greater than the given value. */
-  size_gt?: Maybe<Scalars['Float']>
-  /** All values greater than or equal the given value. */
-  size_gte?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  mimeType_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  mimeType_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  mimeType_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  mimeType_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  mimeType_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  mimeType_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  mimeType_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  mimeType_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  mimeType_not_ends_with?: Maybe<Scalars['String']>
-}
-
-export type AssetUpdateManyLocalizationDataInput = {
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-}
-
-export type _MutationKind =
-  | 'create'
-  | 'publish'
-  | 'unpublish'
-  | 'update'
-  | 'upsert'
-  | 'delete'
-  | 'updateMany'
-  | 'publishMany'
-  | 'unpublishMany'
-  | 'deleteMany'
-
-export type DocumentFileTypes =
-  | 'jpg'
-  | 'odp'
-  | 'ods'
-  | 'odt'
-  | 'png'
-  | 'svg'
-  | 'txt'
-  | 'webp'
-  | 'docx'
-  | 'pdf'
-  | 'html'
-  | 'doc'
-  | 'xlsx'
-  | 'xls'
-  | 'pptx'
-  | 'ppt'
-
-/** Transformations for Documents */
-export type DocumentTransformationInput = {
-  /** Changes the output for the file. */
-  output?: Maybe<DocumentOutputInput>
-}
-
-export type AssetUpsertLocalizationInput = {
-  update: AssetUpdateLocalizationDataInput
-  create: AssetCreateLocalizationDataInput
-  locale: Locale
-}
-
-export type Aggregate = {
-  __typename?: 'Aggregate'
-  count: Scalars['Int']
-}
-
-export type AssetUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: Maybe<Array<AssetUpdateManyLocalizationInput>>
-}
-
-/** A connection to a list of items. */
-export type PageConnection = {
-  __typename?: 'PageConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<PageEdge>
-  aggregate: Aggregate
-}
-
-/** Representing a color value comprising of HEX, RGBA and css color values */
-export type Color = {
-  __typename?: 'Color'
-  hex: Scalars['Hex']
-  rgba: Rgba
-  css: Scalars['String']
-}
-
-export type DocumentVersion = {
-  __typename?: 'DocumentVersion'
-  id: Scalars['ID']
-  stage: Stage
-  revision: Scalars['Int']
-  createdAt: Scalars['DateTime']
-  data?: Maybe<Scalars['Json']>
-}
-
-/** Stage system enumeration */
-export type Stage =
-  /** The Draft is the default stage for all your content. */
-  | 'DRAFT'
-  /** The Published stage is where you can publish your content to. */
-  | 'PUBLISHED'
-
-/** Asset system model */
-export type Asset = Node & {
-  __typename?: 'Asset'
-  /** System stage field */
-  stage: Stage
-  /** System Locale field */
-  locale: Locale
-  /** Get the other localizations for this document */
-  localizations: Array<Asset>
-  /** Get the document in other stages */
-  documentInStages: Array<Asset>
-  /** The unique identifier */
-  id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** The file handle */
-  handle: Scalars['String']
-  /** The file name */
-  fileName: Scalars['String']
-  /** The height of the file */
-  height?: Maybe<Scalars['Float']>
-  /** The file width */
-  width?: Maybe<Scalars['Float']>
-  /** The file size */
-  size?: Maybe<Scalars['Float']>
-  /** The mime type of the file */
-  mimeType?: Maybe<Scalars['String']>
-  /** List of Asset versions */
-  history: Array<Version>
-  /** Get the url for the asset with provided transformations applied. */
-  url: Scalars['String']
-}
-
-/** Asset system model */
-export type AssetLocalizationsArgs = {
-  locales?: Array<Locale>
-  includeCurrent?: Scalars['Boolean']
-}
-
-/** Asset system model */
-export type AssetDocumentInStagesArgs = {
-  stages?: Array<Stage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-/** Asset system model */
-export type AssetCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-/** Asset system model */
-export type AssetUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-/** Asset system model */
-export type AssetPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-/** Asset system model */
-export type AssetHistoryArgs = {
-  limit?: Scalars['Int']
-  skip?: Scalars['Int']
-  stageOverride?: Maybe<Stage>
-}
-
-/** Asset system model */
-export type AssetUrlArgs = {
-  transformation?: Maybe<AssetTransformationInput>
-}
-
-/** Identifies documents */
-export type AssetManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<AssetWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<AssetWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<AssetWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-}
-
-export type AssetCreateLocalizationDataInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  handle: Scalars['String']
-  fileName: Scalars['String']
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-}
-
-export type AssetUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: AssetWhereInput
-  /** Update many input */
-  data: AssetUpdateManyInput
-}
-
-export type Page = Node & {
-  __typename?: 'Page'
-  /** System stage field */
-  stage: Stage
-  /** Get the document in other stages */
-  documentInStages: Array<Page>
-  /** The unique identifier */
-  id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** List of Page versions */
-  history: Array<Version>
-}
-
-export type PageDocumentInStagesArgs = {
-  stages?: Array<Stage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-export type PageHistoryArgs = {
-  limit?: Scalars['Int']
-  skip?: Scalars['Int']
-  stageOverride?: Maybe<Stage>
-}
-
-export type PageUpsertInput = {
-  /** Create document if it didn't exist */
-  create: PageCreateInput
-  /** Update document if it exists */
-  update: PageUpdateInput
-}
-
-/** An edge in a connection. */
-export type PageEdge = {
-  __typename?: 'PageEdge'
-  /** The item at the end of the edge. */
-  node: Page
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
-}
-
-export type SystemDateTimeFieldVariation = 'BASE' | 'LOCALIZATION' | 'COMBINED'
-
-/** Locale system enumeration */
-export type Locale =
-  /** System locale */
-  'en'
-
-/** A connection to a list of items. */
-export type AssetConnection = {
-  __typename?: 'AssetConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<AssetEdge>
-  aggregate: Aggregate
-}
-
-/** References Asset record uniquely */
-export type AssetWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-}
-
-export type PageUpdateManyInput = {
-  /** No fields in updateMany data input */
-  _?: Maybe<Scalars['String']>
-}
-
-export type AssetUpsertInput = {
-  /** Create document if it didn't exist */
-  create: AssetCreateInput
-  /** Update document if it exists */
-  update: AssetUpdateInput
-}
-
-/** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
-export type RichText = {
-  __typename?: 'RichText'
-  /** Returns AST representation */
-  raw: Scalars['RichTextAST']
-  /** Returns HTMl representation */
-  html: Scalars['String']
-  /** Returns Markdown representation */
-  markdown: Scalars['String']
-  /** Returns plain-text contents of RichText */
-  text: Scalars['String']
-}
-
-/** Transformations for Assets */
-export type AssetTransformationInput = {
-  image?: Maybe<ImageTransformationInput>
-  document?: Maybe<DocumentTransformationInput>
-  /** Pass true if you want to validate the passed transformation parameters */
-  validateOptions?: Maybe<Scalars['Boolean']>
-}
-
-export type ImageResizeInput = {
-  /** The width in pixels to resize the image to. The value must be an integer from 1 to 10000. */
-  width?: Maybe<Scalars['Int']>
-  /** The height in pixels to resize the image to. The value must be an integer from 1 to 10000. */
-  height?: Maybe<Scalars['Int']>
-  /** The default value for the fit parameter is fit:clip. */
-  fit?: Maybe<ImageFit>
-}
-
-/** Identifies documents */
-export type PageWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<PageWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<PageWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<PageWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-}
-
-export type PageUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: PageWhereUniqueInput
-  /** Document to update */
-  data: PageUpdateInput
-}
-
-export type PageUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: PageWhereUniqueInput
-  /** Upsert data */
-  data: PageUpsertInput
-}
-
-export type _FilterKind =
-  | 'search'
-  | 'AND'
-  | 'OR'
-  | 'NOT'
-  | 'eq'
-  | 'eq_not'
-  | 'in'
-  | 'not_in'
-  | 'lt'
-  | 'lte'
-  | 'gt'
-  | 'gte'
-  | 'contains'
-  | 'not_contains'
-  | 'starts_with'
-  | 'not_starts_with'
-  | 'ends_with'
-  | 'not_ends_with'
-  | 'contains_all'
-  | 'contains_some'
-  | 'contains_none'
-  | 'relational_single'
-  | 'relational_every'
-  | 'relational_some'
-  | 'relational_none'
-
-/** Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used. */
-export type ColorInput = {
-  hex?: Maybe<Scalars['Hex']>
-  rgba?: Maybe<RgbaInput>
-}
-
-export type UnpublishLocaleInput = {
-  /** Locales to unpublish */
-  locale: Locale
-  /** Stages to unpublish selected locales from */
-  stages: Array<Stage>
-}
-
-export type _RelationKind = 'regular' | 'union'
-
-/** An edge in a connection. */
-export type AssetEdge = {
-  __typename?: 'AssetEdge'
-  /** The item at the end of the edge. */
-  node: Asset
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
-}
-
-export type AssetUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: Maybe<Array<AssetCreateLocalizationInput>>
-  /** Localizations to update */
-  update?: Maybe<Array<AssetUpdateLocalizationInput>>
-  upsert?: Maybe<Array<AssetUpsertLocalizationInput>>
-  /** Localizations to delete */
-  delete?: Maybe<Array<Locale>>
-}
-
-export type Version = {
-  __typename?: 'Version'
-  id: Scalars['ID']
-  stage: Stage
-  revision: Scalars['Int']
-  createdAt: Scalars['DateTime']
-}
-
-export type AssetOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'handle_ASC'
-  | 'handle_DESC'
-  | 'fileName_ASC'
-  | 'fileName_DESC'
-  | 'height_ASC'
-  | 'height_DESC'
-  | 'width_ASC'
-  | 'width_DESC'
-  | 'size_ASC'
-  | 'size_DESC'
-  | 'mimeType_ASC'
-  | 'mimeType_DESC'
-
-export type AssetUpdateLocalizationInput = {
-  data: AssetUpdateLocalizationDataInput
-  locale: Locale
-}
-
-export type _OrderDirection = 'asc' | 'desc'
-
-/** Representing a geolocation point with latitude and longitude */
-export type Location = {
-  __typename?: 'Location'
-  latitude: Scalars['Float']
-  longitude: Scalars['Float']
-  distance: Scalars['Float']
-}
-
-/** Representing a geolocation point with latitude and longitude */
-export type LocationDistanceArgs = {
-  from: LocationInput
-}
-
-export type AssetCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: Maybe<Array<AssetCreateLocalizationInput>>
-}
-
-export type AssetUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: AssetWhereUniqueInput
-  /** Upsert data */
-  data: AssetUpsertInput
-}
-
-export type AssetUpdateLocalizationDataInput = {
-  handle?: Maybe<Scalars['String']>
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-}
-
-export type PageUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: PageWhereInput
-  /** Update many input */
-  data: PageUpdateManyInput
-}
-
-/** Information about pagination in a connection. */
-export type PageInfo = {
-  __typename?: 'PageInfo'
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']>
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']>
-  /** Number of items in the current page. */
-  pageSize?: Maybe<Scalars['Int']>
-}
-
-export type AssetCreateLocalizationInput = {
-  /** Localization input */
-  data: AssetCreateLocalizationDataInput
-  locale: Locale
-}
-
-export type AssetUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: AssetWhereUniqueInput
-  /** Document to update */
-  data: AssetUpdateInput
-}
-
-export type AssetUpdateManyInput = {
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-  /** Optional updates to localizations */
-  localizations?: Maybe<AssetUpdateManyLocalizationsInput>
-}
-
-export type PageOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-
-/** Identifies documents */
-export type PageManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<PageWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<PageWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<PageWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-}
-
-export type _MutationInputFieldKind =
-  | 'scalar'
-  | 'richText'
-  | 'enum'
-  | 'relation'
-  | 'union'
-  | 'virtual'
-
-/** References Page record uniquely */
-export type PageWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-}
-
-export type BatchPayload = {
-  __typename?: 'BatchPayload'
-  /** The number of nodes that have been affected by the Batch operation. */
-  count: Scalars['Long']
-}
-
-export type PageCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-/** Input for a geolocation point with latitude and longitude */
-export type LocationInput = {
-  latitude: Scalars['Float']
-  longitude: Scalars['Float']
-}
-
-export type _SystemDateTimeFieldVariation = 'base' | 'localization' | 'combined'
-
-export type DocumentOutputInput = {
-  /**  Transforms a document into a desired file type. See this matrix for format support:  PDF:	jpg, odp, ods, odt, png, svg, txt, and webp DOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webp DOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webp ODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webp XLS:	jpg, pdf, ods, png, svg, xlsx, and webp XLSX:	jpg, pdf, ods, png, svg, xls, and webp ODS:	jpg, pdf, png, xls, svg, xlsx, and webp PPT:	jpg, odp, pdf, png, svg, pptx, and webp PPTX:	jpg, odp, pdf, png, svg, ppt, and webp ODP:	jpg, pdf, png, ppt, svg, pptx, and webp BMP:	jpg, odp, ods, odt, pdf, png, svg, and webp GIF:	jpg, odp, ods, odt, pdf, png, svg, and webp JPG:	jpg, odp, ods, odt, pdf, png, svg, and webp PNG:	jpg, odp, ods, odt, pdf, png, svg, and webp WEBP:	jpg, odp, ods, odt, pdf, png, svg, and webp TIFF:	jpg, odp, ods, odt, pdf, png, svg, and webp AI:	    jpg, odp, ods, odt, pdf, png, svg, and webp PSD:	jpg, odp, ods, odt, pdf, png, svg, and webp SVG:	jpg, odp, ods, odt, pdf, png, and webp HTML:	jpg, odt, pdf, svg, txt, and webp TXT:	jpg, html, odt, pdf, svg, and webp  */
-  format?: Maybe<DocumentFileTypes>
-}
-
-export type Mutation = {
-  __typename?: 'Mutation'
-  addBundleProductsToCart?: Maybe<AddBundleProductsToCartOutput>
-  addConfigurableProductsToCart?: Maybe<AddConfigurableProductsToCartOutput>
-  addDownloadableProductsToCart?: Maybe<AddDownloadableProductsToCartOutput>
-  /** Add any type of product to the cart */
-  addProductsToCart?: Maybe<AddProductsToCartOutput>
-  /** Adds one or more products to the specified wish list. This mutation supports all product types */
-  addProductsToWishlist?: Maybe<AddProductsToWishlistOutput>
-  addSimpleProductsToCart?: Maybe<AddSimpleProductsToCartOutput>
-  addVirtualProductsToCart?: Maybe<AddVirtualProductsToCartOutput>
-  applyCouponToCart?: Maybe<ApplyCouponToCartOutput>
-  /** Changes the password for the logged-in customer */
-  changeCustomerPassword?: Maybe<Customer>
-  /** Creates Client Token for Braintree Javascript SDK initialization. */
-  createBraintreeClientToken: Scalars['String']
-  /** Create customer account */
-  createCustomer?: Maybe<CustomerOutput>
-  /** Create customer address */
-  createCustomerAddress?: Maybe<CustomerAddress>
-  /** Create customer account */
-  createCustomerV2?: Maybe<CustomerOutput>
-  /** Creates an empty shopping cart for a guest or logged in user */
-  createEmptyCart?: Maybe<Scalars['String']>
-  /** Creates a Klarna Payments Session. */
-  createKlarnaPaymentsSession?: Maybe<CreateKlarnaPaymentsSessionOutput>
-  /** Initiates a transaction and receives a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
-  createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>
-  /** Initiates an Express Checkout transaction and receives a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
-  createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>
-  /** Creates a product review for the specified SKU */
-  createProductReview: CreateProductReviewOutput
-  /** Delete customer address */
-  deleteCustomerAddress?: Maybe<Scalars['Boolean']>
-  /** Delete a customer payment token */
-  deletePaymentToken?: Maybe<DeletePaymentTokenOutput>
-  /** Retrieve the customer token */
-  generateCustomerToken?: Maybe<CustomerToken>
-  /** Handles payment response and saves payment in Quote. Use this mutations for Payflow Pro and Payments Pro payment methods. */
-  handlePayflowProResponse?: Maybe<PayflowProResponseOutput>
-  /** Merges the source cart into the destination cart */
-  mergeCarts: Cart
-  placeOrder?: Maybe<PlaceOrderOutput>
-  removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>
-  removeItemFromCart?: Maybe<RemoveItemFromCartOutput>
-  /** Removes one or more products from the specified wish list */
-  removeProductsFromWishlist?: Maybe<RemoveProductsFromWishlistOutput>
-  /** Adds all products from a customer's previous order to the cart. */
-  reorderItems?: Maybe<ReorderItemsOutput>
-  /** Request an email with a reset password token for the registered customer identified by the specified email. */
-  requestPasswordResetEmail?: Maybe<Scalars['Boolean']>
-  /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using requestPasswordResetEmail. */
-  resetPassword?: Maybe<Scalars['Boolean']>
-  /** Revoke the customer token */
-  revokeCustomerToken?: Maybe<RevokeCustomerTokenOutput>
-  /** Recommends Product by Sending Single/Multiple Email */
-  sendEmailToFriend?: Maybe<SendEmailToFriendOutput>
-  setBillingAddressOnCart?: Maybe<SetBillingAddressOnCartOutput>
-  setGuestEmailOnCart?: Maybe<SetGuestEmailOnCartOutput>
-  /** @deprecated Should use setPaymentMethodOnCart and placeOrder mutations in single request. */
-  setPaymentMethodAndPlaceOrder?: Maybe<PlaceOrderOutput>
-  setPaymentMethodOnCart?: Maybe<SetPaymentMethodOnCartOutput>
-  setShippingAddressesOnCart?: Maybe<SetShippingAddressesOnCartOutput>
-  setShippingMethodsOnCart?: Maybe<SetShippingMethodsOnCartOutput>
-  /** Subscribes the specified email to a newsletter */
-  subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>
-  updateCartItems?: Maybe<UpdateCartItemsOutput>
-  /** Deprecated. Use UpdateCustomerV2 instead. */
-  updateCustomer?: Maybe<CustomerOutput>
-  /** Update customer address */
-  updateCustomerAddress?: Maybe<CustomerAddress>
-  updateCustomerEmail?: Maybe<CustomerOutput>
-  /** Update the customer's personal information */
-  updateCustomerV2?: Maybe<CustomerOutput>
-  /** Updates one or more products in the specified wish list */
-  updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>
-}
-
-export type MutationAddBundleProductsToCartArgs = {
-  input?: Maybe<AddBundleProductsToCartInput>
-}
-
-export type MutationAddConfigurableProductsToCartArgs = {
-  input?: Maybe<AddConfigurableProductsToCartInput>
-}
-
-export type MutationAddDownloadableProductsToCartArgs = {
-  input?: Maybe<AddDownloadableProductsToCartInput>
-}
-
-export type MutationAddProductsToCartArgs = {
-  cartId: Scalars['String']
-  cartItems: Array<CartItemInput>
-}
-
-export type MutationAddProductsToWishlistArgs = {
-  wishlistId: Scalars['ID']
-  wishlistItems: Array<WishlistItemInput>
-}
-
-export type MutationAddSimpleProductsToCartArgs = {
-  input?: Maybe<AddSimpleProductsToCartInput>
-}
-
-export type MutationAddVirtualProductsToCartArgs = {
-  input?: Maybe<AddVirtualProductsToCartInput>
-}
-
-export type MutationApplyCouponToCartArgs = {
-  input?: Maybe<ApplyCouponToCartInput>
-}
-
-export type MutationChangeCustomerPasswordArgs = {
-  currentPassword: Scalars['String']
-  newPassword: Scalars['String']
-}
-
-export type MutationCreateCustomerArgs = {
-  input: CustomerInput
-}
-
-export type MutationCreateCustomerAddressArgs = {
-  input: CustomerAddressInput
-}
-
-export type MutationCreateCustomerV2Args = {
-  input: CustomerCreateInput
-}
-
-export type MutationCreateEmptyCartArgs = {
-  input?: Maybe<CreateEmptyCartInput>
-}
-
-export type MutationCreateKlarnaPaymentsSessionArgs = {
-  input?: Maybe<CreateKlarnaPaymentsSessionInput>
-}
-
-export type MutationCreatePayflowProTokenArgs = {
-  input: PayflowProTokenInput
-}
-
-export type MutationCreatePaypalExpressTokenArgs = {
-  input: PaypalExpressTokenInput
-}
-
-export type MutationCreateProductReviewArgs = {
-  input: CreateProductReviewInput
-}
-
-export type MutationDeleteCustomerAddressArgs = {
-  id: Scalars['Int']
-}
-
-export type MutationDeletePaymentTokenArgs = {
-  public_hash: Scalars['String']
-}
-
-export type MutationGenerateCustomerTokenArgs = {
-  email: Scalars['String']
-  password: Scalars['String']
-}
-
-export type MutationHandlePayflowProResponseArgs = {
-  input: PayflowProResponseInput
-}
-
-export type MutationMergeCartsArgs = {
-  destination_cart_id: Scalars['String']
-  source_cart_id: Scalars['String']
-}
-
-export type MutationPlaceOrderArgs = {
-  input?: Maybe<PlaceOrderInput>
-}
-
-export type MutationRemoveCouponFromCartArgs = {
-  input?: Maybe<RemoveCouponFromCartInput>
-}
-
-export type MutationRemoveItemFromCartArgs = {
-  input?: Maybe<RemoveItemFromCartInput>
-}
-
-export type MutationRemoveProductsFromWishlistArgs = {
-  wishlistId: Scalars['ID']
-  wishlistItemsIds: Array<Scalars['ID']>
-}
-
-export type MutationReorderItemsArgs = {
-  orderNumber: Scalars['String']
-}
-
-export type MutationRequestPasswordResetEmailArgs = {
-  email: Scalars['String']
-}
-
-export type MutationResetPasswordArgs = {
-  email: Scalars['String']
-  newPassword: Scalars['String']
-  resetPasswordToken: Scalars['String']
-}
-
-export type MutationSendEmailToFriendArgs = {
-  input?: Maybe<SendEmailToFriendInput>
-}
-
-export type MutationSetBillingAddressOnCartArgs = {
-  input?: Maybe<SetBillingAddressOnCartInput>
-}
-
-export type MutationSetGuestEmailOnCartArgs = {
-  input?: Maybe<SetGuestEmailOnCartInput>
-}
-
-export type MutationSetPaymentMethodAndPlaceOrderArgs = {
-  input?: Maybe<SetPaymentMethodAndPlaceOrderInput>
-}
-
-export type MutationSetPaymentMethodOnCartArgs = {
-  input?: Maybe<SetPaymentMethodOnCartInput>
-}
-
-export type MutationSetShippingAddressesOnCartArgs = {
-  input?: Maybe<SetShippingAddressesOnCartInput>
-}
-
-export type MutationSetShippingMethodsOnCartArgs = {
-  input?: Maybe<SetShippingMethodsOnCartInput>
-}
-
-export type MutationSubscribeEmailToNewsletterArgs = {
-  email: Scalars['String']
-}
-
-export type MutationUpdateCartItemsArgs = {
-  input?: Maybe<UpdateCartItemsInput>
-}
-
-export type MutationUpdateCustomerArgs = {
-  input: CustomerInput
-}
-
-export type MutationUpdateCustomerAddressArgs = {
-  id: Scalars['Int']
-  input?: Maybe<CustomerAddressInput>
-}
-
-export type MutationUpdateCustomerEmailArgs = {
-  email: Scalars['String']
-  password: Scalars['String']
-}
-
-export type MutationUpdateCustomerV2Args = {
-  input: CustomerUpdateInput
-}
-
-export type MutationUpdateProductsInWishlistArgs = {
-  wishlistId: Scalars['ID']
-  wishlistItems: Array<WishlistItemUpdateInput>
 }
 
 /** The type contains information about a store config */
@@ -1680,16 +268,16 @@ export type StoreConfig = {
 
 /** This enumeration display settings for the fixed product tax */
 export type FixedProductTaxDisplaySettings =
+  /** The displayed price includes the FPT amount without displaying the ProductPrice.fixed_product_taxes values. This value corresponds to 'Including FPT only' */
+  | 'INCLUDE_FPT_WITHOUT_DETAILS'
+  /** The displayed price includes the FPT amount while displaying the values of ProductPrice.fixed_product_taxes separately. This value corresponds to 'Including FPT and FPT description' */
+  | 'INCLUDE_FPT_WITH_DETAILS'
   /** The displayed price does not include the FPT amount. The values of ProductPrice.fixed_product_taxes and the price including the FPT are displayed separately. This value corresponds to 'Excluding FPT, Including FPT description and final price' */
   | 'EXCLUDE_FPT_AND_INCLUDE_WITH_DETAILS'
   /** The displayed price does not include the FPT amount. The values from ProductPrice.fixed_product_taxes are not displayed. This value corresponds to 'Excluding FPT' */
   | 'EXCLUDE_FPT_WITHOUT_DETAILS'
   /** The FPT feature is not enabled. You can omit  ProductPrice.fixed_product_taxes from your query */
   | 'FPT_DISABLED'
-  /** The displayed price includes the FPT amount without displaying the ProductPrice.fixed_product_taxes values. This value corresponds to 'Including FPT only' */
-  | 'INCLUDE_FPT_WITHOUT_DETAILS'
-  /** The displayed price includes the FPT amount while displaying the values of ProductPrice.fixed_product_taxes separately. This value corresponds to 'Including FPT and FPT description' */
-  | 'INCLUDE_FPT_WITH_DETAILS'
 
 export type SendFriendConfiguration = {
   __typename?: 'SendFriendConfiguration'
@@ -1826,176 +414,176 @@ export type Money = {
 
 /** The list of available currency codes */
 export type CurrencyEnum =
-  | 'AED'
   | 'AFN'
   | 'ALL'
-  | 'AMD'
-  | 'ANG'
+  | 'AZN'
+  | 'DZD'
   | 'AOA'
   | 'ARS'
-  | 'AUD'
+  | 'AMD'
   | 'AWG'
-  | 'AZM'
-  | 'AZN'
-  | 'BAM'
-  | 'BBD'
-  | 'BDT'
-  | 'BGN'
-  | 'BHD'
-  | 'BIF'
-  | 'BMD'
-  | 'BND'
-  | 'BOB'
-  | 'BRL'
+  | 'AUD'
   | 'BSD'
-  | 'BTN'
-  | 'BUK'
-  | 'BWP'
+  | 'BHD'
+  | 'BDT'
+  | 'BBD'
   | 'BYN'
   | 'BZD'
+  | 'BMD'
+  | 'BTN'
+  | 'BOB'
+  | 'BAM'
+  | 'BWP'
+  | 'BRL'
+  | 'GBP'
+  | 'BND'
+  | 'BGN'
+  | 'BUK'
+  | 'BIF'
+  | 'KHR'
   | 'CAD'
-  | 'CDF'
-  | 'CHE'
-  | 'CHF'
-  | 'CHW'
+  | 'CVE'
+  | 'CZK'
+  | 'KYD'
+  | 'GQE'
   | 'CLP'
   | 'CNY'
   | 'COP'
+  | 'KMF'
+  | 'CDF'
   | 'CRC'
+  | 'HRK'
   | 'CUP'
-  | 'CVE'
-  | 'CZK'
-  | 'DJF'
   | 'DKK'
+  | 'DJF'
   | 'DOP'
-  | 'DZD'
-  | 'EEK'
+  | 'XCD'
   | 'EGP'
+  | 'SVC'
   | 'ERN'
+  | 'EEK'
   | 'ETB'
   | 'EUR'
-  | 'FJD'
   | 'FKP'
-  | 'GBP'
+  | 'FJD'
+  | 'GMD'
   | 'GEK'
   | 'GEL'
   | 'GHS'
   | 'GIP'
-  | 'GMD'
-  | 'GNF'
-  | 'GQE'
   | 'GTQ'
+  | 'GNF'
   | 'GYD'
-  | 'HKD'
-  | 'HNL'
-  | 'HRK'
   | 'HTG'
+  | 'HNL'
+  | 'HKD'
   | 'HUF'
-  | 'IDR'
-  | 'ILS'
-  | 'INR'
-  | 'IQD'
-  | 'IRR'
   | 'ISK'
+  | 'INR'
+  | 'IDR'
+  | 'IRR'
+  | 'IQD'
+  | 'ILS'
   | 'JMD'
-  | 'JOD'
   | 'JPY'
-  | 'KES'
-  | 'KGS'
-  | 'KHR'
-  | 'KMF'
-  | 'KPW'
-  | 'KRW'
-  | 'KWD'
-  | 'KYD'
+  | 'JOD'
   | 'KZT'
+  | 'KES'
+  | 'KWD'
+  | 'KGS'
   | 'LAK'
-  | 'LBP'
-  | 'LKR'
-  | 'LRD'
-  | 'LSL'
-  | 'LSM'
-  | 'LTL'
   | 'LVL'
+  | 'LBP'
+  | 'LSL'
+  | 'LRD'
   | 'LYD'
-  | 'MAD'
-  | 'MDL'
-  | 'MGA'
-  | 'MKD'
-  | 'MMK'
-  | 'MNT'
+  | 'LTL'
   | 'MOP'
+  | 'MKD'
+  | 'MGA'
+  | 'MWK'
+  | 'MYR'
+  | 'MVR'
+  | 'LSM'
   | 'MRO'
   | 'MUR'
-  | 'MVR'
-  | 'MWK'
   | 'MXN'
-  | 'MYR'
+  | 'MDL'
+  | 'MNT'
+  | 'MAD'
   | 'MZN'
+  | 'MMK'
   | 'NAD'
-  | 'NGN'
-  | 'NIC'
-  | 'NOK'
   | 'NPR'
+  | 'ANG'
+  | 'YTL'
   | 'NZD'
+  | 'NIC'
+  | 'NGN'
+  | 'KPW'
+  | 'NOK'
   | 'OMR'
-  | 'PAB'
-  | 'PEN'
-  | 'PGK'
-  | 'PHP'
   | 'PKR'
-  | 'PLN'
+  | 'PAB'
+  | 'PGK'
   | 'PYG'
+  | 'PEN'
+  | 'PHP'
+  | 'PLN'
   | 'QAR'
   | 'RHD'
-  | 'ROL'
   | 'RON'
-  | 'RSD'
   | 'RUB'
   | 'RWF'
-  | 'SAR'
-  | 'SBD'
-  | 'SCR'
-  | 'SDG'
-  | 'SEK'
-  | 'SGD'
   | 'SHP'
-  | 'SKK'
-  | 'SLL'
-  | 'SOS'
-  | 'SRD'
   | 'STD'
-  | 'SVC'
-  | 'SYP'
+  | 'SAR'
+  | 'RSD'
+  | 'SCR'
+  | 'SLL'
+  | 'SGD'
+  | 'SKK'
+  | 'SBD'
+  | 'SOS'
+  | 'ZAR'
+  | 'KRW'
+  | 'LKR'
+  | 'SDG'
+  | 'SRD'
   | 'SZL'
-  | 'THB'
-  | 'TJS'
-  | 'TMM'
-  | 'TND'
-  | 'TOP'
-  | 'TRL'
-  | 'TRY'
-  | 'TTD'
+  | 'SEK'
+  | 'CHF'
+  | 'SYP'
   | 'TWD'
+  | 'TJS'
   | 'TZS'
-  | 'UAH'
-  | 'UGX'
+  | 'THB'
+  | 'TOP'
+  | 'TTD'
+  | 'TND'
+  | 'TMM'
   | 'USD'
+  | 'UGX'
+  | 'UAH'
+  | 'AED'
   | 'UYU'
   | 'UZS'
+  | 'VUV'
   | 'VEB'
   | 'VEF'
   | 'VND'
-  | 'VUV'
-  | 'WST'
-  | 'XCD'
+  | 'CHE'
+  | 'CHW'
   | 'XOF'
-  | 'XPF'
+  | 'WST'
   | 'YER'
-  | 'YTL'
-  | 'ZAR'
   | 'ZMK'
   | 'ZWD'
+  | 'TRY'
+  | 'AZM'
+  | 'ROL'
+  | 'TRL'
+  | 'XPF'
 
 /** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
 export type ProductInterface = {
@@ -2138,8 +726,8 @@ export type ProductInterface = {
 
 /** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
 export type ProductInterfaceReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** CategoryInterface contains the full set of attributes that can be returned in a category search. */
@@ -2196,8 +784,8 @@ export type CategoryInterface = {
 
 /** CategoryInterface contains the full set of attributes that can be returned in a category search. */
 export type CategoryInterfaceProductsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
   sort?: Maybe<ProductAttributeSortInput>
 }
 
@@ -2402,7 +990,7 @@ export type PriceAdjustment = {
 export type PriceAdjustmentCodesEnum = 'TAX' | 'WEEE' | 'WEEE_TAX'
 
 /** PriceAdjustmentDescriptionEnum is deprecated. This enumeration states whether a price adjustment is included or excluded. */
-export type PriceAdjustmentDescriptionEnum = 'EXCLUDED' | 'INCLUDED'
+export type PriceAdjustmentDescriptionEnum = 'INCLUDED' | 'EXCLUDED'
 
 /** Price range for a product. If the product has a single price, the minimum and maximum price will be the same. */
 export type PriceRange = {
@@ -2777,8 +1365,8 @@ export type CategoryTree = CategoryInterface & {
 
 /** Category Tree implementation. */
 export type CategoryTreeProductsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
   sort?: Maybe<ProductAttributeSortInput>
 }
 
@@ -2960,15 +1548,15 @@ export type Customer = {
 
 /** Customer defines the customer name and address and other details */
 export type CustomerOrdersArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   filter?: Maybe<CustomerOrdersFilterInput>
+  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
 }
 
 /** Customer defines the customer name and address and other details */
 export type CustomerReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** CustomerAddress contains detailed information about a customer's billing and shipping addresses */
@@ -3028,492 +1616,492 @@ export type CustomerAddress = {
 
 /** The list of countries codes */
 export type CountryCodeEnum =
-  /** Andorra */
-  | 'AD'
-  /** United Arab Emirates */
-  | 'AE'
   /** Afghanistan */
   | 'AF'
-  /** Antigua & Barbuda */
-  | 'AG'
-  /** Anguilla */
-  | 'AI'
-  /** Albania */
-  | 'AL'
-  /** Armenia */
-  | 'AM'
-  /** Netherlands Antilles */
-  | 'AN'
-  /** Angola */
-  | 'AO'
-  /** Antarctica */
-  | 'AQ'
-  /** Argentina */
-  | 'AR'
-  /** American Samoa */
-  | 'AS'
-  /** Austria */
-  | 'AT'
-  /** Australia */
-  | 'AU'
-  /** Aruba */
-  | 'AW'
   /** Åland Islands */
   | 'AX'
+  /** Albania */
+  | 'AL'
+  /** Algeria */
+  | 'DZ'
+  /** American Samoa */
+  | 'AS'
+  /** Andorra */
+  | 'AD'
+  /** Angola */
+  | 'AO'
+  /** Anguilla */
+  | 'AI'
+  /** Antarctica */
+  | 'AQ'
+  /** Antigua & Barbuda */
+  | 'AG'
+  /** Argentina */
+  | 'AR'
+  /** Armenia */
+  | 'AM'
+  /** Aruba */
+  | 'AW'
+  /** Australia */
+  | 'AU'
+  /** Austria */
+  | 'AT'
   /** Azerbaijan */
   | 'AZ'
-  /** Bosnia & Herzegovina */
-  | 'BA'
-  /** Barbados */
-  | 'BB'
-  /** Bangladesh */
-  | 'BD'
-  /** Belgium */
-  | 'BE'
-  /** Burkina Faso */
-  | 'BF'
-  /** Bulgaria */
-  | 'BG'
-  /** Bahrain */
-  | 'BH'
-  /** Burundi */
-  | 'BI'
-  /** Benin */
-  | 'BJ'
-  /** St. Barthélemy */
-  | 'BL'
-  /** Bermuda */
-  | 'BM'
-  /** Brunei */
-  | 'BN'
-  /** Bolivia */
-  | 'BO'
-  /** Brazil */
-  | 'BR'
   /** Bahamas */
   | 'BS'
-  /** Bhutan */
-  | 'BT'
-  /** Bouvet Island */
-  | 'BV'
-  /** Botswana */
-  | 'BW'
+  /** Bahrain */
+  | 'BH'
+  /** Bangladesh */
+  | 'BD'
+  /** Barbados */
+  | 'BB'
   /** Belarus */
   | 'BY'
+  /** Belgium */
+  | 'BE'
   /** Belize */
   | 'BZ'
-  /** Canada */
-  | 'CA'
-  /** Cocos (Keeling) Islands */
-  | 'CC'
-  /** Congo-Kinshasa */
-  | 'CD'
-  /** Central African Republic */
-  | 'CF'
-  /** Congo-Brazzaville */
-  | 'CG'
-  /** Switzerland */
-  | 'CH'
-  /** Côte d’Ivoire */
-  | 'CI'
-  /** Cook Islands */
-  | 'CK'
-  /** Chile */
-  | 'CL'
+  /** Benin */
+  | 'BJ'
+  /** Bermuda */
+  | 'BM'
+  /** Bhutan */
+  | 'BT'
+  /** Bolivia */
+  | 'BO'
+  /** Bosnia & Herzegovina */
+  | 'BA'
+  /** Botswana */
+  | 'BW'
+  /** Bouvet Island */
+  | 'BV'
+  /** Brazil */
+  | 'BR'
+  /** British Indian Ocean Territory */
+  | 'IO'
+  /** British Virgin Islands */
+  | 'VG'
+  /** Brunei */
+  | 'BN'
+  /** Bulgaria */
+  | 'BG'
+  /** Burkina Faso */
+  | 'BF'
+  /** Burundi */
+  | 'BI'
+  /** Cambodia */
+  | 'KH'
   /** Cameroon */
   | 'CM'
-  /** China */
-  | 'CN'
-  /** Colombia */
-  | 'CO'
-  /** Costa Rica */
-  | 'CR'
-  /** Cuba */
-  | 'CU'
+  /** Canada */
+  | 'CA'
   /** Cape Verde */
   | 'CV'
+  /** Cayman Islands */
+  | 'KY'
+  /** Central African Republic */
+  | 'CF'
+  /** Chad */
+  | 'TD'
+  /** Chile */
+  | 'CL'
+  /** China */
+  | 'CN'
   /** Christmas Island */
   | 'CX'
+  /** Cocos (Keeling) Islands */
+  | 'CC'
+  /** Colombia */
+  | 'CO'
+  /** Comoros */
+  | 'KM'
+  /** Congo-Brazzaville */
+  | 'CG'
+  /** Congo-Kinshasa */
+  | 'CD'
+  /** Cook Islands */
+  | 'CK'
+  /** Costa Rica */
+  | 'CR'
+  /** Côte d’Ivoire */
+  | 'CI'
+  /** Croatia */
+  | 'HR'
+  /** Cuba */
+  | 'CU'
   /** Cyprus */
   | 'CY'
   /** Czech Republic */
   | 'CZ'
-  /** Germany */
-  | 'DE'
-  /** Djibouti */
-  | 'DJ'
   /** Denmark */
   | 'DK'
+  /** Djibouti */
+  | 'DJ'
   /** Dominica */
   | 'DM'
   /** Dominican Republic */
   | 'DO'
-  /** Algeria */
-  | 'DZ'
   /** Ecuador */
   | 'EC'
-  /** Estonia */
-  | 'EE'
   /** Egypt */
   | 'EG'
-  /** Western Sahara */
-  | 'EH'
+  /** El Salvador */
+  | 'SV'
+  /** Equatorial Guinea */
+  | 'GQ'
   /** Eritrea */
   | 'ER'
-  /** Spain */
-  | 'ES'
+  /** Estonia */
+  | 'EE'
   /** Ethiopia */
   | 'ET'
-  /** Finland */
-  | 'FI'
-  /** Fiji */
-  | 'FJ'
   /** Falkland Islands */
   | 'FK'
-  /** Micronesia */
-  | 'FM'
   /** Faroe Islands */
   | 'FO'
+  /** Fiji */
+  | 'FJ'
+  /** Finland */
+  | 'FI'
   /** France */
   | 'FR'
-  /** Gabon */
-  | 'GA'
-  /** United Kingdom */
-  | 'GB'
-  /** Grenada */
-  | 'GD'
-  /** Georgia */
-  | 'GE'
   /** French Guiana */
   | 'GF'
-  /** Guernsey */
-  | 'GG'
+  /** French Polynesia */
+  | 'PF'
+  /** French Southern Territories */
+  | 'TF'
+  /** Gabon */
+  | 'GA'
+  /** Gambia */
+  | 'GM'
+  /** Georgia */
+  | 'GE'
+  /** Germany */
+  | 'DE'
   /** Ghana */
   | 'GH'
   /** Gibraltar */
   | 'GI'
-  /** Greenland */
-  | 'GL'
-  /** Gambia */
-  | 'GM'
-  /** Guinea */
-  | 'GN'
-  /** Guadeloupe */
-  | 'GP'
-  /** Equatorial Guinea */
-  | 'GQ'
   /** Greece */
   | 'GR'
-  /** South Georgia & South Sandwich Islands */
-  | 'GS'
-  /** Guatemala */
-  | 'GT'
+  /** Greenland */
+  | 'GL'
+  /** Grenada */
+  | 'GD'
+  /** Guadeloupe */
+  | 'GP'
   /** Guam */
   | 'GU'
+  /** Guatemala */
+  | 'GT'
+  /** Guernsey */
+  | 'GG'
+  /** Guinea */
+  | 'GN'
   /** Guinea-Bissau */
   | 'GW'
   /** Guyana */
   | 'GY'
-  /** Hong Kong SAR China */
-  | 'HK'
+  /** Haiti */
+  | 'HT'
   /** Heard &amp; McDonald Islands */
   | 'HM'
   /** Honduras */
   | 'HN'
-  /** Croatia */
-  | 'HR'
-  /** Haiti */
-  | 'HT'
+  /** Hong Kong SAR China */
+  | 'HK'
   /** Hungary */
   | 'HU'
-  /** Indonesia */
-  | 'ID'
-  /** Ireland */
-  | 'IE'
-  /** Israel */
-  | 'IL'
-  /** Isle of Man */
-  | 'IM'
-  /** India */
-  | 'IN'
-  /** British Indian Ocean Territory */
-  | 'IO'
-  /** Iraq */
-  | 'IQ'
-  /** Iran */
-  | 'IR'
   /** Iceland */
   | 'IS'
+  /** India */
+  | 'IN'
+  /** Indonesia */
+  | 'ID'
+  /** Iran */
+  | 'IR'
+  /** Iraq */
+  | 'IQ'
+  /** Ireland */
+  | 'IE'
+  /** Isle of Man */
+  | 'IM'
+  /** Israel */
+  | 'IL'
   /** Italy */
   | 'IT'
-  /** Jersey */
-  | 'JE'
   /** Jamaica */
   | 'JM'
-  /** Jordan */
-  | 'JO'
   /** Japan */
   | 'JP'
-  /** Kenya */
-  | 'KE'
-  /** Kyrgyzstan */
-  | 'KG'
-  /** Cambodia */
-  | 'KH'
-  /** Kiribati */
-  | 'KI'
-  /** Comoros */
-  | 'KM'
-  /** St. Kitts & Nevis */
-  | 'KN'
-  /** North Korea */
-  | 'KP'
-  /** South Korea */
-  | 'KR'
-  /** Kuwait */
-  | 'KW'
-  /** Cayman Islands */
-  | 'KY'
+  /** Jersey */
+  | 'JE'
+  /** Jordan */
+  | 'JO'
   /** Kazakhstan */
   | 'KZ'
+  /** Kenya */
+  | 'KE'
+  /** Kiribati */
+  | 'KI'
+  /** Kuwait */
+  | 'KW'
+  /** Kyrgyzstan */
+  | 'KG'
   /** Laos */
   | 'LA'
+  /** Latvia */
+  | 'LV'
   /** Lebanon */
   | 'LB'
-  /** St. Lucia */
-  | 'LC'
-  /** Liechtenstein */
-  | 'LI'
-  /** Sri Lanka */
-  | 'LK'
-  /** Liberia */
-  | 'LR'
   /** Lesotho */
   | 'LS'
+  /** Liberia */
+  | 'LR'
+  /** Libya */
+  | 'LY'
+  /** Liechtenstein */
+  | 'LI'
   /** Lithuania */
   | 'LT'
   /** Luxembourg */
   | 'LU'
-  /** Latvia */
-  | 'LV'
-  /** Libya */
-  | 'LY'
-  /** Morocco */
-  | 'MA'
-  /** Monaco */
-  | 'MC'
-  /** Moldova */
-  | 'MD'
-  /** Montenegro */
-  | 'ME'
-  /** St. Martin */
-  | 'MF'
-  /** Madagascar */
-  | 'MG'
-  /** Marshall Islands */
-  | 'MH'
-  /** Macedonia */
-  | 'MK'
-  /** Mali */
-  | 'ML'
-  /** Myanmar (Burma) */
-  | 'MM'
-  /** Mongolia */
-  | 'MN'
   /** Macau SAR China */
   | 'MO'
-  /** Northern Mariana Islands */
-  | 'MP'
+  /** Macedonia */
+  | 'MK'
+  /** Madagascar */
+  | 'MG'
+  /** Malawi */
+  | 'MW'
+  /** Malaysia */
+  | 'MY'
+  /** Maldives */
+  | 'MV'
+  /** Mali */
+  | 'ML'
+  /** Malta */
+  | 'MT'
+  /** Marshall Islands */
+  | 'MH'
   /** Martinique */
   | 'MQ'
   /** Mauritania */
   | 'MR'
-  /** Montserrat */
-  | 'MS'
-  /** Malta */
-  | 'MT'
   /** Mauritius */
   | 'MU'
-  /** Maldives */
-  | 'MV'
-  /** Malawi */
-  | 'MW'
+  /** Mayotte */
+  | 'YT'
   /** Mexico */
   | 'MX'
-  /** Malaysia */
-  | 'MY'
+  /** Micronesia */
+  | 'FM'
+  /** Moldova */
+  | 'MD'
+  /** Monaco */
+  | 'MC'
+  /** Mongolia */
+  | 'MN'
+  /** Montenegro */
+  | 'ME'
+  /** Montserrat */
+  | 'MS'
+  /** Morocco */
+  | 'MA'
   /** Mozambique */
   | 'MZ'
+  /** Myanmar (Burma) */
+  | 'MM'
   /** Namibia */
   | 'NA'
-  /** New Caledonia */
-  | 'NC'
-  /** Niger */
-  | 'NE'
-  /** Norfolk Island */
-  | 'NF'
-  /** Nigeria */
-  | 'NG'
-  /** Nicaragua */
-  | 'NI'
-  /** Netherlands */
-  | 'NL'
-  /** Norway */
-  | 'NO'
-  /** Nepal */
-  | 'NP'
   /** Nauru */
   | 'NR'
-  /** Niue */
-  | 'NU'
+  /** Nepal */
+  | 'NP'
+  /** Netherlands */
+  | 'NL'
+  /** Netherlands Antilles */
+  | 'AN'
+  /** New Caledonia */
+  | 'NC'
   /** New Zealand */
   | 'NZ'
+  /** Nicaragua */
+  | 'NI'
+  /** Niger */
+  | 'NE'
+  /** Nigeria */
+  | 'NG'
+  /** Niue */
+  | 'NU'
+  /** Norfolk Island */
+  | 'NF'
+  /** Northern Mariana Islands */
+  | 'MP'
+  /** North Korea */
+  | 'KP'
+  /** Norway */
+  | 'NO'
   /** Oman */
   | 'OM'
-  /** Panama */
-  | 'PA'
-  /** Peru */
-  | 'PE'
-  /** French Polynesia */
-  | 'PF'
-  /** Papua New Guinea */
-  | 'PG'
-  /** Philippines */
-  | 'PH'
   /** Pakistan */
   | 'PK'
-  /** Poland */
-  | 'PL'
-  /** St. Pierre & Miquelon */
-  | 'PM'
-  /** Pitcairn Islands */
-  | 'PN'
-  /** Palestinian Territories */
-  | 'PS'
-  /** Portugal */
-  | 'PT'
   /** Palau */
   | 'PW'
+  /** Palestinian Territories */
+  | 'PS'
+  /** Panama */
+  | 'PA'
+  /** Papua New Guinea */
+  | 'PG'
   /** Paraguay */
   | 'PY'
+  /** Peru */
+  | 'PE'
+  /** Philippines */
+  | 'PH'
+  /** Pitcairn Islands */
+  | 'PN'
+  /** Poland */
+  | 'PL'
+  /** Portugal */
+  | 'PT'
   /** Qatar */
   | 'QA'
   /** Réunion */
   | 'RE'
   /** Romania */
   | 'RO'
-  /** Serbia */
-  | 'RS'
   /** Russia */
   | 'RU'
   /** Rwanda */
   | 'RW'
-  /** Saudi Arabia */
-  | 'SA'
-  /** Solomon Islands */
-  | 'SB'
-  /** Seychelles */
-  | 'SC'
-  /** Sudan */
-  | 'SD'
-  /** Sweden */
-  | 'SE'
-  /** Singapore */
-  | 'SG'
-  /** St. Helena */
-  | 'SH'
-  /** Slovenia */
-  | 'SI'
-  /** Svalbard & Jan Mayen */
-  | 'SJ'
-  /** Slovakia */
-  | 'SK'
-  /** Sierra Leone */
-  | 'SL'
+  /** Samoa */
+  | 'WS'
   /** San Marino */
   | 'SM'
-  /** Senegal */
-  | 'SN'
-  /** Somalia */
-  | 'SO'
-  /** Suriname */
-  | 'SR'
   /** São Tomé & Príncipe */
   | 'ST'
-  /** El Salvador */
-  | 'SV'
-  /** Syria */
-  | 'SY'
+  /** Saudi Arabia */
+  | 'SA'
+  /** Senegal */
+  | 'SN'
+  /** Serbia */
+  | 'RS'
+  /** Seychelles */
+  | 'SC'
+  /** Sierra Leone */
+  | 'SL'
+  /** Singapore */
+  | 'SG'
+  /** Slovakia */
+  | 'SK'
+  /** Slovenia */
+  | 'SI'
+  /** Solomon Islands */
+  | 'SB'
+  /** Somalia */
+  | 'SO'
+  /** South Africa */
+  | 'ZA'
+  /** South Georgia & South Sandwich Islands */
+  | 'GS'
+  /** South Korea */
+  | 'KR'
+  /** Spain */
+  | 'ES'
+  /** Sri Lanka */
+  | 'LK'
+  /** St. Barthélemy */
+  | 'BL'
+  /** St. Helena */
+  | 'SH'
+  /** St. Kitts & Nevis */
+  | 'KN'
+  /** St. Lucia */
+  | 'LC'
+  /** St. Martin */
+  | 'MF'
+  /** St. Pierre & Miquelon */
+  | 'PM'
+  /** St. Vincent & Grenadines */
+  | 'VC'
+  /** Sudan */
+  | 'SD'
+  /** Suriname */
+  | 'SR'
+  /** Svalbard & Jan Mayen */
+  | 'SJ'
   /** Swaziland */
   | 'SZ'
-  /** Turks & Caicos Islands */
-  | 'TC'
-  /** Chad */
-  | 'TD'
-  /** French Southern Territories */
-  | 'TF'
-  /** Togo */
-  | 'TG'
-  /** Thailand */
-  | 'TH'
-  /** Tajikistan */
-  | 'TJ'
-  /** Tokelau */
-  | 'TK'
-  /** Timor-Leste */
-  | 'TL'
-  /** Turkmenistan */
-  | 'TM'
-  /** Tunisia */
-  | 'TN'
-  /** Tonga */
-  | 'TO'
-  /** Turkey */
-  | 'TR'
-  /** Trinidad & Tobago */
-  | 'TT'
-  /** Tuvalu */
-  | 'TV'
+  /** Sweden */
+  | 'SE'
+  /** Switzerland */
+  | 'CH'
+  /** Syria */
+  | 'SY'
   /** Taiwan */
   | 'TW'
+  /** Tajikistan */
+  | 'TJ'
   /** Tanzania */
   | 'TZ'
-  /** Ukraine */
-  | 'UA'
+  /** Thailand */
+  | 'TH'
+  /** Timor-Leste */
+  | 'TL'
+  /** Togo */
+  | 'TG'
+  /** Tokelau */
+  | 'TK'
+  /** Tonga */
+  | 'TO'
+  /** Trinidad & Tobago */
+  | 'TT'
+  /** Tunisia */
+  | 'TN'
+  /** Turkey */
+  | 'TR'
+  /** Turkmenistan */
+  | 'TM'
+  /** Turks & Caicos Islands */
+  | 'TC'
+  /** Tuvalu */
+  | 'TV'
   /** Uganda */
   | 'UG'
-  /** U.S. Outlying Islands */
-  | 'UM'
+  /** Ukraine */
+  | 'UA'
+  /** United Arab Emirates */
+  | 'AE'
+  /** United Kingdom */
+  | 'GB'
   /** United States */
   | 'US'
   /** Uruguay */
   | 'UY'
-  /** Uzbekistan */
-  | 'UZ'
-  /** Vatican City */
-  | 'VA'
-  /** St. Vincent & Grenadines */
-  | 'VC'
-  /** Venezuela */
-  | 'VE'
-  /** British Virgin Islands */
-  | 'VG'
+  /** U.S. Outlying Islands */
+  | 'UM'
   /** U.S. Virgin Islands */
   | 'VI'
-  /** Vietnam */
-  | 'VN'
+  /** Uzbekistan */
+  | 'UZ'
   /** Vanuatu */
   | 'VU'
+  /** Vatican City */
+  | 'VA'
+  /** Venezuela */
+  | 'VE'
+  /** Vietnam */
+  | 'VN'
   /** Wallis & Futuna */
   | 'WF'
-  /** Samoa */
-  | 'WS'
+  /** Western Sahara */
+  | 'EH'
   /** Yemen */
   | 'YE'
-  /** Mayotte */
-  | 'YT'
-  /** South Africa */
-  | 'ZA'
   /** Zambia */
   | 'ZM'
   /** Zimbabwe */
@@ -3986,7 +2574,7 @@ export type PaymentToken = {
 }
 
 /** The list of available payment token types */
-export type PaymentTokenTypeEnum = 'account' | 'card'
+export type PaymentTokenTypeEnum = 'card' | 'account'
 
 /** The required input to request the secure URL for Payments Pro Hosted Solution payment. */
 export type HostedProUrlInput = {
@@ -4021,7 +2609,7 @@ export type PayflowLinkToken = {
 }
 
 /** Mode for payment: TEST or LIVE. Applies to Payflow Link and Payments Advanced payment methods. */
-export type PayflowLinkMode = 'LIVE' | 'TEST'
+export type PayflowLinkMode = 'TEST' | 'LIVE'
 
 export type IsEmailAvailableOutput = {
   __typename?: 'IsEmailAvailableOutput'
@@ -4376,7 +2964,7 @@ export type EntityUrl = {
 }
 
 /** This enumeration defines the entity type. */
-export type UrlRewriteEntityTypeEnum = 'CATEGORY' | 'CMS_PAGE' | 'PRODUCT'
+export type UrlRewriteEntityTypeEnum = 'CMS_PAGE' | 'PRODUCT' | 'CATEGORY'
 
 /** Deprecated: `Wishlist` type should be used instead */
 export type WishlistOutput = {
@@ -4406,6 +2994,267 @@ export type WishlistOutput = {
    * @deprecated Use field `updated_at` from type `Wishlist` instead
    */
   updated_at?: Maybe<Scalars['String']>
+}
+
+export type Mutation = {
+  __typename?: 'Mutation'
+  addBundleProductsToCart?: Maybe<AddBundleProductsToCartOutput>
+  addConfigurableProductsToCart?: Maybe<AddConfigurableProductsToCartOutput>
+  addDownloadableProductsToCart?: Maybe<AddDownloadableProductsToCartOutput>
+  /** Add any type of product to the cart */
+  addProductsToCart?: Maybe<AddProductsToCartOutput>
+  /** Adds one or more products to the specified wish list. This mutation supports all product types */
+  addProductsToWishlist?: Maybe<AddProductsToWishlistOutput>
+  addSimpleProductsToCart?: Maybe<AddSimpleProductsToCartOutput>
+  addVirtualProductsToCart?: Maybe<AddVirtualProductsToCartOutput>
+  applyCouponToCart?: Maybe<ApplyCouponToCartOutput>
+  /** Changes the password for the logged-in customer */
+  changeCustomerPassword?: Maybe<Customer>
+  /** Creates Client Token for Braintree Javascript SDK initialization. */
+  createBraintreeClientToken: Scalars['String']
+  /** Create customer account */
+  createCustomer?: Maybe<CustomerOutput>
+  /** Create customer address */
+  createCustomerAddress?: Maybe<CustomerAddress>
+  /** Create customer account */
+  createCustomerV2?: Maybe<CustomerOutput>
+  /** Creates an empty shopping cart for a guest or logged in user */
+  createEmptyCart?: Maybe<Scalars['String']>
+  /** Creates a Klarna Payments Session. */
+  createKlarnaPaymentsSession?: Maybe<CreateKlarnaPaymentsSessionOutput>
+  /** Initiates a transaction and receives a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
+  createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>
+  /** Initiates an Express Checkout transaction and receives a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
+  createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>
+  /** Creates a product review for the specified SKU */
+  createProductReview: CreateProductReviewOutput
+  /** Delete customer address */
+  deleteCustomerAddress?: Maybe<Scalars['Boolean']>
+  /** Delete a customer payment token */
+  deletePaymentToken?: Maybe<DeletePaymentTokenOutput>
+  /** Retrieve the customer token */
+  generateCustomerToken?: Maybe<CustomerToken>
+  /** Handles payment response and saves payment in Quote. Use this mutations for Payflow Pro and Payments Pro payment methods. */
+  handlePayflowProResponse?: Maybe<PayflowProResponseOutput>
+  /** Merges the source cart into the destination cart */
+  mergeCarts: Cart
+  placeOrder?: Maybe<PlaceOrderOutput>
+  removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>
+  removeItemFromCart?: Maybe<RemoveItemFromCartOutput>
+  /** Removes one or more products from the specified wish list */
+  removeProductsFromWishlist?: Maybe<RemoveProductsFromWishlistOutput>
+  /** Adds all products from a customer's previous order to the cart. */
+  reorderItems?: Maybe<ReorderItemsOutput>
+  /** Request an email with a reset password token for the registered customer identified by the specified email. */
+  requestPasswordResetEmail?: Maybe<Scalars['Boolean']>
+  /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using requestPasswordResetEmail. */
+  resetPassword?: Maybe<Scalars['Boolean']>
+  /** Revoke the customer token */
+  revokeCustomerToken?: Maybe<RevokeCustomerTokenOutput>
+  /** Recommends Product by Sending Single/Multiple Email */
+  sendEmailToFriend?: Maybe<SendEmailToFriendOutput>
+  setBillingAddressOnCart?: Maybe<SetBillingAddressOnCartOutput>
+  setGuestEmailOnCart?: Maybe<SetGuestEmailOnCartOutput>
+  /** @deprecated Should use setPaymentMethodOnCart and placeOrder mutations in single request. */
+  setPaymentMethodAndPlaceOrder?: Maybe<PlaceOrderOutput>
+  setPaymentMethodOnCart?: Maybe<SetPaymentMethodOnCartOutput>
+  setShippingAddressesOnCart?: Maybe<SetShippingAddressesOnCartOutput>
+  setShippingMethodsOnCart?: Maybe<SetShippingMethodsOnCartOutput>
+  /** Subscribes the specified email to a newsletter */
+  subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>
+  updateCartItems?: Maybe<UpdateCartItemsOutput>
+  /** Deprecated. Use UpdateCustomerV2 instead. */
+  updateCustomer?: Maybe<CustomerOutput>
+  /** Update customer address */
+  updateCustomerAddress?: Maybe<CustomerAddress>
+  updateCustomerEmail?: Maybe<CustomerOutput>
+  /** Update the customer's personal information */
+  updateCustomerV2?: Maybe<CustomerOutput>
+  /** Updates one or more products in the specified wish list */
+  updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>
+}
+
+export type MutationAddBundleProductsToCartArgs = {
+  input?: Maybe<AddBundleProductsToCartInput>
+}
+
+export type MutationAddConfigurableProductsToCartArgs = {
+  input?: Maybe<AddConfigurableProductsToCartInput>
+}
+
+export type MutationAddDownloadableProductsToCartArgs = {
+  input?: Maybe<AddDownloadableProductsToCartInput>
+}
+
+export type MutationAddProductsToCartArgs = {
+  cartId: Scalars['String']
+  cartItems: Array<CartItemInput>
+}
+
+export type MutationAddProductsToWishlistArgs = {
+  wishlistId: Scalars['ID']
+  wishlistItems: Array<WishlistItemInput>
+}
+
+export type MutationAddSimpleProductsToCartArgs = {
+  input?: Maybe<AddSimpleProductsToCartInput>
+}
+
+export type MutationAddVirtualProductsToCartArgs = {
+  input?: Maybe<AddVirtualProductsToCartInput>
+}
+
+export type MutationApplyCouponToCartArgs = {
+  input?: Maybe<ApplyCouponToCartInput>
+}
+
+export type MutationChangeCustomerPasswordArgs = {
+  currentPassword: Scalars['String']
+  newPassword: Scalars['String']
+}
+
+export type MutationCreateCustomerArgs = {
+  input: CustomerInput
+}
+
+export type MutationCreateCustomerAddressArgs = {
+  input: CustomerAddressInput
+}
+
+export type MutationCreateCustomerV2Args = {
+  input: CustomerCreateInput
+}
+
+export type MutationCreateEmptyCartArgs = {
+  input?: Maybe<CreateEmptyCartInput>
+}
+
+export type MutationCreateKlarnaPaymentsSessionArgs = {
+  input?: Maybe<CreateKlarnaPaymentsSessionInput>
+}
+
+export type MutationCreatePayflowProTokenArgs = {
+  input: PayflowProTokenInput
+}
+
+export type MutationCreatePaypalExpressTokenArgs = {
+  input: PaypalExpressTokenInput
+}
+
+export type MutationCreateProductReviewArgs = {
+  input: CreateProductReviewInput
+}
+
+export type MutationDeleteCustomerAddressArgs = {
+  id: Scalars['Int']
+}
+
+export type MutationDeletePaymentTokenArgs = {
+  public_hash: Scalars['String']
+}
+
+export type MutationGenerateCustomerTokenArgs = {
+  email: Scalars['String']
+  password: Scalars['String']
+}
+
+export type MutationHandlePayflowProResponseArgs = {
+  input: PayflowProResponseInput
+}
+
+export type MutationMergeCartsArgs = {
+  source_cart_id: Scalars['String']
+  destination_cart_id: Scalars['String']
+}
+
+export type MutationPlaceOrderArgs = {
+  input?: Maybe<PlaceOrderInput>
+}
+
+export type MutationRemoveCouponFromCartArgs = {
+  input?: Maybe<RemoveCouponFromCartInput>
+}
+
+export type MutationRemoveItemFromCartArgs = {
+  input?: Maybe<RemoveItemFromCartInput>
+}
+
+export type MutationRemoveProductsFromWishlistArgs = {
+  wishlistId: Scalars['ID']
+  wishlistItemsIds: Array<Scalars['ID']>
+}
+
+export type MutationReorderItemsArgs = {
+  orderNumber: Scalars['String']
+}
+
+export type MutationRequestPasswordResetEmailArgs = {
+  email: Scalars['String']
+}
+
+export type MutationResetPasswordArgs = {
+  email: Scalars['String']
+  resetPasswordToken: Scalars['String']
+  newPassword: Scalars['String']
+}
+
+export type MutationSendEmailToFriendArgs = {
+  input?: Maybe<SendEmailToFriendInput>
+}
+
+export type MutationSetBillingAddressOnCartArgs = {
+  input?: Maybe<SetBillingAddressOnCartInput>
+}
+
+export type MutationSetGuestEmailOnCartArgs = {
+  input?: Maybe<SetGuestEmailOnCartInput>
+}
+
+export type MutationSetPaymentMethodAndPlaceOrderArgs = {
+  input?: Maybe<SetPaymentMethodAndPlaceOrderInput>
+}
+
+export type MutationSetPaymentMethodOnCartArgs = {
+  input?: Maybe<SetPaymentMethodOnCartInput>
+}
+
+export type MutationSetShippingAddressesOnCartArgs = {
+  input?: Maybe<SetShippingAddressesOnCartInput>
+}
+
+export type MutationSetShippingMethodsOnCartArgs = {
+  input?: Maybe<SetShippingMethodsOnCartInput>
+}
+
+export type MutationSubscribeEmailToNewsletterArgs = {
+  email: Scalars['String']
+}
+
+export type MutationUpdateCartItemsArgs = {
+  input?: Maybe<UpdateCartItemsInput>
+}
+
+export type MutationUpdateCustomerArgs = {
+  input: CustomerInput
+}
+
+export type MutationUpdateCustomerAddressArgs = {
+  id: Scalars['Int']
+  input?: Maybe<CustomerAddressInput>
+}
+
+export type MutationUpdateCustomerEmailArgs = {
+  email: Scalars['String']
+  password: Scalars['String']
+}
+
+export type MutationUpdateCustomerV2Args = {
+  input: CustomerUpdateInput
+}
+
+export type MutationUpdateProductsInWishlistArgs = {
+  wishlistId: Scalars['ID']
+  wishlistItems: Array<WishlistItemUpdateInput>
 }
 
 export type AddBundleProductsToCartInput = {
@@ -4510,9 +3359,9 @@ export type CartUserInputError = {
 }
 
 export type CartUserInputErrorType =
-  | 'INSUFFICIENT_STOCK'
-  | 'NOT_SALABLE'
   | 'PRODUCT_NOT_FOUND'
+  | 'NOT_SALABLE'
+  | 'INSUFFICIENT_STOCK'
   | 'UNDEFINED'
 
 /** Defines the items to add to a wish list */
@@ -4925,10 +3774,10 @@ export type CheckoutUserInputError = {
 }
 
 export type CheckoutUserInputErrorCodes =
-  | 'INSUFFICIENT_STOCK'
-  | 'NOT_SALABLE'
-  | 'PRODUCT_NOT_FOUND'
   | 'REORDER_NOT_AVAILABLE'
+  | 'PRODUCT_NOT_FOUND'
+  | 'NOT_SALABLE'
+  | 'INSUFFICIENT_STOCK'
   | 'UNDEFINED'
 
 export type RevokeCustomerTokenOutput = {
@@ -5171,7 +4020,7 @@ export type SubscribeEmailToNewsletterOutput = {
   status?: Maybe<SubscriptionStatusesEnum>
 }
 
-export type SubscriptionStatusesEnum = 'NOT_ACTIVE' | 'SUBSCRIBED' | 'UNCONFIRMED' | 'UNSUBSCRIBED'
+export type SubscriptionStatusesEnum = 'NOT_ACTIVE' | 'SUBSCRIBED' | 'UNSUBSCRIBED' | 'UNCONFIRMED'
 
 export type UpdateCartItemsInput = {
   cart_id: Scalars['String']
@@ -5248,7 +4097,7 @@ export type UpdateProductsInWishlistOutput = {
 }
 
 /** This enumeration the price type. */
-export type PriceTypeEnum = 'DYNAMIC' | 'FIXED' | 'PERCENT'
+export type PriceTypeEnum = 'FIXED' | 'PERCENT' | 'DYNAMIC'
 
 /** ProductLinks is an implementation of ProductLinksInterface. */
 export type ProductLinks = ProductLinksInterface & {
@@ -5571,8 +4420,8 @@ export type CustomizableCheckboxValue = {
 }
 
 /** A virtual product is non-tangible product that does not require shipping and is not kept in inventory. */
-export type VirtualProduct = CustomizableProductInterface &
-  ProductInterface & {
+export type VirtualProduct = ProductInterface &
+  CustomizableProductInterface & {
     __typename?: 'VirtualProduct'
     activity?: Maybe<Scalars['String']>
     /** The attribute set assigned to the product. */
@@ -5715,14 +4564,14 @@ export type VirtualProduct = CustomizableProductInterface &
 
 /** A virtual product is non-tangible product that does not require shipping and is not kept in inventory. */
 export type VirtualProductReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** A simple product is tangible and are usually sold as single units or in fixed quantities. */
-export type SimpleProduct = CustomizableProductInterface &
+export type SimpleProduct = ProductInterface &
   PhysicalProductInterface &
-  ProductInterface & {
+  CustomizableProductInterface & {
     __typename?: 'SimpleProduct'
     activity?: Maybe<Scalars['String']>
     /** The attribute set assigned to the product. */
@@ -5867,8 +4716,8 @@ export type SimpleProduct = CustomizableProductInterface &
 
 /** A simple product is tangible and are usually sold as single units or in fixed quantities. */
 export type SimpleProductReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** ProductFilterInput is deprecated, use @ProductAttributeFilterInput instead. ProductFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
@@ -6147,8 +4996,8 @@ export type DownloadableProductSamples = {
 }
 
 /** DownloadableProduct defines a product that the customer downloads */
-export type DownloadableProduct = CustomizableProductInterface &
-  ProductInterface & {
+export type DownloadableProduct = ProductInterface &
+  CustomizableProductInterface & {
     __typename?: 'DownloadableProduct'
     activity?: Maybe<Scalars['String']>
     /** The attribute set assigned to the product. */
@@ -6299,8 +5148,8 @@ export type DownloadableProduct = CustomizableProductInterface &
 
 /** DownloadableProduct defines a product that the customer downloads */
 export type DownloadableProductReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 export type DownloadableOrderItem = OrderItemInterface & {
@@ -6470,9 +5319,9 @@ export type BundleItemOption = {
 }
 
 /** BundleProduct defines basic features of a bundle product and contains multiple BundleItems. */
-export type BundleProduct = CustomizableProductInterface &
+export type BundleProduct = ProductInterface &
   PhysicalProductInterface &
-  ProductInterface & {
+  CustomizableProductInterface & {
     __typename?: 'BundleProduct'
     activity?: Maybe<Scalars['String']>
     /** The attribute set assigned to the product. */
@@ -6629,15 +5478,15 @@ export type BundleProduct = CustomizableProductInterface &
 
 /** BundleProduct defines basic features of a bundle product and contains multiple BundleItems. */
 export type BundleProductReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** This enumeration defines whether a bundle product's price is displayed as the lowest possible value or as a range. */
-export type PriceViewEnum = 'AS_LOW_AS' | 'PRICE_RANGE'
+export type PriceViewEnum = 'PRICE_RANGE' | 'AS_LOW_AS'
 
 /** This enumeration defines whether bundle items must be shipped together. */
-export type ShipBundleItemsEnum = 'SEPARATELY' | 'TOGETHER'
+export type ShipBundleItemsEnum = 'TOGETHER' | 'SEPARATELY'
 
 export type BundleOrderItem = OrderItemInterface & {
   __typename?: 'BundleOrderItem'
@@ -6788,8 +5637,8 @@ export type SalesItemInterface = {
 }
 
 /** GroupedProduct defines a grouped product */
-export type GroupedProduct = PhysicalProductInterface &
-  ProductInterface & {
+export type GroupedProduct = ProductInterface &
+  PhysicalProductInterface & {
     __typename?: 'GroupedProduct'
     activity?: Maybe<Scalars['String']>
     /** The attribute set assigned to the product. */
@@ -6934,8 +5783,8 @@ export type GroupedProduct = PhysicalProductInterface &
 
 /** GroupedProduct defines a grouped product */
 export type GroupedProductReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** GroupedProductItem contains information about an individual grouped product item */
@@ -6975,9 +5824,9 @@ export type PayflowProToken = {
 }
 
 /** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
-export type ConfigurableProduct = CustomizableProductInterface &
+export type ConfigurableProduct = ProductInterface &
   PhysicalProductInterface &
-  ProductInterface & {
+  CustomizableProductInterface & {
     __typename?: 'ConfigurableProduct'
     activity?: Maybe<Scalars['String']>
     /** The attribute set assigned to the product. */
@@ -7126,8 +5975,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
 
 /** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
 export type ConfigurableProductReviewsArgs = {
-  currentPage?: Maybe<Scalars['Int']>
   pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** ConfigurableProductOptions defines configurable attributes for the specified product */
