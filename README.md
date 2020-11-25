@@ -31,10 +31,6 @@ Make sure you're using Node >= 12: `nvm install 12 && nvm alias default node`
 4. Fill in `GRAPHCMS_BEARER` in `examples/soxbase-api/.env`, in 1Pass under
    `soxbase-api`
 5. `cp examples/soxbase/.env.example examples/soxbase/.env`
-6. ```
-   yarn workspace @reachdigital/graphql-codegen-near-operation-file build
-   yarn workspace @reachdigital/graphql-codegen-relay-optimizer-plugin build
-   ```
 
 ## Customize endpoint:
 
@@ -67,3 +63,7 @@ Using https://semantic-release.gitbook.io/.
 - To deploy a testbranch, create a new branch and it will automatically be
   pushed.
 - To deploy a release, push commits to master.
+
+## Upgrading dependencies
+
+`yarn upgrade-interactive --latest`
