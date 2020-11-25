@@ -9,8 +9,6 @@ import { useProductLink } from './ProductLink'
 import { ProductListItemFragment } from './ProductListItem.gql'
 import ProductListPrice from './ProductListPrice'
 
-const imageContainerHeight = responsiveVal(150, 400)
-
 export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
@@ -43,11 +41,11 @@ export const useProductListItemStyles = makeStyles(
       `,
       top: 0,
       position: 'absolute',
-      height: imageContainerHeight,
+      height: responsiveVal(200, 400),
       alignContent: 'space-between',
       width: '100%',
-      gridTemplateColumns: 'repeat(2, minmax(0,1fr))',
-      gridTemplateRows: 'repeat(2, minmax(0,1fr))',
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+      gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
       padding: responsiveVal(8, 12),
     },
     cellAlignRight: {
@@ -66,7 +64,8 @@ export const useProductListItemStyles = makeStyles(
     imageContainer: {
       display: 'block',
       position: 'relative',
-      height: imageContainerHeight,
+      height: responsiveVal(200, 400),
+      maxHeight: 400,
       paddingTop: 'calc(100% / 3 * 2)',
       background: 'rgba(0, 0, 0, 0.04)',
       '&::before': {

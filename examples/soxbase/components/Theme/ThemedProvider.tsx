@@ -35,10 +35,10 @@ export const defaultTheme = createMuiTheme({
   },
   breakpoints: {
     values: {
-      xs: 0,
+      xs: 300,
       sm: 600,
       md: 960,
-      lg: 1500,
+      lg: 1800,
       xl: 1920,
     },
   },
@@ -81,7 +81,7 @@ export const defaultTheme = createMuiTheme({
       lineHeight: 1.55,
     },
     h6: {
-      fontSize: responsiveVal(14, 17),
+      fontSize: responsiveVal(14, 18),
       fontWeight: 500,
       letterSpacing: '-0.0375em',
     },

@@ -8,13 +8,21 @@ import { ProductListItemProps } from './ProductListItem'
 import { ProductListItemsFragment } from './ProductListItems.gql'
 import { FilterTypes } from './ProductListItems/filterTypes'
 
+const blockSize = responsiveVal(200, 400)
+
 const useStyles = makeStyles(
   (theme: Theme) => ({
     productList: {
       display: 'grid',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 285)}, 1fr))`,
+      gridTemplateColumns: `repeat(4, minmax(${blockSize}, 1fr))`,
+      [theme.breakpoints.between('sm', 'md')]: {
+        gridTemplateColumns: `repeat(3, minmax(auto, 1fr))`,
+      },
+      [theme.breakpoints.down('sm')]: {
+        gridTemplateColumns: `repeat(auto-fill, minmax(${blockSize}, 1fr))`,
+      },
     },
   }),
   { name: 'ProductList' },

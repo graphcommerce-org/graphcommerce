@@ -38,8 +38,9 @@ const useCategoryPageStyles = makeStyles(
       marginBottom: responsiveVal(40, 80),
       display: 'flex',
       alignItems: 'left',
+      fontSize: 18,
       '& span': {
-        padding: '10px 10px 0 10px',
+        padding: '8px 8px 0 10px',
       },
       '& a': {
         transition: 'background .25s ease',
