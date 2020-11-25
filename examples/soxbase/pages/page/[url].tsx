@@ -12,14 +12,16 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import Page from '../../components/Page'
+import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CmsPageQuery & HeaderProps
+type Props = CmsPageQuery & HeaderProps & PageByUrlQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const CmsPage = ({ cmsPage, menu, urlResolver }: Props) => {
+const CmsPage = ({ cmsPage, menu, urlResolver, pages }: Props) => {
   if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
 
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
@@ -28,7 +30,7 @@ const CmsPage = ({ cmsPage, menu, urlResolver }: Props) => {
     <FullPageUi title={cmsPage.title ?? ''}>
       <Header menu={menu} urlResolver={urlResolver} />
       <CmsPageMeta {...cmsPage} />
-      <CmsPageContent {...cmsPage} />
+      {pages?.[0] ? <Page {...pages?.[0]} /> : <CmsPageContent {...cmsPage} />}
     </FullPageUi>
   )
 }
@@ -63,7 +65,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const cmsPage = staticClient.query({ query: CmsPageDocument, variables: { urlKey } })
-
+  const page = staticClient.query({
+    query: PageByUrlDocument,
+    variables: { url: `page/${urlKey}` },
+  })
   const { urlResolver } = (await resolveUrl).data
   if (!urlResolver?.id || urlResolver?.type !== 'CMS_PAGE') return { notFound: true }
 
@@ -73,6 +78,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await resolveUrl).data,
       ...(await pageLayout).data,
       ...(await cmsPage).data,
+      ...(await page).data,
       apolloState: client.cache.extract(),
     },
     revalidate: 60 * 20,

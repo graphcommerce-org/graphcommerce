@@ -1,7 +1,7 @@
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
-import RowColumnOne from '@reachdigital/graphcms-ui/RowColumnOne'
-import RowColumnTwo from '@reachdigital/graphcms-ui/RowColumnTwo'
-import RowColumnThree from '@reachdigital/graphcms-ui/RowColumnThree'
+import RowColumnOne from '../RowColumnOne'
+import RowColumnThree from '../RowColumnThree'
+import RowColumnTwo from '../RowColumnTwo'
 import { PageFragment } from './Page.gql'
 
 type ContentTypeRenderer = TypeRenderer<PageFragment['content'][0]>

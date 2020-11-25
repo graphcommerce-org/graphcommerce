@@ -30,16 +30,18 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import Page from '../components/Page'
+import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps & HeaderProps
+type Props = CategoryPageProps & HeaderProps & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const classes = useCategoryPageStyles(props)
-  const { categories, products, filters, params, filterTypes, menu, urlResolver } = props
+  const { categories, products, filters, params, filterTypes, menu, urlResolver, pages } = props
 
   if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
     return <NextError statusCode={503} title='Loading skeleton' />
@@ -106,6 +108,7 @@ function CategoryPage(props: Props) {
     <FullPageUi title={category.name ?? ''}>
       <Header menu={menu} urlResolver={urlResolver} />
       <CategoryMeta {...category} />
+      {pages?.[0] && <Page {...pages?.[0]} />}
       {content}
     </FullPageUi>
   )
@@ -145,6 +148,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     const suffix = (await config).data?.storeConfig?.category_url_suffix ?? ''
     const urlKey = `${urlPath}${suffix}`
 
+    const page = staticClient.query({
+      query: PageByUrlDocument,
+      variables: { url: `${params.url}` },
+    })
+
     const resolveUrl = client.query({ query: ResolveUrlDocument, variables: { urlKey } })
     const categoryPage = getCategoryPageProps({ urlPath, urlParams, resolveUrl }, staticClient)
     const pageLayout = staticClient.query({ query: PageLayoutDocument })
@@ -169,6 +177,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
         ...(await resolveUrl).data,
         ...(await pageLayout).data,
         ...(await categoryPage),
+        ...(await page).data,
         apolloState: client.cache.extract(),
       },
       revalidate: 60 * 20,

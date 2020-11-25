@@ -22,14 +22,16 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
+import Page from '../../components/Page'
+import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = ProductPageQuery
+type Props = ProductPageQuery & PageByUrlQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductPage({ products }: Props) {
+function ProductPage({ products, pages }: Props) {
   const classes = useCategoryPageStyles()
 
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
@@ -59,6 +61,7 @@ function ProductPage({ products }: Props) {
           short_description={product.short_description}
         />
         <ProductPageGallery media_gallery={product.media_gallery} sku={product.sku} />
+        {pages?.[0] && <Page {...pages?.[0]} />}
         <ProductPageUpsell upsell_products={product.upsell_products} />
         <ProductPageRelated related_products={product.related_products} />
       </Container>
@@ -90,6 +93,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(localeToStore(locale))
   const config = client.query({ query: StoreConfigDocument })
 
+  const page = staticClient.query({
+    query: PageByUrlDocument,
+    variables: { url: `product/${urlKey}` },
+  })
   const productPage = staticClient.query({ query: ProductPageDocument, variables: { urlKey } })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
@@ -101,6 +108,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await resolveUrl).data,
       ...(await pageLayout).data,
       ...(await productPage).data,
+      ...(await page).data,
       apolloState: client.cache.extract(),
     },
     revalidate: 60 * 20,
