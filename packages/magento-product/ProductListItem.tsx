@@ -62,25 +62,12 @@ export const useProductListItemStyles = makeStyles(
         fontSize: 14,
       },
     },
-    imageContainer: {
+    imageContainer: ({ aspectRatio = [4, 3] }: BaseProps) => ({
       display: 'block',
       position: 'relative',
-      paddingTop: 'calc(100% / 3 * 2)',
-      background: 'rgba(0, 0, 0, 0.04)',
-      '&::before': {
-        content: '""',
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
-        display: 'block',
-        transform: 'scale(.85, 0.95)',
-        top: 0,
-        left: 0,
-      },
-      [theme.breakpoints.up('md')]: {
-        height: '100%',
-      },
-    },
+      paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
+      background: 'rgba(0, 0, 0, 0.04)', // thema specifiek
+    }),
     placeholder: {
       display: 'flex',
       textAlign: 'center',
@@ -100,7 +87,7 @@ export const useProductListItemStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
-      mixBlendMode: 'multiply',
+      mixBlendMode: 'multiply', // thema specifiek
     },
     link: {
       textDecoration: 'underline',
@@ -120,11 +107,12 @@ export type SwatchLocationKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottom
 
 export type SwatchLocations = Partial<Record<SwatchLocationKeys, React.ReactNode>>
 
-export type ProductListItemProps = PropsWithChildren<
-  { subTitle?: React.ReactNode } & SwatchLocations &
-    ProductListItemFragment &
-    UseStyles<typeof useProductListItemStyles>
+type BaseProps = PropsWithChildren<
+  { subTitle?: React.ReactNode; aspectRatio?: [number, number] } & SwatchLocations &
+    ProductListItemFragment
 >
+
+export type ProductListItemProps = BaseProps & UseStyles<typeof useProductListItemStyles>
 
 export default function ProductListItem(props: ProductListItemProps) {
   const {

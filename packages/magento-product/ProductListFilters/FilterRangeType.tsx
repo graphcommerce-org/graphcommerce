@@ -78,8 +78,8 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       return [minVal, maxVal]
     })
     .reduce(([prevMin, prevMax], [curMin, curMax]) => {
-      return [Math.max(Math.min(prevMin, curMin), 1), Math.max(curMax, prevMax)]
-    }) ?? [1, 1]
+      return [Math.min(prevMin, curMin), Math.max(curMax, prevMax)]
+    }) ?? [0, 0]
 
   // eslint-disable-next-line no-case-declarations
   const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
@@ -130,7 +130,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     >
       <div className={classes.container}>
         <div className={classes.filterValueLabel}>
-          <Money value={value[0]} /> - <Money value={value[1]} />
+          <Money value={Math.max(1, value[0])} /> - <Money value={value[1]} />
         </div>
 
         <Slider

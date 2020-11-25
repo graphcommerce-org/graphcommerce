@@ -34,11 +34,7 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
       selected={selected}
       label={label}
       {...filterMenuProps}
-      selectedLabel={
-        selected && currentOption?.label
-          ? `Sorted by ${currentOption?.label?.toLowerCase()}`
-          : label
-      }
+      selectedLabel={selected && currentOption?.label ? currentOption?.label?.toLowerCase() : label}
       onDelete={selected ? removeFilter : undefined}
     >
       {sort_fields?.options?.map((option) => {

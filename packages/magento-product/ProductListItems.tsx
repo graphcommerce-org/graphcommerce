@@ -8,7 +8,8 @@ import { ProductListItemProps } from './ProductListItem'
 import { ProductListItemsFragment } from './ProductListItems.gql'
 import { FilterTypes } from './ProductListItems/filterTypes'
 
-export const productItemBlockSize = responsiveVal(150, 360)
+// Wat als ik de verhouding niet 1:1 wil maken, maar 16:9?
+// Wil ik het grid 1:1 maken of wil ik de afbeelding 1:1 maken?
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -16,10 +17,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${productItemBlockSize}, 1fr))`,
-      [theme.breakpoints.up('md')]: {
-        gridAutoRows: 'minmax(360px, auto)',
-      },
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
     },
   }),
   { name: 'ProductList' },

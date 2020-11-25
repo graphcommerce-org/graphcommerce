@@ -35,9 +35,10 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   return (
     <>
       <ProductListItemConfigurableBase
+        subTitle='By Soxbase'
+        aspectRatio={[1, 1]}
         {...props}
         swatchLocations={swatchLocations}
-        subTitle='By Soxbase'
         Actions={AddToCartAction}
       />
     </>

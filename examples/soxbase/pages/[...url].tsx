@@ -68,9 +68,8 @@ const useProductListStyles = makeStyles(
           [`${selector}`]: {
             gridColumn: 'span 2',
             gridRow: 'span 2;',
-            height: responsiveVal(200, 840),
-            '& a > div': {
-              height: responsiveVal(200, 840),
+            '& > a > div': {
+              paddingTop: `calc(100% + ${theme.spacings.lg} - 2px)`,
             },
           },
         },

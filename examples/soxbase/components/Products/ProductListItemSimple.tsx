@@ -7,7 +7,7 @@ import ProductListItemSimpleBase, {
 export default function ProductListItemSimple(props: ProductListItemSimpleProps) {
   const { name, sku } = props
   return (
-    <ProductListItemSimpleBase {...props} subTitle='By soxbase'>
+    <ProductListItemSimpleBase {...props} subTitle='By soxbase' aspectRatio={[1, 1]}>
       <AddToCartButton
         mutation={AddSimpleProductToCartDocument}
         variables={{ sku: sku ?? '' }}

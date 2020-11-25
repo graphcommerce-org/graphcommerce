@@ -20,7 +20,7 @@ export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragme
   ProductListItemProps & {
     filterTypes: FilterTypes
     Actions?: React.VFC<ActionsComponentProps>
-    swatchLocations: Record<SwatchLocationKeys, string[]>
+    swatchLocations?: Record<SwatchLocationKeys, string[]>
   }
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
@@ -30,7 +30,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     configurable_options,
     filterTypes,
     children,
-    swatchLocations,
+    swatchLocations = { bottomLeft: [], bottomRight: [], topLeft: [], topRight: [] },
     ...configurableProduct
   } = props
   const { params } = useProductListParamsContext()

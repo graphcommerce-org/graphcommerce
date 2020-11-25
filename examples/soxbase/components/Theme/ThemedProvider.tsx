@@ -15,7 +15,7 @@ export const defaultTheme = createMuiTheme({
       dark: '#DC0000',
     },
     secondary: {
-      main: '#000',
+      main: '#001fff',
       contrastText: '#000',
       mutedText: '#b8b8b8',
     },
@@ -35,7 +35,7 @@ export const defaultTheme = createMuiTheme({
   },
   breakpoints: {
     values: {
-      xs: 300,
+      xs: 0,
       sm: 600,
       md: 960,
       lg: 1800,
@@ -84,6 +84,7 @@ export const defaultTheme = createMuiTheme({
       fontSize: responsiveVal(14, 18),
       fontWeight: 500,
       letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
     },
     fontWeightBold: 600,
   },
