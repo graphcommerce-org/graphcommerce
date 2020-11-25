@@ -65,6 +65,8 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
 
   // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: Mark } = {}
+  const paramValues = params.filters[attribute_code]
+
   const [min, maxish] = options
     ?.map((option) => {
       let val = option?.value.replace('*_', '0_') ?? ''
@@ -83,7 +85,9 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
   marks[max] = { value: max, label: max }
 
-  const [value, setValue] = React.useState<[number, number]>([min, max])
+  const [value, setValue] = React.useState<[number, number]>(
+    paramValues ? [Number(paramValues.from), Number(paramValues.to)] : [min, max],
+  )
 
   const applyFilter = () => {
     const linkParams = cloneDeep(params)
@@ -95,6 +99,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
 
     pushRoute(linkParams)
   }
+
   const resetFilter = () => {
     const linkParams = cloneDeep(params)
     delete linkParams.currentPage
