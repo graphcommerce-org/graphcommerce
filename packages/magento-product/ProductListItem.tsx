@@ -14,14 +14,15 @@ export const useProductListItemStyles = makeStyles(
     item: {
       position: 'relative',
       ...theme.typography.body1,
+      height: '100%',
     },
     title: {
-      display: 'inline',
+      display: 'inline-block',
       ...theme.typography.h6,
       color: theme.palette.primary.contrastText,
     },
     subTitle: {
-      display: 'inline',
+      display: 'inline-block',
       textTransform: 'uppercase',
       fontSize: 13,
       fontWeight: 400,
@@ -39,14 +40,14 @@ export const useProductListItemStyles = makeStyles(
           "topLeft topRight"
           "bottomLeft bottomRight"
       `,
-      top: 0,
       position: 'absolute',
-      height: responsiveVal(200, 400),
-      alignContent: 'space-between',
+      top: 0,
       width: '100%',
+      height: '100%',
       gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
       gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
       padding: responsiveVal(8, 12),
+      color: theme.palette.primary.contrastText,
     },
     cellAlignRight: {
       justifySelf: 'end',
@@ -64,8 +65,6 @@ export const useProductListItemStyles = makeStyles(
     imageContainer: {
       display: 'block',
       position: 'relative',
-      height: responsiveVal(200, 400),
-      maxHeight: 400,
       paddingTop: 'calc(100% / 3 * 2)',
       background: 'rgba(0, 0, 0, 0.04)',
       '&::before': {
@@ -77,6 +76,9 @@ export const useProductListItemStyles = makeStyles(
         transform: 'scale(.85, 0.95)',
         top: 0,
         left: 0,
+      },
+      [theme.breakpoints.up('md')]: {
+        height: '100%',
       },
     },
     placeholder: {
@@ -157,21 +159,27 @@ export default function ProductListItem(props: ProductListItemProps) {
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
+
+            <div className={classes.imageContainerOverlayGrid}>
+              <div className={classes.overlayItem}>
+                {discount > 0 && <div className={classes.discount}>{`- ${discount}%`}</div>}
+                {topLeft}
+              </div>
+              <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
+              <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
+              <div
+                className={clsx(
+                  classes.overlayItem,
+                  classes.cellAlignBottom,
+                  classes.cellAlignRight,
+                )}
+              >
+                {bottomRight}
+              </div>
+            </div>
           </div>
         </MuiLink>
       </PageLink>
-
-      <div className={classes.imageContainerOverlayGrid}>
-        <div className={classes.overlayItem}>
-          {discount > 0 && <div className={classes.discount}>{`- ${discount}%`}</div>}
-          {topLeft}
-        </div>
-        <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
-        <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
-        <div className={clsx(classes.overlayItem, classes.cellAlignBottom, classes.cellAlignRight)}>
-          {bottomRight}
-        </div>
-      </div>
 
       <div className={classes.itemTitleContainer}>
         <div>
