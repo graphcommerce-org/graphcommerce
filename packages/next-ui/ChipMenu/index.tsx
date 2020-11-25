@@ -62,11 +62,13 @@ export default function ChipMenu(props: ChipMenuProps) {
   let deleteIcon = selected ? <RemoveCircle fontSize='small' /> : <ExpandMore fontSize='small' />
   if (openEl) deleteIcon = <ExpandLess fontSize='small' />
 
+  const selectedColor = selectedLabel ? 'secondary' : 'primary'
+
   return (
     <>
       <Chip
-        variant={selected ? 'default' : 'default'}
-        color={selected || openEl ? 'primary' : 'default'}
+        variant='default'
+        color={selected || openEl ? selectedColor : 'default'}
         clickable
         onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
         onClick={(event) => setOpenEl(event.currentTarget)}
