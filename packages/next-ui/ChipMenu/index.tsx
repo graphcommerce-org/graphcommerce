@@ -49,22 +49,17 @@ export const useChipMenuStyles = makeStyles(
         left: '0 !important',
       },
     },
-    listSubHeader: {
+    chipHeader: {
       fontWeight: 500,
       letterSpacing: 1,
       textTransform: 'uppercase',
       fontSize: 14,
       position: 'relative',
       color: theme.palette.secondary.mutedText,
-      '&:after': {
-        content: '""',
-        background: theme.palette.divider,
-        height: 1,
-        width: '100%',
-        display: 'block',
-        position: 'absolute',
-        top: 42,
-      },
+      padding: theme.spacings.xxs,
+      paddingLeft: 0,
+      marginBottom: 16,
+      borderBottom: `1px solid ${theme.palette.divider}`,
     },
   }),
   { name: 'ChipMenu' },
@@ -112,9 +107,7 @@ export default function ChipMenu(props: ChipMenuProps) {
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menu }}
       >
-        <ListSubheader component='div' className={classes.listSubHeader}>
-          {label}
-        </ListSubheader>
+        <div className={classes.chipHeader}>{label}</div>
 
         {children}
       </Menu>
