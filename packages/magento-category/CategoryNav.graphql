@@ -1,0 +1,10 @@
+fragment CategoryNav on CategoryTree {
+  level
+  is_anchor
+  name
+  children {
+    id
+    url_path
+    name
+  }
+}

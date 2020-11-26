@@ -6,6 +6,7 @@ import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.g
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
+import CategoryNav from '@reachdigital/magento-category/CategoryNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import ProductCount from '@reachdigital/magento-category/ProductCount'
 import getCategoryPageProps, {
@@ -91,7 +92,15 @@ function CategoryPage(props: Props) {
   const category = categories.items[0]
 
   let content: React.ReactNode
-  if (categories.items[0].display_mode === 'PAGE') {
+  if (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) {
+    content = (
+      <>
+        <Container className={classes.container} maxWidth='xl'>
+          <CategoryNav {...category} />
+        </Container>
+      </>
+    )
+  } else if (categories.items[0].display_mode === 'PAGE') {
     content = (
       <>
         <Container className={classes.container}>
