@@ -33,7 +33,7 @@ export const useProductListItemStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'space-between',
       marginTop: 14,
-      '& > div': {
+      '& > div:nth-of-type(1)': {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
