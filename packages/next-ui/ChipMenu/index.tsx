@@ -6,11 +6,32 @@ import clsx from 'clsx'
 import React, { useState, PropsWithChildren } from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 
-const useChipMenuStyles = makeStyles(
+export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
     chip: {
       '& .MuiChip-label': {
         maxWidth: 148,
+      },
+      '&:focus': {
+        background: '#FFF !important',
+      },
+    },
+    chipSelected: {
+      border: `1px solid ${theme.palette.primary.contrastText}`,
+      background: '#F4F4F4',
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        background: '#FFF !important',
+        borderColor: '#555',
+        '& svg': {
+          color: '#555 !important',
+        },
+      },
+      '&:focus': {
+        background: '#F4F4F4 !important',
+      },
+      '& svg': {
+        color: ` ${theme.palette.primary.contrastText} !important`,
       },
     },
     menu: {
@@ -62,20 +83,24 @@ export default function ChipMenu(props: ChipMenuProps) {
   let deleteIcon = selected ? <RemoveCircle fontSize='small' /> : <ExpandMore fontSize='small' />
   if (openEl) deleteIcon = <ExpandLess fontSize='small' />
 
-  const selectedColor = selectedLabel ? 'secondary' : 'primary'
+  const selectedAndMenuHidden = selected && !openEl && selectedLabel
 
   return (
     <>
       <Chip
         variant='default'
-        color={selected || openEl ? selectedColor : 'default'}
+        color={selected || openEl ? 'primary' : 'default'}
         clickable
         onDelete={onDelete || ((event) => setOpenEl(event.currentTarget.parentElement))}
         onClick={(event) => setOpenEl(event.currentTarget)}
         deleteIcon={deleteIcon}
         {...chipProps}
         label={selectedLabel ?? label}
-        className={clsx(classes.chip, chipProps.className)}
+        className={clsx(
+          classes.chip,
+          chipProps.className,
+          selectedAndMenuHidden && classes.chipSelected,
+        )}
       />
       <Menu
         anchorEl={openEl}

@@ -8,7 +8,7 @@ import React from 'react'
 export default function ProductListItemVirtual(props: ProductListItemVirtualProps) {
   const { sku } = props
   return (
-    <ProductListItemVirtualBase {...props} subTitle='By soxbase' aspectRatio={[1, 1]}>
+    <ProductListItemVirtualBase {...props} subTitle='By Soxbase' aspectRatio={[1, 1]}>
       <AddToCartButton mutation={AddVirtualProductsToCartDocument} variables={{ sku: sku ?? '' }} />
     </ProductListItemVirtualBase>
   )

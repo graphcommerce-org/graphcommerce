@@ -15,7 +15,7 @@ export const defaultTheme = createMuiTheme({
       dark: '#DC0000',
     },
     secondary: {
-      main: '#001fff',
+      main: '#0049FF',
       contrastText: '#000',
       mutedText: '#b8b8b8',
     },
@@ -35,10 +35,10 @@ export const defaultTheme = createMuiTheme({
   },
   breakpoints: {
     values: {
-      xs: 0,
+      xs: 300,
       sm: 600,
       md: 960,
-      lg: 1800,
+      lg: 1500,
       xl: 1920,
     },
   },

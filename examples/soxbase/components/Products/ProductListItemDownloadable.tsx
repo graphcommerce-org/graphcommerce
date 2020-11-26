@@ -9,7 +9,7 @@ import React from 'react'
 export default function ProductListItemDownloadable(props: ProductListItemDownloadableProps) {
   const productLink = useProductLink(props)
   return (
-    <ProductListItemDownloadableBase {...props} subTitle='By soxbase' aspectRatio={[1, 1]}>
+    <ProductListItemDownloadableBase {...props} subTitle='By Soxbase' aspectRatio={[1, 1]}>
       <PageLink href={productLink}>
         <Button color='primary' variant='contained'>
           Select options

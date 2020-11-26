@@ -8,6 +8,7 @@ import React from 'react'
 
 export default function ProductListItemBundle(props: ProdustListItemBundleProps) {
   const productLink = useProductLink(props)
+
   return (
     <ProductListItemBundleBase {...props} subTitle='By Soxbase' aspectRatio={[1, 1]}>
       <PageLink href={productLink}>
