@@ -33,6 +33,11 @@ export const useProductListItemStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'space-between',
       marginTop: 14,
+      '> div': {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
     },
     imageContainerOverlayGrid: {
       display: 'grid',

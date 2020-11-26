@@ -8,19 +8,19 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: any
+  RGBATransparency: any
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
   DateTime: any
-  /** Raw JSON value */
-  Json: any
-  RGBATransparency: any
-  /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
-  Date: any
-  Hex: any
-  RGBAHue: any
   /** Slate-compatible RichText AST */
   RichTextAST: any
+  /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
+  Date: any
+  /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
+  Long: any
+  RGBAHue: any
+  Hex: any
+  /** Raw JSON value */
+  Json: any
 }
 
 export type Query = {
@@ -376,55 +376,9 @@ export type QueryUrlResolverArgs = {
   url: Scalars['String']
 }
 
-export type PageUpdateOneInlineInput = {
-  /** Create and connect one Page document */
-  create?: Maybe<PageCreateInput>
-  /** Update single Page document */
-  update?: Maybe<PageUpdateWithNestedWhereUniqueInput>
-  /** Upsert single Page document */
-  upsert?: Maybe<PageUpsertWithNestedWhereUniqueInput>
-  /** Connect existing Page document */
-  connect?: Maybe<PageWhereUniqueInput>
-  /** Disconnect currently connected Page document */
-  disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected Page document */
-  delete?: Maybe<Scalars['Boolean']>
-}
-
-export type RowColumnOneOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'identity_ASC'
-  | 'identity_DESC'
-
-export type PageUpsertInput = {
-  /** Create document if it didn't exist */
-  create: PageCreateInput
-  /** Update document if it exists */
-  update: PageUpdateInput
-}
-
-export type PageUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: PageWhereUniqueInput
-  /** Upsert data */
-  data: PageUpsertInput
-}
-
-export type RowColumnOneUpdateLocalizationsInput = {
-  /** Localizations to create */
+export type RowColumnOneCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
   create?: Maybe<Array<RowColumnOneCreateLocalizationInput>>
-  /** Localizations to update */
-  update?: Maybe<Array<RowColumnOneUpdateLocalizationInput>>
-  upsert?: Maybe<Array<RowColumnOneUpsertLocalizationInput>>
-  /** Localizations to delete */
-  delete?: Maybe<Array<Locale>>
 }
 
 export type RowColumnTwoUpsertWithNestedWhereUniqueInput = {
@@ -434,116 +388,134 @@ export type RowColumnTwoUpsertWithNestedWhereUniqueInput = {
   data: RowColumnTwoUpsertInput
 }
 
-/** Locale system enumeration */
-export type Locale =
-  /** System locale */
-  'en'
-
-export type Page = Node & {
-  __typename?: 'Page'
-  /** System stage field */
-  stage: Stage
-  /** System Locale field */
-  locale: Locale
-  /** Get the other localizations for this document */
-  localizations: Array<Page>
-  /** Get the document in other stages */
-  documentInStages: Array<Page>
-  /** The unique identifier */
-  id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  url: Scalars['String']
-  content: Array<PageContent>
-  /** List of Page versions */
-  history: Array<Version>
-}
-
-export type PageLocalizationsArgs = {
-  locales?: Array<Locale>
-  includeCurrent?: Scalars['Boolean']
-}
-
-export type PageDocumentInStagesArgs = {
-  stages?: Array<Stage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-export type PageCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type PageUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type PagePublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type PageContentArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  locales?: Maybe<Array<Locale>>
-}
-
-export type PageHistoryArgs = {
-  limit?: Scalars['Int']
-  skip?: Scalars['Int']
-  stageOverride?: Maybe<Stage>
-}
-
-export type RowColumnOneCreateOneInlineInput = {
-  /** Create and connect one RowColumnOne document */
-  create?: Maybe<RowColumnOneCreateInput>
-  /** Connect one existing RowColumnOne document */
-  connect?: Maybe<RowColumnOneWhereUniqueInput>
-}
-
 export type _RelationKind = 'regular' | 'union'
 
-export type Version = {
-  __typename?: 'Version'
-  id: Scalars['ID']
-  stage: Stage
-  revision: Scalars['Int']
-  createdAt: Scalars['DateTime']
+export type RowColumnOneUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowColumnOneWhereUniqueInput
+  /** Document to update */
+  data: RowColumnOneUpdateInput
 }
 
-export type RowColumnTwoCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: Maybe<Array<RowColumnTwoCreateLocalizationInput>>
+export type RowColumnTwoCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  colOne: Scalars['RichTextAST']
+  colTwo: Scalars['RichTextAST']
 }
 
-export type RowColumnTwoUpdateLocalizationInput = {
-  data: RowColumnTwoUpdateLocalizationDataInput
+export type PageUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PageCreateInput
+  /** Update document if it exists */
+  update: PageUpdateInput
+}
+
+export type PageUpdateLocalizationInput = {
+  data: PageUpdateLocalizationDataInput
   locale: Locale
-}
-
-export type PageContentWhereInput = {
-  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereInput>
-  RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
 }
 
 /** Identifies documents */
-export type RowColumnOneWhereInput = {
+export type PageManyWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: Maybe<Scalars['String']>
   /** Logical AND on all given filters. */
-  AND?: Maybe<Array<RowColumnOneWhereInput>>
+  AND?: Maybe<Array<PageWhereInput>>
   /** Logical OR on all given filters. */
-  OR?: Maybe<Array<RowColumnOneWhereInput>>
+  OR?: Maybe<Array<PageWhereInput>>
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<RowColumnOneWhereInput>>
+  NOT?: Maybe<Array<PageWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+}
+
+export type RowColumnThreeUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: RowColumnThreeWhereInput
+  /** Update many input */
+  data: RowColumnThreeUpdateManyInput
+}
+
+export type UnpublishLocaleInput = {
+  /** Locales to unpublish */
+  locale: Locale
+  /** Stages to unpublish selected locales from */
+  stages: Array<Stage>
+}
+
+/** Identifies documents */
+export type RowColumnTwoWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowColumnTwoWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowColumnTwoWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowColumnTwoWhereInput>>
   id?: Maybe<Scalars['ID']>
   /** All values that are not equal to given value. */
   id_not?: Maybe<Scalars['ID']>
@@ -632,162 +604,11 @@ export type RowColumnOneWhereInput = {
   pages_none?: Maybe<PageWhereInput>
 }
 
-export type RowColumnOneCreateLocalizationDataInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  colOne: Scalars['RichTextAST']
-}
-
 export type PageContentCreateManyInlineInput = {
   /** Create and connect multiple existing PageContent documents */
   create?: Maybe<Array<PageContentCreateInput>>
   /** Connect multiple existing PageContent documents */
   connect?: Maybe<Array<PageContentWhereUniqueInput>>
-}
-
-export type AssetUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: Maybe<Array<AssetUpdateManyLocalizationInput>>
-}
-
-export type PageCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: Maybe<Array<PageCreateLocalizationInput>>
-}
-
-export type RowColumnTwoCreateManyInlineInput = {
-  /** Create and connect multiple existing RowColumnTwo documents */
-  create?: Maybe<Array<RowColumnTwoCreateInput>>
-  /** Connect multiple existing RowColumnTwo documents */
-  connect?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
-}
-
-export type PageContent = RowColumnThree | RowColumnOne | RowColumnTwo
-
-export type AssetUpdateLocalizationDataInput = {
-  handle?: Maybe<Scalars['String']>
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-}
-
-export type PageContentUpdateWithNestedWhereUniqueInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
-}
-
-export type ImageFit =
-  /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
-  | 'clip'
-  /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
-  | 'crop'
-  /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
-  | 'scale'
-  /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
-  | 'max'
-
-/** Identifies documents */
-export type PageWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<PageWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<PageWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<PageWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-  url?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  url_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  url_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  url_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  url_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  url_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  url_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  url_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  url_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  url_not_ends_with?: Maybe<Scalars['String']>
-}
-
-export type PageContentUpdateInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
 }
 
 export type ConnectPositionInput = {
@@ -801,37 +622,30 @@ export type ConnectPositionInput = {
   end?: Maybe<Scalars['Boolean']>
 }
 
-export type AssetUpsertInput = {
-  /** Create document if it didn't exist */
-  create: AssetCreateInput
-  /** Update document if it exists */
-  update: AssetUpdateInput
+export type AssetUpdateManyLocalizationDataInput = {
+  fileName?: Maybe<Scalars['String']>
+  height?: Maybe<Scalars['Float']>
+  width?: Maybe<Scalars['Float']>
+  size?: Maybe<Scalars['Float']>
+  mimeType?: Maybe<Scalars['String']>
 }
 
-export type PageConnectInput = {
-  /** Document to connect */
-  where: PageWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<ConnectPositionInput>
+/** References RowColumnThree record uniquely */
+export type RowColumnThreeWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
-export type RowColumnThreeCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: Maybe<Array<RowColumnThreeCreateLocalizationInput>>
+/** An edge in a connection. */
+export type RowColumnOneEdge = {
+  __typename?: 'RowColumnOneEdge'
+  /** The item at the end of the edge. */
+  node: RowColumnOne
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
 }
 
-export type RowColumnThreeUpsertLocalizationInput = {
-  update: RowColumnThreeUpdateLocalizationDataInput
-  create: RowColumnThreeCreateLocalizationDataInput
-  locale: Locale
-}
-
-export type PageUpdateLocalizationInput = {
-  data: PageUpdateLocalizationDataInput
-  locale: Locale
-}
-
-export type RowColumnThreeOrderByInput =
+export type RowColumnTwoOrderByInput =
   | 'id_ASC'
   | 'id_DESC'
   | 'createdAt_ASC'
@@ -843,185 +657,42 @@ export type RowColumnThreeOrderByInput =
   | 'identity_ASC'
   | 'identity_DESC'
 
-export type RowColumnThreeUpdateLocalizationsInput = {
+export type RowColumnOneUpdateLocalizationDataInput = {
+  colOne?: Maybe<Scalars['RichTextAST']>
+}
+
+export type PageUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: Maybe<Scalars['String']>
+}
+
+export type RowColumnOneCreateLocalizationInput = {
+  /** Localization input */
+  data: RowColumnOneCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type PageContentUpdateManyWithNestedWhereInput = {
+  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
+}
+
+export type AssetUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: AssetWhereUniqueInput
+  /** Document to update */
+  data: AssetUpdateInput
+}
+
+export type AssetUpdateLocalizationsInput = {
   /** Localizations to create */
-  create?: Maybe<Array<RowColumnThreeCreateLocalizationInput>>
+  create?: Maybe<Array<AssetCreateLocalizationInput>>
   /** Localizations to update */
-  update?: Maybe<Array<RowColumnThreeUpdateLocalizationInput>>
-  upsert?: Maybe<Array<RowColumnThreeUpsertLocalizationInput>>
+  update?: Maybe<Array<AssetUpdateLocalizationInput>>
+  upsert?: Maybe<Array<AssetUpsertLocalizationInput>>
   /** Localizations to delete */
   delete?: Maybe<Array<Locale>>
-}
-
-export type SystemDateTimeFieldVariation = 'BASE' | 'LOCALIZATION' | 'COMBINED'
-
-export type RowColumnOneUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: Maybe<Array<RowColumnOneUpdateManyLocalizationInput>>
-}
-
-export type RowColumnThreeUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: RowColumnThreeWhereUniqueInput
-  /** Upsert data */
-  data: RowColumnThreeUpsertInput
-}
-
-export type RowColumnThreeCreateOneInlineInput = {
-  /** Create and connect one RowColumnThree document */
-  create?: Maybe<RowColumnThreeCreateInput>
-  /** Connect one existing RowColumnThree document */
-  connect?: Maybe<RowColumnThreeWhereUniqueInput>
-}
-
-/** A connection to a list of items. */
-export type RowColumnTwoConnection = {
-  __typename?: 'RowColumnTwoConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<RowColumnTwoEdge>
-  aggregate: Aggregate
-}
-
-/** Information about pagination in a connection. */
-export type PageInfo = {
-  __typename?: 'PageInfo'
-  /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']
-  /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']
-  /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['String']>
-  /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['String']>
-  /** Number of items in the current page. */
-  pageSize?: Maybe<Scalars['Int']>
-}
-
-export type Aggregate = {
-  __typename?: 'Aggregate'
-  count: Scalars['Int']
-}
-
-export type RowColumnThree = Node & {
-  __typename?: 'RowColumnThree'
-  /** System stage field */
-  stage: Stage
-  /** System Locale field */
-  locale: Locale
-  /** Get the other localizations for this document */
-  localizations: Array<RowColumnThree>
-  /** Get the document in other stages */
-  documentInStages: Array<RowColumnThree>
-  /** The unique identifier */
-  id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  colOne: RichText
-  pages: Array<Page>
-  colTwo: RichText
-  colThree: RichText
-  /** List of RowColumnThree versions */
-  history: Array<Version>
-}
-
-export type RowColumnThreeLocalizationsArgs = {
-  locales?: Array<Locale>
-  includeCurrent?: Scalars['Boolean']
-}
-
-export type RowColumnThreeDocumentInStagesArgs = {
-  stages?: Array<Stage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-export type RowColumnThreeCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type RowColumnThreeUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type RowColumnThreePublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type RowColumnThreePagesArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  locales?: Maybe<Array<Locale>>
-}
-
-export type RowColumnThreeHistoryArgs = {
-  limit?: Scalars['Int']
-  skip?: Scalars['Int']
-  stageOverride?: Maybe<Stage>
-}
-
-export type PageContentConnectInput = {
-  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
-  RowColumnOne?: Maybe<RowColumnOneConnectInput>
-  RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
-}
-
-/** Transformations for Documents */
-export type DocumentTransformationInput = {
-  /** Changes the output for the file. */
-  output?: Maybe<DocumentOutputInput>
-}
-
-/** Transformations for Assets */
-export type AssetTransformationInput = {
-  image?: Maybe<ImageTransformationInput>
-  document?: Maybe<DocumentTransformationInput>
-  /** Pass true if you want to validate the passed transformation parameters */
-  validateOptions?: Maybe<Scalars['Boolean']>
-}
-
-export type RowColumnOneConnectInput = {
-  /** Document to connect */
-  where: RowColumnOneWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<ConnectPositionInput>
-}
-
-export type RowColumnTwoUpdateLocalizationDataInput = {
-  colOne?: Maybe<Scalars['RichTextAST']>
-  colTwo?: Maybe<Scalars['RichTextAST']>
-}
-
-export type _SystemDateTimeFieldVariation = 'base' | 'localization' | 'combined'
-
-export type RowColumnOneUpdateLocalizationInput = {
-  data: RowColumnOneUpdateLocalizationDataInput
-  locale: Locale
-}
-
-export type RowColumnThreeUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: RowColumnThreeWhereUniqueInput
-  /** Document to update */
-  data: RowColumnThreeUpdateInput
-}
-
-/** An edge in a connection. */
-export type AssetEdge = {
-  __typename?: 'AssetEdge'
-  /** The item at the end of the edge. */
-  node: Asset
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
 }
 
 /** References Page record uniquely */
@@ -1029,342 +700,58 @@ export type PageWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
-/** References RowColumnThree record uniquely */
-export type RowColumnThreeWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  identity?: Maybe<Scalars['String']>
-}
-
-export type RowColumnTwoUpdateManyInlineInput = {
-  /** Create and connect multiple RowColumnTwo documents */
-  create?: Maybe<Array<RowColumnTwoCreateInput>>
-  /** Connect multiple existing RowColumnTwo documents */
-  connect?: Maybe<Array<RowColumnTwoConnectInput>>
-  /** Override currently-connected documents with multiple existing RowColumnTwo documents */
-  set?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
-  /** Update multiple RowColumnTwo documents */
-  update?: Maybe<Array<RowColumnTwoUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple RowColumnTwo documents */
-  upsert?: Maybe<Array<RowColumnTwoUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple RowColumnTwo documents */
-  disconnect?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
-  /** Delete multiple RowColumnTwo documents */
-  delete?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
-}
-
-export type PageContentWhereUniqueInput = {
-  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
-  RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
-}
-
-/** Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used. */
-export type ColorInput = {
-  hex?: Maybe<Scalars['Hex']>
-  rgba?: Maybe<RgbaInput>
-}
-
-export type AssetCreateLocalizationDataInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  handle: Scalars['String']
-  fileName: Scalars['String']
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-}
-
-export type PageCreateLocalizationDataInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  url: Scalars['String']
-}
-
-export type RowColumnTwoConnectInput = {
-  /** Document to connect */
-  where: RowColumnTwoWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<ConnectPositionInput>
-}
-
-export type PageContentUpdateOneInlineInput = {
-  /** Create and connect one PageContent document */
-  create?: Maybe<PageContentCreateInput>
-  /** Update single PageContent document */
-  update?: Maybe<PageContentUpdateWithNestedWhereUniqueInput>
-  /** Upsert single PageContent document */
-  upsert?: Maybe<PageContentUpsertWithNestedWhereUniqueInput>
-  /** Connect existing PageContent document */
-  connect?: Maybe<PageContentWhereUniqueInput>
-  /** Disconnect currently connected PageContent document */
-  disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected PageContent document */
-  delete?: Maybe<Scalars['Boolean']>
-}
-
-export type RowColumnOneUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: RowColumnOneWhereInput
-  /** Update many input */
-  data: RowColumnOneUpdateManyInput
-}
-
-/** References RowColumnTwo record uniquely */
-export type RowColumnTwoWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  identity?: Maybe<Scalars['String']>
-}
-
-export type UnpublishLocaleInput = {
-  /** Locales to unpublish */
-  locale: Locale
-  /** Stages to unpublish selected locales from */
-  stages: Array<Stage>
-}
-
-/** Identifies documents */
-export type AssetManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<AssetWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<AssetWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<AssetWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>
-}
-
-export type PageUpsertLocalizationInput = {
-  update: PageUpdateLocalizationDataInput
-  create: PageCreateLocalizationDataInput
-  locale: Locale
-}
-
-export type AssetCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: Maybe<Array<AssetCreateLocalizationInput>>
-}
-
-export type PageUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: PageWhereInput
-  /** Update many input */
-  data: PageUpdateManyInput
-}
-
-export type RowColumnThreeCreateManyInlineInput = {
-  /** Create and connect multiple existing RowColumnThree documents */
-  create?: Maybe<Array<RowColumnThreeCreateInput>>
-  /** Connect multiple existing RowColumnThree documents */
-  connect?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
-}
-
-export type RowColumnTwoCreateLocalizationInput = {
-  /** Localization input */
-  data: RowColumnTwoCreateLocalizationDataInput
-  locale: Locale
-}
-
-export type PublishLocaleInput = {
-  /** Locales to publish */
-  locale: Locale
-  /** Stages to publish selected locales to */
-  stages: Array<Stage>
-}
-
-/** Transformations for Images */
-export type ImageTransformationInput = {
-  /** Resizes the image */
-  resize?: Maybe<ImageResizeInput>
-}
-
-export type RowColumnThreeUpdateManyLocalizationInput = {
-  data: RowColumnThreeUpdateManyLocalizationDataInput
-  locale: Locale
-}
-
-/** A connection to a list of items. */
-export type RowColumnThreeConnection = {
-  __typename?: 'RowColumnThreeConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<RowColumnThreeEdge>
-  aggregate: Aggregate
-}
-
-export type RowColumnOneUpdateWithNestedWhereUniqueInput = {
+export type RowColumnOneUpsertWithNestedWhereUniqueInput = {
   /** Unique document search */
   where: RowColumnOneWhereUniqueInput
-  /** Document to update */
-  data: RowColumnOneUpdateInput
+  /** Upsert data */
+  data: RowColumnOneUpsertInput
 }
 
-/** Asset system model */
-export type Asset = Node & {
-  __typename?: 'Asset'
-  /** System stage field */
-  stage: Stage
-  /** System Locale field */
-  locale: Locale
-  /** Get the other localizations for this document */
-  localizations: Array<Asset>
-  /** Get the document in other stages */
-  documentInStages: Array<Asset>
-  /** The unique identifier */
-  id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  /** The file handle */
-  handle: Scalars['String']
-  /** The file name */
-  fileName: Scalars['String']
-  /** The height of the file */
+/** Input for a geolocation point with latitude and longitude */
+export type LocationInput = {
+  latitude: Scalars['Float']
+  longitude: Scalars['Float']
+}
+
+export type _RelationInputKind = 'create' | 'update'
+
+export type AssetUpdateManyInput = {
+  fileName?: Maybe<Scalars['String']>
   height?: Maybe<Scalars['Float']>
-  /** The file width */
   width?: Maybe<Scalars['Float']>
-  /** The file size */
   size?: Maybe<Scalars['Float']>
-  /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>
-  /** List of Asset versions */
-  history: Array<Version>
-  /** Get the url for the asset with provided transformations applied. */
-  url: Scalars['String']
+  /** Optional updates to localizations */
+  localizations?: Maybe<AssetUpdateManyLocalizationsInput>
 }
 
-/** Asset system model */
-export type AssetLocalizationsArgs = {
-  locales?: Array<Locale>
-  includeCurrent?: Scalars['Boolean']
+/** An edge in a connection. */
+export type PageEdge = {
+  __typename?: 'PageEdge'
+  /** The item at the end of the edge. */
+  node: Page
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
 }
 
-/** Asset system model */
-export type AssetDocumentInStagesArgs = {
-  stages?: Array<Stage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
+export type RowColumnThreeCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  /** colOne input for default locale (en) */
+  colOne: Scalars['RichTextAST']
+  pages?: Maybe<PageCreateManyInlineInput>
+  /** colTwo input for default locale (en) */
+  colTwo: Scalars['RichTextAST']
+  /** colThree input for default locale (en) */
+  colThree: Scalars['RichTextAST']
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RowColumnThreeCreateLocalizationsInput>
 }
 
-/** Asset system model */
-export type AssetCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-/** Asset system model */
-export type AssetUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-/** Asset system model */
-export type AssetPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-/** Asset system model */
-export type AssetHistoryArgs = {
-  limit?: Scalars['Int']
-  skip?: Scalars['Int']
-  stageOverride?: Maybe<Stage>
-}
-
-/** Asset system model */
-export type AssetUrlArgs = {
-  transformation?: Maybe<AssetTransformationInput>
-}
-
-export type DocumentVersion = {
-  __typename?: 'DocumentVersion'
-  id: Scalars['ID']
-  stage: Stage
-  revision: Scalars['Int']
-  createdAt: Scalars['DateTime']
-  data?: Maybe<Scalars['Json']>
-}
-
-export type PageUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: Maybe<Array<PageCreateLocalizationInput>>
+export type RowColumnTwoUpdateManyLocalizationsInput = {
   /** Localizations to update */
-  update?: Maybe<Array<PageUpdateLocalizationInput>>
-  upsert?: Maybe<Array<PageUpsertLocalizationInput>>
-  /** Localizations to delete */
-  delete?: Maybe<Array<Locale>>
-}
-
-export type PageContentUpsertWithNestedWhereUniqueInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
+  update?: Maybe<Array<RowColumnTwoUpdateManyLocalizationInput>>
 }
 
 /** Identifies documents */
@@ -1545,147 +932,132 @@ export type AssetWhereInput = {
   mimeType_not_ends_with?: Maybe<Scalars['String']>
 }
 
-/** System User Kind */
-export type UserKind = 'MEMBER' | 'PAT' | 'PUBLIC' | 'WEBHOOK'
-
-export type ImageResizeInput = {
-  /** The width in pixels to resize the image to. The value must be an integer from 1 to 10000. */
-  width?: Maybe<Scalars['Int']>
-  /** The height in pixels to resize the image to. The value must be an integer from 1 to 10000. */
-  height?: Maybe<Scalars['Int']>
-  /** The default value for the fit parameter is fit:clip. */
-  fit?: Maybe<ImageFit>
+export type RowColumnOneUpdateManyInput = {
+  /** colOne input for default locale (en) */
+  colOne?: Maybe<Scalars['RichTextAST']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<RowColumnOneUpdateManyLocalizationsInput>
 }
 
-export type AssetUpdateInput = {
-  handle?: Maybe<Scalars['String']>
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-  /** Manage document localizations */
-  localizations?: Maybe<AssetUpdateLocalizationsInput>
-}
+export type _FilterKind =
+  | 'search'
+  | 'AND'
+  | 'OR'
+  | 'NOT'
+  | 'eq'
+  | 'eq_not'
+  | 'in'
+  | 'not_in'
+  | 'lt'
+  | 'lte'
+  | 'gt'
+  | 'gte'
+  | 'contains'
+  | 'not_contains'
+  | 'starts_with'
+  | 'not_starts_with'
+  | 'ends_with'
+  | 'not_ends_with'
+  | 'contains_all'
+  | 'contains_some'
+  | 'contains_none'
+  | 'relational_single'
+  | 'relational_every'
+  | 'relational_some'
+  | 'relational_none'
 
-export type RowColumnThreeConnectInput = {
-  /** Document to connect */
-  where: RowColumnThreeWhereUniqueInput
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<ConnectPositionInput>
-}
-
-export type AssetCreateLocalizationInput = {
-  /** Localization input */
-  data: AssetCreateLocalizationDataInput
+export type RowColumnOneUpdateManyLocalizationInput = {
+  data: RowColumnOneUpdateManyLocalizationDataInput
   locale: Locale
 }
 
-export type RowColumnOneCreateLocalizationsInput = {
+/** An edge in a connection. */
+export type RowColumnThreeEdge = {
+  __typename?: 'RowColumnThreeEdge'
+  /** The item at the end of the edge. */
+  node: RowColumnThree
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+}
+
+export type _MutationKind =
+  | 'create'
+  | 'publish'
+  | 'unpublish'
+  | 'update'
+  | 'upsert'
+  | 'delete'
+  | 'updateMany'
+  | 'publishMany'
+  | 'unpublishMany'
+  | 'deleteMany'
+
+export type _OrderDirection = 'asc' | 'desc'
+
+/** Representing a color value comprising of HEX, RGBA and css color values */
+export type Color = {
+  __typename?: 'Color'
+  hex: Scalars['Hex']
+  rgba: Rgba
+  css: Scalars['String']
+}
+
+export type AssetCreateLocalizationsInput = {
   /** Create localizations for the newly-created document */
-  create?: Maybe<Array<RowColumnOneCreateLocalizationInput>>
+  create?: Maybe<Array<AssetCreateLocalizationInput>>
 }
 
-export type RowColumnOneUpsertLocalizationInput = {
-  update: RowColumnOneUpdateLocalizationDataInput
-  create: RowColumnOneCreateLocalizationDataInput
-  locale: Locale
+export type RowColumnTwoUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RowColumnTwoCreateInput
+  /** Update document if it exists */
+  update: RowColumnTwoUpdateInput
 }
 
-export type RowColumnTwoUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: RowColumnTwoWhereUniqueInput
-  /** Document to update */
-  data: RowColumnTwoUpdateInput
+export type PageCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<PageCreateLocalizationInput>>
 }
 
-export type AssetCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  handle: Scalars['String']
-  fileName: Scalars['String']
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: Maybe<AssetCreateLocalizationsInput>
+export type RowColumnOneUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RowColumnOneCreateInput
+  /** Update document if it exists */
+  update: RowColumnOneUpdateInput
 }
 
-export type AssetUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: AssetWhereUniqueInput
-  /** Document to update */
-  data: AssetUpdateInput
-}
-
-export type RowColumnTwoCreateLocalizationDataInput = {
+export type RowColumnThreeCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   colOne: Scalars['RichTextAST']
   colTwo: Scalars['RichTextAST']
-}
-
-export type PageContentUpdateManyWithNestedWhereInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
-}
-
-export type RowColumnTwoUpsertLocalizationInput = {
-  update: RowColumnTwoUpdateLocalizationDataInput
-  create: RowColumnTwoCreateLocalizationDataInput
-  locale: Locale
-}
-
-/** Input for a geolocation point with latitude and longitude */
-export type LocationInput = {
-  latitude: Scalars['Float']
-  longitude: Scalars['Float']
-}
-
-export type VersionWhereInput = {
-  id: Scalars['ID']
-  stage: Stage
-  revision: Scalars['Int']
-}
-
-export type AssetUpdateManyLocalizationInput = {
-  data: AssetUpdateManyLocalizationDataInput
-  locale: Locale
-}
-
-export type RowColumnThreeCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  /** colOne input for default locale (en) */
-  colOne: Scalars['RichTextAST']
-  pages?: Maybe<PageCreateManyInlineInput>
-  /** colTwo input for default locale (en) */
-  colTwo: Scalars['RichTextAST']
-  /** colThree input for default locale (en) */
   colThree: Scalars['RichTextAST']
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: Maybe<RowColumnThreeCreateLocalizationsInput>
 }
 
-export type RowColumnThreeUpdateInput = {
-  identity?: Maybe<Scalars['String']>
-  /** colOne input for default locale (en) */
+export type RowColumnThreeUpdateOneInlineInput = {
+  /** Create and connect one RowColumnThree document */
+  create?: Maybe<RowColumnThreeCreateInput>
+  /** Update single RowColumnThree document */
+  update?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowColumnThree document */
+  upsert?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowColumnThree document */
+  connect?: Maybe<RowColumnThreeWhereUniqueInput>
+  /** Disconnect currently connected RowColumnThree document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowColumnThree document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type RowColumnThreeUpdateLocalizationInput = {
+  data: RowColumnThreeUpdateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowColumnThreeUpdateLocalizationDataInput = {
   colOne?: Maybe<Scalars['RichTextAST']>
-  pages?: Maybe<PageUpdateManyInlineInput>
-  /** colTwo input for default locale (en) */
   colTwo?: Maybe<Scalars['RichTextAST']>
-  /** colThree input for default locale (en) */
   colThree?: Maybe<Scalars['RichTextAST']>
-  /** Manage document localizations */
-  localizations?: Maybe<RowColumnThreeUpdateLocalizationsInput>
-}
-
-export type RowColumnTwoUpdateManyLocalizationDataInput = {
-  colOne?: Maybe<Scalars['RichTextAST']>
-  colTwo?: Maybe<Scalars['RichTextAST']>
 }
 
 export type RowColumnTwo = Node & {
@@ -1752,125 +1124,219 @@ export type RowColumnTwoHistoryArgs = {
   stageOverride?: Maybe<Stage>
 }
 
-export type RowColumnTwoCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  pages?: Maybe<PageCreateManyInlineInput>
+/** Transformations for Assets */
+export type AssetTransformationInput = {
+  image?: Maybe<ImageTransformationInput>
+  document?: Maybe<DocumentTransformationInput>
+  /** Pass true if you want to validate the passed transformation parameters */
+  validateOptions?: Maybe<Scalars['Boolean']>
+}
+
+export type AssetUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: AssetWhereUniqueInput
+  /** Upsert data */
+  data: AssetUpsertInput
+}
+
+export type PageCreateOneInlineInput = {
+  /** Create and connect one Page document */
+  create?: Maybe<PageCreateInput>
+  /** Connect one existing Page document */
+  connect?: Maybe<PageWhereUniqueInput>
+}
+
+export type PageContentUpdateOneInlineInput = {
+  /** Create and connect one PageContent document */
+  create?: Maybe<PageContentCreateInput>
+  /** Update single PageContent document */
+  update?: Maybe<PageContentUpdateWithNestedWhereUniqueInput>
+  /** Upsert single PageContent document */
+  upsert?: Maybe<PageContentUpsertWithNestedWhereUniqueInput>
+  /** Connect existing PageContent document */
+  connect?: Maybe<PageContentWhereUniqueInput>
+  /** Disconnect currently connected PageContent document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected PageContent document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type AssetOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'handle_ASC'
+  | 'handle_DESC'
+  | 'fileName_ASC'
+  | 'fileName_DESC'
+  | 'height_ASC'
+  | 'height_DESC'
+  | 'width_ASC'
+  | 'width_DESC'
+  | 'size_ASC'
+  | 'size_DESC'
+  | 'mimeType_ASC'
+  | 'mimeType_DESC'
+
+export type RowColumnThreeUpdateInput = {
+  identity?: Maybe<Scalars['String']>
   /** colOne input for default locale (en) */
-  colOne: Scalars['RichTextAST']
-  /** colTwo input for default locale (en) */
-  colTwo: Scalars['RichTextAST']
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: Maybe<RowColumnTwoCreateLocalizationsInput>
-}
-
-export type _FilterKind =
-  | 'search'
-  | 'AND'
-  | 'OR'
-  | 'NOT'
-  | 'eq'
-  | 'eq_not'
-  | 'in'
-  | 'not_in'
-  | 'lt'
-  | 'lte'
-  | 'gt'
-  | 'gte'
-  | 'contains'
-  | 'not_contains'
-  | 'starts_with'
-  | 'not_starts_with'
-  | 'ends_with'
-  | 'not_ends_with'
-  | 'contains_all'
-  | 'contains_some'
-  | 'contains_none'
-  | 'relational_single'
-  | 'relational_every'
-  | 'relational_some'
-  | 'relational_none'
-
-export type PageUpdateLocalizationDataInput = {
-  url?: Maybe<Scalars['String']>
-}
-
-export type RowColumnThreeUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: Maybe<Array<RowColumnThreeUpdateManyLocalizationInput>>
-}
-
-export type RowColumnThreeUpdateManyLocalizationDataInput = {
   colOne?: Maybe<Scalars['RichTextAST']>
+  pages?: Maybe<PageUpdateManyInlineInput>
+  /** colTwo input for default locale (en) */
   colTwo?: Maybe<Scalars['RichTextAST']>
+  /** colThree input for default locale (en) */
   colThree?: Maybe<Scalars['RichTextAST']>
+  /** Manage document localizations */
+  localizations?: Maybe<RowColumnThreeUpdateLocalizationsInput>
 }
 
-export type RowColumnOneCreateInput = {
+export type RowColumnTwoConnectInput = {
+  /** Document to connect */
+  where: RowColumnTwoWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
+}
+
+export type DocumentVersion = {
+  __typename?: 'DocumentVersion'
+  id: Scalars['ID']
+  stage: Stage
+  revision: Scalars['Int']
+  createdAt: Scalars['DateTime']
+  data?: Maybe<Scalars['Json']>
+}
+
+export type AssetCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  /** colOne input for default locale (en) */
-  colOne: Scalars['RichTextAST']
-  pages?: Maybe<PageCreateManyInlineInput>
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: Maybe<RowColumnOneCreateLocalizationsInput>
+  handle: Scalars['String']
+  fileName: Scalars['String']
+  height?: Maybe<Scalars['Float']>
+  width?: Maybe<Scalars['Float']>
+  size?: Maybe<Scalars['Float']>
+  mimeType?: Maybe<Scalars['String']>
 }
 
-export type RowColumnThreeUpdateLocalizationInput = {
-  data: RowColumnThreeUpdateLocalizationDataInput
+export type PageUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<PageCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<PageUpdateLocalizationInput>>
+  upsert?: Maybe<Array<PageUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
+}
+
+export type RowColumnOne = Node & {
+  __typename?: 'RowColumnOne'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
   locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<RowColumnOne>
+  /** Get the document in other stages */
+  documentInStages: Array<RowColumnOne>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  colOne: RichText
+  pages: Array<Page>
+  /** List of RowColumnOne versions */
+  history: Array<Version>
 }
 
-export type RowColumnTwoUpdateManyInput = {
-  /** colOne input for default locale (en) */
-  colOne?: Maybe<Scalars['RichTextAST']>
-  /** colTwo input for default locale (en) */
-  colTwo?: Maybe<Scalars['RichTextAST']>
-  /** Optional updates to localizations */
-  localizations?: Maybe<RowColumnTwoUpdateManyLocalizationsInput>
+export type RowColumnOneLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
 }
 
-export type RowColumnOneUpdateManyInput = {
-  /** colOne input for default locale (en) */
-  colOne?: Maybe<Scalars['RichTextAST']>
-  /** Optional updates to localizations */
-  localizations?: Maybe<RowColumnOneUpdateManyLocalizationsInput>
+export type RowColumnOneDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
 }
 
-export type RowColumnThreeUpdateManyInlineInput = {
-  /** Create and connect multiple RowColumnThree documents */
-  create?: Maybe<Array<RowColumnThreeCreateInput>>
-  /** Connect multiple existing RowColumnThree documents */
-  connect?: Maybe<Array<RowColumnThreeConnectInput>>
-  /** Override currently-connected documents with multiple existing RowColumnThree documents */
-  set?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
-  /** Update multiple RowColumnThree documents */
-  update?: Maybe<Array<RowColumnThreeUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple RowColumnThree documents */
-  upsert?: Maybe<Array<RowColumnThreeUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple RowColumnThree documents */
-  disconnect?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
-  /** Delete multiple RowColumnThree documents */
-  delete?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
+export type RowColumnOneCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
 }
 
-/** References Asset record uniquely */
-export type AssetWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
+export type RowColumnOneUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowColumnOnePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowColumnOnePagesArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowColumnOneHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+export type RowColumnTwoCreateOneInlineInput = {
+  /** Create and connect one RowColumnTwo document */
+  create?: Maybe<RowColumnTwoCreateInput>
+  /** Connect one existing RowColumnTwo document */
+  connect?: Maybe<RowColumnTwoWhereUniqueInput>
+}
+
+export type Aggregate = {
+  __typename?: 'Aggregate'
+  count: Scalars['Int']
+}
+
+export type _SystemDateTimeFieldVariation = 'base' | 'localization' | 'combined'
+
+/** A connection to a list of items. */
+export type RowColumnThreeConnection = {
+  __typename?: 'RowColumnThreeConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<RowColumnThreeEdge>
+  aggregate: Aggregate
+}
+
+export type RowColumnThreeConnectInput = {
+  /** Document to connect */
+  where: RowColumnThreeWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
 }
 
 /** Identifies documents */
-export type PageManyWhereInput = {
+export type RowColumnOneWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: Maybe<Scalars['String']>
   /** Logical AND on all given filters. */
-  AND?: Maybe<Array<PageWhereInput>>
+  AND?: Maybe<Array<RowColumnOneWhereInput>>
   /** Logical OR on all given filters. */
-  OR?: Maybe<Array<PageWhereInput>>
+  OR?: Maybe<Array<RowColumnOneWhereInput>>
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<PageWhereInput>>
+  NOT?: Maybe<Array<RowColumnOneWhereInput>>
   id?: Maybe<Scalars['ID']>
   /** All values that are not equal to given value. */
   id_not?: Maybe<Scalars['ID']>
@@ -1935,26 +1401,156 @@ export type PageManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
 }
 
-export type PageOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'url_ASC'
-  | 'url_DESC'
+export type RowColumnThreeUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowColumnThreeWhereUniqueInput
+  /** Upsert data */
+  data: RowColumnThreeUpsertInput
+}
 
-export type RowColumnThreeCreateLocalizationDataInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  colOne: Scalars['RichTextAST']
-  colTwo: Scalars['RichTextAST']
-  colThree: Scalars['RichTextAST']
+export type AssetCreateLocalizationInput = {
+  /** Localization input */
+  data: AssetCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type PageCreateManyInlineInput = {
+  /** Create and connect multiple existing Page documents */
+  create?: Maybe<Array<PageCreateInput>>
+  /** Connect multiple existing Page documents */
+  connect?: Maybe<Array<PageWhereUniqueInput>>
+}
+
+export type RowColumnThreeCreateManyInlineInput = {
+  /** Create and connect multiple existing RowColumnThree documents */
+  create?: Maybe<Array<RowColumnThreeCreateInput>>
+  /** Connect multiple existing RowColumnThree documents */
+  connect?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
+}
+
+/** Information about pagination in a connection. */
+export type PageInfo = {
+  __typename?: 'PageInfo'
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']>
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']>
+  /** Number of items in the current page. */
+  pageSize?: Maybe<Scalars['Int']>
+}
+
+export type PublishLocaleInput = {
+  /** Locales to publish */
+  locale: Locale
+  /** Stages to publish selected locales to */
+  stages: Array<Stage>
+}
+
+export type DocumentFileTypes =
+  | 'jpg'
+  | 'odp'
+  | 'ods'
+  | 'odt'
+  | 'png'
+  | 'svg'
+  | 'txt'
+  | 'webp'
+  | 'docx'
+  | 'pdf'
+  | 'html'
+  | 'doc'
+  | 'xlsx'
+  | 'xls'
+  | 'pptx'
+  | 'ppt'
+
+export type AssetUpdateLocalizationInput = {
+  data: AssetUpdateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowColumnThreeUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RowColumnThreeCreateInput
+  /** Update document if it exists */
+  update: RowColumnThreeUpdateInput
+}
+
+/** Stage system enumeration */
+export type Stage =
+  /** The Published stage is where you can publish your content to. */
+  | 'PUBLISHED'
+  /** The Draft is the default stage for all your content. */
+  | 'DRAFT'
+
+export type AssetUpsertLocalizationInput = {
+  update: AssetUpdateLocalizationDataInput
+  create: AssetCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type AssetUpdateLocalizationDataInput = {
+  handle?: Maybe<Scalars['String']>
+  fileName?: Maybe<Scalars['String']>
+  height?: Maybe<Scalars['Float']>
+  width?: Maybe<Scalars['Float']>
+  size?: Maybe<Scalars['Float']>
+  mimeType?: Maybe<Scalars['String']>
+}
+
+export type AssetUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: AssetWhereInput
+  /** Update many input */
+  data: AssetUpdateManyInput
+}
+
+export type PageUpdateLocalizationDataInput = {
+  url?: Maybe<Scalars['String']>
+}
+
+/** References RowColumnOne record uniquely */
+export type RowColumnOneWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
+}
+
+export type RowColumnOneUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RowColumnOneCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<RowColumnOneUpdateLocalizationInput>>
+  upsert?: Maybe<Array<RowColumnOneUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
 }
 
 /** Identifies documents */
@@ -2055,43 +1651,30 @@ export type RowColumnTwoManyWhereInput = {
   pages_none?: Maybe<PageWhereInput>
 }
 
-export type AssetOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'handle_ASC'
-  | 'handle_DESC'
-  | 'fileName_ASC'
-  | 'fileName_DESC'
-  | 'height_ASC'
-  | 'height_DESC'
-  | 'width_ASC'
-  | 'width_DESC'
-  | 'size_ASC'
-  | 'size_DESC'
-  | 'mimeType_ASC'
-  | 'mimeType_DESC'
-
-export type AssetUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: Maybe<Array<AssetCreateLocalizationInput>>
-  /** Localizations to update */
-  update?: Maybe<Array<AssetUpdateLocalizationInput>>
-  upsert?: Maybe<Array<AssetUpsertLocalizationInput>>
-  /** Localizations to delete */
-  delete?: Maybe<Array<Locale>>
+export type PageCreateLocalizationInput = {
+  /** Localization input */
+  data: PageCreateLocalizationDataInput
+  locale: Locale
 }
 
-export type RowColumnThreeUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: RowColumnThreeWhereInput
-  /** Update many input */
-  data: RowColumnThreeUpdateManyInput
+export type RowColumnTwoCreateManyInlineInput = {
+  /** Create and connect multiple existing RowColumnTwo documents */
+  create?: Maybe<Array<RowColumnTwoCreateInput>>
+  /** Connect multiple existing RowColumnTwo documents */
+  connect?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
+}
+
+export type RowColumnOneCreateManyInlineInput = {
+  /** Create and connect multiple existing RowColumnOne documents */
+  create?: Maybe<Array<RowColumnOneCreateInput>>
+  /** Connect multiple existing RowColumnOne documents */
+  connect?: Maybe<Array<RowColumnOneWhereUniqueInput>>
+}
+
+export type PageContentConnectInput = {
+  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
+  RowColumnOne?: Maybe<RowColumnOneConnectInput>
+  RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
 }
 
 /** Representing a geolocation point with latitude and longitude */
@@ -2107,40 +1690,7 @@ export type LocationDistanceArgs = {
   from: LocationInput
 }
 
-export type PageCreateOneInlineInput = {
-  /** Create and connect one Page document */
-  create?: Maybe<PageCreateInput>
-  /** Connect one existing Page document */
-  connect?: Maybe<PageWhereUniqueInput>
-}
-
-export type RowColumnThreeUpsertInput = {
-  /** Create document if it didn't exist */
-  create: RowColumnThreeCreateInput
-  /** Update document if it exists */
-  update: RowColumnThreeUpdateInput
-}
-
 export type _RelationInputCardinality = 'one' | 'many'
-
-/** An edge in a connection. */
-export type PageEdge = {
-  __typename?: 'PageEdge'
-  /** The item at the end of the edge. */
-  node: Page
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
-}
-
-/** A connection to a list of items. */
-export type RowColumnOneConnection = {
-  __typename?: 'RowColumnOneConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<RowColumnOneEdge>
-  aggregate: Aggregate
-}
 
 export type RowColumnTwoUpdateInput = {
   identity?: Maybe<Scalars['String']>
@@ -2153,14 +1703,104 @@ export type RowColumnTwoUpdateInput = {
   localizations?: Maybe<RowColumnTwoUpdateLocalizationsInput>
 }
 
-export type RowColumnTwoUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: Maybe<Array<RowColumnTwoCreateLocalizationInput>>
+export type PageConnectInput = {
+  /** Document to connect */
+  where: PageWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
+}
+
+export type PageUpdateOneInlineInput = {
+  /** Create and connect one Page document */
+  create?: Maybe<PageCreateInput>
+  /** Update single Page document */
+  update?: Maybe<PageUpdateWithNestedWhereUniqueInput>
+  /** Upsert single Page document */
+  upsert?: Maybe<PageUpsertWithNestedWhereUniqueInput>
+  /** Connect existing Page document */
+  connect?: Maybe<PageWhereUniqueInput>
+  /** Disconnect currently connected Page document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected Page document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type RowColumnOneUpdateManyLocalizationsInput = {
   /** Localizations to update */
-  update?: Maybe<Array<RowColumnTwoUpdateLocalizationInput>>
-  upsert?: Maybe<Array<RowColumnTwoUpsertLocalizationInput>>
-  /** Localizations to delete */
-  delete?: Maybe<Array<Locale>>
+  update?: Maybe<Array<RowColumnOneUpdateManyLocalizationInput>>
+}
+
+/** A connection to a list of items. */
+export type RowColumnOneConnection = {
+  __typename?: 'RowColumnOneConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<RowColumnOneEdge>
+  aggregate: Aggregate
+}
+
+export type RowColumnThreeCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<RowColumnThreeCreateLocalizationInput>>
+}
+
+export type RowColumnTwoUpdateManyInput = {
+  /** colOne input for default locale (en) */
+  colOne?: Maybe<Scalars['RichTextAST']>
+  /** colTwo input for default locale (en) */
+  colTwo?: Maybe<Scalars['RichTextAST']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<RowColumnTwoUpdateManyLocalizationsInput>
+}
+
+export type PageContentCreateOneInlineInput = {
+  /** Create and connect one PageContent document */
+  create?: Maybe<PageContentCreateInput>
+  /** Connect one existing PageContent document */
+  connect?: Maybe<PageContentWhereUniqueInput>
+}
+
+export type PageContentWhereInput = {
+  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereInput>
+  RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
+}
+
+export type RowColumnTwoUpdateLocalizationDataInput = {
+  colOne?: Maybe<Scalars['RichTextAST']>
+  colTwo?: Maybe<Scalars['RichTextAST']>
+}
+
+export type RowColumnThreeUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowColumnThreeWhereUniqueInput
+  /** Document to update */
+  data: RowColumnThreeUpdateInput
+}
+
+export type RowColumnTwoCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  pages?: Maybe<PageCreateManyInlineInput>
+  /** colOne input for default locale (en) */
+  colOne: Scalars['RichTextAST']
+  /** colTwo input for default locale (en) */
+  colTwo: Scalars['RichTextAST']
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RowColumnTwoCreateLocalizationsInput>
+}
+
+/** Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used. */
+export type ColorInput = {
+  hex?: Maybe<Scalars['Hex']>
+  rgba?: Maybe<RgbaInput>
+}
+
+export type RowColumnTwoCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<RowColumnTwoCreateLocalizationInput>>
 }
 
 export type RowColumnTwoUpdateOneInlineInput = {
@@ -2178,256 +1818,42 @@ export type RowColumnTwoUpdateOneInlineInput = {
   delete?: Maybe<Scalars['Boolean']>
 }
 
-export type PageContentCreateInput = {
-  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
-  RowColumnOne?: Maybe<RowColumnOneCreateInput>
-  RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
+export type PageContentUpdateInput = {
+  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
 }
 
-export type RowColumnOneUpdateManyLocalizationInput = {
-  data: RowColumnOneUpdateManyLocalizationDataInput
+export type PageContentUpdateWithNestedWhereUniqueInput = {
+  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
+}
+
+export type PageUpsertLocalizationInput = {
+  update: PageUpdateLocalizationDataInput
+  create: PageCreateLocalizationDataInput
   locale: Locale
 }
 
-/** An edge in a connection. */
-export type RowColumnThreeEdge = {
-  __typename?: 'RowColumnThreeEdge'
-  /** The item at the end of the edge. */
-  node: RowColumnThree
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
-}
-
-export type RowColumnThreeUpdateManyInput = {
-  /** colOne input for default locale (en) */
-  colOne?: Maybe<Scalars['RichTextAST']>
-  /** colTwo input for default locale (en) */
-  colTwo?: Maybe<Scalars['RichTextAST']>
-  /** colThree input for default locale (en) */
-  colThree?: Maybe<Scalars['RichTextAST']>
-  /** Optional updates to localizations */
-  localizations?: Maybe<RowColumnThreeUpdateManyLocalizationsInput>
-}
-
-/** An edge in a connection. */
-export type RowColumnOneEdge = {
-  __typename?: 'RowColumnOneEdge'
-  /** The item at the end of the edge. */
-  node: RowColumnOne
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
-}
-
-export type RowColumnOneUpdateInput = {
-  identity?: Maybe<Scalars['String']>
-  /** colOne input for default locale (en) */
-  colOne?: Maybe<Scalars['RichTextAST']>
-  pages?: Maybe<PageUpdateManyInlineInput>
-  /** Manage document localizations */
-  localizations?: Maybe<RowColumnOneUpdateLocalizationsInput>
-}
-
-export type RowColumnOneUpdateLocalizationDataInput = {
-  colOne?: Maybe<Scalars['RichTextAST']>
-}
-
-export type AssetUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: AssetWhereInput
-  /** Update many input */
-  data: AssetUpdateManyInput
-}
-
-export type RowColumnOne = Node & {
-  __typename?: 'RowColumnOne'
-  /** System stage field */
-  stage: Stage
-  /** System Locale field */
-  locale: Locale
-  /** Get the other localizations for this document */
-  localizations: Array<RowColumnOne>
-  /** Get the document in other stages */
-  documentInStages: Array<RowColumnOne>
-  /** The unique identifier */
+/** An object with an ID */
+export type Node = {
+  /** The id of the object. */
   id: Scalars['ID']
-  /** The time the document was created */
-  createdAt: Scalars['DateTime']
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime']
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>
-  identity: Scalars['String']
-  colOne: RichText
-  pages: Array<Page>
-  /** List of RowColumnOne versions */
-  history: Array<Version>
-}
-
-export type RowColumnOneLocalizationsArgs = {
-  locales?: Array<Locale>
-  includeCurrent?: Scalars['Boolean']
-}
-
-export type RowColumnOneDocumentInStagesArgs = {
-  stages?: Array<Stage>
-  includeCurrent?: Scalars['Boolean']
-  inheritLocale?: Scalars['Boolean']
-}
-
-export type RowColumnOneCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type RowColumnOneUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type RowColumnOnePublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation
-}
-
-export type RowColumnOnePagesArgs = {
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-  locales?: Maybe<Array<Locale>>
-}
-
-export type RowColumnOneHistoryArgs = {
-  limit?: Scalars['Int']
-  skip?: Scalars['Int']
-  stageOverride?: Maybe<Stage>
-}
-
-export type PageContentCreateOneInlineInput = {
-  /** Create and connect one PageContent document */
-  create?: Maybe<PageContentCreateInput>
-  /** Connect one existing PageContent document */
-  connect?: Maybe<PageContentWhereUniqueInput>
-}
-
-/** References RowColumnOne record uniquely */
-export type RowColumnOneWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  identity?: Maybe<Scalars['String']>
-}
-
-export type _MutationInputFieldKind =
-  | 'scalar'
-  | 'richText'
-  | 'enum'
-  | 'relation'
-  | 'union'
-  | 'virtual'
-
-export type _OrderDirection = 'asc' | 'desc'
-
-export type AssetUpdateLocalizationInput = {
-  data: AssetUpdateLocalizationDataInput
-  locale: Locale
-}
-
-export type PageCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** url input for default locale (en) */
-  url: Scalars['String']
-  content?: Maybe<PageContentCreateManyInlineInput>
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: Maybe<PageCreateLocalizationsInput>
-}
-
-export type DocumentFileTypes =
-  | 'jpg'
-  | 'odp'
-  | 'ods'
-  | 'odt'
-  | 'png'
-  | 'svg'
-  | 'txt'
-  | 'webp'
-  | 'docx'
-  | 'pdf'
-  | 'html'
-  | 'doc'
-  | 'xlsx'
-  | 'xls'
-  | 'pptx'
-  | 'ppt'
-
-/** A connection to a list of items. */
-export type PageConnection = {
-  __typename?: 'PageConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<PageEdge>
-  aggregate: Aggregate
-}
-
-export type RowColumnOneUpdateManyLocalizationDataInput = {
-  colOne?: Maybe<Scalars['RichTextAST']>
-}
-
-export type RowColumnTwoUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: RowColumnTwoWhereInput
-  /** Update many input */
-  data: RowColumnTwoUpdateManyInput
-}
-
-export type PageCreateManyInlineInput = {
-  /** Create and connect multiple existing Page documents */
-  create?: Maybe<Array<PageCreateInput>>
-  /** Connect multiple existing Page documents */
-  connect?: Maybe<Array<PageWhereUniqueInput>>
-}
-
-export type RowColumnThreeUpdateLocalizationDataInput = {
-  colOne?: Maybe<Scalars['RichTextAST']>
-  colTwo?: Maybe<Scalars['RichTextAST']>
-  colThree?: Maybe<Scalars['RichTextAST']>
-}
-
-export type RowColumnThreeUpdateOneInlineInput = {
-  /** Create and connect one RowColumnThree document */
-  create?: Maybe<RowColumnThreeCreateInput>
-  /** Update single RowColumnThree document */
-  update?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
-  /** Upsert single RowColumnThree document */
-  upsert?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
-  /** Connect existing RowColumnThree document */
-  connect?: Maybe<RowColumnThreeWhereUniqueInput>
-  /** Disconnect currently connected RowColumnThree document */
-  disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected RowColumnThree document */
-  delete?: Maybe<Scalars['Boolean']>
-}
-
-export type BatchPayload = {
-  __typename?: 'BatchPayload'
-  /** The number of nodes that have been affected by the Batch operation. */
-  count: Scalars['Long']
-}
-
-export type RowColumnThreeCreateLocalizationInput = {
-  /** Localization input */
-  data: RowColumnThreeCreateLocalizationDataInput
-  locale: Locale
+  /** The Stage of an object */
+  stage: Stage
 }
 
 /** Identifies documents */
-export type RowColumnTwoWhereInput = {
+export type AssetManyWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: Maybe<Scalars['String']>
   /** Logical AND on all given filters. */
-  AND?: Maybe<Array<RowColumnTwoWhereInput>>
+  AND?: Maybe<Array<AssetWhereInput>>
   /** Logical OR on all given filters. */
-  OR?: Maybe<Array<RowColumnTwoWhereInput>>
+  OR?: Maybe<Array<AssetWhereInput>>
   /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<RowColumnTwoWhereInput>>
+  NOT?: Maybe<Array<AssetWhereInput>>
   id?: Maybe<Scalars['ID']>
   /** All values that are not equal to given value. */
   id_not?: Maybe<Scalars['ID']>
@@ -2492,51 +1918,165 @@ export type RowColumnTwoWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>
-  identity?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  identity_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  identity_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  identity_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values containing the given string. */
-  identity_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  identity_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  identity_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  identity_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  identity_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string */
-  identity_not_ends_with?: Maybe<Scalars['String']>
-  pages_every?: Maybe<PageWhereInput>
-  pages_some?: Maybe<PageWhereInput>
-  pages_none?: Maybe<PageWhereInput>
 }
 
-export type AssetUpdateManyInput = {
-  fileName?: Maybe<Scalars['String']>
+export type PageCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** url input for default locale (en) */
+  url: Scalars['String']
+  content?: Maybe<PageContentCreateManyInlineInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<PageCreateLocalizationsInput>
+}
+
+export type RowColumnOneCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  colOne: Scalars['RichTextAST']
+}
+
+export type Version = {
+  __typename?: 'Version'
+  id: Scalars['ID']
+  stage: Stage
+  revision: Scalars['Int']
+  createdAt: Scalars['DateTime']
+}
+
+/** Transformations for Documents */
+export type DocumentTransformationInput = {
+  /** Changes the output for the file. */
+  output?: Maybe<DocumentOutputInput>
+}
+
+export type AssetCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  handle: Scalars['String']
+  fileName: Scalars['String']
   height?: Maybe<Scalars['Float']>
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
-  /** Optional updates to localizations */
-  localizations?: Maybe<AssetUpdateManyLocalizationsInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<AssetCreateLocalizationsInput>
 }
 
-export type PageUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: PageWhereUniqueInput
-  /** Document to update */
-  data: PageUpdateInput
+export type PageUpdateManyInlineInput = {
+  /** Create and connect multiple Page documents */
+  create?: Maybe<Array<PageCreateInput>>
+  /** Connect multiple existing Page documents */
+  connect?: Maybe<Array<PageConnectInput>>
+  /** Override currently-connected documents with multiple existing Page documents */
+  set?: Maybe<Array<PageWhereUniqueInput>>
+  /** Update multiple Page documents */
+  update?: Maybe<Array<PageUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple Page documents */
+  upsert?: Maybe<Array<PageUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple Page documents */
+  disconnect?: Maybe<Array<PageWhereUniqueInput>>
+  /** Delete multiple Page documents */
+  delete?: Maybe<Array<PageWhereUniqueInput>>
 }
 
-export type PageUpdateManyInput = {
-  /** No fields in updateMany data input */
-  _?: Maybe<Scalars['String']>
+export type RowColumnTwoUpsertLocalizationInput = {
+  update: RowColumnTwoUpdateLocalizationDataInput
+  create: RowColumnTwoCreateLocalizationDataInput
+  locale: Locale
 }
+
+export type PageContentWhereUniqueInput = {
+  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
+  RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
+}
+
+/** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
+export type RichText = {
+  __typename?: 'RichText'
+  /** Returns AST representation */
+  raw: Scalars['RichTextAST']
+  /** Returns HTMl representation */
+  html: Scalars['String']
+  /** Returns Markdown representation */
+  markdown: Scalars['String']
+  /** Returns plain-text contents of RichText */
+  text: Scalars['String']
+}
+
+export type RowColumnOneCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  /** colOne input for default locale (en) */
+  colOne: Scalars['RichTextAST']
+  pages?: Maybe<PageCreateManyInlineInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RowColumnOneCreateLocalizationsInput>
+}
+
+export type RowColumnOneUpdateOneInlineInput = {
+  /** Create and connect one RowColumnOne document */
+  create?: Maybe<RowColumnOneCreateInput>
+  /** Update single RowColumnOne document */
+  update?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowColumnOne document */
+  upsert?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowColumnOne document */
+  connect?: Maybe<RowColumnOneWhereUniqueInput>
+  /** Disconnect currently connected RowColumnOne document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowColumnOne document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+/** References Asset record uniquely */
+export type AssetWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+}
+
+/** An edge in a connection. */
+export type RowColumnTwoEdge = {
+  __typename?: 'RowColumnTwoEdge'
+  /** The item at the end of the edge. */
+  node: RowColumnTwo
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+}
+
+export type RowColumnTwoCreateLocalizationInput = {
+  /** Localization input */
+  data: RowColumnTwoCreateLocalizationDataInput
+  locale: Locale
+}
+
+/** Locale system enumeration */
+export type Locale =
+  /** System locale */
+  'en'
+
+export type ImageFit =
+  /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
+  | 'clip'
+  /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
+  | 'crop'
+  /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
+  | 'scale'
+  /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
+  | 'max'
+
+export type RowColumnThreeOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'identity_ASC'
+  | 'identity_DESC'
 
 /** Identifies documents */
 export type RowColumnThreeWhereInput = {
@@ -2636,7 +2176,54 @@ export type RowColumnThreeWhereInput = {
   pages_none?: Maybe<PageWhereInput>
 }
 
-export type RowColumnTwoOrderByInput =
+export type RowColumnOneUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: RowColumnOneWhereInput
+  /** Update many input */
+  data: RowColumnOneUpdateManyInput
+}
+
+export type RowColumnThreeCreateLocalizationInput = {
+  /** Localization input */
+  data: RowColumnThreeCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowColumnTwoUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RowColumnTwoCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<RowColumnTwoUpdateLocalizationInput>>
+  upsert?: Maybe<Array<RowColumnTwoUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
+}
+
+export type RowColumnTwoUpdateManyLocalizationInput = {
+  data: RowColumnTwoUpdateManyLocalizationDataInput
+  locale: Locale
+}
+
+export type RowColumnThreeUpdateManyInput = {
+  /** colOne input for default locale (en) */
+  colOne?: Maybe<Scalars['RichTextAST']>
+  /** colTwo input for default locale (en) */
+  colTwo?: Maybe<Scalars['RichTextAST']>
+  /** colThree input for default locale (en) */
+  colThree?: Maybe<Scalars['RichTextAST']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<RowColumnThreeUpdateManyLocalizationsInput>
+}
+
+/** Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
+export type RgbaInput = {
+  r: Scalars['RGBAHue']
+  g: Scalars['RGBAHue']
+  b: Scalars['RGBAHue']
+  a: Scalars['RGBATransparency']
+}
+
+export type PageOrderByInput =
   | 'id_ASC'
   | 'id_DESC'
   | 'createdAt_ASC'
@@ -2645,14 +2232,8 @@ export type RowColumnTwoOrderByInput =
   | 'updatedAt_DESC'
   | 'publishedAt_ASC'
   | 'publishedAt_DESC'
-  | 'identity_ASC'
-  | 'identity_DESC'
-
-export type RowColumnOneCreateLocalizationInput = {
-  /** Localization input */
-  data: RowColumnOneCreateLocalizationDataInput
-  locale: Locale
-}
+  | 'url_ASC'
+  | 'url_DESC'
 
 /** Identifies documents */
 export type RowColumnOneManyWhereInput = {
@@ -2752,63 +2333,124 @@ export type RowColumnOneManyWhereInput = {
   pages_none?: Maybe<PageWhereInput>
 }
 
-export type _RelationInputKind = 'create' | 'update'
-
-export type RowColumnOneUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: RowColumnOneWhereUniqueInput
-  /** Upsert data */
-  data: RowColumnOneUpsertInput
-}
-
-export type RowColumnOneCreateManyInlineInput = {
-  /** Create and connect multiple existing RowColumnOne documents */
-  create?: Maybe<Array<RowColumnOneCreateInput>>
-  /** Connect multiple existing RowColumnOne documents */
-  connect?: Maybe<Array<RowColumnOneWhereUniqueInput>>
-}
-
-export type PageContentUpdateManyInlineInput = {
-  /** Create and connect multiple PageContent documents */
-  create?: Maybe<Array<PageContentCreateInput>>
-  /** Connect multiple existing PageContent documents */
-  connect?: Maybe<Array<PageContentConnectInput>>
-  /** Override currently-connected documents with multiple existing PageContent documents */
-  set?: Maybe<Array<PageContentWhereUniqueInput>>
-  /** Update multiple PageContent documents */
-  update?: Maybe<Array<PageContentUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple PageContent documents */
-  upsert?: Maybe<Array<PageContentUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple PageContent documents */
-  disconnect?: Maybe<Array<PageContentWhereUniqueInput>>
-  /** Delete multiple PageContent documents */
-  delete?: Maybe<Array<PageContentWhereUniqueInput>>
-}
-
-/** An object with an ID */
-export type Node = {
-  /** The id of the object. */
-  id: Scalars['ID']
-  /** The Stage of an object */
-  stage: Stage
-}
-
-/** Stage system enumeration */
-export type Stage =
-  /** The Published stage is where you can publish your content to. */
-  | 'PUBLISHED'
-  /** The Draft is the default stage for all your content. */
-  | 'DRAFT'
-
-export type AssetUpsertLocalizationInput = {
-  update: AssetUpdateLocalizationDataInput
-  create: AssetCreateLocalizationDataInput
+export type RowColumnOneUpsertLocalizationInput = {
+  update: RowColumnOneUpdateLocalizationDataInput
+  create: RowColumnOneCreateLocalizationDataInput
   locale: Locale
 }
 
-export type DocumentOutputInput = {
-  /**  Transforms a document into a desired file type. See this matrix for format support:  PDF:	jpg, odp, ods, odt, png, svg, txt, and webp DOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webp DOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webp ODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webp XLS:	jpg, pdf, ods, png, svg, xlsx, and webp XLSX:	jpg, pdf, ods, png, svg, xls, and webp ODS:	jpg, pdf, png, xls, svg, xlsx, and webp PPT:	jpg, odp, pdf, png, svg, pptx, and webp PPTX:	jpg, odp, pdf, png, svg, ppt, and webp ODP:	jpg, pdf, png, ppt, svg, pptx, and webp BMP:	jpg, odp, ods, odt, pdf, png, svg, and webp GIF:	jpg, odp, ods, odt, pdf, png, svg, and webp JPG:	jpg, odp, ods, odt, pdf, png, svg, and webp PNG:	jpg, odp, ods, odt, pdf, png, svg, and webp WEBP:	jpg, odp, ods, odt, pdf, png, svg, and webp TIFF:	jpg, odp, ods, odt, pdf, png, svg, and webp AI:	    jpg, odp, ods, odt, pdf, png, svg, and webp PSD:	jpg, odp, ods, odt, pdf, png, svg, and webp SVG:	jpg, odp, ods, odt, pdf, png, and webp HTML:	jpg, odt, pdf, svg, txt, and webp TXT:	jpg, html, odt, pdf, svg, and webp  */
-  format?: Maybe<DocumentFileTypes>
+export type PageContent = RowColumnThree | RowColumnOne | RowColumnTwo
+
+export type RowColumnThreeUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RowColumnThreeCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<RowColumnThreeUpdateLocalizationInput>>
+  upsert?: Maybe<Array<RowColumnThreeUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
+}
+
+export type RowColumnTwoUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: RowColumnTwoWhereInput
+  /** Update many input */
+  data: RowColumnTwoUpdateManyInput
+}
+
+export type RowColumnThree = Node & {
+  __typename?: 'RowColumnThree'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
+  locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<RowColumnThree>
+  /** Get the document in other stages */
+  documentInStages: Array<RowColumnThree>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  colOne: RichText
+  pages: Array<Page>
+  colTwo: RichText
+  colThree: RichText
+  /** List of RowColumnThree versions */
+  history: Array<Version>
+}
+
+export type RowColumnThreeLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type RowColumnThreeDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type RowColumnThreeCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowColumnThreeUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowColumnThreePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowColumnThreePagesArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowColumnThreeHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+export type AssetUpdateInput = {
+  handle?: Maybe<Scalars['String']>
+  fileName?: Maybe<Scalars['String']>
+  height?: Maybe<Scalars['Float']>
+  width?: Maybe<Scalars['Float']>
+  size?: Maybe<Scalars['Float']>
+  mimeType?: Maybe<Scalars['String']>
+  /** Manage document localizations */
+  localizations?: Maybe<AssetUpdateLocalizationsInput>
+}
+
+export type AssetUpdateManyLocalizationInput = {
+  data: AssetUpdateManyLocalizationDataInput
+  locale: Locale
+}
+
+export type RowColumnOneConnectInput = {
+  /** Document to connect */
+  where: RowColumnOneWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
+}
+
+export type RowColumnOneCreateOneInlineInput = {
+  /** Create and connect one RowColumnOne document */
+  create?: Maybe<RowColumnOneCreateInput>
+  /** Connect one existing RowColumnOne document */
+  connect?: Maybe<RowColumnOneWhereUniqueInput>
 }
 
 export type RowColumnOneUpdateManyInlineInput = {
@@ -2828,9 +2470,145 @@ export type RowColumnOneUpdateManyInlineInput = {
   delete?: Maybe<Array<RowColumnOneWhereUniqueInput>>
 }
 
-export type RowColumnTwoUpdateManyLocalizationsInput = {
+export type AssetUpdateManyLocalizationsInput = {
   /** Localizations to update */
-  update?: Maybe<Array<RowColumnTwoUpdateManyLocalizationInput>>
+  update?: Maybe<Array<AssetUpdateManyLocalizationInput>>
+}
+
+export type PageUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: PageWhereUniqueInput
+  /** Upsert data */
+  data: PageUpsertInput
+}
+
+export type PageCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  url: Scalars['String']
+}
+
+export type RowColumnThreeUpsertLocalizationInput = {
+  update: RowColumnThreeUpdateLocalizationDataInput
+  create: RowColumnThreeCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowColumnThreeCreateOneInlineInput = {
+  /** Create and connect one RowColumnThree document */
+  create?: Maybe<RowColumnThreeCreateInput>
+  /** Connect one existing RowColumnThree document */
+  connect?: Maybe<RowColumnThreeWhereUniqueInput>
+}
+
+/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
+export type Rgba = {
+  __typename?: 'RGBA'
+  r: Scalars['RGBAHue']
+  g: Scalars['RGBAHue']
+  b: Scalars['RGBAHue']
+  a: Scalars['RGBATransparency']
+}
+
+/** Identifies documents */
+export type PageWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PageWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PageWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PageWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  url?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  url_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  url_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  url_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  url_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  url_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  url_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  url_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  url_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  url_not_ends_with?: Maybe<Scalars['String']>
+}
+
+/** References RowColumnTwo record uniquely */
+export type RowColumnTwoWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 /** A connection to a list of items. */
@@ -2843,74 +2621,146 @@ export type AssetConnection = {
   aggregate: Aggregate
 }
 
-export type PageUpdateManyInlineInput = {
-  /** Create and connect multiple Page documents */
-  create?: Maybe<Array<PageCreateInput>>
-  /** Connect multiple existing Page documents */
-  connect?: Maybe<Array<PageConnectInput>>
-  /** Override currently-connected documents with multiple existing Page documents */
-  set?: Maybe<Array<PageWhereUniqueInput>>
-  /** Update multiple Page documents */
-  update?: Maybe<Array<PageUpdateWithNestedWhereUniqueInput>>
-  /** Upsert multiple Page documents */
-  upsert?: Maybe<Array<PageUpsertWithNestedWhereUniqueInput>>
-  /** Disconnect multiple Page documents */
-  disconnect?: Maybe<Array<PageWhereUniqueInput>>
-  /** Delete multiple Page documents */
-  delete?: Maybe<Array<PageWhereUniqueInput>>
+export type RowColumnThreeUpdateManyInlineInput = {
+  /** Create and connect multiple RowColumnThree documents */
+  create?: Maybe<Array<RowColumnThreeCreateInput>>
+  /** Connect multiple existing RowColumnThree documents */
+  connect?: Maybe<Array<RowColumnThreeConnectInput>>
+  /** Override currently-connected documents with multiple existing RowColumnThree documents */
+  set?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
+  /** Update multiple RowColumnThree documents */
+  update?: Maybe<Array<RowColumnThreeUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowColumnThree documents */
+  upsert?: Maybe<Array<RowColumnThreeUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowColumnThree documents */
+  disconnect?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
+  /** Delete multiple RowColumnThree documents */
+  delete?: Maybe<Array<RowColumnThreeWhereUniqueInput>>
 }
 
-export type RowColumnOneUpdateOneInlineInput = {
-  /** Create and connect one RowColumnOne document */
-  create?: Maybe<RowColumnOneCreateInput>
-  /** Update single RowColumnOne document */
-  update?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
-  /** Upsert single RowColumnOne document */
-  upsert?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
-  /** Connect existing RowColumnOne document */
-  connect?: Maybe<RowColumnOneWhereUniqueInput>
-  /** Disconnect currently connected RowColumnOne document */
-  disconnect?: Maybe<Scalars['Boolean']>
-  /** Delete currently connected RowColumnOne document */
-  delete?: Maybe<Scalars['Boolean']>
+export type AssetUpsertInput = {
+  /** Create document if it didn't exist */
+  create: AssetCreateInput
+  /** Update document if it exists */
+  update: AssetUpdateInput
 }
 
-/** An edge in a connection. */
-export type RowColumnTwoEdge = {
-  __typename?: 'RowColumnTwoEdge'
-  /** The item at the end of the edge. */
-  node: RowColumnTwo
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']
+export type RowColumnOneUpdateInput = {
+  identity?: Maybe<Scalars['String']>
+  /** colOne input for default locale (en) */
+  colOne?: Maybe<Scalars['RichTextAST']>
+  pages?: Maybe<PageUpdateManyInlineInput>
+  /** Manage document localizations */
+  localizations?: Maybe<RowColumnOneUpdateLocalizationsInput>
 }
 
-export type RowColumnTwoCreateOneInlineInput = {
-  /** Create and connect one RowColumnTwo document */
-  create?: Maybe<RowColumnTwoCreateInput>
-  /** Connect one existing RowColumnTwo document */
-  connect?: Maybe<RowColumnTwoWhereUniqueInput>
+/** A connection to a list of items. */
+export type RowColumnTwoConnection = {
+  __typename?: 'RowColumnTwoConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<RowColumnTwoEdge>
+  aggregate: Aggregate
 }
 
-/** Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
-export type RgbaInput = {
-  r: Scalars['RGBAHue']
-  g: Scalars['RGBAHue']
-  b: Scalars['RGBAHue']
-  a: Scalars['RGBATransparency']
-}
-
-export type AssetUpdateManyLocalizationDataInput = {
-  fileName?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Float']>
-  width?: Maybe<Scalars['Float']>
-  size?: Maybe<Scalars['Float']>
-  mimeType?: Maybe<Scalars['String']>
-}
-
-export type PageCreateLocalizationInput = {
-  /** Localization input */
-  data: PageCreateLocalizationDataInput
+export type RowColumnTwoUpdateLocalizationInput = {
+  data: RowColumnTwoUpdateLocalizationDataInput
   locale: Locale
+}
+
+export type _MutationInputFieldKind =
+  | 'scalar'
+  | 'richText'
+  | 'enum'
+  | 'relation'
+  | 'union'
+  | 'virtual'
+
+export type Page = Node & {
+  __typename?: 'Page'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
+  locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<Page>
+  /** Get the document in other stages */
+  documentInStages: Array<Page>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  url: Scalars['String']
+  content: Array<PageContent>
+  /** List of Page versions */
+  history: Array<Version>
+}
+
+export type PageLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type PageDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type PageCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type PageUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type PagePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type PageContentArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type PageHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+export type RowColumnTwoUpdateManyInlineInput = {
+  /** Create and connect multiple RowColumnTwo documents */
+  create?: Maybe<Array<RowColumnTwoCreateInput>>
+  /** Connect multiple existing RowColumnTwo documents */
+  connect?: Maybe<Array<RowColumnTwoConnectInput>>
+  /** Override currently-connected documents with multiple existing RowColumnTwo documents */
+  set?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
+  /** Update multiple RowColumnTwo documents */
+  update?: Maybe<Array<RowColumnTwoUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowColumnTwo documents */
+  upsert?: Maybe<Array<RowColumnTwoUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowColumnTwo documents */
+  disconnect?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
+  /** Delete multiple RowColumnTwo documents */
+  delete?: Maybe<Array<RowColumnTwoWhereUniqueInput>>
+}
+
+export type PageUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: PageWhereUniqueInput
+  /** Document to update */
+  data: PageUpdateInput
 }
 
 export type PageUpdateInput = {
@@ -2921,32 +2771,26 @@ export type PageUpdateInput = {
   localizations?: Maybe<PageUpdateLocalizationsInput>
 }
 
-/** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
-export type RichText = {
-  __typename?: 'RichText'
-  /** Returns AST representation */
-  raw: Scalars['RichTextAST']
-  /** Returns HTMl representation */
-  html: Scalars['String']
-  /** Returns Markdown representation */
-  markdown: Scalars['String']
-  /** Returns plain-text contents of RichText */
-  text: Scalars['String']
+export type RowColumnTwoUpdateManyLocalizationDataInput = {
+  colOne?: Maybe<Scalars['RichTextAST']>
+  colTwo?: Maybe<Scalars['RichTextAST']>
 }
 
-/** Representing a color value comprising of HEX, RGBA and css color values */
-export type Color = {
-  __typename?: 'Color'
-  hex: Scalars['Hex']
-  rgba: Rgba
-  css: Scalars['String']
-}
-
-export type AssetUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: AssetWhereUniqueInput
-  /** Upsert data */
-  data: AssetUpsertInput
+export type PageContentUpdateManyInlineInput = {
+  /** Create and connect multiple PageContent documents */
+  create?: Maybe<Array<PageContentCreateInput>>
+  /** Connect multiple existing PageContent documents */
+  connect?: Maybe<Array<PageContentConnectInput>>
+  /** Override currently-connected documents with multiple existing PageContent documents */
+  set?: Maybe<Array<PageContentWhereUniqueInput>>
+  /** Update multiple PageContent documents */
+  update?: Maybe<Array<PageContentUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple PageContent documents */
+  upsert?: Maybe<Array<PageContentUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple PageContent documents */
+  disconnect?: Maybe<Array<PageContentWhereUniqueInput>>
+  /** Delete multiple PageContent documents */
+  delete?: Maybe<Array<PageContentWhereUniqueInput>>
 }
 
 /** Identifies documents */
@@ -3047,44 +2891,200 @@ export type RowColumnThreeManyWhereInput = {
   pages_none?: Maybe<PageWhereInput>
 }
 
-export type _MutationKind =
-  | 'create'
-  | 'publish'
-  | 'unpublish'
-  | 'update'
-  | 'upsert'
-  | 'delete'
-  | 'updateMany'
-  | 'publishMany'
-  | 'unpublishMany'
-  | 'deleteMany'
-
-export type RowColumnTwoUpsertInput = {
-  /** Create document if it didn't exist */
-  create: RowColumnTwoCreateInput
-  /** Update document if it exists */
-  update: RowColumnTwoUpdateInput
+/** An edge in a connection. */
+export type AssetEdge = {
+  __typename?: 'AssetEdge'
+  /** The item at the end of the edge. */
+  node: Asset
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
 }
 
-export type RowColumnTwoUpdateManyLocalizationInput = {
-  data: RowColumnTwoUpdateManyLocalizationDataInput
+export type RowColumnOneOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'identity_ASC'
+  | 'identity_DESC'
+
+export type BatchPayload = {
+  __typename?: 'BatchPayload'
+  /** The number of nodes that have been affected by the Batch operation. */
+  count: Scalars['Long']
+}
+
+/** System User Kind */
+export type UserKind = 'MEMBER' | 'PAT' | 'PUBLIC' | 'WEBHOOK'
+
+export type DocumentOutputInput = {
+  /**  Transforms a document into a desired file type. See this matrix for format support:  PDF:	jpg, odp, ods, odt, png, svg, txt, and webp DOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webp DOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webp ODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webp XLS:	jpg, pdf, ods, png, svg, xlsx, and webp XLSX:	jpg, pdf, ods, png, svg, xls, and webp ODS:	jpg, pdf, png, xls, svg, xlsx, and webp PPT:	jpg, odp, pdf, png, svg, pptx, and webp PPTX:	jpg, odp, pdf, png, svg, ppt, and webp ODP:	jpg, pdf, png, ppt, svg, pptx, and webp BMP:	jpg, odp, ods, odt, pdf, png, svg, and webp GIF:	jpg, odp, ods, odt, pdf, png, svg, and webp JPG:	jpg, odp, ods, odt, pdf, png, svg, and webp PNG:	jpg, odp, ods, odt, pdf, png, svg, and webp WEBP:	jpg, odp, ods, odt, pdf, png, svg, and webp TIFF:	jpg, odp, ods, odt, pdf, png, svg, and webp AI:	    jpg, odp, ods, odt, pdf, png, svg, and webp PSD:	jpg, odp, ods, odt, pdf, png, svg, and webp SVG:	jpg, odp, ods, odt, pdf, png, and webp HTML:	jpg, odt, pdf, svg, txt, and webp TXT:	jpg, html, odt, pdf, svg, and webp  */
+  format?: Maybe<DocumentFileTypes>
+}
+
+export type ImageResizeInput = {
+  /** The width in pixels to resize the image to. The value must be an integer from 1 to 10000. */
+  width?: Maybe<Scalars['Int']>
+  /** The height in pixels to resize the image to. The value must be an integer from 1 to 10000. */
+  height?: Maybe<Scalars['Int']>
+  /** The default value for the fit parameter is fit:clip. */
+  fit?: Maybe<ImageFit>
+}
+
+export type RowColumnTwoUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowColumnTwoWhereUniqueInput
+  /** Document to update */
+  data: RowColumnTwoUpdateInput
+}
+
+/** Asset system model */
+export type Asset = Node & {
+  __typename?: 'Asset'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
+  locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<Asset>
+  /** Get the document in other stages */
+  documentInStages: Array<Asset>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** The file handle */
+  handle: Scalars['String']
+  /** The file name */
+  fileName: Scalars['String']
+  /** The height of the file */
+  height?: Maybe<Scalars['Float']>
+  /** The file width */
+  width?: Maybe<Scalars['Float']>
+  /** The file size */
+  size?: Maybe<Scalars['Float']>
+  /** The mime type of the file */
+  mimeType?: Maybe<Scalars['String']>
+  /** List of Asset versions */
+  history: Array<Version>
+  /** Get the url for the asset with provided transformations applied. */
+  url: Scalars['String']
+}
+
+/** Asset system model */
+export type AssetLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+/** Asset system model */
+export type AssetDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+/** Asset system model */
+export type AssetCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+/** Asset system model */
+export type AssetUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+/** Asset system model */
+export type AssetPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+/** Asset system model */
+export type AssetHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+/** Asset system model */
+export type AssetUrlArgs = {
+  transformation?: Maybe<AssetTransformationInput>
+}
+
+export type PageUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: PageWhereInput
+  /** Update many input */
+  data: PageUpdateManyInput
+}
+
+export type RowColumnThreeUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<RowColumnThreeUpdateManyLocalizationInput>>
+}
+
+export type RowColumnThreeUpdateManyLocalizationDataInput = {
+  colOne?: Maybe<Scalars['RichTextAST']>
+  colTwo?: Maybe<Scalars['RichTextAST']>
+  colThree?: Maybe<Scalars['RichTextAST']>
+}
+
+export type SystemDateTimeFieldVariation = 'BASE' | 'LOCALIZATION' | 'COMBINED'
+
+/** Transformations for Images */
+export type ImageTransformationInput = {
+  /** Resizes the image */
+  resize?: Maybe<ImageResizeInput>
+}
+
+export type VersionWhereInput = {
+  id: Scalars['ID']
+  stage: Stage
+  revision: Scalars['Int']
+}
+
+export type RowColumnThreeUpdateManyLocalizationInput = {
+  data: RowColumnThreeUpdateManyLocalizationDataInput
   locale: Locale
 }
 
-export type RowColumnOneUpsertInput = {
-  /** Create document if it didn't exist */
-  create: RowColumnOneCreateInput
-  /** Update document if it exists */
-  update: RowColumnOneUpdateInput
+/** A connection to a list of items. */
+export type PageConnection = {
+  __typename?: 'PageConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<PageEdge>
+  aggregate: Aggregate
 }
 
-/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
-export type Rgba = {
-  __typename?: 'RGBA'
-  r: Scalars['RGBAHue']
-  g: Scalars['RGBAHue']
-  b: Scalars['RGBAHue']
-  a: Scalars['RGBATransparency']
+export type RowColumnOneUpdateLocalizationInput = {
+  data: RowColumnOneUpdateLocalizationDataInput
+  locale: Locale
+}
+
+export type PageContentUpsertWithNestedWhereUniqueInput = {
+  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
+}
+
+export type RowColumnOneUpdateManyLocalizationDataInput = {
+  colOne?: Maybe<Scalars['RichTextAST']>
+}
+
+export type PageContentCreateInput = {
+  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
+  RowColumnOne?: Maybe<RowColumnOneCreateInput>
+  RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
 }
 
 export type Mutation = {
