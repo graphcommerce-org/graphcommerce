@@ -6,21 +6,21 @@ import { PageFragment } from './Page.gql'
 
 type ContentTypeRenderer = TypeRenderer<PageFragment['content'][0]>
 
-const renderer: ContentTypeRenderer = {
+const defaultRenderer: ContentTypeRenderer = {
   RowColumnOne,
   RowColumnTwo,
   RowColumnThree,
 }
 
-export type PageProps = PageFragment
+export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer> }
 
-export default function Page(props: PageFragment) {
-  const { content } = props
+export default function Page({ content, renderer }: PageProps) {
+  const mergedRenderer = { ...defaultRenderer, ...renderer }
 
   return (
     <>
       {content.map((item) => (
-        <RenderType renderer={renderer} key={item.id} {...item} />
+        <RenderType renderer={mergedRenderer} key={item.id} {...item} />
       ))}
     </>
   )
