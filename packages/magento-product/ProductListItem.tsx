@@ -179,9 +179,7 @@ export default function ProductListItem(props: ProductListItemProps) {
           <Typography component='h2' className={classes.title}>
             {name}
           </Typography>
-          <Typography component='h6' className={classes.subTitle}>
-            {subTitle}
-          </Typography>
+          {subTitle}
         </div>
         <ProductListPrice {...price_range.minimum_price} />
       </div>

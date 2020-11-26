@@ -5,12 +5,17 @@ import ProductListItemBundleBase, {
 import { useProductLink } from '@reachdigital/magento-product/ProductLink'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
+import Subtitle from '../Subtitle'
 
 export default function ProductListItemBundle(props: ProdustListItemBundleProps) {
   const productLink = useProductLink(props)
 
   return (
-    <ProductListItemBundleBase {...props} subTitle='By Soxbase' aspectRatio={[1, 1]}>
+    <ProductListItemBundleBase
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+    >
       <PageLink href={productLink}>
         <Button color='primary' variant='contained'>
           Select options

@@ -5,6 +5,8 @@ import ProductListItemConfigurableBase, {
   ProdustListItemConfigurableProps,
 } from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
 import { SwatchLocationKeys } from '@reachdigital/magento-product/ProductListItem'
+import React from 'react'
+import Subtitle from '../Subtitle'
 
 function AddToCartAction(props: ActionsComponentProps) {
   const { variant, sku } = props
@@ -35,7 +37,7 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   return (
     <>
       <ProductListItemConfigurableBase
-        subTitle='By Soxbase'
+        subTitle={<Subtitle value='By Soxbase' />}
         aspectRatio={[1, 1]}
         {...props}
         swatchLocations={swatchLocations}
