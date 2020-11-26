@@ -95,7 +95,7 @@ function CategoryPage(props: Props) {
   if (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) {
     content = (
       <>
-        <Container className={classes.container} maxWidth='xl'>
+        <Container className={classes.container} maxWidth='false'>
           <CategoryNav {...category} />
         </Container>
       </>
