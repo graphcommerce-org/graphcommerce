@@ -78,6 +78,18 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                       { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
                       {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'level' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'is_anchor' },
+                        arguments: [],
+                        directives: [],
+                      },
+                      {
                         kind: 'InlineFragment',
                         typeCondition: {
                           kind: 'NamedType',
@@ -126,7 +138,13 @@ export type CategoryPageQuery = {
         Types.Maybe<
           Pick<
             Types.CategoryTree,
-            'description' | 'name' | 'display_mode' | 'meta_title' | 'meta_description'
+            | 'description'
+            | 'name'
+            | 'display_mode'
+            | 'meta_title'
+            | 'meta_description'
+            | 'level'
+            | 'is_anchor'
           > & {
             breadcrumbs?: Types.Maybe<
               Array<
