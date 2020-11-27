@@ -1,0 +1,11 @@
+fragment RowColumnThree on RowColumnThree {
+  colOne {
+    raw
+  }
+  colTwo {
+    raw
+  }
+  colThree {
+    raw
+  }
+}

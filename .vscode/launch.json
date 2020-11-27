@@ -16,8 +16,8 @@
       "disableOptimisticBPs": true
     },
     {
-      "command": "yarn build:codegen-run",
-      "name": "Run yarn build:codegen-run",
+      "command": "yarn codegen-run",
+      "name": "Run yarn codegen-run",
       "request": "launch",
       "type": "node-terminal"
     },

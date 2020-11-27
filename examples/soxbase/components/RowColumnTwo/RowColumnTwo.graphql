@@ -1,0 +1,8 @@
+fragment RowColumnTwo on RowColumnTwo {
+  colOne {
+    raw
+  }
+  colTwo {
+    raw
+  }
+}

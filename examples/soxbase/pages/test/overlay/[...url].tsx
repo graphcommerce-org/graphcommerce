@@ -10,16 +10,18 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React, { useState } from 'react'
+import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
 import apolloClient from '../../../lib/apolloClient'
+import Page from '../../../components/Page'
 
-type Props = { url: string }
+type Props = { url: string } & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 const cycles = [100, 200, 1000, 2000]
 
-function AppShellTextOverlay({ url }: Props) {
+function AppShellTextOverlay({ url, pages }: Props) {
   const title = `Overlay ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
   const [cycle, setCycle] = useState(url === 'index' ? 0 : 3)
 
@@ -33,20 +35,7 @@ function AppShellTextOverlay({ url }: Props) {
         </PageLink>
       }
     >
-      {/* <div style={{ marginLeft: url === 'index' ? 0 : 150 }}>
-        <m.img
-          src='/manifest/icon.png'
-          alt=''
-          layoutId='img1'
-          width={366}
-          height={344}
-          style={{ position: 'relative', zIndex: 5 }}
-          transition={{ type: 'tween' }}
-          initial={{ zIndex: 0 }}
-          animate={{ zIndex: 5 }}
-          exit={{ zIndex: 0 }}
-        />
-      </div> */}
+      {pages?.[0] && <Page {...pages?.[0]} />}
       <Container>
         <DebugSpacer height={cycles[cycle]} />
       </Container>
@@ -83,11 +72,16 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
+  const page = staticClient.query({
+    query: PageByUrlDocument,
+    variables: { url: `test/overlay/${url}` },
+  })
 
   await config
   return {
     props: {
       ...(await pageLayout).data,
+      ...(await page).data,
       url,
       apolloState: client.cache.extract(),
     },

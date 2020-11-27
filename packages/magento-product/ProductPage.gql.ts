@@ -1050,25 +1050,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                         kind: 'InlineFragment',
                         typeCondition: {
                           kind: 'NamedType',
-                          name: { kind: 'Name', value: 'PhysicalProductInterface' },
-                        },
-                        directives: [],
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'weight' },
-                              arguments: [],
-                              directives: [],
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
                           name: { kind: 'Name', value: 'CustomizableProductInterface' },
                         },
                         directives: [],
@@ -2011,7 +1992,6 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'SimpleProduct' } & Pick<
               Types.SimpleProduct,
-              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -2758,7 +2738,6 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'BundleProduct' } & Pick<
               Types.BundleProduct,
-              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -3127,7 +3106,6 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'GroupedProduct' } & Pick<
               Types.GroupedProduct,
-              | 'weight'
               | 'id'
               | 'sku'
               | 'name'
@@ -3458,7 +3436,6 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'ConfigurableProduct' } & Pick<
               Types.ConfigurableProduct,
-              | 'weight'
               | 'id'
               | 'sku'
               | 'name'

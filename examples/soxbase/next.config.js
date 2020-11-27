@@ -10,7 +10,7 @@ const withImages = require('next-images')
 const withPWA = require('next-pwa')
 const withTM = require('next-transpile-modules')(
   [
-    '@apollo/client',
+    '@reachdigital/graphcms-ui',
     '@reachdigital/magento-app-shell',
     '@reachdigital/magento-cart',
     '@reachdigital/magento-category',

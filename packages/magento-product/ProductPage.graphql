@@ -4,7 +4,6 @@ query ProductPage($urlKey: String) {
       __typename
       id
       ...ProductPageInterface
-      ...ProductPagePhysical
       ...ProductPageCustomizable
       ...ProductPageVirtual
       ...ProductPageSimple

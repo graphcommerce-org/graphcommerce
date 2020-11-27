@@ -12,14 +12,16 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { m } from 'framer-motion'
 import React from 'react'
+import Page, { PageProps } from '../../components/Page'
+import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string } & HeaderProps & FooterProps
+type Props = { url: string } & HeaderProps & FooterProps & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function AppShellTestIndex({ url, menu, urlResolver }: Props) {
+function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
@@ -74,8 +76,8 @@ function AppShellTestIndex({ url, menu, urlResolver }: Props) {
             exit={{ zIndex: 0 }}
           />
         </div>
-        <DebugSpacer height={2000} />
       </Container>
+      {pages?.[0] && <Page {...pages?.[0]} />}
       <Footer />
     </FullPageUi>
   )
@@ -110,11 +112,13 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
+  const page = staticClient.query({ query: PageByUrlDocument, variables: { url: `test/${url}` } })
 
   await config
   return {
     props: {
       ...(await pageLayout).data,
+      ...(await page).data,
       url,
       apolloState: client.cache.extract(),
     },
