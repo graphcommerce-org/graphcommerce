@@ -1,4 +1,7 @@
-import { Typography } from '@material-ui/core'
+import { Link, Typography } from '@material-ui/core'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import { ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import React from 'react'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 
@@ -55,7 +58,7 @@ interface VideoElement extends Element {
   title: string
   width: number
   height: number
-  mimeType: VideoMimeTypes
+  mimeType: string
 }
 
 interface LinkElement extends Element {
@@ -224,7 +227,7 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
       // todo(paales) make iframe responsive
       return (
         <div className={aspectContainer}>
-          <AsyncIframe
+          <iframe
             src={iframeElement.src}
             title='embedded content'
             className={iframe}
@@ -236,14 +239,12 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
       // eslint-disable-next-line no-case-declarations
       const imageElement = element as ImageElement
       return (
-        <Asset
-          asset={{
-            url: imageElement.src,
-            mimeType: imageElement.mimeType,
-            width: imageElement.width,
-            height: imageElement.height,
-          }}
-          width={380}
+        <PictureResponsiveNext
+          src={imageElement.src}
+          width={imageElement.width}
+          height={imageElement.height}
+          type={imageElement.mimeType}
+          alt={imageElement.title}
           className={asset}
         />
       )
@@ -251,23 +252,26 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
       // eslint-disable-next-line no-case-declarations
       const videoElement = element as VideoElement
       return (
-        <Asset
-          asset={{ url: videoElement.src, mimeType: videoElement.mimeType }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          width={380}
-          className={asset}
-        />
+        <div>IMPLEMENT VIDEO</div>
+        // <Asset
+        //   asset={{ url: videoElement.src, mimeType: videoElement.mimeType }}
+        //   autoPlay
+        //   loop
+        //   muted
+        //   playsInline
+        //   width={380}
+        //   className={asset}
+        // />
       )
     case 'link':
       // eslint-disable-next-line no-case-declarations
       const linkElement = element as LinkElement
       return (
-        <Link href={linkElement.href} metaRobots='INDEX_FOLLOW' classes={{ root: link }}>
-          <RenderChildren {...element} classes={classes} />
-        </Link>
+        <PageLink href={linkElement.href}>
+          <Link classes={{ root: link }}>
+            <RenderChildren {...element} classes={classes} />
+          </Link>
+        </PageLink>
       )
     case 'table':
       return (

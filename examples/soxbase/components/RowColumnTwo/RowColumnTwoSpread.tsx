@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import { isElementNode, isTextNode } from '@reachdigital/graphcms-ui/RichText'
-import React, { Children } from 'react'
+import { isElementNode, isTextNode, Node } from '@reachdigital/graphcms-ui/RichText'
+import React from 'react'
 import RowColumnTwo, { RowColumnTwoProps } from '.'
 
 function getNodeLength(node: Node): number {
@@ -57,11 +57,11 @@ const useRichTextOne = makeStyles(({ spacings, breakpoints }: Theme) => ({
   },
 }))
 
-const useRichTextTwo = makeStyles(({ gridSpacing, breakpoints }: Theme) => ({
+const useRichTextTwo = makeStyles(({ spacings, breakpoints }: Theme) => ({
   paragraph: {
     [breakpoints.up('md')]: {
       columnCount: (props: RowColumnTwoProps) => getColumnCount(props, 2),
-      columnGap: gridSpacing.column,
+      columnGap: spacings.md,
     },
   },
 }))

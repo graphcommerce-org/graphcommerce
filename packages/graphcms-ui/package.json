@@ -20,9 +20,7 @@
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
     "@reachdigital/eslint-config-pwa": "^0.1.0",
     "@reachdigital/prettier-config-pwa": "^0.1.0",
-    "@reachdigital/typescript-config-pwa": "^0.1.0",
-    "next": "10.0.1",
-    "react": "17.0.1"
+    "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
     "@apollo/client": "^3.2.9",
