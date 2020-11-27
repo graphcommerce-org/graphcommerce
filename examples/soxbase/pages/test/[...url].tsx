@@ -10,6 +10,7 @@ import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
 import Page, { PageProps } from '../../components/Page'
@@ -76,6 +77,8 @@ function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
             exit={{ zIndex: 0 }}
           />
         </div>
+        <Sticky />
+        <DebugSpacer height={2000} />
       </Container>
       {pages?.[0] && <Page {...pages?.[0]} />}
       <Footer />

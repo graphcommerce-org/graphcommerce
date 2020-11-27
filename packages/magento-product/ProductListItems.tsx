@@ -8,9 +8,6 @@ import { ProductListItemProps } from './ProductListItem'
 import { ProductListItemsFragment } from './ProductListItems.gql'
 import { FilterTypes } from './ProductListItems/filterTypes'
 
-// Wat als ik de verhouding niet 1:1 wil maken, maar 16:9?
-// Wil ik het grid 1:1 maken of wil ik de afbeelding 1:1 maken?
-
 const useStyles = makeStyles(
   (theme: Theme) => ({
     productList: {

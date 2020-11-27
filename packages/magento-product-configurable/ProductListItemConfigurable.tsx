@@ -12,14 +12,14 @@ import React, { useState } from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.gql'
 import SwatchList from './SwatchList'
 
-export type ActionsComponentProps = ProductListItemConfigurableFragment & {
+export type ProductListItemConfigurableProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
 }
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
     filterTypes: FilterTypes
-    Actions?: React.VFC<ActionsComponentProps>
+    Actions?: React.VFC<ProductListItemConfigurableProps>
     swatchLocations?: Record<SwatchLocationKeys, string[]>
   }
 
@@ -66,25 +66,6 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
   const productProps = matchingVariants?.[0]?.product
     ? { ...configurableProduct, ...matchingVariants?.[0]?.product }
     : configurableProduct
-
-  // const onSelectProductVariant = (
-  //   attribute_code?: string | null,
-  //   value_index?: number | null,
-  // ) => () => {
-  //   if (!attribute_code || !value_index) return
-
-  //   const newSelected = cloneDeep(selected)
-
-  //   if (newSelected[attribute_code] && newSelected[attribute_code].length) {
-  //     newSelected[attribute_code] = newSelected[attribute_code].filter(
-  //       (val) => val !== String(value_index),
-  //     )
-  //   } else {
-  //     newSelected[attribute_code] = [String(value_index)]
-  //   }
-
-  //   setSelected(newSelected)
-  // }
 
   // merge unused swatches with the swatches assigned to the bottom right corner
   const usedSwatchAttrCodes = Object.values(swatchLocations).flat()

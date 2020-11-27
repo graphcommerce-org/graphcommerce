@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 
 type ProductCountProps = {
   totalProducts: number | undefined
@@ -7,8 +8,8 @@ type ProductCountProps = {
 const useProductCountStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      width: '100%',
-      maxWidth: 650,
+      maxWidth: '100%',
+      width: responsiveVal(280, 650),
       margin: '0 auto',
       padding: theme.spacings.xs,
       position: 'relative',
@@ -24,9 +25,9 @@ const useProductCountStyles = makeStyles(
     count: {
       ...theme.typography.body2,
       margin: '0 auto',
-      background: '#fff',
+      background: theme.palette.background.default,
       display: 'inline-block',
-      padding: '0 16px 0 16px',
+      padding: `0 ${theme.spacing.xs} 0 ${theme.spacings.xs}`,
       color: theme.palette.primary.mutedText,
       transform: 'translateY(-13px)',
     },

@@ -12,11 +12,7 @@ import getCategoryPageProps, {
 } from '@reachdigital/magento-category/getCategoryPageProps'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
-import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
-import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import ProductListItems from '@reachdigital/magento-product/ProductListItems'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
@@ -27,14 +23,18 @@ import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
+import ProductListItemBundle from '../components/Products/ProductListItemBundle'
 import ProductListItemConfigurable from '../components/Products/ProductListItemConfigurable'
+import ProductListItemDownloadable from '../components/Products/ProductListItemDownloadable'
+import ProductListItemGiftCard from '../components/Products/ProductListItemGiftCard'
+import ProductListItemGrouped from '../components/Products/ProductListItemGrouped'
 import ProductListItemSimple from '../components/Products/ProductListItemSimple'
+import ProductListItemVirtual from '../components/Products/ProductListItemVirtual'
 import apolloClient from '../lib/apolloClient'
 
 type Props = CategoryPageProps & HeaderProps & PageByUrlQuery
@@ -111,6 +111,7 @@ function CategoryPage(props: Props) {
           <div className={classes.childCategories}>
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
           </div>
+
           <div className={classes.filters}>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
@@ -130,10 +131,10 @@ function CategoryPage(props: Props) {
               BundleProduct: ProductListItemBundle,
               VirtualProduct: ProductListItemVirtual,
               DownloadableProduct: ProductListItemDownloadable,
-              GroupedProduct: ProductListItem,
+              GroupedProduct: ProductListItemGrouped,
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore GiftCardProduct is only available in Commerce
-              GiftCardProduct: ProductListItem,
+              GiftCardProduct: ProductListItemGiftCard,
             }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />

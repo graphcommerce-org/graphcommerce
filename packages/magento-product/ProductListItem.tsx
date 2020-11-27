@@ -21,13 +21,6 @@ export const useProductListItemStyles = makeStyles(
       ...theme.typography.h6,
       color: theme.palette.primary.contrastText,
     },
-    subTitle: {
-      display: 'inline-block',
-      textTransform: 'uppercase',
-      fontSize: 13,
-      fontWeight: 400,
-      marginLeft: 8,
-    },
     itemTitleContainer: {
       display: 'flex',
       alignItems: 'center',
@@ -38,6 +31,7 @@ export const useProductListItemStyles = makeStyles(
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
+      marginBottom: responsiveVal(4, 8),
     },
     imageContainerOverlayGrid: {
       display: 'grid',
@@ -56,6 +50,7 @@ export const useProductListItemStyles = makeStyles(
     },
     cellAlignRight: {
       justifySelf: 'end',
+      textAlign: 'center',
     },
     cellAlignBottom: {
       alignSelf: 'flex-end',

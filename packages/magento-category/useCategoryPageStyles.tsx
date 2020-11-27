@@ -67,7 +67,7 @@ const useCategoryPageStyles = makeStyles(
     },
     filters: {
       gridArea: 'filters',
-      margin: '0 auto 32px auto',
+      margin: `0 auto`,
       paddingLeft: 16,
       paddingRight: 16,
       [theme.breakpoints.down('sm')]: {

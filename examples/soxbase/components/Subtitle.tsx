@@ -7,7 +7,6 @@ type SubtitleProps = {
 export const useStyles = makeStyles(
   (theme: Theme) => ({
     subTitle: {
-      display: 'inline-block',
       textTransform: 'uppercase',
       fontSize: 13,
       fontWeight: 400,

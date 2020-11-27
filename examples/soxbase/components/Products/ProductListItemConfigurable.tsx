@@ -1,14 +1,14 @@
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import { AddConfigurableProductToCartDocument } from '@reachdigital/magento-product-configurable/AddConfigurableProductToCart.gql'
 import ProductListItemConfigurableBase, {
-  ActionsComponentProps,
+  ProductListItemConfigurableProps,
   ProdustListItemConfigurableProps,
 } from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
 import { SwatchLocationKeys } from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
 import Subtitle from '../Subtitle'
 
-function AddToCartAction(props: ActionsComponentProps) {
+function AddToCartAction(props: ProductListItemConfigurableProps) {
   const { variant, sku } = props
   return (
     <>

@@ -16,8 +16,8 @@ const useSubcategoryMenuStyles = makeStyles(
     link: {
       whiteSpace: 'nowrap',
       display: 'block',
-      marginRight: `calc(${theme.spacings.sm} * 0.5)`,
-      marginLeft: `calc(${theme.spacings.sm} * 0.5)`,
+      marginRight: `${theme.spacings.xxs}`,
+      marginLeft: `${theme.spacings.xxs}`,
       ...theme.typography.h6,
       position: 'relative',
       paddingBottom: 8,
@@ -46,7 +46,7 @@ const useSubcategoryMenuStyles = makeStyles(
     },
   }),
   {
-    name: 'SubcategoryMenuStyles',
+    name: 'CategoryChildren',
   },
 )
 
@@ -54,7 +54,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params } = props
   const classes = useSubcategoryMenuStyles(props)
 
-  if (!children || children.length == 0) return null
+  if (!children || children.length === 0) return null
 
   return (
     <>
@@ -65,7 +65,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
           nextFab: classes.fab,
         }}
       >
-        {children?.map((cat) => {
+        {children.map((cat) => {
           if (!cat?.url_path || !cat.id || !cat.name) return null
 
           const linkParams = cloneDeep(params)
