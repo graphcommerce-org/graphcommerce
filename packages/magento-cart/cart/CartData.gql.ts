@@ -23,6 +23,7 @@ import {
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
 import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
+import { CartPricesFragment } from './CartPrices.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
@@ -31,7 +32,7 @@ import {
   CartItem_ConfigurableCartItem_Fragment,
   CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragment, CartPricesFragmentDoc } from './CartPrices.gql'
+import { CartPricesFragmentDoc } from './CartPrices.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',
@@ -40,75 +41,41 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartData' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: '__typename' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-          { kind: 'Field', name: { kind: 'Name', value: 'email' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'email' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'prices' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartPrices' },
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartPrices' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'shipping_addresses' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'selected_shipping_method' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'carrier_title' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'method_title' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'amount' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'FragmentSpread',
-                              name: { kind: 'Name', value: 'Money' },
-                              directives: [],
-                            },
+                            { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } },
                           ],
                         },
                       },
@@ -118,71 +85,25 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
               ],
             },
           },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'total_quantity' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'total_quantity' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'items' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: '__typename' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartItem' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartItemSimple' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartItemConfigurable' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartItemDownloadable' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartItemVirtual' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'CartItemBundle' },
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItem' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemSimple' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemConfigurable' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemDownloadable' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemVirtual' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemBundle' } },
               ],
             },
           },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'is_virtual' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
         ],
       },
     },

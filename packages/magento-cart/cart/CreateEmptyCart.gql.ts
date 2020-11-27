@@ -20,10 +20,8 @@ export const CreateEmptyCartDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -46,7 +44,6 @@ export const CreateEmptyCartDocument: DocumentNode<
                 },
               },
             ],
-            directives: [],
           },
         ],
       },

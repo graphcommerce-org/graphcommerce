@@ -17,10 +17,8 @@ export const ResolveUrlDocument: DocumentNode<ResolveUrlQuery, ResolveUrlQueryVa
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -34,28 +32,12 @@ export const ResolveUrlDocument: DocumentNode<ResolveUrlQuery, ResolveUrlQueryVa
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'urlKey' } },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'relative_url' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'type' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'relative_url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
               ],
             },
           },

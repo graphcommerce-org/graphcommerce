@@ -11,53 +11,29 @@ export const CartPaymentMethodFragmentDoc: DocumentNode<CartPaymentMethodFragmen
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartPaymentMethod' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: '__typename' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'available_payment_methods' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'title' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'billing_address' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'BillingCartAddress' },
-                  directives: [],
-                },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'BillingCartAddress' } },
               ],
             },
           },

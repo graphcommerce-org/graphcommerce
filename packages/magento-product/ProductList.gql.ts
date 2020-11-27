@@ -15,35 +15,30 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'pageSize' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
           defaultValue: { kind: 'IntValue', value: '10' },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'currentPage' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
           defaultValue: { kind: 'IntValue', value: '1' },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'filters' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductAttributeFilterInput' } },
           defaultValue: { kind: 'ObjectValue', fields: [] },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'sort' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductAttributeSortInput' } },
           defaultValue: { kind: 'ObjectValue', fields: [] },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'search' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           defaultValue: { kind: 'StringValue', value: '', block: false },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -52,10 +47,8 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -89,67 +82,35 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'search' } },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'page_info' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'current_page' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'total_pages' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'current_page' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'total_pages' } },
                     ],
                   },
                 },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'sort_fields' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'default' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'default' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'options' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'label' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                           ],
                         },
                       },
@@ -159,122 +120,64 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'id' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: '__typename' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'sku' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'name' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'url_key' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'small_image' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'label' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'price_range' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'maximum_price' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'regular_price' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
-                                          arguments: [],
-                                          directives: [],
                                         },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'value' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'discount' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'amount_off' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'percent_off' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                       ],
                                     },
@@ -282,23 +185,14 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'final_price' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
-                                          arguments: [],
-                                          directives: [],
                                         },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'value' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
@@ -308,53 +202,36 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'minimum_price' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'regular_price' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
-                                          arguments: [],
-                                          directives: [],
                                         },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'value' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'discount' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'amount_off' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'percent_off' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                       ],
                                     },
@@ -362,23 +239,14 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'final_price' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
-                                          arguments: [],
-                                          directives: [],
                                         },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'value' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
@@ -394,75 +262,48 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'ConfigurableProduct' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'configurable_options' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'attribute_code' },
-                                    arguments: [],
-                                    directives: [],
                                   },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'id' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'label' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'values' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'store_label' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'value_index' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'swatch_data' },
-                                          arguments: [],
-                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: '__typename' },
-                                                arguments: [],
-                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'value' },
-                                                arguments: [],
-                                                directives: [],
                                               },
                                               {
                                                 kind: 'InlineFragment',
@@ -470,15 +311,12 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                                   kind: 'NamedType',
                                                   name: { kind: 'Name', value: 'ImageSwatchData' },
                                                 },
-                                                directives: [],
                                                 selectionSet: {
                                                   kind: 'SelectionSet',
                                                   selections: [
                                                     {
                                                       kind: 'Field',
                                                       name: { kind: 'Name', value: 'thumbnail' },
-                                                      arguments: [],
-                                                      directives: [],
                                                     },
                                                   ],
                                                 },
@@ -495,30 +333,19 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'variants' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'attributes' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'code' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'code' } },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'value_index' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                       ],
                                     },
@@ -526,42 +353,24 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'product' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'sku' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'name' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'small_image' },
-                                          arguments: [],
-                                          directives: [],
                                           selectionSet: {
                                             kind: 'SelectionSet',
                                             selections: [
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'label' },
-                                                arguments: [],
-                                                directives: [],
                                               },
                                               {
                                                 kind: 'Field',
                                                 name: { kind: 'Name', value: 'url' },
-                                                arguments: [],
-                                                directives: [],
                                               },
                                             ],
                                           },
@@ -613,56 +422,26 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                 },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'aggregations' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'label' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'count' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'attribute_code' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'count' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'attribute_code' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'options' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'label' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                           ],
                         },
                       },

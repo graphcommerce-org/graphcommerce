@@ -12,54 +12,21 @@ export const SelectedShippingMethodFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'SelectedShippingMethod' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'SelectedShippingMethod' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'method_title' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'method_code' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'carrier_title' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'carrier_code' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'amount' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'currency' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'value' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
               ],
             },
           },

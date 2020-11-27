@@ -20,10 +20,8 @@ export const IsEmailAvailableDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -37,17 +35,9 @@ export const IsEmailAvailableDocument: DocumentNode<
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'email' } },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'is_email_available' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'is_email_available' } }],
             },
           },
         ],

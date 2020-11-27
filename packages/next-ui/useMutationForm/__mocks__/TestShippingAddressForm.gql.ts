@@ -20,7 +20,6 @@ export const TestShippingAddressFormDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -29,17 +28,14 @@ export const TestShippingAddressFormDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'CartAddressInput' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'customerNote' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           defaultValue: { kind: 'StringValue', value: 'joi', block: false },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -92,25 +88,15 @@ export const TestShippingAddressFormDocument: DocumentNode<
                 },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'cart' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'id' },
-                        arguments: [],
-                        directives: [],
-                      },
-                    ],
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
                   },
                 },
               ],

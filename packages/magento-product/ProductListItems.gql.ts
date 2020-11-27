@@ -27,44 +27,22 @@ export const ProductListItemsFragmentDoc: DocumentNode<ProductListItemsFragment,
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListItems' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Products' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'items' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: '__typename' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'ProductListItem' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'ProductListItemSimple' },
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItem' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItemSimple' } },
                 {
                   kind: 'FragmentSpread',
                   name: { kind: 'Name', value: 'ProductListItemConfigurable' },
-                  directives: [],
                 },
               ],
             },

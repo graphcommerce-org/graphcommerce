@@ -12,53 +12,22 @@ export const ProductPageGalleryFragmentDoc: DocumentNode<ProductPageGalleryFragm
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageGallery' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'sku' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'media_gallery' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: '__typename' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'position' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'disabled' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'ProductImage' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'ProductVideo' },
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'position' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'disabled' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductImage' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductVideo' } },
               ],
             },
           },

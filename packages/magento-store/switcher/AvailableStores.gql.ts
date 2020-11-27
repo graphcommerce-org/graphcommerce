@@ -12,72 +12,31 @@ export const AvailableStoresDocument: DocumentNode<
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'AvailableStores' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'availableStores' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'store_name' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'locale' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'base_currency_code' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'store_name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'locale' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'base_currency_code' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'countries' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'two_letter_abbreviation' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'full_name_locale' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'two_letter_abbreviation' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'full_name_locale' } },
               ],
             },
           },

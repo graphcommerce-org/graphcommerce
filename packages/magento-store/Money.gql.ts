@@ -9,17 +9,11 @@ export const MoneyFragmentDoc: DocumentNode<MoneyFragment, unknown> = {
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'Money' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Money' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'currency' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'value' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'value' } },
         ],
       },
     },

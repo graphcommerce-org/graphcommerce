@@ -9,25 +9,15 @@ export const CartCouponFragmentDoc: DocumentNode<CartCouponFragment, unknown> = 
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartCoupon' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'applied_coupons' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'code' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'code' } }],
             },
           },
         ],

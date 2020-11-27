@@ -9,23 +9,12 @@ export const CategoryMetaFragmentDoc: DocumentNode<CategoryMetaFragment, unknown
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CategoryMeta' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CategoryTree' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'name' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'meta_title' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'meta_description' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
         ],
       },
     },

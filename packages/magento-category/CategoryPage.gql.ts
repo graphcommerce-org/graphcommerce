@@ -17,10 +17,8 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -52,118 +50,53 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                 },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'description' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'name' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'display_mode' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'display_mode' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'children' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'name' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'level' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url_path' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'level' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
                           ],
                         },
                       },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'meta_title' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'meta_description' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
                       {
                         kind: 'InlineFragment',
                         typeCondition: {
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'CategoryInterface' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'breadcrumbs' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'category_id' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'category_name' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'category_id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'category_name' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'category_url_path' },
-                                    arguments: [],
-                                    directives: [],
                                   },
                                 ],
                               },

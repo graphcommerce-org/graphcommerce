@@ -20,7 +20,6 @@ export const AddDownloadableProductToCartDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -29,7 +28,6 @@ export const AddDownloadableProductToCartDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -41,14 +39,12 @@ export const AddDownloadableProductToCartDocument: DocumentNode<
               name: { kind: 'Name', value: 'DownloadableProductLinksInput' },
             },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'quantity' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } },
           defaultValue: { kind: 'IntValue', value: '1' },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -58,10 +54,8 @@ export const AddDownloadableProductToCartDocument: DocumentNode<
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'CustomizableOptionInput' } },
           },
           defaultValue: { kind: 'ListValue', values: [] },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -139,25 +133,15 @@ export const AddDownloadableProductToCartDocument: DocumentNode<
                 },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'cart' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'id' },
-                        arguments: [],
-                        directives: [],
-                      },
-                    ],
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
                   },
                 },
               ],

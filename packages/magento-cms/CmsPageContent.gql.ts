@@ -9,22 +9,11 @@ export const CmsPageContentFragmentDoc: DocumentNode<CmsPageContentFragment, unk
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CmsPageContent' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CmsPage' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'content_heading' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'content' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'content_heading' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'content' } },
         ],
       },
     },

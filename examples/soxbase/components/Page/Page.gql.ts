@@ -16,55 +16,27 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'Page' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Page' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'content' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'InlineFragment',
                   typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Node' } },
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'id' },
-                        arguments: [],
-                        directives: [],
-                      },
-                    ],
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: '__typename' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'RowColumnOne' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'RowColumnTwo' },
-                  directives: [],
-                },
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'RowColumnThree' },
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnOne' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnTwo' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnThree' } },
               ],
             },
           },

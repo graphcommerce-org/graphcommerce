@@ -17,7 +17,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'prefix' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -26,13 +25,11 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'middlename' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -41,19 +38,16 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'suffix' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'telephone' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -68,7 +62,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
               },
             },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -77,7 +70,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -86,7 +78,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -98,7 +89,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
               name: { kind: 'Name', value: 'CustomerAddressRegionInput' },
             },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -107,7 +97,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -116,7 +105,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'CountryCodeEnum' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -125,7 +113,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -134,7 +121,6 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'Boolean' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -143,10 +129,8 @@ export const CreateCustomerAddressDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'Boolean' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -239,17 +223,9 @@ export const CreateCustomerAddressDocument: DocumentNode<
                 },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
             },
           },
         ],

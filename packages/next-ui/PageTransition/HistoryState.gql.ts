@@ -9,80 +9,33 @@ export const HistoryStateDocument: DocumentNode<HistoryStateQuery, HistoryStateQ
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'HistoryState' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'historyState' },
-            arguments: [],
-            directives: [
-              { kind: 'Directive', name: { kind: 'Name', value: 'client' }, arguments: [] },
-            ],
+            directives: [{ kind: 'Directive', name: { kind: 'Name', value: 'client' } }],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'idx' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'idx' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'pages' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'href' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'as' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'x' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'y' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'title' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'href' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'as' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'x' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'y' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'direction' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'phase' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'direction' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'phase' } },
               ],
             },
           },

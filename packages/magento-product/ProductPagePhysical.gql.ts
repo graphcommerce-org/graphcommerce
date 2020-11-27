@@ -12,12 +12,9 @@ export const ProductPagePhysicalFragmentDoc: DocumentNode<ProductPagePhysicalFra
         kind: 'NamedType',
         name: { kind: 'Name', value: 'PhysicalProductInterface' },
       },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'weight' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'weight' } }],
       },
     },
   ],

@@ -12,43 +12,24 @@ export const ProductPageDescriptionFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageDescription' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'name' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'short_description' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'html' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'html' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'description' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'html' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'html' } }],
             },
           },
         ],

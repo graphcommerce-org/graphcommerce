@@ -11,122 +11,79 @@ export const CartPricesFragmentDoc: DocumentNode<CartPricesFragment, unknown> = 
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartPrices' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CartPrices' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'applied_taxes' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'amount' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Money' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } },
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'discounts' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'amount' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Money' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } },
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'grand_total' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' }, directives: [] },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'subtotal_excluding_tax' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' }, directives: [] },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'subtotal_including_tax' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' }, directives: [] },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'subtotal_with_discount_excluding_tax' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' }, directives: [] },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
         ],

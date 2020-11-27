@@ -19,23 +19,16 @@ export const ProductPageUpsellFragmentDoc: DocumentNode<ProductPageUpsellFragmen
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageUpsell' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'upsell_products' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'ProductListItem' },
-                  directives: [],
-                },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItem' } },
               ],
             },
           },

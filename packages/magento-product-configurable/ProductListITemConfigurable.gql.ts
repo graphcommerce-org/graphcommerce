@@ -22,97 +22,45 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListItemConfigurable' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ConfigurableProduct' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'FragmentSpread',
-            name: { kind: 'Name', value: 'ProductListItem' },
-            directives: [],
-          },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItem' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'configurable_options' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'attribute_code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'attribute_code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'values' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'store_label' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'value_index' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'store_label' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'value_index' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'swatch_data' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: '__typename' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                             {
                               kind: 'InlineFragment',
                               typeCondition: {
                                 kind: 'NamedType',
                                 name: { kind: 'Name', value: 'ImageSwatchData' },
                               },
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'thumbnail' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'thumbnail' } },
                                 ],
                               },
                             },
@@ -128,74 +76,36 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'variants' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'attributes' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'code' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'value_index' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'value_index' } },
                     ],
                   },
                 },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'product' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'sku' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'name' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'small_image' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'label' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                           ],
                         },
                       },

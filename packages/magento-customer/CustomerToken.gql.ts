@@ -12,45 +12,20 @@ export const CustomerTokenDocument: DocumentNode<
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'CustomerToken' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'customerToken' },
-            arguments: [],
-            directives: [
-              { kind: 'Directive', name: { kind: 'Name', value: 'client' }, arguments: [] },
-            ],
+            directives: [{ kind: 'Directive', name: { kind: 'Name', value: 'client' } }],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: '__typename' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'token' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'valid' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'createdAt' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'token' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'valid' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
               ],
             },
           },

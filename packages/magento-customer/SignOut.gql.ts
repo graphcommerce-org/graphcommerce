@@ -9,26 +9,15 @@ export const SignOutDocument: DocumentNode<SignOutMutation, SignOutMutationVaria
       kind: 'OperationDefinition',
       operation: 'mutation',
       name: { kind: 'Name', value: 'SignOut' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'revokeCustomerToken' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'result' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'result' } }],
             },
           },
         ],

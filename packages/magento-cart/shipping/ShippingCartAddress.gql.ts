@@ -18,128 +18,59 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ShippingCartAddress' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ShippingCartAddress' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'firstname' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'lastname' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'company' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'city' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'postcode' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'street' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'company' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'street' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'country' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'region' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'region_id' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
               ],
             },
           },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'telephone' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'customer_notes' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'customer_notes' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'selected_shipping_method' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'SelectedShippingMethod' },
-                  directives: [],
-                },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SelectedShippingMethod' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'available_shipping_methods' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'FragmentSpread',
                   name: { kind: 'Name', value: 'AvailableShippingMethod' },
-                  directives: [],
                 },
               ],
             },

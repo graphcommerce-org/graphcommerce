@@ -9,8 +9,6 @@ export const PageLayoutDocument: DocumentNode<PageLayoutQuery, PageLayoutQueryVa
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'PageLayout' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -18,51 +16,25 @@ export const PageLayoutDocument: DocumentNode<PageLayoutQuery, PageLayoutQueryVa
             kind: 'Field',
             alias: { kind: 'Name', value: 'menu' },
             name: { kind: 'Name', value: 'categories' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'children' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'name' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'level' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url_path' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'level' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
                           ],
                         },
                       },

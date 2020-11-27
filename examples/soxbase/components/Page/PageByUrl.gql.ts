@@ -17,10 +17,8 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -48,38 +46,22 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                 value: { kind: 'ListValue', values: [{ kind: 'EnumValue', value: 'en' }] },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'content' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: '__typename' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                       {
                         kind: 'InlineFragment',
                         typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Node' } },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'id' },
-                              arguments: [],
-                              directives: [],
-                            },
-                          ],
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
                         },
                       },
                       {
@@ -88,24 +70,16 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'RowColumnOne' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'colOne' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'raw' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
                                 ],
                               },
                             },
@@ -118,41 +92,26 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'RowColumnTwo' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'colOne' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'raw' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'colTwo' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'raw' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
                                 ],
                               },
                             },
@@ -165,58 +124,36 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'RowColumnThree' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'colOne' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'raw' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'colTwo' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'raw' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'colThree' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'raw' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
                                 ],
                               },
                             },

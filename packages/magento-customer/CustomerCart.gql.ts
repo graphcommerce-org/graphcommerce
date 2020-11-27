@@ -9,214 +9,107 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'CustomerCart' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'customerCart' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: '__typename' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'email' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'email' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'prices' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'applied_taxes' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'amount' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'label' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'discounts' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'amount' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'label' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'grand_total' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'currency' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'subtotal_excluding_tax' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'currency' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'subtotal_including_tax' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'currency' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'subtotal_with_discount_excluding_tax' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'currency' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'value' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                           ],
                         },
                       },
@@ -226,51 +119,25 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'shipping_addresses' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'selected_shipping_method' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'carrier_title' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'method_title' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'amount' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
@@ -280,78 +147,32 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'total_quantity' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'total_quantity' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'id' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: '__typename' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'quantity' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'quantity' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'product' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'name' },
-                              arguments: [],
-                              directives: [],
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url_key' },
-                              arguments: [],
-                              directives: [],
-                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'thumbnail' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'url' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'label' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                                 ],
                               },
                             },
@@ -361,140 +182,74 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'prices' },
-                        arguments: [],
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'discounts' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'amount' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'currency' },
-                                          arguments: [],
-                                          directives: [],
                                         },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'value' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'label' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'price' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'row_total' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'row_total_including_tax' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'total_item_discount' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'currency' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                 ],
                               },
                             },
@@ -507,42 +262,19 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'ConfigurableCartItem' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'configurable_options' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'id' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'option_label' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value_id' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'value_label' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'option_label' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value_id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value_label' } },
                                 ],
                               },
                             },
@@ -555,30 +287,17 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'DownloadableCartItem' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'samples' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'sample_url' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'title' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'sample_url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                                 ],
                               },
                             },
@@ -591,67 +310,30 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                           kind: 'NamedType',
                           name: { kind: 'Name', value: 'BundleCartItem' },
                         },
-                        directives: [],
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'bundle_options' },
-                              arguments: [],
-                              directives: [],
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'id' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'label' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'type' },
-                                    arguments: [],
-                                    directives: [],
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'type' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'values' },
-                                    arguments: [],
-                                    directives: [],
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'id' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'label' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'price' },
-                                          arguments: [],
-                                          directives: [],
-                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'price' } },
                                         {
                                           kind: 'Field',
                                           name: { kind: 'Name', value: 'quantity' },
-                                          arguments: [],
-                                          directives: [],
                                         },
                                       ],
                                     },
@@ -665,12 +347,7 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'is_virtual' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
               ],
             },
           },
