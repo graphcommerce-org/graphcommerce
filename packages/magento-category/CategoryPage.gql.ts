@@ -77,18 +77,8 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'level' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'is_anchor' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'level' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'is_anchor' } },
                       {
                         kind: 'InlineFragment',
                         typeCondition: {

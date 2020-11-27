@@ -9,44 +9,21 @@ export const CategoryNavFragmentDoc: DocumentNode<CategoryNavFragment, unknown> 
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CategoryNav' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CategoryTree' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'level' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'is_anchor' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'name' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: 'level' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'is_anchor' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'children' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'url_path' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'name' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
               ],
             },
           },
