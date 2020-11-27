@@ -24,7 +24,7 @@
     "codegen-run": "NODE_TLS_REJECT_UNAUTHORIZED=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
     "codegen-eslint": "eslint --fix --ignore-path .gitignore '**/*.gql.ts'",
     "codegen-prettier": "yarn prettier --ignore-path .gitignore --write '**/*.gql.ts'",
-    "codegen": "yarn dev:api && yarn codegen-run; yarn codegen-eslint; yarn codegen-prettier",
+    "codegen": "yarn dev:api && yarn codegen-run; yarn codegen-eslint; yarn codegen-prettier; yarn stop",
     "build:soxbase-api": "yarn workspace @reachdigital/soxbase-api build && yarn start:soxbase-api",
     "build:soxbase": "yarn workspace @reachdigital/soxbase build",
     "build:lighthouse": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
