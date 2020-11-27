@@ -42,7 +42,7 @@ export const useChipMenuStyles = makeStyles(
       '& a': {
         padding: '4px 16px',
       },
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         minWidth: 0,
         maxWidth: '100%',
         width: '100%',
