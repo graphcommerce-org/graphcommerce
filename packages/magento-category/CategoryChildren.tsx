@@ -55,34 +55,37 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
   const classes = useSubcategoryMenuStyles(props)
 
   return (
-    <>
-      <ScrollSnapSlider
-        classes={{
-          container: classes.slider,
-          prevFab: classes.fab,
-          nextFab: classes.fab,
-        }}
-      >
-        {children?.map((cat) => {
-          if (!cat?.url_path || !cat.id || !cat.name) return null
+    children &&
+    children.length > 0 && (
+      <>
+        <ScrollSnapSlider
+          classes={{
+            container: classes.slider,
+            prevFab: classes.fab,
+            nextFab: classes.fab,
+          }}
+        >
+          {children?.map((cat) => {
+            if (!cat?.url_path || !cat.id || !cat.name) return null
 
-          const linkParams = cloneDeep(params)
-          linkParams.url = cat.url_path
-          delete linkParams.currentPage
+            const linkParams = cloneDeep(params)
+            linkParams.url = cat.url_path
+            delete linkParams.currentPage
 
-          return (
-            <CategoryLink
-              key={cat.id}
-              underline='none'
-              color='inherit'
-              {...linkParams}
-              className={classes.link}
-            >
-              {cat.name}
-            </CategoryLink>
-          )
-        })}
-      </ScrollSnapSlider>
-    </>
+            return (
+              <CategoryLink
+                key={cat.id}
+                underline='none'
+                color='inherit'
+                {...linkParams}
+                className={classes.link}
+              >
+                {cat.name}
+              </CategoryLink>
+            )
+          })}
+        </ScrollSnapSlider>
+      </>
+    )
   )
 }
