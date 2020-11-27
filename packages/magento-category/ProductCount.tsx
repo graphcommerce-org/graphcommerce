@@ -27,7 +27,7 @@ const useProductCountStyles = makeStyles(
       margin: '0 auto',
       background: theme.palette.background.default,
       display: 'inline-block',
-      padding: `0 ${theme.spacing.xs} 0 ${theme.spacings.xs}`,
+      padding: `0 ${theme.spacings.xs} 0 ${theme.spacings.xs}`,
       color: theme.palette.primary.mutedText,
       transform: 'translateY(-13px)',
     },
