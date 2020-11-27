@@ -24,7 +24,7 @@ const useFilterRangeType = makeStyles(
     },
     filterValueLabel: {
       position: 'absolute',
-      top: 20,
+      top: theme.typography.body2.fontSize,
       right: 0,
       ...theme.typography.body2,
     },

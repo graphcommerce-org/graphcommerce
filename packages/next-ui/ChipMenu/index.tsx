@@ -10,7 +10,7 @@ export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
     chip: {
       '& .MuiChip-label': {
-        maxWidth: 148,
+        maxWidth: '100%',
       },
       '&:focus': {
         background: '#FFF !important',
@@ -37,10 +37,10 @@ export const useChipMenuStyles = makeStyles(
     menu: {
       minWidth: responsiveVal(200, 560),
       maxWidth: 560,
-      padding: '8px 24px',
-      marginTop: 16,
+      padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
+      marginTop: theme.spacings.xxs,
       '& a': {
-        padding: '4px 16px',
+        padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
       },
       [theme.breakpoints.down('xs')]: {
         minWidth: 0,
@@ -50,15 +50,15 @@ export const useChipMenuStyles = makeStyles(
       },
     },
     chipHeader: {
-      fontWeight: 500,
+      ...theme.typography.body2,
       letterSpacing: 1,
       textTransform: 'uppercase',
-      fontSize: 14,
+      fontWeight: 500,
       position: 'relative',
       color: theme.palette.secondary.mutedText,
       padding: theme.spacings.xxs,
       paddingLeft: 0,
-      marginBottom: 16,
+      marginBottom: theme.spacings.xxs,
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
   }),
