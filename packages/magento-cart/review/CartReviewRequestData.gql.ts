@@ -12,37 +12,19 @@ export const CartReviewRequestDataFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartReviewRequestData' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: '__typename' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'available_payment_methods' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'code' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'title' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
               ],
             },
           },

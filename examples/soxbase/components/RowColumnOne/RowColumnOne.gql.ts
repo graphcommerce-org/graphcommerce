@@ -9,25 +9,15 @@ export const RowColumnOneFragmentDoc: DocumentNode<RowColumnOneFragment, unknown
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'RowColumnOne' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'RowColumnOne' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'colOne' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'raw' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
             },
           },
         ],

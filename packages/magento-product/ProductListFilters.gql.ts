@@ -9,56 +9,26 @@ export const ProductListFiltersFragmentDoc: DocumentNode<ProductListFiltersFragm
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListFilters' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Products' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'aggregations' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'count' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'attribute_code' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'count' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'attribute_code' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'options' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'label' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'value' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                     ],
                   },
                 },

@@ -9,12 +9,9 @@ export const CartItemVirtualFragmentDoc: DocumentNode<CartItemVirtualFragment, u
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartItemVirtual' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'VirtualCartItem' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
       },
     },
   ],

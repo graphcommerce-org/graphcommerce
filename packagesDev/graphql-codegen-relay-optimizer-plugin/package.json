@@ -28,7 +28,7 @@
     "graphql": "14.x.x || 15.x.x"
   },
   "dependencies": {
-    "@graphql-codegen/plugin-helpers": "1.18.1",
+    "@graphql-codegen/plugin-helpers": "1.18.2",
     "relay-compiler": "10.1.0"
   },
   "devDependencies": {

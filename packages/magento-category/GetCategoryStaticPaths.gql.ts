@@ -12,8 +12,6 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'GetCategoryStaticPaths' },
-      variableDefinitions: [],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -27,25 +25,15 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
                 value: { kind: 'ObjectValue', fields: [] },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'url_path' },
-                        arguments: [],
-                        directives: [],
-                      },
-                    ],
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'url_path' } }],
                   },
                 },
               ],

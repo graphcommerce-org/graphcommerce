@@ -9,44 +9,24 @@ export const ProductListSortFragmentDoc: DocumentNode<ProductListSortFragment, u
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListSort' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Products' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'sort_fields' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'default' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'default' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'options' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'label' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'value' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                     ],
                   },
                 },

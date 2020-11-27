@@ -9,54 +9,21 @@ export const ProductVideoFragmentDoc: DocumentNode<ProductVideoFragment, unknown
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductVideo' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductVideo' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'video_content' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'media_type' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'video_description' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'video_metadata' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'video_provider' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'video_title' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'video_url' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'media_type' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'video_description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'video_metadata' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'video_provider' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'video_title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'video_url' } },
               ],
             },
           },

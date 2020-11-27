@@ -17,7 +17,6 @@ export const SignInDocument: DocumentNode<SignInMutation, SignInMutationVariable
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
         {
           kind: 'VariableDefinition',
@@ -26,10 +25,8 @@ export const SignInDocument: DocumentNode<SignInMutation, SignInMutationVariable
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -48,17 +45,9 @@ export const SignInDocument: DocumentNode<SignInMutation, SignInMutationVariable
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'password' } },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'token' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'token' } }],
             },
           },
         ],

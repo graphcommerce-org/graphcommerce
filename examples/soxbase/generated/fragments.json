@@ -1,7 +1,7 @@
 {
   "possibleTypes": {
+    "Node": ["RowColumnTwo", "RowColumnOne", "RowColumnThree", "Page", "Asset"],
     "PageContent": ["RowColumnThree", "RowColumnOne", "RowColumnTwo"],
-    "Node": ["Page", "RowColumnThree", "Asset", "RowColumnTwo", "RowColumnOne"],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
       "SimpleCartItem",

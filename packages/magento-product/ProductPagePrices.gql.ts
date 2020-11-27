@@ -12,47 +12,32 @@ export const ProductPagePricesFragmentDoc: DocumentNode<ProductPagePricesFragmen
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPagePrices' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'price_range' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'maximum_price' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'ProductPagePrice' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPagePrice' } },
                     ],
                   },
                 },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'minimum_price' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'ProductPagePrice' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPagePrice' } },
                     ],
                   },
                 },
@@ -62,56 +47,31 @@ export const ProductPagePricesFragmentDoc: DocumentNode<ProductPagePricesFragmen
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'price_tiers' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'discount' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'amount_off' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'percent_off' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'amount_off' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'percent_off' } },
                     ],
                   },
                 },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'final_price' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Money' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } },
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'quantity' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'quantity' } },
               ],
             },
           },

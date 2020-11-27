@@ -9,12 +9,9 @@ export const ProductPageVirtualFragmentDoc: DocumentNode<ProductPageVirtualFragm
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageVirtual' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'VirtualProduct' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
       },
     },
   ],

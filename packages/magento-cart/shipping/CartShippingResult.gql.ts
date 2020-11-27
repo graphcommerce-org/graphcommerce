@@ -14,30 +14,18 @@ export const CartShippingResultFragmentDoc: DocumentNode<CartShippingResultFragm
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartShippingResult' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: '__typename' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'shipping_addresses' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'ShippingCartAddress' },
-                  directives: [],
-                },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ShippingCartAddress' } },
               ],
             },
           },

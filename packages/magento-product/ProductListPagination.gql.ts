@@ -12,30 +12,17 @@ export const ProductListPaginationFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListPagination' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Products' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'page_info' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'current_page' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'total_pages' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'current_page' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'total_pages' } },
               ],
             },
           },

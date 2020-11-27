@@ -9,12 +9,9 @@ export const CartItemSimpleFragmentDoc: DocumentNode<CartItemSimpleFragment, unk
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CartItemSimple' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'SimpleCartItem' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
       },
     },
   ],

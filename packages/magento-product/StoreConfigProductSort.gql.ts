@@ -12,17 +12,11 @@ export const StoreConfigProductSortFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'StoreConfigProductSort' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'StoreConfig' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'catalog_default_sort_by' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'catalog_default_sort_by' } },
         ],
       },
     },

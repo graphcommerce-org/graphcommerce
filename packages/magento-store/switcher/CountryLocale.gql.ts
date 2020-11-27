@@ -9,23 +9,12 @@ export const CountryLocaleFragmentDoc: DocumentNode<CountryLocaleFragment, unkno
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CountryLocale' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Country' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'two_letter_abbreviation' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'full_name_locale' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'two_letter_abbreviation' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'full_name_locale' } },
         ],
       },
     },

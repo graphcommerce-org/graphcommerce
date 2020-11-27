@@ -17,10 +17,8 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -34,46 +32,15 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'urlKey' } },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'identifier' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'meta_title' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'meta_description' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'title' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'content_heading' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'content' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'identifier' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'content_heading' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'content' } },
               ],
             },
           },

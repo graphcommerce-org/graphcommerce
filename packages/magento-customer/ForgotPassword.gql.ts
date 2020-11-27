@@ -20,10 +20,8 @@ export const ForgotPasswordDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -37,7 +35,6 @@ export const ForgotPasswordDocument: DocumentNode<
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'email' } },
               },
             ],
-            directives: [],
           },
         ],
       },

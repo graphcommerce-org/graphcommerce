@@ -9,22 +9,11 @@ export const ProductLinkFragmentDoc: DocumentNode<ProductLinkFragment, unknown> 
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductLink' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'url_key' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'canonical_url' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'canonical_url' } },
         ],
       },
     },

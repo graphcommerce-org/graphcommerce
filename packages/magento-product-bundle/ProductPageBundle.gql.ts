@@ -9,12 +9,9 @@ export const ProductPageBundleFragmentDoc: DocumentNode<ProductPageBundleFragmen
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageBundle' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BundleProduct' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
       },
     },
   ],

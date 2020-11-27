@@ -9,23 +9,12 @@ export const CategoryDescriptionFragmentDoc: DocumentNode<CategoryDescriptionFra
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CategoryDescription' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CategoryTree' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'description' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'name' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'display_mode' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'display_mode' } },
         ],
       },
     },

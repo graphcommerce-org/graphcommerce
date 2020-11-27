@@ -9,12 +9,9 @@ export const ProductImageFragmentDoc: DocumentNode<ProductImageFragment, unknown
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductImage' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductImage' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'url' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'url' } }],
       },
     },
   ],

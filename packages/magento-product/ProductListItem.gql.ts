@@ -11,78 +11,46 @@ export const ProductListItemFragmentDoc: DocumentNode<ProductListItemFragment, u
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListItem' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'sku' }, arguments: [], directives: [] },
-          { kind: 'Field', name: { kind: 'Name', value: 'name' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'url_key' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'small_image' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'url' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'label' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'price_range' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'maximum_price' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'ProductListPrice' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListPrice' } },
                     ],
                   },
                 },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'minimum_price' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'ProductListPrice' },
-                        directives: [],
-                      },
+                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListPrice' } },
                     ],
                   },
                 },

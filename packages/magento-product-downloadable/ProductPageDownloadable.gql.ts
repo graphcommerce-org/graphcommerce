@@ -12,59 +12,29 @@ export const ProductPageDownloadableFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageDownloadable' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'DownloadableProduct' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'downloadable_product_links' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'price' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'sample_url' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'title' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'price' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'sample_url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'downloadable_product_samples' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'title' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'sample_url' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'sample_url' } },
               ],
             },
           },

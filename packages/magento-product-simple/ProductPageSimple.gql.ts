@@ -9,12 +9,9 @@ export const ProductPageSimpleFragmentDoc: DocumentNode<ProductPageSimpleFragmen
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductPageSimple' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'SimpleProduct' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' }, arguments: [], directives: [] },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
       },
     },
   ],

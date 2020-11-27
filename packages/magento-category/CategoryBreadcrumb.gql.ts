@@ -9,36 +9,18 @@ export const CategoryBreadcrumbFragmentDoc: DocumentNode<CategoryBreadcrumbFragm
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CategoryBreadcrumb' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CategoryInterface' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'breadcrumbs' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'category_id' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'category_name' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'category_url_path' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'category_id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'category_name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'category_url_path' } },
               ],
             },
           },

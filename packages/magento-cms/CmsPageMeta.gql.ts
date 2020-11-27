@@ -9,23 +9,12 @@ export const CmsPageMetaFragmentDoc: DocumentNode<CmsPageMetaFragment, unknown> 
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CmsPageMeta' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CmsPage' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'meta_title' },
-            arguments: [],
-            directives: [],
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'meta_description' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' }, arguments: [], directives: [] },
+          { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
         ],
       },
     },

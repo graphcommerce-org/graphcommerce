@@ -11,55 +11,34 @@ export const ProductListPriceFragmentDoc: DocumentNode<ProductListPriceFragment,
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListPrice' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductPrice' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'regular_price' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' }, directives: [] },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'discount' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'amount_off' },
-                  arguments: [],
-                  directives: [],
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'percent_off' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'amount_off' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'percent_off' } },
               ],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'final_price' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' }, directives: [] },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
         ],

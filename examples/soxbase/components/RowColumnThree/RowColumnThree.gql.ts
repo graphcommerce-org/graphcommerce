@@ -9,59 +9,31 @@ export const RowColumnThreeFragmentDoc: DocumentNode<RowColumnThreeFragment, unk
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'RowColumnThree' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'RowColumnThree' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'colOne' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'raw' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'colTwo' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'raw' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
             },
           },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'colThree' },
-            arguments: [],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'raw' },
-                  arguments: [],
-                  directives: [],
-                },
-              ],
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
             },
           },
         ],

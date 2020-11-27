@@ -22,16 +22,9 @@ export const ProductListItemVirtualFragmentDoc: DocumentNode<
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProductListItemVirtual' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'VirtualProduct' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'FragmentSpread',
-            name: { kind: 'Name', value: 'ProductListItem' },
-            directives: [],
-          },
-        ],
+        selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItem' } }],
       },
     },
     ...ProductListItemFragmentDoc.definitions,

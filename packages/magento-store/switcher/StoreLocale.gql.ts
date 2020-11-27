@@ -9,24 +9,13 @@ export const StoreLocaleFragmentDoc: DocumentNode<StoreLocaleFragment, unknown> 
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'StoreLocale' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'StoreConfig' } },
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'code' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'store_name' },
-            arguments: [],
-            directives: [],
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'locale' }, arguments: [], directives: [] },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'base_currency_code' },
-            arguments: [],
-            directives: [],
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'store_name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'locale' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'base_currency_code' } },
         ],
       },
     },

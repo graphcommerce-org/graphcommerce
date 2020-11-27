@@ -20,10 +20,8 @@ export const GetProductStaticPathsDocument: DocumentNode<
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
           },
-          directives: [],
         },
       ],
-      directives: [],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -47,54 +45,27 @@ export const GetProductStaticPathsDocument: DocumentNode<
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'currentPage' } },
               },
             ],
-            directives: [],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'page_info' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'current_page' },
-                        arguments: [],
-                        directives: [],
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'total_pages' },
-                        arguments: [],
-                        directives: [],
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'current_page' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'total_pages' } },
                     ],
                   },
                 },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'total_count' },
-                  arguments: [],
-                  directives: [],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'total_count' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
-                  arguments: [],
-                  directives: [],
                   selectionSet: {
                     kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'url_key' },
-                        arguments: [],
-                        directives: [],
-                      },
-                    ],
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'url_key' } }],
                   },
                 },
               ],
