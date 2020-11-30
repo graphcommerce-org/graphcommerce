@@ -92,7 +92,10 @@ function CategoryPage(props: Props) {
   const category = categories.items[0]
 
   let content: React.ReactNode
-  if (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) {
+  if (
+    (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) ||
+    categories.items[0].display_mode === 'PAGE'
+  ) {
     content = (
       <>
         <Container className={classes.container} maxWidth='false'>
