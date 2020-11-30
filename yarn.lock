@@ -1335,10 +1335,10 @@
     "@graphql-codegen/plugin-helpers" "^1.18.2"
     tslib "~2.0.1"
 
-"@graphql-codegen/cli@^1.19.3":
-  version "1.19.3"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.19.3.tgz#7d723bb406169b1fd23472e217b0d58b328823e9"
-  integrity sha512-tpaaq4eNN4VOWyzNKlAjA1zvoCaHikJ5lYvoWWyFrLa7uGJJlWeZwCZVGbl0Jwd0DfB+0E5u/U+9o9We+uASSw==
+"@graphql-codegen/cli@^1.19.4":
+  version "1.19.4"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.19.4.tgz#16e5caaa46ee159cbb01e2a2699203f8f25faac2"
+  integrity sha512-PN1xgaXZaTTEPhBfQkIRK82RzrzY8Pr+tfCqOtibeJMed0mtIJ5gSQfollRbtZ0/t7ZEmYCxojqQiVSbKzXDMw==
   dependencies:
     "@graphql-codegen/core" "1.17.9"
     "@graphql-codegen/plugin-helpers" "^1.18.2"
@@ -1438,27 +1438,10 @@
     tslib "~2.0.0"
     upper-case "2.0.1"
 
-"@graphql-codegen/plugin-helpers@1.18.2", "@graphql-codegen/plugin-helpers@^1.18.2":
+"@graphql-codegen/plugin-helpers@1.18.2", "@graphql-codegen/plugin-helpers@^1.17.8", "@graphql-codegen/plugin-helpers@^1.17.9", "@graphql-codegen/plugin-helpers@^1.18.1", "@graphql-codegen/plugin-helpers@^1.18.2":
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.18.2.tgz#57011076cb8b8f5d04d37d226a5eda300c01be94"
   integrity sha512-SvX+Ryq2naLcoD6jJNxtzc/moWTgHJ+X0KRfvhGWTa+xtFTS02i+PWOR89YYPcD8+LF6GmyFBjx2FmLCx4JwMg==
-  dependencies:
-    "@graphql-tools/utils" "^6"
-    camel-case "4.1.1"
-    common-tags "1.8.0"
-    constant-case "3.0.3"
-    import-from "3.0.0"
-    lodash "~4.17.20"
-    lower-case "2.0.1"
-    param-case "3.0.3"
-    pascal-case "3.1.1"
-    tslib "~2.0.1"
-    upper-case "2.0.1"
-
-"@graphql-codegen/plugin-helpers@^1.17.8", "@graphql-codegen/plugin-helpers@^1.17.9", "@graphql-codegen/plugin-helpers@^1.18.1":
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-1.18.1.tgz#e89833cfc4b3359ed3616626e590a89077ed0da6"
-  integrity sha512-jURyHDy8sUTUtRqF6U+akkPANmOYxJ7P47WExAknludiZCMOuoC6QUTxaHZcWNLCWsJFnKNta+oGHqXgkyA+VQ==
   dependencies:
     "@graphql-tools/utils" "^6"
     camel-case "4.1.1"
