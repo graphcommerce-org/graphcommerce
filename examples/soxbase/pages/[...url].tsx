@@ -5,8 +5,8 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
+import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
-import CategoryNav from '@reachdigital/magento-category/CategoryNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import ProductCount from '@reachdigital/magento-category/ProductCount'
 import getCategoryPageProps, {
@@ -97,20 +97,9 @@ function CategoryPage(props: Props) {
     categories.items[0].display_mode === 'PAGE'
   ) {
     content = (
-      <>
-        <Container className={classes.container} maxWidth='false'>
-          <CategoryNav {...category} />
-        </Container>
-      </>
-    )
-  } else if (categories.items[0].display_mode === 'PAGE') {
-    content = (
-      <>
-        <Container className={classes.container}>
-          <CategoryDescription name={category.name} description={category.description} />
-          <CategoryChildren params={params}>{category.children}</CategoryChildren>
-        </Container>
-      </>
+      <Container className={classes.container} maxWidth={false}>
+        <CategoryHeroNav {...category} />
+      </Container>
     )
   } else {
     content = (

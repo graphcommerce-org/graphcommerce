@@ -5,7 +5,7 @@ query CategoryPage($urlPath: String!) {
       ...CategoryDescription
       ...CategoryChildren
       ...CategoryMeta
-      ...CategoryNav
+      ...CategoryHeroNav
     }
   }
 }

@@ -1,4 +1,4 @@
-fragment CategoryNav on CategoryTree {
+fragment CategoryHeroNav on CategoryTree {
   level
   is_anchor
   name

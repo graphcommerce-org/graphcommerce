@@ -1,7 +1,7 @@
 import { Theme, Typography, makeStyles } from '@material-ui/core'
 import React from 'react'
+import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 import CategoryLink from './CategoryLink'
-import { CategoryNavFragment } from './CategoryNav.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -46,12 +46,12 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'CategoryNav' },
+  { name: 'CategoryHeroNav' },
 )
 
-type CategoryNavProps = CategoryNavFragment
+type CategoryHeroNavProps = CategoryHeroNavFragment
 
-export default function CategoryNav({ children, name }: CategoryNavProps) {
+export default function CategoryHeroNav({ children, name }: CategoryHeroNavProps) {
   const classes = useStyles()
   return (
     <div className={classes.wrapper}>
