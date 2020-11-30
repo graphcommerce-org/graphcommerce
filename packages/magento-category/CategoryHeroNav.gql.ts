@@ -2,12 +2,12 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const CategoryNavFragmentDoc: DocumentNode<CategoryNavFragment, unknown> = {
+export const CategoryHeroNavFragmentDoc: DocumentNode<CategoryHeroNavFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CategoryNav' },
+      name: { kind: 'Name', value: 'CategoryHeroNav' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CategoryTree' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -32,6 +32,6 @@ export const CategoryNavFragmentDoc: DocumentNode<CategoryNavFragment, unknown> 
     },
   ],
 }
-export type CategoryNavFragment = Pick<Types.CategoryTree, 'level' | 'is_anchor' | 'name'> & {
+export type CategoryHeroNavFragment = Pick<Types.CategoryTree, 'level' | 'is_anchor' | 'name'> & {
   children?: Types.Maybe<Array<Types.Maybe<Pick<Types.CategoryTree, 'id' | 'url_path' | 'name'>>>>
 }

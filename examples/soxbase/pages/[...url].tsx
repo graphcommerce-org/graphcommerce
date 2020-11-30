@@ -4,8 +4,8 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
+import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
-import CategoryNav from '@reachdigital/magento-category/CategoryNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryPageProps, {
   CategoryPageProps,
@@ -56,7 +56,7 @@ function CategoryPage(props: Props) {
   ) {
     content = (
       <Container className={classes.container} maxWidth={false}>
-        <CategoryNav {...category} />
+        <CategoryHeroNav {...category} />
       </Container>
     )
   } else {
