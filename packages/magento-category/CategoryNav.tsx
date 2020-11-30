@@ -43,16 +43,6 @@ const useStyles = makeStyles(
       title: {
         position: 'relative',
         textAlign: 'center',
-        '&::before': {
-          content: '""',
-          width: '20vw',
-          borderBottom: '1px solid rgba(0,0,0,0.15)',
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          top: '0',
-          zIndex: '1',
-        },
       },
     },
   }),
