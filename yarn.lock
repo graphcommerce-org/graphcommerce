@@ -15012,10 +15012,10 @@ scuid@^1.1.0:
   resolved "https://registry.yarnpkg.com/scuid/-/scuid-1.1.0.tgz#d3f9f920956e737a60f72d0e4ad280bf324d5dab"
   integrity sha512-MuCAyrGZcTLfQoH2XoBlQ8C6bzwN88XT/0slOGz0pn8+gIP85BOAfYa44ZXQUTOwRwPU0QvgU+V+OSajl/59Xg==
 
-semantic-release-slack-bot@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/semantic-release-slack-bot/-/semantic-release-slack-bot-1.6.2.tgz#b07c9596d808c07eebedb9defc1fc0208ca76272"
-  integrity sha512-XVfignER7ZXGstfu0T2pyPIx1rsuSHEDRsScTcVmFNrAYBPCYEzBMmYdAd+Zq/UItmEcexcfi2h+7AIC8PeyWQ==
+semantic-release-slack-bot@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/semantic-release-slack-bot/-/semantic-release-slack-bot-1.7.0.tgz#eb2999a31e2853f3af52d2304843025a2f878ec9"
+  integrity sha512-T4F3h9c+JKahsTlUTguryyeqrp8OWIw5RtpS/yiTaKzynu+x2ZwtOKcGY76sL9KB2hGPehWTqWuTthCHHOeAYg==
   dependencies:
     "@semantic-release/error" "^2.2.0"
     node-fetch "^2.3.0"
