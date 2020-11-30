@@ -12,16 +12,6 @@ const useStyles = makeStyles(
       gridTemplateAreas: `"categories placeholder"`,
       padding: `${theme.spacings.sm} 0`,
       gap: `${theme.spacings.md}`,
-      '&::before': {
-        content: '""',
-        width: '100vw',
-        borderBottom: '1px solid rgba(0,0,0,0.15)',
-        position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        bottom: '0',
-        zIndex: '1',
-      },
     },
     categories: {
       margin: `${theme.spacings.xl} ${theme.spacings.lg}`,
