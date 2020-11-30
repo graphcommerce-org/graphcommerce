@@ -38,7 +38,7 @@ if (process.versions.node.split('.')[0] > 12) {
 
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
-    console.log(item.name, item.duration)
+    console.log(`${item.name}: ${Math.round(item.duration)}ms`)
   })
   performance.clearMarks()
 })
