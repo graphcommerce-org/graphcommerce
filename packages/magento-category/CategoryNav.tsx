@@ -8,13 +8,12 @@ const useStyles = makeStyles(
     wrapper: {
       position: 'relative',
       display: 'grid',
-      gridTemplateColumns: '4fr 6fr',
-      gridTemplateAreas: `"categories placeholder"`,
-      padding: `${theme.spacings.sm} 0`,
-      gap: `${theme.spacings.md}`,
+      gridTemplateColumns: '0.8fr 3fr 0.8fr 5fr',
+      gridTemplateAreas: `". categories . placeholder"`,
+      borderBottom: '1px solid rgba(0,0,0,0.15)',
     },
     categories: {
-      margin: `${theme.spacings.xl} ${theme.spacings.lg}`,
+      margin: `${theme.spacings.xl} 0`,
       gridArea: 'categories',
       gridTemplateAreas: `"title title" "categories categories"`,
       display: 'grid',
@@ -28,17 +27,18 @@ const useStyles = makeStyles(
     placeholder: {
       gridArea: 'placeholder',
       background: '#efefef',
+      margin: `${theme.spacings.sm} 0`,
     },
     [theme.breakpoints.down('sm')]: {
       wrapper: {
         paddingTop: '0',
         gridTemplateColumns: '1fr',
         gridTemplateAreas: `"categories" "placeholder"`,
-        gridTemplateRows: 'auto 30vh',
+        gridTemplateRows: 'auto 60vw',
         gap: `${theme.spacings.sm}`,
       },
       categories: {
-        margin: `0 0 ${theme.spacings.md} 0`,
+        margin: `0`,
       },
       title: {
         position: 'relative',
