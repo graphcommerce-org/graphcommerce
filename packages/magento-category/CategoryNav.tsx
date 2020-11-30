@@ -6,12 +6,12 @@ import { CategoryNavFragment } from './CategoryNav.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
-      position: 'relative',
       display: 'grid',
       gridTemplateColumns: '1fr',
       gridTemplateAreas: `"categories" "placeholder"`,
       gridTemplateRows: 'auto 60vw',
       gap: `${theme.spacings.sm}`,
+      borderBottom: '1px solid rgba(0,0,0,0.15)',
     },
     categories: {
       gridArea: 'categories',
@@ -36,7 +36,7 @@ const useStyles = makeStyles(
         paddingTop: '0',
         gridTemplateColumns: '0.8fr 3fr 0.8fr 5fr',
         gridTemplateAreas: `". categories . placeholder"`,
-        borderBottom: '1px solid rgba(0,0,0,0.15)',
+        gridTemplateRows: 'auto',
       },
       categories: {
         margin: `${theme.spacings.xl} 0`,
