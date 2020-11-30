@@ -24,15 +24,6 @@ type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
 const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransitionProps) => {
   let state = useReactiveVar(historyStateVar)
 
-  /**
-   * todo: fix component recreation when navigating back multiple steps.
-   *
-   * 1. Navigate from /test/index to test/overlay/index -> /test/overlay/deeper
-   * 2. Navigate back to /test/index (back -> back)
-   * 3. /test/index has now been recreated instead of reused, causes the thisIdx to be wrong.
-   *
-   * Should probably create a sandbox environment
-   */
   const [thisIdx] = useState(state?.idx ?? 0)
 
   const toIdx = state?.idx ?? 0
@@ -43,10 +34,11 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
 
   const [, safeToRemove] = usePresence()
 
-  // Register that we want to keep the prevous page
-  if (isToPage && getPage(thisIdx)?.title !== title) {
-    state = updatePage({}, { title }, thisIdx)
-  }
+  useEffect(() => {
+    // Register the title of the page if it needs updating
+    if (getPage(thisIdx)?.title === title) return
+    updatePage({}, { title }, thisIdx)
+  }, [isToPage, thisIdx, title])
 
   // Register the scroll position of the previous page
   if (isBrowser && state.phase === 'LOCATION_CHANGED') {
