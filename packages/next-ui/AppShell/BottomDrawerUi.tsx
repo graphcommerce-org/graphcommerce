@@ -106,7 +106,7 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
   } = props
 
   const {
-    offsetDiv,
+    offsetProps,
     inFront,
     inBack,
     prevPage,
@@ -177,66 +177,66 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         zOffset={thisIdx * 2 - 1}
         hold={hold}
       />
-      <m.div
-        {...offsetDiv}
-        style={{ zIndex: thisIdx * 2 }}
-        className={classes.drawerContainer}
-        onKeyDown={onPressEscape}
-        role='presentation'
-        drag={drag && inFront ? 'y' : false}
-        dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.5}
-        onDragEnd={(e, info) => {
-          const isFlick = info.offset.y > 100 && info.velocity.y > 0
-          const isClose = info.offset.y > window.innerHeight / 3 - 50
-          if (isFlick || isClose) back()
-        }}
-      >
-        <m.section
-          className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
-          {...contentAnimation}
-          tabIndex={-1}
-          style={{ pointerEvents: inFront ? 'all' : 'none' }}
+      <m.div {...offsetProps} style={{ zIndex: thisIdx * 2 }}>
+        <m.div
+          className={classes.drawerContainer}
+          onKeyDown={onPressEscape}
+          role='presentation'
+          drag={drag && inFront ? 'y' : false}
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={1}
+          onDragEnd={(e, info) => {
+            const isFlick = info.offset.y > 100 && info.velocity.y > 0
+            const isClose = info.offset.y > window.innerHeight / 3 - 50
+            if (isFlick || isClose) back()
+          }}
         >
-          <FocusLock
-            returnFocus={{ preventScroll: true }}
-            disabled={!inFront && phase === 'FINISHED'}
+          <m.section
+            className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
+            {...contentAnimation}
+            tabIndex={-1}
+            style={{ pointerEvents: inFront ? 'all' : 'none' }}
           >
-            <div className={classes.header} role='presentation'>
-              <m.div className={classes.dragHandle} style={{ opacity }} />
+            <FocusLock
+              returnFocus={{ preventScroll: true }}
+              disabled={!inFront && phase === 'FINISHED'}
+            >
+              <div className={classes.header} role='presentation'>
+                <m.div className={classes.dragHandle} style={{ opacity }} />
 
-              <div className={classes.headerBack}>
-                <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
-                  {prevPage?.title ? (
-                    <BackButton onClick={back} down={prevPage === upPage}>
-                      {prevPage.title}
-                    </BackButton>
-                  ) : (
-                    <PageLink href={backFallbackHref ?? '/'}>
-                      <BackButton className={classes.headerBack}>
-                        {backFallbackTitle ?? 'Home'}
+                <div className={classes.headerBack}>
+                  <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                    {prevPage?.title ? (
+                      <BackButton onClick={back} down={prevPage === upPage}>
+                        {prevPage.title}
                       </BackButton>
-                    </PageLink>
-                  )}
-                </NoSsr>
-              </div>
+                    ) : (
+                      <PageLink href={backFallbackHref ?? '/'}>
+                        <BackButton className={classes.headerBack}>
+                          {backFallbackTitle ?? 'Home'}
+                        </BackButton>
+                      </PageLink>
+                    )}
+                  </NoSsr>
+                </div>
 
-              <div className={classes.headerTitle}>
-                <Typography
-                  variant='h4'
-                  component={titleComponent ?? 'h1'}
-                  align='center'
-                  {...titleProps}
-                >
-                  {title}
-                </Typography>
-              </div>
+                <div className={classes.headerTitle}>
+                  <Typography
+                    variant='h4'
+                    component={titleComponent ?? 'h1'}
+                    align='center'
+                    {...titleProps}
+                  >
+                    {title}
+                  </Typography>
+                </div>
 
-              <div className={classes.headerForward}>{headerForward}</div>
-            </div>
-            {children}
-          </FocusLock>
-        </m.section>
+                <div className={classes.headerForward}>{headerForward}</div>
+              </div>
+              {children}
+            </FocusLock>
+          </m.section>
+        </m.div>
       </m.div>
     </>
   )

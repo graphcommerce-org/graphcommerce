@@ -7,11 +7,11 @@ export type FullPageUiProps = unknown
 const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const { children, title } = props
   const pageTransition = usePageTransition({ title })
-  const { offsetDiv, inFront, hold } = pageTransition
+  const { offsetProps, inFront, hold } = pageTransition
 
   const contentAnimation: MotionProps = !hold
     ? {
-        initial: { opacity: 0 },
+        initial: { opacity: 1 },
         animate: { opacity: 1, transition: { duration: 0 } },
         exit: { opacity: 0, transition: { duration: 0 } },
       }
@@ -23,7 +23,7 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
 
   return (
     <>
-      <m.div {...offsetDiv}>
+      <m.div {...offsetProps}>
         <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }} {...contentAnimation}>
           {children}
         </m.div>
