@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@graphql-codegen/testing": "1.17.7",
-    "@types/jest": "26.0.15",
+    "@types/jest": "26.0.16",
     "@types/relay-compiler": "8.0.0",
     "graphql": "15.4.0",
     "jest": "26.6.3",
