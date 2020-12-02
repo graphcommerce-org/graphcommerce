@@ -6,6 +6,7 @@ import {
   Checkbox,
   makeStyles,
   Theme,
+  ListItemProps,
 } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
@@ -48,9 +49,7 @@ const useFilterEqualStyles = makeStyles(
     },
     linkContainer: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-      // gridTemplateRows: 'repeat(4, minmax(0, 1fr))',
-      // gridAutoFlow: 'row',
+      gridTemplateColumns: 'repeat(2, 1fr)',
       width: '100%',
       minWidth: 0,
       [theme.breakpoints.down('sm')]: {
@@ -112,14 +111,19 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               button
               key={option?.value}
               dense
-              component={(categoryLinkProps) => (
-                <CategoryLink
-                  {...categoryLinkProps}
-                  {...linkParams}
-                  color='inherit'
-                  underline='none'
-                  className={clsx(categoryLinkProps.className, classes.link)}
-                />
+              component={React.forwardRef<HTMLAnchorElement, ListItemProps<'a'>>(
+                (categoryLinkProps, ref) => {
+                  return (
+                    <CategoryLink
+                      {...categoryLinkProps}
+                      {...linkParams}
+                      color='inherit'
+                      underline='none'
+                      className={clsx(categoryLinkProps.className, classes.link)}
+                      ref={ref}
+                    />
+                  )
+                },
               )}
             >
               <ListItemText primary={option?.label} />
