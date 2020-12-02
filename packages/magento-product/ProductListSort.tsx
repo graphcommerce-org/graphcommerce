@@ -19,6 +19,8 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
 
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
+  const selected = currentSort !== defaultSort
+  const label = 'Sort by'
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
@@ -29,11 +31,11 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
   return (
     <ChipMenu
       variant='outlined'
-      selected={currentSort !== defaultSort}
-      label='Sort by'
+      selected={selected}
+      label={label}
       {...filterMenuProps}
-      selectedLabel={currentOption?.label ?? ''}
-      onDelete={currentSort !== defaultSort ? removeFilter : undefined}
+      selectedLabel={selected && currentOption?.label ? currentOption?.label?.toLowerCase() : label}
+      onDelete={selected ? removeFilter : undefined}
     >
       {sort_fields?.options?.map((option) => {
         const linkParams = cloneDeep(params)

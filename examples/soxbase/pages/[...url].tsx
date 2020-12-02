@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks'
-import { Container } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -7,18 +7,13 @@ import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
+import ProductCount from '@reachdigital/magento-category/ProductCount'
 import getCategoryPageProps, {
   CategoryPageProps,
 } from '@reachdigital/magento-category/getCategoryPageProps'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
-import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
-import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
-import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductListItemSimple'
-import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListItem from '@reachdigital/magento-product/ProductListItem'
 import ProductListItems from '@reachdigital/magento-product/ProductListItems'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
@@ -29,10 +24,18 @@ import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
+import ProductListItemBundle from '../components/Products/ProductListItemBundle'
+import ProductListItemConfigurable from '../components/Products/ProductListItemConfigurable'
+import ProductListItemDownloadable from '../components/Products/ProductListItemDownloadable'
+import ProductListItemGiftCard from '../components/Products/ProductListItemGiftCard'
+import ProductListItemGrouped from '../components/Products/ProductListItemGrouped'
+import ProductListItemSimple from '../components/Products/ProductListItemSimple'
+import ProductListItemVirtual from '../components/Products/ProductListItemVirtual'
 import apolloClient from '../lib/apolloClient'
 
 type Props = CategoryPageProps & HeaderProps & PageByUrlQuery
@@ -40,7 +43,45 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
+const useProductListStyles = makeStyles(
+  (theme: Theme) => ({
+    productList: (props: Props) => {
+      let big = 3
+      let index = 0
+      let toggle = false
+      let selector = ''
+      const count = props.products?.items?.length ?? 0
+      for (index = 0; index <= count; index++) {
+        if (index === big) {
+          selector += `& >:nth-child(${big}),`
+          if (toggle === false) {
+            big = index + 7
+            toggle = !toggle
+          } else {
+            big = index + 11
+            toggle = !toggle
+          }
+        }
+      }
+      selector = selector.slice(0, -1)
+      return {
+        [theme.breakpoints.up('xl')]: {
+          [`${selector}`]: {
+            gridColumn: 'span 2',
+            gridRow: 'span 2;',
+            '& > a > div': {
+              paddingTop: `calc(100% + ${theme.spacings.lg} - 2px)`,
+            },
+          },
+        },
+      }
+    },
+  }),
+  { name: 'ProductList' },
+)
+
 function CategoryPage(props: Props) {
+  const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
   const { categories, products, filters, params, filterTypes, menu, urlResolver, pages } = props
 
@@ -55,26 +96,23 @@ function CategoryPage(props: Props) {
       <>
         <Container className={classes.container}>
           <CategoryDescription name={category.name} description={category.description} />
-          <div>
-            <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          </div>
+          <CategoryChildren params={params}>{category.children}</CategoryChildren>
         </Container>
       </>
     )
   } else {
     content = (
       <ProductListParamsProvider value={params}>
-        <Container className={classes.container}>
+        <Container className={classes.container} maxWidth='xl'>
           <CategoryDescription
             name={category.name}
             description={category.description}
             className={classes.description}
           />
-          <div>
-            <CategoryChildren params={params} className={classes.filterItem}>
-              {category.children}
-            </CategoryChildren>
+          <div className={classes.childCategories}>
+            <CategoryChildren params={params}>{category.children}</CategoryChildren>
           </div>
+
           <div className={classes.filters}>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
@@ -83,9 +121,10 @@ function CategoryPage(props: Props) {
               className={classes.filterItem}
             />
           </div>
+          <ProductCount totalProducts={products?.items?.length} />
           <ProductListItems
             items={products.items}
-            className={classes.items}
+            className={clsx(classes.items, productListClasses.productList)}
             filterTypes={filterTypes}
             renderers={{
               SimpleProduct: ProductListItemSimple,
@@ -93,10 +132,10 @@ function CategoryPage(props: Props) {
               BundleProduct: ProductListItemBundle,
               VirtualProduct: ProductListItemVirtual,
               DownloadableProduct: ProductListItemDownloadable,
-              GroupedProduct: ProductListItem,
+              GroupedProduct: ProductListItemGrouped,
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore GiftCardProduct is only available in Commerce
-              GiftCardProduct: ProductListItem,
+              GiftCardProduct: ProductListItemGiftCard,
             }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />
@@ -117,9 +156,9 @@ function CategoryPage(props: Props) {
 
 CategoryPage.Layout = PageLayout
 
-registerRouteUi('/[...url]', FullPageUi)
-
 export default CategoryPage
+
+registerRouteUi('/[...url]', FullPageUi)
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
   const localePaths =

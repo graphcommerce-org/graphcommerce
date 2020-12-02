@@ -5,8 +5,8 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
-import { ProductListItemSimpleFragment } from '../magento-product-simple/ProductListItemSimple.gql'
 import { useProductLink } from './ProductLink'
+import { ProductListItemFragment } from './ProductListItem.gql'
 import ProductListPrice from './ProductListPrice'
 
 export const useProductListItemStyles = makeStyles(
@@ -14,30 +14,60 @@ export const useProductListItemStyles = makeStyles(
     item: {
       position: 'relative',
       ...theme.typography.body1,
+      height: '100%',
     },
     title: {
+      display: 'inline-block',
+      ...theme.typography.h6,
       color: theme.palette.primary.contrastText,
-      ...theme.typography.h4,
-      margin: `0 0 ${theme.spacings.sm}`,
     },
-    imageContainer: {
+    itemTitleContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginTop: 14,
+      '& > div:nth-of-type(1)': {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
+      marginBottom: responsiveVal(4, 8),
+    },
+    imageContainerOverlayGrid: {
+      display: 'grid',
+      gridTemplateAreas: `
+          "topLeft topRight"
+          "bottomLeft bottomRight"
+      `,
+      position: 'absolute',
+      top: 0,
+      width: '100%',
+      height: '100%',
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+      gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
+      padding: responsiveVal(8, 12),
+      color: theme.palette.primary.contrastText,
+    },
+    cellAlignRight: {
+      justifySelf: 'end',
+      textAlign: 'center',
+    },
+    cellAlignBottom: {
+      alignSelf: 'flex-end',
+    },
+    overlayItem: {
+      '& div': {
+        margin: 5,
+        maxWidth: 20,
+        fontSize: 14,
+      },
+    },
+    imageContainer: ({ aspectRatio = [4, 3] }: BaseProps) => ({
       display: 'block',
       position: 'relative',
-      marginBottom: '50px',
-      height: responsiveVal(120, 200),
-      '&::before': {
-        content: '""',
-        height: '100%',
-        width: '100%',
-        position: 'absolute',
-        display: 'block',
-        boxShadow: '0 30px 60px 0 rgba(0, 0, 0, 0.25)',
-        transform: 'scale(.85, 0.95)',
-        top: 0,
-        left: 0,
-      },
-      paddingTop: 'calc(100% / 3 * 2)',
-    },
+      paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
+      background: 'rgba(0, 0, 0, 0.04)', // thema specifiek
+    }),
     placeholder: {
       display: 'flex',
       textAlign: 'center',
@@ -57,23 +87,48 @@ export const useProductListItemStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
-      background: '#fff',
+      mixBlendMode: 'multiply', // thema specifiek
     },
     link: {
       textDecoration: 'underline',
+    },
+    discount: {
+      background: '#000',
+      padding: '4px 6px',
+      color: '#fff',
+      display: 'inline',
+      ...theme.typography.h6,
     },
   }),
   { name: 'ProductListItemSimple' },
 )
 
-export type ProductListItemProps = PropsWithChildren<
-  ProductListItemSimpleFragment & UseStyles<typeof useProductListItemStyles>
+export type SwatchLocationKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
+
+export type SwatchLocations = Partial<Record<SwatchLocationKeys, React.ReactNode>>
+
+type BaseProps = PropsWithChildren<
+  { subTitle?: React.ReactNode; aspectRatio?: [number, number] } & SwatchLocations &
+    ProductListItemFragment
 >
 
+export type ProductListItemProps = BaseProps & UseStyles<typeof useProductListItemStyles>
+
 export default function ProductListItem(props: ProductListItemProps) {
-  const { small_image, name, price_range, children } = props
+  const {
+    subTitle,
+    topLeft,
+    topRight,
+    bottomLeft,
+    bottomRight,
+    small_image,
+    name,
+    price_range,
+    children,
+  } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
+  const discount = Math.floor(price_range.minimum_price.discount?.percent_off ?? 0)
 
   return (
     <div className={classes.item}>
@@ -92,14 +147,38 @@ export default function ProductListItem(props: ProductListItemProps) {
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
-          </div>
 
+            <div className={classes.imageContainerOverlayGrid}>
+              <div className={classes.overlayItem}>
+                {discount > 0 && <div className={classes.discount}>{`- ${discount}%`}</div>}
+                {topLeft}
+              </div>
+              <div className={clsx(classes.overlayItem, classes.cellAlignRight)}>{topRight}</div>
+              <div className={clsx(classes.overlayItem, classes.cellAlignBottom)}>{bottomLeft}</div>
+              <div
+                className={clsx(
+                  classes.overlayItem,
+                  classes.cellAlignBottom,
+                  classes.cellAlignRight,
+                )}
+              >
+                {bottomRight}
+              </div>
+            </div>
+          </div>
+        </MuiLink>
+      </PageLink>
+
+      <div className={classes.itemTitleContainer}>
+        <div>
           <Typography component='h2' className={classes.title}>
             {name}
           </Typography>
-        </MuiLink>
-      </PageLink>
-      <ProductListPrice {...price_range.minimum_price} />
+          {subTitle}
+        </div>
+        <ProductListPrice {...price_range.minimum_price} />
+      </div>
+
       {children}
     </div>
   )

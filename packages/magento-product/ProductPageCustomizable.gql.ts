@@ -87,6 +87,23 @@ export type ProductPageCustomizable_DownloadableProduct_Fragment = {
   >
 }
 
+export type ProductPageCustomizable_GiftCardProduct_Fragment = {
+  options?: Types.Maybe<
+    Array<
+      Types.Maybe<
+        | Pick<Types.CustomizableAreaOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableDateOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableDropDownOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableMultipleOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableFieldOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableFileOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableRadioOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+        | Pick<Types.CustomizableCheckboxOption, 'option_id' | 'required' | 'sort_order' | 'title'>
+      >
+    >
+  >
+}
+
 export type ProductPageCustomizable_BundleProduct_Fragment = {
   options?: Types.Maybe<
     Array<
@@ -125,5 +142,6 @@ export type ProductPageCustomizableFragment =
   | ProductPageCustomizable_VirtualProduct_Fragment
   | ProductPageCustomizable_SimpleProduct_Fragment
   | ProductPageCustomizable_DownloadableProduct_Fragment
+  | ProductPageCustomizable_GiftCardProduct_Fragment
   | ProductPageCustomizable_BundleProduct_Fragment
   | ProductPageCustomizable_ConfigurableProduct_Fragment

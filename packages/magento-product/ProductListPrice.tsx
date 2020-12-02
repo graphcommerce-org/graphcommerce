@@ -1,12 +1,32 @@
+import { makeStyles, Theme } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
 import React from 'react'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 
-export default function ProductListPrice({ regular_price, final_price }: ProductListPriceFragment) {
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    discount: {
+      textDecoration: 'line-through',
+      color: theme.palette.primary.mutedText,
+      display: 'inline',
+      marginRight: 8,
+    },
+  }),
+  { name: 'ProductListPrice' },
+)
+
+export default function ProductListPrice(props: ProductListPriceFragment) {
+  const { regular_price, final_price } = props
+  const classes = useStyles(props)
+
   return (
-    <>
-      {regular_price.value !== final_price.value && <Money {...regular_price} />}
+    <div>
+      {regular_price.value !== final_price.value && (
+        <div className={classes.discount}>
+          <Money {...regular_price} />
+        </div>
+      )}
       <Money {...final_price} />
-    </>
+    </div>
   )
 }

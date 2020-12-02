@@ -7,17 +7,18 @@ export default function Money({ currency, value }: MoneyFragment) {
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale
 
-  const val = value ?? 0
+  // const val = value ?? 0
   // const digits = val % 1 === 0 && val > 100
 
   const numberFormatter = useMemo(() => {
-    if (!currency || !locale) return undefined
+    if (!locale) return undefined
+
     return new Intl.NumberFormat(locale.replace('_', '-'), {
       style: 'currency',
-      currency,
+      currency: currency ?? config?.storeConfig?.base_currency_code ?? '',
       // ...(digits && { minimumFractionDigits: 0 }),
     })
-  }, [locale, currency])
+  }, [config?.storeConfig?.base_currency_code, currency, locale])
 
   if (!numberFormatter || !value) return null
   return <>{numberFormatter.format(value)}</>

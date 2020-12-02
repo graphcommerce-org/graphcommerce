@@ -55,6 +55,14 @@ export type ProductPageDescription_DownloadableProduct_Fragment = Pick<
   description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
 }
 
+export type ProductPageDescription_GiftCardProduct_Fragment = Pick<
+  Types.GiftCardProduct,
+  'name'
+> & {
+  short_description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+  description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+}
+
 export type ProductPageDescription_BundleProduct_Fragment = Pick<Types.BundleProduct, 'name'> & {
   short_description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
   description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
@@ -77,6 +85,7 @@ export type ProductPageDescriptionFragment =
   | ProductPageDescription_VirtualProduct_Fragment
   | ProductPageDescription_SimpleProduct_Fragment
   | ProductPageDescription_DownloadableProduct_Fragment
+  | ProductPageDescription_GiftCardProduct_Fragment
   | ProductPageDescription_BundleProduct_Fragment
   | ProductPageDescription_GroupedProduct_Fragment
   | ProductPageDescription_ConfigurableProduct_Fragment

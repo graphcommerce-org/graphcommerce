@@ -1277,6 +1277,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -1379,6 +1398,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{
@@ -1645,6 +1683,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -1747,6 +1804,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{
@@ -2023,6 +2099,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2125,6 +2220,431 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GroupedProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.ConfigurableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                    >
+                  >
+                >
+              })
+          | ({ __typename: 'GiftCardProduct' } & Pick<
+              Types.GiftCardProduct,
+              | 'id'
+              | 'sku'
+              | 'name'
+              | 'url_key'
+              | 'canonical_url'
+              | 'meta_title'
+              | 'meta_description'
+            > & {
+                options?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | Pick<
+                          Types.CustomizableAreaOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableDateOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableDropDownOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableMultipleOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableFieldOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableFileOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableRadioOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                      | Pick<
+                          Types.CustomizableCheckboxOption,
+                          'option_id' | 'required' | 'sort_order' | 'title'
+                        >
+                    >
+                  >
+                >
+                categories?: Types.Maybe<
+                  Array<
+                    Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>
+                  >
+                >
+                short_description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+                description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+                media_gallery?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | ({ __typename: 'ProductImage' } & Pick<
+                          Types.ProductImage,
+                          'url' | 'label' | 'position' | 'disabled'
+                        >)
+                      | ({ __typename: 'ProductVideo' } & Pick<
+                          Types.ProductVideo,
+                          'label' | 'position' | 'disabled'
+                        > & {
+                            video_content?: Types.Maybe<
+                              Pick<
+                                Types.ProductMediaGalleryEntriesVideoContent,
+                                | 'media_type'
+                                | 'video_description'
+                                | 'video_metadata'
+                                | 'video_provider'
+                                | 'video_title'
+                                | 'video_url'
+                              >
+                            >
+                          })
+                    >
+                  >
+                >
+                price_range: {
+                  maximum_price?: Types.Maybe<{
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                    fixed_product_taxes?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.FixedProductTax, 'label'> & {
+                            amount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                          }
+                        >
+                      >
+                    >
+                  }>
+                  minimum_price: {
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                    fixed_product_taxes?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.FixedProductTax, 'label'> & {
+                            amount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                          }
+                        >
+                      >
+                    >
+                  }
+                }
+                price_tiers?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      Pick<Types.TierPrice, 'quantity'> & {
+                        discount?: Types.Maybe<
+                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                        >
+                        final_price?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                      }
+                    >
+                  >
+                >
+                related_products?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | (Pick<Types.VirtualProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.SimpleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GroupedProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.ConfigurableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                    >
+                  >
+                >
+                upsell_products?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | (Pick<Types.VirtualProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.SimpleProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{
@@ -2391,6 +2911,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2493,6 +3032,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{
@@ -2721,6 +3279,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -2823,6 +3400,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{
@@ -3159,6 +3755,25 @@ export type ProductPageQuery = {
                             }
                           }
                         })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
                       | (Pick<Types.BundleProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
@@ -3261,6 +3876,25 @@ export type ProductPageQuery = {
                           }
                         })
                       | (Pick<Types.DownloadableProduct, 'sku' | 'name' | 'url_key'> & {
+                          small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                          price_range: {
+                            maximum_price?: Types.Maybe<{
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }>
+                            minimum_price: {
+                              regular_price: Pick<Types.Money, 'currency' | 'value'>
+                              discount?: Types.Maybe<
+                                Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                              >
+                              final_price: Pick<Types.Money, 'currency' | 'value'>
+                            }
+                          }
+                        })
+                      | (Pick<Types.GiftCardProduct, 'sku' | 'name' | 'url_key'> & {
                           small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                           price_range: {
                             maximum_price?: Types.Maybe<{

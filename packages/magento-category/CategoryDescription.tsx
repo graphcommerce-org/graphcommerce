@@ -9,7 +9,7 @@ export default function CategoryDescription(props: CategoryDescriptionProps) {
 
   return (
     <div {...divProps}>
-      <Typography variant='h2' component='h1'>
+      <Typography variant='h2' component='h1' align='center'>
         {name}
       </Typography>
       {/* todo: replace with proper content renderer */}

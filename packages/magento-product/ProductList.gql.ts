@@ -542,6 +542,28 @@ export type ProductListQuery = {
                   }
                 }
               })
+          | ({ __typename: 'GiftCardProduct' } & Pick<
+              Types.GiftCardProduct,
+              'id' | 'sku' | 'name' | 'url_key'
+            > & {
+                small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
+                price_range: {
+                  maximum_price?: Types.Maybe<{
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                  }>
+                  minimum_price: {
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                  }
+                }
+              })
           | ({ __typename: 'BundleProduct' } & Pick<
               Types.BundleProduct,
               'id' | 'sku' | 'name' | 'url_key'

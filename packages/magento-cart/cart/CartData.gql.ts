@@ -23,15 +23,17 @@ import {
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
 import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
+import { CartPricesFragment } from './CartPrices.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
   CartItem_DownloadableCartItem_Fragment,
-  CartItem_BundleCartItem_Fragment,
+  CartItem_GiftCardCartItem_Fragment,
   CartItem_ConfigurableCartItem_Fragment,
+  CartItem_BundleCartItem_Fragment,
   CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragment, CartPricesFragmentDoc } from './CartPrices.gql'
+import { CartPricesFragmentDoc } from './CartPrices.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',
@@ -142,12 +144,14 @@ export type CartDataFragment = { __typename: 'Cart' } & Pick<
           | ({ __typename: 'DownloadableCartItem' } & Pick<Types.DownloadableCartItem, 'id'> &
               CartItem_DownloadableCartItem_Fragment &
               CartItemDownloadableFragment)
-          | ({ __typename: 'BundleCartItem' } & Pick<Types.BundleCartItem, 'id'> &
-              CartItem_BundleCartItem_Fragment &
-              CartItemBundleFragment)
+          | ({ __typename: 'GiftCardCartItem' } & Pick<Types.GiftCardCartItem, 'id'> &
+              CartItem_GiftCardCartItem_Fragment)
           | ({ __typename: 'ConfigurableCartItem' } & Pick<Types.ConfigurableCartItem, 'id'> &
               CartItem_ConfigurableCartItem_Fragment &
               CartItemConfigurableFragment)
+          | ({ __typename: 'BundleCartItem' } & Pick<Types.BundleCartItem, 'id'> &
+              CartItem_BundleCartItem_Fragment &
+              CartItemBundleFragment)
         >
       >
     >

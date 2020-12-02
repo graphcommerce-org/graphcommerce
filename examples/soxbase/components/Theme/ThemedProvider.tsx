@@ -35,7 +35,7 @@ export const defaultTheme = createMuiTheme({
   },
   breakpoints: {
     values: {
-      xs: 0,
+      xs: 300,
       sm: 600,
       md: 960,
       lg: 1500,
@@ -49,6 +49,7 @@ export const defaultTheme = createMuiTheme({
     subtitle2: {},
     fontSize: 16,
     body1: { fontSize: responsiveVal(15, 18) },
+
     h1: {
       fontSize: responsiveVal(36, 74),
       fontWeight: 600,
@@ -80,7 +81,12 @@ export const defaultTheme = createMuiTheme({
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
-    h6: {},
+    h6: {
+      fontSize: responsiveVal(14, 18),
+      fontWeight: 500,
+      letterSpacing: '-0.0375em',
+      lineHeight: 1.55,
+    },
     fontWeightBold: 600,
   },
   spacings: {

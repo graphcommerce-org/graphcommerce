@@ -21,6 +21,8 @@ export const ProductPagePhysicalFragmentDoc: DocumentNode<ProductPagePhysicalFra
 }
 export type ProductPagePhysical_SimpleProduct_Fragment = Pick<Types.SimpleProduct, 'weight'>
 
+export type ProductPagePhysical_GiftCardProduct_Fragment = Pick<Types.GiftCardProduct, 'weight'>
+
 export type ProductPagePhysical_BundleProduct_Fragment = Pick<Types.BundleProduct, 'weight'>
 
 export type ProductPagePhysical_GroupedProduct_Fragment = Pick<Types.GroupedProduct, 'weight'>
@@ -32,6 +34,7 @@ export type ProductPagePhysical_ConfigurableProduct_Fragment = Pick<
 
 export type ProductPagePhysicalFragment =
   | ProductPagePhysical_SimpleProduct_Fragment
+  | ProductPagePhysical_GiftCardProduct_Fragment
   | ProductPagePhysical_BundleProduct_Fragment
   | ProductPagePhysical_GroupedProduct_Fragment
   | ProductPagePhysical_ConfigurableProduct_Fragment

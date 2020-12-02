@@ -18,9 +18,13 @@ export default function ProductListFilters(props: ProductFiltersProps) {
       {aggregations?.map((aggregation) => {
         if (!aggregation?.attribute_code || aggregation?.attribute_code === 'category_id')
           return null
+
         switch (filterTypes[aggregation.attribute_code]) {
           case 'FilterEqualTypeInput':
-            if (aggregation.options?.[0]?.label === '1') {
+            if (
+              aggregation.options?.[0]?.label === '1' ||
+              aggregation.options?.[1]?.label === '1'
+            ) {
               return (
                 <FilterCheckboxType
                   key={aggregation.attribute_code}
