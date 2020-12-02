@@ -41,6 +41,8 @@ export default function useMutationFormPersist<Q, V>(
     try {
       const storedFormStr = window.sessionStorage[name]
       if (!storedFormStr) return
+
+      // todo(paales): Should make the form dirty, use setValue(field, val) instead of reset
       reset(JSON.parse(storedFormStr))
     } finally {
       // corrupt data or sessionStorage not available
@@ -51,6 +53,8 @@ export default function useMutationFormPersist<Q, V>(
   useEffect(() => {
     if (typeof window === 'undefined' || !name) return
     try {
+      // todo(paales): Omit values that are the same as the defaultValues
+      // todo(paales): Omit values that are the same as the queryValues
       window.sessionStorage[name] = JSON.stringify(watch())
     } finally {
       // sessionStorage not available
