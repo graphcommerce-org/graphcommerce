@@ -1,4 +1,5 @@
 import { Container, NoSsr } from '@material-ui/core'
+import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import {
@@ -11,7 +12,9 @@ import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAdd
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
+import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import Button from '@reachdigital/next-ui/Button'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
@@ -22,6 +25,7 @@ type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
 function ShippingPage({ countries }: Props) {
+  const classes = useFormStyles()
   return (
     <BottomDrawerUi title='Checkout' fullHeight>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
@@ -31,6 +35,20 @@ function ShippingPage({ countries }: Props) {
             <EmailForm key='emailform' />
             <ShippingAddressForm key='shippingaddressform' countries={countries} />
             <ShippingMethodForm key='shipping-method-form' />
+
+            <div className={classes.formRow}>
+              <Button
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                onClick={() => {
+                  console.log('force submit all forms')
+                }}
+              >
+                Next <ArrowForwardIos fontSize='inherit' />
+              </Button>
+            </div>
           </AnimatePresence>
         </NoSsr>
       </Container>
