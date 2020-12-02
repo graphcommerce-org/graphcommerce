@@ -52,7 +52,7 @@ const useStyles = makeStyles<
   { name: 'MuiPillButton' },
 )
 
-export default function Button(props: ButtonProps) {
+export default React.forwardRef<any, ButtonProps>(function Button(props, ref) {
   const { classes = {}, ...baseProps } = props
   const { variant, color, size, className, ...buttonProps } = baseProps
   const {
@@ -76,6 +76,7 @@ export default function Button(props: ButtonProps) {
       color={color}
       variant={variant === 'pill' ? 'contained' : variant}
       size={size}
+      ref={ref}
       className={clsx(
         {
           [pillClasses.pill]: variant === 'pill',
@@ -88,4 +89,4 @@ export default function Button(props: ButtonProps) {
       )}
     />
   )
-}
+})

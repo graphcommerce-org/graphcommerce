@@ -1,3 +1,4 @@
+import { performance } from 'perf_hooks'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
@@ -174,6 +175,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   try {
     if (!params?.url) throw new ResultError({ notFound: true })
 
+    performance.mark(`getStaticProps-${params.url.join('/')}-start`)
+
     const queryIndex = params.url.findIndex((slug) => slug === 'q')
     const qIndex = queryIndex < 0 ? params.url.length : queryIndex
     const urlPath = params.url.slice(0, qIndex).join('/')
@@ -211,7 +214,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     }
     if (!urlResolver?.id) throw new ResultError({ notFound: true })
 
-    return {
+    const res = {
       props: {
         ...(await resolveUrl).data,
         ...(await pageLayout).data,
@@ -221,6 +224,15 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       },
       revalidate: 60 * 20,
     }
+
+    performance.mark(`getStaticProps-${params.url.join('/')}-stop`)
+    performance.measure(
+      `getStaticProps: /${params.url.join('/')}`,
+      `getStaticProps-${params.url.join('/')}-start`,
+      `getStaticProps-${params.url.join('/')}-stop`,
+    )
+
+    return res
   } catch (e) {
     if (e instanceof ResultError) return e.result
     throw e

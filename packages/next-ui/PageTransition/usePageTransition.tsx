@@ -24,15 +24,6 @@ type UsePageTransitionProps = { safeToRemoveAfter?: number } & Omit<
 const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransitionProps) => {
   let state = useReactiveVar(historyStateVar)
 
-  /**
-   * todo: fix component recreation when navigating back multiple steps.
-   *
-   * 1. Navigate from /test/index to test/overlay/index -> /test/overlay/deeper
-   * 2. Navigate back to /test/index (back -> back)
-   * 3. /test/index has now been recreated instead of reused, causes the thisIdx to be wrong.
-   *
-   * Should probably create a sandbox environment
-   */
   const [thisIdx] = useState(state?.idx ?? 0)
 
   const toIdx = state?.idx ?? 0
@@ -41,15 +32,13 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
   const isToPage = thisIdx === toIdx
   const isFromPage = thisIdx === fromIdx
 
-  const [, safeToRemove] = usePresence()
-
-  // Register that we want to keep the prevous page
-  if (isToPage && getPage(thisIdx)?.title !== title) {
-    state = updatePage({}, { title }, thisIdx)
-  }
+  // Store the title of the page
+  useEffect(() => {
+    if (getPage(thisIdx)?.title !== title) updatePage({}, { title }, thisIdx)
+  }, [isToPage, thisIdx, title])
 
   // Register the scroll position of the previous page
-  if (isBrowser && state.phase === 'LOCATION_CHANGED') {
+  if (state.phase === 'LOCATION_CHANGED') {
     state = updatePage({ phase: 'REGISTERED' }, { x: window.scrollX, y: window.scrollY }, fromIdx)
   }
 
@@ -82,7 +71,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
       return routeUi[page.href]?.holdBackground ?? false
     })
 
-  // calculate how far a page is in the back
+  // Calculate how far a page is in the back
   let backLevel = nextPages.length
   if (untillPhase('LOCATION_CHANGED')) {
     if (thisIdx <= fromIdx && state.direction === 'FORWARD') backLevel -= 1
@@ -90,10 +79,10 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
   }
 
   // If we do not need to keep the layout, we can mark it for removal
-  if (isFromInBack && !hold && safeToRemove && afterPhase('REGISTERED')) {
-    setTimeout(() => safeToRemove(), safeToRemoveAfter * 1000)
-  }
+  const [, safeToRemove] = usePresence()
+  if (isFromInBack && !hold && safeToRemove) safeToRemove()
 
+  // Scroll to the correct location
   useEffect(() => {
     setTimeout(() => {
       const { phase } = historyStateVar()
@@ -132,7 +121,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
     }
   }
 
-  const offsetDiv: MotionProps = {
+  const offsetProps: MotionProps = {
     initial: target,
     animate: { ...target, transition: { duration: 0 } },
     exit: { ...target, transition: { duration: 0 } },
@@ -140,7 +129,7 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
 
   return {
     phase: state.phase,
-    offsetDiv,
+    offsetProps,
     hold,
     inFront,
     inBack,
