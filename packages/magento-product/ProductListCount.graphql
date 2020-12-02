@@ -1,0 +1,3 @@
+fragment ProductListCount on Products {
+  total_count
+}

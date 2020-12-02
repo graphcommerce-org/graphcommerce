@@ -1,5 +1,5 @@
 query ProductList(
-  $pageSize: Int = 10
+  $pageSize: Int = 23
   $currentPage: Int = 1
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
@@ -13,6 +13,7 @@ query ProductList(
     sort: $sort
     search: $search
   ) {
+    ...ProductListCount
     ...ProductListPagination
     ...ProductListSort
     ...ProductListItems
