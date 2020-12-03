@@ -47,12 +47,6 @@ export type ProductPageCategory_DownloadableProduct_Fragment = {
   >
 }
 
-export type ProductPageCategory_GiftCardProduct_Fragment = {
-  categories?: Types.Maybe<
-    Array<Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>>
-  >
-}
-
 export type ProductPageCategory_BundleProduct_Fragment = {
   categories?: Types.Maybe<
     Array<Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>>
@@ -75,7 +69,6 @@ export type ProductPageCategoryFragment =
   | ProductPageCategory_VirtualProduct_Fragment
   | ProductPageCategory_SimpleProduct_Fragment
   | ProductPageCategory_DownloadableProduct_Fragment
-  | ProductPageCategory_GiftCardProduct_Fragment
   | ProductPageCategory_BundleProduct_Fragment
   | ProductPageCategory_GroupedProduct_Fragment
   | ProductPageCategory_ConfigurableProduct_Fragment

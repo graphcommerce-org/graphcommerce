@@ -90,7 +90,6 @@ export type GetProductStaticPathsQuery = {
             | Pick<Types.VirtualProduct, 'url_key'>
             | Pick<Types.SimpleProduct, 'url_key'>
             | Pick<Types.DownloadableProduct, 'url_key'>
-            | Pick<Types.GiftCardProduct, 'url_key'>
             | Pick<Types.BundleProduct, 'url_key'>
             | Pick<Types.GroupedProduct, 'url_key'>
             | Pick<Types.ConfigurableProduct, 'url_key'>

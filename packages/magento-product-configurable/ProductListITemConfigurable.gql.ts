@@ -6,7 +6,6 @@ import {
   ProductListItem_VirtualProduct_Fragment,
   ProductListItem_SimpleProduct_Fragment,
   ProductListItem_DownloadableProduct_Fragment,
-  ProductListItem_GiftCardProduct_Fragment,
   ProductListItem_BundleProduct_Fragment,
   ProductListItem_GroupedProduct_Fragment,
   ProductListItem_ConfigurableProduct_Fragment,
