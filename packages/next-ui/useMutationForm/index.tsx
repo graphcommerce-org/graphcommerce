@@ -58,8 +58,6 @@ export function useMutationForm<Q, V>(
     // Combine all values
     let variables = encode({ ...mergeDeep(defaults, defaultValues), ...formValues })
 
-    console.log(variables)
-
     // Wait for the onBeforeSubmit to complete
     if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
 

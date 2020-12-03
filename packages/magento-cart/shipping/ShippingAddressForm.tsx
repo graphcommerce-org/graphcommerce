@@ -2,21 +2,22 @@ import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
 import { Controller } from '@reachdigital/next-ui/useMutationForm'
 import useMutationFormPersist from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
 import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
-type ShippingAddressFormProps = CountryRegionsQuery
+type ShippingAddressFormProps = CountryRegionsQuery & {
+  doSubmit: React.MutableRefObject<(() => Promise<boolean>) | undefined>
+}
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
-  const { countries } = props
+  const { countries, doSubmit } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useQuery(ClientCartDocument)
@@ -41,7 +42,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         region: currentAddress?.region?.label,
         region_id: currentAddress?.region?.region_id,
         // todo: replace by the default shipping country of the store
-        // todo: implement geo ip header
+        // todo: implement geo ip location
         country_code: currentAddress?.country.code ?? 'NL',
         save_in_address_book: true,
       },
@@ -50,6 +51,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     mode: 'onBlur',
   })
   const { register, errors, handleSubmit, Field, control, formState, watch } = mutationForm
+
+  // todo: Move to a validateAndSubmit method or something?
+  useEffect(() => {
+    doSubmit.current = async () =>
+      !formState.isDirty ? Promise.resolve(true) : handleSubmit().then(() => true)
+  }, [doSubmit, formState.isDirty, handleSubmit])
 
   useEffect(() => {
     if (!formState.isValid || !ref.current || formState.isSubmitting || formState.isSubmitted)
@@ -268,7 +275,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         />
       </div>
       <Button type='submit' disabled={formState.isSubmitting} variant='pill' disableElevation>
-        Save shipping
+        Save shipping address
       </Button>
       {errors.submission?.message}
     </form>

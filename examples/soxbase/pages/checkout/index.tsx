@@ -12,13 +12,15 @@ import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAdd
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import Button from '@reachdigital/next-ui/Button'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useRef } from 'react'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -26,29 +28,45 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
 function ShippingPage({ countries }: Props) {
   const classes = useFormStyles()
+  const router = useRouter()
+  const addressForm = useRef<() => Promise<boolean>>()
+  const methodForm = useRef<() => Promise<boolean>>()
+  const forceSubmit = () => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    ;(async () => {
+      if (!addressForm.current || !methodForm.current) return
+      await Promise.all([addressForm.current(), methodForm.current()])
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('checkout/payment')
+    })()
+  }
+
   return (
-    <BottomDrawerUi title='Checkout' fullHeight>
+    <BottomDrawerUi title='Shipping' fullHeight>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         <NoSsr>
           <AnimatePresence initial={false}>
             <EmailForm key='emailform' />
-            <ShippingAddressForm key='shippingaddressform' countries={countries} />
-            <ShippingMethodForm key='shipping-method-form' />
+            <ShippingAddressForm
+              key='ShippingAddressForm'
+              countries={countries}
+              doSubmit={addressForm}
+            />
 
-            <div className={classes.formRow}>
+            <ShippingMethodForm key='ShippingMethodForm' doSubmit={methodForm} />
+
+            <AnimatedRow className={classes.formRow} key='next'>
               <Button
                 type='submit'
                 color='secondary'
                 variant='pill'
                 size='large'
-                onClick={() => {
-                  console.log('force submit all forms')
-                }}
+                onClick={forceSubmit}
               >
                 Next <ArrowForwardIos fontSize='inherit' />
               </Button>
-            </div>
+            </AnimatedRow>
           </AnimatePresence>
         </NoSsr>
       </Container>

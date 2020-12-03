@@ -1,8 +1,4 @@
-mutation ShippingAddressForm(
-  $cartId: String!
-  $address: CartAddressInput!
-  $customerNote: String = "joi"
-) {
+mutation ShippingAddressForm($cartId: String!, $address: CartAddressInput!, $customerNote: String) {
   setShippingAddressesOnCart(
     input: {
       cart_id: $cartId

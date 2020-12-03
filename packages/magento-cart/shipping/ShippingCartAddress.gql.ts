@@ -5,7 +5,7 @@ import * as Types from '@reachdigital/magento-graphql'
 import {
   AvailableShippingMethodFragment,
   AvailableShippingMethodFragmentDoc,
-} from './AvailableShippingMethod.gql'
+} from '../shipping-method/AvailableShippingMethod.gql'
 import {
   SelectedShippingMethodFragment,
   SelectedShippingMethodFragmentDoc,
