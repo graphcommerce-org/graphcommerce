@@ -415,6 +415,17 @@ export const ClientCartDocument: DocumentNode<ClientCartQuery, ClientCartQueryVa
                   },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'available_payment_methods' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -718,6 +729,9 @@ export type ClientCartQuery = {
                   })
             >
           >
+        >
+        available_payment_methods?: Types.Maybe<
+          Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
         >
       }
   >

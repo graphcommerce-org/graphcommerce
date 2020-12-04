@@ -116,7 +116,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const page = staticClient.query({ query: PageByUrlDocument, variables: { url: `test/${url}` } })
-
   await config
   return {
     props: {

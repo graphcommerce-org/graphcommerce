@@ -1,0 +1,9 @@
+mutation PickupLocationForm($cartId: String!, $pickupLocationCode: String!) {
+  setShippingAddressesOnCart(
+    input: { cart_id: $cartId, shipping_addresses: [{ pickup_location_code: $pickupLocationCode }] }
+  ) {
+    cart {
+      total_quantity
+    }
+  }
+}
