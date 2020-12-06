@@ -8,6 +8,11 @@ import {
   RowColumnThreeFragmentDoc,
 } from '../RowColumnThree/RowColumnThree.gql'
 import { RowColumnTwoFragment, RowColumnTwoFragmentDoc } from '../RowColumnTwo/RowColumnTwo.gql'
+import { RowHeroBannerFragment, RowHeroBannerFragmentDoc } from '../RowHeroBanner/RowHeroBanner.gql'
+import {
+  RowProductGridFragment,
+  RowProductGridFragmentDoc,
+} from '../RowProductGrid/RowProductGrid.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',
@@ -37,6 +42,8 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnOne' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnTwo' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnThree' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowHeroBanner' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductGrid' } },
               ],
             },
           },
@@ -46,15 +53,16 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowColumnOneFragmentDoc.definitions,
     ...RowColumnTwoFragmentDoc.definitions,
     ...RowColumnThreeFragmentDoc.definitions,
+    ...RowHeroBannerFragmentDoc.definitions,
+    ...RowProductGridFragmentDoc.definitions,
   ],
 }
 export type PageFragment = {
   content: Array<
-    | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
-    | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'>)
-    | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'>)
     | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
-    | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'>)
+    | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
+    | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & RowHeroBannerFragment)
+    | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
   >
 }
