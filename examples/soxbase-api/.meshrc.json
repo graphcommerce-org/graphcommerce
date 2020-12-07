@@ -1,11 +1,15 @@
 {
+  "$schema": "https://raw.githubusercontent.com/Urigo/graphql-mesh/master/packages/types/src/config-schema.json",
   "sources": [
     {
       "name": "GraphCMS",
       "handler": {
         "graphql": {
           "endpoint": "${GRAPHCMS_URL}",
-          "headers": {
+          "operationHeaders": {
+            "Authorization": "${GRAPHCMS_BEARER}"
+          },
+          "schemaHeaders": {
             "Authorization": "${GRAPHCMS_BEARER}"
           },
           "cacheIntrospection": true
