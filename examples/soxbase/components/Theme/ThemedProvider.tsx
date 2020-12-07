@@ -157,6 +157,9 @@ defaultTheme.overrides = {
     iconSizeLarge: {
       '& > *:first-child': { fontSize: 24 },
     },
+    outlined: {
+      borderRadius: 0,
+    },
   },
   MuiFab: {
     root: {
