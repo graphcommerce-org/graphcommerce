@@ -1,3 +1,4 @@
+import Footer, { FooterProps } from '@reachdigital/magento-app-shell/Footer'
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -16,7 +17,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CmsPageQuery & HeaderProps & PageByUrlQuery
+type Props = CmsPageQuery & HeaderProps & FooterProps & PageByUrlQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -31,6 +32,7 @@ const CmsPage = ({ cmsPage, menu, urlResolver, pages }: Props) => {
       <Header menu={menu} urlResolver={urlResolver} />
       <CmsPageMeta {...cmsPage} />
       {pages?.[0] ? <Page {...pages?.[0]} /> : <CmsPageContent {...cmsPage} />}
+      <Footer />
     </FullPageUi>
   )
 }
