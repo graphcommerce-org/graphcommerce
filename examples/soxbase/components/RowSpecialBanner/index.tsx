@@ -44,14 +44,14 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
   h2: {
     textTransform: 'uppercase',
     maxWidth: '80%',
-    color: 'transparent',
+    color: '#000',
     WebkitTextStroke: '0.9px #000',
     fontSize: responsiveVal(18, 50),
     marginTop: responsiveVal(8, 20),
     marginBottom: responsiveVal(18, 20),
     '& strong': {
-      color: '#000',
-      WebkitTextStroke: 'none',
+      color: 'transparent',
+      WebkitTextStroke: '0.9px #000',
     },
     [theme.breakpoints.up('md')]: {
       fontSize: responsiveVal(18, 60),
