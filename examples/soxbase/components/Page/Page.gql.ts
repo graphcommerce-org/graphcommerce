@@ -50,8 +50,10 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
 }
 export type PageFragment = {
   content: Array<
-    | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
+    | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
+    | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'>)
+    | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'>)
   >
 }

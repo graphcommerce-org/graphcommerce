@@ -17,7 +17,7 @@
       },
       "transforms": [
         {
-          "filterSchema": ["Query.pages"]
+          "filterSchema": ["Query.pages", "Mutation.none"]
         }
       ]
     },
@@ -48,6 +48,19 @@
           ]
         }
       ]
+    }
+  ],
+  "additionalTypeDefs": "extend type MagentoCategory { category: CategoryTree }",
+  "additionalResolvers": [
+    {
+      "type": "MagentoCategory",
+      "field": "category",
+      "requiredSelectionSet": "{ url }",
+      "targetSource": "Magento GraphQL",
+      "targetMethod": "categories",
+      "args": { "filters.url_path.eq": "{root.url}", "pageSize": "1" },
+      "returnData": "items[0]",
+      "resultDepth": 4
     }
   ]
 }

@@ -107,4 +107,12 @@ todo: expand topic
 
 ## Cross API data fetching
 
-todo: should probably be handled by the mesh, but not fleshed out yet
+_Danger: Creating data fetching waterfalls will cause major performance issues,
+this should be used sparingly._
+
+We're using GraphQL Mesh's possibility to add additional resolves to the mesh.
+
+https://graphql-mesh.com/docs/getting-started/multiple-apis#stitching-schemas-using-declarative-api-without-javascript-code-file
+
+Example implementation can be found here, look for `additionalTypeDefs` and
+`additionalResolvers` [.meshrc.json](../examples/soxbase-api/.meshrc.json)
