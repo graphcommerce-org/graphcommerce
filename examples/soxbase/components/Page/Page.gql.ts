@@ -13,6 +13,10 @@ import {
   RowProductGridFragment,
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
+import {
+  RowSpecialBannerFragment,
+  RowSpecialBannerFragmentDoc,
+} from '../RowSpecialBanner/RowSpecialBanner.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',
@@ -44,6 +48,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnThree' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowHeroBanner' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductGrid' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSpecialBanner' } },
               ],
             },
           },
@@ -55,14 +60,17 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowColumnThreeFragmentDoc.definitions,
     ...RowHeroBannerFragmentDoc.definitions,
     ...RowProductGridFragmentDoc.definitions,
+    ...RowSpecialBannerFragmentDoc.definitions,
   ],
 }
 export type PageFragment = {
   content: Array<
-    | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
-    | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
     | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
+    | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & RowHeroBannerFragment)
+    | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'> &
+        RowSpecialBannerFragment)
+    | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
     | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
   >
 }
