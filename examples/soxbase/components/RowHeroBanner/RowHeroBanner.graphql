@@ -1,0 +1,11 @@
+fragment RowHeroBanner on RowHeroBanner {
+  asset {
+    ...Asset
+  }
+  copy {
+    raw
+  }
+  pageLinks {
+    ...PageLink
+  }
+}

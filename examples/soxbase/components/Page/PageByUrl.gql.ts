@@ -160,6 +160,125 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           ],
                         },
                       },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowHeroBanner' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'asset' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'copy' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'pageLinks' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowProductGrid' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'pageLinks' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowSpecialBanner' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'asset' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'copy' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'pageLinks' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                ],
+                              },
+                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'topic' } },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -186,13 +305,23 @@ export type PageByUrlQuery = {
       | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
             colOne: Pick<Types.RichText, 'raw'>
           })
-      | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'>)
-      | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'>)
+      | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & {
+            asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
+            copy: Pick<Types.RichText, 'raw'>
+            pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+          })
+      | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
+            asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
+            copy: Pick<Types.RichText, 'raw'>
+            pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+          })
       | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & {
             colOne: Pick<Types.RichText, 'raw'>
             colTwo: Pick<Types.RichText, 'raw'>
           })
-      | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'>)
+      | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id' | 'title'> & {
+            pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+          })
     >
   }>
 }

@@ -1,0 +1,4 @@
+fragment PageLink on PageLink {
+  title
+  url
+}
