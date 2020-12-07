@@ -30,9 +30,11 @@ export const useStyles = makeStyles(
 
 export type ToggleButtonProps = ButtonProps & {
   selected?: boolean
+  onClick?: (e: React.MouseEvent, v: any) => void
+  onChange?: (e: React.MouseEvent, v: any) => void
 }
 
-const ToggleButton = React.forwardRef<any, ToggleButtonProps>(function ToggleButton(props, ref) {
+const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
   const { root, ...classes } = useStyles(props)
   const {
     children,
