@@ -2,59 +2,65 @@ import { Container, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import PageLink from '../PageLink'
+import Button from '../PageLink/Button'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     position: 'relative',
-    maxHeight: 'calc(100vh - 100px)',
+    height: '70vh',
+    [theme.breakpoints.up('lg')]: {
+      height: '90vh',
+    },
   },
   copy: {
     color: '#fff',
     position: 'absolute',
     top: '0',
     left: '0',
-    width: '100%',
     height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
+    display: 'grid',
+    justifyItems: 'center',
+    alignContent: 'center',
     zIndex: 1,
-    padding: `0 ${theme.spacings.xs}`,
     overflow: 'hidden',
+    padding: `0 ${theme.spacings.md}`,
+    '& > *': {
+      maxWidth: 'max-content',
+    },
     [theme.breakpoints.up('md')]: {
-      width: '60%',
+      width: '70%',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '50%',
+      padding: `0 ${theme.spacings.lg}`,
+      width: '60%',
     },
   },
   asset: {
     width: '100%',
-    height: '50vh',
+    height: '100%',
     objectFit: 'cover',
     [theme.breakpoints.up('md')]: {
-      height: 'auto',
+      height: '100%',
     },
-  },
-  button: {
-    border: '1px solid red',
   },
 }))
 
 const useRichTextOne = makeStyles((theme: Theme) => ({
   h1: {
-    color: 'transparent',
     textTransform: 'uppercase',
-    WebkitTextStroke: '1.2px #fff',
     maxWidth: '70%',
     textAlign: 'center',
-    fontSize: responsiveVal(40, 90),
+    fontSize: responsiveVal(42, 50),
+    marginBottom: responsiveVal(22, 32),
     [theme.breakpoints.up('md')]: {
-      fontSize: responsiveVal(4, 80),
+      textAlign: 'left',
+      fontSize: responsiveVal(18, 90),
       maxWidth: '100%',
+    },
+    '& strong': {
+      color: 'transparent',
+      WebkitTextStroke: '1.2px #fff',
     },
   },
 }))
@@ -70,7 +76,13 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
         <div className={classes.copy}>
           <RichText classes={richTextOneClasses} {...copy} />
           {pageLinks.map((pageLink) => (
-            <PageLink key={pageLink.url} {...pageLink} />
+            <Button
+              key={pageLink.url}
+              {...pageLink}
+              variant='outlined'
+              size='large'
+              color='inherit'
+            />
           ))}
         </div>
         <video src={asset.url} autoPlay muted loop playsInline className={classes.asset} />
