@@ -178,19 +178,20 @@ export type PageByUrlQueryVariables = Types.Exact<{
 export type PageByUrlQuery = {
   pages: Array<{
     content: Array<
-      | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
-            colOne: Pick<Types.RichText, 'raw'>
-          })
-      | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & {
-            colOne: Pick<Types.RichText, 'raw'>
-            colTwo: Pick<Types.RichText, 'raw'>
-          })
       | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & {
             colOne: Pick<Types.RichText, 'raw'>
             colTwo: Pick<Types.RichText, 'raw'>
             colThree: Pick<Types.RichText, 'raw'>
           })
+      | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
+            colOne: Pick<Types.RichText, 'raw'>
+          })
       | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'>)
+      | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'>)
+      | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & {
+            colOne: Pick<Types.RichText, 'raw'>
+            colTwo: Pick<Types.RichText, 'raw'>
+          })
       | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'>)
     >
   }>
