@@ -10,7 +10,7 @@ function makeSessionVar<T>(key: string, defaultValue: T) {
 
   const reactiveVar = makeVar(sessionValue ?? defaultValue)
 
-  const sessionVar: ReactiveVar<T> & { reset: () => void } = (value) => {
+  const sessionVar: ReactiveVar<T> & { reset?: () => void } = (value) => {
     if (value) {
       if (typeof window !== 'undefined') {
         window.sessionStorage.setItem(key, JSON.stringify(value))
@@ -19,7 +19,9 @@ function makeSessionVar<T>(key: string, defaultValue: T) {
     }
     return reactiveVar()
   }
-  sessionVar.onNextChange = (listener) => reactiveVar.onNextChange(listener)
+  sessionVar.onNextChange = reactiveVar.onNextChange
+  sessionVar.attachCache = reactiveVar.attachCache
+  sessionVar.forgetCache = reactiveVar.forgetCache
   sessionVar.reset = () => sessionVar(defaultValue)
 
   return sessionVar

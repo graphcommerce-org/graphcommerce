@@ -33,7 +33,7 @@ async function parseParams(
       categoryVariables.currentPage = Number(value)
       return undefined
     }
-    if (param === 'size') {
+    if (param === 'limit') {
       categoryVariables.pageSize = Number(param)
       return undefined
     }

@@ -98,25 +98,6 @@ export type ProductPageGallery_DownloadableProduct_Fragment = Pick<
   >
 }
 
-export type ProductPageGallery_GiftCardProduct_Fragment = Pick<Types.GiftCardProduct, 'sku'> & {
-  media_gallery?: Types.Maybe<
-    Array<
-      Types.Maybe<
-        | ({ __typename: 'ProductImage' } & Pick<
-            Types.ProductImage,
-            'label' | 'position' | 'disabled'
-          > &
-            ProductImageFragment)
-        | ({ __typename: 'ProductVideo' } & Pick<
-            Types.ProductVideo,
-            'label' | 'position' | 'disabled'
-          > &
-            ProductVideoFragment)
-      >
-    >
-  >
-}
-
 export type ProductPageGallery_BundleProduct_Fragment = Pick<Types.BundleProduct, 'sku'> & {
   media_gallery?: Types.Maybe<
     Array<
@@ -181,7 +162,6 @@ export type ProductPageGalleryFragment =
   | ProductPageGallery_VirtualProduct_Fragment
   | ProductPageGallery_SimpleProduct_Fragment
   | ProductPageGallery_DownloadableProduct_Fragment
-  | ProductPageGallery_GiftCardProduct_Fragment
   | ProductPageGallery_BundleProduct_Fragment
   | ProductPageGallery_GroupedProduct_Fragment
   | ProductPageGallery_ConfigurableProduct_Fragment

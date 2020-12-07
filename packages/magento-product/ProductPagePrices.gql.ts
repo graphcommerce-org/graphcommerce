@@ -133,23 +133,6 @@ export type ProductPagePrices_DownloadableProduct_Fragment = {
   >
 }
 
-export type ProductPagePrices_GiftCardProduct_Fragment = {
-  price_range: {
-    maximum_price?: Types.Maybe<ProductPagePriceFragment>
-    minimum_price: ProductPagePriceFragment
-  }
-  price_tiers?: Types.Maybe<
-    Array<
-      Types.Maybe<
-        Pick<Types.TierPrice, 'quantity'> & {
-          discount?: Types.Maybe<Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>>
-          final_price?: Types.Maybe<MoneyFragment>
-        }
-      >
-    >
-  >
-}
-
 export type ProductPagePrices_BundleProduct_Fragment = {
   price_range: {
     maximum_price?: Types.Maybe<ProductPagePriceFragment>
@@ -205,7 +188,6 @@ export type ProductPagePricesFragment =
   | ProductPagePrices_VirtualProduct_Fragment
   | ProductPagePrices_SimpleProduct_Fragment
   | ProductPagePrices_DownloadableProduct_Fragment
-  | ProductPagePrices_GiftCardProduct_Fragment
   | ProductPagePrices_BundleProduct_Fragment
   | ProductPagePrices_GroupedProduct_Fragment
   | ProductPagePrices_ConfigurableProduct_Fragment

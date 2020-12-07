@@ -8,12 +8,12 @@ import CategoryDescription from '@reachdigital/magento-category/CategoryDescript
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
-import ProductCount from '@reachdigital/magento-category/ProductCount'
 import getCategoryPageProps, {
   CategoryPageProps,
 } from '@reachdigital/magento-category/getCategoryPageProps'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
+import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListItems from '@reachdigital/magento-product/ProductListItems'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
@@ -122,7 +122,7 @@ function CategoryPage(props: Props) {
               className={classes.filterItem}
             />
           </div>
-          <ProductCount totalProducts={products?.items?.length} />
+          <ProductListCount total_count={products?.total_count} />
           <ProductListItems
             items={products.items}
             className={clsx(classes.items, productListClasses.productList)}

@@ -6,7 +6,6 @@ import {
   ProductLink_VirtualProduct_Fragment,
   ProductLink_SimpleProduct_Fragment,
   ProductLink_DownloadableProduct_Fragment,
-  ProductLink_GiftCardProduct_Fragment,
   ProductLink_BundleProduct_Fragment,
   ProductLink_GroupedProduct_Fragment,
   ProductLink_ConfigurableProduct_Fragment,
@@ -52,12 +51,6 @@ export type ProductPageMeta_DownloadableProduct_Fragment = Pick<
 > &
   ProductLink_DownloadableProduct_Fragment
 
-export type ProductPageMeta_GiftCardProduct_Fragment = Pick<
-  Types.GiftCardProduct,
-  'name' | 'url_key' | 'meta_title' | 'meta_description'
-> &
-  ProductLink_GiftCardProduct_Fragment
-
 export type ProductPageMeta_BundleProduct_Fragment = Pick<
   Types.BundleProduct,
   'name' | 'url_key' | 'meta_title' | 'meta_description'
@@ -80,7 +73,6 @@ export type ProductPageMetaFragment =
   | ProductPageMeta_VirtualProduct_Fragment
   | ProductPageMeta_SimpleProduct_Fragment
   | ProductPageMeta_DownloadableProduct_Fragment
-  | ProductPageMeta_GiftCardProduct_Fragment
   | ProductPageMeta_BundleProduct_Fragment
   | ProductPageMeta_GroupedProduct_Fragment
   | ProductPageMeta_ConfigurableProduct_Fragment

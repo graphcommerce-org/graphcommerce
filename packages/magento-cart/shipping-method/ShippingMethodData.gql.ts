@@ -14,24 +14,9 @@ export const ShippingMethodDataFragmentDoc: DocumentNode<ShippingMethodDataFragm
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'available_payment_methods' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-              ],
-            },
-          },
         ],
       },
     },
   ],
 }
-export type ShippingMethodDataFragment = { __typename: 'Cart' } & Pick<Types.Cart, 'id'> & {
-    available_payment_methods?: Types.Maybe<
-      Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
-    >
-  }
+export type ShippingMethodDataFragment = { __typename: 'Cart' } & Pick<Types.Cart, 'id'>

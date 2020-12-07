@@ -6,7 +6,6 @@ import {
   ProductListItem_VirtualProduct_Fragment,
   ProductListItem_SimpleProduct_Fragment,
   ProductListItem_DownloadableProduct_Fragment,
-  ProductListItem_GiftCardProduct_Fragment,
   ProductListItem_BundleProduct_Fragment,
   ProductListItem_GroupedProduct_Fragment,
   ProductListItem_ConfigurableProduct_Fragment,
@@ -46,7 +45,6 @@ export type ProductPageRelated_VirtualProduct_Fragment = {
         | ProductListItem_VirtualProduct_Fragment
         | ProductListItem_SimpleProduct_Fragment
         | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
         | ProductListItem_BundleProduct_Fragment
         | ProductListItem_GroupedProduct_Fragment
         | ProductListItem_ConfigurableProduct_Fragment
@@ -62,7 +60,6 @@ export type ProductPageRelated_SimpleProduct_Fragment = {
         | ProductListItem_VirtualProduct_Fragment
         | ProductListItem_SimpleProduct_Fragment
         | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
         | ProductListItem_BundleProduct_Fragment
         | ProductListItem_GroupedProduct_Fragment
         | ProductListItem_ConfigurableProduct_Fragment
@@ -78,23 +75,6 @@ export type ProductPageRelated_DownloadableProduct_Fragment = {
         | ProductListItem_VirtualProduct_Fragment
         | ProductListItem_SimpleProduct_Fragment
         | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
-        | ProductListItem_BundleProduct_Fragment
-        | ProductListItem_GroupedProduct_Fragment
-        | ProductListItem_ConfigurableProduct_Fragment
-      >
-    >
-  >
-}
-
-export type ProductPageRelated_GiftCardProduct_Fragment = {
-  related_products?: Types.Maybe<
-    Array<
-      Types.Maybe<
-        | ProductListItem_VirtualProduct_Fragment
-        | ProductListItem_SimpleProduct_Fragment
-        | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
         | ProductListItem_BundleProduct_Fragment
         | ProductListItem_GroupedProduct_Fragment
         | ProductListItem_ConfigurableProduct_Fragment
@@ -110,7 +90,6 @@ export type ProductPageRelated_BundleProduct_Fragment = {
         | ProductListItem_VirtualProduct_Fragment
         | ProductListItem_SimpleProduct_Fragment
         | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
         | ProductListItem_BundleProduct_Fragment
         | ProductListItem_GroupedProduct_Fragment
         | ProductListItem_ConfigurableProduct_Fragment
@@ -126,7 +105,6 @@ export type ProductPageRelated_GroupedProduct_Fragment = {
         | ProductListItem_VirtualProduct_Fragment
         | ProductListItem_SimpleProduct_Fragment
         | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
         | ProductListItem_BundleProduct_Fragment
         | ProductListItem_GroupedProduct_Fragment
         | ProductListItem_ConfigurableProduct_Fragment
@@ -142,7 +120,6 @@ export type ProductPageRelated_ConfigurableProduct_Fragment = {
         | ProductListItem_VirtualProduct_Fragment
         | ProductListItem_SimpleProduct_Fragment
         | ProductListItem_DownloadableProduct_Fragment
-        | ProductListItem_GiftCardProduct_Fragment
         | ProductListItem_BundleProduct_Fragment
         | ProductListItem_GroupedProduct_Fragment
         | ProductListItem_ConfigurableProduct_Fragment
@@ -155,7 +132,6 @@ export type ProductPageRelatedFragment =
   | ProductPageRelated_VirtualProduct_Fragment
   | ProductPageRelated_SimpleProduct_Fragment
   | ProductPageRelated_DownloadableProduct_Fragment
-  | ProductPageRelated_GiftCardProduct_Fragment
   | ProductPageRelated_BundleProduct_Fragment
   | ProductPageRelated_GroupedProduct_Fragment
   | ProductPageRelated_ConfigurableProduct_Fragment

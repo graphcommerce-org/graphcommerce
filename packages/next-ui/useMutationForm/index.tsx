@@ -1,4 +1,10 @@
-import { ApolloClient, FetchResult, TypedDocumentNode, useMutation } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloError,
+  FetchResult,
+  TypedDocumentNode,
+  useMutation,
+} from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import { useEffect } from 'react'
 import { FieldName, useForm } from 'react-hook-form'
@@ -29,10 +35,10 @@ export function useMutationForm<Q, V>(
 ) {
   const { defaultValues, onComplete, onBeforeSubmit, ...useFormProps } = options
   const { defaults, required, encode, validate, Field } = useGqlDocumentHandler<Q, V>(document)
-  const [mutate, { data, client }] = useMutation(document, { errorPolicy: 'all' })
+  const [mutate, { data, client }] = useMutation(document)
 
   type FieldValues = V & { submission?: string }
-  const { reset, handleSubmit: submitForm, ...useFormMethods } = useForm<FieldValues>({
+  const { reset, ...useFormMethods } = useForm<FieldValues>({
     defaultValues: mergeDeep(defaults, defaultValues),
     ...useFormProps,
   })
@@ -45,7 +51,7 @@ export function useMutationForm<Q, V>(
     }
   }, [valuesJson, reset])
 
-  const handleSubmit = submitForm(async (formValues) => {
+  const handleSubmit = useFormMethods.handleSubmit(async (formValues) => {
     // Clear submission errors
     useFormMethods.clearErrors('submission' as FieldName<FieldValues>)
 
@@ -59,20 +65,30 @@ export function useMutationForm<Q, V>(
     const missing = validate(variables)
     if (missing.length) throw new Error(`Missing fields in form: ${missing.join(', ')}`)
 
-    // Encode and submit the values
-    const result = await mutate({ variables })
+    try {
+      // Encode and submit the values
+      const result = await mutate({ variables })
 
-    // Register submission errors
-    if (result.errors) {
-      useFormMethods.setError('submission' as FieldName<FieldValues>, {
-        type: 'validate',
-        message: result.errors.map((error) => error.message).join(', '),
-      })
+      // Register submission errors
+      if (result.errors) {
+        useFormMethods.setError('submission' as FieldName<FieldValues>, {
+          type: 'validate',
+          message: result.errors.map((error) => error.message).join(', '),
+        })
+      }
+      if (onComplete && result.data) await onComplete(result, client)
+    } catch (e) {
+      if (e instanceof ApolloError) {
+        useFormMethods.setError('submission' as FieldName<FieldValues>, {
+          type: 'validate',
+          message: e.message,
+        })
+      } else throw e
     }
 
     // Wait for the onComplete result
-    if (onComplete && result.data) await onComplete(result, client)
+    // reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
   })
 
-  return { Field, required, data, reset, handleSubmit, ...useFormMethods }
+  return { Field, required, data, reset, ...useFormMethods, handleSubmit }
 }

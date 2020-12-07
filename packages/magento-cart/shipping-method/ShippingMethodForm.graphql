@@ -13,10 +13,7 @@ mutation ShippingMethodForm($cartId: String!, $carrier: String!, $method: String
         purchase_order_number
         title
       }
-      available_payment_methods {
-        code
-        title
-      }
+      ...CartPaymentMethods
     }
   }
 }

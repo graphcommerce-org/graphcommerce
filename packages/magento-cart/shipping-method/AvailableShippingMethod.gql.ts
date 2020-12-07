@@ -2,6 +2,8 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
+import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
+
 export const AvailableShippingMethodFragmentDoc: DocumentNode<
   AvailableShippingMethodFragment,
   unknown
@@ -23,10 +25,7 @@ export const AvailableShippingMethodFragmentDoc: DocumentNode<
             name: { kind: 'Name', value: 'amount' },
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } }],
             },
           },
           { kind: 'Field', name: { kind: 'Name', value: 'available' } },
@@ -35,38 +34,13 @@ export const AvailableShippingMethodFragmentDoc: DocumentNode<
           { kind: 'Field', name: { kind: 'Name', value: 'error_message' } },
           { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
           { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'price_excl_tax' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'price_incl_tax' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-              ],
-            },
-          },
         ],
       },
     },
+    ...MoneyFragmentDoc.definitions,
   ],
 }
 export type AvailableShippingMethodFragment = Pick<
   Types.AvailableShippingMethod,
   'available' | 'carrier_code' | 'carrier_title' | 'error_message' | 'method_code' | 'method_title'
-> & {
-  amount: Pick<Types.Money, 'currency' | 'value'>
-  price_excl_tax: Pick<Types.Money, 'currency' | 'value'>
-  price_incl_tax: Pick<Types.Money, 'currency' | 'value'>
-}
+> & { amount: MoneyFragment }

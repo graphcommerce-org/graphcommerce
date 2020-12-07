@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import React from 'react'
 
-export type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
+type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
   variant?: 'text' | 'outlined' | 'contained' | 'pill'
 }
 
@@ -11,7 +11,7 @@ type ButtonClassKey = 'pill' | 'pillPrimary' | 'pillSecondary' | 'pillSizeLarge'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 
-type ButtonProps = BaseButtonProps & {
+export type ButtonProps = BaseButtonProps & {
   classes?: { [index in ClassKeys]?: string }
 }
 

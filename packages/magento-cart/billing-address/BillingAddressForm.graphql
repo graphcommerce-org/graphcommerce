@@ -1,0 +1,16 @@
+mutation BillingAddressForm(
+  $cartId: String!
+  $address: CartAddressInput!
+  $sameAsShipping: Boolean!
+) {
+  setBillingAddressOnCart(
+    input: {
+      cart_id: $cartId
+      billing_address: { address: $address, same_as_shipping: $sameAsShipping }
+    }
+  ) {
+    cart {
+      id #todo: which fragment to use?
+    }
+  }
+}

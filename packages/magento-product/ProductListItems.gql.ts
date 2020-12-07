@@ -14,7 +14,6 @@ import {
   ProductListItem_VirtualProduct_Fragment,
   ProductListItem_SimpleProduct_Fragment,
   ProductListItem_DownloadableProduct_Fragment,
-  ProductListItem_GiftCardProduct_Fragment,
   ProductListItem_BundleProduct_Fragment,
   ProductListItem_GroupedProduct_Fragment,
   ProductListItem_ConfigurableProduct_Fragment,
@@ -67,8 +66,6 @@ export type ProductListItemsFragment = {
             ProductListItemSimpleFragment)
         | ({ __typename: 'DownloadableProduct' } & Pick<Types.DownloadableProduct, 'id'> &
             ProductListItem_DownloadableProduct_Fragment)
-        | ({ __typename: 'GiftCardProduct' } & Pick<Types.GiftCardProduct, 'id'> &
-            ProductListItem_GiftCardProduct_Fragment)
         | ({ __typename: 'BundleProduct' } & Pick<Types.BundleProduct, 'id'> &
             ProductListItem_BundleProduct_Fragment)
         | ({ __typename: 'GroupedProduct' } & Pick<Types.GroupedProduct, 'id'> &

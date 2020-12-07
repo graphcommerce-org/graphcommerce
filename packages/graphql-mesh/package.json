@@ -10,7 +10,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphql-mesh/cache-file": "^0.4.22",
     "@graphql-mesh/cli": "^0.11.13",
     "@graphql-mesh/config": "^0.10.18",
     "@graphql-mesh/graphql": "^0.7.10",

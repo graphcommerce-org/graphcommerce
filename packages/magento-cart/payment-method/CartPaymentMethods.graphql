@@ -1,0 +1,5 @@
+fragment CartPaymentMethods on Cart {
+  available_payment_methods {
+    ...AvailablePaymentMethod
+  }
+}

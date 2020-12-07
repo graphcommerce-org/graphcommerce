@@ -33,7 +33,6 @@ export const ShippingAddressFormDocument: DocumentNode<
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'customerNote' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          defaultValue: { kind: 'StringValue', value: 'joi', block: false },
         },
       ],
       selectionSet: {
@@ -189,34 +188,6 @@ export const ShippingAddressFormDocument: DocumentNode<
                                   { kind: 'Field', name: { kind: 'Name', value: 'error_message' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_excl_tax' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'currency' },
-                                        },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_incl_tax' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'currency' },
-                                        },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                                      ],
-                                    },
-                                  },
                                 ],
                               },
                             },
@@ -275,11 +246,7 @@ export type ShippingAddressFormMutation = {
                       | 'error_message'
                       | 'method_code'
                       | 'method_title'
-                    > & {
-                      amount: Pick<Types.Money, 'currency' | 'value'>
-                      price_excl_tax: Pick<Types.Money, 'currency' | 'value'>
-                      price_incl_tax: Pick<Types.Money, 'currency' | 'value'>
-                    }
+                    > & { amount: Pick<Types.Money, 'currency' | 'value'> }
                   >
                 >
               >

@@ -1,21 +1,37 @@
 {
   "possibleTypes": {
-    "Node": ["RowColumnTwo", "RowColumnOne", "RowColumnThree", "Page", "Asset"],
-    "PageContent": ["RowColumnThree", "RowColumnOne", "RowColumnTwo"],
+    "Node": [
+      "RowColumnOne",
+      "Page",
+      "RowColumnTwo",
+      "Asset",
+      "RowHeroBanner",
+      "RowSpecialBanner",
+      "RowProductGrid",
+      "RowColumnThree",
+      "PageLink",
+      "MagentoCategory"
+    ],
+    "PageContent": [
+      "RowColumnThree",
+      "RowColumnOne",
+      "RowHeroBanner",
+      "RowSpecialBanner",
+      "RowColumnTwo",
+      "RowProductGrid"
+    ],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
       "SimpleCartItem",
       "VirtualCartItem",
       "DownloadableCartItem",
-      "GiftCardCartItem",
-      "ConfigurableCartItem",
-      "BundleCartItem"
+      "BundleCartItem",
+      "ConfigurableCartItem"
     ],
     "ProductInterface": [
       "VirtualProduct",
       "SimpleProduct",
       "DownloadableProduct",
-      "GiftCardProduct",
       "BundleProduct",
       "GroupedProduct",
       "ConfigurableProduct"
@@ -25,28 +41,16 @@
     "ProductLinksInterface": ["ProductLinks"],
     "CreditMemoItemInterface": [
       "DownloadableCreditMemoItem",
-      "GiftCardCreditMemoItem",
       "BundleCreditMemoItem",
       "CreditMemoItem"
     ],
-    "OrderItemInterface": [
-      "DownloadableOrderItem",
-      "GiftCardOrderItem",
-      "BundleOrderItem",
-      "OrderItem"
-    ],
-    "InvoiceItemInterface": [
-      "DownloadableInvoiceItem",
-      "GiftCardInvoiceItem",
-      "BundleInvoiceItem",
-      "InvoiceItem"
-    ],
-    "ShipmentItemInterface": ["GiftCardShipmentItem", "BundleShipmentItem", "ShipmentItem"],
+    "OrderItemInterface": ["DownloadableOrderItem", "BundleOrderItem", "OrderItem"],
+    "InvoiceItemInterface": ["DownloadableInvoiceItem", "BundleInvoiceItem", "InvoiceItem"],
+    "ShipmentItemInterface": ["BundleShipmentItem", "ShipmentItem"],
     "AggregationOptionInterface": ["AggregationOption"],
     "LayerFilterItemInterface": ["LayerFilterItem", "SwatchLayerFilterItem"],
     "PhysicalProductInterface": [
       "SimpleProduct",
-      "GiftCardProduct",
       "BundleProduct",
       "GroupedProduct",
       "ConfigurableProduct"
@@ -65,7 +69,6 @@
       "VirtualProduct",
       "SimpleProduct",
       "DownloadableProduct",
-      "GiftCardProduct",
       "BundleProduct",
       "ConfigurableProduct"
     ],

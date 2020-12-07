@@ -1,9 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-
-type ProductCountProps = {
-  totalProducts: number | undefined
-}
+import { ProductListCountFragment } from './ProductListCount.gql'
 
 const useProductCountStyles = makeStyles(
   (theme: Theme) => ({
@@ -37,15 +34,17 @@ const useProductCountStyles = makeStyles(
   },
 )
 
-export default function ProductCount(props: ProductCountProps) {
-  const { totalProducts } = props
+type ProductCountProps = ProductListCountFragment
+
+export default function ProductListCount(props: ProductCountProps) {
+  const { total_count } = props
   const classes = useProductCountStyles(props)
 
   return (
     <div className={classes.container}>
       <div className={classes.line} />
       <div className={classes.count}>
-        {totalProducts} product{(totalProducts ?? 0) > 1 ? 's' : ''}
+        {total_count} product{(total_count ?? 0) > 1 ? 's' : ''}
       </div>
     </div>
   )

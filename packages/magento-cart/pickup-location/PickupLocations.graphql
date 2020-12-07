@@ -1,0 +1,7 @@
+query PickupLocations($searchTerm: String!) {
+  pickupLocations(area: { search_term: $searchTerm, radius: 100 }, pageSize: 1000) {
+    items {
+      ...PickupLocation
+    }
+  }
+}
