@@ -9,5 +9,6 @@ fragment Page on Page {
     ...RowColumnThree
     ...RowHeroBanner
     ...RowProductGrid
+    ...RowSpecialBanner
   }
 }
