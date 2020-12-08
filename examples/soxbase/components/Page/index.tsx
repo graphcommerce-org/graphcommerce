@@ -4,6 +4,7 @@ import RowColumnThree from '../RowColumnThree'
 import RowColumnTwo from '../RowColumnTwo'
 import RowHeroBanner from '../RowHeroBanner'
 import RowProductGrid from '../RowProductGrid'
+import RowQuote from '../RowQuote'
 import RowSpecialBanner from '../RowSpecialBanner'
 import { PageFragment } from './Page.gql'
 
@@ -16,6 +17,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowHeroBanner,
   RowProductGrid,
   RowSpecialBanner,
+  RowQuote,
 }
 
 export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer> }
