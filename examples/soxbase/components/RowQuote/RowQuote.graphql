@@ -1,0 +1,5 @@
+fragment RowQuote on RowQuote {
+  quote {
+    raw
+  }
+}
