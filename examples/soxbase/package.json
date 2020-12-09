@@ -57,7 +57,7 @@
     "resize-observer": "^1.0.0",
     "schema-dts": "^0.8.2",
     "sharp": "^0.26.2",
-    "ts-node": "^9.1.0",
+    "ts-node": "^9.1.1",
     "type-fest": "^0.20.2",
     "vercel": "^21.0.1"
   },
@@ -66,7 +66,7 @@
     "@reachdigital/eslint-config-pwa": "^0.1.0",
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0",
-    "@types/node": "^14.14.10",
+    "@types/node": "^14.14.11",
     "@types/react": "^17.0.0",
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.1",

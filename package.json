@@ -4,6 +4,7 @@
   "version": "2.16.0",
   "private": true,
   "workspaces": [
+    "docs",
     "packagesDev/*",
     "packages/*",
     "examples/*"
@@ -53,7 +54,7 @@
     "patch-package": "^6.2.2",
     "pm2": "^4.5.0",
     "postinstall-postinstall": "^2.1.0",
-    "ts-node": "^9.1.0",
+    "ts-node": "^9.1.1",
     "type-fest": "^0.20.2",
     "vercel": "^21.0.1"
   },
@@ -82,7 +83,7 @@
     "@semantic-release/git": "^9.0.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@types/node": "^14.14.10",
+    "@types/node": "^14.14.11",
     "@types/react": "^17.0.0",
     "@types/resize-observer-browser": "^0.1.4",
     "@types/sharp": "^0.26.1",
