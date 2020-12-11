@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import { isUsingTypes, Types, DetailedError } from '@graphql-codegen/plugin-helpers'
 import {
   generateImportStatement,
@@ -80,7 +81,7 @@ export function resolveDocumentImports<T>(
     plugin.includes('relay-optimizer-plugin'),
   )
 
-  return documents.map((documentFile) => {
+  const resDocuments = documents.map((documentFile) => {
     try {
       const isFragment = typeof getFragmentName(documentFile) !== 'undefined'
 
@@ -167,4 +168,8 @@ export function resolveDocumentImports<T>(
       )
     }
   })
+
+  return resDocuments.filter((result) =>
+    result.filename.startsWith(resolve(baseDir, baseOutputDir)),
+  )
 }
