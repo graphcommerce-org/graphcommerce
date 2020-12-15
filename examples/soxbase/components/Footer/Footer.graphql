@@ -1,0 +1,8 @@
+query footer {
+  footer(where: { identity: "footer" }) {
+    socialLinks {
+      title
+      url
+    }
+  }
+}
