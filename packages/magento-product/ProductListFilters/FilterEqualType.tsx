@@ -91,7 +91,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   }
 
   const [selectedFilters, setSelectedFilters] = useState<{
-    in: ProductAttributeFilterInput[]
+    in: string[]
   }>(currentFilter)
 
   const activeLabels =
