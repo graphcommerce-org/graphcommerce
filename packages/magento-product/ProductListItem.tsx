@@ -17,7 +17,7 @@ export const useProductListItemStyles = makeStyles(
       height: '100%',
     },
     title: {
-      display: 'inline-block',
+      display: 'inline',
       ...theme.typography.h6,
       color: theme.palette.primary.contrastText,
     },

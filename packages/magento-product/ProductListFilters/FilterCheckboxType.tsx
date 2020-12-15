@@ -1,5 +1,6 @@
-import { Chip, ChipProps, makeStyles, Theme } from '@material-ui/core'
-import CategoryLink from '@reachdigital/magento-category/CategoryLink'
+import { cloneDeep } from '@apollo/client/utilities'
+import { Chip, ChipProps } from '@material-ui/core'
+import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { useChipMenuStyles } from '@reachdigital/next-ui/ChipMenu'
 import clsx from 'clsx'
@@ -17,6 +18,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { params } = useProductListParamsContext()
   const classes = useChipMenuStyles(props)
   const currentFilter = params.filters[attribute_code]
+  const pushRoute = useCategoryPushRoute()
 
   if (!options?.[0]) return null
 
@@ -35,7 +37,18 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       <Chip
         variant='outlined'
         color={isActive ? undefined : 'default'}
-        onDelete={isActive ? () => {} : undefined}
+        onDelete={
+          isActive
+            ? () => {
+                const linkParams = cloneDeep(params)
+
+                delete linkParams.currentPage
+                delete linkParams.filters[attribute_code]
+
+                pushRoute(linkParams)
+              }
+            : undefined
+        }
         label={label}
         clickable
         {...chipProps}

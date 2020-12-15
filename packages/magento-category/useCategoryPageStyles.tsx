@@ -70,8 +70,9 @@ const useCategoryPageStyles = makeStyles(
       margin: `0 auto`,
       paddingLeft: 16,
       paddingRight: 16,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         padding: 0,
+        textAlign: 'center',
       },
     },
     filterItem: {
