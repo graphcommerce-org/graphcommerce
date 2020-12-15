@@ -70,15 +70,17 @@ const useCategoryPageStyles = makeStyles(
       margin: `0 auto`,
       paddingLeft: 16,
       paddingRight: 16,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         padding: 0,
+      },
+      [theme.breakpoints.down('xs')]: {
         textAlign: 'center',
       },
     },
     filterItem: {
-      marginRight: responsiveVal(4, 8),
-      marginBottom: responsiveVal(4, 8),
-      marginLeft: responsiveVal(4, 8),
+      marginRight: responsiveVal(2, 4),
+      marginBottom: responsiveVal(6, 12),
+      marginLeft: responsiveVal(2, 4),
     },
     items: {
       gridArea: 'items',
