@@ -75,9 +75,9 @@ const useCategoryPageStyles = makeStyles(
       },
     },
     filterItem: {
-      marginRight: 8,
-      marginBottom: 16,
-      marginLeft: 8,
+      marginRight: responsiveVal(4, 8),
+      marginBottom: responsiveVal(4, 8),
+      marginLeft: responsiveVal(4, 8),
     },
     items: {
       gridArea: 'items',

@@ -20,6 +20,7 @@ export default function Money({ currency, value }: MoneyFragment) {
     })
   }, [config?.storeConfig?.base_currency_code, currency, locale])
 
-  if (!numberFormatter || !value) return null
-  return <>{numberFormatter.format(value)}</>
+  if (!numberFormatter || !Number.isInteger(value)) return null
+
+  return <>{numberFormatter.format(value ?? 0)}</>
 }

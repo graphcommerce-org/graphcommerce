@@ -9,12 +9,17 @@ import responsiveVal from '../Styles/responsiveVal'
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
     chip: {
+      paddingTop: 1,
       '& .MuiChip-label': {
-        maxWidth: '100%',
+        maxWidth: responsiveVal(96, 124),
+        wordWrap: 'break-word',
       },
       '&:focus': {
         background: '#FFF !important',
       },
+    },
+    chipOpenMenu: {
+      borderWidth: 2,
     },
     chipSelected: {
       border: `1px solid ${theme.palette.primary.contrastText}`,
@@ -39,14 +44,17 @@ export const useChipMenuStyles = makeStyles(
       maxWidth: 560,
       padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
       marginTop: theme.spacings.xxs,
-      '& a': {
-        padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
-      },
+      // '& a': {
+      //   padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
+      // },
       [theme.breakpoints.down('xs')]: {
         minWidth: 0,
-        maxWidth: '100%',
         width: '100%',
         left: '0 !important',
+        right: '0',
+        maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
+        margin: '0 auto',
+        marginTop: '8px',
       },
     },
     chipHeader: {
@@ -58,20 +66,23 @@ export const useChipMenuStyles = makeStyles(
       color: theme.palette.secondary.mutedText,
       padding: theme.spacings.xxs,
       paddingLeft: 0,
-      marginBottom: theme.spacings.xxs,
       borderBottom: `1px solid ${theme.palette.divider}`,
+      '&:focus': {
+        outline: 'none',
+      },
     },
   }),
   { name: 'ChipMenu' },
 )
 
 export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
-  selectedLabel?: string
+  selectedLabel?: React.ReactNode
   selected: boolean
+  onClose?: () => void
 }
 
 export default function ChipMenu(props: ChipMenuProps) {
-  const { children, selected, onDelete, label, selectedLabel, ...chipProps } = props
+  const { children, selected, onDelete, label, onClose, selectedLabel, ...chipProps } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const classes = useChipMenuStyles(props)
 
@@ -95,12 +106,17 @@ export default function ChipMenu(props: ChipMenuProps) {
           classes.chip,
           chipProps.className,
           selectedAndMenuHidden && classes.chipSelected,
+          openEl && classes.chipOpenMenu,
         )}
       />
       <Menu
         anchorEl={openEl}
         open={!!openEl}
-        onClose={() => setOpenEl(null)}
+        onClose={() => {
+          if (onClose) onClose()
+
+          setOpenEl(null)
+        }}
         getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
         variant='selectedMenu'
         anchorPosition={{ top: 6, left: 0 }}
