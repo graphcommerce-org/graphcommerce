@@ -1,0 +1,10 @@
+fragment ProductPageGrouped on GroupedProduct {
+  ...ProductListItem
+  items {
+    position
+    product {
+      name
+    }
+    qty
+  }
+}

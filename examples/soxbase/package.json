@@ -31,6 +31,7 @@
     "@reachdigital/magento-product-bundle": "0.1.0",
     "@reachdigital/magento-product-configurable": "0.1.0",
     "@reachdigital/magento-product-downloadable": "0.1.0",
+    "@reachdigital/magento-product-grouped": "0.1.0",
     "@reachdigital/magento-product-simple": "0.1.0",
     "@reachdigital/magento-product-virtual": "0.1.0",
     "@reachdigital/magento-search": "0.1.0",
