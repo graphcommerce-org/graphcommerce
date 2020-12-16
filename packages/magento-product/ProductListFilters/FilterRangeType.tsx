@@ -17,8 +17,7 @@ type FilterRangeTypeProps = NonNullable<
 const useFilterRangeType = makeStyles(
   (theme: Theme) => ({
     container: {
-      paddingTop: 16,
-      paddingBottom: 40,
+      padding: '24px 12px !important',
       width: '100%',
       '& > a': {
         padding: '0 !important',
@@ -54,6 +53,7 @@ const useFilterRangeType = makeStyles(
       borderRadius: 40,
       float: 'right',
       marginLeft: 8,
+      marginBottom: 24,
     },
     resetButton: {
       background: '#F4F4F4',

@@ -70,6 +70,7 @@ const useFilterEqualStyles = makeStyles(
       float: 'right',
       marginLeft: 8,
       marginTop: 8,
+      marginBottom: 24,
     },
     resetButton: {
       background: '#F4F4F4',
