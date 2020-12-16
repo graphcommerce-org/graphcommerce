@@ -95,7 +95,7 @@ export const useProductListItemStyles = makeStyles(
     },
     discount: {
       background: '#000',
-      padding: '4px 6px',
+      padding: '5px 6px 4px 6px',
       color: '#fff',
       display: 'inline',
       ...theme.typography.h6,
