@@ -20,7 +20,7 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
   const [currentSort = defaultSort] = Object.keys(params.sort)
   const currentOption = sort_fields?.options?.find((option) => option?.value === currentSort)
   const selected = currentSort !== defaultSort
-  const label = 'Sort by'
+  const label = 'Sort By'
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
