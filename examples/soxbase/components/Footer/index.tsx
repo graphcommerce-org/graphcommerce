@@ -12,22 +12,51 @@ import { FooterQuery } from './Footer.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
-    borderTop: '1px solid rgba(0,0,0,0.15)',
+    borderTop: '1px solid rgba(0,0,0,0.08)',
     paddingTop: `${theme.spacings.md}`,
     paddingBottom: `${theme.spacings.md}`,
     display: 'grid',
-    gridTemplateColumns: 'auto auto',
-    gridTemplateRows: 'auto',
-    justifyContent: 'space-between',
+    gridAutoRows: '1fr',
     gap: `${theme.spacings.xs}`,
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      justifyItems: 'center',
+      '& > *': {
+        maxWidth: 'max-content',
+      },
+    },
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: 'auto auto',
+      gridTemplateRows: 'auto',
+      justifyContent: 'space-between',
+    },
   },
   copyright: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(10, auto)',
+    gridAutoFlow: 'column',
     alignContent: 'center',
+    fontSize: '9px',
     gap: `${theme.spacings.sm}`,
+    [theme.breakpoints.up('md')]: {
+      order: '3',
+      ...theme.typography.body2,
+    },
     '& a': {
       color: '#000',
+    },
+  },
+  support: {
+    [theme.breakpoints.up('md')]: {
+      order: '4',
+    },
+  },
+  social: {
+    display: 'grid',
+    justifyContent: 'start',
+    gridAutoFlow: 'column',
+    gap: `0 ${theme.spacings.xs}`,
+    '& > *': {
+      minWidth: 'min-content',
     },
   },
 }))
@@ -40,10 +69,10 @@ export default function Footer(props: FooterProps) {
 
   return (
     <Container maxWidth={false} className={classes.footer}>
-      <div>
+      <div className={classes.social}>
         {footer?.socialLinks?.map((link) => (
           <PageLink key={link.title} href={link.url}>
-            <IconButton color='inherit'>
+            <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
               {link.title.toLowerCase() === 'instagram' ? <Instagram color='inherit' /> : false}
               {link.title.toLowerCase() === 'linkedin' ? <LinkedIn color='inherit' /> : false}
               {link.title.toLowerCase() === 'twitter' ? <Twitter color='inherit' /> : false}
@@ -54,22 +83,22 @@ export default function Footer(props: FooterProps) {
         ))}
       </div>
       <StoreSwitcherButton />
+      <Button
+        key='#'
+        url='#'
+        title='Customer Service'
+        variant='pill'
+        color='inherit'
+        className={classes.support}
+      />
       <div className={classes.copyright}>
-        <span>{footer.copyright}</span>
+        <span>{footer?.copyright}</span>
         {footer?.legalLinks?.map((link) => (
           <PageLink key={link.title} href={link.url}>
             {link.title}
           </PageLink>
         ))}
       </div>
-      <Button
-        key='#'
-        url='#'
-        title='Customer Service'
-        variant='pill'
-        size='large'
-        color='inherit'
-      />
     </Container>
   )
 }
