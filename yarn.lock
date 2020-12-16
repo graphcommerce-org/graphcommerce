@@ -15962,9 +15962,9 @@ sync-fetch@0.3.0:
     node-fetch "^2.6.1"
 
 systeminformation@^4.23.3:
-  version "4.31.0"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.31.0.tgz#24da1f4ba904de8ac66e71be656fef0a234e1d72"
-  integrity sha512-j1eNsuHxpW00RpxSvLy2IJHXpH54TyzZGQRTSFM5flD+dl83qmZ7TWIPnVkACMgHFABkL95I4KTf6S7aRsGUWg==
+  version "4.32.0"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.32.0.tgz#37e0919ef32d25fe1bfaf2d817eb4a0f2950c358"
+  integrity sha512-8/LM0EvwhW34+n3fzmcl4swG7Ngx8h8s/5MooXlIJKyMbSiO9juCqftdQIpwa3NneKrca1uYO55JHZeYJUaSZw==
 
 table@^5.2.3:
   version "5.4.6"
