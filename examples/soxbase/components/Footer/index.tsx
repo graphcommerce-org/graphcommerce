@@ -54,7 +54,14 @@ export default function Footer(props: FooterProps) {
         ))}
       </div>
       <StoreSwitcherButton />
-      <div className={classes.copyright}>© Copyright Reach Digital</div>
+      <div className={classes.copyright}>
+        <span>{footer.copyright}</span>
+        {footer?.legalLinks?.map((link) => (
+          <PageLink key={link.title} href={link.url}>
+            {link.title}
+          </PageLink>
+        ))}
+      </div>
       <Button
         key='#'
         url='#'

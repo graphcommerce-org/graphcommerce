@@ -45,6 +45,18 @@ export const FooterDocument: DocumentNode<FooterQuery, FooterQueryVariables> = {
                     ],
                   },
                 },
+                { kind: 'Field', name: { kind: 'Name', value: 'copyright' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'legalLinks' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -56,5 +68,10 @@ export const FooterDocument: DocumentNode<FooterQuery, FooterQueryVariables> = {
 export type FooterQueryVariables = Types.Exact<{ [key: string]: never }>
 
 export type FooterQuery = {
-  footer?: Types.Maybe<{ socialLinks: Array<Pick<Types.PageLink, 'title' | 'url'>> }>
+  footer?: Types.Maybe<
+    Pick<Types.Footer, 'copyright'> & {
+      socialLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+      legalLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+    }
+  >
 }
