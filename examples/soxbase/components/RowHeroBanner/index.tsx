@@ -8,23 +8,16 @@ import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   wrapper: {
     position: 'relative',
-    height: '70vh',
-    [theme.breakpoints.up('lg')]: {
-      height: '90vh',
-    },
+    minHeight: '100%',
   },
   copy: {
     color: '#fff',
-    position: 'absolute',
-    top: '0',
-    left: '0',
     height: '100%',
     display: 'grid',
     justifyItems: 'center',
     alignContent: 'center',
-    zIndex: 1,
-    overflow: 'hidden',
-    padding: `0 ${theme.spacings.md}`,
+    padding: `${theme.spacings.lg} ${theme.spacings.md}`,
+    minHeight: '70vh',
     '& > *': {
       maxWidth: 'max-content',
     },
@@ -32,11 +25,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: '70%',
     },
     [theme.breakpoints.up('lg')]: {
-      padding: `0 ${theme.spacings.lg}`,
-      width: '60%',
+      padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
+      width: '50%',
     },
   },
   asset: {
+    position: 'absolute',
+    top: '0',
+    zIndex: -1,
     width: '100%',
     height: '100%',
     objectFit: 'cover',
