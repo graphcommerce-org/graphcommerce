@@ -4,6 +4,15 @@ import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { RowQuoteFragment } from './RowQuote.gql'
 
+const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    marginBottom: `${theme.spacings.lg}`,
+    [theme.breakpoints.up('md')]: {
+      marginBottom: `${theme.spacings.xl}`,
+    },
+  },
+}))
+
 const useRichTextOne = makeStyles((theme: Theme) => ({
   paragraph: {
     'font-weight': 600,
@@ -11,7 +20,7 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
     maxWidth: '80%',
     textAlign: 'center',
     margin: '0 auto',
-    padding: `${theme.spacings.xl} 0`,
+    padding: `${theme.spacings.sm} 0`,
     fontSize: responsiveVal(14, 26),
     [theme.breakpoints.up('lg')]: {
       maxWidth: '50%',
@@ -21,10 +30,11 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
 
 export default function RowQuote(props: RowQuoteFragment) {
   const { quote } = props
+  const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
 
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={false} className={classes.container}>
       <RichText classes={richTextOneClasses} {...quote} />
     </Container>
   )
