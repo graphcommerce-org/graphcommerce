@@ -11,5 +11,6 @@ fragment Page on Page {
     ...RowProductGrid
     ...RowSpecialBanner
     ...RowQuote
+    ...RowProductBackstory
   }
 }

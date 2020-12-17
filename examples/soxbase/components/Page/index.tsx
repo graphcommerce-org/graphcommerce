@@ -3,6 +3,7 @@ import RowColumnOne from '../RowColumnOne'
 import RowColumnThree from '../RowColumnThree'
 import RowColumnTwo from '../RowColumnTwo'
 import RowHeroBanner from '../RowHeroBanner'
+import RowProductBackstory from '../RowProductBackstory'
 import RowProductGrid from '../RowProductGrid'
 import RowQuote from '../RowQuote'
 import RowSpecialBanner from '../RowSpecialBanner'
@@ -18,6 +19,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowProductGrid,
   RowSpecialBanner,
   RowQuote,
+  RowProductBackstory,
 }
 
 export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer> }
