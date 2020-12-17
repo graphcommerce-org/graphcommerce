@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { RowProductGridFragment } from './RowProductGrid.gql'
 
@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginBottom: `${theme.spacings.xl}`,
     },
   },
+  title: {
+    textTransform: 'uppercase',
+  },
 }))
 
 export default function RowProductGrid(props: RowProductGridFragment) {
@@ -17,7 +20,9 @@ export default function RowProductGrid(props: RowProductGridFragment) {
 
   return (
     <Container maxWidth={false} className={classes.container}>
-      <h2>{title}</h2>
+      <Typography variant='h2' className={classes.title}>
+        {title}
+      </Typography>
     </Container>
   )
 }
