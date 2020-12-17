@@ -6,6 +6,12 @@ import Button from '../PageLink/Button'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    marginBottom: `${theme.spacings.lg}`,
+    [theme.breakpoints.up('md')]: {
+      marginBottom: `${theme.spacings.xl}`,
+    },
+  },
   wrapper: {
     position: 'relative',
     minHeight: '100%',
@@ -67,7 +73,7 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
   const richTextOneClasses = useRichTextOne(props)
 
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={false} className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
           <RichText classes={richTextOneClasses} {...copy} />
