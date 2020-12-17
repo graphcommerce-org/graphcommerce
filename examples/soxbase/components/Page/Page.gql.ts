@@ -10,13 +10,21 @@ import {
 import { RowColumnTwoFragment, RowColumnTwoFragmentDoc } from '../RowColumnTwo/RowColumnTwo.gql'
 import { RowHeroBannerFragment, RowHeroBannerFragmentDoc } from '../RowHeroBanner/RowHeroBanner.gql'
 import {
+  RowProductBackstoryFragment,
+  RowProductBackstoryFragmentDoc,
+} from '../RowProductBackstory/RowProductBackstory.gql'
+import {
   RowProductGridFragment,
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
+import { RowQuoteFragment, RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
+import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
 import {
-  RowSpecialBannerFragment,
-  RowSpecialBannerFragmentDoc,
-} from '../RowSpecialBanner/RowSpecialBanner.gql'
+  RowSwipeableGridFragment,
+  RowSwipeableGridFragmentDoc,
+} from '../RowSwipeableGrid/RowSwipeableGrid.gql'
+
+import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',
@@ -49,6 +57,9 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowHeroBanner' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductGrid' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSpecialBanner' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowQuote' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSwipeableGrid' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductBackstory' } },
               ],
             },
           },
@@ -61,16 +72,24 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowHeroBannerFragmentDoc.definitions,
     ...RowProductGridFragmentDoc.definitions,
     ...RowSpecialBannerFragmentDoc.definitions,
+    ...RowQuoteFragmentDoc.definitions,
+    ...RowSwipeableGridFragmentDoc.definitions,
+    ...RowProductBackstoryFragmentDoc.definitions,
   ],
 }
 export type PageFragment = {
   content: Array<
-    | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
+    | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
+    | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
     | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & RowHeroBannerFragment)
+    | ({ __typename: 'RowProductBackstory' } & Pick<Types.RowProductBackstory, 'id'> &
+        RowProductBackstoryFragment)
+    | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
+    | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & RowQuoteFragment)
     | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'> &
         RowSpecialBannerFragment)
-    | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
-    | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
+    | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'> &
+        RowSwipeableGridFragment)
   >
 }
