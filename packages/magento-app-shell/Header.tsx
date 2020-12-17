@@ -16,7 +16,7 @@ import { PageLayoutQuery } from './PageLayout.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
-      padding: `${theme.page.vertical} ${theme.page.horizontal} 7px`,
+      padding: `${theme.spacings.sm} ${theme.page.horizontal} ${theme.spacings.sm}`,
       top: 0,
       display: 'flex',
       pointerEvents: 'none',
