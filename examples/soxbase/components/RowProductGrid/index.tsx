@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { RowProductGridFragment } from './RowProductGrid.gql'
 
