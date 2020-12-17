@@ -14,16 +14,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   wrapper: {
     position: 'relative',
-    minHeight: '100%',
   },
   copy: {
     color: '#fff',
-    height: '100%',
     display: 'grid',
     justifyItems: 'center',
     alignContent: 'center',
     padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-    minHeight: '70vh',
+    minHeight: '80vh',
     '& > *': {
       maxWidth: 'max-content',
     },
