@@ -7,6 +7,12 @@ import Link from '../PageLink/Link'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    marginBottom: `${theme.spacings.lg}`,
+    [theme.breakpoints.up('md')]: {
+      marginBottom: `${theme.spacings.xl}`,
+    },
+  },
   wrapper: {
     display: 'grid',
     height: '60vw',
@@ -72,14 +78,12 @@ export default function RowSpecialBanner(props: RowSpecialBanner) {
   const richTextOneClasses = useRichTextOne(props)
 
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth={false} className={classes.container}>
       <div className={classes.wrapper}>
         {asset.mimeType === 'video/mp4' ? (
           <video src={asset.url} autoPlay muted loop playsInline className={classes.asset} />
         ) : (
-          <PageLinkUrl href='#'>
-            <img src={asset.url} className={classes.asset} alt='' />
-          </PageLinkUrl>
+          <img src={asset.url} className={classes.asset} alt='' />
         )}
         <div className={classes.copy}>
           {topic ? <span className={classes.topic}>{topic}</span> : false}
