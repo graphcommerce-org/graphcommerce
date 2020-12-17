@@ -13,8 +13,8 @@ import { FooterQuery } from './Footer.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     borderTop: '1px solid rgba(0,0,0,0.08)',
-    paddingTop: `${theme.spacings.md}`,
-    paddingBottom: `${theme.spacings.md}`,
+    paddingTop: `${theme.spacings.xs}`,
+    paddingBottom: `${theme.spacings.xs}`,
     display: 'grid',
     gridAutoRows: '1fr',
     gap: `${theme.spacings.xs}`,
@@ -26,6 +26,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
     [theme.breakpoints.up('md')]: {
+      paddingTop: `${theme.spacings.md}`,
+      paddingBottom: `${theme.spacings.md}`,
       gridTemplateColumns: 'auto auto',
       gridTemplateRows: 'auto',
       justifyContent: 'space-between',
@@ -51,10 +53,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   social: {
-    display: 'grid',
+    display: 'none',
     justifyContent: 'start',
     gridAutoFlow: 'column',
     gap: `0 ${theme.spacings.xs}`,
+    [theme.breakpoints.up('md')]: {
+      display: 'grid',
+    },
     '& > *': {
       minWidth: 'min-content',
     },
