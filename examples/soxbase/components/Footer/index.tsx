@@ -3,6 +3,7 @@ import Facebook from '@material-ui/icons/Facebook'
 import Instagram from '@material-ui/icons/Instagram'
 import LinkedIn from '@material-ui/icons/LinkedIn'
 import Twitter from '@material-ui/icons/Twitter'
+import Youtube from '@material-ui/icons/YouTube'
 import StoreSwitcherButton from '@reachdigital/magento-store/switcher/StoreSwitcherButton'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
@@ -81,6 +82,7 @@ export default function Footer(props: FooterProps) {
               {link.title.toLowerCase() === 'linkedin' ? <LinkedIn color='inherit' /> : false}
               {link.title.toLowerCase() === 'twitter' ? <Twitter color='inherit' /> : false}
               {link.title.toLowerCase() === 'facebook' ? <Facebook color='inherit' /> : false}
+              {link.title.toLowerCase() === 'youtube' ? <Youtube color='inherit' /> : false}
             </IconButton>
           </PageLink>
         ))}
