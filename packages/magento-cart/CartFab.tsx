@@ -16,7 +16,7 @@ function CartFabContent({ qty, asIcon }: CartFabProps & { qty?: number }) {
   return (
     <PageLink href='/cart'>
       {asIcon ? (
-        <IconButton aria-label='Cart' color='inherit'>
+        <IconButton aria-label='Cart' color='inherit' edge='end'>
           {badge}
         </IconButton>
       ) : (
