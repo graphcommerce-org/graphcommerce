@@ -1,24 +1,31 @@
 {
   "possibleTypes": {
-    "PageContent": [
-      "RowColumnThree",
-      "RowColumnOne",
-      "RowHeroBanner",
-      "RowSpecialBanner",
-      "RowColumnTwo",
-      "RowProductGrid"
-    ],
     "Node": [
-      "RowSpecialBanner",
-      "MagentoCategory",
-      "RowColumnTwo",
-      "Page",
-      "RowHeroBanner",
-      "RowProductGrid",
       "Asset",
-      "RowColumnThree",
+      "Footer",
+      "MagentoCategory",
+      "Page",
+      "PageLink",
       "RowColumnOne",
-      "PageLink"
+      "RowColumnThree",
+      "RowColumnTwo",
+      "RowHeroBanner",
+      "RowProductBackstory",
+      "RowProductGrid",
+      "RowQuote",
+      "RowSpecialBanner",
+      "RowSwipeableGrid"
+    ],
+    "PageContent": [
+      "RowColumnOne",
+      "RowColumnThree",
+      "RowColumnTwo",
+      "RowHeroBanner",
+      "RowProductBackstory",
+      "RowProductGrid",
+      "RowQuote",
+      "RowSpecialBanner",
+      "RowSwipeableGrid"
     ],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
