@@ -29,7 +29,7 @@ import NextError from 'next/error'
 import React from 'react'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
-import ProductListItems from '../components/ProductListItems'
+import ProductListItems from '../components/ProductListItems/ProductListItems'
 import apolloClient from '../lib/apolloClient'
 
 type Props = CategoryPageProps & HeaderProps & PageByUrlQuery

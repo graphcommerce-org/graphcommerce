@@ -2,6 +2,24 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
+import {
+  ProductPageCustomizable_VirtualProduct_Fragment,
+  ProductPageCustomizable_SimpleProduct_Fragment,
+  ProductPageCustomizable_DownloadableProduct_Fragment,
+  ProductPageCustomizable_BundleProduct_Fragment,
+  ProductPageCustomizable_ConfigurableProduct_Fragment,
+  ProductPageCustomizableFragmentDoc,
+} from '../magento-product/ProductPageCustomizable.gql'
+import {
+  ProductPageInterface_VirtualProduct_Fragment,
+  ProductPageInterface_SimpleProduct_Fragment,
+  ProductPageInterface_DownloadableProduct_Fragment,
+  ProductPageInterface_BundleProduct_Fragment,
+  ProductPageInterface_GroupedProduct_Fragment,
+  ProductPageInterface_ConfigurableProduct_Fragment,
+  ProductPageInterfaceFragmentDoc,
+} from '../magento-product/ProductPageInterface.gql'
+
 export const ProductPageBundleFragmentDoc: DocumentNode<ProductPageBundleFragment, unknown> = {
   kind: 'Document',
   definitions: [
@@ -11,9 +29,17 @@ export const ProductPageBundleFragmentDoc: DocumentNode<ProductPageBundleFragmen
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BundleProduct' } },
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'id' } }],
+        selections: [
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageInterface' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageCustomizable' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'ship_bundle_items' } },
+        ],
       },
     },
+    ...ProductPageInterfaceFragmentDoc.definitions,
+    ...ProductPageCustomizableFragmentDoc.definitions,
   ],
 }
-export type ProductPageBundleFragment = Pick<Types.BundleProduct, 'id'>
+export type ProductPageBundleFragment = Pick<Types.BundleProduct, 'ship_bundle_items'> &
+  ProductPageInterface_BundleProduct_Fragment &
+  ProductPageCustomizable_BundleProduct_Fragment

@@ -3,6 +3,7 @@ query ProductPage($urlKey: String) {
     items {
       __typename
       id
+      ...ProductPageRenderer
     }
   }
 }

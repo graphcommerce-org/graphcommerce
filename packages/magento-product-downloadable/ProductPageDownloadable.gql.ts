@@ -2,6 +2,24 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
+import {
+  ProductPageCustomizable_VirtualProduct_Fragment,
+  ProductPageCustomizable_SimpleProduct_Fragment,
+  ProductPageCustomizable_DownloadableProduct_Fragment,
+  ProductPageCustomizable_BundleProduct_Fragment,
+  ProductPageCustomizable_ConfigurableProduct_Fragment,
+  ProductPageCustomizableFragmentDoc,
+} from '../magento-product/ProductPageCustomizable.gql'
+import {
+  ProductPageInterface_VirtualProduct_Fragment,
+  ProductPageInterface_SimpleProduct_Fragment,
+  ProductPageInterface_DownloadableProduct_Fragment,
+  ProductPageInterface_BundleProduct_Fragment,
+  ProductPageInterface_GroupedProduct_Fragment,
+  ProductPageInterface_ConfigurableProduct_Fragment,
+  ProductPageInterfaceFragmentDoc,
+} from '../magento-product/ProductPageInterface.gql'
+
 export const ProductPageDownloadableFragmentDoc: DocumentNode<
   ProductPageDownloadableFragment,
   unknown
@@ -15,6 +33,8 @@ export const ProductPageDownloadableFragmentDoc: DocumentNode<
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageInterface' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageCustomizable' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'downloadable_product_links' },
@@ -41,6 +61,8 @@ export const ProductPageDownloadableFragmentDoc: DocumentNode<
         ],
       },
     },
+    ...ProductPageInterfaceFragmentDoc.definitions,
+    ...ProductPageCustomizableFragmentDoc.definitions,
   ],
 }
 export type ProductPageDownloadableFragment = {
@@ -50,4 +72,5 @@ export type ProductPageDownloadableFragment = {
   downloadable_product_samples?: Types.Maybe<
     Array<Types.Maybe<Pick<Types.DownloadableProductSamples, 'title' | 'sample_url'>>>
   >
-}
+} & ProductPageInterface_DownloadableProduct_Fragment &
+  ProductPageCustomizable_DownloadableProduct_Fragment

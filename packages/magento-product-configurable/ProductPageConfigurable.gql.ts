@@ -11,6 +11,23 @@ import {
   ProductListItem_ConfigurableProduct_Fragment,
   ProductListItemFragmentDoc,
 } from '../magento-product/ProductListItem.gql'
+import {
+  ProductPageCustomizable_VirtualProduct_Fragment,
+  ProductPageCustomizable_SimpleProduct_Fragment,
+  ProductPageCustomizable_DownloadableProduct_Fragment,
+  ProductPageCustomizable_BundleProduct_Fragment,
+  ProductPageCustomizable_ConfigurableProduct_Fragment,
+  ProductPageCustomizableFragmentDoc,
+} from '../magento-product/ProductPageCustomizable.gql'
+import {
+  ProductPageInterfaceFragmentDoc,
+  ProductPageInterface_VirtualProduct_Fragment,
+  ProductPageInterface_SimpleProduct_Fragment,
+  ProductPageInterface_DownloadableProduct_Fragment,
+  ProductPageInterface_BundleProduct_Fragment,
+  ProductPageInterface_GroupedProduct_Fragment,
+  ProductPageInterface_ConfigurableProduct_Fragment,
+} from '../magento-product/ProductPageInterface.gql'
 
 export const ProductPageConfigurableFragmentDoc: DocumentNode<
   ProductPageConfigurableFragment,
@@ -25,6 +42,8 @@ export const ProductPageConfigurableFragmentDoc: DocumentNode<
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageInterface' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageCustomizable' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'configurable_options' },
@@ -106,6 +125,8 @@ export const ProductPageConfigurableFragmentDoc: DocumentNode<
         ],
       },
     },
+    ...ProductPageInterfaceFragmentDoc.definitions,
+    ...ProductPageCustomizableFragmentDoc.definitions,
     ...ProductListItemFragmentDoc.definitions,
   ],
 }
@@ -146,4 +167,5 @@ export type ProductPageConfigurableFragment = {
       }>
     >
   >
-}
+} & ProductPageInterface_ConfigurableProduct_Fragment &
+  ProductPageCustomizable_ConfigurableProduct_Fragment

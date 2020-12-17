@@ -3,14 +3,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import * as Types from '@reachdigital/magento-graphql'
 
 import {
-  ProductListItem_VirtualProduct_Fragment,
-  ProductListItem_SimpleProduct_Fragment,
-  ProductListItem_DownloadableProduct_Fragment,
-  ProductListItem_BundleProduct_Fragment,
-  ProductListItem_GroupedProduct_Fragment,
-  ProductListItem_ConfigurableProduct_Fragment,
-  ProductListItemFragmentDoc,
-} from '../magento-product/ProductListItem.gql'
+  ProductPageInterface_VirtualProduct_Fragment,
+  ProductPageInterface_SimpleProduct_Fragment,
+  ProductPageInterface_DownloadableProduct_Fragment,
+  ProductPageInterface_BundleProduct_Fragment,
+  ProductPageInterface_GroupedProduct_Fragment,
+  ProductPageInterface_ConfigurableProduct_Fragment,
+  ProductPageInterfaceFragmentDoc,
+} from '../magento-product/ProductPageInterface.gql'
 
 export const ProductPageGroupedFragmentDoc: DocumentNode<ProductPageGroupedFragment, unknown> = {
   kind: 'Document',
@@ -22,7 +22,7 @@ export const ProductPageGroupedFragmentDoc: DocumentNode<ProductPageGroupedFragm
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItem' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductPageInterface' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'items' },
@@ -45,7 +45,7 @@ export const ProductPageGroupedFragmentDoc: DocumentNode<ProductPageGroupedFragm
         ],
       },
     },
-    ...ProductListItemFragmentDoc.definitions,
+    ...ProductPageInterfaceFragmentDoc.definitions,
   ],
 }
 export type ProductPageGroupedFragment = {
@@ -65,4 +65,4 @@ export type ProductPageGroupedFragment = {
       >
     >
   >
-} & ProductListItem_GroupedProduct_Fragment
+} & ProductPageInterface_GroupedProduct_Fragment
