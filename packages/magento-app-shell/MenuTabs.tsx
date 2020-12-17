@@ -27,7 +27,7 @@ const useTabStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       ...theme.typography.body1,
-      fontWeight: 500,
+      fontWeight: 600,
       textTransform: 'unset',
       padding: `6px ${theme.spacings.xxs}`,
       opacity: 'unset',
