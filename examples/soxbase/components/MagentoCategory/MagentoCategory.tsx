@@ -5,7 +5,7 @@ import { MagentoCategoryFragment } from './MagentoCategory.gql'
 type Props = MagentoCategoryFragment & JSX.IntrinsicElements['div']
 
 export default function MagentoCategory(props: Props) {
-  const { category, classes: noop, ...divProps } = props
+  const { category, ...divProps } = props
 
   return (
     <div {...divProps} className={divProps.className}>

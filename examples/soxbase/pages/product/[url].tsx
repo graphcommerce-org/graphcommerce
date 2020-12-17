@@ -5,7 +5,7 @@ import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPag
 import {
   ProductPageDocument,
   ProductPageQuery,
-} from '@reachdigital/magento-product/ProductPage.gql'
+} from '@reachdigital/magento-product-types/ProductPage.gql'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'

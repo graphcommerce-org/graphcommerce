@@ -4,7 +4,7 @@ import ProductListItemConfigurableBase, {
   ProductListItemConfigurableProps,
   ProdustListItemConfigurableProps,
 } from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
-import { SwatchLocationKeys } from '@reachdigital/magento-product/ProductListItem'
+import { OverlayAreaKeys } from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
 import Subtitle from './Subtitle'
 
@@ -27,7 +27,7 @@ function AddToCartAction(props: ProductListItemConfigurableProps) {
 }
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
-  const swatchLocations: Record<SwatchLocationKeys, string[]> = {
+  const swatchLocations: Record<OverlayAreaKeys, string[]> = {
     topLeft: [],
     topRight: ['fashion_size'],
     bottomLeft: ['fashion_color'],
