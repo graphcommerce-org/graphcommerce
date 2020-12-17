@@ -1,4 +1,6 @@
 fragment ProductPageDownloadable on DownloadableProduct {
+  ...ProductPageInterface
+  ...ProductPageCustomizable
   downloadable_product_links {
     price
     sample_url

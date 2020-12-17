@@ -1,5 +1,7 @@
 import { Container, Typography, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import React from 'react'
+import MagentoCategory from '../MagentoCategory/MagentoCategory'
 import { RowProductGridFragment } from './RowProductGrid.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -15,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export default function RowProductGrid(props: RowProductGridFragment) {
-  const { title, pageLinks } = props
+  const { title, pageLinks, magentoCategory } = props
   const classes = useStyles()
 
   return (
@@ -23,6 +25,7 @@ export default function RowProductGrid(props: RowProductGridFragment) {
       <Typography variant='h2' className={classes.title}>
         {title}
       </Typography>
+      <MagentoCategory {...magentoCategory} />
     </Container>
   )
 }

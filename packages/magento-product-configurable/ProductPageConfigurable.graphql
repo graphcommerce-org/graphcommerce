@@ -1,4 +1,6 @@
 fragment ProductPageConfigurable on ConfigurableProduct {
+  ...ProductPageInterface
+  ...ProductPageCustomizable
   configurable_options {
     attribute_code
     id

@@ -1,3 +1,5 @@
 fragment ProductPageBundle on BundleProduct {
-  id
+  ...ProductPageInterface
+  ...ProductPageCustomizable
+  ship_bundle_items
 }

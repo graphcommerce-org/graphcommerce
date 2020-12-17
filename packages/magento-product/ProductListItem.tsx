@@ -103,15 +103,15 @@ export const useProductListItemStyles = makeStyles(
       ...theme.typography.h6,
     },
   }),
-  { name: 'ProductListItemSimple' },
+  { name: 'ProductListItem' },
 )
 
-export type SwatchLocationKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
+export type OverlayAreaKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRight'
 
-export type SwatchLocations = Partial<Record<SwatchLocationKeys, React.ReactNode>>
+export type OverlayAreas = Partial<Record<OverlayAreaKeys, React.ReactNode>>
 
 type BaseProps = PropsWithChildren<
-  { subTitle?: React.ReactNode; aspectRatio?: [number, number] } & SwatchLocations &
+  { subTitle?: React.ReactNode; aspectRatio?: [number, number] } & OverlayAreas &
     ProductListItemFragment
 >
 

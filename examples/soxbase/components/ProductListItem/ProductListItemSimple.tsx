@@ -4,7 +4,7 @@ import ProductListItemSimpleBase, {
   ProductListItemSimpleProps,
 } from '@reachdigital/magento-product-simple/ProductListItemSimple'
 import React from 'react'
-import Subtitle from '../Subtitle'
+import Subtitle from './Subtitle'
 
 export default function ProductListItemSimple(props: ProductListItemSimpleProps) {
   const { name, sku } = props

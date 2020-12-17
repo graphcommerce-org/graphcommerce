@@ -1,0 +1,8 @@
+query ProductPage($urlKey: String) {
+  products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      id
+    }
+  }
+}

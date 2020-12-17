@@ -1,3 +1,4 @@
 fragment ProductPageVirtual on VirtualProduct {
-  id
+  ...ProductPageInterface
+  ...ProductPageCustomizable
 }

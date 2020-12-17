@@ -4,7 +4,7 @@ import ProductListItemVirtualBase, {
   ProductListItemVirtualProps,
 } from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import React from 'react'
-import Subtitle from '../Subtitle'
+import Subtitle from './Subtitle'
 
 export default function ProductListItemVirtual(props: ProductListItemVirtualProps) {
   const { sku } = props

@@ -2,6 +2,10 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '../../generated/types'
 
+import {
+  MagentoCategoryFragment,
+  MagentoCategoryFragmentDoc,
+} from '../MagentoCategory/MagentoCategory.gql'
 import { PageLinkFragment, PageLinkFragmentDoc } from '../PageLink/PageLink.gql'
 
 export const RowProductGridFragmentDoc: DocumentNode<RowProductGridFragment, unknown> = {
@@ -23,12 +27,24 @@ export const RowProductGridFragmentDoc: DocumentNode<RowProductGridFragment, unk
               selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'PageLink' } }],
             },
           },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'magentoCategory' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'MagentoCategory' } },
+              ],
+            },
+          },
         ],
       },
     },
     ...PageLinkFragmentDoc.definitions,
+    ...MagentoCategoryFragmentDoc.definitions,
   ],
 }
 export type RowProductGridFragment = Pick<Types.RowProductGrid, 'title'> & {
   pageLinks: Array<PageLinkFragment>
+  magentoCategory?: Types.Maybe<MagentoCategoryFragment>
 }

@@ -6,7 +6,7 @@ import ProductListItemConfigurableBase, {
 } from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
 import { SwatchLocationKeys } from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
-import Subtitle from '../Subtitle'
+import Subtitle from './Subtitle'
 
 function AddToCartAction(props: ProductListItemConfigurableProps) {
   const { variant, sku } = props

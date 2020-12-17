@@ -3,4 +3,7 @@ fragment RowProductGrid on RowProductGrid {
   pageLinks {
     ...PageLink
   }
+  magentoCategory {
+    ...MagentoCategory
+  }
 }

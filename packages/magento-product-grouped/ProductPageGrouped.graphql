@@ -1,5 +1,6 @@
 fragment ProductPageGrouped on GroupedProduct {
-  ...ProductListItem
+  ...ProductPageInterface
+  ...ProductPageCustomizable
   items {
     position
     product {

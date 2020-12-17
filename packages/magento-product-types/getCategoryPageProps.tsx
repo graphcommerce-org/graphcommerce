@@ -1,20 +1,17 @@
 import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@apollo/client'
+import { CategoryPageDocument } from '@reachdigital/magento-category/CategoryPage.gql'
+import getFilterTypes from '@reachdigital/magento-category/getFilterTypes'
 import {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
   SortEnum,
 } from '@reachdigital/magento-graphql'
-import {
-  ProductListDocument,
-  ProductListQuery,
-} from '@reachdigital/magento-product/ProductList.gql'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { PromiseValue } from 'type-fest'
-import { CategoryPageDocument } from './CategoryPage.gql'
-import getFilterTypes from './getFilterTypes'
+import { ProductListDocument } from './ProductList.gql'
 
 async function parseParams(
   url: string,

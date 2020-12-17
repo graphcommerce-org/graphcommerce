@@ -16,7 +16,9 @@ query ProductList(
     ...ProductListCount
     ...ProductListPagination
     ...ProductListSort
-    ...ProductListItems
+    items {
+      ...ProductListItemRenderer
+    }
   }
   filters: products(filter: { category_id: { eq: $rootCategory } }) {
     ...ProductListFilters

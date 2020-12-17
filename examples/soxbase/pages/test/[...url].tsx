@@ -78,9 +78,11 @@ function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
           />
         </div>
         <Sticky />
+      </Container>
+      {pages?.[0] && <Page {...pages?.[0]} />}n
+      <Container>
         <DebugSpacer height={2000} />
       </Container>
-      {pages?.[0] && <Page {...pages?.[0]} />}
       <Footer />
     </FullPageUi>
   )
@@ -97,11 +99,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const urls = ['index', 'other']
 
   const paths = locales
-    .map((locale) =>
-      urls.map((url) => {
-        return { params: { url: [url] }, locale }
-      }),
-    )
+    .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
     .flat(1)
 
   return { paths, fallback: 'blocking' }

@@ -1,0 +1,11 @@
+fragment ProductPageRenderer on ProductInterface {
+  id
+  __typename
+  ...ProductPageBundle
+  ...ProductPageConfigurable
+  ...ProductPageDownloadable
+  ...ProductPageGrouped
+  ...ProductPageSimple
+  ...ProductPageVirtual
+  # ...ProductListItemGiftCard
+}

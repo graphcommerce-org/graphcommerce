@@ -5,7 +5,7 @@ import ProductListItemBundleBase, {
 import { useProductLink } from '@reachdigital/magento-product/ProductLink'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
-import Subtitle from '../Subtitle'
+import Subtitle from './Subtitle'
 
 export default function ProductListItemBundle(props: ProdustListItemBundleProps) {
   const productLink = useProductLink(props)

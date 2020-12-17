@@ -23,6 +23,4 @@ export const ProductListParamsProvider: React.FC<{ value: ProductListParams }> =
   return <context.Provider value={{ params, setParams }}>{children}</context.Provider>
 }
 
-export const useProductListParamsContext = () => {
-  return useContext(context)
-}
+export const useProductListParamsContext = () => useContext(context)
