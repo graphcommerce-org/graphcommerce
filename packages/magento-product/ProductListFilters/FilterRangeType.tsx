@@ -5,6 +5,7 @@ import { useProductListParamsContext } from '@reachdigital/magento-category/Cate
 import { FilterRangeTypeInput } from '@reachdigital/magento-graphql'
 import Money from '@reachdigital/magento-store/Money'
 import Button from '@reachdigital/next-ui/Button'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
@@ -15,13 +16,17 @@ type FilterRangeTypeProps = NonNullable<
 > &
   Omit<ChipMenuProps, 'selected'>
 
+const sliderThumbWidth = 28
 const useFilterRangeType = makeStyles(
   (theme: Theme) => ({
     container: {
-      padding: '24px 12px !important',
+      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
       width: '100%',
     },
     slider: {
+      maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
+      margin: `${theme.spacings.xxs} auto`,
+      display: 'block',
       paddingBottom: 32,
       '& .MuiSlider-rail': {
         color: theme.palette.secondary.mutedText,
@@ -33,27 +38,21 @@ const useFilterRangeType = makeStyles(
         height: 4,
       },
       '& .MuiSlider-thumb': {
-        width: 28,
-        height: 28,
-        marginLeft: -14,
-        marginTop: -14,
+        width: sliderThumbWidth,
+        height: sliderThumbWidth,
+        marginLeft: `-${sliderThumbWidth * 0.5}px`,
+        marginTop: `-${sliderThumbWidth * 0.5}px`,
         background: theme.palette.background.default,
         boxShadow: theme.shadows[4],
       },
     },
     button: {
-      borderRadius: 50,
       float: 'right',
-      marginLeft: 8,
-      marginBottom: 16,
-      marginTop: 8,
       textDecoration: 'none',
     },
     resetButton: {
       background: theme.palette.grey['100'],
-    },
-    applyButton: {
-      marginRight: -14,
+      marginRight: responsiveVal(4, 8),
     },
   }),
   { name: 'FilterRangeType' },
@@ -120,14 +119,14 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     if (from === min && to !== max)
       currentLabel = (
         <>
-          {'below '} <Money round value={Number(currentFilter?.to)} />
+          {'Below '} <Money round value={Number(currentFilter?.to)} />
         </>
       )
 
     if (from !== min && to === max)
       currentLabel = (
         <>
-          {'above '} <Money round value={Number(currentFilter?.from)} />
+          {'Above '} <Money round value={Number(currentFilter?.from)} />
         </>
       )
 
@@ -178,7 +177,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
             size='small'
             color='primary'
             disableElevation
-            className={clsx(classes.button, classes.applyButton)}
+            className={classes.button}
           >
             Apply
           </Button>

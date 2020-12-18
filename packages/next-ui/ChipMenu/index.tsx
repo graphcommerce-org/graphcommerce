@@ -25,10 +25,6 @@ export const useChipMenuStyles = makeStyles(
     chipOpenMenu: {
       borderWidth: 2,
     },
-    labelRight: {
-      ...theme.typography.body2,
-      color: theme.palette.primary.contrastText,
-    },
     chipSelected: {
       border: `1px solid ${theme.palette.primary.contrastText}`,
       background: theme.palette.grey['100'],
@@ -47,37 +43,51 @@ export const useChipMenuStyles = makeStyles(
         color: ` ${theme.palette.primary.contrastText} !important`,
       },
     },
-    menu: {
+    menuPaper: {
       minWidth: responsiveVal(200, 560),
       maxWidth: 560,
-      padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
       marginTop: theme.spacings.xxs,
+      padding: `${theme.spacings.xs} ${theme.spacings.xs}`,
       [theme.breakpoints.down('xs')]: {
         minWidth: 0,
         width: '100%',
-        left: '0 !important',
-        right: '0',
         maxWidth: `calc(100% - (${theme.page.horizontal} * 2))`,
         margin: '0 auto',
         marginTop: '8px',
       },
     },
-    chipHeader: {
-      ...theme.typography.body2,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-      fontWeight: 500,
-      position: 'relative',
-      color: theme.palette.secondary.mutedText,
-      padding: theme.spacings.xxs,
-      paddingLeft: 0,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      display: 'flex',
-      justifyContent: 'space-between',
+    menuList: {
+      padding: 0,
       '&:focus': {
         outline: 'none',
       },
     },
+    labelContainer: {
+      paddingLeft: theme.spacings.xxs,
+      paddingRight: theme.spacings.xxs,
+      position: 'relative',
+      '&:focus': {
+        outline: 'none',
+      },
+    },
+    labelInnerContainer: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      paddingBottom: responsiveVal(6, 12),
+    },
+    labelLeft: {
+      ...theme.typography.body2,
+      letterSpacing: 1,
+      textTransform: 'uppercase',
+      fontWeight: 500,
+      color: theme.palette.secondary.mutedText,
+    },
+    labelRight: {
+      ...theme.typography.body2,
+      color: theme.palette.primary.contrastText,
+    },
+    actions: {},
   }),
   { name: 'ChipMenu' },
 )
@@ -138,13 +148,14 @@ export default function ChipMenu(props: ChipMenuProps) {
         variant='selectedMenu'
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-        classes={{ paper: classes.menu }}
+        classes={{ paper: classes.menuPaper, list: classes.menuList }}
       >
-        <div className={classes.chipHeader}>
-          {label}
-          <div className={classes.labelRight}>{labelRight}</div>
+        <div className={classes.labelContainer}>
+          <div className={classes.labelInnerContainer}>
+            <div className={classes.labelLeft}>{label}</div>
+            <div className={classes.labelRight}>{labelRight}</div>
+          </div>
         </div>
-
         {children}
       </Menu>
     </>

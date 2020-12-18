@@ -21,12 +21,19 @@ type FilterEqualTypeProps = NonNullable<
 const useFilterEqualStyles = makeStyles(
   (theme: Theme) => ({
     listItem: {
-      padding: `${theme.spacings.xxs} ${theme.spacings.xxs}`,
-      '&:not(:nth-last-of-type(-n+2))': {
+      paddingTop: theme.spacings.xxs,
+      paddingRight: theme.spacings.xxs,
+      paddingLeft: theme.spacings.xxs,
+      paddingBottom: 0,
+      display: 'block',
+      '&:not(:nth-last-of-type(-n+2)) > div': {
         borderBottom: `1px solid ${theme.palette.divider}`,
       },
-      width: `calc(100% + (${theme.spacings.xxs} * 0.85) )`,
-      display: 'block',
+    },
+    listItemInnerContainer: {
+      width: '100%',
+      paddingTop: responsiveVal(0, 3),
+      paddingBottom: theme.spacings.xxs,
       '& > div': {
         display: 'inline-block',
         [theme.breakpoints.down('sm')]: {
@@ -47,23 +54,21 @@ const useFilterEqualStyles = makeStyles(
     linkContainer: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
-      width: `calc(100% + ${theme.spacings.xxs})`,
-      columnGap: responsiveVal(2, 24),
+      columnGap: responsiveVal(2, 16),
       minWidth: 0,
-      marginLeft: `calc(${theme.spacings.xxs} * -1)`,
       [theme.breakpoints.down('sm')]: {
         gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
       },
     },
     button: {
       float: 'right',
-      marginLeft: 8,
-      marginBottom: 16,
-      marginTop: 8,
+      marginTop: theme.spacings.xxs,
+      marginRight: theme.spacings.xxs,
       textDecoration: 'none',
     },
     resetButton: {
       background: theme.palette.grey['100'],
+      marginRight: theme.spacings.xxs,
     },
   }),
   { name: 'FilterEqual' },
@@ -135,18 +140,20 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                 }
               }}
             >
-              <ListItemText primary={option?.label} />
+              <div className={classes.listItemInnerContainer}>
+                <ListItemText primary={option?.label} />
 
-              <Checkbox
-                edge='start'
-                checked={selectedFilter.in?.includes(option?.value ?? '')}
-                tabIndex={-1}
-                size='small'
-                color='primary'
-                disableRipple
-                inputProps={{ 'aria-labelledby': labelId }}
-                className={classes.checkbox}
-              />
+                <Checkbox
+                  edge='start'
+                  checked={selectedFilter.in?.includes(option?.value ?? '')}
+                  tabIndex={-1}
+                  size='small'
+                  color='primary'
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                  className={classes.checkbox}
+                />
+              </div>
             </ListItem>
           )
         })}
