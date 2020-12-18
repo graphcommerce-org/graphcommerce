@@ -66,7 +66,7 @@ const useProductListStyles = makeStyles(
       }
       selector = selector.slice(0, -1)
       return {
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('xl')]: {
           [`${selector}`]: {
             gridColumn: 'span 2',
             gridRow: 'span 2;',

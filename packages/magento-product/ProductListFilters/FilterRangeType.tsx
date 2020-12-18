@@ -1,9 +1,10 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
+import { Slider, makeStyles, Theme, Mark } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterRangeTypeInput } from '@reachdigital/magento-graphql'
 import Money from '@reachdigital/magento-store/Money'
+import Button from '@reachdigital/next-ui/Button'
 import clsx from 'clsx'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
@@ -19,15 +20,6 @@ const useFilterRangeType = makeStyles(
     container: {
       padding: '24px 12px !important',
       width: '100%',
-      '& > a': {
-        padding: '0 !important',
-      },
-    },
-    filterValueLabel: {
-      position: 'absolute',
-      top: theme.typography.body2.fontSize,
-      right: 0,
-      ...theme.typography.body2,
     },
     slider: {
       paddingBottom: 32,
@@ -50,13 +42,18 @@ const useFilterRangeType = makeStyles(
       },
     },
     button: {
-      borderRadius: 40,
+      borderRadius: 50,
       float: 'right',
       marginLeft: 8,
-      marginBottom: 24,
+      marginBottom: 16,
+      marginTop: 8,
+      textDecoration: 'none',
     },
     resetButton: {
-      background: '#F4F4F4',
+      background: theme.palette.grey['100'],
+    },
+    applyButton: {
+      marginRight: -14,
     },
   }),
   { name: 'FilterRangeType' },
@@ -95,21 +92,14 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     paramValues ? [Number(paramValues.from), Number(paramValues.to)] : [min, max],
   )
 
-  const generatePriceFilterUrl = () => {
-    const linkParams = cloneDeep(params)
-
-    delete linkParams.currentPage
-
-    linkParams.filters[attribute_code] = {
-      from: String(value[0]),
-      to: String(value[1]),
-    } as FilterRangeTypeInput
-
-    return linkParams
-  }
+  const priceFilterUrl = cloneDeep(params)
+  delete priceFilterUrl.currentPage
+  priceFilterUrl.filters[attribute_code] = {
+    from: String(value[0]),
+    to: String(value[1]),
+  } as FilterRangeTypeInput
 
   const resetFilter = () => {
-    // TODO: duplicated code.. Component? filterButtonsComponent ?
     const linkParams = cloneDeep(params)
 
     delete linkParams.currentPage
@@ -122,26 +112,34 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
 
   let currentLabel: React.ReactNode | undefined
-  if (currentFilter?.from === '*' && currentFilter?.to !== '*')
-    currentLabel = (
-      <>
-        <Money value={0} /> - <Money value={Number(currentFilter.to)} />
-      </>
-    )
-  if (currentFilter?.from !== '*' && currentFilter?.to === '*')
-    currentLabel = (
-      <>
-        &gt; <Money value={Number(currentFilter?.from)} />
-      </>
-    )
-  if (currentFilter && currentFilter.from !== '*' && currentFilter.to !== '*')
-    currentLabel = (
-      <>
-        <Money value={Number(currentFilter?.from)} /> - <Money value={Number(currentFilter.to)} />
-      </>
-    )
 
-  const priceFilterUrl = generatePriceFilterUrl()
+  if (currentFilter) {
+    const from = Number(currentFilter?.from ?? 0)
+    const to = Number(currentFilter?.to ?? 0)
+
+    if (from === min && to !== max)
+      currentLabel = (
+        <>
+          {'below '} <Money round value={Number(currentFilter?.to)} />
+        </>
+      )
+
+    if (from !== min && to === max)
+      currentLabel = (
+        <>
+          {'above '} <Money round value={Number(currentFilter?.from)} />
+        </>
+      )
+
+    if (from !== min && to !== max)
+      currentLabel = (
+        <>
+          <Money round value={Number(currentFilter?.from)} />
+          {' — '}
+          <Money round value={Number(currentFilter.to)} />
+        </>
+      )
+  }
 
   return (
     <ChipMenu
@@ -151,12 +149,15 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       selected={!!currentLabel}
       {...chipProps}
       onDelete={currentLabel ? resetFilter : undefined}
+      labelRight={
+        <>
+          <Money round value={value[0]} />
+          {' — '}
+          <Money round value={value[1]} />
+        </>
+      }
     >
       <div className={classes.container}>
-        <div className={classes.filterValueLabel}>
-          <Money value={value[0]} /> - <Money value={value[1]} />
-        </div>
-
         <Slider
           min={min}
           max={max}
@@ -171,17 +172,13 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           className={classes.slider}
         />
 
-        <CategoryLink
-          filters={priceFilterUrl.filters}
-          sort={priceFilterUrl.sort}
-          url={priceFilterUrl.url}
-        >
+        <CategoryLink {...priceFilterUrl}>
           <Button
-            variant='contained'
+            variant='pill'
             size='small'
             color='primary'
             disableElevation
-            className={classes.button}
+            className={clsx(classes.button, classes.applyButton)}
           >
             Apply
           </Button>
@@ -190,7 +187,9 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
         <Button
           onClick={resetFilter}
           size='small'
+          disableElevation
           className={clsx(classes.button, classes.resetButton)}
+          variant='pill'
         >
           Reset
         </Button>

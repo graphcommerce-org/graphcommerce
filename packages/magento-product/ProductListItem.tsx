@@ -68,6 +68,7 @@ export const useProductListItemStyles = makeStyles(
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
       background: 'rgba(0, 0, 0, 0.04)', // thema specifiek
+      borderRadius: 2,
     }),
     placeholder: {
       display: 'flex',
@@ -98,6 +99,7 @@ export const useProductListItemStyles = makeStyles(
       padding: '5px 6px 4px 6px',
       color: '#fff',
       display: 'inline',
+      borderRadius: 2,
       ...theme.typography.h6,
     },
   }),

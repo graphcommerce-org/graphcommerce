@@ -8,6 +8,10 @@ import responsiveVal from '../Styles/responsiveVal'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
+    /* 
+      !importants: ensure background #xxxxxx on hover, focus etc regardless given props to the component 
+      otherwise you'll get: ".MuiChip-deletable.MuiChip-outlined:hover" which is prone to changes and thereby a fragile selector
+    */
     chip: {
       paddingTop: 1,
       '& .MuiChip-label': {
@@ -15,25 +19,29 @@ export const useChipMenuStyles = makeStyles(
         wordWrap: 'break-word',
       },
       '&:focus': {
-        background: '#FFF !important',
+        background: `${theme.palette.background.default} !important`,
       },
     },
     chipOpenMenu: {
       borderWidth: 2,
     },
+    labelRight: {
+      ...theme.typography.body2,
+      color: theme.palette.primary.contrastText,
+    },
     chipSelected: {
       border: `1px solid ${theme.palette.primary.contrastText}`,
-      background: '#F4F4F4',
+      background: theme.palette.grey['100'],
       color: theme.palette.primary.contrastText,
       '&:hover': {
-        background: '#FFF !important',
-        borderColor: '#555',
+        background: `${theme.palette.background.default} !important`,
+        borderColor: theme.palette.grey['600'],
         '& svg': {
-          color: '#555 !important',
+          color: `${theme.palette.grey['600']} !important`,
         },
       },
       '&:focus': {
-        background: '#F4F4F4 !important',
+        background: `${theme.palette.grey['100']} !important`,
       },
       '& svg': {
         color: ` ${theme.palette.primary.contrastText} !important`,
@@ -44,9 +52,6 @@ export const useChipMenuStyles = makeStyles(
       maxWidth: 560,
       padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
       marginTop: theme.spacings.xxs,
-      // '& a': {
-      //   padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,
-      // },
       [theme.breakpoints.down('xs')]: {
         minWidth: 0,
         width: '100%',
@@ -67,6 +72,8 @@ export const useChipMenuStyles = makeStyles(
       padding: theme.spacings.xxs,
       paddingLeft: 0,
       borderBottom: `1px solid ${theme.palette.divider}`,
+      display: 'flex',
+      justifyContent: 'space-between',
       '&:focus': {
         outline: 'none',
       },
@@ -79,10 +86,20 @@ export type ChipMenuProps = PropsWithChildren<Omit<ChipProps, 'children'>> & {
   selectedLabel?: React.ReactNode
   selected: boolean
   onClose?: () => void
+  labelRight?: React.ReactNode
 }
 
 export default function ChipMenu(props: ChipMenuProps) {
-  const { children, selected, onDelete, label, onClose, selectedLabel, ...chipProps } = props
+  const {
+    children,
+    selected,
+    onDelete,
+    label,
+    labelRight,
+    onClose,
+    selectedLabel,
+    ...chipProps
+  } = props
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const classes = useChipMenuStyles(props)
 
@@ -123,7 +140,10 @@ export default function ChipMenu(props: ChipMenuProps) {
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menu }}
       >
-        <div className={classes.chipHeader}>{label}</div>
+        <div className={classes.chipHeader}>
+          {label}
+          <div className={classes.labelRight}>{labelRight}</div>
+        </div>
 
         {children}
       </Menu>
