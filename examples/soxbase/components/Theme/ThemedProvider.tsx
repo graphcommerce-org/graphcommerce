@@ -31,7 +31,7 @@ export const defaultTheme = createMuiTheme({
     background: {
       default: '#fff',
     },
-    divider: '#f2f2f2',
+    divider: 'rgba(0,0,0,0.08',
   },
   breakpoints: {
     values: {
@@ -44,7 +44,7 @@ export const defaultTheme = createMuiTheme({
   },
   shadows,
   typography: {
-    fontFamily: ['Graphic', 'sans-serif'].join(', '),
+    fontFamily: ['Helvetica', 'sans-serif'].join(', '),
     subtitle1: {},
     subtitle2: {},
     fontSize: 16,
@@ -59,7 +59,7 @@ export const defaultTheme = createMuiTheme({
       lineHeight: 1.16,
     },
     h2: {
-      fontSize: responsiveVal(24, 48),
+      fontSize: responsiveVal(16, 28),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.42,

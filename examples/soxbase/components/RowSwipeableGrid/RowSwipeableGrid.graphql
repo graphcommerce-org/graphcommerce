@@ -1,0 +1,3 @@
+fragment RowSwipeableGrid on RowSwipeableGrid {
+  title
+}

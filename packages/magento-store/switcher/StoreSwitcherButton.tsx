@@ -8,9 +8,9 @@ export default function StoreSwitcherButton() {
   const config = useQuery(StoreConfigDocument)
   return (
     <PageLink href='/switch-stores'>
-      <Button variant='outlined'>
+      <span>
         {config.data?.storeConfig?.store_name} {config.data?.storeConfig?.base_currency_code}
-      </Button>
+      </span>
     </PageLink>
   )
 }

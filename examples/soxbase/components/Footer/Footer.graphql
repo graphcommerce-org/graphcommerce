@@ -1,0 +1,11 @@
+query footer {
+  footer(where: { identity: "footer" }) {
+    socialLinks {
+      ...PageLink
+    }
+    copyright
+    legalLinks {
+      ...PageLink
+    }
+  }
+}

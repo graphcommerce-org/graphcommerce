@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Button from '../PageLink/Button'
-import { RowHeroBannerFragment } from './RowHeroBanner.gql'
+import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -13,20 +13,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   wrapper: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: `${theme.spacings.md}`,
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: '8fr 3fr',
+    },
+  },
+  backstory: {
     position: 'relative',
   },
   copy: {
     color: '#fff',
     display: 'grid',
-    justifyItems: 'center',
-    alignContent: 'center',
+    justifyItems: 'start',
+    alignContent: 'end',
     padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-    minHeight: '80vh',
     '& > *': {
       maxWidth: 'max-content',
     },
     [theme.breakpoints.up('md')]: {
-      width: '70%',
+      width: '60%',
+      minHeight: '100vh',
     },
     [theme.breakpoints.up('lg')]: {
       padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
@@ -44,19 +52,21 @@ const useStyles = makeStyles((theme: Theme) => ({
       height: '100%',
     },
   },
+  img: {
+    maxWidth: '100%',
+  },
 }))
 
 const useRichTextOne = makeStyles((theme: Theme) => ({
-  h1: {
+  paragraph: {
     textTransform: 'uppercase',
     maxWidth: '70%',
-    textAlign: 'center',
-    fontSize: responsiveVal(42, 50),
-    marginBottom: responsiveVal(22, 32),
+    fontWeight: 600,
+    textAlign: 'left',
+    fontSize: responsiveVal(12, 20),
     [theme.breakpoints.up('md')]: {
-      textAlign: 'left',
-      fontSize: responsiveVal(18, 90),
       maxWidth: '100%',
+      fontSize: responsiveVal(16, 34),
     },
     '& strong': {
       color: 'transparent',
@@ -65,27 +75,27 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function RowHeroBanner(props: RowHeroBannerFragment) {
-  const { copy, asset, pageLinks } = props
+export default function RowProductBackstory(props: RowProductBackstoryFragment) {
+  const { copy, asset } = props
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
 
   return (
     <Container maxWidth={false} className={classes.container}>
       <div className={classes.wrapper}>
-        <div className={classes.copy}>
-          <RichText classes={richTextOneClasses} {...copy} />
-          {pageLinks.map((pageLink) => (
-            <Button
-              key={pageLink.url}
-              {...pageLink}
-              variant='outlined'
-              size='large'
-              color='inherit'
-            />
-          ))}
+        <div className={classes.backstory}>
+          <div className={classes.copy}>
+            <RichText classes={richTextOneClasses} {...copy} />
+          </div>
+          <img src={asset.url} className={classes.asset} alt='' />
         </div>
-        <video src={asset.url} autoPlay muted loop playsInline className={classes.asset} />
+        <div>
+          <img
+            src='https://media.graphcms.com/OQQl44iJRdODZ8hGBqvv'
+            alt=''
+            className={classes.img}
+          />
+        </div>
       </div>
     </Container>
   )
