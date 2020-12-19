@@ -44,7 +44,7 @@ export const defaultTheme = createMuiTheme({
   },
   shadows,
   typography: {
-    fontFamily: ['Helvetica', 'sans-serif'].join(', '),
+    fontFamily: ['Graphik', 'sans-serif'].join(', '),
     subtitle1: {},
     subtitle2: {},
     fontSize: 16,
