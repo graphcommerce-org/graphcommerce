@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Urigo/graphql-mesh/master/packages/types/src/config-schema.json",
+  "$schema": "../../node_modules/@graphql-mesh/types/config-schema.json",
   "sources": [
     {
       "name": "graphcms",
