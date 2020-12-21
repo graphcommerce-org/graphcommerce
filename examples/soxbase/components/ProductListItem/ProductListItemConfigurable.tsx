@@ -1,30 +1,9 @@
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
-import { AddConfigurableProductToCartDocument } from '@reachdigital/magento-product-configurable/AddConfigurableProductToCart.gql'
 import ProductListItemConfigurableBase, {
-  ProductListItemConfigurableProps,
   ProdustListItemConfigurableProps,
 } from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
 import { OverlayAreaKeys } from '@reachdigital/magento-product/ProductListItem'
 import React from 'react'
 import Subtitle from './Subtitle'
-
-function AddToCartAction(props: ProductListItemConfigurableProps) {
-  const { variant, sku } = props
-  return (
-    <>
-      {variant?.product?.sku && sku && (
-        <AddToCartButton
-          mutation={AddConfigurableProductToCartDocument}
-          variables={{
-            parentSku: sku,
-            variantSku: variant.product.sku,
-          }}
-          name={variant.product.name}
-        />
-      )}
-    </>
-  )
-}
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
   const swatchLocations: Record<OverlayAreaKeys, string[]> = {
@@ -41,7 +20,6 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
         aspectRatio={[1, 1]}
         {...props}
         swatchLocations={swatchLocations}
-        Actions={AddToCartAction}
       />
     </>
   )
