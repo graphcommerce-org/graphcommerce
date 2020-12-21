@@ -30,6 +30,7 @@ const createEmptyCart: FieldPolicy<Mutation['createEmptyCart']> = {
             subtotal_including_tax: null,
             subtotal_with_discount_excluding_tax: null,
           },
+          available_payment_methods: [],
         },
       },
     })
