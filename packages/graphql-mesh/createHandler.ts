@@ -42,6 +42,12 @@ async function createMesh(config: YamlConfig.Config) {
 export default async function createHandler(config: YamlConfig.Config, path: string) {
   const mesh = await createMesh(config)
 
+  /**
+   * todo: Implement tag based caching with X-Magento-Tags
+   * todo: Implement tag based cache invalidation that can handle PURGE requests
+   * todo: Implement redis based caching solution
+   * todo: Disable Varnish backend cachinng and switch to POST for requests
+   */
   const apolloServer = new ApolloServer({
     tracing: true,
     // engine: { reportSchema: true },
@@ -72,7 +78,5 @@ export default async function createHandler(config: YamlConfig.Config, path: str
     ],
   })
   const apoloHandler = apolloServer.createHandler({ path })
-  return corsHandler((req, res) => {
-    return req.method === 'OPTIONS' ? res.end() : apoloHandler(req, res)
-  })
+  return corsHandler((req, res) => (req.method === 'OPTIONS' ? res.end() : apoloHandler(req, res)))
 }
