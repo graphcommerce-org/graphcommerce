@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "patch-package": "^6.2.2",
-    "pm2": "^4.5.0",
+    "pm2": "^4.5.1",
     "postinstall-postinstall": "^2.1.0",
     "ts-node": "^9.1.0",
     "type-fest": "^0.20.2",
