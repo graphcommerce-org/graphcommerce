@@ -1,0 +1,14 @@
+query ProductBundle($urlKey: String) {
+  bundleProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      ... on BundleProduct {
+        ...ProductWeight
+        ...ProductCustomizable
+        ship_bundle_items
+        dynamic_sku
+        dynamic_price
+        dynamic_weight
+      }
+    }
+  }
+}

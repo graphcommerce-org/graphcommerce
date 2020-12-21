@@ -1,0 +1,3 @@
+fragment ProductWeight on PhysicalProductInterface {
+  weight
+}

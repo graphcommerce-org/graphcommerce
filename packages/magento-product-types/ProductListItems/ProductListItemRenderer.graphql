@@ -1,6 +1,7 @@
 fragment ProductListItemRenderer on ProductInterface {
   id
   __typename
+  ...ProductListItem
   ...ProductListItemBundle
   ...ProductListItemConfigurable
   ...ProductListItemDownloadable

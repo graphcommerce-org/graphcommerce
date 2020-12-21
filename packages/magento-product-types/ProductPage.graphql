@@ -1,9 +1,14 @@
-query ProductPage($urlKey: String) {
+query ProductPage($urlKey: String, $reviewPage: Int = 1) {
   products(filter: { url_key: { eq: $urlKey } }) {
     items {
       __typename
       id
-      ...ProductPageRenderer
+      ...ProductPageCategory
+      ...ProductPageDescription
+      ...ProductPageGallery
+      ...ProductPageMeta
+      ...ProductPagePrice
+      ...ProductReview
     }
   }
 }

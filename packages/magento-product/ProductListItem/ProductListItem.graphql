@@ -1,0 +1,17 @@
+fragment ProductListItem on ProductInterface {
+  ...ProductLink
+  sku
+  name
+  small_image {
+    url
+    label
+  }
+  price_range {
+    maximum_price {
+      ...ProductListPrice
+    }
+    minimum_price {
+      ...ProductListPrice
+    }
+  }
+}

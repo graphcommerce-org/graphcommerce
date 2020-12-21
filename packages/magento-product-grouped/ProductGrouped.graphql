@@ -1,0 +1,20 @@
+query ProductGrouped($urlKey: String) {
+  groupedProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      ... on GroupedProduct {
+        ...ProductWeight
+        items {
+          position
+          qty
+          product {
+            id
+            __typename
+            ...ProductListItem
+            ...ProductListItemSimple
+            ...ProductListItemVirtual
+          }
+        }
+      }
+    }
+  }
+}

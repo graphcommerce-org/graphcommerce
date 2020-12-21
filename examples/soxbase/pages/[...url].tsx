@@ -191,7 +191,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     }
     if (urlResolver?.type === 'PRODUCT') {
       throw new ResultError({
-        redirect: { destination: `/page${urlResolver.relative_url}`, permanent: false },
+        redirect: { destination: `/product${urlResolver.relative_url}`, permanent: false },
       })
     }
     if (!urlResolver?.id) throw new ResultError({ notFound: true })

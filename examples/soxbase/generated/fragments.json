@@ -2,6 +2,7 @@
   "possibleTypes": {
     "Node": [
       "Asset",
+      "FaqIndex",
       "Footer",
       "MagentoCategory",
       "Page",

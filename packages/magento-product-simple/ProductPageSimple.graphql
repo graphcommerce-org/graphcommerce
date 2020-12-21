@@ -1,4 +1,0 @@
-fragment ProductPageSimple on SimpleProduct {
-  ...ProductPageInterface
-  ...ProductPageCustomizable
-}

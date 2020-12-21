@@ -1,5 +1,5 @@
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
-import { ProductListItemConfigurableFragment } from '../ProductListITemConfigurable.gql'
+import { ProductListItemConfigurableFragment } from '../ProductListItemConfigurable.gql'
 
 type ConfigurableOption = NonNullable<
   NonNullable<ProductListItemConfigurableFragment['configurable_options']>[0]

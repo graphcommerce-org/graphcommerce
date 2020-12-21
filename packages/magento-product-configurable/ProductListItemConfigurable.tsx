@@ -6,16 +6,16 @@ import ProductListItem, {
 } from '@reachdigital/magento-product/ProductListItem'
 import { isFilterTypeEqual } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
-import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.gql'
+import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'
 
-export type ProductListItemConfigurableProps = ProductListItemConfigurableFragment & {
+export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
 }
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
-    Actions?: React.VFC<ProductListItemConfigurableProps>
+    Actions?: React.VFC<ProductListItemConfigurableActionProps>
     swatchLocations?: Record<OverlayAreaKeys, string[]>
   }
 

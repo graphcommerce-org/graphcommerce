@@ -1,0 +1,10 @@
+query ProductSimple($urlKey: String) {
+  simpleProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      ... on SimpleProduct {
+        ...ProductWeight
+        ...ProductCustomizable
+      }
+    }
+  }
+}

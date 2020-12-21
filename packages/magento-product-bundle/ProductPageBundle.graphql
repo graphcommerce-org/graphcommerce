@@ -1,5 +1,0 @@
-fragment ProductPageBundle on BundleProduct {
-  ...ProductPageInterface
-  ...ProductPageCustomizable
-  ship_bundle_items
-}

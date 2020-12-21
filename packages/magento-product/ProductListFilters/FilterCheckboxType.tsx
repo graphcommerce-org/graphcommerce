@@ -5,8 +5,8 @@ import { useProductListParamsContext } from '@reachdigital/magento-category/Cate
 import { useChipMenuStyles } from '@reachdigital/next-ui/ChipMenu'
 import clsx from 'clsx'
 import React from 'react'
-import { ProductListFiltersFragment } from '../ProductListFilters.gql'
 import { FilterIn } from './FilterEqualType'
+import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type FilterCheckboxTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]

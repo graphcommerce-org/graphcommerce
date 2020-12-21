@@ -10,7 +10,7 @@ import {
   ProductListItem_GroupedProduct_Fragment,
   ProductListItem_ConfigurableProduct_Fragment,
   ProductListItemFragmentDoc,
-} from '../magento-product/ProductListItem.gql'
+} from '../magento-product/ProductListItem/ProductListItem.gql'
 
 export const ProductListItemSimpleFragmentDoc: DocumentNode<
   ProductListItemSimpleFragment,

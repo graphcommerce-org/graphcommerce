@@ -126,164 +126,128 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                       { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                       {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
-                          name: { kind: 'Name', value: 'BundleProduct' },
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'small_image' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                          ],
                         },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'price_range' },
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ProductInterface' },
-                              },
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'maximum_price' },
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
                                   {
                                     kind: 'Field',
-                                    name: { kind: 'Name', value: 'small_image' },
+                                    name: { kind: 'Name', value: 'regular_price' },
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
                                   {
                                     kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_range' },
+                                    name: { kind: 'Name', value: 'discount' },
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
                                         {
                                           kind: 'Field',
-                                          name: { kind: 'Name', value: 'maximum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
+                                          name: { kind: 'Name', value: 'amount_off' },
                                         },
                                         {
                                           kind: 'Field',
-                                          name: { kind: 'Name', value: 'minimum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
+                                          name: { kind: 'Name', value: 'percent_off' },
                                         },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'final_price' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'minimum_price' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'regular_price' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'discount' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'amount_off' },
+                                        },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'percent_off' },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'final_price' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
                                       ],
                                     },
                                   },
@@ -418,829 +382,6 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                 ],
                               },
                             },
-                            {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ProductInterface' },
-                              },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'small_image' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_range' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'maximum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'minimum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
-                          name: { kind: 'Name', value: 'DownloadableProduct' },
-                        },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ProductInterface' },
-                              },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'small_image' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_range' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'maximum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'minimum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
-                          name: { kind: 'Name', value: 'SimpleProduct' },
-                        },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ProductInterface' },
-                              },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'small_image' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_range' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'maximum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'minimum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
-                          name: { kind: 'Name', value: 'VirtualProduct' },
-                        },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ProductInterface' },
-                              },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'small_image' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_range' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'maximum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'minimum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
-                          name: { kind: 'Name', value: 'GroupedProduct' },
-                        },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ProductInterface' },
-                              },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'small_image' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'price_range' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'maximum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'minimum_price' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'regular_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'discount' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'amount_off' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'percent_off' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'final_price' },
-                                                selectionSet: {
-                                                  kind: 'SelectionSet',
-                                                  selections: [
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'currency' },
-                                                    },
-                                                    {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
-                                                    },
-                                                  ],
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
                           ],
                         },
                       },
@@ -1339,7 +480,7 @@ export type ProductListQuery = {
           Types.Maybe<
             | ({ __typename: 'VirtualProduct' } & Pick<
                 Types.VirtualProduct,
-                'sku' | 'name' | 'url_key' | 'id'
+                'id' | 'url_key' | 'sku' | 'name'
               > & {
                   small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                   price_range: {
@@ -1361,7 +502,7 @@ export type ProductListQuery = {
                 })
             | ({ __typename: 'SimpleProduct' } & Pick<
                 Types.SimpleProduct,
-                'sku' | 'name' | 'url_key' | 'id'
+                'id' | 'url_key' | 'sku' | 'name'
               > & {
                   small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                   price_range: {
@@ -1383,7 +524,7 @@ export type ProductListQuery = {
                 })
             | ({ __typename: 'DownloadableProduct' } & Pick<
                 Types.DownloadableProduct,
-                'sku' | 'name' | 'url_key' | 'id'
+                'id' | 'url_key' | 'sku' | 'name'
               > & {
                   small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                   price_range: {
@@ -1405,7 +546,7 @@ export type ProductListQuery = {
                 })
             | ({ __typename: 'BundleProduct' } & Pick<
                 Types.BundleProduct,
-                'sku' | 'name' | 'url_key' | 'id'
+                'id' | 'url_key' | 'sku' | 'name'
               > & {
                   small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                   price_range: {
@@ -1427,7 +568,7 @@ export type ProductListQuery = {
                 })
             | ({ __typename: 'GroupedProduct' } & Pick<
                 Types.GroupedProduct,
-                'sku' | 'name' | 'url_key' | 'id'
+                'id' | 'url_key' | 'sku' | 'name'
               > & {
                   small_image?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
                   price_range: {
@@ -1449,7 +590,7 @@ export type ProductListQuery = {
                 })
             | ({ __typename: 'ConfigurableProduct' } & Pick<
                 Types.ConfigurableProduct,
-                'sku' | 'name' | 'url_key' | 'id'
+                'id' | 'url_key' | 'sku' | 'name'
               > & {
                   configurable_options?: Types.Maybe<
                     Array<
