@@ -15,11 +15,11 @@ import {
   ProductPageAdditionalQuery,
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
+import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import productPageCategory from '@reachdigital/magento-product/productPageCategory'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -33,16 +33,19 @@ import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/Page
 import ProductListItems from '../../../components/ProductListItems/ProductListItems'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = ProductPageQuery & ProductPageAdditionalQuery & PageByUrlQuery & ProductVirtualQuery
+type Props = ProductPageQuery &
+  ProductPageAdditionalQuery &
+  PageByUrlQuery &
+  ProductDownloadableQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductPage({ products, productAdditionals, virtualProducts, pages }: Props) {
+function ProductPage({ products, productAdditionals, downloadableProducts, pages }: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
-  const asdf = virtualProducts?.items?.[0]?.options
+  const asdf = downloadableProducts?.items?.[0]?.options
 
   console.log(productAdditionals?.items?.[0]?.upsell_products)
 
