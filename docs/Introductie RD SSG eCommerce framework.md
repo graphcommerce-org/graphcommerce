@@ -175,7 +175,7 @@ We maken gebruik van deze tools:
 - [GraphQL Mesh](https://graphql-mesh.com/)
 - [GraphCMS](https://graphcms.com/)
 - [Material UI](https://material-ui.com/)
-- [React-spring](https://www.react-spring.io/)
+- [Framer motion](https://www.framer.com/motion/)
 - [Vercel](https://vercel.co/reachdigital)
 - [react-schemaorg](https://github.com/google/react-schemaorg) +
   [schema-dts](https://github.com/google/schema-dts)

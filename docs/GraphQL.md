@@ -52,7 +52,7 @@ Met behulp van [GraphQL Code Generator](https://graphql-code-generator.com/) kan
 van GraphQL Mesh automatisch code gegenereerd worden:
 
 ```graphql
-query GetBlogList($url: String!) {
+query BlogList($url: String!) {
   blogPosts: pages(
     where: { url_starts_with: $url }
     orderBy: releaseDate_DESC
@@ -66,12 +66,15 @@ query GetBlogList($url: String!) {
 }
 ```
 
-Roep data gemakkelijk op, door de gegenereerde functie `useGetBlogListQuery` aan
+Roep data gemakkelijk op, door het gegenereerde document `BlogListDocument` aan
 te roepen:
 
 ```tsx
 const MyReactComponent = () => {
-  const { data } = useGetBlogListQuery({ variables: { url: '/blog/' } })
+  const { data } = useQuery({
+    query: BlogListDocument,
+    variables: { url: '/blog/' },
+  })
 
   return (
     <ul>
