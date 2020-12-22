@@ -26,7 +26,6 @@
       "handler": {
         "graphql": {
           "endpoint": "${MAGENTO_ENDPOINT}",
-          "useGETForQueries": true,
           "cacheIntrospection": true,
           "schemaHeaders": {
             "Store": "{context.req.headers.store}",
