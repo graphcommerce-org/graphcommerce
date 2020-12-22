@@ -61,7 +61,7 @@ function ProductSimple({ products, productAdditionals, simpleProducts, pages }: 
             mutation={ProductAddToCartDocument}
             variables={{ sku: product.sku ?? '', quantity: 1 }}
           />
-          {/* <ProductWeight weight={weight} /> */}
+          <ProductWeight weight={weight} />
           <ProductPageDescription {...product} />
           <ProductPageGallery {...product} />
           {pages?.[0] && <Page {...pages?.[0]} />}
@@ -96,7 +96,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
   const localePaths =
     locales?.map((locale) => {
       const client = apolloClient(localeToStore(locale))
-      return getProductStaticPaths(client, locale)
+      return getProductStaticPaths(client, locale, 'SimpleProduct')
     }) ?? []
   const paths = (await Promise.all(localePaths)).flat(1)
 

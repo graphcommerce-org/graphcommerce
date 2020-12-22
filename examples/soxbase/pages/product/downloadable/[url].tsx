@@ -47,7 +47,7 @@ function ProductPage({ products, productAdditionals, downloadableProducts, pages
   const product = products?.items?.[0]
   const asdf = downloadableProducts?.items?.[0]?.options
 
-  console.log(productAdditionals?.items?.[0]?.upsell_products)
+  // console.log(productAdditionals?.items?.[0]?.upsell_products)
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
@@ -99,7 +99,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
   const localePaths =
     locales?.map((locale) => {
       const client = apolloClient(localeToStore(locale))
-      return getProductStaticPaths(client, locale)
+      return getProductStaticPaths(client, locale, 'DownloadableProduct')
     }) ?? []
   const paths = (await Promise.all(localePaths)).flat(1)
 

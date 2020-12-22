@@ -4,9 +4,14 @@ import { ProductStaticPathsDocument, ProductStaticPathsQuery } from './ProductSt
 
 type Return = GetStaticPathsResult<{ url: string }>
 
+type ProductTypenames = NonNullable<
+  NonNullable<NonNullable<ProductStaticPathsQuery['products']>['items']>[0]
+>['__typename']
+
 const getProductStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
+  typename: ProductTypenames,
 ) => {
   const query = client.query({
     query: ProductStaticPathsDocument,
@@ -24,6 +29,7 @@ const getProductStaticPaths = async (
   const paths: Return['paths'] = (await Promise.all(pages))
     .map((q) => q.data.products?.items)
     .flat(1)
+    .filter((item) => item?.__typename === typename)
     .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 
   return paths

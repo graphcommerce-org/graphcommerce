@@ -96,7 +96,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
   const localePaths =
     locales?.map((locale) => {
       const client = apolloClient(localeToStore(locale))
-      return getProductStaticPaths(client, locale)
+      return getProductStaticPaths(client, locale, 'BundleProduct')
     }) ?? []
   const paths = (await Promise.all(localePaths)).flat(1)
 
