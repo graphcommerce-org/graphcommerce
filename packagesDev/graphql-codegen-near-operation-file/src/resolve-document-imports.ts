@@ -78,7 +78,7 @@ export function resolveDocumentImports<T>(
   const fragmentRegistry = buildFragmentRegistry(importResolverOptions, presetOptions, schemaObject)
 
   const isRelayOptimizer = !!Object.keys(pluginMap).find((plugin) =>
-    plugin.includes('relay-optimizer-plugin'),
+    (plugin as string).includes('relay-optimizer-plugin'),
   )
 
   const resDocuments = documents.map((documentFile) => {
