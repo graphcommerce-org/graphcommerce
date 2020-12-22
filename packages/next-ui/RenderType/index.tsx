@@ -38,5 +38,5 @@ export default function RenderType<
     ? renderer[__typename]
     : () => <>{__typename}</>
 
-  return <TypeItem {...typeItemProps} />
+  return <TypeItem {...typeItemProps} __typename={__typename} />
 }

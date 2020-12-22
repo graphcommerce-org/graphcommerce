@@ -37,7 +37,7 @@ export type RowColumnTwoProps = RowColumnTwoFragment &
     richTextTwoClasses?: UseRichTextStyles['classes']
   }
 
-const RowColumnTwo: React.FC<RowColumnTwoProps> = (props) => {
+export default function RowColumnTwo(props: RowColumnTwoProps) {
   const { colOne, colTwo, richTextOneClasses, richTextTwoClasses, ...containerProps } = props
   const classes = useStyles(props)
 
@@ -52,5 +52,3 @@ const RowColumnTwo: React.FC<RowColumnTwoProps> = (props) => {
     </Container>
   )
 }
-
-export default RowColumnTwo

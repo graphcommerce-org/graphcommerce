@@ -1,0 +1,12 @@
+fragment ProductCustomizable on CustomizableProductInterface {
+  options {
+    __typename
+    ...CustomizableAreaOption
+    ...CustomizableDateOption
+    ...CustomizableDropDownOption
+    ...CustomizableMultipleOption
+    ...CustomizableFieldOption
+    ...CustomizableFileOption
+    ...CustomizableRadioOption
+  }
+}

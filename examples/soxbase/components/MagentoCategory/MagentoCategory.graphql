@@ -1,0 +1,14 @@
+# import ProductListItem from '@reachdigital/magento-product/ProductListItem.graphql'
+
+fragment MagentoCategory on MagentoCategory {
+  category {
+    name
+    url_path
+    # blocked by https://github.com/Urigo/graphql-mesh/issues/1257
+    # products {
+    #   items {
+    #     ...ProductListItemRenderer
+    #   }
+    # }
+  }
+}

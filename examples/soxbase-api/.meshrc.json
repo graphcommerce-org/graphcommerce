@@ -1,8 +1,8 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Urigo/graphql-mesh/master/packages/types/src/config-schema.json",
+  "$schema": "../../node_modules/@graphql-mesh/types/config-schema.json",
   "sources": [
     {
-      "name": "GraphCMS",
+      "name": "graphcms",
       "handler": {
         "graphql": {
           "endpoint": "${GRAPHCMS_URL}",
@@ -22,11 +22,10 @@
       ]
     },
     {
-      "name": "Magento GraphQL",
+      "name": "m2",
       "handler": {
         "graphql": {
           "endpoint": "${MAGENTO_ENDPOINT}",
-          "useGETForQueries": true,
           "cacheIntrospection": true,
           "schemaHeaders": {
             "Store": "{context.req.headers.store}",
@@ -56,7 +55,7 @@
       "type": "MagentoCategory",
       "field": "category",
       "requiredSelectionSet": "{ url }",
-      "targetSource": "Magento GraphQL",
+      "targetSource": "m2",
       "targetMethod": "categories",
       "args": { "filters.url_path.eq": "{root.url}", "pageSize": "1" },
       "returnData": "items[0]",

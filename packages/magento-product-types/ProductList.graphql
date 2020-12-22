@@ -1,0 +1,26 @@
+query ProductList(
+  $pageSize: Int = 23
+  $currentPage: Int = 1
+  $filters: ProductAttributeFilterInput = {}
+  $sort: ProductAttributeSortInput = {}
+  $search: String = ""
+  $rootCategory: String!
+) {
+  products(
+    pageSize: $pageSize
+    currentPage: $currentPage
+    filter: $filters
+    sort: $sort
+    search: $search
+  ) {
+    ...ProductListCount
+    ...ProductListPagination
+    ...ProductListSort
+    items {
+      ...ProductListItemRenderer
+    }
+  }
+  filters: products(filter: { category_id: { eq: $rootCategory } }) {
+    ...ProductListFilters
+  }
+}

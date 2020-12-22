@@ -1,7 +1,5 @@
 import { SwatchTypeRenderer } from '.'
 
-const TextSwatchData: SwatchTypeRenderer['TextSwatchData'] = ({ value }) => {
-  return <div>{value}</div>
-}
+const TextSwatchData: SwatchTypeRenderer['TextSwatchData'] = ({ value }) => <div>{value}</div>
 
 export default TextSwatchData

@@ -1,0 +1,21 @@
+query ProductDownloadable($urlKey: String) {
+  downloadableProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      ... on DownloadableProduct {
+        ...ProductCustomizable
+        downloadable_product_links {
+          price
+          sample_url
+          sort_order
+          title
+          uid
+        }
+        downloadable_product_samples {
+          title
+          sort_order
+          sample_url
+        }
+      }
+    }
+  }
+}

@@ -162,7 +162,7 @@ export default function buildFragmentResolver<T>(
         externalFragments.push({
           level,
           isExternal: true,
-          name: fragmentName,
+          name: fragmentName as string,
           onType: fragmentDetails.onType,
           node: fragmentDetails.node,
         })

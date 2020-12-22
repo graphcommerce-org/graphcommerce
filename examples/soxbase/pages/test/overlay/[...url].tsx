@@ -10,9 +10,9 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React, { useState } from 'react'
+import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
 import apolloClient from '../../../lib/apolloClient'
-import Page from '../../../components/Page'
 
 type Props = { url: string } & PageByUrlQuery
 type RouteProps = { url: string[] }
@@ -54,11 +54,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const urls = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
   const paths = locales
-    .map((locale) =>
-      urls.map((url) => {
-        return { params: { url: [url] }, locale }
-      }),
-    )
+    .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
     .flat(1)
 
   return { paths, fallback: 'blocking' }

@@ -1,3 +1,0 @@
-fragment ProductPageVirtual on VirtualProduct {
-  id
-}

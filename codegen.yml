@@ -60,6 +60,7 @@ generates:
       - 'examples/soxbase/**/*.graphqls'
       - 'packages/**/*.graphqls'
     documents:
+      - 'packages/**/*.graphql'
       - 'examples/soxbase/**/*.graphql'
     plugins:
       - './packagesDev/graphql-codegen-relay-optimizer-plugin/dist/main/index.js'

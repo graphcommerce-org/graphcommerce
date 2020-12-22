@@ -57,7 +57,7 @@ export type RowColumnThreeProps = RowColumnThreeFragment &
     richTextTheeClasses?: UseRichTextStyles['classes']
   }
 
-const RowColumnThree: React.FC<RowColumnThreeProps> = (props) => {
+export default function RowColumnThree(props: RowColumnThreeProps) {
   const {
     colOne,
     colTwo,
@@ -83,5 +83,3 @@ const RowColumnThree: React.FC<RowColumnThreeProps> = (props) => {
     </Container>
   )
 }
-
-export default RowColumnThree

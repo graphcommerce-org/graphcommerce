@@ -9,7 +9,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
-import { ProductListFiltersFragment } from '../ProductListFilters.gql'
+import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type FilterRangeTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]

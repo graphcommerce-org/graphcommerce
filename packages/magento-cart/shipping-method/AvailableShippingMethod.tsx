@@ -47,7 +47,7 @@ type AvailableShippingMethodProps = AvailableShippingMethodFragment &
   Omit<ToggleButtonProps, 'size' | 'disabled'>
 
 const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodProps>(
-  function ShippingMethodToggleButton(props, ref) {
+  (props, ref) => {
     const {
       amount,
       available,

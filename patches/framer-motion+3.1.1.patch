@@ -1,0 +1,23 @@
+diff --git a/node_modules/framer-motion/dist/framer-motion.es.js b/node_modules/framer-motion/dist/framer-motion.es.js
+index 5ecd77f..ecafea9 100644
+--- a/node_modules/framer-motion/dist/framer-motion.es.js
++++ b/node_modules/framer-motion/dist/framer-motion.es.js
+@@ -6021,7 +6021,7 @@ var AnimatePresence = function (_a) {
+             exiting.delete(key);
+             // Remove this child from the present children
+             var removeIndex = presentChildren.current.findIndex(function (presentChild) { return presentChild.key === key; });
+-            presentChildren.current.splice(removeIndex, 1);
++            if (removeIndex > -1) presentChildren.current.splice(removeIndex, 1);
+             // Defer re-rendering until all exiting children have indeed left
+             if (!exiting.size) {
+                 presentChildren.current = filteredChildren;
+@@ -6034,8 +6034,7 @@ var AnimatePresence = function (_a) {
+     // Add `MotionContext` even to children that don't need it to ensure we're rendering
+     // the same tree between renders
+     childrenToRender = childrenToRender.map(function (child) {
+-        var key = child.key;
+-        return exiting.has(key) ? (child) : (createElement(PresenceChild, { key: getChildKey(child), isPresent: true, presenceAffectsLayout: presenceAffectsLayout }, child));
++        return child.type === PresenceChild ? (child) : (createElement(PresenceChild, { key: getChildKey(child), isPresent: true, presenceAffectsLayout: presenceAffectsLayout }, child));
+     });
+     presentChildren.current = childrenToRender;
+     if (process.env.NODE_ENV !== "production" &&

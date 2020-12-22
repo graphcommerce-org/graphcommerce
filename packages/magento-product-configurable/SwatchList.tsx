@@ -1,7 +1,7 @@
 import { Maybe } from '@reachdigital/magento-graphql'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import React from 'react'
-import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.gql'
+import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import { SwatchTypeRenderer } from './Swatches'
 import ColorSwatchData from './Swatches/ColorSwatchData'
 import ImageSwatchData from './Swatches/ImageSwatchData'

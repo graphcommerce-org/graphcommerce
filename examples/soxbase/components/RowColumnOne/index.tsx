@@ -20,7 +20,7 @@ export type RowColumnOneProps = RowColumnOneFragment &
     richTextOneClasses?: UseRichTextStyles['classes']
   }
 
-const RowColumnOne: React.FC<RowColumnOneProps> = (props) => {
+export default function RowColumnOne(props: RowColumnOneProps) {
   const { colOne, richTextOneClasses, ...containerProps } = props
   const classes = useStyles(props)
 
@@ -32,5 +32,3 @@ const RowColumnOne: React.FC<RowColumnOneProps> = (props) => {
     </Container>
   )
 }
-
-export default RowColumnOne

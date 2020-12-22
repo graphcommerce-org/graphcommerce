@@ -1,26 +1,22 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import ProductListItem, {
-  SwatchLocationKeys,
+  OverlayAreaKeys,
   ProductListItemProps,
 } from '@reachdigital/magento-product/ProductListItem'
-import {
-  FilterTypes,
-  isFilterTypeEqual,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import { isFilterTypeEqual } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
-import { ProductListItemConfigurableFragment } from './ProductListITemConfigurable.gql'
+import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 import SwatchList from './SwatchList'
 
-export type ProductListItemConfigurableProps = ProductListItemConfigurableFragment & {
+export type ProductListItemConfigurableActionProps = ProductListItemConfigurableFragment & {
   variant?: NonNullable<ProductListItemConfigurableFragment['variants']>[0]
 }
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
-    filterTypes: FilterTypes
-    Actions?: React.VFC<ProductListItemConfigurableProps>
-    swatchLocations?: Record<SwatchLocationKeys, string[]>
+    Actions?: React.VFC<ProductListItemConfigurableActionProps>
+    swatchLocations?: Record<OverlayAreaKeys, string[]>
   }
 
 export default function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {
@@ -28,7 +24,6 @@ export default function ProductListItemConfigurable(props: ProdustListItemConfig
     Actions,
     variants,
     configurable_options,
-    filterTypes,
     children,
     swatchLocations = { bottomLeft: [], bottomRight: [], topLeft: [], topRight: [] },
     ...configurableProduct

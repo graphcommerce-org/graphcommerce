@@ -8,14 +8,13 @@ import CategoryDescription from '@reachdigital/magento-category/CategoryDescript
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
-import getCategoryPageProps, {
-  CategoryPageProps,
-} from '@reachdigital/magento-category/getCategoryPageProps'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
+import getCategoryPageProps, {
+  CategoryPageProps,
+} from '@reachdigital/magento-product-types/getCategoryPageProps'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListItems from '@reachdigital/magento-product/ProductListItems'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
@@ -30,13 +29,7 @@ import NextError from 'next/error'
 import React from 'react'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
-import ProductListItemBundle from '../components/Products/ProductListItemBundle'
-import ProductListItemConfigurable from '../components/Products/ProductListItemConfigurable'
-import ProductListItemDownloadable from '../components/Products/ProductListItemDownloadable'
-import ProductListItemGiftCard from '../components/Products/ProductListItemGiftCard'
-import ProductListItemGrouped from '../components/Products/ProductListItemGrouped'
-import ProductListItemSimple from '../components/Products/ProductListItemSimple'
-import ProductListItemVirtual from '../components/Products/ProductListItemVirtual'
+import ProductListItems from '../components/ProductListItems/ProductListItems'
 import apolloClient from '../lib/apolloClient'
 
 type Props = CategoryPageProps & HeaderProps & PageByUrlQuery
@@ -126,18 +119,6 @@ function CategoryPage(props: Props) {
           <ProductListItems
             items={products.items}
             className={clsx(classes.items, productListClasses.productList)}
-            filterTypes={filterTypes}
-            renderers={{
-              SimpleProduct: ProductListItemSimple,
-              ConfigurableProduct: ProductListItemConfigurable,
-              BundleProduct: ProductListItemBundle,
-              VirtualProduct: ProductListItemVirtual,
-              DownloadableProduct: ProductListItemDownloadable,
-              GroupedProduct: ProductListItemGrouped,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore GiftCardProduct is only available in Commerce
-              GiftCardProduct: ProductListItemGiftCard,
-            }}
           />
           <ProductListPagination page_info={products.page_info} className={classes.pagination} />
         </Container>
@@ -210,7 +191,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     }
     if (urlResolver?.type === 'PRODUCT') {
       throw new ResultError({
-        redirect: { destination: `/page${urlResolver.relative_url}`, permanent: false },
+        redirect: { destination: `/product${urlResolver.relative_url}`, permanent: false },
       })
     }
     if (!urlResolver?.id) throw new ResultError({ notFound: true })

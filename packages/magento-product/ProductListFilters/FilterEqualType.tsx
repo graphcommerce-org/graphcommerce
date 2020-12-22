@@ -9,7 +9,7 @@ import clsx from 'clsx'
 import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
-import { ProductListFiltersFragment } from '../ProductListFilters.gql'
+import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
 
@@ -21,10 +21,7 @@ type FilterEqualTypeProps = NonNullable<
 const useFilterEqualStyles = makeStyles(
   (theme: Theme) => ({
     listItem: {
-      paddingTop: theme.spacings.xxs,
-      paddingRight: theme.spacings.xxs,
-      paddingLeft: theme.spacings.xxs,
-      paddingBottom: 0,
+      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} 0`,
       display: 'block',
       '&:not(:nth-last-of-type(-n+2)) > div': {
         borderBottom: `1px solid ${theme.palette.divider}`,

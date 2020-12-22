@@ -228,6 +228,29 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                 ],
                               },
                             },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'magentoCategory' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'category' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'url_path' },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -305,17 +328,6 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                         kind: 'InlineFragment',
                         typeCondition: {
                           kind: 'NamedType',
-                          name: { kind: 'Name', value: 'RowSwipeableGrid' },
-                        },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }],
-                        },
-                      },
-                      {
-                        kind: 'InlineFragment',
-                        typeCondition: {
-                          kind: 'NamedType',
                           name: { kind: 'Name', value: 'RowProductBackstory' },
                         },
                         selectionSet: {
@@ -366,6 +378,7 @@ export type PageByUrlQueryVariables = Types.Exact<{
 export type PageByUrlQuery = {
   pages: Array<{
     content: Array<
+      | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
       | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
             colOne: Pick<Types.RichText, 'raw'>
           })
@@ -389,6 +402,9 @@ export type PageByUrlQuery = {
           })
       | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id' | 'title'> & {
             pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+            magentoCategory?: Types.Maybe<{
+              category?: Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path'>>
+            }>
           })
       | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
             quote: Pick<Types.RichText, 'raw'>
@@ -398,7 +414,7 @@ export type PageByUrlQuery = {
             copy: Pick<Types.RichText, 'raw'>
             pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
           })
-      | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id' | 'title'>)
+      | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)
     >
   }>
 }

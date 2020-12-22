@@ -189,35 +189,33 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
           control={control}
           name='address.country_code'
           rules={{ required: true }}
-          render={({ onChange, name, value, onBlur }) => {
+          render={({ onChange, name, value, onBlur }) => (
             // todo: implement default selected country?
-            return (
-              <Autocomplete
-                defaultValue={null}
-                value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
-                options={countryList}
-                getOptionLabel={(option) =>
-                  `${option?.full_name_locale} (${option?.three_letter_abbreviation})`
-                }
-                onChange={(e, input) => {
-                  onChange(input?.two_letter_abbreviation)
-                }}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant='outlined'
-                    error={!!errors.address?.country_code}
-                    name={name}
-                    label='Country'
-                    required
-                    helperText={errors.address?.country_code?.message}
-                    disabled={formState.isSubmitting}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-            )
-          }}
+            <Autocomplete
+              defaultValue={null}
+              value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
+              options={countryList}
+              getOptionLabel={(option) =>
+                `${option?.full_name_locale} (${option?.three_letter_abbreviation})`
+              }
+              onChange={(e, input) => {
+                onChange(input?.two_letter_abbreviation)
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant='outlined'
+                  error={!!errors.address?.country_code}
+                  name={name}
+                  label='Country'
+                  required
+                  helperText={errors.address?.country_code?.message}
+                  disabled={formState.isSubmitting}
+                  onBlur={onBlur}
+                />
+              )}
+            />
+          )}
         />
         {regionList.length > 0 && (
           <Field
@@ -226,33 +224,31 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
             control={control}
             name='address.region_id'
             rules={{ required: true }}
-            render={({ onChange, name, value, onBlur }) => {
+            render={({ onChange, name, value, onBlur }) => (
               // todo: implement default selected country?
-              return (
-                <Autocomplete
-                  defaultValue={null}
-                  value={regionList?.find((c) => c?.id === value)}
-                  options={regionList}
-                  getOptionLabel={(option) => `${option?.name}`}
-                  onChange={(e, input) => {
-                    onChange(input?.id)
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      variant='outlined'
-                      error={!!errors.address?.region_id}
-                      name={name}
-                      label='Region'
-                      required
-                      helperText={errors.address?.region_id?.message}
-                      disabled={formState.isSubmitting}
-                      onBlur={onBlur}
-                    />
-                  )}
-                />
-              )
-            }}
+              <Autocomplete
+                defaultValue={null}
+                value={regionList?.find((c) => c?.id === value)}
+                options={regionList}
+                getOptionLabel={(option) => `${option?.name}`}
+                onChange={(e, input) => {
+                  onChange(input?.id)
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant='outlined'
+                    error={!!errors.address?.region_id}
+                    name={name}
+                    label='Region'
+                    required
+                    helperText={errors.address?.region_id?.message}
+                    disabled={formState.isSubmitting}
+                    onBlur={onBlur}
+                  />
+                )}
+              />
+            )}
           />
         )}
       </div>
