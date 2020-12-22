@@ -1,10 +1,10 @@
 import { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
 import React from 'react'
-import { ProductListFiltersFragment } from './ProductListFilters.gql'
+import { FilterTypes } from '../ProductListItems/filterTypes'
 import FilterCheckboxType from './FilterCheckboxType'
 import FilterEqualType from './FilterEqualType'
 import FilterRangeType from './FilterRangeType'
-import { FilterTypes } from '../ProductListItems/filterTypes'
+import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypes: FilterTypes

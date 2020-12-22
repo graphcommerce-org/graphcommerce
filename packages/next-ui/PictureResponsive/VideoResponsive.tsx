@@ -8,8 +8,8 @@ export type VideoResponsiveProps = JSX.IntrinsicElements['video']
 /**
  * Supposed to be an optimization for 3g, but that seems to be impossible.
  */
-const VideoResponsive = ({ ...videoProps }: VideoResponsiveProps) => {
-  return <video muted playsInline loop {...videoProps} />
-}
+const VideoResponsive = ({ ...videoProps }: VideoResponsiveProps) => (
+  <video muted playsInline loop {...videoProps} />
+)
 
 export default VideoResponsive

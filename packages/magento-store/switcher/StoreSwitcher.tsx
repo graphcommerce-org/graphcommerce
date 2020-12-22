@@ -90,28 +90,26 @@ export default function StoreSwitcher(props: StoreSwitcherBaseProps) {
                 {group.country.full_name_locale}
               </ListItemText>
             </ListItem>
-            {group.languages.map((store) => {
-              return (
-                <PageLink href='/switch-stores' locale={storeToLocale(store.code)} key={store.code}>
-                  <ListItem
-                    component={Link}
-                    selected={localeToStore(locale) === store.code}
-                    color='inherit'
-                    underline='none'
-                    className={classes.listItem}
-                  >
-                    <ListItemText className={classes.storeText}>
-                      {store.store_name}{' '}
-                      <Chip
-                        size='small'
-                        label={store.base_currency_code}
-                        className={classes.storeChip}
-                      />
-                    </ListItemText>
-                  </ListItem>
-                </PageLink>
-              )
-            })}
+            {group.languages.map((store) => (
+              <PageLink href='/switch-stores' locale={storeToLocale(store.code)} key={store.code}>
+                <ListItem
+                  component={Link}
+                  selected={localeToStore(locale) === store.code}
+                  color='inherit'
+                  underline='none'
+                  className={classes.listItem}
+                >
+                  <ListItemText className={classes.storeText}>
+                    {store.store_name}{' '}
+                    <Chip
+                      size='small'
+                      label={store.base_currency_code}
+                      className={classes.storeChip}
+                    />
+                  </ListItemText>
+                </ListItem>
+              </PageLink>
+            ))}
           </>
         </React.Fragment>
       ))}

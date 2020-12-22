@@ -4,12 +4,10 @@ export type ExpensiveComponentProps = {
   someField: string
 }
 
-const ExpensiveComponent: React.FC<ExpensiveComponentProps> = ({ children, someField }) => {
-  return (
-    <div>
-      {children} {someField}
-    </div>
-  )
-}
+const ExpensiveComponent: React.FC<ExpensiveComponentProps> = ({ children, someField }) => (
+  <div>
+    {children} {someField}
+  </div>
+)
 
 export default ExpensiveComponent

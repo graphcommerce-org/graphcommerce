@@ -47,9 +47,10 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     `,
   ])
 
-  const documentAsts = documents.reduce((prev, v) => {
-    return [...prev, ...(v.document?.definitions ?? [])]
-  }, [] as DefinitionNode[])
+  const documentAsts = documents.reduce(
+    (prev, v) => [...prev, ...(v.document?.definitions ?? [])],
+    [] as DefinitionNode[],
+  )
 
   const relayDocuments = RelayParser.transform(adjustedSchema, documentAsts)
 

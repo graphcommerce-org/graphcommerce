@@ -31,10 +31,7 @@ export const useStyles = makeStyles(
 
 type Props = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & { required?: boolean }
 
-const ToggleButtonGroup = React.forwardRef<HTMLDivElement, Props>(function ToggleButtonGroup(
-  props,
-  ref,
-) {
+const ToggleButtonGroup = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   const classes = useStyles(props)
   const {
     children,
