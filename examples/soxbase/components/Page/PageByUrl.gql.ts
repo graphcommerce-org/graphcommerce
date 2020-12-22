@@ -366,6 +366,7 @@ export type PageByUrlQueryVariables = Types.Exact<{
 export type PageByUrlQuery = {
   pages: Array<{
     content: Array<
+      | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
       | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
             colOne: Pick<Types.RichText, 'raw'>
           })

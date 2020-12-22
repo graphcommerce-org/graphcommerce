@@ -79,6 +79,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
 }
 export type PageFragment = {
   content: Array<
+    | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
     | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
