@@ -3,15 +3,6 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import * as Types from '@reachdigital/magento-graphql'
 
 import {
-  ProductListItemFragmentDoc,
-  ProductListItem_VirtualProduct_Fragment,
-  ProductListItem_SimpleProduct_Fragment,
-  ProductListItem_DownloadableProduct_Fragment,
-  ProductListItem_BundleProduct_Fragment,
-  ProductListItem_GroupedProduct_Fragment,
-  ProductListItem_ConfigurableProduct_Fragment,
-} from '@reachdigital/magento-product/ProductListItem/ProductListItem.gql'
-import {
   ProductListItemSimpleFragment,
   ProductListItemSimpleFragmentDoc,
 } from '../../magento-product-simple/ProductListItemSimple.gql'
@@ -19,6 +10,15 @@ import {
   ProductListItemVirtualFragment,
   ProductListItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/ProductListItemVirtual.gql'
+import {
+  ProductListItemFragmentDoc,
+  ProductListItem_VirtualProduct_Fragment,
+  ProductListItem_SimpleProduct_Fragment,
+  ProductListItem_DownloadableProduct_Fragment,
+  ProductListItem_BundleProduct_Fragment,
+  ProductListItem_GroupedProduct_Fragment,
+  ProductListItem_ConfigurableProduct_Fragment,
+} from '../../magento-product/ProductListItem/ProductListItem.gql'
 
 export const BundleItemsFragmentDoc: DocumentNode<BundleItemsFragment, unknown> = {
   kind: 'Document',

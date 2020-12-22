@@ -21,10 +21,7 @@ type FilterEqualTypeProps = NonNullable<
 const useFilterEqualStyles = makeStyles(
   (theme: Theme) => ({
     listItem: {
-      paddingTop: theme.spacings.xxs,
-      paddingRight: theme.spacings.xxs,
-      paddingLeft: theme.spacings.xxs,
-      paddingBottom: 0,
+      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} 0`,
       display: 'block',
       '&:not(:nth-last-of-type(-n+2)) > div': {
         borderBottom: `1px solid ${theme.palette.divider}`,
