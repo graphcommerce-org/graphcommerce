@@ -74,6 +74,289 @@ export const ProductBundleDocument: DocumentNode<
                             { kind: 'Field', name: { kind: 'Name', value: 'dynamic_price' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'dynamic_weight' } },
                             {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'items' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'option_id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'position' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'required' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'options' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'can_change_quantity' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'is_default' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'position' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'price' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'price_type' },
+                                        },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'quantity' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'product' },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'id' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: '__typename' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'url_key' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'sku' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'name' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'small_image' },
+                                                selectionSet: {
+                                                  kind: 'SelectionSet',
+                                                  selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: { kind: 'Name', value: 'url' },
+                                                    },
+                                                    {
+                                                      kind: 'Field',
+                                                      name: { kind: 'Name', value: 'label' },
+                                                    },
+                                                  ],
+                                                },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'price_range' },
+                                                selectionSet: {
+                                                  kind: 'SelectionSet',
+                                                  selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: {
+                                                        kind: 'Name',
+                                                        value: 'maximum_price',
+                                                      },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: {
+                                                              kind: 'Name',
+                                                              value: 'regular_price',
+                                                            },
+                                                            selectionSet: {
+                                                              kind: 'SelectionSet',
+                                                              selections: [
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'currency',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'value',
+                                                                  },
+                                                                },
+                                                              ],
+                                                            },
+                                                          },
+                                                          {
+                                                            kind: 'Field',
+                                                            name: {
+                                                              kind: 'Name',
+                                                              value: 'discount',
+                                                            },
+                                                            selectionSet: {
+                                                              kind: 'SelectionSet',
+                                                              selections: [
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'amount_off',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'percent_off',
+                                                                  },
+                                                                },
+                                                              ],
+                                                            },
+                                                          },
+                                                          {
+                                                            kind: 'Field',
+                                                            name: {
+                                                              kind: 'Name',
+                                                              value: 'final_price',
+                                                            },
+                                                            selectionSet: {
+                                                              kind: 'SelectionSet',
+                                                              selections: [
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'currency',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'value',
+                                                                  },
+                                                                },
+                                                              ],
+                                                            },
+                                                          },
+                                                        ],
+                                                      },
+                                                    },
+                                                    {
+                                                      kind: 'Field',
+                                                      name: {
+                                                        kind: 'Name',
+                                                        value: 'minimum_price',
+                                                      },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: {
+                                                              kind: 'Name',
+                                                              value: 'regular_price',
+                                                            },
+                                                            selectionSet: {
+                                                              kind: 'SelectionSet',
+                                                              selections: [
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'currency',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'value',
+                                                                  },
+                                                                },
+                                                              ],
+                                                            },
+                                                          },
+                                                          {
+                                                            kind: 'Field',
+                                                            name: {
+                                                              kind: 'Name',
+                                                              value: 'discount',
+                                                            },
+                                                            selectionSet: {
+                                                              kind: 'SelectionSet',
+                                                              selections: [
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'amount_off',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'percent_off',
+                                                                  },
+                                                                },
+                                                              ],
+                                                            },
+                                                          },
+                                                          {
+                                                            kind: 'Field',
+                                                            name: {
+                                                              kind: 'Name',
+                                                              value: 'final_price',
+                                                            },
+                                                            selectionSet: {
+                                                              kind: 'SelectionSet',
+                                                              selections: [
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'currency',
+                                                                  },
+                                                                },
+                                                                {
+                                                                  kind: 'Field',
+                                                                  name: {
+                                                                    kind: 'Name',
+                                                                    value: 'value',
+                                                                  },
+                                                                },
+                                                              ],
+                                                            },
+                                                          },
+                                                        ],
+                                                      },
+                                                    },
+                                                  ],
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
                               kind: 'InlineFragment',
                               typeCondition: {
                                 kind: 'NamedType',
@@ -722,6 +1005,182 @@ export type ProductBundleQuery = {
             Types.BundleProduct,
             'ship_bundle_items' | 'dynamic_sku' | 'dynamic_price' | 'dynamic_weight' | 'weight'
           > & {
+            items?: Types.Maybe<
+              Array<
+                Types.Maybe<
+                  Pick<
+                    Types.BundleItem,
+                    'option_id' | 'position' | 'required' | 'sku' | 'title' | 'type'
+                  > & {
+                    options?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<
+                            Types.BundleItemOption,
+                            | 'can_change_quantity'
+                            | 'id'
+                            | 'is_default'
+                            | 'label'
+                            | 'position'
+                            | 'price'
+                            | 'price_type'
+                            | 'quantity'
+                            | 'uid'
+                          > & {
+                            product?: Types.Maybe<
+                              | ({ __typename: 'VirtualProduct' } & Pick<
+                                  Types.VirtualProduct,
+                                  'id' | 'url_key' | 'sku' | 'name'
+                                > & {
+                                    small_image?: Types.Maybe<
+                                      Pick<Types.ProductImage, 'url' | 'label'>
+                                    >
+                                    price_range: {
+                                      maximum_price?: Types.Maybe<{
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }>
+                                      minimum_price: {
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }
+                                    }
+                                  })
+                              | ({ __typename: 'SimpleProduct' } & Pick<
+                                  Types.SimpleProduct,
+                                  'id' | 'url_key' | 'sku' | 'name'
+                                > & {
+                                    small_image?: Types.Maybe<
+                                      Pick<Types.ProductImage, 'url' | 'label'>
+                                    >
+                                    price_range: {
+                                      maximum_price?: Types.Maybe<{
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }>
+                                      minimum_price: {
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }
+                                    }
+                                  })
+                              | ({ __typename: 'DownloadableProduct' } & Pick<
+                                  Types.DownloadableProduct,
+                                  'id' | 'url_key' | 'sku' | 'name'
+                                > & {
+                                    small_image?: Types.Maybe<
+                                      Pick<Types.ProductImage, 'url' | 'label'>
+                                    >
+                                    price_range: {
+                                      maximum_price?: Types.Maybe<{
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }>
+                                      minimum_price: {
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }
+                                    }
+                                  })
+                              | ({ __typename: 'BundleProduct' } & Pick<
+                                  Types.BundleProduct,
+                                  'id' | 'url_key' | 'sku' | 'name'
+                                > & {
+                                    small_image?: Types.Maybe<
+                                      Pick<Types.ProductImage, 'url' | 'label'>
+                                    >
+                                    price_range: {
+                                      maximum_price?: Types.Maybe<{
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }>
+                                      minimum_price: {
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }
+                                    }
+                                  })
+                              | ({ __typename: 'GroupedProduct' } & Pick<
+                                  Types.GroupedProduct,
+                                  'id' | 'url_key' | 'sku' | 'name'
+                                > & {
+                                    small_image?: Types.Maybe<
+                                      Pick<Types.ProductImage, 'url' | 'label'>
+                                    >
+                                    price_range: {
+                                      maximum_price?: Types.Maybe<{
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }>
+                                      minimum_price: {
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }
+                                    }
+                                  })
+                              | ({ __typename: 'ConfigurableProduct' } & Pick<
+                                  Types.ConfigurableProduct,
+                                  'id' | 'url_key' | 'sku' | 'name'
+                                > & {
+                                    small_image?: Types.Maybe<
+                                      Pick<Types.ProductImage, 'url' | 'label'>
+                                    >
+                                    price_range: {
+                                      maximum_price?: Types.Maybe<{
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }>
+                                      minimum_price: {
+                                        regular_price: Pick<Types.Money, 'currency' | 'value'>
+                                        discount?: Types.Maybe<
+                                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                                        >
+                                        final_price: Pick<Types.Money, 'currency' | 'value'>
+                                      }
+                                    }
+                                  })
+                            >
+                          }
+                        >
+                      >
+                    >
+                  }
+                >
+              >
+            >
             options?: Types.Maybe<
               Array<
                 Types.Maybe<

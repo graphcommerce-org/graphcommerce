@@ -22,6 +22,7 @@ const withTM = require('next-transpile-modules')(
     '@reachdigital/magento-product-configurable',
     '@reachdigital/magento-product-downloadable',
     '@reachdigital/magento-product-simple',
+    '@reachdigital/magento-product-types',
     '@reachdigital/magento-product-virtual',
     '@reachdigital/magento-search',
     '@reachdigital/magento-store',

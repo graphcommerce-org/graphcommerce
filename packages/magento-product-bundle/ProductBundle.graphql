@@ -4,10 +4,7 @@ query ProductBundle($urlKey: String) {
       ... on BundleProduct {
         ...ProductWeight
         ...ProductCustomizable
-        ship_bundle_items
-        dynamic_sku
-        dynamic_price
-        dynamic_weight
+        ...BundleItems
       }
     }
   }
