@@ -10,6 +10,7 @@ const useStyles = makeStyles(
       color: theme.palette.primary.mutedText,
       display: 'inline',
       marginRight: 8,
+      ...theme.typography.caption,
     },
   }),
   { name: 'ProductListPrice' },

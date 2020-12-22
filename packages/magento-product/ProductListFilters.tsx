@@ -22,8 +22,8 @@ export default function ProductListFilters(props: ProductFiltersProps) {
         switch (filterTypes[aggregation.attribute_code]) {
           case 'FilterEqualTypeInput':
             if (
-              aggregation.options?.[0]?.label === '1' ||
-              aggregation.options?.[1]?.label === '1'
+              aggregation.options?.[0]?.label === '0' ||
+              aggregation.options?.[1]?.label === '0'
             ) {
               return (
                 <FilterCheckboxType

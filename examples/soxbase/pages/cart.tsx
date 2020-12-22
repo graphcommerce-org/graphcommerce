@@ -20,6 +20,7 @@ function CartPage() {
   return (
     <BottomDrawerUi
       title='Cart'
+      fullHeight
       headerForward={
         <PageLink href='/checkout'>
           <ForwardButton color='primary'>Checkout</ForwardButton>

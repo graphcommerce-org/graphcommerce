@@ -7,7 +7,13 @@ type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'clas
   variant?: 'text' | 'outlined' | 'contained' | 'pill'
 }
 
-type ButtonClassKey = 'pill' | 'pillPrimary' | 'pillSecondary' | 'pillSizeLarge' | 'pillSizeSmall'
+type ButtonClassKey =
+  | 'pill'
+  | 'pillPrimary'
+  | 'pillSecondary'
+  | 'pillSizeLarge'
+  | 'pillSizeSmall'
+  | 'pillNoElevation'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
 
@@ -25,22 +31,10 @@ const useStyles = makeStyles<
       borderRadius: 40 / 2,
     },
     pillPrimary: {
-      [theme.breakpoints.down('sm')]: {
-        background: 'transparent',
-        color: theme.palette.primary.main,
-        '&:hover': {
-          color: theme.palette.primary.contrastText,
-        },
-      },
+      //
     },
     pillSecondary: {
-      [theme.breakpoints.down('sm')]: {
-        background: 'transparent',
-        color: theme.palette.secondary.main,
-        '&:hover': {
-          color: theme.palette.secondary.contrastText,
-        },
-      },
+      //
     },
     pillSizeLarge: {
       borderRadius: 59 / 2,
@@ -48,11 +42,17 @@ const useStyles = makeStyles<
     pillSizeSmall: {
       borderRadius: 33 / 2,
     },
+    pillNoElevation: {
+      /* disableElevation does not stop adding box shadow on active... ?! */
+      '&:active': {
+        boxShadow: 'none',
+      },
+    },
   }),
   { name: 'MuiPillButton' },
 )
 
-export default React.forwardRef<any, ButtonProps>(function Button(props, ref) {
+export default React.forwardRef<any, ButtonProps>((props, ref) => {
   const { classes = {}, ...baseProps } = props
   const { variant, color, size, className, ...buttonProps } = baseProps
   const {
@@ -84,6 +84,7 @@ export default React.forwardRef<any, ButtonProps>(function Button(props, ref) {
           [pillClasses.pillSecondary]: variant === 'pill' && color === 'secondary',
           [pillClasses.pillSizeLarge]: variant === 'pill' && size === 'large',
           [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
+          [pillClasses.pillNoElevation]: buttonProps.disableElevation,
         },
         className,
       )}

@@ -17,7 +17,7 @@ export const useProductListItemStyles = makeStyles(
       height: '100%',
     },
     title: {
-      display: 'inline-block',
+      display: 'inline',
       ...theme.typography.h6,
       color: theme.palette.primary.contrastText,
     },
@@ -50,7 +50,7 @@ export const useProductListItemStyles = makeStyles(
     },
     cellAlignRight: {
       justifySelf: 'end',
-      textAlign: 'center',
+      textAlign: 'right',
     },
     cellAlignBottom: {
       alignSelf: 'flex-end',
@@ -64,9 +64,11 @@ export const useProductListItemStyles = makeStyles(
     },
     imageContainer: ({ aspectRatio = [4, 3] }: BaseProps) => ({
       display: 'block',
+      height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
       background: 'rgba(0, 0, 0, 0.04)', // thema specifiek
+      borderRadius: 2,
     }),
     placeholder: {
       display: 'flex',
@@ -94,9 +96,10 @@ export const useProductListItemStyles = makeStyles(
     },
     discount: {
       background: '#000',
-      padding: '4px 6px',
+      padding: '5px 6px 4px 6px',
       color: '#fff',
       display: 'inline',
+      borderRadius: 2,
       ...theme.typography.h6,
     },
   }),

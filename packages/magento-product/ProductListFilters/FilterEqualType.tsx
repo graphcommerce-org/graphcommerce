@@ -1,18 +1,12 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import {
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Checkbox,
-  makeStyles,
-  Theme,
-  ListItemProps,
-} from '@material-ui/core'
+import { ListItem, ListItemText, Checkbox, makeStyles, Theme } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
+import Button from '@reachdigital/next-ui/Button'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from '../ProductListFilters.gql'
@@ -26,35 +20,55 @@ type FilterEqualTypeProps = NonNullable<
 
 const useFilterEqualStyles = makeStyles(
   (theme: Theme) => ({
-    link: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      marginLeft: -5,
-      marginRight: 24,
-      '& .MuiListItemText-root': {
-        display: 'block',
-        width: '80%',
-        maxWidth: '80%',
-        minWidth: '80%',
-        '& span': {
-          wordWrap: 'break-word',
-        },
+    listItem: {
+      paddingTop: theme.spacings.xxs,
+      paddingRight: theme.spacings.xxs,
+      paddingLeft: theme.spacings.xxs,
+      paddingBottom: 0,
+      display: 'block',
+      '&:not(:nth-last-of-type(-n+2)) > div': {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      },
+    },
+    listItemInnerContainer: {
+      width: '100%',
+      paddingTop: responsiveVal(0, 3),
+      paddingBottom: theme.spacings.xxs,
+      '& > div': {
+        display: 'inline-block',
         [theme.breakpoints.down('sm')]: {
-          maxWidth: '100%',
+          maxWidth: '72%',
         },
+      },
+      '& > div > span': {
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
       },
     },
     checkbox: {
       padding: 0,
-      margin: ' 0 0 0 8px',
+      margin: '3px 0 0 8px',
+      float: 'right',
     },
     linkContainer: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
-      width: '100%',
+      columnGap: responsiveVal(2, 16),
       minWidth: 0,
       [theme.breakpoints.down('sm')]: {
         gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
       },
+    },
+    button: {
+      float: 'right',
+      marginTop: theme.spacings.xxs,
+      marginRight: theme.spacings.xxs,
+      textDecoration: 'none',
+    },
+    resetButton: {
+      background: theme.palette.grey['100'],
+      marginRight: theme.spacings.xxs,
     },
   }),
   { name: 'FilterEqual' },
@@ -62,16 +76,17 @@ const useFilterEqualStyles = makeStyles(
 
 export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
-  const { params } = useProductListParamsContext()
-  const currentFilter = params.filters[attribute_code]
+  const { params, setParams } = useProductListParamsContext()
   const classes = useFilterEqualStyles()
-
-  const activeLabels =
-    options
-      ?.filter((option) => option && currentFilter?.in?.includes(option.value))
-      .map((option) => option && option.label) ?? []
-
   const pushRoute = useCategoryPushRoute()
+
+  const currentFilter = (params.filters[attribute_code] ?? { in: [] }) as FilterEqualTypeInput
+  const [selectedFilter, setSelectedFilter] = useState(currentFilter)
+
+  const currentLabels =
+    options
+      ?.filter((option) => option && currentFilter.in?.includes(option.value))
+      .map((option) => option && option.label) ?? []
 
   const removeFilter = () => {
     const linkParams = cloneDeep(params)
@@ -80,30 +95,29 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     pushRoute(linkParams)
   }
 
+  const resetFilter = () => {
+    const linkParams = cloneDeep(params)
+
+    delete linkParams.currentPage
+    delete linkParams.filters[attribute_code]
+
+    setSelectedFilter({ in: [] })
+    params.filters[attribute_code] = { in: [] }
+
+    pushRoute(linkParams)
+  }
+
   return (
     <ChipMenu
       variant='outlined'
       {...chipProps}
       label={label}
-      selected={activeLabels.length > 0}
-      selectedLabel={activeLabels.length > 0 ? activeLabels.join(', ') : undefined}
-      onDelete={activeLabels.length > 0 ? removeFilter : undefined}
+      selected={currentLabels.length > 0}
+      selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
+      onDelete={currentLabels.length > 0 ? removeFilter : undefined}
     >
       <div className={classes.linkContainer}>
         {options?.map((option) => {
-          const linkParams = cloneDeep(params)
-          delete linkParams.currentPage
-
-          if (!linkParams.filters[attribute_code]?.in)
-            linkParams.filters[attribute_code] = { in: [] }
-          const filter: FilterIn = linkParams.filters[attribute_code]
-
-          if (currentFilter?.in?.includes(option?.value ?? '')) {
-            filter.in = filter?.in?.filter((val) => val !== (option?.value ?? '')) ?? []
-          } else {
-            filter.in = [...(filter.in ?? []), option?.value ?? ''].sort()
-          }
-
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
 
           return (
@@ -111,39 +125,71 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               button
               key={option?.value}
               dense
-              component={React.forwardRef<HTMLAnchorElement, ListItemProps<'a'>>(
-                (categoryLinkProps, ref) => {
-                  return (
-                    <CategoryLink
-                      {...categoryLinkProps}
-                      {...linkParams}
-                      color='inherit'
-                      underline='none'
-                      className={clsx(categoryLinkProps.className, classes.link)}
-                      ref={ref}
-                    />
-                  )
-                },
-              )}
+              className={classes.listItem}
+              onClick={() => {
+                if (selectedFilter?.in?.includes(option?.value ?? '')) {
+                  setSelectedFilter({
+                    ...selectedFilter,
+                    in: selectedFilter?.in?.filter((v) => v !== option?.value),
+                  })
+                } else {
+                  setSelectedFilter({
+                    ...selectedFilter,
+                    in: [...(selectedFilter.in ?? []), option?.value ?? ''],
+                  })
+                }
+              }}
             >
-              <ListItemText primary={option?.label} />
+              <div className={classes.listItemInnerContainer}>
+                <ListItemText primary={option?.label} />
 
-              <Checkbox
-                edge='start'
-                checked={currentFilter?.in?.includes(option?.value ?? '')}
-                tabIndex={-1}
-                size='small'
-                color='primary'
-                disableRipple
-                inputProps={{
-                  'aria-labelledby': labelId,
-                }}
-                className={classes.checkbox}
-              />
+                <Checkbox
+                  edge='start'
+                  checked={selectedFilter.in?.includes(option?.value ?? '')}
+                  tabIndex={-1}
+                  size='small'
+                  color='primary'
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                  className={classes.checkbox}
+                />
+              </div>
             </ListItem>
           )
         })}
       </div>
+
+      <CategoryLink
+        {...params}
+        filters={{ ...params.filters, [attribute_code]: selectedFilter }}
+        noLink
+      >
+        <Button
+          variant='pill'
+          size='small'
+          color='primary'
+          disableElevation
+          className={classes.button}
+          onClick={() => {
+            setParams({
+              ...params,
+              filters: { ...params.filters, [attribute_code]: selectedFilter },
+            })
+          }}
+        >
+          Apply
+        </Button>
+      </CategoryLink>
+
+      <Button
+        onClick={resetFilter}
+        size='small'
+        variant='pill'
+        disableElevation
+        className={clsx(classes.button, classes.resetButton)}
+      >
+        Reset
+      </Button>
     </ChipMenu>
   )
 }

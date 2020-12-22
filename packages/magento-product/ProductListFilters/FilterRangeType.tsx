@@ -1,9 +1,12 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { Slider, makeStyles, Theme, Mark, Button } from '@material-ui/core'
-import { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
+import { Slider, makeStyles, Theme, Mark } from '@material-ui/core'
+import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterRangeTypeInput } from '@reachdigital/magento-graphql'
 import Money from '@reachdigital/magento-store/Money'
+import Button from '@reachdigital/next-ui/Button'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from '../ProductListFilters.gql'
@@ -13,22 +16,17 @@ type FilterRangeTypeProps = NonNullable<
 > &
   Omit<ChipMenuProps, 'selected'>
 
+const sliderThumbWidth = 28
 const useFilterRangeType = makeStyles(
   (theme: Theme) => ({
     container: {
-      paddingTop: 16,
-      paddingBottom: 40,
-      paddingLeft: 16,
-      paddingRight: 16,
+      padding: `${theme.spacings.xxs} ${theme.spacings.xxs} !important`,
       width: '100%',
     },
-    filterValueLabel: {
-      position: 'absolute',
-      top: theme.typography.body2.fontSize,
-      right: 0,
-      ...theme.typography.body2,
-    },
     slider: {
+      maxWidth: `calc(100% - ${sliderThumbWidth}px)`,
+      margin: `${theme.spacings.xxs} auto`,
+      display: 'block',
       paddingBottom: 32,
       '& .MuiSlider-rail': {
         color: theme.palette.secondary.mutedText,
@@ -40,18 +38,21 @@ const useFilterRangeType = makeStyles(
         height: 4,
       },
       '& .MuiSlider-thumb': {
-        width: 28,
-        height: 28,
-        marginLeft: -14,
-        marginTop: -14,
+        width: sliderThumbWidth,
+        height: sliderThumbWidth,
+        marginLeft: `-${sliderThumbWidth * 0.5}px`,
+        marginTop: `-${sliderThumbWidth * 0.5}px`,
         background: theme.palette.background.default,
         boxShadow: theme.shadows[4],
       },
     },
     button: {
-      borderRadius: 40,
       float: 'right',
-      marginLeft: 8,
+      textDecoration: 'none',
+    },
+    resetButton: {
+      background: theme.palette.grey['100'],
+      marginRight: responsiveVal(4, 8),
     },
   }),
   { name: 'FilterRangeType' },
@@ -77,9 +78,10 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       marks[maxVal] = { value: maxVal, label: maxVal }
       return [minVal, maxVal]
     })
-    .reduce(([prevMin, prevMax], [curMin, curMax]) => {
-      return [Math.min(prevMin, curMin), Math.max(curMax, prevMax)]
-    }) ?? [0, 0]
+    .reduce(([prevMin, prevMax], [curMin, curMax]) => [
+      Math.min(prevMin, curMin),
+      Math.max(curMax, prevMax),
+    ]) ?? [0, 0]
 
   // eslint-disable-next-line no-case-declarations
   const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
@@ -89,19 +91,16 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     paramValues ? [Number(paramValues.from), Number(paramValues.to)] : [min, max],
   )
 
-  const applyFilter = () => {
-    const linkParams = cloneDeep(params)
-    delete linkParams.currentPage
-    linkParams.filters[attribute_code] = {
-      from: String(value[0]),
-      to: String(value[1]),
-    } as FilterRangeTypeInput
-
-    pushRoute(linkParams)
-  }
+  const priceFilterUrl = cloneDeep(params)
+  delete priceFilterUrl.currentPage
+  priceFilterUrl.filters[attribute_code] = {
+    from: String(value[0]),
+    to: String(value[1]),
+  } as FilterRangeTypeInput
 
   const resetFilter = () => {
     const linkParams = cloneDeep(params)
+
     delete linkParams.currentPage
     delete linkParams.filters[attribute_code]
 
@@ -111,13 +110,35 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
 
   const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
 
-  let currentLabel: string | undefined
-  if (currentFilter?.from === '*' && currentFilter?.to !== '*')
-    currentLabel = `0 - ${currentFilter.to}`
-  if (currentFilter?.from !== '*' && currentFilter?.to === '*')
-    currentLabel = `&gt; ${currentFilter?.from}`
-  if (currentFilter && currentFilter.from !== '*' && currentFilter.to !== '*')
-    currentLabel = `${currentFilter.from} - ${currentFilter.to}`
+  let currentLabel: React.ReactNode | undefined
+
+  if (currentFilter) {
+    const from = Number(currentFilter?.from ?? 0)
+    const to = Number(currentFilter?.to ?? 0)
+
+    if (from === min && to !== max)
+      currentLabel = (
+        <>
+          {'Below '} <Money round value={Number(currentFilter?.to)} />
+        </>
+      )
+
+    if (from !== min && to === max)
+      currentLabel = (
+        <>
+          {'Above '} <Money round value={Number(currentFilter?.from)} />
+        </>
+      )
+
+    if (from !== min && to !== max)
+      currentLabel = (
+        <>
+          <Money round value={Number(currentFilter?.from)} />
+          {' — '}
+          <Money round value={Number(currentFilter.to)} />
+        </>
+      )
+  }
 
   return (
     <ChipMenu
@@ -127,12 +148,15 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       selected={!!currentLabel}
       {...chipProps}
       onDelete={currentLabel ? resetFilter : undefined}
+      labelRight={
+        <>
+          <Money round value={value[0]} />
+          {' — '}
+          <Money round value={value[1]} />
+        </>
+      }
     >
       <div className={classes.container}>
-        <div className={classes.filterValueLabel}>
-          <Money value={Math.max(1, value[0])} /> - <Money value={value[1]} />
-        </div>
-
         <Slider
           min={min}
           max={max}
@@ -147,17 +171,25 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           className={classes.slider}
         />
 
+        <CategoryLink {...priceFilterUrl}>
+          <Button
+            variant='pill'
+            size='small'
+            color='primary'
+            disableElevation
+            className={classes.button}
+          >
+            Apply
+          </Button>
+        </CategoryLink>
+
         <Button
-          variant='contained'
+          onClick={resetFilter}
           size='small'
-          color='primary'
           disableElevation
-          onClick={applyFilter}
-          className={classes.button}
+          className={clsx(classes.button, classes.resetButton)}
+          variant='pill'
         >
-          Apply
-        </Button>
-        <Button onClick={resetFilter} size='small' className={classes.button}>
           Reset
         </Button>
       </div>
