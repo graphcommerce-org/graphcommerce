@@ -383,6 +383,58 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           ],
                         },
                       },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowButtonLinkList' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'links' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowServiceOptions' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              alias: { kind: 'Name', value: 'serviceOptionsTitle' },
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'serviceOptions' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -419,7 +471,9 @@ export type PageByUrlQuery = {
         | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & {
               content?: Types.Maybe<Pick<Types.RichText, 'raw'>>
             })
-        | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
+        | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id' | 'title'> & {
+              links: Array<Pick<Types.Page, 'title' | 'url'>>
+            })
         | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
               colOne: Pick<Types.RichText, 'raw'>
             })
@@ -450,7 +504,9 @@ export type PageByUrlQuery = {
         | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
               quote: Pick<Types.RichText, 'raw'>
             })
-        | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'>)
+        | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'> & {
+              serviceOptionsTitle: Types.RowServiceOptions['title']
+            } & { serviceOptions: Array<Pick<Types.PageLink, 'title' | 'url'>> })
         | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
               asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
               copy: Pick<Types.RichText, 'raw'>
