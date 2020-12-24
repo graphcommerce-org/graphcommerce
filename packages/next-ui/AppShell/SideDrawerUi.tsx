@@ -232,7 +232,7 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
           className={clsx(classes.drawerContainer)}
           onKeyDown={onPressEscape}
           role='presentation'
-          drag={drag && !upMd && inFront ? 'y' : false}
+          // drag={drag && !upMd && inFront ? 'y' : false}
           dragConstraints={{ top: 0, bottom: 0 }}
           dragElastic={1}
           onDragEnd={(e, info) => {
