@@ -28,11 +28,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'grid',
     justifyItems: 'start',
     alignContent: 'end',
-    padding: `${theme.spacings.lg} ${theme.spacings.md}`,
+    padding: `${theme.spacings.md}`,
     '& > *': {
       maxWidth: 'max-content',
     },
     [theme.breakpoints.up('md')]: {
+      background: 'none',
       width: '60%',
       minHeight: '100vh',
     },
@@ -48,7 +49,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    filter: 'brightness(80%)',
     [theme.breakpoints.up('md')]: {
+      filter: 'brightness(100%)',
       height: '100%',
     },
   },
@@ -60,10 +63,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 const useRichTextOne = makeStyles((theme: Theme) => ({
   paragraph: {
     textTransform: 'uppercase',
-    maxWidth: '70%',
+    maxWidth: '100%',
     fontWeight: 600,
     textAlign: 'left',
-    fontSize: responsiveVal(12, 20),
+    fontSize: responsiveVal(11, 20),
     [theme.breakpoints.up('md')]: {
       maxWidth: '100%',
       fontSize: responsiveVal(16, 34),
