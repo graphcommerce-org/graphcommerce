@@ -38,7 +38,8 @@ export default FaqPage
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // todo: te vervangen met een query naar GraphCMS welke alle URLS op haalt.
-  const paths = ['/faq/index']
+  const urls = ['index']
+  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
