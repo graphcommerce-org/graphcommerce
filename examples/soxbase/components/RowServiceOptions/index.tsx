@@ -65,7 +65,9 @@ export default function RowServiceOptions(props: RowServiceOptionsFragment) {
                 {serviceOption.title.toLowerCase() === 'phone' ? <Email color='inherit' /> : false}
                 {serviceOption.title.toLowerCase() === 'chat' ? <Chat color='inherit' /> : false}
                 <Typography variant='h6'>{serviceOption.title}</Typography>
-                <RichText classes={richTextOneClasses} {...serviceOption.description?.raw} />
+                {serviceOption.description && (
+                  <RichText classes={richTextOneClasses} {...serviceOption.description} />
+                )}
               </div>
             </PageLink>
           ))}
