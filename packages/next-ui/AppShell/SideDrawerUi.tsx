@@ -31,8 +31,9 @@ const useStyles = makeStyles(
       alignItems: 'flex-end',
       justifyContent: 'stretch',
       perspective: '500px',
-      perspectiveOrigin: '75% center',
+      perspectiveOrigin: 'center -250px',
       [theme.breakpoints.up('md')]: {
+        perspectiveOrigin: '75% center',
         paddingTop: 0,
       },
     },
@@ -57,6 +58,7 @@ const useStyles = makeStyles(
       top: 0,
       left: 0,
       right: 0,
+      zIndex: 1,
       display: 'grid',
       padding: `0 ${theme.spacings.sm}`,
       marginBottom: theme.spacings.sm,
