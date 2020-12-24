@@ -61,9 +61,9 @@ export default function RowServiceOptions(props: RowServiceOptionsFragment) {
           {serviceOptions.map((serviceOption) => (
             <PageLink key={serviceOption.title} href={serviceOption.url}>
               <div className={classes.contactOption}>
-                {serviceOption.title.toLowerCase() === 'e-mail' ? <Phone color='inherit' /> : false}
-                {serviceOption.title.toLowerCase() === 'phone' ? <Email color='inherit' /> : false}
-                {serviceOption.title.toLowerCase() === 'chat' ? <Chat color='inherit' /> : false}
+                {serviceOption.title.toLowerCase() === 'e-mail' && <Phone color='inherit' />}
+                {serviceOption.title.toLowerCase() === 'phone' && <Email color='inherit' />}
+                {serviceOption.title.toLowerCase() === 'chat' && <Chat color='inherit' />}
                 <Typography variant='h6'>{serviceOption.title}</Typography>
                 {serviceOption.description && (
                   <RichText classes={richTextOneClasses} {...serviceOption.description} />

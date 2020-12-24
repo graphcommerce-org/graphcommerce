@@ -78,11 +78,11 @@ export default function Footer(props: FooterProps) {
         {footer?.socialLinks?.map((link) => (
           <PageLink key={link.title} href={link.url}>
             <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
-              {link.title.toLowerCase() === 'instagram' ? <Instagram color='inherit' /> : false}
-              {link.title.toLowerCase() === 'linkedin' ? <LinkedIn color='inherit' /> : false}
-              {link.title.toLowerCase() === 'twitter' ? <Twitter color='inherit' /> : false}
-              {link.title.toLowerCase() === 'facebook' ? <Facebook color='inherit' /> : false}
-              {link.title.toLowerCase() === 'youtube' ? <Youtube color='inherit' /> : false}
+              {link.title.toLowerCase() === 'instagram' && <Instagram color='inherit' />}
+              {link.title.toLowerCase() === 'linkedin' && <LinkedIn color='inherit' />}
+              {link.title.toLowerCase() === 'twitter' && <Twitter color='inherit' />}
+              {link.title.toLowerCase() === 'facebook' && <Facebook color='inherit' />}
+              {link.title.toLowerCase() === 'youtube' && <Youtube color='inherit' />}
             </IconButton>
           </PageLink>
         ))}
