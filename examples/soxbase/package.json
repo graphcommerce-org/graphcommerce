@@ -45,7 +45,7 @@
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
     "intl": "^1.2.5",
-    "next": "10.0.3",
+    "next": "10.0.4",
     "next-images": "^1.6.0",
     "next-pwa": "^5.0.0",
     "next-transpile-modules": "https://github.com/martpie/next-transpile-modules.git#symlink-resolution",
