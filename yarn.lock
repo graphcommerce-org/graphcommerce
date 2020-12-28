@@ -1530,10 +1530,10 @@
     auto-bind "~4.0.0"
     tslib "~2.0.1"
 
-"@graphql-codegen/visitor-plugin-common@^1.17.20", "@graphql-codegen/visitor-plugin-common@^1.17.21":
-  version "1.17.21"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.17.21.tgz#e47a5623392bcdb89d5af2484798a2fd9a59df8c"
-  integrity sha512-rhdJdj+4DAMgMSBlgkvfOMw65L46sAtYb7G/n9ucc9uJGUbiIcgvS/wpoQ/gxz2eUaNfcoFmjVLm+dkTM/XwqA==
+"@graphql-codegen/visitor-plugin-common@^1.17.20", "@graphql-codegen/visitor-plugin-common@^1.17.21", "@graphql-codegen/visitor-plugin-common@^1.17.22":
+  version "1.17.22"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-1.17.22.tgz#5321077ea54b423397b659406a2b60d1a3b44156"
+  integrity sha512-5+fkcET7ftqexyEkGWvmalL+RTi1ApfAt9k9FEmM2WdRXi/uYwwYb+qHwIoaMVD0pXKeUAB5+Qgs9+Md4VIM7Q==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^1.18.2"
     "@graphql-tools/optimize" "^1.0.1"
@@ -7679,15 +7679,7 @@ enhanced-resolve@^0.9.1:
     memory-fs "^0.2.0"
     tapable "^0.1.8"
 
-enhanced-resolve@^5.3.1:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.4.0.tgz#a8bcf23b00affac9455cf71efd80844f4054f4dc"
-  integrity sha512-ZmqfWURB2lConOBM1JdCVfPyMRv5RdKWktLXO6123p97ovVm2CLBgw9t5MBj3jJWA6eHyOeIws9iJQoGFR4euQ==
-  dependencies:
-    graceful-fs "^4.2.4"
-    tapable "^2.0.0"
-
-enhanced-resolve@^5.3.2:
+enhanced-resolve@^5.3.1, enhanced-resolve@^5.3.2:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.4.1.tgz#c89b0c34f17f931902ef2913a125d4b825b49b6f"
   integrity sha512-4GbyIMzYktTFoRSmkbgZ1LU+RXwf4AQ8Z+rSuuh1dC8plp0PPeaWvx6+G4hh4KnUJ48VoxKbNyA1QQQIUpXjYA==
@@ -16747,7 +16739,7 @@ tapable@^0.1.8:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-0.1.10.tgz#29c35707c2b70e50d07482b5d202e8ed446dafd4"
   integrity sha1-KcNXB8K3DlDQdIK10gLo7URtr9Q=
 
-tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
+tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.0.tgz#5c373d281d9c672848213d0e037d1c4165ab426b"
   integrity sha512-FBk4IesMV1rBxX2tfiK8RAmogtWn53puLOQlvO8XuwlgxcYbP4mVPS9Ph4aeamSyyVjOl24aYWAuc8U5kCVwMw==
@@ -18012,9 +18004,9 @@ webpack-sources@^2.1.1:
     source-map "^0.6.1"
 
 webpack@4.44.1, webpack@^5.6.0:
-  version "5.10.3"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.10.3.tgz#933cbd5e79d62040d988049ff0f515a6dc333006"
-  integrity sha512-KFPEbpNKfNU4t2CDsUZJ7KpuUbzDqGUCZqLmz4667KSUWMc9BuR3a8jpa72Emv7JUbdGwISD9OZjoI9S5BnHig==
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.11.0.tgz#1647abc060441d86d01d8835b8f0fc1dae2fe76f"
+  integrity sha512-ubWv7iP54RqAC/VjixgpnLLogCFbAfSOREcSWnnOlZEU8GICC5eKmJSu6YEnph2N2amKqY9rvxSwgyHxVqpaRw==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"
