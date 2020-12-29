@@ -47,12 +47,14 @@ type CartItemRenderer = TypeRenderer<
   NonNullable<NonNullable<NonNullable<ClientCartQuery['cart']>['items']>[0]> & { cartId: string }
 >
 
-type CartProps = { renderer: CartItemRenderer }
+type CartProps = {
+  clientCartQueryData: ClientCartQuery | undefined
+  renderer: CartItemRenderer
+}
 
 export default function Cart(props: CartProps) {
-  const { renderer } = props
+  const { renderer, clientCartQueryData } = props
   const classes = useStyles()
-  const { data, loading } = useQuery(ClientCartDocument)
 
   let content
 
@@ -70,7 +72,7 @@ export default function Cart(props: CartProps) {
     layout: true,
   }
 
-  if (!data?.cart?.items?.length) {
+  if (!clientCartQueryData?.cart?.items?.length) {
     content = (
       <m.div
         className={clsx(classes.emptyCart)}
@@ -81,14 +83,17 @@ export default function Cart(props: CartProps) {
         <p>Looks like you did not add anything to your cart yet.</p>
       </m.div>
     )
-  } else if (loading) {
-    content = (
-      <m.div key='loading-cart' {...{ ...animation, layout: false }}>
-        loading...
-      </m.div>
-    )
-  } else if (data) {
-    const { cart } = data
+  }
+  // else if (loading) {
+  //   content = (
+  //     <m.div key='loading-cart' {...{ ...animation, layout: false }}>
+  //       loading...
+  //     </m.div>
+  //   )
+  // }
+  else if (clientCartQueryData) {
+    const { cart } = clientCartQueryData
+
     content = (
       <>
         {cart?.items?.map((item) => {

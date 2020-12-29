@@ -62,15 +62,20 @@ const useStyles = makeStyles(
       pointerEvents: 'all',
       gridArea: 'back',
     },
-    headerTitle: {
+    headerTitleContainer: {
       pointerEvents: 'all',
       gridArea: 'title',
     },
+    headerTitle: {
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: 700,
+      fontSize: 20,
+    },
     dragHandle: {
-      width: 100,
+      width: 78,
       height: 6,
       borderRadius: 3,
-      backgroundColor: theme.palette.grey[300],
+      border: `1px solid ${theme.palette.grey[300]}`,
       gridArea: 'handle',
       justifySelf: 'center',
     },
@@ -220,12 +225,13 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
                   </NoSsr>
                 </div>
 
-                <div className={classes.headerTitle}>
+                <div className={classes.headerTitleContainer}>
                   <Typography
                     variant='h4'
                     component={titleComponent ?? 'h1'}
                     align='center'
                     {...titleProps}
+                    className={classes.headerTitle}
                   >
                     {title}
                   </Typography>
