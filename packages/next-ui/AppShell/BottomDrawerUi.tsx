@@ -57,6 +57,8 @@ const useStyles = makeStyles(
       `,
       // gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
+      background: theme.palette.background.default,
+      zIndex: 3,
     },
     headerBack: {
       pointerEvents: 'all',
