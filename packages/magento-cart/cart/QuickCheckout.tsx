@@ -34,6 +34,7 @@ const useStyles = makeStyles(
       fontSize: 17,
       fontFamily: theme.typography.fontFamily,
       fontWeight: 500,
+      marginBottom: theme.spacings.lg,
     },
     icon: {
       '& > svg': {

@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import {
   ListItem,
   ListItemText,
-  Divider,
   Theme,
   ListItemSecondaryAction,
   NoSsr,
@@ -83,15 +82,7 @@ export default function Cart(props: CartProps) {
         <p>Looks like you did not add anything to your cart yet.</p>
       </m.div>
     )
-  }
-  // else if (loading) {
-  //   content = (
-  //     <m.div key='loading-cart' {...{ ...animation, layout: false }}>
-  //       loading...
-  //     </m.div>
-  //   )
-  // }
-  else if (clientCartQueryData) {
+  } else if (clientCartQueryData) {
     const { cart } = clientCartQueryData
 
     content = (
@@ -101,7 +92,6 @@ export default function Cart(props: CartProps) {
           return (
             <m.div key={`item${item.id}`} {...cartItemAnimation}>
               <RenderType renderer={renderer} {...item} cartId={cart.id} />
-              <Divider variant='inset' component='div' />
             </m.div>
           )
         })}

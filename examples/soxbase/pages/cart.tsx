@@ -34,22 +34,14 @@ function CartPage() {
   const classes = useStyles()
 
   return (
-    <BottomDrawerUi
-      title='Checkout'
-      fullHeight
-      // headerForward={
-      //   // <PageLink href='/checkout'>
-      //   //   <ForwardButton color='primary'>Next</ForwardButton>
-      //   // </PageLink>
-      // }
-    >
+    <BottomDrawerUi title='Checkout' fullHeight>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
-      <Container>
+      <Container maxWidth='md'>
         {loading ? (
           <CircularProgress className={classes.loader} />
         ) : (
           <>
-            <QuickCheckout total={data?.cart?.prices?.grand_total} />
+            {data?.cart?.items?.length && <QuickCheckout total={data?.cart?.prices?.grand_total} />}
 
             <Cart
               clientCartQueryData={data}
