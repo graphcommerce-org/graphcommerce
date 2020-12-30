@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { CircularProgress, Container, makeStyles, Theme } from '@material-ui/core'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import Cart from '@reachdigital/magento-cart/cart/Cart'
 import CartItem2 from '@reachdigital/magento-cart/cart/CartItem2'
-import QuickCheckout from '@reachdigital/magento-cart/cart/QuickCheckout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -26,7 +26,7 @@ const useStyles = makeStyles(
       textAlign: 'center',
     },
   }),
-  { name: 'QuickCheckout' },
+  { name: 'CartPage' },
 )
 
 function CartPage() {
@@ -40,23 +40,19 @@ function CartPage() {
         {loading ? (
           <CircularProgress className={classes.loader} />
         ) : (
-          <>
-            {data?.cart?.items?.length && <QuickCheckout total={data?.cart?.prices?.grand_total} />}
-
-            <Cart
-              clientCartQueryData={data}
-              renderer={{
-                BundleCartItem: CartItem2,
-                ConfigurableCartItem: CartItem2,
-                DownloadableCartItem: CartItem2,
-                SimpleCartItem: CartItem2,
-                VirtualCartItem: CartItem2,
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore GiftCardProduct is only available in Commerce
-                GiftCardCartItem: CartItem2,
-              }}
-            />
-          </>
+          <Cart
+            clientCartQueryData={data}
+            renderer={{
+              BundleCartItem: CartItem2,
+              ConfigurableCartItem: CartItem2,
+              DownloadableCartItem: CartItem2,
+              SimpleCartItem: CartItem2,
+              VirtualCartItem: CartItem2,
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore GiftCardProduct is only available in Commerce
+              GiftCardCartItem: CartItem2,
+            }}
+          />
         )}
       </Container>
     </BottomDrawerUi>

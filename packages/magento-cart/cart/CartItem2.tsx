@@ -5,6 +5,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { CartItemFragment } from './CartItem.gql'
+import CartItemOptionsList from './CartItemOptionsList'
 import DeliveryLabel from './DeliveryLabel'
 import RemoveItemFromCartFab from './RemoveItemFromCartFab'
 import UpdateItemQuantity from './UpdateItemQuantity'
@@ -17,7 +18,7 @@ const useStyles = makeStyles(
       display: 'grid',
       gridTemplate: `
           "picture itemName itemPrice quantity rowPrice"
-          "picture itemOptions discount discount discount"
+          "picture itemOptions itemPrice quantity rowPrice"
         `,
       gridTemplateColumns: `${responsiveVal(70, 125)} auto auto min-content 70px`,
       // gridTemplateRows: `1fr 1fr`,
@@ -25,6 +26,13 @@ const useStyles = makeStyles(
       alignItems: 'center',
       ...theme.typography.body1,
       marginBottom: theme.spacings.md,
+      [theme.breakpoints.down('sm')]: {
+        gridTemplate: `
+        "picture itemName itemName itemName itemName"
+        "picture itemOptions itemOptions itemOptions itemOptions"
+        "picture itemPrice itemPrice quantity rowPrice"
+        `,
+      },
     },
     picture: {
       gridArea: 'picture',
@@ -69,26 +77,28 @@ const useStyles = makeStyles(
       objectFit: 'contain',
       display: 'block',
       mixBlendMode: 'multiply',
+      transform: 'scale(1.75)',
     },
     itemName: {
       // ...theme.typography.h5,
       ...theme.typography.body1,
       fontWeight: 500,
       gridArea: 'itemName',
-    },
-    itemDiscount: {
-      gridArea: 'discount',
-      ...theme.typography.body2,
-      color: theme.palette.primary.mutedText,
-      textAlign: 'right',
+      alignSelf: 'flex-end',
     },
     itemPrice: {
       gridArea: 'itemPrice',
       textAlign: 'right',
       color: theme.palette.primary.mutedText,
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'left',
+      },
     },
     quantity: {
       gridArea: 'quantity',
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'right',
+      },
     },
     rowPrice: {
       gridArea: 'rowPrice',
@@ -133,20 +143,27 @@ export default function CartItem2(props: CartItemProps) {
           )}
         </div>
       </Badge>
+
       <div className={classes.itemName}>
         {name}
         <DeliveryLabel />
       </div>
+
       <div className={classes.itemPrice}>
         <Money {...prices?.price} />
       </div>
+
       <div className={classes.quantity}>
         <UpdateItemQuantity cartId={cartId} cartItemId={Number(id)} quantity={quantity} />
       </div>
+
       <div className={classes.rowPrice}>
         <Money {...prices?.row_total_including_tax} /> <br />
       </div>
-      <div className={classes.itemDiscount}>
+
+      <CartItemOptionsList />
+
+      {/* <div className={classes.itemDiscount}>
         {prices?.discounts?.map((discount) => (
           <div key={discount?.label ?? ''}>
             {discount?.label}
@@ -158,7 +175,7 @@ export default function CartItem2(props: CartItemProps) {
             )
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

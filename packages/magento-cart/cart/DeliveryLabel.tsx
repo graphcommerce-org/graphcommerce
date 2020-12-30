@@ -8,7 +8,7 @@ const useStyles = makeStyles(
       display: 'inline-block',
     },
     labelContainer: {
-      padding: 8,
+      padding: 5,
     },
     label: {
       borderRadius: '100%',

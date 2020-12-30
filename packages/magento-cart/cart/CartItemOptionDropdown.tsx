@@ -1,0 +1,56 @@
+import { makeStyles, MenuItem, Select, Theme } from '@material-ui/core'
+import React from 'react'
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      marginRight: theme.spacings.xs,
+    },
+    label: {
+      fontSize: theme.typography.fontSize,
+      letterSpacing: 1,
+      textTransform: 'uppercase',
+      fontWeight: 500,
+      color: theme.palette.secondary.mutedText,
+    },
+    select: {
+      padding: `${theme.spacings.xxs} ${theme.spacings.xxs}`,
+      border: `1px solid ${theme.palette.divider}`,
+      borderRadius: 8,
+      minWidth: 120,
+      '&:before': {
+        borderBottom: 'none',
+      },
+      '&:hover, &:active, &:focus': {
+        '&:before': {
+          borderBottom: 'none',
+        },
+        background: theme.palette.grey['100'],
+      },
+    },
+  }),
+  { name: 'CartItemOptionDropdown' },
+)
+
+type CartItemOptionDropdownProps = {
+  label: string
+  handleChange: () => void
+}
+
+export default function CartItemOptionDropdown(props: CartItemOptionDropdownProps) {
+  const { handleChange, label } = props
+  const classes = useStyles()
+
+  return (
+    <>
+      <div className={classes.root}>
+        <div className={classes.label}>{label}</div>
+        <Select id={`select-${label}`} value={1} onChange={handleChange} className={classes.select}>
+          <MenuItem value={1}>One</MenuItem>
+          <MenuItem value={2}>Two</MenuItem>
+          <MenuItem value={3}>Three</MenuItem>
+        </Select>
+      </div>
+    </>
+  )
+}

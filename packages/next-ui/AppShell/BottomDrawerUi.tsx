@@ -238,7 +238,6 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
                     {title}
                   </Typography>
                 </div>
-
                 <div className={classes.headerForward}>{headerForward}</div>
               </div>
               {children}
