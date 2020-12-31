@@ -32,6 +32,7 @@ const useStyles = makeStyles(
         "picture itemOptions itemOptions itemOptions itemOptions"
         "picture itemPrice itemPrice quantity rowPrice"
         `,
+        marginBottom: theme.spacings.lg,
       },
     },
     picture: {

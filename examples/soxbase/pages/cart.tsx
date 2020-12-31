@@ -10,6 +10,7 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -41,7 +42,7 @@ function CartPage() {
           <CircularProgress className={classes.loader} />
         ) : (
           <Cart
-            clientCartQueryData={data}
+            clientCartQueryData={data ?? {}}
             renderer={{
               BundleCartItem: CartItem2,
               ConfigurableCartItem: CartItem2,

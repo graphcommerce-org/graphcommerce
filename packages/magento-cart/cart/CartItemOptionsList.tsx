@@ -12,6 +12,7 @@ const useStyles = makeStyles(
       cursor: 'default',
       [theme.breakpoints.down('sm')]: {
         alignSelf: 'end',
+        marginBottom: 8,
       },
     },
     option: {

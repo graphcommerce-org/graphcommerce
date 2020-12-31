@@ -9,6 +9,7 @@ const useStyles = makeStyles(
     root: {
       width: 'min-content',
       pointerEvents: 'all',
+      boxShadow: theme.shadows[1],
       [theme.breakpoints.down('sm')]: {
         height: 40,
         minWidth: 40,

@@ -11,6 +11,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     quickCheckoutContainer: {
       textAlign: 'center',
+      marginTop: theme.spacings.md,
     },
     img: {
       display: 'block',

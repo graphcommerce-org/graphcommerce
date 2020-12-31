@@ -2,6 +2,7 @@ import { Divider, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
@@ -10,6 +11,7 @@ import clsx from 'clsx'
 import { AnimatePresence, m, MotionProps } from 'framer-motion'
 import React from 'react'
 import { ClientCartQuery } from '../ClientCart.gql'
+import CheckoutStepper from './CheckoutStepper'
 import QuickCheckout from './QuickCheckout'
 
 const useStyles = makeStyles(
@@ -30,7 +32,9 @@ const useStyles = makeStyles(
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      textAlign: 'center',
       color: theme.palette.primary.mutedText,
+      margin: `${theme.spacings.lg} auto`,
     },
     emptyCartIcon: {
       fontSize: 200,
@@ -87,7 +91,7 @@ type CartItemRenderer = TypeRenderer<
 >
 
 type CartProps = {
-  clientCartQueryData: ClientCartQuery | undefined
+  clientCartQueryData: ClientCartQuery
   renderer: CartItemRenderer
 }
 
@@ -95,112 +99,93 @@ export default function Cart(props: CartProps) {
   const { renderer, clientCartQueryData } = props
   const classes = useStyles()
 
-  let content
-
-  const cartItemAnimation: MotionProps = {
-    initial: { opacity: 0, x: 0 },
-    animate: { opacity: 1, x: 0 },
-    exit: { x: -100 },
-    layout: true,
-  }
-
-  const animation: MotionProps = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0, transition: { type: 'inertia' } },
-    layout: true,
-  }
-
-  if (!clientCartQueryData?.cart?.items?.length) {
-    content = (
-      <m.div
-        className={clsx(classes.emptyCart)}
-        key='empty-cart'
-        {...{ ...animation, layout: false }}
-      >
-        <CartIcon className={classes.emptyCartIcon} color='disabled' />
-        <p>Looks like you did not add anything to your cart yet.</p>
-      </m.div>
-    )
-  } else if (clientCartQueryData) {
-    const { cart } = clientCartQueryData
-
-    content = (
-      <>
-        {cart?.items?.map((item) => {
-          if (!item) return null
-          return (
-            <m.div key={`item${item.id}`} {...cartItemAnimation}>
-              <RenderType renderer={renderer} {...item} cartId={cart.id} />
-            </m.div>
-          )
-        })}
-
-        <m.div className={classes.costsContainer} {...animation} key='total-costs'>
-          {cart?.prices?.subtotal_including_tax && (
-            <div className={classes.costsRow}>
-              <div>Products</div>
-              <div>
-                <Money {...cart.prices.subtotal_including_tax} />
-              </div>
-            </div>
-          )}
-
-          {cart?.prices?.discounts?.map((discount, idx) => (
-            <div className={classes.costsRow} key={`discount-${idx}`}>
-              <div>{discount?.label}</div>
-              <div>
-                {discount?.amount && (
-                  <Money
-                    currency={discount?.amount.currency}
-                    value={(discount?.amount.value ?? 0) * -1}
-                  />
-                )}
-              </div>
-            </div>
-          ))}
-
-          <Divider />
-
-          {cart?.prices?.grand_total && (
-            <div className={clsx(classes.costsRow, classes.costsGrandTotal)}>
-              <div>Total (incl. VAT)</div>
-              <div>
-                <Money {...cart.prices.grand_total} />
-              </div>
-            </div>
-          )}
-        </m.div>
-
-        <div className={classes.checkoutButtonContainer}>
-          {clientCartQueryData?.cart?.items?.length && (
-            <>
-              <PageLink href='/checkout'>
-                <Button
-                  variant='pill'
-                  color='secondary'
-                  className={classes.checkoutButton}
-                  endIcon={<ChevronRightIcon className={classes.checkoutButtonIcon} />}
-                >
-                  <span className={classes.checkoutButtonLabel}>Start checkout</span> (
-                  <Money {...clientCartQueryData?.cart?.prices?.grand_total} />)
-                </Button>
-              </PageLink>
-            </>
-          )}
-        </div>
-      </>
-    )
-  }
+  const hasItems = !!clientCartQueryData?.cart?.items?.length
+  const { cart } = clientCartQueryData
 
   return (
     <NoSsr>
-      <AnimatePresence exitBeforeEnter>
-        {clientCartQueryData?.cart?.items?.length && (
-          <QuickCheckout total={clientCartQueryData?.cart?.prices?.grand_total} />
+      <CheckoutStepper steps={3} currentStep={0} key='checkout-stepper' />
+
+      <AnimatePresence initial={false}>
+        {!hasItems && (
+          <AnimatedRow className={clsx(classes.emptyCart)} key='empty-cart'>
+            <CartIcon className={classes.emptyCartIcon} color='disabled' />
+            <p>Looks like you did not add anything to your cart yet.</p>
+          </AnimatedRow>
         )}
 
-        {content}
+        {hasItems && (
+          <AnimatedRow key='quick-checkout'>
+            <QuickCheckout total={clientCartQueryData?.cart?.prices?.grand_total} />
+          </AnimatedRow>
+        )}
+
+        {cart?.items?.map(
+          (item) =>
+            item && (
+              <AnimatedRow key={`item-${item.id}`}>
+                <RenderType renderer={renderer} {...item} cartId={cart.id} />
+              </AnimatedRow>
+            ),
+        )}
+
+        {hasItems && (
+          <AnimatedRow className={classes.costsContainer} key='total-costs'>
+            {cart?.prices?.subtotal_including_tax && (
+              <div className={classes.costsRow}>
+                <div>Products</div>
+                <div>
+                  <Money {...cart.prices.subtotal_including_tax} />
+                </div>
+              </div>
+            )}
+
+            {cart?.prices?.discounts?.map((discount, idx) => (
+              <div className={classes.costsRow} key={`discount-${idx}`}>
+                <div>{discount?.label}</div>
+                <div>
+                  {discount?.amount && (
+                    <Money
+                      currency={discount?.amount.currency}
+                      value={(discount?.amount.value ?? 0) * -1}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+
+            <Divider key='divider' />
+
+            {cart?.prices?.grand_total && (
+              <div className={clsx(classes.costsRow, classes.costsGrandTotal)}>
+                <div>Total (incl. VAT)</div>
+                <div>
+                  <Money {...cart.prices.grand_total} />
+                </div>
+              </div>
+            )}
+          </AnimatedRow>
+        )}
+
+        {hasItems && (
+          <AnimatedRow className={classes.checkoutButtonContainer} key='checkout-button'>
+            {clientCartQueryData?.cart?.items?.length && (
+              <>
+                <PageLink href='/checkout'>
+                  <Button
+                    variant='pill'
+                    color='secondary'
+                    className={classes.checkoutButton}
+                    endIcon={<ChevronRightIcon className={classes.checkoutButtonIcon} />}
+                  >
+                    <span className={classes.checkoutButtonLabel}>Start checkout</span> (
+                    <Money {...clientCartQueryData?.cart?.prices?.grand_total} />)
+                  </Button>
+                </PageLink>
+              </>
+            )}
+          </AnimatedRow>
+        )}
       </AnimatePresence>
     </NoSsr>
   )
