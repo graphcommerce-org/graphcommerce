@@ -79,6 +79,15 @@ export default function MenuTabs(props: MenuTabsProps) {
           </CategoryLink>
         )
       })}
+      <CategoryLink url='blog/index' filters={{}} sort={{}} noLink>
+        <Tab
+          label='Blog'
+          component='a'
+          value='Blog'
+          {...tabProps}
+          classes={{ ...tabClasses, ...tabProps?.classes }}
+        />
+      </CategoryLink>
     </Tabs>
   )
 }
