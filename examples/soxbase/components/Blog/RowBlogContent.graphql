@@ -1,0 +1,5 @@
+fragment RowBlogContent on RowBlogContent {
+  content {
+    raw
+  }
+}
