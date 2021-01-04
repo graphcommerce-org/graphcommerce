@@ -2,6 +2,7 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '../../generated/types'
 
+import { AssetFragment, AssetFragmentDoc } from '../Asset/Asset.gql'
 import { RowColumnOneFragment, RowColumnOneFragmentDoc } from '../RowColumnOne/RowColumnOne.gql'
 import {
   RowColumnThreeFragment,
@@ -17,11 +18,11 @@ import {
   RowProductGridFragment,
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
-import { RowQuoteFragment, RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
-import {
-  RowSpecialBannerFragment,
-  RowSpecialBannerFragmentDoc,
-} from '../RowSpecialBanner/RowSpecialBanner.gql'
+import { RowQuoteFragment } from '../RowQuote/RowQuote.gql'
+import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
+
+import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
+import { RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',
@@ -33,6 +34,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'content' },
@@ -59,6 +61,14 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
               ],
             },
           },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'asset' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Asset' } }],
+            },
+          },
         ],
       },
     },
@@ -70,9 +80,10 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowSpecialBannerFragmentDoc.definitions,
     ...RowQuoteFragmentDoc.definitions,
     ...RowProductBackstoryFragmentDoc.definitions,
+    ...AssetFragmentDoc.definitions,
   ],
 }
-export type PageFragment = {
+export type PageFragment = Pick<Types.Page, 'title'> & {
   content: Array<
     | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
@@ -88,4 +99,5 @@ export type PageFragment = {
         RowSpecialBannerFragment)
     | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)
   >
+  asset?: Types.Maybe<AssetFragment>
 }

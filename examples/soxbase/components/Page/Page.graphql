@@ -1,4 +1,5 @@
 fragment Page on Page {
+  title
   content {
     ... on Node {
       id
@@ -12,5 +13,8 @@ fragment Page on Page {
     ...RowSpecialBanner
     ...RowQuote
     ...RowProductBackstory
+  }
+  asset {
+    ...Asset
   }
 }
