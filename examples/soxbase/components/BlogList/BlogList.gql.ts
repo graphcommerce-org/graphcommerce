@@ -9,6 +9,19 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'BlogList' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'currentUrl' } },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+            },
+          },
+        },
+      ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -27,6 +40,11 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
                       kind: 'ObjectField',
                       name: { kind: 'Name', value: 'url_starts_with' },
                       value: { kind: 'StringValue', value: 'blog', block: false },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'url_not_in' },
+                      value: { kind: 'Variable', name: { kind: 'Name', value: 'currentUrl' } },
                     },
                   ],
                 },
@@ -60,7 +78,9 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
     },
   ],
 }
-export type BlogListQueryVariables = Types.Exact<{ [key: string]: never }>
+export type BlogListQueryVariables = Types.Exact<{
+  currentUrl?: Types.Maybe<Array<Types.Scalars['String']>>
+}>
 
 export type BlogListQuery = {
   BlogPosts: Array<

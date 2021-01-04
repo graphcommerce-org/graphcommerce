@@ -17,12 +17,14 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = HeaderProps & FooterProps & PageByUrlQuery & { currentUrl: string } & BlogListProps
+type Props = HeaderProps &
+  FooterProps &
+  PageByUrlQuery & { urlkey: string; currentUrl: string } & BlogListProps
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const BlogPage = ({ menu, urlResolver, pages, footer, currentUrl, BlogPosts }: Props) => {
+const BlogPage = ({ menu, urlResolver, pages, footer, urlkey, BlogPosts }: Props) => {
   if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
   if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const page = pages[0]
@@ -36,7 +38,7 @@ const BlogPage = ({ menu, urlResolver, pages, footer, currentUrl, BlogPosts }: P
         metaRobots='INDEX, FOLLOW'
       />
       <Page {...page} />
-      {currentUrl === 'index' && <BlogList BlogPosts={BlogPosts} />}
+      {urlkey === 'blog/index' && <BlogList BlogPosts={BlogPosts} />}
       <Footer footer={footer} />
     </FullPageUi>
   )
@@ -63,7 +65,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const footer = staticClient.query({ query: FooterDocument })
-  const BlogPosts = staticClient.query({ query: BlogListDocument })
+  const BlogPosts = staticClient.query({
+    query: BlogListDocument,
+    variables: { currentUrl: `blog/${urlKey}` },
+  })
+
   const page = staticClient.query({
     query: PageByUrlDocument,
     variables: { url: `blog/${urlKey}` },
@@ -77,7 +83,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await page).data,
       ...(await BlogPosts).data,
       apolloState: client.cache.extract(),
-      currentUrl: urlKey,
+      urlkey: `blog/${urlKey}`,
     },
     revalidate: 60 * 20,
   }
