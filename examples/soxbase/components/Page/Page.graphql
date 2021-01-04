@@ -8,6 +8,7 @@ fragment Page on Page {
     ...RowColumnOne
     ...RowColumnTwo
     ...RowColumnThree
+    ...RowBlogContent
     ...RowHeroBanner
     ...RowProductGrid
     ...RowSpecialBanner

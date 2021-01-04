@@ -3,6 +3,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import * as Types from '../../generated/types'
 
 import { AssetFragment, AssetFragmentDoc } from '../Asset/Asset.gql'
+import { RowBlogContentFragment, RowBlogContentFragmentDoc } from '../Blog/RowBlogContent.gql'
 import { RowColumnOneFragment, RowColumnOneFragmentDoc } from '../RowColumnOne/RowColumnOne.gql'
 import {
   RowColumnThreeFragment,
@@ -18,8 +19,8 @@ import {
   RowProductGridFragment,
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
-import { RowQuoteFragment } from '../RowQuote/RowQuote.gql'
 import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
+import { RowQuoteFragment } from '../RowQuote/RowQuote.gql'
 
 import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
 import { RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
@@ -53,6 +54,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnOne' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnTwo' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnThree' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowBlogContent' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowHeroBanner' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductGrid' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSpecialBanner' } },
@@ -75,6 +77,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowColumnOneFragmentDoc.definitions,
     ...RowColumnTwoFragmentDoc.definitions,
     ...RowColumnThreeFragmentDoc.definitions,
+    ...RowBlogContentFragmentDoc.definitions,
     ...RowHeroBannerFragmentDoc.definitions,
     ...RowProductGridFragmentDoc.definitions,
     ...RowSpecialBannerFragmentDoc.definitions,
@@ -85,6 +88,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
 }
 export type PageFragment = Pick<Types.Page, 'title'> & {
   content: Array<
+    | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & RowBlogContentFragment)
     | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
