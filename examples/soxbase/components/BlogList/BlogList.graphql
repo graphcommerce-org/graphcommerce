@@ -1,0 +1,5 @@
+query BlogList {
+  BlogPosts: pages(where: { url_starts_with: "blog", url_not_in: "blog/index" }) {
+    url
+  }
+}

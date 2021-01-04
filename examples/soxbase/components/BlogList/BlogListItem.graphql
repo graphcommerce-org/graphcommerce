@@ -1,0 +1,8 @@
+fragment BlogListItem on Page {
+  title
+  url
+  publishedAt
+  asset {
+    ...Asset
+  }
+}
