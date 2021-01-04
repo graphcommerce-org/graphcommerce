@@ -23,7 +23,7 @@ export default function RowBlogContent(props: RowBlogContentFragment) {
   return (
     <Container maxWidth={false} className={classes.container}>
       <div className={classes.wrapper}>
-        <RichText {...content} />
+        <RichText raw={content?.raw} />
       </div>
     </Container>
   )
