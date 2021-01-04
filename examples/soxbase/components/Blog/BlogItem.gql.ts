@@ -4,12 +4,12 @@ import * as Types from '../../generated/types'
 
 import { AssetFragment, AssetFragmentDoc } from '../Asset/Asset.gql'
 
-export const BlogListItemFragmentDoc: DocumentNode<BlogListItemFragment, unknown> = {
+export const BlogItemFragmentDoc: DocumentNode<BlogItemFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'BlogListItem' },
+      name: { kind: 'Name', value: 'BlogItem' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Page' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -31,6 +31,6 @@ export const BlogListItemFragmentDoc: DocumentNode<BlogListItemFragment, unknown
     ...AssetFragmentDoc.definitions,
   ],
 }
-export type BlogListItemFragment = Pick<Types.Page, 'title' | 'url' | 'publishedAt'> & {
+export type BlogItemFragment = Pick<Types.Page, 'title' | 'url' | 'publishedAt'> & {
   asset?: Types.Maybe<AssetFragment>
 }

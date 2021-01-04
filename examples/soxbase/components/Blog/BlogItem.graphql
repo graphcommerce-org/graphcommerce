@@ -1,4 +1,4 @@
-fragment BlogListItem on Page {
+fragment BlogItem on Page {
   title
   url
   publishedAt

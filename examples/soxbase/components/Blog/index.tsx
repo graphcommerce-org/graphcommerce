@@ -1,7 +1,7 @@
 import { makeStyles, Container, Theme } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { BlogListQuery } from './BlogList.gql'
-import BlogListItem from './BlogListItem'
+import BlogItem from './BlogItem'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -23,7 +23,7 @@ export default function BlogList(props: BlogListProps) {
   return (
     <Container className={classes.root}>
       {BlogPosts.map((BlogPost) => (
-        <BlogListItem key={BlogPost.title} {...BlogPost} />
+        <BlogItem key={BlogPost.title} {...BlogPost} />
       ))}
     </Container>
   )

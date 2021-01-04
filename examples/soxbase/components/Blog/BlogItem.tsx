@@ -1,7 +1,7 @@
 import { Typography, makeStyles, Theme, Link } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { BlogListItemFragment } from './BlogListItem.gql'
+import { BlogItemFragment } from './BlogItem.gql'
 
 export const useBlogListItemStyles = makeStyles(
   (theme: Theme) => ({
@@ -63,9 +63,9 @@ export const useBlogListItemStyles = makeStyles(
   { name: 'BlogListItem' },
 )
 
-export type BlogListItemProps = BlogListItemFragment
+export type BlogItemProps = BlogItemFragment
 
-export default function BlogListItem(props: BlogListItemProps) {
+export default function BlogListItem(props: BlogItemProps) {
   const { title, url, asset, publishedAt } = props
   const classes = useBlogListItemStyles(props)
   const locale = 'en-US'
@@ -91,7 +91,6 @@ export default function BlogListItem(props: BlogListItemProps) {
       <Typography component='h2' variant='h4' className={classes.title}>
         {title}
       </Typography>
-      <div className={classes.link}>Read more</div>
     </Link>
   )
 }
