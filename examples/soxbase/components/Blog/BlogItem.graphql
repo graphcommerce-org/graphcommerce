@@ -1,7 +1,7 @@
 fragment BlogItem on Page {
   title
   url
-  publishedAt
+  date
   asset {
     ...Asset
   }

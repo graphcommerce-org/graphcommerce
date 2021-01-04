@@ -16,7 +16,7 @@ export const BlogItemFragmentDoc: DocumentNode<BlogItemFragment, unknown> = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
           { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'date' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'asset' },
@@ -31,6 +31,6 @@ export const BlogItemFragmentDoc: DocumentNode<BlogItemFragment, unknown> = {
     ...AssetFragmentDoc.definitions,
   ],
 }
-export type BlogItemFragment = Pick<Types.Page, 'title' | 'url' | 'publishedAt'> & {
+export type BlogItemFragment = Pick<Types.Page, 'title' | 'url' | 'date'> & {
   asset?: Types.Maybe<AssetFragment>
 }

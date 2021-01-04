@@ -66,7 +66,7 @@ export const useBlogListItemStyles = makeStyles(
 export type BlogItemProps = BlogItemFragment
 
 export default function BlogListItem(props: BlogItemProps) {
-  const { title, url, asset, publishedAt } = props
+  const { title, url, asset, date } = props
   const classes = useBlogListItemStyles(props)
   const locale = 'en-US'
 
@@ -85,8 +85,8 @@ export default function BlogListItem(props: BlogItemProps) {
           <div className={clsx(classes.placeholder, classes.image)}>No image</div>
         )}
       </div>
-      <time className={classes.date} dateTime={publishedAt}>
-        {formatter.format(new Date(publishedAt))}
+      <time className={classes.date} dateTime={date}>
+        {formatter.format(new Date(date))}
       </time>
       <Typography component='h2' variant='h4' className={classes.title}>
         {title}

@@ -49,13 +49,18 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
                   ],
                 },
               },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'orderBy' },
+                value: { kind: 'EnumValue', value: 'publishedAt_DESC' },
+              },
             ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'publishedAt' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'date' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'asset' },
@@ -84,7 +89,7 @@ export type BlogListQueryVariables = Types.Exact<{
 
 export type BlogListQuery = {
   BlogPosts: Array<
-    Pick<Types.Page, 'title' | 'url' | 'publishedAt'> & {
+    Pick<Types.Page, 'title' | 'url' | 'date'> & {
       asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
     }
   >
