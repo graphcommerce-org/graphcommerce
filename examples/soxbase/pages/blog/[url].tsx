@@ -10,6 +10,7 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import NextError from 'next/error'
 import React from 'react'
 import BlogList, { BlogListProps } from '../../components/Blog'
+import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument } from '../../components/Blog/BlogList.gql'
 import Footer, { FooterProps } from '../../components/Footer'
 import { FooterDocument } from '../../components/Footer/Footer.gql'
@@ -37,8 +38,9 @@ const BlogPage = ({ menu, urlResolver, pages, footer, urlkey, BlogPosts }: Props
         metaDescription={page.title ?? ''}
         metaRobots='INDEX, FOLLOW'
       />
+      {urlkey !== 'blog/index' && <BlogHeader asset={page.asset} />}
       <Page {...page} />
-      {urlkey === 'blog/index' && <BlogList BlogPosts={BlogPosts} />}
+      <BlogList BlogPosts={BlogPosts} />
       <Footer footer={footer} />
     </FullPageUi>
   )
