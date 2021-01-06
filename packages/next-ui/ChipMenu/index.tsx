@@ -14,6 +14,7 @@ export const useChipMenuStyles = makeStyles(
     */
     chip: {
       paddingTop: 1,
+      background: theme.palette.background.default,
       '& .MuiChip-label': {
         maxWidth: responsiveVal(96, 124),
         wordWrap: 'break-word',

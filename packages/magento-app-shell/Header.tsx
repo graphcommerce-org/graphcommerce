@@ -7,7 +7,7 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
+import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 import MenuFab from './MenuFab'
 import MenuTabs from './MenuTabs'
@@ -79,24 +79,45 @@ const useStyles = makeStyles(
     },
     mobileMenu: {
       [theme.breakpoints.up('md')]: {
-        display: 'none',
+        top: 10,
+        bottom: 'auto',
       },
+      [theme.breakpoints.down('sm')]: {
+        top: 'auto !important',
+        opacity: '1 !important',
+        bottom: theme.page.vertical,
+      },
+      display: 'flex',
+      justifyContent: 'space-between',
       zIndex: theme.zIndex.appBar,
       position: 'fixed',
       bottom: theme.page.vertical,
-      left: theme.page.horizontal,
+      paddingLeft: theme.page.horizontal,
+      paddingRight: theme.page.horizontal,
+      width: '100%',
       '& > *': {
         pointerEvents: 'all',
       },
     },
-    mobileActions: {
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
+    ghostCartIcon: {
+      padding: 12,
+      width: 36,
+      height: 48,
+    },
+    // mobileActions: {
+    //   [theme.breakpoints.up('md')]: {
+    //     display: 'none',
+    //   },
+    //   zIndex: theme.zIndex.appBar,
+    //   position: 'fixed',
+    //   bottom: theme.page.vertical,
+    //   right: theme.page.horizontal,
+    // },
+    cartFab: {
+      '& a': {
+        boxShadow: theme.shadows[2],
+        padding: 28,
       },
-      zIndex: theme.zIndex.appBar,
-      position: 'fixed',
-      bottom: theme.page.vertical,
-      right: theme.page.horizontal,
     },
   }),
   { name: 'AppLayout' },
@@ -111,6 +132,10 @@ export type HeaderProps = HeaderDataProps & HeaderElementProps
 export default function Header(props: HeaderProps) {
   const classes = useStyles(props)
   const { menu, urlResolver, ...headerProps } = props
+
+  const { scrollY } = useViewportScroll()
+  const actionsAnimOpacity = useTransform(scrollY, [50, 130], [0, 1])
+  const actionsAnimTop = useTransform(scrollY, [-50, 80], [-50, 10])
 
   // @todo implement with a stable useMemo: 'use-custom-compare'
   return (
@@ -141,13 +166,17 @@ export default function Header(props: HeaderProps) {
           <CustomerFab />
           <CartFab asIcon />
         </div>
+
+        <m.div
+          className={classes.mobileMenu}
+          style={{ opacity: actionsAnimOpacity, top: actionsAnimTop }}
+        >
+          <MenuFab menu={menu} urlResolver={urlResolver} />
+          <div className={classes.cartFab}>
+            <CartFab />
+          </div>
+        </m.div>
       </m.header>
-      <div className={classes.mobileMenu}>
-        <MenuFab menu={menu} urlResolver={urlResolver} />
-      </div>
-      <div className={clsx(classes.actions, classes.mobileActions)}>
-        <CartFab />
-      </div>
     </>
   )
 }

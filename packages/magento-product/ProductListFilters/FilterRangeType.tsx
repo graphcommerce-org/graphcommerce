@@ -7,6 +7,7 @@ import Money from '@reachdigital/magento-store/Money'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
+import { m } from 'framer-motion'
 import React from 'react'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -141,58 +142,60 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   }
 
   return (
-    <ChipMenu
-      variant='outlined'
-      label={label}
-      selectedLabel={currentLabel}
-      selected={!!currentLabel}
-      {...chipProps}
-      onDelete={currentLabel ? resetFilter : undefined}
-      labelRight={
-        <>
-          <Money round value={value[0]} />
-          {' — '}
-          <Money round value={value[1]} />
-        </>
-      }
-    >
-      <div className={classes.container}>
-        <Slider
-          min={min}
-          max={max}
-          // marks={Object.values(marks)}
-          // step={Math.floor(max / 20)}
-          aria-labelledby='range-slider'
-          value={value}
-          onChange={(e, newValue) => {
-            setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
-          }}
-          valueLabelDisplay='off'
-          className={classes.slider}
-        />
+    <m.div layout='position'>
+      <ChipMenu
+        variant='outlined'
+        label={label}
+        selectedLabel={currentLabel}
+        selected={!!currentLabel}
+        {...chipProps}
+        onDelete={currentLabel ? resetFilter : undefined}
+        labelRight={
+          <>
+            <Money round value={value[0]} />
+            {' — '}
+            <Money round value={value[1]} />
+          </>
+        }
+      >
+        <div className={classes.container}>
+          <Slider
+            min={min}
+            max={max}
+            // marks={Object.values(marks)}
+            // step={Math.floor(max / 20)}
+            aria-labelledby='range-slider'
+            value={value}
+            onChange={(e, newValue) => {
+              setValue(Array.isArray(newValue) ? [newValue[0], newValue[1]] : [0, 0])
+            }}
+            valueLabelDisplay='off'
+            className={classes.slider}
+          />
 
-        <CategoryLink {...priceFilterUrl}>
+          <CategoryLink {...priceFilterUrl}>
+            <Button
+              variant='pill'
+              size='small'
+              color='primary'
+              disableElevation
+              className={classes.button}
+            >
+              Apply
+            </Button>
+          </CategoryLink>
+
           <Button
-            variant='pill'
+            onClick={resetFilter}
             size='small'
-            color='primary'
             disableElevation
-            className={classes.button}
+            className={clsx(classes.button, classes.resetButton)}
+            variant='pill'
           >
-            Apply
+            Reset
           </Button>
-        </CategoryLink>
-
-        <Button
-          onClick={resetFilter}
-          size='small'
-          disableElevation
-          className={clsx(classes.button, classes.resetButton)}
-          variant='pill'
-        >
-          Reset
-        </Button>
-      </div>
-    </ChipMenu>
+        </div>
+      </ChipMenu>
+    </m.div>
   )
 }

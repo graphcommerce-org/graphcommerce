@@ -1,4 +1,4 @@
-import { m, useTransform, useViewportScroll } from 'framer-motion'
+import { m } from 'framer-motion'
 import React, { useRef } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import useIntersectionObserver from './useIntersectionObserver'

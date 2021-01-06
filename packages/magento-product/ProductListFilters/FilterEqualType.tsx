@@ -6,6 +6,7 @@ import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
+import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
@@ -105,88 +106,90 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   }
 
   return (
-    <ChipMenu
-      variant='outlined'
-      {...chipProps}
-      label={label}
-      selected={currentLabels.length > 0}
-      selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
-      onDelete={currentLabels.length > 0 ? removeFilter : undefined}
-    >
-      <div className={classes.linkContainer}>
-        {options?.map((option) => {
-          const labelId = `filter-equal-${attribute_code}-${option?.value}`
-
-          return (
-            <ListItem
-              button
-              key={option?.value}
-              dense
-              className={classes.listItem}
-              onClick={() => {
-                if (selectedFilter?.in?.includes(option?.value ?? '')) {
-                  setSelectedFilter({
-                    ...selectedFilter,
-                    in: selectedFilter?.in?.filter((v) => v !== option?.value),
-                  })
-                } else {
-                  setSelectedFilter({
-                    ...selectedFilter,
-                    in: [...(selectedFilter.in ?? []), option?.value ?? ''],
-                  })
-                }
-              }}
-            >
-              <div className={classes.listItemInnerContainer}>
-                <ListItemText primary={option?.label} />
-
-                <Checkbox
-                  edge='start'
-                  checked={selectedFilter.in?.includes(option?.value ?? '')}
-                  tabIndex={-1}
-                  size='small'
-                  color='primary'
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                  className={classes.checkbox}
-                />
-              </div>
-            </ListItem>
-          )
-        })}
-      </div>
-
-      <CategoryLink
-        {...params}
-        filters={{ ...params.filters, [attribute_code]: selectedFilter }}
-        noLink
+    <m.div layout='position'>
+      <ChipMenu
+        variant='outlined'
+        {...chipProps}
+        label={label}
+        selected={currentLabels.length > 0}
+        selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
+        onDelete={currentLabels.length > 0 ? removeFilter : undefined}
       >
-        <Button
-          variant='pill'
-          size='small'
-          color='primary'
-          disableElevation
-          className={classes.button}
-          onClick={() => {
-            setParams({
-              ...params,
-              filters: { ...params.filters, [attribute_code]: selectedFilter },
-            })
-          }}
+        <div className={classes.linkContainer}>
+          {options?.map((option) => {
+            const labelId = `filter-equal-${attribute_code}-${option?.value}`
+
+            return (
+              <ListItem
+                button
+                key={option?.value}
+                dense
+                className={classes.listItem}
+                onClick={() => {
+                  if (selectedFilter?.in?.includes(option?.value ?? '')) {
+                    setSelectedFilter({
+                      ...selectedFilter,
+                      in: selectedFilter?.in?.filter((v) => v !== option?.value),
+                    })
+                  } else {
+                    setSelectedFilter({
+                      ...selectedFilter,
+                      in: [...(selectedFilter.in ?? []), option?.value ?? ''],
+                    })
+                  }
+                }}
+              >
+                <div className={classes.listItemInnerContainer}>
+                  <ListItemText primary={option?.label} />
+
+                  <Checkbox
+                    edge='start'
+                    checked={selectedFilter.in?.includes(option?.value ?? '')}
+                    tabIndex={-1}
+                    size='small'
+                    color='primary'
+                    disableRipple
+                    inputProps={{ 'aria-labelledby': labelId }}
+                    className={classes.checkbox}
+                  />
+                </div>
+              </ListItem>
+            )
+          })}
+        </div>
+
+        <CategoryLink
+          {...params}
+          filters={{ ...params.filters, [attribute_code]: selectedFilter }}
+          noLink
         >
-          Apply
-        </Button>
-      </CategoryLink>
+          <Button
+            variant='pill'
+            size='small'
+            color='primary'
+            disableElevation
+            className={classes.button}
+            onClick={() => {
+              setParams({
+                ...params,
+                filters: { ...params.filters, [attribute_code]: selectedFilter },
+              })
+            }}
+          >
+            Apply
+          </Button>
+        </CategoryLink>
 
-      <Button
-        onClick={resetFilter}
-        size='small'
-        variant='pill'
-        disableElevation
-        className={clsx(classes.button, classes.resetButton)}
-      >
-        Reset
-      </Button>
-    </ChipMenu>
+        <Button
+          onClick={resetFilter}
+          size='small'
+          variant='pill'
+          disableElevation
+          className={clsx(classes.button, classes.resetButton)}
+        >
+          Reset
+        </Button>
+      </ChipMenu>
+    </m.div>
   )
 }

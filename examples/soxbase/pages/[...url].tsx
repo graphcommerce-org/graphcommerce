@@ -15,6 +15,7 @@ import getCategoryPageProps, {
 } from '@reachdigital/magento-product-types/getCategoryPageProps'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
+import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
@@ -25,8 +26,9 @@ import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
+import { m, useTransform, useViewportScroll } from 'framer-motion'
 import NextError from 'next/error'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
@@ -107,14 +109,15 @@ function CategoryPage(props: Props) {
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
           </div>
 
-          <div className={classes.filters}>
+          <ProductListFiltersContainer>
             <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
             <ProductListFilters
               aggregations={filters.aggregations}
               filterTypes={filterTypes}
               className={classes.filterItem}
             />
-          </div>
+          </ProductListFiltersContainer>
+
           <ProductListCount total_count={products?.total_count} />
           <ProductListItems
             items={products.items}

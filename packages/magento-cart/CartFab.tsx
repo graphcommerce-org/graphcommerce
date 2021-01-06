@@ -13,6 +13,7 @@ function CartFabContent({ qty, asIcon }: CartFabProps & { qty?: number }) {
       <CartIcon />
     </Badge>
   )
+
   return (
     <PageLink href='/cart'>
       {asIcon ? (
