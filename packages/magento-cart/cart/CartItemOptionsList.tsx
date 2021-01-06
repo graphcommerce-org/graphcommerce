@@ -64,9 +64,9 @@ const useStyles = makeStyles(
 
 export default function CartItemOptionsList() {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>()
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget)
   }
 

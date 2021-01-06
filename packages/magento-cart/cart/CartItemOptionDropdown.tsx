@@ -1,4 +1,4 @@
-import { makeStyles, MenuItem, Select, Theme } from '@material-ui/core'
+import { makeStyles, MenuItem, Select, SelectProps, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -34,18 +34,17 @@ const useStyles = makeStyles(
 
 type CartItemOptionDropdownProps = {
   label: string
-  handleChange: () => void
-}
+} & Pick<SelectProps, 'onChange'>
 
 export default function CartItemOptionDropdown(props: CartItemOptionDropdownProps) {
-  const { handleChange, label } = props
+  const { onChange, label } = props
   const classes = useStyles()
 
   return (
     <>
       <div className={classes.root}>
         <div className={classes.label}>{label}</div>
-        <Select id={`select-${label}`} value={1} onChange={handleChange} className={classes.select}>
+        <Select id={`select-${label}`} value={1} onChange={onChange} className={classes.select}>
           <MenuItem value={1}>One</MenuItem>
           <MenuItem value={2}>Two</MenuItem>
           <MenuItem value={3}>Three</MenuItem>
