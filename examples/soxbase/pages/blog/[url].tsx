@@ -18,9 +18,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = HeaderProps &
-  FooterProps &
-  PageByUrlQuery & { urlkey: string; currentUrl: string } & BlogListProps
+type Props = HeaderProps & FooterProps & PageByUrlQuery & { urlkey: string } & BlogListProps
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
