@@ -18,10 +18,9 @@ import {
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
 import { RowQuoteFragment, RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
-import {
-  RowSpecialBannerFragment,
-  RowSpecialBannerFragmentDoc,
-} from '../RowSpecialBanner/RowSpecialBanner.gql'
+import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
+
+import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',
@@ -83,6 +82,7 @@ export type PageFragment = {
         RowProductBackstoryFragment)
     | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
     | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & RowQuoteFragment)
+    | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'>)
     | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'> &
         RowSpecialBannerFragment)
     | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)

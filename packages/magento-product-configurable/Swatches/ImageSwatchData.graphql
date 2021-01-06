@@ -1,0 +1,4 @@
+fragment ImageSwatchData on ImageSwatchData {
+  value
+  thumbnail
+}

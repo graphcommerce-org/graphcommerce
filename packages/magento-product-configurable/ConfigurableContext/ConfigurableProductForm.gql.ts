@@ -3,35 +3,24 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import * as Types from '@reachdigital/magento-graphql'
 
 import {
-  ProductListItem_VirtualProduct_Fragment,
-  ProductListItem_SimpleProduct_Fragment,
-  ProductListItem_DownloadableProduct_Fragment,
-  ProductListItem_BundleProduct_Fragment,
-  ProductListItem_GroupedProduct_Fragment,
-  ProductListItem_ConfigurableProduct_Fragment,
-  ProductListItemFragmentDoc,
-} from '../magento-product/ProductListItem/ProductListItem.gql'
-import {
-  SwatchData_ImageSwatchData_Fragment,
-  SwatchData_TextSwatchData_Fragment,
-  SwatchData_ColorSwatchData_Fragment,
-  SwatchDataFragmentDoc,
-} from './Swatches/SwatchData.gql'
+  ProductListItemSimpleFragment,
+  ProductListItemSimpleFragmentDoc,
+} from '../../magento-product-simple/ProductListItemSimple.gql'
 
-export const ProductListItemConfigurableFragmentDoc: DocumentNode<
-  ProductListItemConfigurableFragment,
+export const ConfigurableProductFormFragmentDoc: DocumentNode<
+  ConfigurableProductFormFragment,
   unknown
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'ProductListItemConfigurable' },
+      name: { kind: 'Name', value: 'ConfigurableProductForm' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ConfigurableProduct' } },
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductListItem' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'configurable_options' },
@@ -41,12 +30,16 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
                 { kind: 'Field', name: { kind: 'Name', value: 'attribute_code' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'position' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'use_default' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'product_id' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'values' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'use_default_value' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'store_label' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'value_index' } },
                       {
@@ -55,7 +48,21 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwatchData' } },
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                            {
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
+                                name: { kind: 'Name', value: 'ImageSwatchData' },
+                              },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'thumbnail' } },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -79,6 +86,8 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'code' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'value_index' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
                     ],
                   },
                 },
@@ -88,18 +97,9 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                       {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'small_image' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                          ],
-                        },
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'ProductListItemSimple' },
                       },
                     ],
                   },
@@ -110,23 +110,31 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
         ],
       },
     },
-    ...ProductListItemFragmentDoc.definitions,
-    ...SwatchDataFragmentDoc.definitions,
+    ...ProductListItemSimpleFragmentDoc.definitions,
   ],
 }
-export type ProductListItemConfigurableFragment = {
+export type ConfigurableProductFormFragment = Pick<Types.ConfigurableProduct, 'sku'> & {
   configurable_options?: Types.Maybe<
     Array<
       Types.Maybe<
-        Pick<Types.ConfigurableProductOptions, 'attribute_code' | 'id' | 'label'> & {
+        Pick<
+          Types.ConfigurableProductOptions,
+          'attribute_code' | 'id' | 'label' | 'position' | 'use_default' | 'product_id'
+        > & {
           values?: Types.Maybe<
             Array<
               Types.Maybe<
-                Pick<Types.ConfigurableProductOptionsValues, 'store_label' | 'value_index'> & {
+                Pick<
+                  Types.ConfigurableProductOptionsValues,
+                  'use_default_value' | 'store_label' | 'value_index'
+                > & {
                   swatch_data?: Types.Maybe<
-                    | SwatchData_ImageSwatchData_Fragment
-                    | SwatchData_TextSwatchData_Fragment
-                    | SwatchData_ColorSwatchData_Fragment
+                    | ({ __typename: 'ImageSwatchData' } & Pick<
+                        Types.ImageSwatchData,
+                        'thumbnail' | 'value'
+                      >)
+                    | ({ __typename: 'TextSwatchData' } & Pick<Types.TextSwatchData, 'value'>)
+                    | ({ __typename: 'ColorSwatchData' } & Pick<Types.ColorSwatchData, 'value'>)
                   >
                 }
               >
@@ -140,14 +148,14 @@ export type ProductListItemConfigurableFragment = {
     Array<
       Types.Maybe<{
         attributes?: Types.Maybe<
-          Array<Types.Maybe<Pick<Types.ConfigurableAttributeOption, 'code' | 'value_index'>>>
+          Array<
+            Types.Maybe<
+              Pick<Types.ConfigurableAttributeOption, 'code' | 'value_index' | 'label' | 'uid'>
+            >
+          >
         >
-        product?: Types.Maybe<
-          Pick<Types.SimpleProduct, 'sku' | 'name'> & {
-            small_image?: Types.Maybe<Pick<Types.ProductImage, 'label' | 'url'>>
-          }
-        >
+        product?: Types.Maybe<ProductListItemSimpleFragment>
       }>
     >
   >
-} & ProductListItem_ConfigurableProduct_Fragment
+}

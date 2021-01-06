@@ -409,6 +409,7 @@ export type PageByUrlQuery = {
       | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
             quote: Pick<Types.RichText, 'raw'>
           })
+      | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'>)
       | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
             asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
             copy: Pick<Types.RichText, 'raw'>

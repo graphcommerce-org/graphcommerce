@@ -1,0 +1,3 @@
+fragment ColorSwatchData on ColorSwatchData {
+  value
+}

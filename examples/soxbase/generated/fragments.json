@@ -14,6 +14,7 @@
       "RowProductBackstory",
       "RowProductGrid",
       "RowQuote",
+      "RowServiceOptions",
       "RowSpecialBanner",
       "RowSwipeableGrid"
     ],
@@ -26,6 +27,7 @@
       "RowProductBackstory",
       "RowProductGrid",
       "RowQuote",
+      "RowServiceOptions",
       "RowSpecialBanner",
       "RowSwipeableGrid"
     ],

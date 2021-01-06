@@ -1,0 +1,6 @@
+fragment SwatchData on SwatchDataInterface {
+  __typename
+  ...TextSwatchData
+  ...ColorSwatchData
+  ...ImageSwatchData
+}

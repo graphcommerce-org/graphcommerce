@@ -2,6 +2,8 @@ import { Container, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
+import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
+import ConfigurableOptions from '@reachdigital/magento-product-configurable/ConfigurableOptions'
 import {
   ProductConfigurableDocument,
   ProductConfigurableQuery,
@@ -45,46 +47,50 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
-  const asdf = configurableProducts?.items?.[0]?.options
+  const configurableProduct = configurableProducts?.items?.[0]
 
   // console.log(productAdditionals?.items?.[0]?.upsell_products)
 
-  if (!product) return <NextError statusCode={404} title='Product not found' />
+  if (!product || !configurableProduct?.sku)
+    return <NextError statusCode={404} title='Product not found' />
 
   const category = productPageCategory(product)
   return (
     <>
-      <ProductPageMeta {...product} />
-      <BottomDrawerUi
-        title={product.name ?? ''}
-        backFallbackHref={`/${category?.url_path}`}
-        backFallbackTitle={category?.name}
-      >
-        <Container>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-          <ProductPageDescription {...product} />
-          <ProductPageGallery {...product} />
-          {pages?.[0] && <Page {...pages?.[0]} />}
+      <ConfigurableContextProvider {...configurableProduct} sku={configurableProduct.sku}>
+        <ProductPageMeta {...product} />
+        <BottomDrawerUi
+          title={product.name ?? ''}
+          backFallbackHref={`/${category?.url_path}`}
+          backFallbackTitle={category?.name}
+        >
+          <Container>
+            <AddToCartButton
+              mutation={ProductAddToCartDocument}
+              variables={{ sku: product.sku ?? '', quantity: 1 }}
+            />
+            <ConfigurableOptions sku={configurableProduct.sku} />
+            <ProductPageDescription {...product} />
+            <ProductPageGallery {...product} />
+            {pages?.[0] && <Page {...pages?.[0]} />}
 
-          {productAdditionals?.items?.[0]?.upsell_products ? (
-            <>
-              {/* todo: create a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Upsells</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
-            </>
-          ) : null}
-          {productAdditionals?.items?.[0]?.related_products ? (
-            <>
-              {/* todo: reate a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Related</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
-            </>
-          ) : null}
-        </Container>
-      </BottomDrawerUi>
+            {productAdditionals?.items?.[0]?.upsell_products ? (
+              <>
+                {/* todo: create a component where we can compose in the ProductListItems */}
+                <Typography variant='h2'>Upsells</Typography>
+                <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
+              </>
+            ) : null}
+            {productAdditionals?.items?.[0]?.related_products ? (
+              <>
+                {/* todo: reate a component where we can compose in the ProductListItems */}
+                <Typography variant='h2'>Related</Typography>
+                <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
+              </>
+            ) : null}
+          </Container>
+        </BottomDrawerUi>
+      </ConfigurableContextProvider>
     </>
   )
 }

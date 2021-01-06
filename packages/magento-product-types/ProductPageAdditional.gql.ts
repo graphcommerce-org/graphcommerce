@@ -257,8 +257,42 @@ export const ProductPageAdditionalDocument: DocumentNode<
                                                       name: { kind: 'Name', value: '__typename' },
                                                     },
                                                     {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
+                                                      kind: 'InlineFragment',
+                                                      typeCondition: {
+                                                        kind: 'NamedType',
+                                                        name: {
+                                                          kind: 'Name',
+                                                          value: 'TextSwatchData',
+                                                        },
+                                                      },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: { kind: 'Name', value: 'value' },
+                                                          },
+                                                        ],
+                                                      },
+                                                    },
+                                                    {
+                                                      kind: 'InlineFragment',
+                                                      typeCondition: {
+                                                        kind: 'NamedType',
+                                                        name: {
+                                                          kind: 'Name',
+                                                          value: 'ColorSwatchData',
+                                                        },
+                                                      },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: { kind: 'Name', value: 'value' },
+                                                          },
+                                                        ],
+                                                      },
                                                     },
                                                     {
                                                       kind: 'InlineFragment',
@@ -272,6 +306,10 @@ export const ProductPageAdditionalDocument: DocumentNode<
                                                       selectionSet: {
                                                         kind: 'SelectionSet',
                                                         selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: { kind: 'Name', value: 'value' },
+                                                          },
                                                           {
                                                             kind: 'Field',
                                                             name: {
@@ -554,8 +592,42 @@ export const ProductPageAdditionalDocument: DocumentNode<
                                                       name: { kind: 'Name', value: '__typename' },
                                                     },
                                                     {
-                                                      kind: 'Field',
-                                                      name: { kind: 'Name', value: 'value' },
+                                                      kind: 'InlineFragment',
+                                                      typeCondition: {
+                                                        kind: 'NamedType',
+                                                        name: {
+                                                          kind: 'Name',
+                                                          value: 'TextSwatchData',
+                                                        },
+                                                      },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: { kind: 'Name', value: 'value' },
+                                                          },
+                                                        ],
+                                                      },
+                                                    },
+                                                    {
+                                                      kind: 'InlineFragment',
+                                                      typeCondition: {
+                                                        kind: 'NamedType',
+                                                        name: {
+                                                          kind: 'Name',
+                                                          value: 'ColorSwatchData',
+                                                        },
+                                                      },
+                                                      selectionSet: {
+                                                        kind: 'SelectionSet',
+                                                        selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: { kind: 'Name', value: 'value' },
+                                                          },
+                                                        ],
+                                                      },
                                                     },
                                                     {
                                                       kind: 'InlineFragment',
@@ -569,6 +641,10 @@ export const ProductPageAdditionalDocument: DocumentNode<
                                                       selectionSet: {
                                                         kind: 'SelectionSet',
                                                         selections: [
+                                                          {
+                                                            kind: 'Field',
+                                                            name: { kind: 'Name', value: 'value' },
+                                                          },
                                                           {
                                                             kind: 'Field',
                                                             name: {
@@ -809,7 +885,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -1006,7 +1082,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -1205,7 +1281,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -1402,7 +1478,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -1601,7 +1677,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -1798,7 +1874,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -1997,7 +2073,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -2194,7 +2270,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -2393,7 +2469,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -2590,7 +2666,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -2789,7 +2865,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,
@@ -2986,7 +3062,7 @@ export type ProductPageAdditionalQuery = {
                                           swatch_data?: Types.Maybe<
                                             | ({ __typename: 'ImageSwatchData' } & Pick<
                                                 Types.ImageSwatchData,
-                                                'thumbnail' | 'value'
+                                                'value' | 'thumbnail'
                                               >)
                                             | ({ __typename: 'TextSwatchData' } & Pick<
                                                 Types.TextSwatchData,

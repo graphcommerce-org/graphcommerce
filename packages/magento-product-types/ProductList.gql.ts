@@ -303,8 +303,36 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                                 name: { kind: 'Name', value: '__typename' },
                                               },
                                               {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'value' },
+                                                kind: 'InlineFragment',
+                                                typeCondition: {
+                                                  kind: 'NamedType',
+                                                  name: { kind: 'Name', value: 'TextSwatchData' },
+                                                },
+                                                selectionSet: {
+                                                  kind: 'SelectionSet',
+                                                  selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: { kind: 'Name', value: 'value' },
+                                                    },
+                                                  ],
+                                                },
+                                              },
+                                              {
+                                                kind: 'InlineFragment',
+                                                typeCondition: {
+                                                  kind: 'NamedType',
+                                                  name: { kind: 'Name', value: 'ColorSwatchData' },
+                                                },
+                                                selectionSet: {
+                                                  kind: 'SelectionSet',
+                                                  selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: { kind: 'Name', value: 'value' },
+                                                    },
+                                                  ],
+                                                },
                                               },
                                               {
                                                 kind: 'InlineFragment',
@@ -315,6 +343,10 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                                                 selectionSet: {
                                                   kind: 'SelectionSet',
                                                   selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: { kind: 'Name', value: 'value' },
+                                                    },
                                                     {
                                                       kind: 'Field',
                                                       name: { kind: 'Name', value: 'thumbnail' },
@@ -609,7 +641,7 @@ export type ProductListQuery = {
                                   swatch_data?: Types.Maybe<
                                     | ({ __typename: 'ImageSwatchData' } & Pick<
                                         Types.ImageSwatchData,
-                                        'thumbnail' | 'value'
+                                        'value' | 'thumbnail'
                                       >)
                                     | ({ __typename: 'TextSwatchData' } & Pick<
                                         Types.TextSwatchData,

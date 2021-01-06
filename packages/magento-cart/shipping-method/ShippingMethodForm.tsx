@@ -60,7 +60,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             rules={{ required: 'Please select a shipping method' }}
             render={({ onChange, value, onBlur }) => (
               <ToggleButtonGroup
-                aria-label='text formatting'
+                aria-label='Shipping Method'
                 onChange={(_, val: string) => {
                   onChange(val)
                   setValue('carrier', val.split('-')?.[0])

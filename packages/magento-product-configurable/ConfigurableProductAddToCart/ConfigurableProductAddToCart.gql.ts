@@ -2,16 +2,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const AddConfigurableProductToCartDocument: DocumentNode<
-  AddConfigurableProductToCartMutation,
-  AddConfigurableProductToCartMutationVariables
+export const ConfigurableProductAddToCartDocument: DocumentNode<
+  ConfigurableProductAddToCartMutation,
+  ConfigurableProductAddToCartMutationVariables
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'AddConfigurableProductToCart' },
+      name: { kind: 'Name', value: 'ConfigurableProductAddToCart' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -23,7 +23,7 @@ export const AddConfigurableProductToCartDocument: DocumentNode<
         },
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'variantSku' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'sku' } },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
@@ -45,10 +45,10 @@ export const AddConfigurableProductToCartDocument: DocumentNode<
         },
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'customizableOptions' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'enteredOptions' } },
           type: {
             kind: 'ListType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'CustomizableOptionInput' } },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'EnteredOptionInput' } },
           },
           defaultValue: { kind: 'ListValue', values: [] },
         },
@@ -58,73 +58,46 @@ export const AddConfigurableProductToCartDocument: DocumentNode<
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'addConfigurableProductsToCart' },
+            name: { kind: 'Name', value: 'addProductsToCart' },
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'input' },
+                name: { kind: 'Name', value: 'cartId' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'cartId' } },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'cartItems' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
+                  kind: 'ListValue',
+                  values: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'cart_id' },
-                      value: { kind: 'Variable', name: { kind: 'Name', value: 'cartId' } },
-                    },
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'cart_items' },
-                      value: {
-                        kind: 'ListValue',
-                        values: [
-                          {
-                            kind: 'ObjectValue',
-                            fields: [
-                              {
-                                kind: 'ObjectField',
-                                name: { kind: 'Name', value: 'data' },
-                                value: {
-                                  kind: 'ObjectValue',
-                                  fields: [
-                                    {
-                                      kind: 'ObjectField',
-                                      name: { kind: 'Name', value: 'quantity' },
-                                      value: {
-                                        kind: 'Variable',
-                                        name: { kind: 'Name', value: 'quantity' },
-                                      },
-                                    },
-                                    {
-                                      kind: 'ObjectField',
-                                      name: { kind: 'Name', value: 'sku' },
-                                      value: {
-                                        kind: 'Variable',
-                                        name: { kind: 'Name', value: 'variantSku' },
-                                      },
-                                    },
-                                  ],
-                                },
-                              },
-                              {
-                                kind: 'ObjectField',
-                                name: { kind: 'Name', value: 'customizable_options' },
-                                value: {
-                                  kind: 'Variable',
-                                  name: { kind: 'Name', value: 'customizableOptions' },
-                                },
-                              },
-                              {
-                                kind: 'ObjectField',
-                                name: { kind: 'Name', value: 'parent_sku' },
-                                value: {
-                                  kind: 'Variable',
-                                  name: { kind: 'Name', value: 'parentSku' },
-                                },
-                              },
-                            ],
+                      kind: 'ObjectValue',
+                      fields: [
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'sku' },
+                          value: { kind: 'Variable', name: { kind: 'Name', value: 'sku' } },
+                        },
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'parent_sku' },
+                          value: { kind: 'Variable', name: { kind: 'Name', value: 'parentSku' } },
+                        },
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'quantity' },
+                          value: { kind: 'Variable', name: { kind: 'Name', value: 'quantity' } },
+                        },
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'entered_options' },
+                          value: {
+                            kind: 'Variable',
+                            name: { kind: 'Name', value: 'enteredOptions' },
                           },
-                        ],
-                      },
+                        },
+                      ],
                     },
                   ],
                 },
@@ -517,6 +490,17 @@ export const AddConfigurableProductToCartDocument: DocumentNode<
                     ],
                   },
                 },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'user_errors' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'message' } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -525,16 +509,16 @@ export const AddConfigurableProductToCartDocument: DocumentNode<
     },
   ],
 }
-export type AddConfigurableProductToCartMutationVariables = Types.Exact<{
+export type ConfigurableProductAddToCartMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
-  variantSku: Types.Scalars['String']
+  sku: Types.Scalars['String']
   parentSku: Types.Scalars['String']
   quantity?: Types.Maybe<Types.Scalars['Float']>
-  customizableOptions?: Types.Maybe<Array<Types.Maybe<Types.CustomizableOptionInput>>>
+  enteredOptions?: Types.Maybe<Array<Types.Maybe<Types.EnteredOptionInput>>>
 }>
 
-export type AddConfigurableProductToCartMutation = {
-  addConfigurableProductsToCart?: Types.Maybe<{
+export type ConfigurableProductAddToCartMutation = {
+  addProductsToCart?: Types.Maybe<{
     cart: { __typename: 'Cart' } & Pick<
       Types.Cart,
       'id' | 'email' | 'total_quantity' | 'is_virtual'
@@ -801,5 +785,6 @@ export type AddConfigurableProductToCartMutation = {
           >
         >
       }
+    user_errors: Array<Types.Maybe<Pick<Types.CartUserInputError, 'code' | 'message'>>>
   }>
 }

@@ -158,6 +158,7 @@ defaultTheme.overrides = {
       '& > *:first-child': { fontSize: 24 },
     },
     outlined: {
+      // todo: Button isn't rounded on all places, but should be on homepage?
       borderRadius: 0,
     },
   },

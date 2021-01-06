@@ -8,11 +8,7 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
       store_label
       value_index
       swatch_data {
-        __typename
-        value
-        ... on ImageSwatchData {
-          thumbnail
-        }
+        ...SwatchData
       }
     }
   }
