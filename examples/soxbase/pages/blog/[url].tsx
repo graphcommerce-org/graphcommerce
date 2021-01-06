@@ -69,7 +69,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const footer = staticClient.query({ query: FooterDocument })
   const BlogPosts = staticClient.query({
     query: BlogListDocument,
-    variables: { currentUrl: `blog/${urlKey}` },
+    variables: { currentUrl: [`blog/${urlKey}`, 'blog/index'] },
   })
 
   const page = staticClient.query({
