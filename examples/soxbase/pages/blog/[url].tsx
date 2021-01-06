@@ -61,13 +61,14 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const urlKey = params?.url ?? '??'
   const client = apolloClient(localeToStore(locale))
   const staticClient = apolloClient(localeToStore(locale))
+  const limit = urlKey === 'index' ? 100 : 4
 
   const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const footer = staticClient.query({ query: FooterDocument })
   const BlogPosts = staticClient.query({
     query: BlogListDocument,
-    variables: { currentUrl: [`blog/${urlKey}`, 'blog/index'] },
+    variables: { currentUrl: [`blog/${urlKey}`, 'blog/index'], first: limit },
   })
 
   const page = staticClient.query({
