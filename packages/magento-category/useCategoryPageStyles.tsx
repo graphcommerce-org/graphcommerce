@@ -85,13 +85,12 @@ const useCategoryPageStyles = makeStyles(
     filterContainerComposite: {
       boxShadow: theme.shadows[2],
       background: theme.palette.background.default,
-      padding: '16px 16px',
       borderRadius: 50,
       display: 'block',
       position: 'absolute',
       top: 0,
       width: '100%',
-      height: 54,
+      height: 64,
       marginLeft: -16,
       [theme.breakpoints.down('sm')]: {
         opacity: 1,
@@ -107,26 +106,35 @@ const useCategoryPageStyles = makeStyles(
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
-      [theme.breakpoints.up('md')]: {
-        marginTop: -6,
-      },
       [theme.breakpoints.down('sm')]: {
         overflowX: 'scroll',
-        paddingBottom: 6,
+        paddingBottom: 12,
+        paddingTop: 6,
       },
     },
     filtersSticky: {
       flexWrap: 'nowrap',
       justifyContent: 'center',
-      [theme.breakpoints.down('xs')]: {
-        justifyContent: 'left',
+      [theme.breakpoints.down('sm')]: {
+        float: 'right',
+        justifyContent: 'end',
+        maxWidth: '78%',
         marginRight: `calc(${theme.page.horizontal} * -1)`,
+        '& > div > div': {
+          marginTop: 0,
+        },
+      },
+      [theme.breakpoints.down('xs')]: {
+        maxWidth: '92%',
       },
     },
     filterItem: {
       marginRight: responsiveVal(2, 4),
       marginLeft: responsiveVal(2, 4),
-      marginBottom: responsiveVal(4, 8),
+      marginTop: 0,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 6,
+      },
     },
     items: {
       gridArea: 'items',

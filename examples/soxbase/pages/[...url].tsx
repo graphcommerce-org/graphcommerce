@@ -1,6 +1,7 @@
 import { performance } from 'perf_hooks'
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
@@ -26,9 +27,11 @@ import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
-import { m, useTransform, useViewportScroll } from 'framer-motion'
 import NextError from 'next/error'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import HeaderActions from '../components/HeaderActions/HeaderActions'
+import Logo from '../components/Logo/Logo'
+import MobileMenu from '../components/MobileMenu/MobileMenu'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
@@ -85,8 +88,9 @@ function CategoryPage(props: Props) {
     return <NextError statusCode={503} title='Loading skeleton' />
 
   const category = categories.items[0]
-
+  const parentCategory = categories.items[0].breadcrumbs?.[0]
   let content: React.ReactNode
+
   if (
     (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) ||
     categories.items[0].display_mode === 'PAGE'
@@ -130,8 +134,15 @@ function CategoryPage(props: Props) {
   }
 
   return (
-    <FullPageUi title={category.name ?? ''}>
-      <Header menu={menu} urlResolver={urlResolver} />
+    <FullPageUi
+      title={category.name ?? ''}
+      backFallbackTitle={parentCategory?.category_name ?? ''}
+      backFallbackHref={parentCategory?.category_url_path ?? ''}
+      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+      logo={<Logo />}
+      actions={<HeaderActions />}
+    >
+      <MobileMenu menu={menu} urlResolver={urlResolver} />
       <CategoryMeta {...category} />
       {pages?.[0] && <Page {...pages?.[0]} />}
       {content}

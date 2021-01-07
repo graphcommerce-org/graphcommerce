@@ -212,16 +212,14 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
                 <m.div className={classes.dragHandle} style={{ opacity }} />
 
                 <div className={classes.headerBack}>
-                  <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                  <NoSsr fallback={<BackButton>Home</BackButton>}>
                     {prevPage?.title ? (
                       <BackButton onClick={back} down={prevPage === upPage}>
                         {prevPage.title}
                       </BackButton>
                     ) : (
                       <PageLink href={backFallbackHref ?? '/'}>
-                        <BackButton className={classes.headerBack}>
-                          {backFallbackTitle ?? 'Home'}
-                        </BackButton>
+                        <BackButton>{backFallbackTitle ?? 'Home'}</BackButton>
                       </PageLink>
                     )}
                   </NoSsr>

@@ -1,6 +1,7 @@
 import { Button, Container } from '@material-ui/core'
 import Footer, { FooterProps } from '@reachdigital/magento-app-shell/Footer'
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -13,7 +14,10 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
-import Page, { PageProps } from '../../components/Page'
+import HeaderActions from '../../components/HeaderActions/HeaderActions'
+import Logo from '../../components/Logo/Logo'
+import MobileMenu from '../../components/MobileMenu/MobileMenu'
+import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
@@ -26,8 +30,13 @@ function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
-    <FullPageUi title={title}>
-      <Header menu={menu} urlResolver={urlResolver} />
+    <FullPageUi
+      title={title}
+      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+      logo={<Logo />}
+      actions={<HeaderActions />}
+    >
+      <MobileMenu menu={menu} urlResolver={urlResolver} />
       <Container>
         {url === 'index' ? (
           <PageLink href='/test/deeper'>

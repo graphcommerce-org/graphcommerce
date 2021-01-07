@@ -1,4 +1,5 @@
 import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { CmsPageDocument, CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
@@ -14,6 +15,9 @@ import NextError from 'next/error'
 import React from 'react'
 import Footer, { FooterProps } from '../../components/Footer'
 import { FooterDocument } from '../../components/Footer/Footer.gql'
+import HeaderActions from '../../components/HeaderActions/HeaderActions'
+import Logo from '../../components/Logo/Logo'
+import MobileMenu from '../../components/MobileMenu/MobileMenu'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
@@ -29,8 +33,13 @@ const CmsPage = ({ cmsPage, menu, urlResolver, pages, footer }: Props) => {
   if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
 
   return (
-    <FullPageUi title={cmsPage.title ?? ''}>
-      <Header menu={menu} urlResolver={urlResolver} />
+    <FullPageUi
+      title={cmsPage.title ?? ''}
+      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+      logo={<Logo />}
+      actions={<HeaderActions />}
+    >
+      <MobileMenu menu={menu} urlResolver={urlResolver} />
       <CmsPageMeta {...cmsPage} />
       {pages?.[0] ? <Page {...pages?.[0]} /> : <CmsPageContent {...cmsPage} />}
       <Footer footer={footer} />

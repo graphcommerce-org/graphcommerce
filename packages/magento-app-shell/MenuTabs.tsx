@@ -8,6 +8,15 @@ const useTabsStyles = makeStyles(
     root: {
       margin: 0,
       padding: 0,
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.up('md')]: {
+        pointerEvents: 'all',
+        marginLeft: `calc(${theme.spacings.xxs} * -1)`,
+        marginRight: `calc(${theme.spacings.xxs} * -1)`,
+        flexGrow: 1,
+      },
     },
     indicator: {
       display: 'flex',

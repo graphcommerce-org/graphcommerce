@@ -1,5 +1,6 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
+import clsx from 'clsx'
 import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
@@ -45,7 +46,7 @@ const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
     <Button
       variant='pill'
       classes={{
-        root: classes.root,
+        root: clsx(classes.root, props.className),
         pill: classes.root,
       }}
       aria-label='Previous page'
