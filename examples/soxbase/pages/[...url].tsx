@@ -16,7 +16,9 @@ import getCategoryPageProps, {
 } from '@reachdigital/magento-product-types/getCategoryPageProps'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
+import ProductListFiltersContainer, {
+  useProductListFiltersStyles,
+} from '@reachdigital/magento-product/ProductListFiltersContainer'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
@@ -82,6 +84,7 @@ const useProductListStyles = makeStyles(
 function CategoryPage(props: Props) {
   const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
+  const filterClasses = useProductListFiltersStyles(props)
   const { categories, products, filters, params, filterTypes, menu, urlResolver, pages } = props
 
   if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
@@ -114,11 +117,14 @@ function CategoryPage(props: Props) {
           </div>
 
           <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
+            <ProductListSort
+              sort_fields={products.sort_fields}
+              className={filterClasses.filterItem}
+            />
             <ProductListFilters
               aggregations={filters.aggregations}
               filterTypes={filterTypes}
-              className={classes.filterItem}
+              className={filterClasses.filterItem}
             />
           </ProductListFiltersContainer>
 
@@ -136,8 +142,8 @@ function CategoryPage(props: Props) {
   return (
     <FullPageUi
       title={category.name ?? ''}
-      backFallbackTitle={parentCategory?.category_name ?? ''}
-      backFallbackHref={parentCategory?.category_url_path ?? ''}
+      backFallbackTitle={parentCategory?.category_name ?? undefined}
+      backFallbackHref={parentCategory?.category_url_path ?? undefined}
       menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
       logo={<Logo />}
       actions={<HeaderActions />}

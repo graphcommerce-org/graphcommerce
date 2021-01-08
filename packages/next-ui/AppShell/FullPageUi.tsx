@@ -1,6 +1,13 @@
-import { makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, MotionProps } from 'framer-motion'
+import {
+  m,
+  MotionProps,
+  useMotionTemplate,
+  useMotionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
 import { useRouter } from 'next/router'
 import React from 'react'
 import PageLink from '../PageTransition/PageLink'
@@ -18,8 +25,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     backButtonRoot: {
       position: 'fixed',
-      top: 105, // TODO (yvo): measure header height + y amount of spacing
-      background: theme.palette.background.default,
+      top: 105, // TODO (yvo): use dynamic value (header height + top margin)
       left: theme.page.horizontal,
       zIndex: 10,
       [theme.breakpoints.down('sm')]: {
@@ -59,6 +65,13 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const { offsetProps, inFront, hold, prevPage } = pageTransition
   const router = useRouter()
   const classes = useStyles()
+  const theme = useTheme()
+
+  const { scrollY } = useViewportScroll()
+  const backButtonAnimLeftOffPercent = 50
+  const backButtonAnimLeft = useTransform(scrollY, [-50, 80], [0, backButtonAnimLeftOffPercent])
+  const themePageHorizontal = useMotionValue(theme.page.horizontal)
+  const backButtonAnimLeftTemplate = useMotionTemplate`calc(${themePageHorizontal} - (${themePageHorizontal} * (${backButtonAnimLeft} / 100)))`
 
   const contentAnimation: MotionProps = !hold
     ? {
@@ -77,19 +90,21 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
       <m.div {...offsetProps}>
         <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }} {...contentAnimation}>
           {router.pathname !== '/' && (
-            <NoSsr fallback={<BackButton>{backFallbackTitle ?? 'Home'}</BackButton>}>
-              {prevPage?.title ? (
-                <BackButton onClick={() => router.back()} className={classes.backButtonRoot}>
-                  <span className={classes.backButtonText}>{prevPage.title}</span>
-                </BackButton>
-              ) : (
-                <PageLink href={backFallbackHref ?? '/'}>
-                  <BackButton className={classes.backButtonRoot}>
-                    <span className={classes.backButtonText}>{backFallbackTitle ?? 'Home'}</span>
+            <m.div className={classes.backButtonRoot} style={{ left: backButtonAnimLeftTemplate }}>
+              <NoSsr fallback={<BackButton>{backFallbackTitle ?? 'Home'}</BackButton>}>
+                {prevPage?.title ? (
+                  <BackButton onClick={() => router.back()}>
+                    <span className={classes.backButtonText}>{prevPage.title}</span>
                   </BackButton>
-                </PageLink>
-              )}
-            </NoSsr>
+                ) : (
+                  <PageLink href={backFallbackHref ?? '/'}>
+                    <BackButton>
+                      <span className={classes.backButtonText}>{backFallbackTitle ?? 'Home'}</span>
+                    </BackButton>
+                  </PageLink>
+                )}
+              </NoSsr>
+            </m.div>
           )}
 
           <m.header

@@ -11,7 +11,12 @@ const useBadgeStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-function CustomerFabContent({ customerToken }: CustomerTokenQuery) {
+type CustomerFabContentProps = {
+  icon?: React.ReactNode
+} & CustomerTokenQuery
+
+function CustomerFabContent(props: CustomerFabContentProps) {
+  const { customerToken, icon } = props
   const badgeClasses = useBadgeStyles()
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
@@ -24,19 +29,19 @@ function CustomerFabContent({ customerToken }: CustomerTokenQuery) {
           variant='dot'
           classes={badgeClasses}
         >
-          <PersonIcon color='inherit' />
+          {icon ?? <PersonIcon color='inherit' />}
         </Badge>
       </IconButton>
     </PageLink>
   )
 }
 
-export default function CustomerFab() {
+export default function CustomerFab(props: CustomerFabContentProps) {
   const { data } = useQuery(CustomerTokenDocument)
 
   return (
     <NoSsr fallback={<CustomerFabContent />}>
-      <CustomerFabContent customerToken={data?.customerToken} />
+      <CustomerFabContent customerToken={data?.customerToken} {...props} />
     </NoSsr>
   )
 }

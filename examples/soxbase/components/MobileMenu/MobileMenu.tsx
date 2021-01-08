@@ -21,11 +21,11 @@ const useStyles = makeStyles(
       },
       display: 'flex',
       justifyContent: 'space-between',
-      zIndex: theme.zIndex.appBar,
+      zIndex: 8,
       position: 'fixed',
       bottom: theme.page.vertical,
-      paddingLeft: theme.page.horizontal,
-      paddingRight: theme.page.horizontal,
+      paddingLeft: `calc(${theme.page.horizontal} * .5)`,
+      paddingRight: `calc(${theme.page.horizontal} * .5)`,
       width: '100%',
       '& > *': {
         pointerEvents: 'all',
@@ -34,7 +34,7 @@ const useStyles = makeStyles(
     cartFab: {
       '& a': {
         boxShadow: theme.shadows[2],
-        padding: 28,
+        padding: 20,
       },
     },
   }),
@@ -49,7 +49,7 @@ export default function MobileMenu(props: MobileMenuProps) {
 
   const { scrollY } = useViewportScroll()
   const actionsAnimOpacity = useTransform(scrollY, [50, 130], [0, 1])
-  const actionsAnimTop = useTransform(scrollY, [-50, 80], [-50, 10])
+  const actionsAnimTop = useTransform(scrollY, [-100, 80], [-100, 10])
 
   return (
     <m.div
@@ -58,7 +58,17 @@ export default function MobileMenu(props: MobileMenuProps) {
     >
       <MenuFab menu={menu} urlResolver={urlResolver} />
       <div className={classes.cartFab}>
-        <CartFab />
+        <CartFab
+          icon={
+            <img
+              src='/icons/shopping_bag.svg'
+              alt='shopping bag'
+              width={20}
+              height={20}
+              loading='eager'
+            />
+          }
+        />
       </div>
     </m.div>
   )

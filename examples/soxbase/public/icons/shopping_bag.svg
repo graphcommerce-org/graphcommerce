@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Shoppingbag</title>
-    <g id="Shoppingbag" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Group-8" transform="translate(12.000000, 11.000000)" stroke="#000000" stroke-width="1.3">
+<svg width="17px" height="20px" viewBox="0 0 17 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Shoppingbag 2</title>
+    <g id="Shoppingbag-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-8" transform="translate(0.000000, 1.000000)" stroke="#000000" stroke-width="1.3">
             <path d="M14.7678479,5.83513979 L15.6003583,18.05354 L0.695795328,18.05354 L1.52830574,5.83513979 L14.7678479,5.83513979 Z" id="Rectangle-6"></path>
             <path d="M4.44440553,6.953 L4.44440553,3.45520279 C4.44440553,1.54694698 5.94589541,0 7.79807703,0 C9.65025866,0 11.1517485,1.54694698 11.1517485,3.45520279 L11.1517485,6.94977665" id="Path" stroke-linecap="square" stroke-linejoin="bevel"></path>
         </g>

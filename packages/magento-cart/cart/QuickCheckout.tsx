@@ -15,9 +15,9 @@ const useStyles = makeStyles(
     },
     img: {
       display: 'block',
-      margin: '0 auto',
-      width: responsiveVal(56, 72),
-      height: responsiveVal(56, 72),
+      margin: `0 auto ${theme.spacings.xxs} auto`,
+      width: responsiveVal(48, 64),
+      height: responsiveVal(48, 64),
     },
     total: {
       fontWeight: 700,
@@ -59,10 +59,10 @@ export default function QuickCheckout(props: QuickCheckoutProps) {
     <div className={classes.quickCheckoutContainer}>
       <img
         src='/icons/shopping_bag.svg'
-        alt='Shopping Bag'
+        alt='shopping bag'
         className={classes.img}
-        width={72}
-        height={72}
+        width={64}
+        height={64}
         loading='eager'
       />
       <span className={classes.total}>Cart Total: {total && <Money {...total} />}</span>

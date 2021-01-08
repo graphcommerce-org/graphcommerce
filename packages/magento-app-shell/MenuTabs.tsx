@@ -13,8 +13,8 @@ const useTabsStyles = makeStyles(
       },
       [theme.breakpoints.up('md')]: {
         pointerEvents: 'all',
-        marginLeft: `calc(${theme.spacings.xxs} * -1)`,
-        marginRight: `calc(${theme.spacings.xxs} * -1)`,
+        // marginLeft: `calc(${theme.spacings.xxs} * -1)`,
+        // marginRight: `calc(${theme.spacings.xxs} * -1)`,
         flexGrow: 1,
       },
     },

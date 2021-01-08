@@ -12,7 +12,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     menuOpen: {
       background: theme.palette.primary.contrastText,
-      padding: 28,
+      padding: 20,
       boxShadow: theme.shadows[2],
       '&:hover, &:focus': {
         background: theme.palette.primary.contrastText,

@@ -5,12 +5,18 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
 import { ClientCartDocument } from './ClientCart.gql'
 
-type CartFabProps = { asIcon?: boolean }
+type CartFabProps = {
+  qty?: number
+  asIcon?: boolean
+  icon?: React.ReactNode
+}
 
-function CartFabContent({ qty, asIcon }: CartFabProps & { qty?: number }) {
+function CartFabContent(props: CartFabProps) {
+  const { qty, asIcon, icon } = props
+
   const badge = (
     <Badge badgeContent={qty || 0} color='primary' variant='dot'>
-      <CartIcon />
+      {icon ?? <CartIcon />}
     </Badge>
   )
 

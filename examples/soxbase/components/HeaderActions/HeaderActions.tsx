@@ -9,6 +9,7 @@ import React from 'react'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     actions: {
+      marginRight: responsiveVal(-10, -6),
       '& > *': {
         pointerEvents: 'all',
       },
@@ -17,9 +18,6 @@ const useStyles = makeStyles(
         marginLeft: `${theme.spacings.sm}`,
         '& > *': {
           marginLeft: responsiveVal(0, 20),
-        },
-        '& :first-child': {
-          marginLeft: 0,
         },
       },
     },
@@ -41,8 +39,21 @@ export default function HeaderActions() {
   return (
     <div className={clsx(classes.actions, classes.desktopActions)}>
       <SearchButton />
-      <CustomerFab />
-      <CartFab asIcon />
+      <CustomerFab
+        icon={<img src='/icons/account.svg' alt='account' width={20} height={20} loading='eager' />}
+      />
+      <CartFab
+        asIcon
+        icon={
+          <img
+            src='/icons/shopping_bag.svg'
+            alt='shopping bag'
+            width={20}
+            height={20}
+            loading='eager'
+          />
+        }
+      />
     </div>
   )
 }
