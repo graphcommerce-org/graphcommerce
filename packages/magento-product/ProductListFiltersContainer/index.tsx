@@ -54,6 +54,7 @@ export const useProductListFiltersStyles = makeStyles(
         overflowX: 'scroll',
         paddingBottom: 12,
         paddingTop: 6,
+        marginTop: -6,
       },
     },
     filtersSticky: {
