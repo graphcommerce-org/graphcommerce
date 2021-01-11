@@ -2,8 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
-import { ReactNode, useEffect, useRef, useState } from 'react'
-// import useResizeObserver from 'use-resize-observer'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 
 type ProductListFiltersContainerProps = React.PropsWithChildren<ReactNode>
 
@@ -15,11 +14,12 @@ export const useProductListFiltersStyles = makeStyles(
       top: 10,
       zIndex: 9,
       margin: '0 auto',
-      height: 90,
+      maxWidth: '75%',
       [theme.breakpoints.down('sm')]: {
-        width: '100%',
         textAlign: 'center',
         padding: 0,
+        margin: 'unset',
+        maxWidth: 'unset',
       },
       [theme.breakpoints.down('xs')]: {
         textAlign: 'center',
@@ -48,26 +48,25 @@ export const useProductListFiltersStyles = makeStyles(
     filters: {
       display: 'flex',
       flexWrap: 'wrap',
-      marginTop: 10,
+      marginTop: 4,
       justifyContent: 'center',
       [theme.breakpoints.down('sm')]: {
         overflowX: 'scroll',
         paddingBottom: 12,
         paddingTop: 6,
-        marginTop: -6,
+        marginTop: -12,
       },
     },
     filtersSticky: {
       flexWrap: 'nowrap',
-      justifyContent: 'center',
+      justifyContent: 'left',
+      overflowX: 'scroll',
+      paddingBottom: 10,
       [theme.breakpoints.down('sm')]: {
         float: 'right',
         justifyContent: 'end',
-        maxWidth: '78%',
+        maxWidth: '80%',
         marginRight: `calc(${theme.page.horizontal} * -1)`,
-        '& > div > div': {
-          marginTop: 0,
-        },
       },
       [theme.breakpoints.down('xs')]: {
         maxWidth: '92%',
@@ -76,10 +75,7 @@ export const useProductListFiltersStyles = makeStyles(
     filterItem: {
       marginRight: responsiveVal(2, 4),
       marginLeft: responsiveVal(2, 4),
-      marginTop: 0,
-      [theme.breakpoints.down('sm')]: {
-        marginTop: 6,
-      },
+      marginTop: 6,
     },
   }),
   { name: 'ProductListFiltersContainer' },
@@ -91,28 +87,50 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   const classes = useProductListFiltersStyles()
   const { scrollY } = useViewportScroll()
   const [isSticky, setIsSticky] = useState<boolean>(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const filtersOuterContainerRef = useRef<HTMLDivElement>(null)
 
-  // const [domRect, setDomRect] = useState<DOMRect>()
-  // useResizeObserver({
-  //   ref,
-  //   onResize: () => setDomRect(ref.current?.getBoundingClientRect()),
-  // })
-
-  // const filterOuterContainerRef = useRef<any>()
-
-  const scrollPosOnScroll = 110 // filterOuterContainerRef?.current.offsetTop || 0 // 110 // TODO: measure the top location of the filter row. What is the top offset?
+  const scrollPosOnScroll = 110
   const scrollSpacing = 30
   const cssPropertyChangeSpacing = scrollPosOnScroll + scrollSpacing + 5
 
-  useEffect(
-    () =>
-      scrollY.onChange((v) => {
-        if (isSticky && v <= cssPropertyChangeSpacing) setIsSticky(false)
-        if (!isSticky && v > cssPropertyChangeSpacing) setIsSticky(true)
-      }),
-    [cssPropertyChangeSpacing, isSticky, scrollY],
+  const onCheckStickyChange = useCallback(
+    (v: number) => {
+      if (isSticky && v <= cssPropertyChangeSpacing) setIsSticky(false)
+      if (!isSticky && v > cssPropertyChangeSpacing) setIsSticky(true)
+    },
+    [cssPropertyChangeSpacing, isSticky],
   )
+
+  const onWindowResize = () => {
+    // update the filter outer container height
+    // reason: prevents layout shifting issues on scroll
+    if (filtersOuterContainerRef.current) {
+      filtersOuterContainerRef.current.style.height = 'unset'
+      filtersOuterContainerRef.current.style.height = `${filtersOuterContainerRef.current.offsetHeight}px`
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', onWindowResize)
+    onWindowResize()
+
+    return () => window.removeEventListener('resize', onWindowResize)
+  }, [])
+
+  useEffect(() => {
+    // if (filtersOuterContainerRef.current) {
+    //   //setScrollPosOnScroll(filtersOuterContainerRef.current.clientTop)
+    // }
+
+    // console.log(filtersOuterContainerRef.current?.clientTop)
+
+    scrollY.onChange((verticalScroll: number) => {
+      onCheckStickyChange(verticalScroll)
+    })
+
+    // make sure the animated state triggers on reload while scrolled down
+    onCheckStickyChange(window.scrollY)
+  }, [cssPropertyChangeSpacing, isSticky, onCheckStickyChange, scrollY])
 
   const filterAnimProgress = useTransform(
     scrollY,
@@ -121,7 +139,11 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   )
 
   return (
-    <m.div layout='position' className={classes.filtersOuterContainer} ref={ref}>
+    <m.div
+      layout='position'
+      className={classes.filtersOuterContainer}
+      ref={filtersOuterContainerRef}
+    >
       <m.div style={{ opacity: filterAnimProgress }} className={classes.filterContainerComposite} />
       <m.div className={clsx(classes.filters, { [classes.filtersSticky]: isSticky })}>
         {children}

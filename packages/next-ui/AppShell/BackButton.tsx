@@ -11,10 +11,6 @@ const useStyles = makeStyles(
       width: 'min-content',
       pointerEvents: 'all',
       boxShadow: theme.shadows[1],
-      [theme.breakpoints.down('sm')]: {
-        height: 40,
-        minWidth: 40,
-      },
       [theme.breakpoints.down('xs')]: {
         boxShadow: 'unset',
         paddingRight: `8px`,

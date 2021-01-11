@@ -9,7 +9,7 @@ import {
   useViewportScroll,
 } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import PageLink from '../PageTransition/PageLink'
 import { UiFC } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
@@ -25,11 +25,12 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     backButtonRoot: {
       position: 'fixed',
-      top: 105, // TODO (yvo): use dynamic value (header height + top margin)
-      left: theme.page.horizontal,
       zIndex: 10,
       [theme.breakpoints.down('sm')]: {
-        top: 12,
+        top: 5,
+      },
+      [theme.breakpoints.down('xs')]: {
+        top: 10,
       },
     },
     backButtonText: {
@@ -46,7 +47,6 @@ const useStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
-      [theme.breakpoints.down('sm')]: {},
       [theme.breakpoints.up('md')]: {
         background: theme.palette.background.default,
       },
@@ -85,12 +85,38 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
         exit: { opacity: 1, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
+  const backButtonTopMargin = 10
+  const headerRef = useRef<HTMLDivElement>(null)
+  const backButtonRef = useRef<HTMLDivElement>(null)
+  const updateBackButtonTopPosition = () => {
+    if (headerRef.current && backButtonRef.current) {
+      if (window.innerWidth >= theme.breakpoints.values.md) {
+        backButtonRef.current.style.top = `${
+          headerRef.current.offsetHeight + backButtonTopMargin
+        }px`
+      } else {
+        backButtonRef.current.style.top = ''
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', updateBackButtonTopPosition)
+    updateBackButtonTopPosition()
+
+    return () => window.removeEventListener('resize', updateBackButtonTopPosition)
+  }, [])
+
   return (
     <>
       <m.div {...offsetProps}>
         <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }} {...contentAnimation}>
           {router.pathname !== '/' && (
-            <m.div className={classes.backButtonRoot} style={{ left: backButtonAnimLeftTemplate }}>
+            <m.div
+              className={classes.backButtonRoot}
+              style={{ left: backButtonAnimLeftTemplate }}
+              ref={backButtonRef}
+            >
               <NoSsr fallback={<BackButton>{backFallbackTitle ?? 'Home'}</BackButton>}>
                 {prevPage?.title ? (
                   <BackButton onClick={() => router.back()}>
@@ -111,6 +137,7 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
             className={clsx(classes.header)}
             layoutId='header'
             transition={{ type: 'tween' }}
+            ref={headerRef}
           >
             {logo}
             {menu}
