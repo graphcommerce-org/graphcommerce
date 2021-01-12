@@ -53,8 +53,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
       <input type='hidden' name='method' ref={register({ required: true })} />
       <div className={classes.formRow}>
         <FormControl>
-          <Field
-            Component={Controller}
+          <Controller
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}

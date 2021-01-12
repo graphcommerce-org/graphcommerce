@@ -91,7 +91,7 @@ function ProductPage({ products, productAdditionals, downloadableProducts, pages
 
 ProductPage.Layout = PageLayout
 
-registerRouteUi('/product/[url]', BottomDrawerUi)
+registerRouteUi('/product/downloadable/[url]', BottomDrawerUi)
 
 export default ProductPage
 

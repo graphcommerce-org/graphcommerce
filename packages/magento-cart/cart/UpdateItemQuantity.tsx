@@ -15,7 +15,7 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVari
   })
   const { register, errors, handleSubmit, required, formState } = mutationForm
 
-  // @todo TextInputNumber can't handle an input ref
+  // @todo TextInputNumber can't handle a callback ref
   const ref = useRef<HTMLInputElement>(null)
   register(ref.current, { required: required.quantity })
 

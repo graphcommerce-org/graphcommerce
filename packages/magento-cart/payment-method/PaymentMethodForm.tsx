@@ -91,8 +91,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
   return (
     <form onSubmit={handleSubmit} noValidate className={classes.form} ref={ref}>
       <div className={classes.formRow}>
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.firstname}
@@ -103,8 +102,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
           helperText={formState.isSubmitted && errors.address?.firstname?.message}
           disabled={formState.isSubmitting}
         />
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.lastname}
@@ -117,8 +115,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
         />
       </div>
       <div className={classes.formRow}>
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.street?.[0]}
@@ -129,8 +126,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
           helperText={formState.isSubmitted && errors.address?.street?.[0]?.message}
           disabled={formState.isSubmitting}
         />
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.street?.[1]}
@@ -144,8 +140,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
           helperText={formState.isSubmitted && errors.address?.street?.[1]?.message}
           disabled={formState.isSubmitting}
         />
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.street?.[2]}
@@ -157,8 +152,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
         />
       </div>
       <div className={classes.formRow}>
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.postcode}
@@ -169,8 +163,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
           helperText={formState.isSubmitted && errors.address?.postcode?.message}
           disabled={formState.isSubmitting}
         />
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.city}
@@ -183,8 +176,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
         />
       </div>
       <div className={classes.formRow}>
-        <Field
-          Component={Controller}
+        <TextField
           defaultValue={country ?? ''}
           control={control}
           name='address.country_code'
@@ -218,9 +210,8 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
           )}
         />
         {regionList.length > 0 && (
-          <Field
+          <Controller
             defaultValue={regionId ?? ''}
-            Component={Controller}
             control={control}
             name='address.region_id'
             rules={{ required: true }}
@@ -253,8 +244,7 @@ export default function PaymentMethodForm(props: PaymentMethodFormProps) {
         )}
       </div>
       <div className={classes.formRow}>
-        <Field
-          Component={TextField}
+        <TextField
           variant='outlined'
           type='text'
           error={!!errors.address?.telephone}
