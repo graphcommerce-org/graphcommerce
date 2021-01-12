@@ -5,7 +5,7 @@ const { PerformanceObserver, performance } = require('perf_hooks')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
-const IntlPolyfill = require('intl')
+
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
 const withTM = require('next-transpile-modules')(
@@ -31,10 +31,13 @@ const withTM = require('next-transpile-modules')(
   { unstable_webpack5: true },
 )
 
-Intl.NumberFormat = IntlPolyfill.NumberFormat
-Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat
+require('@formatjs/intl-datetimeformat/polyfill')
+require('@formatjs/intl-datetimeformat/locale-data/en')
+require('@formatjs/intl-datetimeformat/locale-data/nl')
+require('@formatjs/intl-datetimeformat/locale-data/fr')
+
 if (process.versions.node.split('.')[0] > 12) {
-  console.warn("'intl' polyfill isn't required anymore")
+  console.warn("'@formatjs/intl-datetimeformat' polyfill isn't required anymore")
 }
 
 const obs = new PerformanceObserver((entryList) => {
