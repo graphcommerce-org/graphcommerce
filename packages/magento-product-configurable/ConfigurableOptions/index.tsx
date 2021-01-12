@@ -1,43 +1,85 @@
+import { BaseTextFieldProps, FormHelperText } from '@material-ui/core'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
+import {
+  Controller,
+  FieldError,
+  FieldErrors,
+  UseControllerOptions,
+} from '@reachdigital/next-ui/useMutationForm'
 import React from 'react'
-import { useConfigurableContext } from '../ConfigurableContext'
-import cheapestVariant from '../ConfigurableContext/cheapestVariant'
+import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer } from '../Swatches'
 import ColorSwatchData from '../Swatches/ColorSwatchData'
 import ImageSwatchData from '../Swatches/ImageSwatchData'
 import TextSwatchData from '../Swatches/TextSwatchData'
 
-type ConfigurableOptionsProps = { sku: string }
+type ConfigurableOptionsProps = {
+  sku: string
+  errors?: FieldErrors
+} & UseControllerOptions &
+  Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'>
 
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
-export default function ConfigurableOptions({ sku }: ConfigurableOptionsProps) {
-  const { options, selection, select, getVariants, cheapest } = useConfigurableContext(sku)
+export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps) {
+  const { sku, FormHelperTextProps, name, defaultValue, errors, ...controlProps } = props
+  const { options, selection, select, cheapest } = useConfigurableContext(sku)
 
   return (
     <>
-      {options?.map((option) => (
-        <React.Fragment key={option?.id ?? ''}>
-          {option?.label}
-          <ToggleButtonGroup required>
-            {option?.values?.map((value) => {
-              if (!value?.swatch_data || !value.value_index || !option.attribute_code) return null
-              const variants = getVariants({
-                ...selection,
-                [option.attribute_code]: value.value_index,
-              })
-              console.log(variants)
-              return (
-                <ToggleButton key={value.value_index} value={value.value_index ?? ''}>
-                  <RenderType renderer={renderer} {...value} {...value.swatch_data} size='large' />
-                </ToggleButton>
-              )
-            })}
-          </ToggleButtonGroup>
-        </React.Fragment>
-      ))}
+      {options?.map((option) => {
+        if (!option?.id || !option.attribute_code) return null
+        const { attribute_code } = option
+        const error = errors?.[attribute_code] as FieldError | undefined
+
+        return (
+          <Controller
+            key={option.id}
+            defaultValue={selection[attribute_code] ?? ''}
+            name={`${name}[${attribute_code}]`}
+            {...controlProps}
+            render={({ onChange, value, onBlur, ref, name: inputName }) => (
+              <>
+                {option?.label}
+                <ToggleButtonGroup
+                  defaultValue={selection[attribute_code] ?? ''}
+                  required
+                  exclusive
+                  minWidth={100}
+                  onChange={(_, val: string | number) => {
+                    onChange(val)
+                    select((prev) => ({ ...prev, [attribute_code]: val } as Selected))
+                  }}
+                  ref={ref}
+                  onBlur={onBlur}
+                  value={value}
+                >
+                  {option?.values?.map((val) => {
+                    if (!val?.swatch_data || !val.value_index || !option.attribute_code) return null
+                    return (
+                      <ToggleButton
+                        key={val.value_index}
+                        value={val.value_index ?? ''}
+                        name={inputName}
+                      >
+                        <RenderType
+                          renderer={renderer}
+                          {...val}
+                          {...val.swatch_data}
+                          size='large'
+                        />
+                      </ToggleButton>
+                    )
+                  })}
+                </ToggleButtonGroup>
+                {error && <FormHelperText error>Required</FormHelperText>}
+              </>
+            )}
+          />
+        )
+      })}
     </>
   )
 }

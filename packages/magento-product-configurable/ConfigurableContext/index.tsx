@@ -13,19 +13,21 @@ import cheapestVariant from './cheapestVariant'
 
 type ConfigurableProductFormProps = ConfigurableProductFormFragment & { sku: string }
 
-type Selection = { [index: string]: number }
+export type Selected = { [attrCode: string]: number }
 export type Variants = NonNullable<ConfigurableProductFormProps['variants']>
-type GetVariants = (values?: Selection) => Variants
+type GetVariants = (values?: Selected) => Variants
+type GetUids = (values?: Selected) => string[]
 
 type ConfigurableContext = {
-  selection: Selection
+  selection: Selected
   variants: Variants
   cheapest: Variants[0]
-  select: Dispatch<SetStateAction<Selection>>
+  select: Dispatch<SetStateAction<Selected>>
   options: ConfigurableProductFormFragment['configurable_options']
   getVariants: GetVariants
+  getUids: GetUids
 }
-const contexts: { [index: string]: Context<ConfigurableContext> } = {}
+const contexts: { [sku: string]: Context<ConfigurableContext> } = {}
 
 function configurableContext(sku: string): Context<ConfigurableContext> {
   if (contexts?.[sku]) return contexts[sku]
@@ -36,7 +38,9 @@ function configurableContext(sku: string): Context<ConfigurableContext> {
     select: () => {},
     options: undefined,
     getVariants: () => [],
+    getUids: () => [],
   })
+
   return contexts[sku]
 }
 
@@ -55,7 +59,7 @@ function generateAttrTree(
   idx: number,
   options: ConfigurableProductFormProps['configurable_options'],
   variants: ConfigurableProductFormProps['variants'],
-  selected: Selection,
+  selected: Selected,
   tree?: AttributeTree,
 ) {
   const attribute = options?.[idx]
@@ -65,7 +69,7 @@ function generateAttrTree(
 
   attribute.values?.forEach((val) => {
     if (!val?.value_index) return
-    const newSelected = { ...selected, [attributeTree.code]: [val.value_index] } as Selection
+    const newSelected = { ...selected, [attributeTree.code]: [val.value_index] } as Selected
 
     const filteredVariants = variants?.filter(
       (variant) =>
@@ -84,7 +88,7 @@ function generateAttrTree(
   return attributeTree
 }
 
-function traverseAttrTree(selection: Selection, attrTree: AttributeTree | undefined): Variants {
+function traverseAttrTree(selection: Selected, attrTree: AttributeTree | undefined): Variants {
   if (!attrTree) return []
 
   const id = selection?.[attrTree.code]
@@ -114,7 +118,7 @@ export default function ConfigurableContextProvider(
   props: PropsWithChildren<ConfigurableProductFormProps>,
 ) {
   const { children, sku, configurable_options, variants: providedVariants } = props
-  const [selection, select] = useState<Selection>({})
+  const [selection, select] = useState<Selected>({})
 
   if (!configurable_options || !providedVariants)
     throw Error('please provide configurabl_options and variants')
@@ -124,11 +128,16 @@ export default function ConfigurableContextProvider(
     [configurable_options, providedVariants],
   )
 
-  const getVariants: GetVariants = (options: Selection = {}) =>
-    traverseAttrTree(options, lookupTree)
+  const getVariants: GetVariants = (options: Selected = {}) => traverseAttrTree(options, lookupTree)
+
+  const getUids: GetUids = (options: Selected = {}) =>
+    (getVariants((options?.[0] as unknown) as Selected) ?? [])
+      .map((variant) => (variant?.attributes?.map((attr) => attr?.uid) ?? []) as string[])
+      .flat()
 
   const context = configurableContext(sku)
   const variants = getVariants(selection)
+
   return (
     <context.Provider
       value={{
@@ -137,6 +146,7 @@ export default function ConfigurableContextProvider(
         cheapest: cheapestVariant(variants),
         select,
         getVariants,
+        getUids,
         options: configurable_options,
       }}
     >

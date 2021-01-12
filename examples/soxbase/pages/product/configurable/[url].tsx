@@ -1,9 +1,8 @@
 import { Container, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
-import ConfigurableOptions from '@reachdigital/magento-product-configurable/ConfigurableOptions'
+import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
   ProductConfigurableDocument,
   ProductConfigurableQuery,
@@ -16,7 +15,6 @@ import {
   ProductPageAdditionalDocument,
   ProductPageAdditionalQuery,
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -65,11 +63,8 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
           backFallbackTitle={category?.name}
         >
           <Container>
-            <AddToCartButton
-              mutation={ProductAddToCartDocument}
-              variables={{ sku: product.sku ?? '', quantity: 1 }}
-            />
-            <ConfigurableOptions sku={configurableProduct.sku} />
+            <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
+
             <ProductPageDescription {...product} />
             <ProductPageGallery {...product} />
             {pages?.[0] && <Page {...pages?.[0]} />}

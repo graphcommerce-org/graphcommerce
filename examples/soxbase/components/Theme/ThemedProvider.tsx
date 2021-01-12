@@ -159,7 +159,7 @@ defaultTheme.overrides = {
     },
     outlined: {
       // todo: Button isn't rounded on all places, but should be on homepage?
-      borderRadius: 0,
+      // borderRadius: 0,
     },
   },
   MuiFab: {

@@ -1,14 +1,19 @@
 mutation ConfigurableProductAddToCart(
   $cartId: String!
   $sku: String!
-  $parentSku: String!
   $quantity: Float = 1
   $enteredOptions: [EnteredOptionInput] = []
+  $selectedOptions: [ID]!
 ) {
   addProductsToCart(
     cartId: $cartId
     cartItems: [
-      { sku: $sku, parent_sku: $parentSku, quantity: $quantity, entered_options: $enteredOptions }
+      {
+        sku: $sku
+        quantity: $quantity
+        entered_options: $enteredOptions
+        selected_options: $selectedOptions
+      }
     ]
   ) {
     cart {

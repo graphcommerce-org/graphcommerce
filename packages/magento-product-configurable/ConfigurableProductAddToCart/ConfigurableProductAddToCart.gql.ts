@@ -31,14 +31,6 @@ export const ConfigurableProductAddToCartDocument: DocumentNode<
         },
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'parentSku' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'quantity' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Float' } },
           defaultValue: { kind: 'IntValue', value: '1' },
@@ -51,6 +43,17 @@ export const ConfigurableProductAddToCartDocument: DocumentNode<
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'EnteredOptionInput' } },
           },
           defaultValue: { kind: 'ListValue', values: [] },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'selectedOptions' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } },
+            },
+          },
         },
       ],
       selectionSet: {
@@ -81,11 +84,6 @@ export const ConfigurableProductAddToCartDocument: DocumentNode<
                         },
                         {
                           kind: 'ObjectField',
-                          name: { kind: 'Name', value: 'parent_sku' },
-                          value: { kind: 'Variable', name: { kind: 'Name', value: 'parentSku' } },
-                        },
-                        {
-                          kind: 'ObjectField',
                           name: { kind: 'Name', value: 'quantity' },
                           value: { kind: 'Variable', name: { kind: 'Name', value: 'quantity' } },
                         },
@@ -95,6 +93,14 @@ export const ConfigurableProductAddToCartDocument: DocumentNode<
                           value: {
                             kind: 'Variable',
                             name: { kind: 'Name', value: 'enteredOptions' },
+                          },
+                        },
+                        {
+                          kind: 'ObjectField',
+                          name: { kind: 'Name', value: 'selected_options' },
+                          value: {
+                            kind: 'Variable',
+                            name: { kind: 'Name', value: 'selectedOptions' },
                           },
                         },
                       ],
@@ -512,9 +518,9 @@ export const ConfigurableProductAddToCartDocument: DocumentNode<
 export type ConfigurableProductAddToCartMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
   sku: Types.Scalars['String']
-  parentSku: Types.Scalars['String']
   quantity?: Types.Maybe<Types.Scalars['Float']>
   enteredOptions?: Types.Maybe<Array<Types.Maybe<Types.EnteredOptionInput>>>
+  selectedOptions: Array<Types.Maybe<Types.Scalars['ID']>>
 }>
 
 export type ConfigurableProductAddToCartMutation = {
