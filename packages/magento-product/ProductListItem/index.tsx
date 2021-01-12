@@ -111,12 +111,6 @@ export const useProductListItemStyles = makeStyles(
       borderRadius: 2,
       ...theme.typography.h6,
     },
-    price: {
-      [theme.breakpoints.down('xs')]: {
-        position: 'absolute',
-        right: 0,
-      },
-    },
   }),
   { name: 'ProductListItem' },
 )
@@ -194,7 +188,7 @@ export default function ProductListItem(props: ProductListItemProps) {
           </Typography>
           {subTitle}
         </div>
-        <ProductListPrice {...price_range.minimum_price} className={classes.price} />
+        <ProductListPrice {...price_range.minimum_price} />
       </div>
 
       {children}
