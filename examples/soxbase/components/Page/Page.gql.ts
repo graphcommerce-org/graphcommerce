@@ -19,11 +19,11 @@ import {
   RowProductGridFragment,
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
-import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
-import { RowQuoteFragment } from '../RowQuote/RowQuote.gql'
-
-import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
-import { RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
+import { RowQuoteFragment, RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
+import {
+  RowSpecialBannerFragment,
+  RowSpecialBannerFragmentDoc,
+} from '../RowSpecialBanner/RowSpecialBanner.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',

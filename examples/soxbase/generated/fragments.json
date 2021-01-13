@@ -38,15 +38,13 @@
       "SimpleCartItem",
       "VirtualCartItem",
       "DownloadableCartItem",
-      "GiftCardCartItem",
-      "ConfigurableCartItem",
-      "BundleCartItem"
+      "BundleCartItem",
+      "ConfigurableCartItem"
     ],
     "ProductInterface": [
       "VirtualProduct",
       "SimpleProduct",
       "DownloadableProduct",
-      "GiftCardProduct",
       "BundleProduct",
       "GroupedProduct",
       "ConfigurableProduct"
@@ -56,28 +54,16 @@
     "ProductLinksInterface": ["ProductLinks"],
     "CreditMemoItemInterface": [
       "DownloadableCreditMemoItem",
-      "GiftCardCreditMemoItem",
       "BundleCreditMemoItem",
       "CreditMemoItem"
     ],
-    "OrderItemInterface": [
-      "DownloadableOrderItem",
-      "GiftCardOrderItem",
-      "BundleOrderItem",
-      "OrderItem"
-    ],
-    "InvoiceItemInterface": [
-      "DownloadableInvoiceItem",
-      "GiftCardInvoiceItem",
-      "BundleInvoiceItem",
-      "InvoiceItem"
-    ],
-    "ShipmentItemInterface": ["GiftCardShipmentItem", "BundleShipmentItem", "ShipmentItem"],
+    "OrderItemInterface": ["DownloadableOrderItem", "BundleOrderItem", "OrderItem"],
+    "InvoiceItemInterface": ["DownloadableInvoiceItem", "BundleInvoiceItem", "InvoiceItem"],
+    "ShipmentItemInterface": ["BundleShipmentItem", "ShipmentItem"],
     "AggregationOptionInterface": ["AggregationOption"],
     "LayerFilterItemInterface": ["LayerFilterItem", "SwatchLayerFilterItem"],
     "PhysicalProductInterface": [
       "SimpleProduct",
-      "GiftCardProduct",
       "BundleProduct",
       "GroupedProduct",
       "ConfigurableProduct"
@@ -96,7 +82,6 @@
       "VirtualProduct",
       "SimpleProduct",
       "DownloadableProduct",
-      "GiftCardProduct",
       "BundleProduct",
       "ConfigurableProduct"
     ],
