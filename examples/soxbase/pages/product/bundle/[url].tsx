@@ -88,7 +88,7 @@ function ProductPage({ products, productAdditionals, bundleProducts, pages }: Pr
 
 ProductPage.Layout = PageLayout
 
-registerRouteUi('/product/[url]', BottomDrawerUi)
+registerRouteUi('/product/bundle/[url]', BottomDrawerUi)
 
 export default ProductPage
 

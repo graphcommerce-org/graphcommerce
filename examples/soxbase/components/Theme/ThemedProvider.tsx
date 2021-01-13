@@ -158,7 +158,8 @@ defaultTheme.overrides = {
       '& > *:first-child': { fontSize: 24 },
     },
     outlined: {
-      borderRadius: 0,
+      // todo: Button isn't rounded on all places, but should be on homepage?
+      // borderRadius: 0,
     },
   },
   MuiFab: {

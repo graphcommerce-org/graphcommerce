@@ -69,6 +69,7 @@ export const ProductConfigurableDocument: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'sku' } },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'configurable_options' },
@@ -1054,7 +1055,7 @@ export type ProductConfigurableQuery = {
     items?: Types.Maybe<
       Array<
         Types.Maybe<
-          Pick<Types.ConfigurableProduct, 'weight'> & {
+          Pick<Types.ConfigurableProduct, 'sku' | 'weight'> & {
             configurable_options?: Types.Maybe<
               Array<
                 Types.Maybe<

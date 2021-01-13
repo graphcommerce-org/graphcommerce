@@ -9,6 +9,7 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     /* Styles applied to the root element. */
     root: {
+      borderWidth: 2,
       '&$disabled': {},
       '&:hover': {},
 
@@ -67,7 +68,7 @@ const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref) => {
         },
         className,
       )}
-      classes={classes}
+      // classes={classes}
       variant='outlined'
       disabled={disabled}
       ref={ref}

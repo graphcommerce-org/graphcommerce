@@ -83,6 +83,7 @@ export type PageFragment = {
         RowProductBackstoryFragment)
     | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
     | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & RowQuoteFragment)
+    | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'>)
     | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'> &
         RowSpecialBannerFragment)
     | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)

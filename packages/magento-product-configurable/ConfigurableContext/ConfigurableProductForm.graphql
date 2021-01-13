@@ -1,0 +1,34 @@
+fragment ConfigurableProductForm on ConfigurableProduct {
+  sku
+  configurable_options {
+    attribute_code
+    id
+    label
+    position
+    use_default
+    product_id
+    values {
+      use_default_value
+      store_label
+      value_index
+      swatch_data {
+        __typename
+        value
+        ... on ImageSwatchData {
+          thumbnail
+        }
+      }
+    }
+  }
+  variants {
+    attributes {
+      code
+      value_index
+      label
+      uid
+    }
+    product {
+      ...ProductListItemSimple
+    }
+  }
+}
