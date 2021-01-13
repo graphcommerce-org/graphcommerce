@@ -1,15 +1,8 @@
 import { makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
-import {
-  m,
-  MotionProps,
-  useMotionTemplate,
-  useMotionValue,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion'
+import { m, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import PageLink from '../PageTransition/PageLink'
 import { UiFC } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
@@ -26,11 +19,16 @@ const useStyles = makeStyles(
     backButtonRoot: {
       position: 'fixed',
       zIndex: 10,
+      left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
-        top: 5,
+        top: 4,
       },
       [theme.breakpoints.down('xs')]: {
-        top: 10,
+        top: 7,
+      },
+      [theme.breakpoints.up('md')]: {
+        // @todo, replace 48 with content height variable.
+        top: `calc(48px + ${theme.spacings.sm} * 2)`,
       },
     },
     backButtonText: {
@@ -65,13 +63,6 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const { offsetProps, inFront, hold, prevPage } = pageTransition
   const router = useRouter()
   const classes = useStyles()
-  const theme = useTheme()
-
-  const { scrollY } = useViewportScroll()
-  const backButtonAnimLeftOffPercent = 50
-  const backButtonAnimLeft = useTransform(scrollY, [-50, 80], [0, backButtonAnimLeftOffPercent])
-  const themePageHorizontal = useMotionValue(theme.page.horizontal)
-  const backButtonAnimLeftTemplate = useMotionTemplate`calc(${themePageHorizontal} - (${themePageHorizontal} * (${backButtonAnimLeft} / 100)))`
 
   const contentAnimation: MotionProps = !hold
     ? {
@@ -85,27 +76,8 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
         exit: { opacity: 1, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
-  const backButtonTopMargin = 10
   const headerRef = useRef<HTMLDivElement>(null)
   const backButtonRef = useRef<HTMLDivElement>(null)
-  const updateBackButtonTopPosition = () => {
-    if (headerRef.current && backButtonRef.current) {
-      if (window.innerWidth >= theme.breakpoints.values.md) {
-        backButtonRef.current.style.top = `${
-          headerRef.current.offsetHeight + backButtonTopMargin
-        }px`
-      } else {
-        backButtonRef.current.style.top = ''
-      }
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', updateBackButtonTopPosition)
-    updateBackButtonTopPosition()
-
-    return () => window.removeEventListener('resize', updateBackButtonTopPosition)
-  }, [])
 
   return (
     <>
@@ -114,7 +86,7 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
           {router.pathname !== '/' && (
             <m.div
               className={classes.backButtonRoot}
-              style={{ left: backButtonAnimLeftTemplate }}
+              // style={{ left: backButtonAnimLeftTemplate }}
               ref={backButtonRef}
             >
               <NoSsr fallback={<BackButton>{backFallbackTitle ?? 'Home'}</BackButton>}>
