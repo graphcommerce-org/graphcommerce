@@ -1,11 +1,10 @@
-import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { CmsPageDocument, CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
 import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import CmsPageMeta from '@reachdigital/magento-cms/CmsPageMeta'
-import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
@@ -22,7 +21,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CmsPageQuery & HeaderProps & FooterProps & PageByUrlQuery
+type Props = CmsPageQuery & PageLayoutQuery & ResolveUrlQuery & FooterProps & PageByUrlQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>

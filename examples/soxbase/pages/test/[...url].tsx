@@ -1,9 +1,9 @@
 import { Button, Container } from '@material-ui/core'
 import Footer, { FooterProps } from '@reachdigital/magento-app-shell/Footer'
-import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
@@ -21,7 +21,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string } & HeaderProps & FooterProps & PageByUrlQuery
+type Props = { url: string } & FooterProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>

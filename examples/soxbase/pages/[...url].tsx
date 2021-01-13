@@ -1,9 +1,8 @@
 import { performance } from 'perf_hooks'
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import { HeaderProps } from '@reachdigital/magento-app-shell/Header'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
@@ -21,7 +20,7 @@ import ProductListFiltersContainer, {
 } from '@reachdigital/magento-product/ProductListFiltersContainer'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
@@ -39,7 +38,7 @@ import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps & HeaderProps & PageByUrlQuery
+type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
