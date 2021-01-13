@@ -23,7 +23,7 @@ function CartFabContent(props: CartFabProps) {
   return (
     <PageLink href='/cart'>
       {asIcon ? (
-        <IconButton aria-label='Cart' color='inherit' edge='end'>
+        <IconButton aria-label='Cart' color='inherit'>
           {badge}
         </IconButton>
       ) : (

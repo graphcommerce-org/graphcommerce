@@ -24,8 +24,8 @@ const useStyles = makeStyles(
       zIndex: 8,
       position: 'fixed',
       bottom: theme.page.vertical,
-      paddingLeft: `calc(${theme.page.horizontal} * .5)`,
-      paddingRight: `calc(${theme.page.horizontal} * .5)`,
+      paddingLeft: theme.page.horizontal,
+      paddingRight: theme.page.horizontal,
       width: '100%',
       '& > *': {
         pointerEvents: 'all',
