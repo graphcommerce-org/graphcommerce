@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginBottom: theme.spacings.lg,
   },
-  blogheader: {
+  header: {
     position: 'relative',
     backgroundColor: 'rgba(0,0,0,0.08)',
     overflow: 'hidden',
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    filter: 'brightness(100%)',
     [theme.breakpoints.up('md')]: {
       height: '100%',
     },
@@ -44,7 +43,7 @@ export default function BlogHeader(props) {
   const classes = useStyles()
   return (
     <Container className={classes.root}>
-      <div className={classes.blogheader}>
+      <div className={classes.header}>
         <Typography variant='body1' className={classes.copy} />
         {asset?.url && <img src={asset.url} alt='' className={classes.asset} />}
       </div>

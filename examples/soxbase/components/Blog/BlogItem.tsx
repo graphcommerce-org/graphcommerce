@@ -1,4 +1,6 @@
+import { useQuery } from '@apollo/client'
 import { Typography, makeStyles, Theme, Link } from '@material-ui/core'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import { BlogItemFragment } from './BlogItem.gql'
@@ -68,7 +70,8 @@ export type BlogItemProps = BlogItemFragment
 export default function BlogListItem(props: BlogItemProps) {
   const { title, url, asset, date } = props
   const classes = useBlogListItemStyles(props)
-  const locale = 'en-US'
+  const { data: config } = useQuery(StoreConfigDocument)
+  const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   const formatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
