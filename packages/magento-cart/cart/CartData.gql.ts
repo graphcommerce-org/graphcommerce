@@ -23,6 +23,7 @@ import {
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
 import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
+import { CartPricesFragment } from './CartPrices.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
@@ -31,7 +32,7 @@ import {
   CartItem_ConfigurableCartItem_Fragment,
   CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragment, CartPricesFragmentDoc } from './CartPrices.gql'
+import { CartPricesFragmentDoc } from './CartPrices.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',

@@ -15,13 +15,13 @@ type SwatchListProps = {
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
 export default function SwatchList({ attributes, configurable_options }: SwatchListProps) {
-  const locationOptions =
+  const options =
     configurable_options?.filter((option) => attributes.includes(option?.attribute_code ?? '')) ??
     []
 
   return (
     <>
-      {locationOptions.map((option) => (
+      {options.map((option) => (
         <React.Fragment key={option?.attribute_code ?? ''}>
           {option?.values?.map((val) =>
             val?.swatch_data ? (
@@ -30,6 +30,7 @@ export default function SwatchList({ attributes, configurable_options }: SwatchL
                 renderer={renderer}
                 {...val}
                 {...(val.swatch_data ?? {})}
+                size='small'
               />
             ) : null,
           )}

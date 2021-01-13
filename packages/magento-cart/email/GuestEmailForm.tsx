@@ -75,8 +75,7 @@ export default function GuestEmailForm({
       {...(canSubmit && { onChange: debounce(handleSubmit, 500) })}
       className={classes.form}
     >
-      <Field
-        Component={TextField}
+      <TextField
         variant='outlined'
         type='text'
         error={formState.isSubmitted && !!errors.email}

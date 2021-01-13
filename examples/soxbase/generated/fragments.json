@@ -6,6 +6,7 @@
       "MagentoCategory",
       "Page",
       "PageLink",
+      "RowBlogContent",
       "RowButtonLinkList",
       "RowColumnOne",
       "RowColumnThree",
@@ -14,10 +15,12 @@
       "RowProductBackstory",
       "RowProductGrid",
       "RowQuote",
+      "RowServiceOptions",
       "RowSpecialBanner",
       "RowSwipeableGrid"
     ],
     "PageContent": [
+      "RowBlogContent",
       "RowButtonLinkList",
       "RowColumnOne",
       "RowColumnThree",
@@ -26,6 +29,7 @@
       "RowProductBackstory",
       "RowProductGrid",
       "RowQuote",
+      "RowServiceOptions",
       "RowSpecialBanner",
       "RowSwipeableGrid"
     ],

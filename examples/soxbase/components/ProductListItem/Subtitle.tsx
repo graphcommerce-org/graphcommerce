@@ -11,6 +11,10 @@ export const useStyles = makeStyles(
       fontSize: 13,
       fontWeight: 400,
       marginLeft: 8,
+      [theme.breakpoints.down('xs')]: {
+        display: 'block',
+        marginLeft: 0,
+      },
     },
   }),
   { name: 'Subtitle' },

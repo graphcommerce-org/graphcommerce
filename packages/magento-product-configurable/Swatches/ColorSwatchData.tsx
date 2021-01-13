@@ -1,24 +1,42 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { SwatchTypeRenderer } from '.'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
+import { ColorSwatchDataFragment } from './ColorSwatchData.gql'
+import { SwatchDataProps } from '.'
 
 export const useStyles = makeStyles(
   (theme: Theme) => ({
-    circle: ({ value }: any) => ({
-      backgroundColor: value ?? undefined,
-      borderRadius: '100%',
-      height: '20px',
-      width: '20px',
-      border: `3px solid #f4f4f4`,
+    root: {
+      height: responsiveVal(40, 80),
+      width: responsiveVal(40, 80),
+      border: `3px solid ${theme.palette.grey[100]}`,
       boxSizing: 'border-box',
-    }),
+      borderRadius: '50%',
+    },
+    sizeSmall: {
+      height: 20,
+      width: 20,
+    },
   }),
   { name: 'Subtitle' },
 )
 
-const ColorSwatchData: SwatchTypeRenderer['ColorSwatchData'] = (props: any) => {
+type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
+
+export default function ColorSwatchData(props: ColorSwatchDataProps) {
   const classes = useStyles(props)
-
-  return <div className={classes.circle} />
+  const { value, store_label, size } = props
+  return (
+    <div>
+      <div
+        className={clsx({
+          [classes.root]: true,
+          [classes.sizeSmall]: size === 'small',
+        })}
+        style={{ backgroundColor: value ?? undefined }}
+      />
+      {size !== 'small' && store_label}
+    </div>
+  )
 }
-
-export default ColorSwatchData

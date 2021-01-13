@@ -20,6 +20,9 @@ export const useProductListItemStyles = makeStyles(
       display: 'inline',
       ...theme.typography.h6,
       color: theme.palette.primary.contrastText,
+      [theme.breakpoints.down('xs')]: {
+        whiteSpace: 'normal',
+      },
     },
     itemTitleContainer: {
       display: 'flex',
@@ -32,6 +35,12 @@ export const useProductListItemStyles = makeStyles(
         whiteSpace: 'nowrap',
       },
       marginBottom: responsiveVal(4, 8),
+      [theme.breakpoints.down('xs')]: {
+        alignItems: 'flex-end',
+        '& > div:nth-of-type(1)': {
+          width: '100%',
+        },
+      },
     },
     imageContainerOverlayGrid: {
       display: 'grid',

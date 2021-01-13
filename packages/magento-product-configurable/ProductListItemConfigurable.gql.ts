@@ -11,6 +11,12 @@ import {
   ProductListItem_ConfigurableProduct_Fragment,
   ProductListItemFragmentDoc,
 } from '../magento-product/ProductListItem/ProductListItem.gql'
+import {
+  SwatchData_ImageSwatchData_Fragment,
+  SwatchData_TextSwatchData_Fragment,
+  SwatchData_ColorSwatchData_Fragment,
+  SwatchDataFragmentDoc,
+} from './Swatches/SwatchData.gql'
 
 export const ProductListItemConfigurableFragmentDoc: DocumentNode<
   ProductListItemConfigurableFragment,
@@ -49,21 +55,7 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                            {
-                              kind: 'InlineFragment',
-                              typeCondition: {
-                                kind: 'NamedType',
-                                name: { kind: 'Name', value: 'ImageSwatchData' },
-                              },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'thumbnail' } },
-                                ],
-                              },
-                            },
+                            { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SwatchData' } },
                           ],
                         },
                       },
@@ -119,6 +111,7 @@ export const ProductListItemConfigurableFragmentDoc: DocumentNode<
       },
     },
     ...ProductListItemFragmentDoc.definitions,
+    ...SwatchDataFragmentDoc.definitions,
   ],
 }
 export type ProductListItemConfigurableFragment = {
@@ -131,12 +124,9 @@ export type ProductListItemConfigurableFragment = {
               Types.Maybe<
                 Pick<Types.ConfigurableProductOptionsValues, 'store_label' | 'value_index'> & {
                   swatch_data?: Types.Maybe<
-                    | ({ __typename: 'ImageSwatchData' } & Pick<
-                        Types.ImageSwatchData,
-                        'thumbnail' | 'value'
-                      >)
-                    | ({ __typename: 'TextSwatchData' } & Pick<Types.TextSwatchData, 'value'>)
-                    | ({ __typename: 'ColorSwatchData' } & Pick<Types.ColorSwatchData, 'value'>)
+                    | SwatchData_ImageSwatchData_Fragment
+                    | SwatchData_TextSwatchData_Fragment
+                    | SwatchData_ColorSwatchData_Fragment
                   >
                 }
               >

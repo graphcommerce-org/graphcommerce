@@ -4,6 +4,7 @@ import { ToggleButtonGroupProps } from '@material-ui/lab'
 import clsx from 'clsx'
 import React, { PropsWithoutRef } from 'react'
 import { isFragment } from 'react-is'
+import { UseStyles } from '../Styles'
 
 function isValueSelected(value: string, candidate: string | string[]) {
   if (candidate === undefined || value === undefined) return false
@@ -11,14 +12,18 @@ function isValueSelected(value: string, candidate: string | string[]) {
   return value === candidate
 }
 
+type ToggleButtonPropsBase = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & {
+  required?: boolean
+  minWidth?: number
+}
+
 export const useStyles = makeStyles(
   (theme: Theme) => ({
-    /* Styles applied to the root element. */
-    root: {
+    root: ({ minWidth = 200 }: ToggleButtonPropsBase) => ({
       display: 'grid',
-      gridTemplateColumns: `repeat(auto-fit, minmax(200px, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))`,
       gap: `calc(${theme.spacings.xxs} * 2)`,
-    },
+    }),
     vertical: {
       gridAutoFlow: 'column',
     },
@@ -29,9 +34,9 @@ export const useStyles = makeStyles(
   { name: 'ToggleButtonGroup' },
 )
 
-type Props = Omit<PropsWithoutRef<ToggleButtonGroupProps>, 'size'> & { required?: boolean }
+export type ToggleButtonProps = ToggleButtonPropsBase & UseStyles<typeof useStyles>
 
-const ToggleButtonGroup = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
+const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonProps>((props, ref) => {
   const classes = useStyles(props)
   const {
     children,
@@ -40,6 +45,7 @@ const ToggleButtonGroup = React.forwardRef<HTMLDivElement, Props>((props, ref) =
     required = false,
     onChange,
     orientation = 'horizontal',
+    minWidth,
     value,
     ...other
   } = props

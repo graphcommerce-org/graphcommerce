@@ -476,6 +476,7 @@ export type Asset = Node & {
   assetRowHeroBanner: Array<RowHeroBanner>
   rowSpecialBannerAsset: Array<RowSpecialBanner>
   assetRowProductBackstory: Array<RowProductBackstory>
+  assetPage: Array<Page>
   /** List of Asset versions */
   history: Array<Version>
   /** Get the url for the asset with provided transformations applied. */
@@ -547,6 +548,18 @@ export type AssetAssetRowProductBackstoryArgs = {
 }
 
 /** Asset system model */
+export type AssetAssetPageArgs = {
+  where?: Maybe<PageWhereInput>
+  orderBy?: Maybe<PageOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+/** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int']
   skip?: Scalars['Int']
@@ -587,6 +600,7 @@ export type AssetCreateInput = {
   assetRowHeroBanner?: Maybe<RowHeroBannerCreateManyInlineInput>
   rowSpecialBannerAsset?: Maybe<RowSpecialBannerCreateManyInlineInput>
   assetRowProductBackstory?: Maybe<RowProductBackstoryCreateManyInlineInput>
+  assetPage?: Maybe<PageCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>
 }
@@ -719,6 +733,9 @@ export type AssetManyWhereInput = {
   assetRowProductBackstory_every?: Maybe<RowProductBackstoryWhereInput>
   assetRowProductBackstory_some?: Maybe<RowProductBackstoryWhereInput>
   assetRowProductBackstory_none?: Maybe<RowProductBackstoryWhereInput>
+  assetPage_every?: Maybe<PageWhereInput>
+  assetPage_some?: Maybe<PageWhereInput>
+  assetPage_none?: Maybe<PageWhereInput>
 }
 
 export type AssetOrderByInput =
@@ -761,6 +778,7 @@ export type AssetUpdateInput = {
   assetRowHeroBanner?: Maybe<RowHeroBannerUpdateManyInlineInput>
   rowSpecialBannerAsset?: Maybe<RowSpecialBannerUpdateManyInlineInput>
   assetRowProductBackstory?: Maybe<RowProductBackstoryUpdateManyInlineInput>
+  assetPage?: Maybe<PageUpdateManyInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>
 }
@@ -1068,6 +1086,9 @@ export type AssetWhereInput = {
   assetRowProductBackstory_every?: Maybe<RowProductBackstoryWhereInput>
   assetRowProductBackstory_some?: Maybe<RowProductBackstoryWhereInput>
   assetRowProductBackstory_none?: Maybe<RowProductBackstoryWhereInput>
+  assetPage_every?: Maybe<PageWhereInput>
+  assetPage_some?: Maybe<PageWhereInput>
+  assetPage_none?: Maybe<PageWhereInput>
 }
 
 /** References Asset record uniquely */
@@ -2053,6 +2074,8 @@ export type MagentoCategoryWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
 }
 
+export type MetaRobots = 'INDEX_FOLLOW' | 'INDEX_NOFOLLOW' | 'NOINDEX_FOLLOW' | 'NOINDEX_NOFOLLOW'
+
 /** An object with an ID */
 export type Node = {
   /** The id of the object. */
@@ -2081,8 +2104,13 @@ export type Page = Node & {
   publishedAt?: Maybe<Scalars['DateTime']>
   url: Scalars['String']
   title?: Maybe<Scalars['String']>
+  metaTitle: Scalars['String']
+  metaDescription: Scalars['String']
+  metaRobots: MetaRobots
   content: Array<PageContent>
   rowButtonLinkLists: Array<RowButtonLinkList>
+  asset?: Maybe<Asset>
+  date?: Maybe<Scalars['DateTime']>
   /** List of Page versions */
   history: Array<Version>
 }
@@ -2130,6 +2158,10 @@ export type PageRowButtonLinkListsArgs = {
   locales?: Maybe<Array<Locale>>
 }
 
+export type PageAssetArgs = {
+  locales?: Maybe<Array<Locale>>
+}
+
 export type PageHistoryArgs = {
   limit?: Scalars['Int']
   skip?: Scalars['Int']
@@ -2154,6 +2186,7 @@ export type PageConnection = {
 }
 
 export type PageContent =
+  | RowBlogContent
   | RowButtonLinkList
   | RowColumnOne
   | RowColumnThree
@@ -2162,33 +2195,38 @@ export type PageContent =
   | RowProductBackstory
   | RowProductGrid
   | RowQuote
+  | RowServiceOptions
   | RowSpecialBanner
   | RowSwipeableGrid
 
 export type PageContentConnectInput = {
-  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryConnectInput>
-  RowColumnOne?: Maybe<RowColumnOneConnectInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridConnectInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListConnectInput>
-  RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
-  RowQuote?: Maybe<RowQuoteConnectInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerConnectInput>
+  RowColumnOne?: Maybe<RowColumnOneConnectInput>
   RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
+  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
+  RowQuote?: Maybe<RowQuoteConnectInput>
+  RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
   RowProductGrid?: Maybe<RowProductGridConnectInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridConnectInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryConnectInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListConnectInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsConnectInput>
+  RowBlogContent?: Maybe<RowBlogContentConnectInput>
 }
 
 export type PageContentCreateInput = {
-  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryCreateInput>
-  RowColumnOne?: Maybe<RowColumnOneCreateInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridCreateInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListCreateInput>
-  RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
-  RowQuote?: Maybe<RowQuoteCreateInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerCreateInput>
+  RowColumnOne?: Maybe<RowColumnOneCreateInput>
   RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
+  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
+  RowQuote?: Maybe<RowQuoteCreateInput>
+  RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
   RowProductGrid?: Maybe<RowProductGridCreateInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridCreateInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryCreateInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListCreateInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsCreateInput>
+  RowBlogContent?: Maybe<RowBlogContentCreateInput>
 }
 
 export type PageContentCreateManyInlineInput = {
@@ -2206,16 +2244,18 @@ export type PageContentCreateOneInlineInput = {
 }
 
 export type PageContentUpdateInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
-  RowQuote?: Maybe<RowQuoteUpdateInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
+  RowQuote?: Maybe<RowQuoteUpdateInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
   RowProductGrid?: Maybe<RowProductGridUpdateInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpdateInput>
+  RowBlogContent?: Maybe<RowBlogContentUpdateInput>
 }
 
 export type PageContentUpdateManyInlineInput = {
@@ -2236,16 +2276,18 @@ export type PageContentUpdateManyInlineInput = {
 }
 
 export type PageContentUpdateManyWithNestedWhereInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateManyWithNestedWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateManyWithNestedWhereInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateManyWithNestedWhereInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
-  RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateManyWithNestedWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
+  RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
   RowProductGrid?: Maybe<RowProductGridUpdateManyWithNestedWhereInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateManyWithNestedWhereInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateManyWithNestedWhereInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateManyWithNestedWhereInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpdateManyWithNestedWhereInput>
+  RowBlogContent?: Maybe<RowBlogContentUpdateManyWithNestedWhereInput>
 }
 
 export type PageContentUpdateOneInlineInput = {
@@ -2264,55 +2306,63 @@ export type PageContentUpdateOneInlineInput = {
 }
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateWithNestedWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateWithNestedWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridUpdateWithNestedWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateWithNestedWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateWithNestedWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateWithNestedWhereUniqueInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpdateWithNestedWhereUniqueInput>
+  RowBlogContent?: Maybe<RowBlogContentUpdateWithNestedWhereUniqueInput>
 }
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
-  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpsertWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpsertWithNestedWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpsertWithNestedWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpsertWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridUpsertWithNestedWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpsertWithNestedWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpsertWithNestedWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpsertWithNestedWhereUniqueInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpsertWithNestedWhereUniqueInput>
+  RowBlogContent?: Maybe<RowBlogContentUpsertWithNestedWhereUniqueInput>
 }
 
 export type PageContentWhereInput = {
-  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListWhereInput>
-  RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
-  RowQuote?: Maybe<RowQuoteWhereInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereInput>
   RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
+  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
+  RowQuote?: Maybe<RowQuoteWhereInput>
+  RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
   RowProductGrid?: Maybe<RowProductGridWhereInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryWhereInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListWhereInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsWhereInput>
+  RowBlogContent?: Maybe<RowBlogContentWhereInput>
 }
 
 export type PageContentWhereUniqueInput = {
-  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListWhereUniqueInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsWhereUniqueInput>
+  RowBlogContent?: Maybe<RowBlogContentWhereUniqueInput>
 }
 
 export type PageCreateInput = {
@@ -2322,8 +2372,16 @@ export type PageCreateInput = {
   url: Scalars['String']
   /** title input for default locale (en) */
   title?: Maybe<Scalars['String']>
+  /** metaTitle input for default locale (en) */
+  metaTitle: Scalars['String']
+  /** metaDescription input for default locale (en) */
+  metaDescription: Scalars['String']
+  /** metaRobots input for default locale (en) */
+  metaRobots: MetaRobots
   content?: Maybe<PageContentCreateManyInlineInput>
   rowButtonLinkLists?: Maybe<RowButtonLinkListCreateManyInlineInput>
+  asset?: Maybe<AssetCreateOneInlineInput>
+  date?: Maybe<Scalars['DateTime']>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<PageCreateLocalizationsInput>
 }
@@ -2333,6 +2391,9 @@ export type PageCreateLocalizationDataInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   url: Scalars['String']
   title?: Maybe<Scalars['String']>
+  metaTitle: Scalars['String']
+  metaDescription: Scalars['String']
+  metaRobots: MetaRobots
 }
 
 export type PageCreateLocalizationInput = {
@@ -2403,12 +2464,14 @@ export type PageLink = Node & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   title: Scalars['String']
+  description?: Maybe<RichText>
   url: Scalars['String']
   rowHeroBanners: Array<RowHeroBanner>
   rowProductGrids: Array<RowProductGrid>
   rowSpecialBanners: Array<RowSpecialBanner>
   footerSocialLinks: Array<Footer>
   footerLegalLinks: Array<Footer>
+  rowServiceOptionsMultiple: Array<RowServiceOptions>
   /** List of PageLink versions */
   history: Array<Version>
 }
@@ -2491,6 +2554,17 @@ export type PageLinkFooterLegalLinksArgs = {
   locales?: Maybe<Array<Locale>>
 }
 
+export type PageLinkRowServiceOptionsMultipleArgs = {
+  where?: Maybe<RowServiceOptionsWhereInput>
+  orderBy?: Maybe<RowServiceOptionsOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
 export type PageLinkHistoryArgs = {
   limit?: Scalars['Int']
   skip?: Scalars['Int']
@@ -2519,6 +2593,8 @@ export type PageLinkCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   /** title input for default locale (en) */
   title: Scalars['String']
+  /** description input for default locale (en) */
+  description?: Maybe<Scalars['RichTextAST']>
   /** url input for default locale (en) */
   url: Scalars['String']
   rowHeroBanners?: Maybe<RowHeroBannerCreateManyInlineInput>
@@ -2526,6 +2602,7 @@ export type PageLinkCreateInput = {
   rowSpecialBanners?: Maybe<RowSpecialBannerCreateManyInlineInput>
   footerSocialLinks?: Maybe<FooterCreateManyInlineInput>
   footerLegalLinks?: Maybe<FooterCreateManyInlineInput>
+  rowServiceOptionsMultiple?: Maybe<RowServiceOptionsCreateManyInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<PageLinkCreateLocalizationsInput>
 }
@@ -2534,6 +2611,7 @@ export type PageLinkCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
   title: Scalars['String']
+  description?: Maybe<Scalars['RichTextAST']>
   url: Scalars['String']
 }
 
@@ -2660,6 +2738,9 @@ export type PageLinkManyWhereInput = {
   footerLegalLinks_every?: Maybe<FooterWhereInput>
   footerLegalLinks_some?: Maybe<FooterWhereInput>
   footerLegalLinks_none?: Maybe<FooterWhereInput>
+  rowServiceOptionsMultiple_every?: Maybe<RowServiceOptionsWhereInput>
+  rowServiceOptionsMultiple_some?: Maybe<RowServiceOptionsWhereInput>
+  rowServiceOptionsMultiple_none?: Maybe<RowServiceOptionsWhereInput>
 }
 
 export type PageLinkOrderByInput =
@@ -2679,6 +2760,8 @@ export type PageLinkOrderByInput =
 export type PageLinkUpdateInput = {
   /** title input for default locale (en) */
   title?: Maybe<Scalars['String']>
+  /** description input for default locale (en) */
+  description?: Maybe<Scalars['RichTextAST']>
   /** url input for default locale (en) */
   url?: Maybe<Scalars['String']>
   rowHeroBanners?: Maybe<RowHeroBannerUpdateManyInlineInput>
@@ -2686,12 +2769,14 @@ export type PageLinkUpdateInput = {
   rowSpecialBanners?: Maybe<RowSpecialBannerUpdateManyInlineInput>
   footerSocialLinks?: Maybe<FooterUpdateManyInlineInput>
   footerLegalLinks?: Maybe<FooterUpdateManyInlineInput>
+  rowServiceOptionsMultiple?: Maybe<RowServiceOptionsUpdateManyInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<PageLinkUpdateLocalizationsInput>
 }
 
 export type PageLinkUpdateLocalizationDataInput = {
   title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['RichTextAST']>
   url?: Maybe<Scalars['String']>
 }
 
@@ -2730,6 +2815,8 @@ export type PageLinkUpdateManyInlineInput = {
 export type PageLinkUpdateManyInput = {
   /** title input for default locale (en) */
   title?: Maybe<Scalars['String']>
+  /** description input for default locale (en) */
+  description?: Maybe<Scalars['RichTextAST']>
   /** url input for default locale (en) */
   url?: Maybe<Scalars['String']>
   /** Optional updates to localizations */
@@ -2738,6 +2825,7 @@ export type PageLinkUpdateManyInput = {
 
 export type PageLinkUpdateManyLocalizationDataInput = {
   title?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['RichTextAST']>
   url?: Maybe<Scalars['String']>
 }
 
@@ -2927,6 +3015,9 @@ export type PageLinkWhereInput = {
   footerLegalLinks_every?: Maybe<FooterWhereInput>
   footerLegalLinks_some?: Maybe<FooterWhereInput>
   footerLegalLinks_none?: Maybe<FooterWhereInput>
+  rowServiceOptionsMultiple_every?: Maybe<RowServiceOptionsWhereInput>
+  rowServiceOptionsMultiple_some?: Maybe<RowServiceOptionsWhereInput>
+  rowServiceOptionsMultiple_none?: Maybe<RowServiceOptionsWhereInput>
 }
 
 /** References PageLink record uniquely */
@@ -3011,6 +3102,22 @@ export type PageManyWhereInput = {
   rowButtonLinkLists_every?: Maybe<RowButtonLinkListWhereInput>
   rowButtonLinkLists_some?: Maybe<RowButtonLinkListWhereInput>
   rowButtonLinkLists_none?: Maybe<RowButtonLinkListWhereInput>
+  asset?: Maybe<AssetWhereInput>
+  date?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  date_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  date_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  date_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  date_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  date_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  date_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  date_gte?: Maybe<Scalars['DateTime']>
 }
 
 export type PageOrderByInput =
@@ -3026,14 +3133,30 @@ export type PageOrderByInput =
   | 'url_DESC'
   | 'title_ASC'
   | 'title_DESC'
+  | 'metaTitle_ASC'
+  | 'metaTitle_DESC'
+  | 'metaDescription_ASC'
+  | 'metaDescription_DESC'
+  | 'metaRobots_ASC'
+  | 'metaRobots_DESC'
+  | 'date_ASC'
+  | 'date_DESC'
 
 export type PageUpdateInput = {
   /** url input for default locale (en) */
   url?: Maybe<Scalars['String']>
   /** title input for default locale (en) */
   title?: Maybe<Scalars['String']>
+  /** metaTitle input for default locale (en) */
+  metaTitle?: Maybe<Scalars['String']>
+  /** metaDescription input for default locale (en) */
+  metaDescription?: Maybe<Scalars['String']>
+  /** metaRobots input for default locale (en) */
+  metaRobots?: Maybe<MetaRobots>
   content?: Maybe<PageContentUpdateManyInlineInput>
   rowButtonLinkLists?: Maybe<RowButtonLinkListUpdateManyInlineInput>
+  asset?: Maybe<AssetUpdateOneInlineInput>
+  date?: Maybe<Scalars['DateTime']>
   /** Manage document localizations */
   localizations?: Maybe<PageUpdateLocalizationsInput>
 }
@@ -3041,6 +3164,9 @@ export type PageUpdateInput = {
 export type PageUpdateLocalizationDataInput = {
   url?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
+  metaTitle?: Maybe<Scalars['String']>
+  metaDescription?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<MetaRobots>
 }
 
 export type PageUpdateLocalizationInput = {
@@ -3078,12 +3204,22 @@ export type PageUpdateManyInlineInput = {
 export type PageUpdateManyInput = {
   /** title input for default locale (en) */
   title?: Maybe<Scalars['String']>
+  /** metaTitle input for default locale (en) */
+  metaTitle?: Maybe<Scalars['String']>
+  /** metaDescription input for default locale (en) */
+  metaDescription?: Maybe<Scalars['String']>
+  /** metaRobots input for default locale (en) */
+  metaRobots?: Maybe<MetaRobots>
+  date?: Maybe<Scalars['DateTime']>
   /** Optional updates to localizations */
   localizations?: Maybe<PageUpdateManyLocalizationsInput>
 }
 
 export type PageUpdateManyLocalizationDataInput = {
   title?: Maybe<Scalars['String']>
+  metaTitle?: Maybe<Scalars['String']>
+  metaDescription?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<MetaRobots>
 }
 
 export type PageUpdateManyLocalizationInput = {
@@ -3257,9 +3393,70 @@ export type PageWhereInput = {
   title_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   title_not_ends_with?: Maybe<Scalars['String']>
+  metaTitle?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  metaTitle_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  metaTitle_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  metaTitle_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  metaTitle_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  metaTitle_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  metaTitle_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  metaTitle_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  metaTitle_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  metaTitle_not_ends_with?: Maybe<Scalars['String']>
+  metaDescription?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  metaDescription_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  metaDescription_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  metaDescription_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  metaDescription_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  metaDescription_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  metaDescription_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  metaDescription_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  metaDescription_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  metaDescription_not_ends_with?: Maybe<Scalars['String']>
+  metaRobots?: Maybe<MetaRobots>
+  /** All values that are not equal to given value. */
+  metaRobots_not?: Maybe<MetaRobots>
+  /** All values that are contained in given list. */
+  metaRobots_in?: Maybe<Array<MetaRobots>>
+  /** All values that are not contained in given list. */
+  metaRobots_not_in?: Maybe<Array<MetaRobots>>
   rowButtonLinkLists_every?: Maybe<RowButtonLinkListWhereInput>
   rowButtonLinkLists_some?: Maybe<RowButtonLinkListWhereInput>
   rowButtonLinkLists_none?: Maybe<RowButtonLinkListWhereInput>
+  asset?: Maybe<AssetWhereInput>
+  date?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  date_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  date_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  date_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  date_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  date_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  date_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  date_gte?: Maybe<Scalars['DateTime']>
 }
 
 /** References Page record uniquely */
@@ -3302,6 +3499,466 @@ export type RichText = {
   markdown: Scalars['String']
   /** Returns plain-text contents of RichText */
   text: Scalars['String']
+}
+
+export type RowBlogContent = Node & {
+  __typename?: 'RowBlogContent'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
+  locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<RowBlogContent>
+  /** Get the document in other stages */
+  documentInStages: Array<RowBlogContent>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  content?: Maybe<RichText>
+  pages: Array<Page>
+  /** List of RowBlogContent versions */
+  history: Array<Version>
+}
+
+export type RowBlogContentLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type RowBlogContentDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type RowBlogContentCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowBlogContentUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowBlogContentPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowBlogContentPagesArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowBlogContentHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+export type RowBlogContentConnectInput = {
+  /** Document to connect */
+  where: RowBlogContentWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
+}
+
+/** A connection to a list of items. */
+export type RowBlogContentConnection = {
+  __typename?: 'RowBlogContentConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<RowBlogContentEdge>
+  aggregate: Aggregate
+}
+
+export type RowBlogContentCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  /** content input for default locale (en) */
+  content?: Maybe<Scalars['RichTextAST']>
+  pages?: Maybe<PageCreateManyInlineInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RowBlogContentCreateLocalizationsInput>
+}
+
+export type RowBlogContentCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  content?: Maybe<Scalars['RichTextAST']>
+}
+
+export type RowBlogContentCreateLocalizationInput = {
+  /** Localization input */
+  data: RowBlogContentCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowBlogContentCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<RowBlogContentCreateLocalizationInput>>
+}
+
+export type RowBlogContentCreateManyInlineInput = {
+  /** Create and connect multiple existing RowBlogContent documents */
+  create?: Maybe<Array<RowBlogContentCreateInput>>
+  /** Connect multiple existing RowBlogContent documents */
+  connect?: Maybe<Array<RowBlogContentWhereUniqueInput>>
+}
+
+export type RowBlogContentCreateOneInlineInput = {
+  /** Create and connect one RowBlogContent document */
+  create?: Maybe<RowBlogContentCreateInput>
+  /** Connect one existing RowBlogContent document */
+  connect?: Maybe<RowBlogContentWhereUniqueInput>
+}
+
+/** An edge in a connection. */
+export type RowBlogContentEdge = {
+  __typename?: 'RowBlogContentEdge'
+  /** The item at the end of the edge. */
+  node: RowBlogContent
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+}
+
+/** Identifies documents */
+export type RowBlogContentManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowBlogContentWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowBlogContentWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowBlogContentWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
+}
+
+export type RowBlogContentOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'identity_ASC'
+  | 'identity_DESC'
+
+export type RowBlogContentUpdateInput = {
+  identity?: Maybe<Scalars['String']>
+  /** content input for default locale (en) */
+  content?: Maybe<Scalars['RichTextAST']>
+  pages?: Maybe<PageUpdateManyInlineInput>
+  /** Manage document localizations */
+  localizations?: Maybe<RowBlogContentUpdateLocalizationsInput>
+}
+
+export type RowBlogContentUpdateLocalizationDataInput = {
+  content?: Maybe<Scalars['RichTextAST']>
+}
+
+export type RowBlogContentUpdateLocalizationInput = {
+  data: RowBlogContentUpdateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowBlogContentUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RowBlogContentCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<RowBlogContentUpdateLocalizationInput>>
+  upsert?: Maybe<Array<RowBlogContentUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
+}
+
+export type RowBlogContentUpdateManyInlineInput = {
+  /** Create and connect multiple RowBlogContent documents */
+  create?: Maybe<Array<RowBlogContentCreateInput>>
+  /** Connect multiple existing RowBlogContent documents */
+  connect?: Maybe<Array<RowBlogContentConnectInput>>
+  /** Override currently-connected documents with multiple existing RowBlogContent documents */
+  set?: Maybe<Array<RowBlogContentWhereUniqueInput>>
+  /** Update multiple RowBlogContent documents */
+  update?: Maybe<Array<RowBlogContentUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowBlogContent documents */
+  upsert?: Maybe<Array<RowBlogContentUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowBlogContent documents */
+  disconnect?: Maybe<Array<RowBlogContentWhereUniqueInput>>
+  /** Delete multiple RowBlogContent documents */
+  delete?: Maybe<Array<RowBlogContentWhereUniqueInput>>
+}
+
+export type RowBlogContentUpdateManyInput = {
+  /** content input for default locale (en) */
+  content?: Maybe<Scalars['RichTextAST']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<RowBlogContentUpdateManyLocalizationsInput>
+}
+
+export type RowBlogContentUpdateManyLocalizationDataInput = {
+  content?: Maybe<Scalars['RichTextAST']>
+}
+
+export type RowBlogContentUpdateManyLocalizationInput = {
+  data: RowBlogContentUpdateManyLocalizationDataInput
+  locale: Locale
+}
+
+export type RowBlogContentUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<RowBlogContentUpdateManyLocalizationInput>>
+}
+
+export type RowBlogContentUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: RowBlogContentWhereInput
+  /** Update many input */
+  data: RowBlogContentUpdateManyInput
+}
+
+export type RowBlogContentUpdateOneInlineInput = {
+  /** Create and connect one RowBlogContent document */
+  create?: Maybe<RowBlogContentCreateInput>
+  /** Update single RowBlogContent document */
+  update?: Maybe<RowBlogContentUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowBlogContent document */
+  upsert?: Maybe<RowBlogContentUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowBlogContent document */
+  connect?: Maybe<RowBlogContentWhereUniqueInput>
+  /** Disconnect currently connected RowBlogContent document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowBlogContent document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type RowBlogContentUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowBlogContentWhereUniqueInput
+  /** Document to update */
+  data: RowBlogContentUpdateInput
+}
+
+export type RowBlogContentUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RowBlogContentCreateInput
+  /** Update document if it exists */
+  update: RowBlogContentUpdateInput
+}
+
+export type RowBlogContentUpsertLocalizationInput = {
+  update: RowBlogContentUpdateLocalizationDataInput
+  create: RowBlogContentCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowBlogContentUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowBlogContentWhereUniqueInput
+  /** Upsert data */
+  data: RowBlogContentUpsertInput
+}
+
+/** Identifies documents */
+export type RowBlogContentWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowBlogContentWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowBlogContentWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowBlogContentWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
+}
+
+/** References RowBlogContent record uniquely */
+export type RowBlogContentWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
 }
 
 export type RowButtonLinkList = Node & {
@@ -7141,6 +7798,507 @@ export type RowQuoteWhereInput = {
 
 /** References RowQuote record uniquely */
 export type RowQuoteWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
+}
+
+export type RowServiceOptions = Node & {
+  __typename?: 'RowServiceOptions'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
+  locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<RowServiceOptions>
+  /** Get the document in other stages */
+  documentInStages: Array<RowServiceOptions>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  title?: Maybe<Scalars['String']>
+  serviceOptions: Array<PageLink>
+  pages: Array<Page>
+  /** List of RowServiceOptions versions */
+  history: Array<Version>
+}
+
+export type RowServiceOptionsLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type RowServiceOptionsDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type RowServiceOptionsCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowServiceOptionsUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowServiceOptionsPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowServiceOptionsServiceOptionsArgs = {
+  where?: Maybe<PageLinkWhereInput>
+  orderBy?: Maybe<PageLinkOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowServiceOptionsPagesArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowServiceOptionsHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+export type RowServiceOptionsConnectInput = {
+  /** Document to connect */
+  where: RowServiceOptionsWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
+}
+
+/** A connection to a list of items. */
+export type RowServiceOptionsConnection = {
+  __typename?: 'RowServiceOptionsConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<RowServiceOptionsEdge>
+  aggregate: Aggregate
+}
+
+export type RowServiceOptionsCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  /** title input for default locale (en) */
+  title?: Maybe<Scalars['String']>
+  serviceOptions?: Maybe<PageLinkCreateManyInlineInput>
+  pages?: Maybe<PageCreateManyInlineInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RowServiceOptionsCreateLocalizationsInput>
+}
+
+export type RowServiceOptionsCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  title?: Maybe<Scalars['String']>
+}
+
+export type RowServiceOptionsCreateLocalizationInput = {
+  /** Localization input */
+  data: RowServiceOptionsCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowServiceOptionsCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<RowServiceOptionsCreateLocalizationInput>>
+}
+
+export type RowServiceOptionsCreateManyInlineInput = {
+  /** Create and connect multiple existing RowServiceOptions documents */
+  create?: Maybe<Array<RowServiceOptionsCreateInput>>
+  /** Connect multiple existing RowServiceOptions documents */
+  connect?: Maybe<Array<RowServiceOptionsWhereUniqueInput>>
+}
+
+export type RowServiceOptionsCreateOneInlineInput = {
+  /** Create and connect one RowServiceOptions document */
+  create?: Maybe<RowServiceOptionsCreateInput>
+  /** Connect one existing RowServiceOptions document */
+  connect?: Maybe<RowServiceOptionsWhereUniqueInput>
+}
+
+/** An edge in a connection. */
+export type RowServiceOptionsEdge = {
+  __typename?: 'RowServiceOptionsEdge'
+  /** The item at the end of the edge. */
+  node: RowServiceOptions
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+}
+
+/** Identifies documents */
+export type RowServiceOptionsManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowServiceOptionsWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowServiceOptionsWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowServiceOptionsWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  serviceOptions_every?: Maybe<PageLinkWhereInput>
+  serviceOptions_some?: Maybe<PageLinkWhereInput>
+  serviceOptions_none?: Maybe<PageLinkWhereInput>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
+}
+
+export type RowServiceOptionsOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'identity_ASC'
+  | 'identity_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+
+export type RowServiceOptionsUpdateInput = {
+  identity?: Maybe<Scalars['String']>
+  /** title input for default locale (en) */
+  title?: Maybe<Scalars['String']>
+  serviceOptions?: Maybe<PageLinkUpdateManyInlineInput>
+  pages?: Maybe<PageUpdateManyInlineInput>
+  /** Manage document localizations */
+  localizations?: Maybe<RowServiceOptionsUpdateLocalizationsInput>
+}
+
+export type RowServiceOptionsUpdateLocalizationDataInput = {
+  title?: Maybe<Scalars['String']>
+}
+
+export type RowServiceOptionsUpdateLocalizationInput = {
+  data: RowServiceOptionsUpdateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowServiceOptionsUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RowServiceOptionsCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<RowServiceOptionsUpdateLocalizationInput>>
+  upsert?: Maybe<Array<RowServiceOptionsUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
+}
+
+export type RowServiceOptionsUpdateManyInlineInput = {
+  /** Create and connect multiple RowServiceOptions documents */
+  create?: Maybe<Array<RowServiceOptionsCreateInput>>
+  /** Connect multiple existing RowServiceOptions documents */
+  connect?: Maybe<Array<RowServiceOptionsConnectInput>>
+  /** Override currently-connected documents with multiple existing RowServiceOptions documents */
+  set?: Maybe<Array<RowServiceOptionsWhereUniqueInput>>
+  /** Update multiple RowServiceOptions documents */
+  update?: Maybe<Array<RowServiceOptionsUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowServiceOptions documents */
+  upsert?: Maybe<Array<RowServiceOptionsUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowServiceOptions documents */
+  disconnect?: Maybe<Array<RowServiceOptionsWhereUniqueInput>>
+  /** Delete multiple RowServiceOptions documents */
+  delete?: Maybe<Array<RowServiceOptionsWhereUniqueInput>>
+}
+
+export type RowServiceOptionsUpdateManyInput = {
+  /** title input for default locale (en) */
+  title?: Maybe<Scalars['String']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<RowServiceOptionsUpdateManyLocalizationsInput>
+}
+
+export type RowServiceOptionsUpdateManyLocalizationDataInput = {
+  title?: Maybe<Scalars['String']>
+}
+
+export type RowServiceOptionsUpdateManyLocalizationInput = {
+  data: RowServiceOptionsUpdateManyLocalizationDataInput
+  locale: Locale
+}
+
+export type RowServiceOptionsUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<RowServiceOptionsUpdateManyLocalizationInput>>
+}
+
+export type RowServiceOptionsUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: RowServiceOptionsWhereInput
+  /** Update many input */
+  data: RowServiceOptionsUpdateManyInput
+}
+
+export type RowServiceOptionsUpdateOneInlineInput = {
+  /** Create and connect one RowServiceOptions document */
+  create?: Maybe<RowServiceOptionsCreateInput>
+  /** Update single RowServiceOptions document */
+  update?: Maybe<RowServiceOptionsUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowServiceOptions document */
+  upsert?: Maybe<RowServiceOptionsUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowServiceOptions document */
+  connect?: Maybe<RowServiceOptionsWhereUniqueInput>
+  /** Disconnect currently connected RowServiceOptions document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowServiceOptions document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type RowServiceOptionsUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowServiceOptionsWhereUniqueInput
+  /** Document to update */
+  data: RowServiceOptionsUpdateInput
+}
+
+export type RowServiceOptionsUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RowServiceOptionsCreateInput
+  /** Update document if it exists */
+  update: RowServiceOptionsUpdateInput
+}
+
+export type RowServiceOptionsUpsertLocalizationInput = {
+  update: RowServiceOptionsUpdateLocalizationDataInput
+  create: RowServiceOptionsCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowServiceOptionsUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowServiceOptionsWhereUniqueInput
+  /** Upsert data */
+  data: RowServiceOptionsUpsertInput
+}
+
+/** Identifies documents */
+export type RowServiceOptionsWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowServiceOptionsWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowServiceOptionsWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowServiceOptionsWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>
+  serviceOptions_every?: Maybe<PageLinkWhereInput>
+  serviceOptions_some?: Maybe<PageLinkWhereInput>
+  serviceOptions_none?: Maybe<PageLinkWhereInput>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
+}
+
+/** References RowServiceOptions record uniquely */
+export type RowServiceOptionsWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>
   identity?: Maybe<Scalars['String']>
 }

@@ -1,7 +1,8 @@
 import { Container, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
+import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
+import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
   ProductConfigurableDocument,
   ProductConfigurableQuery,
@@ -14,7 +15,6 @@ import {
   ProductPageAdditionalDocument,
   ProductPageAdditionalQuery,
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -45,53 +45,54 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
-  const asdf = configurableProducts?.items?.[0]?.options
+  const configurableProduct = configurableProducts?.items?.[0]
 
   // console.log(productAdditionals?.items?.[0]?.upsell_products)
 
-  if (!product) return <NextError statusCode={404} title='Product not found' />
+  if (!product || !configurableProduct?.sku)
+    return <NextError statusCode={404} title='Product not found' />
 
   const category = productPageCategory(product)
   return (
     <>
-      <ProductPageMeta {...product} />
-      <BottomDrawerUi
-        title={product.name ?? ''}
-        backFallbackHref={`/${category?.url_path}`}
-        backFallbackTitle={category?.name}
-      >
-        <Container>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-          <ProductPageDescription {...product} />
-          <ProductPageGallery {...product} />
-          {pages?.[0] && <Page {...pages?.[0]} />}
+      <ConfigurableContextProvider {...configurableProduct} sku={configurableProduct.sku}>
+        <ProductPageMeta {...product} />
+        <BottomDrawerUi
+          title={product.name ?? ''}
+          backFallbackHref={`/${category?.url_path}`}
+          backFallbackTitle={category?.name}
+        >
+          <Container>
+            <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
 
-          {productAdditionals?.items?.[0]?.upsell_products ? (
-            <>
-              {/* todo: create a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Upsells</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
-            </>
-          ) : null}
-          {productAdditionals?.items?.[0]?.related_products ? (
-            <>
-              {/* todo: reate a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Related</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
-            </>
-          ) : null}
-        </Container>
-      </BottomDrawerUi>
+            <ProductPageDescription {...product} />
+            <ProductPageGallery {...product} />
+            {pages?.[0] && <Page {...pages?.[0]} />}
+
+            {productAdditionals?.items?.[0]?.upsell_products ? (
+              <>
+                {/* todo: create a component where we can compose in the ProductListItems */}
+                <Typography variant='h2'>Upsells</Typography>
+                <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
+              </>
+            ) : null}
+            {productAdditionals?.items?.[0]?.related_products ? (
+              <>
+                {/* todo: reate a component where we can compose in the ProductListItems */}
+                <Typography variant='h2'>Related</Typography>
+                <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
+              </>
+            ) : null}
+          </Container>
+        </BottomDrawerUi>
+      </ConfigurableContextProvider>
     </>
   )
 }
 
 ProductPage.Layout = PageLayout
 
-registerRouteUi('/product/[url]', BottomDrawerUi)
+registerRouteUi('/product/configurable/[url]', BottomDrawerUi)
 
 export default ProductPage
 

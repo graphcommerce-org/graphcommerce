@@ -1,4 +1,5 @@
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import RowBlogContent from '../Blog/RowBlogContent'
 import RowColumnOne from '../RowColumnOne'
 import RowColumnThree from '../RowColumnThree'
 import RowColumnTwo from '../RowColumnTwo'
@@ -20,6 +21,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowSpecialBanner,
   RowQuote,
   RowProductBackstory,
+  RowBlogContent,
 }
 
 export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer> }

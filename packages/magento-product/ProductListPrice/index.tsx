@@ -12,6 +12,12 @@ const useStyles = makeStyles(
       marginRight: 8,
       ...theme.typography.caption,
     },
+    price: {
+      [theme.breakpoints.down('xs')]: {
+        position: 'absolute',
+        right: 0,
+      },
+    },
   }),
   { name: 'ProductListPrice' },
 )
@@ -21,7 +27,7 @@ export default function ProductListPrice(props: ProductListPriceFragment) {
   const classes = useStyles(props)
 
   return (
-    <div>
+    <div className={classes.price}>
       {regular_price.value !== final_price.value && (
         <div className={classes.discount}>
           <Money {...regular_price} />
