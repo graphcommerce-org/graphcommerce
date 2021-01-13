@@ -1,6 +1,7 @@
 import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { PageLayoutQuery } from './PageLayout.gql'
 
 const useTabsStyles = makeStyles(
@@ -79,6 +80,16 @@ export default function MenuTabs(props: MenuTabsProps) {
           </CategoryLink>
         )
       })}
+
+      <PageLink href='/blog/index'>
+        <Tab
+          label='Blog'
+          component='a'
+          value='Blog'
+          {...tabProps}
+          classes={{ ...tabClasses, ...tabProps?.classes }}
+        />
+      </PageLink>
     </Tabs>
   )
 }

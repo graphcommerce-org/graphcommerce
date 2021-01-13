@@ -6,6 +6,7 @@
       "MagentoCategory",
       "Page",
       "PageLink",
+      "RowBlogContent",
       "RowButtonLinkList",
       "RowColumnOne",
       "RowColumnThree",
@@ -19,6 +20,7 @@
       "RowSwipeableGrid"
     ],
     "PageContent": [
+      "RowBlogContent",
       "RowButtonLinkList",
       "RowColumnOne",
       "RowColumnThree",

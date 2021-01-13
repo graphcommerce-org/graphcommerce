@@ -2,6 +2,8 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '../../generated/types'
 
+import { AssetFragment, AssetFragmentDoc } from '../Asset/Asset.gql'
+import { RowBlogContentFragment, RowBlogContentFragmentDoc } from '../Blog/RowBlogContent.gql'
 import { RowColumnOneFragment, RowColumnOneFragmentDoc } from '../RowColumnOne/RowColumnOne.gql'
 import {
   RowColumnThreeFragment,
@@ -33,6 +35,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'content' },
@@ -51,6 +54,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnOne' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnTwo' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowColumnThree' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowBlogContent' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowHeroBanner' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductGrid' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSpecialBanner' } },
@@ -59,21 +63,32 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
               ],
             },
           },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'asset' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Asset' } }],
+            },
+          },
         ],
       },
     },
     ...RowColumnOneFragmentDoc.definitions,
     ...RowColumnTwoFragmentDoc.definitions,
     ...RowColumnThreeFragmentDoc.definitions,
+    ...RowBlogContentFragmentDoc.definitions,
     ...RowHeroBannerFragmentDoc.definitions,
     ...RowProductGridFragmentDoc.definitions,
     ...RowSpecialBannerFragmentDoc.definitions,
     ...RowQuoteFragmentDoc.definitions,
     ...RowProductBackstoryFragmentDoc.definitions,
+    ...AssetFragmentDoc.definitions,
   ],
 }
-export type PageFragment = {
+export type PageFragment = Pick<Types.Page, 'title'> & {
   content: Array<
+    | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & RowBlogContentFragment)
     | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
@@ -88,4 +103,5 @@ export type PageFragment = {
         RowSpecialBannerFragment)
     | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)
   >
+  asset?: Types.Maybe<AssetFragment>
 }
