@@ -177,7 +177,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         />
       </div>
       <div className={classes.formRow}>
-        <TextField
+        <Controller
           defaultValue={country ?? ''}
           control={control}
           name='address.country_code'
