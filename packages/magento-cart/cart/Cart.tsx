@@ -86,7 +86,7 @@ export default function Cart(props: CartProps) {
 
   return (
     <NoSsr>
-      <CheckoutStepper steps={3} currentStep={0} key='checkout-stepper' />
+      <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
 
       <AnimatePresence initial={false}>
         {!hasItems && (

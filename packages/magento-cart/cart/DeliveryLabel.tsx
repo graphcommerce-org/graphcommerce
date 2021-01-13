@@ -1,4 +1,5 @@
-import { makeStyles, Popover, Theme, Typography } from '@material-ui/core'
+import { IconButton, makeStyles, Popover, Theme, Typography } from '@material-ui/core'
+import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 
@@ -27,9 +28,9 @@ const useStyles = makeStyles(
 
 export default function DeliveryLabel() {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null)
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
@@ -41,9 +42,9 @@ export default function DeliveryLabel() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.labelContainer} onClick={handleClick}>
+      <IconButton component='button' className={classes.labelContainer} onClick={handleClick}>
         <div className={classes.label} />
-      </div>
+      </IconButton>
       <Popover
         id={open ? 'simple-popover' : undefined}
         open={open}
