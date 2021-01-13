@@ -1,5 +1,5 @@
 import { Button, Container } from '@material-ui/core'
-import Footer, { FooterProps } from '@reachdigital/magento-app-shell/Footer'
+import Footer from '@reachdigital/magento-app-shell/Footer'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -14,6 +14,7 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
+import { FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import MobileMenu from '../../components/MobileMenu/MobileMenu'
@@ -21,7 +22,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string } & FooterProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
+type Props = { url: string } & FooterQuery & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>

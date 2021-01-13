@@ -12,8 +12,8 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
-import Footer, { FooterProps } from '../../components/Footer'
-import { FooterDocument } from '../../components/Footer/Footer.gql'
+import Footer from '../../components/Footer'
+import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import MobileMenu from '../../components/MobileMenu/MobileMenu'
@@ -21,7 +21,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CmsPageQuery & PageLayoutQuery & ResolveUrlQuery & FooterProps & PageByUrlQuery
+type Props = CmsPageQuery & PageLayoutQuery & ResolveUrlQuery & FooterQuery & PageByUrlQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>

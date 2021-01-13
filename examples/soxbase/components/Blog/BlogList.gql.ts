@@ -98,7 +98,7 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
   ],
 }
 export type BlogListQueryVariables = Types.Exact<{
-  currentUrl: Array<Types.Scalars['String']>
+  currentUrl: Array<Types.Scalars['String']> | Types.Scalars['String']
   first?: Types.Maybe<Types.Scalars['Int']>
 }>
 
