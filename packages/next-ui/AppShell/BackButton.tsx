@@ -1,5 +1,6 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
+import clsx from 'clsx'
 import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
@@ -9,24 +10,30 @@ const useStyles = makeStyles(
     root: {
       width: 'min-content',
       pointerEvents: 'all',
+      boxShadow: theme.shadows[1],
+      // [theme.breakpoints.down('sm')]: {
+      //   boxShadow: 'unset',
+      //   paddingRight: `8px`,
+      //   paddingLeft: `14px`,
+      // },
       [theme.breakpoints.down('sm')]: {
-        height: 40,
-        minWidth: 40,
-      },
-      [theme.breakpoints.down('xs')]: {
-        boxShadow: 'unset',
-        paddingRight: `8px`,
-        paddingLeft: `14px`,
+        height: 38,
+        width: 40,
+        textAlign: 'center',
+        minWidth: 'unset',
       },
     },
     icon: {
       fontSize: 18,
+      [theme.breakpoints.down('sm')]: {
+        paddingLeft: 4,
+      },
     },
     text: {
       whiteSpace: 'nowrap',
       pointerEvents: 'none',
       display: 'none',
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         display: 'unset',
       },
     },
@@ -44,7 +51,7 @@ const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
     <Button
       variant='pill'
       classes={{
-        root: classes.root,
+        root: clsx(classes.root, props.className),
         pill: classes.root,
       }}
       aria-label='Previous page'

@@ -1,8 +1,8 @@
 import { performance } from 'perf_hooks'
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
@@ -15,9 +15,12 @@ import getCategoryPageProps, {
 } from '@reachdigital/magento-product-types/getCategoryPageProps'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
+import ProductListFiltersContainer, {
+  useProductListFiltersStyles,
+} from '@reachdigital/magento-product/ProductListFiltersContainer'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
@@ -27,12 +30,15 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
+import HeaderActions from '../components/HeaderActions/HeaderActions'
+import Logo from '../components/Logo/Logo'
+import MobileMenu from '../components/MobileMenu/MobileMenu'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps & HeaderProps & PageByUrlQuery
+type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -77,14 +83,16 @@ const useProductListStyles = makeStyles(
 function CategoryPage(props: Props) {
   const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
+  const filterClasses = useProductListFiltersStyles(props)
   const { categories, products, filters, params, filterTypes, menu, urlResolver, pages } = props
 
   if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
     return <NextError statusCode={503} title='Loading skeleton' />
 
   const category = categories.items[0]
-
+  const parentCategory = categories.items[0].breadcrumbs?.[0]
   let content: React.ReactNode
+
   if (
     (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) ||
     categories.items[0].display_mode === 'PAGE'
@@ -107,14 +115,18 @@ function CategoryPage(props: Props) {
             <CategoryChildren params={params}>{category.children}</CategoryChildren>
           </div>
 
-          <div className={classes.filters}>
-            <ProductListSort sort_fields={products.sort_fields} className={classes.filterItem} />
+          <ProductListFiltersContainer>
+            <ProductListSort
+              sort_fields={products.sort_fields}
+              className={filterClasses.filterItem}
+            />
             <ProductListFilters
               aggregations={filters.aggregations}
               filterTypes={filterTypes}
-              className={classes.filterItem}
+              className={filterClasses.filterItem}
             />
-          </div>
+          </ProductListFiltersContainer>
+
           <ProductListCount total_count={products?.total_count} />
           <ProductListItems
             items={products.items}
@@ -127,8 +139,15 @@ function CategoryPage(props: Props) {
   }
 
   return (
-    <FullPageUi title={category.name ?? ''}>
-      <Header menu={menu} urlResolver={urlResolver} />
+    <FullPageUi
+      title={category.name ?? ''}
+      backFallbackTitle={parentCategory?.category_name ?? undefined}
+      backFallbackHref={parentCategory?.category_url_path ?? undefined}
+      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+      logo={<Logo />}
+      actions={<HeaderActions />}
+    >
+      <MobileMenu menu={menu} urlResolver={urlResolver} />
       <CategoryMeta {...category} />
       {pages?.[0] && <Page {...pages?.[0]} />}
       {content}

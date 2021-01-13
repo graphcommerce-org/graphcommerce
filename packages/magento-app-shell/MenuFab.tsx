@@ -11,10 +11,11 @@ import { PageLayoutQuery } from './PageLayout.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     menuOpen: {
-      // position: 'fixed',
-      // left: vpCalc(18, 60),
-      // top: vpCalc(18, 60),
-      // zIndex: zIndex.appBar,
+      background: theme.palette.primary.contrastText,
+      boxShadow: theme.shadows[2],
+      '&:hover, &:focus': {
+        background: theme.palette.primary.contrastText,
+      },
     },
     menu: {
       backgroundColor: theme.palette.tertiary.main,
@@ -46,7 +47,6 @@ const useStyles = makeStyles(
         backgroundColor: theme.palette.tertiary.light,
       },
     },
-
     menuItemTextSmall: {
       fontWeight: 600,
     },

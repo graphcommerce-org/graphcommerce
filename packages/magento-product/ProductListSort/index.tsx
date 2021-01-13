@@ -5,6 +5,7 @@ import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-catego
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ChipMenu, { ChipMenuProps } from '@reachdigital/next-ui/ChipMenu'
+import { m } from 'framer-motion'
 import React from 'react'
 import { ProductListSortFragment } from './ProductListSort.gql'
 
@@ -29,34 +30,36 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
   }
 
   return (
-    <ChipMenu
-      variant='outlined'
-      selected={selected}
-      label={label}
-      {...filterMenuProps}
-      selectedLabel={selected ? currentOption?.label ?? '' : label}
-      onDelete={selected ? removeFilter : undefined}
-    >
-      {sort_fields?.options?.map((option) => {
-        const linkParams = cloneDeep(params)
-        linkParams.sort = {}
-        if (option?.value !== defaultSort) linkParams.sort[option?.value ?? ''] = 'ASC'
-        delete linkParams.currentPage
+    <m.div layout='position'>
+      <ChipMenu
+        variant='outlined'
+        selected={selected}
+        label={label}
+        {...filterMenuProps}
+        selectedLabel={selected ? currentOption?.label ?? '' : label}
+        onDelete={selected ? removeFilter : undefined}
+      >
+        {sort_fields?.options?.map((option) => {
+          const linkParams = cloneDeep(params)
+          linkParams.sort = {}
+          if (option?.value !== defaultSort) linkParams.sort[option?.value ?? ''] = 'ASC'
+          delete linkParams.currentPage
 
-        return (
-          <ListItem
-            button
-            key={option?.value ?? ''}
-            dense
-            selected={option?.value === currentSort}
-            component={(chipProps) => (
-              <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
-            )}
-          >
-            <ListItemText secondary>{option?.label}</ListItemText>
-          </ListItem>
-        )
-      })}
-    </ChipMenu>
+          return (
+            <ListItem
+              button
+              key={option?.value ?? ''}
+              dense
+              selected={option?.value === currentSort}
+              component={(chipProps) => (
+                <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
+              )}
+            >
+              <ListItemText secondary>{option?.label}</ListItemText>
+            </ListItem>
+          )
+        })}
+      </ChipMenu>
+    </m.div>
   )
 }

@@ -1,7 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { useTheme } from '@material-ui/core'
-import Header from '@reachdigital/magento-app-shell/Header'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import PageLayoutBase from '@reachdigital/next-ui/Page/PageLayoutBase'
 import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'

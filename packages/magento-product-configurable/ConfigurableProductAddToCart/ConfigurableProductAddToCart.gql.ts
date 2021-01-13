@@ -519,8 +519,10 @@ export type ConfigurableProductAddToCartMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
   sku: Types.Scalars['String']
   quantity?: Types.Maybe<Types.Scalars['Float']>
-  enteredOptions?: Types.Maybe<Array<Types.Maybe<Types.EnteredOptionInput>>>
-  selectedOptions: Array<Types.Maybe<Types.Scalars['ID']>>
+  enteredOptions?: Types.Maybe<
+    Array<Types.Maybe<Types.EnteredOptionInput>> | Types.Maybe<Types.EnteredOptionInput>
+  >
+  selectedOptions: Array<Types.Maybe<Types.Scalars['ID']>> | Types.Maybe<Types.Scalars['ID']>
 }>
 
 export type ConfigurableProductAddToCartMutation = {

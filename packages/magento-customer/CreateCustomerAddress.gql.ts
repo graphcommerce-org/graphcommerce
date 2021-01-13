@@ -240,7 +240,7 @@ export type CreateCustomerAddressMutationVariables = Types.Exact<{
   lastname: Types.Scalars['String']
   suffix?: Types.Maybe<Types.Scalars['String']>
   telephone?: Types.Maybe<Types.Scalars['String']>
-  street: Array<Types.Scalars['String']>
+  street: Array<Types.Scalars['String']> | Types.Scalars['String']
   city: Types.Scalars['String']
   postcode: Types.Scalars['String']
   region: Types.CustomerAddressRegionInput

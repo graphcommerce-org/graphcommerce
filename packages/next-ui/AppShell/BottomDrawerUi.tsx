@@ -57,20 +57,27 @@ const useStyles = makeStyles(
       `,
       // gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
+      background: theme.palette.background.default,
+      zIndex: 3,
     },
     headerBack: {
       pointerEvents: 'all',
       gridArea: 'back',
     },
-    headerTitle: {
+    headerTitleContainer: {
       pointerEvents: 'all',
       gridArea: 'title',
     },
+    headerTitle: {
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: 700,
+      fontSize: 20,
+    },
     dragHandle: {
-      width: 100,
+      width: 78,
       height: 6,
       borderRadius: 3,
-      backgroundColor: theme.palette.grey[300],
+      border: `1px solid ${theme.palette.grey[300]}`,
       gridArea: 'handle',
       justifySelf: 'center',
     },
@@ -205,32 +212,30 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
                 <m.div className={classes.dragHandle} style={{ opacity }} />
 
                 <div className={classes.headerBack}>
-                  <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                  <NoSsr fallback={<BackButton>Home</BackButton>}>
                     {prevPage?.title ? (
                       <BackButton onClick={back} down={prevPage === upPage}>
                         {prevPage.title}
                       </BackButton>
                     ) : (
                       <PageLink href={backFallbackHref ?? '/'}>
-                        <BackButton className={classes.headerBack}>
-                          {backFallbackTitle ?? 'Home'}
-                        </BackButton>
+                        <BackButton>{backFallbackTitle ?? 'Home'}</BackButton>
                       </PageLink>
                     )}
                   </NoSsr>
                 </div>
 
-                <div className={classes.headerTitle}>
+                <div className={classes.headerTitleContainer}>
                   <Typography
                     variant='h4'
                     component={titleComponent ?? 'h1'}
                     align='center'
                     {...titleProps}
+                    className={classes.headerTitle}
                   >
                     {title}
                   </Typography>
                 </div>
-
                 <div className={classes.headerForward}>{headerForward}</div>
               </div>
               {children}

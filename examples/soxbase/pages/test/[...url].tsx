@@ -1,8 +1,9 @@
 import { Button, Container } from '@material-ui/core'
-import Footer, { FooterProps } from '@reachdigital/magento-app-shell/Footer'
-import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import Footer from '@reachdigital/magento-app-shell/Footer'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
@@ -13,11 +14,15 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
-import Page, { PageProps } from '../../components/Page'
+import { FooterQuery } from '../../components/Footer/Footer.gql'
+import HeaderActions from '../../components/HeaderActions/HeaderActions'
+import Logo from '../../components/Logo/Logo'
+import MobileMenu from '../../components/MobileMenu/MobileMenu'
+import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string } & HeaderProps & FooterProps & PageByUrlQuery
+type Props = { url: string } & FooterQuery & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -26,8 +31,13 @@ function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
-    <FullPageUi title={title}>
-      <Header menu={menu} urlResolver={urlResolver} />
+    <FullPageUi
+      title={title}
+      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+      logo={<Logo />}
+      actions={<HeaderActions />}
+    >
+      <MobileMenu menu={menu} urlResolver={urlResolver} />
       <Container>
         {url === 'index' ? (
           <PageLink href='/test/deeper'>

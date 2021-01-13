@@ -1,20 +1,19 @@
-import { useQuery } from '@apollo/client'
-import {
-  ListItem,
-  ListItemText,
-  Divider,
-  Theme,
-  ListItemSecondaryAction,
-  NoSsr,
-  makeStyles,
-} from '@material-ui/core'
+import { Divider, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
+import Button from '@reachdigital/next-ui/Button'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { m, AnimatePresence, MotionProps } from 'framer-motion'
+import { AnimatePresence, m, MotionProps } from 'framer-motion'
 import React from 'react'
-import { ClientCartDocument, ClientCartQuery } from '../ClientCart.gql'
+import { ClientCartQuery } from '../ClientCart.gql'
+import CheckoutStepper from './CheckoutStepper'
+import QuickCheckout from './QuickCheckout'
+import TotalCosts from './TotalCosts'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -34,10 +33,36 @@ const useStyles = makeStyles(
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      textAlign: 'center',
       color: theme.palette.primary.mutedText,
+      margin: `${theme.spacings.lg} auto`,
     },
     emptyCartIcon: {
       fontSize: 200,
+    },
+    checkoutButton: {
+      borderRadius: responsiveVal(40, 50),
+      fontSize: 17,
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: 500,
+      marginBottom: theme.spacings.lg,
+      marginTop: theme.spacings.lg,
+      width: '100%',
+      maxWidth: 380,
+      padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
+    },
+    checkoutButtonIcon: {
+      '& > svg': {
+        fontSize: responsiveVal(24, 30),
+        fontWeight: 100,
+      },
+    },
+    checkoutButtonContainer: {
+      textAlign: 'center',
+    },
+    checkoutButtonLabel: {
+      fontWeight: theme.typography.fontWeightBold,
+      paddingRight: theme.spacings.xxs,
     },
   }),
   { name: 'Cart' },
@@ -47,116 +72,67 @@ type CartItemRenderer = TypeRenderer<
   NonNullable<NonNullable<NonNullable<ClientCartQuery['cart']>['items']>[0]> & { cartId: string }
 >
 
-type CartProps = { renderer: CartItemRenderer }
+type CartProps = {
+  clientCartQueryData: ClientCartQuery
+  renderer: CartItemRenderer
+}
 
 export default function Cart(props: CartProps) {
-  const { renderer } = props
+  const { renderer, clientCartQueryData } = props
   const classes = useStyles()
-  const { data, loading } = useQuery(ClientCartDocument)
 
-  let content
-
-  const cartItemAnimation: MotionProps = {
-    initial: { opacity: 0, x: 0 },
-    animate: { opacity: 1, x: 0 },
-    exit: { x: -100 },
-    layout: true,
-  }
-
-  const animation: MotionProps = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0, transition: { type: 'inertia' } },
-    layout: true,
-  }
-
-  if (!data?.cart?.items?.length) {
-    content = (
-      <m.div
-        className={clsx(classes.emptyCart)}
-        key='empty-cart'
-        {...{ ...animation, layout: false }}
-      >
-        <CartIcon className={classes.emptyCartIcon} color='disabled' />
-        <p>Looks like you did not add anything to your cart yet.</p>
-      </m.div>
-    )
-  } else if (loading) {
-    content = (
-      <m.div key='loading-cart' {...{ ...animation, layout: false }}>
-        loading...
-      </m.div>
-    )
-  } else if (data) {
-    const { cart } = data
-    content = (
-      <>
-        {cart?.items?.map((item) => {
-          if (!item) return null
-          return (
-            <m.div key={`item${item.id}`} {...cartItemAnimation}>
-              <RenderType renderer={renderer} {...item} cartId={cart.id} />
-              <Divider variant='inset' component='div' />
-            </m.div>
-          )
-        })}
-
-        {cart?.prices?.subtotal_including_tax && (
-          <m.div {...animation} key='subtotal'>
-            <ListItem ContainerComponent='div'>
-              <ListItemText inset>Subtotal</ListItemText>
-              <ListItemSecondaryAction>
-                <Money {...cart.prices.subtotal_including_tax} />
-              </ListItemSecondaryAction>
-            </ListItem>
-          </m.div>
-        )}
-
-        {cart?.prices?.discounts?.map((discount, idx) => (
-          <m.div {...animation} key={`price${idx}`}>
-            <ListItem ContainerComponent='div'>
-              <ListItemText inset>{discount?.label}</ListItemText>
-              <ListItemSecondaryAction>
-                {discount?.amount && (
-                  <Money
-                    currency={discount?.amount.currency}
-                    value={(discount?.amount.value ?? 0) * -1}
-                  />
-                )}
-              </ListItemSecondaryAction>
-            </ListItem>
-          </m.div>
-        ))}
-
-        {cart?.shipping_addresses?.map((address, idx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <m.div {...animation} key={`shipping_addresses_${idx}`}>
-            <ListItem ContainerComponent='div'>
-              <ListItemText inset>{address?.selected_shipping_method?.carrier_title}</ListItemText>
-              <ListItemSecondaryAction>
-                {address?.selected_shipping_method?.amount && (
-                  <Money {...address.selected_shipping_method.amount} key={idx} />
-                )}
-              </ListItemSecondaryAction>
-            </ListItem>
-          </m.div>
-        ))}
-
-        <m.div {...animation} key='total'>
-          <ListItem key='total' ContainerComponent='div'>
-            <ListItemText inset>Total</ListItemText>
-            <ListItemSecondaryAction>
-              {cart?.prices?.grand_total && <Money {...cart.prices.grand_total} />}
-            </ListItemSecondaryAction>
-          </ListItem>
-        </m.div>
-      </>
-    )
-  }
+  const hasItems = !!clientCartQueryData?.cart?.items?.length
+  const { cart } = clientCartQueryData
 
   return (
     <NoSsr>
-      <AnimatePresence exitBeforeEnter>{content}</AnimatePresence>
+      <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
+
+      <AnimatePresence initial={false}>
+        {!hasItems && (
+          <AnimatedRow className={clsx(classes.emptyCart)} key='empty-cart'>
+            <CartIcon className={classes.emptyCartIcon} color='disabled' />
+            <p>Looks like you did not add anything to your cart yet.</p>
+          </AnimatedRow>
+        )}
+
+        {hasItems && (
+          <AnimatedRow key='quick-checkout'>
+            <QuickCheckout total={clientCartQueryData?.cart?.prices?.grand_total} />
+          </AnimatedRow>
+        )}
+
+        {cart?.items?.map(
+          (item) =>
+            item && (
+              <AnimatedRow key={`item-${item.id}`}>
+                <RenderType renderer={renderer} {...item} cartId={cart.id} />
+              </AnimatedRow>
+            ),
+        )}
+
+        {hasItems && <TotalCosts cart={cart} />}
+
+        {hasItems && (
+          <AnimatedRow className={classes.checkoutButtonContainer} key='checkout-button'>
+            {clientCartQueryData?.cart?.items?.length && (
+              <>
+                <PageLink href='/checkout'>
+                  <Button
+                    variant='pill'
+                    color='secondary'
+                    className={classes.checkoutButton}
+                    endIcon={<ChevronRightIcon className={classes.checkoutButtonIcon} />}
+                  >
+                    <span className={classes.checkoutButtonLabel}>Start checkout</span> (
+                    <Money {...clientCartQueryData?.cart?.prices?.grand_total} />)
+                  </Button>
+                </PageLink>
+              </>
+            )}
+          </AnimatedRow>
+        )}
+      </AnimatePresence>
     </NoSsr>
   )
 }

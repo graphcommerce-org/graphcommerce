@@ -534,9 +534,11 @@ export const AddBundleProductToCartDocument: DocumentNode<
 export type AddBundleProductToCartMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
   sku: Types.Scalars['String']
-  bundleOptions: Array<Types.BundleOptionInput>
+  bundleOptions: Array<Types.BundleOptionInput> | Types.BundleOptionInput
   quantity?: Types.Maybe<Types.Scalars['Float']>
-  customizableOptions?: Types.Maybe<Array<Types.Maybe<Types.CustomizableOptionInput>>>
+  customizableOptions?: Types.Maybe<
+    Array<Types.Maybe<Types.CustomizableOptionInput>> | Types.Maybe<Types.CustomizableOptionInput>
+  >
 }>
 
 export type AddBundleProductToCartMutation = {

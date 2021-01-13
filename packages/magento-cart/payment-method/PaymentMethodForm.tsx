@@ -10,6 +10,7 @@ import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm
 import React, { useEffect, useMemo, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
+import { ShippingAddressFormDocument } from '../shipping/ShippingAddressForm.gql'
 
 type PaymentMethodFormProps = CountryRegionsQuery & {
   doSubmit: React.MutableRefObject<(() => Promise<boolean>) | undefined>

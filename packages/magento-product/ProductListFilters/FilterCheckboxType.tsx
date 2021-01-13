@@ -4,6 +4,7 @@ import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-catego
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { useChipMenuStyles } from '@reachdigital/next-ui/ChipMenu'
 import clsx from 'clsx'
+import { m } from 'framer-motion'
 import React from 'react'
 import { FilterIn } from './FilterEqualType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -28,32 +29,34 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const filter = isActive ? {} : ({ in: [option.value] } as FilterIn)
 
   return (
-    <CategoryLink
-      {...params}
-      filters={{ ...params.filters, [attribute_code]: filter }}
-      currentPage={undefined}
-      noLink
-    >
-      <Chip
-        variant='outlined'
-        color={isActive ? undefined : 'default'}
-        onDelete={
-          isActive
-            ? () => {
-                const linkParams = cloneDeep(params)
+    <m.div layout='position'>
+      <CategoryLink
+        {...params}
+        filters={{ ...params.filters, [attribute_code]: filter }}
+        currentPage={undefined}
+        noLink
+      >
+        <Chip
+          variant='outlined'
+          color={isActive ? undefined : 'default'}
+          onDelete={
+            isActive
+              ? () => {
+                  const linkParams = cloneDeep(params)
 
-                delete linkParams.currentPage
-                delete linkParams.filters[attribute_code]
+                  delete linkParams.currentPage
+                  delete linkParams.filters[attribute_code]
 
-                pushRoute(linkParams)
-              }
-            : undefined
-        }
-        label={label}
-        clickable
-        {...chipProps}
-        className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
-      />
-    </CategoryLink>
+                  pushRoute(linkParams)
+                }
+              : undefined
+          }
+          label={label}
+          clickable
+          {...chipProps}
+          className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
+        />
+      </CategoryLink>
+    </m.div>
   )
 }

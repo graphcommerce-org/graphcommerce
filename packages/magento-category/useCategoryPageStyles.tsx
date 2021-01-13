@@ -65,28 +65,11 @@ const useCategoryPageStyles = makeStyles(
     sort: {
       gridArea: 'sort',
     },
-    filters: {
-      gridArea: 'filters',
-      margin: `0 auto`,
-      paddingLeft: 16,
-      paddingRight: 16,
-      [theme.breakpoints.down('sm')]: {
-        padding: 0,
-      },
-      [theme.breakpoints.down('xs')]: {
-        textAlign: 'center',
-      },
-    },
-    filterItem: {
-      marginRight: responsiveVal(2, 4),
-      marginBottom: responsiveVal(6, 12),
-      marginLeft: responsiveVal(2, 4),
-    },
     items: {
       gridArea: 'items',
     },
   }),
-  { name: 'ProductPageStyles' },
+  { name: 'CategoryPageStyles' },
 )
 
 export default useCategoryPageStyles

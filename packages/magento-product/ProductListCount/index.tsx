@@ -9,6 +9,8 @@ const useProductCountStyles = makeStyles(
       width: responsiveVal(280, 650),
       margin: '0 auto',
       padding: theme.spacings.xs,
+      paddingTop: responsiveVal(24, 30),
+      paddingBottom: responsiveVal(4, 8),
       position: 'relative',
       textAlign: 'center',
       gridArea: 'count',

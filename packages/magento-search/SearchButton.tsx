@@ -9,7 +9,7 @@ const useStyles = makeStyles(
         width: 130,
       },
       '& fieldset': {
-        border: `2px solid ${theme.palette.action.disabledBackground}`,
+        border: `1px solid ${theme.palette.action.disabledBackground}`,
       },
     },
     inputRoot: {
@@ -31,7 +31,7 @@ export default function SearchButton() {
         endAdornment: <SearchIcon fontSize='small' />,
         classes: { root: classes.inputRoot },
       }}
-      placeholder='Search'
+      placeholder=''
     />
     // </PageLink>
   )

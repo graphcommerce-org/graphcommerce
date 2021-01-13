@@ -1,7 +1,8 @@
-import Header, { HeaderProps } from '@reachdigital/magento-app-shell/Header'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
+import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -11,13 +12,15 @@ import React from 'react'
 import BlogList from '../../components/Blog'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
-import Footer, { FooterProps } from '../../components/Footer'
-import { FooterDocument } from '../../components/Footer/Footer.gql'
+import Footer from '../../components/Footer'
+import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
+import HeaderActions from '../../components/HeaderActions/HeaderActions'
+import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = HeaderProps & FooterProps & PageByUrlQuery & BlogListQuery
+type Props = PageLayoutQuery & ResolveUrlQuery & FooterQuery & PageByUrlQuery & BlogListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -28,8 +31,12 @@ const BlogPage = ({ menu, urlResolver, pages, footer, blogPosts }: Props) => {
   const page = pages[0]
 
   return (
-    <FullPageUi title={page.title ?? ''}>
-      <Header menu={menu} urlResolver={urlResolver} />
+    <FullPageUi
+      title={page.title ?? ''}
+      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+      logo={<Logo />}
+      actions={<HeaderActions />}
+    >
       <PageMeta
         title={page.title ?? ''}
         metaDescription={page.title ?? ''}

@@ -1,10 +1,12 @@
-import { Badge, createStyles, makeStyles, Theme } from '@material-ui/core'
+import { Badge, createStyles, makeStyles, Popover, Theme } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { CartItemFragment } from './CartItem.gql'
+import CartItemOptionsList from './CartItemOptionsList'
+import DeliveryLabel from './DeliveryLabel'
 import RemoveItemFromCartFab from './RemoveItemFromCartFab'
 import UpdateItemQuantity from './UpdateItemQuantity'
 
@@ -15,14 +17,23 @@ const useStyles = makeStyles(
     root: {
       display: 'grid',
       gridTemplate: `
-          "picture content itemPrice quantity rowPrice"
-          "picture content discount discount discount"
+          "picture itemName itemPrice quantity rowPrice"
+          "picture itemOptions itemPrice quantity rowPrice"
         `,
       gridTemplateColumns: `${responsiveVal(70, 125)} auto auto min-content 70px`,
       // gridTemplateRows: `1fr 1fr`,
       columnGap: theme.spacings.sm,
       alignItems: 'center',
       ...theme.typography.body1,
+      marginBottom: theme.spacings.md,
+      [theme.breakpoints.down('sm')]: {
+        gridTemplate: `
+        "picture itemName itemName itemName itemName"
+        "picture itemOptions itemOptions itemOptions itemOptions"
+        "picture itemPrice itemPrice quantity rowPrice"
+        `,
+        marginBottom: theme.spacings.lg,
+      },
     },
     picture: {
       gridArea: 'picture',
@@ -31,6 +42,20 @@ const useStyles = makeStyles(
       padding: responsiveVal(5, 10),
       border: `1px solid rgba(0,0,0,0.15)`,
       borderRadius: '50%',
+    },
+    badge: {
+      '& > button': {
+        background: theme.palette.primary.contrastText,
+        color: theme.palette.tertiary.contrastText,
+        transition: 'opacity .15s ease',
+        '&:hover, &:active, &:visited': {
+          background: theme.palette.primary.contrastText,
+          opacity: 0.75,
+        },
+        '& .MuiSvgIcon-root': {
+          fontSize: 24,
+        },
+      },
     },
     pictureSpacing: {
       overflow: 'hidden',
@@ -53,27 +78,28 @@ const useStyles = makeStyles(
       objectFit: 'contain',
       display: 'block',
       mixBlendMode: 'multiply',
-    },
-    itemContent: {
-      gridArea: 'content',
+      transform: 'scale(1.75)',
     },
     itemName: {
       // ...theme.typography.h5,
       ...theme.typography.body1,
       fontWeight: 500,
-    },
-    itemDiscount: {
-      gridArea: 'discount',
-      ...theme.typography.body2,
-      color: theme.palette.primary.mutedText,
-      textAlign: 'right',
+      gridArea: 'itemName',
+      alignSelf: 'flex-end',
     },
     itemPrice: {
       gridArea: 'itemPrice',
       textAlign: 'right',
+      color: theme.palette.primary.mutedText,
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'left',
+      },
     },
     quantity: {
       gridArea: 'quantity',
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'right',
+      },
     },
     rowPrice: {
       gridArea: 'rowPrice',
@@ -94,7 +120,13 @@ export default function CartItem2(props: CartItemProps) {
     <div className={classes.root}>
       <Badge
         color='default'
-        badgeContent={<RemoveItemFromCartFab cartId={cartId} cartItemId={Number(id)} />}
+        badgeContent={
+          <RemoveItemFromCartFab
+            cartId={cartId}
+            cartItemId={Number(id)}
+            className={classes.badge}
+          />
+        }
         component='div'
         className={classes.picture}
         overlap='circle'
@@ -112,22 +144,27 @@ export default function CartItem2(props: CartItemProps) {
           )}
         </div>
       </Badge>
-      <div className={classes.itemContent}>
-        <div className={classes.itemName}>{name}</div>
-        Children
-        <br />
-        Children
+
+      <div className={classes.itemName}>
+        {name}
+        <DeliveryLabel />
       </div>
+
       <div className={classes.itemPrice}>
         <Money {...prices?.price} />
       </div>
+
       <div className={classes.quantity}>
         <UpdateItemQuantity cartId={cartId} cartItemId={Number(id)} quantity={quantity} />
       </div>
+
       <div className={classes.rowPrice}>
         <Money {...prices?.row_total_including_tax} /> <br />
       </div>
-      <div className={classes.itemDiscount}>
+
+      <CartItemOptionsList />
+
+      {/* <div className={classes.itemDiscount}>
         {prices?.discounts?.map((discount) => (
           <div key={discount?.label ?? ''}>
             {discount?.label}
@@ -139,7 +176,7 @@ export default function CartItem2(props: CartItemProps) {
             )
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }
