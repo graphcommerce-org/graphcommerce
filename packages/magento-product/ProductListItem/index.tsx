@@ -28,7 +28,6 @@ export const useProductListItemStyles = makeStyles(
       marginTop: 14,
       '& > div:nth-of-type(1)': {
         overflow: 'hidden',
-        textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
       marginBottom: responsiveVal(4, 8),
