@@ -1,8 +1,10 @@
 import { makeStyles, Menu, Theme } from '@material-ui/core'
+import CartItemOptionDropdown from '@reachdigital/magento-cart/cart/CartItemOptionDropdown'
+import { SelectedConfigurableOption } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React, { useState } from 'react'
-import CartItemOptionDropdown from './CartItemOptionDropdown'
+import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -65,7 +67,10 @@ const useStyles = makeStyles(
   { name: 'CartItemOptionsList' },
 )
 
-export default function CartItemOptionsList() {
+type CartItemOptionsListProps = ConfigurableCartItemFragment
+
+export default function OptionsList(props: CartItemOptionsListProps) {
+  const { configurable_options } = props
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>()
 
@@ -83,10 +88,14 @@ export default function CartItemOptionsList() {
 
   return (
     <>
-      <Button className={classes.optionsList} onClick={handleClick}>
-        <div className={classes.option}>39 – 42</div>
-        <div className={classes.option}>Yellow & Black</div>
-      </Button>
+      <div className={classes.optionsList} onClick={handleClick}>
+        {configurable_options &&
+          configurable_options.map((option) => (
+            <div key={option?.id} className={classes.option}>
+              {option?.value_label}
+            </div>
+          ))}
+      </div>
 
       <Menu
         anchorEl={anchorEl}

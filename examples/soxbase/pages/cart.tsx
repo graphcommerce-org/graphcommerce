@@ -5,6 +5,7 @@ import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.g
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import Cart from '@reachdigital/magento-cart/cart/Cart'
 import CartItem2 from '@reachdigital/magento-cart/cart/CartItem2'
+import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -43,7 +44,7 @@ function CartPage() {
             clientCartQueryData={data ?? {}}
             renderer={{
               BundleCartItem: CartItem2,
-              ConfigurableCartItem: CartItem2,
+              ConfigurableCartItem,
               DownloadableCartItem: CartItem2,
               SimpleCartItem: CartItem2,
               VirtualCartItem: CartItem2,

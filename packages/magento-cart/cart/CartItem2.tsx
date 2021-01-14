@@ -3,9 +3,8 @@ import Money from '@reachdigital/magento-store/Money'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { CartItemFragment } from './CartItem.gql'
-import CartItemOptionsList from './CartItemOptionsList'
 import DeliveryLabel from './DeliveryLabel'
 import RemoveItemFromCartFab from './RemoveItemFromCartFab'
 import UpdateItemQuantity from './UpdateItemQuantity'
@@ -117,10 +116,10 @@ const useStyles = makeStyles(
   { name: 'CartItem2' },
 )
 
-type CartItemProps = CartItemBaseProps & UseStyles<typeof useStyles>
+export type CartItemProps = PropsWithChildren<CartItemBaseProps> & UseStyles<typeof useStyles>
 
 export default function CartItem2(props: CartItemProps) {
-  const { product, cartId, id, prices, quantity } = props
+  const { product, cartId, id, prices, quantity, children } = props
   const { name } = product
   const classes = useStyles()
 
@@ -170,7 +169,7 @@ export default function CartItem2(props: CartItemProps) {
         <Money {...prices?.row_total_including_tax} /> <br />
       </div>
 
-      <CartItemOptionsList />
+      {children}
 
       {/* <div className={classes.itemDiscount}>
         {prices?.discounts?.map((discount) => (
