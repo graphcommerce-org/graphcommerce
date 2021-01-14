@@ -11,11 +11,9 @@ const useStyles = makeStyles(
       width: 'min-content',
       pointerEvents: 'all',
       boxShadow: theme.shadows[1],
-      // [theme.breakpoints.down('sm')]: {
-      //   boxShadow: 'unset',
-      //   paddingRight: `8px`,
-      //   paddingLeft: `14px`,
-      // },
+      '&:hover': {
+        background: theme.palette.grey['100'],
+      },
       [theme.breakpoints.down('sm')]: {
         height: 38,
         width: 40,
