@@ -158,6 +158,20 @@ export default function CartItem2(props: CartItemProps) {
       </div>
 
       <div className={classes.itemPrice}>
+        <div>
+          {prices?.discounts?.map((discount) => (
+            <div key={discount?.label ?? ''}>
+              {discount?.label}
+              (
+              <Money
+                currency={discount?.amount.currency}
+                value={(discount?.amount.value ?? 0) * -1}
+              />
+              )
+            </div>
+          ))}
+        </div>
+
         <Money {...prices?.price} />
       </div>
 
@@ -170,20 +184,6 @@ export default function CartItem2(props: CartItemProps) {
       </div>
 
       {children}
-
-      {/* <div className={classes.itemDiscount}>
-        {prices?.discounts?.map((discount) => (
-          <div key={discount?.label ?? ''}>
-            {discount?.label}
-            {' ('}
-            <Money
-              currency={discount?.amount.currency}
-              value={(discount?.amount.value ?? 0) * -1}
-            />
-            )
-          </div>
-        ))}
-      </div> */}
     </div>
   )
 }

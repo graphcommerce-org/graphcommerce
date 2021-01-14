@@ -1,4 +1,4 @@
-import { Divider, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { makeStyles, NoSsr, Theme } from '@material-ui/core'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
