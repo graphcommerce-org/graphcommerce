@@ -1,14 +1,13 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 
 type ProductListFiltersContainerProps = React.PropsWithChildren<ReactNode>
 
 export const useProductListFiltersStyles = makeStyles(
   (theme: Theme) => ({
-    filtersOuterContainer: {
+    wrapper: {
       gridArea: 'filters',
       position: 'sticky',
       top: 10,
@@ -85,59 +84,48 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   const classes = useProductListFiltersStyles()
   const { scrollY } = useViewportScroll()
   const [isSticky, setIsSticky] = useState<boolean>(false)
-  const [offset, setoffset] = useState(0)
+  const [height, setHeight] = useState(0)
+  const [startPosition, setStartPosition] = useState(0)
+  const [spacing, setSpacing] = useState(0)
+  const scrollHalfway = startPosition + spacing
 
-  const filtersOuterContainerRef = useRef<HTMLDivElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const scrollPosOnScroll = offset
-  const scrollSpacing = 30
-  const cssPropertyChangeSpacing = scrollPosOnScroll + scrollSpacing + 5
-
+  // Measure the sizing of the wrapping container
   useEffect(() => {
-    const onWindowResize = () => {
-      if (!filtersOuterContainerRef.current) return
+    const observer = new ResizeObserver(([entry]) => {
+      const offset = wrapperRef.current?.offsetTop ?? 0
+      const elemHeigh = entry.contentRect.height
+      const nextOffset =
+        (wrapperRef.current?.nextElementSibling as HTMLElement | null)?.offsetTop ?? 0
 
-      // update the filter outer container height
-      // reason: prevents layout shifting issues on scroll
-      filtersOuterContainerRef.current.style.height = 'unset'
-      filtersOuterContainerRef.current.style.height = `${filtersOuterContainerRef.current.offsetHeight}px`
-
-      setoffset(filtersOuterContainerRef.current.offsetTop)
-    }
-
-    window.addEventListener('resize', onWindowResize)
-    onWindowResize()
-
-    return () => window.removeEventListener('resize', onWindowResize)
+      setSpacing(nextOffset - elemHeigh - offset)
+      setStartPosition(offset)
+      setHeight(elemHeigh)
+    })
+    if (wrapperRef.current) observer.observe(wrapperRef.current)
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
     const onCheckStickyChange = (v: number) => {
-      if (isSticky && v <= cssPropertyChangeSpacing) setIsSticky(false)
-      if (!isSticky && v > cssPropertyChangeSpacing) setIsSticky(true)
+      if (isSticky && v <= scrollHalfway) setIsSticky(false)
+      if (!isSticky && v > scrollHalfway) setIsSticky(true)
     }
+    onCheckStickyChange(scrollY.get())
+    return scrollY.onChange(onCheckStickyChange)
+  }, [isSticky, scrollHalfway, scrollY])
 
-    scrollY.onChange((verticalScroll: number) => {
-      onCheckStickyChange(verticalScroll)
-    })
-
-    // make sure the animated state triggers on reload while scrolled down
-    onCheckStickyChange(window.scrollY)
-  }, [cssPropertyChangeSpacing, isSticky, scrollY])
-
-  const filterAnimProgress = useTransform(
-    scrollY,
-    [scrollPosOnScroll + scrollSpacing, cssPropertyChangeSpacing + scrollSpacing],
-    [0, 1],
-  )
+  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 1])
 
   return (
     <m.div
       layout='position'
-      className={classes.filtersOuterContainer}
-      ref={filtersOuterContainerRef}
+      className={classes.wrapper}
+      ref={wrapperRef}
+      style={{ height: height && isSticky ? height : undefined }}
     >
-      <m.div style={{ opacity: filterAnimProgress }} className={classes.filterContainerComposite} />
+      <m.div style={{ opacity }} className={classes.filterContainerComposite} />
       <m.div className={clsx(classes.filters, { [classes.filtersSticky]: isSticky })}>
         {children}
       </m.div>
