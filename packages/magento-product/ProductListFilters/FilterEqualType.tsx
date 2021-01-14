@@ -39,7 +39,6 @@ const useFilterEqualStyles = makeStyles(
         },
       },
       '& > div > span': {
-        textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
       },

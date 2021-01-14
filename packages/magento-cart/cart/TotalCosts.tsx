@@ -50,6 +50,7 @@ export default function TotalCosts(props: TotalCostsProps) {
       )}
 
       {cart?.prices?.discounts?.map((discount, idx) => (
+        // eslint-disable-next-line react/no-array-index-key
         <div className={classes.costsRow} key={`discount-${idx}`}>
           <div>{discount?.label}</div>
           <div>
@@ -63,19 +64,17 @@ export default function TotalCosts(props: TotalCostsProps) {
         </div>
       ))}
 
-      {/* {cart?.shipping_addresses?.map((address, idx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <m.div {...animation} key={`shipping_addresses_${idx}`}>
-            <ListItem ContainerComponent='div'>
-              <ListItemText inset>{address?.selected_shipping_method?.carrier_title}</ListItemText>
-              <ListItemSecondaryAction>
-                {address?.selected_shipping_method?.amount && (
-                  <Money {...address.selected_shipping_method.amount} key={idx} />
-                )}
-              </ListItemSecondaryAction>
-            </ListItem>
-          </m.div>
-        ))} */}
+      {cart?.shipping_addresses?.map((address, idx) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <div className={classes.costsRow} key={`shipping-${idx}`}>
+          <div>{address?.selected_shipping_method?.carrier_title}</div>
+          <div>
+            {address?.selected_shipping_method?.amount && (
+              <Money {...address.selected_shipping_method.amount} key={idx} />
+            )}
+          </div>
+        </div>
+      ))}
 
       <Divider key='divider' />
 

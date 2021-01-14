@@ -10,8 +10,11 @@ const useStyles = makeStyles(
       gridArea: 'itemOptions',
       alignSelf: 'baseline',
       cursor: 'default',
+      justifyContent: 'end',
+      marginLeft: -8,
       [theme.breakpoints.down('sm')]: {
         alignSelf: 'end',
+        marginLeft: 0,
         marginBottom: 8,
       },
     },
@@ -64,9 +67,9 @@ const useStyles = makeStyles(
 
 export default function CartItemOptionsList() {
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>()
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>()
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget)
   }
 
@@ -80,10 +83,10 @@ export default function CartItemOptionsList() {
 
   return (
     <>
-      <div className={classes.optionsList} onClick={handleClick}>
+      <Button className={classes.optionsList} onClick={handleClick}>
         <div className={classes.option}>39 – 42</div>
         <div className={classes.option}>Yellow & Black</div>
-      </div>
+      </Button>
 
       <Menu
         anchorEl={anchorEl}

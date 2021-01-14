@@ -1,4 +1,4 @@
-import { Badge, createStyles, makeStyles, Popover, Theme } from '@material-ui/core'
+import { Badge, makeStyles, Theme } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
@@ -55,6 +55,14 @@ const useStyles = makeStyles(
         '& .MuiSvgIcon-root': {
           fontSize: 24,
         },
+        [theme.breakpoints.down('sm')]: {
+          width: 30,
+          height: 30,
+          minHeight: 'unset',
+          '& .MuiSvgIcon-root': {
+            fontSize: 20,
+          },
+        },
       },
     },
     pictureSpacing: {
@@ -106,7 +114,7 @@ const useStyles = makeStyles(
       textAlign: 'right',
     },
   }),
-  { name: 'CartItem' },
+  { name: 'CartItem2' },
 )
 
 type CartItemProps = CartItemBaseProps & UseStyles<typeof useStyles>
