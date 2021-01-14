@@ -1,5 +1,4 @@
 import { Button, Container } from '@material-ui/core'
-import Footer from '@reachdigital/magento-app-shell/Footer'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -14,7 +13,8 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
-import { FooterQuery } from '../../components/Footer/Footer.gql'
+import Footer from '../../components/Footer'
+import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import MobileMenu from '../../components/MobileMenu/MobileMenu'
@@ -27,7 +27,7 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
+function AppShellTestIndex({ url, menu, urlResolver, pages, footer }: Props) {
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
@@ -93,7 +93,7 @@ function AppShellTestIndex({ url, menu, urlResolver, pages }: Props) {
       <Container>
         <DebugSpacer height={2000} />
       </Container>
-      <Footer />
+      <Footer footer={footer} />
     </FullPageUi>
   )
 }
@@ -123,10 +123,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
+  const footer = staticClient.query({ query: FooterDocument })
   const page = staticClient.query({ query: PageByUrlDocument, variables: { url: `test/${url}` } })
   await config
   return {
     props: {
+      ...(await footer).data,
       ...(await pageLayout).data,
       ...(await page).data,
       url,

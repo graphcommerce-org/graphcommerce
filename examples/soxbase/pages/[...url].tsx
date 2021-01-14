@@ -30,6 +30,8 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
+import Footer from '../components/Footer'
+import { FooterDocument, FooterQuery } from '../components/Footer/Footer.gql'
 import HeaderActions from '../components/HeaderActions/HeaderActions'
 import Logo from '../components/Logo/Logo'
 import MobileMenu from '../components/MobileMenu/MobileMenu'
@@ -38,7 +40,7 @@ import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
+type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery & FooterQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -84,7 +86,17 @@ function CategoryPage(props: Props) {
   const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
   const filterClasses = useProductListFiltersStyles(props)
-  const { categories, products, filters, params, filterTypes, menu, urlResolver, pages } = props
+  const {
+    categories,
+    products,
+    filters,
+    params,
+    filterTypes,
+    menu,
+    urlResolver,
+    pages,
+    footer,
+  } = props
 
   if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
     return <NextError statusCode={503} title='Loading skeleton' />
@@ -151,6 +163,7 @@ function CategoryPage(props: Props) {
       <CategoryMeta {...category} />
       {pages?.[0] && <Page {...pages?.[0]} />}
       {content}
+      <Footer footer={footer} />
     </FullPageUi>
   )
 }
@@ -197,6 +210,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     })
 
     const resolveUrl = client.query({ query: ResolveUrlDocument, variables: { urlKey } })
+    const footer = staticClient.query({ query: FooterDocument })
     const categoryPage = getCategoryPageProps({ urlPath, urlParams, resolveUrl }, staticClient)
     const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
@@ -218,6 +232,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     const res = {
       props: {
         ...(await resolveUrl).data,
+        ...(await footer).data,
         ...(await pageLayout).data,
         ...(await categoryPage),
         ...(await page).data,
