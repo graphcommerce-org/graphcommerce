@@ -1,4 +1,4 @@
-import { Badge, createStyles, makeStyles, Popover, Theme } from '@material-ui/core'
+import { Badge, makeStyles, Theme } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
