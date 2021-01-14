@@ -9,7 +9,7 @@ const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'space-between',
       maxWidth: '60%',
-      margin: '0 auto',
+      margin: `${theme.spacings.sm} auto ${theme.spacings.md} auto`,
       [theme.breakpoints.down('xs')]: {
         maxWidth: '75%',
       },

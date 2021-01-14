@@ -2,6 +2,7 @@ import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -46,6 +47,8 @@ function ShippingPage({ countries }: Props) {
     <BottomDrawerUi title='Shipping' fullHeight>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
+        <CheckoutStepper steps={3} currentStep={2} />
+
         <NoSsr>
           <AnimatePresence initial={false}>
             <EmailForm key='emailform' />
