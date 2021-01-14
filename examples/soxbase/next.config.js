@@ -28,7 +28,7 @@ const withTM = require('next-transpile-modules')(
     '@reachdigital/magento-store',
     '@reachdigital/next-ui',
   ],
-  { unstable_webpack5: true },
+  { unstable_webpack5: false },
 )
 
 require('@formatjs/intl-datetimeformat/polyfill')

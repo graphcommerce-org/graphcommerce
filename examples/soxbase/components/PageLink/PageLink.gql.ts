@@ -14,9 +14,19 @@ export const PageLinkFragmentDoc: DocumentNode<PageLinkFragment, unknown> = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
           { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'description' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
+            },
+          },
         ],
       },
     },
   ],
 }
-export type PageLinkFragment = Pick<Types.PageLink, 'title' | 'url'>
+export type PageLinkFragment = Pick<Types.PageLink, 'title' | 'url'> & {
+  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+}

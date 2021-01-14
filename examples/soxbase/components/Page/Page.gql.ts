@@ -4,6 +4,10 @@ import * as Types from '../../generated/types'
 
 import { AssetFragment, AssetFragmentDoc } from '../Asset/Asset.gql'
 import { RowBlogContentFragment, RowBlogContentFragmentDoc } from '../Blog/RowBlogContent.gql'
+import {
+  RowButtonLinkListFragment,
+  RowButtonLinkListFragmentDoc,
+} from '../RowButtonLinkList/RowButtonLinkList.gql'
 import { RowColumnOneFragment, RowColumnOneFragmentDoc } from '../RowColumnOne/RowColumnOne.gql'
 import {
   RowColumnThreeFragment,
@@ -20,6 +24,10 @@ import {
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
 import { RowQuoteFragment, RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
+import {
+  RowServiceOptionsFragment,
+  RowServiceOptionsFragmentDoc,
+} from '../RowServiceOptions/RowServiceOptions.gql'
 import {
   RowSpecialBannerFragment,
   RowSpecialBannerFragmentDoc,
@@ -60,6 +68,8 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSpecialBanner' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowQuote' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductBackstory' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowButtonLinkList' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowServiceOptions' } },
               ],
             },
           },
@@ -83,13 +93,16 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowSpecialBannerFragmentDoc.definitions,
     ...RowQuoteFragmentDoc.definitions,
     ...RowProductBackstoryFragmentDoc.definitions,
+    ...RowButtonLinkListFragmentDoc.definitions,
+    ...RowServiceOptionsFragmentDoc.definitions,
     ...AssetFragmentDoc.definitions,
   ],
 }
 export type PageFragment = Pick<Types.Page, 'title'> & {
   content: Array<
     | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & RowBlogContentFragment)
-    | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
+    | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'> &
+        RowButtonLinkListFragment)
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
     | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & RowColumnTwoFragment)
@@ -98,7 +111,8 @@ export type PageFragment = Pick<Types.Page, 'title'> & {
         RowProductBackstoryFragment)
     | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & RowProductGridFragment)
     | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & RowQuoteFragment)
-    | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'>)
+    | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'> &
+        RowServiceOptionsFragment)
     | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'> &
         RowSpecialBannerFragment)
     | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)

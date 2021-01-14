@@ -42,6 +42,14 @@ export const FooterDocument: DocumentNode<FooterQuery, FooterQueryVariables> = {
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'description' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
+                        },
+                      },
                     ],
                   },
                 },
@@ -54,6 +62,14 @@ export const FooterDocument: DocumentNode<FooterQuery, FooterQueryVariables> = {
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'description' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
+                        },
+                      },
                     ],
                   },
                 },
@@ -70,8 +86,16 @@ export type FooterQueryVariables = Types.Exact<{ [key: string]: never }>
 export type FooterQuery = {
   footer?: Types.Maybe<
     Pick<Types.Footer, 'copyright'> & {
-      socialLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
-      legalLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+      socialLinks: Array<
+        Pick<Types.PageLink, 'title' | 'url'> & {
+          description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+        }
+      >
+      legalLinks: Array<
+        Pick<Types.PageLink, 'title' | 'url'> & {
+          description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+        }
+      >
     }
   >
 }

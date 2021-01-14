@@ -1,4 +1,7 @@
 fragment PageLink on PageLink {
   title
   url
+  description {
+    raw
+  }
 }

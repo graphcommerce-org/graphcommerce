@@ -224,6 +224,16 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                 selections: [
                                   { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'description' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -248,6 +258,16 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                 selections: [
                                   { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'description' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -318,6 +338,16 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                 selections: [
                                   { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'description' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -383,6 +413,68 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           ],
                         },
                       },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowButtonLinkList' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'links' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowServiceOptions' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              alias: { kind: 'Name', value: 'serviceOptionsTitle' },
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'serviceOptions' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'description' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -419,7 +511,9 @@ export type PageByUrlQuery = {
         | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & {
               content?: Types.Maybe<Pick<Types.RichText, 'raw'>>
             })
-        | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id'>)
+        | ({ __typename: 'RowButtonLinkList' } & Pick<Types.RowButtonLinkList, 'id' | 'title'> & {
+              links: Array<Pick<Types.Page, 'title' | 'url'>>
+            })
         | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
               colOne: Pick<Types.RichText, 'raw'>
             })
@@ -435,14 +529,22 @@ export type PageByUrlQuery = {
         | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & {
               asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
               copy: Pick<Types.RichText, 'raw'>
-              pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+              pageLinks: Array<
+                Pick<Types.PageLink, 'title' | 'url'> & {
+                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                }
+              >
             })
         | ({ __typename: 'RowProductBackstory' } & Pick<Types.RowProductBackstory, 'id'> & {
               copy: Pick<Types.RichText, 'raw'>
               asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
             })
         | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id' | 'title'> & {
-              pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+              pageLinks: Array<
+                Pick<Types.PageLink, 'title' | 'url'> & {
+                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                }
+              >
               magentoCategory?: Types.Maybe<{
                 category?: Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path'>>
               }>
@@ -450,11 +552,23 @@ export type PageByUrlQuery = {
         | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
               quote: Pick<Types.RichText, 'raw'>
             })
-        | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'>)
+        | ({ __typename: 'RowServiceOptions' } & Pick<Types.RowServiceOptions, 'id'> & {
+              serviceOptionsTitle: Types.RowServiceOptions['title']
+            } & {
+              serviceOptions: Array<
+                Pick<Types.PageLink, 'title' | 'url'> & {
+                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                }
+              >
+            })
         | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
               asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
               copy: Pick<Types.RichText, 'raw'>
-              pageLinks: Array<Pick<Types.PageLink, 'title' | 'url'>>
+              pageLinks: Array<
+                Pick<Types.PageLink, 'title' | 'url'> & {
+                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                }
+              >
             })
         | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)
       >
