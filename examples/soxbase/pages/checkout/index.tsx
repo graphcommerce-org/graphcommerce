@@ -17,6 +17,7 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import Button from '@reachdigital/next-ui/Button'
+import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
@@ -48,6 +49,8 @@ function ShippingPage({ countries }: Props) {
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         <CheckoutStepper steps={3} currentStep={2} />
+
+        <IconTitle iconSrc='/icons/shopping_bag.svg' title='Shipping' alt='shipping' />
 
         <NoSsr>
           <AnimatePresence initial={false}>
