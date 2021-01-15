@@ -12,7 +12,10 @@ const useStyles = makeStyles(
       gridArea: 'itemOptions',
       alignSelf: 'baseline',
       cursor: 'default',
+<<<<<<< HEAD
       justifyContent: 'end',
+=======
+>>>>>>> fix: option list left marge
       marginLeft: -8,
       [theme.breakpoints.down('sm')]: {
         alignSelf: 'end',
