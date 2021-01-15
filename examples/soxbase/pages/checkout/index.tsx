@@ -50,7 +50,7 @@ function ShippingPage({ countries }: Props) {
       <Container maxWidth='md'>
         <CheckoutStepper steps={3} currentStep={2} />
 
-        <IconTitle iconSrc='/icons/shopping_bag.svg' title='Shipping' alt='shipping' />
+        <IconTitle iconSrc='/icons/box.svg' title='Shipping' alt='box' />
 
         <NoSsr>
           <AnimatePresence initial={false}>
