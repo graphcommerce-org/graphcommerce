@@ -7,7 +7,8 @@ import Button from '@reachdigital/next-ui/Button'
 import { Controller } from '@reachdigital/next-ui/useMutationForm'
 import useMutationFormPersist from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
 import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
-import React, { useEffect, useMemo, useRef } from 'react'
+import clsx from 'clsx'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
@@ -89,6 +90,21 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     return regions
   }, [country, countryList])
 
+  const getCheckmarkClass = useCallback(
+    (inputName: string) => {
+      if (errors.address && errors.address[inputName]) {
+        return ''
+      }
+
+      if (watch(inputName)) {
+        return classes.checkmark
+      }
+
+      return ''
+    },
+    [classes.checkmark, errors.address, watch],
+  )
+
   return (
     <form onSubmit={handleSubmit} noValidate className={classes.form} ref={ref}>
       <div className={classes.formRow}>
@@ -102,6 +118,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.firstname?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.firstname')),
+          }}
         />
         <TextField
           variant='outlined'
@@ -113,6 +132,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.lastname?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.lastname')),
+          }}
         />
       </div>
       <div className={classes.formRow}>
@@ -126,6 +148,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.street?.[0]?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.street[0]')),
+          }}
         />
         <TextField
           variant='outlined'
@@ -140,6 +165,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           })}
           helperText={formState.isSubmitted && errors.address?.street?.[1]?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.street[1]')),
+          }}
         />
         <TextField
           variant='outlined'
@@ -150,6 +178,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: false })}
           helperText={formState.isSubmitted && errors.address?.street?.[2]?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.street[2]')),
+          }}
         />
       </div>
       <div className={classes.formRow}>
@@ -163,6 +194,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.postcode?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.postcode')),
+          }}
         />
         <TextField
           variant='outlined'
@@ -174,6 +208,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.city?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.city')),
+          }}
         />
       </div>
       <div className={classes.formRow}>
@@ -209,6 +246,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
               )}
             />
           )}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.country_code')),
+          }}
         />
         {regionList.length > 0 && (
           <Controller
@@ -258,6 +298,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           })}
           helperText={formState.isSubmitted && errors.address?.telephone?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            className: clsx(getCheckmarkClass('address.telephone')),
+          }}
         />
       </div>
       <Button type='submit' disabled={formState.isSubmitting} variant='pill' disableElevation>
