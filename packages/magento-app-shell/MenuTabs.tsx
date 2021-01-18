@@ -90,7 +90,7 @@ export default function MenuTabs(props: MenuTabsProps) {
         )
       })}
 
-      <PageLink href='/blog/index'>
+      <PageLink href='/blog'>
         <Tab
           label='Blog'
           component='a'
