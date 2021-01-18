@@ -16,6 +16,7 @@ import { FooterDocument } from '../../../components/Footer/Footer.gql'
 import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
 import apolloClient from '../../../lib/apolloClient'
+import TestStatic from '../../test/static'
 
 type Props = HeaderProps & FooterProps & PageByUrlQuery & BlogListQuery & PagePaginationProps
 type RouteProps = { page: string }
@@ -59,7 +60,17 @@ export default BlogPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  const pages = ['2', '3', '4']
+  const paginationSize = 8
+  const staticClient = apolloClient(localeToStore(locales[0]))
+  const blogPosts = staticClient.query({
+    query: BlogListDocument,
+    variables: { currentUrl: ['blog'] },
+  })
+  const total = Math.ceil((await blogPosts).data.pageUrls.length / paginationSize)
+  const pages: string[] = []
+  for (let i = 0; i < total; i++) {
+    pages.push(String(i + 1))
+  }
   const paths = locales.map((locale) => pages.map((page) => ({ params: { page }, locale }))).flat(1)
   return { paths, fallback: 'blocking' }
 }
