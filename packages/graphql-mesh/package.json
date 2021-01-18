@@ -18,7 +18,7 @@
     "@graphql-mesh/transform-cache": "^0.8.12",
     "@graphql-mesh/transform-federation": "^0.4.36",
     "@graphql-mesh/transform-filter-schema": "^0.8.12",
-    "@graphql-mesh/types": "^0.25.0",
+    "@graphql-mesh/types": "^0.27.0",
     "apollo-server-micro": "^2.19.1",
     "graphql": "15.4.0",
     "micro-cors": "^0.1.1"
