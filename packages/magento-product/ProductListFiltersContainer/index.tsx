@@ -1,7 +1,8 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import clsx from 'clsx'
-import { m, useTransform, useViewportScroll } from 'framer-motion'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 
 type ProductListFiltersContainerProps = React.PropsWithChildren<ReactNode>
 
@@ -13,7 +14,7 @@ export const useProductListFiltersStyles = makeStyles(
       top: 10,
       zIndex: 9,
       margin: '0 auto',
-      maxWidth: '75%',
+      maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
       [theme.breakpoints.down('sm')]: {
         textAlign: 'center',
         padding: 0,
@@ -24,55 +25,35 @@ export const useProductListFiltersStyles = makeStyles(
         textAlign: 'center',
       },
     },
-    filterContainerComposite: {
-      boxShadow: theme.shadows[2],
-      background: theme.palette.background.default,
-      borderRadius: 40,
-      display: 'block',
-      position: 'absolute',
-      top: 0,
-      width: `calc(100% + 16px)`,
-      height: 52,
-      marginLeft: -8,
-      [theme.breakpoints.down('sm')]: {
-        opacity: 1,
-        borderRadius: 0,
-        width: '100%',
-        position: 'fixed',
-        left: '0',
-        top: '0',
-        margin: 0,
-      },
-    },
     filters: {
       display: 'flex',
       flexWrap: 'wrap',
-      marginTop: 4,
       justifyContent: 'center',
-      [theme.breakpoints.down('sm')]: {
-        overflowX: 'scroll',
-        paddingBottom: 12,
-        paddingTop: 6,
-        marginTop: -12,
-      },
+      background: '#fff',
+      borderRadius: 22,
+      padding: `0 3px`,
     },
-    filtersSticky: {
-      flexWrap: 'nowrap',
-      justifyContent: 'center',
-      overflowX: 'scroll',
-      paddingBottom: 10,
-      [theme.breakpoints.down('sm')]: {
-        // justifyContent: 'left',
-        paddingLeft: 30,
-        paddingRight: 30,
-        margin: `-12px calc(${theme.page.horizontal} * -1) 0 0`,
-      },
-      [theme.breakpoints.down('xs')]: {
-        // maxWidth: '92%',
-      },
-    },
+    filtersSticky: {},
     filterItem: {
-      margin: `6px 3px 0`,
+      margin: `6px 3px 6px`,
+    },
+    prevFab: {
+      top: 'auto',
+      left: -3,
+      height: 44,
+      width: 44,
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+    },
+    nextFab: {
+      top: 'auto',
+      right: -3,
+      height: 44,
+      width: 44,
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
   }),
   { name: 'ProductListFiltersContainer' },
@@ -99,7 +80,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
       const nextOffset =
         (wrapperRef.current?.nextElementSibling as HTMLElement | null)?.offsetTop ?? 0
 
-      setSpacing(nextOffset - elemHeigh - offset)
+      setSpacing(nextOffset - elemHeigh - offset + 20)
       setStartPosition(offset)
       setHeight(elemHeigh)
     })
@@ -116,7 +97,11 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     return scrollY.onChange(onCheckStickyChange)
   }, [isSticky, scrollHalfway, scrollY])
 
-  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 1])
+  const opacity = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.08])
+  const opacity2 = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 0.1])
+  const filter = useMotionTemplate`
+    drop-shadow(0 1px 4px rgba(0,0,0,${opacity}))
+    drop-shadow(0 4px 10px rgba(0,0,0,${opacity2}))`
 
   return (
     <m.div
@@ -125,9 +110,17 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
       ref={wrapperRef}
       style={{ height: height && isSticky ? height : undefined }}
     >
-      <m.div style={{ opacity }} className={classes.filterContainerComposite} />
-      <m.div className={clsx(classes.filters, { [classes.filtersSticky]: isSticky })}>
-        {children}
+      <m.div
+        layout
+        className={clsx(classes.filters, { [classes.filtersSticky]: isSticky })}
+        style={{ filter }}
+      >
+        <ScrollSnapSlider
+          fabProps={{ size: 'small' }}
+          classes={{ prevFab: classes.prevFab, nextFab: classes.nextFab }}
+        >
+          {children}
+        </ScrollSnapSlider>
       </m.div>
     </m.div>
   )
