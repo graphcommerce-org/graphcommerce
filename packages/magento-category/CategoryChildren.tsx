@@ -12,7 +12,6 @@ type CategoryChildrenProps = CategoryChildrenFragment & {
 
 const useSubcategoryMenuStyles = makeStyles(
   (theme: Theme) => ({
-    slider: {},
     link: {
       whiteSpace: 'nowrap',
       display: 'block',
@@ -58,13 +57,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
 
   return (
     <>
-      <ScrollSnapSlider
-        classes={{
-          container: classes.slider,
-          prevFab: classes.fab,
-          nextFab: classes.fab,
-        }}
-      >
+      <ScrollSnapSlider classes={{ prevFab: classes.fab, nextFab: classes.fab }}>
         {children.map((cat) => {
           if (!cat?.url_path || !cat.id || !cat.name) return null
 

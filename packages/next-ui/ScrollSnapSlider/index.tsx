@@ -19,9 +19,6 @@ type Props = {
 
 const useStyles = makeStyles(
   {
-    container: {
-      position: 'relative',
-    },
     scroller: ({ isScrolling, scrollbar }: State & Props) => ({
       overflow: 'auto',
       '-webkit-overflow-scrolling': 'touch',
@@ -145,7 +142,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
   }, [children, ref])
 
   return (
-    <div className={classes.container}>
+    <>
       {/* animated.div misses a typescript declaration for scrollLeft
       //@ts-ignore */}
       <animated.div scrollLeft={scrollLeft} className={classes.scroller} ref={ref}>
@@ -183,7 +180,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
           ))}
         </div>
       )}
-    </div>
+    </>
   )
 }
 
