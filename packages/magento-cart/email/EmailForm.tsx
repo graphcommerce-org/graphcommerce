@@ -10,7 +10,6 @@ import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
-import SignInSteps from '../SignInSteps'
 import GuestEmailForm from './GuestEmailForm'
 
 export default function EmailForm() {
@@ -60,7 +59,11 @@ export default function EmailForm() {
               </AnimatedRow>
             )}
 
-            <SignInSteps />
+            <ul className={classes.steps}>
+              <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
+              <li>Fill in password fields to create an account.</li>
+              <li>Leave passwords fields empty to order as guest.</li>
+            </ul>
           </AnimatePresence>
         </AnimatedRow>
       )}
