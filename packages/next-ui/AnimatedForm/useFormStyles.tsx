@@ -29,17 +29,11 @@ const useFormStyles = makeStyles(
       },
     },
     checkmark: {
-      '&:not(:focus)': {
-        '&:after': {
-          content: `''`,
-          position: 'absolute',
-          right: theme.spacings.sm,
-          background: `url('/icons/check.svg') no-repeat center`,
-          backgroundSize: 'contain',
-          width: 24,
-          height: 24,
-        },
-      },
+      color: theme.palette.success.main,
+    },
+    steps: {
+      ...theme.typography.body2,
+      paddingLeft: theme.spacings.xs,
     },
   }),
   { name: 'FormStyles' },

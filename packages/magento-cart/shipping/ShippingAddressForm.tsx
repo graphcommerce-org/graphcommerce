@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
+import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
@@ -7,8 +8,7 @@ import Button from '@reachdigital/next-ui/Button'
 import { Controller } from '@reachdigital/next-ui/useMutationForm'
 import useMutationFormPersist from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
 import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
-import clsx from 'clsx'
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
@@ -26,7 +26,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
-  const customerAddress = customerQuery?.customer?.addresses?.[0]
 
   const mutationForm = useMutationFormPersist(ShippingAddressFormDocument, {
     defaultValues: {
@@ -90,21 +89,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     return regions
   }, [country, countryList])
 
-  const getCheckmarkClass = useCallback(
-    (inputName: string) => {
-      if (errors.address && errors.address[inputName]) {
-        return ''
-      }
-
-      if (watch(inputName)) {
-        return classes.checkmark
-      }
-
-      return ''
-    },
-    [classes.checkmark, errors.address, watch],
-  )
-
   return (
     <form onSubmit={handleSubmit} noValidate className={classes.form} ref={ref}>
       <div className={classes.formRow}>
@@ -119,7 +103,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.firstname?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.firstname')),
+            endAdornment:
+              !errors.address?.firstname && watch('address.firstname') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
         <TextField
@@ -133,7 +122,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.lastname?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.lastname')),
+            endAdornment:
+              !errors.address?.lastname && watch('address.lastname') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
       </div>
@@ -149,7 +143,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.street?.[0]?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.street[0]')),
+            endAdornment:
+              !errors.address?.street?.[0] && watch('address.street[0]') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
         <TextField
@@ -166,7 +165,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.street?.[1]?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.street[1]')),
+            endAdornment:
+              !errors.address?.street?.[1] && watch('address.street[1]') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
         <TextField
@@ -179,7 +183,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.street?.[2]?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.street[2]')),
+            endAdornment:
+              !errors.address?.street?.[2] && watch('address.street[2]') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
       </div>
@@ -195,7 +204,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.postcode?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.postcode')),
+            endAdornment:
+              !errors.address?.postcode && watch('address.postcode') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
         <TextField
@@ -209,7 +223,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.city?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.city')),
+            endAdornment:
+              !errors.address?.city && watch('address.city') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
       </div>
@@ -247,7 +266,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             />
           )}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.country_code')),
+            endAdornment: !errors.address?.country_code && <CheckIcon color='primary' />,
           }}
         />
         {regionList.length > 0 && (
@@ -277,6 +296,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
                     helperText={errors.address?.region_id?.message}
                     disabled={formState.isSubmitting}
                     onBlur={onBlur}
+                    InputProps={{
+                      endAdornment:
+                        !errors.address?.region_id && watch('address.region_id') ? (
+                          <CheckIcon className={classes.checkmark} />
+                        ) : (
+                          <></>
+                        ),
+                    }}
                   />
                 )}
               />
@@ -299,7 +326,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           helperText={formState.isSubmitted && errors.address?.telephone?.message}
           disabled={formState.isSubmitting}
           InputProps={{
-            className: clsx(getCheckmarkClass('address.telephone')),
+            endAdornment:
+              !errors.address?.telephone && watch('address.telephone') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
           }}
         />
       </div>
