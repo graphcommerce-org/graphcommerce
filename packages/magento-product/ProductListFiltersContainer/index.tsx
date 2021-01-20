@@ -80,8 +80,8 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   const { scrollY } = useViewportScroll()
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const [height, setHeight] = useState(0)
-  const [startPosition, setStartPosition] = useState(0)
-  const [spacing, setSpacing] = useState(0)
+  const [startPosition, setStartPosition] = useState(100)
+  const [spacing, setSpacing] = useState(20)
   const scrollHalfway = startPosition + spacing
 
   const wrapperRef = useRef<HTMLDivElement>(null)
