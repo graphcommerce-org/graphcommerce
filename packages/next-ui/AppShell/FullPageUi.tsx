@@ -66,25 +66,13 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
   const router = useRouter()
   const classes = useStyles()
 
-  const contentAnimation: MotionProps = !hold
-    ? {
-        initial: { opacity: 1 },
-        animate: { opacity: 1, transition: { duration: 0 } },
-        exit: { opacity: 0, transition: { duration: 0 } },
-      }
-    : {
-        initial: { opacity: 1 },
-        animate: { opacity: 1, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { opacity: 1, transition: { type: 'tween', ease: 'easeIn' } },
-      }
-
   const headerRef = useRef<HTMLDivElement>(null)
   const backButtonRef = useRef<HTMLDivElement>(null)
 
   return (
     <>
       <m.div {...offsetProps}>
-        <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }} {...contentAnimation}>
+        <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }}>
           {router.pathname !== '/' && (
             <m.div
               className={classes.backButtonRoot}
@@ -112,6 +100,7 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
             layoutId='header'
             transition={{ type: 'tween' }}
             ref={headerRef}
+            layout='position'
           >
             {logo}
             {menu}

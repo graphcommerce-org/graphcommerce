@@ -44,8 +44,11 @@ const useStyles = makeStyles(
       width: '100%',
       minHeight: `calc(100vh - 50px)`,
       [theme.breakpoints.up('md')]: {
-        width: '50vw',
+        width: '70vw',
         minHeight: '100vh',
+      },
+      [theme.breakpoints.up('lg')]: {
+        width: '50vw',
       },
       '&:focus': { outline: 'none' },
       paddingBottom: 0,
@@ -171,10 +174,11 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
 
   let contentAnimation: MotionProps = !hold
     ? {
-        initial: { y: '90%', z, opacity: 0, originY: 0 },
+        initial: { y: '90%', z, x: 0, opacity: 0, originY: 0 },
         animate: {
           y: '0',
           z,
+          x: 0,
           opacity: 1,
           display: 'block',
           transition: { type: 'tween', ease: 'easeOut' },
@@ -187,17 +191,18 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
         },
       }
     : {
-        initial: { opacity: 1, z },
-        animate: { opacity: 1, z, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { opacity: 1, z, transition: { type: 'tween', ease: 'easeIn' } },
+        initial: { opacity: 1, z, x: 0, y: 0 },
+        animate: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeOut' } },
+        exit: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
   if (upMd) {
     contentAnimation = !hold
       ? {
-          initial: { x: '-20%', z, opacity: 0, originY: 0 },
+          initial: { x: '-20%', y: 0, z, opacity: 0, originY: 0 },
           animate: {
             x: '0',
+            y: 0,
             z,
             opacity: 1,
             display: 'block',
@@ -211,9 +216,9 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
           },
         }
       : {
-          initial: { opacity: 1, z },
-          animate: { opacity: 1, z, transition: { type: 'tween', ease: 'easeOut' } },
-          exit: { opacity: 1, z, transition: { type: 'tween', ease: 'easeIn' } },
+          initial: { opacity: 1, z, x: 0, y: 0 },
+          animate: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeOut' } },
+          exit: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeIn' } },
         }
   }
 
@@ -233,13 +238,13 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
           onKeyDown={onPressEscape}
           role='presentation'
           // drag={drag && !upMd && inFront ? 'y' : false}
-          dragConstraints={{ top: 0, bottom: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, info) => {
-            const isFlick = info.offset.y > 100 && info.velocity.y > 0
-            const isClose = info.offset.y > window.innerHeight / 3 - 50
-            if (isFlick || isClose) back()
-          }}
+          // dragConstraints={{ top: 0, bottom: 0 }}
+          // dragElastic={1}
+          // onDragEnd={(e, info) => {
+          //   const isFlick = info.offset.y > 100 && info.velocity.y > 0
+          //   const isClose = info.offset.y > window.innerHeight / 3 - 50
+          //   if (isFlick || isClose) back()
+          // }}
         >
           <m.section
             className={clsx(classes.drawer)}
@@ -252,7 +257,7 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
               disabled={!inFront && phase === 'FINISHED'}
             >
               <div className={classes.header} role='presentation'>
-                <m.div className={clsx(classes.dragHandle)} style={{ opacity }} />
+                {/* <m.div className={clsx(classes.dragHandle)} style={{ opacity }} /> */}
 
                 <div className={classes.headerBack}>
                   <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
