@@ -4,7 +4,7 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import Cart from '@reachdigital/magento-cart/cart/Cart'
-import CartItem2 from '@reachdigital/magento-cart/cart/CartItem2'
+import CartItem from '@reachdigital/magento-cart/cart/CartItem'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -43,14 +43,14 @@ function CartPage() {
           <Cart
             clientCartQueryData={data ?? {}}
             renderer={{
-              BundleCartItem: CartItem2,
+              BundleCartItem: CartItem,
               ConfigurableCartItem,
-              DownloadableCartItem: CartItem2,
-              SimpleCartItem: CartItem2,
-              VirtualCartItem: CartItem2,
+              DownloadableCartItem: CartItem,
+              SimpleCartItem: CartItem,
+              VirtualCartItem: CartItem,
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore GiftCardProduct is only available in Commerce
-              GiftCardCartItem: CartItem2,
+              GiftCardCartItem: CartItem,
             }}
           />
         )}
