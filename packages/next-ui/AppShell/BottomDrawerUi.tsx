@@ -171,6 +171,9 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         exit: { opacity: 1, y: 0, z, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
+  const [zIndex, setZIndex] = useState(0)
+  useEffect(() => setZIndex(thisIdx * 2), [thisIdx])
+
   return (
     <>
       <Backdrop
@@ -178,10 +181,10 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         classes={{ backdrop: classes.backdrop }}
         onClick={() => dismiss(true)}
         role='none'
-        zOffset={thisIdx * 2 - 1}
+        zOffset={zIndex - 1}
         hold={hold}
       />
-      <m.div {...offsetProps} style={{ zIndex: thisIdx * 2 }}>
+      <m.div {...offsetProps} style={{ zIndex }}>
         <m.div
           className={classes.drawerContainer}
           onKeyDown={onPressEscape}
