@@ -1,4 +1,4 @@
-import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu } from '@material-ui/core'
+import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu, FabProps } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
@@ -18,8 +18,8 @@ const useStyles = makeStyles(
       },
     },
     menu: {
-      backgroundColor: theme.palette.tertiary.main,
-      color: theme.palette.tertiary.contrastText,
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.primary.contrastText,
       minWidth: responsiveVal(200, 280),
     },
     menuClose: {
@@ -38,13 +38,13 @@ const useStyles = makeStyles(
     },
     menuItem: {
       '&:hover': {
-        backgroundColor: theme.palette.tertiary.light,
+        backgroundColor: theme.palette.grey[200],
       },
       '&.Mui-selected': {
-        backgroundColor: theme.palette.tertiary.light,
+        backgroundColor: theme.palette.grey[300],
       },
       '&.Mui-selected:hover': {
-        backgroundColor: theme.palette.tertiary.light,
+        backgroundColor: theme.palette.grey[300],
       },
     },
     menuItemTextSmall: {
@@ -58,9 +58,12 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = PageLayoutQuery & ResolveUrlQuery
+export type MenuFabProps = PageLayoutQuery &
+  ResolveUrlQuery &
+  Omit<FabProps, 'children' | 'onClick' | 'aria-label'>
 
-export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
+export default function MenuFab(props: MenuFabProps) {
+  const { menu, urlResolver, ...fabProps } = props
   const classes = useStyles()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -74,6 +77,7 @@ export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
         size='medium'
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuOpen}
+        {...fabProps}
       >
         <MenuIcon htmlColor='#fff' fontSize='small' />
       </Fab>
@@ -88,15 +92,6 @@ export default function MenuFab({ menu, urlResolver }: MenuFabProps) {
         variant='menu'
         classes={{ paper: classes.menu }}
       >
-        <Fab
-          color='primary'
-          aria-label='add'
-          size='medium'
-          onClick={() => setOpenEl(null)}
-          classes={{ root: classes.menuClose }}
-        >
-          <CloseIcon htmlColor='#fff' fontSize='small' />
-        </Fab>
         {menu?.items?.[0]?.children?.map((cat) => {
           if (!cat || !cat.id || !cat.url_path) return null
           return (

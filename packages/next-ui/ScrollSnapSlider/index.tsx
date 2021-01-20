@@ -10,33 +10,33 @@ import responsiveVal from '../Styles/responsiveVal'
 
 // @todo cancel all animatins on touch down, cancellation of animations doesn't work with react-spring 8.0 yet.
 
-type State = { isScrolling: boolean }
 type Props = {
   scrollbar?: boolean
   pagination?: boolean
   fabProps?: Omit<FabProps, 'children' | 'onClick'>
-}
+} & React.HTMLAttributes<HTMLDivElement>
 
 const useStyles = makeStyles(
   {
-    scroller: ({ isScrolling, scrollbar }: State & Props) => ({
+    scroller: {
       overflow: 'auto',
       '-webkit-overflow-scrolling': 'touch',
-      display: 'flex',
+      display: 'grid',
+      gridAutoFlow: 'column',
       willChange: 'transform', // Solve issue with repaints
       overscrollBehaviorX: 'contain', // https://developers.google.com/web/updates/2017/11/overscroll-behavior
-      ...(!scrollbar && {
-        scrollbarWidth: 'none',
-        '-ms-overflow-style': 'none',
-        '&::-webkit-scrollbar': { display: 'none' },
-      }),
-      // We disable the scroll-snap-align when we're animating because it causes animation jank
-      ...(!isScrolling && {
-        scrollSnapType: 'both proximity',
-        '& > *': { scrollSnapAlign: 'center' },
-      }),
       overflowY: `hidden`,
-    }),
+    },
+    hideScrollbar: {
+      scrollbarWidth: 'none',
+      '-ms-overflow-style': 'none',
+      '&::-webkit-scrollbar': { display: 'none' },
+    },
+    // We disable the scroll-snap-align when we're animating because it causes animation jank
+    notScrolling: {
+      scrollSnapType: 'both proximity',
+      '& > *': { scrollSnapAlign: 'center' },
+    },
     prevFab: {
       width: responsiveVal(30, 50),
       height: responsiveVal(30, 50),
@@ -62,11 +62,11 @@ const useStyles = makeStyles(
 export type ScrollSnapSliderProps = Props & UseStyles<typeof useStyles>
 
 const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = (props) => {
-  const { children, pagination, fabProps } = props
+  const { children, pagination, fabProps, scrollbar, className, ...divProps } = props
   const { ref, width = 0 } = useResizeObserver<HTMLDivElement>()
   const [intersects, setIntersects] = useState<boolean[]>([])
   const [isScrolling, setScrolling] = useState<boolean>(false)
-  const classes = useStyles({ isScrolling, ...props })
+  const classes = useStyles(props)
 
   const [{ scroll: scrollLeft }, setScroll] = useSpring(() => ({
     scroll: 0,
@@ -143,9 +143,18 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
 
   return (
     <>
-      {/* animated.div misses a typescript declaration for scrollLeft
-      //@ts-ignore */}
-      <animated.div scrollLeft={scrollLeft} className={classes.scroller} ref={ref}>
+      <animated.div
+        // @ts-expect-error scrollLeft not defined
+        scrollLeft={scrollLeft}
+        ref={ref}
+        className={clsx(
+          className,
+          classes.scroller,
+          !isScrolling && classes.notScrolling,
+          !scrollbar && classes.hideScrollbar,
+        )}
+        {...divProps}
+      >
         {children}
       </animated.div>
       <Grow in={!intersects[0]}>

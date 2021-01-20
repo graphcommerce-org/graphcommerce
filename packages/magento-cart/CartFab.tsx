@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Badge, Fab, IconButton, NoSsr } from '@material-ui/core'
-import CartIcon from '@material-ui/icons/ShoppingCartOutlined'
+import { Badge, Fab, FabProps, NoSsr } from '@material-ui/core'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
 import { ClientCartDocument } from './ClientCart.gql'
@@ -8,29 +7,19 @@ import { ClientCartDocument } from './ClientCart.gql'
 type CartFabProps = {
   qty?: number
   asIcon?: boolean
-  icon?: React.ReactNode
-}
+  icon: React.ReactNode
+} & Omit<FabProps, 'children' | 'aria-label'>
 
 function CartFabContent(props: CartFabProps) {
-  const { qty, asIcon, icon } = props
-
-  const badge = (
-    <Badge badgeContent={qty || 0} color='primary' variant='dot'>
-      {icon ?? <CartIcon />}
-    </Badge>
-  )
+  const { qty, asIcon, icon, ...fabProps } = props
 
   return (
     <PageLink href='/cart'>
-      {asIcon ? (
-        <IconButton aria-label='Cart' color='inherit'>
-          {badge}
-        </IconButton>
-      ) : (
-        <Fab aria-label='Cart' color='inherit' size='medium'>
-          {badge}
-        </Fab>
-      )}
+      <Fab aria-label='Cart' color='inherit' size='medium' {...fabProps}>
+        <Badge badgeContent={qty || 0} color='primary' variant='dot'>
+          {icon}
+        </Badge>
+      </Fab>
     </PageLink>
   )
 }

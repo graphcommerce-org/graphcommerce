@@ -15,7 +15,7 @@ const useStyles = makeStyles(
         background: theme.palette.grey['100'],
       },
       [theme.breakpoints.down('sm')]: {
-        height: 38,
+        height: 40,
         width: 40,
         textAlign: 'center',
         minWidth: 'unset',
