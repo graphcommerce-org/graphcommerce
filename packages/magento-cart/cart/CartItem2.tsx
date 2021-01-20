@@ -1,5 +1,8 @@
 import { Badge, makeStyles, Theme } from '@material-ui/core'
+import { useProductLink } from '@reachdigital/magento-product/ProductLink'
+import { ProductLinkFragment } from '@reachdigital/magento-product/ProductLink/ProductLink.gql'
 import Money from '@reachdigital/magento-store/Money'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -87,12 +90,18 @@ const useStyles = makeStyles(
       mixBlendMode: 'multiply',
       transform: 'scale(1.75)',
     },
+    productLink: {
+      display: 'block',
+      width: '100%',
+    },
     itemName: {
       // ...theme.typography.h5,
       ...theme.typography.body1,
       fontWeight: 500,
       gridArea: 'itemName',
       alignSelf: 'flex-end',
+      color: theme.palette.text.primary,
+      textDecoration: 'none',
     },
     itemPrice: {
       gridArea: 'itemPrice',
@@ -122,6 +131,7 @@ export default function CartItem2(props: CartItemProps) {
   const { product, cartId, id, prices, quantity, children } = props
   const { name } = product
   const classes = useStyles()
+  const productLink = useProductLink(product)
 
   return (
     <div className={classes.root}>
@@ -138,24 +148,30 @@ export default function CartItem2(props: CartItemProps) {
         className={classes.picture}
         overlap='circle'
       >
-        <div className={classes.pictureSpacing}>
-          {product?.thumbnail?.url && product.thumbnail.label && (
-            <PictureResponsiveNext
-              alt={product.thumbnail.label ?? ''}
-              width={104}
-              height={86}
-              src={product.thumbnail.url ?? ''}
-              type='image/jpeg'
-              className={classes.pictureResponsive}
-            />
-          )}
-        </div>
+        <PageLink href={productLink}>
+          <a className={classes.productLink}>
+            <div className={classes.pictureSpacing}>
+              {product?.thumbnail?.url && product.thumbnail.label && (
+                <PictureResponsiveNext
+                  alt={product.thumbnail.label ?? ''}
+                  width={104}
+                  height={86}
+                  src={product.thumbnail.url ?? ''}
+                  type='image/jpeg'
+                  className={classes.pictureResponsive}
+                />
+              )}
+            </div>
+          </a>
+        </PageLink>
       </Badge>
 
-      <div className={classes.itemName}>
-        {name}
-        <DeliveryLabel />
-      </div>
+      <PageLink href={productLink}>
+        <a className={classes.itemName}>
+          {name}
+          <DeliveryLabel />
+        </a>
+      </PageLink>
 
       <div className={classes.itemPrice}>
         <div>

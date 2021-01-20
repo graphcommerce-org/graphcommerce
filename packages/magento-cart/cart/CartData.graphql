@@ -21,7 +21,7 @@ fragment CartData on Cart {
     __typename
     ...CartItem
     ...CartItemSimple
-    ...CartItemConfigurable
+    ...ConfigurableCartItem
     ...CartItemDownloadable
     ...CartItemVirtual
     ...CartItemBundle

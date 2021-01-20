@@ -2,6 +2,7 @@ fragment CartItem on CartItemInterface {
   id
   quantity
   product {
+    ...ProductLink
     name
     url_key
     thumbnail {
