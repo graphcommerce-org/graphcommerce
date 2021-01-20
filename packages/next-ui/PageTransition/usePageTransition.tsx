@@ -121,6 +121,11 @@ const usePageTransition = ({ safeToRemoveAfter = 0.5, title }: UsePageTransition
     }
   }
 
+  if (isFarInBack) {
+    const y = (thisPage?.y ?? 0) * -1 + getPage(thisIdx + 1).y
+    target = { ...target, pointerEvents: 'none', y }
+  }
+
   const offsetProps: MotionProps = {
     initial: target,
     animate: { ...target, transition: { duration: 0 } },

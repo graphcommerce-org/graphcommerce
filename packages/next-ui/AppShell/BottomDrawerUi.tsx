@@ -28,8 +28,8 @@ const useStyles = makeStyles(
     drawer: {
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
-      borderTopLeftRadius: theme.spacings.sm,
-      borderTopRightRadius: theme.spacings.sm,
+      borderTopLeftRadius: theme.spacings.xxs,
+      borderTopRightRadius: theme.spacings.xxs,
       boxShadow: theme.shadows[10],
       width: '100%',
       '&:focus': { outline: 'none' },
@@ -49,15 +49,12 @@ const useStyles = makeStyles(
       display: 'grid',
       padding: `0 ${theme.spacings.sm}`,
       marginBottom: theme.spacings.sm,
-      // margin: `0 ${theme.spacings.sm}`,
       alignItems: 'center',
       gridTemplate: `
         ". handle ." ${theme.spacings.sm}
         "back title forward" auto / 1fr auto 1fr
       `,
-      // gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
-      background: theme.palette.background.default,
       zIndex: 3,
     },
     headerBack: {
@@ -169,9 +166,9 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
         },
       }
     : {
-        initial: { opacity: 1, z },
-        animate: { opacity: 1, z, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { opacity: 1, z, transition: { type: 'tween', ease: 'easeIn' } },
+        initial: { opacity: 1, z, y: 0 },
+        animate: { opacity: 1, z, y: 0, transition: { type: 'tween', ease: 'easeOut' } },
+        exit: { opacity: 1, y: 0, z, transition: { type: 'tween', ease: 'easeIn' } },
       }
 
   return (
@@ -189,14 +186,14 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
           className={classes.drawerContainer}
           onKeyDown={onPressEscape}
           role='presentation'
-          drag={drag && inFront ? 'y' : false}
-          dragConstraints={{ top: 0, bottom: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, info) => {
-            const isFlick = info.offset.y > 100 && info.velocity.y > 0
-            const isClose = info.offset.y > window.innerHeight / 3 - 50
-            if (isFlick || isClose) back()
-          }}
+          // drag={drag && inFront ? 'y' : false}
+          // dragConstraints={{ top: 0, bottom: 0 }}
+          // dragElastic={1}
+          // onDragEnd={(e, info) => {
+          //   const isFlick = info.offset.y > 100 && info.velocity.y > 0
+          //   const isClose = info.offset.y > window.innerHeight / 3 - 50
+          //   if (isFlick || isClose) back()
+          // }}
         >
           <m.section
             className={clsx(classes.drawer, fullHeight && classes.drawerFullHeight)}
@@ -209,7 +206,7 @@ const BottomDrawerUi: UiFC<BottomDrawerUiProps> = (props) => {
               disabled={!inFront && phase === 'FINISHED'}
             >
               <div className={classes.header} role='presentation'>
-                <m.div className={classes.dragHandle} style={{ opacity }} />
+                {/* <m.div className={classes.dragHandle} style={{ opacity }} /> */}
 
                 <div className={classes.headerBack}>
                   <NoSsr fallback={<BackButton>Home</BackButton>}>

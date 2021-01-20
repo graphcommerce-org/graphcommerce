@@ -22,6 +22,7 @@ const useStyles = makeStyles(
       paddingLeft: theme.page.horizontal,
       paddingRight: theme.page.horizontal,
       width: '100%',
+      pointerEvents: 'none',
       '& > *': {
         pointerEvents: 'all',
       },
@@ -37,12 +38,12 @@ const useStyles = makeStyles(
       boxShadow: 'none',
     },
   }),
-  { name: 'MobileMenu' },
+  { name: 'FabMenu' },
 )
 
-type MobileMenuProps = PageLayoutQuery & ResolveUrlQuery
+type FabMenuProps = PageLayoutQuery & ResolveUrlQuery
 
-export default function FabMenu(props: MobileMenuProps) {
+export default function FabMenu(props: FabMenuProps) {
   const { menu, urlResolver } = props
   const classes = useStyles()
 
