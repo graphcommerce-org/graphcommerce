@@ -13,11 +13,11 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
+import FabMenu from '../../components/FabMenu'
 import Footer from '../../components/Footer'
 import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
-import MobileMenu from '../../components/MobileMenu/MobileMenu'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
@@ -37,7 +37,7 @@ function AppShellTestIndex({ url, menu, urlResolver, pages, footer }: Props) {
       logo={<Logo />}
       actions={<HeaderActions />}
     >
-      <MobileMenu menu={menu} urlResolver={urlResolver} />
+      <FabMenu menu={menu} urlResolver={urlResolver} />
       <Container>
         {url === 'index' ? (
           <PageLink href='/test/deeper'>

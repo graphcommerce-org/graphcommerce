@@ -19,15 +19,17 @@ const useStyles = makeStyles(
     backButtonRoot: {
       position: 'fixed',
       zIndex: 10,
-      left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
-        top: 4,
+        // top: 4,
       },
       [theme.breakpoints.down('xs')]: {
-        top: 7,
+        // top: 7,
       },
+      left: theme.page.horizontal,
+      top: theme.page.vertical,
       [theme.breakpoints.up('md')]: {
         // @todo, replace 48 with content height variable.
+
         top: `calc(48px + ${theme.spacings.sm} * 2)`,
       },
     },
@@ -38,7 +40,7 @@ const useStyles = makeStyles(
       maxWidth: 100,
     },
     header: {
-      padding: `${theme.spacings.sm} ${theme.page.horizontal} ${theme.spacings.sm}`,
+      padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.spacings.sm}`,
       top: 0,
       display: 'flex',
       pointerEvents: 'none',

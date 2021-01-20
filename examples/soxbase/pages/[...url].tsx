@@ -15,9 +15,7 @@ import getCategoryPageProps, {
 } from '@reachdigital/magento-product-types/getCategoryPageProps'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListFiltersContainer, {
-  useProductListFiltersStyles,
-} from '@reachdigital/magento-product/ProductListFiltersContainer'
+import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
@@ -30,11 +28,11 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
+import FabMenu from '../components/FabMenu'
 import Footer from '../components/Footer'
 import { FooterDocument, FooterQuery } from '../components/Footer/Footer.gql'
 import HeaderActions from '../components/HeaderActions/HeaderActions'
 import Logo from '../components/Logo/Logo'
-import MobileMenu from '../components/MobileMenu/MobileMenu'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
@@ -85,7 +83,6 @@ const useProductListStyles = makeStyles(
 function CategoryPage(props: Props) {
   const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
-  const filterClasses = useProductListFiltersStyles(props)
   const {
     categories,
     products,
@@ -128,15 +125,8 @@ function CategoryPage(props: Props) {
           </div>
 
           <ProductListFiltersContainer>
-            <ProductListSort
-              sort_fields={products.sort_fields}
-              className={filterClasses.filterItem}
-            />
-            <ProductListFilters
-              aggregations={filters.aggregations}
-              filterTypes={filterTypes}
-              className={filterClasses.filterItem}
-            />
+            <ProductListSort sort_fields={products.sort_fields} />
+            <ProductListFilters aggregations={filters.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
 
           <ProductListCount total_count={products?.total_count} />
@@ -159,7 +149,7 @@ function CategoryPage(props: Props) {
       logo={<Logo />}
       actions={<HeaderActions />}
     >
-      <MobileMenu menu={menu} urlResolver={urlResolver} />
+      <FabMenu menu={menu} urlResolver={urlResolver} />
       <CategoryMeta {...category} />
       {pages?.[0] && <Page {...pages?.[0]} />}
       {content}

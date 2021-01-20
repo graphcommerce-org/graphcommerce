@@ -12,6 +12,7 @@ import React from 'react'
 import BlogList from '../../components/Blog'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
+import FabMenu from '../../components/FabMenu'
 import Footer from '../../components/Footer'
 import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
@@ -37,6 +38,7 @@ const BlogPage = ({ menu, urlResolver, pages, footer, blogPosts }: Props) => {
       logo={<Logo />}
       actions={<HeaderActions />}
     >
+      <FabMenu menu={menu} urlResolver={urlResolver} />
       <PageMeta
         title={page.title ?? ''}
         metaDescription={page.title ?? ''}

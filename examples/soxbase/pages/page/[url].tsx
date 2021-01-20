@@ -12,11 +12,11 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import FabMenu from '../../components/FabMenu'
 import Footer from '../../components/Footer'
 import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
-import MobileMenu from '../../components/MobileMenu/MobileMenu'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import apolloClient from '../../lib/apolloClient'
@@ -38,7 +38,7 @@ const CmsPage = ({ cmsPage, menu, urlResolver, pages, footer }: Props) => {
       logo={<Logo />}
       actions={<HeaderActions />}
     >
-      <MobileMenu menu={menu} urlResolver={urlResolver} />
+      <FabMenu menu={menu} urlResolver={urlResolver} />
       <CmsPageMeta {...cmsPage} />
       {pages?.[0] ? <Page {...pages?.[0]} /> : <CmsPageContent {...cmsPage} />}
       <Footer footer={footer} />

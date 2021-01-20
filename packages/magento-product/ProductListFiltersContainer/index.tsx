@@ -4,22 +4,21 @@ import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
 
-type ProductListFiltersContainerProps = React.PropsWithChildren<ReactNode>
+type ProductListFiltersContainerProps = React.PropsWithChildren<unknown>
 
-export const useProductListFiltersStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       gridArea: 'filters',
       position: 'sticky',
-      top: 10,
+      top: theme.page.vertical,
       zIndex: 9,
       margin: '0 auto',
       maxWidth: `calc(100% - 96px - ${theme.spacings.sm} * 2)`,
       [theme.breakpoints.down('sm')]: {
         textAlign: 'center',
-        padding: 0,
-        margin: 'unset',
         maxWidth: 'unset',
+        margin: `0 calc(${theme.page.horizontal} * -1)`,
       },
       [theme.breakpoints.down('xs')]: {
         textAlign: 'center',
@@ -29,20 +28,35 @@ export const useProductListFiltersStyles = makeStyles(
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
-      background: '#fff',
-      borderRadius: 22,
-      padding: `0 3px`,
+      [theme.breakpoints.up('md')]: {
+        background: '#fff',
+        borderRadius: 22,
+        // padding: `0 3px`,
+      },
     },
     filtersSticky: {},
-    filterItem: {
-      margin: `6px 3px 6px`,
+    scroller: {
+      borderRadius: 22,
+      padding: `6px ${theme.page.horizontal}`,
+      [theme.breakpoints.up('md')]: {
+        padding: 6,
+      },
+      columnGap: 6,
+      '& :last-child': {
+        marginRight: 6, // https://www.brunildo.org/test/overscrollback.html
+      },
+    },
+    scrollerSticky: {
+      [theme.breakpoints.down('sm')]: {
+        paddingLeft: '80px',
+      },
     },
     prevFab: {
       top: 'auto',
       left: -3,
       height: 44,
       width: 44,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
@@ -51,7 +65,7 @@ export const useProductListFiltersStyles = makeStyles(
       right: -3,
       height: 44,
       width: 44,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
@@ -62,12 +76,12 @@ export const useProductListFiltersStyles = makeStyles(
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
 
-  const classes = useProductListFiltersStyles()
+  const classes = useStyles()
   const { scrollY } = useViewportScroll()
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const [height, setHeight] = useState(0)
-  const [startPosition, setStartPosition] = useState(0)
-  const [spacing, setSpacing] = useState(0)
+  const [startPosition, setStartPosition] = useState(100)
+  const [spacing, setSpacing] = useState(20)
   const scrollHalfway = startPosition + spacing
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -75,6 +89,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   // Measure the sizing of the wrapping container
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
+      if (window.scrollY > 100) return
       const offset = wrapperRef.current?.offsetTop ?? 0
       const elemHeigh = entry.contentRect.height
       const nextOffset =
@@ -112,12 +127,16 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     >
       <m.div
         layout
-        className={clsx(classes.filters, { [classes.filtersSticky]: isSticky })}
+        className={clsx(classes.filters, isSticky && classes.filtersSticky)}
         style={{ filter }}
       >
         <ScrollSnapSlider
           fabProps={{ size: 'small' }}
-          classes={{ prevFab: classes.prevFab, nextFab: classes.nextFab }}
+          classes={{
+            prevFab: classes.prevFab,
+            nextFab: classes.nextFab,
+            scroller: clsx(classes.scroller, isSticky && classes.scrollerSticky),
+          }}
         >
           {children}
         </ScrollSnapSlider>
