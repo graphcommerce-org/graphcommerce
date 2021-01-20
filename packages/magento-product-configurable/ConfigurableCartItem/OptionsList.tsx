@@ -1,6 +1,5 @@
 import { makeStyles, Menu, Theme } from '@material-ui/core'
 import CartItemOptionDropdown from '@reachdigital/magento-cart/cart/CartItemOptionDropdown'
-import { SelectedConfigurableOption } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React, { useState } from 'react'
@@ -12,7 +11,6 @@ const useStyles = makeStyles(
       gridArea: 'itemOptions',
       alignSelf: 'baseline',
       cursor: 'default',
-      marginLeft: -8,
       [theme.breakpoints.down('sm')]: {
         alignSelf: 'end',
         marginLeft: 0,
