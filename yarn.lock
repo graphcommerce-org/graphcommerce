@@ -16037,10 +16037,10 @@ semantic-release-slack-bot@^1.7.0:
     node-fetch "^2.3.0"
     slackify-markdown "^1.1.1"
 
-semantic-release@^17.3.3:
-  version "17.3.3"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.3.3.tgz#8f3d2909e9570d9053ef195c138d8d15d7fe5815"
-  integrity sha512-StUBghTuh98O0XpDWj5aRLmZwY9zV6gGgbXnw5faon3Br1fRk8r2VSaYozfQTx8o5C8Mtem+a0KWEiTTd4Iylw==
+semantic-release@^17.3.4:
+  version "17.3.4"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.3.4.tgz#62bd16e4f7d600ba7c44b371b3973f733e2db001"
+  integrity sha512-rifRJU2am90uheTG5j3cXFaoS9aoROsQmijCxalE/C28dom6qkb1vzQbNKdPK0oKn6VGZ+HVojJLPlJQuEsRvw==
   dependencies:
     "@semantic-release/commit-analyzer" "^8.0.0"
     "@semantic-release/error" "^2.2.0"
@@ -16069,7 +16069,7 @@ semantic-release@^17.3.3:
     semver "^7.3.2"
     semver-diff "^3.1.1"
     signale "^1.2.1"
-    yargs "^15.0.1"
+    yargs "^16.2.0"
 
 semver-compare@^1.0.0:
   version "1.0.0"
@@ -18924,7 +18924,7 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs@16.2.0, yargs@^16.1.1:
+yargs@16.2.0, yargs@^16.1.1, yargs@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-16.2.0.tgz#1c82bf0f6b6a66eafce7ef30e376f49a12477f66"
   integrity sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
@@ -18954,7 +18954,7 @@ yargs@^14.2.3:
     y18n "^4.0.0"
     yargs-parser "^15.0.1"
 
-yargs@^15.0.1, yargs@^15.1.0, yargs@^15.3.1, yargs@^15.4.1:
+yargs@^15.1.0, yargs@^15.3.1, yargs@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
   integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
