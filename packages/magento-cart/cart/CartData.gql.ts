@@ -7,9 +7,9 @@ import {
   CartItemBundleFragmentDoc,
 } from '../../magento-product-bundle/CartBundleItem.gql'
 import {
-  CartItemConfigurableFragment,
-  CartItemConfigurableFragmentDoc,
-} from '../../magento-product-configurable/CartitemConfigurable.gql'
+  ConfigurableCartItemFragment,
+  ConfigurableCartItemFragmentDoc,
+} from '../../magento-product-configurable/ConfigurableCartItem/ConfigurableCartItem.gql'
 import {
   CartItemDownloadableFragment,
   CartItemDownloadableFragmentDoc,
@@ -90,7 +90,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItem' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemSimple' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemConfigurable' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ConfigurableCartItem' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemDownloadable' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemVirtual' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemBundle' } },
@@ -105,7 +105,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
     ...SelectedShippingMethodFragmentDoc.definitions,
     ...CartItemFragmentDoc.definitions,
     ...CartItemSimpleFragmentDoc.definitions,
-    ...CartItemConfigurableFragmentDoc.definitions,
+    ...ConfigurableCartItemFragmentDoc.definitions,
     ...CartItemDownloadableFragmentDoc.definitions,
     ...CartItemVirtualFragmentDoc.definitions,
     ...CartItemBundleFragmentDoc.definitions,
@@ -136,7 +136,7 @@ export type CartDataFragment = { __typename: 'Cart' } & Pick<
               CartItemBundleFragment)
           | ({ __typename: 'ConfigurableCartItem' } & Pick<Types.ConfigurableCartItem, 'id'> &
               CartItem_ConfigurableCartItem_Fragment &
-              CartItemConfigurableFragment)
+              ConfigurableCartItemFragment)
         >
       >
     >

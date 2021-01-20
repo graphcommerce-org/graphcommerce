@@ -2,6 +2,15 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
+import {
+  ProductLink_VirtualProduct_Fragment,
+  ProductLink_SimpleProduct_Fragment,
+  ProductLink_DownloadableProduct_Fragment,
+  ProductLink_BundleProduct_Fragment,
+  ProductLink_GroupedProduct_Fragment,
+  ProductLink_ConfigurableProduct_Fragment,
+  ProductLinkFragmentDoc,
+} from '../../magento-product/ProductLink/ProductLink.gql'
 import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
 
 export const CartItemFragmentDoc: DocumentNode<CartItemFragment, unknown> = {
@@ -22,6 +31,7 @@ export const CartItemFragmentDoc: DocumentNode<CartItemFragment, unknown> = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductLink' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
                 {
@@ -110,6 +120,7 @@ export const CartItemFragmentDoc: DocumentNode<CartItemFragment, unknown> = {
         ],
       },
     },
+    ...ProductLinkFragmentDoc.definitions,
     ...MoneyFragmentDoc.definitions,
   ],
 }
@@ -117,22 +128,22 @@ export type CartItem_SimpleCartItem_Fragment = Pick<Types.SimpleCartItem, 'id' |
   product:
     | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_VirtualProduct_Fragment)
     | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_SimpleProduct_Fragment)
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_DownloadableProduct_Fragment)
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_BundleProduct_Fragment)
     | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_GroupedProduct_Fragment)
     | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_ConfigurableProduct_Fragment)
   prices?: Types.Maybe<{
     discounts?: Types.Maybe<
       Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
@@ -148,22 +159,22 @@ export type CartItem_VirtualCartItem_Fragment = Pick<Types.VirtualCartItem, 'id'
   product:
     | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_VirtualProduct_Fragment)
     | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_SimpleProduct_Fragment)
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_DownloadableProduct_Fragment)
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_BundleProduct_Fragment)
     | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_GroupedProduct_Fragment)
     | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_ConfigurableProduct_Fragment)
   prices?: Types.Maybe<{
     discounts?: Types.Maybe<
       Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
@@ -182,22 +193,22 @@ export type CartItem_DownloadableCartItem_Fragment = Pick<
   product:
     | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_VirtualProduct_Fragment)
     | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_SimpleProduct_Fragment)
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_DownloadableProduct_Fragment)
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_BundleProduct_Fragment)
     | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_GroupedProduct_Fragment)
     | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_ConfigurableProduct_Fragment)
   prices?: Types.Maybe<{
     discounts?: Types.Maybe<
       Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
@@ -213,22 +224,22 @@ export type CartItem_BundleCartItem_Fragment = Pick<Types.BundleCartItem, 'id' |
   product:
     | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_VirtualProduct_Fragment)
     | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_SimpleProduct_Fragment)
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_DownloadableProduct_Fragment)
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_BundleProduct_Fragment)
     | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_GroupedProduct_Fragment)
     | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_ConfigurableProduct_Fragment)
   prices?: Types.Maybe<{
     discounts?: Types.Maybe<
       Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
@@ -247,22 +258,22 @@ export type CartItem_ConfigurableCartItem_Fragment = Pick<
   product:
     | (Pick<Types.VirtualProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_VirtualProduct_Fragment)
     | (Pick<Types.SimpleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_SimpleProduct_Fragment)
     | (Pick<Types.DownloadableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_DownloadableProduct_Fragment)
     | (Pick<Types.BundleProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_BundleProduct_Fragment)
     | (Pick<Types.GroupedProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_GroupedProduct_Fragment)
     | (Pick<Types.ConfigurableProduct, 'name' | 'url_key'> & {
         thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'url' | 'label'>>
-      })
+      } & ProductLink_ConfigurableProduct_Fragment)
   prices?: Types.Maybe<{
     discounts?: Types.Maybe<
       Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
