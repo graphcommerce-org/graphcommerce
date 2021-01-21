@@ -17,6 +17,8 @@ const withTM = require('next-transpile-modules')(
     '@reachdigital/magento-cms',
     '@reachdigital/magento-customer',
     '@reachdigital/magento-graphql',
+    '@reachdigital/magento-payment-braintree',
+    '@reachdigital/magento-payment-klarna',
     '@reachdigital/magento-product',
     '@reachdigital/magento-product-bundle',
     '@reachdigital/magento-product-configurable',

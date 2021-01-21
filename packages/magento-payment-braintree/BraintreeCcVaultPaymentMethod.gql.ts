@@ -37,6 +37,11 @@ export const BraintreeCcVaultPaymentMethodDocument: DocumentNode<
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -62,6 +67,11 @@ export const BraintreeCcVaultPaymentMethodDocument: DocumentNode<
                       value: {
                         kind: 'ObjectValue',
                         fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'purchase_order_number' },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
+                          },
                           {
                             kind: 'ObjectField',
                             name: { kind: 'Name', value: 'code' },
@@ -142,6 +152,7 @@ export type BraintreeCcVaultPaymentMethodMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
   deviceData: Types.Scalars['String']
   publicHash: Types.Scalars['String']
+  poNr?: Types.Maybe<Types.Scalars['String']>
 }>
 
 export type BraintreeCcVaultPaymentMethodMutation = {

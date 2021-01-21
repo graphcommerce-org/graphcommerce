@@ -45,6 +45,11 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -70,6 +75,11 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
                       value: {
                         kind: 'ObjectValue',
                         fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'purchase_order_number' },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
+                          },
                           {
                             kind: 'ObjectField',
                             name: { kind: 'Name', value: 'code' },
@@ -155,6 +165,7 @@ export type PaymentMethodBraintreeMutationVariables = Types.Exact<{
   deviceData: Types.Scalars['String']
   isTokenEnabler: Types.Scalars['Boolean']
   nonce: Types.Scalars['String']
+  poNr?: Types.Maybe<Types.Scalars['String']>
 }>
 
 export type PaymentMethodBraintreeMutation = {

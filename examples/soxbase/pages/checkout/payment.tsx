@@ -9,6 +9,7 @@ import {
   CountryRegionsQuery,
 } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import CartPaymentMethods from '@reachdigital/magento-cart/payment-method/CartPaymentMethods'
+import BraintreeLocalPayment from '@reachdigital/magento-payment-braintree/BraintreePaymentMethod'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -35,7 +36,6 @@ function PaymentPage({ countries }: Props) {
     ;(async () => {
       if (!addressForm.current || !methodForm.current) return
       await Promise.all([addressForm.current(), methodForm.current()])
-      console.log('yeahh, success continue')
     })()
   }
 
@@ -46,7 +46,10 @@ function PaymentPage({ countries }: Props) {
         <NoSsr>
           <AnimatePresence initial={false}>
             <CartPaymentMethods
-              available_payment_methods={clientCart?.cart?.available_payment_methods}
+              {...clientCart?.cart}
+              renderers={{
+                braintree_local_payment: BraintreeLocalPayment,
+              }}
             />
             <AnimatedRow className={classes.formRow} key='next'>
               <Button
@@ -68,7 +71,7 @@ function PaymentPage({ countries }: Props) {
 
 PaymentPage.Layout = PageLayout
 
-registerRouteUi('/checkout', BottomDrawerUi)
+registerRouteUi('/checkout/payment', BottomDrawerUi)
 
 export default PaymentPage
 
