@@ -55,6 +55,7 @@ function ShippingPage({ countries }: Props) {
         <NoSsr>
           <AnimatePresence initial={false}>
             <EmailForm key='emailform' />
+
             <ShippingAddressForm
               key='ShippingAddressForm'
               countries={countries}

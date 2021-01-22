@@ -1,20 +1,28 @@
 import { useQuery } from '@apollo/client'
-import { Button } from '@material-ui/core'
+import { Button, Link, makeStyles, Theme } from '@material-ui/core'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import GuestEmailForm from './GuestEmailForm'
 
+const useStyles = makeStyles((theme: Theme) => ({
+  forgotPass: {
+    color: theme.palette.secondary.main,
+  },
+}))
+
 export default function EmailForm() {
   const [expand, setExpand] = useState(false)
   const classes = useFormStyles()
+  const localClasses = useStyles()
   const { data: cartQuery } = useQuery(ClientCartDocument)
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
@@ -58,6 +66,10 @@ export default function EmailForm() {
                 </div>
               </AnimatedRow>
             )}
+
+            <PageLink href='/account/forgot-password'>
+              <Link className={localClasses.forgotPass}>Forgot password?</Link>
+            </PageLink>
 
             <ul className={classes.steps}>
               <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
