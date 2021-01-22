@@ -53,8 +53,8 @@ function ShippingPage({ countries }: Props) {
         <IconTitle iconSrc='/icons/box.svg' title='Shipping' alt='box' />
 
         <NoSsr>
-          <AnimatePresence initial={false}>
-            <EmailForm key='emailform' />
+          <AnimatePresence initial={false} key='shipping-forms'>
+            <EmailForm key='EmailForm' />
 
             <ShippingAddressForm
               key='ShippingAddressForm'

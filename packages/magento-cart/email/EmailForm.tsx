@@ -40,11 +40,12 @@ export default function EmailForm() {
     <>
       {tokenQuery?.customerToken?.valid || (
         <AnimatedRow className={clsx(classes.form, classes.formContained)}>
-          <AnimatePresence initial={false}>
+          <AnimatePresence initial={false} key='GuestAndSignInForm'>
             {!isCustomer && (
               <AnimatedRow key='guest-email-form'>
                 <div className={classes.formRow}>
                   <GuestEmailForm
+                    key='GuestEmailForm'
                     signInAdornment={
                       <Button
                         color='secondary'
@@ -64,14 +65,13 @@ export default function EmailForm() {
                 <div className={classes.formRow}>
                   <SignInFormInline email={cartQuery?.cart?.email ?? ''} />
                 </div>
+                <PageLink href='/account/forgot-password' key='forgot-password'>
+                  <Link className={localClasses.forgotPass}>Forgot password?</Link>
+                </PageLink>
               </AnimatedRow>
             )}
 
-            <PageLink href='/account/forgot-password'>
-              <Link className={localClasses.forgotPass}>Forgot password?</Link>
-            </PageLink>
-
-            <ul className={classes.steps}>
+            <ul className={classes.steps} key='steps'>
               <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
               <li>Fill in password fields to create an account.</li>
               <li>Leave passwords fields empty to order as guest.</li>
