@@ -34,8 +34,8 @@ function CartPage() {
   const classes = useStyles()
 
   return (
-    <BottomDrawerUi title='Checkout' fullHeight>
-      <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+    <BottomDrawerUi title='Cart' fullHeight>
+      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         {loading ? (
           <CircularProgress className={classes.loader} />

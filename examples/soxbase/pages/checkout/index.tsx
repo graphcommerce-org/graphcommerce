@@ -45,7 +45,7 @@ function ShippingPage({ countries }: Props) {
   }
 
   return (
-    <BottomDrawerUi title='Shipping' fullHeight>
+    <BottomDrawerUi backFallbackHref='/cart' backFallbackTitle='Cart' title='Shipping' fullHeight>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         <CheckoutStepper steps={3} currentStep={2} />

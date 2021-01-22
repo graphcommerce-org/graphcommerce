@@ -45,7 +45,7 @@ export default function CouponAccordion() {
   return (
     <AnimatedRow key='discount-codes'>
       <m.div layout className={classes.accordion}>
-        <m.div layout='position'>
+        <m.div layout>
           <Button
             onClick={() => setOpen(!open)}
             className={classes.button}
