@@ -6,7 +6,7 @@ const useCouponFormStyles = makeStyles((theme: Theme) => ({
     gridColumnGap: theme.spacings.lg,
   },
   button: {
-    borderRadius: 40,
+    borderRadius: theme.spacings.xxs,
   },
 }))
 

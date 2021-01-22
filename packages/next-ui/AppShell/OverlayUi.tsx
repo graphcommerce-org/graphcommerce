@@ -18,6 +18,7 @@ import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
 import Backdrop from './Backdrop'
+import useLeftOverlayUiAnimations from './useLeftOverlayUiAnimations'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -36,8 +37,30 @@ const useStyles = makeStyles(
     drawer: {
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
+      borderTopLeftRadius: theme.spacings.xxs,
+      borderTopRightRadius: theme.spacings.xxs,
       boxShadow: theme.shadows[10],
       width: '100%',
+      '&:focus': { outline: 'none' },
+      paddingBottom: 0,
+      '&> *': {
+        marginBottom: theme.spacings.sm,
+      },
+    },
+    drawerFullHeight: {
+      minHeight: `calc(100vh - 50px)`,
+    },
+    drawerContainerCenter: {
+      alignItems: 'flex-start',
+      paddingTop: theme.spacings.xl,
+    },
+    drawerContainerLeft: {
+      [theme.breakpoints.up('md')]: {
+        perspectiveOrigin: '75% center',
+        paddingTop: 0,
+      },
+    },
+    drawerLeft: {
       minHeight: `calc(100vh - 50px)`,
       [theme.breakpoints.up('md')]: {
         width: '70vw',
@@ -46,51 +69,48 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('lg')]: {
         width: '50vw',
       },
-      '&:focus': { outline: 'none' },
-      paddingBottom: 0,
-      '&> *': {
-        marginBottom: theme.spacings.sm,
-      },
+    },
+    drawerCenter: {
+      margin: '0 auto',
+      maxWidth: '75%',
+      borderRadius: theme.spacings.xxs,
     },
     header: {
       position: 'sticky',
       top: 0,
       left: 0,
       right: 0,
-      zIndex: 1,
       display: 'grid',
       padding: `0 ${theme.spacings.sm}`,
       marginBottom: theme.spacings.sm,
-      // margin: `0 ${theme.spacings.sm}`,
       alignItems: 'center',
       gridTemplate: `
         ". handle ." ${theme.spacings.sm}
         "back title forward" auto / 1fr auto 1fr
       `,
-      // gridTemplateColumns: `1fr auto 1fr`,
       pointerEvents: 'none',
+      zIndex: 3,
     },
     headerBack: {
       pointerEvents: 'all',
       gridArea: 'back',
     },
-    headerTitle: {
+    headerTitleContainer: {
       pointerEvents: 'all',
       gridArea: 'title',
-      [theme.breakpoints.up('md')]: {
-        padding: `0 ${theme.spacings.lg} ${theme.spacings.md} ${theme.spacings.lg}`,
-      },
+    },
+    headerTitle: {
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: 700,
+      fontSize: 20,
     },
     dragHandle: {
-      width: 100,
+      width: 78,
       height: 6,
       borderRadius: 3,
       border: `1px solid ${theme.palette.grey[300]}`,
       gridArea: 'handle',
       justifySelf: 'center',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
     },
     headerForward: {
       pointerEvents: 'all',
@@ -98,27 +118,33 @@ const useStyles = makeStyles(
       justifyContent: 'flex-end',
       gridArea: 'forward',
     },
-    wrapper: {
-      [theme.breakpoints.up('md')]: {
-        padding: `0 ${theme.spacings.lg}`,
-      },
-    },
   }),
-  { name: 'SideDrawerUi' },
+  { name: 'OverlayUiProps' },
 )
 
-export type SideDrawerUiProps = UseStyles<typeof useStyles> & {
+type OverlayVariants = 'top' | 'right' | 'bottom' | 'left' | 'center'
+
+export type OverlayUiProps = UseStyles<typeof useStyles> & {
+  fullHeight?: boolean
   titleProps?: TypographyProps<'h2'>
   titleComponent?: React.ElementType
   headerForward?: React.ReactNode
+
+  variant: OverlayVariants
+  // variantDesktop?: OverlayVariants
+
+  /**
+   * desktop:bottom + size:small: the bottom drawer is as small as the content can be.
+   * desktop:bottom + size:normal: the bottom drawer covers the whole screen
+   * mobile: bottom + size: no difference
+   *
+   */
+  size?: 'small' | 'normal'
 }
 
-const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
+const OverlayUi: UiFC<OverlayUiProps> = (props) => {
   const classes = useStyles(props)
   const router = useRouter()
-  const theme = useTheme()
-  const upMd = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true })
-
   const {
     children,
     title,
@@ -127,6 +153,10 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
     backFallbackHref,
     backFallbackTitle,
     headerForward,
+    fullHeight,
+    variant,
+    // variantDesktop = variant,
+    size = 'normal',
   } = props
 
   const {
@@ -141,11 +171,11 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
     phase,
   } = usePageTransition({ title })
 
-  const { scrollY } = useViewportScroll()
-  const [drag, setDrag] = useState<boolean>(scrollY.get() < 50)
+  // const { scrollY } = useViewportScroll()
+  // const [drag, setDrag] = useState<boolean>(scrollY.get() < 50)
 
   // disable drag functionality when scrolled down
-  useEffect(() => scrollY.onChange((s) => setDrag(s < 50)), [scrollY])
+  // useEffect(() => scrollY.onChange((s) => setDrag(s < 50)), [scrollY])
 
   const [dismissed, dismiss] = useState<boolean>(false)
   // Reset the dismiss value when navigating back
@@ -153,7 +183,7 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
     if (inFront) dismiss(false)
   }, [inFront])
 
-  const opacity = useTransform(scrollY, [25, 50], [1, 0])
+  // const opacity = useTransform(scrollY, [25, 50], [1, 0])
 
   const z = backLevel * -30
 
@@ -168,55 +198,13 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
     back()
   }
 
-  let contentAnimation: MotionProps = !hold
-    ? {
-        initial: { y: '90%', z, x: 0, opacity: 0, originY: 0 },
-        animate: {
-          y: '0',
-          z,
-          x: 0,
-          opacity: 1,
-          display: 'block',
-          transition: { type: 'tween', ease: 'easeOut' },
-          ...(dismissed && {
-            y: '90%',
-            opacity: 0,
-            transition: { type: 'tween', ease: 'easeIn' },
-            transitionEnd: { display: 'none' },
-          }),
-        },
-      }
-    : {
-        initial: { opacity: 1, z, x: 0, y: 0 },
-        animate: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeOut' } },
-        exit: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeIn' } },
-      }
-
-  if (upMd) {
-    contentAnimation = !hold
-      ? {
-          initial: { x: '-20%', y: 0, z, opacity: 0, originY: 0 },
-          animate: {
-            x: '0',
-            y: 0,
-            z,
-            opacity: 1,
-            display: 'block',
-            transition: { type: 'tween', ease: 'easeOut' },
-            ...(dismissed && {
-              x: '-20%',
-              opacity: 0,
-              transition: { type: 'tween', ease: 'easeIn' },
-              transitionEnd: { display: 'none' },
-            }),
-          },
-        }
-      : {
-          initial: { opacity: 1, z, x: 0, y: 0 },
-          animate: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeOut' } },
-          exit: { opacity: 1, z, x: 0, y: 0, transition: { type: 'tween', ease: 'easeIn' } },
-        }
+  const overlayUiAnimationProps = {
+    dismissed,
+    z,
+    hold,
   }
+
+  const contentAnimation: MotionProps = useLeftOverlayUiAnimations({ ...overlayUiAnimationProps })
 
   const [zIndex, setZIndex] = useState(0)
   useEffect(() => setZIndex(thisIdx * 2), [thisIdx])
@@ -233,10 +221,13 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
       />
       <m.div {...offsetProps} style={{ zIndex }}>
         <m.div
-          className={clsx(classes.drawerContainer)}
+          className={clsx(classes.drawerContainer, {
+            [classes.drawerContainerCenter]: variant === 'center',
+            [classes.drawerContainerLeft]: variant === 'left',
+          })}
           onKeyDown={onPressEscape}
           role='presentation'
-          // drag={drag && !upMd && inFront ? 'y' : false}
+          // drag={drag && inFront ? 'y' : false}
           // dragConstraints={{ top: 0, bottom: 0 }}
           // dragElastic={1}
           // onDragEnd={(e, info) => {
@@ -246,7 +237,11 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
           // }}
         >
           <m.section
-            className={clsx(classes.drawer)}
+            className={clsx(classes.drawer, {
+              [classes.drawerFullHeight]: fullHeight,
+              [classes.drawerCenter]: variant === 'center',
+              [classes.drawerLeft]: variant === 'left',
+            })}
             {...contentAnimation}
             tabIndex={-1}
             style={{ pointerEvents: inFront ? 'all' : 'none' }}
@@ -256,58 +251,36 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
               disabled={!inFront && phase === 'FINISHED'}
             >
               <div className={classes.header} role='presentation'>
-                {/* <m.div className={clsx(classes.dragHandle)} style={{ opacity }} /> */}
+                {/* <m.div className={classes.dragHandle} style={{ opacity }} /> */}
 
                 <div className={classes.headerBack}>
-                  <NoSsr fallback={<BackButton className={classes.headerBack}>Home</BackButton>}>
+                  <NoSsr fallback={<BackButton>Home</BackButton>}>
                     {prevPage?.title ? (
                       <BackButton onClick={back} down={prevPage === upPage}>
                         {prevPage.title}
                       </BackButton>
                     ) : (
                       <PageLink href={backFallbackHref ?? '/'}>
-                        <BackButton className={classes.headerBack}>
-                          {backFallbackTitle ?? 'Home'}
-                        </BackButton>
+                        <BackButton>{backFallbackTitle ?? 'Home'}</BackButton>
                       </PageLink>
                     )}
                   </NoSsr>
                 </div>
 
-                {upMd ? (
-                  false
-                ) : (
-                  <div className={classes.headerTitle}>
-                    <Typography
-                      variant='h4'
-                      component={titleComponent ?? 'h1'}
-                      align='center'
-                      {...titleProps}
-                    >
-                      {title}
-                    </Typography>
-                  </div>
-                )}
-
-                <div className={classes.headerForward}>{headerForward}</div>
-              </div>
-
-              {upMd ? (
-                <div className={classes.headerTitle}>
+                <div className={classes.headerTitleContainer}>
                   <Typography
-                    variant='h2'
+                    variant='h4'
                     component={titleComponent ?? 'h1'}
                     align='center'
                     {...titleProps}
+                    className={classes.headerTitle}
                   >
                     {title}
                   </Typography>
                 </div>
-              ) : (
-                false
-              )}
-
-              <div className={classes.wrapper}>{children}</div>
+                <div className={classes.headerForward}>{headerForward}</div>
+              </div>
+              {children}
             </FocusLock>
           </m.section>
         </m.div>
@@ -315,6 +288,6 @@ const SideDrawerUi: UiFC<SideDrawerUiProps> = (props) => {
     </>
   )
 }
-SideDrawerUi.holdBackground = true
+OverlayUi.holdBackground = true
 
-export default SideDrawerUi
+export default OverlayUi
