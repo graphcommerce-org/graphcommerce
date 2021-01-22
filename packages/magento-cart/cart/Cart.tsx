@@ -1,4 +1,12 @@
-import { makeStyles, NoSsr, Theme } from '@material-ui/core'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  makeStyles,
+  NoSsr,
+  Theme,
+  Typography,
+} from '@material-ui/core'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
@@ -11,6 +19,7 @@ import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { ClientCartQuery } from '../ClientCart.gql'
+import CouponAccordion from '../coupon/CouponAccordion'
 import CheckoutStepper from './CheckoutStepper'
 import QuickCheckout from './QuickCheckout'
 import TotalCosts from './TotalCosts'
@@ -112,7 +121,9 @@ export default function Cart(props: CartProps) {
             ),
         )}
 
-        {hasItems && <TotalCosts cart={cart} />}
+        {hasItems && <CouponAccordion key='couponform' />}
+
+        {hasItems && <TotalCosts cart={cart} key='total-costs' />}
 
         {hasItems && (
           <AnimatedRow className={classes.checkoutButtonContainer} key='checkout-button'>

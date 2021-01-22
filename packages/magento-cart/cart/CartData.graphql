@@ -27,4 +27,5 @@ fragment CartData on Cart {
     ...CartItemBundle
   }
   is_virtual
+  ...CartCoupon
 }
