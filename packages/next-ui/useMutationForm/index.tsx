@@ -82,7 +82,7 @@ export function useMutationForm<Q, V>(
     }
 
     // Wait for the onComplete result
-    // reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
+    reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
   })
 
   return {
