@@ -7,7 +7,7 @@ import {
 } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import { useEffect } from 'react'
-import { FieldName, useForm } from 'react-hook-form'
+import { useForm as useBaseForm, useWatch as useBaseWatch, FieldName } from 'react-hook-form'
 import { UnpackNestedValue, UseFormOptions } from 'react-hook-form/dist/types/form'
 import { DeepPartial } from 'react-hook-form/dist/types/utils'
 import { useGqlDocumentHandler } from './handlerFactory'
@@ -18,6 +18,18 @@ export type OnCompleteFn<Q> = (
   data: FetchResult<Q>,
   client: ApolloClient<unknown>,
 ) => void | Promise<void>
+
+// Temp fix until react-hook-form 7.0 lands
+// https://github.com/react-hook-form/react-hook-form/issues/1680#issuecomment-760403626
+// @ts-expect-error override watch type
+export const useForm: typeof ReactHookForm.useForm = (param) => {
+  const form = useBaseForm(param)
+  const { control } = form
+
+  // @ts-expect-error props type Mismatched
+  const useCustomWatch = (name: string | string[]) => useBaseWatch({ control, name })
+  return { ...form, watch: useCustomWatch }
+}
 
 /**
  * Combines useMutation with react-hook-form:
