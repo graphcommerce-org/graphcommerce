@@ -6,7 +6,7 @@ import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -21,13 +21,14 @@ function AccountSignInPage() {
   if (!signedOut) return null
 
   return (
-    <BottomDrawerUi
+    <OverlayUi
       title='Sign In'
       headerForward={
         <PageLink href='/account/signup'>
           <Button color='primary'>Create account</Button>
         </PageLink>
       }
+      variant='bottom'
     >
       <PageMeta title='Sign in' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='xs'>
@@ -37,13 +38,13 @@ function AccountSignInPage() {
           </PageLink>
         </SignInForm>
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 AccountSignInPage.Layout = PageLayout
 
-registerRouteUi('/account/signin', BottomDrawerUi)
+registerRouteUi('/account/signin', OverlayUi)
 
 export default AccountSignInPage
 

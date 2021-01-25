@@ -6,7 +6,7 @@ import useSignedInGuard from '@reachdigital/magento-customer/useSignedInGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
@@ -19,7 +19,7 @@ function AccountChangePasswordPage() {
   if (!signedIn) return null
 
   return (
-    <BottomDrawerUi title='Change Password'>
+    <OverlayUi title='Change Password' variant='bottom'>
       <PageMeta
         title='Change Password'
         metaDescription='Change your password'
@@ -30,13 +30,13 @@ function AccountChangePasswordPage() {
           <ChangePasswordForm />
         </NoSsr>
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 AccountChangePasswordPage.Layout = PageLayout
 
-registerRouteUi('/account/change-password', BottomDrawerUi)
+registerRouteUi('/account/change-password', OverlayUi)
 
 export default AccountChangePasswordPage
 

@@ -24,7 +24,7 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
@@ -51,10 +51,11 @@ function ProductPage({ products, productAdditionals, bundleProducts, pages }: Pr
   return (
     <>
       <ProductPageMeta {...product} />
-      <BottomDrawerUi
+      <OverlayUi
         title={product.name ?? ''}
         backFallbackHref={`/${category?.url_path}`}
         backFallbackTitle={category?.name}
+        variant='bottom'
       >
         <Container>
           <AddToCartButton
@@ -81,14 +82,14 @@ function ProductPage({ products, productAdditionals, bundleProducts, pages }: Pr
             </>
           ) : null}
         </Container>
-      </BottomDrawerUi>
+      </OverlayUi>
     </>
   )
 }
 
 ProductPage.Layout = PageLayout
 
-registerRouteUi('/product/bundle/[url]', BottomDrawerUi)
+registerRouteUi('/product/bundle/[url]', OverlayUi)
 
 export default ProductPage
 

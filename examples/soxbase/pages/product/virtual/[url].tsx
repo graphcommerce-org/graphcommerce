@@ -23,7 +23,6 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
@@ -52,7 +51,8 @@ function ProductVitual({ products, productAdditionals, virtualProducts, pages }:
   return (
     <>
       <ProductPageMeta {...product} />
-      <BottomDrawerUi
+      <OverlayUi
+        variant='bottom'
         title={product.name ?? ''}
         backFallbackHref={`/${category?.url_path}`}
         backFallbackTitle={category?.name}
@@ -81,14 +81,14 @@ function ProductVitual({ products, productAdditionals, virtualProducts, pages }:
             </>
           ) : null}
         </Container>
-      </BottomDrawerUi>
+      </OverlayUi>
     </>
   )
 }
 
 ProductVitual.Layout = PageLayout
 
-registerRouteUi('/product/virtual/[url]', BottomDrawerUi)
+registerRouteUi('/product/virtual/[url]', OverlayUi)
 
 export default ProductVitual
 

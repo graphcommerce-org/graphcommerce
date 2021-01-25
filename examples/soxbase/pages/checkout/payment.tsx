@@ -19,7 +19,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
@@ -43,7 +43,7 @@ function PaymentPage({ countries }: Props) {
   }
 
   return (
-    <BottomDrawerUi title='Payment' fullHeight>
+    <OverlayUi title='Payment' variant='bottom' fullHeight>
       <PaymentMethodContextProvider
         modules={{ braintree_local_payment }}
         available_payment_methods={clientCart?.cart?.available_payment_methods}
@@ -77,13 +77,13 @@ function PaymentPage({ countries }: Props) {
           </NoSsr>
         </Container>
       </PaymentMethodContextProvider>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 PaymentPage.Layout = PageLayout
 
-registerRouteUi('/checkout/payment', BottomDrawerUi)
+registerRouteUi('/checkout/payment', OverlayUi)
 
 export default PaymentPage
 

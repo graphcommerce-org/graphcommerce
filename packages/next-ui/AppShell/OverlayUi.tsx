@@ -152,7 +152,7 @@ export type OverlayUiProps = UseStyles<typeof useStyles> & {
   titleProps?: TypographyProps<'h2'>
   titleComponent?: React.ElementType
   headerForward?: React.ReactNode
-  variant: OverlayVariants
+  variant?: OverlayVariants
 }
 
 const OverlayUi: UiFC<OverlayUiProps> = (props) => {

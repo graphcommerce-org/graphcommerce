@@ -9,7 +9,7 @@ import {
   AvailableStoresQuery,
 } from '@reachdigital/magento-store/switcher/AvailableStores.gql'
 import StoreSwitcher from '@reachdigital/magento-store/switcher/StoreSwitcher'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
@@ -24,7 +24,7 @@ function StoresIndexPage({ availableStores, countries }: Props) {
   const { locale } = useRouter()
 
   return (
-    <BottomDrawerUi title='Switch Stores'>
+    <OverlayUi title='Switch Stores' variant='bottom'>
       <PageMeta
         title='Switch stores'
         metaDescription='Switch stores'
@@ -44,13 +44,13 @@ function StoresIndexPage({ availableStores, countries }: Props) {
           />
         </Container>
       )}
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 StoresIndexPage.Layout = PageLayout
 
-registerRouteUi('/switch-stores', BottomDrawerUi)
+registerRouteUi('/switch-stores', OverlayUi)
 
 export default StoresIndexPage
 

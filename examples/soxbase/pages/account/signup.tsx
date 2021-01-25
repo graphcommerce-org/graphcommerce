@@ -6,7 +6,7 @@ import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
@@ -20,7 +20,7 @@ function AccountSignUpPage() {
   if (!signedOut) return null
 
   return (
-    <BottomDrawerUi title='Sign Up'>
+    <OverlayUi title='Sign Up' variant='bottom'>
       <PageMeta
         title='Sign Up'
         metaDescription='Sign up for an account'
@@ -29,13 +29,13 @@ function AccountSignUpPage() {
       <Container maxWidth='sm'>
         <SignUpForm />
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 AccountSignUpPage.Layout = PageLayout
 
-registerRouteUi('/account/signup', BottomDrawerUi)
+registerRouteUi('/account/signup', OverlayUi)
 
 export default AccountSignUpPage
 

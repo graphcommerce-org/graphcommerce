@@ -23,7 +23,7 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
@@ -57,7 +57,8 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
     <>
       <ConfigurableContextProvider {...configurableProduct} sku={configurableProduct.sku}>
         <ProductPageMeta {...product} />
-        <BottomDrawerUi
+        <OverlayUi
+          variant='bottom'
           title={product.name ?? ''}
           backFallbackHref={`/${category?.url_path}`}
           backFallbackTitle={category?.name}
@@ -84,7 +85,7 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
               </>
             ) : null}
           </Container>
-        </BottomDrawerUi>
+        </OverlayUi>
       </ConfigurableContextProvider>
     </>
   )
@@ -92,7 +93,7 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
 
 ProductPage.Layout = PageLayout
 
-registerRouteUi('/product/configurable/[url]', BottomDrawerUi)
+registerRouteUi('/product/configurable/[url]', OverlayUi)
 
 export default ProductPage
 

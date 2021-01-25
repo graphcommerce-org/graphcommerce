@@ -9,7 +9,7 @@ import ConfigurableCartItem from '@reachdigital/magento-product-configurable/Con
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -34,7 +34,7 @@ function CartPage() {
   const classes = useStyles()
 
   return (
-    <BottomDrawerUi title='Cart' fullHeight>
+    <OverlayUi title='Cart' variant='bottom' fullHeight>
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         {loading ? (
@@ -55,13 +55,13 @@ function CartPage() {
           />
         )}
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 CartPage.Layout = PageLayout
 
-registerRouteUi('/cart', BottomDrawerUi)
+registerRouteUi('/cart', OverlayUi)
 
 export default CartPage
 

@@ -6,7 +6,7 @@ import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
@@ -19,7 +19,7 @@ function AccountForgotPasswordPage() {
   if (!signedIn) return null
 
   return (
-    <BottomDrawerUi title='Forgot Password'>
+    <OverlayUi title='Forgot Password' variant='bottom'>
       <PageMeta
         title='Forgot Password'
         metaDescription='Forgot password'
@@ -30,13 +30,13 @@ function AccountForgotPasswordPage() {
           <ForgotPasswordForm />
         </NoSsr>
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 AccountForgotPasswordPage.Layout = PageLayout
 
-registerRouteUi('/account/forgot-password', BottomDrawerUi)
+registerRouteUi('/account/forgot-password', OverlayUi)
 
 export default AccountForgotPasswordPage
 

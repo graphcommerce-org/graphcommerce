@@ -7,7 +7,7 @@ import useSignedInGuard from '@reachdigital/magento-customer/useSignedInGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
@@ -20,18 +20,18 @@ function AccountIndexPage() {
   if (!signedIn) return null
 
   return (
-    <BottomDrawerUi title='Account' headerForward={<SignOutForm />}>
+    <OverlayUi title='Account' headerForward={<SignOutForm />} variant='bottom'>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
       <NoSsr>
         <AccountDashboard />
       </NoSsr>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 AccountIndexPage.Layout = PageLayout
 
-registerRouteUi('/account', BottomDrawerUi)
+registerRouteUi('/account', OverlayUi)
 
 export default AccountIndexPage
 

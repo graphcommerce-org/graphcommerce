@@ -15,7 +15,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -45,7 +45,13 @@ function ShippingPage({ countries }: Props) {
   }
 
   return (
-    <BottomDrawerUi backFallbackHref='/cart' backFallbackTitle='Cart' title='Shipping' fullHeight>
+    <OverlayUi
+      variant='bottom'
+      backFallbackHref='/cart'
+      backFallbackTitle='Cart'
+      title='Shipping'
+      fullHeight
+    >
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         <CheckoutStepper steps={3} currentStep={2} />
@@ -78,13 +84,13 @@ function ShippingPage({ countries }: Props) {
           </AnimatePresence>
         </NoSsr>
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 ShippingPage.Layout = PageLayout
 
-registerRouteUi('/checkout', BottomDrawerUi)
+registerRouteUi('/checkout', OverlayUi)
 
 export default ShippingPage
 
