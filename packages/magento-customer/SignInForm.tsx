@@ -35,10 +35,20 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-export default function SignInForm({ children }: PropsWithChildren<unknown>) {
+type SignInFormProps = PropsWithChildren<unknown> & {
+  email?: string
+}
+
+export default function SignInForm(props: SignInFormProps) {
+  const { children, email } = props
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const mutationForm = useMutationForm(SignInDocument, { onComplete: onCompleteSignInUp })
+  const mutationForm = useMutationForm(SignInDocument, {
+    onComplete: onCompleteSignInUp,
+    defaultValues: {
+      email: email ?? '',
+    },
+  })
   const { register, errors, handleSubmit, required, formState } = mutationForm
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)

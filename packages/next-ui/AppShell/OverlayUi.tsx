@@ -84,7 +84,7 @@ const useStyles = makeStyles(
       minHeight: `calc(100vh - 50px)`,
       [theme.breakpoints.up('md')]: {
         margin: '0 auto',
-        maxWidth: '75%',
+        maxWidth: '60%',
         borderRadius: theme.spacings.xxs,
         minHeight: 'unset',
       },
