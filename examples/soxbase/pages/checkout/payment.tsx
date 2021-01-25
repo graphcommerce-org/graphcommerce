@@ -9,7 +9,7 @@ import {
   CountryRegionsQuery,
 } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import CartPaymentMethods from '@reachdigital/magento-cart/payment-method/CartPaymentMethods'
-import BraintreeLocalPayment from '@reachdigital/magento-payment-braintree/BraintreePaymentMethod'
+import * as BraintreeLocalPayment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -46,7 +46,7 @@ function PaymentPage({ countries }: Props) {
         <NoSsr>
           <AnimatePresence initial={false}>
             <CartPaymentMethods
-              {...clientCart?.cart}
+              available_payment_methods={clientCart?.cart?.available_payment_methods}
               renderers={{
                 braintree_local_payment: BraintreeLocalPayment,
               }}
