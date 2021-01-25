@@ -2,7 +2,7 @@ import { useMediaQuery, useTheme } from '@material-ui/core'
 import { MotionProps } from 'framer-motion'
 import { OverlayUiAnimationProps } from './useBottomOverlayUiAnimations'
 
-export default function useLeftOverlayUiAnimations(props: OverlayUiAnimationProps): MotionProps {
+export default function useCenterOverlayUiAnimations(props: OverlayUiAnimationProps): MotionProps {
   const { hold, dismissed, z } = props
   const theme = useTheme()
   const upMd = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true })
@@ -11,23 +11,24 @@ export default function useLeftOverlayUiAnimations(props: OverlayUiAnimationProp
     return !hold
       ? {
           initial: {
-            x: '-20%',
-            y: 0,
             z,
             opacity: 0,
-            originY: 0,
+            origin: '50% 50%',
+            scale: 0,
           },
           animate: {
-            x: '0',
-            y: 0,
             z,
+            origin: '50% 50%',
+            scale: 1,
             opacity: 1,
             display: 'block',
-            transition: { type: 'tween', ease: 'easeOut' },
+            transition: {
+              type: 'tween',
+              ease: 'backInOut',
+            },
             ...(dismissed && {
-              x: '-20%',
               opacity: 0,
-              transition: { type: 'tween', ease: 'easeIn' },
+              scale: 0,
               transitionEnd: { display: 'none' },
             }),
           },
@@ -36,21 +37,23 @@ export default function useLeftOverlayUiAnimations(props: OverlayUiAnimationProp
           initial: {
             opacity: 1,
             z,
-            x: 0,
-            y: 0,
+            scale: 1,
+            origin: '50% 50%',
+            scale: 1,
           },
           animate: {
             opacity: 1,
             z,
-            x: 0,
-            y: 0,
+            scale: 1,
+            origin: '50% 50%',
+            y: '-20%',
             transition: { type: 'tween', ease: 'easeOut' },
           },
           exit: {
             opacity: 1,
+            origin: '50% 50%',
             z,
-            x: 0,
-            y: 0,
+            scale: 1,
             transition: { type: 'tween', ease: 'easeIn' },
           },
         }

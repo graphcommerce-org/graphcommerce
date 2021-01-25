@@ -34,7 +34,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
           <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
         </PageLink>
       }
-      variant='left'
+      variant='center'
     >
       <Container maxWidth='md'>yo! yo yoghurt</Container>
     </OverlayUi>
