@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphql-mesh/cli": "^0.16.1",
+    "@graphql-mesh/cli": "^0.18.0",
     "@graphql-mesh/config": "^0.11.15",
     "@graphql-mesh/graphql": "^0.13.2",
     "@graphql-mesh/merger-stitching": "^0.7.15",
