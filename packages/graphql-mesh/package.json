@@ -16,7 +16,7 @@
     "@graphql-mesh/merger-stitching": "^0.7.15",
     "@graphql-mesh/runtime": "^0.10.15",
     "@graphql-mesh/transform-cache": "^0.8.15",
-    "@graphql-mesh/transform-federation": "^0.4.39",
+    "@graphql-mesh/transform-federation": "^0.4.44",
     "@graphql-mesh/transform-filter-schema": "^0.8.15",
     "@graphql-mesh/types": "^0.28.0",
     "apollo-server-micro": "^2.19.2",
