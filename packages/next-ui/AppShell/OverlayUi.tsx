@@ -87,6 +87,7 @@ const useStyles = makeStyles(
         maxWidth: '60%',
         borderRadius: theme.spacings.xxs,
         minHeight: 'unset',
+        marginBottom: theme.spacings.xl,
       },
     },
     drawerRight: {
