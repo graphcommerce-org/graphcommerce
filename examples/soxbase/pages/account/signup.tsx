@@ -20,7 +20,7 @@ function AccountSignUpPage() {
   if (!signedOut) return null
 
   return (
-    <OverlayUi title='Sign Up' variant='bottom'>
+    <OverlayUi title='Sign Up' variant='center'>
       <PageMeta
         title='Sign Up'
         metaDescription='Sign up for an account'

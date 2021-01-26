@@ -28,6 +28,16 @@ const useFormStyles = makeStyles(
         textAlign: 'right',
       },
     },
+    submitButton: {
+      width: '50%',
+      maxWidth: 'unset',
+      borderRadius: 8,
+      margin: `${theme.spacings.xs} auto`,
+      display: 'block',
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.lg,
+      textAlign: 'center',
+    },
     checkmark: {
       color: theme.palette.success.main,
     },

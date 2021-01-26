@@ -1,24 +1,23 @@
-import { useQuery } from '@apollo/client'
-import { Button, Container, Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { useLazyQuery } from '@apollo/client'
+import { Button, Container, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
-import GuestEmailForm from '@reachdigital/magento-cart/email/GuestEmailForm'
+import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import SignInForm from '@reachdigital/magento-customer/SignInForm'
-import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
+import SignUpForm from '@reachdigital/magento-customer/SignUpForm'
 import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
+import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import clsx from 'clsx'
-import { AnimatePresence, m } from 'framer-motion'
+import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
@@ -26,11 +25,9 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 const useStyles = makeStyles(
   (theme: Theme) => ({
     titleContainer: {
-      marginTop: `calc(${theme.spacings.sm} * -1)`,
-      marginBottom: theme.spacings.md,
+      marginTop: `calc(${theme.spacings.xxs} * -1)`,
+      marginBottom: theme.spacings.sm,
     },
-    title: {},
-    description: {},
     guestEmailForm: {
       marginBottom: theme.spacings.sm,
     },
@@ -39,17 +36,6 @@ const useStyles = makeStyles(
     },
     forgotPass: {
       marginTop: theme.spacings.xxs,
-    },
-    continueBtn: {
-      '& > button': {
-        width: '50%',
-        maxWidth: 'unset',
-        borderRadius: theme.spacings.xxs,
-        margin: `${theme.spacings.xs} auto`,
-        display: 'block',
-        marginTop: theme.spacings.md,
-        marginBottom: theme.spacings.lg,
-      },
     },
     hide: {
       display: 'none',
@@ -60,97 +46,117 @@ const useStyles = makeStyles(
 
 function AccountSignInPage() {
   const signedOut = useSignedOutGuard()
-  const [expand, setExpand] = useState(false)
   const classes = useStyles()
-  const [hasAccount, setHasAccount] = useState<boolean>()
-  const { data: cartQuery } = useQuery(ClientCartDocument)
+  const formClasses = useFormStyles()
+  const [checkIsEmailAvailable, { data: emailAvailableData }] = useLazyQuery(
+    IsEmailAvailableDocument,
+  )
+  const { handleSubmit, formState, errors, register, watch } = useForm<{ email: string }>({})
+  const isEmailAvailable = emailAvailableData?.isEmailAvailable?.is_email_available
+
+  const [cachedEmail, setCachedEmail] = useState<string>('')
+
+  // TODO: wat doen we als er wel een email is, maar de token is niet authenticated?
 
   if (!signedOut) return null
 
   return (
-    <OverlayUi
-      title=''
-      // headerForward={
-      //   // <PageLink href='/account/signup'>
-      //   //   <Button color='primary'>Create account</Button>
-      //   // </PageLink>
-      // }
-      variant='center'
-    >
-      <PageMeta title='Sign in' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+    <OverlayUi title='Sign In' headerForward={<div>X</div>} variant='center'>
+      <PageMeta
+        title='Sign in'
+        metaDescription='Sign in to your accoutn'
+        metaRobots='NOINDEX, FOLLOW'
+      />
+      <Container maxWidth='md'>
+        {!formState.isSubmitted && (
+          <div className={classes.titleContainer}>
+            <Typography variant='h3' align='center'>
+              Good day!
+            </Typography>
+            <Typography variant='h6' align='center'>
+              Fill in your e-mail to login or create an account
+            </Typography>
+          </div>
+        )}
 
-      <Container maxWidth='sm'>
-        <AnimatePresence initial={false} key='signin-form'>
-          <AnimatedRow key='guest-email-form' className={classes.guestEmailForm}>
-            <m.div layout='position' className={classes.titleContainer}>
-              {expand ? (
-                <>
-                  <Typography variant='h3' align='center' className={classes.title}>
-                    Welcome back!
-                  </Typography>
-                  <Typography variant='h6' align='center' className={classes.description}>
-                    Fill in your password
-                  </Typography>
-                </>
-              ) : (
-                <>
-                  <Typography variant='h3' align='center' className={classes.title}>
-                    Good day!
-                  </Typography>
-                  <Typography variant='h6' align='center' className={classes.description}>
-                    Fill in your e-mail to login or create an account
-                  </Typography>
-                </>
-              )}
-            </m.div>
+        {!isEmailAvailable && formState.isSubmitted && (
+          <div className={classes.titleContainer}>
+            <Typography variant='h3' align='center'>
+              Welcome back!
+            </Typography>
+            <Typography variant='h6' align='center'>
+              Fill in your password
+            </Typography>
+          </div>
+        )}
 
-            {!expand ? (
-              <>
-                <GuestEmailForm
-                  key='guest-email-form'
-                  onHasAccount={() => {
-                    setHasAccount(true)
-                  }}
-                  onHasNoAccount={() => {
-                    setHasAccount(false)
-                  }}
-                />
-              </>
-            ) : (
-              <>
-                <SignInForm email={cartQuery?.cart?.email ?? ''} />
-              </>
-            )}
+        {!formState.isSubmitting && isEmailAvailable && formState.isSubmitted && (
+          <div className={classes.titleContainer}>
+            <Typography variant='h3' align='center'>
+              Welcome!
+            </Typography>
+            <Typography variant='h6' align='center'>
+              Create a password and tell us your name
+            </Typography>
+          </div>
+        )}
 
-            {hasAccount ? (
-              <div
-                className={clsx(classes.continueBtn, {
-                  [classes.hide]: expand,
+        {/* TODO: verplaatsen naar <IsEmailAvailableForm /> */}
+
+        {!formState.isSubmitted && (
+          <form
+            noValidate
+            onSubmit={handleSubmit(({ email }) => {
+              checkIsEmailAvailable({ variables: { email } })
+            })}
+            className={formClasses.form}
+          >
+            <AnimatePresence initial={false}>
+              <TextField
+                key='email'
+                variant='outlined'
+                type='text'
+                error={!!errors.email}
+                id='email'
+                name='email'
+                label='E-mail'
+                required
+                inputRef={register({
+                  required: 'E-mail is required',
+                  pattern: {
+                    value: emailPattern,
+                    message: 'Invalid email address',
+                  },
                 })}
-              >
+                helperText={formState.isSubmitted && errors.email?.message}
+              />
+
+              <AnimatedRow key='submit'>
                 <Button
                   type='submit'
                   color='primary'
                   variant='contained'
                   size='large'
+                  className={formClasses.submitButton}
+                  disabled={formState.isSubmitting}
                   onClick={() => {
-                    setExpand(true)
+                    // watch('email') returns undefined after submit, so we have to cache its value
+                    setCachedEmail(watch('email'))
                   }}
                 >
                   Continue
                 </Button>
-              </div>
-            ) : (
-              <>
-                <PageLink href='/account/signup'>
-                  <Button type='submit' color='primary' variant='contained' size='large'>
-                    Continue
-                  </Button>
-                </PageLink>
-              </>
-            )}
-          </AnimatedRow>
-        </AnimatePresence>
+              </AnimatedRow>
+            </AnimatePresence>
+          </form>
+        )}
+
+        {/* isEmailAvailable can be undefined */}
+        {isEmailAvailable === false && formState.isSubmitted && <SignInForm email={cachedEmail} />}
+
+        {!formState.isSubmitting && isEmailAvailable && formState.isSubmitted && (
+          <SignUpForm emailaddress={cachedEmail} />
+        )}
       </Container>
     </OverlayUi>
   )
