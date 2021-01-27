@@ -19,10 +19,19 @@ export default function diff(item1: unknown, item2: unknown) {
   }
 
   if (isObject(item1) && isObject(item2)) {
-    const entries = Object.entries(item1)
-      .map(([key, val]) => [key, diff(val, item2[key])])
-      .filter((entry) => !!entry[1])
-    return entries.length ? Object.fromEntries(entries) : undefined
+    const entriesRight = Object.fromEntries(
+      Object.entries(item1)
+        .map(([key, val]) => [key, diff(val, item2[key])])
+        .filter((entry) => !!entry[1]),
+    )
+    const entriesLeft = Object.fromEntries(
+      Object.entries(item2)
+        .map(([key, val]) => [key, diff(item1[key], val)])
+        .filter((entry) => !!entry[1]),
+    )
+    const entries = { ...entriesRight, ...entriesLeft }
+
+    return Object.keys(entries).length ? entries : undefined
   }
 
   return item2 === item1 ? undefined : item2

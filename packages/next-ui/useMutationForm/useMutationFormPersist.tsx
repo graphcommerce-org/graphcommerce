@@ -2,6 +2,7 @@ import { TypedDocumentNode } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import { DocumentNode } from 'graphql'
 import { useState, useEffect } from 'react'
+import { FieldValues, useForm, UseFormMethods } from 'react-hook-form'
 import diff from './diff'
 import { UseFormOptions, OnCompleteFn, useMutationForm } from '.'
 
@@ -22,22 +23,15 @@ function useDocumentHash(document: DocumentNode) {
   return hash
 }
 
-/**
- * todo(paales): ability to not store sensitive data
- */
-export default function useMutationFormPersist<Q, V>(
-  document: TypedDocumentNode<Q, V>,
-  options: UseFormOptions<V> & {
-    onBeforeSubmit?: (variables: V) => V | Promise<V>
-    onComplete?: OnCompleteFn<Q>
-  } = {},
+function useFormPersistBase<TFieldValues extends FieldValues = FieldValues>(
+  options: UseFormOptions<TFieldValues>,
+  form: Omit<UseFormMethods<TFieldValues>, 'handleSubmit'>,
+  name?: string,
 ) {
-  const mutationForm = useMutationForm<Q, V>(document, options)
-  const { watch, reset } = mutationForm
+  const { watch, reset } = form
+  const { defaultValues } = options
 
-  // Retrieve stored data
-  const name = useDocumentHash(document)
-
+  // Restore changes
   type ChangeValues = typeof options.defaultValues
   const valuesJson = JSON.stringify(options.defaultValues || '{}')
   useEffect(() => {
@@ -60,13 +54,35 @@ export default function useMutationFormPersist<Q, V>(
     if (typeof window === 'undefined' || !name) return
 
     try {
-      const modifiedValues = diff(options.defaultValues, watch())
+      const modifiedValues = diff(defaultValues, watch())
       if (modifiedValues) window.sessionStorage[name] = JSON.stringify(modifiedValues)
       else window.sessionStorage.removeItem(name)
     } finally {
       // sessionStorage not available
     }
-  }, [mutationForm.defaultVariables, name, options.defaultValues, watch])
+  }, [name, defaultValues, watch])
 
-  return mutationForm
+  return form
+}
+
+export function useFormPersist<TFieldValues extends FieldValues = FieldValues>(
+  name: string,
+  options: UseFormOptions<TFieldValues>,
+) {
+  const form = useForm(options)
+  return useFormPersistBase(options, form, name) as UseFormMethods<TFieldValues>
+}
+
+export default function useMutationFormPersist<Q, V>(
+  document: TypedDocumentNode<Q, V>,
+  options: UseFormOptions<V> & {
+    onBeforeSubmit?: (variables: V) => V | Promise<V>
+    onComplete?: OnCompleteFn<Q>
+  } = {},
+) {
+  const form = useMutationForm<Q, V>(document, options)
+  // Retrieve stored data
+  const name = useDocumentHash(document)
+
+  return useFormPersistBase(options, form, name) as typeof form
 }
