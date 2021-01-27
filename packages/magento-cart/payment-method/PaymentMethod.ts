@@ -1,3 +1,4 @@
+import { Color } from '@material-ui/lab'
 import { ButtonProps } from '@reachdigital/next-ui/Button'
 import { ClientCartQuery } from '../ClientCart.gql'
 import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod.gql'
@@ -7,6 +8,8 @@ export type PaymentMethod = AvailablePaymentMethodFragment & {
   preferred?: boolean
 }
 
+export type PaymentError = { message: React.ReactNode; severity?: Color }
+
 type PaymentEventHandlers = {
   /**
    * Disable forms and place shroud over page
@@ -15,7 +18,7 @@ type PaymentEventHandlers = {
   /**
    * Removes the shroud, enables the forms, renders error if provided
    */
-  onPaymentError: (message?: React.ReactNode) => void
+  onPaymentError: (error: PaymentError) => void
   /**
    * Calls the placeorder method and redirects to the checkout/success page
    */

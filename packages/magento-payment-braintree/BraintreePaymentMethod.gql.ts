@@ -23,6 +23,14 @@ export const BraintreePaymentMethodDocument: DocumentNode<
         },
         {
           kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'deviceData' } },
           type: {
             kind: 'NonNullType',
@@ -83,7 +91,7 @@ export const BraintreePaymentMethodDocument: DocumentNode<
                           {
                             kind: 'ObjectField',
                             name: { kind: 'Name', value: 'code' },
-                            value: { kind: 'StringValue', value: 'braintree', block: false },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
                           },
                           {
                             kind: 'ObjectField',
@@ -158,6 +166,7 @@ export const BraintreePaymentMethodDocument: DocumentNode<
 }
 export type BraintreePaymentMethodMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
+  code: Types.Scalars['String']
   deviceData: Types.Scalars['String']
   isTokenEnabler: Types.Scalars['Boolean']
   nonce: Types.Scalars['String']

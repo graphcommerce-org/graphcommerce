@@ -44,35 +44,35 @@ function PaymentButton(props: PaymentButtonProps) {
   // When the payment method is initialized
 
   // When the window was closed it will open a new window
-  const { btLpToken, btLpPaymentId, btLpPayerId } = router.query as Record<string, string>
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      if (!cartData || !localPayment || !selectedMethod) return
-      if (!btLpToken || !btLpPaymentId || !btLpPayerId) return
+  // const { btLpToken, btLpPaymentId, btLpPayerId } = router.query as Record<string, string>
+  // useEffect(() => {
+  //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  //   ;(async () => {
+  //     if (!cartData || !localPayment || !selectedMethod) return
+  //     if (!btLpToken || !btLpPaymentId || !btLpPayerId) return
 
-      const result = await localPayment.tokenize({ btLpToken, btLpPaymentId, btLpPayerId })
-      await execute({
-        variables: {
-          cartId: cartData.cart?.id as string,
-          deviceData: '',
-          isTokenEnabler: false,
-          nonce: result.nonce,
-          code: selectedMethod.code,
-        },
-      })
-      onPaymentComplete()
-    })()
-  }, [
-    btLpPayerId,
-    btLpPaymentId,
-    btLpToken,
-    cartData,
-    execute,
-    localPayment,
-    onPaymentComplete,
-    selectedMethod,
-  ])
+  //     const result = await localPayment.tokenize({ btLpToken, btLpPaymentId, btLpPayerId })
+  //     await execute({
+  //       variables: {
+  //         cartId: cartData.cart?.id as string,
+  //         deviceData: '',
+  //         isTokenEnabler: false,
+  //         nonce: result.nonce,
+  //         code: selectedMethod.code,
+  //       },
+  //     })
+  //     onPaymentComplete()
+  //   })()
+  // }, [
+  //   btLpPayerId,
+  //   btLpPaymentId,
+  //   btLpToken,
+  //   cartData,
+  //   execute,
+  //   localPayment,
+  //   onPaymentComplete,
+  //   selectedMethod,
+  // ])
 
   const onClick = useCallback(() => {
     if (!cartData || !localPayment || !paymentType || !selectedMethod) return
@@ -124,10 +124,9 @@ function PaymentButton(props: PaymentButtonProps) {
         if (e.name === 'BraintreeError') {
           const error = e as BraintreeError
           if (error.type === 'CUSTOMER') {
-            onPaymentError(<>Payment cancelled, please try again</>)
+            onPaymentError({ message: <>Payment cancelled, please try again</>, severity: 'info' })
           } else {
-            console.error(e)
-            onPaymentError(<>Something went wrong</>)
+            onPaymentError({ message: error.message, severity: 'error' })
           }
         }
       }

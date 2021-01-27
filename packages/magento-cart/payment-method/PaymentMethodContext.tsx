@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client'
+import { Color } from '@material-ui/lab'
 import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
-import { PaymentMethod, PaymentMethodModules, PaymentModule } from './PaymentMethod'
+import { PaymentError, PaymentMethod, PaymentMethodModules, PaymentModule } from './PaymentMethod'
 import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
@@ -13,8 +14,8 @@ type PaymentMethodContextProps = {
   setSelectedModule(module: PaymentModule | undefined): void
   loading: boolean
   setLoading(loading: boolean): void
-  error?: React.ReactNode
-  setError(error: React.ReactNode): void
+  error?: PaymentError
+  setError(error?: PaymentError): void
 }
 
 const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
@@ -45,7 +46,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
   const [loading, setLoading] = useState<boolean>(false)
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
   const [selectedModule, setSelectedModule] = useState<PaymentModule>()
-  const [error, setError] = useState<React.ReactNode>()
+  const [error, setError] = useState<PaymentError>()
 
   // Expand the payment methods
   useEffect(() => {

@@ -3,18 +3,11 @@ import { FormControl } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller, useForm, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import useMutationFormPersist, {
-  useFormPersist,
-} from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
+import { Controller } from '@reachdigital/next-ui/useMutationForm'
+import { useFormPersist } from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { usePaymentMethodContext } from './PaymentMethodContext'
-import {
-  PaymentMethodToggleDocument,
-  PaymentMethodToggleMutation,
-  PaymentMethodToggleMutationVariables,
-} from './PaymentMethodToggle.gql'
 
 export default function PaymentMethodContext() {
   const {
