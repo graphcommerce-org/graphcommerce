@@ -7,9 +7,9 @@ import {
   CartItemBundleFragmentDoc,
 } from '../../magento-product-bundle/CartBundleItem.gql'
 import {
-  CartItemConfigurableFragment,
-  CartItemConfigurableFragmentDoc,
-} from '../../magento-product-configurable/CartitemConfigurable.gql'
+  ConfigurableCartItemFragment,
+  ConfigurableCartItemFragmentDoc,
+} from '../../magento-product-configurable/ConfigurableCartItem/ConfigurableCartItem.gql'
 import {
   CartItemDownloadableFragment,
   CartItemDownloadableFragmentDoc,
@@ -22,19 +22,18 @@ import {
   CartItemVirtualFragment,
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
-import {
-  SelectedShippingMethodFragment,
-  SelectedShippingMethodFragmentDoc,
-} from '../shipping/SelectedShippingMethod.gql'
+import { CartCouponFragment, CartCouponFragmentDoc } from '../coupon/CartCoupon.gql'
+import { SelectedShippingMethodFragment } from '../shipping/SelectedShippingMethod.gql'
+import { CartPricesFragmentDoc, CartPricesFragment } from './CartPrices.gql'
+import { SelectedShippingMethodFragmentDoc } from '../shipping/SelectedShippingMethod.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
   CartItem_DownloadableCartItem_Fragment,
   CartItem_BundleCartItem_Fragment,
   CartItem_ConfigurableCartItem_Fragment,
-  CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragment, CartPricesFragmentDoc } from './CartPrices.gql'
+import { CartItemFragmentDoc } from './CartItem.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',
@@ -90,7 +89,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItem' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemSimple' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemConfigurable' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ConfigurableCartItem' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemDownloadable' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemVirtual' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemBundle' } },
@@ -98,6 +97,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
             },
           },
           { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartCoupon' } },
         ],
       },
     },
@@ -105,10 +105,11 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
     ...SelectedShippingMethodFragmentDoc.definitions,
     ...CartItemFragmentDoc.definitions,
     ...CartItemSimpleFragmentDoc.definitions,
-    ...CartItemConfigurableFragmentDoc.definitions,
+    ...ConfigurableCartItemFragmentDoc.definitions,
     ...CartItemDownloadableFragmentDoc.definitions,
     ...CartItemVirtualFragmentDoc.definitions,
     ...CartItemBundleFragmentDoc.definitions,
+    ...CartCouponFragmentDoc.definitions,
   ],
 }
 export type CartDataFragment = { __typename: 'Cart' } & Pick<
@@ -136,8 +137,8 @@ export type CartDataFragment = { __typename: 'Cart' } & Pick<
               CartItemBundleFragment)
           | ({ __typename: 'ConfigurableCartItem' } & Pick<Types.ConfigurableCartItem, 'id'> &
               CartItem_ConfigurableCartItem_Fragment &
-              CartItemConfigurableFragment)
+              ConfigurableCartItemFragment)
         >
       >
     >
-  }
+  } & CartCouponFragment

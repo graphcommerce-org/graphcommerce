@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -11,7 +11,8 @@ function TestOverlayStatic() {
   const title = `Overlay static`
 
   return (
-    <BottomDrawerUi
+    <OverlayUi
+      variant='bottom'
       title={title}
       headerForward={
         <PageLink href='/test/overlay/1'>
@@ -22,12 +23,12 @@ function TestOverlayStatic() {
       <Container>
         <DebugSpacer />
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 TestOverlayStatic.Layout = PageLayout
 
-registerRouteUi('/test/overlay/static', BottomDrawerUi)
+registerRouteUi('/test/overlay/static', OverlayUi)
 
 export default TestOverlayStatic

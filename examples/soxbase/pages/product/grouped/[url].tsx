@@ -1,7 +1,6 @@
 import { Container, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
   ProductGroupedDocument,
   ProductGroupedQuery,
@@ -14,7 +13,6 @@ import {
   ProductPageAdditionalDocument,
   ProductPageAdditionalQuery,
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
-import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
@@ -24,7 +22,7 @@ import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
@@ -60,7 +58,8 @@ function ProductGrouped({ products, productAdditionals, groupedProducts, pages }
   return (
     <>
       <ProductPageMeta {...product} />
-      <BottomDrawerUi
+      <OverlayUi
+        variant='bottom'
         title={product.name ?? ''}
         backFallbackHref={`/${category?.url_path}`}
         backFallbackTitle={category?.name}
@@ -90,14 +89,14 @@ function ProductGrouped({ products, productAdditionals, groupedProducts, pages }
             </>
           ) : null}
         </Container>
-      </BottomDrawerUi>
+      </OverlayUi>
     </>
   )
 }
 
 ProductGrouped.Layout = PageLayout
 
-registerRouteUi('/product/grouped/[url]', BottomDrawerUi)
+registerRouteUi('/product/grouped/[url]', OverlayUi)
 
 export default ProductGrouped
 

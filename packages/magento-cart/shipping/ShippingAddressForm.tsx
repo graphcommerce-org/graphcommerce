@@ -1,13 +1,15 @@
 import { useQuery } from '@apollo/client'
+import { cloneDeep } from '@apollo/client/utilities'
 import { TextField } from '@material-ui/core'
+import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
-import { Controller } from '@reachdigital/next-ui/useMutationForm'
+import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import useMutationFormPersist from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
 import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
@@ -25,19 +27,18 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
-  const customerAddress = customerQuery?.customer?.addresses?.[0]
 
-  const mutationForm = useMutationFormPersist(ShippingAddressFormDocument, {
+  const mutationForm = useMutationForm(ShippingAddressFormDocument, {
     defaultValues: {
       cartId: cartQuery?.cart?.id,
       // todo(paales): change to something more sustainable
       address: {
         firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
         lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
-        telephone: currentAddress?.telephone,
+        // telephone: currentAddress?.telephone,
         city: currentAddress?.city,
         company: currentAddress?.company,
-        postcode: currentAddress?.postcode,
+        // postcode: currentAddress?.postcode,
         street: currentAddress?.street,
         region: currentAddress?.region?.label,
         region_id: currentAddress?.region?.region_id,
@@ -47,29 +48,38 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         save_in_address_book: true,
       },
     },
-    reValidateMode: 'onBlur',
+    onBeforeSubmit: (variables) => {
+      variables.address.telephone ||= '000 0000 000'
+      return variables
+    },
     mode: 'onBlur',
+    reValidateMode: 'onBlur',
   })
-  const { register, errors, handleSubmit, Field, control, formState, watch } = mutationForm
+  const { register, errors, handleSubmit, control, formState, watch } = mutationForm
+
+  // Als isValid en isDirty en !isSubmitting, dan het formulier submitten
+
+  useEffect(() => {
+    if (!formState.isValid || !formState.isDirty || formState.isSubmitting) return
+
+    console.log('joejoeleoe')
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // handleSubmit()
+
+    console.log('nu lekker submitten')
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // handleSubmit()
+    // Submitten
+    // isDirty resetten als er nieuwe values zijn
+    // Weer op isDirty zetten als er in de tussentijd toch dingen zijn veranderd??
+  }, [formState.isValid, formState.isDirty, handleSubmit, formState.isSubmitting])
 
   // todo: Move to a validateAndSubmit method or something?
   useEffect(() => {
     doSubmit.current = async () =>
       !formState.isDirty ? Promise.resolve(true) : handleSubmit().then(() => true)
   }, [doSubmit, formState.isDirty, handleSubmit])
-
-  useEffect(() => {
-    if (!formState.isValid || !ref.current || formState.isSubmitting || formState.isSubmitted)
-      return
-
-    if (formState.isSubmitting) {
-      // Schedue another submission
-    }
-
-    // When all fields are filled in and valid, automatically submit
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    // handleSubmit()
-  }, [formState, handleSubmit])
 
   const country = watch('address.country_code')
   const regionId = watch('address.region_id')
@@ -102,6 +112,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.firstname?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.firstname && watch('address.firstname') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
         <TextField
           variant='outlined'
@@ -113,6 +131,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.lastname?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.lastname && watch('address.lastname') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
       </div>
       <div className={classes.formRow}>
@@ -126,6 +152,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.street?.[0]?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.street?.[0] && watch('address.street[0]') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
         <TextField
           variant='outlined'
@@ -140,6 +174,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           })}
           helperText={formState.isSubmitted && errors.address?.street?.[1]?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.street?.[1] && watch('address.street[1]') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
         <TextField
           variant='outlined'
@@ -150,6 +192,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: false })}
           helperText={formState.isSubmitted && errors.address?.street?.[2]?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.street?.[2] && watch('address.street[2]') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
       </div>
       <div className={classes.formRow}>
@@ -163,6 +213,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.postcode?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.postcode && watch('address.postcode') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
         <TextField
           variant='outlined'
@@ -174,6 +232,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           inputRef={register({ required: true })}
           helperText={formState.isSubmitted && errors.address?.city?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.city && watch('address.city') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
       </div>
       <div className={classes.formRow}>
@@ -209,6 +275,9 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
               )}
             />
           )}
+          InputProps={{
+            endAdornment: !errors.address?.country_code && <CheckIcon color='primary' />,
+          }}
         />
         {regionList.length > 0 && (
           <Controller
@@ -237,6 +306,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
                     helperText={errors.address?.region_id?.message}
                     disabled={formState.isSubmitting}
                     onBlur={onBlur}
+                    InputProps={{
+                      endAdornment:
+                        !errors.address?.region_id && watch('address.region_id') ? (
+                          <CheckIcon className={classes.checkmark} />
+                        ) : (
+                          <></>
+                        ),
+                    }}
                   />
                 )}
               />
@@ -253,11 +330,19 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           label='Telephone'
           required
           inputRef={register({
-            required: true,
+            // required: true,
             pattern: { value: phonePattern, message: 'Invalid phone number' },
           })}
           helperText={formState.isSubmitted && errors.address?.telephone?.message}
           disabled={formState.isSubmitting}
+          InputProps={{
+            endAdornment:
+              !errors.address?.telephone && watch('address.telephone') ? (
+                <CheckIcon className={classes.checkmark} />
+              ) : (
+                <></>
+              ),
+          }}
         />
       </div>
       <Button type='submit' disabled={formState.isSubmitting} variant='pill' disableElevation>

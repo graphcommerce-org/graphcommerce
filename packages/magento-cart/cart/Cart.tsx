@@ -1,4 +1,12 @@
-import { Divider, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  makeStyles,
+  NoSsr,
+  Theme,
+  Typography,
+} from '@material-ui/core'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import CartIcon from '@material-ui/icons/ShoppingBasketOutlined'
 import Money from '@reachdigital/magento-store/Money'
@@ -8,9 +16,10 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { AnimatePresence, m, MotionProps } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { ClientCartQuery } from '../ClientCart.gql'
+import CouponAccordion from '../coupon/CouponAccordion'
 import CheckoutStepper from './CheckoutStepper'
 import QuickCheckout from './QuickCheckout'
 import TotalCosts from './TotalCosts'
@@ -69,7 +78,8 @@ const useStyles = makeStyles(
 )
 
 type CartItemRenderer = TypeRenderer<
-  NonNullable<NonNullable<NonNullable<ClientCartQuery['cart']>['items']>[0]> & { cartId: string }
+  NonNullable<NonNullable<NonNullable<ClientCartQuery['cart']>['items']>[0]>,
+  { cartId: string }
 >
 
 type CartProps = {
@@ -111,7 +121,9 @@ export default function Cart(props: CartProps) {
             ),
         )}
 
-        {hasItems && <TotalCosts cart={cart} />}
+        {hasItems && <CouponAccordion key='couponform' />}
+
+        {hasItems && <TotalCosts cart={cart} key='total-costs' />}
 
         {hasItems && (
           <AnimatedRow className={classes.checkoutButtonContainer} key='checkout-button'>

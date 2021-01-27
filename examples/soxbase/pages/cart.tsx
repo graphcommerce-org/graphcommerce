@@ -4,11 +4,12 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import Cart from '@reachdigital/magento-cart/cart/Cart'
-import CartItem2 from '@reachdigital/magento-cart/cart/CartItem2'
+import CartItem from '@reachdigital/magento-cart/cart/CartItem'
+import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -33,8 +34,8 @@ function CartPage() {
   const classes = useStyles()
 
   return (
-    <BottomDrawerUi title='Checkout' fullHeight>
-      <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+    <OverlayUi title='Cart' variant='bottom' fullHeight>
+      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
         {loading ? (
           <CircularProgress className={classes.loader} />
@@ -42,25 +43,25 @@ function CartPage() {
           <Cart
             clientCartQueryData={data ?? {}}
             renderer={{
-              BundleCartItem: CartItem2,
-              ConfigurableCartItem: CartItem2,
-              DownloadableCartItem: CartItem2,
-              SimpleCartItem: CartItem2,
-              VirtualCartItem: CartItem2,
+              BundleCartItem: CartItem,
+              ConfigurableCartItem,
+              DownloadableCartItem: CartItem,
+              SimpleCartItem: CartItem,
+              VirtualCartItem: CartItem,
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore GiftCardProduct is only available in Commerce
-              GiftCardCartItem: CartItem2,
+              GiftCardCartItem: CartItem,
             }}
           />
         )}
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 CartPage.Layout = PageLayout
 
-registerRouteUi('/cart', BottomDrawerUi)
+registerRouteUi('/cart', OverlayUi)
 
 export default CartPage
 

@@ -2,15 +2,15 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const CartItemConfigurableFragmentDoc: DocumentNode<
-  CartItemConfigurableFragment,
+export const ConfigurableCartItemFragmentDoc: DocumentNode<
+  ConfigurableCartItemFragment,
   unknown
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CartItemConfigurable' },
+      name: { kind: 'Name', value: 'ConfigurableCartItem' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'ConfigurableCartItem' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -33,7 +33,7 @@ export const CartItemConfigurableFragmentDoc: DocumentNode<
     },
   ],
 }
-export type CartItemConfigurableFragment = {
+export type ConfigurableCartItemFragment = {
   configurable_options: Array<
     Types.Maybe<
       Pick<Types.SelectedConfigurableOption, 'id' | 'option_label' | 'value_id' | 'value_label'>

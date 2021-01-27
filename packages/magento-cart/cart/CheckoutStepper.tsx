@@ -1,4 +1,4 @@
-import { makeStyles, Popover, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
@@ -9,7 +9,7 @@ const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'space-between',
       maxWidth: '60%',
-      margin: '0 auto',
+      margin: `${theme.spacings.sm} auto ${theme.spacings.md} auto`,
       [theme.breakpoints.down('xs')]: {
         maxWidth: '75%',
       },
@@ -42,7 +42,7 @@ export default function CheckoutStepper(props: CheckoutStepperProps) {
       {[...Array(steps).keys()].map((step: number) => (
         <div
           className={clsx(classes.step, {
-            [classes.current]: currentStep - 1 === step,
+            [classes.current]: currentStep - 1 >= step,
           })}
           key={step}
         />

@@ -3,8 +3,8 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -27,25 +27,23 @@ function AppShellTextOverlay({ url, pages }: Props) {
 
   const next = Number(url) + 1
   return (
-    <BottomDrawerUi
+    <OverlayUi
       title={title}
       headerForward={
         <PageLink href={`/test/overlay/${next}`}>
           <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
         </PageLink>
       }
+      variant='center'
     >
-      {pages?.[0] && <Page {...pages?.[0]} />}
-      <Container>
-        <DebugSpacer height={cycles[cycle]} />
-      </Container>
-    </BottomDrawerUi>
+      <Container maxWidth='md'>yo! yo yoghurt</Container>
+    </OverlayUi>
   )
 }
 
 AppShellTextOverlay.Layout = PageLayout
 
-registerRouteUi('/test/overlay/[...url]', BottomDrawerUi)
+registerRouteUi('/test/overlay/[...url]', OverlayUi)
 
 export default AppShellTextOverlay
 

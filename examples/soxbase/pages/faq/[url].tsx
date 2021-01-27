@@ -1,7 +1,7 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import SideDrawerUi from '@reachdigital/next-ui/AppShell/SideDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
@@ -21,19 +21,19 @@ const FaqPage = ({ pages }: Props) => {
   const page = pages[0]
 
   return (
-    <SideDrawerUi title={page.title ?? ''}>
+    <OverlayUi title={page.title ?? ''} variant='left'>
       <PageMeta
         title={page.title ?? ''}
         metaDescription={page.title ?? ''}
         metaRobots='INDEX, FOLLOW'
       />
       <Page {...page} />
-    </SideDrawerUi>
+    </OverlayUi>
   )
 }
 
 FaqPage.Layout = PageLayout
-registerRouteUi('/faq/[url]', SideDrawerUi)
+registerRouteUi('/faq/[url]', OverlayUi)
 export default FaqPage
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {

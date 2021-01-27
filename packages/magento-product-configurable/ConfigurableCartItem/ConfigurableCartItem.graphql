@@ -1,4 +1,4 @@
-fragment CartItemConfigurable on ConfigurableCartItem {
+fragment ConfigurableCartItem on ConfigurableCartItem {
   configurable_options {
     id
     option_label

@@ -2,6 +2,7 @@ import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -14,8 +15,9 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
+import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
+import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
@@ -43,12 +45,23 @@ function ShippingPage({ countries }: Props) {
   }
 
   return (
-    <BottomDrawerUi title='Shipping' fullHeight>
+    <OverlayUi
+      variant='bottom'
+      backFallbackHref='/cart'
+      backFallbackTitle='Cart'
+      title='Shipping'
+      fullHeight
+    >
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
       <Container maxWidth='md'>
+        <CheckoutStepper steps={3} currentStep={2} />
+
+        <IconTitle iconSrc='/icons/box.svg' title='Shipping' alt='box' />
+
         <NoSsr>
-          <AnimatePresence initial={false}>
-            <EmailForm key='emailform' />
+          <AnimatePresence initial={false} key='shipping-forms'>
+            <EmailForm key='EmailForm' />
+
             <ShippingAddressForm
               key='ShippingAddressForm'
               countries={countries}
@@ -71,13 +84,13 @@ function ShippingPage({ countries }: Props) {
           </AnimatePresence>
         </NoSsr>
       </Container>
-    </BottomDrawerUi>
+    </OverlayUi>
   )
 }
 
 ShippingPage.Layout = PageLayout
 
-registerRouteUi('/checkout', BottomDrawerUi)
+registerRouteUi('/checkout', OverlayUi)
 
 export default ShippingPage
 
