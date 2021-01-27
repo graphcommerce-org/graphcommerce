@@ -23,6 +23,9 @@ function useDocumentHash(document: DocumentNode) {
   return hash
 }
 
+/**
+ * todo(paales): ability to not store sensitive data like passwords
+ */
 function useFormPersistBase<TFieldValues extends FieldValues = FieldValues>(
   options: UseFormOptions<TFieldValues>,
   form: Omit<UseFormMethods<TFieldValues>, 'handleSubmit'>,
@@ -42,7 +45,7 @@ function useFormPersistBase<TFieldValues extends FieldValues = FieldValues>(
       if (!storedFormStr) return
 
       const changeValues = JSON.parse(valuesJson) as ChangeValues
-      // todo(paales): Should make the form dirty, use setValue(field, val) instead of reset
+      // todo(paales): Should make the form dirty, use setValue(field, val) instead of reset?
       reset(mergeDeep(changeValues, JSON.parse(storedFormStr)))
     } finally {
       // corrupt data or sessionStorage not available
