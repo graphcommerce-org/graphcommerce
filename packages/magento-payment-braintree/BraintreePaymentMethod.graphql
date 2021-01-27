@@ -1,4 +1,4 @@
-mutation PaymentMethodBraintree(
+mutation BraintreePaymentMethod(
   $cartId: String!
   $deviceData: String!
   $isTokenEnabler: Boolean!
@@ -21,9 +21,7 @@ mutation PaymentMethodBraintree(
   ) {
     cart {
       selected_payment_method {
-        code
-        purchase_order_number
-        title
+        ...SelectedPaymentMethod
       }
     }
   }

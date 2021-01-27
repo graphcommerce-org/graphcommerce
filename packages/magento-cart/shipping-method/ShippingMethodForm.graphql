@@ -8,12 +8,7 @@ mutation ShippingMethodForm($cartId: String!, $carrier: String!, $method: String
     cart {
       id
       __typename
-      selected_payment_method {
-        code
-        purchase_order_number
-        title
-      }
-      ...CartPaymentMethods
+      ...PaymentMethodContext
     }
   }
 }

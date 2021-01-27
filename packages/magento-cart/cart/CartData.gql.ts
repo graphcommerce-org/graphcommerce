@@ -22,7 +22,10 @@ import {
   CartItemVirtualFragment,
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
-import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
+import {
+  SelectedShippingMethodFragment,
+  SelectedShippingMethodFragmentDoc,
+} from '../shipping/SelectedShippingMethod.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
@@ -66,17 +69,9 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
                       {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'amount' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } },
-                          ],
-                        },
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'SelectedShippingMethod' },
                       },
                     ],
                   },
@@ -107,7 +102,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
       },
     },
     ...CartPricesFragmentDoc.definitions,
-    ...MoneyFragmentDoc.definitions,
+    ...SelectedShippingMethodFragmentDoc.definitions,
     ...CartItemFragmentDoc.definitions,
     ...CartItemSimpleFragmentDoc.definitions,
     ...CartItemConfigurableFragmentDoc.definitions,
@@ -122,13 +117,7 @@ export type CartDataFragment = { __typename: 'Cart' } & Pick<
 > & {
     prices?: Types.Maybe<CartPricesFragment>
     shipping_addresses: Array<
-      Types.Maybe<{
-        selected_shipping_method?: Types.Maybe<
-          Pick<Types.SelectedShippingMethod, 'carrier_title' | 'method_title'> & {
-            amount: MoneyFragment
-          }
-        >
-      }>
+      Types.Maybe<{ selected_shipping_method?: Types.Maybe<SelectedShippingMethodFragment> }>
     >
     items?: Types.Maybe<
       Array<

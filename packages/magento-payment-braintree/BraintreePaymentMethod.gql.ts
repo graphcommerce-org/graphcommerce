@@ -2,16 +2,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const PaymentMethodBraintreeDocument: DocumentNode<
-  PaymentMethodBraintreeMutation,
-  PaymentMethodBraintreeMutationVariables
+export const BraintreePaymentMethodDocument: DocumentNode<
+  BraintreePaymentMethodMutation,
+  BraintreePaymentMethodMutationVariables
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'PaymentMethodBraintree' },
+      name: { kind: 'Name', value: 'BraintreePaymentMethod' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -141,10 +141,6 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
                           kind: 'SelectionSet',
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'purchase_order_number' },
-                            },
                             { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                           ],
                         },
@@ -160,7 +156,7 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
     },
   ],
 }
-export type PaymentMethodBraintreeMutationVariables = Types.Exact<{
+export type BraintreePaymentMethodMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
   deviceData: Types.Scalars['String']
   isTokenEnabler: Types.Scalars['Boolean']
@@ -168,12 +164,10 @@ export type PaymentMethodBraintreeMutationVariables = Types.Exact<{
   poNr?: Types.Maybe<Types.Scalars['String']>
 }>
 
-export type PaymentMethodBraintreeMutation = {
+export type BraintreePaymentMethodMutation = {
   setPaymentMethodOnCart?: Types.Maybe<{
     cart: {
-      selected_payment_method?: Types.Maybe<
-        Pick<Types.SelectedPaymentMethod, 'code' | 'purchase_order_number' | 'title'>
-      >
+      selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
     }
   }>
 }

@@ -7,9 +7,7 @@ mutation KlarnaPaymentMethod($cartId: String!, $authorizationToken: String!) {
   ) {
     cart {
       selected_payment_method {
-        code
-        purchase_order_number
-        title
+        ...SelectedPaymentMethod
       }
     }
   }

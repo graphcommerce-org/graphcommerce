@@ -103,22 +103,18 @@ export const ShippingMethodFormDocument: DocumentNode<
                       { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'selected_payment_method' },
+                        name: { kind: 'Name', value: 'available_payment_methods' },
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'purchase_order_number' },
-                            },
                             { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                           ],
                         },
                       },
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'available_payment_methods' },
+                        name: { kind: 'Name', value: 'selected_payment_method' },
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
@@ -147,12 +143,10 @@ export type ShippingMethodFormMutationVariables = Types.Exact<{
 export type ShippingMethodFormMutation = {
   setShippingMethodsOnCart?: Types.Maybe<{
     cart: { __typename: 'Cart' } & Pick<Types.Cart, 'id'> & {
-        selected_payment_method?: Types.Maybe<
-          Pick<Types.SelectedPaymentMethod, 'code' | 'purchase_order_number' | 'title'>
-        >
         available_payment_methods?: Types.Maybe<
           Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
         >
+        selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
       }
   }>
 }

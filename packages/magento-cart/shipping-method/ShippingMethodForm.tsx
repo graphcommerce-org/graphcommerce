@@ -37,7 +37,16 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { errors, handleSubmit, Field, control, setValue, register, formState } = mutationForm
+  const {
+    errors,
+    handleSubmit,
+    Field,
+    control,
+    setValue,
+    register,
+    formState,
+    required,
+  } = mutationForm
 
   // todo: Move this to a validateAndSubmit method or something?
   useEffect(() => {
@@ -51,13 +60,13 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
       <input
         type='hidden'
         name='carrier'
-        ref={register({ required: true })}
+        ref={register({ required: required.carrier })}
         value={defaultMethod}
       />
       <input
         type='hidden'
         name='method'
-        ref={register({ required: true })}
+        ref={register({ required: required.method })}
         value={defaultCarrier}
       />
       <div className={classes.formRow}>

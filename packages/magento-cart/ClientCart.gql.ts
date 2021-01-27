@@ -136,8 +136,10 @@ export const ClientCartDocument: DocumentNode<ClientCartQuery, ClientCartQueryVa
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'amount' },
@@ -149,8 +151,6 @@ export const ClientCartDocument: DocumentNode<ClientCartQuery, ClientCartQueryVa
                                 ],
                               },
                             },
-                            { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
                           ],
                         },
                       },
@@ -426,6 +426,17 @@ export const ClientCartDocument: DocumentNode<ClientCartQuery, ClientCartQueryVa
                     ],
                   },
                 },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'selected_payment_method' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -479,7 +490,7 @@ export type ClientCartQuery = {
               selected_shipping_method?: Types.Maybe<
                 Pick<
                   Types.SelectedShippingMethod,
-                  'carrier_title' | 'method_title' | 'method_code' | 'carrier_code'
+                  'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
                 > & { amount: Pick<Types.Money, 'currency' | 'value'> }
               >
               country: Pick<Types.CartAddressCountry, 'code' | 'label'>
@@ -733,6 +744,7 @@ export type ClientCartQuery = {
         available_payment_methods?: Types.Maybe<
           Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
         >
+        selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
       }
   >
 }

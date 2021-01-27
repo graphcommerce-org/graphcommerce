@@ -2,7 +2,12 @@ import braintree from 'braintree-web'
 import { useState, useEffect } from 'react'
 import useBraintree, { StartPaymentOptions } from './useBraintree'
 
-type StartPaymentPayload = {}
+type StartPaymentPayload = {
+  nonce: string
+  correlationId: string
+  details: Record<string, unknown>
+  type: string
+}
 
 type LocalPayment = {
   closeWindow(): void

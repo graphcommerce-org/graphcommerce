@@ -215,8 +215,10 @@ export const ProductAddToCartDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'amount' },
@@ -538,9 +540,10 @@ export type ProductAddToCartMutation = {
         shipping_addresses: Array<
           Types.Maybe<{
             selected_shipping_method?: Types.Maybe<
-              Pick<Types.SelectedShippingMethod, 'carrier_title' | 'method_title'> & {
-                amount: Pick<Types.Money, 'currency' | 'value'>
-              }
+              Pick<
+                Types.SelectedShippingMethod,
+                'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
+              > & { amount: Pick<Types.Money, 'currency' | 'value'> }
             >
           }>
         >

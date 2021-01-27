@@ -8,15 +8,18 @@ import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
-import CartPaymentMethods from '@reachdigital/magento-cart/payment-method/CartPaymentMethods'
-import * as BraintreeLocalPayment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
+import PaymentMethodButton from '@reachdigital/magento-cart/payment-method/PaymentMethodButton'
+import PaymentMethodContextProvider from '@reachdigital/magento-cart/payment-method/PaymentMethodContext'
+import PaymentMethodError from '@reachdigital/magento-cart/payment-method/PaymentMethodError'
+import PaymentMethodOptions from '@reachdigital/magento-cart/payment-method/PaymentMethodOptions'
+import PaymentMethodToggle from '@reachdigital/magento-cart/payment-method/PaymentMethodToggle'
+import braintree_local_payment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import BottomDrawerUi from '@reachdigital/next-ui/AppShell/BottomDrawerUi'
-import Button from '@reachdigital/next-ui/Button'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
@@ -41,30 +44,39 @@ function PaymentPage({ countries }: Props) {
 
   return (
     <BottomDrawerUi title='Payment' fullHeight>
-      <PageMeta title='Payment' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <AnimatePresence initial={false}>
-            <CartPaymentMethods
-              available_payment_methods={clientCart?.cart?.available_payment_methods}
-              renderers={{
-                braintree_local_payment: BraintreeLocalPayment,
-              }}
-            />
-            <AnimatedRow className={classes.formRow} key='next'>
-              <Button
-                type='submit'
-                color='secondary'
-                variant='pill'
-                size='large'
-                onClick={forceSubmit}
-              >
-                Next <ArrowForwardIos fontSize='inherit' />
-              </Button>
-            </AnimatedRow>
-          </AnimatePresence>
-        </NoSsr>
-      </Container>
+      <PaymentMethodContextProvider
+        modules={{ braintree_local_payment }}
+        available_payment_methods={clientCart?.cart?.available_payment_methods}
+      >
+        <PageMeta title='Payment' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+        <Container maxWidth='md'>
+          <NoSsr>
+            <AnimatePresence initial={false}>
+              <PaymentMethodToggle key='toggle' />
+
+              <PaymentMethodOptions key='options' />
+
+              <PaymentMethodError key='error' />
+
+              <AnimatedRow className={classes.formRow} key='next'>
+                <div className={classes.formRow}>
+                  <PaymentMethodButton
+                    key='button'
+                    type='submit'
+                    color='secondary'
+                    variant='pill'
+                    size='large'
+                    onClick={forceSubmit}
+                    endIcon={<ArrowForwardIos fontSize='inherit' />}
+                  >
+                    Pay
+                  </PaymentMethodButton>
+                </div>
+              </AnimatedRow>
+            </AnimatePresence>
+          </NoSsr>
+        </Container>
+      </PaymentMethodContextProvider>
     </BottomDrawerUi>
   )
 }
