@@ -351,6 +351,14 @@ export const CustomerCartDocument: DocumentNode<CustomerCartQuery, CustomerCartQ
                   },
                 },
                 { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'applied_coupons' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'code' } }],
+                  },
+                },
               ],
             },
           },
@@ -648,5 +656,6 @@ export type CustomerCartQuery = {
           >
         >
       >
+      applied_coupons?: Types.Maybe<Array<Types.Maybe<Pick<Types.AppliedCoupon, 'code'>>>>
     }
 }

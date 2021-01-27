@@ -477,6 +477,14 @@ export const UpdateItemQuantityDocument: DocumentNode<
                         },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'applied_coupons' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'code' } }],
+                        },
+                      },
                     ],
                   },
                 },
@@ -792,6 +800,7 @@ export type UpdateItemQuantityMutation = {
             >
           >
         >
+        applied_coupons?: Types.Maybe<Array<Types.Maybe<Pick<Types.AppliedCoupon, 'code'>>>>
       }
   }>
 }

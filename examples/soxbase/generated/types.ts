@@ -176,267 +176,6 @@ export type QueryUrlResolverArgs = {
   url: Scalars['String']
 }
 
-export type Mutation = {
-  __typename?: 'Mutation'
-  addBundleProductsToCart?: Maybe<AddBundleProductsToCartOutput>
-  addConfigurableProductsToCart?: Maybe<AddConfigurableProductsToCartOutput>
-  addDownloadableProductsToCart?: Maybe<AddDownloadableProductsToCartOutput>
-  /** Add any type of product to the cart */
-  addProductsToCart?: Maybe<AddProductsToCartOutput>
-  /** Adds one or more products to the specified wish list. This mutation supports all product types */
-  addProductsToWishlist?: Maybe<AddProductsToWishlistOutput>
-  addSimpleProductsToCart?: Maybe<AddSimpleProductsToCartOutput>
-  addVirtualProductsToCart?: Maybe<AddVirtualProductsToCartOutput>
-  applyCouponToCart?: Maybe<ApplyCouponToCartOutput>
-  /** Changes the password for the logged-in customer */
-  changeCustomerPassword?: Maybe<Customer>
-  /** Creates Client Token for Braintree Javascript SDK initialization. */
-  createBraintreeClientToken: Scalars['String']
-  /** Create customer account */
-  createCustomer?: Maybe<CustomerOutput>
-  /** Create customer address */
-  createCustomerAddress?: Maybe<CustomerAddress>
-  /** Create customer account */
-  createCustomerV2?: Maybe<CustomerOutput>
-  /** Creates an empty shopping cart for a guest or logged in user */
-  createEmptyCart?: Maybe<Scalars['String']>
-  /** Creates a Klarna Payments Session. */
-  createKlarnaPaymentsSession?: Maybe<CreateKlarnaPaymentsSessionOutput>
-  /** Initiates a transaction and receives a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
-  createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>
-  /** Initiates an Express Checkout transaction and receives a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
-  createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>
-  /** Creates a product review for the specified SKU */
-  createProductReview: CreateProductReviewOutput
-  /** Delete customer address */
-  deleteCustomerAddress?: Maybe<Scalars['Boolean']>
-  /** Delete a customer payment token */
-  deletePaymentToken?: Maybe<DeletePaymentTokenOutput>
-  /** Retrieve the customer token */
-  generateCustomerToken?: Maybe<CustomerToken>
-  /** Handles payment response and saves payment in Quote. Use this mutations for Payflow Pro and Payments Pro payment methods. */
-  handlePayflowProResponse?: Maybe<PayflowProResponseOutput>
-  /** Merges the source cart into the destination cart */
-  mergeCarts: Cart
-  placeOrder?: Maybe<PlaceOrderOutput>
-  removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>
-  removeItemFromCart?: Maybe<RemoveItemFromCartOutput>
-  /** Removes one or more products from the specified wish list */
-  removeProductsFromWishlist?: Maybe<RemoveProductsFromWishlistOutput>
-  /** Adds all products from a customer's previous order to the cart. */
-  reorderItems?: Maybe<ReorderItemsOutput>
-  /** Request an email with a reset password token for the registered customer identified by the specified email. */
-  requestPasswordResetEmail?: Maybe<Scalars['Boolean']>
-  /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using requestPasswordResetEmail. */
-  resetPassword?: Maybe<Scalars['Boolean']>
-  /** Revoke the customer token */
-  revokeCustomerToken?: Maybe<RevokeCustomerTokenOutput>
-  /** Recommends Product by Sending Single/Multiple Email */
-  sendEmailToFriend?: Maybe<SendEmailToFriendOutput>
-  setBillingAddressOnCart?: Maybe<SetBillingAddressOnCartOutput>
-  setGuestEmailOnCart?: Maybe<SetGuestEmailOnCartOutput>
-  /** @deprecated Should use setPaymentMethodOnCart and placeOrder mutations in single request. */
-  setPaymentMethodAndPlaceOrder?: Maybe<PlaceOrderOutput>
-  setPaymentMethodOnCart?: Maybe<SetPaymentMethodOnCartOutput>
-  setShippingAddressesOnCart?: Maybe<SetShippingAddressesOnCartOutput>
-  setShippingMethodsOnCart?: Maybe<SetShippingMethodsOnCartOutput>
-  /** Subscribes the specified email to a newsletter */
-  subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>
-  updateCartItems?: Maybe<UpdateCartItemsOutput>
-  /** Deprecated. Use UpdateCustomerV2 instead. */
-  updateCustomer?: Maybe<CustomerOutput>
-  /** Update customer address */
-  updateCustomerAddress?: Maybe<CustomerAddress>
-  updateCustomerEmail?: Maybe<CustomerOutput>
-  /** Update the customer's personal information */
-  updateCustomerV2?: Maybe<CustomerOutput>
-  /** Updates one or more products in the specified wish list */
-  updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>
-}
-
-export type MutationAddBundleProductsToCartArgs = {
-  input?: Maybe<AddBundleProductsToCartInput>
-}
-
-export type MutationAddConfigurableProductsToCartArgs = {
-  input?: Maybe<AddConfigurableProductsToCartInput>
-}
-
-export type MutationAddDownloadableProductsToCartArgs = {
-  input?: Maybe<AddDownloadableProductsToCartInput>
-}
-
-export type MutationAddProductsToCartArgs = {
-  cartId: Scalars['String']
-  cartItems: Array<CartItemInput>
-}
-
-export type MutationAddProductsToWishlistArgs = {
-  wishlistId: Scalars['ID']
-  wishlistItems: Array<WishlistItemInput>
-}
-
-export type MutationAddSimpleProductsToCartArgs = {
-  input?: Maybe<AddSimpleProductsToCartInput>
-}
-
-export type MutationAddVirtualProductsToCartArgs = {
-  input?: Maybe<AddVirtualProductsToCartInput>
-}
-
-export type MutationApplyCouponToCartArgs = {
-  input?: Maybe<ApplyCouponToCartInput>
-}
-
-export type MutationChangeCustomerPasswordArgs = {
-  currentPassword: Scalars['String']
-  newPassword: Scalars['String']
-}
-
-export type MutationCreateCustomerArgs = {
-  input: CustomerInput
-}
-
-export type MutationCreateCustomerAddressArgs = {
-  input: CustomerAddressInput
-}
-
-export type MutationCreateCustomerV2Args = {
-  input: CustomerCreateInput
-}
-
-export type MutationCreateEmptyCartArgs = {
-  input?: Maybe<CreateEmptyCartInput>
-}
-
-export type MutationCreateKlarnaPaymentsSessionArgs = {
-  input?: Maybe<CreateKlarnaPaymentsSessionInput>
-}
-
-export type MutationCreatePayflowProTokenArgs = {
-  input: PayflowProTokenInput
-}
-
-export type MutationCreatePaypalExpressTokenArgs = {
-  input: PaypalExpressTokenInput
-}
-
-export type MutationCreateProductReviewArgs = {
-  input: CreateProductReviewInput
-}
-
-export type MutationDeleteCustomerAddressArgs = {
-  id: Scalars['Int']
-}
-
-export type MutationDeletePaymentTokenArgs = {
-  public_hash: Scalars['String']
-}
-
-export type MutationGenerateCustomerTokenArgs = {
-  email: Scalars['String']
-  password: Scalars['String']
-}
-
-export type MutationHandlePayflowProResponseArgs = {
-  input: PayflowProResponseInput
-}
-
-export type MutationMergeCartsArgs = {
-  source_cart_id: Scalars['String']
-  destination_cart_id: Scalars['String']
-}
-
-export type MutationPlaceOrderArgs = {
-  input?: Maybe<PlaceOrderInput>
-}
-
-export type MutationRemoveCouponFromCartArgs = {
-  input?: Maybe<RemoveCouponFromCartInput>
-}
-
-export type MutationRemoveItemFromCartArgs = {
-  input?: Maybe<RemoveItemFromCartInput>
-}
-
-export type MutationRemoveProductsFromWishlistArgs = {
-  wishlistId: Scalars['ID']
-  wishlistItemsIds: Array<Scalars['ID']>
-}
-
-export type MutationReorderItemsArgs = {
-  orderNumber: Scalars['String']
-}
-
-export type MutationRequestPasswordResetEmailArgs = {
-  email: Scalars['String']
-}
-
-export type MutationResetPasswordArgs = {
-  email: Scalars['String']
-  resetPasswordToken: Scalars['String']
-  newPassword: Scalars['String']
-}
-
-export type MutationSendEmailToFriendArgs = {
-  input?: Maybe<SendEmailToFriendInput>
-}
-
-export type MutationSetBillingAddressOnCartArgs = {
-  input?: Maybe<SetBillingAddressOnCartInput>
-}
-
-export type MutationSetGuestEmailOnCartArgs = {
-  input?: Maybe<SetGuestEmailOnCartInput>
-}
-
-export type MutationSetPaymentMethodAndPlaceOrderArgs = {
-  input?: Maybe<SetPaymentMethodAndPlaceOrderInput>
-}
-
-export type MutationSetPaymentMethodOnCartArgs = {
-  input?: Maybe<SetPaymentMethodOnCartInput>
-}
-
-export type MutationSetShippingAddressesOnCartArgs = {
-  input?: Maybe<SetShippingAddressesOnCartInput>
-}
-
-export type MutationSetShippingMethodsOnCartArgs = {
-  input?: Maybe<SetShippingMethodsOnCartInput>
-}
-
-export type MutationSubscribeEmailToNewsletterArgs = {
-  email: Scalars['String']
-}
-
-export type MutationUpdateCartItemsArgs = {
-  input?: Maybe<UpdateCartItemsInput>
-}
-
-export type MutationUpdateCustomerArgs = {
-  input: CustomerInput
-}
-
-export type MutationUpdateCustomerAddressArgs = {
-  id: Scalars['Int']
-  input?: Maybe<CustomerAddressInput>
-}
-
-export type MutationUpdateCustomerEmailArgs = {
-  email: Scalars['String']
-  password: Scalars['String']
-}
-
-export type MutationUpdateCustomerV2Args = {
-  input: CustomerUpdateInput
-}
-
-export type MutationUpdateProductsInWishlistArgs = {
-  wishlistId: Scalars['ID']
-  wishlistItems: Array<WishlistItemUpdateInput>
-}
-
 export type Aggregate = {
   __typename?: 'Aggregate'
   count: Scalars['Int']
@@ -1146,7 +885,32 @@ export type DocumentFileTypes =
   | 'ppt'
 
 export type DocumentOutputInput = {
-  /**  Transforms a document into a desired file type. See this matrix for format support:  PDF:	jpg, odp, ods, odt, png, svg, txt, and webp DOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webp DOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webp ODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webp XLS:	jpg, pdf, ods, png, svg, xlsx, and webp XLSX:	jpg, pdf, ods, png, svg, xls, and webp ODS:	jpg, pdf, png, xls, svg, xlsx, and webp PPT:	jpg, odp, pdf, png, svg, pptx, and webp PPTX:	jpg, odp, pdf, png, svg, ppt, and webp ODP:	jpg, pdf, png, ppt, svg, pptx, and webp BMP:	jpg, odp, ods, odt, pdf, png, svg, and webp GIF:	jpg, odp, ods, odt, pdf, png, svg, and webp JPG:	jpg, odp, ods, odt, pdf, png, svg, and webp PNG:	jpg, odp, ods, odt, pdf, png, svg, and webp WEBP:	jpg, odp, ods, odt, pdf, png, svg, and webp TIFF:	jpg, odp, ods, odt, pdf, png, svg, and webp AI:	    jpg, odp, ods, odt, pdf, png, svg, and webp PSD:	jpg, odp, ods, odt, pdf, png, svg, and webp SVG:	jpg, odp, ods, odt, pdf, png, and webp HTML:	jpg, odt, pdf, svg, txt, and webp TXT:	jpg, html, odt, pdf, svg, and webp  */
+  /**
+   * Transforms a document into a desired file type.
+   * See this matrix for format support:
+   *
+   * PDF:	jpg, odp, ods, odt, png, svg, txt, and webp
+   * DOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webp
+   * DOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webp
+   * ODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webp
+   * XLS:	jpg, pdf, ods, png, svg, xlsx, and webp
+   * XLSX:	jpg, pdf, ods, png, svg, xls, and webp
+   * ODS:	jpg, pdf, png, xls, svg, xlsx, and webp
+   * PPT:	jpg, odp, pdf, png, svg, pptx, and webp
+   * PPTX:	jpg, odp, pdf, png, svg, ppt, and webp
+   * ODP:	jpg, pdf, png, ppt, svg, pptx, and webp
+   * BMP:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * GIF:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * JPG:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * PNG:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * WEBP:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * TIFF:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * AI:	    jpg, odp, ods, odt, pdf, png, svg, and webp
+   * PSD:	jpg, odp, ods, odt, pdf, png, svg, and webp
+   * SVG:	jpg, odp, ods, odt, pdf, png, and webp
+   * HTML:	jpg, odt, pdf, svg, txt, and webp
+   * TXT:	jpg, html, odt, pdf, svg, and webp
+   */
   format?: Maybe<DocumentFileTypes>
 }
 
@@ -9393,6 +9157,267 @@ export type _RelationInputKind = 'create' | 'update'
 export type _RelationKind = 'regular' | 'union'
 
 export type _SystemDateTimeFieldVariation = 'base' | 'localization' | 'combined'
+
+export type Mutation = {
+  __typename?: 'Mutation'
+  addBundleProductsToCart?: Maybe<AddBundleProductsToCartOutput>
+  addConfigurableProductsToCart?: Maybe<AddConfigurableProductsToCartOutput>
+  addDownloadableProductsToCart?: Maybe<AddDownloadableProductsToCartOutput>
+  /** Add any type of product to the cart */
+  addProductsToCart?: Maybe<AddProductsToCartOutput>
+  /** Adds one or more products to the specified wish list. This mutation supports all product types */
+  addProductsToWishlist?: Maybe<AddProductsToWishlistOutput>
+  addSimpleProductsToCart?: Maybe<AddSimpleProductsToCartOutput>
+  addVirtualProductsToCart?: Maybe<AddVirtualProductsToCartOutput>
+  applyCouponToCart?: Maybe<ApplyCouponToCartOutput>
+  /** Changes the password for the logged-in customer */
+  changeCustomerPassword?: Maybe<Customer>
+  /** Creates Client Token for Braintree Javascript SDK initialization. */
+  createBraintreeClientToken: Scalars['String']
+  /** Create customer account */
+  createCustomer?: Maybe<CustomerOutput>
+  /** Create customer address */
+  createCustomerAddress?: Maybe<CustomerAddress>
+  /** Create customer account */
+  createCustomerV2?: Maybe<CustomerOutput>
+  /** Creates an empty shopping cart for a guest or logged in user */
+  createEmptyCart?: Maybe<Scalars['String']>
+  /** Creates a Klarna Payments Session. */
+  createKlarnaPaymentsSession?: Maybe<CreateKlarnaPaymentsSessionOutput>
+  /** Initiates a transaction and receives a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
+  createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>
+  /** Initiates an Express Checkout transaction and receives a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
+  createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>
+  /** Creates a product review for the specified SKU */
+  createProductReview: CreateProductReviewOutput
+  /** Delete customer address */
+  deleteCustomerAddress?: Maybe<Scalars['Boolean']>
+  /** Delete a customer payment token */
+  deletePaymentToken?: Maybe<DeletePaymentTokenOutput>
+  /** Retrieve the customer token */
+  generateCustomerToken?: Maybe<CustomerToken>
+  /** Handles payment response and saves payment in Quote. Use this mutations for Payflow Pro and Payments Pro payment methods. */
+  handlePayflowProResponse?: Maybe<PayflowProResponseOutput>
+  /** Merges the source cart into the destination cart */
+  mergeCarts: Cart
+  placeOrder?: Maybe<PlaceOrderOutput>
+  removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>
+  removeItemFromCart?: Maybe<RemoveItemFromCartOutput>
+  /** Removes one or more products from the specified wish list */
+  removeProductsFromWishlist?: Maybe<RemoveProductsFromWishlistOutput>
+  /** Adds all products from a customer's previous order to the cart. */
+  reorderItems?: Maybe<ReorderItemsOutput>
+  /** Request an email with a reset password token for the registered customer identified by the specified email. */
+  requestPasswordResetEmail?: Maybe<Scalars['Boolean']>
+  /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using requestPasswordResetEmail. */
+  resetPassword?: Maybe<Scalars['Boolean']>
+  /** Revoke the customer token */
+  revokeCustomerToken?: Maybe<RevokeCustomerTokenOutput>
+  /** Recommends Product by Sending Single/Multiple Email */
+  sendEmailToFriend?: Maybe<SendEmailToFriendOutput>
+  setBillingAddressOnCart?: Maybe<SetBillingAddressOnCartOutput>
+  setGuestEmailOnCart?: Maybe<SetGuestEmailOnCartOutput>
+  /** @deprecated Should use setPaymentMethodOnCart and placeOrder mutations in single request. */
+  setPaymentMethodAndPlaceOrder?: Maybe<PlaceOrderOutput>
+  setPaymentMethodOnCart?: Maybe<SetPaymentMethodOnCartOutput>
+  setShippingAddressesOnCart?: Maybe<SetShippingAddressesOnCartOutput>
+  setShippingMethodsOnCart?: Maybe<SetShippingMethodsOnCartOutput>
+  /** Subscribes the specified email to a newsletter */
+  subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>
+  updateCartItems?: Maybe<UpdateCartItemsOutput>
+  /** Deprecated. Use UpdateCustomerV2 instead. */
+  updateCustomer?: Maybe<CustomerOutput>
+  /** Update customer address */
+  updateCustomerAddress?: Maybe<CustomerAddress>
+  updateCustomerEmail?: Maybe<CustomerOutput>
+  /** Update the customer's personal information */
+  updateCustomerV2?: Maybe<CustomerOutput>
+  /** Updates one or more products in the specified wish list */
+  updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>
+}
+
+export type MutationAddBundleProductsToCartArgs = {
+  input?: Maybe<AddBundleProductsToCartInput>
+}
+
+export type MutationAddConfigurableProductsToCartArgs = {
+  input?: Maybe<AddConfigurableProductsToCartInput>
+}
+
+export type MutationAddDownloadableProductsToCartArgs = {
+  input?: Maybe<AddDownloadableProductsToCartInput>
+}
+
+export type MutationAddProductsToCartArgs = {
+  cartId: Scalars['String']
+  cartItems: Array<CartItemInput>
+}
+
+export type MutationAddProductsToWishlistArgs = {
+  wishlistId: Scalars['ID']
+  wishlistItems: Array<WishlistItemInput>
+}
+
+export type MutationAddSimpleProductsToCartArgs = {
+  input?: Maybe<AddSimpleProductsToCartInput>
+}
+
+export type MutationAddVirtualProductsToCartArgs = {
+  input?: Maybe<AddVirtualProductsToCartInput>
+}
+
+export type MutationApplyCouponToCartArgs = {
+  input?: Maybe<ApplyCouponToCartInput>
+}
+
+export type MutationChangeCustomerPasswordArgs = {
+  currentPassword: Scalars['String']
+  newPassword: Scalars['String']
+}
+
+export type MutationCreateCustomerArgs = {
+  input: CustomerInput
+}
+
+export type MutationCreateCustomerAddressArgs = {
+  input: CustomerAddressInput
+}
+
+export type MutationCreateCustomerV2Args = {
+  input: CustomerCreateInput
+}
+
+export type MutationCreateEmptyCartArgs = {
+  input?: Maybe<CreateEmptyCartInput>
+}
+
+export type MutationCreateKlarnaPaymentsSessionArgs = {
+  input?: Maybe<CreateKlarnaPaymentsSessionInput>
+}
+
+export type MutationCreatePayflowProTokenArgs = {
+  input: PayflowProTokenInput
+}
+
+export type MutationCreatePaypalExpressTokenArgs = {
+  input: PaypalExpressTokenInput
+}
+
+export type MutationCreateProductReviewArgs = {
+  input: CreateProductReviewInput
+}
+
+export type MutationDeleteCustomerAddressArgs = {
+  id: Scalars['Int']
+}
+
+export type MutationDeletePaymentTokenArgs = {
+  public_hash: Scalars['String']
+}
+
+export type MutationGenerateCustomerTokenArgs = {
+  email: Scalars['String']
+  password: Scalars['String']
+}
+
+export type MutationHandlePayflowProResponseArgs = {
+  input: PayflowProResponseInput
+}
+
+export type MutationMergeCartsArgs = {
+  source_cart_id: Scalars['String']
+  destination_cart_id: Scalars['String']
+}
+
+export type MutationPlaceOrderArgs = {
+  input?: Maybe<PlaceOrderInput>
+}
+
+export type MutationRemoveCouponFromCartArgs = {
+  input?: Maybe<RemoveCouponFromCartInput>
+}
+
+export type MutationRemoveItemFromCartArgs = {
+  input?: Maybe<RemoveItemFromCartInput>
+}
+
+export type MutationRemoveProductsFromWishlistArgs = {
+  wishlistId: Scalars['ID']
+  wishlistItemsIds: Array<Scalars['ID']>
+}
+
+export type MutationReorderItemsArgs = {
+  orderNumber: Scalars['String']
+}
+
+export type MutationRequestPasswordResetEmailArgs = {
+  email: Scalars['String']
+}
+
+export type MutationResetPasswordArgs = {
+  email: Scalars['String']
+  resetPasswordToken: Scalars['String']
+  newPassword: Scalars['String']
+}
+
+export type MutationSendEmailToFriendArgs = {
+  input?: Maybe<SendEmailToFriendInput>
+}
+
+export type MutationSetBillingAddressOnCartArgs = {
+  input?: Maybe<SetBillingAddressOnCartInput>
+}
+
+export type MutationSetGuestEmailOnCartArgs = {
+  input?: Maybe<SetGuestEmailOnCartInput>
+}
+
+export type MutationSetPaymentMethodAndPlaceOrderArgs = {
+  input?: Maybe<SetPaymentMethodAndPlaceOrderInput>
+}
+
+export type MutationSetPaymentMethodOnCartArgs = {
+  input?: Maybe<SetPaymentMethodOnCartInput>
+}
+
+export type MutationSetShippingAddressesOnCartArgs = {
+  input?: Maybe<SetShippingAddressesOnCartInput>
+}
+
+export type MutationSetShippingMethodsOnCartArgs = {
+  input?: Maybe<SetShippingMethodsOnCartInput>
+}
+
+export type MutationSubscribeEmailToNewsletterArgs = {
+  email: Scalars['String']
+}
+
+export type MutationUpdateCartItemsArgs = {
+  input?: Maybe<UpdateCartItemsInput>
+}
+
+export type MutationUpdateCustomerArgs = {
+  input: CustomerInput
+}
+
+export type MutationUpdateCustomerAddressArgs = {
+  id: Scalars['Int']
+  input?: Maybe<CustomerAddressInput>
+}
+
+export type MutationUpdateCustomerEmailArgs = {
+  email: Scalars['String']
+  password: Scalars['String']
+}
+
+export type MutationUpdateCustomerV2Args = {
+  input: CustomerUpdateInput
+}
+
+export type MutationUpdateProductsInWishlistArgs = {
+  wishlistId: Scalars['ID']
+  wishlistItems: Array<WishlistItemUpdateInput>
+}
 
 /** The type contains information about a store config */
 export type StoreConfig = {

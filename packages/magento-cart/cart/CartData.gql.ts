@@ -22,6 +22,7 @@ import {
   CartItemVirtualFragment,
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
+import { CartCouponFragment, CartCouponFragmentDoc } from '../coupon/CartCoupon.gql'
 import {
   SelectedShippingMethodFragment,
   SelectedShippingMethodFragmentDoc,
@@ -34,7 +35,7 @@ import {
   CartItem_ConfigurableCartItem_Fragment,
   CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragment, CartPricesFragmentDoc } from './CartPrices.gql'
+import { CartPricesFragmentDoc, CartPricesFragment } from './CartPrices.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',
@@ -98,6 +99,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
             },
           },
           { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartCoupon' } },
         ],
       },
     },
@@ -109,6 +111,7 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
     ...CartItemDownloadableFragmentDoc.definitions,
     ...CartItemVirtualFragmentDoc.definitions,
     ...CartItemBundleFragmentDoc.definitions,
+    ...CartCouponFragmentDoc.definitions,
   ],
 }
 export type CartDataFragment = { __typename: 'Cart' } & Pick<
@@ -140,4 +143,4 @@ export type CartDataFragment = { __typename: 'Cart' } & Pick<
         >
       >
     >
-  }
+  } & CartCouponFragment

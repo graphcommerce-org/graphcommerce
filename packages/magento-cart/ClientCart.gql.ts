@@ -418,6 +418,14 @@ export const ClientCartDocument: DocumentNode<ClientCartQuery, ClientCartQueryVa
                 { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
                 {
                   kind: 'Field',
+                  name: { kind: 'Name', value: 'applied_coupons' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'code' } }],
+                  },
+                },
+                {
+                  kind: 'Field',
                   name: { kind: 'Name', value: 'available_payment_methods' },
                   selectionSet: {
                     kind: 'SelectionSet',
@@ -772,6 +780,7 @@ export type ClientCartQuery = {
             >
           >
         >
+        applied_coupons?: Types.Maybe<Array<Types.Maybe<Pick<Types.AppliedCoupon, 'code'>>>>
         available_payment_methods?: Types.Maybe<
           Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
         >
