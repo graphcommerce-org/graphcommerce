@@ -1,6 +1,8 @@
 import { TypedDocumentNode } from '@apollo/client'
+import { mergeDeep } from '@apollo/client/utilities'
 import { DocumentNode } from 'graphql'
 import { useState, useEffect } from 'react'
+import diff from './diff'
 import { UseFormOptions, OnCompleteFn, useMutationForm } from '.'
 
 function useDocumentHash(document: DocumentNode) {
@@ -35,6 +37,9 @@ export default function useMutationFormPersist<Q, V>(
 
   // Retrieve stored data
   const name = useDocumentHash(document)
+
+  type ChangeValues = typeof options.defaultValues
+  const valuesJson = JSON.stringify(options.defaultValues || '{}')
   useEffect(() => {
     if (typeof window === 'undefined' || !name) return
 
@@ -42,24 +47,26 @@ export default function useMutationFormPersist<Q, V>(
       const storedFormStr = window.sessionStorage[name]
       if (!storedFormStr) return
 
+      const changeValues = JSON.parse(valuesJson) as ChangeValues
       // todo(paales): Should make the form dirty, use setValue(field, val) instead of reset
-      reset(JSON.parse(storedFormStr))
+      reset(mergeDeep(changeValues, JSON.parse(storedFormStr)))
     } finally {
       // corrupt data or sessionStorage not available
     }
-  }, [name, reset])
+  }, [name, valuesJson, reset])
 
   // Watch for changes
   useEffect(() => {
     if (typeof window === 'undefined' || !name) return
+
     try {
-      // todo(paales): Omit values that are the same as the defaultValues
-      // todo(paales): Omit values that are the same as the queryValues
-      window.sessionStorage[name] = JSON.stringify(watch())
+      const modifiedValues = diff(options.defaultValues, watch())
+      if (modifiedValues) window.sessionStorage[name] = JSON.stringify(modifiedValues)
+      else window.sessionStorage.removeItem(name)
     } finally {
       // sessionStorage not available
     }
-  }, [name, watch])
+  }, [mutationForm.defaultVariables, name, options.defaultValues, watch])
 
   return mutationForm
 }

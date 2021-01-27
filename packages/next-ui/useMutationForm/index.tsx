@@ -7,9 +7,7 @@ import {
 } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import { useEffect } from 'react'
-import { useForm, FieldName } from 'react-hook-form'
-import { UnpackNestedValue, UseFormOptions } from 'react-hook-form/dist/types/form'
-import { DeepPartial } from 'react-hook-form/dist/types/utils'
+import { useForm, FieldName, UseFormOptions } from 'react-hook-form'
 import { useGqlDocumentHandler } from './handlerFactory'
 
 export * from 'react-hook-form'
@@ -45,10 +43,7 @@ export function useMutationForm<Q, V>(
 
   const valuesJson = JSON.stringify(defaultValues || '{}')
   useEffect(() => {
-    if (valuesJson) {
-      const changeValues = JSON.parse(valuesJson) as UnpackNestedValue<DeepPartial<V>>
-      reset(changeValues)
-    }
+    if (valuesJson) reset(JSON.parse(valuesJson) as typeof defaultValues)
   }, [valuesJson, reset])
 
   const handleSubmit = useFormMethods.handleSubmit(async (formValues) => {
@@ -90,5 +85,13 @@ export function useMutationForm<Q, V>(
     // reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
   })
 
-  return { Field, required, data, reset, ...useFormMethods, handleSubmit }
+  return {
+    Field,
+    required,
+    data,
+    reset,
+    ...useFormMethods,
+    handleSubmit,
+    defaultVariables: defaults,
+  }
 }
