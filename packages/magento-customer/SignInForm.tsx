@@ -68,7 +68,7 @@ export default function SignInForm(props: SignInFormProps) {
         </Alert>
       )}
 
-      <TextField
+      {/* <TextField
         key='email'
         variant='outlined'
         type='text'
@@ -81,7 +81,7 @@ export default function SignInForm(props: SignInFormProps) {
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
         helperText={formState.isSubmitted && errors.email?.message}
-      />
+      /> */}
 
       <TextField
         key='password'

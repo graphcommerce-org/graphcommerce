@@ -1,7 +1,18 @@
-import { useLazyQuery } from '@apollo/client'
-import { Button, Container, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { useQuery } from '@apollo/client'
+import {
+  Button,
+  CircularProgress,
+  Container,
+  debounce,
+  FormControl,
+  makeStyles,
+  TextField,
+  Theme,
+  Typography,
+} from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import SignInForm from '@reachdigital/magento-customer/SignInForm'
 import SignUpForm from '@reachdigital/magento-customer/SignUpForm'
@@ -16,7 +27,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import apolloClient from '../../lib/apolloClient'
 
@@ -48,17 +59,38 @@ function AccountSignInPage() {
   const signedOut = useSignedOutGuard()
   const classes = useStyles()
   const formClasses = useFormStyles()
-  const [checkIsEmailAvailable, { data: emailAvailableData }] = useLazyQuery(
-    IsEmailAvailableDocument,
-  )
-  const { handleSubmit, formState, errors, register, watch } = useForm<{ email: string }>({})
-  const isEmailAvailable = emailAvailableData?.isEmailAvailable?.is_email_available
+  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
 
-  const [cachedEmail, setCachedEmail] = useState<string>('')
+  const { handleSubmit, formState, errors, register, watch } = useForm<{ email: string }>({})
+
+  const isValidEmail = !!emailPattern.exec(watch('email'))
+  const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {
+    skip: !isValidEmail,
+    variables: { email: watch('email') ?? '' },
+    fetchPolicy: 'no-cache', // TODO: fetchPolicy: 'cache-first',
+  })
+
+  useEffect(() => {
+    // Solves positioning issues with password managers
+    if (isValidEmail) window.dispatchEvent(new Event('resize'))
+  }, [isValidEmail])
+
+  const isLoading = emailLoading
+  const hasAccount = emailQuery?.isEmailAvailable?.is_email_available === false
+  const endAdornment: React.ReactNode = isLoading ? <CircularProgress /> : null
+
+  const signUp = !hasAccount && isValidEmail && !isLoading
+  const signIn = hasAccount && isValidEmail && !isLoading
 
   // TODO: wat doen we als er wel een email is, maar de token is niet authenticated?
+  const isCustomer = tokenQuery?.customerToken
+  const canSignIn =
+    Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid) ||
+    emailQuery?.isEmailAvailable?.is_email_available === false
 
   if (!signedOut) return null
+
+  const shouldSignIn = !tokenQuery?.customerToken?.valid
 
   return (
     <OverlayUi title='Sign In' headerForward={<div>X</div>} variant='center'>
@@ -68,7 +100,7 @@ function AccountSignInPage() {
         metaRobots='NOINDEX, FOLLOW'
       />
       <Container maxWidth='md'>
-        {!formState.isSubmitted && (
+        {((!isValidEmail && !isLoading) || isLoading) && (
           <div className={classes.titleContainer}>
             <Typography variant='h3' align='center'>
               Good day!
@@ -79,7 +111,7 @@ function AccountSignInPage() {
           </div>
         )}
 
-        {!isEmailAvailable && formState.isSubmitted && (
+        {signIn && (
           <div className={classes.titleContainer}>
             <Typography variant='h3' align='center'>
               Welcome back!
@@ -90,7 +122,7 @@ function AccountSignInPage() {
           </div>
         )}
 
-        {!formState.isSubmitting && isEmailAvailable && formState.isSubmitted && (
+        {signUp && (
           <div className={classes.titleContainer}>
             <Typography variant='h3' align='center'>
               Welcome!
@@ -102,36 +134,39 @@ function AccountSignInPage() {
         )}
 
         {/* TODO: verplaatsen naar <IsEmailAvailableForm /> */}
+        <form
+          noValidate
+          {...(isValidEmail && {
+            onChange: () => {
+              debounce(handleSubmit, 500)
+            },
+          })}
+          className={formClasses.form}
+        >
+          <AnimatePresence initial={false}>
+            <TextField
+              key='email'
+              variant='outlined'
+              type='text'
+              error={!!errors.email}
+              id='email'
+              name='email'
+              label='E-mail'
+              required
+              inputRef={register({
+                required: true,
+                pattern: {
+                  value: emailPattern,
+                  message: 'Invalid email address',
+                },
+              })}
+              autoComplete='off'
+              InputProps={{ endAdornment }}
+              helperText={formState.isSubmitted && errors.email?.message}
+            />
 
-        {!formState.isSubmitted && (
-          <form
-            noValidate
-            onSubmit={handleSubmit(({ email }) => {
-              checkIsEmailAvailable({ variables: { email } })
-            })}
-            className={formClasses.form}
-          >
-            <AnimatePresence initial={false}>
-              <TextField
-                key='email'
-                variant='outlined'
-                type='text'
-                error={!!errors.email}
-                id='email'
-                name='email'
-                label='E-mail'
-                required
-                inputRef={register({
-                  required: 'E-mail is required',
-                  pattern: {
-                    value: emailPattern,
-                    message: 'Invalid email address',
-                  },
-                })}
-                helperText={formState.isSubmitted && errors.email?.message}
-              />
-
-              <AnimatedRow key='submit'>
+            <AnimatedRow key='submit'>
+              <FormControl>
                 <Button
                   type='submit'
                   color='primary'
@@ -139,24 +174,20 @@ function AccountSignInPage() {
                   size='large'
                   className={formClasses.submitButton}
                   disabled={formState.isSubmitting}
-                  onClick={() => {
-                    // watch('email') returns undefined after submit, so we have to cache its value
-                    setCachedEmail(watch('email'))
-                  }}
+                  // onClick={() => {
+                  //   // watch('email') returns undefined after submit, so we have to cache its value
+                  //   setCachedEmail(watch('email'))
+                  // }}
                 >
                   Continue
                 </Button>
-              </AnimatedRow>
-            </AnimatePresence>
-          </form>
-        )}
+              </FormControl>
+            </AnimatedRow>
+          </AnimatePresence>
+        </form>
 
-        {/* isEmailAvailable can be undefined */}
-        {isEmailAvailable === false && formState.isSubmitted && <SignInForm email={cachedEmail} />}
-
-        {!formState.isSubmitting && isEmailAvailable && formState.isSubmitted && (
-          <SignUpForm emailaddress={cachedEmail} />
-        )}
+        {signIn && <SignInForm email={watch('email')} />}
+        {signUp && <SignUpForm email={watch('email')} />}
       </Container>
     </OverlayUi>
   )

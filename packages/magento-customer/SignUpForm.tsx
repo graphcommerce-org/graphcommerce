@@ -1,4 +1,3 @@
-import { useApolloClient } from '@apollo/client'
 import {
   Button,
   Checkbox,
@@ -10,73 +9,31 @@ import {
 } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
-import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
-// const useStyles = makeStyles(
-//   (theme: Theme) => ({
-//     form: {
-//       display: 'grid',
-//       gridRowGap: theme.spacings.sm,
-//       gridColumnGap: theme.spacings.xs,
-//     },
-//   }),
-//   { name: 'SignUpForm' },
-// )
-
 type SignUpFormProps = {
-  emailaddress?: string
+  email?: string
 }
 
 export default function SignUpForm(props: SignUpFormProps) {
-  const { emailaddress } = props
+  const { email } = props
   const classes = useFormStyles()
-  const client = useApolloClient()
   const mutationForm = useMutationForm<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
-    defaultValues: { email: emailaddress },
+    defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
   const { register, errors, handleSubmit, required, watch, control, formState } = mutationForm
 
   return (
     <form onSubmit={handleSubmit} noValidate className={classes.form}>
-      <TextField
-        variant='outlined'
-        type='text'
-        error={!!errors.email}
-        id='email'
-        name='email'
-        label='Email'
-        required={required.email}
-        inputRef={register({
-          required: required.email,
-          pattern: { value: emailPattern, message: 'Invalid email address' },
-          validate: async (email) => {
-            const { data } = await client.query({
-              query: IsEmailAvailableDocument,
-              variables: { email },
-            })
-
-            return (
-              Boolean(data?.isEmailAvailable?.is_email_available) ||
-              'Email address is not available'
-            )
-          },
-        })}
-        helperText={errors.email?.message}
-        disabled={formState.isSubmitting}
-      />
-
       <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='password'
-          // inputProps={{ className: classes.quantityInput, min: 1 }}
           error={!!errors.password}
           id='password'
           name='password'
@@ -121,7 +78,6 @@ export default function SignUpForm(props: SignUpFormProps) {
             onBlur={onBlur}
             value={value}
           >
-            {/* <MenuItem value={undefined} /> */}
             {['Dhr.', 'Mevr.'].map((option) => (
               <MenuItem key={option} value={option}>
                 {option}

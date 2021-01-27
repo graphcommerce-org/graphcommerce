@@ -30,15 +30,11 @@ const useStyles = makeStyles(
 type GuestEmailFormProps = {
   signInAdornment?: React.ReactNode
   signUpAdornment?: React.ReactNode
-  onHasAccount?: VoidFunction
-  onHasNoAccount?: VoidFunction
 }
 
 export default function GuestEmailForm({
   signInAdornment,
   signUpAdornment,
-  onHasAccount,
-  onHasNoAccount,
 }: PropsWithChildren<GuestEmailFormProps>) {
   const classes = useStyles()
   const { data: cartQuery } = useQuery(ClientCartDocument)
@@ -72,12 +68,6 @@ export default function GuestEmailForm({
   if (isValidEmail) endAdornment = signUpAdornment
   if (hasAccount) endAdornment = signInAdornment
   if (isLoading) endAdornment = <CircularProgress />
-
-  if (hasAccount) {
-    onHasAccount && onHasAccount()
-  } else {
-    onHasNoAccount && onHasNoAccount()
-  }
 
   return (
     <form
