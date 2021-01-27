@@ -3,11 +3,6 @@ fragment CartData on Cart {
   id
 
   email
-  # selected_payment_method {
-  #   code
-  #   purchase_order_number
-  #   title
-  # }
 
   prices {
     ...CartPrices
@@ -15,11 +10,7 @@ fragment CartData on Cart {
 
   shipping_addresses {
     selected_shipping_method {
-      carrier_title
-      method_title
-      amount {
-        ...Money
-      }
+      ...SelectedShippingMethod
     }
   }
 
@@ -36,12 +27,4 @@ fragment CartData on Cart {
     ...CartItemBundle
   }
   is_virtual
-  # shipping_addresses {
-  #   ...ShippingCartAddress
-  # }
-  # billing_address {
-  #   ...BillingCartAddress
-  # }
-  # ...CartPaymentMethods
-  # ...CartCoupon
 }

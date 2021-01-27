@@ -99,10 +99,6 @@ export const KlarnaPaymentMethodDocument: DocumentNode<
                           kind: 'SelectionSet',
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'purchase_order_number' },
-                            },
                             { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                           ],
                         },
@@ -126,9 +122,7 @@ export type KlarnaPaymentMethodMutationVariables = Types.Exact<{
 export type KlarnaPaymentMethodMutation = {
   setPaymentMethodOnCart?: Types.Maybe<{
     cart: {
-      selected_payment_method?: Types.Maybe<
-        Pick<Types.SelectedPaymentMethod, 'code' | 'purchase_order_number' | 'title'>
-      >
+      selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
     }
   }>
 }

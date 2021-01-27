@@ -2,16 +2,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const BraintreeCcVaultPaymentMethodDocument: DocumentNode<
-  BraintreeCcVaultPaymentMethodMutation,
-  BraintreeCcVaultPaymentMethodMutationVariables
+export const PaymentMethodToggleDocument: DocumentNode<
+  PaymentMethodToggleMutation,
+  PaymentMethodToggleMutationVariables
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'BraintreeCcVaultPaymentMethod' },
+      name: { kind: 'Name', value: 'PaymentMethodToggle' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -23,24 +23,11 @@ export const BraintreeCcVaultPaymentMethodDocument: DocumentNode<
         },
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'deviceData' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'publicHash' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
       ],
       selectionSet: {
@@ -69,42 +56,8 @@ export const BraintreeCcVaultPaymentMethodDocument: DocumentNode<
                         fields: [
                           {
                             kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'purchase_order_number' },
-                            value: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
-                          },
-                          {
-                            kind: 'ObjectField',
                             name: { kind: 'Name', value: 'code' },
-                            value: {
-                              kind: 'StringValue',
-                              value: 'braintree_cc_vault',
-                              block: false,
-                            },
-                          },
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'braintree_cc_vault' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'device_data' },
-                                  value: {
-                                    kind: 'Variable',
-                                    name: { kind: 'Name', value: 'deviceData' },
-                                  },
-                                },
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'public_hash' },
-                                  value: {
-                                    kind: 'Variable',
-                                    name: { kind: 'Name', value: 'publicHash' },
-                                  },
-                                },
-                              ],
-                            },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
                           },
                         ],
                       },
@@ -144,14 +97,12 @@ export const BraintreeCcVaultPaymentMethodDocument: DocumentNode<
     },
   ],
 }
-export type BraintreeCcVaultPaymentMethodMutationVariables = Types.Exact<{
+export type PaymentMethodToggleMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
-  deviceData: Types.Scalars['String']
-  publicHash: Types.Scalars['String']
-  poNr?: Types.Maybe<Types.Scalars['String']>
+  code: Types.Scalars['String']
 }>
 
-export type BraintreeCcVaultPaymentMethodMutation = {
+export type PaymentMethodToggleMutation = {
   setPaymentMethodOnCart?: Types.Maybe<{
     cart: {
       selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>

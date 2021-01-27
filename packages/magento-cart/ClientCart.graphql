@@ -6,6 +6,6 @@ query ClientCart {
   cart(cart_id: "") @client {
     ...CartData
     ...CartShippingResult
-    ...CartPaymentMethods
+    ...PaymentMethodContext
   }
 }

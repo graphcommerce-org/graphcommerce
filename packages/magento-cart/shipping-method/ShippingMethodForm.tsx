@@ -37,23 +37,42 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { errors, handleSubmit, Field, control, setValue, register, formState } = mutationForm
+  const {
+    errors,
+    handleSubmit,
+    Field,
+    control,
+    setValue,
+    register,
+    formState,
+    required,
+  } = mutationForm
 
-  // todo: Move to a validateAndSubmit method or something?
+  // todo: Move this to a validateAndSubmit method or something?
   useEffect(() => {
-    doSubmit.current = async () =>
-      !formState.isDirty ? Promise.resolve(true) : handleSubmit().then(() => true)
-  }, [doSubmit, formState.isDirty, handleSubmit])
+    doSubmit.current = async () => handleSubmit().then(() => true)
+  }, [doSubmit, formState.isValid, handleSubmit])
 
   if (!currentAddress) return null
 
   return (
     <form onSubmit={handleSubmit} noValidate className={classes.form}>
-      <input type='hidden' name='carrier' ref={register({ required: true })} />
-      <input type='hidden' name='method' ref={register({ required: true })} />
+      <input
+        type='hidden'
+        name='carrier'
+        ref={register({ required: required.carrier })}
+        value={defaultMethod}
+      />
+      <input
+        type='hidden'
+        name='method'
+        ref={register({ required: required.method })}
+        value={defaultCarrier}
+      />
       <div className={classes.formRow}>
         <FormControl>
           <Controller
+            defaultValue={carrierMethod}
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}

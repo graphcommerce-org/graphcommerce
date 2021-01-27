@@ -10,7 +10,9 @@ export const useStyles = makeStyles(
     /* Styles applied to the root element. */
     root: {
       borderWidth: 2,
-      '&$disabled': {},
+      '&$disabled': {
+        borderWidth: 2,
+      },
       '&:hover': {},
 
       '&$selected': {

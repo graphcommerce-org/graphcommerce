@@ -1,0 +1,4 @@
+fragment SelectedPaymentMethod on SelectedPaymentMethod {
+  code
+  title
+}

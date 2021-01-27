@@ -2,20 +2,28 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const PaymentMethodBraintreeDocument: DocumentNode<
-  PaymentMethodBraintreeMutation,
-  PaymentMethodBraintreeMutationVariables
+export const BraintreePaymentMethodDocument: DocumentNode<
+  BraintreePaymentMethodMutation,
+  BraintreePaymentMethodMutationVariables
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'PaymentMethodBraintree' },
+      name: { kind: 'Name', value: 'BraintreePaymentMethod' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'cartId' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
@@ -45,6 +53,11 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -72,8 +85,13 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
                         fields: [
                           {
                             kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'purchase_order_number' },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'poNr' } },
+                          },
+                          {
+                            kind: 'ObjectField',
                             name: { kind: 'Name', value: 'code' },
-                            value: { kind: 'StringValue', value: 'braintree', block: false },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
                           },
                           {
                             kind: 'ObjectField',
@@ -131,10 +149,6 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
                           kind: 'SelectionSet',
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'purchase_order_number' },
-                            },
                             { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                           ],
                         },
@@ -150,19 +164,19 @@ export const PaymentMethodBraintreeDocument: DocumentNode<
     },
   ],
 }
-export type PaymentMethodBraintreeMutationVariables = Types.Exact<{
+export type BraintreePaymentMethodMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
+  code: Types.Scalars['String']
   deviceData: Types.Scalars['String']
   isTokenEnabler: Types.Scalars['Boolean']
   nonce: Types.Scalars['String']
+  poNr?: Types.Maybe<Types.Scalars['String']>
 }>
 
-export type PaymentMethodBraintreeMutation = {
+export type BraintreePaymentMethodMutation = {
   setPaymentMethodOnCart?: Types.Maybe<{
     cart: {
-      selected_payment_method?: Types.Maybe<
-        Pick<Types.SelectedPaymentMethod, 'code' | 'purchase_order_number' | 'title'>
-      >
+      selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
     }
   }>
 }

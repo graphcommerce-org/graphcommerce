@@ -1,14 +1,17 @@
-mutation PaymentMethodBraintree(
+mutation BraintreePaymentMethod(
   $cartId: String!
+  $code: String!
   $deviceData: String!
   $isTokenEnabler: Boolean!
   $nonce: String!
+  $poNr: String
 ) {
   setPaymentMethodOnCart(
     input: {
       cart_id: $cartId
       payment_method: {
-        code: "braintree"
+        purchase_order_number: $poNr
+        code: $code
         braintree: {
           is_active_payment_token_enabler: $isTokenEnabler
           device_data: $deviceData
@@ -19,9 +22,7 @@ mutation PaymentMethodBraintree(
   ) {
     cart {
       selected_payment_method {
-        code
-        purchase_order_number
-        title
+        ...SelectedPaymentMethod
       }
     }
   }

@@ -31,6 +31,7 @@ function ShippingPage({ countries }: Props) {
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
+
   const forceSubmit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {

@@ -6,13 +6,20 @@ import {
   AvailablePaymentMethodFragment,
   AvailablePaymentMethodFragmentDoc,
 } from './AvailablePaymentMethod.gql'
+import {
+  SelectedPaymentMethodFragment,
+  SelectedPaymentMethodFragmentDoc,
+} from './SelectedPaymentMethod.gql'
 
-export const CartPaymentMethodsFragmentDoc: DocumentNode<CartPaymentMethodsFragment, unknown> = {
+export const PaymentMethodContextFragmentDoc: DocumentNode<
+  PaymentMethodContextFragment,
+  unknown
+> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CartPaymentMethods' },
+      name: { kind: 'Name', value: 'PaymentMethodContext' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Cart' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -27,12 +34,24 @@ export const CartPaymentMethodsFragmentDoc: DocumentNode<CartPaymentMethodsFragm
               ],
             },
           },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'selected_payment_method' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'SelectedPaymentMethod' } },
+              ],
+            },
+          },
         ],
       },
     },
     ...AvailablePaymentMethodFragmentDoc.definitions,
+    ...SelectedPaymentMethodFragmentDoc.definitions,
   ],
 }
-export type CartPaymentMethodsFragment = {
+export type PaymentMethodContextFragment = {
   available_payment_methods?: Types.Maybe<Array<Types.Maybe<AvailablePaymentMethodFragment>>>
+  selected_payment_method?: Types.Maybe<SelectedPaymentMethodFragment>
 }
