@@ -165,12 +165,21 @@ export default CategoryPage
 registerRouteUi('/[...url]', FullPageUi)
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
+  performance.mark(`getStaticPaths-[...url]-start`)
+
   const localePaths =
     locales?.map((locale) => {
       const client = apolloClient(localeToStore(locale))
       return getCategoryStaticPaths(client, locale)
     }) ?? []
   const paths = (await Promise.all(localePaths)).flat(1)
+
+  performance.mark(`getStaticPaths-[...url]-stop`)
+  performance.measure(
+    `getStaticPaths-[...url]`,
+    `getStaticPaths-[...url]-start`,
+    `getStaticPaths-[...url]-stop`,
+  )
 
   return { paths, fallback: 'blocking' }
 }
