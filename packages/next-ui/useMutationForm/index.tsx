@@ -7,7 +7,7 @@ import {
 } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
 import { useEffect } from 'react'
-import { useForm, FieldName, UseFormOptions } from 'react-hook-form'
+import { useForm, FieldName, UseFormOptions, DeepPartial, UnpackNestedValue } from 'react-hook-form'
 import { useGqlDocumentHandler } from './handlerFactory'
 
 export * from 'react-hook-form'

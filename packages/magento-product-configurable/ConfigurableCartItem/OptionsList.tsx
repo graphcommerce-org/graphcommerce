@@ -69,14 +69,14 @@ type CartItemOptionsListProps = ConfigurableCartItemFragment
 export default function OptionsList(props: CartItemOptionsListProps) {
   const { configurable_options } = props
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>()
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement>()
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget)
   }
 
   const handleClose = () => {
-    setAnchorEl(null)
+    setAnchorEl(undefined)
   }
 
   const handleChange = () => {

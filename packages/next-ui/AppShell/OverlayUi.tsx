@@ -214,7 +214,7 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
   const leftAnimations = useLeftOverlayUiAnimations({ ...overlayUiAnimationProps })
   const centerAnimations = useCenterOverlayUiAnimations({ ...overlayUiAnimationProps })
 
-  let contentAnimation: MotionProps
+  let contentAnimation: MotionProps = {}
   if (variant === 'top') contentAnimation = topAnimations
   if (variant === 'right') contentAnimation = rightAnimations
   if (variant === 'bottom') contentAnimation = bottomAnimations

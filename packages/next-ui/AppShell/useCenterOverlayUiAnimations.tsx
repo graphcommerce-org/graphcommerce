@@ -39,7 +39,6 @@ export default function useCenterOverlayUiAnimations(props: OverlayUiAnimationPr
             z,
             scale: 1,
             origin: '50% 50%',
-            scale: 1,
           },
           animate: {
             opacity: 1,

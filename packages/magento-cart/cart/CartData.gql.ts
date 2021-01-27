@@ -23,19 +23,17 @@ import {
   CartItemVirtualFragmentDoc,
 } from '../../magento-product-virtual/CartItemVirtual.gql'
 import { CartCouponFragment, CartCouponFragmentDoc } from '../coupon/CartCoupon.gql'
-import {
-  SelectedShippingMethodFragment,
-  SelectedShippingMethodFragmentDoc,
-} from '../shipping/SelectedShippingMethod.gql'
+import { SelectedShippingMethodFragment } from '../shipping/SelectedShippingMethod.gql'
+import { CartPricesFragmentDoc, CartPricesFragment } from './CartPrices.gql'
+import { SelectedShippingMethodFragmentDoc } from '../shipping/SelectedShippingMethod.gql'
 import {
   CartItem_SimpleCartItem_Fragment,
   CartItem_VirtualCartItem_Fragment,
   CartItem_DownloadableCartItem_Fragment,
   CartItem_BundleCartItem_Fragment,
   CartItem_ConfigurableCartItem_Fragment,
-  CartItemFragmentDoc,
 } from './CartItem.gql'
-import { CartPricesFragmentDoc, CartPricesFragment } from './CartPrices.gql'
+import { CartItemFragmentDoc } from './CartItem.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',
