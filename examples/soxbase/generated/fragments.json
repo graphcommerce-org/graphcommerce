@@ -1,5 +1,38 @@
 {
   "possibleTypes": {
+    "Node": [
+      "Asset",
+      "Footer",
+      "MagentoCategory",
+      "Page",
+      "PageLink",
+      "RowBlogContent",
+      "RowButtonLinkList",
+      "RowColumnOne",
+      "RowColumnThree",
+      "RowColumnTwo",
+      "RowHeroBanner",
+      "RowProductBackstory",
+      "RowProductGrid",
+      "RowQuote",
+      "RowServiceOptions",
+      "RowSpecialBanner",
+      "RowSwipeableGrid"
+    ],
+    "PageContent": [
+      "RowBlogContent",
+      "RowButtonLinkList",
+      "RowColumnOne",
+      "RowColumnThree",
+      "RowColumnTwo",
+      "RowHeroBanner",
+      "RowProductBackstory",
+      "RowProductGrid",
+      "RowQuote",
+      "RowServiceOptions",
+      "RowSpecialBanner",
+      "RowSwipeableGrid"
+    ],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
       "SimpleCartItem",
@@ -53,39 +86,6 @@
       "ConfigurableProduct"
     ],
     "SwatchDataInterface": ["ImageSwatchData", "TextSwatchData", "ColorSwatchData"],
-    "SwatchLayerFilterItemInterface": ["SwatchLayerFilterItem"],
-    "Node": [
-      "Asset",
-      "Footer",
-      "MagentoCategory",
-      "Page",
-      "PageLink",
-      "RowBlogContent",
-      "RowButtonLinkList",
-      "RowColumnOne",
-      "RowColumnThree",
-      "RowColumnTwo",
-      "RowHeroBanner",
-      "RowProductBackstory",
-      "RowProductGrid",
-      "RowQuote",
-      "RowServiceOptions",
-      "RowSpecialBanner",
-      "RowSwipeableGrid"
-    ],
-    "PageContent": [
-      "RowBlogContent",
-      "RowButtonLinkList",
-      "RowColumnOne",
-      "RowColumnThree",
-      "RowColumnTwo",
-      "RowHeroBanner",
-      "RowProductBackstory",
-      "RowProductGrid",
-      "RowQuote",
-      "RowServiceOptions",
-      "RowSpecialBanner",
-      "RowSwipeableGrid"
-    ]
+    "SwatchLayerFilterItemInterface": ["SwatchLayerFilterItem"]
   }
 }
