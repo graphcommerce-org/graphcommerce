@@ -28,7 +28,13 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'first' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          defaultValue: { kind: 'IntValue', value: '100' },
+          defaultValue: { kind: 'IntValue', value: '4' },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          defaultValue: { kind: 'IntValue', value: '0' },
         },
       ],
       selectionSet: {
@@ -48,7 +54,7 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
                     {
                       kind: 'ObjectField',
                       name: { kind: 'Name', value: 'url_starts_with' },
-                      value: { kind: 'StringValue', value: 'blog', block: false },
+                      value: { kind: 'StringValue', value: 'blog/', block: false },
                     },
                     {
                       kind: 'ObjectField',
@@ -61,12 +67,17 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'orderBy' },
-                value: { kind: 'EnumValue', value: 'publishedAt_DESC' },
+                value: { kind: 'EnumValue', value: 'date_DESC' },
               },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'first' },
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'first' } },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'skip' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'skip' } },
               },
             ],
             selectionSet: {
@@ -100,6 +111,7 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
 export type BlogListQueryVariables = Types.Exact<{
   currentUrl: Array<Types.Scalars['String']> | Types.Scalars['String']
   first?: Types.Maybe<Types.Scalars['Int']>
+  skip?: Types.Maybe<Types.Scalars['Int']>
 }>
 
 export type BlogListQuery = {

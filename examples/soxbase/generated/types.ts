@@ -74,6 +74,8 @@ export type Query = {
   isEmailAvailable?: Maybe<IsEmailAvailableOutput>
   /** Retrieve multiple pages */
   pages: Array<Page>
+  /** Retrieve multiple pages using the Relay connection interface */
+  pagesConnection: PageConnection
   /** The pickup locations query searches for locations that match the search request requirements. */
   pickupLocations?: Maybe<PickupLocations>
   /** Retrieves metadata required by clients to render the Reviews section. */
@@ -145,6 +147,18 @@ export type QueryIsEmailAvailableArgs = {
 }
 
 export type QueryPagesArgs = {
+  where?: Maybe<PageWhereInput>
+  orderBy?: Maybe<PageOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  stage?: Stage
+  locales?: Array<Locale>
+}
+
+export type QueryPagesConnectionArgs = {
   where?: Maybe<PageWhereInput>
   orderBy?: Maybe<PageOrderByInput>
   skip?: Maybe<Scalars['Int']>

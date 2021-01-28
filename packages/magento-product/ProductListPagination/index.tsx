@@ -9,6 +9,7 @@ import { ProductListPaginationFragment } from './ProductListPagination.gql'
 type ProductPaginationProps = ProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'>
 
+// todo(paales): implement with @reachdigital/next-ui/Pagination
 export default function ProductListPagination({
   page_info,
   ...paginationProps
