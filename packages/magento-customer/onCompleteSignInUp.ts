@@ -30,7 +30,7 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
   // Write the result of the customerCart to the cart query so it can be used
   client.cache.writeQuery({
     query: ClientCartDocument,
-    data: { cart: { ...customerCart.customerCart, shipping_addresses: [] } },
+    data: { cart: { ...customerCart.customerCart } },
     broadcast: true,
   })
 

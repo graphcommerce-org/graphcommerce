@@ -3,9 +3,7 @@ import React, { useMemo } from 'react'
 import { MoneyFragment } from './Money.gql'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
-type MoneyProps = MoneyFragment & {
-  round?: boolean
-}
+type MoneyProps = MoneyFragment & { round?: boolean }
 
 export default function Money({ currency, value, round = false }: MoneyProps) {
   const { data: config } = useQuery(StoreConfigDocument)
@@ -23,7 +21,7 @@ export default function Money({ currency, value, round = false }: MoneyProps) {
     })
   }, [config?.storeConfig?.base_currency_code, currency, digits, locale])
 
-  if (!numberFormatter || !Number.isInteger(value)) return null
+  if (!numberFormatter || !value) return null
 
-  return <>{numberFormatter.format(value ?? 0)}</>
+  return <>{numberFormatter.format(value)}</>
 }

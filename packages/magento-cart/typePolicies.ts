@@ -32,6 +32,7 @@ const createEmptyCart: FieldPolicy<Mutation['createEmptyCart']> = {
           },
           available_payment_methods: [],
           applied_coupons: [],
+          selected_payment_method: null,
         },
       },
     })

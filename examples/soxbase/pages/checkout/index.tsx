@@ -60,15 +60,11 @@ function ShippingPage({ countries }: Props) {
 
         <NoSsr>
           <AnimatePresence initial={false} key='shipping-forms'>
-            <EmailForm key='EmailForm' />
+            <EmailForm key='email' />
 
-            <ShippingAddressForm
-              key='ShippingAddressForm'
-              countries={countries}
-              doSubmit={addressForm}
-            />
+            <ShippingAddressForm key='address' countries={countries} doSubmit={addressForm} />
 
-            <ShippingMethodForm key='ShippingMethodForm' doSubmit={methodForm} />
+            <ShippingMethodForm key='method' doSubmit={methodForm} />
 
             <AnimatedRow className={classes.formRow} key='next'>
               <Button

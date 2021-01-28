@@ -29,9 +29,9 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.md,
       [theme.breakpoints.down('sm')]: {
         gridTemplate: `
-        "picture itemName itemName itemName itemName"
-        "picture itemOptions itemOptions itemOptions itemOptions"
-        "picture itemPrice itemPrice quantity rowPrice"
+          "picture itemName itemName itemName itemName"
+          "picture itemOptions itemOptions itemOptions itemOptions"
+          "picture itemPrice itemPrice quantity rowPrice"
         `,
         marginBottom: theme.spacings.lg,
       },
@@ -101,6 +101,7 @@ const useStyles = makeStyles(
       alignSelf: 'flex-end',
       color: theme.palette.text.primary,
       textDecoration: 'none',
+      flexWrap: 'nowrap',
     },
     itemPrice: {
       gridArea: 'itemPrice',

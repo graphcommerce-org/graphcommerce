@@ -2,38 +2,17 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-import {
-  CartItemBundleFragment,
-  CartItemBundleFragmentDoc,
-} from '../../magento-product-bundle/CartBundleItem.gql'
-import {
-  ConfigurableCartItemFragment,
-  ConfigurableCartItemFragmentDoc,
-} from '../../magento-product-configurable/ConfigurableCartItem/ConfigurableCartItem.gql'
-import {
-  CartItemDownloadableFragment,
-  CartItemDownloadableFragmentDoc,
-} from '../../magento-product-downloadable/CartItemDownloadable.gql'
-import {
-  CartItemSimpleFragment,
-  CartItemSimpleFragmentDoc,
-} from '../../magento-product-simple/CartItemSimple.gql'
-import {
-  CartItemVirtualFragment,
-  CartItemVirtualFragmentDoc,
-} from '../../magento-product-virtual/CartItemVirtual.gql'
 import { CartCouponFragment, CartCouponFragmentDoc } from '../coupon/CartCoupon.gql'
-import { SelectedShippingMethodFragment } from '../shipping/SelectedShippingMethod.gql'
-import { CartPricesFragmentDoc, CartPricesFragment } from './CartPrices.gql'
-import { SelectedShippingMethodFragmentDoc } from '../shipping/SelectedShippingMethod.gql'
 import {
-  CartItem_SimpleCartItem_Fragment,
-  CartItem_VirtualCartItem_Fragment,
-  CartItem_DownloadableCartItem_Fragment,
-  CartItem_BundleCartItem_Fragment,
-  CartItem_ConfigurableCartItem_Fragment,
-} from './CartItem.gql'
-import { CartItemFragmentDoc } from './CartItem.gql'
+  PaymentMethodContextFragment,
+  PaymentMethodContextFragmentDoc,
+} from '../payment-method/PaymentMethodContext.gql'
+import {
+  CartShippingResultFragment,
+  CartShippingResultFragmentDoc,
+} from '../shipping/CartShippingResult.gql'
+import { CartItemsFragment, CartItemsFragmentDoc } from './CartItems.gql'
+import { CartTotalsFragment, CartTotalsFragmentDoc } from './CartTotals.gql'
 
 export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
   kind: 'Document',
@@ -48,97 +27,29 @@ export const CartDataFragmentDoc: DocumentNode<CartDataFragment, unknown> = {
           { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'email' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'prices' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartPrices' } }],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'shipping_addresses' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'selected_shipping_method' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'SelectedShippingMethod' },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           { kind: 'Field', name: { kind: 'Name', value: 'total_quantity' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'items' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItem' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemSimple' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ConfigurableCartItem' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemDownloadable' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemVirtual' } },
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItemBundle' } },
-              ],
-            },
-          },
           { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartItems' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartTotals' } },
           { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartCoupon' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartShippingResult' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'PaymentMethodContext' } },
         ],
       },
     },
-    ...CartPricesFragmentDoc.definitions,
-    ...SelectedShippingMethodFragmentDoc.definitions,
-    ...CartItemFragmentDoc.definitions,
-    ...CartItemSimpleFragmentDoc.definitions,
-    ...ConfigurableCartItemFragmentDoc.definitions,
-    ...CartItemDownloadableFragmentDoc.definitions,
-    ...CartItemVirtualFragmentDoc.definitions,
-    ...CartItemBundleFragmentDoc.definitions,
+    ...CartItemsFragmentDoc.definitions,
+    ...CartTotalsFragmentDoc.definitions,
     ...CartCouponFragmentDoc.definitions,
+    ...CartShippingResultFragmentDoc.definitions,
+    ...PaymentMethodContextFragmentDoc.definitions,
   ],
 }
 export type CartDataFragment = { __typename: 'Cart' } & Pick<
   Types.Cart,
   'id' | 'email' | 'total_quantity' | 'is_virtual'
-> & {
-    prices?: Types.Maybe<CartPricesFragment>
-    shipping_addresses: Array<
-      Types.Maybe<{ selected_shipping_method?: Types.Maybe<SelectedShippingMethodFragment> }>
-    >
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<
-          | ({ __typename: 'SimpleCartItem' } & Pick<Types.SimpleCartItem, 'id'> &
-              CartItem_SimpleCartItem_Fragment &
-              CartItemSimpleFragment)
-          | ({ __typename: 'VirtualCartItem' } & Pick<Types.VirtualCartItem, 'id'> &
-              CartItem_VirtualCartItem_Fragment &
-              CartItemVirtualFragment)
-          | ({ __typename: 'DownloadableCartItem' } & Pick<Types.DownloadableCartItem, 'id'> &
-              CartItem_DownloadableCartItem_Fragment &
-              CartItemDownloadableFragment)
-          | ({ __typename: 'BundleCartItem' } & Pick<Types.BundleCartItem, 'id'> &
-              CartItem_BundleCartItem_Fragment &
-              CartItemBundleFragment)
-          | ({ __typename: 'ConfigurableCartItem' } & Pick<Types.ConfigurableCartItem, 'id'> &
-              CartItem_ConfigurableCartItem_Fragment &
-              ConfigurableCartItemFragment)
-        >
-      >
-    >
-  } & CartCouponFragment
+> &
+  CartItemsFragment &
+  CartTotalsFragment &
+  CartCouponFragment &
+  CartShippingResultFragment &
+  PaymentMethodContextFragment

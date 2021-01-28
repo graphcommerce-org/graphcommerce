@@ -1,0 +1,37 @@
+fragment CartTotals on Cart {
+  prices {
+    applied_taxes {
+      amount {
+        ...Money
+      }
+      label
+    }
+    discounts {
+      amount {
+        ...Money
+      }
+      label
+    }
+    grand_total {
+      ...Money
+    }
+    subtotal_excluding_tax {
+      ...Money
+    }
+    subtotal_including_tax {
+      ...Money
+    }
+    subtotal_with_discount_excluding_tax {
+      ...Money
+    }
+  }
+  shipping_addresses {
+    selected_shipping_method {
+      method_title
+      carrier_title
+      amount {
+        ...Money
+      }
+    }
+  }
+}

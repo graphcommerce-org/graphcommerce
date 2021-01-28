@@ -11,13 +11,13 @@ export const defaultTheme = createMuiTheme({
     primary: {
       main: '#F65C5E',
       contrastText: '#000',
-      mutedText: '#b8b8b8',
+      mutedText: `rgba(0,0,0,0.4)`,
       dark: '#DC0000',
     },
     secondary: {
       main: '#006BFF',
       contrastText: '#000',
-      mutedText: '#b8b8b8',
+      mutedText: `rgba(0,0,0,0.4)`,
     },
     tertiary: {
       main: '#2b153d',
@@ -26,7 +26,7 @@ export const defaultTheme = createMuiTheme({
       '500': '#2a183e',
       '600': '#2c153d',
       contrastText: '#fff',
-      mutedText: '#b8b8b8',
+      mutedText: `rgba(1,1,1,0.6)`,
     },
     background: {
       default: '#fff',
@@ -93,8 +93,8 @@ export const defaultTheme = createMuiTheme({
     fontWeightBold: 600,
   },
   spacings: {
-    xxs: responsiveVal(5, 16),
-    xs: responsiveVal(6, 20),
+    xxs: responsiveVal(8, 16),
+    xs: responsiveVal(8, 20),
     sm: responsiveVal(10, 30),
     md: responsiveVal(16, 50),
     lg: responsiveVal(24, 80),

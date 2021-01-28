@@ -1,31 +1,13 @@
 fragment CartData on Cart {
   __typename
   id
-
   email
-
-  prices {
-    ...CartPrices
-  }
-
-  shipping_addresses {
-    selected_shipping_method {
-      ...SelectedShippingMethod
-    }
-  }
-
   total_quantity
-
-  items {
-    id
-    __typename
-    ...CartItem
-    ...CartItemSimple
-    ...ConfigurableCartItem
-    ...CartItemDownloadable
-    ...CartItemVirtual
-    ...CartItemBundle
-  }
   is_virtual
+
+  ...CartItems
+  ...CartTotals
   ...CartCoupon
+  ...CartShippingResult
+  ...PaymentMethodContext
 }

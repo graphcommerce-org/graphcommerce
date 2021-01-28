@@ -41,14 +41,10 @@ export default function CheckoutStepper(props: CheckoutStepperProps) {
     <div className={classes.root}>
       {[...Array(steps).keys()].map((step: number) => (
         <div
-          className={clsx(classes.step, {
-            [classes.current]: currentStep - 1 >= step,
-          })}
+          className={clsx(classes.step, { [classes.current]: currentStep - 1 >= step })}
           key={step}
         />
       ))}
     </div>
   )
 }
-
-//

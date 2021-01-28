@@ -51,135 +51,8 @@ export const MergeCartsDocument: DocumentNode<MergeCartsMutation, MergeCartsMuta
                 { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'email' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'prices' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'applied_taxes' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'amount' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                                ],
-                              },
-                            },
-                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'discounts' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'amount' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                                ],
-                              },
-                            },
-                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'grand_total' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'subtotal_excluding_tax' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'subtotal_including_tax' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'subtotal_with_discount_excluding_tax' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'shipping_addresses' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'selected_shipping_method' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'amount' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
                 { kind: 'Field', name: { kind: 'Name', value: 'total_quantity' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
@@ -380,13 +253,219 @@ export const MergeCartsDocument: DocumentNode<MergeCartsMutation, MergeCartsMuta
                     ],
                   },
                 },
-                { kind: 'Field', name: { kind: 'Name', value: 'is_virtual' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'prices' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'applied_taxes' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'amount' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                ],
+                              },
+                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'discounts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'amount' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                ],
+                              },
+                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'grand_total' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'subtotal_excluding_tax' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'subtotal_including_tax' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'subtotal_with_discount_excluding_tax' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'shipping_addresses' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'selected_shipping_method' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'amount' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                ],
+                              },
+                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
+                          ],
+                        },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'company' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'street' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'country' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'region' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
+                          ],
+                        },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'customer_notes' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'available_shipping_methods' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'amount' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'currency' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                ],
+                              },
+                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'available' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'error_message' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'applied_coupons' },
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [{ kind: 'Field', name: { kind: 'Name', value: 'code' } }],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'available_payment_methods' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'selected_payment_method' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                    ],
                   },
                 },
               ],
@@ -407,36 +486,6 @@ export type MergeCartsMutation = {
     Types.Cart,
     'id' | 'email' | 'total_quantity' | 'is_virtual'
   > & {
-      prices?: Types.Maybe<{
-        applied_taxes?: Types.Maybe<
-          Array<
-            Types.Maybe<
-              Pick<Types.CartTaxItem, 'label'> & { amount: Pick<Types.Money, 'currency' | 'value'> }
-            >
-          >
-        >
-        discounts?: Types.Maybe<
-          Array<
-            Types.Maybe<
-              Pick<Types.Discount, 'label'> & { amount: Pick<Types.Money, 'currency' | 'value'> }
-            >
-          >
-        >
-        grand_total?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
-        subtotal_excluding_tax?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
-        subtotal_including_tax?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
-        subtotal_with_discount_excluding_tax?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
-      }>
-      shipping_addresses: Array<
-        Types.Maybe<{
-          selected_shipping_method?: Types.Maybe<
-            Pick<
-              Types.SelectedShippingMethod,
-              'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
-            > & { amount: Pick<Types.Money, 'currency' | 'value'> }
-          >
-        }>
-      >
       items?: Types.Maybe<
         Array<
           Types.Maybe<
@@ -689,6 +738,69 @@ export type MergeCartsMutation = {
           >
         >
       >
+      prices?: Types.Maybe<{
+        applied_taxes?: Types.Maybe<
+          Array<
+            Types.Maybe<
+              Pick<Types.CartTaxItem, 'label'> & { amount: Pick<Types.Money, 'currency' | 'value'> }
+            >
+          >
+        >
+        discounts?: Types.Maybe<
+          Array<
+            Types.Maybe<
+              Pick<Types.Discount, 'label'> & { amount: Pick<Types.Money, 'currency' | 'value'> }
+            >
+          >
+        >
+        grand_total?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+        subtotal_excluding_tax?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+        subtotal_including_tax?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+        subtotal_with_discount_excluding_tax?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+      }>
+      shipping_addresses: Array<
+        Types.Maybe<
+          Pick<
+            Types.ShippingCartAddress,
+            | 'firstname'
+            | 'lastname'
+            | 'company'
+            | 'city'
+            | 'postcode'
+            | 'street'
+            | 'telephone'
+            | 'customer_notes'
+          > & {
+            selected_shipping_method?: Types.Maybe<
+              Pick<
+                Types.SelectedShippingMethod,
+                'method_title' | 'carrier_title' | 'method_code' | 'carrier_code'
+              > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+            >
+            country: Pick<Types.CartAddressCountry, 'code' | 'label'>
+            region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
+            available_shipping_methods?: Types.Maybe<
+              Array<
+                Types.Maybe<
+                  Pick<
+                    Types.AvailableShippingMethod,
+                    | 'available'
+                    | 'carrier_code'
+                    | 'carrier_title'
+                    | 'error_message'
+                    | 'method_code'
+                    | 'method_title'
+                  > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+                >
+              >
+            >
+          }
+        >
+      >
       applied_coupons?: Types.Maybe<Array<Types.Maybe<Pick<Types.AppliedCoupon, 'code'>>>>
+      available_payment_methods?: Types.Maybe<
+        Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
+      >
+      selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
     }
 }
