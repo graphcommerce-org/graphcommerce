@@ -6,32 +6,27 @@ import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import Pagination, { PagePaginationProps } from '@reachdigital/next-ui/Pagination'
+import Pagination from '@reachdigital/next-ui/Pagination'
 import NextError from 'next/error'
+import { useRouter } from 'next/router'
 import React from 'react'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
+import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
+
 import Footer, { FooterProps } from '../../../components/Footer'
 import { FooterDocument } from '../../../components/Footer/Footer.gql'
 import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
 import apolloClient from '../../../lib/apolloClient'
-import TestStatic from '../../test/static'
 
-type Props = HeaderProps & FooterProps & PageByUrlQuery & BlogListQuery & PagePaginationProps
+type Props = HeaderProps & FooterProps & PageByUrlQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const BlogPage = ({
-  menu,
-  urlResolver,
-  paginationInfo,
-  pages,
-  footer,
-  blogPosts,
-  pageUrls,
-}: Props) => {
+const BlogPage = ({ menu, urlResolver, pages, footer, blogPosts, pagesConnection }: Props) => {
+  const router = useRouter()
   if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
   if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const page = pages[0]
@@ -45,8 +40,12 @@ const BlogPage = ({
         metaRobots='INDEX, FOLLOW'
       />
       <Page {...page} />
-      <BlogList blogPosts={blogPosts} pageUrls={pageUrls} />
-      <Pagination paginationInfo={paginationInfo} />
+      <BlogList blogPosts={blogPosts} />
+      <Pagination
+        count={Math.max(pagesConnection.aggregate.count / 10)}
+        page={Number(router.query.page ? router.query.page : 1)}
+        url={(p) => `/blog/page/${p}`}
+      />
       <Footer footer={footer} />
     </FullPageUi>
   )
@@ -60,18 +59,18 @@ export default BlogPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  const paginationSize = 8
-  const staticClient = apolloClient(localeToStore(locales[0]))
-  const blogPosts = staticClient.query({
-    query: BlogListDocument,
-    variables: { currentUrl: ['blog'] },
+  const responses = locales.map(async (locale) => {
+    const pageSize = 8
+    const staticClient = apolloClient(localeToStore(locale))
+    const blogPosts = staticClient.query({ query: BlogPathsDocument })
+    const total = Math.ceil((await blogPosts).data.pagesConnection.aggregate.count / pageSize)
+    const pages: string[] = []
+    for (let i = 1; i < total - 1; i++) {
+      pages.push(String(i + 1))
+    }
+    return pages.map((page) => ({ params: { page }, locale }))
   })
-  const total = Math.ceil((await blogPosts).data.pageUrls.length / paginationSize)
-  const pages: string[] = []
-  for (let i = 0; i < total; i++) {
-    pages.push(String(i + 1))
-  }
-  const paths = locales.map((locale) => pages.map((page) => ({ params: { page }, locale }))).flat(1)
+  const paths = (await Promise.all(responses)).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
@@ -80,33 +79,30 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
   const client = apolloClient(localeToStore(locale))
   const staticClient = apolloClient(localeToStore(locale))
-  const current = params?.page ? Number(params?.page) : 1
-
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const footer = staticClient.query({ query: FooterDocument })
   const blogPosts = staticClient.query({
     query: BlogListDocument,
     variables: { currentUrl: ['blog'], first: pageSize, skip },
   })
-
+  const blogPaths = staticClient.query({ query: BlogPathsDocument })
   const gcmsPage = staticClient.query({
     query: PageByUrlDocument,
     variables: { url: `blog` },
   })
+
   if (!(await gcmsPage).data.pages?.[0]) return { notFound: true }
   if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
   if (Number(params?.page) <= 0) return { notFound: true }
 
-  const total = Math.ceil((await blogPosts).data.pageUrls.length / pageSize)
-
   return {
     props: {
       urlResolver: { relative_url: `blog` },
-      paginationInfo: { currentPage: current, totalPages: total, baseUrl: `blog` },
       ...(await footer).data,
       ...(await pageLayout).data,
       ...(await gcmsPage).data,
       ...(await blogPosts).data,
+      ...(await blogPaths).data,
       apolloState: client.cache.extract(),
     },
     revalidate: 60 * 20,
