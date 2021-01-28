@@ -203,6 +203,66 @@ export const ApplyCouponToCartDocument: DocumentNode<
                                 ],
                               },
                             },
+                            { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'company' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'street' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'country' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'region' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
+                                ],
+                              },
+                            },
+                            { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'customer_notes' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'available_shipping_methods' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'amount' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'available' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'carrier_code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'carrier_title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'error_message' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'method_code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'method_title' } },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -452,6 +512,28 @@ export const ApplyCouponToCartDocument: DocumentNode<
                           selections: [{ kind: 'Field', name: { kind: 'Name', value: 'code' } }],
                         },
                       },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'available_payment_methods' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'selected_payment_method' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -499,14 +581,43 @@ export type ApplyCouponToCartMutation = {
           >
         }>
         shipping_addresses: Array<
-          Types.Maybe<{
-            selected_shipping_method?: Types.Maybe<
-              Pick<
-                Types.SelectedShippingMethod,
-                'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
-              > & { amount: Pick<Types.Money, 'currency' | 'value'> }
-            >
-          }>
+          Types.Maybe<
+            Pick<
+              Types.ShippingCartAddress,
+              | 'firstname'
+              | 'lastname'
+              | 'company'
+              | 'city'
+              | 'postcode'
+              | 'street'
+              | 'telephone'
+              | 'customer_notes'
+            > & {
+              selected_shipping_method?: Types.Maybe<
+                Pick<
+                  Types.SelectedShippingMethod,
+                  'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
+                > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+              >
+              country: Pick<Types.CartAddressCountry, 'code' | 'label'>
+              region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
+              available_shipping_methods?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<
+                      Types.AvailableShippingMethod,
+                      | 'available'
+                      | 'carrier_code'
+                      | 'carrier_title'
+                      | 'error_message'
+                      | 'method_code'
+                      | 'method_title'
+                    > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+                  >
+                >
+              >
+            }
+          >
         >
         items?: Types.Maybe<
           Array<
@@ -767,6 +878,10 @@ export type ApplyCouponToCartMutation = {
           >
         >
         applied_coupons?: Types.Maybe<Array<Types.Maybe<Pick<Types.AppliedCoupon, 'code'>>>>
+        available_payment_methods?: Types.Maybe<
+          Array<Types.Maybe<Pick<Types.AvailablePaymentMethod, 'code' | 'title'>>>
+        >
+        selected_payment_method?: Types.Maybe<Pick<Types.SelectedPaymentMethod, 'code' | 'title'>>
       }
   }>
 }

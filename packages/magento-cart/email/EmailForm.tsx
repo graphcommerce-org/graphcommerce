@@ -23,62 +23,58 @@ export default function EmailForm() {
   const [expand, setExpand] = useState(false)
   const classes = useFormStyles()
   const localClasses = useStyles()
-  const { data: cartQuery } = useQuery(ClientCartDocument)
-  const { data: tokenQuery } = useQuery(CustomerTokenDocument)
-  const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
-  const { data: emailQuery } = useQuery(IsEmailAvailableDocument, {
+  const { data: cartData } = useQuery(ClientCartDocument)
+  const { data: tokenData } = useQuery(CustomerTokenDocument)
+  const { data: emailData } = useQuery(IsEmailAvailableDocument, {
     fetchPolicy: 'cache-only',
-    variables: { email: cartQuery?.cart?.email ?? '' },
+    variables: { email: cartData?.cart?.email ?? '' },
   })
 
-  const isCustomer = tokenQuery?.customerToken
+  const isCustomer = tokenData?.customerToken
   const canSignIn =
-    Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid) ||
-    emailQuery?.isEmailAvailable?.is_email_available === false
+    Boolean(tokenData?.customerToken && !tokenData?.customerToken.valid) ||
+    emailData?.isEmailAvailable?.is_email_available === false
 
+  if (tokenData?.customerToken?.valid) return null
   return (
-    <>
-      {tokenQuery?.customerToken?.valid || (
-        <AnimatedRow className={clsx(classes.form, classes.formContained)}>
-          <AnimatePresence initial={false} key='GuestAndSignInForm'>
-            {!isCustomer && (
-              <AnimatedRow key='guest-email-form'>
-                <div className={classes.formRow}>
-                  <GuestEmailForm
-                    key='GuestEmailForm'
-                    signInAdornment={
-                      <Button
-                        color='secondary'
-                        style={{ whiteSpace: 'nowrap' }}
-                        onClick={() => setExpand(!expand)}
-                      >
-                        {expand ? 'Close' : 'Sign In'}
-                      </Button>
-                    }
-                  />
-                </div>
-              </AnimatedRow>
-            )}
-            {!isCustomer && expand && <AnimatedRow key='sign-up' />}
-            {canSignIn && expand && (
-              <AnimatedRow key='sign-in'>
-                <div className={classes.formRow}>
-                  <SignInFormInline email={cartQuery?.cart?.email ?? ''} />
-                </div>
-                <PageLink href='/account/forgot-password' key='forgot-password'>
-                  <Link className={localClasses.forgotPass}>Forgot password?</Link>
-                </PageLink>
-              </AnimatedRow>
-            )}
+    <AnimatedRow className={clsx(classes.form, classes.formContained)}>
+      <AnimatePresence initial={false} key='GuestAndSignInForm'>
+        {!isCustomer && (
+          <AnimatedRow key='guest-email-form'>
+            <div className={classes.formRow}>
+              <GuestEmailForm
+                key='GuestEmailForm'
+                signInAdornment={
+                  <Button
+                    color='secondary'
+                    style={{ whiteSpace: 'nowrap' }}
+                    onClick={() => setExpand(!expand)}
+                  >
+                    {expand ? 'Close' : 'Sign In'}
+                  </Button>
+                }
+              />
+            </div>
+          </AnimatedRow>
+        )}
+        {!isCustomer && expand && <AnimatedRow key='sign-up' />}
+        {canSignIn && expand && (
+          <AnimatedRow key='sign-in'>
+            <div className={classes.formRow}>
+              <SignInFormInline email={cartData?.cart?.email ?? ''} />
+            </div>
+            <PageLink href='/account/forgot-password' key='forgot-password'>
+              <Link className={localClasses.forgotPass}>Forgot password?</Link>
+            </PageLink>
+          </AnimatedRow>
+        )}
 
-            <ul className={classes.steps} key='steps'>
-              <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
-              <li>Fill in password fields to create an account.</li>
-              <li>Leave passwords fields empty to order as guest.</li>
-            </ul>
-          </AnimatePresence>
-        </AnimatedRow>
-      )}
-    </>
+        <ul className={classes.steps} key='steps'>
+          <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
+          <li>Fill in password fields to create an account.</li>
+          <li>Leave passwords fields empty to order as guest.</li>
+        </ul>
+      </AnimatePresence>
+    </AnimatedRow>
   )
 }

@@ -28,4 +28,6 @@ fragment CartData on Cart {
   }
   is_virtual
   ...CartCoupon
+  ...CartShippingResult
+  ...PaymentMethodContext
 }
