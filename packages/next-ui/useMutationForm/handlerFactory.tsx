@@ -107,7 +107,7 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
    */
   function validate(variables: DeepStringify<V>) {
     return Object.entries(variables)
-      .filter(([name]) => !variables[name])
+      .filter(([name]) => !variables[name] && variables[name] !== false)
       .map(([name]) => name)
   }
 

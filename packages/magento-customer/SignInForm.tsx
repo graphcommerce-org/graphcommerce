@@ -1,17 +1,16 @@
 import { useQuery } from '@apollo/client'
 import {
-  TextField,
   Button,
-  makeStyles,
-  Theme,
   FormControl,
   FormHelperText,
   Link,
+  makeStyles,
+  TextField,
+  Theme,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
@@ -22,8 +21,8 @@ const useStyles = makeStyles(
     form: {
       display: 'grid',
       alignItems: 'center',
-      gridRowGap: theme.spacings.sm,
-      gridColumnGap: theme.spacings.xs,
+      gridRowGap: theme.spacings.xxs,
+      gridColumnGap: theme.spacings.xxs,
     },
     actions: {
       display: 'grid',
@@ -54,7 +53,7 @@ export default function SignInForm(props: SignInFormProps) {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const mutationForm = useMutationForm(SignInDocument, {
-    onComplete: onCompleteSignInUp, // TODO: juiste callback zoeken / bouwen
+    onComplete: onCompleteSignInUp, // TODO: correct callback without cart dependency
     defaultValues: { email },
   })
   const { register, errors, handleSubmit, required, formState } = mutationForm
@@ -67,21 +66,6 @@ export default function SignInForm(props: SignInFormProps) {
           Your session has expired, please reauthenticate
         </Alert>
       )}
-
-      {/* <TextField
-        key='email'
-        variant='outlined'
-        type='text'
-        error={!!errors.email}
-        id='email'
-        name='email'
-        label='E-mail'
-        inputRef={register({
-          required: required.email,
-          pattern: { value: emailPattern, message: 'Invalid email address' },
-        })}
-        helperText={formState.isSubmitted && errors.email?.message}
-      /> */}
 
       <TextField
         key='password'

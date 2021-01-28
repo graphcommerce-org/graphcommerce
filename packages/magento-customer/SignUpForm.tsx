@@ -4,11 +4,14 @@ import {
   FormControl,
   FormControlLabel,
   FormHelperText,
+  makeStyles,
   MenuItem,
   TextField,
+  Theme,
 } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import clsx from 'clsx'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -16,21 +19,44 @@ type SignUpFormProps = {
   email?: string
 }
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    signUpForm: {
+      paddingTop: 0,
+    },
+    submitBtn: {
+      maxWidth: '50%',
+      width: '100%',
+      margin: '20px auto',
+      display: 'block',
+      borderRadius: theme.spacings.xs,
+      '& > button': {
+        maxWidth: 'unset',
+        width: '100%',
+      },
+    },
+  }),
+  { name: 'SignUpForm' },
+)
+
 export default function SignUpForm(props: SignUpFormProps) {
   const { email } = props
-  const classes = useFormStyles()
+  const formClasses = useFormStyles()
+  const classes = useStyles()
   const mutationForm = useMutationForm<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
-    defaultValues: { email },
-    onComplete: onCompleteSignInUp,
+    defaultValues: {
+      email,
+    },
+    onComplete: onCompleteSignInUp, // TODO: correct callback without cart dependency
   })
   const { register, errors, handleSubmit, required, watch, control, formState } = mutationForm
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
-      <div className={classes.formRow}>
+    <form onSubmit={handleSubmit} noValidate className={clsx(formClasses.form, classes.signUpForm)}>
+      <div className={formClasses.formRow}>
         <TextField
           variant='outlined'
           type='password'
@@ -53,7 +79,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           required
           inputRef={register({
             required: true,
-            validate: (value) => value === watch('password') || "Paswords don't match",
+            validate: (value) => value === watch('password') || "Passwords don't match",
           })}
           helperText={errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
@@ -87,7 +113,7 @@ export default function SignUpForm(props: SignUpFormProps) {
         )}
       />
 
-      <div className={classes.formRow}>
+      <div className={formClasses.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -113,22 +139,25 @@ export default function SignUpForm(props: SignUpFormProps) {
           disabled={formState.isSubmitting}
         />
       </div>
+
       <FormControlLabel
-        control={<Checkbox name='checkedB' color='primary' />}
+        id='isSubscribed'
         name='isSubscribed'
-        inputRef={register({ required: required.isSubscribed })}
+        control={<Checkbox color='primary' />}
+        inputRef={register({
+          required: required.isSubscribed,
+        })}
         disabled={formState.isSubmitting}
         label='Subscribe to newsletter'
       />
 
-      <FormControl>
+      <FormControl className={classes.submitBtn}>
         <Button
           type='submit'
           disabled={formState.isSubmitting}
           variant='contained'
           color='primary'
           size='large'
-          className={classes.submitButton}
         >
           Continue
         </Button>

@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import {
   Button,
+  ButtonGroup,
   CircularProgress,
   Container,
   debounce,
@@ -10,6 +11,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
+import Close from '@material-ui/icons/Close'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
@@ -26,8 +28,9 @@ import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import apolloClient from '../../lib/apolloClient'
 
@@ -51,8 +54,32 @@ const useStyles = makeStyles(
     hide: {
       display: 'none',
     },
+    closeBtn: {
+      minWidth: 'unset',
+      width: 42,
+      height: 42,
+      borderRadius: '100%',
+      textAlign: 'center',
+      boxShadow: theme.shadows[1],
+      background: theme.palette.background.default,
+      '&:hover': {
+        background: theme.palette.grey[6],
+      },
+    },
+    submitBtn: {
+      maxWidth: '50%',
+      margin: '20px auto',
+      display: 'block',
+      borderRadius: theme.spacings.xs,
+      '& > button': {
+        width: '100%',
+      },
+    },
+    isEmailAvailableForm: {
+      paddingBottom: 0,
+    },
   }),
-  { name: 'GuestOrderEmailSignIn' },
+  { name: 'SignIn' },
 )
 
 function AccountSignInPage() {
@@ -60,13 +87,16 @@ function AccountSignInPage() {
   const classes = useStyles()
   const formClasses = useFormStyles()
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
+  const [userContinued, setUserContinued] = useState<boolean>(false)
 
-  const { handleSubmit, formState, errors, register, watch } = useForm<{ email: string }>({})
+  const { handleSubmit, formState, errors, register, watch } = useForm<{ email: string }>({
+    mode: 'onChange',
+  })
 
   const isValidEmail = !!emailPattern.exec(watch('email'))
   const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {
     skip: !isValidEmail,
-    variables: { email: watch('email') ?? '' },
+    variables: { email: watch('email') },
     fetchPolicy: 'no-cache', // TODO: fetchPolicy: 'cache-first',
   })
 
@@ -75,32 +105,47 @@ function AccountSignInPage() {
     if (isValidEmail) window.dispatchEvent(new Event('resize'))
   }, [isValidEmail])
 
+  if (!signedOut) return null
+
   const isLoading = emailLoading
   const hasAccount = emailQuery?.isEmailAvailable?.is_email_available === false
   const endAdornment: React.ReactNode = isLoading ? <CircularProgress /> : null
 
-  const signUp = !hasAccount && isValidEmail && !isLoading
-  const signIn = hasAccount && isValidEmail && !isLoading
-
-  // TODO: wat doen we als er wel een email is, maar de token is niet authenticated?
   const isCustomer = tokenQuery?.customerToken
   const canSignIn =
     Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid) ||
     emailQuery?.isEmailAvailable?.is_email_available === false
 
-  if (!signedOut) return null
+  // const shouldSignIn = !tokenQuery?.customerToken?.valid
+  const shouldSignIn = hasAccount
+  const signInOrUpReady = isValidEmail && !isLoading && userContinued
 
-  const shouldSignIn = !tokenQuery?.customerToken?.valid
+  if (!isValidEmail && userContinued) {
+    setUserContinued(false)
+  }
 
   return (
-    <OverlayUi title='Sign In' headerForward={<div>X</div>} variant='center'>
+    <OverlayUi
+      title='Sign In'
+      headerForward={
+        <Button
+          className={classes.closeBtn}
+          onClick={() => {
+            // TODO: route to previous page
+          }}
+        >
+          <Close />
+        </Button>
+      }
+      variant='center'
+    >
       <PageMeta
         title='Sign in'
         metaDescription='Sign in to your accoutn'
         metaRobots='NOINDEX, FOLLOW'
       />
       <Container maxWidth='md'>
-        {((!isValidEmail && !isLoading) || isLoading) && (
+        {((!signInOrUpReady && !shouldSignIn) || (shouldSignIn && !userContinued)) && (
           <div className={classes.titleContainer}>
             <Typography variant='h3' align='center'>
               Good day!
@@ -111,7 +156,7 @@ function AccountSignInPage() {
           </div>
         )}
 
-        {signIn && (
+        {signInOrUpReady && shouldSignIn && (
           <div className={classes.titleContainer}>
             <Typography variant='h3' align='center'>
               Welcome back!
@@ -122,7 +167,7 @@ function AccountSignInPage() {
           </div>
         )}
 
-        {signUp && (
+        {signInOrUpReady && !shouldSignIn && (
           <div className={classes.titleContainer}>
             <Typography variant='h3' align='center'>
               Welcome!
@@ -136,12 +181,13 @@ function AccountSignInPage() {
         {/* TODO: verplaatsen naar <IsEmailAvailableForm /> */}
         <form
           noValidate
-          {...(isValidEmail && {
-            onChange: () => {
-              debounce(handleSubmit, 500)
-            },
+          onChange={() => {
+            setUserContinued(false)
+            debounce(handleSubmit, 500)
+          }}
+          className={clsx(formClasses.form, {
+            [classes.isEmailAvailableForm]: !shouldSignIn && userContinued,
           })}
-          className={formClasses.form}
         >
           <AnimatePresence initial={false}>
             <TextField
@@ -165,19 +211,22 @@ function AccountSignInPage() {
               helperText={formState.isSubmitted && errors.email?.message}
             />
 
-            <AnimatedRow key='submit'>
-              <FormControl>
+            <AnimatedRow
+              key='submit'
+              className={clsx({
+                [classes.hide]: signInOrUpReady,
+              })}
+            >
+              <FormControl className={classes.submitBtn}>
                 <Button
-                  type='submit'
                   color='primary'
                   variant='contained'
                   size='large'
                   className={formClasses.submitButton}
                   disabled={formState.isSubmitting}
-                  // onClick={() => {
-                  //   // watch('email') returns undefined after submit, so we have to cache its value
-                  //   setCachedEmail(watch('email'))
-                  // }}
+                  onClick={() => {
+                    if (isValidEmail && !isLoading) setUserContinued(true)
+                  }}
                 >
                   Continue
                 </Button>
@@ -186,8 +235,8 @@ function AccountSignInPage() {
           </AnimatePresence>
         </form>
 
-        {signIn && <SignInForm email={watch('email')} />}
-        {signUp && <SignUpForm email={watch('email')} />}
+        {signInOrUpReady && shouldSignIn && <SignInForm email={watch('email')} />}
+        {signInOrUpReady && !shouldSignIn && <SignUpForm email={watch('email')} />}
       </Container>
     </OverlayUi>
   )
