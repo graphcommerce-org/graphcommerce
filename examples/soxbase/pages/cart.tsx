@@ -42,22 +42,6 @@ function CartPage() {
               </CartQuickCheckout>
             </AnimatedRow>
 
-            {hasItems && <CouponAccordion key='couponform' />}
-
-            {hasItems && (
-              <CartTotals
-                key='totals'
-                prices={data?.cart?.prices}
-                shipping_addresses={data?.cart?.shipping_addresses ?? []}
-              />
-            )}
-
-            {hasItems && (
-              <AnimatedRow key='checkout-button'>
-                <CartStartCheckout {...data?.cart?.prices?.grand_total} />
-              </AnimatedRow>
-            )}
-
             {hasItems && (
               <CartItems
                 id={data?.cart?.id ?? ''}
@@ -74,6 +58,22 @@ function CartPage() {
                   GiftCardCartItem: CartItem,
                 }}
               />
+            )}
+
+            {hasItems && <CouponAccordion key='couponform' />}
+
+            {hasItems && (
+              <CartTotals
+                key='totals'
+                prices={data?.cart?.prices}
+                shipping_addresses={data?.cart?.shipping_addresses ?? []}
+              />
+            )}
+
+            {hasItems && (
+              <AnimatedRow key='checkout-button'>
+                <CartStartCheckout {...data?.cart?.prices?.grand_total} />
+              </AnimatedRow>
             )}
           </AnimatePresence>
         </NoSsr>
