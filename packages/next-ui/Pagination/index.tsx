@@ -56,13 +56,13 @@ export default function Pagination(props: PagePaginationProps) {
         <React.Fragment key='pagination'>
           {page === 2 ? (
             <PageLink href='/blog'>
-              <Link href='/'>
+              <Link>
                 <ChevronLeft color='primary' />
               </Link>
             </PageLink>
           ) : (
             <PageLink href={url(page - 1)}>
-              <Link href='/'>
+              <Link>
                 <ChevronLeft color='primary' />
               </Link>
             </PageLink>
@@ -76,7 +76,7 @@ export default function Pagination(props: PagePaginationProps) {
         <ChevronRight color='primary' />
       ) : (
         <PageLink href={url(page + 1)}>
-          <Link href='/'>
+          <Link>
             <ChevronRight color='primary' />
           </Link>
         </PageLink>
