@@ -1,13 +1,7 @@
 import { Link, Theme, makeStyles } from '@material-ui/core'
 import { ChevronLeft, ChevronRight } from '@material-ui/icons'
-import { PaginationProps, usePagination } from '@material-ui/lab'
 import React from 'react'
 import PageLink from '../PageTransition/PageLink'
-
-export type PagePaginationProps = Omit<
-  PaginationProps,
-  'count' | 'defaultPage' | 'page' | 'renderItem'
-> & { paginationInfo }
 
 const useStyles = makeStyles((theme: Theme) => ({
   pagination: {
@@ -44,35 +38,47 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function Pagination({ paginationInfo, ...paginationProps }: PagePaginationProps) {
-  const classes = useStyles()
-  const { items } = usePagination({
-    count: paginationInfo.totalPages,
-    page: paginationInfo.currentPage,
-    ...paginationProps,
-  })
+export type PagePaginationProps = {
+  count: number
+  page: number
+  url: (page: number) => string
+}
 
-  const chevronLeft = <ChevronLeft color='primary' />
-  const chevronRight = <ChevronRight color='primary' />
-  const currentPage = Number(paginationInfo.currentPage)
+export default function Pagination(props: PagePaginationProps) {
+  const { count, page, url } = props
+  const classes = useStyles()
 
   return (
     <div className={classes.pagination}>
-      {paginationInfo.currentPage === 1 ? (
-        chevronLeft
+      {page === 1 ? (
+        <ChevronLeft color='primary' />
       ) : (
-        <PageLink href={`/${paginationInfo.baseUrl}/page/${currentPage - 1}`}>
-          <Link href='/'>{chevronLeft}</Link>
-        </PageLink>
+        <React.Fragment key='pagination'>
+          {page === 2 ? (
+            <PageLink href='/blog'>
+              <Link href='/'>
+                <ChevronLeft color='primary' />
+              </Link>
+            </PageLink>
+          ) : (
+            <PageLink href={url(page - 1)}>
+              <Link href='/'>
+                <ChevronLeft color='primary' />
+              </Link>
+            </PageLink>
+          )}
+        </React.Fragment>
       )}
 
-      <span>{`Page ${currentPage} of ${paginationInfo.totalPages}`}</span>
+      <span>{`Page ${page} of ${count}`}</span>
 
-      {currentPage === paginationInfo.totalPages ? (
-        chevronRight
+      {page === count ? (
+        <ChevronRight color='primary' />
       ) : (
-        <PageLink href={`/${paginationInfo.baseUrl}/page/${currentPage + 1}`}>
-          <Link href='/'>{chevronRight}</Link>
+        <PageLink href={url(page + 1)}>
+          <Link href='/'>
+            <ChevronRight color='primary' />
+          </Link>
         </PageLink>
       )}
     </div>
