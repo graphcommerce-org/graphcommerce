@@ -12,6 +12,7 @@ import React from 'react'
 import BlogList from '../../components/Blog'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
+import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
 import FabMenu from '../../components/FabMenu'
 import Footer from '../../components/Footer'
 import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
@@ -26,7 +27,7 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const BlogPage = ({ menu, urlResolver, pages, footer, blogPosts, pageUrls }: Props) => {
+const BlogPage = ({ menu, urlResolver, pages, footer, blogPosts }: Props) => {
   if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
   if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const page = pages[0]
@@ -46,7 +47,7 @@ const BlogPage = ({ menu, urlResolver, pages, footer, blogPosts, pageUrls }: Pro
       />
       <BlogHeader asset={page.asset} />
       <Page {...page} />
-      <BlogList blogPosts={blogPosts} pageUrls={pageUrls} />
+      <BlogList blogPosts={blogPosts} />
       <Footer footer={footer} />
     </FullPageUi>
   )
@@ -59,8 +60,15 @@ registerRouteUi('/blog/[url]', FullPageUi)
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  const urls = ['index']
-  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
+  const responses = locales.map(async (locale) => {
+    const staticClient = apolloClient(localeToStore(locale))
+    const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
+    const { pages } = (await BlogPostPaths).data
+    return (
+      pages.map((page) => ({ params: { url: `${page?.url}`.replace('blog/', '') }, locale })) ?? []
+    )
+  })
+  const paths = (await Promise.all(responses)).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
@@ -68,15 +76,13 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const urlKey = params?.url ?? '??'
   const client = apolloClient(localeToStore(locale))
   const staticClient = apolloClient(localeToStore(locale))
-  const limit = urlKey === 'index' ? 100 : 4
-
+  const limit = 4
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const footer = staticClient.query({ query: FooterDocument })
   const blogPosts = staticClient.query({
     query: BlogListDocument,
-    variables: { currentUrl: [`blog/${urlKey}`, 'blog'], first: limit },
+    variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-
   const gcmsPage = staticClient.query({
     query: PageByUrlDocument,
     variables: { url: `blog/${urlKey}` },
