@@ -1,0 +1,13 @@
+fragment CartItems on Cart {
+  id
+  items {
+    id
+    __typename
+    ...CartItem
+    ...CartItemSimple
+    ...ConfigurableCartItem
+    ...CartItemDownloadable
+    ...CartItemVirtual
+    ...CartItemBundle
+  }
+}

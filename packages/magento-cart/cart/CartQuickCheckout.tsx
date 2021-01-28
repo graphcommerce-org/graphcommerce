@@ -1,15 +1,15 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import Money from '@reachdigital/magento-store/Money'
 import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
 import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    quickCheckoutContainer: {
+    root: {
       textAlign: 'center',
       marginTop: theme.spacings.md,
     },
@@ -47,16 +47,14 @@ const useStyles = makeStyles(
   { name: 'QuickCheckout' },
 )
 
-type QuickCheckoutProps = {
-  total?: MoneyFragment | null
-}
+type CartQuickCheckoutProps = PropsWithChildren<MoneyFragment>
 
-export default function QuickCheckout(props: QuickCheckoutProps) {
-  const { total } = props
+export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
   const classes = useStyles()
+  const { value, children, currency } = props
 
   return (
-    <div className={classes.quickCheckoutContainer}>
+    <div className={classes.root}>
       <img
         src='/icons/shopping_bag.svg'
         alt='shopping bag'
@@ -65,17 +63,21 @@ export default function QuickCheckout(props: QuickCheckoutProps) {
         height={64}
         loading='eager'
       />
-      <span className={classes.total}>Cart Total: {total && <Money {...total} />}</span>
+      <span className={classes.total}>
+        Cart Total: <Money value={value} currency={currency} />
+      </span>
       <PageLink href='/checkout'>
         <Button
           variant='pill'
           color='secondary'
           className={classes.button}
-          endIcon={<ChevronRightIcon className={classes.icon} />}
+          endIcon={<ArrowForwardIos className={classes.icon} />}
+          disabled={(value ?? 0) === 0}
         >
           Start checkout
         </Button>
       </PageLink>
+      {children}
     </div>
   )
 }
