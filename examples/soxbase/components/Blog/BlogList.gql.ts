@@ -28,7 +28,7 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'first' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          defaultValue: { kind: 'IntValue', value: '100' },
+          defaultValue: { kind: 'IntValue', value: '4' },
         },
         {
           kind: 'VariableDefinition',
@@ -54,7 +54,7 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
                     {
                       kind: 'ObjectField',
                       name: { kind: 'Name', value: 'url_starts_with' },
-                      value: { kind: 'StringValue', value: 'blog', block: false },
+                      value: { kind: 'StringValue', value: 'blog/', block: false },
                     },
                     {
                       kind: 'ObjectField',
@@ -103,36 +103,6 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
               ],
             },
           },
-          {
-            kind: 'Field',
-            alias: { kind: 'Name', value: 'pageUrls' },
-            name: { kind: 'Name', value: 'pages' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'url_starts_with' },
-                      value: { kind: 'StringValue', value: 'blog', block: false },
-                    },
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'url_not_in' },
-                      value: { kind: 'StringValue', value: 'blog', block: false },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [{ kind: 'Field', name: { kind: 'Name', value: 'url' } }],
-            },
-          },
         ],
       },
     },
@@ -150,5 +120,4 @@ export type BlogListQuery = {
       asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
     }
   >
-  pageUrls: Array<Pick<Types.Page, 'url'>>
 }
