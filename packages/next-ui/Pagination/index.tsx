@@ -50,24 +50,20 @@ export default function Pagination(props: PagePaginationProps) {
 
   return (
     <div className={classes.pagination}>
-      {page === 1 ? (
-        <ChevronLeft color='primary' />
-      ) : (
-        <React.Fragment key='pagination'>
-          {page === 2 ? (
-            <PageLink href='/blog'>
-              <Link>
-                <ChevronLeft color='primary' />
-              </Link>
-            </PageLink>
-          ) : (
-            <PageLink href={url(page - 1)}>
-              <Link>
-                <ChevronLeft color='primary' />
-              </Link>
-            </PageLink>
-          )}
-        </React.Fragment>
+      {page === 1 && <ChevronLeft color='primary' />}
+      {page === 2 && (
+        <PageLink href='/blog'>
+          <Link>
+            <ChevronLeft color='primary' />
+          </Link>
+        </PageLink>
+      )}
+      {page > 3 && (
+        <PageLink href={url(page - 1)}>
+          <Link>
+            <ChevronLeft color='primary' />
+          </Link>
+        </PageLink>
       )}
 
       <span>{`Page ${page} of ${count}`}</span>
