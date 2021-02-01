@@ -41,10 +41,8 @@ const useImageOptions = (
       case 'image/png':
       case 'image/bmp':
       case 'image/tiff':
-        setCompress({ compression: connectionType !== '4g' ? 'lossy' : 'lossless', quality })
-        break
       case 'image/gif':
-        setCompress({ compression: 'none', quality })
+        setCompress({ compression: connectionType !== '4g' ? 'lossy' : 'lossless', quality })
         break
       case 'image/svg+xml':
         setCompress({ compression: 'none', quality })
@@ -71,6 +69,15 @@ function PictureResponsiveNext({
 
   const imageOptions = useImageOptions(compression, type)
 
+  const lossyFallback = ([
+    'image/apng',
+    'image/bmp',
+    'image/png',
+    'image/tiff',
+  ] as ImageMimeTypes[]).includes(type ?? '')
+    ? 'image/jpeg'
+    : type
+
   switch (imageOptions.compression) {
     case 'none':
       srcSets[type] = src
@@ -83,7 +90,7 @@ function PictureResponsiveNext({
         )
         .join(', ')
 
-      srcSets['image/jpeg'] = widths
+      srcSets[lossyFallback] = widths
         .map(
           (width) => `${path}?w=${width}&type=jpeg&url=${src}&q=${imageOptions.quality} ${width}w`,
         )
