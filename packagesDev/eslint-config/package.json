@@ -4,6 +4,7 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
+    "@next/eslint-plugin-next": "^10.0.5",
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
     "@reachdigital/eslint-config-pwa": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",

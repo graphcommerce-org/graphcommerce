@@ -10,6 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@next/eslint-plugin-next/recommended',
     'prettier',
     'prettier/react',
     'prettier/@typescript-eslint',
@@ -27,8 +28,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', '@next/eslint-plugin-next'],
   rules: {
+    '@next/next/no-html-link-for-pages': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {
