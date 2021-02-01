@@ -1810,14 +1810,14 @@
     graphql-fields "2.0.3"
     object-hash "2.1.1"
 
-"@graphql-mesh/transform-federation@^0.4.44":
-  version "0.4.44"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-federation/-/transform-federation-0.4.44.tgz#3cb2ebcca6d996784394775b9c1e87b01dd40a35"
-  integrity sha512-vFztOw094sIecYX0xRwNAiwO0H4YblznCpme3LtZtpQoucS+tDIBUHhKhehMQt4o9sepJaKYVVBRNb6fk7QZwg==
+"@graphql-mesh/transform-federation@^0.4.45":
+  version "0.4.45"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-federation/-/transform-federation-0.4.45.tgz#ec7904a5ce5a8306c41d7491d3eab6c41403d7bc"
+  integrity sha512-/pdYjtCWpY1uHP8QUulKZcmYUN/UREqJ64vZQYTaGeXMLL24tpmIm8QEshJZSSOuwyE4xXV8C6LZDIy+Zduz7w==
   dependencies:
     "@apollo/federation" "0.21.0"
     "@graphql-mesh/types" "0.29.2"
-    "@graphql-mesh/utils" "0.8.6"
+    "@graphql-mesh/utils" "0.8.7"
     graphql-transform-federation "2.2.0"
     lodash "4.17.20"
 
@@ -1847,6 +1847,21 @@
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.8.6.tgz#104a2e68a078357917ba7173646960b8847d3d49"
   integrity sha512-hP7Uybz69JNh+287l9317Tkuw0peT4OfGUikGh6wpqrMFormNhuTDYJh0u8k6yPp4GRGiPx4DAAcxv69cf2uOA==
+  dependencies:
+    "@ardatan/string-interpolation" "1.2.11"
+    "@graphql-tools/delegate" "7.0.9"
+    "@graphql-tools/utils" "7.2.4"
+    "@graphql-typed-document-node/core" "3.1.0"
+    date-fns "2.16.1"
+    fetchache "0.0.4"
+    is-url "1.2.4"
+    js-yaml "4.0.0"
+    object-hash "2.1.1"
+
+"@graphql-mesh/utils@0.8.7":
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.8.7.tgz#7e389101c0a1904172997120884438318e1c0db4"
+  integrity sha512-j3bM6HZl07JuSdSOGpKdG+9dYqC+KtmLQxTPW0dowJ7XBEK8+rpmNSkLgHTYLbTL2gFBTDZs+N8J0FQOZeZQmA==
   dependencies:
     "@ardatan/string-interpolation" "1.2.11"
     "@graphql-tools/delegate" "7.0.9"
