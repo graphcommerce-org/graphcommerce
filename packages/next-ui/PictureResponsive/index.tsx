@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import useConnectionType from './useConnectionType'
@@ -14,7 +15,7 @@ export type ImageMimeTypes =
   | 'image/tiff'
   | 'image/webp'
 
-export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'src' | 'loading'> & {
+export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'src'> & {
   alt: string
   srcSets: Partial<Record<ImageMimeTypes, string>>
   width: number
@@ -76,7 +77,8 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-const PictureResponsive: React.FC<PictureResponsiveProps> = ({ srcSets, alt, ...imgProps }) => {
+const PictureResponsive: React.FC<PictureResponsiveProps> = (props) => {
+  const { srcSets, alt, loading = 'lazy', ...imgProps } = props
   const ref = useRef<HTMLImageElement>(null)
   const { width } = useResizeObserver({ ref })
 
@@ -97,13 +99,34 @@ const PictureResponsive: React.FC<PictureResponsiveProps> = ({ srcSets, alt, ...
     })
   }, [width, connectionType])
 
+  const types = Object.keys(srcSets)
+  const firstSet = srcSets[types[0]] as string
+
   return (
-    <picture>
-      {Object.entries(srcSets).map(([type, srcSet]) => (
-        <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
-      ))}
-      <img ref={ref} alt={alt} {...imgProps} loading='lazy' />
-    </picture>
+    <>
+      {types.length === 1 ? (
+        <img ref={ref} alt={alt} {...imgProps} srcSet={firstSet} loading={loading} />
+      ) : (
+        <picture>
+          {Object.entries(srcSets).map(([type, srcSet]) => (
+            <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
+          ))}
+          <img ref={ref} alt={alt} {...imgProps} loading={loading} />
+        </picture>
+      )}
+      {loading === 'eager' && (
+        <Head>
+          <link
+            key={`PictureResponsive-${firstSet}`}
+            rel='preload'
+            as='image'
+            // @ts-expect-error: imagesrcset is not yet in the link element type
+            imagesrcset={firstSet}
+            imagesizes={`${size}px`}
+          />
+        </Head>
+      )}
+    </>
   )
 }
 
