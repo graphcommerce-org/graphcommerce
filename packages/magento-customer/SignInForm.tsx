@@ -13,7 +13,7 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
-import { SignInDocument } from './SignIn.gql'
+import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
@@ -46,16 +46,19 @@ const useStyles = makeStyles(
   { name: 'SignIn' },
 )
 
-type SignInFormProps = PropsWithChildren<{ email: string }>
+type SignInFormProps = PropsWithChildren<{
+  onBeforeSubmit: (variables: Omit<SignInMutationVariables, 'email'>) => SignInMutationVariables
+}>
 
 export default function SignInForm(props: SignInFormProps) {
-  const { children, email } = props
+  const { children, onBeforeSubmit } = props
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const mutationForm = useMutationForm(SignInDocument, {
     onComplete: onCompleteSignInUp, // TODO: correct callback without cart dependency
-    defaultValues: { email },
+    onBeforeSubmit,
   })
+
   const { register, errors, handleSubmit, required, formState } = mutationForm
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 

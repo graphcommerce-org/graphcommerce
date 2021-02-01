@@ -1,7 +1,6 @@
-import { useQuery } from '@apollo/client'
+import { useLazyQuery, useQuery } from '@apollo/client'
 import {
   Button,
-  ButtonGroup,
   CircularProgress,
   Container,
   debounce,
@@ -26,11 +25,13 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import usePageTransition from '@reachdigital/next-ui/PageTransition/usePageTransition'
 import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import apolloClient from '../../lib/apolloClient'
 
@@ -94,27 +95,32 @@ function AccountSignInPage() {
   })
 
   const isValidEmail = !!emailPattern.exec(watch('email'))
-  const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {
-    skip: !isValidEmail,
-    variables: { email: watch('email') },
-    fetchPolicy: 'no-cache', // TODO: fetchPolicy: 'cache-first',
-  })
+  const [execute, { data: emailData, loading: emailLoading }] = useLazyQuery(
+    IsEmailAvailableDocument,
+    {
+      variables: { email: watch('email') },
+      fetchPolicy: 'no-cache', // TODO: fetchPolicy: 'cache-first',
+    },
+  )
 
   useEffect(() => {
     // Solves positioning issues with password managers
     if (isValidEmail) window.dispatchEvent(new Event('resize'))
   }, [isValidEmail])
 
+  const title = 'Sign in'
+  // const { prevPage } = usePageTransition({ title })
+
   if (!signedOut) return null
 
   const isLoading = emailLoading
-  const hasAccount = emailQuery?.isEmailAvailable?.is_email_available === false
+  const hasAccount = emailData?.isEmailAvailable?.is_email_available === false
   const endAdornment: React.ReactNode = isLoading ? <CircularProgress /> : null
 
   const isCustomer = tokenQuery?.customerToken
   const canSignIn =
     Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid) ||
-    emailQuery?.isEmailAvailable?.is_email_available === false
+    emailData?.isEmailAvailable?.is_email_available === false
 
   // const shouldSignIn = !tokenQuery?.customerToken?.valid
   const shouldSignIn = hasAccount
@@ -124,23 +130,12 @@ function AccountSignInPage() {
     setUserContinued(false)
   }
 
+  console.log(formState.isValid, formState.isSubmitted, formState.isSubmitSuccessful)
+
   return (
-    <OverlayUi
-      title='Sign In'
-      headerForward={
-        <Button
-          className={classes.closeBtn}
-          onClick={() => {
-            // TODO: route to previous page
-          }}
-        >
-          <Close />
-        </Button>
-      }
-      variant='center'
-    >
+    <OverlayUi title={title} variant='center'>
       <PageMeta
-        title='Sign in'
+        title={title}
         metaDescription='Sign in to your accoutn'
         metaRobots='NOINDEX, FOLLOW'
       />
@@ -178,13 +173,13 @@ function AccountSignInPage() {
           </div>
         )}
 
-        {/* TODO: verplaatsen naar <IsEmailAvailableForm /> */}
         <form
           noValidate
-          onChange={() => {
+          onSubmit={debounce(async () => {
             setUserContinued(false)
-            debounce(handleSubmit, 500)
-          }}
+            if (!formState.isValid) return
+            await handleSubmit((variables) => execute({ variables }))()
+          }, 500)}
           className={clsx(formClasses.form, {
             [classes.isEmailAvailableForm]: !shouldSignIn && userContinued,
           })}
@@ -194,39 +189,31 @@ function AccountSignInPage() {
               key='email'
               variant='outlined'
               type='text'
-              error={!!errors.email}
+              error={formState.isSubmitted && !!errors.email}
               id='email'
               name='email'
               label='E-mail'
               required
               inputRef={register({
                 required: true,
-                pattern: {
-                  value: emailPattern,
-                  message: 'Invalid email address',
-                },
+                pattern: { value: emailPattern, message: 'Invalid email address' },
               })}
               autoComplete='off'
               InputProps={{ endAdornment }}
               helperText={formState.isSubmitted && errors.email?.message}
             />
 
-            <AnimatedRow
-              key='submit'
-              className={clsx({
-                [classes.hide]: signInOrUpReady,
-              })}
-            >
+            <AnimatedRow key='submit' className={clsx({ [classes.hide]: signInOrUpReady })}>
               <FormControl className={classes.submitBtn}>
                 <Button
+                  type='submit'
                   color='primary'
                   variant='contained'
                   size='large'
                   className={formClasses.submitButton}
-                  disabled={formState.isSubmitting}
-                  onClick={() => {
-                    if (isValidEmail && !isLoading) setUserContinued(true)
-                  }}
+                  // onClick={() => {
+                  // if (isValidEmail && !isLoading) setUserContinued(true)
+                  // }}
                 >
                   Continue
                 </Button>
@@ -235,7 +222,9 @@ function AccountSignInPage() {
           </AnimatePresence>
         </form>
 
-        {signInOrUpReady && shouldSignIn && <SignInForm email={watch('email')} />}
+        {signInOrUpReady && shouldSignIn && (
+          <SignInForm onBeforeSubmit={(variables) => variables} />
+        )}
         {signInOrUpReady && !shouldSignIn && <SignUpForm email={watch('email')} />}
       </Container>
     </OverlayUi>
