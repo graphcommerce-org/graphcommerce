@@ -63,7 +63,7 @@
     "sharp": "^0.27.0",
     "ts-node": "^9.1.1",
     "type-fest": "^0.20.2",
-    "vercel": "^21.2.0"
+    "vercel": "^21.2.2"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
