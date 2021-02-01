@@ -33,7 +33,7 @@
     "@reachdigital/magento-graphql": "0.1.0",
     "@reachdigital/magento-store": "0.1.0",
     "@reachdigital/next-ui": "0.1.0",
-    "braintree-web": "^3.71.0",
+    "braintree-web": "^3.71.1",
     "clsx": "^1.1.1",
     "framer-motion": "^3.1.1",
     "next": "^10.0.5",
