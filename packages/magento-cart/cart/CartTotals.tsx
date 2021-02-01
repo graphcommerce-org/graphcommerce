@@ -9,31 +9,36 @@ import { CartTotalsFragment } from './CartTotals.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     costsContainer: {
+      borderRadius: 4,
       background: '#FFFADD',
       paddingBottom: theme.spacings.xs,
-      paddingTop: `calc(${theme.spacings.xs} - ${theme.spacings.xxs})`,
+      paddingTop: `calc(${theme.spacings.xs} - 6px)`,
       paddingLeft: theme.spacings.sm,
       paddingRight: theme.spacings.sm,
-      marginTop: theme.spacings.lg,
+      marginTop: theme.spacings.md,
     },
     costsDivider: {
-      marginTop: theme.spacings.xxs,
+      marginTop: theme.spacings.xs,
+      marginBottom: `calc(${theme.spacings.xs} - 6px)`,
     },
     costsRow: {
       display: 'flex',
       justifyContent: 'space-between',
       ...theme.typography.body1,
       '& > div': {
-        paddingTop: theme.spacings.xxs,
+        paddingTop: 6,
       },
     },
     costsGrandTotal: {
       fontWeight: theme.typography.fontWeightBold,
       color: theme.palette.primary.main,
     },
+    costsDiscount: {
+      fontWeight: 600,
+    },
     costsTax: {
       ...theme.typography.body2,
-      fontWeight: 500,
+      fontWeight: 600,
       color: theme.palette.primary.mutedText,
       paddingTop: 0,
       '& > div': {
@@ -64,7 +69,7 @@ export default function CartTotals(props: CartTotalsFragment) {
         )}
 
         {prices?.discounts?.map((discount) => (
-          <AnimatedRow className={classes.costsRow} key='discount'>
+          <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
             <div>{discount?.label}</div>
             <div>
               {discount?.amount && (
@@ -94,7 +99,7 @@ export default function CartTotals(props: CartTotalsFragment) {
             className={clsx(classes.costsRow, classes.costsGrandTotal)}
             key='grand_total'
           >
-            <div>Total (incl. VAT)</div>
+            <div>Total</div>
             <div>
               <Money {...prices.grand_total} />
             </div>
