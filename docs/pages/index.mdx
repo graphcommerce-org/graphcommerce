@@ -6,24 +6,37 @@ A fully featured next gen commerce platform, with support for Magento 2 and Grap
 
 ## Development goals
 
-- Be fast:
-- Be boring: Less magic is more important than absolutely minimal code
-- Be beautiful: Deliverying a beautiful user experience makes visitors customers
-- Be pleasant: Developing should be straightforward and one mindset to build everything
-- Be strict: Code should validate, builds should fail when there are errors
+- **boring**: Less magic is more important than absolutely minimal code
+- **pleasant**: Developing should be straightforward and should follow a singluar mindset
+- **strict**: Types, linters and formatters over developer knowledge
+- **polymorphic**: Every backend service should be a first class citizen
+- **composable**: Support customizations to backends without sacraficing maintainability
+- **automation**: Every step that can be automated, should
 
-Secondary goals:
+### Library goals
 
-- Be PWA: Checking all the lighthouse markers
+- **chosen**: Libraries should be chosen carefully to solve a general issue
+- **small**: Libraries should be as small as possible while offering maximum value
+- **popular**: Libraries should be popular and on the rise
+- **exciting**: Libraries should be exciting to work with
 
-Non Goals:
+## Website goals
 
-- It's better to use an external library and replace it sometime in the future when it becomes
-  obsolete then to maintain lesser code yourself indefintely.
+- **fast**: Performance is more important than every possible feature
+- **beautiful**: Deliverying a beautiful user experience makes visitors customers
+- **playful**: Animations should be smooth and easy and should guide users in their interactions
+- **mobile**: Everything should work exceptionally on mobile
 
-## Soxbase commerce architecture
+## Magento goals
 
-One of the goals while making Soxbase commerce is making everyting as straightforward as possible.
+- **compatible**: Always be compatible with the default Magento Open Source installation
+- **complete**: Support all available GraphQL API's available
+
+## Libraries and Technologies
+
+Soxbase commerce consists of very carefully selected libraries to compose it's architecture.
+Maintaining code is hard and therefor selecting third party libraries that do the heavy lifting is
+vital.
 
 <div className='grid grid-cols-1 gap-4'>
   <div className='shadow-lg p-6'>
@@ -104,9 +117,8 @@ One of the goals while making Soxbase commerce is making everyting as straightfo
   </div>
 </div>
 
-Development packages
+### Architecture
 
-- browserlist
-- eslint
-- prettier
-- typescript
+Development
+
+BUilding
