@@ -52,11 +52,11 @@
   },
   "dependencies": {
     "patch-package": "^6.2.2",
-    "pm2": "^4.5.1",
+    "pm2": "^4.5.4",
     "postinstall-postinstall": "^2.1.0",
     "ts-node": "^9.1.1",
     "type-fest": "^0.20.2",
-    "vercel": "^21.2.0"
+    "vercel": "^21.2.2"
   },
   "devDependencies": {
     "@babel/compat-data": "^7.12.7",
