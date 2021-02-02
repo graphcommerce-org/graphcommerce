@@ -2,15 +2,15 @@
 
 Stack:
 
-- [Next.js](https://nextjs.org/) + [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
 - [GraphQL](https://graphql.org/) +
   [GraphQL Code Generator](https://graphql-code-generator.com/) +
   [Apollo](https://www.apollographql.com/docs/react/)
 - [GraphQL Mesh](https://graphql-mesh.com/)
 - [Material UI](https://material-ui.com/)
 - [Framer motion](https://www.framer.com/motion/)
-- [react-schemaorg](https://github.com/google/react-schemaorg) +
-  [schema-dts](https://github.com/google/schema-dts)
 
 Backends:
 
