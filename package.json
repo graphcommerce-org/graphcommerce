@@ -20,7 +20,8 @@
     "dev:log": "yarn pm2 logs",
     "dev:near-operation": "yarn pm2 start -s --name near-operation \"yarn workspace @reachdigital/graphql-codegen-near-operation-file dev\" ",
     "dev:relay-optimizer": "yarn pm2 start -s --name relay-optimizer \"yarn workspace @reachdigital/graphql-codegen-relay-optimizer-plugin dev\" ",
-    "dev": "yarn stop; yarn dev:api && yarn dev:next && yarn dev:codegen && yarn dev:near-operation && yarn dev:relay-optimizer && yarn dev:log",
+    "dev:docs": "yarn pm2 start -s --name soxbase \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/pwa-docs dev\"",
+    "dev": "yarn stop; yarn dev:api && yarn dev:next && yarn dev:codegen && yarn dev:docs && yarn dev:near-operation && yarn dev:relay-optimizer && yarn dev:log",
     "postdev": "yarn stop",
     "codegen-run": "NODE_TLS_REJECT_UNAUTHORIZED=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
     "codegen-eslint": "eslint --fix --ignore-path .gitignore '**/*.gql.ts'",
@@ -30,6 +31,7 @@
     "build:soxbase": "yarn workspace @reachdigital/soxbase build",
     "build:lighthouse": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only lib/lighthouse.ts",
     "build": "yarn stop; yarn build:soxbase-api && yarn build:soxbase; yarn stop",
+    "build:analyze": "yarn stop; yarn build:soxbase-api && ANALYZE=true yarn build:soxbase; yarn stop",
     "stop": "yarn pm2 delete all 2> /dev/null",
     "start:soxbase-api": "yarn pm2 start -s --name soxbase-api \"NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase-api start-local\" && sleep 2",
     "start:soxbase": "NODE_TLS_REJECT_UNAUTHORIZED=0 yarn workspace @reachdigital/soxbase start",
@@ -52,11 +54,11 @@
   },
   "dependencies": {
     "patch-package": "^6.2.2",
-    "pm2": "^4.5.1",
+    "pm2": "^4.5.4",
     "postinstall-postinstall": "^2.1.0",
     "ts-node": "^9.1.1",
     "type-fest": "^0.20.2",
-    "vercel": "^21.2.0"
+    "vercel": "^21.2.2"
   },
   "devDependencies": {
     "@babel/compat-data": "^7.12.7",
@@ -93,7 +95,7 @@
     "eslint": "^7.18.0",
     "husky": "^4.3.8",
     "jest": "^26.6.3",
-    "next": "10.0.5",
+    "next": "10.0.6",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react-test-renderer": "^17.0.1",
