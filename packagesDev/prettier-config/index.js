@@ -8,7 +8,7 @@ module.exports = {
   proseWrap: 'always',
   overrides: [
     {
-      files: '*.md',
+      files: ['*.md', '*.mdx'],
       options: {
         printWidth: 80,
       },
