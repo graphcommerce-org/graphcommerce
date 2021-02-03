@@ -1,16 +1,15 @@
-// theme.config.js
 export default {
-  github: 'https://github.com/ho-nl/m2-pwa', // link of the project repo
-  siteGithub: 'https://github.com/ho-nl/m2-pwa', // link of the docs repo path
+  github: 'https://github.com/ho-nl/m2-pwa',
+  siteGithub: 'https://github.com/ho-nl/m2-pwa',
   titleSuffix: ' – Soxbase Commerce',
   nextLinks: true,
   prevLinks: true,
   search: true,
-  customSearch: null, // <- customizable, you can use algolia for example
-  darkMode: true,
+  customSearch: null,
+  darkMode: 'class',
   footer: true,
   footerText: 'Soxbase Commerce © Reach Digital 2021',
-  footerEditOnGitHubLink: false, // will link to the docs repo
+  footerEditOnGitHubLink: true,
   logo: (
     <>
       <span className='mr-2 font-extrabold hidden md:inline'>Soxbase Commerce</span>

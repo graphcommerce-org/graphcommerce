@@ -1,6 +1,5 @@
-import 'tailwindcss/tailwind.css'
-import 'nextra-theme-docs/style.css'
+import '../styles/globals.css'
 
-export default function Nextra({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }

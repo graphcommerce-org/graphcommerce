@@ -1,4 +1,5 @@
 {
   "index": "Introduction",
-  "docs": "Docs"
+  "getting-started": "Getting Started",
+  "devenv": "Development environment"
 }
