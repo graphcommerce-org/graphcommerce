@@ -1,15 +1,16 @@
 import { useQuery } from '@apollo/client'
-import { cloneDeep } from '@apollo/client/utilities'
-import { TextField } from '@material-ui/core'
+import { FormControl, FormHelperText, TextField } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import Button from '@reachdigital/next-ui/Button'
-import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import useMutationFormPersist from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
-import { houseNumber, phonePattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import useAutoSubmit from '@reachdigital/next-ui/Form/useAutoSubmit'
+import { Controller } from '@reachdigital/next-ui/Form/useMutationForm'
+import useMutationFormPersist from '@reachdigital/next-ui/Form/useMutationFormPersist'
+import { houseNumber, phonePattern } from '@reachdigital/next-ui/Form/validationPatterns'
+import { AnimatePresence } from 'framer-motion'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
@@ -27,62 +28,44 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
+  const currentCountryCode = currentAddress?.country.code ?? 'NLD'
 
-  const mutationForm = useMutationForm(ShippingAddressFormDocument, {
+  const form = useMutationFormPersist(ShippingAddressFormDocument, {
     defaultValues: {
       cartId: cartQuery?.cart?.id,
       // todo(paales): change to something more sustainable
-      address: {
-        firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
-        lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
-        // telephone: currentAddress?.telephone,
-        city: currentAddress?.city,
-        company: currentAddress?.company,
-        // postcode: currentAddress?.postcode,
-        street: currentAddress?.street,
-        region: currentAddress?.region?.label,
-        region_id: currentAddress?.region?.region_id,
-        // todo: replace by the default shipping country of the store
-        // todo: implement geo ip location
-        country_code: currentAddress?.country.code ?? 'NL',
-        save_in_address_book: true,
-      },
+      firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
+      lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
+      // telephone: currentAddress?.telephone,
+      city: currentAddress?.city,
+      company: currentAddress?.company,
+      postcode: currentAddress?.postcode ?? '',
+      street: currentAddress?.street?.[0] ?? undefined,
+      houseNumber: currentAddress?.street?.[1] ?? undefined,
+      addition: currentAddress?.street?.[2] ?? undefined,
+      region: currentAddress?.region?.label,
+      regionId: currentAddress?.region?.region_id,
+      countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip
+      customerNote: '', // todo(paales): Implement notes field
+      saveInAddressBook: true, // todo(paales): Implement saveInAddressBook checkbox
     },
-    onBeforeSubmit: (variables) => {
-      variables.address.telephone ||= '000 0000 000'
-      return variables
-    },
-    mode: 'onBlur',
-    reValidateMode: 'onBlur',
+    mode: 'onChange',
+    reValidateMode: 'onChange',
   })
-  const { register, errors, handleSubmit, control, formState, watch } = mutationForm
+  const { register, errors, handleSubmit, control, formState, required, watch } = form
 
-  // Als isValid en isDirty en !isSubmitting, dan het formulier submitten
-
-  useEffect(() => {
-    if (!formState.isValid || !formState.isDirty || formState.isSubmitting) return
-
-    console.log('joejoeleoe')
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    // handleSubmit()
-
-    console.log('nu lekker submitten')
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    // handleSubmit()
-    // Submitten
-    // isDirty resetten als er nieuwe values zijn
-    // Weer op isDirty zetten als er in de tussentijd toch dingen zijn veranderd??
-  }, [formState.isValid, formState.isDirty, handleSubmit, formState.isSubmitting])
+  const submitHandler = handleSubmit(() => {})
+  const autoSubmitting = useAutoSubmit({ form, submitHandler })
+  const visibleSubmitting = formState.isSubmitting && !autoSubmitting
 
   // todo: Move to a validateAndSubmit method or something?
   useEffect(() => {
     doSubmit.current = async () =>
-      !formState.isDirty ? Promise.resolve(true) : handleSubmit().then(() => true)
-  }, [doSubmit, formState.isDirty, handleSubmit])
+      !formState.isDirty ? Promise.resolve(true) : submitHandler().then(() => true)
+  }, [doSubmit, formState.isDirty, submitHandler])
 
-  const country = watch('address.country_code')
-  const regionId = watch('address.region_id')
+  const country = watch('countryCode') ?? currentCountryCode
+  const regionId = watch('regionId')
   const countryList = useMemo(
     () =>
       countries
@@ -100,255 +83,209 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   }, [country, countryList])
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form} ref={ref}>
-      <div className={classes.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.firstname}
-          name='address.firstname'
-          label='First Name'
-          required
-          inputRef={register({ required: true })}
-          helperText={formState.isSubmitted && errors.address?.firstname?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.firstname && watch('address.firstname') ? (
+    <form onSubmit={submitHandler} noValidate className={classes.form} ref={ref}>
+      <AnimatePresence initial={false}>
+        <div className={classes.formRow} key='firstname'>
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.firstname}
+            name='firstname'
+            label='First Name'
+            required={required.firstname}
+            inputRef={register({ required: required.firstname })}
+            helperText={formState.isSubmitted && errors.firstname?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.firstname && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.lastname}
+            name='lastname'
+            label='Last Name'
+            required={required.lastname}
+            inputRef={register({ required: required.lastname })}
+            helperText={formState.isSubmitted && errors.lastname?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.lastname && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+        </div>
+        <div className={classes.formRow} key='street'>
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.street}
+            name='street'
+            label='Street'
+            required={required.street}
+            inputRef={register({ required: required.street })}
+            helperText={formState.isSubmitted && errors.street?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.street && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.houseNumber}
+            name='houseNumber'
+            label='Housenumber'
+            required={required.houseNumber}
+            inputRef={register({
+              required: required.houseNumber,
+              pattern: { value: houseNumber, message: 'Please provide a valid house number' },
+            })}
+            helperText={formState.isSubmitted && errors.houseNumber?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.houseNumber && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.addition}
+            required={required.addition}
+            name='addition'
+            label='Addition'
+            inputRef={register({ required: required.addition })}
+            helperText={formState.isSubmitted && errors.addition?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.addition && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+        </div>
+        <div className={classes.formRow} key='postcode-city'>
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.postcode}
+            required={required.postcode}
+            name='postcode'
+            label='Postcode'
+            inputRef={register({ required: required.postcode })}
+            helperText={formState.isSubmitted && errors.postcode?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.postcode && !!watch('postcode') && (
                 <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
               ),
-          }}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.lastname}
-          name='address.lastname'
-          label='Last Name'
-          required
-          inputRef={register({ required: true })}
-          helperText={formState.isSubmitted && errors.address?.lastname?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.lastname && watch('address.lastname') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-      </div>
-      <div className={classes.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.street?.[0]}
-          name='address.street[0]'
-          label='Street'
-          required
-          inputRef={register({ required: true })}
-          helperText={formState.isSubmitted && errors.address?.street?.[0]?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.street?.[0] && watch('address.street[0]') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.street?.[1]}
-          name='address.street[1]'
-          label='Housenumber'
-          required
-          inputRef={register({
-            required: true,
-            pattern: { value: houseNumber, message: 'Please provide a valid house number' },
-          })}
-          helperText={formState.isSubmitted && errors.address?.street?.[1]?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.street?.[1] && watch('address.street[1]') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.street?.[2]}
-          name='address.street[2]'
-          label='Addition'
-          inputRef={register({ required: false })}
-          helperText={formState.isSubmitted && errors.address?.street?.[2]?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.street?.[2] && watch('address.street[2]') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-      </div>
-      <div className={classes.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.postcode}
-          name='address.postcode'
-          label='Postcode'
-          required
-          inputRef={register({ required: true })}
-          helperText={formState.isSubmitted && errors.address?.postcode?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.postcode && watch('address.postcode') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.city}
-          name='address.city'
-          label='City'
-          required
-          inputRef={register({ required: true })}
-          helperText={formState.isSubmitted && errors.address?.city?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.city && watch('address.city') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-      </div>
-      <div className={classes.formRow}>
-        <Controller
-          defaultValue={country ?? ''}
-          control={control}
-          name='address.country_code'
-          rules={{ required: true }}
-          render={({ onChange, name, value, onBlur }) => (
-            // todo: implement default selected country?
-            <Autocomplete
-              defaultValue={null}
-              value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
-              options={countryList}
-              getOptionLabel={(option) =>
-                `${option?.full_name_locale} (${option?.three_letter_abbreviation})`
-              }
-              onChange={(e, input) => {
-                onChange(input?.two_letter_abbreviation)
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant='outlined'
-                  error={!!errors.address?.country_code}
-                  name={name}
-                  label='Country'
-                  required
-                  helperText={errors.address?.country_code?.message}
-                  disabled={formState.isSubmitting}
-                  onBlur={onBlur}
-                />
-              )}
-            />
-          )}
-          InputProps={{
-            endAdornment: !errors.address?.country_code && <CheckIcon color='primary' />,
-          }}
-        />
-        {regionList.length > 0 && (
+            }}
+          />
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.city}
+            required={required.city}
+            name='city'
+            label='City'
+            inputRef={register({ required: required.city })}
+            helperText={formState.isSubmitted && errors.city?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.city && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+        </div>
+        <div className={classes.formRow} key='countryRegion'>
           <Controller
-            defaultValue={regionId ?? ''}
+            defaultValue={country ?? ''}
             control={control}
-            name='address.region_id'
-            rules={{ required: true }}
+            name='countryCode'
+            rules={{ required: required.countryCode }}
             render={({ onChange, name, value, onBlur }) => (
-              // todo: implement default selected country?
               <Autocomplete
-                defaultValue={null}
-                value={regionList?.find((c) => c?.id === value)}
-                options={regionList}
-                getOptionLabel={(option) => `${option?.name}`}
-                onChange={(e, input) => {
-                  onChange(input?.id)
-                }}
+                value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
+                options={countryList}
+                getOptionLabel={(option) => `${option?.full_name_locale}`}
+                onChange={(_, input) => onChange(input?.two_letter_abbreviation)}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     variant='outlined'
-                    error={!!errors.address?.region_id}
+                    error={!!errors.countryCode}
                     name={name}
-                    label='Region'
-                    required
-                    helperText={errors.address?.region_id?.message}
-                    disabled={formState.isSubmitting}
+                    label='Country'
+                    required={required.countryCode}
+                    helperText={errors.countryCode?.message}
+                    disabled={visibleSubmitting}
                     onBlur={onBlur}
-                    InputProps={{
-                      endAdornment:
-                        !errors.address?.region_id && watch('address.region_id') ? (
-                          <CheckIcon className={classes.checkmark} />
-                        ) : (
-                          <></>
-                        ),
-                    }}
                   />
                 )}
               />
             )}
+            InputProps={{
+              endAdornment: !errors.countryCode && <CheckIcon color='primary' />,
+            }}
           />
+          {regionList.length > 0 && (
+            <Controller
+              defaultValue={regionId ?? ''}
+              control={control}
+              name='regionId'
+              rules={{ required: true }}
+              render={({ onChange, name, value, onBlur }) => (
+                <Autocomplete
+                  value={regionList?.find((c) => c?.id === value)}
+                  options={regionList}
+                  getOptionLabel={(option) => `${option?.name}`}
+                  onChange={(_, input) => onChange(input?.id)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant='outlined'
+                      error={!!errors.regionId}
+                      name={name}
+                      label='Region'
+                      required={required.regionId}
+                      helperText={errors.regionId?.message}
+                      disabled={visibleSubmitting}
+                      onBlur={onBlur}
+                    />
+                  )}
+                />
+              )}
+            />
+          )}
+        </div>
+
+        <div className={classes.formRow} key='telephone'>
+          <TextField
+            variant='outlined'
+            type='text'
+            error={!!errors.telephone}
+            required={required.telephone}
+            name='telephone'
+            label='Telephone'
+            inputRef={register({
+              required: required.telephone,
+              pattern: { value: phonePattern, message: 'Invalid phone number' },
+            })}
+            helperText={formState.isSubmitted && errors.telephone?.message}
+            disabled={visibleSubmitting}
+            InputProps={{
+              endAdornment: !errors.telephone && <CheckIcon className={classes.checkmark} />,
+            }}
+          />
+        </div>
+
+        {errors.submission?.message && (
+          <AnimatedRow key='submissionError'>
+            <FormControl>
+              <FormHelperText error>{errors.submission?.message}</FormHelperText>
+            </FormControl>
+          </AnimatedRow>
         )}
-      </div>
-      <div className={classes.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.address?.telephone}
-          name='address.telephone'
-          label='Telephone'
-          required
-          inputRef={register({
-            // required: true,
-            pattern: { value: phonePattern, message: 'Invalid phone number' },
-          })}
-          helperText={formState.isSubmitted && errors.address?.telephone?.message}
-          disabled={formState.isSubmitting}
-          InputProps={{
-            endAdornment:
-              !errors.address?.telephone && watch('address.telephone') ? (
-                <CheckIcon className={classes.checkmark} />
-              ) : (
-                <></>
-              ),
-          }}
-        />
-      </div>
-      <Button type='submit' disabled={formState.isSubmitting} variant='pill' disableElevation>
-        Save shipping address
-      </Button>
-      {errors.submission?.message}
+
+        <button type='submit'>trigger</button>
+      </AnimatePresence>
     </form>
   )
 }

@@ -7,8 +7,8 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import React from 'react'
 import {
   ForgotPasswordMutation,
@@ -36,6 +36,7 @@ export default function ForgotPasswordForm() {
   >(ForgotPasswordDocument)
 
   const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
     return (
@@ -46,7 +47,7 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='text'

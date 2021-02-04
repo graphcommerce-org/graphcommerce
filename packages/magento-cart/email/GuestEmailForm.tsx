@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, CircularProgress, debounce } from '@material-ui/core'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -46,7 +46,7 @@ export default function GuestEmailForm({
       email: cartQuery?.cart?.email ?? '',
     },
   })
-  const { register, errors, handleSubmit, required, watch, formState, Field } = mutationForm
+  const { register, errors, handleSubmit, required, watch, formState } = mutationForm
 
   const isValidEmail = !!emailPattern.exec(watch('email'))
   const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {
@@ -72,7 +72,7 @@ export default function GuestEmailForm({
   return (
     <form
       noValidate
-      {...(canSubmit && { onChange: debounce(handleSubmit, 500) })}
+      {...(canSubmit && { onChange: debounce(() => handleSubmit(() => {})(), 500) })}
       className={classes.form}
     >
       <TextField

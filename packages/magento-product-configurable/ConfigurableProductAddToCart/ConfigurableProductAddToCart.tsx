@@ -13,7 +13,7 @@ import {
   FieldErrors,
   UnpackNestedValue,
   useMutationForm,
-} from '@reachdigital/next-ui/useMutationForm'
+} from '@reachdigital/next-ui/Form/useMutationForm'
 import React, { useRef } from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
@@ -42,6 +42,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   })
 
   const { handleSubmit, errors, formState, register, required, control } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
@@ -59,13 +60,13 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={submitHandler} noValidate>
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
         control={control}
         rules={{ required: required.selectedOptions }}
-        errors={errors.selectedOptions as FieldErrors}
+        errors={errors.selectedOptions}
       />
 
       <TextInputNumber

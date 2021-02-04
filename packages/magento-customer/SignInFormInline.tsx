@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
@@ -30,13 +30,14 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
     onComplete: onCompleteSignInUp,
   })
   const { register, errors, handleSubmit, required, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
 
   if (validToken) return <Alert severity='info'>Already logged in</Alert>
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'

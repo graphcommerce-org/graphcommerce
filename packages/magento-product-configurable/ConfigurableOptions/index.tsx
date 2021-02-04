@@ -7,7 +7,7 @@ import {
   FieldError,
   FieldErrors,
   UseControllerOptions,
-} from '@reachdigital/next-ui/useMutationForm'
+} from '@reachdigital/next-ui/Form/useMutationForm'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer } from '../Swatches'

@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import { Controller, useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import AvailableShippingMethod from './AvailableShippingMethod'
@@ -37,26 +37,18 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const {
-    errors,
-    handleSubmit,
-    Field,
-    control,
-    setValue,
-    register,
-    formState,
-    required,
-  } = mutationForm
+  const { errors, handleSubmit, control, setValue, register, formState, required } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   // todo: Move this to a validateAndSubmit method or something?
   useEffect(() => {
-    doSubmit.current = async () => handleSubmit().then(() => true)
-  }, [doSubmit, formState.isValid, handleSubmit])
+    doSubmit.current = async () => submitHandler().then(() => true)
+  }, [doSubmit, formState.isValid, submitHandler])
 
   if (!currentAddress) return null
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <input
         type='hidden'
         name='carrier'
@@ -86,7 +78,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
 
                   // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
                   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  handleSubmit()
+                  submitHandler()
                 }}
                 onBlur={onBlur}
                 value={value}

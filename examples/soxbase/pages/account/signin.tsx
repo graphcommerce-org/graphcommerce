@@ -25,7 +25,7 @@ import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -138,7 +138,7 @@ function AccountSignInPage() {
           noValidate
           {...(isValidEmail && {
             onChange: () => {
-              debounce(handleSubmit, 500)
+              debounce(() => handleSubmit(() => {})(), 500)
             },
           })}
           className={formClasses.form}

@@ -1,6 +1,6 @@
 import { Fab } from '@material-ui/core'
 import Icon from '@material-ui/icons/Close'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
 import {
   RemoveItemFromCartMutationVariables,
   RemoveItemFromCartDocument,
@@ -15,9 +15,10 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
     defaultValues: { cartId, cartItemId },
   })
   const { handleSubmit, errors, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   return (
-    <form noValidate onSubmit={handleSubmit} {...formProps}>
+    <form noValidate onSubmit={submitHandler} {...formProps}>
       <Fab aria-label='Remove Product' size='small' type='submit' disabled={formState.isSubmitting}>
         <Icon fontSize='small' />
       </Fab>

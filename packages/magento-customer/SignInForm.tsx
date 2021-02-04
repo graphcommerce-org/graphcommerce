@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
@@ -58,10 +58,12 @@ export default function SignInForm(props: SignInFormProps) {
     defaultValues: { email },
   })
   const { register, errors, handleSubmit, required, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
+
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       {requireAuth && (
         <Alert severity='error' variant='standard'>
           Your session has expired, please reauthenticate

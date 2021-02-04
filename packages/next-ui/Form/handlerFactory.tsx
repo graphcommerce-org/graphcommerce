@@ -17,6 +17,7 @@ import {
   OperationTypeNode,
 } from 'graphql'
 import { useMemo } from 'react'
+import { FieldValues } from 'react-hook-form'
 import { LiteralUnion } from 'type-fest'
 import type { ObjectToPath } from './ObjectToPath'
 
@@ -35,7 +36,7 @@ function isWithValueNode(value: ValueNode | WithValueNode): value is WithValueNo
   return (value as WithValueNode).value !== undefined
 }
 
-type OptionalKeys<T> = { [k in keyof T]-?: undefined extends T[k] ? never : k }[keyof T]
+export type OptionalKeys<T> = { [k in keyof T]-?: undefined extends T[k] ? never : k }[keyof T]
 
 type IsRequired<V> = {
   [k in keyof V]-?: undefined extends V[k] ? false : true
@@ -70,13 +71,26 @@ function variableType<T extends TypeNode>(type: T): FieldTypes {
   return (type as NamedTypeNode).name.value as keyof Scalars
 }
 
-export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) {
+export type HandlerFactoryReturn<V extends FieldValues> = {
+  type: OperationTypeNode | undefined
+  required: IsRequired<V>
+  defaultVariables: Partial<Pick<V, OptionalKeys<V>>>
+  validate: (variables: DeepStringify<V>) => string[]
+  encode: (
+    variables: { [k in keyof V]?: DeepStringify<V[k]> },
+    enc?: { [k in keyof V]: FieldTypes },
+  ) => V
+}
+
+export default function handlerFactory<Q, V>(
+  document: TypedDocumentNode<Q, V>,
+): HandlerFactoryReturn<V> {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>
   type Encoding = { [k in keyof V]: FieldTypes }
   type Required = IsRequired<V>
   let requiredPartial: Partial<Required> = {}
   let encodingPartial: Partial<Encoding> = {}
-  let defaults: Defaults = {}
+  let defaultVariables: Defaults = {}
   let type: OperationTypeNode | undefined
 
   document.definitions.forEach((definition) => {
@@ -91,8 +105,8 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
       encodingPartial = { ...encodingPartial, [name]: variableType(variable.type) }
 
       if (variable.defaultValue && isWithValueNode(variable.defaultValue)) {
-        defaults = {
-          ...defaults,
+        defaultVariables = {
+          ...defaultVariables,
           [name]: (variable.defaultValue.value as unknown) as Defaults[keyof Defaults],
         }
       }
@@ -107,7 +121,7 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
    */
   function validate(variables: DeepStringify<V>) {
     return Object.entries(variables)
-      .filter(([name]) => !variables[name])
+      .filter(([name]) => !(name in variables))
       .map(([name]) => name)
   }
 
@@ -134,21 +148,27 @@ export default function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>) 
     ) as V
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  const Field = <P extends {}>(
-    props: P & { Component: React.ComponentType<P>; name: ObjectToPath<V> },
-  ) => {
-    const { Component, name, ...other } = props
-    return (
-      <Component
-        required={required[name as keyof IsRequired<V>]}
-        {...((other as unknown) as P)}
-        name={name}
-      />
-    )
-  }
+  // // eslint-disable-next-line @typescript-eslint/ban-types
+  // const Field = <P extends {}>(
+  //   props: P & { Component: React.ComponentType<P>; name: ObjectToPath<V> },
+  // ) => {
+  //   const { Component, name, ...other } = props
+  //   return (
+  //     <Component
+  //       required={required[name as keyof IsRequired<V>]}
+  //       {...((other as unknown) as P)}
+  //       name={name}
+  //     />
+  //   )
+  // }
 
-  return { type, required, defaults, validate, encode, Field }
+  return {
+    type,
+    required,
+    defaultVariables,
+    validate,
+    encode,
+  }
 }
 
 export function useGqlDocumentHandler<Q, V>(document: TypedDocumentNode<Q, V>) {

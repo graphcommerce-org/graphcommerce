@@ -8,7 +8,7 @@ import {
   TextField,
 } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { Controller, useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -27,9 +27,10 @@ export default function SignUpForm(props: SignUpFormProps) {
     onComplete: onCompleteSignInUp,
   })
   const { register, errors, handleSubmit, required, watch, control, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <div className={classes.formRow}>
         <TextField
           variant='outlined'

@@ -1,6 +1,6 @@
 import { debounce } from '@material-ui/core'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
 import React, { useRef } from 'react'
 import {
   UpdateItemQuantityMutationVariables,
@@ -20,7 +20,7 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVari
   register(ref.current, { required: required.quantity })
 
   return (
-    <form noValidate onChange={debounce(handleSubmit, 600)}>
+    <form noValidate onChange={debounce(() => handleSubmit(() => {})(), 600)}>
       <TextInputNumber
         size='small'
         variant='outlined'

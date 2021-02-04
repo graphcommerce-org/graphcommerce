@@ -3,7 +3,7 @@ import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddres
 import handlerFactory from '../handlerFactory'
 
 describe('useMutationForm/nestedToFlat', () => {
-  const { required, defaults, encode, validate, Field } = handlerFactory(
+  const { required, defaultVariables: defaults, encode, validate, Field } = handlerFactory(
     TestShippingAddressFormDocument,
   )
 

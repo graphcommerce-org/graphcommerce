@@ -6,7 +6,7 @@ import {
   FormControl,
   FormHelperText,
 } from '@material-ui/core'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -32,13 +32,14 @@ export default function ChangePasswordForm() {
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument)
   const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
     return <div>Password changed!</div>
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'

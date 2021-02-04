@@ -2,15 +2,15 @@ import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import {
   DeepPartial,
   FieldError,
   UnpackNestedValue,
   useMutationForm,
-} from '@reachdigital/next-ui/useMutationForm'
+} from '@reachdigital/next-ui/Form/useMutationForm'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
+import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
 
@@ -28,6 +28,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
   const { handleSubmit, errors, formState } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
@@ -40,7 +41,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={submitHandler} noValidate>
       <Button
         type='submit'
         disabled={formState.isSubmitting}

@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { FormControl } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import { Controller } from '@reachdigital/next-ui/Form/useMutationForm'
+import { useFormPersist } from '@reachdigital/next-ui/Form/useMutationFormPersist'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller } from '@reachdigital/next-ui/useMutationForm'
-import { useFormPersist } from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { usePaymentMethodContext } from './PaymentMethodContext'
@@ -29,6 +29,7 @@ export default function PaymentMethodContext() {
   )
 
   const { control, handleSubmit, watch, register, setValue } = mutationForm
+  const submitHandler = handleSubmit(() => {})
 
   const paymentMethod = watch('paymentMethod')
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function PaymentMethodContext() {
   })
 
   return (
-    <form onSubmit={handleSubmit(() => {})} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <input type='hidden' name='code' ref={register({ required: true })} required />
       <div className={classes.formRow}>
         <FormControl>

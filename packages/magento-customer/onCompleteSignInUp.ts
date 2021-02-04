@@ -1,6 +1,6 @@
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import { MergeCartsDocument } from '@reachdigital/magento-cart/cart/MergeCarts.gql'
-import { OnCompleteFn } from '@reachdigital/next-ui/useMutationForm'
+import { OnCompleteFn } from '@reachdigital/next-ui/Form/useMutationForm'
 import { CustomerDocument } from './Customer.gql'
 import { CustomerCartDocument } from './CustomerCart.gql'
 import { SignInMutation } from './SignIn.gql'
