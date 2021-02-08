@@ -39,15 +39,12 @@ export default function useFormGqlMutation<Q, V>(
 ) {
   const { onComplete, onBeforeSubmit, ...useFormProps } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
-  const [mutate, { data, client }] = useMutation(document)
+  const [mutate, { data, client, error }] = useMutation(document)
 
   type FieldValues = V & { submission?: string }
   const useFormMethods = useForm<FieldValues>(useFormProps)
 
   const submitMutation: SubmitHandler<V> = async (formValues) => {
-    // Clear submission errors
-    useFormMethods.clearErrors('submission' as FieldName<FieldValues>)
-
     // Combine defaults with the formValues and encode
     let variables = encode({
       ...useFormProps.defaultValues,
@@ -60,22 +57,9 @@ export default function useFormGqlMutation<Q, V>(
     try {
       // Encode and submit the values
       const result = await mutate({ variables })
-
-      // Register submission errors
-      if (result.errors) {
-        useFormMethods.setError('submission' as FieldName<FieldValues>, {
-          type: 'validate',
-          message: result.errors.map((error) => error.message).join(', '),
-        })
-      }
       if (onComplete && result.data) await onComplete(result, client)
     } catch (e) {
-      if (e instanceof ApolloError) {
-        useFormMethods.setError('submission' as FieldName<FieldValues>, {
-          type: 'validate',
-          message: e.message,
-        })
-      } else throw e
+      return
     }
 
     // Reset the state of the form if it is unmodified afterwards
@@ -91,5 +75,5 @@ export default function useFormGqlMutation<Q, V>(
       await onValid(values, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, ...useFormMethods, handleSubmit, data }
+  return { ...gqlDocumentHandler, ...useFormMethods, handleSubmit, data, error }
 }

@@ -38,7 +38,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { errors, handleSubmit, control, setValue, register, formState, required } = form
+  const { errors, handleSubmit, control, setValue, register, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 
   // todo: Move this to a validateAndSubmit method or something?
@@ -104,9 +104,9 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               {errors.carrier.message}
             </FormHelperText>
           )}
-          {errors.submission && (
+          {error && (
             <FormHelperText error variant='outlined'>
-              {errors.submission?.message}
+              {error?.message}
             </FormHelperText>
           )}
         </FormControl>

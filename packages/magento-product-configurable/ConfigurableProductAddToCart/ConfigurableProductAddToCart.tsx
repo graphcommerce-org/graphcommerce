@@ -33,7 +33,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       selectedOptions: getUids((selectedOptions?.[0] as unknown) as Selected),
     }),
   })
-  const { handleSubmit, errors, formState, register, required, control } = form
+  const { handleSubmit, errors, formState, register, required, control, error } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
@@ -42,8 +42,6 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   // @todo TextInputNumber can't handle a callback ref
   const ref = useRef<HTMLInputElement>(null)
   register(ref.current, { required: required.quantity })
-
-  const submissionError = errors.submission
 
   return requireAuth ? (
     <PageLink href='/account/signin?back=1'>
@@ -86,15 +84,15 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         >
           Add to Cart
         </Button>
-        <FormHelperText error={!!errors.submission}>{errors.submission?.message}</FormHelperText>
+        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
 
       <ErrorSnackbarLoader
-        open={formState.isSubmitted && !!submissionError}
-        message={<>{submissionError?.message}</>}
+        open={formState.isSubmitted && !!error}
+        message={<>{error?.message}</>}
       />
       <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !submissionError?.message}
+        open={formState.isSubmitSuccessful && !error?.message}
         message={
           <>
             Added <em>&lsquo;Product&rsquo;</em> to cart

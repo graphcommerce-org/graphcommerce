@@ -20,14 +20,6 @@ const useFormStyles = makeStyles(
       gridTemplateColumns: `repeat(auto-fit, minmax(200px, 1fr))`,
       gap: `calc(${theme.spacings.xxs} * 2)`,
     },
-    actions: {
-      display: 'grid',
-      gridTemplateColumns: 'auto auto',
-      paddingBottom: theme.spacings.xs,
-      '& :last-child': {
-        textAlign: 'right',
-      },
-    },
     submitButton: {
       // width: '50%',
       // maxWidth: 'unset',
@@ -41,7 +33,7 @@ const useFormStyles = makeStyles(
     checkmark: {
       color: theme.palette.success.main,
     },
-    steps: {
+    helperList: {
       ...theme.typography.body2,
       paddingLeft: theme.spacings.xs,
     },

@@ -29,7 +29,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit, required, formState } = form
+  const { register, errors, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
@@ -41,13 +41,13 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
       <TextField
         variant='outlined'
         type='password'
-        error={!!errors.password || !!errors.submission?.message}
+        error={!!errors.password || !!error?.message}
         id='password'
         name='password'
         label='Password'
         required={required.password}
         inputRef={register({ required: required.password })}
-        helperText={errors.password?.message || errors.submission?.message}
+        helperText={errors.password?.message || error?.message}
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (

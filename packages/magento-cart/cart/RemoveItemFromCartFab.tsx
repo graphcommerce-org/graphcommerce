@@ -14,7 +14,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const form = useFormGqlMutation(RemoveItemFromCartDocument, {
     defaultValues: { cartId, cartItemId },
   })
-  const { handleSubmit, errors, formState } = form
+  const { handleSubmit, errors, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -22,7 +22,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
       <Fab aria-label='Remove Product' size='small' type='submit' disabled={formState.isSubmitting}>
         <Icon fontSize='small' />
       </Fab>
-      {errors.submission?.message}
+      {error?.message}
     </form>
   )
 }

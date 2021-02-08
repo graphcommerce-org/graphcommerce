@@ -24,7 +24,7 @@ export type UseFormPersistOptions<
   /**
    *
    */
-  exclude?: (keyof V)[]
+  exclude?: string[]
 }
 
 /**
@@ -35,9 +35,9 @@ export default function useFormPersist<
   Form extends Pick<UseFormMethods<V>, 'watch' | 'setValue' | 'formState'>,
   V = FieldValues
 >(options: UseFormPersistOptions<Form, V>) {
-  const { form, name, storage = 'sessionStorage' } = options
+  const { form, name, storage = 'sessionStorage', exclude = [] } = options
   const { setValue, watch, formState } = form
-  const values = watch(Object.keys(formState.dirtyFields))
+  const values = watch(Object.keys(formState.dirtyFields).filter((f) => !exclude.includes(f)))
 
   // Restore changes
   useEffect(() => {

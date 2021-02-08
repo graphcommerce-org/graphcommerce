@@ -52,18 +52,6 @@ export default function useFormGqlLazyQuery<Q, V>(
     },
   })
 
-  useEffect(() => {
-    if (error) {
-      useFormMethods.setError('submission' as FieldName<FieldValues>, {
-        type: 'validate',
-        message: error?.message,
-      })
-    } else if (error && formState.errors.submission) {
-      // Clear submission errors
-      useFormMethods.clearErrors('submission' as FieldName<FieldValues>)
-    }
-  }, [error, formState.errors.submission, useFormMethods])
-
   const submit: SubmitHandler<V> = async (formValues) => {
     // Clear submission errors
     useFormMethods.clearErrors('submission' as FieldName<FieldValues>)
@@ -81,12 +69,7 @@ export default function useFormGqlLazyQuery<Q, V>(
       // Encode and submit the values
       execute({ variables })
     } catch (e) {
-      if (e instanceof ApolloError) {
-        useFormMethods.setError('submission' as FieldName<FieldValues>, {
-          type: 'validate',
-          message: e.message,
-        })
-      } else throw e
+      //
     }
   }
 
@@ -98,5 +81,5 @@ export default function useFormGqlLazyQuery<Q, V>(
       await onValid(values, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, ...useFormMethods, formState, handleSubmit, data }
+  return { ...gqlDocumentHandler, ...useFormMethods, formState, handleSubmit, data, error }
 }

@@ -17,7 +17,7 @@ export default function ApplyCouponCode() {
   const form = useFormGqlMutation(ApplyCouponToCartDocument, {
     defaultValues: { cartId: cartQuery?.cart?.id },
   })
-  const { errors, handleSubmit, register, formState, required, clearErrors } = form
+  const { errors, handleSubmit, register, formState, required, clearErrors, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -29,13 +29,13 @@ export default function ApplyCouponCode() {
       <TextField
         variant='outlined'
         type='text'
-        error={!!errors.couponCode || !!errors.submission}
+        error={!!errors.couponCode || !!error}
         id='couponCode'
         name='couponCode'
         label='Coupon Code'
         required={required.couponCode}
         inputRef={register({ required: required.couponCode })}
-        helperText={errors.couponCode?.message || errors.submission?.message}
+        helperText={errors.couponCode?.message || error?.message}
         disabled={formState.isSubmitting}
         onChange={() => clearErrors('submission')}
       />

@@ -31,7 +31,7 @@ export default function ChangePasswordForm() {
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument)
-  const { register, errors, handleSubmit, required, watch, data, formState } = form
+  const { register, errors, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
@@ -94,9 +94,7 @@ export default function ChangePasswordForm() {
         >
           Change
         </Button>
-        <FormHelperText error={!!errors.submission?.message}>
-          {errors.submission?.message}
-        </FormHelperText>
+        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
     </form>
   )

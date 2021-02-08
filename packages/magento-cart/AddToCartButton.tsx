@@ -26,13 +26,12 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     defaultValues: { ...variables } as UnpackNestedValue<DeepPartial<V>>,
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
-  const { handleSubmit, errors, formState } = form
+  const { handleSubmit, errors, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
-  const submissionError = errors.submission as FieldError | undefined
   return requireAuth ? (
     <PageLink href='/account/signin?back=1'>
       <Button color='primary' variant='contained' {...buttonProps}>
@@ -52,11 +51,11 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
       </Button>
 
       <ErrorSnackbarLoader
-        open={formState.isSubmitted && !!submissionError}
-        message={<>{submissionError?.message}</>}
+        open={formState.isSubmitted && !!error}
+        message={<>{error?.message}</>}
       />
       <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !submissionError?.message}
+        open={formState.isSubmitSuccessful && !error?.message}
         message={
           <>
             Added <em>&lsquo;{name ?? 'Product'}&rsquo;</em> to cart

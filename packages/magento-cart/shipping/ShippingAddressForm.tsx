@@ -53,7 +53,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     reValidateMode: 'onChange',
     onBeforeSubmit: (variables) => ({ ...variables, saveInAddressBook: true, customerNote: '' }),
   })
-  const { register, errors, handleSubmit, control, formState, required, watch } = form
+  const { register, errors, handleSubmit, control, formState, required, watch, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -282,10 +282,10 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           />
         </div>
 
-        {errors.submission?.message && (
+        {error?.message && (
           <AnimatedRow key='submissionError'>
             <FormControl>
-              <FormHelperText error>{errors.submission?.message}</FormHelperText>
+              <FormHelperText error>{error.message}</FormHelperText>
             </FormControl>
           </AnimatedRow>
         )}

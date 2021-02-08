@@ -34,7 +34,7 @@ export default function ForgotPasswordForm() {
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
   >(ForgotPasswordDocument)
-  const { register, errors, handleSubmit, required, watch, data, formState } = form
+  const { register, errors, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
@@ -90,9 +90,7 @@ export default function ForgotPasswordForm() {
         >
           Send email
         </Button>
-        <FormHelperText error={!!errors.submission?.message}>
-          {errors.submission?.message}
-        </FormHelperText>
+        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
     </form>
   )

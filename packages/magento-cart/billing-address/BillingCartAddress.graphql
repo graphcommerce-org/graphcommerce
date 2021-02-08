@@ -13,6 +13,7 @@ fragment BillingCartAddress on BillingCartAddress {
   region {
     code
     label
+    region_id
   }
   telephone
 }

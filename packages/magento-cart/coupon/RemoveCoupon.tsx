@@ -20,7 +20,7 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
   const form = useFormGqlMutation(RemoveCouponDocument, {
     defaultValues: { cartId: cartQuery?.cart?.id },
   })
-  const { errors, handleSubmit, formState } = form
+  const { errors, handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -50,7 +50,7 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
         >
           Remove
         </Button>
-        <FormHelperText error={!!errors.submission}>{errors.submission?.message}</FormHelperText>
+        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
     </form>
   )

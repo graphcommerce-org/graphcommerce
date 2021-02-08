@@ -4,6 +4,7 @@ import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
+import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -57,6 +58,8 @@ function PaymentPage({ countries }: Props) {
               <PaymentMethodOptions key='options' />
 
               <PaymentMethodError key='error' />
+
+              <BillingAddressForm />
 
               <AnimatedRow className={classes.formRow} key='next'>
                 <div className={classes.formRow}>

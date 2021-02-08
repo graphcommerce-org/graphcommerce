@@ -37,6 +37,7 @@ export const BillingCartAddressFragmentDoc: DocumentNode<BillingCartAddressFragm
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'code' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
               ],
             },
           },
@@ -51,5 +52,5 @@ export type BillingCartAddressFragment = Pick<
   'firstname' | 'lastname' | 'company' | 'city' | 'postcode' | 'street' | 'telephone'
 > & {
   country: Pick<Types.CartAddressCountry, 'code' | 'label'>
-  region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label'>>
+  region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
 }

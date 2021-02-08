@@ -24,7 +24,7 @@ export default function MyComponent() {
   const form = useFormGqlMutation(ApplyCouponToCartDocument, {
     defaultValues: { cartId: cartQuery?.cart?.id },
   })
-  const { errors, handleSubmit, register, formState, required } = form
+  const { errors, handleSubmit, register, formState, required, error } = form
 
   // We don't need to provide an actual handler as useFormGqlMutation already adds that.
   const submit = handleSubmit(() => {})
@@ -36,7 +36,7 @@ export default function MyComponent() {
         ref={register({ required: required.couponCode })}
         disabled={formState.isSubmitting}
       />
-      {errors.couponCode?.message || errors.submission?.message}
+      {errors.couponCode?.message || error?.message}
       <button type='submit'>submit</button>
     </form>
   )
@@ -71,7 +71,7 @@ export default function MyAutoSubmitForm() {
         ref={register({ required: required.couponCode })}
         disabled={formState.isSubmitting}
       />
-      {errors.couponCode?.message || errors.submission?.message}
+      {errors.couponCode?.message}
     </form>
   )
 }
@@ -98,9 +98,9 @@ export default function MyAutoSubmitForm() {
       <input
         type='text'
         ref={register({ required: required.couponCode })}
-        disabled={formState.isSubmitting}
+        disabled={disableFields}
       />
-      {errors.couponCode?.message || errors.submission?.message}
+      {errors.couponCode?.message}
     </form>
   )
 }
