@@ -44,7 +44,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   register(ref.current, { required: required.quantity })
 
   return requireAuth ? (
-    <PageLink href='/account/signin?back=1'>
+    <PageLink href='/account/signin'>
       <Button color='primary' variant='contained' {...buttonProps}>
         Add to Cart
       </Button>

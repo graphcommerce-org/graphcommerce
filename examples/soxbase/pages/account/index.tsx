@@ -3,7 +3,6 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import AccountDashboard from '@reachdigital/magento-customer/AccountDashboard'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
-import useSignedInGuard from '@reachdigital/magento-customer/useSignedInGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -16,9 +15,6 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountIndexPage() {
-  const signedIn = useSignedInGuard()
-  if (!signedIn) return null
-
   return (
     <OverlayUi title='Account' headerForward={<SignOutForm />} variant='bottom'>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />

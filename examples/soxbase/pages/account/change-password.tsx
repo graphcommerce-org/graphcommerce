@@ -2,7 +2,6 @@ import { Container, NoSsr } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
-import useSignedInGuard from '@reachdigital/magento-customer/useSignedInGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -15,9 +14,6 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountChangePasswordPage() {
-  const signedIn = useSignedInGuard()
-  if (!signedIn) return null
-
   return (
     <OverlayUi title='Change Password' variant='bottom'>
       <PageMeta

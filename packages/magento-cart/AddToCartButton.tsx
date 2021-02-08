@@ -33,7 +33,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
   return requireAuth ? (
-    <PageLink href='/account/signin?back=1'>
+    <PageLink href='/account/signin'>
       <Button color='primary' variant='contained' {...buttonProps}>
         Add to Cart
       </Button>

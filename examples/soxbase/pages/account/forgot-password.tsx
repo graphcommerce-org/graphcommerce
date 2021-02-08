@@ -2,7 +2,6 @@ import { Container, NoSsr } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
-import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -15,9 +14,6 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountForgotPasswordPage() {
-  const signedIn = useSignedOutGuard()
-  if (!signedIn) return null
-
   return (
     <OverlayUi title='Forgot Password' variant='bottom'>
       <PageMeta
