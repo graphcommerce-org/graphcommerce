@@ -17,8 +17,6 @@ import {
 import diff from './diff'
 import useGqlDocumentHandler from './useGqlDocumentHandler'
 
-export * from 'react-hook-form'
-
 export type OnCompleteFn<Q> = (
   data: FetchResult<Q>,
   client: ApolloClient<unknown>,

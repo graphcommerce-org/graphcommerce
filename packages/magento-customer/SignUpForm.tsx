@@ -8,7 +8,9 @@ import {
   TextField,
 } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import useFormGqlMutation, { Controller } from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import { Controller } from '@reachdigital/react-hook-form'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import React from 'react'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 

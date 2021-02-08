@@ -1,6 +1,6 @@
 import { debounce } from '@material-ui/core'
-import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { useRef } from 'react'
 import {
   UpdateItemQuantityMutationVariables,

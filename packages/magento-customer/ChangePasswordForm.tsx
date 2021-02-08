@@ -6,7 +6,7 @@ import {
   FormControl,
   FormHelperText,
 } from '@material-ui/core'
-import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,

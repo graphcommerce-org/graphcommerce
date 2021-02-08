@@ -1,6 +1,6 @@
 import { Fab } from '@material-ui/core'
 import Icon from '@material-ui/icons/Close'
-import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import {
   RemoveItemFromCartMutationVariables,
   RemoveItemFromCartDocument,

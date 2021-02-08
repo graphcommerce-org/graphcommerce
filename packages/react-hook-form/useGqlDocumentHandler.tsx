@@ -1,5 +1,4 @@
 import { TypedDocumentNode } from '@apollo/client'
-import { Scalars } from '@reachdigital/magento-graphql'
 import {
   DefinitionNode,
   OperationDefinitionNode,
@@ -18,6 +17,14 @@ import {
 import { useMemo } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { LiteralUnion } from 'type-fest'
+
+type Scalars = {
+  ID: string
+  String: string
+  Boolean: boolean
+  Int: number
+  Float: number
+}
 
 function isOperationDefinition(
   node: DefinitionNode | OperationDefinitionNode,

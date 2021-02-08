@@ -9,9 +9,8 @@ import {
   Link,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
-import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'

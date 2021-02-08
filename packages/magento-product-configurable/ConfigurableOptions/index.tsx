@@ -1,13 +1,12 @@
 import { BaseTextFieldProps, FormHelperText } from '@material-ui/core'
-import {
-  Controller,
-  FieldError,
-  FieldErrors,
-  UseControllerOptions,
-} from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
+import {
+  Controller,
+  FieldErrors,
+  UseControllerOptions,
+} from '@reachdigital/react-hook-form/useForm'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer } from '../Swatches'

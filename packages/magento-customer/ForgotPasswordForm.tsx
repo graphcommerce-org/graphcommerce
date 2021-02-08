@@ -7,8 +7,8 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
-import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
 import {
   ForgotPasswordMutation,

@@ -29,6 +29,7 @@ const withTM = require('next-transpile-modules')(
     '@reachdigital/magento-search',
     '@reachdigital/magento-store',
     '@reachdigital/next-ui',
+    '@reachdigital/react-hook-form',
   ],
   { unstable_webpack5: false },
 )

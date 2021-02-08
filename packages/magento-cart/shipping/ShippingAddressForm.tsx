@@ -5,10 +5,11 @@ import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import useFormAutoSubmit from '@reachdigital/next-ui/Form/useFormAutoSubmit'
-import useFormGqlMutation, { Controller } from '@reachdigital/next-ui/Form/useFormGqlMutation'
-import useFormPersist from '@reachdigital/next-ui/Form/useFormPersist'
-import { houseNumber, phonePattern } from '@reachdigital/next-ui/Form/validationPatterns'
+import { Controller } from '@reachdigital/react-hook-form/useForm'
+import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
+import { houseNumber, phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useMemo, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -94,13 +95,13 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           <TextField
             variant='outlined'
             type='text'
-            error={!!errors.firstname}
             name='firstname'
             label='First Name'
             required={required.firstname}
             inputRef={register({ required: required.firstname })}
-            helperText={formState.isSubmitted && errors.firstname?.message}
             disabled={disableFields}
+            error={!!errors.firstname}
+            helperText={formState.isSubmitted && errors.firstname?.message}
             InputProps={{
               endAdornment: !errors.firstname && <CheckIcon className={classes.checkmark} />,
             }}
