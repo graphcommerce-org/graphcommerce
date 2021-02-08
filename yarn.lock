@@ -1839,13 +1839,13 @@
     graphql-fields "2.0.3"
     object-hash "2.1.1"
 
-"@graphql-mesh/transform-federation@^0.4.45":
-  version "0.4.45"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-federation/-/transform-federation-0.4.45.tgz#ec7904a5ce5a8306c41d7491d3eab6c41403d7bc"
-  integrity sha512-/pdYjtCWpY1uHP8QUulKZcmYUN/UREqJ64vZQYTaGeXMLL24tpmIm8QEshJZSSOuwyE4xXV8C6LZDIy+Zduz7w==
+"@graphql-mesh/transform-federation@^0.4.46":
+  version "0.4.46"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/transform-federation/-/transform-federation-0.4.46.tgz#9674977ffa7b60e4754c1cf429d2e36243b50af1"
+  integrity sha512-MnUeGp09PD+mDCWmoaalOzt6nipnGjtO03KcRScVe7B9AWmuYghToHv1Y5kFjk9Snd4dhXEwtrnc1GJDRZ/zgQ==
   dependencies:
     "@apollo/federation" "0.21.0"
-    "@graphql-mesh/types" "0.29.2"
+    "@graphql-mesh/types" "0.29.3"
     "@graphql-mesh/utils" "0.8.7"
     graphql-transform-federation "2.2.0"
     lodash "4.17.20"
@@ -1862,13 +1862,23 @@
     "@graphql-tools/wrap" "7.0.5"
     micromatch "4.0.2"
 
-"@graphql-mesh/types@0.29.2", "@graphql-mesh/types@^0.29.2":
+"@graphql-mesh/types@0.29.2":
   version "0.29.2"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.29.2.tgz#e6d4bcc1169447fcec8408b30ffd7d561b8db863"
   integrity sha512-hI/2hxaVcteKiC3Isz2CzVKgxkP3gEu9KAuaDfqMg+rziyXZ+RCocD6DxexB5EdPKDG7ZGkJ4bH9CbwBCJCbhA==
   dependencies:
     "@graphql-tools/delegate" "7.0.9"
     "@graphql-tools/utils" "7.2.4"
+    "@graphql-typed-document-node/core" "3.1.0"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@0.29.3", "@graphql-mesh/types@^0.29.2":
+  version "0.29.3"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.29.3.tgz#6ce27f3bdf291fe1f0d114bb7abc51ab78da177b"
+  integrity sha512-YiFbhQL+5eUDw2Uige039Vsdy2FpB8/WgfNqTHxrMQwfZQYtTAmHB/IZH1GhbdmCnUDZmGq6Wg9qDeG0o01x1Q==
+  dependencies:
+    "@graphql-tools/delegate" "7.0.9"
+    "@graphql-tools/utils" "7.2.5"
     "@graphql-typed-document-node/core" "3.1.0"
     fetchache "0.0.4"
 
@@ -2126,6 +2136,15 @@
     camel-case "4.1.2"
     tslib "~2.1.0"
 
+"@graphql-tools/utils@7.2.5", "@graphql-tools/utils@^7.0.0", "@graphql-tools/utils@^7.1.0", "@graphql-tools/utils@^7.1.2", "@graphql-tools/utils@^7.1.5", "@graphql-tools/utils@^7.1.6", "@graphql-tools/utils@^7.2.1", "@graphql-tools/utils@^7.2.4":
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-7.2.5.tgz#d7f3fca326bbac34de664773d75634bf588ba2db"
+  integrity sha512-S9RUkPimq+5eEDohDjiq/JCPUsiZblKRG8ve+diUwF1f8+r6FV2xGXrOt0qhQJiMxIO+BOK3DU9c+U3tX9Jo0w==
+  dependencies:
+    "@ardatan/aggregate-error" "0.0.6"
+    camel-case "4.1.2"
+    tslib "~2.1.0"
+
 "@graphql-tools/utils@^6", "@graphql-tools/utils@^6.0.0":
   version "6.2.4"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-6.2.4.tgz#38a2314d2e5e229ad4f78cca44e1199e18d55856"
@@ -2134,15 +2153,6 @@
     "@ardatan/aggregate-error" "0.0.6"
     camel-case "4.1.1"
     tslib "~2.0.1"
-
-"@graphql-tools/utils@^7.0.0", "@graphql-tools/utils@^7.1.0", "@graphql-tools/utils@^7.1.2", "@graphql-tools/utils@^7.1.5", "@graphql-tools/utils@^7.1.6", "@graphql-tools/utils@^7.2.1", "@graphql-tools/utils@^7.2.4":
-  version "7.2.5"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-7.2.5.tgz#d7f3fca326bbac34de664773d75634bf588ba2db"
-  integrity sha512-S9RUkPimq+5eEDohDjiq/JCPUsiZblKRG8ve+diUwF1f8+r6FV2xGXrOt0qhQJiMxIO+BOK3DU9c+U3tX9Jo0w==
-  dependencies:
-    "@ardatan/aggregate-error" "0.0.6"
-    camel-case "4.1.2"
-    tslib "~2.1.0"
 
 "@graphql-tools/wrap@7.0.5", "@graphql-tools/wrap@^7.0.3", "@graphql-tools/wrap@^7.0.4":
   version "7.0.5"
