@@ -61,7 +61,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     submit,
     fields: ['postcode', 'countryCode', 'regionId'],
   })
-  const visibleSubmitting = formState.isSubmitting && !autoSubmitting
+  const disableFields = formState.isSubmitting && !autoSubmitting
 
   // todo: Move to a validateAndSubmit method or something?
   useEffect(() => {
@@ -100,7 +100,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             required={required.firstname}
             inputRef={register({ required: required.firstname })}
             helperText={formState.isSubmitted && errors.firstname?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.firstname && <CheckIcon className={classes.checkmark} />,
             }}
@@ -114,7 +114,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             required={required.lastname}
             inputRef={register({ required: required.lastname })}
             helperText={formState.isSubmitted && errors.lastname?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.lastname && <CheckIcon className={classes.checkmark} />,
             }}
@@ -130,7 +130,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             required={required.street}
             inputRef={register({ required: required.street })}
             helperText={formState.isSubmitted && errors.street?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.street && <CheckIcon className={classes.checkmark} />,
             }}
@@ -147,7 +147,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
               pattern: { value: houseNumber, message: 'Please provide a valid house number' },
             })}
             helperText={formState.isSubmitted && errors.houseNumber?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.houseNumber && <CheckIcon className={classes.checkmark} />,
             }}
@@ -161,7 +161,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             label='Addition'
             inputRef={register({ required: required.addition })}
             helperText={formState.isSubmitted && errors.addition?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.addition && <CheckIcon className={classes.checkmark} />,
             }}
@@ -177,7 +177,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             label='Postcode'
             inputRef={register({ required: required.postcode })}
             helperText={formState.isSubmitted && errors.postcode?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.postcode && !!watch('postcode') && (
                 <CheckIcon className={classes.checkmark} />
@@ -193,7 +193,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             label='City'
             inputRef={register({ required: required.city })}
             helperText={formState.isSubmitted && errors.city?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.city && <CheckIcon className={classes.checkmark} />,
             }}
@@ -220,7 +220,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
                     label='Country'
                     required={required.countryCode}
                     helperText={errors.countryCode?.message}
-                    disabled={visibleSubmitting}
+                    disabled={disableFields}
                     onBlur={onBlur}
                   />
                 )}
@@ -251,7 +251,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
                       label='Region'
                       required={required.regionId}
                       helperText={errors.regionId?.message}
-                      disabled={visibleSubmitting}
+                      disabled={disableFields}
                       onBlur={onBlur}
                     />
                   )}
@@ -274,7 +274,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
               pattern: { value: phonePattern, message: 'Invalid phone number' },
             })}
             helperText={formState.isSubmitted && errors.telephone?.message}
-            disabled={visibleSubmitting}
+            disabled={disableFields}
             InputProps={{
               endAdornment: !errors.telephone && <CheckIcon className={classes.checkmark} />,
             }}
