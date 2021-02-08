@@ -1,4 +1,4 @@
-import { Link, Theme, makeStyles } from '@material-ui/core'
+import { Fab, Theme, makeStyles } from '@material-ui/core'
 import { ChevronLeft, ChevronRight } from '@material-ui/icons'
 import React from 'react'
 import PageLink from '../PageTransition/PageLink'
@@ -6,75 +6,70 @@ import PageLink from '../PageTransition/PageLink'
 const useStyles = makeStyles((theme: Theme) => ({
   pagination: {
     gridArea: 'pagination',
-    margin: '32px auto 0 auto',
+    margin: `${theme.spacings.lg} auto`,
     display: 'grid',
+    gap: 8,
     gridAutoFlow: 'column',
     width: 'min-content',
-    marginBottom: `${theme.spacings.lg}`,
-    fontSize: 18,
-    '& span': {
+    alignItems: 'center',
+    ...theme.typography.body1,
+    '& > *': {
       whiteSpace: 'nowrap',
-      padding: '8px 8px 0 10px',
+      boxShadow: 'none',
     },
-    '& a': {
-      transition: 'background .25s ease',
-      borderRadius: '100%',
-      height: 40,
-      width: 40,
-      '& svg': {
-        color: '#000',
-      },
-      '&:hover': {
-        background: 'rgba(0, 0, 0, 0.04)',
-      },
-    },
-    '& svg': {
-      borderRadius: '100%',
-      padding: 6,
-      height: 40,
-      width: 40,
-      color: '#ddd',
-    },
+  },
+  disabled: {
+    background: 'none',
   },
 }))
 
 export type PagePaginationProps = {
   count: number
   page: number
+  root: string
   url: (page: number) => string
 }
 
 export default function Pagination(props: PagePaginationProps) {
-  const { count, page, url } = props
+  const { count, page, root, url } = props
   const classes = useStyles()
 
   return (
     <div className={classes.pagination}>
-      {page === 1 && <ChevronLeft color='primary' />}
+      {page === 1 && (
+        <PageLink href='/'>
+          <Fab
+            variant='round'
+            size='medium'
+            aria-label='Previous Page'
+            color='inherit'
+            disabled
+            className={classes.disabled}
+          >
+            <ChevronLeft color='inherit' />
+          </Fab>
+        </PageLink>
+      )}
       {page === 2 && (
-        <PageLink href='/blog'>
-          <Link>
-            <ChevronLeft color='primary' />
-          </Link>
+        <PageLink href={root}>
+          <Fab variant='round' size='medium' aria-label='Previous Page' color='inherit'>
+            <ChevronLeft color='inherit' />
+          </Fab>
         </PageLink>
       )}
-      {page > 3 && (
+      {page > 2 && (
         <PageLink href={url(page - 1)}>
-          <Link>
-            <ChevronLeft color='primary' />
-          </Link>
+          <Fab variant='round' size='medium' aria-label='Previous Page' color='inherit'>
+            <ChevronLeft color='inherit' />
+          </Fab>
         </PageLink>
       )}
-
       <span>{`Page ${page} of ${count}`}</span>
-
-      {page === count ? (
-        <ChevronRight color='primary' />
-      ) : (
+      {page !== count && (
         <PageLink href={url(page + 1)}>
-          <Link>
-            <ChevronRight color='primary' />
-          </Link>
+          <Fab variant='round' size='medium' aria-label='Next Page' color='inherit'>
+            <ChevronRight color='inherit' />
+          </Fab>
         </PageLink>
       )}
     </div>

@@ -60,6 +60,7 @@ const BlogPage = ({ menu, pages, footer, urlResolver, blogPosts, pagesConnection
       <Pagination
         count={Math.ceil(pagesConnection.aggregate.count / pageSize)}
         page={Number(router.query.page ? router.query.page : 1)}
+        root={'/blog'}
         url={(p) => `/blog/page/${p}`}
       />
       <Footer footer={footer} />
