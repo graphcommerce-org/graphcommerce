@@ -2,12 +2,11 @@ import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { Button, ButtonProps } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
-import {
+import useFormGqlMutation, {
   DeepPartial,
   FieldError,
   UnpackNestedValue,
-  useMutationForm,
-} from '@reachdigital/next-ui/Form/useMutationForm'
+} from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
@@ -23,11 +22,11 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
   const { name, mutation, variables, ...buttonProps } = props
 
   const requestCartId = useRequestCartId()
-  const mutationForm = useMutationForm<Q, V>(mutation, {
+  const form = useFormGqlMutation<Q, V>(mutation, {
     defaultValues: { ...variables } as UnpackNestedValue<DeepPartial<V>>,
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
-  const { handleSubmit, errors, formState } = mutationForm
+  const { handleSubmit, errors, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)

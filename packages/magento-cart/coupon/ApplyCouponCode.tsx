@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { FormControl, TextField } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import clsx from 'clsx'
 import React from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -14,10 +14,10 @@ export default function ApplyCouponCode() {
   const classes = useCouponFormStyles()
   const { data: cartQuery } = useQuery(ClientCartDocument)
 
-  const mutationForm = useMutationForm(ApplyCouponToCartDocument, {
+  const form = useFormGqlMutation(ApplyCouponToCartDocument, {
     defaultValues: { cartId: cartQuery?.cart?.id },
   })
-  const { errors, handleSubmit, register, formState, required, clearErrors } = mutationForm
+  const { errors, handleSubmit, register, formState, required, clearErrors } = form
   const submitHandler = handleSubmit(() => {})
 
   return (

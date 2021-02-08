@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import { Controller, useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation, { Controller } from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -29,7 +29,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const carrierMethod =
     defaultCarrier && defaultMethod ? `${defaultCarrier}-${defaultMethod}` : undefined
 
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
@@ -37,7 +37,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { errors, handleSubmit, control, setValue, register, formState, required } = mutationForm
+  const { errors, handleSubmit, control, setValue, register, formState, required } = form
   const submitHandler = handleSubmit(() => {})
 
   // todo: Move this to a validateAndSubmit method or something?

@@ -7,7 +7,7 @@ import {
   FormHelperText,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import React from 'react'
 import {
@@ -30,12 +30,11 @@ const useStyles = makeStyles(
 
 export default function ForgotPasswordForm() {
   const classes = useStyles()
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
   >(ForgotPasswordDocument)
-
-  const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
+  const { register, errors, handleSubmit, required, watch, data, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {

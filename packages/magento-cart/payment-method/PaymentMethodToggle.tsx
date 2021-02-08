@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { FormControl } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import { Controller } from '@reachdigital/next-ui/Form/useMutationForm'
-import { useFormPersist } from '@reachdigital/next-ui/Form/useMutationFormPersist'
+import useFormPersist from '@reachdigital/next-ui/Form/useFormPersist'
+import { Controller, useForm } from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import React, { useEffect } from 'react'
@@ -23,12 +23,13 @@ export default function PaymentMethodContext() {
   const classes = useFormStyles()
   const { data: cartData } = useQuery(ClientCartDocument)
 
-  const mutationForm = useFormPersist<{ code: string; paymentMethod?: string }>(
-    'PaymentMethodToggle',
-    { mode: 'onChange', defaultValues: { code: cartData?.cart?.selected_payment_method?.code } },
-  )
+  const form = useForm<{ code: string; paymentMethod?: string }>({
+    mode: 'onChange',
+    defaultValues: { code: cartData?.cart?.selected_payment_method?.code },
+  })
+  useFormPersist({ form, name: 'PaymentMethodToggle' })
 
-  const { control, handleSubmit, watch, register, setValue } = mutationForm
+  const { control, handleSubmit, watch, register, setValue } = form
   const submitHandler = handleSubmit(() => {})
 
   const paymentMethod = watch('paymentMethod')

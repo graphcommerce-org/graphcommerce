@@ -5,8 +5,6 @@ import {
   TypedDocumentNode,
   useMutation,
 } from '@apollo/client'
-import { mergeDeep } from '@apollo/client/utilities'
-import { useEffect } from 'react'
 import {
   useForm,
   FieldName,
@@ -17,7 +15,7 @@ import {
   UseFormMethods,
 } from 'react-hook-form'
 import diff from './diff'
-import { useGqlDocumentHandler } from './handlerFactory'
+import useGqlDocumentHandler from './useGqlDocumentHandler'
 
 export * from 'react-hook-form'
 
@@ -26,22 +24,15 @@ export type OnCompleteFn<Q> = (
   client: ApolloClient<unknown>,
 ) => void | Promise<void>
 
-function stripEmpty(formValues: Record<string, any>) {
-  return Object.fromEntries(
-    Object.entries(formValues)
-      .filter(Boolean)
-      .filter((v) => v[1] !== ''),
-  )
-}
-
 /**
- * Combines useMutation with react-hook-form:
+ * Combines useMutation with react-hook-form's useForm:
  *
  * - Automatically extracts all required arguments for a query
  * - Casts Float/Int mutation input variables to a Number
  * - Updates the form when the query updates
+ * - Resets the form after submitting the form when no modifications are found
  */
-export function useMutationForm<Q, V>(
+export default function useFormGqlMutation<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormOptions<V> & {
     onBeforeSubmit?: (variables: V) => V | Promise<V>
@@ -49,7 +40,7 @@ export function useMutationForm<Q, V>(
   } = {},
 ) {
   const { onComplete, onBeforeSubmit, ...useFormProps } = options
-  const { encode, validate, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
+  const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [mutate, { data, client }] = useMutation(document)
 
   type FieldValues = V & { submission?: string }
@@ -59,15 +50,14 @@ export function useMutationForm<Q, V>(
     // Clear submission errors
     useFormMethods.clearErrors('submission' as FieldName<FieldValues>)
 
-    // Combine defaults with the formValues
-    let variables = encode({ ...useFormProps.defaultValues, ...stripEmpty(formValues) })
+    // Combine defaults with the formValues and encode
+    let variables = encode({
+      ...useFormProps.defaultValues,
+      ...(formValues as Record<string, unknown>),
+    })
 
     // Wait for the onBeforeSubmit to complete
     if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
-
-    // Validate any missing fields
-    const missing = validate(variables)
-    if (missing.length) throw new Error(`Missing fields in form: ${missing.join(', ')}`)
 
     try {
       // Encode and submit the values

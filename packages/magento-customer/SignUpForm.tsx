@@ -8,7 +8,7 @@ import {
   TextField,
 } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import { Controller, useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation, { Controller } from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -19,14 +19,14 @@ type SignUpFormProps = {
 export default function SignUpForm(props: SignUpFormProps) {
   const { email } = props
   const classes = useFormStyles()
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit, required, watch, control, formState } = mutationForm
+  const { register, errors, handleSubmit, required, watch, control, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   return (

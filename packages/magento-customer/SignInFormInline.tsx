@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
@@ -25,11 +25,11 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const mutationForm = useMutationForm(SignInDocument, {
+  const form = useFormGqlMutation(SignInDocument, {
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit, required, formState } = mutationForm
+  const { register, errors, handleSubmit, required, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   const validToken = Boolean(data?.customerToken && data?.customerToken.valid)

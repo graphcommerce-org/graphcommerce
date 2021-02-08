@@ -1,5 +1,5 @@
 import { debounce } from '@material-ui/core'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import React, { useRef } from 'react'
 import {
@@ -9,11 +9,11 @@ import {
 
 export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVariables) {
   const { cartId, cartItemId, quantity } = props
-  const mutationForm = useMutationForm(UpdateItemQuantityDocument, {
+  const form = useFormGqlMutation(UpdateItemQuantityDocument, {
     defaultValues: { cartId, cartItemId, quantity },
     mode: 'onChange',
   })
-  const { register, errors, handleSubmit, required, formState } = mutationForm
+  const { register, errors, handleSubmit, required, formState } = form
 
   // @todo TextInputNumber can't handle a callback ref
   const ref = useRef<HTMLInputElement>(null)

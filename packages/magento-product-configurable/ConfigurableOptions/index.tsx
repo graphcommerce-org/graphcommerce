@@ -1,13 +1,13 @@
 import { BaseTextFieldProps, FormHelperText } from '@material-ui/core'
-import RenderType from '@reachdigital/next-ui/RenderType'
-import ToggleButton from '@reachdigital/next-ui/ToggleButton'
-import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import {
   Controller,
   FieldError,
   FieldErrors,
   UseControllerOptions,
-} from '@reachdigital/next-ui/Form/useMutationForm'
+} from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import RenderType from '@reachdigital/next-ui/RenderType'
+import ToggleButton from '@reachdigital/next-ui/ToggleButton'
+import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer } from '../Swatches'
@@ -32,7 +32,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
       {options?.map((option) => {
         if (!option?.id || !option.attribute_code) return null
         const { attribute_code } = option
-        const error = errors?.[attribute_code] as FieldError | undefined
+        const error = errors?.[attribute_code]
 
         return (
           <Controller

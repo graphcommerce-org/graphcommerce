@@ -6,7 +6,7 @@ import {
   FormControl,
   FormHelperText,
 } from '@material-ui/core'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -27,11 +27,11 @@ const useStyles = makeStyles(
 
 export default function ChangePasswordForm() {
   const classes = useStyles()
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument)
-  const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
+  const { register, errors, handleSubmit, required, watch, data, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {

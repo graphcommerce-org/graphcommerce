@@ -1,5 +1,5 @@
 import { Button, FormControl, FormHelperText } from '@material-ui/core'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import { useFormGqlMutation } from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import { useRouter } from 'next/router'
 import { SignOutDocument } from './SignOut.gql'
 
@@ -7,7 +7,7 @@ type SignOutFormProps = Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noVali
 
 export default function SignOutForm(props: SignOutFormProps) {
   const router = useRouter()
-  const { handleSubmit, formState, errors } = useMutationForm(SignOutDocument, {
+  const { handleSubmit, formState, errors } = useFormGqlMutation(SignOutDocument, {
     onComplete: () => router.back(),
   })
   const submitHandler = handleSubmit(() => {})

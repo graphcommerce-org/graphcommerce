@@ -1,5 +1,4 @@
 import { TypedDocumentNode } from '@apollo/client'
-import { VariablesOf } from '@graphql-typed-document-node/core'
 import { Scalars } from '@reachdigital/magento-graphql'
 import {
   DefinitionNode,
@@ -19,7 +18,6 @@ import {
 import { useMemo } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { LiteralUnion } from 'type-fest'
-import type { ObjectToPath } from './ObjectToPath'
 
 function isOperationDefinition(
   node: DefinitionNode | OperationDefinitionNode,
@@ -75,16 +73,13 @@ export type HandlerFactoryReturn<V extends FieldValues> = {
   type: OperationTypeNode | undefined
   required: IsRequired<V>
   defaultVariables: Partial<Pick<V, OptionalKeys<V>>>
-  validate: (variables: DeepStringify<V>) => string[]
   encode: (
     variables: { [k in keyof V]?: DeepStringify<V[k]> },
     enc?: { [k in keyof V]: FieldTypes },
   ) => V
 }
 
-export default function handlerFactory<Q, V>(
-  document: TypedDocumentNode<Q, V>,
-): HandlerFactoryReturn<V> {
+export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): HandlerFactoryReturn<V> {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>
   type Encoding = { [k in keyof V]: FieldTypes }
   type Required = IsRequired<V>
@@ -116,15 +111,6 @@ export default function handlerFactory<Q, V>(
   const required = requiredPartial as Required
   const encoding = encodingPartial as Encoding
 
-  /**
-   * Returns an array of missing fields
-   */
-  function validate(variables: DeepStringify<V>) {
-    return Object.entries(variables)
-      .filter(([name]) => !(name in variables))
-      .map(([name]) => name)
-  }
-
   function heuristicEncode(val: string) {
     if (Number(val).toString() === val) return Number(val)
     if (val === 'true') return true
@@ -148,29 +134,9 @@ export default function handlerFactory<Q, V>(
     ) as V
   }
 
-  // // eslint-disable-next-line @typescript-eslint/ban-types
-  // const Field = <P extends {}>(
-  //   props: P & { Component: React.ComponentType<P>; name: ObjectToPath<V> },
-  // ) => {
-  //   const { Component, name, ...other } = props
-  //   return (
-  //     <Component
-  //       required={required[name as keyof IsRequired<V>]}
-  //       {...((other as unknown) as P)}
-  //       name={name}
-  //     />
-  //   )
-  // }
-
-  return {
-    type,
-    required,
-    defaultVariables,
-    validate,
-    encode,
-  }
+  return { type, required, defaultVariables, encode }
 }
 
-export function useGqlDocumentHandler<Q, V>(document: TypedDocumentNode<Q, V>) {
+export default function useGqlDocumentHandler<Q, V>(document: TypedDocumentNode<Q, V>) {
   return useMemo(() => handlerFactory<Q, V>(document), [document])
 }

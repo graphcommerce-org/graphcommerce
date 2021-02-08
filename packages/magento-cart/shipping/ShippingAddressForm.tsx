@@ -5,9 +5,9 @@ import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import useAutoSubmit from '@reachdigital/next-ui/Form/useAutoSubmit'
-import { Controller } from '@reachdigital/next-ui/Form/useMutationForm'
-import useMutationFormPersist from '@reachdigital/next-ui/Form/useMutationFormPersist'
+import useFormAutoSubmit from '@reachdigital/next-ui/Form/useFormAutoSubmit'
+import useFormGqlMutation, { Controller } from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import useFormPersist from '@reachdigital/next-ui/Form/useFormPersist'
 import { houseNumber, phonePattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useMemo, useRef } from 'react'
@@ -30,13 +30,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? 'NLD'
 
-  const form = useMutationFormPersist(ShippingAddressFormDocument, {
+  const form = useFormGqlMutation(ShippingAddressFormDocument, {
     defaultValues: {
       cartId: cartQuery?.cart?.id,
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
       lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
-      // telephone: currentAddress?.telephone,
+      telephone:
+        currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : undefined,
       city: currentAddress?.city,
       company: currentAddress?.company,
       postcode: currentAddress?.postcode ?? '',
@@ -46,23 +47,27 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       region: currentAddress?.region?.label,
       regionId: currentAddress?.region?.region_id,
       countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip
-      customerNote: '', // todo(paales): Implement notes field
-      saveInAddressBook: true, // todo(paales): Implement saveInAddressBook checkbox
     },
     mode: 'onChange',
     reValidateMode: 'onChange',
+    onBeforeSubmit: (variables) => ({ ...variables, saveInAddressBook: true, customerNote: '' }),
   })
   const { register, errors, handleSubmit, control, formState, required, watch } = form
+  const submit = handleSubmit(() => {})
 
-  const submitHandler = handleSubmit(() => {})
-  const autoSubmitting = useAutoSubmit({ form, submitHandler })
+  useFormPersist({ form, name: 'ShippingAddressForm' })
+  const autoSubmitting = useFormAutoSubmit({
+    form,
+    submit,
+    fields: ['postcode', 'countryCode', 'regionId'],
+  })
   const visibleSubmitting = formState.isSubmitting && !autoSubmitting
 
   // todo: Move to a validateAndSubmit method or something?
   useEffect(() => {
     doSubmit.current = async () =>
-      !formState.isDirty ? Promise.resolve(true) : submitHandler().then(() => true)
-  }, [doSubmit, formState.isDirty, submitHandler])
+      !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
+  }, [doSubmit, formState.isDirty, submit])
 
   const country = watch('countryCode') ?? currentCountryCode
   const regionId = watch('regionId')
@@ -83,7 +88,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   }, [country, countryList])
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form} ref={ref}>
+    <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
         <div className={classes.formRow} key='firstname'>
           <TextField
@@ -283,8 +288,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             </FormControl>
           </AnimatedRow>
         )}
-
-        <button type='submit'>trigger</button>
       </AnimatePresence>
     </form>
   )

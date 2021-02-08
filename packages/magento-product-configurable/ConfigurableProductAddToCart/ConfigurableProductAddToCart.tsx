@@ -3,17 +3,17 @@ import { Button, ButtonProps, FormControl, FormHelperText } from '@material-ui/c
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
-import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import {
   DeepPartial,
   FieldError,
   FieldErrors,
   UnpackNestedValue,
-  useMutationForm,
-} from '@reachdigital/next-ui/Form/useMutationForm'
+  useFormGqlMutation,
+} from '@reachdigital/next-ui/Form/useFormGqlMutation'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
+import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
+import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import React, { useRef } from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
@@ -31,7 +31,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const { getUids } = useConfigurableContext(variables.sku)
 
   const requestCartId = useRequestCartId()
-  const mutationForm = useMutationForm(ConfigurableProductAddToCartDocument, {
+  const form = useFormGqlMutation(ConfigurableProductAddToCartDocument, {
     defaultValues: variables,
     onBeforeSubmit: async ({ selectedOptions, ...vars }) => ({
       ...vars,
@@ -40,8 +40,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       selectedOptions: getUids((selectedOptions?.[0] as unknown) as Selected),
     }),
   })
-
-  const { handleSubmit, errors, formState, register, required, control } = mutationForm
+  const { handleSubmit, errors, formState, register, required, control } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)

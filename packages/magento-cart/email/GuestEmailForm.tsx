@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, CircularProgress, debounce } from '@material-ui/core'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -39,14 +39,14 @@ export default function GuestEmailForm({
   const classes = useStyles()
   const { data: cartQuery } = useQuery(ClientCartDocument)
 
-  const mutationForm = useMutationForm(SetGuestEmailOnCartDocument, {
+  const form = useFormGqlMutation(SetGuestEmailOnCartDocument, {
     mode: 'onBlur',
     defaultValues: {
       cartId: cartQuery?.cart?.id,
       email: cartQuery?.cart?.email ?? '',
     },
   })
-  const { register, errors, handleSubmit, required, watch, formState } = mutationForm
+  const { register, errors, handleSubmit, required, watch, formState } = form
 
   const isValidEmail = !!emailPattern.exec(watch('email'))
   const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {

@@ -1,6 +1,6 @@
 import { Fab } from '@material-ui/core'
 import Icon from '@material-ui/icons/Close'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import {
   RemoveItemFromCartMutationVariables,
   RemoveItemFromCartDocument,
@@ -11,10 +11,10 @@ type RemoveItemFromCartProps = RemoveItemFromCartMutationVariables &
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { cartId, cartItemId, ...formProps } = props
-  const mutationForm = useMutationForm(RemoveItemFromCartDocument, {
+  const form = useFormGqlMutation(RemoveItemFromCartDocument, {
     defaultValues: { cartId, cartItemId },
   })
-  const { handleSubmit, errors, formState } = mutationForm
+  const { handleSubmit, errors, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   return (

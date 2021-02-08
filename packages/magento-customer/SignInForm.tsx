@@ -9,9 +9,9 @@ import {
   Link,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { useMutationForm } from '@reachdigital/next-ui/Form/useMutationForm'
+import useFormGqlMutation from '@reachdigital/next-ui/Form/useFormGqlMutation'
 import { emailPattern } from '@reachdigital/next-ui/Form/validationPatterns'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
@@ -53,11 +53,11 @@ export default function SignInForm(props: SignInFormProps) {
   const { children, email } = props
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const mutationForm = useMutationForm(SignInDocument, {
+  const form = useFormGqlMutation(SignInDocument, {
     onComplete: onCompleteSignInUp, // TODO: juiste callback zoeken / bouwen
     defaultValues: { email },
   })
-  const { register, errors, handleSubmit, required, formState } = mutationForm
+  const { register, errors, handleSubmit, required, formState } = form
   const submitHandler = handleSubmit(() => {})
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
