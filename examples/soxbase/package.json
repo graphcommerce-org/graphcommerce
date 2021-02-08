@@ -44,7 +44,7 @@
     "apollo-cache-persist": "^0.1.1",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "framer-motion": "^3.2.1",
+    "framer-motion": "^3.3.0",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "next": "10.0.6",
