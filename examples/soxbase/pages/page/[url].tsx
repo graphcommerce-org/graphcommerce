@@ -99,8 +99,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const cat = String((await config).data.storeConfig?.root_category_id ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { rootCategory: cat, filters: { category_id: { eq: cat } },
-    },
+    variables: { pageSize: 8, rootCategory: cat, filters: { category_id: { eq: cat } } },
   })
 
   const { urlResolver } = (await resolveUrl).data
