@@ -9,13 +9,6 @@ import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 
 // @todo cancel all animatins on touch down, cancellation of animations doesn't work with react-spring 8.0 yet.
-
-type Props = {
-  scrollbar?: boolean
-  pagination?: boolean
-  fabProps?: Omit<FabProps, 'children' | 'onClick'>
-} & React.HTMLAttributes<HTMLDivElement>
-
 const useStyles = makeStyles(
   {
     scroller: {
@@ -59,10 +52,29 @@ const useStyles = makeStyles(
   { name: 'ScrollSnapSlider' },
 )
 
+type Props = {
+  scrollbar?: boolean
+  pagination?: boolean
+  nobuttons?: boolean
+  exPagination?: boolean[]
+  setExPagination?: (set: boolean[]) => void
+  fabProps?: Omit<FabProps, 'children' | 'onClick'>
+} & React.HTMLAttributes<HTMLDivElement>
+
 export type ScrollSnapSliderProps = Props & UseStyles<typeof useStyles>
 
 const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }> = (props) => {
-  const { children, pagination, fabProps, scrollbar, className, ...divProps } = props
+  const {
+    children,
+    pagination,
+    fabProps,
+    scrollbar,
+    exPagination,
+    setExPagination,
+    nobuttons,
+    className,
+    ...divProps
+  } = props
   const { ref, width = 0 } = useResizeObserver<HTMLDivElement>()
   const [intersects, setIntersects] = useState<boolean[]>([])
   const [isScrolling, setScrolling] = useState<boolean>(false)
@@ -131,6 +143,9 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
           if (newIntersects[idx] !== entry.intersectionRatio > 0.9) {
             newIntersects[idx] = entry.intersectionRatio > 0.9
             setIntersects([...newIntersects])
+            if (setExPagination) {
+              setExPagination([...newIntersects])
+            }
           }
         }),
       { root: ref.current, threshold: [0, 0.1, 0.9, 1] },
@@ -139,7 +154,7 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
     childElements.forEach((child) => io.observe(child))
 
     return () => io.disconnect()
-  }, [children, ref])
+  }, [])
 
   return (
     <>
@@ -157,28 +172,32 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
       >
         {children}
       </animated.div>
-      <Grow in={!intersects[0]}>
-        <Fab
-          size='large'
-          {...fabProps}
-          className={clsx(classes.prevFab, fabProps?.className)}
-          onClick={onPrev}
-          aria-label='previous'
-        >
-          <ArrowBack />
-        </Fab>
-      </Grow>
-      <Grow in={!intersects[intersects.length - 1]}>
-        <Fab
-          size='large'
-          {...fabProps}
-          className={clsx(classes.nextFab, fabProps?.className)}
-          onClick={onNext}
-          aria-label='next'
-        >
-          <ArrowForward />
-        </Fab>
-      </Grow>
+      {!nobuttons && (
+        <Grow in={!intersects[0]}>
+          <Fab
+            size='large'
+            {...fabProps}
+            className={clsx(classes.prevFab, fabProps?.className)}
+            onClick={onPrev}
+            aria-label='previous'
+          >
+            <ArrowBack />
+          </Fab>
+        </Grow>
+      )}
+      {!nobuttons && (
+        <Grow in={!intersects[intersects.length - 1]}>
+          <Fab
+            size='large'
+            {...fabProps}
+            className={clsx(classes.nextFab, fabProps?.className)}
+            onClick={onNext}
+            aria-label='next'
+          >
+            <ArrowForward />
+          </Fab>
+        </Grow>
+      )}
       {pagination && (
         <div>
           {intersects.map((intersecting, index) => (
