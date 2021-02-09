@@ -71,7 +71,7 @@ export default function Pagination(props: PagePaginationProps) {
           disabled
           className={classes.disabled}
         >
-          <ChevronLeft color='inherit' />
+          <ChevronRight color='inherit' />
         </Fab>
       )}
     </div>
