@@ -41,9 +41,6 @@ const useStyles = makeStyles(
       width: '100%',
       '&:focus': { outline: 'none' },
       paddingBottom: 0,
-      '&> *': {
-        marginBottom: theme.spacings.sm,
-      },
     },
     drawerFullHeight: {
       minHeight: `calc(100vh - 50px)`,
@@ -114,7 +111,6 @@ const useStyles = makeStyles(
       right: 0,
       display: 'grid',
       padding: `0 ${theme.spacings.sm}`,
-      marginBottom: theme.spacings.sm,
       alignItems: 'center',
       gridTemplate: `
         ". handle ." ${theme.spacings.sm}
@@ -150,8 +146,6 @@ type OverlayVariants = 'top' | 'right' | 'bottom' | 'left' | 'center'
 
 export type OverlayUiProps = UseStyles<typeof useStyles> & {
   fullHeight?: boolean
-  titleProps?: TypographyProps<'h2'>
-  titleComponent?: React.ElementType
   headerForward?: React.ReactNode
   variant?: OverlayVariants
 }
@@ -162,8 +156,6 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
   const {
     children,
     title,
-    titleProps,
-    titleComponent,
     backFallbackHref,
     backFallbackTitle,
     headerForward,
@@ -274,18 +266,6 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
                       </PageLink>
                     )}
                   </NoSsr>
-                </div>
-
-                <div className={classes.headerTitleContainer}>
-                  <Typography
-                    variant='h4'
-                    component={titleComponent ?? 'h1'}
-                    align='center'
-                    {...titleProps}
-                    className={classes.headerTitle}
-                  >
-                    {title}
-                  </Typography>
                 </div>
                 <div className={classes.headerForward}>{headerForward}</div>
               </div>

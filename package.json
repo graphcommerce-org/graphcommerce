@@ -58,7 +58,7 @@
     "postinstall-postinstall": "^2.1.0",
     "ts-node": "^9.1.1",
     "type-fest": "^0.20.2",
-    "vercel": "^21.2.2"
+    "vercel": "^21.2.3"
   },
   "devDependencies": {
     "@babel/compat-data": "^7.12.13",
@@ -85,7 +85,7 @@
     "@semantic-release/git": "^9.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "@types/node": "^14.14.22",
+    "@types/node": "^14.14.25",
     "@types/react": "^17.0.1",
     "@types/resize-observer-browser": "^0.1.5",
     "@types/sharp": "^0.27.1",
@@ -93,13 +93,13 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^7.18.0",
-    "husky": "^4.3.8",
+    "husky": "^5.0.9",
     "jest": "^26.6.3",
     "next": "10.0.6",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react-test-renderer": "^17.0.1",
-    "semantic-release": "^17.3.7",
+    "semantic-release": "^17.3.8",
     "semantic-release-slack-bot": "^2.1.0",
     "ts-jest": "^26.4.3",
     "typescript": "^4.1.3"
