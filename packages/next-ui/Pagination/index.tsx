@@ -19,39 +19,36 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   disabled: {
-    background: 'none',
+    background: 'none !important',
   },
 }))
 
 export type PagePaginationProps = {
   count: number
   page: number
-  root: string
   url: (page: number) => string
 }
 
 export default function Pagination(props: PagePaginationProps) {
-  const { count, page, root, url } = props
+  const { count, page, url } = props
   const classes = useStyles()
 
   return (
     <div className={classes.pagination}>
       {page === 1 && (
-        <PageLink href='/'>
-          <Fab
-            variant='round'
-            size='medium'
-            aria-label='Previous Page'
-            color='inherit'
-            disabled
-            className={classes.disabled}
-          >
-            <ChevronLeft color='inherit' />
-          </Fab>
-        </PageLink>
+        <Fab
+          variant='round'
+          size='medium'
+          aria-label='Previous Page'
+          color='inherit'
+          disabled
+          className={classes.disabled}
+        >
+          <ChevronLeft color='inherit' />
+        </Fab>
       )}
       {page === 2 && (
-        <PageLink href={root}>
+        <PageLink href={url(page - 1)}>
           <Fab variant='round' size='medium' aria-label='Previous Page' color='inherit'>
             <ChevronLeft color='inherit' />
           </Fab>
