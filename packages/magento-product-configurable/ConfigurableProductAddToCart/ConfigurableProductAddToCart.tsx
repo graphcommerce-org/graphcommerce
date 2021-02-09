@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client'
-import { Button, FormControl, FormHelperText } from '@material-ui/core'
+import { FormControl } from '@material-ui/core'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
@@ -77,20 +78,17 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           {...buttonProps}
         >
           Add to Cart
         </Button>
-        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
 
-      <ErrorSnackbarLoader
-        open={formState.isSubmitted && !!error}
-        message={<>{error?.message}</>}
-      />
+      <ApolloErrorAlert error={error} />
+
       <MessageSnackbarLoader
         open={formState.isSubmitSuccessful && !error?.message}
         message={

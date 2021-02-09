@@ -1,16 +1,13 @@
 import { useQuery } from '@apollo/client'
 import {
-  Button,
   CircularProgress,
   Container,
-  debounce,
-  Divider,
   FormControl,
-  FormHelperText,
   makeStyles,
   TextField,
   Theme,
   Typography,
+  Link,
 } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -25,7 +22,10 @@ import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
 import useFormGqlQuery from '@reachdigital/react-hook-form/useFormGqlQuery'
@@ -48,7 +48,6 @@ const useStyles = makeStyles(
 )
 
 function AccountSignInPage() {
-  // const signedOut = useSignedOutGuard()
   const classes = useStyles()
   const formClasses = useFormStyles()
   const { data: token } = useQuery(CustomerTokenDocument)
@@ -57,10 +56,8 @@ function AccountSignInPage() {
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     reValidateMode: 'onChange',
     mode: 'onChange',
-    defaultValues: { email: customerData?.customer?.email },
+    defaultValues: { email: customerData?.customer?.email ?? undefined },
   })
-
-  useFormPersist({ form, name: 'IsEmailAvailable' })
   const {
     handleSubmit,
     formState,
@@ -71,26 +68,19 @@ function AccountSignInPage() {
     watch,
     error,
   } = form
+
+  useFormPersist({ form, name: 'IsEmailAvailable' })
   const submit = handleSubmit(() => {})
   const autoSubmitting = useFormAutoSubmit({ form, submit })
   const disableFields = formState.isSubmitting && !autoSubmitting
 
-  // useEffect(() => {
-  //   // Solves positioning issues with password managers
-  //   if (isValidEmail) window.dispatchEvent(new Event('resize'))
-  // }, [isValidEmail])
-
-  // const isLoading = emailLoading
   const hasAccount = emailAvailable?.isEmailAvailable?.is_email_available === false
-  // const endAdornment: React.ReactNode = isLoading ? <CircularProgress /> : null
 
-  const signUp = !hasAccount && formState.isSubmitSuccessful
-  const signIn = hasAccount && formState.isSubmitSuccessful
-
-  let mode: 'welcome' | 'signin' | 'signup' | 'autenticate' | 'redirect' = 'welcome'
-  if (formState.isSubmitSuccessful && hasAccount) mode = 'signin'
-  if (formState.isSubmitSuccessful && !hasAccount) mode = 'signup'
-  if (token?.customerToken && !token?.customerToken.valid) mode = 'autenticate'
+  let mode: 'welcome' | 'signin' | 'signup' | 'redirect' = 'welcome'
+  if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && hasAccount)
+    mode = 'signin'
+  if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && !hasAccount)
+    mode = 'signup'
   if (token?.customerToken && token?.customerToken.valid) mode = 'redirect'
 
   return (
@@ -102,7 +92,7 @@ function AccountSignInPage() {
       />
       <Container maxWidth='md'>
         <div className={formClasses.form}>
-          {!formState.isSubmitSuccessful && (
+          {mode === 'welcome' && (
             <div className={classes.titleContainer} key='welcome'>
               <Typography variant='h3' align='center'>
                 Good day!
@@ -113,7 +103,7 @@ function AccountSignInPage() {
             </div>
           )}
 
-          {formState.isSubmitSuccessful && hasAccount && (
+          {mode === 'signin' && (
             <div className={classes.titleContainer} key='signin'>
               <Typography variant='h3' align='center'>
                 Welcome back!
@@ -124,7 +114,7 @@ function AccountSignInPage() {
             </div>
           )}
 
-          {formState.isSubmitSuccessful && !hasAccount && (
+          {mode === 'signup' && (
             <div className={classes.titleContainer} key='signup'>
               <Typography variant='h3' align='center'>
                 Create account!
@@ -135,61 +125,79 @@ function AccountSignInPage() {
             </div>
           )}
 
-          <form noValidate onSubmit={submit}>
-            <AnimatePresence initial={false}>
-              <AnimatedRow>
-                <div className={formClasses.formRow}>
-                  <TextField
-                    key='email'
-                    variant='outlined'
-                    type='text'
-                    error={formState.isSubmitted && !!errors.email}
-                    helperText={formState.isSubmitted && errors.email?.message}
-                    id='email'
-                    name='email'
-                    label='E-mail'
-                    required={required.email}
-                    inputRef={register({
-                      required: required.email,
-                      pattern: { value: emailPattern, message: '' },
-                    })}
-                    autoComplete='off'
-                    disabled={!!token?.customerToken}
-                    // disabled={disableFields}
-                    InputProps={{ endAdornment: formState.isSubmitting && <CircularProgress /> }}
-                  />
-                </div>
-              </AnimatedRow>
-
-              {!(formState.isValid && formState.isSubmitSuccessful) && (
-                <AnimatedRow key='submit'>
-                  <div className={formClasses.formRow}>
-                    <FormControl>
-                      <Button
-                        type='submit'
-                        disabled={formState.isSubmitting}
-                        variant='contained'
-                        color='primary'
-                        size='large'
-                        className={formClasses.submitButton}
-                      >
-                        Continue
-                      </Button>
-                    </FormControl>
-                    <FormHelperText error={!!error}>{error?.message}</FormHelperText>
-                  </div>
-                </AnimatedRow>
-              )}
-            </AnimatePresence>
-          </form>
+          {mode === 'redirect' && (
+            <div className={classes.titleContainer} key='signup'>
+              <Typography variant='h3' align='center'>
+                Hi {customerData?.customer?.firstname}! You&apos;re now logged in!
+              </Typography>
+              <Typography variant='h6' align='center'>
+                You can view{' '}
+                <PageLink href='/account'>
+                  <Link>your Account here</Link>
+                </PageLink>
+                .
+              </Typography>
+            </div>
+          )}
 
           <AnimatePresence>
-            {signIn && formState.isValid && (
+            {mode !== 'redirect' && (
+              <form noValidate onSubmit={submit} key='emailform'>
+                <AnimatePresence initial={false}>
+                  <AnimatedRow key='email'>
+                    <div className={formClasses.formRow}>
+                      <TextField
+                        key='email'
+                        variant='outlined'
+                        type='text'
+                        error={formState.isSubmitted && !!errors.email}
+                        helperText={formState.isSubmitted && errors.email?.message}
+                        id='email'
+                        name='email'
+                        label='E-mail'
+                        required={required.email}
+                        inputRef={register({
+                          required: required.email,
+                          pattern: { value: emailPattern, message: '' },
+                        })}
+                        autoComplete='off'
+                        disabled={!!token?.customerToken || disableFields}
+                        InputProps={{
+                          endAdornment: formState.isSubmitting && <CircularProgress />,
+                        }}
+                      />
+                    </div>
+                  </AnimatedRow>
+
+                  {mode === 'welcome' && (
+                    <AnimatedRow key='submit'>
+                      <div className={formClasses.actions}>
+                        <FormControl error={!!error}>
+                          <Button
+                            type='submit'
+                            loading={formState.isSubmitting}
+                            variant='contained'
+                            color='primary'
+                            size='large'
+                          >
+                            Continue
+                          </Button>
+                        </FormControl>
+                      </div>
+                    </AnimatedRow>
+                  )}
+
+                  <ApolloErrorAlert error={error} />
+                </AnimatePresence>
+              </form>
+            )}
+
+            {mode === 'signin' && (
               <AnimatedRow key='signin'>
                 <SignInForm email={watch('email')} />
               </AnimatedRow>
             )}
-            {signUp && formState.isValid && (
+            {mode === 'signup' && (
               <AnimatedRow key='signup'>
                 <SignUpForm email={watch('email')} />
               </AnimatedRow>

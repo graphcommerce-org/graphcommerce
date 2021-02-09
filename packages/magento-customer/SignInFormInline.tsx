@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
@@ -47,13 +48,13 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         label='Password'
         required={required.password}
         inputRef={register({ required: required.password })}
-        helperText={errors.password?.message || error?.message}
+        helperText={errors.password?.message}
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
             <Button
               type='submit'
-              disabled={formState.isSubmitting}
+              loading={formState.isSubmitting}
               color='secondary'
               variant='pill'
               // size='small'
@@ -64,6 +65,8 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
           ),
         }}
       />
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

@@ -3,8 +3,8 @@ import { FormControl, FormHelperText, TextField } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
@@ -88,6 +88,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     return regions
   }, [country, countryList])
 
+  // todo region clearen als je van land wisselt
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
@@ -282,13 +283,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           />
         </div>
 
-        {error?.message && (
-          <AnimatedRow key='submissionError'>
-            <FormControl>
-              <FormHelperText error>{error.message}</FormHelperText>
-            </FormControl>
-          </AnimatedRow>
-        )}
+        <ApolloErrorAlert error={error} />
       </AnimatePresence>
     </form>
   )

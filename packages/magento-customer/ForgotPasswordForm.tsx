@@ -1,12 +1,7 @@
-import {
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  FormControl,
-  FormHelperText,
-} from '@material-ui/core'
+import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
@@ -83,15 +78,16 @@ export default function ForgotPasswordForm() {
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
         >
           Send email
         </Button>
-        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

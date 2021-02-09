@@ -1,15 +1,9 @@
 import { useQuery } from '@apollo/client'
-import {
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  FormControl,
-  FormHelperText,
-  Link,
-} from '@material-ui/core'
+import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
@@ -84,20 +78,21 @@ export default function SignInForm(props: SignInFormProps) {
         <Link className={classes.forgotPass}>Forgot password?</Link>
       </PageLink> */}
 
-      <div className={classes.formRow}>
+      <div className={classes.actions}>
         <FormControl>
           <Button
             type='submit'
-            disabled={formState.isSubmitting}
+            loading={formState.isSubmitting}
             color='primary'
             variant='contained'
             size='large'
           >
             Log In
           </Button>
-          <FormHelperText error={!!error}>{error?.message}</FormHelperText>
         </FormControl>
       </div>
+
+      <ApolloErrorAlert error={error} />
 
       <div>{children}</div>
     </form>

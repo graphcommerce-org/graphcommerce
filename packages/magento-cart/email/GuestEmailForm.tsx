@@ -87,7 +87,6 @@ export default function GuestEmailForm({
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
         helperText={formState.isSubmitted && errors.email?.message}
-        // disabled={loading}
         autoComplete='off'
         InputProps={{ endAdornment }}
       />

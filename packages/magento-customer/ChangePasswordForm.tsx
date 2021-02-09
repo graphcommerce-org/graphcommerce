@@ -1,12 +1,8 @@
-import {
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  FormControl,
-  FormHelperText,
-} from '@material-ui/core'
+import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import React from 'react'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -87,15 +83,16 @@ export default function ChangePasswordForm() {
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
         >
           Change
         </Button>
-        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

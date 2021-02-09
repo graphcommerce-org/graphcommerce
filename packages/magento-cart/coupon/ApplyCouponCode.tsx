@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { FormControl, TextField } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import clsx from 'clsx'
 import React from 'react'
@@ -35,14 +36,14 @@ export default function ApplyCouponCode() {
         label='Coupon Code'
         required={required.couponCode}
         inputRef={register({ required: required.couponCode })}
-        helperText={errors.couponCode?.message || error?.message}
+        helperText={errors.couponCode?.message}
         disabled={formState.isSubmitting}
         onChange={() => clearErrors('submission')}
       />
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
@@ -51,6 +52,8 @@ export default function ApplyCouponCode() {
           Apply
         </Button>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

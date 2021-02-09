@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText, TextField } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import clsx from 'clsx'
 import React from 'react'
@@ -42,7 +43,7 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
@@ -50,8 +51,9 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
         >
           Remove
         </Button>
-        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

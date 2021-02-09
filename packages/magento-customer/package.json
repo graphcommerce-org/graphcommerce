@@ -32,6 +32,8 @@
     "@reachdigital/magento-graphql": "0.1.0",
     "@reachdigital/next-ui": "0.1.0",
     "@reachdigital/react-hook-form": "0.1.0",
+    "clsx": "^1.1.1",
+    "framer-motion": "^3.2.1",
     "next": "^10.0.6",
     "react": "^17.0.1",
     "react-dom": "17.0.1"

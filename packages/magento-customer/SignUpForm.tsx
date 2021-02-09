@@ -1,17 +1,12 @@
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  MenuItem,
-  TextField,
-  Switch,
-} from '@material-ui/core'
+import { FormControl, FormControlLabel, MenuItem, TextField, Switch } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
+import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
@@ -28,13 +23,11 @@ export default function SignUpForm(props: SignUpFormProps) {
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
     defaultValues: { email },
-    onComplete: onCompleteSignInUp,
+    onComplete: async (result, client) => onCompleteSignInUp(result, client),
   })
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
   const { register, errors, handleSubmit, required, watch, control, formState, error } = form
   const submitHandler = handleSubmit(() => {})
-
-  console.log(errors)
 
   return (
     <form onSubmit={submitHandler} noValidate>
@@ -132,21 +125,21 @@ export default function SignUpForm(props: SignUpFormProps) {
         label='Subscribe to newsletter'
       />
 
-      <div className={classes.formRow}>
+      <div className={classes.actions}>
         <FormControl>
           <Button
             type='submit'
-            disabled={formState.isSubmitting}
             variant='contained'
             color='primary'
             size='large'
-            className={classes.submitButton}
+            loading={formState.isSubmitting}
           >
-            Continue
+            Create Account
           </Button>
-          <FormHelperText error={!!error?.message}>{error?.message}</FormHelperText>
         </FormControl>
       </div>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

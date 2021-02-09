@@ -20,15 +20,13 @@ const useFormStyles = makeStyles(
       gridTemplateColumns: `repeat(auto-fit, minmax(200px, 1fr))`,
       gap: `calc(${theme.spacings.xxs} * 2)`,
     },
-    submitButton: {
-      // width: '50%',
-      // maxWidth: 'unset',
-      // borderRadius: 8,
-      // margin: `${theme.spacings.xs} auto`,
-      // display: 'block',
-      // marginTop: theme.spacings.md,
-      // marginBottom: theme.spacings.lg,
-      // textAlign: 'center',
+    actions: {
+      paddingTop: theme.spacings.xxs,
+      paddingBottom: theme.spacings.xxs,
+      justifyContent: 'center',
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gap: `calc(${theme.spacings.xxs} * 2)`,
     },
     checkmark: {
       color: theme.palette.success.main,
