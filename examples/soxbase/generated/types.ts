@@ -6628,7 +6628,7 @@ export type RowProductGrid = Node & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  title: Scalars['String']
+  title?: Maybe<Scalars['String']>
   pageLinks: Array<PageLink>
   pages: Array<Page>
   magentoCategory?: Maybe<MagentoCategory>
@@ -6711,7 +6711,7 @@ export type RowProductGridCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
   /** title input for default locale (en) */
-  title: Scalars['String']
+  title?: Maybe<Scalars['String']>
   pageLinks?: Maybe<PageLinkCreateManyInlineInput>
   pages?: Maybe<PageCreateManyInlineInput>
   magentoCategory?: Maybe<MagentoCategoryCreateOneInlineInput>
@@ -6722,7 +6722,7 @@ export type RowProductGridCreateInput = {
 export type RowProductGridCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  title: Scalars['String']
+  title?: Maybe<Scalars['String']>
 }
 
 export type RowProductGridCreateLocalizationInput = {
