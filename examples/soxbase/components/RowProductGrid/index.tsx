@@ -4,26 +4,29 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
 import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
-import ProductListItemsSlider from '../ProductListItems/ProductListItemsSlider'
+import ProductListItems from '../ProductListItems/ProductListItems'
 import { RowProductGridFragment } from './RowProductGrid.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    marginBottom: `${theme.spacings.lg}`,
+    marginBottom: `${theme.spacings.xl}`,
     [theme.breakpoints.up('md')]: {
       marginBottom: `${theme.spacings.xl}`,
     },
   },
-  slider: {
-    position: 'relative',
+  grid: {
     '& > div': {
       display: 'grid',
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 360)}, 1fr))`,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 260)}, 1fr))`,
     },
     '& > div > *': {
-      minWidth: responsiveVal(150, 360),
+      minWidth: responsiveVal(150, 260),
+    },
+    '& > div > div > a > div > div': {
+      //hide product options
+      display: 'none',
     },
   },
   head: {
@@ -51,7 +54,7 @@ export default function RowProductGrid(props: RowProductGridProps) {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <Container className={classes.container}>
       <div className={classes.head}>
         <Typography variant='h2' className={classes.title}>
           {title}
@@ -68,8 +71,8 @@ export default function RowProductGrid(props: RowProductGridProps) {
           })}
         </div>
       </div>
-      <div className={classes.slider}>
-        <ProductListItemsSlider {...productListItems} />
+      <div className={classes.grid}>
+        <ProductListItems {...productListItems} />
       </div>
     </Container>
   )
