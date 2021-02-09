@@ -1974,6 +1974,7 @@ export type PageContent =
   | RowColumnOne
   | RowColumnThree
   | RowColumnTwo
+  | RowContentLinks
   | RowHeroBanner
   | RowProductBackstory
   | RowProductGrid
@@ -1993,6 +1994,7 @@ export type PageContentConnectInput = {
   RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
   RowQuote?: Maybe<RowQuoteConnectInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerConnectInput>
+  RowContentLinks?: Maybe<RowContentLinksConnectInput>
   RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
   RowProductGrid?: Maybe<RowProductGridConnectInput>
 }
@@ -2008,6 +2010,7 @@ export type PageContentCreateInput = {
   RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
   RowQuote?: Maybe<RowQuoteCreateInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerCreateInput>
+  RowContentLinks?: Maybe<RowContentLinksCreateInput>
   RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
   RowProductGrid?: Maybe<RowProductGridCreateInput>
 }
@@ -2037,6 +2040,7 @@ export type PageContentUpdateInput = {
   RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
   RowQuote?: Maybe<RowQuoteUpdateInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateInput>
+  RowContentLinks?: Maybe<RowContentLinksUpdateInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
   RowProductGrid?: Maybe<RowProductGridUpdateInput>
 }
@@ -2069,6 +2073,7 @@ export type PageContentUpdateManyWithNestedWhereInput = {
   RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
   RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateManyWithNestedWhereInput>
+  RowContentLinks?: Maybe<RowContentLinksUpdateManyWithNestedWhereInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
   RowProductGrid?: Maybe<RowProductGridUpdateManyWithNestedWhereInput>
 }
@@ -2099,6 +2104,7 @@ export type PageContentUpdateWithNestedWhereUniqueInput = {
   RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
   RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateWithNestedWhereUniqueInput>
+  RowContentLinks?: Maybe<RowContentLinksUpdateWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridUpdateWithNestedWhereUniqueInput>
 }
@@ -2114,6 +2120,7 @@ export type PageContentUpsertWithNestedWhereUniqueInput = {
   RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
   RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpsertWithNestedWhereUniqueInput>
+  RowContentLinks?: Maybe<RowContentLinksUpsertWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridUpsertWithNestedWhereUniqueInput>
 }
@@ -2129,6 +2136,7 @@ export type PageContentWhereInput = {
   RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
   RowQuote?: Maybe<RowQuoteWhereInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerWhereInput>
+  RowContentLinks?: Maybe<RowContentLinksWhereInput>
   RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
   RowProductGrid?: Maybe<RowProductGridWhereInput>
 }
@@ -2144,6 +2152,7 @@ export type PageContentWhereUniqueInput = {
   RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
   RowQuote?: Maybe<RowQuoteWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerWhereUniqueInput>
+  RowContentLinks?: Maybe<RowContentLinksWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridWhereUniqueInput>
 }
@@ -2255,6 +2264,7 @@ export type PageLink = Node & {
   footerSocialLinks: Array<Footer>
   footerLegalLinks: Array<Footer>
   rowServiceOptionsMultiple: Array<RowServiceOptions>
+  rowContentLinks?: Maybe<RowContentLinks>
   /** List of PageLink versions */
   history: Array<Version>
 }
@@ -2348,6 +2358,10 @@ export type PageLinkRowServiceOptionsMultipleArgs = {
   locales?: Maybe<Array<Locale>>
 }
 
+export type PageLinkRowContentLinksArgs = {
+  locales?: Maybe<Array<Locale>>
+}
+
 export type PageLinkHistoryArgs = {
   limit?: Scalars['Int']
   skip?: Scalars['Int']
@@ -2386,6 +2400,7 @@ export type PageLinkCreateInput = {
   footerSocialLinks?: Maybe<FooterCreateManyInlineInput>
   footerLegalLinks?: Maybe<FooterCreateManyInlineInput>
   rowServiceOptionsMultiple?: Maybe<RowServiceOptionsCreateManyInlineInput>
+  rowContentLinks?: Maybe<RowContentLinksCreateOneInlineInput>
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<PageLinkCreateLocalizationsInput>
 }
@@ -2524,6 +2539,7 @@ export type PageLinkManyWhereInput = {
   rowServiceOptionsMultiple_every?: Maybe<RowServiceOptionsWhereInput>
   rowServiceOptionsMultiple_some?: Maybe<RowServiceOptionsWhereInput>
   rowServiceOptionsMultiple_none?: Maybe<RowServiceOptionsWhereInput>
+  rowContentLinks?: Maybe<RowContentLinksWhereInput>
 }
 
 export type PageLinkOrderByInput =
@@ -2553,6 +2569,7 @@ export type PageLinkUpdateInput = {
   footerSocialLinks?: Maybe<FooterUpdateManyInlineInput>
   footerLegalLinks?: Maybe<FooterUpdateManyInlineInput>
   rowServiceOptionsMultiple?: Maybe<RowServiceOptionsUpdateManyInlineInput>
+  rowContentLinks?: Maybe<RowContentLinksUpdateOneInlineInput>
   /** Manage document localizations */
   localizations?: Maybe<PageLinkUpdateLocalizationsInput>
 }
@@ -2801,6 +2818,7 @@ export type PageLinkWhereInput = {
   rowServiceOptionsMultiple_every?: Maybe<RowServiceOptionsWhereInput>
   rowServiceOptionsMultiple_some?: Maybe<RowServiceOptionsWhereInput>
   rowServiceOptionsMultiple_none?: Maybe<RowServiceOptionsWhereInput>
+  rowContentLinks?: Maybe<RowContentLinksWhereInput>
 }
 
 /** References PageLink record uniquely */
@@ -5655,6 +5673,507 @@ export type RowColumnTwoWhereUniqueInput = {
   identity?: Maybe<Scalars['String']>
 }
 
+export type RowContentLinks = Node & {
+  __typename?: 'RowContentLinks'
+  /** System stage field */
+  stage: Stage
+  /** System Locale field */
+  locale: Locale
+  /** Get the other localizations for this document */
+  localizations: Array<RowContentLinks>
+  /** Get the document in other stages */
+  documentInStages: Array<RowContentLinks>
+  /** The unique identifier */
+  id: Scalars['ID']
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  title: Scalars['String']
+  contentLinks: Array<PageLink>
+  pages: Array<Page>
+  /** List of RowContentLinks versions */
+  history: Array<Version>
+}
+
+export type RowContentLinksLocalizationsArgs = {
+  locales?: Array<Locale>
+  includeCurrent?: Scalars['Boolean']
+}
+
+export type RowContentLinksDocumentInStagesArgs = {
+  stages?: Array<Stage>
+  includeCurrent?: Scalars['Boolean']
+  inheritLocale?: Scalars['Boolean']
+}
+
+export type RowContentLinksCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowContentLinksUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowContentLinksPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation
+}
+
+export type RowContentLinksContentLinksArgs = {
+  where?: Maybe<PageLinkWhereInput>
+  orderBy?: Maybe<PageLinkOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowContentLinksPagesArgs = {
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+  locales?: Maybe<Array<Locale>>
+}
+
+export type RowContentLinksHistoryArgs = {
+  limit?: Scalars['Int']
+  skip?: Scalars['Int']
+  stageOverride?: Maybe<Stage>
+}
+
+export type RowContentLinksConnectInput = {
+  /** Document to connect */
+  where: RowContentLinksWhereUniqueInput
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>
+}
+
+/** A connection to a list of items. */
+export type RowContentLinksConnection = {
+  __typename?: 'RowContentLinksConnection'
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** A list of edges. */
+  edges: Array<RowContentLinksEdge>
+  aggregate: Aggregate
+}
+
+export type RowContentLinksCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  identity: Scalars['String']
+  /** title input for default locale (en) */
+  title: Scalars['String']
+  contentLinks?: Maybe<PageLinkCreateManyInlineInput>
+  pages?: Maybe<PageCreateManyInlineInput>
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<RowContentLinksCreateLocalizationsInput>
+}
+
+export type RowContentLinksCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  title: Scalars['String']
+}
+
+export type RowContentLinksCreateLocalizationInput = {
+  /** Localization input */
+  data: RowContentLinksCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowContentLinksCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<RowContentLinksCreateLocalizationInput>>
+}
+
+export type RowContentLinksCreateManyInlineInput = {
+  /** Create and connect multiple existing RowContentLinks documents */
+  create?: Maybe<Array<RowContentLinksCreateInput>>
+  /** Connect multiple existing RowContentLinks documents */
+  connect?: Maybe<Array<RowContentLinksWhereUniqueInput>>
+}
+
+export type RowContentLinksCreateOneInlineInput = {
+  /** Create and connect one RowContentLinks document */
+  create?: Maybe<RowContentLinksCreateInput>
+  /** Connect one existing RowContentLinks document */
+  connect?: Maybe<RowContentLinksWhereUniqueInput>
+}
+
+/** An edge in a connection. */
+export type RowContentLinksEdge = {
+  __typename?: 'RowContentLinksEdge'
+  /** The item at the end of the edge. */
+  node: RowContentLinks
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']
+}
+
+/** Identifies documents */
+export type RowContentLinksManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowContentLinksWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowContentLinksWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowContentLinksWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  contentLinks_every?: Maybe<PageLinkWhereInput>
+  contentLinks_some?: Maybe<PageLinkWhereInput>
+  contentLinks_none?: Maybe<PageLinkWhereInput>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
+}
+
+export type RowContentLinksOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'identity_ASC'
+  | 'identity_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+
+export type RowContentLinksUpdateInput = {
+  identity?: Maybe<Scalars['String']>
+  /** title input for default locale (en) */
+  title?: Maybe<Scalars['String']>
+  contentLinks?: Maybe<PageLinkUpdateManyInlineInput>
+  pages?: Maybe<PageUpdateManyInlineInput>
+  /** Manage document localizations */
+  localizations?: Maybe<RowContentLinksUpdateLocalizationsInput>
+}
+
+export type RowContentLinksUpdateLocalizationDataInput = {
+  title?: Maybe<Scalars['String']>
+}
+
+export type RowContentLinksUpdateLocalizationInput = {
+  data: RowContentLinksUpdateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowContentLinksUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<RowContentLinksCreateLocalizationInput>>
+  /** Localizations to update */
+  update?: Maybe<Array<RowContentLinksUpdateLocalizationInput>>
+  upsert?: Maybe<Array<RowContentLinksUpsertLocalizationInput>>
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>
+}
+
+export type RowContentLinksUpdateManyInlineInput = {
+  /** Create and connect multiple RowContentLinks documents */
+  create?: Maybe<Array<RowContentLinksCreateInput>>
+  /** Connect multiple existing RowContentLinks documents */
+  connect?: Maybe<Array<RowContentLinksConnectInput>>
+  /** Override currently-connected documents with multiple existing RowContentLinks documents */
+  set?: Maybe<Array<RowContentLinksWhereUniqueInput>>
+  /** Update multiple RowContentLinks documents */
+  update?: Maybe<Array<RowContentLinksUpdateWithNestedWhereUniqueInput>>
+  /** Upsert multiple RowContentLinks documents */
+  upsert?: Maybe<Array<RowContentLinksUpsertWithNestedWhereUniqueInput>>
+  /** Disconnect multiple RowContentLinks documents */
+  disconnect?: Maybe<Array<RowContentLinksWhereUniqueInput>>
+  /** Delete multiple RowContentLinks documents */
+  delete?: Maybe<Array<RowContentLinksWhereUniqueInput>>
+}
+
+export type RowContentLinksUpdateManyInput = {
+  /** title input for default locale (en) */
+  title?: Maybe<Scalars['String']>
+  /** Optional updates to localizations */
+  localizations?: Maybe<RowContentLinksUpdateManyLocalizationsInput>
+}
+
+export type RowContentLinksUpdateManyLocalizationDataInput = {
+  title?: Maybe<Scalars['String']>
+}
+
+export type RowContentLinksUpdateManyLocalizationInput = {
+  data: RowContentLinksUpdateManyLocalizationDataInput
+  locale: Locale
+}
+
+export type RowContentLinksUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<RowContentLinksUpdateManyLocalizationInput>>
+}
+
+export type RowContentLinksUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: RowContentLinksWhereInput
+  /** Update many input */
+  data: RowContentLinksUpdateManyInput
+}
+
+export type RowContentLinksUpdateOneInlineInput = {
+  /** Create and connect one RowContentLinks document */
+  create?: Maybe<RowContentLinksCreateInput>
+  /** Update single RowContentLinks document */
+  update?: Maybe<RowContentLinksUpdateWithNestedWhereUniqueInput>
+  /** Upsert single RowContentLinks document */
+  upsert?: Maybe<RowContentLinksUpsertWithNestedWhereUniqueInput>
+  /** Connect existing RowContentLinks document */
+  connect?: Maybe<RowContentLinksWhereUniqueInput>
+  /** Disconnect currently connected RowContentLinks document */
+  disconnect?: Maybe<Scalars['Boolean']>
+  /** Delete currently connected RowContentLinks document */
+  delete?: Maybe<Scalars['Boolean']>
+}
+
+export type RowContentLinksUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowContentLinksWhereUniqueInput
+  /** Document to update */
+  data: RowContentLinksUpdateInput
+}
+
+export type RowContentLinksUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RowContentLinksCreateInput
+  /** Update document if it exists */
+  update: RowContentLinksUpdateInput
+}
+
+export type RowContentLinksUpsertLocalizationInput = {
+  update: RowContentLinksUpdateLocalizationDataInput
+  create: RowContentLinksCreateLocalizationDataInput
+  locale: Locale
+}
+
+export type RowContentLinksUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: RowContentLinksWhereUniqueInput
+  /** Upsert data */
+  data: RowContentLinksUpsertInput
+}
+
+/** Identifies documents */
+export type RowContentLinksWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<RowContentLinksWhereInput>>
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<RowContentLinksWhereInput>>
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<RowContentLinksWhereInput>>
+  id?: Maybe<Scalars['ID']>
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>
+  identity?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  identity_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  identity_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  identity_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  identity_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  identity_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  identity_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  identity_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  identity_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  identity_not_ends_with?: Maybe<Scalars['String']>
+  title?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>
+  contentLinks_every?: Maybe<PageLinkWhereInput>
+  contentLinks_some?: Maybe<PageLinkWhereInput>
+  contentLinks_none?: Maybe<PageLinkWhereInput>
+  pages_every?: Maybe<PageWhereInput>
+  pages_some?: Maybe<PageWhereInput>
+  pages_none?: Maybe<PageWhereInput>
+}
+
+/** References RowContentLinks record uniquely */
+export type RowContentLinksWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>
+  identity?: Maybe<Scalars['String']>
+}
+
 export type RowHeroBanner = Node & {
   __typename?: 'RowHeroBanner'
   /** System stage field */
@@ -6634,7 +7153,7 @@ export type RowProductGrid = Node & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
-  title: Scalars['String']
+  title?: Maybe<Scalars['String']>
   pageLinks: Array<PageLink>
   pages: Array<Page>
   magentoCategory?: Maybe<MagentoCategory>
@@ -6717,7 +7236,7 @@ export type RowProductGridCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>
   identity: Scalars['String']
   /** title input for default locale (en) */
-  title: Scalars['String']
+  title?: Maybe<Scalars['String']>
   pageLinks?: Maybe<PageLinkCreateManyInlineInput>
   pages?: Maybe<PageCreateManyInlineInput>
   magentoCategory?: Maybe<MagentoCategoryCreateOneInlineInput>
@@ -6728,7 +7247,7 @@ export type RowProductGridCreateInput = {
 export type RowProductGridCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>
   updatedAt?: Maybe<Scalars['DateTime']>
-  title: Scalars['String']
+  title?: Maybe<Scalars['String']>
 }
 
 export type RowProductGridCreateLocalizationInput = {
@@ -13213,6 +13732,37 @@ export type SetBillingAddressOnCartOutput = {
 
 export type SetGiftOptionsOnCartInput = {
   /** The unique ID that identifies the shopper's cart */
+<<<<<<< HEAD
+=======
+  cart_id: Scalars['String']
+  /** Gift message details for the cart */
+  gift_message?: Maybe<GiftMessageInput>
+  /** Whether customer requested gift receipt for the cart */
+  gift_receipt_included: Scalars['Boolean']
+  /** The unique identifier of the gift wrapping to be used for the cart */
+  gift_wrapping_id?: Maybe<Scalars['ID']>
+  /** Whether customer requested printed card for the cart */
+  printed_card_included: Scalars['Boolean']
+}
+
+/** Contains the text of a gift message, its sender, and recipient */
+export type GiftMessageInput = {
+  /** Sender name */
+  from: Scalars['String']
+  /** Gift message text */
+  message: Scalars['String']
+  /** Recepient name */
+  to: Scalars['String']
+}
+
+export type SetGiftOptionsOnCartOutput = {
+  __typename?: 'SetGiftOptionsOnCartOutput'
+  /** The modified cart object */
+  cart: Cart
+}
+
+export type SetGuestEmailOnCartInput = {
+>>>>>>> chore: update types and page queries
   cart_id: Scalars['String']
   /** Gift message details for the cart */
   gift_message?: Maybe<GiftMessageInput>
@@ -14599,6 +15149,310 @@ export type DownloadableCreditMemoItem = CreditMemoItemInterface & {
 export type GiftCardProduct = ProductInterface &
   PhysicalProductInterface &
   CustomizableProductInterface & {
+<<<<<<< HEAD
+    __typename?: 'DownloadableProduct'
+=======
+    __typename?: 'GiftCardProduct'
+    /** Indicates whether the customer can provide a message to accompany the gift card. */
+    allow_message?: Maybe<Scalars['Boolean']>
+    /** Indicates whether customers have the ability to set the value of the gift card. */
+    allow_open_amount?: Maybe<Scalars['Boolean']>
+>>>>>>> chore: update types and page queries
+    /** The attribute set assigned to the product. */
+    attribute_set_id?: Maybe<Scalars['Int']>
+    /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
+    canonical_url?: Maybe<Scalars['String']>
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>
+    color?: Maybe<Scalars['Int']>
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars['String']>
+    /** Timestamp indicating when the product was created. */
+    created_at?: Maybe<Scalars['String']>
+    /** Crosssell Products */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>
+<<<<<<< HEAD
+    /** An array containing information about the links for this downloadable product */
+    downloadable_product_links?: Maybe<Array<Maybe<DownloadableProductLinks>>>
+    /** An array containing information about samples of this downloadable product. */
+    downloadable_product_samples?: Maybe<Array<Maybe<DownloadableProductSamples>>>
+=======
+>>>>>>> chore: update types and page queries
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
+    format?: Maybe<Scalars['Int']>
+<<<<<<< HEAD
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars['String']>
+=======
+    /** An array of giftcard options. */
+    gift_card_options: Array<Maybe<CustomizableOptionInterface>>
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars['String']>
+    /** An array that contains information about the values and ID of a gift card. */
+    giftcard_amounts?: Maybe<Array<Maybe<GiftCardAmounts>>>
+    /** Either VIRTUAL, PHYSICAL, or COMBINED. */
+    giftcard_type?: Maybe<GiftCardTypeEnum>
+>>>>>>> chore: update types and page queries
+    has_video?: Maybe<Scalars['Int']>
+    /** The ID number assigned to the product. */
+    id?: Maybe<Scalars['Int']>
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>
+<<<<<<< HEAD
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
+    /** A value of 1 indicates that each link in the array must be purchased separately */
+    links_purchased_separately?: Maybe<Scalars['Int']>
+    /** The heading above the list of downloadable products */
+    links_title?: Maybe<Scalars['String']>
+=======
+    /** Indicates whether the customer can redeem the value on the card for cash. */
+    is_redeemable?: Maybe<Scalars['Boolean']>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
+    /** The number of days after purchase until the gift card expires. A null value means there is no limit. */
+    lifetime?: Maybe<Scalars['Int']>
+>>>>>>> chore: update types and page queries
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars['Int']>
+    /** An array of Media Gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use product's `media_gallery` instead
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>
+    /** Indicates whether the customer can provide a message to accompany the gift card. */
+    message_max_length?: Maybe<Scalars['Int']>
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars['String']>
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars['String']>
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars['String']>
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars['String']>
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars['String']>
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars['String']>
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars['Float']>
+    /** The minimum acceptable value of an open amount gift card. */
+    open_amount_max?: Maybe<Scalars['Float']>
+    /** The minimum acceptable value of an open amount gift card. */
+    open_amount_min?: Maybe<Scalars['Float']>
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars['String']>
+    /**
+     * A ProductPrices object, indicating the price of an item.
+     * @deprecated Use price_range for product price information.
+     */
+    price?: Maybe<ProductPrices>
+    /** A PriceRange object, indicating the range of prices for the product */
+    price_range: PriceRange
+    /** An array of TierPrice objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>
+    /** An array of ProductLinks objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars['Float']
+    /** Related Products */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars['Int']
+    /** The list of products reviews. */
+    reviews: ProductReviews
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars['String']>
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>
+    /** The beginning date that a product has a special price. */
+    special_from_date?: Maybe<Scalars['String']>
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars['Float']>
+    /** The end date that a product has a special price. */
+    special_to_date?: Maybe<Scalars['String']>
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>
+    /** The file name of a swatch image */
+    swatch_image?: Maybe<Scalars['String']>
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use price_tiers for product tier price information.
+     */
+    tier_price?: Maybe<Scalars['Float']>
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use price_tiers for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use __typename instead.
+     */
+    type_id?: Maybe<Scalars['String']>
+    /** Timestamp indicating when the product was updated. */
+    updated_at?: Maybe<Scalars['String']>
+    /** Upsell Products */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars['String']>
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars['String']>
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars['Float']>
+  }
+
+/** GiftCardProduct defines properties of a gift card, including the minimum and maximum values and an array that contains the current and past values on the specific gift card */
+export type GiftCardProductReviewsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
+
+/** GiftCardAmounts contains the value of a gift card, the website that generated the card, and related information */
+export type GiftCardAmounts = {
+  __typename?: 'GiftCardAmounts'
+  /** An internal attribute ID. */
+  attribute_id?: Maybe<Scalars['Int']>
+  /** A string that encodes option details. */
+  uid: Scalars['ID']
+  /** The value of the gift card */
+  value?: Maybe<Scalars['Float']>
+  /** An ID that is assigned to each unique gift card amount. */
+  value_id?: Maybe<Scalars['Int']>
+  /** ID of the website that generated the gift card */
+  website_id?: Maybe<Scalars['Int']>
+  /** The value of the gift card */
+  website_value?: Maybe<Scalars['Float']>
+}
+
+/** This enumeration defines the types of gift cards */
+export type GiftCardTypeEnum = 'VIRTUAL' | 'PHYSICAL' | 'COMBINED'
+
+export type GiftCardOrderItem = OrderItemInterface & {
+  __typename?: 'GiftCardOrderItem'
+  /** The final discount information for the product */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  /** The entered option for the base product, such as a logo or image */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>
+<<<<<<< HEAD
+=======
+  /** Selected gift card properties for an order item */
+  gift_card?: Maybe<GiftCardItem>
+>>>>>>> chore: update types and page queries
+  /** The selected gift wrapping for the order item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique identifier of the order item */
+  id: Scalars['ID']
+  /** The name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** The sale price of the base product, including selected options */
+  product_sale_price: Money
+  /** The SKU of the base product */
+  product_sku: Scalars['String']
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars['String']>
+  /** URL key of the base product */
+  product_url_key?: Maybe<Scalars['String']>
+  /** The number of canceled items */
+  quantity_canceled?: Maybe<Scalars['Float']>
+  /** The number of invoiced items */
+  quantity_invoiced?: Maybe<Scalars['Float']>
+  /** The number of units ordered for this item */
+  quantity_ordered?: Maybe<Scalars['Float']>
+  /** The number of refunded items */
+  quantity_refunded?: Maybe<Scalars['Float']>
+  /** The number of returned items */
+  quantity_returned?: Maybe<Scalars['Float']>
+  /** The number of shipped items */
+  quantity_shipped?: Maybe<Scalars['Float']>
+  /** The selected options for the base product, such as color or size */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>
+  /** The status of the order item */
+  status?: Maybe<Scalars['String']>
+}
+
+export type GiftCardItem = {
+  __typename?: 'GiftCardItem'
+  /** Entered gift card message intended for the recipient */
+  message?: Maybe<Scalars['String']>
+  /** Entered gift card recipient email for virtual cards */
+  recipient_email?: Maybe<Scalars['String']>
+  /** Entered gift card sender namefor physical and virtual cards */
+  recipient_name?: Maybe<Scalars['String']>
+  /** Entered gift card sender email for virtual cards */
+  sender_email?: Maybe<Scalars['String']>
+  /** Entered gift card sender name for physical and virtual cards */
+  sender_name?: Maybe<Scalars['String']>
+}
+
+export type GiftCardInvoiceItem = InvoiceItemInterface & {
+  __typename?: 'GiftCardInvoiceItem'
+  /** Contains information about the final discount amount for the base product, including discounts on options */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Selected gift card properties for an invoice item */
+  gift_card?: Maybe<GiftCardItem>
+  /** The unique ID of the invoice item */
+  id: Scalars['ID']
+  /** Contains details about an individual order item */
+  order_item?: Maybe<OrderItemInterface>
+  /** The name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** The sale price for the base product including selected options */
+  product_sale_price: Money
+  /** The SKU of the base product */
+  product_sku: Scalars['String']
+  /** The number of invoiced items */
+  quantity_invoiced?: Maybe<Scalars['Float']>
+}
+
+export type GiftCardCreditMemoItem = CreditMemoItemInterface & {
+  __typename?: 'GiftCardCreditMemoItem'
+  /** Contains information about the final discount amount for the base product, including discounts on options */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Selected gift card properties for an credit memo item */
+  gift_card?: Maybe<GiftCardItem>
+  /** The unique ID of the credit memo item, used for API purposes */
+  id: Scalars['ID']
+  /** The order item the credit memo is applied to */
+  order_item?: Maybe<OrderItemInterface>
+  /** The name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** The sale price for the base product, including selected options */
+  product_sale_price: Money
+  /** SKU of the base product */
+  product_sku: Scalars['String']
+  /** The number of refunded items */
+  quantity_refunded?: Maybe<Scalars['Float']>
+}
+
+<<<<<<< HEAD
+/** GiftCardProduct defines properties of a gift card, including the minimum and maximum values and an array that contains the current and past values on the specific gift card */
+export type GiftCardProduct = ProductInterface &
+  PhysicalProductInterface &
+  CustomizableProductInterface & {
     __typename?: 'GiftCardProduct'
     /** Indicates whether the customer can provide a message to accompany the gift card. */
     allow_message?: Maybe<Scalars['Boolean']>
@@ -14870,6 +15724,8 @@ export type GiftCardCreditMemoItem = CreditMemoItemInterface & {
   quantity_refunded?: Maybe<Scalars['Float']>
 }
 
+=======
+>>>>>>> chore: update types and page queries
 export type GiftCardShipmentItem = ShipmentItemInterface & {
   __typename?: 'GiftCardShipmentItem'
   /** Selected gift card properties for an shipment item */
