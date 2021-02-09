@@ -11,23 +11,9 @@ export const MagentoCategoryFragmentDoc: DocumentNode<MagentoCategoryFragment, u
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'MagentoCategory' } },
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'category' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
-              ],
-            },
-          },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'url' } }],
       },
     },
   ],
 }
-export type MagentoCategoryFragment = {
-  category?: Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path'>>
-}
+export type MagentoCategoryFragment = Pick<Types.MagentoCategory, 'url'>
