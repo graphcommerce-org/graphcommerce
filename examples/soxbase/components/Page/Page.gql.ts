@@ -22,6 +22,7 @@ import {
 } from '../RowProductGrid/RowProductGrid.gql'
 import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
 import { RowQuoteFragment } from '../RowQuote/RowQuote.gql'
+import { RowSwipeableGridFragment } from '../RowSwipeableGrid/RowSwipeableGrid.gql'
 import {
   RowServiceOptionsFragment,
   RowServiceOptionsFragmentDoc,
@@ -31,6 +32,7 @@ import { RowColumnTwoFragmentDoc } from '../RowColumnTwo/RowColumnTwo.gql'
 
 import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
 import { RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
+import { RowSwipeableGridFragmentDoc } from '../RowSwipeableGrid/RowSwipeableGrid.gql'
 import { RowProductBackstoryFragmentDoc } from '../RowProductBackstory/RowProductBackstory.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
@@ -67,6 +69,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductGrid' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSpecialBanner' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowQuote' } },
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowSwipeableGrid' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowProductBackstory' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowButtonLinkList' } },
                 { kind: 'FragmentSpread', name: { kind: 'Name', value: 'RowServiceOptions' } },
@@ -92,6 +95,7 @@ export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
     ...RowProductGridFragmentDoc.definitions,
     ...RowSpecialBannerFragmentDoc.definitions,
     ...RowQuoteFragmentDoc.definitions,
+    ...RowSwipeableGridFragmentDoc.definitions,
     ...RowProductBackstoryFragmentDoc.definitions,
     ...RowButtonLinkListFragmentDoc.definitions,
     ...RowServiceOptionsFragmentDoc.definitions,
@@ -115,7 +119,8 @@ export type PageFragment = Pick<Types.Page, 'title'> & {
         RowServiceOptionsFragment)
     | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id'> &
         RowSpecialBannerFragment)
-    | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)
+    | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'> &
+        RowSwipeableGridFragment)
   >
   asset?: Types.Maybe<AssetFragment>
 }

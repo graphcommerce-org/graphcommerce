@@ -25,6 +25,7 @@ import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import RowProductGrid from '../../components/RowProductGrid'
 import apolloClient from '../../lib/apolloClient'
+import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 
 type Props = CmsPageQuery &
   PageLayoutQuery &
@@ -55,6 +56,7 @@ const CmsPage = ({ cmsPage, menu, urlResolver, pages, footer, products }: Props)
         <Page
           renderer={{
             RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
+            RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
           }}
           {...pages?.[0]}
         />
@@ -99,8 +101,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const cat = String((await config).data.storeConfig?.root_category_id ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { rootCategory: cat, filters: { category_id: { eq: cat } },
-    },
+    variables: { rootCategory: cat, pageSize: 10, filters: { category_id: { eq: cat } } },
   })
 
   const { urlResolver } = (await resolveUrl).data

@@ -59,7 +59,7 @@ export default function RowProductGrid(props: RowProductGridProps) {
         <div>
           {pageLinks.map((pageLink) => {
             return (
-              <NextUiPageLink href={pageLink.url}>
+              <NextUiPageLink href={pageLink.url} key={pageLink.url}>
                 <a href={pageLink.url} className={classes.url}>
                   {pageLink.title}
                 </a>
