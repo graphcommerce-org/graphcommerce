@@ -64,7 +64,7 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
   const { title, ...productListItems } = props
   const classes = useStyles()
   const [exPagination, setExPagination] = useState<boolean[]>([])
-  const curRef = useRef<HTMLInputElement>()
+  const curRef = useRef() as React.MutableRefObject<HTMLInputElement>
   let current =
     exPagination.findIndex((index) => index === true) != -1
       ? exPagination.findIndex((index) => index === true) + 1
