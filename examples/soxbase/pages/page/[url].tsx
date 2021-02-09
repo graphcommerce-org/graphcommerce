@@ -56,9 +56,7 @@ const CmsPage = ({ cmsPage, menu, urlResolver, pages, footer, products }: Props)
         <Page
           renderer={{
             RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
-            RowSwipeableGrid: (props) => (
-              <RowSwipeableGrid title={''} {...props} items={products?.items} />
-            ),
+            RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
           }}
           {...pages?.[0]}
         />
