@@ -2,7 +2,6 @@ import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import SignUpForm from '@reachdigital/magento-customer/SignUpForm'
-import useSignedOutGuard from '@reachdigital/magento-customer/useSignedOutGuard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -15,10 +14,6 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountSignUpPage() {
-  const signedOut = useSignedOutGuard()
-
-  if (!signedOut) return null
-
   return (
     <OverlayUi title='Sign Up' variant='center'>
       <PageMeta

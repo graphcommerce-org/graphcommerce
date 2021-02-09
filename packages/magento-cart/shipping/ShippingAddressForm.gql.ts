@@ -23,10 +23,92 @@ export const ShippingAddressFormDocument: DocumentNode<
         },
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'address' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'company' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'firstname' } },
           type: {
             kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'CartAddressInput' } },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'lastname' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'postcode' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'city' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'countryCode' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'region' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'regionId' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'houseNumber' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'addition' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'telephone' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          defaultValue: { kind: 'StringValue', value: '000 - 000 0000', block: false },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'saveInAddressBook' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Boolean' } },
           },
         },
         {
@@ -66,8 +148,110 @@ export const ShippingAddressFormDocument: DocumentNode<
                                 kind: 'ObjectField',
                                 name: { kind: 'Name', value: 'address' },
                                 value: {
-                                  kind: 'Variable',
-                                  name: { kind: 'Name', value: 'address' },
+                                  kind: 'ObjectValue',
+                                  fields: [
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'company' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'company' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'firstname' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'firstname' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'lastname' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'lastname' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'postcode' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'postcode' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'city' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'city' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'country_code' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'countryCode' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'region' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'region' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'region_id' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'regionId' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'street' },
+                                      value: {
+                                        kind: 'ListValue',
+                                        values: [
+                                          {
+                                            kind: 'Variable',
+                                            name: { kind: 'Name', value: 'street' },
+                                          },
+                                          {
+                                            kind: 'Variable',
+                                            name: { kind: 'Name', value: 'houseNumber' },
+                                          },
+                                          {
+                                            kind: 'Variable',
+                                            name: { kind: 'Name', value: 'addition' },
+                                          },
+                                        ],
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'telephone' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'telephone' },
+                                      },
+                                    },
+                                    {
+                                      kind: 'ObjectField',
+                                      name: { kind: 'Name', value: 'save_in_address_book' },
+                                      value: {
+                                        kind: 'Variable',
+                                        name: { kind: 'Name', value: 'saveInAddressBook' },
+                                      },
+                                    },
+                                  ],
                                 },
                               },
                               {
@@ -207,7 +391,19 @@ export const ShippingAddressFormDocument: DocumentNode<
 }
 export type ShippingAddressFormMutationVariables = Types.Exact<{
   cartId: Types.Scalars['String']
-  address: Types.CartAddressInput
+  company?: Types.Maybe<Types.Scalars['String']>
+  firstname: Types.Scalars['String']
+  lastname: Types.Scalars['String']
+  postcode: Types.Scalars['String']
+  city: Types.Scalars['String']
+  countryCode: Types.Scalars['String']
+  region?: Types.Maybe<Types.Scalars['String']>
+  regionId?: Types.Maybe<Types.Scalars['Int']>
+  street: Types.Scalars['String']
+  houseNumber: Types.Scalars['String']
+  addition?: Types.Maybe<Types.Scalars['String']>
+  telephone?: Types.Maybe<Types.Scalars['String']>
+  saveInAddressBook: Types.Scalars['Boolean']
   customerNote?: Types.Maybe<Types.Scalars['String']>
 }>
 

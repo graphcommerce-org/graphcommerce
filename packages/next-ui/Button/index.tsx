@@ -19,6 +19,7 @@ type ClassKeys = ButtonClassKey | MuiButtonClassKey
 
 export type ButtonProps = BaseButtonProps & {
   classes?: { [index in ClassKeys]?: string }
+  loading?: boolean
 }
 
 const useStyles = makeStyles<
@@ -54,7 +55,7 @@ const useStyles = makeStyles<
 
 export default React.forwardRef<any, ButtonProps>((props, ref) => {
   const { classes = {}, ...baseProps } = props
-  const { variant, color, size, className, ...buttonProps } = baseProps
+  const { variant, color, size, className, children, loading, disabled, ...buttonProps } = baseProps
   const {
     pill,
     pillPrimary,
@@ -77,6 +78,7 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       variant={variant === 'pill' ? 'contained' : variant}
       size={size}
       ref={ref}
+      disabled={loading || disabled}
       className={clsx(
         {
           [pillClasses.pill]: variant === 'pill',
@@ -88,6 +90,8 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
         },
         className,
       )}
-    />
+    >
+      {loading ? <>Loading</> : children}
+    </MuiButton>
   )
 })

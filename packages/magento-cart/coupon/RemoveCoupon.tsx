@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText, TextField } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import clsx from 'clsx'
 import React from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -17,13 +18,18 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
   const classes = useCouponFormStyles()
   const { data: cartQuery } = useQuery(ClientCartDocument)
 
-  const mutationForm = useMutationForm(RemoveCouponDocument, {
+  const form = useFormGqlMutation(RemoveCouponDocument, {
     defaultValues: { cartId: cartQuery?.cart?.id },
   })
-  const { errors, handleSubmit, formState } = mutationForm
+  const { errors, handleSubmit, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={clsx(formClasses.form, classes.couponForm)}>
+    <form
+      onSubmit={submitHandler}
+      noValidate
+      className={clsx(formClasses.form, classes.couponForm)}
+    >
       <TextField
         variant='outlined'
         type='text'
@@ -37,7 +43,7 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
@@ -45,8 +51,9 @@ export default function RemoveCoupon(props: RemoveCouponProps) {
         >
           Remove
         </Button>
-        <FormHelperText error={!!errors.submission}>{errors.submission?.message}</FormHelperText>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

@@ -1,19 +1,13 @@
-import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { Button, ButtonProps, FormControl, FormHelperText } from '@material-ui/core'
+import { useQuery } from '@apollo/client'
+import { FormControl } from '@material-ui/core'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
-import { ProductInterface } from '@reachdigital/magento-graphql'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import ErrorSnackbarLoader from '@reachdigital/next-ui/Snackbar/ErrorSnackbarLoader'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import {
-  DeepPartial,
-  FieldError,
-  FieldErrors,
-  UnpackNestedValue,
-  useMutationForm,
-} from '@reachdigital/next-ui/useMutationForm'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { useRef } from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
@@ -31,7 +25,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const { getUids } = useConfigurableContext(variables.sku)
 
   const requestCartId = useRequestCartId()
-  const mutationForm = useMutationForm(ConfigurableProductAddToCartDocument, {
+  const form = useFormGqlMutation(ConfigurableProductAddToCartDocument, {
     defaultValues: variables,
     onBeforeSubmit: async ({ selectedOptions, ...vars }) => ({
       ...vars,
@@ -40,8 +34,8 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       selectedOptions: getUids((selectedOptions?.[0] as unknown) as Selected),
     }),
   })
-
-  const { handleSubmit, errors, formState, register, required, control } = mutationForm
+  const { handleSubmit, errors, formState, register, required, control, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
@@ -50,22 +44,20 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const ref = useRef<HTMLInputElement>(null)
   register(ref.current, { required: required.quantity })
 
-  const submissionError = errors.submission
-
   return requireAuth ? (
-    <PageLink href='/account/signin?back=1'>
+    <PageLink href='/account/signin'>
       <Button color='primary' variant='contained' {...buttonProps}>
         Add to Cart
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={submitHandler} noValidate>
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
         control={control}
         rules={{ required: required.selectedOptions }}
-        errors={errors.selectedOptions as FieldErrors}
+        errors={errors.selectedOptions}
       />
 
       <TextInputNumber
@@ -86,22 +78,19 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           {...buttonProps}
         >
           Add to Cart
         </Button>
-        <FormHelperText error={!!errors.submission}>{errors.submission?.message}</FormHelperText>
       </FormControl>
 
-      <ErrorSnackbarLoader
-        open={formState.isSubmitted && !!submissionError}
-        message={<>{submissionError?.message}</>}
-      />
+      <ApolloErrorAlert error={error} />
+
       <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !submissionError?.message}
+        open={formState.isSubmitSuccessful && !error?.message}
         message={
           <>
             Added <em>&lsquo;Product&rsquo;</em> to cart

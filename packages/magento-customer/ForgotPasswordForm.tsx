@@ -1,14 +1,9 @@
-import {
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  FormControl,
-  FormHelperText,
-} from '@material-ui/core'
+import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
 import {
   ForgotPasswordMutation,
@@ -30,12 +25,12 @@ const useStyles = makeStyles(
 
 export default function ForgotPasswordForm() {
   const classes = useStyles()
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
   >(ForgotPasswordDocument)
-
-  const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
+  const { register, errors, handleSubmit, required, watch, data, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
     return (
@@ -46,7 +41,7 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='text'
@@ -83,17 +78,16 @@ export default function ForgotPasswordForm() {
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
         >
           Send email
         </Button>
-        <FormHelperText error={!!errors.submission?.message}>
-          {errors.submission?.message}
-        </FormHelperText>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

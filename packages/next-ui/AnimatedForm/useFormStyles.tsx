@@ -21,27 +21,17 @@ const useFormStyles = makeStyles(
       gap: `calc(${theme.spacings.xxs} * 2)`,
     },
     actions: {
+      paddingTop: theme.spacings.xxs,
+      paddingBottom: theme.spacings.xxs,
+      justifyContent: 'center',
       display: 'grid',
-      gridTemplateColumns: 'auto auto',
-      paddingBottom: theme.spacings.xs,
-      '& :last-child': {
-        textAlign: 'right',
-      },
-    },
-    submitButton: {
-      // width: '50%',
-      // maxWidth: 'unset',
-      // borderRadius: 8,
-      // margin: `${theme.spacings.xs} auto`,
-      // display: 'block',
-      // marginTop: theme.spacings.md,
-      // marginBottom: theme.spacings.lg,
-      // textAlign: 'center',
+      gridAutoFlow: 'column',
+      gap: `calc(${theme.spacings.xxs} * 2)`,
     },
     checkmark: {
       color: theme.palette.success.main,
     },
-    steps: {
+    helperList: {
       ...theme.typography.body2,
       paddingLeft: theme.spacings.xs,
     },

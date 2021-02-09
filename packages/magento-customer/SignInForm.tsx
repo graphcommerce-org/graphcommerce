@@ -1,17 +1,11 @@
 import { useQuery } from '@apollo/client'
-import {
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  FormControl,
-  FormHelperText,
-  Link,
-} from '@material-ui/core'
+import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
+import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
@@ -33,13 +27,6 @@ const useStyles = makeStyles(
         textAlign: 'right',
       },
     },
-    submitBtn: {
-      borderRadius: 8,
-      margin: '0 auto',
-      maxWidth: 'unset',
-      width: '50%',
-      display: 'block',
-    },
     forgotPass: {
       textAlign: 'right',
     },
@@ -51,71 +38,63 @@ type SignInFormProps = PropsWithChildren<{ email: string }>
 
 export default function SignInForm(props: SignInFormProps) {
   const { children, email } = props
-  const classes = useStyles()
+  // const classes = useStyles()
+  const classes = useFormStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const mutationForm = useMutationForm(SignInDocument, {
+  const form = useFormGqlMutation(SignInDocument, {
     onComplete: onCompleteSignInUp, // TODO: juiste callback zoeken / bouwen
     defaultValues: { email },
   })
-  const { register, errors, handleSubmit, required, formState } = mutationForm
+  const { register, errors, handleSubmit, required, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
+
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate>
       {requireAuth && (
         <Alert severity='error' variant='standard'>
           Your session has expired, please reauthenticate
         </Alert>
       )}
 
-      {/* <TextField
-        key='email'
-        variant='outlined'
-        type='text'
-        error={!!errors.email}
-        id='email'
-        name='email'
-        label='E-mail'
-        inputRef={register({
-          required: required.email,
-          pattern: { value: emailPattern, message: 'Invalid email address' },
-        })}
-        helperText={formState.isSubmitted && errors.email?.message}
-      /> */}
-
-      <TextField
-        key='password'
-        variant='outlined'
-        type='password'
-        error={!!errors.password}
-        id='password'
-        name='password'
-        label='Password'
-        required={required.password}
-        inputRef={register({ required: required.password })}
-        helperText={errors.password?.message}
-        disabled={formState.isSubmitting}
-      />
-
-      <PageLink href='/account/forgot-password' key='forgot-password'>
-        <Link className={classes.forgotPass}>Forgot password?</Link>
-      </PageLink>
-
-      <FormControl>
-        <Button
-          type='submit'
+      <div className={classes.formRow}>
+        <TextField
+          key='password'
+          variant='outlined'
+          type='password'
+          error={!!errors.password}
+          id='password'
+          name='password'
+          label='Password'
+          required={required.password}
+          inputRef={register({ required: required.password })}
+          helperText={errors.password?.message}
           disabled={formState.isSubmitting}
-          color='primary'
-          variant='contained'
-          size='large'
-          className={classes.submitBtn}
-        >
-          Log In
-        </Button>
-        <FormHelperText error={!!errors.submission}>{errors.submission?.message}</FormHelperText>
-      </FormControl>
+        />
+      </div>
 
-      <div className={classes.actions}>{children}</div>
+      {/* <PageLink href='/account/forgot-password' key='forgot-password'>
+        <Link className={classes.forgotPass}>Forgot password?</Link>
+      </PageLink> */}
+
+      <div className={classes.actions}>
+        <FormControl>
+          <Button
+            type='submit'
+            loading={formState.isSubmitting}
+            color='primary'
+            variant='contained'
+            size='large'
+          >
+            Log In
+          </Button>
+        </FormControl>
+      </div>
+
+      <ApolloErrorAlert error={error} />
+
+      <div>{children}</div>
     </form>
   )
 }

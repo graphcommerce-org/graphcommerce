@@ -1,14 +1,13 @@
-import {
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  MenuItem,
-  TextField,
-} from '@material-ui/core'
+import { FormControl, FormControlLabel, MenuItem, TextField, Switch } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
-import { Controller, useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import { Controller } from '@reachdigital/react-hook-form/useForm'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
+import { AnimatePresence } from 'framer-motion'
+import React from 'react'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -19,17 +18,19 @@ type SignUpFormProps = {
 export default function SignUpForm(props: SignUpFormProps) {
   const { email } = props
   const classes = useFormStyles()
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
     defaultValues: { email },
-    onComplete: onCompleteSignInUp,
+    onComplete: async (result, client) => onCompleteSignInUp(result, client),
   })
-  const { register, errors, handleSubmit, required, watch, control, formState } = mutationForm
+  useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
+  const { register, errors, handleSubmit, required, watch, control, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate>
       <div className={classes.formRow}>
         <TextField
           variant='outlined'
@@ -59,33 +60,35 @@ export default function SignUpForm(props: SignUpFormProps) {
           disabled={formState.isSubmitting}
         />
       </div>
-      <Controller
-        defaultValue='Dhr.'
-        control={control}
-        name='prefix'
-        render={({ onChange, name, value, onBlur }) => (
-          <TextField
-            variant='outlined'
-            select
-            error={!!errors.prefix}
-            id='prefix'
-            name={name}
-            label='Prefix'
-            required={required.prefix}
-            helperText={errors.prefix?.message}
-            disabled={formState.isSubmitting}
-            onChange={(e) => onChange(e.target.value)}
-            onBlur={onBlur}
-            value={value}
-          >
-            {['Dhr.', 'Mevr.'].map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
-        )}
-      />
+      <div className={classes.formRow}>
+        <Controller
+          defaultValue='Dhr.'
+          control={control}
+          name='prefix'
+          render={({ onChange, name, value, onBlur }) => (
+            <TextField
+              variant='outlined'
+              select
+              error={!!errors.prefix}
+              id='prefix'
+              name={name}
+              label='Prefix'
+              required={required.prefix}
+              helperText={errors.prefix?.message}
+              disabled={formState.isSubmitting}
+              onChange={(e) => onChange(e.target.value)}
+              onBlur={onBlur}
+              value={value}
+            >
+              {['Dhr.', 'Mevr.'].map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+          )}
+        />
+      </div>
 
       <div className={classes.formRow}>
         <TextField
@@ -113,29 +116,30 @@ export default function SignUpForm(props: SignUpFormProps) {
           disabled={formState.isSubmitting}
         />
       </div>
+
       <FormControlLabel
-        control={<Checkbox name='checkedB' color='primary' />}
+        control={<Switch color='primary' />}
         name='isSubscribed'
         inputRef={register({ required: required.isSubscribed })}
         disabled={formState.isSubmitting}
         label='Subscribe to newsletter'
       />
 
-      <FormControl>
-        <Button
-          type='submit'
-          disabled={formState.isSubmitting}
-          variant='contained'
-          color='primary'
-          size='large'
-          className={classes.submitButton}
-        >
-          Continue
-        </Button>
-        <FormHelperText error={!!errors.submission?.message}>
-          {errors.submission?.message}
-        </FormHelperText>
-      </FormControl>
+      <div className={classes.actions}>
+        <FormControl>
+          <Button
+            type='submit'
+            variant='contained'
+            color='primary'
+            size='large'
+            loading={formState.isSubmitting}
+          >
+            Create Account
+          </Button>
+        </FormControl>
+      </div>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

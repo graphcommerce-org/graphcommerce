@@ -1,6 +1,8 @@
 import { Fab } from '@material-ui/core'
 import Icon from '@material-ui/icons/Close'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import React from 'react'
 import {
   RemoveItemFromCartMutationVariables,
   RemoveItemFromCartDocument,
@@ -11,17 +13,18 @@ type RemoveItemFromCartProps = RemoveItemFromCartMutationVariables &
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { cartId, cartItemId, ...formProps } = props
-  const mutationForm = useMutationForm(RemoveItemFromCartDocument, {
+  const form = useFormGqlMutation(RemoveItemFromCartDocument, {
     defaultValues: { cartId, cartItemId },
   })
-  const { handleSubmit, errors, formState } = mutationForm
+  const { handleSubmit, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   return (
-    <form noValidate onSubmit={handleSubmit} {...formProps}>
+    <form noValidate onSubmit={submitHandler} {...formProps}>
       <Fab aria-label='Remove Product' size='small' type='submit' disabled={formState.isSubmitting}>
         <Icon fontSize='small' />
       </Fab>
-      {errors.submission?.message}
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

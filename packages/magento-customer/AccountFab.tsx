@@ -21,7 +21,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
-    <PageLink href={requireAuth ? '/account/signin?back=1' : '/account'}>
+    <PageLink href={requireAuth ? '/account/signin' : '/account'}>
       <IconButton aria-label='Account' color='inherit'>
         <Badge
           badgeContent={customerToken?.token ? 1 : 0}

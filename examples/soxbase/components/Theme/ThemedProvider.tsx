@@ -9,7 +9,7 @@ import shadows from './shadows'
 export const defaultTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#F65C5E',
+      main: '#FF4A55',
       contrastText: '#000',
       mutedText: `rgba(0,0,0,0.4)`,
       dark: '#DC0000',

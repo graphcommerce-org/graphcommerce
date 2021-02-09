@@ -2,7 +2,8 @@ import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
@@ -25,34 +26,35 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const mutationForm = useMutationForm(SignInDocument, {
+  const form = useFormGqlMutation(SignInDocument, {
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit, required, formState } = mutationForm
+  const { register, errors, handleSubmit, required, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
 
   if (validToken) return <Alert severity='info'>Already logged in</Alert>
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'
-        error={!!errors.password || !!errors.submission?.message}
+        error={!!errors.password || !!error?.message}
         id='password'
         name='password'
         label='Password'
         required={required.password}
         inputRef={register({ required: required.password })}
-        helperText={errors.password?.message || errors.submission?.message}
+        helperText={errors.password?.message}
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
             <Button
               type='submit'
-              disabled={formState.isSubmitting}
+              loading={formState.isSubmitting}
               color='secondary'
               variant='pill'
               // size='small'
@@ -63,6 +65,8 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
           ),
         }}
       />
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

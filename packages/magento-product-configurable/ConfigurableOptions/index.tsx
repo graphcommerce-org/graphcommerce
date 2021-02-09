@@ -4,10 +4,9 @@ import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import {
   Controller,
-  FieldError,
   FieldErrors,
   UseControllerOptions,
-} from '@reachdigital/next-ui/useMutationForm'
+} from '@reachdigital/react-hook-form/useForm'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer } from '../Swatches'
@@ -32,7 +31,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
       {options?.map((option) => {
         if (!option?.id || !option.attribute_code) return null
         const { attribute_code } = option
-        const error = errors?.[attribute_code] as FieldError | undefined
+        const error = errors?.[attribute_code]
 
         return (
           <Controller

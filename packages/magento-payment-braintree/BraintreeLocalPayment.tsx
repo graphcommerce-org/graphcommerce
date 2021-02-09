@@ -143,7 +143,7 @@ function PaymentButton(props: PaymentButtonProps) {
   ])
 
   return (
-    <Button {...buttonProps} onClick={onClick} disabled={loading || !localPayment}>
+    <Button {...buttonProps} onClick={onClick} loading={loading || !localPayment}>
       {children} (<em>{title}</em>)
     </Button>
   )

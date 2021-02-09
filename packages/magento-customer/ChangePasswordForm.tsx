@@ -1,12 +1,8 @@
-import {
-  TextField,
-  Button,
-  makeStyles,
-  Theme,
-  FormControl,
-  FormHelperText,
-} from '@material-ui/core'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
+import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import React from 'react'
 import {
   ChangePasswordDocument,
   ChangePasswordMutation,
@@ -27,18 +23,19 @@ const useStyles = makeStyles(
 
 export default function ChangePasswordForm() {
   const classes = useStyles()
-  const mutationForm = useMutationForm<
+  const form = useFormGqlMutation<
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument)
-  const { register, errors, handleSubmit, required, watch, data, formState } = mutationForm
+  const { register, errors, handleSubmit, required, watch, data, formState, error } = form
+  const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
     return <div>Password changed!</div>
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
         variant='outlined'
         type='password'
@@ -86,17 +83,16 @@ export default function ChangePasswordForm() {
       <FormControl>
         <Button
           type='submit'
-          disabled={formState.isSubmitting}
+          loading={formState.isSubmitting}
           color='primary'
           variant='contained'
           size='large'
         >
           Change
         </Button>
-        <FormHelperText error={!!errors.submission?.message}>
-          {errors.submission?.message}
-        </FormHelperText>
       </FormControl>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

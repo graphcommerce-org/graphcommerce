@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, CircularProgress, debounce } from '@material-ui/core'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
-import { useMutationForm } from '@reachdigital/next-ui/useMutationForm'
-import { emailPattern } from '@reachdigital/next-ui/useMutationForm/validationPatterns'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
@@ -39,14 +39,14 @@ export default function GuestEmailForm({
   const classes = useStyles()
   const { data: cartQuery } = useQuery(ClientCartDocument)
 
-  const mutationForm = useMutationForm(SetGuestEmailOnCartDocument, {
+  const form = useFormGqlMutation(SetGuestEmailOnCartDocument, {
     mode: 'onBlur',
     defaultValues: {
       cartId: cartQuery?.cart?.id,
       email: cartQuery?.cart?.email ?? '',
     },
   })
-  const { register, errors, handleSubmit, required, watch, formState, Field } = mutationForm
+  const { register, errors, handleSubmit, required, watch, formState } = form
 
   const isValidEmail = !!emailPattern.exec(watch('email'))
   const { data: emailQuery, loading: emailLoading } = useQuery(IsEmailAvailableDocument, {
@@ -72,7 +72,7 @@ export default function GuestEmailForm({
   return (
     <form
       noValidate
-      {...(canSubmit && { onChange: debounce(handleSubmit, 500) })}
+      {...(canSubmit && { onChange: debounce(() => handleSubmit(() => {})(), 500) })}
       className={classes.form}
     >
       <TextField
@@ -87,7 +87,6 @@ export default function GuestEmailForm({
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
         helperText={formState.isSubmitted && errors.email?.message}
-        // disabled={loading}
         autoComplete='off'
         InputProps={{ endAdornment }}
       />

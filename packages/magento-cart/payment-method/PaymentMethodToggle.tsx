@@ -3,8 +3,8 @@ import { FormControl } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller } from '@reachdigital/next-ui/useMutationForm'
-import { useFormPersist } from '@reachdigital/next-ui/useMutationForm/useMutationFormPersist'
+import { useForm, Controller } from '@reachdigital/react-hook-form/useForm'
+import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { usePaymentMethodContext } from './PaymentMethodContext'
@@ -23,12 +23,14 @@ export default function PaymentMethodContext() {
   const classes = useFormStyles()
   const { data: cartData } = useQuery(ClientCartDocument)
 
-  const mutationForm = useFormPersist<{ code: string; paymentMethod?: string }>(
-    'PaymentMethodToggle',
-    { mode: 'onChange', defaultValues: { code: cartData?.cart?.selected_payment_method?.code } },
-  )
+  const form = useForm<{ code: string; paymentMethod?: string }>({
+    mode: 'onChange',
+    defaultValues: { code: cartData?.cart?.selected_payment_method?.code },
+  })
+  useFormPersist({ form, name: 'PaymentMethodToggle' })
 
-  const { control, handleSubmit, watch, register, setValue } = mutationForm
+  const { control, handleSubmit, watch, register, setValue } = form
+  const submitHandler = handleSubmit(() => {})
 
   const paymentMethod = watch('paymentMethod')
   useEffect(() => {
@@ -43,7 +45,7 @@ export default function PaymentMethodContext() {
   })
 
   return (
-    <form onSubmit={handleSubmit(() => {})} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <input type='hidden' name='code' ref={register({ required: true })} required />
       <div className={classes.formRow}>
         <FormControl>
