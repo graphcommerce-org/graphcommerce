@@ -50,27 +50,30 @@ const useStyles = makeStyles((theme: Theme) => ({
 type RowProductGridProps = RowProductGridFragment & ProductListItemsProps
 
 export default function RowProductGrid(props: RowProductGridProps) {
-  const { title, pageLinks, magentoCategory, ...productListItems } = props
+  const { rowTitle, pageLinks, magentoCategory, ...productListItems } = props
   const classes = useStyles()
 
   return (
     <Container className={classes.container}>
-      <div className={classes.head}>
-        <Typography variant='h2' className={classes.title}>
-          {title}
-        </Typography>
-        <div>
-          {pageLinks.map((pageLink) => {
-            return (
-              <NextUiPageLink href={pageLink.url}>
-                <a href={pageLink.url} className={classes.url}>
-                  {pageLink.title}
-                </a>
-              </NextUiPageLink>
-            )
-          })}
+      {rowTitle && (
+        <div className={classes.head}>
+          <Typography variant='h2' className={classes.title}>
+            {rowTitle}
+          </Typography>
+
+          <div>
+            {pageLinks.map((pageLink) => {
+              return (
+                <NextUiPageLink href={pageLink.url} key={pageLink.url}>
+                  <a href={pageLink.url} className={classes.url}>
+                    {pageLink.title}
+                  </a>
+                </NextUiPageLink>
+              )
+            })}
+          </div>
         </div>
-      </div>
+      )}
       <div className={classes.grid}>
         <ProductListItems {...productListItems} />
       </div>

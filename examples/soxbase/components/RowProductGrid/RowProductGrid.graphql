@@ -1,5 +1,5 @@
 fragment RowProductGrid on RowProductGrid {
-  title
+  rowTitle: title
   pageLinks {
     ...PageLink
   }
