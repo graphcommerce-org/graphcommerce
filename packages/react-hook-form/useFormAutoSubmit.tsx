@@ -22,6 +22,8 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
 }
 
 /**
+ * Make sure the form is set to { mode: 'onChange' }
+ *
  * The form will automatically submit when:
  * - The form is dirty (has modifications)
  * - The form is valid (has no errors)

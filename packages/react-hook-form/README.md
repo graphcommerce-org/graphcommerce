@@ -21,12 +21,46 @@ const mutation = gql`
 `
 
 export default function MyComponent() {
-  const form = useFormGqlMutation(ApplyCouponToCartDocument, {
+  const form = useFormGqlMutation(mutation, {
     defaultValues: { cartId: cartQuery?.cart?.id },
   })
   const { errors, handleSubmit, register, formState, required, error } = form
 
   // We don't need to provide an actual handler as useFormGqlMutation already adds that.
+  const submit = handleSubmit(() => {})
+
+  return (
+    <form onSubmit={submit} noValidate>
+      <input
+        type='text'
+        ref={register({ required: required.couponCode })}
+        disabled={formState.isSubmitting}
+      />
+      {errors.couponCode?.message || error?.message}
+      <button type='submit'>submit</button>
+    </form>
+  )
+}
+```
+
+## `useFormGqlQuery`
+
+```tsx
+import useFormGqlQuery from '@reachdigital/next-ui/Form/useFormGqlQuery'
+
+const query = gql`
+  query IsEmailAvailable($email: String!) {
+    isEmailAvailable(email: $email) {
+      is_email_available
+    }
+  }
+`
+
+export default function MyComponent() {
+  const form = useFormGqlQuery(query, {})
+  const { errors, handleSubmit, register, formState, required, error } = form
+
+  // We don't need to provide an actual handler as useFormGqlQuery already adds that.
   const submit = handleSubmit(() => {})
 
   return (
