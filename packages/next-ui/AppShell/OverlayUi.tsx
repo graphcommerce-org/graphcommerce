@@ -213,8 +213,8 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
   if (variant === 'left') contentAnimation = leftAnimations
   if (variant === 'center') contentAnimation = centerAnimations
 
-  const [zIndex, setZIndex] = useState(0)
-  useEffect(() => setZIndex(thisIdx * 2), [thisIdx])
+  const [zIndex, setZIndex] = useState(1)
+  useEffect(() => setZIndex(thisIdx * 2 + 1), [thisIdx])
 
   return (
     <>
