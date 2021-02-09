@@ -47,14 +47,7 @@ export default function Pagination(props: PagePaginationProps) {
           <ChevronLeft color='inherit' />
         </Fab>
       )}
-      {page === 2 && (
-        <PageLink href={url(page - 1)}>
-          <Fab variant='round' size='medium' aria-label='Previous Page' color='inherit'>
-            <ChevronLeft color='inherit' />
-          </Fab>
-        </PageLink>
-      )}
-      {page > 2 && (
+      {page > 1 && (
         <PageLink href={url(page - 1)}>
           <Fab variant='round' size='medium' aria-label='Previous Page' color='inherit'>
             <ChevronLeft color='inherit' />
@@ -68,6 +61,18 @@ export default function Pagination(props: PagePaginationProps) {
             <ChevronRight color='inherit' />
           </Fab>
         </PageLink>
+      )}
+      {page === count && (
+        <Fab
+          variant='round'
+          size='medium'
+          aria-label='Next Page'
+          color='inherit'
+          disabled
+          className={classes.disabled}
+        >
+          <ChevronLeft color='inherit' />
+        </Fab>
       )}
     </div>
   )
