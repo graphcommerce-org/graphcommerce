@@ -1450,7 +1450,6 @@ export type MagentoCategory = Node & {
   rowProductGrids: Array<RowProductGrid>
   /** List of MagentoCategory versions */
   history: Array<Version>
-  category?: Maybe<CategoryTree>
 }
 
 export type MagentoCategoryLocalizationsArgs = {
@@ -1978,33 +1977,33 @@ export type PageContent =
   | RowSwipeableGrid
 
 export type PageContentConnectInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerConnectInput>
-  RowColumnOne?: Maybe<RowColumnOneConnectInput>
-  RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
-  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
-  RowQuote?: Maybe<RowQuoteConnectInput>
-  RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
-  RowProductGrid?: Maybe<RowProductGridConnectInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridConnectInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryConnectInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListConnectInput>
   RowServiceOptions?: Maybe<RowServiceOptionsConnectInput>
+  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
   RowBlogContent?: Maybe<RowBlogContentConnectInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryConnectInput>
+  RowColumnOne?: Maybe<RowColumnOneConnectInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridConnectInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListConnectInput>
+  RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
+  RowQuote?: Maybe<RowQuoteConnectInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerConnectInput>
+  RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
+  RowProductGrid?: Maybe<RowProductGridConnectInput>
 }
 
 export type PageContentCreateInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerCreateInput>
-  RowColumnOne?: Maybe<RowColumnOneCreateInput>
-  RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
-  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
-  RowQuote?: Maybe<RowQuoteCreateInput>
-  RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
-  RowProductGrid?: Maybe<RowProductGridCreateInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridCreateInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryCreateInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListCreateInput>
   RowServiceOptions?: Maybe<RowServiceOptionsCreateInput>
+  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
   RowBlogContent?: Maybe<RowBlogContentCreateInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryCreateInput>
+  RowColumnOne?: Maybe<RowColumnOneCreateInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridCreateInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListCreateInput>
+  RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
+  RowQuote?: Maybe<RowQuoteCreateInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerCreateInput>
+  RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
+  RowProductGrid?: Maybe<RowProductGridCreateInput>
 }
 
 export type PageContentCreateManyInlineInput = {
@@ -2022,18 +2021,18 @@ export type PageContentCreateOneInlineInput = {
 }
 
 export type PageContentUpdateInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerUpdateInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
-  RowQuote?: Maybe<RowQuoteUpdateInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
-  RowProductGrid?: Maybe<RowProductGridUpdateInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateInput>
   RowServiceOptions?: Maybe<RowServiceOptionsUpdateInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
   RowBlogContent?: Maybe<RowBlogContentUpdateInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
+  RowQuote?: Maybe<RowQuoteUpdateInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerUpdateInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
+  RowProductGrid?: Maybe<RowProductGridUpdateInput>
 }
 
 export type PageContentUpdateManyInlineInput = {
@@ -2054,18 +2053,18 @@ export type PageContentUpdateManyInlineInput = {
 }
 
 export type PageContentUpdateManyWithNestedWhereInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerUpdateManyWithNestedWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
-  RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
-  RowProductGrid?: Maybe<RowProductGridUpdateManyWithNestedWhereInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateManyWithNestedWhereInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateManyWithNestedWhereInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateManyWithNestedWhereInput>
   RowServiceOptions?: Maybe<RowServiceOptionsUpdateManyWithNestedWhereInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
   RowBlogContent?: Maybe<RowBlogContentUpdateManyWithNestedWhereInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateManyWithNestedWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateManyWithNestedWhereInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateManyWithNestedWhereInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
+  RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerUpdateManyWithNestedWhereInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
+  RowProductGrid?: Maybe<RowProductGridUpdateManyWithNestedWhereInput>
 }
 
 export type PageContentUpdateOneInlineInput = {
@@ -2084,63 +2083,63 @@ export type PageContentUpdateOneInlineInput = {
 }
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerUpdateWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
-  RowProductGrid?: Maybe<RowProductGridUpdateWithNestedWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateWithNestedWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateWithNestedWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateWithNestedWhereUniqueInput>
   RowServiceOptions?: Maybe<RowServiceOptionsUpdateWithNestedWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
   RowBlogContent?: Maybe<RowBlogContentUpdateWithNestedWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateWithNestedWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateWithNestedWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerUpdateWithNestedWhereUniqueInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
+  RowProductGrid?: Maybe<RowProductGridUpdateWithNestedWhereUniqueInput>
 }
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerUpsertWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
-  RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
-  RowProductGrid?: Maybe<RowProductGridUpsertWithNestedWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpsertWithNestedWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpsertWithNestedWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpsertWithNestedWhereUniqueInput>
   RowServiceOptions?: Maybe<RowServiceOptionsUpsertWithNestedWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
   RowBlogContent?: Maybe<RowBlogContentUpsertWithNestedWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpsertWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpsertWithNestedWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpsertWithNestedWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerUpsertWithNestedWhereUniqueInput>
+  RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
+  RowProductGrid?: Maybe<RowProductGridUpsertWithNestedWhereUniqueInput>
 }
 
 export type PageContentWhereInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereInput>
-  RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
-  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
-  RowQuote?: Maybe<RowQuoteWhereInput>
-  RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
-  RowProductGrid?: Maybe<RowProductGridWhereInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryWhereInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListWhereInput>
   RowServiceOptions?: Maybe<RowServiceOptionsWhereInput>
+  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
   RowBlogContent?: Maybe<RowBlogContentWhereInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListWhereInput>
+  RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
+  RowQuote?: Maybe<RowQuoteWhereInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerWhereInput>
+  RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
+  RowProductGrid?: Maybe<RowProductGridWhereInput>
 }
 
 export type PageContentWhereUniqueInput = {
-  RowSpecialBanner?: Maybe<RowSpecialBannerWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
-  RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
-  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
-  RowProductGrid?: Maybe<RowProductGridWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListWhereUniqueInput>
   RowServiceOptions?: Maybe<RowServiceOptionsWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
   RowBlogContent?: Maybe<RowBlogContentWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteWhereUniqueInput>
+  RowSpecialBanner?: Maybe<RowSpecialBannerWhereUniqueInput>
+  RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
+  RowProductGrid?: Maybe<RowProductGridWhereUniqueInput>
 }
 
 export type PageCreateInput = {

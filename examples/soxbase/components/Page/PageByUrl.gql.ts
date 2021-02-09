@@ -277,20 +277,7 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'category' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'url_path' },
-                                        },
-                                      ],
-                                    },
-                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                                 ],
                               },
                             },
@@ -545,9 +532,7 @@ export type PageByUrlQuery = {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                 }
               >
-              magentoCategory?: Types.Maybe<{
-                category?: Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path'>>
-              }>
+              magentoCategory?: Types.Maybe<Pick<Types.MagentoCategory, 'url'>>
             })
         | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
               quote: Pick<Types.RichText, 'raw'>
