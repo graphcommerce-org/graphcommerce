@@ -48,18 +48,5 @@
         }
       ]
     }
-  ],
-  "additionalTypeDefs": "extend type MagentoCategory { category: CategoryTree }",
-  "additionalResolvers": [
-    {
-      "type": "MagentoCategory",
-      "field": "category",
-      "requiredSelectionSet": "{ url }",
-      "targetSource": "m2",
-      "targetMethod": "categories",
-      "args": { "filters.url_path.eq": "{root.url}", "pageSize": "1" },
-      "returnData": "items[0]",
-      "resultDepth": 4
-    }
   ]
 }
