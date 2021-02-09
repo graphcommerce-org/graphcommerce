@@ -368,6 +368,17 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                         kind: 'InlineFragment',
                         typeCondition: {
                           kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowSwipeableGrid' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }],
+                        },
+                      },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
                           name: { kind: 'Name', value: 'RowProductBackstory' },
                         },
                         selectionSet: {
@@ -555,7 +566,7 @@ export type PageByUrlQuery = {
                 }
               >
             })
-        | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id'>)
+        | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id' | 'title'>)
       >
       asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
     }
