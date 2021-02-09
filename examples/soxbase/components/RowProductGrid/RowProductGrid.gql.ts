@@ -18,7 +18,11 @@ export const RowProductGridFragmentDoc: DocumentNode<RowProductGridFragment, unk
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          {
+            kind: 'Field',
+            alias: { kind: 'Name', value: 'rowTitle' },
+            name: { kind: 'Name', value: 'title' },
+          },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'pageLinks' },
@@ -44,7 +48,7 @@ export const RowProductGridFragmentDoc: DocumentNode<RowProductGridFragment, unk
     ...MagentoCategoryFragmentDoc.definitions,
   ],
 }
-export type RowProductGridFragment = Pick<Types.RowProductGrid, 'title'> & {
+export type RowProductGridFragment = { rowTitle: Types.RowProductGrid['title'] } & {
   pageLinks: Array<PageLinkFragment>
   magentoCategory?: Types.Maybe<MagentoCategoryFragment>
 }

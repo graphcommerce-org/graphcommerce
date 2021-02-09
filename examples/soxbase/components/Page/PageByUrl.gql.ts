@@ -249,7 +249,11 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            {
+                              kind: 'Field',
+                              alias: { kind: 'Name', value: 'rowTitle' },
+                              name: { kind: 'Name', value: 'title' },
+                            },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'pageLinks' },
@@ -526,7 +530,9 @@ export type PageByUrlQuery = {
               copy: Pick<Types.RichText, 'raw'>
               asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
             })
-        | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id' | 'title'> & {
+        | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id'> & {
+              rowTitle: Types.RowProductGrid['title']
+            } & {
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
