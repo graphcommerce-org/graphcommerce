@@ -5,11 +5,11 @@ import { MagentoCategoryFragment } from './MagentoCategory.gql'
 type Props = MagentoCategoryFragment & JSX.IntrinsicElements['div']
 
 export default function MagentoCategory(props: Props) {
-  const { category, ...divProps } = props
+  const { url, ...divProps } = props
 
   return (
     <div {...divProps} className={divProps.className}>
-      <Typography variant='h2'>{category?.name}</Typography>
+      <Typography variant='h2'>{url}</Typography>
       {/* <ProductListItemRenderer items={category?.products?.items ?? []} /> */}
     </div>
   )
