@@ -1,9 +1,8 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import React from 'react'
-import { RowContentLinksFragment } from './RowContentLinks.gql'
 import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
+import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -52,15 +51,13 @@ export default function RowContentLinks(props: RowContentLinksProps) {
           {title}
         </Typography>
 
-        {contentLinks.map((contentLink) => {
-          return (
-            <NextUiPageLink href={contentLink.url} key={contentLink.url}>
-              <a key={contentLink.url} href={contentLink.url} className={classes.url}>
-                {contentLink.title}
-              </a>
-            </NextUiPageLink>
-          )
-        })}
+        {contentLinks.map((contentLink) => (
+          <NextUiPageLink href={contentLink.url} key={contentLink.url}>
+            <a key={contentLink.url} href={contentLink.url} className={classes.url}>
+              {contentLink.title}
+            </a>
+          </NextUiPageLink>
+        ))}
       </ScrollSnapSlider>
     </Container>
   )
