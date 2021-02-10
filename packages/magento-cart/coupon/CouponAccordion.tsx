@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'

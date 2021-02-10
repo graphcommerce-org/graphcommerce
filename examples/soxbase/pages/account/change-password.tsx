@@ -15,7 +15,7 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountChangePasswordPage() {
   return (
-    <OverlayUi title='Change Password' variant='bottom'>
+    <OverlayUi title='Change Password' variant='center'>
       <PageMeta
         title='Change Password'
         metaDescription='Change your password'

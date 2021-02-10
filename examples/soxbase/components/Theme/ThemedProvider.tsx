@@ -12,22 +12,22 @@ export const defaultTheme = createMuiTheme({
       main: '#FF4A55',
       contrastText: '#000',
       mutedText: `rgba(0,0,0,0.4)`,
-      dark: '#DC0000',
+      dark: '#f33642',
     },
     secondary: {
       main: '#006BFF',
       contrastText: '#000',
       mutedText: `rgba(0,0,0,0.4)`,
     },
-    tertiary: {
-      main: '#2b153d',
-      light: '#463058',
-      '100': '#9f89b1',
-      '500': '#2a183e',
-      '600': '#2c153d',
-      contrastText: '#fff',
-      mutedText: `rgba(1,1,1,0.6)`,
-    },
+    // tertiary: {
+    //   main: '#2b153d',
+    //   light: '#463058',
+    //   '100': '#9f89b1',
+    //   '500': '#2a183e',
+    //   '600': '#2c153d',
+    //   contrastText: '#fff',
+    //   mutedText: `rgba(1,1,1,0.6)`,
+    // },
     background: {
       default: '#fff',
     },
@@ -141,10 +141,10 @@ defaultTheme.overrides = {
       textTransform: 'none',
     },
     contained: {
-      borderRadius: 0,
       backgroundColor: '#fff',
-      boxShadow: defaultTheme.shadows[8],
-      '&:hover': { boxShadow: defaultTheme.shadows[10] },
+      boxShadow: 'none',
+      fontWeight: 500,
+      '&:hover': { boxShadow: defaultTheme.shadows[8] },
       '&:focus': { boxShadow: defaultTheme.shadows[12] },
     },
     containedPrimary: {
@@ -155,14 +155,14 @@ defaultTheme.overrides = {
       color: '#fff',
       '& .MuiSvgIcon-root': { color: '#fff' },
     },
-    containedSizeLarge: { padding: '15px 30px' },
+    containedSizeLarge: { padding: `15px ${responsiveVal(30, 60)}` },
     endIcon: { marginLeft: 20 },
     iconSizeLarge: {
       '& > *:first-child': { fontSize: 24 },
     },
     outlined: {
       // todo: Button isn't rounded on all places, but should be on homepage?
-      // borderRadius: 0,
+      borderRadius: 0,
     },
   },
   MuiFab: {

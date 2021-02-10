@@ -4,8 +4,8 @@ import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
-import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
@@ -64,7 +64,7 @@ export default function EmailForm() {
               <SignInFormInline email={cartData?.cart?.email ?? ''} />
             </div>
             <PageLink href='/account/forgot-password' key='forgot-password'>
-              <Link className={localClasses.forgotPass}>Forgot password?</Link>
+              <Link color='secondary'>Forgot password?</Link>
             </PageLink>
           </AnimatedRow>
         )}

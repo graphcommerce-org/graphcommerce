@@ -22,7 +22,7 @@ const useFormStyles = makeStyles(
     },
     actions: {
       paddingTop: theme.spacings.xxs,
-      paddingBottom: theme.spacings.xxs,
+      paddingBottom: theme.spacings.md,
       justifyContent: 'center',
       display: 'grid',
       gridAutoFlow: 'column',

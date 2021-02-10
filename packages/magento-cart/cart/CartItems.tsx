@@ -1,4 +1,4 @@
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'

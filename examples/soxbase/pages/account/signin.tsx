@@ -19,8 +19,8 @@ import SignUpForm from '@reachdigital/magento-customer/SignUpForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
-import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
@@ -168,25 +168,23 @@ function AccountSignInPage() {
                     </div>
                   </AnimatedRow>
 
+                  <ApolloErrorAlert error={error} />
+
                   {mode === 'welcome' && (
                     <AnimatedRow key='submit'>
                       <div className={formClasses.actions}>
-                        <FormControl error={!!error}>
-                          <Button
-                            type='submit'
-                            loading={formState.isSubmitting}
-                            variant='contained'
-                            color='primary'
-                            size='large'
-                          >
-                            Continue
-                          </Button>
-                        </FormControl>
+                        <Button
+                          type='submit'
+                          loading={formState.isSubmitting}
+                          variant='contained'
+                          color='primary'
+                          size='large'
+                        >
+                          Continue
+                        </Button>
                       </div>
                     </AnimatedRow>
                   )}
-
-                  <ApolloErrorAlert error={error} />
                 </AnimatePresence>
               </form>
             )}

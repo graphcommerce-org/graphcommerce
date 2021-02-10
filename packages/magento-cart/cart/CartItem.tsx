@@ -46,8 +46,8 @@ const useStyles = makeStyles(
     },
     badge: {
       '& > button': {
-        background: theme.palette.primary.contrastText,
-        color: theme.palette.tertiary.contrastText,
+        background: theme.palette.common.black,
+        color: theme.palette.common.white,
         transition: 'opacity .15s ease',
         '&:hover, &:active, &:visited': {
           background: theme.palette.primary.contrastText,

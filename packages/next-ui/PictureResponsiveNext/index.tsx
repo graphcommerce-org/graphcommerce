@@ -1,3 +1,4 @@
+import { connect } from 'pm2'
 import React, { useState, useEffect } from 'react'
 import PictureResponsive, { PictureResponsiveProps, ImageMimeTypes } from '../PictureResponsive'
 import useConnectionType from '../PictureResponsive/useConnectionType'
@@ -10,104 +11,63 @@ const possibleWidths = [...imageSizes, ...deviceSizes]
 export type PictureResponsiveNextProps = Omit<PictureResponsiveProps, 'srcSets'> & {
   src: string
   type: ImageMimeTypes
-
-  // Override compression from source type
-  compression?: 'lossy' | 'lossless' | 'none'
 }
 
-type UseCompressionReturn = {
-  compression: PictureResponsiveNextProps['compression']
-  quality: number
-}
-
-const useImageOptions = (
-  compression: PictureResponsiveNextProps['compression'],
-  type: ImageMimeTypes,
-): UseCompressionReturn => {
-  const connectionType = useConnectionType()
-  const [compress, setCompress] = useState<UseCompressionReturn>({
-    compression: 'lossy',
-    quality: 80,
-  })
-
-  useEffect(() => {
-    const quality = connectionType === '4g' ? 100 : 80
-    if (compression) {
-      setCompress({ compression, quality })
-      return
-    }
-
-    switch (type) {
-      case 'image/png':
-      case 'image/bmp':
-      case 'image/tiff':
-      case 'image/gif':
-        setCompress({ compression: connectionType !== '4g' ? 'lossy' : 'lossless', quality })
-        break
-      case 'image/svg+xml':
-        setCompress({ compression: 'none', quality })
-        break
-      default:
-        setCompress({ compression: 'lossy', quality })
-        break
-    }
-  }, [type, connectionType, compression])
-
-  return compress
-}
-
-function PictureResponsiveNext({
-  src,
-  type,
-  compression,
-  ...imgProps
-}: PictureResponsiveNextProps) {
+function PictureResponsiveNext({ src, type, ...imgProps }: PictureResponsiveNextProps) {
   const srcSets: PictureResponsiveProps['srcSets'] = {}
+
+  // Make sure the initial hydration doesn't use the actual value
+  const connType = useConnectionType()
+  const [connectionType, setConnectionType] = useState<typeof connType>()
+  useEffect(() => setConnectionType(connType), [connType])
 
   // The smallest possible image is the supplied img size, remove smaller sizes.
   const widths = possibleWidths.filter((width) => imgProps.width < width - 50)
+  const quality = connectionType === '4g' ? 100 : 80
 
-  const imageOptions = useImageOptions(compression, type)
+  const url = (width: number, type: string, add: string = '') =>
+    `${path}?w=${width}&type=${type}&url=${src}&q=${quality}${add} ${width}w`
 
-  const lossyFallback = ([
-    'image/apng',
-    'image/bmp',
-    'image/png',
-    'image/tiff',
-  ] as ImageMimeTypes[]).includes(type ?? '')
-    ? 'image/jpeg'
-    : type
-
-  switch (imageOptions.compression) {
-    case 'none':
-      srcSets[type] = src
-      break
-    case 'lossy':
-      // Generate webp + jpeg for all lossy images.
-      srcSets['image/webp'] = widths
-        .map(
-          (width) => `${path}?w=${width}&type=webp&url=${src}&q=${imageOptions.quality} ${width}w`,
-        )
-        .join(', ')
-
-      srcSets[lossyFallback] = widths
-        .map(
-          (width) => `${path}?w=${width}&type=jpeg&url=${src}&q=${imageOptions.quality} ${width}w`,
-        )
-        .join(', ')
-
-      break
-    case 'lossless':
-      // Generate webp lossless + png for all lossless images.
-      srcSets['image/webp'] = widths
-        .map(
-          (width) =>
-            `${path}?w=${width}&type=webp&url=${src}&q=${imageOptions.quality}&lossless=1 ${width}w`,
-        )
-        .join(', ')
-      srcSets['image/png'] = widths
-        .map((width) => `/_next/image?w=${width}&type=png&url=${src} ${width}w`)
-        .join(', ')
+  if (connectionType === '4g') {
+    switch (type) {
+      case 'image/svg+xml':
+      case 'image/x-icon':
+        srcSets[type] = src
+        break
+      case 'image/apng':
+      case 'image/gif':
+        type.split('image/')[1]
+        // animate images
+        srcSets['image/webp'] = widths.map((width) => url(width, 'webp')).join(', ')
+        srcSets[type] = widths.map((width) => url(width, type.split('image/')[1])).join(', ')
+        break
+      case 'image/jpeg':
+        srcSets['image/webp'] = widths.map((width) => url(width, 'webp')).join(', ')
+        srcSets['image/jpeg'] = widths.map((width) => url(width, 'jpg')).join(', ')
+        break
+      default:
+        srcSets['image/webp'] = widths.map((width) => url(width, 'webp', '&lossless=1')).join(', ')
+        srcSets['image/png'] = widths.map((width) => url(width, 'png')).join(', ')
+        break
+    }
+  } else {
+    switch (type) {
+      case 'image/svg+xml':
+      case 'image/x-icon':
+        srcSets[type] = src
+        break
+      case 'image/apng':
+      case 'image/gif':
+        type.split('image/')[1]
+        // animate images
+        srcSets['image/webp'] = widths.map((width) => url(width, 'webp')).join(', ')
+        srcSets[type] = widths.map((width) => url(width, type.split('image/')[1])).join(', ')
+        break
+      default:
+        srcSets['image/webp'] = widths.map((width) => url(width, 'webp')).join(', ')
+        srcSets['image/jpeg'] = widths.map((width) => url(width, 'jpg')).join(', ')
+        break
+    }
   }
 
   return <PictureResponsive {...imgProps} srcSets={srcSets} />

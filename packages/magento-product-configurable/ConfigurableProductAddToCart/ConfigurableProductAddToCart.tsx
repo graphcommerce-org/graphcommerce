@@ -7,6 +7,7 @@ import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { useRef } from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
@@ -23,6 +24,7 @@ type ConfigurableProductAddToCartProps = {
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const { variables, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
+  const classes = useFormStyles()
 
   const requestCartId = useRequestCartId()
   const form = useFormGqlMutation(ConfigurableProductAddToCartDocument, {
@@ -51,7 +53,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={submitHandler} noValidate>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
@@ -60,22 +62,24 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         errors={errors.selectedOptions}
       />
 
-      <TextInputNumber
-        variant='outlined'
-        error={formState.isSubmitted && !!errors.quantity}
-        id='quantity'
-        name='quantity'
-        label='Quantity'
-        required={required.quantity}
-        inputProps={{ min: 1 }}
-        inputRef={ref}
-        helperText={formState.isSubmitted && errors.quantity?.message}
-        // disabled={loading}
-        autoComplete='off'
-        size='small'
-      />
+      <ApolloErrorAlert error={error} />
 
-      <FormControl>
+      <div className={classes.actions}>
+        <TextInputNumber
+          variant='outlined'
+          error={formState.isSubmitted && !!errors.quantity}
+          id='quantity'
+          name='quantity'
+          label='Quantity'
+          required={required.quantity}
+          inputProps={{ min: 1 }}
+          inputRef={ref}
+          helperText={formState.isSubmitted && errors.quantity?.message}
+          // disabled={loading}
+          autoComplete='off'
+          size='small'
+        />
+
         <Button
           type='submit'
           loading={formState.isSubmitting}
@@ -85,9 +89,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         >
           Add to Cart
         </Button>
-      </FormControl>
-
-      <ApolloErrorAlert error={error} />
+      </div>
 
       <MessageSnackbarLoader
         open={formState.isSubmitSuccessful && !error?.message}

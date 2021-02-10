@@ -2,6 +2,7 @@ import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
@@ -11,20 +12,8 @@ import {
   ForgotPasswordDocument,
 } from './ForgotPassword.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    form: {
-      display: 'grid',
-      alignItems: 'center',
-      gridRowGap: theme.spacings.sm,
-      gridColumnGap: theme.spacings.xs,
-    },
-  }),
-  { name: 'SignIn' },
-)
-
 export default function ForgotPasswordForm() {
-  const classes = useStyles()
+  const classes = useFormStyles()
   const form = useFormGqlMutation<
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
@@ -42,40 +31,45 @@ export default function ForgotPasswordForm() {
 
   return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <TextField
-        variant='outlined'
-        type='text'
-        // inputProps={{ className: classes.quantityInput, min: 1 }}
-        error={!!errors.email}
-        id='email'
-        name='email'
-        label='Email'
-        required={required.email}
-        inputRef={register({
-          required: required.email,
-          pattern: { value: emailPattern, message: 'Invalid email address' },
-        })}
-        helperText={errors.email?.message}
-        disabled={formState.isSubmitting}
-      />
+      <div className={classes.formRow}>
+        <TextField
+          variant='outlined'
+          type='text'
+          // inputProps={{ className: classes.quantityInput, min: 1 }}
+          error={!!errors.email}
+          id='email'
+          name='email'
+          label='Email'
+          required={required.email}
+          inputRef={register({
+            required: required.email,
+            pattern: { value: emailPattern, message: 'Invalid email address' },
+          })}
+          helperText={errors.email?.message}
+          disabled={formState.isSubmitting}
+        />
+      </div>
 
-      <TextField
-        variant='outlined'
-        type='text'
-        error={!!errors.confirmEmail}
-        id='confirmEmail'
-        name='confirmEmail'
-        label='Confirm Email'
-        required
-        inputRef={register({
-          required: true,
-          validate: (value) => value === watch('email') || "Emails don't match",
-        })}
-        helperText={errors.confirmEmail?.message}
-        disabled={formState.isSubmitting}
-      />
+      <div className={classes.formRow}>
+        <TextField
+          variant='outlined'
+          type='text'
+          error={!!errors.confirmEmail}
+          id='confirmEmail'
+          name='confirmEmail'
+          label='Confirm Email'
+          required
+          inputRef={register({
+            required: true,
+            validate: (value) => value === watch('email') || "Emails don't match",
+          })}
+          helperText={errors.confirmEmail?.message}
+          disabled={formState.isSubmitting}
+        />
+      </div>
 
-      <FormControl>
+      <ApolloErrorAlert error={error} />
+      <div className={classes.actions}>
         <Button
           type='submit'
           loading={formState.isSubmitting}
@@ -85,9 +79,7 @@ export default function ForgotPasswordForm() {
         >
           Send email
         </Button>
-      </FormControl>
-
-      <ApolloErrorAlert error={error} />
+      </div>
     </form>
   )
 }
