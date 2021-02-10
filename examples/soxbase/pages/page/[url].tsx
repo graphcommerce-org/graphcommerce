@@ -23,6 +23,7 @@ import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
+import RowProductBackstory from '../../components/RowProductBackstory'
 import RowProductGrid from '../../components/RowProductGrid'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
@@ -55,6 +56,9 @@ const CmsPage = ({ cmsPage, menu, urlResolver, pages, footer, products }: Props)
       {pages?.[0] && (
         <Page
           renderer={{
+            RowProductBackstory: (props) => (
+              <RowProductBackstory {...props} items={products?.items} />
+            ),
             RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
             RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
           }}

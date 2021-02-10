@@ -29,8 +29,6 @@ import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import { ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
@@ -43,6 +41,7 @@ import Logo from '../components/Logo/Logo'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
+import RowProductBackstory from '../components/RowProductBackstory'
 import RowProductGrid from '../components/RowProductGrid'
 import RowSwipeableGrid from '../components/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
@@ -166,6 +165,9 @@ function CategoryPage(props: Props) {
       )}
       <Page
         renderer={{
+          RowProductBackstory: (props) => (
+            <RowProductBackstory {...props} items={products?.items} />
+          ),
           RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
           RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
         }}
