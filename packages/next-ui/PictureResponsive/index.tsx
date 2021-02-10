@@ -3,6 +3,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import useConnectionType from './useConnectionType'
 
+export const imageMimeTypes: ImageMimeTypes[] = [
+  'image/apng',
+  'image/bmp',
+  'image/gif',
+  'image/jpeg',
+  'image/png',
+  'image/svg+xml',
+  'image/tiff',
+  'image/webp',
+  'image/x-icon',
+]
+
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 export type ImageMimeTypes =
   | 'image/apng'
