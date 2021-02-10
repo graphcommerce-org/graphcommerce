@@ -54,7 +54,6 @@ function AccountSignInPage() {
   const { data: customerData } = useQuery(CustomerDocument)
 
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
-    reValidateMode: 'onChange',
     mode: 'onChange',
     defaultValues: { email: customerData?.customer?.email ?? undefined },
   })

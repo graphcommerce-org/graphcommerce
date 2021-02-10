@@ -50,7 +50,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip
     },
     mode: 'onChange',
-    reValidateMode: 'onChange',
     onBeforeSubmit: (variables) => {
       const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
