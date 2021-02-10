@@ -2,7 +2,7 @@ import { Container, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import Button from '../PageLink/Button'
+import Asset from '../Asset'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 
 const useStyles = makeStyles(
@@ -23,6 +23,19 @@ const useStyles = makeStyles(
     },
     backstory: {
       position: 'relative',
+      '& img': {
+        position: 'absolute',
+        top: '0',
+        zIndex: -1,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        filter: 'brightness(80%)',
+        [theme.breakpoints.up('md')]: {
+          filter: 'brightness(100%)',
+          height: '100%',
+        },
+      },
     },
     copy: {
       color: '#fff',
@@ -43,20 +56,7 @@ const useStyles = makeStyles(
         width: '50%',
       },
     },
-    asset: {
-      position: 'absolute',
-      top: '0',
-      zIndex: -1,
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      filter: 'brightness(80%)',
-      [theme.breakpoints.up('md')]: {
-        filter: 'brightness(100%)',
-        height: '100%',
-      },
-    },
-    img: {
+    product: {
       maxWidth: '100%',
     },
   }),
@@ -93,13 +93,14 @@ export default function RowProductBackstory(props: RowProductBackstoryFragment) 
           <div className={classes.copy}>
             <RichText classes={richTextOneClasses} {...copy} />
           </div>
-          <img src={asset.url} className={classes.asset} alt='' />
+
+          <Asset asset={asset} width={328} />
         </div>
         <div>
           <img
             src='https://media.graphcms.com/OQQl44iJRdODZ8hGBqvv'
             alt=''
-            className={classes.img}
+            className={classes.product}
           />
         </div>
       </div>
