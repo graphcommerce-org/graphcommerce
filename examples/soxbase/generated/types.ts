@@ -45,6 +45,8 @@ export type Query = {
   cmsBlocks?: Maybe<CmsBlocks>
   /** The CMS page query returns information about a CMS page */
   cmsPage?: Maybe<CmsPage>
+  /** Return products that have been added to the specified compare list */
+  compareList?: Maybe<CompareList>
   /** The countries query provides information for all countries. */
   countries?: Maybe<Array<Maybe<Country>>>
   /** The countries query provides information for a single country. */
@@ -70,6 +72,8 @@ export type Query = {
   getHostedProUrl?: Maybe<HostedProUrl>
   /** Retrieve payment credentials for transaction. Use this query for Payflow Link and Payments Advanced payment methods. */
   getPayflowLinkToken?: Maybe<PayflowLinkToken>
+  /** Get information for gift card account by code */
+  giftCardAccount?: Maybe<GiftCardAccount>
   historyState: HistoryState
   isEmailAvailable?: Maybe<IsEmailAvailableOutput>
   /** Retrieve multiple pages */
@@ -91,6 +95,10 @@ export type Query = {
    * @deprecated Moved under `Customer` `wishlist`
    */
   wishlist?: Maybe<WishlistOutput>
+}
+
+export type QueryAvailableStoresArgs = {
+  useCurrentGroup?: Maybe<Scalars['Boolean']>
 }
 
 export type QueryCartArgs = {
@@ -120,6 +128,10 @@ export type QueryCmsPageArgs = {
   identifier?: Maybe<Scalars['String']>
 }
 
+export type QueryCompareListArgs = {
+  uid: Scalars['ID']
+}
+
 export type QueryCountryArgs = {
   id?: Maybe<Scalars['String']>
 }
@@ -140,6 +152,10 @@ export type QueryGetHostedProUrlArgs = {
 
 export type QueryGetPayflowLinkTokenArgs = {
   input: PayflowLinkTokenInput
+}
+
+export type QueryGiftCardAccountArgs = {
+  input: GiftCardAccountInput
 }
 
 export type QueryIsEmailAvailableArgs = {
@@ -176,6 +192,7 @@ export type QueryPickupLocationsArgs = {
   sort?: Maybe<PickupLocationSortInput>
   pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  productsInfo?: Maybe<Array<Maybe<ProductInfoInput>>>
 }
 
 export type QueryProductsArgs = {
@@ -226,6 +243,7 @@ export type Asset = Node & {
   size?: Maybe<Scalars['Float']>
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
   assetRowHeroBanner: Array<RowHeroBanner>
   rowSpecialBannerAsset: Array<RowSpecialBanner>
   assetRowProductBackstory: Array<RowProductBackstory>
@@ -350,6 +368,8 @@ export type AssetCreateInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  /** alt input for default locale (en) */
+  alt?: Maybe<Scalars['String']>
   assetRowHeroBanner?: Maybe<RowHeroBannerCreateManyInlineInput>
   rowSpecialBannerAsset?: Maybe<RowSpecialBannerCreateManyInlineInput>
   assetRowProductBackstory?: Maybe<RowProductBackstoryCreateManyInlineInput>
@@ -367,6 +387,7 @@ export type AssetCreateLocalizationDataInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
 }
 
 export type AssetCreateLocalizationInput = {
@@ -512,6 +533,8 @@ export type AssetOrderByInput =
   | 'size_DESC'
   | 'mimeType_ASC'
   | 'mimeType_DESC'
+  | 'alt_ASC'
+  | 'alt_DESC'
 
 /** Transformations for Assets */
 export type AssetTransformationInput = {
@@ -528,6 +551,8 @@ export type AssetUpdateInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  /** alt input for default locale (en) */
+  alt?: Maybe<Scalars['String']>
   assetRowHeroBanner?: Maybe<RowHeroBannerUpdateManyInlineInput>
   rowSpecialBannerAsset?: Maybe<RowSpecialBannerUpdateManyInlineInput>
   assetRowProductBackstory?: Maybe<RowProductBackstoryUpdateManyInlineInput>
@@ -543,6 +568,7 @@ export type AssetUpdateLocalizationDataInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
 }
 
 export type AssetUpdateLocalizationInput = {
@@ -583,6 +609,8 @@ export type AssetUpdateManyInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  /** alt input for default locale (en) */
+  alt?: Maybe<Scalars['String']>
   /** Optional updates to localizations */
   localizations?: Maybe<AssetUpdateManyLocalizationsInput>
 }
@@ -593,6 +621,7 @@ export type AssetUpdateManyLocalizationDataInput = {
   width?: Maybe<Scalars['Float']>
   size?: Maybe<Scalars['Float']>
   mimeType?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
 }
 
 export type AssetUpdateManyLocalizationInput = {
@@ -830,6 +859,25 @@ export type AssetWhereInput = {
   mimeType_ends_with?: Maybe<Scalars['String']>
   /** All values not ending with the given string */
   mimeType_not_ends_with?: Maybe<Scalars['String']>
+  alt?: Maybe<Scalars['String']>
+  /** All values that are not equal to given value. */
+  alt_not?: Maybe<Scalars['String']>
+  /** All values that are contained in given list. */
+  alt_in?: Maybe<Array<Scalars['String']>>
+  /** All values that are not contained in given list. */
+  alt_not_in?: Maybe<Array<Scalars['String']>>
+  /** All values containing the given string. */
+  alt_contains?: Maybe<Scalars['String']>
+  /** All values not containing the given string. */
+  alt_not_contains?: Maybe<Scalars['String']>
+  /** All values starting with the given string. */
+  alt_starts_with?: Maybe<Scalars['String']>
+  /** All values not starting with the given string. */
+  alt_not_starts_with?: Maybe<Scalars['String']>
+  /** All values ending with the given string. */
+  alt_ends_with?: Maybe<Scalars['String']>
+  /** All values not ending with the given string */
+  alt_not_ends_with?: Maybe<Scalars['String']>
   assetRowHeroBanner_every?: Maybe<RowHeroBannerWhereInput>
   assetRowHeroBanner_some?: Maybe<RowHeroBannerWhereInput>
   assetRowHeroBanner_none?: Maybe<RowHeroBannerWhereInput>
@@ -1978,35 +2026,35 @@ export type PageContent =
   | RowSwipeableGrid
 
 export type PageContentConnectInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsConnectInput>
-  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
-  RowBlogContent?: Maybe<RowBlogContentConnectInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryConnectInput>
-  RowColumnOne?: Maybe<RowColumnOneConnectInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridConnectInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListConnectInput>
-  RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
-  RowQuote?: Maybe<RowQuoteConnectInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerConnectInput>
-  RowContentLinks?: Maybe<RowContentLinksConnectInput>
+  RowColumnOne?: Maybe<RowColumnOneConnectInput>
   RowColumnTwo?: Maybe<RowColumnTwoConnectInput>
+  RowColumnThree?: Maybe<RowColumnThreeConnectInput>
+  RowQuote?: Maybe<RowQuoteConnectInput>
+  RowHeroBanner?: Maybe<RowHeroBannerConnectInput>
   RowProductGrid?: Maybe<RowProductGridConnectInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridConnectInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryConnectInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListConnectInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsConnectInput>
+  RowBlogContent?: Maybe<RowBlogContentConnectInput>
+  RowContentLinks?: Maybe<RowContentLinksConnectInput>
 }
 
 export type PageContentCreateInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsCreateInput>
-  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
-  RowBlogContent?: Maybe<RowBlogContentCreateInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryCreateInput>
-  RowColumnOne?: Maybe<RowColumnOneCreateInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridCreateInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListCreateInput>
-  RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
-  RowQuote?: Maybe<RowQuoteCreateInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerCreateInput>
-  RowContentLinks?: Maybe<RowContentLinksCreateInput>
+  RowColumnOne?: Maybe<RowColumnOneCreateInput>
   RowColumnTwo?: Maybe<RowColumnTwoCreateInput>
+  RowColumnThree?: Maybe<RowColumnThreeCreateInput>
+  RowQuote?: Maybe<RowQuoteCreateInput>
+  RowHeroBanner?: Maybe<RowHeroBannerCreateInput>
   RowProductGrid?: Maybe<RowProductGridCreateInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridCreateInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryCreateInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListCreateInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsCreateInput>
+  RowBlogContent?: Maybe<RowBlogContentCreateInput>
+  RowContentLinks?: Maybe<RowContentLinksCreateInput>
 }
 
 export type PageContentCreateManyInlineInput = {
@@ -2024,19 +2072,19 @@ export type PageContentCreateOneInlineInput = {
 }
 
 export type PageContentUpdateInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsUpdateInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
-  RowBlogContent?: Maybe<RowBlogContentUpdateInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
-  RowQuote?: Maybe<RowQuoteUpdateInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateInput>
-  RowContentLinks?: Maybe<RowContentLinksUpdateInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateInput>
+  RowQuote?: Maybe<RowQuoteUpdateInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateInput>
   RowProductGrid?: Maybe<RowProductGridUpdateInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpdateInput>
+  RowBlogContent?: Maybe<RowBlogContentUpdateInput>
+  RowContentLinks?: Maybe<RowContentLinksUpdateInput>
 }
 
 export type PageContentUpdateManyInlineInput = {
@@ -2057,19 +2105,19 @@ export type PageContentUpdateManyInlineInput = {
 }
 
 export type PageContentUpdateManyWithNestedWhereInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsUpdateManyWithNestedWhereInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
-  RowBlogContent?: Maybe<RowBlogContentUpdateManyWithNestedWhereInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateManyWithNestedWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateManyWithNestedWhereInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateManyWithNestedWhereInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
-  RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateManyWithNestedWhereInput>
-  RowContentLinks?: Maybe<RowContentLinksUpdateManyWithNestedWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateManyWithNestedWhereInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateManyWithNestedWhereInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateManyWithNestedWhereInput>
+  RowQuote?: Maybe<RowQuoteUpdateManyWithNestedWhereInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateManyWithNestedWhereInput>
   RowProductGrid?: Maybe<RowProductGridUpdateManyWithNestedWhereInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateManyWithNestedWhereInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateManyWithNestedWhereInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateManyWithNestedWhereInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpdateManyWithNestedWhereInput>
+  RowBlogContent?: Maybe<RowBlogContentUpdateManyWithNestedWhereInput>
+  RowContentLinks?: Maybe<RowContentLinksUpdateManyWithNestedWhereInput>
 }
 
 export type PageContentUpdateOneInlineInput = {
@@ -2088,67 +2136,67 @@ export type PageContentUpdateOneInlineInput = {
 }
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsUpdateWithNestedWhereUniqueInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
-  RowBlogContent?: Maybe<RowBlogContentUpdateWithNestedWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpdateWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateWithNestedWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateWithNestedWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpdateWithNestedWhereUniqueInput>
-  RowContentLinks?: Maybe<RowContentLinksUpdateWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpdateWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpdateWithNestedWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpdateWithNestedWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteUpdateWithNestedWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpdateWithNestedWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridUpdateWithNestedWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpdateWithNestedWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpdateWithNestedWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpdateWithNestedWhereUniqueInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpdateWithNestedWhereUniqueInput>
+  RowBlogContent?: Maybe<RowBlogContentUpdateWithNestedWhereUniqueInput>
+  RowContentLinks?: Maybe<RowContentLinksUpdateWithNestedWhereUniqueInput>
 }
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsUpsertWithNestedWhereUniqueInput>
-  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
-  RowBlogContent?: Maybe<RowBlogContentUpsertWithNestedWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryUpsertWithNestedWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridUpsertWithNestedWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListUpsertWithNestedWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerUpsertWithNestedWhereUniqueInput>
-  RowContentLinks?: Maybe<RowContentLinksUpsertWithNestedWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneUpsertWithNestedWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoUpsertWithNestedWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeUpsertWithNestedWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteUpsertWithNestedWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerUpsertWithNestedWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridUpsertWithNestedWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridUpsertWithNestedWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryUpsertWithNestedWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListUpsertWithNestedWhereUniqueInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsUpsertWithNestedWhereUniqueInput>
+  RowBlogContent?: Maybe<RowBlogContentUpsertWithNestedWhereUniqueInput>
+  RowContentLinks?: Maybe<RowContentLinksUpsertWithNestedWhereUniqueInput>
 }
 
 export type PageContentWhereInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsWhereInput>
-  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
-  RowBlogContent?: Maybe<RowBlogContentWhereInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryWhereInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListWhereInput>
-  RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
-  RowQuote?: Maybe<RowQuoteWhereInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerWhereInput>
-  RowContentLinks?: Maybe<RowContentLinksWhereInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereInput>
   RowColumnTwo?: Maybe<RowColumnTwoWhereInput>
+  RowColumnThree?: Maybe<RowColumnThreeWhereInput>
+  RowQuote?: Maybe<RowQuoteWhereInput>
+  RowHeroBanner?: Maybe<RowHeroBannerWhereInput>
   RowProductGrid?: Maybe<RowProductGridWhereInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryWhereInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListWhereInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsWhereInput>
+  RowBlogContent?: Maybe<RowBlogContentWhereInput>
+  RowContentLinks?: Maybe<RowContentLinksWhereInput>
 }
 
 export type PageContentWhereUniqueInput = {
-  RowServiceOptions?: Maybe<RowServiceOptionsWhereUniqueInput>
-  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
-  RowBlogContent?: Maybe<RowBlogContentWhereUniqueInput>
-  RowProductBackstory?: Maybe<RowProductBackstoryWhereUniqueInput>
-  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
-  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereUniqueInput>
-  RowButtonLinkList?: Maybe<RowButtonLinkListWhereUniqueInput>
-  RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
-  RowQuote?: Maybe<RowQuoteWhereUniqueInput>
   RowSpecialBanner?: Maybe<RowSpecialBannerWhereUniqueInput>
-  RowContentLinks?: Maybe<RowContentLinksWhereUniqueInput>
+  RowColumnOne?: Maybe<RowColumnOneWhereUniqueInput>
   RowColumnTwo?: Maybe<RowColumnTwoWhereUniqueInput>
+  RowColumnThree?: Maybe<RowColumnThreeWhereUniqueInput>
+  RowQuote?: Maybe<RowQuoteWhereUniqueInput>
+  RowHeroBanner?: Maybe<RowHeroBannerWhereUniqueInput>
   RowProductGrid?: Maybe<RowProductGridWhereUniqueInput>
+  RowSwipeableGrid?: Maybe<RowSwipeableGridWhereUniqueInput>
+  RowProductBackstory?: Maybe<RowProductBackstoryWhereUniqueInput>
+  RowButtonLinkList?: Maybe<RowButtonLinkListWhereUniqueInput>
+  RowServiceOptions?: Maybe<RowServiceOptionsWhereUniqueInput>
+  RowBlogContent?: Maybe<RowBlogContentWhereUniqueInput>
+  RowContentLinks?: Maybe<RowContentLinksWhereUniqueInput>
 }
 
 export type PageCreateInput = {
@@ -9697,15 +9745,33 @@ export type Mutation = {
   addDownloadableProductsToCart?: Maybe<AddDownloadableProductsToCartOutput>
   /** Add any type of product to the cart */
   addProductsToCart?: Maybe<AddProductsToCartOutput>
+  /** Add products to the specified compare list */
+  addProductsToCompareList?: Maybe<CompareList>
   /** Adds one or more products to the specified wish list. This mutation supports all product types */
   addProductsToWishlist?: Maybe<AddProductsToWishlistOutput>
+  /** Add a comment to an existing return */
+  addReturnComment?: Maybe<AddReturnCommentOutput>
+  /** Add tracking information to the return */
+  addReturnTracking?: Maybe<AddReturnTrackingOutput>
   addSimpleProductsToCart?: Maybe<AddSimpleProductsToCartOutput>
   addVirtualProductsToCart?: Maybe<AddVirtualProductsToCartOutput>
   applyCouponToCart?: Maybe<ApplyCouponToCartOutput>
+  /** Apply a pre-defined gift card code to the specified cart. */
+  applyGiftCardToCart?: Maybe<ApplyGiftCardToCartOutput>
+  /** Apply all available points, up to the cart total. Partial redemption is not available */
+  applyRewardPointsToCart?: Maybe<ApplyRewardPointsToCartOutput>
+  /** Apply store credit to the specified cart. */
+  applyStoreCreditToCart?: Maybe<ApplyStoreCreditToCartOutput>
+  /** Assign the specified compare list to the logged in customer */
+  assignCompareListToCustomer?: Maybe<AssignCompareListToCustomerOutput>
   /** Changes the password for the logged-in customer */
   changeCustomerPassword?: Maybe<Customer>
+  /** Copy products from one wish list to another */
+  copyProductsBetweenWishlists?: Maybe<CopyProductsBetweenWishlistsOutput>
   /** Creates Client Token for Braintree Javascript SDK initialization. */
   createBraintreeClientToken: Scalars['String']
+  /** Creates a new compare list. The compare list is saved for logged in customers */
+  createCompareList?: Maybe<CompareList>
   /** Create customer account */
   createCustomer?: Maybe<CustomerOutput>
   /** Create customer address */
@@ -9722,25 +9788,48 @@ export type Mutation = {
   createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>
   /** Creates a product review for the specified SKU */
   createProductReview: CreateProductReviewOutput
+  /** Create a new wish list */
+  createWishlist?: Maybe<CreateWishlistOutput>
+  /** Delete the specified compare list */
+  deleteCompareList?: Maybe<DeleteCompareListOutput>
   /** Delete customer address */
   deleteCustomerAddress?: Maybe<Scalars['Boolean']>
   /** Delete a customer payment token */
   deletePaymentToken?: Maybe<DeletePaymentTokenOutput>
+  /** Delete the specified wish list filtered by the unique ID for a `Wishlist` object */
+  deleteWishlist?: Maybe<DeleteWishlistOutput>
   /** Retrieve the customer token */
   generateCustomerToken?: Maybe<CustomerToken>
+  /** Request a customer token so that an administrator can perform remote shopping assistance */
+  generateCustomerTokenAsAdmin?: Maybe<GenerateCustomerTokenAsAdminOutput>
   /** Handles payment response and saves payment in Quote. Use this mutations for Payflow Pro and Payments Pro payment methods. */
   handlePayflowProResponse?: Maybe<PayflowProResponseOutput>
   /** Merges the source cart into the destination cart */
   mergeCarts: Cart
+  /** Move products from one wish list to another */
+  moveProductsBetweenWishlists?: Maybe<MoveProductsBetweenWishlistsOutput>
   placeOrder?: Maybe<PlaceOrderOutput>
+  /** Redeem gift card for store credit. */
+  redeemGiftCardBalanceAsStoreCredit?: Maybe<GiftCardAccount>
   removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>
+  removeGiftCardFromCart?: Maybe<RemoveGiftCardFromCartOutput>
   removeItemFromCart?: Maybe<RemoveItemFromCartOutput>
+  /** Remove products from the specified compare list */
+  removeProductsFromCompareList?: Maybe<CompareList>
   /** Removes one or more products from the specified wish list */
   removeProductsFromWishlist?: Maybe<RemoveProductsFromWishlistOutput>
+  /** Remove a tracked shipment from a return */
+  removeReturnTracking?: Maybe<RemoveReturnTrackingOutput>
+  /** Cancel the application of reward points to the cart */
+  removeRewardPointsFromCart?: Maybe<RemoveRewardPointsFromCartOutput>
+  /** Remove applied store credit from the specified cart. */
+  removeStoreCreditFromCart?: Maybe<RemoveStoreCreditFromCartOutput>
   /** Adds all products from a customer's previous order to the cart. */
   reorderItems?: Maybe<ReorderItemsOutput>
   /** Request an email with a reset password token for the registered customer identified by the specified email. */
   requestPasswordResetEmail?: Maybe<Scalars['Boolean']>
+  /** Initiates a buyer's  request to return an item for replacement or refund */
+  requestReturn?: Maybe<RequestReturnOutput>
   /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using requestPasswordResetEmail. */
   resetPassword?: Maybe<Scalars['Boolean']>
   /** Revoke the customer token */
@@ -9748,6 +9837,8 @@ export type Mutation = {
   /** Recommends Product by Sending Single/Multiple Email */
   sendEmailToFriend?: Maybe<SendEmailToFriendOutput>
   setBillingAddressOnCart?: Maybe<SetBillingAddressOnCartOutput>
+  /** Set gift options like gift wrapping or gift message for the entire cart */
+  setGiftOptionsOnCart?: Maybe<SetGiftOptionsOnCartOutput>
   setGuestEmailOnCart?: Maybe<SetGuestEmailOnCartOutput>
   /** @deprecated Should use setPaymentMethodOnCart and placeOrder mutations in single request. */
   setPaymentMethodAndPlaceOrder?: Maybe<PlaceOrderOutput>
@@ -9766,6 +9857,8 @@ export type Mutation = {
   updateCustomerV2?: Maybe<CustomerOutput>
   /** Updates one or more products in the specified wish list */
   updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>
+  /** Change the name and visibility of the specified wish list */
+  updateWishlist?: Maybe<UpdateWishlistOutput>
 }
 
 export type MutationAddBundleProductsToCartArgs = {
@@ -9785,9 +9878,21 @@ export type MutationAddProductsToCartArgs = {
   cartItems: Array<CartItemInput>
 }
 
+export type MutationAddProductsToCompareListArgs = {
+  input?: Maybe<AddProductsToCompareListInput>
+}
+
 export type MutationAddProductsToWishlistArgs = {
   wishlistId: Scalars['ID']
   wishlistItems: Array<WishlistItemInput>
+}
+
+export type MutationAddReturnCommentArgs = {
+  input: AddReturnCommentInput
+}
+
+export type MutationAddReturnTrackingArgs = {
+  input: AddReturnTrackingInput
 }
 
 export type MutationAddSimpleProductsToCartArgs = {
@@ -9802,9 +9907,35 @@ export type MutationApplyCouponToCartArgs = {
   input?: Maybe<ApplyCouponToCartInput>
 }
 
+export type MutationApplyGiftCardToCartArgs = {
+  input?: Maybe<ApplyGiftCardToCartInput>
+}
+
+export type MutationApplyRewardPointsToCartArgs = {
+  cartId: Scalars['ID']
+}
+
+export type MutationApplyStoreCreditToCartArgs = {
+  input: ApplyStoreCreditToCartInput
+}
+
+export type MutationAssignCompareListToCustomerArgs = {
+  uid: Scalars['ID']
+}
+
 export type MutationChangeCustomerPasswordArgs = {
   currentPassword: Scalars['String']
   newPassword: Scalars['String']
+}
+
+export type MutationCopyProductsBetweenWishlistsArgs = {
+  sourceWishlistUid: Scalars['ID']
+  destinationWishlistUid: Scalars['ID']
+  wishlistItems: Array<WishlistItemCopyInput>
+}
+
+export type MutationCreateCompareListArgs = {
+  input?: Maybe<CreateCompareListInput>
 }
 
 export type MutationCreateCustomerArgs = {
@@ -9839,6 +9970,14 @@ export type MutationCreateProductReviewArgs = {
   input: CreateProductReviewInput
 }
 
+export type MutationCreateWishlistArgs = {
+  input: CreateWishlistInput
+}
+
+export type MutationDeleteCompareListArgs = {
+  uid: Scalars['ID']
+}
+
 export type MutationDeleteCustomerAddressArgs = {
   id: Scalars['Int']
 }
@@ -9847,9 +9986,17 @@ export type MutationDeletePaymentTokenArgs = {
   public_hash: Scalars['String']
 }
 
+export type MutationDeleteWishlistArgs = {
+  wishlistId: Scalars['ID']
+}
+
 export type MutationGenerateCustomerTokenArgs = {
   email: Scalars['String']
   password: Scalars['String']
+}
+
+export type MutationGenerateCustomerTokenAsAdminArgs = {
+  input: GenerateCustomerTokenAsAdminInput
 }
 
 export type MutationHandlePayflowProResponseArgs = {
@@ -9858,24 +10005,54 @@ export type MutationHandlePayflowProResponseArgs = {
 
 export type MutationMergeCartsArgs = {
   source_cart_id: Scalars['String']
-  destination_cart_id: Scalars['String']
+  destination_cart_id?: Maybe<Scalars['String']>
+}
+
+export type MutationMoveProductsBetweenWishlistsArgs = {
+  sourceWishlistUid: Scalars['ID']
+  destinationWishlistUid: Scalars['ID']
+  wishlistItems: Array<WishlistItemMoveInput>
 }
 
 export type MutationPlaceOrderArgs = {
   input?: Maybe<PlaceOrderInput>
 }
 
+export type MutationRedeemGiftCardBalanceAsStoreCreditArgs = {
+  input: GiftCardAccountInput
+}
+
 export type MutationRemoveCouponFromCartArgs = {
   input?: Maybe<RemoveCouponFromCartInput>
+}
+
+export type MutationRemoveGiftCardFromCartArgs = {
+  input?: Maybe<RemoveGiftCardFromCartInput>
 }
 
 export type MutationRemoveItemFromCartArgs = {
   input?: Maybe<RemoveItemFromCartInput>
 }
 
+export type MutationRemoveProductsFromCompareListArgs = {
+  input?: Maybe<RemoveProductsFromCompareListInput>
+}
+
 export type MutationRemoveProductsFromWishlistArgs = {
   wishlistId: Scalars['ID']
   wishlistItemsIds: Array<Scalars['ID']>
+}
+
+export type MutationRemoveReturnTrackingArgs = {
+  input: RemoveReturnTrackingInput
+}
+
+export type MutationRemoveRewardPointsFromCartArgs = {
+  cartId: Scalars['ID']
+}
+
+export type MutationRemoveStoreCreditFromCartArgs = {
+  input: RemoveStoreCreditFromCartInput
 }
 
 export type MutationReorderItemsArgs = {
@@ -9884,6 +10061,10 @@ export type MutationReorderItemsArgs = {
 
 export type MutationRequestPasswordResetEmailArgs = {
   email: Scalars['String']
+}
+
+export type MutationRequestReturnArgs = {
+  input: RequestReturnInput
 }
 
 export type MutationResetPasswordArgs = {
@@ -9898,6 +10079,10 @@ export type MutationSendEmailToFriendArgs = {
 
 export type MutationSetBillingAddressOnCartArgs = {
   input?: Maybe<SetBillingAddressOnCartInput>
+}
+
+export type MutationSetGiftOptionsOnCartArgs = {
+  input?: Maybe<SetGiftOptionsOnCartInput>
 }
 
 export type MutationSetGuestEmailOnCartArgs = {
@@ -9951,17 +10136,31 @@ export type MutationUpdateProductsInWishlistArgs = {
   wishlistItems: Array<WishlistItemUpdateInput>
 }
 
+export type MutationUpdateWishlistArgs = {
+  wishlistId: Scalars['ID']
+  name?: Maybe<Scalars['String']>
+  visibility?: Maybe<WishlistVisibilityEnum>
+}
+
 /** The type contains information about a store config */
 export type StoreConfig = {
   __typename?: 'StoreConfig'
   /** Footer Miscellaneous HTML */
   absolute_footer?: Maybe<Scalars['String']>
+  /** Allow Gift Receipt */
+  allow_gift_receipt?: Maybe<Scalars['String']>
+  /** Allow Gift Wrapping on Order Level */
+  allow_gift_wrapping_on_order?: Maybe<Scalars['String']>
+  /** Allow Gift Wrapping for Order Items */
+  allow_gift_wrapping_on_order_items?: Maybe<Scalars['String']>
   /** Indicates whether guest users can write product reviews. Possible values: 1 (Yes) and 0 (No) */
   allow_guests_to_write_product_reviews?: Maybe<Scalars['String']>
   /** The value of the Allow Gift Messages for Order Items option */
   allow_items?: Maybe<Scalars['String']>
   /** The value of the Allow Gift Messages on Order Level option */
   allow_order?: Maybe<Scalars['String']>
+  /** Allow Printed Card */
+  allow_printed_card?: Maybe<Scalars['String']>
   /** Enable autocomplete on login and forgot password forms */
   autocomplete_on_storefront?: Maybe<Scalars['Boolean']>
   /** Base currency code */
@@ -9974,6 +10173,12 @@ export type StoreConfig = {
   base_static_url?: Maybe<Scalars['String']>
   /** Base URL for the store */
   base_url?: Maybe<Scalars['String']>
+  /** Braintree cc vault status. */
+  braintree_cc_vault_active?: Maybe<Scalars['String']>
+  /** Display Gift Wrapping Prices */
+  cart_gift_wrapping?: Maybe<Scalars['String']>
+  /** Display Printed Card Prices */
+  cart_printed_card?: Maybe<Scalars['String']>
   /** Default Sort By. */
   catalog_default_sort_by?: Maybe<Scalars['String']>
   /** Corresponds to the 'Display Prices In Product Lists' field. It indicates how FPT information is displayed on category pages */
@@ -9986,8 +10191,13 @@ export type StoreConfig = {
   cms_no_cookies?: Maybe<Scalars['String']>
   /** CMS No Route Page */
   cms_no_route?: Maybe<Scalars['String']>
-  /** A code assigned to the store to identify it */
+  /**
+   * A code assigned to the store to identify it
+   * @deprecated Use `store_code` instead.
+   */
   code?: Maybe<Scalars['String']>
+  /** The configuration setting determines which thumbnail should be used in the cart for configurable products. */
+  configurable_thumbnail_source?: Maybe<Scalars['String']>
   /** Copyright */
   copyright?: Maybe<Scalars['String']>
   /** Default Meta Description */
@@ -10000,6 +10210,8 @@ export type StoreConfig = {
   default_title?: Maybe<Scalars['String']>
   /** Display Demo Store Notice */
   demonotice?: Maybe<Scalars['Int']>
+  /** Indicates whether customers can have multiple wish lists. Possible values: 1 (Yes) and 0 (No) */
+  enable_multiple_wishlists?: Maybe<Scalars['String']>
   /** Default Web URL */
   front?: Maybe<Scalars['String']>
   /** Products per Page on Grid Default Value. */
@@ -10012,8 +10224,15 @@ export type StoreConfig = {
   head_shortcut_icon?: Maybe<Scalars['String']>
   /** Logo Image */
   header_logo_src?: Maybe<Scalars['String']>
-  /** The ID number assigned to the store */
+  /**
+   * The ID number assigned to the store
+   * @deprecated Use `store_code` instead.
+   */
   id?: Maybe<Scalars['Int']>
+  /** Indicates whether the store view has been designated as the default within the store group */
+  is_default_store?: Maybe<Scalars['Boolean']>
+  /** Indicates whether the store group has been designated as the default within the website */
+  is_default_store_group?: Maybe<Scalars['Boolean']>
   /** List Mode. */
   list_mode?: Maybe<Scalars['String']>
   /** Products per Page on List Default Value. */
@@ -10028,14 +10247,44 @@ export type StoreConfig = {
   logo_height?: Maybe<Scalars['Int']>
   /** Logo Attribute Width */
   logo_width?: Maybe<Scalars['Int']>
+  /** Reward points functionality status: enabled/disabled */
+  magento_reward_general_is_enabled?: Maybe<Scalars['String']>
+  /** Reward points functionality status on the storefront: enabled/disabled */
+  magento_reward_general_is_enabled_on_front?: Maybe<Scalars['String']>
+  /** Reward points redemption minimum threshold */
+  magento_reward_general_min_points_balance?: Maybe<Scalars['String']>
+  /** Enable reward points history for the customer */
+  magento_reward_general_publish_history?: Maybe<Scalars['String']>
+  /** Number of points for referral, when invitee registers on the site */
+  magento_reward_points_invitation_customer?: Maybe<Scalars['String']>
+  /** Maximum number of registration referrals that will qualify for rewards */
+  magento_reward_points_invitation_customer_limit?: Maybe<Scalars['String']>
+  /** Number of points for referral, when invitee places an initial order on the site */
+  magento_reward_points_invitation_order?: Maybe<Scalars['String']>
+  /** Maximum number of order placements by invitees that will qualify for rewards */
+  magento_reward_points_invitation_order_limit?: Maybe<Scalars['String']>
+  /** Number of points for newsletter subscription */
+  magento_reward_points_newsletter?: Maybe<Scalars['String']>
+  /** Whether customer earns points for shopping according to the reward point exchange rate. In Luma this also controls whether to show a message in shopping cart about the rewards points earned for the purchase, as well as the customer’s current reward point balance */
+  magento_reward_points_order?: Maybe<Scalars['String']>
+  /** Number of points customer gets for registration */
+  magento_reward_points_register?: Maybe<Scalars['String']>
+  /** Number of points for writing a review */
+  magento_reward_points_review?: Maybe<Scalars['String']>
+  /** Maximum number of reviews that will qualify for the rewards */
+  magento_reward_points_review_limit?: Maybe<Scalars['String']>
   /** Indicates whether wishlists are enabled (1) or disabled (0) */
   magento_wishlist_general_is_enabled?: Maybe<Scalars['String']>
+  /** If multiple wish lists are enabled, the maximum number of wish lists the customer can have */
+  maximum_number_of_wishlists?: Maybe<Scalars['String']>
   /** The minimum number of characters required for a valid password. */
   minimum_password_length?: Maybe<Scalars['String']>
   /** Default No-route URL */
   no_route?: Maybe<Scalars['String']>
   /** Payflow Pro vault status. */
   payment_payflowpro_cc_vault_active?: Maybe<Scalars['String']>
+  /** Default Price for Printed Card */
+  printed_card_price?: Maybe<Scalars['String']>
   /** Corresponds to the 'Display Prices On Product View Page' field. It indicates how FPT information is displayed on product pages */
   product_fixed_product_tax_display_setting?: Maybe<FixedProductTaxDisplaySettings>
   /** Indicates whether product reviews are enabled. Possible values: 1 (Yes) and 0 (No) */
@@ -10044,10 +10293,21 @@ export type StoreConfig = {
   product_url_suffix?: Maybe<Scalars['String']>
   /** The number of different character classes required in a password (lowercase, uppercase, digits, special characters). */
   required_character_classes_number?: Maybe<Scalars['String']>
-  /** The ID of the root category */
+  /** Indicates whether RMA is enabled on the storefront. Possible values: enabled/disabled */
+  returns_enabled: Scalars['String']
+  /**
+   * The ID of the root category
+   * @deprecated Use `root_category_uid` instead
+   */
   root_category_id?: Maybe<Scalars['Int']>
+  /** The unique ID for a `CategoryInterface` object. */
+  root_category_uid?: Maybe<Scalars['ID']>
   /** Corresponds to the 'Display Prices In Sales Modules' field. It indicates how FPT information is displayed on cart, checkout, and order pages */
   sales_fixed_product_tax_display_setting?: Maybe<FixedProductTaxDisplaySettings>
+  /** Display Gift Wrapping Prices */
+  sales_gift_wrapping?: Maybe<Scalars['String']>
+  /** Display Printed Card Prices */
+  sales_printed_card?: Maybe<Scalars['String']>
   /** Secure base link URL for the store */
   secure_base_link_url?: Maybe<Scalars['String']>
   /** Secure base media URL for the store */
@@ -10060,8 +10320,16 @@ export type StoreConfig = {
   send_friend?: Maybe<SendFriendConfiguration>
   /** Show Breadcrumbs for CMS Pages */
   show_cms_breadcrumbs?: Maybe<Scalars['Int']>
-  /** Name of the store */
+  /** The unique ID of the store view. In the Admin, this is called the Store View Code. When making a GraphQL call, assign this value to the `Store` header to provide the scope */
+  store_code?: Maybe<Scalars['ID']>
+  /** The unique ID assigned to the store group. In the Admin, this is called the Store Name */
+  store_group_code?: Maybe<Scalars['ID']>
+  /** The label assigned to the store group */
+  store_group_name?: Maybe<Scalars['String']>
+  /** The label assigned to the store view */
   store_name?: Maybe<Scalars['String']>
+  /** The store view sort order */
+  store_sort_order?: Maybe<Scalars['Int']>
   /** Timezone of the store */
   timezone?: Maybe<Scalars['String']>
   /** Page Title Prefix */
@@ -10070,8 +10338,17 @@ export type StoreConfig = {
   title_separator?: Maybe<Scalars['String']>
   /** Page Title Suffix */
   title_suffix?: Maybe<Scalars['String']>
-  /** The ID number assigned to the website store belongs */
+  /** The configuration determines if the store code should be used in the URL */
+  use_store_in_url?: Maybe<Scalars['Boolean']>
+  /** The unique ID for the website */
+  website_code?: Maybe<Scalars['ID']>
+  /**
+   * The ID number assigned to the website store
+   * @deprecated The field should not be used on the storefront
+   */
   website_id?: Maybe<Scalars['Int']>
+  /** The label assigned to the website */
+  website_name?: Maybe<Scalars['String']>
   /** The unit of weight */
   weight_unit?: Maybe<Scalars['String']>
   /** Welcome Text */
@@ -10108,17 +10385,31 @@ export type Cart = {
   applied_coupon?: Maybe<AppliedCoupon>
   /** An array of `AppliedCoupon` objects. Each object contains the `code` text attribute, which specifies the coupon code */
   applied_coupons?: Maybe<Array<Maybe<AppliedCoupon>>>
+  /** Contains the code attribute, which specifies the applied gift card codes */
+  applied_gift_cards?: Maybe<Array<Maybe<AppliedGiftCard>>>
+  /** The amount of reward points applied to the cart */
+  applied_reward_points?: Maybe<RewardPointsAmount>
+  /** Contains store credit information applied on the cart */
+  applied_store_credit?: Maybe<AppliedStoreCredit>
+  /** The list of available gift wrapping options for the cart */
+  available_gift_wrappings: Array<Maybe<GiftWrapping>>
   /** Available payment methods */
   available_payment_methods?: Maybe<Array<Maybe<AvailablePaymentMethod>>>
   billing_address?: Maybe<BillingCartAddress>
   email?: Maybe<Scalars['String']>
   /** The entered gift message for the cart */
   gift_message?: Maybe<GiftMessage>
-  /** The ID of the cart. */
+  /** Wether customer requested gift receipt for the cart */
+  gift_receipt_included: Scalars['Boolean']
+  /** The selected gift wrapping for the cart */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique ID for a `Cart` object */
   id: Scalars['ID']
   is_virtual: Scalars['Boolean']
   items?: Maybe<Array<Maybe<CartItemInterface>>>
   prices?: Maybe<CartPrices>
+  /** Wether customer requested printed card for the cart */
+  printed_card_included: Scalars['Boolean']
   selected_payment_method?: Maybe<SelectedPaymentMethod>
   shipping_addresses: Array<Maybe<ShippingCartAddress>>
   total_quantity: Scalars['Float']
@@ -10129,90 +10420,17 @@ export type AppliedCoupon = {
   code: Scalars['String']
 }
 
-export type AvailablePaymentMethod = {
-  __typename?: 'AvailablePaymentMethod'
-  /** The payment method code */
-  code: Scalars['String']
-  /** The payment method title. */
-  title: Scalars['String']
-}
-
-export type BillingCartAddress = CartAddressInterface & {
-  __typename?: 'BillingCartAddress'
-  city: Scalars['String']
-  company?: Maybe<Scalars['String']>
-  country: CartAddressCountry
-  /** @deprecated The field is used only in shipping address */
-  customer_notes?: Maybe<Scalars['String']>
-  firstname: Scalars['String']
-  lastname: Scalars['String']
-  postcode?: Maybe<Scalars['String']>
-  region?: Maybe<CartAddressRegion>
-  street: Array<Maybe<Scalars['String']>>
-  telephone: Scalars['String']
-}
-
-export type CartAddressInterface = {
-  city: Scalars['String']
-  company?: Maybe<Scalars['String']>
-  country: CartAddressCountry
-  firstname: Scalars['String']
-  lastname: Scalars['String']
-  postcode?: Maybe<Scalars['String']>
-  region?: Maybe<CartAddressRegion>
-  street: Array<Maybe<Scalars['String']>>
-  telephone: Scalars['String']
-}
-
-export type CartAddressCountry = {
-  __typename?: 'CartAddressCountry'
-  code: Scalars['String']
-  label: Scalars['String']
-}
-
-export type CartAddressRegion = {
-  __typename?: 'CartAddressRegion'
+/** Contains the applied gift card with applied and remaining balance */
+export type AppliedGiftCard = {
+  __typename?: 'AppliedGiftCard'
+  /** Applied balance to the current cart */
+  applied_balance?: Maybe<Money>
+  /** Gift card account code */
   code?: Maybe<Scalars['String']>
-  label?: Maybe<Scalars['String']>
-  region_id?: Maybe<Scalars['Int']>
-}
-
-/** Contains the text of a gift message, its sender, and recipient */
-export type GiftMessage = {
-  __typename?: 'GiftMessage'
-  /** Sender name */
-  from: Scalars['String']
-  /** Gift message text */
-  message: Scalars['String']
-  /** Recipient name */
-  to: Scalars['String']
-}
-
-export type CartItemInterface = {
-  id: Scalars['String']
-  prices?: Maybe<CartItemPrices>
-  product: ProductInterface
-  quantity: Scalars['Float']
-}
-
-export type CartItemPrices = {
-  __typename?: 'CartItemPrices'
-  /** An array of discounts to be applied to the cart item */
-  discounts?: Maybe<Array<Maybe<Discount>>>
-  price: Money
-  row_total: Money
-  row_total_including_tax: Money
-  /** The total of all discounts applied to the item */
-  total_item_discount?: Maybe<Money>
-}
-
-/** Defines an individual discount. A discount can be applied to the cart as a whole or to an item. */
-export type Discount = {
-  __typename?: 'Discount'
-  /** The amount of the discount */
-  amount: Money
-  /** A description of the discount */
-  label: Scalars['String']
+  /** Current balance remaining on gift card */
+  current_balance?: Maybe<Money>
+  /** Gift card expiration date */
+  expiration_date?: Maybe<Scalars['String']>
 }
 
 /** A Money object defines a monetary value, including a numeric value and a currency code. */
@@ -10397,41 +10615,181 @@ export type CurrencyEnum =
   | 'TRL'
   | 'XPF'
 
+export type RewardPointsAmount = {
+  __typename?: 'RewardPointsAmount'
+  /** Reward points amount in store currency */
+  money: Money
+  /** Reward points amount in points */
+  points: Scalars['Float']
+}
+
+/** Applied and current balance */
+export type AppliedStoreCredit = {
+  __typename?: 'AppliedStoreCredit'
+  /** Applied store credit balance to the current cart */
+  applied_balance?: Maybe<Money>
+  /** Current balance remaining on store credit */
+  current_balance?: Maybe<Money>
+  /** Indicates whether store credits are enabled. If the feature is disabled, then the current balance will not be returned */
+  enabled?: Maybe<Scalars['Boolean']>
+}
+
+export type GiftWrapping = {
+  __typename?: 'GiftWrapping'
+  /** Gift wrapping design name */
+  design: Scalars['String']
+  /**
+   * The unique ID for a `GiftWrapping` object
+   * @deprecated Use `uid` instead
+   */
+  id: Scalars['ID']
+  /** Gift wrapping preview image */
+  image?: Maybe<GiftWrappingImage>
+  /** Gift wrapping price */
+  price: Money
+  /** The unique ID for a `GiftWrapping` object */
+  uid: Scalars['ID']
+}
+
+export type GiftWrappingImage = {
+  __typename?: 'GiftWrappingImage'
+  /** Gift wrapping preview image label */
+  label: Scalars['String']
+  /** Gift wrapping preview image URL */
+  url: Scalars['String']
+}
+
+export type AvailablePaymentMethod = {
+  __typename?: 'AvailablePaymentMethod'
+  /** The payment method code */
+  code: Scalars['String']
+  /** The payment method title. */
+  title: Scalars['String']
+}
+
+export type BillingCartAddress = CartAddressInterface & {
+  __typename?: 'BillingCartAddress'
+  city: Scalars['String']
+  company?: Maybe<Scalars['String']>
+  country: CartAddressCountry
+  /** @deprecated The field is used only in shipping address */
+  customer_notes?: Maybe<Scalars['String']>
+  firstname: Scalars['String']
+  lastname: Scalars['String']
+  postcode?: Maybe<Scalars['String']>
+  region?: Maybe<CartAddressRegion>
+  street: Array<Maybe<Scalars['String']>>
+  telephone: Scalars['String']
+}
+
+export type CartAddressInterface = {
+  city: Scalars['String']
+  company?: Maybe<Scalars['String']>
+  country: CartAddressCountry
+  firstname: Scalars['String']
+  lastname: Scalars['String']
+  postcode?: Maybe<Scalars['String']>
+  region?: Maybe<CartAddressRegion>
+  street: Array<Maybe<Scalars['String']>>
+  telephone: Scalars['String']
+}
+
+export type CartAddressCountry = {
+  __typename?: 'CartAddressCountry'
+  code: Scalars['String']
+  label: Scalars['String']
+}
+
+export type CartAddressRegion = {
+  __typename?: 'CartAddressRegion'
+  code?: Maybe<Scalars['String']>
+  label?: Maybe<Scalars['String']>
+  region_id?: Maybe<Scalars['Int']>
+}
+
+/** Contains the text of a gift message, its sender, and recipient */
+export type GiftMessage = {
+  __typename?: 'GiftMessage'
+  /** Sender name */
+  from: Scalars['String']
+  /** Gift message text */
+  message: Scalars['String']
+  /** Recipient name */
+  to: Scalars['String']
+}
+
+export type CartItemInterface = {
+  /** @deprecated Use `uid` instead */
+  id: Scalars['String']
+  prices?: Maybe<CartItemPrices>
+  product: ProductInterface
+  quantity: Scalars['Float']
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
+}
+
+export type CartItemPrices = {
+  __typename?: 'CartItemPrices'
+  /** An array of discounts to be applied to the cart item */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  price: Money
+  row_total: Money
+  row_total_including_tax: Money
+  /** The total of all discounts applied to the item */
+  total_item_discount?: Maybe<Money>
+}
+
+/** Defines an individual discount. A discount can be applied to the cart as a whole or to an item. */
+export type Discount = {
+  __typename?: 'Discount'
+  /** The amount of the discount */
+  amount: Money
+  /** A description of the discount */
+  label: Scalars['String']
+}
+
 /** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
 export type ProductInterface = {
-  activity?: Maybe<Scalars['String']>
-  /** The attribute set assigned to the product. */
+  /**
+   * The attribute set assigned to the product.
+   * @deprecated The field should not be used on the storefront.
+   */
   attribute_set_id?: Maybe<Scalars['Int']>
   /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
   canonical_url?: Maybe<Scalars['String']>
   /** The categories assigned to a product. */
   categories?: Maybe<Array<Maybe<CategoryInterface>>>
-  category_gear?: Maybe<Scalars['String']>
-  climate?: Maybe<Scalars['String']>
-  collar?: Maybe<Scalars['String']>
-  color?: Maybe<Scalars['String']>
+  color?: Maybe<Scalars['Int']>
   /** The product's country of origin. */
   country_of_manufacture?: Maybe<Scalars['String']>
-  /** Timestamp indicating when the product was created. */
+  /**
+   * Timestamp indicating when the product was created.
+   * @deprecated The field should not be used on the storefront.
+   */
   created_at?: Maybe<Scalars['String']>
   /** Crosssell Products */
   crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>
-  eco_collection?: Maybe<Scalars['Int']>
-  erin_recommends?: Maybe<Scalars['Int']>
-  features_bags?: Maybe<Scalars['String']>
+  fashion_color?: Maybe<Scalars['Int']>
+  fashion_material?: Maybe<Scalars['String']>
+  fashion_size?: Maybe<Scalars['Int']>
+  fashion_style?: Maybe<Scalars['String']>
   format?: Maybe<Scalars['Int']>
-  gender?: Maybe<Scalars['String']>
   /** Indicates whether a gift message is available. */
   gift_message_available?: Maybe<Scalars['String']>
-  /** The ID number assigned to the product. */
+  has_video?: Maybe<Scalars['Int']>
+  /**
+   * The ID number assigned to the product.
+   * @deprecated Use the `uid` field instead.
+   */
   id?: Maybe<Scalars['Int']>
   /** The relative path to the main image on the product page. */
   image?: Maybe<ProductImage>
+  /** Indicates whether the product can be returned */
+  is_returnable?: Maybe<Scalars['String']>
   /** A number representing the product's manufacturer. */
   manufacturer?: Maybe<Scalars['Int']>
-  material?: Maybe<Scalars['String']>
   /** An array of Media Gallery objects. */
   media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
   /**
@@ -10447,17 +10805,20 @@ export type ProductInterface = {
   meta_title?: Maybe<Scalars['String']>
   /** The product name. Customers use this name to identify the product. */
   name?: Maybe<Scalars['String']>
-  new?: Maybe<Scalars['Int']>
-  /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+  /**
+   * The beginning date for new product listings, and determines if the product is featured as a new product.
+   * @deprecated The field should not be used on the storefront.
+   */
   new_from_date?: Maybe<Scalars['String']>
-  /** The end date for new product listings. */
+  /**
+   * The end date for new product listings.
+   * @deprecated The field should not be used on the storefront.
+   */
   new_to_date?: Maybe<Scalars['String']>
   /** Product stock only x left count */
   only_x_left_in_stock?: Maybe<Scalars['Float']>
   /** If the product has multiple options, determines where they appear on the product page. */
   options_container?: Maybe<Scalars['String']>
-  pattern?: Maybe<Scalars['String']>
-  performance_fabric?: Maybe<Scalars['Int']>
   /**
    * A ProductPrices object, indicating the price of an item.
    * @deprecated Use price_range for product price information.
@@ -10477,27 +10838,24 @@ export type ProductInterface = {
   review_count: Scalars['Int']
   /** The list of products reviews. */
   reviews: ProductReviews
-  sale?: Maybe<Scalars['Int']>
   /** A short description of the product. Its use depends on the theme. */
   short_description?: Maybe<ComplexTextValue>
-  size?: Maybe<Scalars['Int']>
   /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
   sku?: Maybe<Scalars['String']>
-  sleeve?: Maybe<Scalars['String']>
   /** The relative path to the small image, which is used on catalog pages. */
   small_image?: Maybe<ProductImage>
-  /** The beginning date that a product has a special price. */
+  /**
+   * The beginning date that a product has a special price.
+   * @deprecated The field should not be used on the storefront.
+   */
   special_from_date?: Maybe<Scalars['String']>
   /** The discounted price of the product. */
   special_price?: Maybe<Scalars['Float']>
   /** The end date that a product has a special price. */
   special_to_date?: Maybe<Scalars['String']>
+  staged: Scalars['Boolean']
   /** Stock status of the product */
   stock_status?: Maybe<ProductStockStatus>
-  strap_bags?: Maybe<Scalars['String']>
-  style_bags?: Maybe<Scalars['String']>
-  style_bottom?: Maybe<Scalars['String']>
-  style_general?: Maybe<Scalars['String']>
   /** The file name of a swatch image */
   swatch_image?: Maybe<Scalars['String']>
   /** The relative path to the product's thumbnail image. */
@@ -10517,7 +10875,12 @@ export type ProductInterface = {
    * @deprecated Use __typename instead.
    */
   type_id?: Maybe<Scalars['String']>
-  /** Timestamp indicating when the product was updated. */
+  /** The unique ID for a `ProductInterface` object. */
+  uid: Scalars['ID']
+  /**
+   * Timestamp indicating when the product was updated.
+   * @deprecated The field should not be used on the storefront.
+   */
   updated_at?: Maybe<Scalars['String']>
   /** Upsell Products */
   upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -10529,6 +10892,7 @@ export type ProductInterface = {
   url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
   /** The part of the product URL that is appended after the url key */
   url_suffix?: Maybe<Scalars['String']>
+  video_file?: Maybe<Scalars['String']>
   /**
    * An array of websites in which the product is available.
    * @deprecated The field should not be used on the storefront.
@@ -10544,6 +10908,7 @@ export type ProductInterfaceReviewsArgs = {
 
 /** CategoryInterface contains the full set of attributes that can be returned in a category search. */
 export type CategoryInterface = {
+  automatic_sorting?: Maybe<Scalars['String']>
   available_sort_by?: Maybe<Array<Maybe<Scalars['String']>>>
   /** Breadcrumbs, parent categories info. */
   breadcrumbs?: Maybe<Array<Maybe<Breadcrumb>>>
@@ -10552,7 +10917,10 @@ export type CategoryInterface = {
   children_count?: Maybe<Scalars['String']>
   /** Category CMS Block. */
   cms_block?: Maybe<CmsBlock>
-  /** Timestamp indicating when the category was created. */
+  /**
+   * Timestamp indicating when the category was created.
+   * @deprecated The field should not be used on the storefront.
+   */
   created_at?: Maybe<Scalars['String']>
   custom_layout_update_file?: Maybe<Scalars['String']>
   /** The attribute to use for sorting. */
@@ -10561,7 +10929,10 @@ export type CategoryInterface = {
   description?: Maybe<Scalars['String']>
   display_mode?: Maybe<Scalars['String']>
   filter_price_range?: Maybe<Scalars['Float']>
-  /** An ID that uniquely identifies the category. */
+  /**
+   * An ID that uniquely identifies the category.
+   * @deprecated Use the `uid` argument instead.
+   */
   id?: Maybe<Scalars['Int']>
   image?: Maybe<Scalars['String']>
   include_in_menu?: Maybe<Scalars['Int']>
@@ -10584,7 +10955,13 @@ export type CategoryInterface = {
   product_count?: Maybe<Scalars['Int']>
   /** The list of products assigned to the category. */
   products?: Maybe<CategoryProducts>
-  /** Timestamp indicating when the category was updated. */
+  staged: Scalars['Boolean']
+  /** The unique ID for a `CategoryInterface` object. */
+  uid: Scalars['ID']
+  /**
+   * Timestamp indicating when the category was updated.
+   * @deprecated The field should not be used on the storefront.
+   */
   updated_at?: Maybe<Scalars['String']>
   /** The url key assigned to the category. */
   url_key?: Maybe<Scalars['String']>
@@ -10604,12 +10981,17 @@ export type CategoryInterfaceProductsArgs = {
 /** Breadcrumb item. */
 export type Breadcrumb = {
   __typename?: 'Breadcrumb'
-  /** Category ID. */
+  /**
+   * Category ID.
+   * @deprecated Use the `category_uid` argument instead.
+   */
   category_id?: Maybe<Scalars['Int']>
   /** Category level. */
   category_level?: Maybe<Scalars['Int']>
   /** Category name. */
   category_name?: Maybe<Scalars['String']>
+  /** The unique ID for a `Breadcrumb` object. */
+  category_uid: Scalars['ID']
   /** Category URL key. */
   category_url_key?: Maybe<Scalars['String']>
   /** Category URL path. */
@@ -10704,7 +11086,10 @@ export type MediaGalleryEntry = {
   disabled?: Maybe<Scalars['Boolean']>
   /** The path of the image on the server. */
   file?: Maybe<Scalars['String']>
-  /** The identifier assigned to the object. */
+  /**
+   * The identifier assigned to the object.
+   * @deprecated Use `uid` instead.
+   */
   id?: Maybe<Scalars['Int']>
   /** The alt text displayed on the UI when the user points to the image. */
   label?: Maybe<Scalars['String']>
@@ -10714,6 +11099,8 @@ export type MediaGalleryEntry = {
   position?: Maybe<Scalars['Int']>
   /** Array of image types. It can have the following values: image, small_image, thumbnail. */
   types?: Maybe<Array<Maybe<Scalars['String']>>>
+  /** The unique ID for a `MediaGalleryEntry` object. */
+  uid: Scalars['ID']
   /** Contains a ProductMediaGalleryEntriesVideoContent object. */
   video_content?: Maybe<ProductMediaGalleryEntriesVideoContent>
 }
@@ -10996,6 +11383,8 @@ export type CartPrices = {
   discount?: Maybe<CartDiscount>
   /** An array of applied discounts */
   discounts?: Maybe<Array<Maybe<Discount>>>
+  /** The list of prices for the selected gift options */
+  gift_options?: Maybe<GiftOptionsPrices>
   grand_total?: Maybe<Money>
   subtotal_excluding_tax?: Maybe<Money>
   subtotal_including_tax?: Maybe<Money>
@@ -11012,6 +11401,16 @@ export type CartDiscount = {
   __typename?: 'CartDiscount'
   amount: Money
   label: Array<Maybe<Scalars['String']>>
+}
+
+export type GiftOptionsPrices = {
+  __typename?: 'GiftOptionsPrices'
+  /** Price of the gift wrapping for all individual order items */
+  gift_wrapping_for_items?: Maybe<Money>
+  /** Price of the gift wrapping for the whole order */
+  gift_wrapping_for_order?: Maybe<Money>
+  /** Price for the printed card */
+  printed_card?: Maybe<Money>
 }
 
 export type SelectedPaymentMethod = {
@@ -11085,10 +11484,16 @@ export type SelectedShippingMethod = {
 
 /** CategoryFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
 export type CategoryFilterInput = {
-  /** Filter by category ID that uniquely identifies the category. */
+  /** Filter by the unique category ID for a `CategoryInterface` object. */
+  category_uid?: Maybe<FilterEqualTypeInput>
+  /** Deprecated: use 'category_uid' to filter uniquely identifiers of categories. */
   ids?: Maybe<FilterEqualTypeInput>
   /** Filter by the display name of the category. */
   name?: Maybe<FilterMatchTypeInput>
+  /** Filter by the unique parent category ID for a `CategoryInterface` object. */
+  parent_category_uid?: Maybe<FilterEqualTypeInput>
+  /** Filter by the unique parent category ID for a `CategoryInterface` object. */
+  parent_id?: Maybe<FilterEqualTypeInput>
   /** Filter by the part of the URL that identifies the category. */
   url_key?: Maybe<FilterEqualTypeInput>
   /** Filter by the URL path for the category. */
@@ -11123,6 +11528,7 @@ export type CategoryResult = {
 /** Category Tree implementation. */
 export type CategoryTree = CategoryInterface & {
   __typename?: 'CategoryTree'
+  automatic_sorting?: Maybe<Scalars['String']>
   available_sort_by?: Maybe<Array<Maybe<Scalars['String']>>>
   /** Breadcrumbs, parent categories info. */
   breadcrumbs?: Maybe<Array<Maybe<Breadcrumb>>>
@@ -11133,7 +11539,10 @@ export type CategoryTree = CategoryInterface & {
   children_count?: Maybe<Scalars['String']>
   /** Category CMS Block. */
   cms_block?: Maybe<CmsBlock>
-  /** Timestamp indicating when the category was created. */
+  /**
+   * Timestamp indicating when the category was created.
+   * @deprecated The field should not be used on the storefront.
+   */
   created_at?: Maybe<Scalars['String']>
   custom_layout_update_file?: Maybe<Scalars['String']>
   /** The attribute to use for sorting. */
@@ -11142,7 +11551,10 @@ export type CategoryTree = CategoryInterface & {
   description?: Maybe<Scalars['String']>
   display_mode?: Maybe<Scalars['String']>
   filter_price_range?: Maybe<Scalars['Float']>
-  /** An ID that uniquely identifies the category. */
+  /**
+   * An ID that uniquely identifies the category.
+   * @deprecated Use the `uid` argument instead.
+   */
   id?: Maybe<Scalars['Int']>
   image?: Maybe<Scalars['String']>
   include_in_menu?: Maybe<Scalars['Int']>
@@ -11165,7 +11577,13 @@ export type CategoryTree = CategoryInterface & {
   product_count?: Maybe<Scalars['Int']>
   /** The list of products assigned to the category. */
   products?: Maybe<CategoryProducts>
-  /** Timestamp indicating when the category was updated. */
+  staged: Scalars['Boolean']
+  /** The unique ID for a `CategoryInterface` object. */
+  uid: Scalars['ID']
+  /**
+   * Timestamp indicating when the category was updated.
+   * @deprecated The field should not be used on the storefront.
+   */
   updated_at?: Maybe<Scalars['String']>
   /** The url key assigned to the category. */
   url_key?: Maybe<Scalars['String']>
@@ -11232,11 +11650,50 @@ export type CmsPage = {
   url_key?: Maybe<Scalars['String']>
 }
 
+export type CompareList = {
+  __typename?: 'CompareList'
+  /** An array of attributes that can be used for comparing products */
+  attributes?: Maybe<Array<Maybe<ComparableAttribute>>>
+  /** The number of items in the compare list */
+  item_count: Scalars['Int']
+  /** An array of products to compare */
+  items?: Maybe<Array<Maybe<ComparableItem>>>
+  /** The unique ID assigned to the compare list */
+  uid: Scalars['ID']
+}
+
+export type ComparableAttribute = {
+  __typename?: 'ComparableAttribute'
+  /** An attribute code that is enabled for product comparisons */
+  code: Scalars['String']
+  /** The label of the attribute code */
+  label: Scalars['String']
+}
+
+export type ComparableItem = {
+  __typename?: 'ComparableItem'
+  /** An array of product attributes that can be used to compare products */
+  attributes: Array<Maybe<ProductAttribute>>
+  /** Contains details about a product in a compare list */
+  product: ProductInterface
+  /** The unique ID of an item in a compare list */
+  uid: Scalars['ID']
+}
+
+export type ProductAttribute = {
+  __typename?: 'ProductAttribute'
+  /** The unique identifier for a product attribute code. */
+  code: Scalars['String']
+  /** The display value of the attribute */
+  value: Scalars['String']
+}
+
 export type Country = {
   __typename?: 'Country'
   available_regions?: Maybe<Array<Maybe<Region>>>
   full_name_english?: Maybe<Scalars['String']>
   full_name_locale?: Maybe<Scalars['String']>
+  /** The unique ID for a `Country` object. */
   id?: Maybe<Scalars['String']>
   three_letter_abbreviation?: Maybe<Scalars['String']>
   two_letter_abbreviation?: Maybe<Scalars['String']>
@@ -11245,6 +11702,7 @@ export type Country = {
 export type Region = {
   __typename?: 'Region'
   code?: Maybe<Scalars['String']>
+  /** The unique ID for a `Region` object. */
   id?: Maybe<Scalars['Int']>
   name?: Maybe<Scalars['String']>
 }
@@ -11313,6 +11771,10 @@ export type Customer = {
   __typename?: 'Customer'
   /** An array containing the customer's shipping and billing addresses */
   addresses?: Maybe<Array<Maybe<CustomerAddress>>>
+  /** Indicates whether the customer has enabled remote shopping assistance */
+  allow_remote_shopping_assistance: Scalars['Boolean']
+  /** The contents of the customer's compare list */
+  compare_list?: Maybe<CompareList>
   /** Timestamp indicating when the account was created */
   created_at?: Maybe<Scalars['String']>
   /** The customer's date of birth */
@@ -11348,14 +11810,29 @@ export type Customer = {
   orders?: Maybe<CustomerOrders>
   /** An honorific, such as Dr., Mr., or Mrs. */
   prefix?: Maybe<Scalars['String']>
+  /** Retrieves details about the specified return request from the unique ID for a `Return` object */
+  return?: Maybe<Return>
+  /** Information about the customer's return requests. */
+  returns?: Maybe<Returns>
   /** Contains the customer's product reviews */
   reviews: ProductReviews
+  /** Customer reward points details */
+  reward_points?: Maybe<RewardPoints>
+  /** Contains the store credit information applied for the logged in customer */
+  store_credit?: Maybe<CustomerStoreCredit>
   /** A value such as Sr., Jr., or III */
   suffix?: Maybe<Scalars['String']>
   /** The customer's Value-added tax (VAT) number (for corporate customers) */
   taxvat?: Maybe<Scalars['String']>
-  /** Contains the contents of a customer's wish lists */
+  /**
+   * Contains a customer's wish lists
+   * @deprecated Use `Customer.wishlists` or `Customer.wishlist_v2`
+   */
   wishlist: Wishlist
+  /** Retrieve the specified wish list identified by the unique ID for a `Wishlist` object */
+  wishlist_v2?: Maybe<Wishlist>
+  /** An array of wishlists. In Magento Open Source, customers are limited to one wish list. The number of wish lists is configurable for Magento Commerce */
+  wishlists: Array<Maybe<Wishlist>>
 }
 
 /** Customer defines the customer name and address and other details */
@@ -11366,7 +11843,29 @@ export type CustomerOrdersArgs = {
 }
 
 /** Customer defines the customer name and address and other details */
+export type CustomerReturnArgs = {
+  uid: Scalars['ID']
+}
+
+/** Customer defines the customer name and address and other details */
+export type CustomerReturnsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
+
+/** Customer defines the customer name and address and other details */
 export type CustomerReviewsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
+
+/** Customer defines the customer name and address and other details */
+export type CustomerWishlist_V2Args = {
+  id: Scalars['ID']
+}
+
+/** Customer defines the customer name and address and other details */
+export type CustomerWishlistsArgs = {
   pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
 }
@@ -11980,9 +12479,13 @@ export type CustomerOrder = {
   credit_memos?: Maybe<Array<Maybe<CreditMemo>>>
   /** The entered gift message for the order */
   gift_message?: Maybe<GiftMessage>
+  /** Whether customer requested gift receipt for the order */
+  gift_receipt_included: Scalars['Boolean']
+  /** The selected gift wrapping for the order */
+  gift_wrapping?: Maybe<GiftWrapping>
   /** @deprecated Use the totals.grand_total attribute instead */
   grand_total?: Maybe<Scalars['Float']>
-  /** Unique identifier for the order */
+  /** The unique ID for a `CustomerOrder` object */
   id: Scalars['ID']
   /** @deprecated Use the id attribute instead */
   increment_id?: Maybe<Scalars['String']>
@@ -11990,6 +12493,8 @@ export type CustomerOrder = {
   invoices: Array<Maybe<Invoice>>
   /** An array containing the items purchased in this order */
   items?: Maybe<Array<Maybe<OrderItemInterface>>>
+  /** A list of order items eligible to be in a return request */
+  items_eligible_for_return?: Maybe<Array<Maybe<OrderItemInterface>>>
   /** The order number */
   number: Scalars['String']
   /** The date the order was placed */
@@ -11998,6 +12503,10 @@ export type CustomerOrder = {
   order_number: Scalars['String']
   /** Payment details for the order */
   payment_methods?: Maybe<Array<Maybe<OrderPaymentMethod>>>
+  /** Whether customer requested printed card for the order */
+  printed_card_included: Scalars['Boolean']
+  /** Return requests associated with this order. */
+  returns?: Maybe<Returns>
   /** A list of shipments for the order */
   shipments?: Maybe<Array<Maybe<OrderShipment>>>
   /** The shipping address for the order */
@@ -12008,6 +12517,12 @@ export type CustomerOrder = {
   status: Scalars['String']
   /** Contains details about the calculated totals for this order */
   total?: Maybe<OrderTotal>
+}
+
+/** Contains details about each of the customer's orders */
+export type CustomerOrderReturnsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
 }
 
 /** OrderAddress contains detailed information about an order's billing and shipping addresses */
@@ -12033,7 +12548,7 @@ export type OrderAddress = {
   prefix?: Maybe<Scalars['String']>
   /** The state or province name */
   region?: Maybe<Scalars['String']>
-  /** The unique ID for a pre-defined region */
+  /** The unique ID for a `Region` object of a pre-defined region */
   region_id?: Maybe<Scalars['ID']>
   /** An array of strings that define the street number and name */
   street: Array<Maybe<Scalars['String']>>
@@ -12059,7 +12574,7 @@ export type CreditMemo = {
   __typename?: 'CreditMemo'
   /** Comments on the credit memo */
   comments?: Maybe<Array<Maybe<SalesCommentItem>>>
-  /** The unique ID of the credit memo, used for API purposes */
+  /** The unique ID for a `CreditMemo` object */
   id: Scalars['ID']
   /** An array containing details about refunded items */
   items?: Maybe<Array<Maybe<CreditMemoItemInterface>>>
@@ -12073,7 +12588,7 @@ export type CreditMemo = {
 export type CreditMemoItemInterface = {
   /** Contains information about the final discount amount for the base product, including discounts on options */
   discounts?: Maybe<Array<Maybe<Discount>>>
-  /** The unique ID of the credit memo item, used for API purposes */
+  /** The unique ID for a `CreditMemoItemInterface` object */
   id: Scalars['ID']
   /** The order item the credit memo is applied to */
   order_item?: Maybe<OrderItemInterface>
@@ -12091,9 +12606,13 @@ export type CreditMemoItemInterface = {
 export type OrderItemInterface = {
   /** The final discount information for the product */
   discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Indicates whether the order item is eligible is eligible to be in a return request */
+  eligible_for_return?: Maybe<Scalars['Boolean']>
   /** The entered option for the base product, such as a logo or image */
   entered_options?: Maybe<Array<Maybe<OrderItemOption>>>
-  /** The unique identifier of the order item */
+  /** The selected gift wrapping for the order item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique ID for a `OrderItemInterface` object */
   id: Scalars['ID']
   /** The name of the base product */
   product_name?: Maybe<Scalars['String']>
@@ -12193,7 +12712,7 @@ export type Invoice = {
   __typename?: 'Invoice'
   /** Comments on the invoice */
   comments?: Maybe<Array<Maybe<SalesCommentItem>>>
-  /** The ID of the invoice, used for API purposes */
+  /** The unique ID for a `Invoice` object */
   id: Scalars['ID']
   /** Invoiced product details */
   items?: Maybe<Array<Maybe<InvoiceItemInterface>>>
@@ -12207,7 +12726,7 @@ export type Invoice = {
 export type InvoiceItemInterface = {
   /** Contains information about the final discount amount for the base product, including discounts on options */
   discounts?: Maybe<Array<Maybe<Discount>>>
-  /** The unique ID of the invoice item */
+  /** The unique ID for a `InvoiceItemInterface` object */
   id: Scalars['ID']
   /** Contains details about an individual order item */
   order_item?: Maybe<OrderItemInterface>
@@ -12262,12 +12781,178 @@ export type KeyValue = {
   value?: Maybe<Scalars['String']>
 }
 
+export type Returns = {
+  __typename?: 'Returns'
+  /** A list of return requests */
+  items?: Maybe<Array<Maybe<Return>>>
+  /** Pagination metadata */
+  page_info?: Maybe<SearchResultPageInfo>
+  /** The total number of return requests */
+  total_count?: Maybe<Scalars['Int']>
+}
+
+/** Customer return */
+export type Return = {
+  __typename?: 'Return'
+  /** A list of shipping carriers available for returns */
+  available_shipping_carriers?: Maybe<Array<Maybe<ReturnShippingCarrier>>>
+  /** A list of comments posted for the return request */
+  comments?: Maybe<Array<Maybe<ReturnComment>>>
+  /** The date the return was requested */
+  created_at: Scalars['String']
+  /** The data from customer who created the return request */
+  customer: ReturnCustomer
+  /** A list of items being returned */
+  items?: Maybe<Array<Maybe<ReturnItem>>>
+  /** Human-readable return number */
+  number: Scalars['String']
+  /** The order associated with the return */
+  order?: Maybe<CustomerOrder>
+  /** Shipping information for the return */
+  shipping?: Maybe<ReturnShipping>
+  /** The status of the return request */
+  status?: Maybe<ReturnStatus>
+  /** The unique ID for a `Return` object */
+  uid: Scalars['ID']
+}
+
+export type ReturnShippingCarrier = {
+  __typename?: 'ReturnShippingCarrier'
+  /** A description of the shipping carrier */
+  label: Scalars['String']
+  /** The unique ID for a `ReturnShippingCarrier` object assigned to the shipping carrier */
+  uid: Scalars['ID']
+}
+
+export type ReturnComment = {
+  __typename?: 'ReturnComment'
+  /** The name or author who posted the comment */
+  author_name: Scalars['String']
+  /** The date and time the comment was posted */
+  created_at: Scalars['String']
+  /** The contents of the comment */
+  text: Scalars['String']
+  /** The unique ID for a `ReturnComment` object */
+  uid: Scalars['ID']
+}
+
+/** The Customer information for the return. */
+export type ReturnCustomer = {
+  __typename?: 'ReturnCustomer'
+  /** Customer email address. */
+  email: Scalars['String']
+  /** Customer first name. */
+  firstname?: Maybe<Scalars['String']>
+  /** Customer last name. */
+  lastname?: Maybe<Scalars['String']>
+}
+
+export type ReturnItem = {
+  __typename?: 'ReturnItem'
+  /** Return item custom attributes that are visible on the storefront */
+  custom_attributes?: Maybe<Array<Maybe<ReturnCustomAttribute>>>
+  /** Provides access to the product being returned, including information about selected and entered options */
+  order_item: OrderItemInterface
+  /** The quantity of the item the merchant authorized to be returned */
+  quantity: Scalars['Float']
+  /** The quantity of the item requested to be returned */
+  request_quantity: Scalars['Float']
+  /** The return status of the item */
+  status: ReturnItemStatus
+  /** The unique ID for a `ReturnItem` object */
+  uid: Scalars['ID']
+}
+
+export type ReturnCustomAttribute = {
+  __typename?: 'ReturnCustomAttribute'
+  /** A description of the attribute */
+  label: Scalars['String']
+  /** The unique ID for a `ReturnCustomAttribute` object */
+  uid: Scalars['ID']
+  /** A JSON-encoded value of the attribute */
+  value: Scalars['String']
+}
+
+export type ReturnItemStatus =
+  | 'PENDING'
+  | 'AUTHORIZED'
+  | 'RECEIVED'
+  | 'APPROVED'
+  | 'REJECTED'
+  | 'DENIED'
+
+export type ReturnShipping = {
+  __typename?: 'ReturnShipping'
+  /** The merchant-defined return shipping address */
+  address?: Maybe<ReturnShippingAddress>
+  /** The unique ID for a `ReturnShippingTracking` object. If a single UID is specified, contains a single tracking record. Otherwise, contains all tracking information */
+  tracking?: Maybe<Array<Maybe<ReturnShippingTracking>>>
+}
+
+export type ReturnShippingTrackingArgs = {
+  uid?: Maybe<Scalars['ID']>
+}
+
+export type ReturnShippingAddress = {
+  __typename?: 'ReturnShippingAddress'
+  /** The city for product returns */
+  city: Scalars['String']
+  /** The merchant's contact person */
+  contact_name?: Maybe<Scalars['String']>
+  /** An object that defines the country for product returns */
+  country: Country
+  /** The postal code for product returns */
+  postcode: Scalars['String']
+  /** An object that defines the state or province for product returns */
+  region: Region
+  /** The street address for product returns */
+  street: Array<Maybe<Scalars['String']>>
+  /** The telephone number for product returns */
+  telephone?: Maybe<Scalars['String']>
+}
+
+export type ReturnShippingTracking = {
+  __typename?: 'ReturnShippingTracking'
+  /** Contains details of a shipping carrier */
+  carrier: ReturnShippingCarrier
+  /** Contains details about the status of a shipment */
+  status?: Maybe<ReturnShippingTrackingStatus>
+  /** A tracking number assigned by the carrier */
+  tracking_number: Scalars['String']
+  /** The unique ID for a `ReturnShippingTracking` object assigned to the tracking item */
+  uid: Scalars['ID']
+}
+
+export type ReturnShippingTrackingStatus = {
+  __typename?: 'ReturnShippingTrackingStatus'
+  /** Text that describes the status */
+  text: Scalars['String']
+  /** Indicates whether the status type is informational or an error */
+  type: ReturnShippingTrackingStatusType
+}
+
+export type ReturnShippingTrackingStatusType = 'INFORMATION' | 'ERROR'
+
+export type ReturnStatus =
+  | 'PENDING'
+  | 'AUTHORIZED'
+  | 'PARTIALLY_AUTHORIZED'
+  | 'RECEIVED'
+  | 'PARTIALLY_RECEIVED'
+  | 'APPROVED'
+  | 'PARTIALLY_APPROVED'
+  | 'REJECTED'
+  | 'PARTIALLY_REJECTED'
+  | 'DENIED'
+  | 'PROCESSED_AND_CLOSED'
+  | 'CLOSED'
+
 /** Order shipment details */
 export type OrderShipment = {
   __typename?: 'OrderShipment'
   /** Comments added to the shipment */
   comments?: Maybe<Array<Maybe<SalesCommentItem>>>
-  /** The unique ID of the shipment */
+  /** The unique ID for a `OrderShipment` object */
   id: Scalars['ID']
   /** Contains items included in the shipment */
   items?: Maybe<Array<Maybe<ShipmentItemInterface>>>
@@ -12279,7 +12964,7 @@ export type OrderShipment = {
 
 /** Order shipment item details */
 export type ShipmentItemInterface = {
-  /** Shipment item unique identifier */
+  /** The unique ID for a `ShipmentItemInterface` object */
   id: Scalars['ID']
   /** Associated order item */
   order_item?: Maybe<OrderItemInterface>
@@ -12325,18 +13010,121 @@ export type OrderTotal = {
   total_tax: Money
 }
 
+export type RewardPoints = {
+  __typename?: 'RewardPoints'
+  /** The current balance of reward points */
+  balance?: Maybe<RewardPointsAmount>
+  /** The balance history of reward points. If the ability for customers to view the balance history has been disabled in the Admin, this field will be set to null */
+  balance_history?: Maybe<Array<Maybe<RewardPointsBalanceHistoryItem>>>
+  /** The current exchange rates for reward points */
+  exchange_rates?: Maybe<RewardPointsExchangeRates>
+  /** The subscription status of emails related to reward points */
+  subscription_status?: Maybe<RewardPointsSubscriptionStatus>
+}
+
+export type RewardPointsBalanceHistoryItem = {
+  __typename?: 'RewardPointsBalanceHistoryItem'
+  /** Reward points balance after the completion of the transaction */
+  balance?: Maybe<RewardPointsAmount>
+  /** The reason the balance changed */
+  change_reason: Scalars['String']
+  /** Transaction date */
+  date: Scalars['String']
+  /** The number of points added or deducted in the transaction */
+  points_change: Scalars['Float']
+}
+
+/** Exchange rates depend on the customer group */
+export type RewardPointsExchangeRates = {
+  __typename?: 'RewardPointsExchangeRates'
+  /** How many points are earned for a given amount spent */
+  earning?: Maybe<RewardPointsRate>
+  /** How many points must be redeemed to get a given amount of currency discount at the checkout */
+  redemption?: Maybe<RewardPointsRate>
+}
+
+export type RewardPointsRate = {
+  __typename?: 'RewardPointsRate'
+  /** The money value for exchange rate. For earnings this is amount spent to earn the specified points. For redemption this is the amount of money the number of points represents. */
+  currency_amount: Scalars['Float']
+  /** The number of points for exchange rate. For earnings this is the number of points earned. For redemption this is the number of points needed for redemption. */
+  points: Scalars['Float']
+}
+
+export type RewardPointsSubscriptionStatus = {
+  __typename?: 'RewardPointsSubscriptionStatus'
+  /** Customer subscription status to 'Reward points balance updates' emails */
+  balance_updates: RewardPointsSubscriptionStatusesEnum
+  /** Customer subscription status to 'Reward points expiration notifications' emails */
+  points_expiration_notifications: RewardPointsSubscriptionStatusesEnum
+}
+
+export type RewardPointsSubscriptionStatusesEnum = 'SUBSCRIBED' | 'NOT_SUBSCRIBED'
+
+/** Contains store credit information with balance and history */
+export type CustomerStoreCredit = {
+  __typename?: 'CustomerStoreCredit'
+  /** Customer Store credit balance history. If the history or store credit feature is disabled, then a null value will be returned. */
+  balance_history?: Maybe<CustomerStoreCreditHistory>
+  /** Current balance on store credit */
+  current_balance?: Maybe<Money>
+  /** Indicates whether store credits are enabled. If the feature is disabled, then the balance will not be returned */
+  enabled?: Maybe<Scalars['Boolean']>
+}
+
+/** Contains store credit information with balance and history */
+export type CustomerStoreCreditBalance_HistoryArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
+
+/** Lists changes to the amount of store credit available to the customer. */
+export type CustomerStoreCreditHistory = {
+  __typename?: 'CustomerStoreCreditHistory'
+  /** An array containing information about changes to the store credit available to the customer. */
+  items?: Maybe<Array<Maybe<CustomerStoreCreditHistoryItem>>>
+  /** An object that includes the current_page page_info and page_size values specified in the query. */
+  page_info?: Maybe<SearchResultPageInfo>
+  /** The number of items returned. */
+  total_count?: Maybe<Scalars['Int']>
+}
+
+/** Defines store credit history information */
+export type CustomerStoreCreditHistoryItem = {
+  __typename?: 'CustomerStoreCreditHistoryItem'
+  /** Action that was made on the store credit */
+  action?: Maybe<Scalars['String']>
+  /** The store credit available to the customer as a result of this action.  */
+  actual_balance?: Maybe<Money>
+  /** The amount added to or subtracted from the store credit as a result of this action. */
+  balance_change?: Maybe<Money>
+  /** Date and time when the store credit change was made */
+  date_time_changed?: Maybe<Scalars['String']>
+}
+
 export type Wishlist = {
   __typename?: 'Wishlist'
-  /** Wishlist unique identifier */
+  /** The unique ID for a `Wishlist` object */
   id?: Maybe<Scalars['ID']>
-  /** An array of items in the customer's wish list */
+  /** @deprecated Use field `items_v2` from type `Wishlist` instead */
   items?: Maybe<Array<Maybe<WishlistItem>>>
   /** The number of items in the wish list */
   items_count?: Maybe<Scalars['Int']>
+  /** An array of items in the customer's wish list */
+  items_v2?: Maybe<WishlistItems>
+  /** The wish list name */
+  name?: Maybe<Scalars['String']>
   /** An encrypted code that Magento uses to link to the wish list */
   sharing_code?: Maybe<Scalars['String']>
   /** The time of the last modification to the wish list */
   updated_at?: Maybe<Scalars['String']>
+  /** Indicates whether the wish list is public or private */
+  visibility: WishlistVisibilityEnum
+}
+
+export type WishlistItems_V2Args = {
+  currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 export type WishlistItem = {
@@ -12345,12 +13133,72 @@ export type WishlistItem = {
   added_at?: Maybe<Scalars['String']>
   /** The customer's comment about this item */
   description?: Maybe<Scalars['String']>
-  /** The wish list item ID */
+  /** The unique ID for a `WishlistItem` object */
   id?: Maybe<Scalars['Int']>
   product?: Maybe<ProductInterface>
   /** The quantity of this wish list item */
   qty?: Maybe<Scalars['Float']>
 }
+
+export type WishlistItems = {
+  __typename?: 'WishlistItems'
+  /** A list of items in the wish list */
+  items: Array<Maybe<WishlistItemInterface>>
+  /** Contains pagination metadata */
+  page_info?: Maybe<SearchResultPageInfo>
+}
+
+export type WishlistItemInterface = {
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
+}
+
+export type SelectedCustomizableOption = {
+  __typename?: 'SelectedCustomizableOption'
+  /** The unique ID for a `CustomizableRadioOption`, `CustomizableDropDownOption`, `CustomizableMultipleOption`, etc. of `CustomizableOptionInterface` objects */
+  customizable_option_uid: Scalars['ID']
+  /** @deprecated Use SelectedCustomizableOption.customizable_option_uid instead */
+  id: Scalars['Int']
+  is_required: Scalars['Boolean']
+  label: Scalars['String']
+  sort_order: Scalars['Int']
+  type: Scalars['String']
+  values: Array<Maybe<SelectedCustomizableOptionValue>>
+}
+
+export type SelectedCustomizableOptionValue = {
+  __typename?: 'SelectedCustomizableOptionValue'
+  /** The unique ID for a `CustomizableMultipleValue`, `CustomizableRadioValue`, `CustomizableCheckboxValue`, `CustomizableDropDownValue`, etc. objects */
+  customizable_option_value_uid: Scalars['ID']
+  /** @deprecated Use SelectedCustomizableOptionValue.customizable_option_value_uid instead */
+  id: Scalars['Int']
+  label: Scalars['String']
+  price: CartItemSelectedOptionValuePrice
+  value: Scalars['String']
+}
+
+export type CartItemSelectedOptionValuePrice = {
+  __typename?: 'CartItemSelectedOptionValuePrice'
+  type: PriceTypeEnum
+  units: Scalars['String']
+  value: Scalars['Float']
+}
+
+/** This enumeration the price type. */
+export type PriceTypeEnum = 'FIXED' | 'PERCENT' | 'DYNAMIC'
+
+/** This enumeration defines the wish list visibility types */
+export type WishlistVisibilityEnum = 'PUBLIC' | 'PRIVATE'
 
 export type CustomerDownloadableProducts = {
   __typename?: 'CustomerDownloadableProducts'
@@ -12422,6 +13270,22 @@ export type PayflowLinkToken = {
 
 /** Mode for payment: TEST or LIVE. Applies to Payflow Link and Payments Advanced payment methods. */
 export type PayflowLinkMode = 'TEST' | 'LIVE'
+
+export type GiftCardAccountInput = {
+  /** Defines the input required to identify the gift card account */
+  gift_card_code: Scalars['String']
+}
+
+/** Contains details about the gift card account */
+export type GiftCardAccount = {
+  __typename?: 'GiftCardAccount'
+  /** Balance remaining on gift card */
+  balance?: Maybe<Money>
+  /** Gift card account code */
+  code?: Maybe<Scalars['String']>
+  /** Gift card expiration date */
+  expiration_date?: Maybe<Scalars['String']>
+}
 
 export type IsEmailAvailableOutput = {
   __typename?: 'IsEmailAvailableOutput'
@@ -12526,6 +13390,12 @@ export type PickupLocationSortInput = {
   street?: Maybe<SortEnum>
 }
 
+/** Product Information used for Pickup Locations search. */
+export type ProductInfoInput = {
+  /** Product SKU. */
+  sku: Scalars['String']
+}
+
 /** Top level object returned in a pickup locations search. */
 export type PickupLocations = {
   __typename?: 'PickupLocations'
@@ -12583,60 +13453,32 @@ export type ProductReviewRatingValueMetadata = {
 
 /** ProductAttributeFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
 export type ProductAttributeFilterInput = {
-  /** Attribute label: Activity */
-  activity?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Category Gear */
-  category_gear?: Maybe<FilterEqualTypeInput>
-  /** Filter product by category id */
+  /** Deprecated: use `category_uid` to filter product by category id. */
   category_id?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Climate */
-  climate?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Collar */
-  collar?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Color */
-  color?: Maybe<FilterEqualTypeInput>
+  /** Filter product by the unique ID for a `CategoryInterface` object. */
+  category_uid?: Maybe<FilterEqualTypeInput>
   /** Attribute label: Description */
   description?: Maybe<FilterMatchTypeInput>
-  /** Attribute label: Eco Collection */
-  eco_collection?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Erin Recommends */
-  erin_recommends?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Features */
-  features_bags?: Maybe<FilterEqualTypeInput>
+  /** Attribute label: Color */
+  fashion_color?: Maybe<FilterEqualTypeInput>
+  /** Attribute label: Material */
+  fashion_material?: Maybe<FilterEqualTypeInput>
+  /** Attribute label: Size */
+  fashion_size?: Maybe<FilterEqualTypeInput>
+  /** Attribute label: Style */
+  fashion_style?: Maybe<FilterEqualTypeInput>
   /** Attribute label: Format */
   format?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Gender */
-  gender?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Material */
-  material?: Maybe<FilterEqualTypeInput>
+  /** Attribute label: Has Video */
+  has_video?: Maybe<FilterEqualTypeInput>
   /** Attribute label: Product Name */
   name?: Maybe<FilterMatchTypeInput>
-  /** Attribute label: New */
-  new?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Pattern */
-  pattern?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Performance Fabric */
-  performance_fabric?: Maybe<FilterEqualTypeInput>
   /** Attribute label: Price */
   price?: Maybe<FilterRangeTypeInput>
-  /** Attribute label: Sale */
-  sale?: Maybe<FilterEqualTypeInput>
   /** Attribute label: Short Description */
   short_description?: Maybe<FilterMatchTypeInput>
-  /** Attribute label: Size */
-  size?: Maybe<FilterEqualTypeInput>
   /** Attribute label: SKU */
   sku?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Sleeve */
-  sleeve?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Strap/Handle */
-  strap_bags?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Style Bags */
-  style_bags?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Style Bottom */
-  style_bottom?: Maybe<FilterEqualTypeInput>
-  /** Attribute label: Style General */
-  style_general?: Maybe<FilterEqualTypeInput>
   /** The part of the URL that identifies the product */
   url_key?: Maybe<FilterEqualTypeInput>
 }
@@ -12669,7 +13511,7 @@ export type Products = {
   total_count?: Maybe<Scalars['Int']>
 }
 
-/** A bucket that contains information for each filterable option (such as price, category ID, and custom attributes). */
+/** A bucket that contains information for each filterable option (such as price, category `UID`, and custom attributes). */
 export type Aggregation = {
   __typename?: 'Aggregation'
   /** Attribute code of the aggregation group. */
@@ -12765,7 +13607,12 @@ export type EntityUrl = {
   __typename?: 'EntityUrl'
   /** @deprecated The canonical_url field is deprecated, use relative_url instead. */
   canonical_url?: Maybe<Scalars['String']>
-  /** The ID assigned to the object associated with the specified url. This could be a product ID, category ID, or page ID. */
+  /** The unique ID for a `ProductInterface`, `CategoryInterface`, `CmsPage`, etc. object associated with the specified url. This could be a product UID, category UID, or cms page UID. */
+  entity_uid?: Maybe<Scalars['ID']>
+  /**
+   * The ID assigned to the object associated with the specified url. This could be a product ID, category ID, or page ID.
+   * @deprecated Use `entity_uid` instead.
+   */
   id?: Maybe<Scalars['Int']>
   /** 301 or 302 HTTP code for url permanent or temporary redirect or 0 for the 200 no redirect */
   redirectCode?: Maybe<Scalars['Int']>
@@ -12826,7 +13673,9 @@ export type BundleOptionInput = {
 }
 
 export type CustomizableOptionInput = {
-  id: Scalars['Int']
+  /** The customizable option id of the product */
+  id?: Maybe<Scalars['Int']>
+  /** The string value of the option */
   value_string: Scalars['String']
 }
 
@@ -12836,14 +13685,14 @@ export type CartItemInput = {
   /** For child products, the SKU of its parent product */
   parent_sku?: Maybe<Scalars['String']>
   quantity: Scalars['Float']
-  /** The selected options for the base product, such as color or size */
+  /** The selected options for the base product, such as color or size with  unique ID for a `CustomizableRadioOption`, `CustomizableDropDownOption`, `ConfigurableProductOptionsValues`, etc. objects */
   selected_options?: Maybe<Array<Maybe<Scalars['ID']>>>
   sku: Scalars['String']
 }
 
 /** Defines a customer-entered option */
 export type EnteredOptionInput = {
-  /** An encoded ID */
+  /** The unique ID for a `CustomizableFieldOption`, `CustomizableFileOption`, `CustomizableAreaOption`, etc. of `CustomizableOptionInterface` objects */
   uid: Scalars['ID']
   /** Text the customer entered */
   value: Scalars['String']
@@ -12864,6 +13713,7 @@ export type ConfigurableProductCartItemInput = {
   data: CartItemInput
   /** Configurable product SKU. */
   parent_sku?: Maybe<Scalars['String']>
+  /** Deprecated. Use CartItemInput.sku instead. */
   variant_sku?: Maybe<Scalars['String']>
 }
 
@@ -12915,6 +13765,13 @@ export type CartUserInputErrorType =
   | 'INSUFFICIENT_STOCK'
   | 'UNDEFINED'
 
+export type AddProductsToCompareListInput = {
+  /** An array of product IDs to add to the compare list */
+  products: Array<Maybe<Scalars['ID']>>
+  /** The unique identifier of the compare list to modify */
+  uid: Scalars['ID']
+}
+
 /** Defines the items to add to a wish list */
 export type WishlistItemInput = {
   /** An array of options that the customer entered */
@@ -12948,6 +13805,36 @@ export type WishListUserInputError = {
 }
 
 export type WishListUserInputErrorType = 'PRODUCT_NOT_FOUND' | 'UNDEFINED'
+
+export type AddReturnCommentInput = {
+  /** The text added to the return request */
+  comment_text: Scalars['String']
+  /** The unique ID for a `Return` object */
+  return_uid: Scalars['ID']
+}
+
+export type AddReturnCommentOutput = {
+  __typename?: 'AddReturnCommentOutput'
+  /** Contains details about the modified return */
+  return?: Maybe<Return>
+}
+
+export type AddReturnTrackingInput = {
+  /** The unique ID for a `ReturnShippingCarrier` object */
+  carrier_uid: Scalars['ID']
+  /** The unique ID for a `Returns` object */
+  return_uid: Scalars['ID']
+  /** The shipping tracking number for this return request */
+  tracking_number: Scalars['String']
+}
+
+export type AddReturnTrackingOutput = {
+  __typename?: 'AddReturnTrackingOutput'
+  /** Contains details about the modified return */
+  return?: Maybe<Return>
+  /** Contains details about shipping for a return */
+  return_shipping_tracking?: Maybe<ReturnShippingTracking>
+}
 
 export type AddSimpleProductsToCartInput = {
   cart_id: Scalars['String']
@@ -12987,6 +13874,69 @@ export type ApplyCouponToCartInput = {
 export type ApplyCouponToCartOutput = {
   __typename?: 'ApplyCouponToCartOutput'
   cart: Cart
+}
+
+/** Defines the input required to run the applyGiftCardToCart mutation */
+export type ApplyGiftCardToCartInput = {
+  /** The unique ID that identifies the customer's cart */
+  cart_id: Scalars['String']
+  /** The gift card code to be applied to the cart */
+  gift_card_code: Scalars['String']
+}
+
+/** Defines the possible output for the applyGiftCardToCart mutation */
+export type ApplyGiftCardToCartOutput = {
+  __typename?: 'ApplyGiftCardToCartOutput'
+  /** Describes the contents of the specified shopping cart */
+  cart: Cart
+}
+
+export type ApplyRewardPointsToCartOutput = {
+  __typename?: 'ApplyRewardPointsToCartOutput'
+  /** The customer cart after reward points are applied */
+  cart: Cart
+}
+
+/** Defines the input required to run the applyStoreCreditToCart mutation */
+export type ApplyStoreCreditToCartInput = {
+  /** The unique ID that identifies the customer's cart */
+  cart_id: Scalars['String']
+}
+
+/** Defines the possible output for the applyStoreCreditToCart mutation */
+export type ApplyStoreCreditToCartOutput = {
+  __typename?: 'ApplyStoreCreditToCartOutput'
+  /** Describes the contents of the specified shopping cart */
+  cart: Cart
+}
+
+export type AssignCompareListToCustomerOutput = {
+  __typename?: 'AssignCompareListToCustomerOutput'
+  /** The contents of the customer's compare list */
+  compare_list?: Maybe<CompareList>
+  result: Scalars['Boolean']
+}
+
+export type WishlistItemCopyInput = {
+  /** The quantity of this item to copy to the destination wish list. This value can't be greater than the quantity in the source wish list. */
+  quantity?: Maybe<Scalars['Float']>
+  /** The unique ID for a `WishlistItemInterface` object to be copied */
+  wishlist_item_id: Scalars['ID']
+}
+
+export type CopyProductsBetweenWishlistsOutput = {
+  __typename?: 'CopyProductsBetweenWishlistsOutput'
+  /** The destination wish list containing the copied products */
+  destination_wishlist: Wishlist
+  /** The wish list that the products were copied from */
+  source_wishlist: Wishlist
+  /** An array of errors encountered while copying products in a wish list */
+  user_errors: Array<Maybe<WishListUserInputError>>
+}
+
+export type CreateCompareListInput = {
+  /** An array of product IDs to add to the compare list */
+  products?: Maybe<Array<Maybe<Scalars['ID']>>>
 }
 
 export type CustomerInput = {
@@ -13078,6 +14028,8 @@ export type CustomerAddressRegionInput = {
 }
 
 export type CustomerCreateInput = {
+  /** Indicates whether the customer has enabled remote shopping assistance */
+  allow_remote_shopping_assistance?: Maybe<Scalars['Boolean']>
   /** The customer's date of birth */
   date_of_birth?: Maybe<Scalars['String']>
   /** Deprecated: Use `date_of_birth` instead */
@@ -13236,10 +14188,37 @@ export type CreateProductReviewOutput = {
   review: ProductReview
 }
 
+export type CreateWishlistInput = {
+  /** The name of the new wish list */
+  name: Scalars['String']
+  /** Indicates whether the wish list is public or private */
+  visibility: WishlistVisibilityEnum
+}
+
+export type CreateWishlistOutput = {
+  __typename?: 'CreateWishlistOutput'
+  /** The newly-created wish list */
+  wishlist: Wishlist
+}
+
+export type DeleteCompareListOutput = {
+  __typename?: 'DeleteCompareListOutput'
+  /** Indicates whether the compare list was successfully deleted */
+  result: Scalars['Boolean']
+}
+
 export type DeletePaymentTokenOutput = {
   __typename?: 'DeletePaymentTokenOutput'
   customerPaymentTokens?: Maybe<CustomerPaymentTokens>
   result: Scalars['Boolean']
+}
+
+export type DeleteWishlistOutput = {
+  __typename?: 'DeleteWishlistOutput'
+  /** Indicates whether the wish list was deleted */
+  status: Scalars['Boolean']
+  /** A list of undeleted wish lists */
+  wishlists: Array<Maybe<Wishlist>>
 }
 
 export type CustomerToken = {
@@ -13248,6 +14227,17 @@ export type CustomerToken = {
   /** The customer token */
   token?: Maybe<Scalars['String']>
   valid?: Maybe<Scalars['Boolean']>
+}
+
+export type GenerateCustomerTokenAsAdminInput = {
+  /** The email address of the customer requesting remote shopping assistance */
+  customer_email: Scalars['String']
+}
+
+export type GenerateCustomerTokenAsAdminOutput = {
+  __typename?: 'GenerateCustomerTokenAsAdminOutput'
+  /** The generated customer token */
+  customer_token: Scalars['String']
 }
 
 /** Input required to complete payment. Applies to Payflow Pro and Payments Pro payment methods. */
@@ -13259,6 +14249,23 @@ export type PayflowProResponseInput = {
 export type PayflowProResponseOutput = {
   __typename?: 'PayflowProResponseOutput'
   cart: Cart
+}
+
+export type WishlistItemMoveInput = {
+  /** The quantity of this item to move to the destination wish list. This value can't be greater than the quantity in the source wish list. */
+  quantity?: Maybe<Scalars['Float']>
+  /** filtered by the unique ID for a `WishlistItemInterface` object to be moved */
+  wishlist_item_id: Scalars['ID']
+}
+
+export type MoveProductsBetweenWishlistsOutput = {
+  __typename?: 'MoveProductsBetweenWishlistsOutput'
+  /** The destination wish list after receiving products move from the source wish list */
+  destination_wishlist: Wishlist
+  /** The source wish list after moving products from it */
+  source_wishlist: Wishlist
+  /** An array of errors encountered while moving products in a wish list */
+  user_errors: Array<Maybe<WishListUserInputError>>
 }
 
 export type PlaceOrderInput = {
@@ -13274,6 +14281,7 @@ export type Order = {
   __typename?: 'Order'
   /** @deprecated The order_id field is deprecated, use order_number instead. */
   order_id?: Maybe<Scalars['String']>
+  /** The unique ID for a `Order` object. */
   order_number: Scalars['String']
 }
 
@@ -13286,14 +14294,39 @@ export type RemoveCouponFromCartOutput = {
   cart?: Maybe<Cart>
 }
 
+/** Defines the input required to run the removeGiftCardFromCart mutation */
+export type RemoveGiftCardFromCartInput = {
+  /** The unique ID that identifies the customer's cart */
+  cart_id: Scalars['String']
+  /** The gift card code to be removed to the cart */
+  gift_card_code: Scalars['String']
+}
+
+/** Defines the possible output for the removeGiftCardFromCart mutation */
+export type RemoveGiftCardFromCartOutput = {
+  __typename?: 'RemoveGiftCardFromCartOutput'
+  /** Describes the contents of the specified shopping cart */
+  cart: Cart
+}
+
 export type RemoveItemFromCartInput = {
   cart_id: Scalars['String']
-  cart_item_id: Scalars['Int']
+  /** Deprecated. Use `cart_item_uid` instead. */
+  cart_item_id?: Maybe<Scalars['Int']>
+  /** Required field. The unique ID for a `CartItemInterface` object */
+  cart_item_uid?: Maybe<Scalars['ID']>
 }
 
 export type RemoveItemFromCartOutput = {
   __typename?: 'RemoveItemFromCartOutput'
   cart: Cart
+}
+
+export type RemoveProductsFromCompareListInput = {
+  /** An array of product IDs to remove from the compare list */
+  products: Array<Maybe<Scalars['ID']>>
+  /** The unique identifier of the compare list to modify */
+  uid: Scalars['ID']
 }
 
 /** Contains the customer's wish list and any errors encountered */
@@ -13303,6 +14336,36 @@ export type RemoveProductsFromWishlistOutput = {
   user_errors: Array<Maybe<WishListUserInputError>>
   /** Contains the wish list with after items were successfully deleted */
   wishlist: Wishlist
+}
+
+export type RemoveReturnTrackingInput = {
+  /** The unique ID for a `ReturnShippingTracking` object */
+  return_shipping_tracking_uid: Scalars['ID']
+}
+
+export type RemoveReturnTrackingOutput = {
+  __typename?: 'RemoveReturnTrackingOutput'
+  /** Contains details about the modified return */
+  return?: Maybe<Return>
+}
+
+export type RemoveRewardPointsFromCartOutput = {
+  __typename?: 'RemoveRewardPointsFromCartOutput'
+  /** The customer cart after reward points are removed */
+  cart: Cart
+}
+
+/** Defines the input required to run the removeStoreCreditFromCart mutation */
+export type RemoveStoreCreditFromCartInput = {
+  /** The unique ID that identifies the customer's cart */
+  cart_id: Scalars['String']
+}
+
+/** Defines the possible output for the removeStoreCreditFromCart mutation */
+export type RemoveStoreCreditFromCartOutput = {
+  __typename?: 'RemoveStoreCreditFromCartOutput'
+  /** Describes the contents of the specified shopping cart */
+  cart: Cart
 }
 
 export type ReorderItemsOutput = {
@@ -13330,6 +14393,55 @@ export type CheckoutUserInputErrorCodes =
   | 'NOT_SALABLE'
   | 'INSUFFICIENT_STOCK'
   | 'UNDEFINED'
+
+export type RequestReturnInput = {
+  /** Text the buyer entered that describes the reason for the refund request */
+  comment_text?: Maybe<Scalars['String']>
+  /** An email address the buyer enters to receive notifications about the status of the return */
+  contact_email?: Maybe<Scalars['String']>
+  /** An array of items to be returned */
+  items: Array<Maybe<RequestReturnItemInput>>
+  /** The unique ID for a `Order` object */
+  order_uid: Scalars['ID']
+}
+
+export type RequestReturnItemInput = {
+  /** Contains details about a custom attribute that was entered, such as text or a file */
+  entered_custom_attributes?: Maybe<Array<Maybe<EnteredCustomAttributeInput>>>
+  /** The unique ID for a `OrderItemInterface` object */
+  order_item_uid: Scalars['ID']
+  /** The quantity of the item to be returned */
+  quantity_to_return: Scalars['Float']
+  /** An array of selected custom option IDs associated with the item to be returned. For example, the IDs for the selected color and size of a configurable product */
+  selected_custom_attributes?: Maybe<Array<Maybe<SelectedCustomAttributeInput>>>
+}
+
+export type EnteredCustomAttributeInput = {
+  /** A string that identifies the entered custom attribute */
+  attribute_code: Scalars['String']
+  /** The text or other entered value */
+  value: Scalars['String']
+}
+
+export type SelectedCustomAttributeInput = {
+  /** A string that identifies the selected attribute */
+  attribute_code: Scalars['String']
+  /** The unique ID for a `CustomAttribute` object of a selected custom attribute */
+  value: Scalars['ID']
+}
+
+export type RequestReturnOutput = {
+  __typename?: 'RequestReturnOutput'
+  /** Contains details about a single return request */
+  return?: Maybe<Return>
+  /** Contains an array of return requests */
+  returns?: Maybe<Returns>
+}
+
+export type RequestReturnOutputReturnsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
 
 export type RevokeCustomerTokenOutput = {
   __typename?: 'RevokeCustomerTokenOutput'
@@ -13403,6 +14515,35 @@ export type CartAddressInput = {
 
 export type SetBillingAddressOnCartOutput = {
   __typename?: 'SetBillingAddressOnCartOutput'
+  cart: Cart
+}
+
+export type SetGiftOptionsOnCartInput = {
+  /** The unique ID that identifies the shopper's cart */
+  cart_id: Scalars['String']
+  /** Gift message details for the cart */
+  gift_message?: Maybe<GiftMessageInput>
+  /** Whether customer requested gift receipt for the cart */
+  gift_receipt_included: Scalars['Boolean']
+  /** The unique ID for a `GiftWrapping` object to be used for the cart */
+  gift_wrapping_id?: Maybe<Scalars['ID']>
+  /** Whether customer requested printed card for the cart */
+  printed_card_included: Scalars['Boolean']
+}
+
+/** Contains the text of a gift message, its sender, and recipient */
+export type GiftMessageInput = {
+  /** Sender name */
+  from: Scalars['String']
+  /** Gift message text */
+  message: Scalars['String']
+  /** Recepient name */
+  to: Scalars['String']
+}
+
+export type SetGiftOptionsOnCartOutput = {
+  __typename?: 'SetGiftOptionsOnCartOutput'
+  /** The modified cart object */
   cart: Cart
 }
 
@@ -13579,21 +14720,16 @@ export type UpdateCartItemsInput = {
 }
 
 export type CartItemUpdateInput = {
-  cart_item_id: Scalars['Int']
+  /** Deprecated. Use `cart_item_uid` instead. */
+  cart_item_id?: Maybe<Scalars['Int']>
+  /** The unique ID for a `CartItemInterface` object */
+  cart_item_uid?: Maybe<Scalars['ID']>
   customizable_options?: Maybe<Array<Maybe<CustomizableOptionInput>>>
   /** Gift message details for the cart item */
   gift_message?: Maybe<GiftMessageInput>
+  /** The unique ID for a `GiftWrapping` object to be used for the cart item */
+  gift_wrapping_id?: Maybe<Scalars['ID']>
   quantity?: Maybe<Scalars['Float']>
-}
-
-/** Contains the text of a gift message, its sender, and recipient */
-export type GiftMessageInput = {
-  /** Sender name */
-  from: Scalars['String']
-  /** Gift message text */
-  message: Scalars['String']
-  /** Recipient name */
-  to: Scalars['String']
 }
 
 export type UpdateCartItemsOutput = {
@@ -13602,6 +14738,8 @@ export type UpdateCartItemsOutput = {
 }
 
 export type CustomerUpdateInput = {
+  /** Indicates whether the customer has enabled remote shopping assistance */
+  allow_remote_shopping_assistance?: Maybe<Scalars['Boolean']>
   /** The customer's date of birth */
   date_of_birth?: Maybe<Scalars['String']>
   /** Deprecated: Use `date_of_birth` instead */
@@ -13634,7 +14772,7 @@ export type WishlistItemUpdateInput = {
   quantity?: Maybe<Scalars['Float']>
   /** An array of strings corresponding to options the customer selected */
   selected_options?: Maybe<Array<Maybe<Scalars['ID']>>>
-  /** The ID of the wishlist item to update */
+  /** The unique ID for a `WishlistItemInterface` object */
   wishlist_item_id: Scalars['ID']
 }
 
@@ -13647,8 +14785,15 @@ export type UpdateProductsInWishlistOutput = {
   wishlist: Wishlist
 }
 
-/** This enumeration the price type. */
-export type PriceTypeEnum = 'FIXED' | 'PERCENT' | 'DYNAMIC'
+export type UpdateWishlistOutput = {
+  __typename?: 'UpdateWishlistOutput'
+  /** The wish list name */
+  name: Scalars['String']
+  /** The unique ID for a `Wishlist` object */
+  uid: Scalars['ID']
+  /** Indicates whether the wish list is public or private */
+  visibility: WishlistVisibilityEnum
+}
 
 /** ProductLinks is an implementation of ProductLinksInterface. */
 export type ProductLinks = ProductLinksInterface & {
@@ -13674,7 +14819,10 @@ export type PhysicalProductInterface = {
 /** CustomizableAreaOption contains information about a text area that is defined as part of a customizable option. */
 export type CustomizableAreaOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableAreaOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** The Stock Keeping Unit of the base product. */
   product_sku?: Maybe<Scalars['String']>
@@ -13684,13 +14832,18 @@ export type CustomizableAreaOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An object that defines a text area. */
   value?: Maybe<CustomizableAreaValue>
 }
 
 /** The CustomizableOptionInterface contains basic information about a customizable option. It can be implemented by several types of configurable options. */
 export type CustomizableOptionInterface = {
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** Indicates whether the option is required. */
   required?: Maybe<Scalars['Boolean']>
@@ -13698,6 +14851,8 @@ export type CustomizableOptionInterface = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
 }
 
 /** CustomizableAreaValue defines the price and sku of a product whose page contains a customized text area. */
@@ -13711,14 +14866,17 @@ export type CustomizableAreaValue = {
   price_type?: Maybe<PriceTypeEnum>
   /** The Stock Keeping Unit for this option. */
   sku?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableAreaValue` object. */
   uid: Scalars['ID']
 }
 
 /** CustomizableDateOption contains information about a date picker that is defined as part of a customizable option. */
 export type CustomizableDateOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableDateOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** The Stock Keeping Unit of the base product. */
   product_sku?: Maybe<Scalars['String']>
@@ -13728,6 +14886,8 @@ export type CustomizableDateOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An object that defines a date field in a customizable option. */
   value?: Maybe<CustomizableDateValue>
 }
@@ -13741,14 +14901,17 @@ export type CustomizableDateValue = {
   price_type?: Maybe<PriceTypeEnum>
   /** The Stock Keeping Unit for this option. */
   sku?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableDateValue` object. */
   uid: Scalars['ID']
 }
 
 /** CustomizableDropDownOption contains information about a drop down menu that is defined as part of a customizable option. */
 export type CustomizableDropDownOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableDropDownOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** Indicates whether the option is required. */
   required?: Maybe<Scalars['Boolean']>
@@ -13756,6 +14919,8 @@ export type CustomizableDropDownOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An array that defines the set of options for a drop down menu. */
   value?: Maybe<Array<Maybe<CustomizableDropDownValue>>>
 }
@@ -13775,14 +14940,17 @@ export type CustomizableDropDownValue = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableDropDownValue` object. */
   uid: Scalars['ID']
 }
 
 /** CustomizableMultipleOption contains information about a multiselect that is defined as part of a customizable option. */
 export type CustomizableMultipleOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableMultipleOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** Indicates whether the option is required. */
   required?: Maybe<Scalars['Boolean']>
@@ -13790,6 +14958,8 @@ export type CustomizableMultipleOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An array that defines the set of options for a multiselect. */
   value?: Maybe<Array<Maybe<CustomizableMultipleValue>>>
 }
@@ -13809,14 +14979,17 @@ export type CustomizableMultipleValue = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableMultipleValue` object. */
   uid: Scalars['ID']
 }
 
 /** CustomizableFieldOption contains information about a text field that is defined as part of a customizable option. */
 export type CustomizableFieldOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableFieldOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** The Stock Keeping Unit of the base product. */
   product_sku?: Maybe<Scalars['String']>
@@ -13826,6 +14999,8 @@ export type CustomizableFieldOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An object that defines a text field. */
   value?: Maybe<CustomizableFieldValue>
 }
@@ -13841,14 +15016,17 @@ export type CustomizableFieldValue = {
   price_type?: Maybe<PriceTypeEnum>
   /** The Stock Keeping Unit for this option. */
   sku?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableFieldValue` object. */
   uid: Scalars['ID']
 }
 
 /** CustomizableFileOption contains information about a file picker that is defined as part of a customizable option. */
 export type CustomizableFileOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableFileOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** The Stock Keeping Unit of the base product. */
   product_sku?: Maybe<Scalars['String']>
@@ -13858,6 +15036,8 @@ export type CustomizableFileOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An object that defines a file value. */
   value?: Maybe<CustomizableFileValue>
 }
@@ -13877,7 +15057,7 @@ export type CustomizableFileValue = {
   price_type?: Maybe<PriceTypeEnum>
   /** The Stock Keeping Unit for this option. */
   sku?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableFileValue` object. */
   uid: Scalars['ID']
 }
 
@@ -13905,7 +15085,10 @@ export type CustomizableProductInterface = {
 /** CustomizableRadioOption contains information about a set of radio buttons that are defined as part of a customizable option. */
 export type CustomizableRadioOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableRadioOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** Indicates whether the option is required. */
   required?: Maybe<Scalars['Boolean']>
@@ -13913,6 +15096,8 @@ export type CustomizableRadioOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An array that defines a set of radio buttons. */
   value?: Maybe<Array<Maybe<CustomizableRadioValue>>>
 }
@@ -13932,14 +15117,17 @@ export type CustomizableRadioValue = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableRadioValue` object. */
   uid: Scalars['ID']
 }
 
 /** CustomizableCheckbbixOption contains information about a set of checkbox values that are defined as part of a customizable option. */
 export type CustomizableCheckboxOption = CustomizableOptionInterface & {
   __typename?: 'CustomizableCheckboxOption'
-  /** Option ID. */
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** Indicates whether the option is required. */
   required?: Maybe<Scalars['Boolean']>
@@ -13947,6 +15135,8 @@ export type CustomizableCheckboxOption = CustomizableOptionInterface & {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars['ID']
   /** An array that defines a set of checkbox values. */
   value?: Maybe<Array<Maybe<CustomizableCheckboxValue>>>
 }
@@ -13966,7 +15156,7 @@ export type CustomizableCheckboxValue = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name for this option. */
   title?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `CustomizableCheckboxValue` object. */
   uid: Scalars['ID']
 }
 
@@ -13974,39 +15164,46 @@ export type CustomizableCheckboxValue = {
 export type VirtualProduct = ProductInterface &
   CustomizableProductInterface & {
     __typename?: 'VirtualProduct'
-    activity?: Maybe<Scalars['String']>
-    /** The attribute set assigned to the product. */
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
     attribute_set_id?: Maybe<Scalars['Int']>
     /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
     canonical_url?: Maybe<Scalars['String']>
     /** The categories assigned to a product. */
     categories?: Maybe<Array<Maybe<CategoryInterface>>>
-    category_gear?: Maybe<Scalars['String']>
-    climate?: Maybe<Scalars['String']>
-    collar?: Maybe<Scalars['String']>
-    color?: Maybe<Scalars['String']>
+    color?: Maybe<Scalars['Int']>
     /** The product's country of origin. */
     country_of_manufacture?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was created. */
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
     created_at?: Maybe<Scalars['String']>
     /** Crosssell Products */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
     /** Detailed information about the product. The value can include simple HTML tags. */
     description?: Maybe<ComplexTextValue>
-    eco_collection?: Maybe<Scalars['Int']>
-    erin_recommends?: Maybe<Scalars['Int']>
-    features_bags?: Maybe<Scalars['String']>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
     format?: Maybe<Scalars['Int']>
-    gender?: Maybe<Scalars['String']>
     /** Indicates whether a gift message is available. */
     gift_message_available?: Maybe<Scalars['String']>
-    /** The ID number assigned to the product. */
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
     id?: Maybe<Scalars['Int']>
     /** The relative path to the main image on the product page. */
     image?: Maybe<ProductImage>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
     /** A number representing the product's manufacturer. */
     manufacturer?: Maybe<Scalars['Int']>
-    material?: Maybe<Scalars['String']>
     /** An array of Media Gallery objects. */
     media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
     /**
@@ -14022,10 +15219,15 @@ export type VirtualProduct = ProductInterface &
     meta_title?: Maybe<Scalars['String']>
     /** The product name. Customers use this name to identify the product. */
     name?: Maybe<Scalars['String']>
-    new?: Maybe<Scalars['Int']>
-    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_from_date?: Maybe<Scalars['String']>
-    /** The end date for new product listings. */
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_to_date?: Maybe<Scalars['String']>
     /** Product stock only x left count */
     only_x_left_in_stock?: Maybe<Scalars['Float']>
@@ -14033,8 +15235,6 @@ export type VirtualProduct = ProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars['String']>
-    pattern?: Maybe<Scalars['String']>
-    performance_fabric?: Maybe<Scalars['Int']>
     /**
      * A ProductPrices object, indicating the price of an item.
      * @deprecated Use price_range for product price information.
@@ -14054,27 +15254,24 @@ export type VirtualProduct = ProductInterface &
     review_count: Scalars['Int']
     /** The list of products reviews. */
     reviews: ProductReviews
-    sale?: Maybe<Scalars['Int']>
     /** A short description of the product. Its use depends on the theme. */
     short_description?: Maybe<ComplexTextValue>
-    size?: Maybe<Scalars['Int']>
     /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
     sku?: Maybe<Scalars['String']>
-    sleeve?: Maybe<Scalars['String']>
     /** The relative path to the small image, which is used on catalog pages. */
     small_image?: Maybe<ProductImage>
-    /** The beginning date that a product has a special price. */
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
     special_from_date?: Maybe<Scalars['String']>
     /** The discounted price of the product. */
     special_price?: Maybe<Scalars['Float']>
     /** The end date that a product has a special price. */
     special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
     /** Stock status of the product */
     stock_status?: Maybe<ProductStockStatus>
-    strap_bags?: Maybe<Scalars['String']>
-    style_bags?: Maybe<Scalars['String']>
-    style_bottom?: Maybe<Scalars['String']>
-    style_general?: Maybe<Scalars['String']>
     /** The file name of a swatch image */
     swatch_image?: Maybe<Scalars['String']>
     /** The relative path to the product's thumbnail image. */
@@ -14094,7 +15291,12 @@ export type VirtualProduct = ProductInterface &
      * @deprecated Use __typename instead.
      */
     type_id?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was updated. */
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
     updated_at?: Maybe<Scalars['String']>
     /** Upsell Products */
     upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -14106,6 +15308,7 @@ export type VirtualProduct = ProductInterface &
     url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
     /** The part of the product URL that is appended after the url key */
     url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
     /**
      * An array of websites in which the product is available.
      * @deprecated The field should not be used on the storefront.
@@ -14124,39 +15327,46 @@ export type SimpleProduct = ProductInterface &
   PhysicalProductInterface &
   CustomizableProductInterface & {
     __typename?: 'SimpleProduct'
-    activity?: Maybe<Scalars['String']>
-    /** The attribute set assigned to the product. */
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
     attribute_set_id?: Maybe<Scalars['Int']>
     /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
     canonical_url?: Maybe<Scalars['String']>
     /** The categories assigned to a product. */
     categories?: Maybe<Array<Maybe<CategoryInterface>>>
-    category_gear?: Maybe<Scalars['String']>
-    climate?: Maybe<Scalars['String']>
-    collar?: Maybe<Scalars['String']>
-    color?: Maybe<Scalars['String']>
+    color?: Maybe<Scalars['Int']>
     /** The product's country of origin. */
     country_of_manufacture?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was created. */
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
     created_at?: Maybe<Scalars['String']>
     /** Crosssell Products */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
     /** Detailed information about the product. The value can include simple HTML tags. */
     description?: Maybe<ComplexTextValue>
-    eco_collection?: Maybe<Scalars['Int']>
-    erin_recommends?: Maybe<Scalars['Int']>
-    features_bags?: Maybe<Scalars['String']>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
     format?: Maybe<Scalars['Int']>
-    gender?: Maybe<Scalars['String']>
     /** Indicates whether a gift message is available. */
     gift_message_available?: Maybe<Scalars['String']>
-    /** The ID number assigned to the product. */
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
     id?: Maybe<Scalars['Int']>
     /** The relative path to the main image on the product page. */
     image?: Maybe<ProductImage>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
     /** A number representing the product's manufacturer. */
     manufacturer?: Maybe<Scalars['Int']>
-    material?: Maybe<Scalars['String']>
     /** An array of Media Gallery objects. */
     media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
     /**
@@ -14172,10 +15382,15 @@ export type SimpleProduct = ProductInterface &
     meta_title?: Maybe<Scalars['String']>
     /** The product name. Customers use this name to identify the product. */
     name?: Maybe<Scalars['String']>
-    new?: Maybe<Scalars['Int']>
-    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_from_date?: Maybe<Scalars['String']>
-    /** The end date for new product listings. */
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_to_date?: Maybe<Scalars['String']>
     /** Product stock only x left count */
     only_x_left_in_stock?: Maybe<Scalars['Float']>
@@ -14183,8 +15398,6 @@ export type SimpleProduct = ProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars['String']>
-    pattern?: Maybe<Scalars['String']>
-    performance_fabric?: Maybe<Scalars['Int']>
     /**
      * A ProductPrices object, indicating the price of an item.
      * @deprecated Use price_range for product price information.
@@ -14204,27 +15417,24 @@ export type SimpleProduct = ProductInterface &
     review_count: Scalars['Int']
     /** The list of products reviews. */
     reviews: ProductReviews
-    sale?: Maybe<Scalars['Int']>
     /** A short description of the product. Its use depends on the theme. */
     short_description?: Maybe<ComplexTextValue>
-    size?: Maybe<Scalars['Int']>
     /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
     sku?: Maybe<Scalars['String']>
-    sleeve?: Maybe<Scalars['String']>
     /** The relative path to the small image, which is used on catalog pages. */
     small_image?: Maybe<ProductImage>
-    /** The beginning date that a product has a special price. */
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
     special_from_date?: Maybe<Scalars['String']>
     /** The discounted price of the product. */
     special_price?: Maybe<Scalars['Float']>
     /** The end date that a product has a special price. */
     special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
     /** Stock status of the product */
     stock_status?: Maybe<ProductStockStatus>
-    strap_bags?: Maybe<Scalars['String']>
-    style_bags?: Maybe<Scalars['String']>
-    style_bottom?: Maybe<Scalars['String']>
-    style_general?: Maybe<Scalars['String']>
     /** The file name of a swatch image */
     swatch_image?: Maybe<Scalars['String']>
     /** The relative path to the product's thumbnail image. */
@@ -14244,7 +15454,12 @@ export type SimpleProduct = ProductInterface &
      * @deprecated Use __typename instead.
      */
     type_id?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was updated. */
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
     updated_at?: Maybe<Scalars['String']>
     /** Upsell Products */
     upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -14256,6 +15471,7 @@ export type SimpleProduct = ProductInterface &
     url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
     /** The part of the product URL that is appended after the url key */
     url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
     /**
      * An array of websites in which the product is available.
      * @deprecated The field should not be used on the storefront.
@@ -14293,6 +15509,8 @@ export type ProductFilterInput = {
   image?: Maybe<FilterTypeInput>
   /** The label assigned to a product image. */
   image_label?: Maybe<FilterTypeInput>
+  /** Indicates whether the product can be returned */
+  is_returnable?: Maybe<FilterTypeInput>
   /** A number representing the product's manufacturer. */
   manufacturer?: Maybe<FilterTypeInput>
   /** The numeric maximal price of the product. Do not include the currency code. */
@@ -14370,6 +15588,8 @@ export type ProductSortInput = {
   image?: Maybe<SortEnum>
   /** The label assigned to a product image. */
   image_label?: Maybe<SortEnum>
+  /** Indicates whether the product can be returned */
+  is_returnable?: Maybe<SortEnum>
   /** A number representing the product's manufacturer. */
   manufacturer?: Maybe<SortEnum>
   /** A brief overview of the product for search results listings, maximum 255 characters. */
@@ -14440,56 +15660,77 @@ export type LayerFilterItem = LayerFilterItemInterface & {
   value_string?: Maybe<Scalars['String']>
 }
 
+/** A simple product wish list Item */
+export type SimpleWishlistItem = WishlistItemInterface & {
+  __typename?: 'SimpleWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
+}
+
+/** A virtual product wish list item */
+export type VirtualWishlistItem = WishlistItemInterface & {
+  __typename?: 'VirtualWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
+}
+
 /** Simple Cart Item */
 export type SimpleCartItem = CartItemInterface & {
   __typename?: 'SimpleCartItem'
-  customizable_options?: Maybe<Array<Maybe<SelectedCustomizableOption>>>
+  /** The list of available gift wrapping options for the cart item */
+  available_gift_wrapping: Array<Maybe<GiftWrapping>>
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
   /** The entered gift message for the cart item */
   gift_message?: Maybe<GiftMessage>
+  /** The selected gift wrapping for the cart item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** @deprecated Use `uid` instead */
   id: Scalars['String']
   prices?: Maybe<CartItemPrices>
   product: ProductInterface
   quantity: Scalars['Float']
-}
-
-export type SelectedCustomizableOption = {
-  __typename?: 'SelectedCustomizableOption'
-  id: Scalars['Int']
-  is_required: Scalars['Boolean']
-  label: Scalars['String']
-  sort_order: Scalars['Int']
-  values: Array<Maybe<SelectedCustomizableOptionValue>>
-}
-
-export type SelectedCustomizableOptionValue = {
-  __typename?: 'SelectedCustomizableOptionValue'
-  id: Scalars['Int']
-  label: Scalars['String']
-  price: CartItemSelectedOptionValuePrice
-  value: Scalars['String']
-}
-
-export type CartItemSelectedOptionValuePrice = {
-  __typename?: 'CartItemSelectedOptionValuePrice'
-  type: PriceTypeEnum
-  units: Scalars['String']
-  value: Scalars['Float']
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
 }
 
 /** Virtual Cart Item */
 export type VirtualCartItem = CartItemInterface & {
   __typename?: 'VirtualCartItem'
-  customizable_options?: Maybe<Array<Maybe<SelectedCustomizableOption>>>
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** @deprecated Use `uid` instead */
   id: Scalars['String']
   prices?: Maybe<CartItemPrices>
   product: ProductInterface
   quantity: Scalars['Float']
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
 }
 
 /** Downloadable Cart Item */
 export type DownloadableCartItem = CartItemInterface & {
   __typename?: 'DownloadableCartItem'
-  customizable_options?: Maybe<Array<Maybe<SelectedCustomizableOption>>>
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** @deprecated Use `uid` instead */
   id: Scalars['String']
   /** An array containing information about the links for the added to cart downloadable product */
   links?: Maybe<Array<Maybe<DownloadableProductLinks>>>
@@ -14498,6 +15739,8 @@ export type DownloadableCartItem = CartItemInterface & {
   quantity: Scalars['Float']
   /** DownloadableProductSamples defines characteristics of a downloadable product */
   samples?: Maybe<Array<Maybe<DownloadableProductSamples>>>
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
 }
 
 /** DownloadableProductLinks defines characteristics of a downloadable product */
@@ -14523,7 +15766,7 @@ export type DownloadableProductLinks = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name of the link */
   title?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `DownloadableProductLinks` object. */
   uid: Scalars['ID']
 }
 
@@ -14550,20 +15793,22 @@ export type DownloadableProductSamples = {
 export type DownloadableProduct = ProductInterface &
   CustomizableProductInterface & {
     __typename?: 'DownloadableProduct'
-    activity?: Maybe<Scalars['String']>
-    /** The attribute set assigned to the product. */
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
     attribute_set_id?: Maybe<Scalars['Int']>
     /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
     canonical_url?: Maybe<Scalars['String']>
     /** The categories assigned to a product. */
     categories?: Maybe<Array<Maybe<CategoryInterface>>>
-    category_gear?: Maybe<Scalars['String']>
-    climate?: Maybe<Scalars['String']>
-    collar?: Maybe<Scalars['String']>
-    color?: Maybe<Scalars['String']>
+    color?: Maybe<Scalars['Int']>
     /** The product's country of origin. */
     country_of_manufacture?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was created. */
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
     created_at?: Maybe<Scalars['String']>
     /** Crosssell Products */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -14573,24 +15818,29 @@ export type DownloadableProduct = ProductInterface &
     downloadable_product_links?: Maybe<Array<Maybe<DownloadableProductLinks>>>
     /** An array containing information about samples of this downloadable product. */
     downloadable_product_samples?: Maybe<Array<Maybe<DownloadableProductSamples>>>
-    eco_collection?: Maybe<Scalars['Int']>
-    erin_recommends?: Maybe<Scalars['Int']>
-    features_bags?: Maybe<Scalars['String']>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
     format?: Maybe<Scalars['Int']>
-    gender?: Maybe<Scalars['String']>
     /** Indicates whether a gift message is available. */
     gift_message_available?: Maybe<Scalars['String']>
-    /** The ID number assigned to the product. */
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
     id?: Maybe<Scalars['Int']>
     /** The relative path to the main image on the product page. */
     image?: Maybe<ProductImage>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
     /** A value of 1 indicates that each link in the array must be purchased separately */
     links_purchased_separately?: Maybe<Scalars['Int']>
     /** The heading above the list of downloadable products */
     links_title?: Maybe<Scalars['String']>
     /** A number representing the product's manufacturer. */
     manufacturer?: Maybe<Scalars['Int']>
-    material?: Maybe<Scalars['String']>
     /** An array of Media Gallery objects. */
     media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
     /**
@@ -14606,10 +15856,15 @@ export type DownloadableProduct = ProductInterface &
     meta_title?: Maybe<Scalars['String']>
     /** The product name. Customers use this name to identify the product. */
     name?: Maybe<Scalars['String']>
-    new?: Maybe<Scalars['Int']>
-    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_from_date?: Maybe<Scalars['String']>
-    /** The end date for new product listings. */
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_to_date?: Maybe<Scalars['String']>
     /** Product stock only x left count */
     only_x_left_in_stock?: Maybe<Scalars['Float']>
@@ -14617,8 +15872,6 @@ export type DownloadableProduct = ProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars['String']>
-    pattern?: Maybe<Scalars['String']>
-    performance_fabric?: Maybe<Scalars['Int']>
     /**
      * A ProductPrices object, indicating the price of an item.
      * @deprecated Use price_range for product price information.
@@ -14638,27 +15891,24 @@ export type DownloadableProduct = ProductInterface &
     review_count: Scalars['Int']
     /** The list of products reviews. */
     reviews: ProductReviews
-    sale?: Maybe<Scalars['Int']>
     /** A short description of the product. Its use depends on the theme. */
     short_description?: Maybe<ComplexTextValue>
-    size?: Maybe<Scalars['Int']>
     /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
     sku?: Maybe<Scalars['String']>
-    sleeve?: Maybe<Scalars['String']>
     /** The relative path to the small image, which is used on catalog pages. */
     small_image?: Maybe<ProductImage>
-    /** The beginning date that a product has a special price. */
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
     special_from_date?: Maybe<Scalars['String']>
     /** The discounted price of the product. */
     special_price?: Maybe<Scalars['Float']>
     /** The end date that a product has a special price. */
     special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
     /** Stock status of the product */
     stock_status?: Maybe<ProductStockStatus>
-    strap_bags?: Maybe<Scalars['String']>
-    style_bags?: Maybe<Scalars['String']>
-    style_bottom?: Maybe<Scalars['String']>
-    style_general?: Maybe<Scalars['String']>
     /** The file name of a swatch image */
     swatch_image?: Maybe<Scalars['String']>
     /** The relative path to the product's thumbnail image. */
@@ -14678,7 +15928,12 @@ export type DownloadableProduct = ProductInterface &
      * @deprecated Use __typename instead.
      */
     type_id?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was updated. */
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
     updated_at?: Maybe<Scalars['String']>
     /** Upsell Products */
     upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -14690,6 +15945,7 @@ export type DownloadableProduct = ProductInterface &
     url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
     /** The part of the product URL that is appended after the url key */
     url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
     /**
      * An array of websites in which the product is available.
      * @deprecated The field should not be used on the storefront.
@@ -14709,9 +15965,13 @@ export type DownloadableOrderItem = OrderItemInterface & {
   discounts?: Maybe<Array<Maybe<Discount>>>
   /** A list of downloadable links that are ordered from the downloadable product */
   downloadable_links?: Maybe<Array<Maybe<DownloadableItemsLinks>>>
+  /** Indicates whether the order item is eligible is eligible to be in a return request */
+  eligible_for_return?: Maybe<Scalars['Boolean']>
   /** The entered option for the base product, such as a logo or image */
   entered_options?: Maybe<Array<Maybe<OrderItemOption>>>
-  /** The unique identifier of the order item */
+  /** The selected gift wrapping for the order item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique ID for a `OrderItemInterface` object */
   id: Scalars['ID']
   /** The name of the base product */
   product_name?: Maybe<Scalars['String']>
@@ -14748,7 +16008,7 @@ export type DownloadableItemsLinks = {
   sort_order?: Maybe<Scalars['Int']>
   /** The display name of the link */
   title?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `DownloadableItemsLinks` object. */
   uid: Scalars['ID']
 }
 
@@ -14758,7 +16018,7 @@ export type DownloadableInvoiceItem = InvoiceItemInterface & {
   discounts?: Maybe<Array<Maybe<Discount>>>
   /** A list of downloadable links that are invoiced from the downloadable product */
   downloadable_links?: Maybe<Array<Maybe<DownloadableItemsLinks>>>
-  /** The unique ID of the invoice item */
+  /** The unique ID for a `InvoiceItemInterface` object */
   id: Scalars['ID']
   /** Contains details about an individual order item */
   order_item?: Maybe<OrderItemInterface>
@@ -14778,7 +16038,7 @@ export type DownloadableCreditMemoItem = CreditMemoItemInterface & {
   discounts?: Maybe<Array<Maybe<Discount>>>
   /** A list of downloadable links that are refunded from the downloadable product */
   downloadable_links?: Maybe<Array<Maybe<DownloadableItemsLinks>>>
-  /** The unique ID of the credit memo item, used for API purposes */
+  /** The unique ID for a `CreditMemoItemInterface` object */
   id: Scalars['ID']
   /** The order item the credit memo is applied to */
   order_item?: Maybe<OrderItemInterface>
@@ -14792,38 +16052,114 @@ export type DownloadableCreditMemoItem = CreditMemoItemInterface & {
   quantity_refunded?: Maybe<Scalars['Float']>
 }
 
-export type BundleCartItem = CartItemInterface & {
-  __typename?: 'BundleCartItem'
-  bundle_options: Array<Maybe<SelectedBundleOption>>
+/** A downloadable product wish list item */
+export type DownloadableWishlistItem = WishlistItemInterface & {
+  __typename?: 'DownloadableWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** Custom options selected for the wish list item */
   customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** An array containing information about the selected links */
+  links_v2?: Maybe<Array<Maybe<DownloadableProductLinks>>>
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
+  /** An array containing information about the selected samples */
+  samples?: Maybe<Array<Maybe<DownloadableProductSamples>>>
+}
+
+export type ConfigurableCartItem = CartItemInterface & {
+  __typename?: 'ConfigurableCartItem'
+  /** The list of available gift wrapping options for the cart item */
+  available_gift_wrapping: Array<Maybe<GiftWrapping>>
+  configurable_options: Array<Maybe<SelectedConfigurableOption>>
+  customizable_options?: Maybe<Array<Maybe<SelectedCustomizableOption>>>
   /** The entered gift message for the cart item */
   gift_message?: Maybe<GiftMessage>
+  /** The selected gift wrapping for the cart item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** @deprecated Use `uid` instead */
   id: Scalars['String']
   prices?: Maybe<CartItemPrices>
   product: ProductInterface
   quantity: Scalars['Float']
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
+}
+
+export type SelectedConfigurableOption = {
+  __typename?: 'SelectedConfigurableOption'
+  /** The unique ID for a `ConfigurableProductOptions` object */
+  configurable_product_option_uid: Scalars['ID']
+  /** The unique ID for a `ConfigurableProductOptionsValues` object */
+  configurable_product_option_value_uid: Scalars['ID']
+  /** @deprecated Use SelectedConfigurableOption.configurable_product_option_uid instead */
+  id: Scalars['Int']
+  option_label: Scalars['String']
+  /** @deprecated Use SelectedConfigurableOption.configurable_product_option_value_uid instead */
+  value_id: Scalars['Int']
+  value_label: Scalars['String']
+}
+
+export type BundleCartItem = CartItemInterface & {
+  __typename?: 'BundleCartItem'
+  /** The list of available gift wrapping options for the cart item */
+  available_gift_wrapping: Array<Maybe<GiftWrapping>>
+  bundle_options: Array<Maybe<SelectedBundleOption>>
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The entered gift message for the cart item */
+  gift_message?: Maybe<GiftMessage>
+  /** The selected gift wrapping for the cart item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** @deprecated Use `uid` instead */
+  id: Scalars['String']
+  prices?: Maybe<CartItemPrices>
+  product: ProductInterface
+  quantity: Scalars['Float']
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
 }
 
 export type SelectedBundleOption = {
   __typename?: 'SelectedBundleOption'
+  /** @deprecated Use `uid` instead */
   id: Scalars['Int']
   label: Scalars['String']
   type: Scalars['String']
+  /** The unique ID for a `SelectedBundleOption` object */
+  uid: Scalars['ID']
   values: Array<Maybe<SelectedBundleOptionValue>>
 }
 
 export type SelectedBundleOptionValue = {
   __typename?: 'SelectedBundleOptionValue'
+  /** Use `uid` instead */
   id: Scalars['Int']
   label: Scalars['String']
   price: Scalars['Float']
   quantity: Scalars['Float']
+  /** The unique ID for a `SelectedBundleOptionValue` object */
+  uid: Scalars['ID']
+}
+
+export type SalesItemInterface = {
+  __typename?: 'SalesItemInterface'
+  /** The entered gift message for the order item */
+  gift_message?: Maybe<GiftMessage>
 }
 
 /** BundleItem defines an individual item in a bundle product. */
 export type BundleItem = {
   __typename?: 'BundleItem'
-  /** An ID assigned to each type of item in a bundle product. */
+  /**
+   * An ID assigned to each type of item in a bundle product.
+   * @deprecated Use `uid` instead
+   */
   option_id?: Maybe<Scalars['Int']>
   /** An array of additional options for this bundle item. */
   options?: Maybe<Array<Maybe<BundleItemOption>>>
@@ -14837,6 +16173,8 @@ export type BundleItem = {
   title?: Maybe<Scalars['String']>
   /** The input type that the customer uses to select the item. Examples include radio button and checkbox. */
   type?: Maybe<Scalars['String']>
+  /** The unique ID for a `BundleItem` object. */
+  uid?: Maybe<Scalars['ID']>
 }
 
 /** BundleItemOption defines characteristics and options for a specific bundle item. */
@@ -14844,7 +16182,10 @@ export type BundleItemOption = {
   __typename?: 'BundleItemOption'
   /** Indicates whether the customer can change the number of items for this option. */
   can_change_quantity?: Maybe<Scalars['Boolean']>
-  /** The ID assigned to the bundled item option. */
+  /**
+   * The ID assigned to the bundled item option.
+   * @deprecated Use `uid` instead
+   */
   id?: Maybe<Scalars['Int']>
   /** Indicates whether this option is the default option. */
   is_default?: Maybe<Scalars['Boolean']>
@@ -14865,7 +16206,7 @@ export type BundleItemOption = {
   qty?: Maybe<Scalars['Float']>
   /** Indicates the quantity of this specific bundle item. */
   quantity?: Maybe<Scalars['Float']>
-  /** A string that encodes option details. */
+  /** The unique ID for a `BundleItemOption` object. */
   uid: Scalars['ID']
 }
 
@@ -14874,20 +16215,22 @@ export type BundleProduct = ProductInterface &
   PhysicalProductInterface &
   CustomizableProductInterface & {
     __typename?: 'BundleProduct'
-    activity?: Maybe<Scalars['String']>
-    /** The attribute set assigned to the product. */
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
     attribute_set_id?: Maybe<Scalars['Int']>
     /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
     canonical_url?: Maybe<Scalars['String']>
     /** The categories assigned to a product. */
     categories?: Maybe<Array<Maybe<CategoryInterface>>>
-    category_gear?: Maybe<Scalars['String']>
-    climate?: Maybe<Scalars['String']>
-    collar?: Maybe<Scalars['String']>
-    color?: Maybe<Scalars['String']>
+    color?: Maybe<Scalars['Int']>
     /** The product's country of origin. */
     country_of_manufacture?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was created. */
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
     created_at?: Maybe<Scalars['String']>
     /** Crosssell Products */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -14899,22 +16242,27 @@ export type BundleProduct = ProductInterface &
     dynamic_sku?: Maybe<Scalars['Boolean']>
     /** Indicates whether the bundle product has a dynamically calculated weight. */
     dynamic_weight?: Maybe<Scalars['Boolean']>
-    eco_collection?: Maybe<Scalars['Int']>
-    erin_recommends?: Maybe<Scalars['Int']>
-    features_bags?: Maybe<Scalars['String']>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
     format?: Maybe<Scalars['Int']>
-    gender?: Maybe<Scalars['String']>
     /** Indicates whether a gift message is available. */
     gift_message_available?: Maybe<Scalars['String']>
-    /** The ID number assigned to the product. */
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
     id?: Maybe<Scalars['Int']>
     /** The relative path to the main image on the product page. */
     image?: Maybe<ProductImage>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
     /** An array containing information about individual bundle items. */
     items?: Maybe<Array<Maybe<BundleItem>>>
     /** A number representing the product's manufacturer. */
     manufacturer?: Maybe<Scalars['Int']>
-    material?: Maybe<Scalars['String']>
     /** An array of Media Gallery objects. */
     media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
     /**
@@ -14930,10 +16278,15 @@ export type BundleProduct = ProductInterface &
     meta_title?: Maybe<Scalars['String']>
     /** The product name. Customers use this name to identify the product. */
     name?: Maybe<Scalars['String']>
-    new?: Maybe<Scalars['Int']>
-    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_from_date?: Maybe<Scalars['String']>
-    /** The end date for new product listings. */
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_to_date?: Maybe<Scalars['String']>
     /** Product stock only x left count */
     only_x_left_in_stock?: Maybe<Scalars['Float']>
@@ -14941,8 +16294,6 @@ export type BundleProduct = ProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars['String']>
-    pattern?: Maybe<Scalars['String']>
-    performance_fabric?: Maybe<Scalars['Int']>
     /**
      * A ProductPrices object, indicating the price of an item.
      * @deprecated Use price_range for product price information.
@@ -14964,29 +16315,26 @@ export type BundleProduct = ProductInterface &
     review_count: Scalars['Int']
     /** The list of products reviews. */
     reviews: ProductReviews
-    sale?: Maybe<Scalars['Int']>
     /** Indicates whether to ship bundle items together or individually. */
     ship_bundle_items?: Maybe<ShipBundleItemsEnum>
     /** A short description of the product. Its use depends on the theme. */
     short_description?: Maybe<ComplexTextValue>
-    size?: Maybe<Scalars['Int']>
     /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
     sku?: Maybe<Scalars['String']>
-    sleeve?: Maybe<Scalars['String']>
     /** The relative path to the small image, which is used on catalog pages. */
     small_image?: Maybe<ProductImage>
-    /** The beginning date that a product has a special price. */
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
     special_from_date?: Maybe<Scalars['String']>
     /** The discounted price of the product. */
     special_price?: Maybe<Scalars['Float']>
     /** The end date that a product has a special price. */
     special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
     /** Stock status of the product */
     stock_status?: Maybe<ProductStockStatus>
-    strap_bags?: Maybe<Scalars['String']>
-    style_bags?: Maybe<Scalars['String']>
-    style_bottom?: Maybe<Scalars['String']>
-    style_general?: Maybe<Scalars['String']>
     /** The file name of a swatch image */
     swatch_image?: Maybe<Scalars['String']>
     /** The relative path to the product's thumbnail image. */
@@ -15006,7 +16354,12 @@ export type BundleProduct = ProductInterface &
      * @deprecated Use __typename instead.
      */
     type_id?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was updated. */
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
     updated_at?: Maybe<Scalars['String']>
     /** Upsell Products */
     upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -15018,6 +16371,7 @@ export type BundleProduct = ProductInterface &
     url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
     /** The part of the product URL that is appended after the url key */
     url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
     /**
      * An array of websites in which the product is available.
      * @deprecated The field should not be used on the storefront.
@@ -15045,9 +16399,13 @@ export type BundleOrderItem = OrderItemInterface & {
   bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>
   /** The final discount information for the product */
   discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Indicates whether the order item is eligible is eligible to be in a return request */
+  eligible_for_return?: Maybe<Scalars['Boolean']>
   /** The entered option for the base product, such as a logo or image */
   entered_options?: Maybe<Array<Maybe<OrderItemOption>>>
-  /** The unique identifier of the order item */
+  /** The selected gift wrapping for the order item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique ID for a `OrderItemInterface` object */
   id: Scalars['ID']
   /** The name of the base product */
   product_name?: Maybe<Scalars['String']>
@@ -15080,10 +16438,15 @@ export type BundleOrderItem = OrderItemInterface & {
 /** A list of options of the selected bundle product */
 export type ItemSelectedBundleOption = {
   __typename?: 'ItemSelectedBundleOption'
-  /** The unique identifier of the option */
+  /**
+   * The unique ID for a `ItemSelectedBundleOption` object
+   * @deprecated Use `uid` instead
+   */
   id: Scalars['ID']
   /** The label of the option */
   label: Scalars['String']
+  /** The unique ID for a `ItemSelectedBundleOption` object */
+  uid: Scalars['ID']
   /** A list of products that represent the values of the parent option */
   values?: Maybe<Array<Maybe<ItemSelectedBundleOptionValue>>>
 }
@@ -15091,7 +16454,10 @@ export type ItemSelectedBundleOption = {
 /** A list of values for the selected bundle product */
 export type ItemSelectedBundleOptionValue = {
   __typename?: 'ItemSelectedBundleOptionValue'
-  /** The unique identifier of the value */
+  /**
+   * The unique ID for a `ItemSelectedBundleOptionValue` object
+   * @deprecated Use `uid` instead
+   */
   id: Scalars['ID']
   /** The price of the child bundle product */
   price: Money
@@ -15101,6 +16467,8 @@ export type ItemSelectedBundleOptionValue = {
   product_sku: Scalars['String']
   /** Indicates how many of this bundle product were ordered */
   quantity: Scalars['Float']
+  /** The unique ID for a `ItemSelectedBundleOptionValue` object */
+  uid: Scalars['ID']
 }
 
 export type BundleInvoiceItem = InvoiceItemInterface & {
@@ -15109,7 +16477,7 @@ export type BundleInvoiceItem = InvoiceItemInterface & {
   bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>
   /** Contains information about the final discount amount for the base product, including discounts on options */
   discounts?: Maybe<Array<Maybe<Discount>>>
-  /** The unique ID of the invoice item */
+  /** The unique ID for a `InvoiceItemInterface` object */
   id: Scalars['ID']
   /** Contains details about an individual order item */
   order_item?: Maybe<OrderItemInterface>
@@ -15127,7 +16495,7 @@ export type BundleShipmentItem = ShipmentItemInterface & {
   __typename?: 'BundleShipmentItem'
   /** A list of bundle options that are assigned to the bundle product */
   bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>
-  /** Shipment item unique identifier */
+  /** The unique ID for a `ShipmentItemInterface` object */
   id: Scalars['ID']
   /** Associated order item */
   order_item?: Maybe<OrderItemInterface>
@@ -15147,7 +16515,7 @@ export type BundleCreditMemoItem = CreditMemoItemInterface & {
   bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>
   /** Contains information about the final discount amount for the base product, including discounts on options */
   discounts?: Maybe<Array<Maybe<Discount>>>
-  /** The unique ID of the credit memo item, used for API purposes */
+  /** The unique ID for a `CreditMemoItemInterface` object */
   id: Scalars['ID']
   /** The order item the credit memo is applied to */
   order_item?: Maybe<OrderItemInterface>
@@ -15161,71 +16529,70 @@ export type BundleCreditMemoItem = CreditMemoItemInterface & {
   quantity_refunded?: Maybe<Scalars['Float']>
 }
 
-export type ConfigurableCartItem = CartItemInterface & {
-  __typename?: 'ConfigurableCartItem'
-  configurable_options: Array<Maybe<SelectedConfigurableOption>>
-  customizable_options?: Maybe<Array<Maybe<SelectedCustomizableOption>>>
-  /** The entered gift message for the cart item */
-  gift_message?: Maybe<GiftMessage>
-  id: Scalars['String']
-  prices?: Maybe<CartItemPrices>
-  product: ProductInterface
+export type BundleWishlistItem = WishlistItemInterface & {
+  __typename?: 'BundleWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** An array containing information about the selected bundle items */
+  bundle_options?: Maybe<Array<Maybe<SelectedBundleOption>>>
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
   quantity: Scalars['Float']
-}
-
-export type SelectedConfigurableOption = {
-  __typename?: 'SelectedConfigurableOption'
-  id: Scalars['Int']
-  option_label: Scalars['String']
-  value_id: Scalars['Int']
-  value_label: Scalars['String']
-}
-
-export type SalesItemInterface = {
-  __typename?: 'SalesItemInterface'
-  /** The entered gift message for the order item */
-  gift_message?: Maybe<GiftMessage>
 }
 
 /** GroupedProduct defines a grouped product */
 export type GroupedProduct = ProductInterface &
   PhysicalProductInterface & {
     __typename?: 'GroupedProduct'
-    activity?: Maybe<Scalars['String']>
-    /** The attribute set assigned to the product. */
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
     attribute_set_id?: Maybe<Scalars['Int']>
     /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
     canonical_url?: Maybe<Scalars['String']>
     /** The categories assigned to a product. */
     categories?: Maybe<Array<Maybe<CategoryInterface>>>
-    category_gear?: Maybe<Scalars['String']>
-    climate?: Maybe<Scalars['String']>
-    collar?: Maybe<Scalars['String']>
-    color?: Maybe<Scalars['String']>
+    color?: Maybe<Scalars['Int']>
     /** The product's country of origin. */
     country_of_manufacture?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was created. */
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
     created_at?: Maybe<Scalars['String']>
     /** Crosssell Products */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
     /** Detailed information about the product. The value can include simple HTML tags. */
     description?: Maybe<ComplexTextValue>
-    eco_collection?: Maybe<Scalars['Int']>
-    erin_recommends?: Maybe<Scalars['Int']>
-    features_bags?: Maybe<Scalars['String']>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
     format?: Maybe<Scalars['Int']>
-    gender?: Maybe<Scalars['String']>
     /** Indicates whether a gift message is available. */
     gift_message_available?: Maybe<Scalars['String']>
-    /** The ID number assigned to the product. */
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
     id?: Maybe<Scalars['Int']>
     /** The relative path to the main image on the product page. */
     image?: Maybe<ProductImage>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
     /** An array containing grouped product items */
     items?: Maybe<Array<Maybe<GroupedProductItem>>>
     /** A number representing the product's manufacturer. */
     manufacturer?: Maybe<Scalars['Int']>
-    material?: Maybe<Scalars['String']>
     /** An array of Media Gallery objects. */
     media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
     /**
@@ -15241,17 +16608,20 @@ export type GroupedProduct = ProductInterface &
     meta_title?: Maybe<Scalars['String']>
     /** The product name. Customers use this name to identify the product. */
     name?: Maybe<Scalars['String']>
-    new?: Maybe<Scalars['Int']>
-    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_from_date?: Maybe<Scalars['String']>
-    /** The end date for new product listings. */
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
     new_to_date?: Maybe<Scalars['String']>
     /** Product stock only x left count */
     only_x_left_in_stock?: Maybe<Scalars['Float']>
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars['String']>
-    pattern?: Maybe<Scalars['String']>
-    performance_fabric?: Maybe<Scalars['Int']>
     /**
      * A ProductPrices object, indicating the price of an item.
      * @deprecated Use price_range for product price information.
@@ -15271,27 +16641,24 @@ export type GroupedProduct = ProductInterface &
     review_count: Scalars['Int']
     /** The list of products reviews. */
     reviews: ProductReviews
-    sale?: Maybe<Scalars['Int']>
     /** A short description of the product. Its use depends on the theme. */
     short_description?: Maybe<ComplexTextValue>
-    size?: Maybe<Scalars['Int']>
     /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
     sku?: Maybe<Scalars['String']>
-    sleeve?: Maybe<Scalars['String']>
     /** The relative path to the small image, which is used on catalog pages. */
     small_image?: Maybe<ProductImage>
-    /** The beginning date that a product has a special price. */
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
     special_from_date?: Maybe<Scalars['String']>
     /** The discounted price of the product. */
     special_price?: Maybe<Scalars['Float']>
     /** The end date that a product has a special price. */
     special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
     /** Stock status of the product */
     stock_status?: Maybe<ProductStockStatus>
-    strap_bags?: Maybe<Scalars['String']>
-    style_bags?: Maybe<Scalars['String']>
-    style_bottom?: Maybe<Scalars['String']>
-    style_general?: Maybe<Scalars['String']>
     /** The file name of a swatch image */
     swatch_image?: Maybe<Scalars['String']>
     /** The relative path to the product's thumbnail image. */
@@ -15311,7 +16678,12 @@ export type GroupedProduct = ProductInterface &
      * @deprecated Use __typename instead.
      */
     type_id?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was updated. */
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
     updated_at?: Maybe<Scalars['String']>
     /** Upsell Products */
     upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
@@ -15323,6 +16695,7 @@ export type GroupedProduct = ProductInterface &
     url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
     /** The part of the product URL that is appended after the url key */
     url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
     /**
      * An array of websites in which the product is available.
      * @deprecated The field should not be used on the storefront.
@@ -15349,262 +16722,34 @@ export type GroupedProductItem = {
   qty?: Maybe<Scalars['Float']>
 }
 
-/** Deprecated: use type `PaypalExpressTokenOutput` instead */
-export type PaypalExpressToken = {
-  __typename?: 'PaypalExpressToken'
-  /**
-   * A set of URLs that allow the buyer to authorize payment and adjust checkout details
-   * @deprecated Use field `paypal_urls` of type `PaypalExpressTokenOutput` instead
-   */
-  paypal_urls?: Maybe<PaypalExpressUrlList>
-  /**
-   * The token returned by PayPal
-   * @deprecated Use field `token` of type `PaypalExpressTokenOutput` instead
-   */
-  token?: Maybe<Scalars['String']>
-}
-
-/** Contains the secure information used to authorize transaction. Applies to Payflow Pro and Payments Pro payment methods. */
-export type PayflowProToken = {
-  __typename?: 'PayflowProToken'
-  response_message: Scalars['String']
-  result: Scalars['Int']
-  result_code: Scalars['Int']
-  secure_token: Scalars['String']
-  secure_token_id: Scalars['String']
-}
-
-/** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
-export type ConfigurableProduct = ProductInterface &
-  PhysicalProductInterface &
-  CustomizableProductInterface & {
-    __typename?: 'ConfigurableProduct'
-    activity?: Maybe<Scalars['String']>
-    /** The attribute set assigned to the product. */
-    attribute_set_id?: Maybe<Scalars['Int']>
-    /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
-    canonical_url?: Maybe<Scalars['String']>
-    /** The categories assigned to a product. */
-    categories?: Maybe<Array<Maybe<CategoryInterface>>>
-    category_gear?: Maybe<Scalars['String']>
-    climate?: Maybe<Scalars['String']>
-    collar?: Maybe<Scalars['String']>
-    color?: Maybe<Scalars['String']>
-    /** An array of linked simple product items */
-    configurable_options?: Maybe<Array<Maybe<ConfigurableProductOptions>>>
-    /** The product's country of origin. */
-    country_of_manufacture?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was created. */
-    created_at?: Maybe<Scalars['String']>
-    /** Crosssell Products */
-    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
-    /** Detailed information about the product. The value can include simple HTML tags. */
-    description?: Maybe<ComplexTextValue>
-    eco_collection?: Maybe<Scalars['Int']>
-    erin_recommends?: Maybe<Scalars['Int']>
-    features_bags?: Maybe<Scalars['String']>
-    format?: Maybe<Scalars['Int']>
-    gender?: Maybe<Scalars['String']>
-    /** Indicates whether a gift message is available. */
-    gift_message_available?: Maybe<Scalars['String']>
-    /** The ID number assigned to the product. */
-    id?: Maybe<Scalars['Int']>
-    /** The relative path to the main image on the product page. */
-    image?: Maybe<ProductImage>
-    /** A number representing the product's manufacturer. */
-    manufacturer?: Maybe<Scalars['Int']>
-    material?: Maybe<Scalars['String']>
-    /** An array of Media Gallery objects. */
-    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
-    /**
-     * An array of MediaGalleryEntry objects.
-     * @deprecated Use product's `media_gallery` instead
-     */
-    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>
-    /** A brief overview of the product for search results listings, maximum 255 characters. */
-    meta_description?: Maybe<Scalars['String']>
-    /** A comma-separated list of keywords that are visible only to search engines. */
-    meta_keyword?: Maybe<Scalars['String']>
-    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
-    meta_title?: Maybe<Scalars['String']>
-    /** The product name. Customers use this name to identify the product. */
-    name?: Maybe<Scalars['String']>
-    new?: Maybe<Scalars['Int']>
-    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
-    new_from_date?: Maybe<Scalars['String']>
-    /** The end date for new product listings. */
-    new_to_date?: Maybe<Scalars['String']>
-    /** Product stock only x left count */
-    only_x_left_in_stock?: Maybe<Scalars['Float']>
-    /** An array of options for a customizable product. */
-    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
-    /** If the product has multiple options, determines where they appear on the product page. */
-    options_container?: Maybe<Scalars['String']>
-    pattern?: Maybe<Scalars['String']>
-    performance_fabric?: Maybe<Scalars['Int']>
-    /**
-     * A ProductPrices object, indicating the price of an item.
-     * @deprecated Use price_range for product price information.
-     */
-    price?: Maybe<ProductPrices>
-    /** A PriceRange object, indicating the range of prices for the product */
-    price_range: PriceRange
-    /** An array of TierPrice objects. */
-    price_tiers?: Maybe<Array<Maybe<TierPrice>>>
-    /** An array of ProductLinks objects. */
-    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>
-    /** The average of all the ratings given to the product. */
-    rating_summary: Scalars['Float']
-    /** Related Products */
-    related_products?: Maybe<Array<Maybe<ProductInterface>>>
-    /** The total count of all the reviews given to the product. */
-    review_count: Scalars['Int']
-    /** The list of products reviews. */
-    reviews: ProductReviews
-    sale?: Maybe<Scalars['Int']>
-    /** A short description of the product. Its use depends on the theme. */
-    short_description?: Maybe<ComplexTextValue>
-    size?: Maybe<Scalars['Int']>
-    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
-    sku?: Maybe<Scalars['String']>
-    sleeve?: Maybe<Scalars['String']>
-    /** The relative path to the small image, which is used on catalog pages. */
-    small_image?: Maybe<ProductImage>
-    /** The beginning date that a product has a special price. */
-    special_from_date?: Maybe<Scalars['String']>
-    /** The discounted price of the product. */
-    special_price?: Maybe<Scalars['Float']>
-    /** The end date that a product has a special price. */
-    special_to_date?: Maybe<Scalars['String']>
-    /** Stock status of the product */
-    stock_status?: Maybe<ProductStockStatus>
-    strap_bags?: Maybe<Scalars['String']>
-    style_bags?: Maybe<Scalars['String']>
-    style_bottom?: Maybe<Scalars['String']>
-    style_general?: Maybe<Scalars['String']>
-    /** The file name of a swatch image */
-    swatch_image?: Maybe<Scalars['String']>
-    /** The relative path to the product's thumbnail image. */
-    thumbnail?: Maybe<ProductImage>
-    /**
-     * The price when tier pricing is in effect and the items purchased threshold has been reached.
-     * @deprecated Use price_tiers for product tier price information.
-     */
-    tier_price?: Maybe<Scalars['Float']>
-    /**
-     * An array of ProductTierPrices objects.
-     * @deprecated Use price_tiers for product tier price information.
-     */
-    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>
-    /**
-     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
-     * @deprecated Use __typename instead.
-     */
-    type_id?: Maybe<Scalars['String']>
-    /** Timestamp indicating when the product was updated. */
-    updated_at?: Maybe<Scalars['String']>
-    /** Upsell Products */
-    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
-    /** The part of the URL that identifies the product */
-    url_key?: Maybe<Scalars['String']>
-    /** @deprecated Use product's `canonical_url` or url rewrites instead */
-    url_path?: Maybe<Scalars['String']>
-    /** URL rewrites list */
-    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
-    /** The part of the product URL that is appended after the url key */
-    url_suffix?: Maybe<Scalars['String']>
-    /** An array of variants of products */
-    variants?: Maybe<Array<Maybe<ConfigurableVariant>>>
-    /**
-     * An array of websites in which the product is available.
-     * @deprecated The field should not be used on the storefront.
-     */
-    websites?: Maybe<Array<Maybe<Website>>>
-    /** The weight of the item, in units defined by the store. */
-    weight?: Maybe<Scalars['Float']>
-  }
-
-/** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
-export type ConfigurableProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
-  currentPage?: Maybe<Scalars['Int']>
-}
-
-/** ConfigurableProductOptions defines configurable attributes for the specified product */
-export type ConfigurableProductOptions = {
-  __typename?: 'ConfigurableProductOptions'
-  /** A string that identifies the attribute */
-  attribute_code?: Maybe<Scalars['String']>
-  /**
-   * The ID assigned to the attribute
-   * @deprecated Use attribute_id_v2 instead
-   */
-  attribute_id?: Maybe<Scalars['String']>
-  /** The ID assigned to the attribute */
-  attribute_id_v2?: Maybe<Scalars['Int']>
-  /** The configurable option ID number assigned by the system */
-  id?: Maybe<Scalars['Int']>
-  /** A string that describes the configurable product option, which is displayed on the UI */
-  label?: Maybe<Scalars['String']>
-  /** A number that indicates the order in which the attribute is displayed */
-  position?: Maybe<Scalars['Int']>
-  /** This is the same as a product's id field */
-  product_id?: Maybe<Scalars['Int']>
-  /** Indicates whether the option is the default */
-  use_default?: Maybe<Scalars['Boolean']>
-  /** An array that defines the value_index codes assigned to the configurable product */
-  values?: Maybe<Array<Maybe<ConfigurableProductOptionsValues>>>
-}
-
-/** ConfigurableProductOptionsValues contains the index number assigned to a configurable product option */
-export type ConfigurableProductOptionsValues = {
-  __typename?: 'ConfigurableProductOptionsValues'
-  /** The label of the product on the default store */
-  default_label?: Maybe<Scalars['String']>
-  /** The label of the product */
-  label?: Maybe<Scalars['String']>
-  /** The label of the product on the current store */
-  store_label?: Maybe<Scalars['String']>
-  /** Swatch data for configurable product option */
-  swatch_data?: Maybe<SwatchDataInterface>
-  /** Indicates whether to use the default_label */
-  use_default_value?: Maybe<Scalars['Boolean']>
-  /** A unique index number assigned to the configurable product option */
-  value_index?: Maybe<Scalars['Int']>
-}
-
-export type SwatchDataInterface = {
-  /** Value of swatch item (HEX color code, image link or textual value) */
-  value?: Maybe<Scalars['String']>
-}
-
-/** An array containing all the simple product variants of a configurable product */
-export type ConfigurableVariant = {
-  __typename?: 'ConfigurableVariant'
-  attributes?: Maybe<Array<Maybe<ConfigurableAttributeOption>>>
-  product?: Maybe<SimpleProduct>
-}
-
-/** ConfigurableAttributeOption contains the value_index (and other related information) assigned to a configurable product option */
-export type ConfigurableAttributeOption = {
-  __typename?: 'ConfigurableAttributeOption'
-  /** The ID assigned to the attribute */
-  code?: Maybe<Scalars['String']>
-  /** A string that describes the configurable attribute option */
-  label?: Maybe<Scalars['String']>
-  /** A string that encodes option details. */
-  uid: Scalars['ID']
-  /** A unique index number assigned to the configurable product option */
-  value_index?: Maybe<Scalars['Int']>
+/** A grouped product wish list item */
+export type GroupedProductWishlistItem = WishlistItemInterface & {
+  __typename?: 'GroupedProductWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
 }
 
 export type OrderItem = OrderItemInterface & {
   __typename?: 'OrderItem'
   /** The final discount information for the product */
   discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Indicates whether the order item is eligible is eligible to be in a return request */
+  eligible_for_return?: Maybe<Scalars['Boolean']>
   /** The entered option for the base product, such as a logo or image */
   entered_options?: Maybe<Array<Maybe<OrderItemOption>>>
-  /** The unique identifier of the order item */
+  /** The selected gift wrapping for the order item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique ID for a `OrderItemInterface` object */
   id: Scalars['ID']
   /** The name of the base product */
   product_name?: Maybe<Scalars['String']>
@@ -15638,7 +16783,7 @@ export type InvoiceItem = InvoiceItemInterface & {
   __typename?: 'InvoiceItem'
   /** Contains information about the final discount amount for the base product, including discounts on options */
   discounts?: Maybe<Array<Maybe<Discount>>>
-  /** The unique ID of the invoice item */
+  /** The unique ID for a `InvoiceItemInterface` object */
   id: Scalars['ID']
   /** Contains details about an individual order item */
   order_item?: Maybe<OrderItemInterface>
@@ -15654,7 +16799,7 @@ export type InvoiceItem = InvoiceItemInterface & {
 
 export type ShipmentItem = ShipmentItemInterface & {
   __typename?: 'ShipmentItem'
-  /** Shipment item unique identifier */
+  /** The unique ID for a `ShipmentItemInterface` object */
   id: Scalars['ID']
   /** Associated order item */
   order_item?: Maybe<OrderItemInterface>
@@ -15672,7 +16817,7 @@ export type CreditMemoItem = CreditMemoItemInterface & {
   __typename?: 'CreditMemoItem'
   /** Contains information about the final discount amount for the base product, including discounts on options */
   discounts?: Maybe<Array<Maybe<Discount>>>
-  /** The unique ID of the credit memo item, used for API purposes */
+  /** The unique ID for a `CreditMemoItemInterface` object */
   id: Scalars['ID']
   /** The order item the credit memo is applied to */
   order_item?: Maybe<OrderItemInterface>
@@ -15684,6 +16829,334 @@ export type CreditMemoItem = CreditMemoItemInterface & {
   product_sku: Scalars['String']
   /** The number of refunded items */
   quantity_refunded?: Maybe<Scalars['Float']>
+}
+
+/** Deprecated: use type `PaypalExpressTokenOutput` instead */
+export type PaypalExpressToken = {
+  __typename?: 'PaypalExpressToken'
+  /**
+   * A set of URLs that allow the buyer to authorize payment and adjust checkout details
+   * @deprecated Use field `paypal_urls` of type `PaypalExpressTokenOutput` instead
+   */
+  paypal_urls?: Maybe<PaypalExpressUrlList>
+  /**
+   * The token returned by PayPal
+   * @deprecated Use field `token` of type `PaypalExpressTokenOutput` instead
+   */
+  token?: Maybe<Scalars['String']>
+}
+
+/** Contains the secure information used to authorize transaction. Applies to Payflow Pro and Payments Pro payment methods. */
+export type PayflowProToken = {
+  __typename?: 'PayflowProToken'
+  response_message: Scalars['String']
+  result: Scalars['Int']
+  result_code: Scalars['Int']
+  secure_token: Scalars['String']
+  secure_token_id: Scalars['String']
+}
+
+/** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
+export type ConfigurableProduct = ProductInterface &
+  PhysicalProductInterface &
+  CustomizableProductInterface & {
+    __typename?: 'ConfigurableProduct'
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars['Int']>
+    /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
+    canonical_url?: Maybe<Scalars['String']>
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>
+    color?: Maybe<Scalars['Int']>
+    /** An array of linked simple product items */
+    configurable_options?: Maybe<Array<Maybe<ConfigurableProductOptions>>>
+    /** Metadata for the specified configurable options selection */
+    configurable_product_options_selection?: Maybe<ConfigurableProductOptionsSelection>
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars['String']>
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars['String']>
+    /** Crosssell Products */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
+    format?: Maybe<Scalars['Int']>
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars['String']>
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars['Int']>
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars['Int']>
+    /** An array of Media Gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use product's `media_gallery` instead
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars['String']>
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars['String']>
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars['String']>
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars['String']>
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    new_from_date?: Maybe<Scalars['String']>
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
+    new_to_date?: Maybe<Scalars['String']>
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars['Float']>
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars['String']>
+    /**
+     * A ProductPrices object, indicating the price of an item.
+     * @deprecated Use price_range for product price information.
+     */
+    price?: Maybe<ProductPrices>
+    /** A PriceRange object, indicating the range of prices for the product */
+    price_range: PriceRange
+    /** An array of TierPrice objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>
+    /** An array of ProductLinks objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars['Float']
+    /** Related Products */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars['Int']
+    /** The list of products reviews. */
+    reviews: ProductReviews
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars['String']>
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars['String']>
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars['Float']>
+    /** The end date that a product has a special price. */
+    special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>
+    /** The file name of a swatch image */
+    swatch_image?: Maybe<Scalars['String']>
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use price_tiers for product tier price information.
+     */
+    tier_price?: Maybe<Scalars['Float']>
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use price_tiers for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use __typename instead.
+     */
+    type_id?: Maybe<Scalars['String']>
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars['String']>
+    /** Upsell Products */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars['String']>
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars['String']>
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars['String']>
+    /** An array of variants of products */
+    variants?: Maybe<Array<Maybe<ConfigurableVariant>>>
+    video_file?: Maybe<Scalars['String']>
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars['Float']>
+  }
+
+/** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
+export type ConfigurableProductConfigurable_Product_Options_SelectionArgs = {
+  configurableOptionValueUids?: Maybe<Array<Scalars['ID']>>
+}
+
+/** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
+export type ConfigurableProductReviewsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
+
+/** ConfigurableProductOptions defines configurable attributes for the specified product */
+export type ConfigurableProductOptions = {
+  __typename?: 'ConfigurableProductOptions'
+  /** A string that identifies the attribute */
+  attribute_code?: Maybe<Scalars['String']>
+  /**
+   * The ID assigned to the attribute
+   * @deprecated Use attribute_uid instead
+   */
+  attribute_id?: Maybe<Scalars['String']>
+  /**
+   * The ID assigned to the attribute
+   * @deprecated Use attribute_uid instead
+   */
+  attribute_id_v2?: Maybe<Scalars['Int']>
+  /** The unique ID for a `Attribute` object */
+  attribute_uid: Scalars['ID']
+  /**
+   * The configurable option ID number assigned by the system
+   * @deprecated Use uid instead
+   */
+  id?: Maybe<Scalars['Int']>
+  /** A string that describes the configurable product option, which is displayed on the UI */
+  label?: Maybe<Scalars['String']>
+  /** A number that indicates the order in which the attribute is displayed */
+  position?: Maybe<Scalars['Int']>
+  /**
+   * This is the same as a product's id field
+   * @deprecated `product_id` is not needed and can be obtained from it's parent
+   */
+  product_id?: Maybe<Scalars['Int']>
+  /** The unique ID for a `ConfigurableProductOptions` object */
+  uid: Scalars['ID']
+  /** Indicates whether the option is the default */
+  use_default?: Maybe<Scalars['Boolean']>
+  /** An array that defines the value_index codes assigned to the configurable product */
+  values?: Maybe<Array<Maybe<ConfigurableProductOptionsValues>>>
+}
+
+/** ConfigurableProductOptionsValues contains the index number assigned to a configurable product option */
+export type ConfigurableProductOptionsValues = {
+  __typename?: 'ConfigurableProductOptionsValues'
+  /** The label of the product on the default store */
+  default_label?: Maybe<Scalars['String']>
+  /** The label of the product */
+  label?: Maybe<Scalars['String']>
+  /** The label of the product on the current store */
+  store_label?: Maybe<Scalars['String']>
+  /** Swatch data for configurable product option */
+  swatch_data?: Maybe<SwatchDataInterface>
+  /** The unique ID for a `ConfigurableProductOptionsValues` object */
+  uid?: Maybe<Scalars['ID']>
+  /** Indicates whether to use the default_label */
+  use_default_value?: Maybe<Scalars['Boolean']>
+  /**
+   * A unique index number assigned to the configurable product option
+   * @deprecated Use `uid` instead
+   */
+  value_index?: Maybe<Scalars['Int']>
+}
+
+export type SwatchDataInterface = {
+  /** Value of swatch item (HEX color code, image link or textual value) */
+  value?: Maybe<Scalars['String']>
+}
+
+/** Metadata corresponding to the configurable options selection. */
+export type ConfigurableProductOptionsSelection = {
+  __typename?: 'ConfigurableProductOptionsSelection'
+  /** Product images and videos corresponding to the specified configurable options selection. */
+  media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
+  /** Configurable options available for further selection based on current selection. */
+  options_available_for_selection?: Maybe<Array<Maybe<ConfigurableOptionAvailableForSelection>>>
+  /** Variant represented by the specified configurable options selection. It is expected to be null, until selections are made for each configurable option. */
+  variant?: Maybe<SimpleProduct>
+}
+
+/** Configurable option available for further selection based on current selection. */
+export type ConfigurableOptionAvailableForSelection = {
+  __typename?: 'ConfigurableOptionAvailableForSelection'
+  /** Attribute code that uniquely identifies configurable option. */
+  attribute_code: Scalars['String']
+  /** Configurable option values available for further selection. */
+  option_value_uids: Array<Maybe<Scalars['ID']>>
+}
+
+/** An array containing all the simple product variants of a configurable product */
+export type ConfigurableVariant = {
+  __typename?: 'ConfigurableVariant'
+  attributes?: Maybe<Array<Maybe<ConfigurableAttributeOption>>>
+  product?: Maybe<SimpleProduct>
+}
+
+/** ConfigurableAttributeOption contains the value_index (and other related information) assigned to a configurable product option */
+export type ConfigurableAttributeOption = {
+  __typename?: 'ConfigurableAttributeOption'
+  /** The ID assigned to the attribute */
+  code?: Maybe<Scalars['String']>
+  /** A string that describes the configurable attribute option */
+  label?: Maybe<Scalars['String']>
+  /** The unique ID for a `ConfigurableAttributeOption` object */
+  uid: Scalars['ID']
+  /** A unique index number assigned to the configurable product option */
+  value_index?: Maybe<Scalars['Int']>
+}
+
+/** A configurable product wish list item */
+export type ConfigurableWishlistItem = WishlistItemInterface & {
+  __typename?: 'ConfigurableWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** The SKU of the simple product corresponding to a set of selected configurable options */
+  child_sku: Scalars['String']
+  /** An array of selected configurable options */
+  configurable_options?: Maybe<Array<Maybe<SelectedConfigurableOption>>>
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
 }
 
 export type SwatchLayerFilterItemInterface = {
@@ -15739,6 +17212,390 @@ export type ColorSwatchData = SwatchDataInterface & {
   __typename?: 'ColorSwatchData'
   /** Value of swatch item (HEX color code, image link or textual value) */
   value?: Maybe<Scalars['String']>
+}
+
+/** GiftCardProduct defines properties of a gift card, including the minimum and maximum values and an array that contains the current and past values on the specific gift card */
+export type GiftCardProduct = ProductInterface &
+  PhysicalProductInterface &
+  CustomizableProductInterface & {
+    __typename?: 'GiftCardProduct'
+    /** Indicates whether the customer can provide a message to accompany the gift card. */
+    allow_message?: Maybe<Scalars['Boolean']>
+    /** Indicates whether customers have the ability to set the value of the gift card. */
+    allow_open_amount?: Maybe<Scalars['Boolean']>
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars['Int']>
+    /** Relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled */
+    canonical_url?: Maybe<Scalars['String']>
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>
+    color?: Maybe<Scalars['Int']>
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars['String']>
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars['String']>
+    /** Crosssell Products */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>
+    fashion_color?: Maybe<Scalars['Int']>
+    fashion_material?: Maybe<Scalars['String']>
+    fashion_size?: Maybe<Scalars['Int']>
+    fashion_style?: Maybe<Scalars['String']>
+    format?: Maybe<Scalars['Int']>
+    /** An array of giftcard options. */
+    gift_card_options: Array<Maybe<CustomizableOptionInterface>>
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars['String']>
+    /** An array that contains information about the values and ID of a gift card. */
+    giftcard_amounts?: Maybe<Array<Maybe<GiftCardAmounts>>>
+    /** Either VIRTUAL, PHYSICAL, or COMBINED. */
+    giftcard_type?: Maybe<GiftCardTypeEnum>
+    has_video?: Maybe<Scalars['Int']>
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars['Int']>
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>
+    /** Indicates whether the customer can redeem the value on the card for cash. */
+    is_redeemable?: Maybe<Scalars['Boolean']>
+    /** Indicates whether the product can be returned */
+    is_returnable?: Maybe<Scalars['String']>
+    /** The number of days after purchase until the gift card expires. A null value means there is no limit. */
+    lifetime?: Maybe<Scalars['Int']>
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars['Int']>
+    /** An array of Media Gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use product's `media_gallery` instead
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>
+    /** Indicates whether the customer can provide a message to accompany the gift card. */
+    message_max_length?: Maybe<Scalars['Int']>
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars['String']>
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars['String']>
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars['String']>
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars['String']>
+    /**
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    new_from_date?: Maybe<Scalars['String']>
+    /**
+     * The end date for new product listings.
+     * @deprecated The field should not be used on the storefront.
+     */
+    new_to_date?: Maybe<Scalars['String']>
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars['Float']>
+    /** The minimum acceptable value of an open amount gift card. */
+    open_amount_max?: Maybe<Scalars['Float']>
+    /** The minimum acceptable value of an open amount gift card. */
+    open_amount_min?: Maybe<Scalars['Float']>
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars['String']>
+    /**
+     * A ProductPrices object, indicating the price of an item.
+     * @deprecated Use price_range for product price information.
+     */
+    price?: Maybe<ProductPrices>
+    /** A PriceRange object, indicating the range of prices for the product */
+    price_range: PriceRange
+    /** An array of TierPrice objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>
+    /** An array of ProductLinks objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars['Float']
+    /** Related Products */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars['Int']
+    /** The list of products reviews. */
+    reviews: ProductReviews
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars['String']>
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars['String']>
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars['Float']>
+    /** The end date that a product has a special price. */
+    special_to_date?: Maybe<Scalars['String']>
+    staged: Scalars['Boolean']
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>
+    /** The file name of a swatch image */
+    swatch_image?: Maybe<Scalars['String']>
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use price_tiers for product tier price information.
+     */
+    tier_price?: Maybe<Scalars['Float']>
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use price_tiers for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use __typename instead.
+     */
+    type_id?: Maybe<Scalars['String']>
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars['ID']
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars['String']>
+    /** Upsell Products */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars['String']>
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars['String']>
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars['String']>
+    video_file?: Maybe<Scalars['String']>
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars['Float']>
+  }
+
+/** GiftCardProduct defines properties of a gift card, including the minimum and maximum values and an array that contains the current and past values on the specific gift card */
+export type GiftCardProductReviewsArgs = {
+  pageSize?: Maybe<Scalars['Int']>
+  currentPage?: Maybe<Scalars['Int']>
+}
+
+/** GiftCardAmounts contains the value of a gift card, the website that generated the card, and related information */
+export type GiftCardAmounts = {
+  __typename?: 'GiftCardAmounts'
+  /** An internal attribute ID. */
+  attribute_id?: Maybe<Scalars['Int']>
+  /** The unique ID for a `GiftCardAmounts` object */
+  uid: Scalars['ID']
+  /** The value of the gift card */
+  value?: Maybe<Scalars['Float']>
+  /**
+   * An ID that is assigned to each unique gift card amount.
+   * @deprecated Use `uid` instead
+   */
+  value_id?: Maybe<Scalars['Int']>
+  /** ID of the website that generated the gift card */
+  website_id?: Maybe<Scalars['Int']>
+  /** The value of the gift card */
+  website_value?: Maybe<Scalars['Float']>
+}
+
+/** This enumeration defines the types of gift cards */
+export type GiftCardTypeEnum = 'VIRTUAL' | 'PHYSICAL' | 'COMBINED'
+
+export type GiftCardOrderItem = OrderItemInterface & {
+  __typename?: 'GiftCardOrderItem'
+  /** The final discount information for the product */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Indicates whether the order item is eligible is eligible to be in a return request */
+  eligible_for_return?: Maybe<Scalars['Boolean']>
+  /** The entered option for the base product, such as a logo or image */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>
+  /** Selected gift card properties for an order item */
+  gift_card?: Maybe<GiftCardItem>
+  /** The selected gift wrapping for the order item */
+  gift_wrapping?: Maybe<GiftWrapping>
+  /** The unique ID for a `OrderItemInterface` object */
+  id: Scalars['ID']
+  /** The name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** The sale price of the base product, including selected options */
+  product_sale_price: Money
+  /** The SKU of the base product */
+  product_sku: Scalars['String']
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars['String']>
+  /** URL key of the base product */
+  product_url_key?: Maybe<Scalars['String']>
+  /** The number of canceled items */
+  quantity_canceled?: Maybe<Scalars['Float']>
+  /** The number of invoiced items */
+  quantity_invoiced?: Maybe<Scalars['Float']>
+  /** The number of units ordered for this item */
+  quantity_ordered?: Maybe<Scalars['Float']>
+  /** The number of refunded items */
+  quantity_refunded?: Maybe<Scalars['Float']>
+  /** The number of returned items */
+  quantity_returned?: Maybe<Scalars['Float']>
+  /** The number of shipped items */
+  quantity_shipped?: Maybe<Scalars['Float']>
+  /** The selected options for the base product, such as color or size */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>
+  /** The status of the order item */
+  status?: Maybe<Scalars['String']>
+}
+
+export type GiftCardItem = {
+  __typename?: 'GiftCardItem'
+  /** Entered gift card message intended for the recipient */
+  message?: Maybe<Scalars['String']>
+  /** Entered gift card recipient email for virtual cards */
+  recipient_email?: Maybe<Scalars['String']>
+  /** Entered gift card sender namefor physical and virtual cards */
+  recipient_name?: Maybe<Scalars['String']>
+  /** Entered gift card sender email for virtual cards */
+  sender_email?: Maybe<Scalars['String']>
+  /** Entered gift card sender name for physical and virtual cards */
+  sender_name?: Maybe<Scalars['String']>
+}
+
+export type GiftCardInvoiceItem = InvoiceItemInterface & {
+  __typename?: 'GiftCardInvoiceItem'
+  /** Contains information about the final discount amount for the base product, including discounts on options */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Selected gift card properties for an invoice item */
+  gift_card?: Maybe<GiftCardItem>
+  /** The unique ID for a `InvoiceItemInterface` object */
+  id: Scalars['ID']
+  /** Contains details about an individual order item */
+  order_item?: Maybe<OrderItemInterface>
+  /** The name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** The sale price for the base product including selected options */
+  product_sale_price: Money
+  /** The SKU of the base product */
+  product_sku: Scalars['String']
+  /** The number of invoiced items */
+  quantity_invoiced?: Maybe<Scalars['Float']>
+}
+
+export type GiftCardCreditMemoItem = CreditMemoItemInterface & {
+  __typename?: 'GiftCardCreditMemoItem'
+  /** Contains information about the final discount amount for the base product, including discounts on options */
+  discounts?: Maybe<Array<Maybe<Discount>>>
+  /** Selected gift card properties for an credit memo item */
+  gift_card?: Maybe<GiftCardItem>
+  /** The unique ID for a `CreditMemoItemInterface` object */
+  id: Scalars['ID']
+  /** The order item the credit memo is applied to */
+  order_item?: Maybe<OrderItemInterface>
+  /** The name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** The sale price for the base product, including selected options */
+  product_sale_price: Money
+  /** SKU of the base product */
+  product_sku: Scalars['String']
+  /** The number of refunded items */
+  quantity_refunded?: Maybe<Scalars['Float']>
+}
+
+export type GiftCardShipmentItem = ShipmentItemInterface & {
+  __typename?: 'GiftCardShipmentItem'
+  /** Selected gift card properties for an shipment item */
+  gift_card?: Maybe<GiftCardItem>
+  /** The unique ID for a `ShipmentItemInterface` object */
+  id: Scalars['ID']
+  /** Associated order item */
+  order_item?: Maybe<OrderItemInterface>
+  /** Name of the base product */
+  product_name?: Maybe<Scalars['String']>
+  /** Sale price for the base product */
+  product_sale_price: Money
+  /** SKU of the base product */
+  product_sku: Scalars['String']
+  /** Number of shipped items */
+  quantity_shipped: Scalars['Float']
+}
+
+/** Contains details about a gift card */
+export type GiftCardCartItem = CartItemInterface & {
+  __typename?: 'GiftCardCartItem'
+  /** The amount and currency of the gift card */
+  amount: Money
+  /** An array of customizations made to the gift card */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** @deprecated Use `uid` instead */
+  id: Scalars['String']
+  /** A message to the recipient */
+  message?: Maybe<Scalars['String']>
+  prices?: Maybe<CartItemPrices>
+  product: ProductInterface
+  quantity: Scalars['Float']
+  /** The email of the person receiving the gift card */
+  recipient_email?: Maybe<Scalars['String']>
+  /** The name of the person receiving the gift card */
+  recipient_name: Scalars['String']
+  /** The email of the sender */
+  sender_email?: Maybe<Scalars['String']>
+  /** The name of the sender */
+  sender_name: Scalars['String']
+  /** The unique ID for a `CartItemInterface` object */
+  uid: Scalars['ID']
+}
+
+/** A gift card product wish list item */
+export type GiftCardWishlistItem = WishlistItemInterface & {
+  __typename?: 'GiftCardWishlistItem'
+  /** The date and time the item was added to the wish list */
+  added_at: Scalars['String']
+  /** Custom options selected for the wish list item */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>
+  /** The description of the item */
+  description?: Maybe<Scalars['String']>
+  gift_card_options: GiftCardOptions
+  /** The unique ID for a `WishlistItemInterface` object */
+  id: Scalars['ID']
+  /** Product details of the wish list item */
+  product?: Maybe<ProductInterface>
+  /** The quantity of this wish list item */
+  quantity: Scalars['Float']
+}
+
+export type GiftCardOptions = {
+  __typename?: 'GiftCardOptions'
+  /** The amount and currency of the gift card */
+  amount?: Maybe<Money>
+  /** The custom amount and currency of the gift card */
+  custom_giftcard_amount?: Maybe<Money>
+  /** A message to the recipient */
+  message?: Maybe<Scalars['String']>
+  /** The email of the person receiving the gift card */
+  recipient_email?: Maybe<Scalars['String']>
+  /** The name of the person receiving the gift card */
+  recipient_name?: Maybe<Scalars['String']>
+  /** The email of the sender */
+  sender_email?: Maybe<Scalars['String']>
+  /** The name of the sender */
+  sender_name?: Maybe<Scalars['String']>
 }
 
 export type HistoryStatePage = {
