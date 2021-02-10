@@ -26,7 +26,7 @@ export const useChipMenuStyles = makeStyles(
       borderWidth: 2,
     },
     chipSelected: {
-      border: `1px solid ${ttheme.palette.text.primary}`,
+      border: `1px solid ${theme.palette.text.primary}`,
       background: theme.palette.grey['100'],
       color: theme.palette.text.primary,
       '&:hover': {
