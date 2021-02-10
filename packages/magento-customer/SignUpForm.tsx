@@ -1,6 +1,6 @@
 import { FormControl, FormControlLabel, MenuItem, TextField, Switch } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
@@ -125,21 +125,19 @@ export default function SignUpForm(props: SignUpFormProps) {
         label='Subscribe to newsletter'
       />
 
-      <div className={classes.actions}>
-        <FormControl>
-          <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            size='large'
-            loading={formState.isSubmitting}
-          >
-            Create Account
-          </Button>
-        </FormControl>
-      </div>
-
       <ApolloErrorAlert error={error} />
+
+      <div className={classes.actions}>
+        <Button
+          type='submit'
+          variant='contained'
+          color='primary'
+          size='large'
+          loading={formState.isSubmitting}
+        >
+          Create Account
+        </Button>
+      </div>
     </form>
   )
 }

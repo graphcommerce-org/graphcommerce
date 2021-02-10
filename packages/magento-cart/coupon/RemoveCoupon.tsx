@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText, TextField } from '@material-ui/core'
-import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'

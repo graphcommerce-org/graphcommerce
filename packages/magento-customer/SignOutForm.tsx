@@ -17,11 +17,9 @@ export default function SignOutForm(props: SignOutFormProps) {
 
   return (
     <form onSubmit={submitHandler} noValidate {...props}>
-      <FormControl>
-        <Button type='submit' loading={formState.isSubmitting} color='primary'>
-          Sign out
-        </Button>
-      </FormControl>
+      <Button type='submit' loading={formState.isSubmitting} color='primary'>
+        Sign out
+      </Button>
       <ApolloErrorAlert error={error} />
     </form>
   )

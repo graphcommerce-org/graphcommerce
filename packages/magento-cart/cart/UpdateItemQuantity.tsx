@@ -34,7 +34,6 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVari
         helperText={errors.quantity?.message}
         disabled={formState.isSubmitting}
       />
-
       <ApolloErrorAlert error={error} />
     </form>
   )

@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { FormControl } from '@material-ui/core'
-import useFormStyles from '@reachdigital/next-ui/AnimatedForm/useFormStyles'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { useForm, Controller } from '@reachdigital/react-hook-form/useForm'

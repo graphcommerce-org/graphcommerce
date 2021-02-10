@@ -1,5 +1,5 @@
 import { Alert } from '@material-ui/lab'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import React from 'react'
 import { usePaymentMethodContext } from './PaymentMethodContext'
 

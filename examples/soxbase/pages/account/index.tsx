@@ -16,7 +16,7 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountIndexPage() {
   return (
-    <OverlayUi title='Account' headerForward={<SignOutForm />} variant='bottom'>
+    <OverlayUi title='Account' headerForward={<SignOutForm />} variant='left'>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
       <NoSsr>
         <AccountDashboard />

@@ -14,7 +14,7 @@ import ConfigurableCartItem from '@reachdigital/magento-product-configurable/Con
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedForm/AnimatedRow'
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'

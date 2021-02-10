@@ -1,10 +1,9 @@
 import { ApolloError } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
-import { Alert, AlertTitle } from '@material-ui/lab'
+import { Alert } from '@material-ui/lab'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import AnimatedRow from '../AnimatedForm/AnimatedRow'
-import useFormStyles from '../AnimatedForm/useFormStyles'
+import AnimatedRow from '../AnimatedRow'
 
 const useStyles = makeStyles((theme: Theme) => ({
   alerts: {
