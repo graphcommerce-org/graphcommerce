@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Asset from '../Asset'
+import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 
 const useStyles = makeStyles(
@@ -81,10 +82,20 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function RowProductBackstory(props: RowProductBackstoryFragment) {
-  const { copy, asset } = props
+type RowProductBackstoryProps = RowProductBackstoryFragment & ProductListItemsProps
+
+export default function RowProductBackstory(props: RowProductBackstoryProps) {
+  const { copy, asset, ...productListItems } = props
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
+  let singleItem = productListItems
+
+  if (productListItems.items) {
+    singleItem = {
+      ...productListItems,
+      items: [productListItems?.items[productListItems.items?.length - 1]],
+    }
+  }
 
   return (
     <Container maxWidth={false} className={classes.container}>
@@ -93,15 +104,10 @@ export default function RowProductBackstory(props: RowProductBackstoryFragment) 
           <div className={classes.copy}>
             <RichText classes={richTextOneClasses} {...copy} />
           </div>
-
           <Asset asset={asset} width={328} />
         </div>
         <div>
-          <img
-            src='https://media.graphcms.com/OQQl44iJRdODZ8hGBqvv'
-            alt=''
-            className={classes.product}
-          />
+          <ProductListItems {...singleItem} />
         </div>
       </div>
     </Container>
