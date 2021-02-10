@@ -97,6 +97,7 @@ export const BlogListDocument: DocumentNode<BlogListQuery, BlogListQueryVariable
                       { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                     ],
                   },
                 },
@@ -117,7 +118,9 @@ export type BlogListQueryVariables = Types.Exact<{
 export type BlogListQuery = {
   blogPosts: Array<
     Pick<Types.Page, 'title' | 'url' | 'date'> & {
-      asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
+      asset?: Types.Maybe<
+        Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+      >
     }
   >
 }

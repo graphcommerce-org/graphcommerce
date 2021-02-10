@@ -11,15 +11,15 @@ import { PageLayoutQuery } from './PageLayout.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     menuOpen: {
-      background: theme.palette.primary.contrastText,
+      background: theme.palette.text.primary,
       boxShadow: theme.shadows[2],
       '&:hover, &:focus': {
-        background: theme.palette.primary.contrastText,
+        background: theme.palette.text.primary,
       },
     },
     menu: {
       backgroundColor: theme.palette.background.paper,
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
       minWidth: responsiveVal(200, 280),
     },
     menuClose: {

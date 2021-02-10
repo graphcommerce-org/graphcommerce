@@ -24,7 +24,7 @@ const useStyles = makeStyles(
       fontSize: 29,
       lineHeight: 1,
       minWidth: 40,
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
     },
     groupText: {},
     storeText: {

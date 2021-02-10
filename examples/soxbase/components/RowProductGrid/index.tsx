@@ -44,7 +44,7 @@ const useStyles = makeStyles(
     url: {
       ...theme.typography.body1,
       fontWeight: 400,
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
     },
   }),
   { name: 'RowProductGrid' },

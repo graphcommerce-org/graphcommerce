@@ -46,11 +46,11 @@ const useStyles = makeStyles(
     },
     badge: {
       '& > button': {
-        background: theme.palette.common.black,
+        background: theme.palette.text.primary,
         color: theme.palette.common.white,
         transition: 'opacity .15s ease',
         '&:hover, &:active, &:visited': {
-          background: theme.palette.primary.contrastText,
+          background: theme.palette.text.primary,
           opacity: 0.75,
         },
         '& .MuiSvgIcon-root': {
