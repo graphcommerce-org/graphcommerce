@@ -50,6 +50,10 @@ const useStyles = makeStyles(
       color: 'rgba(0,0,0,0.7)',
     },
     url: {
+      ...theme.typography.body2,
+      [theme.breakpoints.up('md')]: {
+        ...theme.typography.h4,
+      },
       color: theme.palette.text.primary,
     },
   }),
