@@ -50,8 +50,12 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip
     },
     mode: 'onChange',
-    reValidateMode: 'onChange',
-    onBeforeSubmit: (variables) => ({ ...variables, saveInAddressBook: true, customerNote: '' }),
+    onBeforeSubmit: (variables) => {
+      const regionId = countries
+        ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
+        ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
+      return { ...variables, regionId, saveInAddressBook: true, customerNote: '' }
+    },
   })
   const { register, errors, handleSubmit, control, formState, required, watch, error } = form
   const submit = handleSubmit(() => {})
@@ -88,7 +92,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     return regions
   }, [country, countryList])
 
-  // todo region clearen als je van land wisselt
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>

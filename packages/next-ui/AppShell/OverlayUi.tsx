@@ -81,7 +81,7 @@ const useStyles = makeStyles(
       minHeight: `calc(100vh - 50px)`,
       [theme.breakpoints.up('md')]: {
         margin: '0 auto',
-        maxWidth: '60%',
+        maxWidth: theme.breakpoints.values.md,
         borderRadius: theme.spacings.xxs,
         minHeight: 'unset',
         marginBottom: theme.spacings.xl,
@@ -213,8 +213,8 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
   if (variant === 'left') contentAnimation = leftAnimations
   if (variant === 'center') contentAnimation = centerAnimations
 
-  const [zIndex, setZIndex] = useState(0)
-  useEffect(() => setZIndex(thisIdx * 2), [thisIdx])
+  const [zIndex, setZIndex] = useState(1)
+  useEffect(() => setZIndex(thisIdx * 2 + 1), [thisIdx])
 
   return (
     <>
