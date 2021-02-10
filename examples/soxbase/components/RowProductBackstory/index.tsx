@@ -5,60 +5,63 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Button from '../PageLink/Button'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    marginBottom: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      marginBottom: `${theme.spacings.xl}`,
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    container: {
+      marginBottom: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: `${theme.spacings.xl}`,
+      },
     },
-  },
-  wrapper: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: `${theme.spacings.md}`,
-    [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: '8fr 3fr',
+    wrapper: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: `${theme.spacings.md}`,
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: '8fr 3fr',
+      },
     },
-  },
-  backstory: {
-    position: 'relative',
-  },
-  copy: {
-    color: '#fff',
-    display: 'grid',
-    justifyItems: 'start',
-    alignContent: 'end',
-    padding: `${theme.spacings.md}`,
-    '& > *': {
-      maxWidth: 'max-content',
+    backstory: {
+      position: 'relative',
     },
-    [theme.breakpoints.up('md')]: {
-      background: 'none',
-      width: '60%',
-      minHeight: '100vh',
+    copy: {
+      color: '#fff',
+      display: 'grid',
+      justifyItems: 'start',
+      alignContent: 'end',
+      padding: `${theme.spacings.md}`,
+      '& > *': {
+        maxWidth: 'max-content',
+      },
+      [theme.breakpoints.up('md')]: {
+        background: 'none',
+        width: '60%',
+        minHeight: '100vh',
+      },
+      [theme.breakpoints.up('lg')]: {
+        padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
+        width: '50%',
+      },
     },
-    [theme.breakpoints.up('lg')]: {
-      padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
-      width: '50%',
-    },
-  },
-  asset: {
-    position: 'absolute',
-    top: '0',
-    zIndex: -1,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    filter: 'brightness(80%)',
-    [theme.breakpoints.up('md')]: {
-      filter: 'brightness(100%)',
+    asset: {
+      position: 'absolute',
+      top: '0',
+      zIndex: -1,
+      width: '100%',
       height: '100%',
+      objectFit: 'cover',
+      filter: 'brightness(80%)',
+      [theme.breakpoints.up('md')]: {
+        filter: 'brightness(100%)',
+        height: '100%',
+      },
     },
-  },
-  img: {
-    maxWidth: '100%',
-  },
-}))
+    img: {
+      maxWidth: '100%',
+    },
+  }),
+  { name: 'RowProductBackstory' },
+)
 
 const useRichTextOne = makeStyles((theme: Theme) => ({
   paragraph: {

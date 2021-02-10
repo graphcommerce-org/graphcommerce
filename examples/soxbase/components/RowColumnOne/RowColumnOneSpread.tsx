@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'RowColumnTwoSpread' },
+  { name: 'RowColumnOneSpread' },
 )
 
 const useRichTextOne = makeStyles(({ typography, spacings, breakpoints }: Theme) => ({
@@ -26,7 +26,7 @@ const useRichTextOne = makeStyles(({ typography, spacings, breakpoints }: Theme)
   },
 }))
 
-const RowColumnOneSpread: React.FC<RowColumnOneProps> = (props) => {
+function RowColumnOneSpread(props: RowColumnOneProps) {
   const classes = useStyles(props)
   const richTextOneClasses = useRichTextOne(props)
   return <RowColumnOne {...props} classes={classes} richTextOneClasses={richTextOneClasses} />

@@ -7,56 +7,59 @@ import { RowSwipeableGridFragment } from './RowSwipeableGrid.gql'
 import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import ProductListItemsSlider from '../ProductListItems/ProductListItemsSlider'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'grid',
-    gridTemplateColumns: '25% 75%',
-    maxWidth: '100%',
-    paddingLeft: responsiveVal(15, 40),
-    marginBottom: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
-  },
-  copy: {
-    display: 'grid',
-    alignContent: 'space-between',
-  },
-  h2: {
-    ...theme.typography.h1,
-    fontSize: responsiveVal(20, 40),
-    marginRight: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      width: '40%',
-      minWidth: 250,
-    },
-  },
-  slider: {
-    position: 'relative',
-    '& > div': {
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
       display: 'grid',
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.lg,
-      alignContent: 'space-around',
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(200, 800)}, 1fr))`,
+      gridTemplateColumns: '25% 75%',
+      maxWidth: '100%',
+      paddingLeft: responsiveVal(15, 40),
+      marginBottom: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: `${theme.spacings.xl}`,
+      },
     },
-    '& > div > div': {
-      minWidth: responsiveVal(200, 800),
+    copy: {
+      display: 'grid',
+      alignContent: 'space-between',
     },
-    '& > div > div > div, & > div > div > a > div > div': {
-      //show only images
-      display: 'none',
+    h2: {
+      ...theme.typography.h1,
+      fontSize: responsiveVal(20, 40),
+      marginRight: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        width: '40%',
+        minWidth: 250,
+      },
     },
-  },
-  externalpagination: {
-    fontSize: responsiveVal(18, 26),
-    width: 'min-width',
-    fontWeight: 500,
-    [theme.breakpoints.up('md')]: {
+    slider: {
+      position: 'relative',
+      '& > div': {
+        display: 'grid',
+        gridColumnGap: theme.spacings.md,
+        gridRowGap: theme.spacings.lg,
+        alignContent: 'space-around',
+        gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(200, 800)}, 1fr))`,
+      },
+      '& > div > div': {
+        minWidth: responsiveVal(200, 800),
+      },
+      '& > div > div > div, & > div > div > a > div > div': {
+        //show only images
+        display: 'none',
+      },
+    },
+    externalpagination: {
+      fontSize: responsiveVal(18, 26),
+      width: 'min-width',
       fontWeight: 500,
+      [theme.breakpoints.up('md')]: {
+        fontWeight: 500,
+      },
     },
-  },
-}))
+  }),
+  { name: 'RowSwipeableGrid' },
+)
 
 type RowSwipeableGridProps = RowSwipeableGridFragment & ProductListItemsProps
 

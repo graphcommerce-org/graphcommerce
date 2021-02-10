@@ -473,6 +473,40 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                           ],
                         },
                       },
+                      {
+                        kind: 'InlineFragment',
+                        typeCondition: {
+                          kind: 'NamedType',
+                          name: { kind: 'Name', value: 'RowContentLinks' },
+                        },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'contentLinks' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'description' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -523,6 +557,13 @@ export type PageByUrlQuery = {
         | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & {
               colOne: Pick<Types.RichText, 'raw'>
               colTwo: Pick<Types.RichText, 'raw'>
+            })
+        | ({ __typename: 'RowContentLinks' } & Pick<Types.RowContentLinks, 'id' | 'title'> & {
+              contentLinks: Array<
+                Pick<Types.PageLink, 'title' | 'url'> & {
+                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                }
+              >
             })
         | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & {
               asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>

@@ -11,6 +11,7 @@ import RowQuote from '../RowQuote'
 import RowServiceOptions from '../RowServiceOptions'
 import RowSpecialBanner from '../RowSpecialBanner'
 import RowSwipeableGrid from '../RowSwipeableGrid'
+import RowContentLinks from '../RowContentLinks'
 import { PageFragment } from './Page.gql'
 
 type ContentTypeRenderer = TypeRenderer<PageFragment['content'][0]>
@@ -28,6 +29,7 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowBlogContent,
   RowButtonLinkList,
   RowServiceOptions,
+  RowContentLinks,
 }
 
 export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer> }

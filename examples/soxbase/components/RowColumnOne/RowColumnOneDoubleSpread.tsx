@@ -30,7 +30,7 @@ const useRichTextOne = makeStyles(({ typography, spacings, breakpoints }: Theme)
   },
 }))
 
-const RowColumnOneDoubleSpread: React.FC<RowColumnOneProps> = (props) => {
+function RowColumnOneDoubleSpread(props: RowColumnOneProps) {
   const classes = useStyles(props)
   const richTextOneClasses = useRichTextOne(props)
   return <RowColumnOne {...props} classes={classes} richTextOneClasses={richTextOneClasses} />

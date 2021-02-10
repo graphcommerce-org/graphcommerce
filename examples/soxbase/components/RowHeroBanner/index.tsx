@@ -5,46 +5,49 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Button from '../PageLink/Button'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    marginBottom: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      marginBottom: `${theme.spacings.xl}`,
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    container: {
+      marginBottom: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: `${theme.spacings.xl}`,
+      },
     },
-  },
-  wrapper: {
-    position: 'relative',
-  },
-  copy: {
-    color: '#fff',
-    display: 'grid',
-    justifyItems: 'center',
-    alignContent: 'center',
-    padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-    minHeight: '80vh',
-    '& > *': {
-      maxWidth: 'max-content',
+    wrapper: {
+      position: 'relative',
     },
-    [theme.breakpoints.up('md')]: {
-      width: '70%',
+    copy: {
+      color: '#fff',
+      display: 'grid',
+      justifyItems: 'center',
+      alignContent: 'center',
+      padding: `${theme.spacings.lg} ${theme.spacings.md}`,
+      minHeight: '80vh',
+      '& > *': {
+        maxWidth: 'max-content',
+      },
+      [theme.breakpoints.up('md')]: {
+        width: '70%',
+      },
+      [theme.breakpoints.up('lg')]: {
+        padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
+        width: '50%',
+      },
     },
-    [theme.breakpoints.up('lg')]: {
-      padding: `${theme.spacings.lg} ${theme.spacings.lg}`,
-      width: '50%',
-    },
-  },
-  asset: {
-    position: 'absolute',
-    top: '0',
-    zIndex: -1,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    [theme.breakpoints.up('md')]: {
+    asset: {
+      position: 'absolute',
+      top: '0',
+      zIndex: -1,
+      width: '100%',
       height: '100%',
+      objectFit: 'cover',
+      [theme.breakpoints.up('md')]: {
+        height: '100%',
+      },
     },
-  },
-}))
+  }),
+  { name: 'RowHeroBanner' },
+)
 
 const useRichTextOne = makeStyles((theme: Theme) => ({
   h1: {
