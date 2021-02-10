@@ -8,36 +8,39 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    marginBottom: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      marginBottom: `${theme.spacings.xl}`,
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    container: {
+      marginBottom: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: `${theme.spacings.xl}`,
+      },
     },
-  },
-  title: {
-    marginBottom: `${theme.spacings.md}`,
-  },
-  optionsWrapper: {
-    display: 'grid',
-    gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
-    gap: `${theme.spacings.sm}`,
-  },
-  contactOption: {
-    display: 'grid',
-    gridAutoFlow: 'row',
-    justifyItems: 'center',
-    gap: `${theme.spacings.xs}`,
-    border: `1px solid ${theme.palette.grey[300]}`,
-    padding: `${theme.spacings.sm}`,
-    borderRadius: '6px',
-    cursor: 'pointer',
-    textAlign: 'center',
-  },
-  wrapper: {
-    paddingTop: `${theme.spacings.lg}`,
-  },
-}))
+    title: {
+      marginBottom: `${theme.spacings.md}`,
+    },
+    optionsWrapper: {
+      display: 'grid',
+      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
+      gap: `${theme.spacings.sm}`,
+    },
+    contactOption: {
+      display: 'grid',
+      gridAutoFlow: 'row',
+      justifyItems: 'center',
+      gap: `${theme.spacings.xs}`,
+      border: `1px solid ${theme.palette.grey[300]}`,
+      padding: `${theme.spacings.sm}`,
+      borderRadius: '6px',
+      cursor: 'pointer',
+      textAlign: 'center',
+    },
+    wrapper: {
+      paddingTop: `${theme.spacings.lg}`,
+    },
+  }),
+  { name: 'RowServiceOptions' },
+)
 
 const useRichTextOne = makeStyles((theme: Theme) => ({
   paragraph: {

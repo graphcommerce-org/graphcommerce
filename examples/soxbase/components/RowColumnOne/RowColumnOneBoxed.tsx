@@ -27,7 +27,7 @@ export type RowColumnOneBoxedProps = RowColumnOneFragment &
     richTextOneClasses?: UseRichTextStyles['classes']
   }
 
-const RowColumnOneBoxed: React.FC<RowColumnOneBoxedProps> = (props) => {
+function RowColumnOneBoxed(props: RowColumnOneBoxedProps) {
   const { colOne, richTextOneClasses, ...containerProps } = props
   const classes = useStyles(props)
 

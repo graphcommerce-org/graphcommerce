@@ -66,7 +66,7 @@ const useRichTextTwo = makeStyles(({ spacings, breakpoints }: Theme) => ({
   },
 }))
 
-const RowColumnTwoSpread: React.FC<RowColumnTwoProps> = (props) => {
+function RowColumnTwoSpread(props: RowColumnTwoProps) {
   const classes = useStyles(props)
   const richTextTwoClasses = useRichTextTwo(props)
   const richTextOneClasses = useRichTextOne(props)

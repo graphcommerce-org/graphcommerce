@@ -6,45 +6,48 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Link from '../PageLink/Link'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    marginBottom: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      marginBottom: `${theme.spacings.xl}`,
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    container: {
+      marginBottom: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        marginBottom: `${theme.spacings.xl}`,
+      },
     },
-  },
-  wrapper: {
-    display: 'grid',
-    height: '60vw',
-    gridTemplateColumns: '1fr 1fr',
-    justifyItems: 'center',
-    columnGap: `${theme.spacings.lg}`,
-    [theme.breakpoints.up('md')]: {
-      height: '50vw',
+    wrapper: {
+      display: 'grid',
+      height: '60vw',
+      gridTemplateColumns: '1fr 1fr',
+      justifyItems: 'center',
       columnGap: `${theme.spacings.lg}`,
+      [theme.breakpoints.up('md')]: {
+        height: '50vw',
+        columnGap: `${theme.spacings.lg}`,
+      },
     },
-  },
-  asset: {
-    height: '100%',
-    width: '100%',
-    objectFit: 'cover',
-  },
-  copy: {
-    color: '#000',
-    display: 'grid',
-    alignContent: 'center',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '80%',
+    asset: {
+      height: '100%',
+      width: '100%',
+      objectFit: 'cover',
     },
-    '& > *': {
-      maxWidth: 'max-content',
+    copy: {
+      color: '#000',
+      display: 'grid',
+      alignContent: 'center',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '80%',
+      },
+      '& > *': {
+        maxWidth: 'max-content',
+      },
     },
-  },
-  topic: {
-    textTransform: 'uppercase',
-    color: 'rgba(0,0,0,0.7)',
-  },
-}))
+    topic: {
+      textTransform: 'uppercase',
+      color: 'rgba(0,0,0,0.7)',
+    },
+  }),
+  { name: 'RowSpecialBanner' },
+)
 
 const useRichTextOne = makeStyles((theme: Theme) => ({
   h2: {
