@@ -13,31 +13,33 @@ import {
   RowColumnThreeFragment,
   RowColumnThreeFragmentDoc,
 } from '../RowColumnThree/RowColumnThree.gql'
-import { RowColumnTwoFragment } from '../RowColumnTwo/RowColumnTwo.gql'
+import { RowColumnTwoFragment, RowColumnTwoFragmentDoc } from '../RowColumnTwo/RowColumnTwo.gql'
+import {
+  RowContentLinksFragment,
+  RowContentLinksFragmentDoc,
+} from '../RowContentLinks/RowContentLinks.gql'
 import { RowHeroBannerFragment, RowHeroBannerFragmentDoc } from '../RowHeroBanner/RowHeroBanner.gql'
-import { RowProductBackstoryFragment } from '../RowProductBackstory/RowProductBackstory.gql'
+import {
+  RowProductBackstoryFragment,
+  RowProductBackstoryFragmentDoc,
+} from '../RowProductBackstory/RowProductBackstory.gql'
 import {
   RowProductGridFragment,
   RowProductGridFragmentDoc,
 } from '../RowProductGrid/RowProductGrid.gql'
-import { RowSpecialBannerFragment } from '../RowSpecialBanner/RowSpecialBanner.gql'
-import { RowQuoteFragment } from '../RowQuote/RowQuote.gql'
-import { RowSwipeableGridFragment } from '../RowSwipeableGrid/RowSwipeableGrid.gql'
+import { RowQuoteFragment, RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
 import {
   RowServiceOptionsFragment,
   RowServiceOptionsFragmentDoc,
 } from '../RowServiceOptions/RowServiceOptions.gql'
 import {
-  RowContentLinksFragment,
-  RowContentLinksFragmentDoc,
-} from '../RowContentLinks/RowContentLinks.gql'
-
-import { RowColumnTwoFragmentDoc } from '../RowColumnTwo/RowColumnTwo.gql'
-
-import { RowSpecialBannerFragmentDoc } from '../RowSpecialBanner/RowSpecialBanner.gql'
-import { RowQuoteFragmentDoc } from '../RowQuote/RowQuote.gql'
-import { RowSwipeableGridFragmentDoc } from '../RowSwipeableGrid/RowSwipeableGrid.gql'
-import { RowProductBackstoryFragmentDoc } from '../RowProductBackstory/RowProductBackstory.gql'
+  RowSpecialBannerFragment,
+  RowSpecialBannerFragmentDoc,
+} from '../RowSpecialBanner/RowSpecialBanner.gql'
+import {
+  RowSwipeableGridFragment,
+  RowSwipeableGridFragmentDoc,
+} from '../RowSwipeableGrid/RowSwipeableGrid.gql'
 
 export const PageFragmentDoc: DocumentNode<PageFragment, unknown> = {
   kind: 'Document',
