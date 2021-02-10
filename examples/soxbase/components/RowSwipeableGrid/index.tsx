@@ -70,7 +70,6 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
 
   const indexesOf = (arr, item) => arr.reduce((acc, v, i) => (v === item && acc.push(i), acc), [])
   const indexesInViewport = indexesOf(exPagination, true)
-  console.log(indexesInViewport)
 
   const current =
     indexesInViewport.length !== 0
