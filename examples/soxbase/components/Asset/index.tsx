@@ -9,6 +9,7 @@ type ImageAsset = Pick<AssetFragment, 'url'> & {
   mimeType: ImageMimeTypes
   width: number
   height: number
+  alt: string
 }
 
 function isImage(asset: AssetFragment): asset is ImageAsset {
@@ -21,7 +22,7 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Omit<PictureResponsiveNextProps, 'type' | 'src' | 'height'>
+} & Omit<PictureResponsiveNextProps, 'type' | 'src' | 'height' | 'alt'>
 
 export default function Asset(props: AssetProps) {
   const { asset, width, ...imgProps } = props
@@ -33,6 +34,7 @@ export default function Asset(props: AssetProps) {
         src={asset.url}
         height={Math.round((asset.height / asset.width) * width)}
         width={width}
+        alt={asset.alt}
         {...imgProps}
       />
     )
