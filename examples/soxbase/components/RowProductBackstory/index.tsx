@@ -9,7 +9,7 @@ import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      marginBottom: `${theme.spacings.lg}`,
+      marginBottom: `${theme.spacings.xxl}`,
       [theme.breakpoints.up('md')]: {
         marginBottom: `${theme.spacings.xl}`,
       },

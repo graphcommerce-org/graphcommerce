@@ -99,7 +99,7 @@ export const defaultTheme = createMuiTheme({
     md: responsiveVal(16, 50),
     lg: responsiveVal(24, 80),
     xl: responsiveVal(48, 160),
-    xxl: responsiveVal(104, 250),
+    xxl: responsiveVal(80, 220),
   },
   page: {
     horizontal: responsiveVal(15, 40),
