@@ -10,6 +10,10 @@ import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
+import {
+  ProductListDocument,
+  ProductListQuery,
+} from '@reachdigital/magento-product-types/ProductList.gql'
 import getCategoryPageProps, {
   CategoryPageProps,
 } from '@reachdigital/magento-product-types/getCategoryPageProps'
@@ -25,9 +29,12 @@ import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
+import Asset from '../components/Asset'
 import FabMenu from '../components/FabMenu'
 import Footer from '../components/Footer'
 import { FooterDocument, FooterQuery } from '../components/Footer/Footer.gql'
@@ -36,9 +43,16 @@ import Logo from '../components/Logo/Logo'
 import Page from '../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
+import RowProductGrid from '../components/RowProductGrid'
+import RowSwipeableGrid from '../components/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery & FooterQuery
+type Props = CategoryPageProps &
+  PageLayoutQuery &
+  ResolveUrlQuery &
+  PageByUrlQuery &
+  FooterQuery &
+  ProductListQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -100,45 +114,10 @@ function CategoryPage(props: Props) {
 
   const category = categories.items[0]
   const parentCategory = categories.items[0].breadcrumbs?.[0]
-  let content: React.ReactNode
 
-  if (
+  const isLanding =
     (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) ||
     categories.items[0].display_mode === 'PAGE'
-  ) {
-    content = (
-      <Container className={classes.container} maxWidth={false}>
-        <CategoryHeroNav {...category} />
-      </Container>
-    )
-  } else {
-    content = (
-      <ProductListParamsProvider value={params}>
-        <Container className={classes.container} maxWidth='xl'>
-          <CategoryDescription
-            name={category.name}
-            description={category.description}
-            className={classes.description}
-          />
-          <div className={classes.childCategories}>
-            <CategoryChildren params={params}>{category.children}</CategoryChildren>
-          </div>
-
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products.sort_fields} />
-            <ProductListFilters aggregations={filters.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
-
-          <ProductListCount total_count={products?.total_count} />
-          <ProductListItems
-            items={products.items}
-            className={clsx(classes.items, productListClasses.productList)}
-          />
-          <ProductListPagination page_info={products.page_info} className={classes.pagination} />
-        </Container>
-      </ProductListParamsProvider>
-    )
-  }
 
   return (
     <FullPageUi
@@ -151,8 +130,47 @@ function CategoryPage(props: Props) {
     >
       <FabMenu menu={menu} urlResolver={urlResolver} />
       <CategoryMeta {...category} />
-      {pages?.[0] && <Page {...pages?.[0]} />}
-      {content}
+
+      {isLanding ? (
+        <Container className={classes.container} maxWidth={false}>
+          <CategoryHeroNav
+            {...category}
+            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} width={328} alt='' />}
+          />
+        </Container>
+      ) : (
+        <ProductListParamsProvider value={params}>
+          <Container className={classes.container} maxWidth='xl'>
+            <CategoryDescription
+              name={category.name}
+              description={category.description}
+              className={classes.description}
+            />
+            <div className={classes.childCategories}>
+              <CategoryChildren params={params}>{category.children}</CategoryChildren>
+            </div>
+
+            <ProductListFiltersContainer>
+              <ProductListSort sort_fields={products.sort_fields} />
+              <ProductListFilters aggregations={filters.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+
+            <ProductListCount total_count={products?.total_count} />
+            <ProductListItems
+              items={products.items}
+              className={clsx(classes.items, productListClasses.productList)}
+            />
+            <ProductListPagination page_info={products.page_info} className={classes.pagination} />
+          </Container>
+        </ProductListParamsProvider>
+      )}
+      <Page
+        renderer={{
+          RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
+          RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
+        }}
+        {...pages?.[0]}
+      />
       <Footer footer={footer} />
     </FullPageUi>
   )
@@ -213,6 +231,12 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     const categoryPage = getCategoryPageProps({ urlPath, urlParams, resolveUrl }, staticClient)
     const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
+    const cat = String((await config).data.storeConfig?.root_category_id ?? '')
+    const productList = staticClient.query({
+      query: ProductListDocument,
+      variables: { rootCategory: cat, pageSize: 8, filters: { category_id: { eq: cat } } },
+    })
+
     const { urlResolver } = (await resolveUrl).data
 
     // 404 and redirect handling
@@ -235,6 +259,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
         ...(await pageLayout).data,
         ...(await categoryPage),
         ...(await page).data,
+        ...(await productList).data,
         apolloState: client.cache.extract(),
       },
       revalidate: 60 * 20,
