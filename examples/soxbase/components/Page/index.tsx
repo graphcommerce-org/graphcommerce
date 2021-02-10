@@ -4,6 +4,7 @@ import RowButtonLinkList from '../RowButtonLinkList'
 import RowColumnOne from '../RowColumnOne'
 import RowColumnThree from '../RowColumnThree'
 import RowColumnTwo from '../RowColumnTwo'
+import RowContentLinks from '../RowContentLinks'
 import RowHeroBanner from '../RowHeroBanner'
 import RowProductBackstory from '../RowProductBackstory'
 import RowProductGrid from '../RowProductGrid'
@@ -11,7 +12,6 @@ import RowQuote from '../RowQuote'
 import RowServiceOptions from '../RowServiceOptions'
 import RowSpecialBanner from '../RowSpecialBanner'
 import RowSwipeableGrid from '../RowSwipeableGrid'
-import RowContentLinks from '../RowContentLinks'
 import { PageFragment } from './Page.gql'
 
 type ContentTypeRenderer = TypeRenderer<PageFragment['content'][0]>
@@ -39,9 +39,10 @@ export default function Page({ content, renderer }: PageProps) {
 
   return (
     <>
-      {content.map((item) => (
-        <RenderType renderer={mergedRenderer as ContentTypeRenderer} key={item.id} {...item} />
-      ))}
+      {content &&
+        content.map((item) => (
+          <RenderType renderer={mergedRenderer as ContentTypeRenderer} key={item.id} {...item} />
+        ))}
     </>
   )
 }
