@@ -46,7 +46,7 @@ export default function RowContentLinks(props: RowContentLinksProps) {
 
   return (
     <Container maxWidth={false} className={classes.container}>
-      <ScrollSnapSlider>
+      <ScrollSnapSlider nobuttons>
         <Typography variant='h4' className={classes.title}>
           {title}
         </Typography>
