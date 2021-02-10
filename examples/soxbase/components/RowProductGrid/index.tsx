@@ -1,10 +1,10 @@
 import { Container, Typography, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
-import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
-import ProductListItems from '../ProductListItems/ProductListItems'
+import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
+
 import { RowProductGridFragment } from './RowProductGrid.gql'
 
 const useStyles = makeStyles(
@@ -26,7 +26,7 @@ const useStyles = makeStyles(
         minWidth: responsiveVal(150, 260),
       },
       '& > div > div > a > div > div': {
-        //hide product options
+        // hide product options
         display: 'none',
       },
     },
@@ -63,15 +63,13 @@ export default function RowProductGrid(props: RowProductGridProps) {
           {title}
         </Typography>
         <div>
-          {pageLinks.map((pageLink) => {
-            return (
-              <NextUiPageLink href={pageLink.url} key={pageLink.url}>
-                <a href={pageLink.url} className={classes.url}>
-                  {pageLink.title}
-                </a>
-              </NextUiPageLink>
-            )
-          })}
+          {pageLinks.map((pageLink) => (
+            <NextUiPageLink href={pageLink.url} key={pageLink.url}>
+              <a href={pageLink.url} className={classes.url}>
+                {pageLink.title}
+              </a>
+            </NextUiPageLink>
+          ))}
         </div>
       </div>
       <div className={classes.grid}>
