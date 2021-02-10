@@ -24,8 +24,8 @@ import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import RowProductGrid from '../../components/RowProductGrid'
-import apolloClient from '../../lib/apolloClient'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
+import apolloClient from '../../lib/apolloClient'
 
 type Props = CmsPageQuery &
   PageLayoutQuery &
