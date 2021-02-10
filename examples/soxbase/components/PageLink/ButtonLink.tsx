@@ -8,7 +8,7 @@ type PageLinkProps = PageLinkFragment & ButtonProps
 
 const useStyles = makeStyles((theme: Theme) => ({
   buttonLink: {
-    color: '#000',
+    color: theme.palette.text.primary,
     textDecoration: 'none',
     padding: `${theme.spacings.xs} 0`,
     borderBottom: `1px solid ${theme.palette.grey[300]}`,

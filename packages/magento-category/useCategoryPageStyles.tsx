@@ -48,7 +48,7 @@ const useCategoryPageStyles = makeStyles(
         height: 40,
         width: 40,
         '& svg': {
-          color: '#000',
+          color: 'theme.palette.text.primary',
         },
         '&:hover': {
           background: 'rgba(0, 0, 0, 0.04)',

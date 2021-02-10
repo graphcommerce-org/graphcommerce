@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       ...theme.typography.body2,
     },
     '& a': {
-      color: '#000',
+      color: theme.palette.text.primary,
     },
   },
   support: {

@@ -103,7 +103,7 @@ export const useProductListItemStyles = makeStyles(
       textDecoration: 'underline',
     },
     discount: {
-      background: '#000',
+      background: theme.palette.primary.contrastText,
       padding: '5px 6px 4px 6px',
       color: '#fff',
       display: 'inline',

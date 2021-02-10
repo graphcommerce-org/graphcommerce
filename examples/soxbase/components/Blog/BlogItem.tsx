@@ -8,7 +8,7 @@ import { BlogItemFragment } from './BlogItem.gql'
 export const useBlogListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
-      color: '#000000',
+      color: theme.palette.text.primary,
       position: 'relative',
       ...theme.typography.body1,
     },
