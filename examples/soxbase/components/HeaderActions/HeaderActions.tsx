@@ -31,9 +31,9 @@ export default function HeaderActions() {
   return (
     <div className={classes.actions}>
       <SearchButton />
-      <CustomerFab
-        icon={<img src='/icons/account.svg' alt='account' width={20} height={20} loading='eager' />}
-      />
+      <CustomerFab>
+        <img src='/icons/account.svg' alt='account' width={20} height={20} loading='eager' />
+      </CustomerFab>
       <div className={classes.spacer} />
     </div>
   )
