@@ -10,10 +10,6 @@ import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import {
-  ProductListDocument,
-  ProductListQuery,
-} from '@reachdigital/magento-product-types/ProductList.gql'
 import getCategoryPageProps, {
   CategoryPageProps,
 } from '@reachdigital/magento-product-types/getCategoryPageProps'
@@ -46,12 +42,7 @@ import RowProductGrid from '../components/RowProductGrid'
 import RowSwipeableGrid from '../components/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps &
-  PageLayoutQuery &
-  ResolveUrlQuery &
-  PageByUrlQuery &
-  FooterQuery &
-  ProductListQuery
+type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery & FooterQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -118,6 +109,14 @@ function CategoryPage(props: Props) {
     (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) ||
     categories.items[0].display_mode === 'PAGE'
 
+  let productList = products?.items
+
+  if (isLanding) {
+    if (productList) {
+      productList = products?.items?.slice(0, 8)
+    }
+  }
+
   return (
     <FullPageUi
       title={category.name ?? ''}
@@ -165,11 +164,9 @@ function CategoryPage(props: Props) {
       )}
       <Page
         renderer={{
-          RowProductBackstory: (props) => (
-            <RowProductBackstory {...props} items={products?.items} />
-          ),
-          RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
-          RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
+          RowProductBackstory: (props) => <RowProductBackstory {...props} items={productList} />,
+          RowProductGrid: (props) => <RowProductGrid {...props} items={productList} />,
+          RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={productList} />,
         }}
         {...pages?.[0]}
       />
@@ -234,10 +231,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
     const cat = String((await config).data.storeConfig?.root_category_id ?? '')
-    const productList = staticClient.query({
-      query: ProductListDocument,
-      variables: { rootCategory: cat, pageSize: 8, filters: { category_id: { eq: cat } } },
-    })
 
     const { urlResolver } = (await resolveUrl).data
 
@@ -261,7 +254,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
         ...(await pageLayout).data,
         ...(await categoryPage),
         ...(await page).data,
-        ...(await productList).data,
         apolloState: client.cache.extract(),
       },
       revalidate: 60 * 20,
