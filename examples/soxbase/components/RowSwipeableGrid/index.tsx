@@ -13,10 +13,7 @@ const useStyles = makeStyles(
       gridTemplateColumns: '25% 75%',
       maxWidth: '100%',
       paddingLeft: responsiveVal(15, 40),
-      marginBottom: `${theme.spacings.xxl}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      marginBottom: `${theme.spacings.xl}`,
     },
     copy: {
       display: 'grid',
@@ -38,10 +35,10 @@ const useStyles = makeStyles(
         gridColumnGap: theme.spacings.md,
         gridRowGap: theme.spacings.lg,
         alignContent: 'space-around',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(250, 800)}, 1fr))`,
+        gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(200, 800)}, 1fr))`,
       },
       '& > div > div': {
-        minWidth: responsiveVal(250, 800),
+        minWidth: responsiveVal(200, 800),
       },
       '& > div > div > div, & > div > div > a > div > div': {
         // show only images

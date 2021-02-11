@@ -102,8 +102,8 @@ export const defaultTheme = createMuiTheme({
     sm: responsiveVal(10, 30),
     md: responsiveVal(16, 50),
     lg: responsiveVal(24, 80),
-    xl: responsiveVal(48, 160),
-    xxl: responsiveVal(80, 220),
+    xl: responsiveVal(80, 160),
+    xxl: responsiveVal(100, 220),
   },
   page: {
     horizontal: responsiveVal(15, 40),

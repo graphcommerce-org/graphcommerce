@@ -10,10 +10,7 @@ import { RowProductGridFragment } from './RowProductGrid.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      marginBottom: `${theme.spacings.xxl}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      marginBottom: `${theme.spacings.xl}`,
     },
     grid: {
       '& > div': {

@@ -7,10 +7,7 @@ import { RowQuoteFragment } from './RowQuote.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      marginBottom: `${theme.spacings.xxl}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      marginBottom: `${theme.spacings.xl}`,
     },
   }),
   { name: 'RowQuote' },
@@ -23,7 +20,6 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
     maxWidth: '80%',
     textAlign: 'center',
     margin: '0 auto',
-    padding: 0,
     fontSize: responsiveVal(14, 26),
     [theme.breakpoints.up('lg')]: {
       maxWidth: '50%',

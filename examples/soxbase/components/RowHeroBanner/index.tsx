@@ -8,10 +8,7 @@ import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      marginBottom: `${theme.spacings.xxl}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      marginBottom: `${theme.spacings.xl}`,
     },
     wrapper: {
       position: 'relative',
