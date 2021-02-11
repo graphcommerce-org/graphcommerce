@@ -146,10 +146,9 @@ defaultTheme.overrides = {
     },
     contained: {
       backgroundColor: '#fff',
-      boxShadow: 'none',
-      fontWeight: 500,
-      '&:hover': { boxShadow: defaultTheme.shadows[8] },
-      '&:focus': { boxShadow: defaultTheme.shadows[12] },
+      boxShadow: defaultTheme.shadows[1],
+      '&:hover': { boxShadow: defaultTheme.shadows[1] },
+      '&:focus': { boxShadow: defaultTheme.shadows[1] },
     },
     containedPrimary: {
       color: '#fff',
