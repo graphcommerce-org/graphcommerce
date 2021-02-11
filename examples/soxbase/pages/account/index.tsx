@@ -1,8 +1,9 @@
-import { NoSsr } from '@material-ui/core'
+import { useQuery } from '@apollo/client'
+import { Container, NoSsr } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
-import AccountDashboard from '@reachdigital/magento-customer/AccountDashboard'
-import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
+import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
+import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -15,12 +16,23 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountIndexPage() {
+  const dashboard = useQuery(AccountDashboardDocument)
+
+  const customer = dashboard.data?.customer
+
   return (
-    <OverlayUi title='Account' headerForward={<SignOutForm />} variant='left'>
+    <OverlayUi title='Account' variant='bottom' fullHeight>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
-      <NoSsr>
-        <AccountDashboard />
-      </NoSsr>
+
+      <Container maxWidth='sm'>
+        {customer && (
+          <>
+            <AccountHeader {...customer} />
+            <AccountMenu {...customer} />
+            <AccountLatestOrder {...customer.orders} />
+          </>
+        )}
+      </Container>
     </OverlayUi>
   )
 }

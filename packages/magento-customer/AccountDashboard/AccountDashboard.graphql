@@ -1,0 +1,8 @@
+query AccountDashboard {
+  customer {
+    ...AccountHeader
+    ...AccountMenu
+    ...AccountLatestOrder
+    ...AccountNewsletter
+  }
+}

@@ -1,0 +1,5 @@
+fragment TrackingLink on ShipmentTracking {
+  carrier
+  number
+  title
+}

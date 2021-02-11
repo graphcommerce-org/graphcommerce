@@ -1,0 +1,7 @@
+fragment AccountLatestOrder on Customer {
+  orders(pageSize: 1) {
+    items {
+      ...OrderCard
+    }
+  }
+}

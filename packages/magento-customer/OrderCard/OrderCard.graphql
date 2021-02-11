@@ -1,0 +1,17 @@
+fragment OrderCard on CustomerOrder {
+  status
+  number
+  shipments {
+    tracking {
+      ...TrackingLink
+    }
+  }
+  total {
+    grand_total {
+      ...Money
+    }
+  }
+  items {
+    ...OrderCardItem
+  }
+}

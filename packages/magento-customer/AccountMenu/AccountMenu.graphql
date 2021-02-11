@@ -1,0 +1,12 @@
+fragment AccountMenu on Customer {
+  reviews {
+    page_info {
+      total_pages
+    }
+  }
+  orders(pageSize: 1) {
+    page_info {
+      total_pages
+    }
+  }
+}

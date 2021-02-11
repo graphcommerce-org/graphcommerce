@@ -1,0 +1,4 @@
+fragment AccountNewsletter on Customer {
+  is_subscribed
+  email
+}
