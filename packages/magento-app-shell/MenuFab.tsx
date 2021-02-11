@@ -3,6 +3,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { Router } from 'next/router'
 import React from 'react'
@@ -41,7 +42,7 @@ const useStyles = makeStyles(
         backgroundColor: theme.palette.grey[200],
       },
       '&.Mui-selected': {
-        backgroundColor: theme.palette.grey[300],
+        backgroundColor: theme.palette.grey[200],
       },
       '&.Mui-selected:hover': {
         backgroundColor: theme.palette.grey[300],
@@ -92,6 +93,15 @@ export default function MenuFab(props: MenuFabProps) {
         variant='menu'
         classes={{ paper: classes.menu }}
       >
+        <PageLink href='/'>
+          <ListItem
+            button
+            selected={!!urlResolver && urlResolver.relative_url === 'home'}
+            classes={{ root: classes.menuItem }}
+          >
+            <ListItemText classes={{ primary: classes.menuItemText }}>Home</ListItemText>
+          </ListItem>
+        </PageLink>
         {menu?.items?.[0]?.children?.map((cat) => {
           if (!cat || !cat.id || !cat.url_path) return null
           return (
@@ -116,6 +126,15 @@ export default function MenuFab(props: MenuFabProps) {
             </CategoryLink>
           )
         })}
+        <PageLink href='/blog'>
+          <ListItem
+            button
+            selected={!!urlResolver && urlResolver.relative_url === 'blog'}
+            classes={{ root: classes.menuItem }}
+          >
+            <ListItemText classes={{ primary: classes.menuItemText }}>Blog</ListItemText>
+          </ListItem>
+        </PageLink>
       </Menu>
     </>
   )
