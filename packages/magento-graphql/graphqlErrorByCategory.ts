@@ -17,7 +17,7 @@ export type ErrorCategory =
 export default function graphqlErrorByCategory(
   category: ErrorCategory,
   error?: ApolloError,
-): [Pick<ApolloError, 'graphQLErrors' | 'networkError'> | undefined, GraphQLError | undefined] {
+): [ApolloError | undefined, GraphQLError | undefined] {
   if (!error) return [error, undefined]
 
   const newError = new ApolloError({

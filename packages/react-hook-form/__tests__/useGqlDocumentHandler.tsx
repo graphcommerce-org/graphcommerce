@@ -2,7 +2,7 @@ import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddres
 import { handlerFactory } from '../useGqlDocumentHandler'
 
 describe('useFormGqlMutation/nestedToFlat', () => {
-  const { required, defaultVariables: defaults, encode, validate } = handlerFactory(
+  const { required, defaultVariables: defaults, encode } = handlerFactory(
     TestShippingAddressFormDocument,
   )
 
@@ -27,10 +27,6 @@ describe('useFormGqlMutation/nestedToFlat', () => {
   })
   it('extracts defaults correctly', () => {
     expect(defaults).toEqual({ customerNote: 'joi' })
-  })
-  it('validates objects correctly', () => {
-    expect(validate({ address: { city: 'roeloe' } })).toBe(false)
-    expect(validate(address)).toBe(true)
   })
 
   it('encodes objects correctly', () => {
