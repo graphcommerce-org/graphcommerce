@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Typography, makeStyles, Theme, Link } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
@@ -59,23 +60,28 @@ export default function BlogListItem(props: BlogItemProps) {
 
   return (
     <div className={classes.item}>
-      <Link href={`/${url}`} color='inherit'>
-        <div className={classes.asset}>
-          {asset ? (
-            <Asset asset={asset} width={328} />
-          ) : (
-            <Typography variant='body2'>No Image</Typography>
-          )}
-        </div>
-      </Link>
+      <PageLink href={`/${url}`}>
+        <Link color='inherit'>
+          <div className={classes.asset}>
+            {asset ? (
+              <Asset asset={asset} width={328} />
+            ) : (
+              <Typography variant='body2'>No Image</Typography>
+            )}
+          </div>
+        </Link>
+      </PageLink>
       <time className={classes.date} dateTime={date}>
         {formatter.format(new Date(date))}
       </time>
-      <Link href={`/${url}`} className={classes.title} color='inherit'>
-        <Typography component='h2' variant='h4' color='inherit'>
-          {title}
-        </Typography>
-      </Link>
+
+      <PageLink href={`/${url}`}>
+        <Link href={`/${url}`} className={classes.title} color='inherit'>
+          <Typography component='h2' variant='h4' color='inherit'>
+            {title}
+          </Typography>
+        </Link>
+      </PageLink>
     </div>
   )
 }
