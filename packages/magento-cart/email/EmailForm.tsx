@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Button, Link, makeStyles, Theme } from '@material-ui/core'
-import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
+import { Button, Link } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
@@ -13,16 +12,9 @@ import React, { useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import GuestEmailForm from './GuestEmailForm'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  forgotPass: {
-    color: theme.palette.secondary.main,
-  },
-}))
-
 export default function EmailForm() {
   const [expand, setExpand] = useState(false)
   const classes = useFormStyles()
-  const localClasses = useStyles()
   const { data: cartData } = useQuery(ClientCartDocument)
   const { data: tokenData } = useQuery(CustomerTokenDocument)
   const { data: emailData } = useQuery(IsEmailAvailableDocument, {
