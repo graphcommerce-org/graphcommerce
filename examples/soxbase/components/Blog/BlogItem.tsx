@@ -2,64 +2,42 @@ import { useQuery } from '@apollo/client'
 import { Typography, makeStyles, Theme, Link } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import clsx from 'clsx'
+import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 
 export const useBlogListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
+      display: 'grid',
+      gridTemplateRows: `${responsiveVal(140, 220)} auto auto`,
+      alignContent: 'start',
       color: theme.palette.text.primary,
-      position: 'relative',
-      ...theme.typography.body1,
-    },
-    title: {
-      ...theme.typography.h3,
-      margin: `0 0 ${theme.spacings.sm}`,
+      gap: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
     },
     date: {
       display: 'inline-block',
       textDecoration: 'none',
       color: 'rgb(0, 0, 0, 0.3)',
-      marginBottom: theme.spacings.sm,
     },
-    imageContainer: {
-      display: 'block',
-      position: 'relative',
-      marginBottom: '50px',
-      height: responsiveVal(120, 200),
-      '&::before': {
-        content: '""',
+    asset: {
+      display: 'grid',
+      overflow: 'hidden',
+      height: '100%',
+      width: '100%',
+      '& img': {
         height: '100%',
         width: '100%',
-        position: 'absolute',
-        display: 'block',
-        transform: 'scale(.85, 0.95)',
-        top: 0,
-        left: 0,
+        objectFit: 'cover',
       },
-      paddingTop: 'calc(100% / 3 * 2)',
+      '& p': {
+        alignSelf: 'center',
+        justifySelf: 'center',
+      },
+      background: 'rgb(0, 0, 0, 0.08)',
     },
-    placeholder: {
-      display: 'flex',
-      textAlign: 'center',
-      height: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      ...theme.typography.body2,
-      color: 'rgb(0, 0, 0, 0.3)',
-      backgroundColor: 'rgb(0, 0, 0, 0.08)',
-      userSelect: 'none',
-    },
-    image: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-    },
-    link: {
-      textDecoration: 'underline',
+    title: {
+      ...theme.typography.h3,
     },
   }),
   { name: 'BlogListItem' },
@@ -80,20 +58,24 @@ export default function BlogListItem(props: BlogItemProps) {
   })
 
   return (
-    <Link href={`/${url}`} className={classes.item}>
-      <div className={classes.imageContainer}>
-        {asset ? (
-          <img src={asset.url} alt='' className={classes.image} />
-        ) : (
-          <div className={clsx(classes.placeholder, classes.image)}>No image</div>
-        )}
-      </div>
+    <div className={classes.item}>
+      <Link href={`/${url}`} color='inherit'>
+        <div className={classes.asset}>
+          {asset ? (
+            <Asset asset={asset} width={328} />
+          ) : (
+            <Typography variant='body2'>No Image</Typography>
+          )}
+        </div>
+      </Link>
       <time className={classes.date} dateTime={date}>
         {formatter.format(new Date(date))}
       </time>
-      <Typography component='h2' variant='h4' className={classes.title}>
-        {title}
-      </Typography>
-    </Link>
+      <Link href={`/${url}`} className={classes.title} color='inherit'>
+        <Typography component='h2' variant='h4' color='inherit'>
+          {title}
+        </Typography>
+      </Link>
+    </div>
   )
 }
