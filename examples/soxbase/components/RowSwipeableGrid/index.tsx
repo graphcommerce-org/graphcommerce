@@ -1,11 +1,10 @@
 import { Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { RowSwipeableGridFragment } from './RowSwipeableGrid.gql'
+import React, { useRef, useState } from 'react'
 import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import ProductListItemsSlider from '../ProductListItems/ProductListItemsSlider'
+import { RowSwipeableGridFragment } from './RowSwipeableGrid.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -14,10 +13,7 @@ const useStyles = makeStyles(
       gridTemplateColumns: '25% 75%',
       maxWidth: '100%',
       paddingLeft: responsiveVal(15, 40),
-      marginBottom: `${theme.spacings.lg}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      marginBottom: `${theme.spacings.xl}`,
     },
     copy: {
       display: 'grid',
@@ -45,7 +41,7 @@ const useStyles = makeStyles(
         minWidth: responsiveVal(200, 800),
       },
       '& > div > div > div, & > div > div > a > div > div': {
-        //show only images
+        // show only images
         display: 'none',
       },
     },
@@ -68,9 +64,13 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
   const classes = useStyles()
   const [exPagination, setExPagination] = useState<boolean[]>([])
   const curRef = useRef() as React.MutableRefObject<HTMLInputElement>
-  let current =
-    exPagination.findIndex((index) => index === true) != -1
-      ? exPagination.findIndex((index) => index === true) + 1
+
+  const indexesOf = (arr, item) => arr.reduce((acc, v, i) => (v === item && acc.push(i), acc), [])
+  const indexesInViewport = indexesOf(exPagination, true)
+
+  const current =
+    indexesInViewport.length !== 0
+      ? Number(indexesInViewport[indexesInViewport.length - 1]) + 1
       : String(curRef?.current?.innerHTML)
 
   return (

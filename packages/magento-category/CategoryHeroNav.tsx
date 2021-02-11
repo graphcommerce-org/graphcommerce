@@ -30,6 +30,11 @@ const useStyles = makeStyles(
       gridArea: 'placeholder',
       background: '#efefef',
       margin: `${theme.spacings.sm} 0`,
+      '& img': {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+      },
     },
     [theme.breakpoints.up('md')]: {
       wrapper: {
@@ -48,10 +53,12 @@ const useStyles = makeStyles(
   }),
   { name: 'CategoryHeroNav' },
 )
+type Props = {
+  asset?: React.ReactNode
+}
+type CategoryHeroNavProps = Props & CategoryHeroNavFragment
 
-type CategoryHeroNavProps = CategoryHeroNavFragment
-
-export default function CategoryHeroNav({ children, name }: CategoryHeroNavProps) {
+export default function CategoryHeroNav({ children, name, asset }: CategoryHeroNavProps) {
   const classes = useStyles()
   return (
     <div className={classes.wrapper}>
@@ -77,7 +84,7 @@ export default function CategoryHeroNav({ children, name }: CategoryHeroNavProps
           )
         })}
       </div>
-      <div className={classes.placeholder} />
+      <div className={classes.placeholder}>{asset}</div>
     </div>
   )
 }

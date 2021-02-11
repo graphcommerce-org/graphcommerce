@@ -26,9 +26,9 @@ export const useChipMenuStyles = makeStyles(
       borderWidth: 2,
     },
     chipSelected: {
-      border: `1px solid ${theme.palette.primary.contrastText}`,
+      border: `1px solid ${theme.palette.text.primary}`,
       background: theme.palette.grey['100'],
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
       '&:hover': {
         background: `${theme.palette.background.default} !important`,
         borderColor: theme.palette.grey['600'],
@@ -40,7 +40,7 @@ export const useChipMenuStyles = makeStyles(
         background: `${theme.palette.grey['100']} !important`,
       },
       '& svg': {
-        color: ` ${theme.palette.primary.contrastText} !important`,
+        color: ` ${theme.palette.text.primary} !important`,
       },
     },
     menuPaper: {
@@ -85,7 +85,7 @@ export const useChipMenuStyles = makeStyles(
     },
     labelRight: {
       ...theme.typography.body2,
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
     },
     actions: {},
   }),

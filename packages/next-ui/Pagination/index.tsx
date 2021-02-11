@@ -6,12 +6,15 @@ import PageLink from '../PageTransition/PageLink'
 const useStyles = makeStyles((theme: Theme) => ({
   pagination: {
     gridArea: 'pagination',
-    margin: `${theme.spacings.lg} auto`,
+    justifyContent: 'center',
     display: 'grid',
     gap: 8,
     gridAutoFlow: 'column',
-    width: 'min-content',
     alignItems: 'center',
+    marginBottom: theme.spacings.xxl,
+    [theme.breakpoints.up('md')]: {
+      marginBottom: theme.spacings.lg,
+    },
     ...theme.typography.body1,
     '& > *': {
       whiteSpace: 'nowrap',

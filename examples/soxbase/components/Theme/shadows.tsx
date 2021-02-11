@@ -2,7 +2,7 @@ import { Shadows } from '@material-ui/core/styles/shadows'
 
 const shadows: Shadows = [
   /*  0 */ 'none',
-  /*  1 */ `0 1px 4px 0 rgba(0,0,0,0.07), 0 4px 4px 0 rgba(0,0,0,0.09)`,
+  /*  1 */ `0 1px 4px 0 rgba(0,0,0,0.07), 0 2px 6px -1px rgba(0,0,0,0.17)`,
   /*  2 */ `0 1px 4px 0 rgba(0,0,0,0.07), 0 4px 6px 0 rgba(0,0,0,0.09)`,
   /*  3 */ `0 1px 4px 0 rgba(0,0,0,0.07), 0 4px 8px 0 rgba(0,0,0,0.09)`,
   /*  4 */ `0 1px 4px 0 rgba(0,0,0,0.08), 0 4px 10px 0 rgba(0,0,0,0.10)`,

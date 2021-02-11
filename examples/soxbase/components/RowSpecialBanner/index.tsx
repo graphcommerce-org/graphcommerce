@@ -1,18 +1,15 @@
-import { Container, Theme } from '@material-ui/core'
+import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import PageLinkUrl from '@reachdigital/next-ui/PageTransition/PageLink'
+import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import Link from '../PageLink/Link'
+import Asset from '../Asset'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      marginBottom: `${theme.spacings.lg}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      marginBottom: `${theme.spacings.xl}`,
     },
     wrapper: {
       display: 'grid',
@@ -28,10 +25,14 @@ const useStyles = makeStyles(
     asset: {
       height: '100%',
       width: '100%',
-      objectFit: 'cover',
+      '& img': {
+        height: '100%',
+        width: '100%',
+        objectFit: 'cover',
+      },
     },
     copy: {
-      color: '#000',
+      color: theme.palette.text.primary,
       display: 'grid',
       alignContent: 'center',
       [theme.breakpoints.up('md')]: {
@@ -45,6 +46,13 @@ const useStyles = makeStyles(
       textTransform: 'uppercase',
       color: 'rgba(0,0,0,0.7)',
     },
+    url: {
+      ...theme.typography.body2,
+      [theme.breakpoints.up('md')]: {
+        ...theme.typography.h4,
+      },
+      color: theme.palette.text.primary,
+    },
   }),
   { name: 'RowSpecialBanner' },
 )
@@ -53,29 +61,26 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
   h2: {
     textTransform: 'uppercase',
     maxWidth: '80%',
-    color: '#000',
-    WebkitTextStroke: '0.9px #000',
+    color: theme.palette.text.primary,
+    WebkitTextStroke: `0.9px ${theme.palette.text.primary}`,
     fontSize: responsiveVal(18, 50),
     marginTop: responsiveVal(8, 20),
     marginBottom: responsiveVal(18, 20),
     '& strong': {
       color: 'transparent',
-      WebkitTextStroke: '0.9px #000',
+      WebkitTextStroke: `0.9px ${theme.palette.text.primary}`,
     },
     [theme.breakpoints.up('md')]: {
       fontSize: responsiveVal(18, 60),
       maxWidth: '100%',
-      WebkitTextStroke: '1.2px #000',
+      WebkitTextStroke: `1.2x ${theme.palette.text.primary}`,
     },
-  },
-  paragraph: {
-    color: 'red',
   },
 }))
 
-type RowSpecialBanner = RowSpecialBannerFragment
+type RowSpecialBannerProps = RowSpecialBannerFragment
 
-export default function RowSpecialBanner(props: RowSpecialBanner) {
+export default function RowSpecialBanner(props: RowSpecialBannerProps) {
   const { copy, asset, topic, pageLinks } = props
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
@@ -83,16 +88,23 @@ export default function RowSpecialBanner(props: RowSpecialBanner) {
   return (
     <Container maxWidth={false} className={classes.container}>
       <div className={classes.wrapper}>
-        {asset.mimeType === 'video/mp4' ? (
-          <video src={asset.url} autoPlay muted loop playsInline className={classes.asset} />
-        ) : (
-          <img src={asset.url} className={classes.asset} alt='' />
-        )}
+        <div className={classes.asset}>
+          <Asset asset={asset} width={328} />
+        </div>
+
         <div className={classes.copy}>
-          {topic ? <span className={classes.topic}>{topic}</span> : false}
+          {topic && (
+            <Typography variant='body2' className={classes.topic}>
+              {topic}
+            </Typography>
+          )}
           <RichText classes={richTextOneClasses} {...copy} />
           {pageLinks.map((pageLink) => (
-            <Link key={pageLink.url} {...pageLink} />
+            <NextUiPageLink href={pageLink.url} key={pageLink.url}>
+              <a href={pageLink.url} className={classes.url}>
+                {pageLink.title}
+              </a>
+            </NextUiPageLink>
           ))}
         </div>
       </div>

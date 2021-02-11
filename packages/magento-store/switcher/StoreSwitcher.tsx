@@ -6,6 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
   makeStyles,
+  Theme,
 } from '@material-ui/core'
 import * as Types from '@reachdigital/magento-graphql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -17,14 +18,14 @@ import { StoreLocaleFragment } from './StoreLocale.gql'
 import countryToFlag from './countryToFlag'
 
 const useStyles = makeStyles(
-  () => ({
+  (theme: Theme) => ({
     list: {},
     listItem: {},
     groupIcon: {
       fontSize: 29,
       lineHeight: 1,
       minWidth: 40,
-      color: '#000',
+      color: theme.palette.text.primary,
     },
     groupText: {},
     storeText: {

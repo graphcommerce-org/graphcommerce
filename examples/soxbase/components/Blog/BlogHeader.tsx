@@ -1,4 +1,5 @@
 import { makeStyles, Container, Theme, Typography } from '@material-ui/core'
+import Asset from '../Asset'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -31,7 +32,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     zIndex: -1,
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    '& img': {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    },
     [theme.breakpoints.up('md')]: {
       height: '100%',
     },
@@ -45,7 +50,12 @@ export default function BlogHeader(props) {
     <Container className={classes.root}>
       <div className={classes.header}>
         <Typography variant='body1' className={classes.copy} />
-        {asset?.url && <img src={asset.url} alt='' className={classes.asset} />}
+
+        {asset?.url && (
+          <div className={classes.asset}>
+            <Asset asset={asset} width={328} />
+          </div>
+        )}
       </div>
     </Container>
   )

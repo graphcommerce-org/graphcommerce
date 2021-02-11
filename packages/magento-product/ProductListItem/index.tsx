@@ -19,7 +19,7 @@ export const useProductListItemStyles = makeStyles(
     title: {
       display: 'inline',
       ...theme.typography.h6,
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
       [theme.breakpoints.down('xs')]: {
         whiteSpace: 'normal',
       },
@@ -54,7 +54,7 @@ export const useProductListItemStyles = makeStyles(
       gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
       gridTemplateRows: 'repeat(2, minmax(0, 1fr))',
       padding: responsiveVal(8, 12),
-      color: theme.palette.primary.contrastText,
+      color: theme.palette.text.primary,
     },
     cellAlignRight: {
       justifySelf: 'end',
@@ -103,7 +103,7 @@ export const useProductListItemStyles = makeStyles(
       textDecoration: 'underline',
     },
     discount: {
-      background: '#000',
+      background: theme.palette.text.primary,
       padding: '5px 6px 4px 6px',
       color: '#fff',
       display: 'inline',

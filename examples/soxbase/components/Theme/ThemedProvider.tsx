@@ -36,6 +36,10 @@ export const defaultTheme = createMuiTheme({
       main: '#01D26A',
       mutedText: '#b8b8b8',
     },
+    text: {
+      primary: '#000',
+      secondary: '#000',
+    },
   },
   breakpoints: {
     values: {
@@ -98,8 +102,8 @@ export const defaultTheme = createMuiTheme({
     sm: responsiveVal(10, 30),
     md: responsiveVal(16, 50),
     lg: responsiveVal(24, 80),
-    xl: responsiveVal(48, 160),
-    xxl: responsiveVal(104, 250),
+    xl: responsiveVal(80, 160),
+    xxl: responsiveVal(100, 220),
   },
   page: {
     horizontal: responsiveVal(15, 40),
@@ -142,10 +146,9 @@ defaultTheme.overrides = {
     },
     contained: {
       backgroundColor: '#fff',
-      boxShadow: 'none',
-      fontWeight: 500,
-      '&:hover': { boxShadow: defaultTheme.shadows[8] },
-      '&:focus': { boxShadow: defaultTheme.shadows[12] },
+      boxShadow: defaultTheme.shadows[1],
+      '&:hover': { boxShadow: defaultTheme.shadows[1] },
+      '&:focus': { boxShadow: defaultTheme.shadows[1] },
     },
     containedPrimary: {
       color: '#fff',
