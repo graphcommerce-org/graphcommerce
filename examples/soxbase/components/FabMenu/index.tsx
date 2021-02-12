@@ -70,10 +70,10 @@ export default function FabMenu(props: FabMenuProps) {
           className={classes.cartFab}
           icon={
             <img
-              src='/icons/shopping_bag.svg'
+              src='/icons/desktop_shopping_bag.svg'
               alt='shopping bag'
-              width={20}
-              height={20}
+              width={32}
+              height={32}
               loading='eager'
             />
           }

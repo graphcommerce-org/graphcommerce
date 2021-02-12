@@ -168,6 +168,12 @@ defaultTheme.overrides = {
       borderRadius: 0,
     },
   },
+  MuiIconButton: {
+    root: {
+      height: 48,
+      width: 48,
+    },
+  },
   MuiFab: {
     root: {
       backgroundColor: '#fff',

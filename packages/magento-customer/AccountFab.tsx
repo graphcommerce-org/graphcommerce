@@ -20,7 +20,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? '/account/signin' : '/account'}>
-      <IconButton aria-label='Account' color='inherit'>
+      <IconButton aria-label='Account' color='inherit' size='medium'>
         <Badge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
