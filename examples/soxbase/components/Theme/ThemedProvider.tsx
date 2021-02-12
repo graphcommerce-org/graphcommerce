@@ -83,13 +83,13 @@ export const defaultTheme = createMuiTheme({
       letterSpacing: '-0.0375em',
     },
     h5: {
-      fontSize: responsiveVal(15, 22),
+      fontSize: responsiveVal(14, 22),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h6: {
-      fontSize: responsiveVal(14, 18),
+      fontSize: responsiveVal(13, 18),
       fontWeight: 500,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
