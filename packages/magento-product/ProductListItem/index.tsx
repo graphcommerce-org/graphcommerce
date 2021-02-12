@@ -13,33 +13,25 @@ export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
       position: 'relative',
-      ...theme.typography.body1,
+      ...theme.typography.h6,
+      fontWeight: 'inherit',
       height: '100%',
     },
     title: {
-      display: 'inline',
       ...theme.typography.h6,
+      display: 'inline',
       color: theme.palette.text.primary,
-      [theme.breakpoints.down('xs')]: {
-        whiteSpace: 'normal',
-      },
+      overflowWrap: 'break-word',
+      wordBreak: 'break-all',
+      maxWidth: '100%',
+      marginRight: responsiveVal(3, 5),
     },
     itemTitleContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginTop: 14,
-      '& > div:nth-of-type(1)': {
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-      },
+      display: 'grid',
+      gridTemplateColumns: 'auto min-content',
+      gap: responsiveVal(3, 6),
+      margin: `${responsiveVal(6, 16)} 0`,
       marginBottom: responsiveVal(4, 8),
-      [theme.breakpoints.down('xs')]: {
-        alignItems: 'flex-end',
-        '& > div:nth-of-type(1)': {
-          width: '100%',
-        },
-      },
     },
     imageContainerOverlayGrid: {
       display: 'grid',
@@ -75,7 +67,7 @@ export const useProductListItemStyles = makeStyles(
       height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
-      background: 'rgba(0, 0, 0, 0.04)', // thema specifiek
+      background: 'rgba(0, 0, 0, 0.03)', // thema specifiek
       borderRadius: 2,
     }),
     placeholder: {
@@ -84,8 +76,6 @@ export const useProductListItemStyles = makeStyles(
       height: '100%',
       justifyContent: 'center',
       alignItems: 'center',
-      ...theme.typography.body2,
-      backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.default,
       fontWeight: 600,
       userSelect: 'none',
@@ -97,7 +87,6 @@ export const useProductListItemStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
-      mixBlendMode: 'multiply', // thema specifiek
     },
     link: {
       textDecoration: 'underline',
@@ -147,14 +136,16 @@ export default function ProductListItem(props: ProductListItemProps) {
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
-              <PictureResponsiveNext
-                alt={small_image.label ?? ''}
-                width={320}
-                height={320}
-                src={small_image.url ?? ''}
-                type='image/jpeg'
-                className={classes.image}
-              />
+              <>
+                <PictureResponsiveNext
+                  alt={small_image.label ?? ''}
+                  width={328}
+                  height={328}
+                  src={small_image.url ?? ''}
+                  type='image/jpeg'
+                  className={classes.image}
+                />
+              </>
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}

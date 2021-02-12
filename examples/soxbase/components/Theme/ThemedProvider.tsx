@@ -83,13 +83,13 @@ export const defaultTheme = createMuiTheme({
       letterSpacing: '-0.0375em',
     },
     h5: {
-      fontSize: responsiveVal(15, 22),
+      fontSize: responsiveVal(14, 22),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
     },
     h6: {
-      fontSize: responsiveVal(14, 18),
+      fontSize: responsiveVal(13, 18),
       fontWeight: 500,
       letterSpacing: '-0.0375em',
       lineHeight: 1.55,
@@ -106,8 +106,8 @@ export const defaultTheme = createMuiTheme({
     xxl: responsiveVal(100, 220),
   },
   page: {
-    horizontal: responsiveVal(15, 40),
-    vertical: responsiveVal(15, 40),
+    horizontal: responsiveVal(15, 30),
+    vertical: responsiveVal(15, 30),
     headerInnerHeight: {
       xs: responsiveVal(21, 33),
       sm: `48px`,
@@ -166,6 +166,12 @@ defaultTheme.overrides = {
     outlined: {
       // todo: Button isn't rounded on all places, but should be on homepage?
       borderRadius: 0,
+    },
+  },
+  MuiIconButton: {
+    root: {
+      height: 48,
+      width: 48,
     },
   },
   MuiFab: {

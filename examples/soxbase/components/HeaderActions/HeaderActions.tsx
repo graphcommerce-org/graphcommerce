@@ -1,6 +1,7 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { IconButton, makeStyles, Theme } from '@material-ui/core'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import SearchButton from '@reachdigital/magento-search/SearchButton'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 
@@ -9,18 +10,17 @@ const useStyles = makeStyles(
     actions: {
       '& > *': {
         pointerEvents: 'all',
-        // marginLeft: ,
       },
       display: 'none',
       [theme.breakpoints.up('md')]: {
         alignItems: 'center',
         display: 'grid',
         gridAutoFlow: 'column',
-        columnGap: responsiveVal(8, 16),
+        columnGap: responsiveVal(4, 16),
       },
     },
     spacer: {
-      width: 44,
+      width: 48,
     },
   }),
   { name: 'HeaderActions' },
@@ -31,8 +31,26 @@ export default function HeaderActions() {
   return (
     <div className={classes.actions}>
       <SearchButton />
+      <PageLink href='/faq/index'>
+        <IconButton aria-label='Account' color='inherit' size='medium'>
+          <img
+            src='/icons/desktop_customer_service.svg'
+            alt='account'
+            width={32}
+            height={32}
+            loading='eager'
+          />
+        </IconButton>
+      </PageLink>
+
       <CustomerFab>
-        <img src='/icons/account.svg' alt='account' width={20} height={20} loading='eager' />
+        <img
+          src='/icons/desktop_account.svg'
+          alt='account'
+          width={32}
+          height={32}
+          loading='eager'
+        />
       </CustomerFab>
       <div className={classes.spacer} />
     </div>

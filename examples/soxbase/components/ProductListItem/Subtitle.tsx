@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 
 type SubtitleProps = {
   value: string
@@ -8,13 +9,9 @@ export const useStyles = makeStyles(
   (theme: Theme) => ({
     subTitle: {
       textTransform: 'uppercase',
-      fontSize: 13,
+      fontSize: responsiveVal(11, 13),
       fontWeight: 400,
-      marginLeft: 8,
-      [theme.breakpoints.down('xs')]: {
-        display: 'block',
-        marginLeft: 0,
-      },
+      whiteSpace: 'nowrap',
     },
   }),
   { name: 'Subtitle' },
