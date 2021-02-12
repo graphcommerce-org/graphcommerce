@@ -12,12 +12,6 @@ const useStyles = makeStyles(
       marginRight: 8,
       ...theme.typography.caption,
     },
-    price: {
-      [theme.breakpoints.down('xs')]: {
-        position: 'absolute',
-        right: 0,
-      },
-    },
   }),
   { name: 'ProductListPrice' },
 )
