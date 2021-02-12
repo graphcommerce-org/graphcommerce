@@ -106,8 +106,8 @@ export const defaultTheme = createMuiTheme({
     xxl: responsiveVal(100, 220),
   },
   page: {
-    horizontal: responsiveVal(15, 40),
-    vertical: responsiveVal(15, 40),
+    horizontal: responsiveVal(15, 30),
+    vertical: responsiveVal(15, 30),
     headerInnerHeight: {
       xs: responsiveVal(21, 33),
       sm: `48px`,
