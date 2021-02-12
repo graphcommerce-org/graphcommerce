@@ -148,8 +148,8 @@ export default function ProductListItem(props: ProductListItemProps) {
               <>
                 <PictureResponsiveNext
                   alt={small_image.label ?? ''}
-                  width={320}
-                  height={320}
+                  width={328}
+                  height={328}
                   src={small_image.url ?? ''}
                   type='image/jpeg'
                   className={classes.image}
