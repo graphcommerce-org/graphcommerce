@@ -13,8 +13,8 @@ import { FooterQuery } from './Footer.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     borderTop: '1px solid rgba(0,0,0,0.08)',
-    paddingTop: `${theme.spacings.xs}`,
-    paddingBottom: `${theme.spacings.xs}`,
+    padding: theme.page.vertical,
+    paddingTop: theme.spacings.md,
     display: 'grid',
     gridAutoRows: '1fr',
     gap: `${theme.spacings.xs}`,
@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
     [theme.breakpoints.up('md')]: {
-      paddingTop: `${theme.spacings.md}`,
-      paddingBottom: `${theme.spacings.md}`,
       gridTemplateColumns: 'auto auto',
       gridTemplateRows: 'auto',
       justifyContent: 'space-between',
