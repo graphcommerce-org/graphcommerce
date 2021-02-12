@@ -75,7 +75,7 @@ export const useProductListItemStyles = makeStyles(
       height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
-      background: 'rgba(0, 0, 0, 0.04)', // thema specifiek
+      background: 'rgba(0, 0, 0, 0.03)', // thema specifiek
       borderRadius: 2,
     }),
     placeholder: {
@@ -85,7 +85,6 @@ export const useProductListItemStyles = makeStyles(
       justifyContent: 'center',
       alignItems: 'center',
       ...theme.typography.body2,
-      backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.default,
       fontWeight: 600,
       userSelect: 'none',
@@ -97,7 +96,6 @@ export const useProductListItemStyles = makeStyles(
       position: 'absolute',
       top: 0,
       left: 0,
-      mixBlendMode: 'multiply', // thema specifiek
     },
     link: {
       textDecoration: 'underline',
@@ -147,14 +145,16 @@ export default function ProductListItem(props: ProductListItemProps) {
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
-              <PictureResponsiveNext
-                alt={small_image.label ?? ''}
-                width={320}
-                height={320}
-                src={small_image.url ?? ''}
-                type='image/jpeg'
-                className={classes.image}
-              />
+              <>
+                <PictureResponsiveNext
+                  alt={small_image.label ?? ''}
+                  width={320}
+                  height={320}
+                  src={small_image.url ?? ''}
+                  type='image/jpeg'
+                  className={classes.image}
+                />
+              </>
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
