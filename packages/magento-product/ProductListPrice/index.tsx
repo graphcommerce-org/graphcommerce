@@ -21,7 +21,7 @@ export default function ProductListPrice(props: ProductListPriceFragment) {
   const classes = useStyles(props)
 
   return (
-    <div className={classes.price}>
+    <div>
       {regular_price.value !== final_price.value && (
         <div className={classes.discount}>
           <Money {...regular_price} />
