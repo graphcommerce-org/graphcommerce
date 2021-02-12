@@ -13,33 +13,25 @@ export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({
     item: {
       position: 'relative',
-      ...theme.typography.body1,
+      ...theme.typography.h6,
+      fontWeight: 'inherit',
       height: '100%',
     },
     title: {
-      display: 'inline',
       ...theme.typography.h6,
+      display: 'inline',
       color: theme.palette.text.primary,
-      [theme.breakpoints.down('xs')]: {
-        whiteSpace: 'normal',
-      },
+      overflowWrap: 'break-word',
+      wordBreak: 'break-all',
+      maxWidth: '100%',
+      marginRight: responsiveVal(3, 5),
     },
     itemTitleContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      marginTop: 14,
-      '& > div:nth-of-type(1)': {
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-      },
+      display: 'grid',
+      gridTemplateColumns: 'auto min-content',
+      gap: responsiveVal(3, 6),
+      margin: `${responsiveVal(6, 16)} 0`,
       marginBottom: responsiveVal(4, 8),
-      [theme.breakpoints.down('xs')]: {
-        alignItems: 'flex-end',
-        '& > div:nth-of-type(1)': {
-          width: '100%',
-        },
-      },
     },
     imageContainerOverlayGrid: {
       display: 'grid',
@@ -84,7 +76,6 @@ export const useProductListItemStyles = makeStyles(
       height: '100%',
       justifyContent: 'center',
       alignItems: 'center',
-      ...theme.typography.body2,
       color: theme.palette.background.default,
       fontWeight: 600,
       userSelect: 'none',
