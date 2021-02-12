@@ -17,9 +17,17 @@ const useStyles = makeStyles(
       gridArea: 'categories',
       display: 'grid',
       gridRowGap: `${theme.spacings.lg}`,
-      gridColumnGap: `${theme.spacings.md}`,
+      gridColumnGap: `${theme.spacings.sm}`,
       gridTemplateColumns: '1fr 1fr',
-      margin: `0`,
+      height: 'min-content',
+      alignSelf: 'center',
+      width: '100%',
+      maxWidth: '80vw',
+      justifySelf: 'center',
+      [theme.breakpoints.up('md')]: {
+        gridRowGap: `${theme.spacings.md}`,
+        maxWidth: '100vw',
+      },
     },
     title: {
       gridColumn: '1/3',
@@ -30,6 +38,7 @@ const useStyles = makeStyles(
       gridArea: 'placeholder',
       background: '#efefef',
       margin: `${theme.spacings.sm} 0`,
+      minHeight: '20vh',
       '& img': {
         width: '100%',
         height: '100%',
@@ -39,12 +48,9 @@ const useStyles = makeStyles(
     [theme.breakpoints.up('md')]: {
       wrapper: {
         paddingTop: '0',
-        gridTemplateColumns: '0.8fr 3fr 0.8fr 5fr',
+        gridTemplateColumns: '0.8fr 3fr 0.8fr 8fr',
         gridTemplateAreas: `". categories . placeholder"`,
         gridTemplateRows: 'auto',
-      },
-      categories: {
-        margin: `${theme.spacings.xl} 0`,
       },
       title: {
         textAlign: 'left',
