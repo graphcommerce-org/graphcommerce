@@ -1,4 +1,5 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography, Theme, Grid } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -18,7 +19,6 @@ import {
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import ProductWeight from '@reachdigital/magento-product/ProductWeight'
@@ -36,9 +36,28 @@ import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
+import ProductPageGallery from '../../components/ProductPageGallery'
 import RelatedProducts from '../../components/RelatedProducts'
-
 import apolloClient from '../../lib/apolloClient'
+
+export const useStyles = makeStyles((theme: Theme) => ({
+  hero: {
+    marginBottom: theme.spacings.lg,
+    display: 'grid',
+    gridTemplateColumns: '2fr 1.5fr',
+    paddingLeft: 0,
+    background: 'rgba(0,0,0,0.03)',
+  },
+  form: {
+    padding: theme.spacings.lg,
+    display: 'grid',
+    alignContent: 'center',
+    gap: theme.spacings.sm,
+  },
+  title: {
+    ...theme.typography.h2,
+  },
+}))
 
 type Props = ProductPageQuery &
   ProductPageAdditionalQuery &
@@ -60,6 +79,7 @@ function ProductSimple({
   simpleProducts,
   pages,
 }: Props) {
+  const classes = useStyles()
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[products?.items?.length - 1]
@@ -79,15 +99,21 @@ function ProductSimple({
         logo={<Logo />}
         actions={<HeaderActions />}
       >
-        <Container>
-          <Typography variant='h2'>{product.name ?? ''}</Typography>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-          <ProductWeight weight={weight} />
-          <ProductPageDescription {...product} />
-          <ProductPageGallery {...product} />
+        <Container maxWidth={false}>
+          <div className={classes.hero}>
+            <ProductPageGallery {...product} />
+            <div className={classes.form}>
+              <Typography variant='h2' className={classes.title}>
+                {product.name ?? ''}
+              </Typography>
+              <AddToCartButton
+                mutation={ProductAddToCartDocument}
+                variables={{ sku: product.sku ?? '', quantity: 1 }}
+              />
+              <ProductWeight weight={weight} />
+              <ProductPageDescription {...product} />
+            </div>
+          </div>
 
           {pages?.[0] && <Page {...pages?.[0]} />}
         </Container>
