@@ -1,4 +1,5 @@
 import { Container, Typography } from '@material-ui/core'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
@@ -24,14 +25,18 @@ import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
+import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import HeaderActions from '../../components/HeaderActions/HeaderActions'
+import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
+import RelatedProducts from '../../components/RelatedProducts'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductPageQuery & ProductPageAdditionalQuery & PageByUrlQuery & ProductSimpleQuery
@@ -39,11 +44,20 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductSimple({ products, productAdditionals, simpleProducts, pages }: Props) {
+function ProductSimple({
+  products,
+  productAdditionals,
+  menu,
+  resolveUrl,
+  simpleProducts,
+  pages,
+}: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
   const weight = simpleProducts?.items?.[0]?.weight
+  const upsells = productAdditionals?.items?.[0]?.upsell_products
+  const related = productAdditionals?.items?.[0]?.related_products
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
@@ -51,11 +65,11 @@ function ProductSimple({ products, productAdditionals, simpleProducts, pages }: 
   return (
     <>
       <ProductPageMeta {...product} />
-      <OverlayUi
+      <FullPageUi
         title={product.name ?? ''}
-        backFallbackHref={`/${category?.url_path}`}
-        backFallbackTitle={category?.name}
-        variant='bottom'
+        menu={<MenuTabs menu={menu} urlResolver={resolveUrl} />}
+        logo={<Logo />}
+        actions={<HeaderActions />}
       >
         <Container>
           <AddToCartButton
@@ -66,30 +80,25 @@ function ProductSimple({ products, productAdditionals, simpleProducts, pages }: 
           <ProductPageDescription {...product} />
           <ProductPageGallery {...product} />
           {pages?.[0] && <Page {...pages?.[0]} />}
-
-          {productAdditionals?.items?.[0]?.upsell_products ? (
-            <>
-              {/* todo: create a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Upsells</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
-            </>
-          ) : null}
-          {productAdditionals?.items?.[0]?.related_products ? (
-            <>
-              {/* todo: reate a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Related</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
-            </>
-          ) : null}
         </Container>
-      </OverlayUi>
+        {upsells && upsells.length > 0 ? (
+          <>
+            <RelatedProducts title='Looking for a better fit?' items={upsells} />
+          </>
+        ) : null}
+        {related && related.length > 0 ? (
+          <>
+            <RelatedProducts title={`More like this: ${category?.name}`} items={related} />
+          </>
+        ) : null}
+      </FullPageUi>
     </>
   )
 }
 
 ProductSimple.Layout = PageLayout
 
-registerRouteUi('/product/[url]', OverlayUi)
+registerRouteUi('/product/[url]', FullPageUi)
 
 export default ProductSimple
 
