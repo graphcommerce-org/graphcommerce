@@ -1,7 +1,7 @@
 import { Container, Typography } from '@material-ui/core'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
   ProductSimpleDocument,
@@ -22,15 +22,16 @@ import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import ProductWeight from '@reachdigital/magento-product/ProductWeight'
-import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import Footer from '../../components/Footer'
+import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
@@ -39,7 +40,13 @@ import ProductListItems from '../../components/ProductListItems/ProductListItems
 import RelatedProducts from '../../components/RelatedProducts'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = ProductPageQuery & ProductPageAdditionalQuery & PageByUrlQuery & ProductSimpleQuery
+type Props = ProductPageQuery &
+  ProductPageAdditionalQuery &
+  PageByUrlQuery &
+  ResolveUrlQuery &
+  ProductSimpleQuery &
+  PageLayoutQuery &
+  FooterQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -48,7 +55,8 @@ function ProductSimple({
   products,
   productAdditionals,
   menu,
-  resolveUrl,
+  urlResolver,
+  footer,
   simpleProducts,
   pages,
 }: Props) {
@@ -67,7 +75,7 @@ function ProductSimple({
       <ProductPageMeta {...product} />
       <FullPageUi
         title={product.name ?? ''}
-        menu={<MenuTabs menu={menu} urlResolver={resolveUrl} />}
+        menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
         logo={<Logo />}
         actions={<HeaderActions />}
       >
@@ -91,6 +99,7 @@ function ProductSimple({
             <RelatedProducts title={`More like this: ${category?.name}`} items={related} />
           </>
         ) : null}
+        <Footer footer={footer} />
       </FullPageUi>
     </>
   )
@@ -139,6 +148,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const pageLayout = staticClient.query({
     query: PageLayoutDocument,
   })
+  const footer = staticClient.query({ query: FooterDocument })
   const resolveUrl = staticClient.query({
     query: ResolveUrlDocument,
     variables: {
@@ -150,6 +160,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await resolveUrl).data,
       ...(await pageLayout).data,
+      ...(await footer).data,
       ...(await productPage).data,
       ...(await page).data,
       ...(await simpleProduct).data,
