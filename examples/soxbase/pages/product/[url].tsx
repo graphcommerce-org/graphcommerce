@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -62,7 +62,7 @@ function ProductSimple({
 }: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
-  const product = products?.items?.[0]
+  const product = products?.items?.[products?.items?.length - 1]
   const weight = simpleProducts?.items?.[0]?.weight
   const upsells = productAdditionals?.items?.[0]?.upsell_products
   const related = productAdditionals?.items?.[0]?.related_products
@@ -80,6 +80,7 @@ function ProductSimple({
         actions={<HeaderActions />}
       >
         <Container>
+          <Typography variant='h2'>{product.name ?? ''}</Typography>
           <AddToCartButton
             mutation={ProductAddToCartDocument}
             variables={{ sku: product.sku ?? '', quantity: 1 }}
@@ -87,6 +88,7 @@ function ProductSimple({
           <ProductWeight weight={weight} />
           <ProductPageDescription {...product} />
           <ProductPageGallery {...product} />
+
           {pages?.[0] && <Page {...pages?.[0]} />}
         </Container>
         {upsells && upsells.length > 0 ? (
