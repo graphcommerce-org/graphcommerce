@@ -27,6 +27,7 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import FabMenu from '../../../components/FabMenu'
 import Footer from '../../../components/Footer'
 import { FooterDocument, FooterQuery } from '../../../components/Footer/Footer.gql'
 import HeaderActions from '../../../components/HeaderActions/HeaderActions'
@@ -85,6 +86,7 @@ function ProductGrouped({
         logo={<Logo />}
         actions={<HeaderActions />}
       >
+        <FabMenu menu={menu} urlResolver={urlResolver} />
         <Container>
           <ProductWeight weight={weight} />
           <ProductPageDescription {...product} />

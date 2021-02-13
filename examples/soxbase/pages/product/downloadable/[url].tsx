@@ -27,6 +27,7 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import FabMenu from '../../../components/FabMenu'
 import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
 import ProductListItems from '../../../components/ProductListItems/ProductListItems'
@@ -61,6 +62,7 @@ function ProductPage({ products, productAdditionals, downloadableProducts, pages
         backFallbackTitle={category?.name}
         variant='bottom'
       >
+        <FabMenu menu={menu} urlResolver={urlResolver} />
         <Container>
           <AddToCartButton
             mutation={ProductAddToCartDocument}
