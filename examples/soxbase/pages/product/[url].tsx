@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -36,8 +36,8 @@ import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
-import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import RelatedProducts from '../../components/RelatedProducts'
+
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductPageQuery &
@@ -90,14 +90,10 @@ function ProductSimple({
           {pages?.[0] && <Page {...pages?.[0]} />}
         </Container>
         {upsells && upsells.length > 0 ? (
-          <>
-            <RelatedProducts title='Looking for a better fit?' items={upsells} />
-          </>
+          <RelatedProducts title='Looking for a better fit?' items={upsells} />
         ) : null}
         {related && related.length > 0 ? (
-          <>
-            <RelatedProducts title={`More like this: ${category?.name}`} items={related} />
-          </>
+          <RelatedProducts title={`More like this: ${category?.name}`} items={related} />
         ) : null}
         <Footer footer={footer} />
       </FullPageUi>
