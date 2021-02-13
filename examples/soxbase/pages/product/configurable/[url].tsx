@@ -1,6 +1,7 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
@@ -20,34 +21,49 @@ import ProductPageDescription from '@reachdigital/magento-product/ProductPageDes
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
+import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
+import Footer from '../../../components/Footer'
+import { FooterDocument, FooterQuery } from '../../../components/Footer/Footer.gql'
+import HeaderActions from '../../../components/HeaderActions/HeaderActions'
+import Logo from '../../../components/Logo/Logo'
 import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
-import ProductListItems from '../../../components/ProductListItems/ProductListItems'
+import RelatedProducts from '../../../components/RelatedProducts'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = ProductPageQuery &
   ProductPageAdditionalQuery &
   PageByUrlQuery &
-  ProductConfigurableQuery
+  ResolveUrlQuery &
+  ProductConfigurableQuery &
+  PageLayoutQuery &
+  FooterQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductPage({ products, productAdditionals, configurableProducts, pages }: Props) {
+function ProductPage({
+  products,
+  productAdditionals,
+  configurableProducts,
+  pages,
+  menu,
+  urlResolver,
+  footer,
+}: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
   const configurableProduct = configurableProducts?.items?.[0]
-
-  // console.log(productAdditionals?.items?.[0]?.upsell_products)
+  const upsells = productAdditionals?.items?.[0]?.upsell_products
+  const related = productAdditionals?.items?.[0]?.related_products
 
   if (!product || !configurableProduct?.sku)
     return <NextError statusCode={404} title='Product not found' />
@@ -57,11 +73,11 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
     <>
       <ConfigurableContextProvider {...configurableProduct} sku={configurableProduct.sku}>
         <ProductPageMeta {...product} />
-        <OverlayUi
-          variant='bottom'
+        <FullPageUi
           title={product.name ?? ''}
-          backFallbackHref={`/${category?.url_path}`}
-          backFallbackTitle={category?.name}
+          menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+          logo={<Logo />}
+          actions={<HeaderActions />}
         >
           <Container>
             <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
@@ -70,22 +86,16 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
             <ProductPageGallery {...product} />
             {pages?.[0] && <Page {...pages?.[0]} />}
 
-            {productAdditionals?.items?.[0]?.upsell_products ? (
-              <>
-                {/* todo: create a component where we can compose in the ProductListItems */}
-                <Typography variant='h2'>Upsells</Typography>
-                <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
-              </>
+            {upsells && upsells.length > 0 ? (
+              <RelatedProducts title='Looking for a better fit?' items={upsells} />
             ) : null}
-            {productAdditionals?.items?.[0]?.related_products ? (
-              <>
-                {/* todo: reate a component where we can compose in the ProductListItems */}
-                <Typography variant='h2'>Related</Typography>
-                <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
-              </>
+            {related && related.length > 0 ? (
+              <RelatedProducts title={`More like this: ${category?.name}`} items={related} />
             ) : null}
           </Container>
-        </OverlayUi>
+
+          <Footer footer={footer} />
+        </FullPageUi>
       </ConfigurableContextProvider>
     </>
   )
@@ -93,7 +103,7 @@ function ProductPage({ products, productAdditionals, configurableProducts, pages
 
 ProductPage.Layout = PageLayout
 
-registerRouteUi('/product/configurable/[url]', OverlayUi)
+registerRouteUi('/product/configurable/[url]', FullPageUi)
 
 export default ProductPage
 
@@ -134,6 +144,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const pageLayout = staticClient.query({
     query: PageLayoutDocument,
   })
+  const footer = staticClient.query({ query: FooterDocument })
   const resolveUrl = staticClient.query({
     query: ResolveUrlDocument,
     variables: {
@@ -145,6 +156,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await resolveUrl).data,
       ...(await pageLayout).data,
+      ...(await footer).data,
       ...(await productPage).data,
       ...(await page).data,
       ...(await configurableProduct).data,
