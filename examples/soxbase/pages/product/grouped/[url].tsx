@@ -1,4 +1,5 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container, Typography, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -39,6 +40,27 @@ import ProductPageGallery from '../../../components/ProductPageGallery'
 import RelatedProducts from '../../../components/RelatedProducts'
 import apolloClient from '../../../lib/apolloClient'
 
+const useStyles = makeStyles((theme: Theme) => ({
+  hero: {
+    marginBottom: theme.spacings.lg,
+    display: 'grid',
+    paddingLeft: 0,
+    background: 'rgba(0,0,0,0.03)',
+    [theme.breakpoints.up('md')]: {
+      gridTemplateColumns: '2fr 1.5fr',
+    },
+  },
+  form: {
+    padding: theme.spacings.lg,
+    display: 'grid',
+    alignContent: 'center',
+    gap: theme.spacings.sm,
+  },
+  title: {
+    ...theme.typography.h2,
+  },
+}))
+
 type Props = ProductPageQuery &
   ProductPageAdditionalQuery &
   PageByUrlQuery &
@@ -59,6 +81,7 @@ function ProductGrouped({
   urlResolver,
   footer,
 }: Props) {
+  const classes = useStyles()
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
@@ -87,16 +110,30 @@ function ProductGrouped({
         actions={<HeaderActions />}
       >
         <FabMenu menu={menu} urlResolver={urlResolver} />
-        <Container>
-          <ProductWeight weight={weight} />
-          <ProductPageDescription {...product} />
-          <ProductPageGallery {...product} />
-          {pages?.[0] && <Page {...pages?.[0]} />}
+        <Container maxWidth={false}>
+          <div className={classes.hero}>
+            <ProductPageGallery {...product} />
+            <div className={classes.form}>
+              <Typography variant='h1' className={classes.title}>
+                {product.name ?? ''}
+              </Typography>
+              <ProductWeight weight={weight} />
+              <ProductPageDescription {...product} />
 
-          <Typography variant='h2'>Items in this grouped product</Typography>
+              {pages?.[0] && <Page {...pages?.[0]} />}
 
-          <ProductListItems items={groupItems} />
+              <Typography variant='h3'>Items in this grouped product</Typography>
 
+              <ul>
+                {groupItems.map((item) => (
+                  <li key={item?.name}>
+                    <div>{item?.name}</div>
+                    <div />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
           {upsells && upsells.length > 0 ? (
             <RelatedProducts title='Looking for a better fit?' items={upsells} />
           ) : null}
