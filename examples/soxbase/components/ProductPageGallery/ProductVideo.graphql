@@ -1,0 +1,10 @@
+fragment ProductVideo on ProductVideo {
+  video_content {
+    media_type
+    video_description
+    video_metadata
+    video_provider
+    video_title
+    video_url
+  }
+}

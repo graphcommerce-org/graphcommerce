@@ -17,7 +17,6 @@ import {
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
@@ -31,6 +30,7 @@ import React from 'react'
 import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
 import ProductListItems from '../../../components/ProductListItems/ProductListItems'
+import ProductPageGallery from '../../../components/ProductPageGallery'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = ProductPageQuery &
