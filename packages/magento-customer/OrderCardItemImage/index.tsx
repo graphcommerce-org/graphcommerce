@@ -1,36 +1,37 @@
-import { OrderCardFragment } from './OrderCard.gql'
+import { Link as MuiLink } from '@material-ui/core'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import clsx from 'clsx'
+import React from 'react'
+import { useOrderCardImagesStyles } from '../OrderCardItemImages'
+import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
 
-export type OrderCardItemImageProps = OrderCardItemImageFragment
-
-export default function OrderCardItemImage(props: OrderCardItemImageProps) {
-  return <div>order card item image</div>
+export type OrderCardItemImageProps = OrderCardItemImageFragment & {
+  key: string
 }
 
-// function LinkedProductImage(props: ProductListItemFragment) {
-//   const productLink = useProductLink(props)
+export default function OrderCardItemImage(props: OrderCardItemImageProps) {
+  const { url_key, thumbnail, key } = props
+  const classes = useOrderCardImagesStyles()
 
-//   return (
-//     <PageLink href={productLink}>
-//       <MuiLink underline='none'>
-//         <div /* className={classes.imageContainer}*/>
-//           {/* {small_image ? ( */}
-//           {/* <PictureResponsiveNext
-//             alt=''
-//             width={50}
-//             height={50}
-//             src='/images/icons/icon_home.svg'
-//             type='image/jpeg'
-//             // className={}
-//           /> */}
-//           {/* ) : ( */}
-//           {/* <div
-//                     // className={clsx(classes.placeholder, classes.image)}
-//                     >
-//                       GEEN AFBEELDING
-//                     </div>
-//                   )} */}
-//         </div>
-//       </MuiLink>
-//     </PageLink>
-//   )
-// }
+  return (
+    <PageLink href={`/product/${url_key}`}>
+      <MuiLink underline='none'>
+        <div key={key}>
+          {thumbnail ? (
+            <PictureResponsiveNext
+              alt={thumbnail?.label ?? ''}
+              width={88}
+              height={88}
+              src={thumbnail?.url ?? ''}
+              type='image/jpeg'
+              className={classes.image}
+            />
+          ) : (
+            <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
+          )}
+        </div>
+      </MuiLink>
+    </PageLink>
+  )
+}

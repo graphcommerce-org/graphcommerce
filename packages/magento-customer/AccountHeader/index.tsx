@@ -13,23 +13,23 @@ const useStyles = makeStyles(
       textTransform: 'capitalize',
     },
   }),
-  { name: 'AccountDashboard' },
+  { name: 'AccountHeader' },
 )
 
 export default function AccountHeader(props: AccountHeaderProps) {
   const { firstname, lastname } = props
   const classes = useStyles()
 
-  const firstName = firstname
-  const lastName = lastname
-
   return (
     <div>
       <Typography variant='h3'>
-        <span className={classes.capitalize}>{firstName?.toLowerCase()}</span>
-        <span className={classes.capitalize}>{lastName?.toLowerCase()}</span>
+        <span className={classes.capitalize}>
+          {firstname?.toLowerCase()} {lastname?.toLowerCase()}
+        </span>
       </Typography>
-      <Avatar className={classes.avatar}>SW</Avatar>
+      <Avatar className={classes.avatar}>
+        {`${firstname?.charAt(0)}${lastname?.charAt(0)}`.toUpperCase()}
+      </Avatar>
     </div>
   )
 }
