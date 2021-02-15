@@ -1782,12 +1782,12 @@
     lodash "4.17.20"
     param-case "3.0.4"
 
-"@graphql-mesh/graphql@^0.13.10":
-  version "0.13.10"
-  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.13.10.tgz#a02c70f5f1e4c88a3839cbc85209dfb7029b5a6d"
-  integrity sha512-GQcnDNgiVI9VbzL4cSWiKBn9UuRrojHlV+8I6cvdvIrTzTBwgVGSgUIBSNGbBlAD/W/nFzLjAU9PCXr/zN7N/w==
+"@graphql-mesh/graphql@^0.13.13":
+  version "0.13.13"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/graphql/-/graphql-0.13.13.tgz#61d6c799349e0cf24aa05a221a61d1ccf4a85382"
+  integrity sha512-FtwMTBcfM8eg7AJx071LxXmZ/zn5OdO+gHgm2A62ek7ogl8BVkSKLQgtmP9cFbY+NLfoKcw6T3sS2RlRxbkmWQ==
   dependencies:
-    "@graphql-mesh/types" "0.29.4"
+    "@graphql-mesh/types" "0.31.0"
     "@graphql-mesh/utils" "0.8.7"
     "@graphql-tools/url-loader" "6.8.0"
     "@graphql-tools/wrap" "7.0.5"
@@ -1866,6 +1866,16 @@
     "@graphql-typed-document-node/core" "3.1.0"
     fetchache "0.0.4"
 
+"@graphql-mesh/types@0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.31.0.tgz#e808a4e2d82637f7b486943f325f7e56de2438fe"
+  integrity sha512-Go9RueKI7lMs8lhgDoloMtXt380pMVHRhIXQRMfS7/V2EEgx/BC2GX/vAA8MJPAhhmptuTLbJn/RABE5EhYbSQ==
+  dependencies:
+    "@graphql-tools/delegate" "7.0.10"
+    "@graphql-tools/utils" "7.2.5"
+    "@graphql-typed-document-node/core" "3.1.0"
+    fetchache "0.0.4"
+
 "@graphql-mesh/utils@0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/utils/-/utils-0.8.7.tgz#7e389101c0a1904172997120884438318e1c0db4"
@@ -1917,6 +1927,19 @@
     "@graphql-tools/graphql-tag-pluck" "^6.2.6"
     "@graphql-tools/utils" "^7.0.0"
     tslib "~2.0.1"
+
+"@graphql-tools/delegate@7.0.10":
+  version "7.0.10"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/delegate/-/delegate-7.0.10.tgz#f87ac85a2dbd03b5b3aabf347f4479fabe8ceac3"
+  integrity sha512-6Di9ia5ohoDvrHuhj2cak1nJGhIefJmUsd3WKZcJ2nu2yZAFawWMxGvQImqv3N7iyaWKiVhrrK8Roi/JrYhdKg==
+  dependencies:
+    "@ardatan/aggregate-error" "0.0.6"
+    "@graphql-tools/batch-execute" "^7.0.0"
+    "@graphql-tools/schema" "^7.0.0"
+    "@graphql-tools/utils" "^7.1.6"
+    dataloader "2.0.0"
+    is-promise "4.0.0"
+    tslib "~2.1.0"
 
 "@graphql-tools/delegate@7.0.9", "@graphql-tools/delegate@^7.0.1", "@graphql-tools/delegate@^7.0.7", "@graphql-tools/delegate@^7.0.9":
   version "7.0.9"
