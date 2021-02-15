@@ -1856,12 +1856,22 @@
     "@graphql-tools/wrap" "7.0.5"
     micromatch "4.0.2"
 
-"@graphql-mesh/types@0.29.4", "@graphql-mesh/types@^0.29.4":
+"@graphql-mesh/types@0.29.4":
   version "0.29.4"
   resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.29.4.tgz#237a035ac27ee2068b15c00fce9d605b023d56e1"
   integrity sha512-5x5rw3ajvccYIk8E7p+rE0wI+dMmD06nHmzIyHCAAtgNwMsxz6wVLBpwQv2ulAfZ8i9n1GSs2oe274rGOFbrYA==
   dependencies:
     "@graphql-tools/delegate" "7.0.9"
+    "@graphql-tools/utils" "7.2.5"
+    "@graphql-typed-document-node/core" "3.1.0"
+    fetchache "0.0.4"
+
+"@graphql-mesh/types@^0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@graphql-mesh/types/-/types-0.31.0.tgz#e808a4e2d82637f7b486943f325f7e56de2438fe"
+  integrity sha512-Go9RueKI7lMs8lhgDoloMtXt380pMVHRhIXQRMfS7/V2EEgx/BC2GX/vAA8MJPAhhmptuTLbJn/RABE5EhYbSQ==
+  dependencies:
+    "@graphql-tools/delegate" "7.0.10"
     "@graphql-tools/utils" "7.2.5"
     "@graphql-typed-document-node/core" "3.1.0"
     fetchache "0.0.4"
@@ -1918,7 +1928,20 @@
     "@graphql-tools/utils" "^7.0.0"
     tslib "~2.0.1"
 
-"@graphql-tools/delegate@7.0.9", "@graphql-tools/delegate@^7.0.1", "@graphql-tools/delegate@^7.0.7", "@graphql-tools/delegate@^7.0.9":
+"@graphql-tools/delegate@7.0.10", "@graphql-tools/delegate@^7.0.1", "@graphql-tools/delegate@^7.0.7", "@graphql-tools/delegate@^7.0.9":
+  version "7.0.10"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/delegate/-/delegate-7.0.10.tgz#f87ac85a2dbd03b5b3aabf347f4479fabe8ceac3"
+  integrity sha512-6Di9ia5ohoDvrHuhj2cak1nJGhIefJmUsd3WKZcJ2nu2yZAFawWMxGvQImqv3N7iyaWKiVhrrK8Roi/JrYhdKg==
+  dependencies:
+    "@ardatan/aggregate-error" "0.0.6"
+    "@graphql-tools/batch-execute" "^7.0.0"
+    "@graphql-tools/schema" "^7.0.0"
+    "@graphql-tools/utils" "^7.1.6"
+    dataloader "2.0.0"
+    is-promise "4.0.0"
+    tslib "~2.1.0"
+
+"@graphql-tools/delegate@7.0.9":
   version "7.0.9"
   resolved "https://registry.yarnpkg.com/@graphql-tools/delegate/-/delegate-7.0.9.tgz#9afbffce378cdcbe72e9f4339a1c03b92c0e496e"
   integrity sha512-nlelOb354cyweV+SpTXkoGZHKgJ1PwPkHWq/0RXM5LllQsR3OrSQKKWMrd1g9dyawEZbadCF3fDJJWSQ4HOg2g==
