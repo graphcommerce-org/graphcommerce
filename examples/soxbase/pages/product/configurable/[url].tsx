@@ -19,6 +19,7 @@ import {
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
+import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
@@ -36,30 +37,8 @@ import HeaderActions from '../../../components/HeaderActions/HeaderActions'
 import Logo from '../../../components/Logo/Logo'
 import Page from '../../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
-import ProductPageGallery from '../../../components/ProductPageGallery'
 import RelatedProducts from '../../../components/RelatedProducts'
 import apolloClient from '../../../lib/apolloClient'
-
-const useStyles = makeStyles((theme: Theme) => ({
-  hero: {
-    marginBottom: theme.spacings.lg,
-    display: 'grid',
-    paddingLeft: 0,
-    background: 'rgba(0,0,0,0.03)',
-    [theme.breakpoints.up('md')]: {
-      gridTemplateColumns: '2fr 1.5fr',
-    },
-  },
-  form: {
-    padding: theme.spacings.lg,
-    display: 'grid',
-    alignContent: 'center',
-    gap: theme.spacings.sm,
-  },
-  title: {
-    ...theme.typography.h2,
-  },
-}))
 
 type Props = ProductPageQuery &
   ProductPageAdditionalQuery &
@@ -81,7 +60,6 @@ function ProductPage({
   urlResolver,
   footer,
 }: Props) {
-  const classes = useStyles()
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
@@ -105,16 +83,11 @@ function ProductPage({
         >
           <FabMenu menu={menu} urlResolver={urlResolver} />
           <Container maxWidth={false}>
-            <div className={classes.hero}>
-              <ProductPageGallery {...product} />
-              <div className={classes.form}>
-                <Typography variant='h1' className={classes.title}>
-                  {product.name ?? ''}
-                </Typography>
-                <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
-                <ProductPageDescription {...product} />
-              </div>
-            </div>
+            <ProductPageGallery {...product}>
+              <Typography variant='h1'>{product.name ?? ''}</Typography>
+              <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
+            </ProductPageGallery>
+            <ProductPageDescription {...product} />
 
             {pages?.[0] && <Page {...pages?.[0]} />}
 
