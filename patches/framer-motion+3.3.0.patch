@@ -1,8 +1,8 @@
 diff --git a/node_modules/framer-motion/dist/framer-motion.es.js b/node_modules/framer-motion/dist/framer-motion.es.js
-index bc004a5..04a6c30 100644
+index 0498452..6cc5cb6 100644
 --- a/node_modules/framer-motion/dist/framer-motion.es.js
 +++ b/node_modules/framer-motion/dist/framer-motion.es.js
-@@ -6064,7 +6064,7 @@ var AnimatePresence = function (_a) {
+@@ -6076,7 +6076,7 @@ var AnimatePresence = function (_a) {
              exiting.delete(key);
              // Remove this child from the present children
              var removeIndex = presentChildren.current.findIndex(function (presentChild) { return presentChild.key === key; });
@@ -11,7 +11,7 @@ index bc004a5..04a6c30 100644
              // Defer re-rendering until all exiting children have indeed left
              if (!exiting.size) {
                  presentChildren.current = filteredChildren;
-@@ -6077,8 +6077,7 @@ var AnimatePresence = function (_a) {
+@@ -6089,8 +6089,7 @@ var AnimatePresence = function (_a) {
      // Add `MotionContext` even to children that don't need it to ensure we're rendering
      // the same tree between renders
      childrenToRender = childrenToRender.map(function (child) {
