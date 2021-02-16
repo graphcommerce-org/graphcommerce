@@ -1,6 +1,6 @@
 query usps {
   usps(where: { identity: "global" }) {
-    productUspsMultiple {
+    productUsps {
       ...PageLink
     }
   }
