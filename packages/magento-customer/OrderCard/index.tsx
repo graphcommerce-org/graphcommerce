@@ -11,8 +11,14 @@ import { OrderCardFragment } from './OrderCard.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     orderContainer: {
+      [theme.breakpoints.up('sm')]: {
+        padding: theme.spacings.xs,
+      },
       textAlign: 'center',
-      padding: theme.spacings.xs,
+      paddingTop: theme.spacings.lg,
+      paddingBottom: theme.spacings.lg,
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      marginBottom: theme.spacings.lg,
     },
     orderRow: {
       marginBottom: theme.spacings.xxs,
@@ -77,7 +83,7 @@ export default function OrderCard(props: OrderCardProps) {
         <span className={classes.orderMoney}>
           <Money {...total?.grand_total} />
         </span>
-        <span> {dateFormatter.format(new Date(created_at))}</span>
+        <span> {dateFormatter.format(new Date(created_at ?? ''))}</span>
       </div>
       <div className={classes.orderRow}>
         <span
