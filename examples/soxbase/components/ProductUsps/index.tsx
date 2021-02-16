@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import Asset from '../Asset'
-import { AssetFragment } from '../Asset/Asset.gql'
 import { UspsQuery } from './ProductUsps.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductUspsProps = UspsQuery & AssetFragment
+export type ProductUspsProps = UspsQuery
 
 export default function ProductUsps(props: ProductUspsProps) {
   const { usps } = props
@@ -37,11 +36,11 @@ export default function ProductUsps(props: ProductUspsProps) {
 
   return (
     <>
-      {usps && (
+      {usps?.productUsps && (
         <ul className={classes.root}>
-          {usps?.productUspsMultiple.map((usp) => (
+          {usps?.productUsps.map((usp) => (
             <li key={usp.title}>
-              <Asset asset={usp.asset} width={16} />
+              {usp.asset && <Asset asset={usp.asset} width={16} />}
               {usp.title}
             </li>
           ))}
