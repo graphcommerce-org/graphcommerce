@@ -19,7 +19,7 @@ const useStyles = makeStyles(
     },
     h2: {
       ...theme.typography.h1,
-      fontSize: responsiveVal(20, 40),
+      fontSize: responsiveVal(16, 40),
       marginRight: `${theme.spacings.lg}`,
       marginLeft: theme.page.horizontal,
       [theme.breakpoints.up('md')]: {
