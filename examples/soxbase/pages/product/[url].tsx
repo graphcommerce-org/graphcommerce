@@ -37,6 +37,8 @@ import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
 import Page from '../../components/Page'
 import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
+import ProductUsps from '../../components/ProductUsps'
+import { UspsDocument, UspsQuery } from '../../components/ProductUsps/ProductUsps.gql'
 import RelatedProducts from '../../components/RelatedProducts'
 import apolloClient from '../../lib/apolloClient'
 
@@ -45,6 +47,7 @@ type Props = ProductPageQuery &
   PageByUrlQuery &
   ResolveUrlQuery &
   ProductSimpleQuery &
+  UspsQuery &
   PageLayoutQuery &
   FooterQuery
 type RouteProps = { url: string }
@@ -58,6 +61,7 @@ function ProductSimple({
   urlResolver,
   footer,
   simpleProducts,
+  usps,
   pages,
 }: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
@@ -89,9 +93,11 @@ function ProductSimple({
             />
             <ProductWeight weight={weight} />
           </ProductPageGallery>
-          <ProductPageDescription {...product} />
-          {pages?.[0] && <Page {...pages?.[0]} />}
         </Container>
+        <ProductPageDescription {...product}>
+          <ProductUsps usps={usps} />
+        </ProductPageDescription>
+        {pages?.[0] && <Page {...pages?.[0]} />}
         {upsells && upsells.length > 0 ? (
           <RelatedProducts title='Looking for a better fit?' items={upsells} />
         ) : null}
@@ -144,6 +150,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ProductPageAdditionalDocument,
     variables: { urlKey },
   })
+  const Usps = staticClient.query({
+    query: UspsDocument,
+  })
   const pageLayout = staticClient.query({
     query: PageLayoutDocument,
   })
@@ -163,6 +172,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await productPage).data,
       ...(await page).data,
       ...(await simpleProduct).data,
+      ...(await Usps).data,
       ...(await productAdditionals).data,
       apolloState: client.cache.extract(),
     },
