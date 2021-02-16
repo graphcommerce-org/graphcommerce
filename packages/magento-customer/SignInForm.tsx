@@ -1,12 +1,13 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, FormControl, Link, FormHelperText } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
@@ -14,9 +15,7 @@ import onCompleteSignInUp from './onCompleteSignInUp'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     forgotPass: {
-      display: 'grid',
-      gridAutoFlow: 'column',
-      justifyContent: 'space-between',
+      whiteSpace: 'nowrap',
     },
   }),
   { name: 'SignIn' },
@@ -34,6 +33,7 @@ export default function SignInForm(props: SignInFormProps) {
     defaultValues: { email },
   })
   const { register, errors, handleSubmit, required, formState, error } = form
+  const [remainingError, authError] = graphqlErrorByCategory('graphql-authentication', error)
   const submitHandler = handleSubmit(() => {})
 
   const requireAuth = Boolean(data?.customerToken && !data?.customerToken.valid)
@@ -51,7 +51,7 @@ export default function SignInForm(props: SignInFormProps) {
           key='password'
           variant='outlined'
           type='password'
-          error={!!errors.password}
+          error={!!errors.password || !!authError}
           id='password'
           name='password'
           label='Password'
@@ -60,19 +60,19 @@ export default function SignInForm(props: SignInFormProps) {
           FormHelperTextProps={{
             className: classes.forgotPass,
           }}
-          helperText={
-            <>
-              <div>{errors.password?.message}</div>
+          InputProps={{
+            endAdornment: (
               <PageLink href='/account/forgot-password' key='forgot-password'>
                 <Link className={classes.forgotPass}>Forgot password?</Link>
               </PageLink>
-            </>
-          }
+            ),
+          }}
+          helperText={errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
         />
       </div>
 
-      <ApolloErrorAlert error={error} key='error' />
+      <ApolloErrorAlert error={remainingError} key='error' />
 
       <div className={formClasses.actions}>
         <FormControl>

@@ -13,22 +13,22 @@ import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAdd
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import { AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
+import Footer from '../../components/Footer'
+import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = CountryRegionsQuery & FooterQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
-function ShippingPage({ countries }: Props) {
+function ShippingPage({ countries, footer }: Props) {
   const classes = useFormStyles()
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
@@ -59,27 +59,23 @@ function ShippingPage({ countries }: Props) {
         <IconTitle iconSrc='/icons/box.svg' title='Shipping' alt='box' />
 
         <NoSsr>
-          <AnimatePresence initial={false} key='shipping-forms'>
-            <EmailForm key='email' />
-
-            <ShippingAddressForm key='address' countries={countries} doSubmit={addressForm} />
-
-            <ShippingMethodForm key='method' doSubmit={methodForm} />
-
-            <AnimatedRow className={classes.formRow} key='next'>
-              <Button
-                type='submit'
-                color='secondary'
-                variant='pill'
-                size='large'
-                onClick={forceSubmit}
-              >
-                Next <ArrowForwardIos fontSize='inherit' />
-              </Button>
-            </AnimatedRow>
-          </AnimatePresence>
+          <EmailForm />
+          <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+          <ShippingMethodForm doSubmit={methodForm} />
+          <div className={classes.actions}>
+            <Button
+              type='submit'
+              color='secondary'
+              variant='pill'
+              size='large'
+              onClick={forceSubmit}
+            >
+              Next <ArrowForwardIos fontSize='inherit' />
+            </Button>
+          </div>
         </NoSsr>
       </Container>
+      <Footer footer={footer} />
     </OverlayUi>
   )
 }
@@ -97,12 +93,14 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })
+  const footer = staticClient.query({ query: FooterDocument })
 
   await config
   return {
     props: {
       ...(await pageLayout).data,
       ...(await countryRegions).data,
+      ...(await footer).data,
       apolloState: client.cache.extract(),
     },
   }
