@@ -4,4 +4,7 @@ fragment PageLink on PageLink {
   description {
     raw
   }
+  asset {
+    ...Asset
+  }
 }
