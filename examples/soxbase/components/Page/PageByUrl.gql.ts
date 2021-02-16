@@ -235,6 +235,24 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                       ],
                                     },
                                   },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'asset' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'mimeType' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -266,6 +284,24 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                       kind: 'SelectionSet',
                                       selections: [
                                         { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'asset' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'mimeType' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -334,6 +370,24 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                       kind: 'SelectionSet',
                                       selections: [
                                         { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'asset' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'mimeType' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -470,6 +524,24 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                       ],
                                     },
                                   },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'asset' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'mimeType' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -501,6 +573,24 @@ export const PageByUrlDocument: DocumentNode<PageByUrlQuery, PageByUrlQueryVaria
                                       kind: 'SelectionSet',
                                       selections: [
                                         { kind: 'Field', name: { kind: 'Name', value: 'raw' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'asset' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'url' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'width' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'height' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'mimeType' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'size' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -566,6 +656,9 @@ export type PageByUrlQuery = {
               contentLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                  asset?: Types.Maybe<
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  >
                 }
               >
             })
@@ -575,6 +668,9 @@ export type PageByUrlQuery = {
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                  asset?: Types.Maybe<
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  >
                 }
               >
             })
@@ -586,6 +682,9 @@ export type PageByUrlQuery = {
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                  asset?: Types.Maybe<
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  >
                 }
               >
               magentoCategory?: Types.Maybe<Pick<Types.MagentoCategory, 'url'>>
@@ -599,6 +698,9 @@ export type PageByUrlQuery = {
               serviceOptions: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                  asset?: Types.Maybe<
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  >
                 }
               >
             })
@@ -608,6 +710,9 @@ export type PageByUrlQuery = {
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                  asset?: Types.Maybe<
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  >
                 }
               >
             })
