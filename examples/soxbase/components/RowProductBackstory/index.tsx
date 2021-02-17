@@ -129,7 +129,7 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
           </div>
           <Asset asset={asset} width={328} />
         </div>
-        <m.div ref={product} style={{ y: transformY }}>
+        <m.div ref={product} transition={{ ease: 'linear' }} style={{ y: transformY }}>
           <ProductListItems {...singleItem} />
         </m.div>
       </div>
