@@ -17,7 +17,7 @@
       },
       "transforms": [
         {
-          "filterSchema": ["Query.{pages,footer,pagesConnection}", "Mutation.none"]
+          "filterSchema": ["Query.{pages,footer,usps,pagesConnection}", "Mutation.none"]
         }
       ]
     },
