@@ -1,7 +1,13 @@
 import { Container, Theme } from '@material-ui/core'
+import { LaptopWindowsRounded } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
+import Sticky from '@reachdigital/next-ui/Sticky'
+import useIntersectionObserver from '@reachdigital/next-ui/Sticky/useIntersectionObserver'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { m, useTransform, useViewportScroll } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+
 import Asset from '../Asset'
 import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'
@@ -94,18 +100,38 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
     }
   }
 
+  const [windowHeight, setHeight] = useState(0)
+  const [productY, setProductY] = useState(0)
+  const [parentHeight, setParentHeight] = useState(0)
+  const productParent = useRef() as React.MutableRefObject<HTMLInputElement>
+  const product = useRef() as React.MutableRefObject<HTMLInputElement>
+  const scrollPath = parentHeight > windowHeight / 2 ? windowHeight / 2 : 0
+
+  useEffect(() => {
+    // todo(erwin): Needs useResizeObserver hook
+    setParentHeight(product?.current?.offsetHeight)
+    setHeight(window.innerHeight)
+    setProductY(product?.current?.offsetTop)
+  }, [])
+
+  const { scrollY } = useViewportScroll()
+  const transformY = useTransform(
+    scrollY,
+    [productY - windowHeight / 2, productY + windowHeight / 2],
+    [0, scrollPath],
+  )
   return (
     <Container maxWidth={false} className={classes.container}>
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} ref={productParent}>
         <div className={classes.backstory}>
           <div className={classes.copy}>
             <RichText classes={richTextOneClasses} {...copy} />
           </div>
           <Asset asset={asset} width={328} />
         </div>
-        <div>
+        <m.div ref={product} style={{ y: transformY }}>
           <ProductListItems {...singleItem} />
-        </div>
+        </m.div>
       </div>
     </Container>
   )
