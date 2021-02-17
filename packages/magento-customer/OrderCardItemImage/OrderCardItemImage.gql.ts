@@ -55,10 +55,6 @@ export type OrderCardItemImage_ConfigurableProduct_Fragment = Pick<
   'url_key'
 > & { thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'label' | 'url'>> }
 
-export type OrderCardItemImage_GiftCardProduct_Fragment = Pick<Types.GiftCardProduct, 'url_key'> & {
-  thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'label' | 'url'>>
-}
-
 export type OrderCardItemImageFragment =
   | OrderCardItemImage_VirtualProduct_Fragment
   | OrderCardItemImage_SimpleProduct_Fragment
@@ -66,4 +62,3 @@ export type OrderCardItemImageFragment =
   | OrderCardItemImage_BundleProduct_Fragment
   | OrderCardItemImage_GroupedProduct_Fragment
   | OrderCardItemImage_ConfigurableProduct_Fragment
-  | OrderCardItemImage_GiftCardProduct_Fragment

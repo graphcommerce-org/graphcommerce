@@ -36,13 +36,7 @@ export type OrderCardItem_OrderItem_Fragment = Pick<
   'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
 >
 
-export type OrderCardItem_GiftCardOrderItem_Fragment = Pick<
-  Types.GiftCardOrderItem,
-  'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
->
-
 export type OrderCardItemFragment =
   | OrderCardItem_DownloadableOrderItem_Fragment
   | OrderCardItem_BundleOrderItem_Fragment
   | OrderCardItem_OrderItem_Fragment
-  | OrderCardItem_GiftCardOrderItem_Fragment

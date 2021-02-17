@@ -7,7 +7,6 @@ import {
   OrderCardItem_DownloadableOrderItem_Fragment,
   OrderCardItem_BundleOrderItem_Fragment,
   OrderCardItem_OrderItem_Fragment,
-  OrderCardItem_GiftCardOrderItem_Fragment,
   OrderCardItemFragmentDoc,
 } from '../OrderCardItem/OrderCardItem.gql'
 import { TrackingLinkFragmentDoc, TrackingLinkFragment } from '../TrackingLink/TrackingLink.gql'
@@ -72,6 +71,7 @@ export const OrderCardFragmentDoc: DocumentNode<OrderCardFragment, unknown> = {
               ],
             },
           },
+          { kind: 'Field', name: { kind: 'Name', value: 'created_at' } },
         ],
       },
     },
@@ -80,7 +80,7 @@ export const OrderCardFragmentDoc: DocumentNode<OrderCardFragment, unknown> = {
     ...OrderCardItemFragmentDoc.definitions,
   ],
 }
-export type OrderCardFragment = Pick<Types.CustomerOrder, 'status' | 'number'> & {
+export type OrderCardFragment = Pick<Types.CustomerOrder, 'status' | 'number' | 'created_at'> & {
   shipments?: Types.Maybe<
     Array<Types.Maybe<{ tracking?: Types.Maybe<Array<Types.Maybe<TrackingLinkFragment>>> }>>
   >
@@ -91,7 +91,6 @@ export type OrderCardFragment = Pick<Types.CustomerOrder, 'status' | 'number'> &
         | OrderCardItem_DownloadableOrderItem_Fragment
         | OrderCardItem_BundleOrderItem_Fragment
         | OrderCardItem_OrderItem_Fragment
-        | OrderCardItem_GiftCardOrderItem_Fragment
       >
     >
   >

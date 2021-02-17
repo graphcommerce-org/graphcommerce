@@ -118,9 +118,6 @@ export type OrderCardItemImagesQuery = {
           | (Pick<Types.ConfigurableProduct, 'url_key'> & {
               thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'label' | 'url'>>
             })
-          | (Pick<Types.GiftCardProduct, 'url_key'> & {
-              thumbnail?: Types.Maybe<Pick<Types.ProductImage, 'label' | 'url'>>
-            })
         >
       >
     >

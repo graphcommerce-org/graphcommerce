@@ -136,6 +136,7 @@ export const AccountDashboardDocument: DocumentNode<
                                 ],
                               },
                             },
+                            { kind: 'Field', name: { kind: 'Name', value: 'created_at' } },
                           ],
                         },
                       },
@@ -162,7 +163,7 @@ export type AccountDashboardQuery = {
         page_info?: Types.Maybe<Pick<Types.SearchResultPageInfo, 'total_pages'>>
         items: Array<
           Types.Maybe<
-            Pick<Types.CustomerOrder, 'status' | 'number'> & {
+            Pick<Types.CustomerOrder, 'status' | 'number' | 'created_at'> & {
               shipments?: Types.Maybe<
                 Array<
                   Types.Maybe<{
@@ -188,10 +189,6 @@ export type AccountDashboardQuery = {
                       >
                     | Pick<
                         Types.OrderItem,
-                        'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
-                      >
-                    | Pick<
-                        Types.GiftCardOrderItem,
                         'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
                       >
                   >
