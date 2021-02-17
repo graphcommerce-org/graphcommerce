@@ -1,12 +1,13 @@
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import clsx from 'clsx'
 import React from 'react'
 
 export type AccountMenuItemProps = {
   label: string
   startIconSrc: string
   url: string
+  disabled?: boolean
 }
 
 const useStyles = makeStyles(
@@ -33,6 +34,11 @@ const useStyles = makeStyles(
       color: theme.palette.primary.mutedText,
       marginRight: theme.spacings.xxs,
     },
+    menuButtonDisabled: {
+      '&.Mui-disabled': {
+        backgroundColor: '#fff',
+      },
+    },
     menuButtonText: {
       alignSelf: 'flex-start',
     },
@@ -41,36 +47,26 @@ const useStyles = makeStyles(
 )
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
-  const { label, url, startIconSrc } = props
+  const { label, url, startIconSrc, disabled } = props
   const classes = useStyles()
 
   return (
     <PageLink href={url}>
       <Button
         variant='contained'
-        // endIcon={
-        //   <PictureResponsiveNext
-        //     src='/icons/chevron-right.svg'
-        //     alt='chevron right'
-        //     type='image/svg+xml'
-        //     width={24}
-        //     height={24}
-        //     loading='eager'
-        //   />
-        // }
-        // startIcon={
-        //   <PictureResponsiveNext
-        //     src={startIconSrc}
-        //     alt={startIconSrc}
-        //     type='image/svg+xml'
-        //     width={24}
-        //     height={24}
-        //     loading='eager'
-        //     className={classes.startIcon}
-        //   />
-        // }
+        disabled={disabled}
+        endIcon={
+          <object data='/icons/desktop_chevron_right.svg' width='24' height='24'>
+            desktop_chevron_right
+          </object>
+        }
+        startIcon={
+          <object data={startIconSrc} width='24' height='24'>
+            {startIconSrc}
+          </object>
+        }
         disableElevation
-        className={classes.menuButton}
+        className={clsx({ [classes.menuButtonDisabled]: disabled }, classes.menuButton)}
       >
         <span className={classes.menuButtonText}>{label}</span>
       </Button>

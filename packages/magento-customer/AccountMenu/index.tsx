@@ -27,22 +27,37 @@ export default function AccountMenu(props: AccountMenuProps) {
 
   return (
     <div className={classes.accountMenuContainer}>
-      {/* {hasReviews && 'has reviews'} */}
-      {/* {hasOrders && 'has orders'} */}
+      <AccountMenuItem
+        url='/account'
+        label='Orders'
+        startIconSrc='/icons/desktop_account_orders.svg'
+        disabled={!hasOrders}
+      />
 
-      <AccountMenuItem url='/account' label='Orders' startIconSrc='/icon/account-order.svg' />
       <AccountMenuItem
         url='/account'
         label='Personal information'
-        startIconSrc='/icon/account-info.svg'
+        startIconSrc='/icons/desktop_account_info.svg'
       />
+
       <AccountMenuItem
         url='/account'
         label='Addresses'
-        startIconSrc='/icon/account-addresses.svg'
+        startIconSrc='/icons/desktop_account_addresses.svg'
       />
-      <AccountMenuItem url='/account' label='Reviews' startIconSrc='/icon/account-reviews.svg' />
-      <AccountMenuItem url='/account' label='Log out' startIconSrc='/icon/account-lock.svg' />
+
+      <AccountMenuItem
+        url='/account'
+        label='Reviews'
+        startIconSrc='/icons/desktop_account_reviews.svg'
+        disabled={!hasReviews}
+      />
+
+      <AccountMenuItem
+        url='/account'
+        label='Log out'
+        startIconSrc='/icons/desktop_account_lock.svg'
+      />
     </div>
   )
 }
