@@ -117,7 +117,7 @@ export default function RowProductBackstory(props: RowProductBackstoryProps) {
   const { scrollY } = useViewportScroll()
   const transformY = useTransform(
     scrollY,
-    [productY - windowHeight / 2, productY + windowHeight / 2],
+    [productY - windowHeight / 4, productY + windowHeight / 2],
     [0, scrollPath],
   )
   return (
