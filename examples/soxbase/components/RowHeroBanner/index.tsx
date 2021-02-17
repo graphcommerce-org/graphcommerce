@@ -19,7 +19,7 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: '80vh',
+      minHeight: '90vh',
       '& > *': {
         maxWidth: 'max-content',
       },
