@@ -21,9 +21,6 @@ const useStyles = makeStyles(
       margin: 0,
       marginBottom: theme.spacings.xs,
     },
-    capitalize: {
-      textTransform: 'capitalize',
-    },
   }),
   { name: 'AccountHeader' },
 )
@@ -39,9 +36,7 @@ export default function AccountHeader(props: AccountHeaderProps) {
           {`${firstname?.charAt(0)}${lastname?.charAt(0)}`.toUpperCase()}
         </Avatar>
         <Typography variant='h3'>
-          <span className={classes.capitalize}>
-            {firstname?.toLowerCase()} {lastname?.toLowerCase()}
-          </span>
+          {firstname} {lastname}
         </Typography>
       </div>
     </div>
