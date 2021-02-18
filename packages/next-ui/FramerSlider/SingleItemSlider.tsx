@@ -30,10 +30,6 @@ const useStyles = makeStyles(
       transform: `translateX(-50%)`,
     },
     item: {},
-    dots: {},
-    dot: {},
-    circle: {},
-    circleActive: {},
   }),
   { name: 'SingleItemSlider' },
 )
@@ -69,16 +65,7 @@ export default function SingleItemSlider(props: SingleItemSliderProps) {
         </SliderScroller>
         <div className={clsx(classesBase.nav, classes?.nav)}>
           <SliderPrev scope={scope} />
-          <SliderDots
-            scope={scope}
-            count={React.Children.count(children)}
-            classes={{
-              dots: clsx(classesBase.dots, classes?.dots),
-              dot: clsx(classesBase.dot, classes?.dot),
-              circle: clsx(classesBase.circle, classes?.circle),
-              circleActive: clsx(classesBase.circleActive, classes?.circleActive),
-            }}
-          />
+          <SliderDots scope={scope} count={React.Children.count(children)} />
           <SliderNext scope={scope} />
         </div>
       </SliderContainer>

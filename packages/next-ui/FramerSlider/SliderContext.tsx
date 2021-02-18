@@ -125,11 +125,17 @@ const reducer: SliderReducer = (state: State, action: Actions): State => {
       })()
   }
 
+  // Check if we need to update the firstItem/lastItem and count
   const items = Object.values(newState.items)
   const firstItem = items?.[0]
   const lastItem = items?.[items.length - 1]
-  if (newState.firstItem === firstItem || lastItem === newState.lastItem) return newState
-  return { ...newState, firstItem: items?.[0], lastItem: items?.[items.length - 1] }
+
+  const isUnchanged =
+    newState.firstItem === firstItem &&
+    lastItem === newState.lastItem &&
+    items.length === state.count
+
+  return isUnchanged ? newState : { ...newState, firstItem, lastItem, count: items.length }
 }
 
 export type ScrollSnapSliderProviderProps = PropsWithChildren<{

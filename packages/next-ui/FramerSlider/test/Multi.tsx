@@ -5,7 +5,7 @@ import MultiItemSlider from '../MultiItemSlider'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      padding: theme.spacings.lg,
+      padding: `${theme.spacings.sm} 0 ${theme.spacings.lg}`,
     },
     scroller: {
       gap: theme.spacings.sm,
@@ -35,7 +35,7 @@ const useStyles = makeStyles(
       background: theme.palette.primary.main,
     },
   }),
-  { name: 'Slider' },
+  { name: 'Multi' },
 )
 
 export default function Multi() {

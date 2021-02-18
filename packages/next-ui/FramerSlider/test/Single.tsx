@@ -5,7 +5,7 @@ import SingleItemSlider from '../SingleItemSlider'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      padding: theme.spacings.lg,
+      padding: `${theme.spacings.sm} 0 ${theme.spacings.lg}`,
     },
     scroller: {
       gap: theme.spacings.sm,
@@ -27,7 +27,7 @@ const useStyles = makeStyles(
       bottom: `calc(${theme.spacings.lg} - 20px)`,
     },
   }),
-  { name: 'Slider' },
+  { name: 'Single' },
 )
 
 export default function Single() {
