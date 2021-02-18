@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import AccountMenuFragment from '@reachdigital/magento-customer'
+import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import React from 'react'
-import AccountMenuItem from '../AccountMenuItem'
-import { AccountMenuFragment } from './AccountMenu.gql'
 
 export type AccountMenuProps = AccountMenuFragment
 
