@@ -28,33 +28,33 @@ export default function AccountMenu(props: AccountMenuProps) {
   return (
     <div className={classes.accountMenuContainer}>
       <AccountMenuItem
-        url='/account'
+        url='/account/orders'
         label='Orders'
         startIconSrc='/icons/desktop_account_orders.svg'
         disabled={!hasOrders}
       />
 
       <AccountMenuItem
-        url='/account'
+        url='/account/personal'
         label='Personal information'
         startIconSrc='/icons/desktop_account_info.svg'
       />
 
       <AccountMenuItem
-        url='/account'
+        url='/account/addresses'
         label='Addresses'
         startIconSrc='/icons/desktop_account_addresses.svg'
       />
 
       <AccountMenuItem
-        url='/account'
+        url='/account/reviews'
         label='Reviews'
         startIconSrc='/icons/desktop_account_reviews.svg'
         disabled={!hasReviews}
       />
 
       <AccountMenuItem
-        url='/account'
+        url='/account/logout'
         label='Log out'
         startIconSrc='/icons/desktop_account_lock.svg'
       />
