@@ -1,5 +1,6 @@
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -56,14 +57,22 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
         variant='contained'
         disabled={disabled}
         endIcon={
-          <object data='/icons/desktop_chevron_right.svg' width='24' height='24'>
-            desktop_chevron_right
-          </object>
+          <PictureResponsiveNext
+            alt='desktop_chevron_right'
+            width={24}
+            height={24}
+            src='/icons/desktop_chevron_right.svg'
+            type='image/svg+xml'
+          />
         }
         startIcon={
-          <object data={startIconSrc} width='24' height='24'>
-            {startIconSrc}
-          </object>
+          <PictureResponsiveNext
+            alt={startIconSrc}
+            width={24}
+            height={24}
+            src={startIconSrc}
+            type='image/svg+xml'
+          />
         }
         disableElevation
         className={clsx({ [classes.menuButtonDisabled]: disabled }, classes.menuButton)}
