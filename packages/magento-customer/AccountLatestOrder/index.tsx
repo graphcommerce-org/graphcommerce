@@ -12,7 +12,7 @@ export default function AccountLatestOrder(props: AccountLatestOrderProps) {
   return (
     <div>
       <SectionHeader labelLeft='Latest order' />
-      {!latestOrderCard && <div>No orders found</div>}
+      {!latestOrderCard && <div>No order found</div>}
       {latestOrderCard && <OrderCard {...latestOrderCard} />}
     </div>
   )

@@ -107,9 +107,7 @@ export default function OrderCard(props: OrderCardProps) {
       <div className={clsx(classes.orderActions, classes.orderRow)}>
         <div className={classes.orderAction}>
           <LocationOn />
-          <Link href='#'>
-            <a>TR4CK1H1S04D34L1NK</a>
-          </Link>
+          <Link href='#'>TR4CK1H1S04D34L1NK</Link>
         </div>
       </div>
     </div>

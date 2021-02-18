@@ -1,15 +1,35 @@
 import { useQuery } from '@apollo/client'
+import { makeStyles, Theme } from '@material-ui/core'
 import { ProductImage } from '@reachdigital/magento-graphql'
 import clsx from 'clsx'
 import React from 'react'
 import { OrderCardFragment } from '../OrderCard/OrderCard.gql'
 import OrderCardItemImage from '../OrderCardItemImage'
 import { OrderCardItemImagesDocument } from './OrderCardItemImages.gql'
-import useOrderCardItemImagesStyles from './OrderCardItemImagesStyles'
 
 export type OrderCardItemImagesProps = Pick<OrderCardFragment, 'items'> & {
   thumbnail?: Pick<ProductImage, 'label' | 'url'>
 }
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    images: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      marginTop: theme.spacings.xxs,
+    },
+    placeholder: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 88,
+      height: 88,
+      marginBottom: theme.spacings.xxs,
+    },
+  }),
+  { name: 'OrderCardItemImages' },
+)
 
 export default function OrderCardItemImages(props: OrderCardItemImagesProps) {
   const { items } = props
@@ -19,7 +39,7 @@ export default function OrderCardItemImages(props: OrderCardItemImagesProps) {
     },
   })
   const productImages = data?.products?.items
-  const classes = useOrderCardItemImagesStyles()
+  const classes = useStyles()
 
   // match found images with url_keys as it can happen that a product isn't sold anymore
   const itemsWithImages = items?.map((itemWithoutImage) => {
@@ -45,17 +65,13 @@ export default function OrderCardItemImages(props: OrderCardItemImagesProps) {
   return (
     <div className={classes.images}>
       {itemsWithImages?.slice(0, maxItemsInRow).map((item) => (
-        <OrderCardItemImage
-          key={`image-${item?.product_url_key ?? ''}`}
-          thumbnail={item?.thumbnail}
-          url_key={item?.product_url_key ?? ''}
-        />
+        <div key={`image-${item?.product_url_key ?? ''}`}>
+          <OrderCardItemImage thumbnail={item?.thumbnail} url_key={item?.product_url_key ?? ''} />
+        </div>
       ))}
 
       {totalItems > maxItemsInRow && (
-        <div className={clsx(classes.placeholder, classes.image)}>
-          {`+${totalItems - maxItemsInRow}`}
-        </div>
+        <div className={classes.placeholder}>{`+${totalItems - maxItemsInRow}`}</div>
       )}
     </div>
   )
