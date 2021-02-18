@@ -56,7 +56,7 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
   return (
     <div className={classes.root}>
       <img
-        src='/icons/shopping_bag.svg'
+        src='/icons/desktop_shopping_bag.svg'
         alt='shopping bag'
         className={classes.img}
         width={64}
