@@ -71,6 +71,7 @@ export default function SingleItemSlider(props: SingleItemSliderProps) {
           <SliderPrev scope={scope} />
           <SliderDots
             scope={scope}
+            count={React.Children.count(children)}
             classes={{
               dots: clsx(classesBase.dots, classes?.dots),
               dot: clsx(classesBase.dot, classes?.dot),

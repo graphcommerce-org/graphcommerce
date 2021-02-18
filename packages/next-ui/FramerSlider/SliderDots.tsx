@@ -9,7 +9,7 @@ const useStyles = makeStyles(
     dots: {
       borderRadius: 20,
       background: theme.palette.background.paper,
-      boxShadow: theme.shadows[8],
+      boxShadow: theme.shadows[6],
       width: 'fit-content',
       display: 'grid',
       gridAutoFlow: 'column',
@@ -34,20 +34,26 @@ const useStyles = makeStyles(
   { name: 'SliderDots' },
 )
 
-type SliderDotsProps = {
-  scope: string
-} & UseStyles<typeof useStyles>
+type SliderDotsProps = { scope: string; count: number } & UseStyles<typeof useStyles>
 
 export default function SliderDots(props: SliderDotsProps) {
-  const { scope } = props
+  const { scope, count } = props
   const classes = useStyles(props)
-  const [state] = useSliderContext(scope)
+  const [state, dispatch] = useSliderContext(scope)
+
+  const items = new Array(count).fill(undefined).map((_, idx) => [idx, state.items?.[idx]] as const)
 
   return (
     <div className={classes.dots}>
-      {Object.entries(state.items).map(([key, item]) => (
-        <Fab color='inherit' key={key} className={classes.dot} size='small'>
-          <div className={clsx({ [classes.circle]: true, [classes.circleActive]: item.active })} />
+      {items.map(([idx, item]) => (
+        <Fab
+          color='inherit'
+          key={idx}
+          className={classes.dot}
+          size='small'
+          onClick={() => dispatch({ type: 'NAVIGATE', to: idx })}
+        >
+          <div className={clsx({ [classes.circle]: true, [classes.circleActive]: item?.active })} />
         </Fab>
       ))}
     </div>

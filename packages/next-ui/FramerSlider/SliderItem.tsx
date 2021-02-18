@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useEffect, useRef } from 'react'
+import useResizeObserver from 'use-resize-observer'
 import useIntersectionObserver from '../useIntersectionObserver'
 import { useSliderContext } from './SliderContext'
 
@@ -11,25 +12,18 @@ export type SliderItemProps = PropsWithChildren<{
 type UseSliderItem = { scope: string; idx: number }
 export function useSliderItemMeasure<T extends HTMLElement>({ scope, idx }: UseSliderItem) {
   const ref = useRef<T>(null)
+  const resize = useResizeObserver({ ref })
   const entry = useIntersectionObserver({ ref, threshold: [0.4, 0.6] })
-  const [, dispatch] = useSliderContext(scope)
+  const [state, dispatch] = useSliderContext(scope)
+  const item = state.items?.[idx]
 
   useEffect(() => {
-    const parentRect = entry?.target.parentElement?.getBoundingClientRect()
-    if (!entry || !parentRect) return
-
-    const rect = entry.boundingClientRect
-
-    dispatch({
-      type: 'UPDATE_ITEM',
-      idx,
-      left: Math.abs(Math.round(rect.left - parentRect.left)),
-      top: Math.abs(Math.round(rect.top - parentRect.top)),
-      width: rect.width,
-      height: rect.height,
-      active: entry.intersectionRatio > 0.5,
-    })
-  }, [dispatch, entry, idx])
+    const rect = ref.current?.getBoundingClientRect()
+    const parentRect = ref.current?.parentElement?.getBoundingClientRect()
+    if (!rect || !parentRect || !entry) return
+    const active = entry.intersectionRatio > 0.5
+    dispatch({ type: 'UPDATE_ITEM', idx, ...item, rect, parentRect, active })
+  }, [entry, resize.width, resize.height, dispatch, idx, item])
 
   return ref
 }

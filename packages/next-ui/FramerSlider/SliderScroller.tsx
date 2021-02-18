@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, PanInfo, useAnimation } from 'framer-motion'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
@@ -76,18 +76,19 @@ export default function SliderScroller(props: SliderScrollerProps) {
   } = props
   const extendedClasses = useStyles(props)
   const [state] = useSliderContext(scope)
-  const controls = useAnimation()
 
   const { width: containerWidth = 0 } = useResizeObserver<HTMLElement>({ ref: containerRef })
   const ref = useRef<HTMLDivElement>(null)
   const { width: scrollerWidth = 0 } = useResizeObserver<HTMLDivElement>({ ref })
 
   let left = scrollerWidth <= containerWidth ? 0 : (scrollerWidth - containerWidth) * -1
-  const items = Object.entries(state.items)
-  if (items.length === React.Children.count(children)) {
-    const [, lastItem] = items[items.length - 1]
-    left = (lastItem.left + lastItem.width - containerWidth) * -1
+
+  if (state.count === React.Children.count(children) && state.lastItem) {
+    left = (state.lastItem.left + state.lastItem.width - containerWidth) * -1
   }
+
+  const count = React.Children.count(children)
+  useEffect(() => {}, [count])
 
   const handleDragEnd = (_: unknown, { velocity }: PanInfo) => {
     window.requestAnimationFrame(() => {
@@ -121,7 +122,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      controls.start({
+      state.controls.start({
         x,
         transition: {
           type: 'spring',
@@ -141,7 +142,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
       dragConstraints={{ left, right: 0 }}
       className={clsx(extendedClasses.scroller, className)}
       onDragEnd={handleDragEnd}
-      animate={controls}
+      animate={state.controls}
     >
       {React.Children.map(children, (child, idx) => (
         // eslint-disable-next-line react/no-array-index-key

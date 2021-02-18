@@ -4,7 +4,12 @@ import React from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
-const useStyles = makeStyles({ prev: {} }, { name: 'SliderDots' })
+const useStyles = makeStyles(
+  {
+    prev: {},
+  },
+  { name: 'SliderDots' },
+)
 
 type SliderPrevProps = { scope: string } & UseStyles<typeof useStyles>
 
@@ -13,7 +18,7 @@ export default function SliderPrev(props: SliderPrevProps) {
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext(scope)
 
-  const active = state.items['0']?.active
+  const active = state.firstItem?.active ?? true
 
   return (
     <Fab

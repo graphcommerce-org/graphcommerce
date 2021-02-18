@@ -14,7 +14,7 @@ export default function SliderNext(props: SliderPrevProps) {
   const [state, dispatch] = useSliderContext(scope)
 
   const itemArr = Object.entries(state.items)
-  const { active } = itemArr[itemArr.length - 1][1]
+  const { active } = itemArr[itemArr.length - 1]?.[1] ?? false
 
   return (
     <Fab
