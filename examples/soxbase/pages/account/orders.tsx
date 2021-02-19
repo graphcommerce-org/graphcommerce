@@ -8,7 +8,7 @@ import React from 'react'
 
 function AccountOrdersPage() {
   return (
-    <OverlayUi title='Orders' variant='center'>
+    <OverlayUi title='Orders' variant='bottom' fullHeight>
       <PageMeta
         title='Orders'
         metaDescription='View all your orders'
@@ -16,7 +16,7 @@ function AccountOrdersPage() {
       />
       <Container maxWidth='md'>
         <NoSsr>
-          <IconTitle iconSrc='/icons/desktop_checkout_box.svg' title='Orders' alt='orders' big />
+          <IconTitle iconSrc='/icons/desktop_checkout_box.svg' title='Orders' alt='orders' />
         </NoSsr>
       </Container>
     </OverlayUi>

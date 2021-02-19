@@ -1,4 +1,6 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { Variant } from '@material-ui/core/styles/createTypography'
+import clsx from 'clsx'
 import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 
@@ -17,18 +19,38 @@ const useStyles = makeStyles(
   { name: 'IconTitle' },
 )
 
+type IconTitleVariants = 'xs' | 'sm' | 'lg'
+
 type IconTitleProps = {
   iconSrc: string
   alt: string
   title: string
-  big?: boolean
+  size?: IconTitleVariants
+}
+
+type IconTitleVariantSizePair = {
+  variant: Variant
+  size: 32 | 56
 }
 
 export default function IconTitle(props: IconTitleProps) {
-  const { iconSrc, alt, title, big } = props
+  const { iconSrc, alt, title, size = 'lg' } = props
   const classes = useStyles()
 
-  const size = big ? 56 : 32
+  const sizes: Record<IconTitleVariants, IconTitleVariantSizePair> = {
+    xs: {
+      variant: 'h6',
+      size: 32,
+    },
+    sm: {
+      variant: 'h5',
+      size: 32,
+    },
+    lg: {
+      variant: 'h3',
+      size: 56,
+    },
+  }
 
   return (
     <div className={classes.container}>
@@ -36,11 +58,11 @@ export default function IconTitle(props: IconTitleProps) {
         src={iconSrc}
         alt={alt}
         className={classes.img}
-        width={size}
-        height={size}
+        width={sizes[size].size}
+        height={sizes[size].size}
         loading='eager'
       />
-      <Typography variant={big ? 'h2' : 'h5'}>{title}</Typography>
+      <Typography variant={sizes[size].variant}>{title}</Typography>
     </div>
   )
 }
