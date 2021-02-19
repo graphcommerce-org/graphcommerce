@@ -12,16 +12,15 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     orderContainer: {
       [theme.breakpoints.up('sm')]: {
-        padding: theme.spacings.xs,
+        padding: theme.spacings.md,
       },
       textAlign: 'center',
       paddingTop: theme.spacings.lg,
       paddingBottom: theme.spacings.lg,
       borderBottom: `1px solid ${theme.palette.divider}`,
-      marginBottom: theme.spacings.lg,
     },
     orderRow: {
-      marginBottom: theme.spacings.xxs,
+      marginBottom: `calc(${theme.spacings.xxs} * .5)`,
     },
     orderStatus: {
       fontStyle: 'italic',
@@ -62,14 +61,15 @@ const useStyles = makeStyles(
 type OrderCardProps = OrderCardFragment
 
 export default function OrderCard(props: OrderCardProps) {
-  const { status, shipments, total, items, created_at } = props
+  const { status, shipments, total, items, order_date } = props
   const classes = useStyles()
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
 
+  // TODO: use per-shop configurable values
   const orderProcessing = status === 'Pending'
-  const orderShipped = status === 'Shipped' // TODO: use correct value
-  const orderDelivered = status === 'Delivered' // TODO: use correct value
+  const orderShipped = status === 'Shipped'
+  const orderDelivered = status === 'Delivered'
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -83,7 +83,7 @@ export default function OrderCard(props: OrderCardProps) {
         <span className={classes.orderMoney}>
           <Money {...total?.grand_total} />
         </span>
-        <span> {dateFormatter.format(new Date(created_at ?? ''))}</span>
+        <span> {dateFormatter.format(new Date(order_date ?? ''))}</span>
       </div>
       <div className={classes.orderRow}>
         <span
@@ -104,7 +104,7 @@ export default function OrderCard(props: OrderCardProps) {
       <div className={clsx(classes.orderProducts, classes.orderRow)}>
         <OrderCardItemImages items={items} />
       </div>
-      <div className={clsx(classes.orderActions, classes.orderRow)}>
+      <div className={classes.orderActions}>
         <div className={classes.orderAction}>
           <LocationOn />
           <Link href='#'>TR4CK1H1S04D34L1NK</Link>

@@ -21,8 +21,6 @@ function AccountIndexPage() {
   const { data } = useQuery(AccountDashboardDocument)
   const customer = data?.customer
 
-  console.log(customer)
-
   return (
     <OverlayUi title='Account' variant='bottom' fullHeight>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />

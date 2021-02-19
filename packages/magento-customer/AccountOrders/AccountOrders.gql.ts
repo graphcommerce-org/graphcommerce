@@ -4,12 +4,12 @@ import * as Types from '@reachdigital/magento-graphql'
 
 import { OrderCardFragment, OrderCardFragmentDoc } from '../OrderCard/OrderCard.gql'
 
-export const AccountLatestOrderFragmentDoc: DocumentNode<AccountLatestOrderFragment, unknown> = {
+export const AccountOrdersFragmentDoc: DocumentNode<AccountOrdersFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'AccountLatestOrder' },
+      name: { kind: 'Name', value: 'AccountOrders' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'Customer' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -17,13 +17,6 @@ export const AccountLatestOrderFragmentDoc: DocumentNode<AccountLatestOrderFragm
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'orders' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pageSize' },
-                value: { kind: 'IntValue', value: '1' },
-              },
-            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -46,6 +39,6 @@ export const AccountLatestOrderFragmentDoc: DocumentNode<AccountLatestOrderFragm
     ...OrderCardFragmentDoc.definitions,
   ],
 }
-export type AccountLatestOrderFragment = {
+export type AccountOrdersFragment = {
   orders?: Types.Maybe<{ items: Array<Types.Maybe<OrderCardFragment>> }>
 }

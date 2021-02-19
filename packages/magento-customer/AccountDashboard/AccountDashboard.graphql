@@ -2,7 +2,7 @@ query AccountDashboard {
   customer {
     ...AccountHeader
     ...AccountMenu
-    ...AccountLatestOrder
+    ...AccountOrders
     ...AccountNewsletter
   }
 }

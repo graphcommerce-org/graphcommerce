@@ -1,0 +1,5 @@
+query AccountDashboardOrders {
+  customer {
+    ...AccountOrders
+  }
+}

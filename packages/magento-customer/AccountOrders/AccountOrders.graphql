@@ -1,0 +1,7 @@
+fragment AccountOrders on Customer {
+  orders {
+    items {
+      ...OrderCard
+    }
+  }
+}

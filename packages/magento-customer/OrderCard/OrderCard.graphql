@@ -14,5 +14,5 @@ fragment OrderCard on CustomerOrder {
   items {
     ...OrderCardItem
   }
-  created_at
+  order_date
 }
