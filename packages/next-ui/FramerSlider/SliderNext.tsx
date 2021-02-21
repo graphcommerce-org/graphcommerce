@@ -1,5 +1,6 @@
 import { Fab, makeStyles } from '@material-ui/core'
 import ArrowForward from '@material-ui/icons/ArrowForward'
+import { m } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
@@ -17,14 +18,16 @@ export default function SliderNext(props: SliderPrevProps) {
   const { active } = itemArr[itemArr.length - 1]?.[1] ?? false
 
   return (
-    <Fab
-      color='inherit'
-      className={classes.next}
-      size='small'
-      disabled={active}
-      onClick={() => !active && dispatch({ type: 'NAVIGATE_NEXT' })}
-    >
-      <ArrowForward color='inherit' />
-    </Fab>
+    <m.div layout>
+      <Fab
+        color='inherit'
+        className={classes.next}
+        size='small'
+        disabled={active}
+        onClick={() => !active && dispatch({ type: 'NAVIGATE_NEXT' })}
+      >
+        <ArrowForward color='inherit' />
+      </Fab>
+    </m.div>
   )
 }

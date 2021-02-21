@@ -1,17 +1,20 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { useRef } from 'react'
-import { UseStyles } from '../Styles'
-import SliderContainer from './SliderContainer'
-import { SliderContext } from './SliderContext'
-import SliderDots from './SliderDots'
-import SliderNext from './SliderNext'
-import SliderPrev from './SliderPrev'
-import SliderScroller, { SliderScrollerProps } from './SliderScroller'
+import { UseStyles } from '../../Styles'
+import SliderContainer from '../SliderContainer'
+import { SliderContext } from '../SliderContext'
+import SliderDots from '../SliderDots'
+import SliderNext from '../SliderNext'
+import SliderPrev from '../SliderPrev'
+import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
+import useScopeRef from '../useScopeRef'
 
-import useScopeRef from './useScopeRef'
+type ClassKey = 'container' | 'scroller' | 'nav' | 'item'
+type Classes = Partial<Record<ClassKey, string>>
+type StylesProps = { count: number; classes?: Classes }
 
-const useStyles = makeStyles(
+const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   (theme: Theme) => ({
     container: {
       position: 'relative',
@@ -34,8 +37,6 @@ const useStyles = makeStyles(
   { name: 'SingleItemSlider' },
 )
 
-type StylesProps = { count: number }
-
 type SingleItemSliderProps = Omit<
   SliderScrollerProps,
   'containerRef' | 'scope' | 'className' | 'itemClassName'
@@ -44,26 +45,24 @@ type SingleItemSliderProps = Omit<
 
 export default function SingleItemSlider(props: SingleItemSliderProps) {
   const { classes, children, ...sliderScrollerProps } = props
-  const classesBase = useStyles({ count: React.Children.count(children) })
+  const classesBase = useStyles({ count: React.Children.count(children), classes })
   const containerRef = useRef<HTMLDivElement>(null)
   const scope = useScopeRef()
 
   return (
     <SliderContext scope={scope}>
-      <SliderContainer
-        containerRef={containerRef}
-        className={clsx(classesBase.container, classes?.container)}
-      >
+      <SliderContainer scope={scope} containerRef={containerRef} className={classesBase.container}>
         <SliderScroller
           scope={scope}
           containerRef={containerRef}
-          className={clsx(classesBase.scroller, classes?.scroller)}
-          itemClassName={clsx(classesBase.item, classes?.item)}
+          className={classesBase.scroller}
+          itemClassName={classesBase.item}
           {...sliderScrollerProps}
         >
           {children}
         </SliderScroller>
-        <div className={clsx(classesBase.nav, classes?.nav)}>
+
+        <div className={classesBase.nav}>
           <SliderPrev scope={scope} />
           <SliderDots scope={scope} count={React.Children.count(children)} />
           <SliderNext scope={scope} />

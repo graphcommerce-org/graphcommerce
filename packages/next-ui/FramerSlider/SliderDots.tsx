@@ -1,5 +1,6 @@
 import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
+import { m } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
@@ -44,7 +45,7 @@ export default function SliderDots(props: SliderDotsProps) {
   const items = new Array(count).fill(undefined).map((_, idx) => [idx, state.items?.[idx]] as const)
 
   return (
-    <div className={classes.dots}>
+    <m.div layout className={classes.dots}>
       {items.map(([idx, item]) => (
         <Fab
           color='inherit'
@@ -56,6 +57,6 @@ export default function SliderDots(props: SliderDotsProps) {
           <div className={clsx({ [classes.circle]: true, [classes.circleActive]: item?.active })} />
         </Fab>
       ))}
-    </div>
+    </m.div>
   )
 }

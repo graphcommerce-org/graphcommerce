@@ -1,5 +1,6 @@
 import { Fab, makeStyles } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBack'
+import { m } from 'framer-motion'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
@@ -21,14 +22,16 @@ export default function SliderPrev(props: SliderPrevProps) {
   const active = state.firstItem?.active ?? true
 
   return (
-    <Fab
-      color='inherit'
-      className={classes.prev}
-      size='small'
-      disabled={active}
-      onClick={() => !active && dispatch({ type: 'NAVIGATE_PREV' })}
-    >
-      <ArrowBack color='inherit' />
-    </Fab>
+    <m.div layout>
+      <Fab
+        color='inherit'
+        className={classes.prev}
+        size='small'
+        disabled={active}
+        onClick={() => !active && dispatch({ type: 'NAVIGATE_PREV' })}
+      >
+        <ArrowBack color='inherit' />
+      </Fab>
+    </m.div>
   )
 }

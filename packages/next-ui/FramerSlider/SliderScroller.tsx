@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, PanInfo, useAnimation } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
+import { m, PanInfo } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
-import SliderItem, { SliderItemProps, SliderItemStyles } from './SliderItem'
+import SliderItem from './SliderItem'
+import { rectRelative } from './sliderReducer'
 
 const useStyles = makeStyles(
   {
@@ -75,11 +76,14 @@ export default function SliderScroller(props: SliderScrollerProps) {
     itemClassName,
   } = props
   const extendedClasses = useStyles(props)
-  const [state] = useSliderContext(scope)
+  const [state, dispatch] = useSliderContext(scope)
+  const [layout, setLayout] = useState(true)
 
-  const { width: containerWidth = 0 } = useResizeObserver<HTMLElement>({ ref: containerRef })
+  const { width: containerWidth = 0 } = useResizeObserver<HTMLElement>({
+    ref: containerRef.current,
+  })
   const ref = useRef<HTMLDivElement>(null)
-  const { width: scrollerWidth = 0 } = useResizeObserver<HTMLDivElement>({ ref })
+  const { width: scrollerWidth = 0 } = useResizeObserver<HTMLDivElement>({ ref: ref.current })
 
   let left = scrollerWidth <= containerWidth ? 0 : (scrollerWidth - containerWidth) * -1
 
@@ -87,16 +91,17 @@ export default function SliderScroller(props: SliderScrollerProps) {
     left = (state.lastItem.left + state.lastItem.width - containerWidth) * -1
   }
 
-  const count = React.Children.count(children)
-  useEffect(() => {}, [count])
-
-  const handleDragEnd = (_: unknown, { velocity }: PanInfo) => {
+  const handleDragEnd = (_: unknown, { velocity, point }: PanInfo) => {
     window.requestAnimationFrame(() => {
       const bbRect = ref.current?.getBoundingClientRect()
-      if (!ref.current || !bbRect || !snap) return
+      const parentRect = ref.current?.parentElement?.getBoundingClientRect()
+
+      if (!ref.current || !bbRect || !parentRect || !snap) return
+      const rect = rectRelative(bbRect, parentRect)
 
       // todo: clamp velocity to only 100% of the scroller width else we can shoot on very small drags
-      const targetX = Math.min(0, Math.max(left, bbRect.x + velocity.x))
+      // const targetX = rect.x + velocity.x
+      const targetX = Math.min(0, Math.max(left, rect.x + velocity.x))
 
       let x = targetX
 
@@ -122,16 +127,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      state.controls.start({
-        x,
-        transition: {
-          type: 'spring',
-          velocity: velocity.x,
-          stiffness: 200,
-          mass: 1,
-          damping: 20,
-        },
-      })
+      state.controls.start({ x, transition: { velocity: velocity.x, ...state.transition } })
     })
   }
 
@@ -143,10 +139,30 @@ export default function SliderScroller(props: SliderScrollerProps) {
       className={clsx(extendedClasses.scroller, className)}
       onDragEnd={handleDragEnd}
       animate={state.controls}
+      /**
+       * To be able to scale the scroller we need to have the layout property,
+       * we however run into an issue that the layout is counteranimating the scroll
+       *
+       * We disable the layout property when we start scrolling
+       * We enable the layout propery when all animations are done
+       */
+      layout={layout}
+      onDragStart={() => setLayout(false)}
+      onAnimationComplete={() => setLayout(true)}
     >
+      {/**
+       * We wrap each item in a separate SliderItem because then we can easily setup the intersection observer.
+       *
+       * todo: Can we hoist the intersection observer functionality to this component?
+       */}
       {React.Children.map(children, (child, idx) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <SliderItem key={idx} idx={idx} scope={scope} className={itemClassName}>
+        <SliderItem
+          // eslint-disable-next-line react/no-array-index-key
+          key={idx}
+          idx={idx}
+          scope={scope}
+          className={itemClassName}
+        >
           {child}
         </SliderItem>
       ))}

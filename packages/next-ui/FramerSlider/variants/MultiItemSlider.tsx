@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core'
 import React, { useRef } from 'react'
-import { UseStyles } from '../Styles'
-import SliderContainer, { SliderContainerProps } from './SliderContainer'
-import { SliderContext } from './SliderContext'
-import SliderScroller, { SliderScrollerProps } from './SliderScroller'
-import useScopeRef from './useScopeRef'
+import { UseStyles } from '../../Styles'
+import SliderContainer from '../SliderContainer'
+import { SliderContext } from '../SliderContext'
+import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
+import useScopeRef from '../useScopeRef'
 
 const useStyles = makeStyles(
   () => ({
@@ -29,7 +29,7 @@ export default function MultiItemSlider(props: MultiItemSliderProps) {
 
   return (
     <SliderContext scope={scope}>
-      <SliderContainer containerRef={containerRef} className={classes.container}>
+      <SliderContainer scope={scope} containerRef={containerRef} className={classes.container}>
         <SliderScroller
           scope={scope}
           containerRef={containerRef}

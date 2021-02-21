@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import MultiItemSlider from '../MultiItemSlider'
+import MultiItemSlider from '../variants/MultiItemSlider'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
