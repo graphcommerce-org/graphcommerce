@@ -48,12 +48,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   sidebar: {
     height: '100%',
     display: 'grid',
+    justifyItems: 'start',
     alignContent: 'center',
-    gap: theme.spacings.xs,
-    '& > *': {
-      paddingLeft: theme.spacings.lg,
-      paddingRight: theme.spacings.lg,
-    },
     '& h1': {
       ...theme.typography.h2,
     },
