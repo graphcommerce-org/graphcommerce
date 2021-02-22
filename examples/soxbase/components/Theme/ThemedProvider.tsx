@@ -39,6 +39,7 @@ export const defaultTheme = createMuiTheme({
     text: {
       primary: '#000',
       secondary: '#000',
+      disabled: 'rgba(0,0,0,0.4)',
     },
   },
   breakpoints: {
@@ -56,7 +57,18 @@ export const defaultTheme = createMuiTheme({
     subtitle1: {},
     subtitle2: {},
     fontSize: 16,
-    body1: { fontSize: responsiveVal(15, 18) },
+    body1: {
+      fontSize: responsiveVal(15, 18),
+      lineHeight: 1.8,
+    },
+    caption: {
+      color: 'rgba(0,0,0,0.4)',
+      fontSize: responsiveVal(14, 18),
+      fontWeight: 400,
+      letterSpacing: '0.025em',
+      lineHeight: 1.55,
+      textTransform: 'uppercase',
+    },
     h1: {
       fontSize: responsiveVal(36, 74),
       fontWeight: 600,
@@ -204,6 +216,11 @@ defaultTheme.overrides = {
       '&$focused $notchedOutline': {
         borderColor: defaultTheme.palette.secondary.main,
       },
+    },
+  },
+  MuiChip: {
+    outlined: {
+      borderColor: defaultTheme.palette.divider,
     },
   },
 }
