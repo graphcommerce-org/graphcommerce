@@ -68,7 +68,7 @@ export default function OrderCard(props: OrderCardProps) {
 
   // TODO: use per-shop configurable values
   const orderProcessing = status === 'Pending'
-  const orderShipped = status === 'Shipped'
+  const orderShipped = status === 'Complete'
   const orderDelivered = status === 'Delivered'
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
@@ -106,8 +106,12 @@ export default function OrderCard(props: OrderCardProps) {
       </div>
       <div className={classes.orderActions}>
         <div className={classes.orderAction}>
-          <LocationOn />
-          <Link href='#'>TR4CK1H1S04D34L1NK</Link>
+          {shipments?.[0]?.tracking?.[0] && (
+            <>
+              <LocationOn />
+              <Link href='#'>{shipments?.[0].tracking?.[0].number}</Link>
+            </>
+          )}
         </div>
       </div>
     </div>
