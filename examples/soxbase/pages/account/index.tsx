@@ -27,9 +27,13 @@ function AccountIndexPage() {
 
       <Container maxWidth='md'>
         <NoSsr>
-          <AccountHeader {...customer} />
-          {customer && <AccountMenu {...customer} />}
-          <AccountLatestOrder {...customer} />
+          {customer && (
+            <>
+              <AccountHeader {...customer} />
+              <AccountMenu {...customer} />
+              <AccountLatestOrder {...customer} />
+            </>
+          )}
         </NoSsr>
       </Container>
     </OverlayUi>
