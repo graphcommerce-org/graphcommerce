@@ -1,0 +1,3 @@
+fragment RowProductSpecs on RowProductSpecs {
+  identity
+}
