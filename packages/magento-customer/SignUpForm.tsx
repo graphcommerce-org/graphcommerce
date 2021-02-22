@@ -1,8 +1,9 @@
 import { FormControl, FormControlLabel, MenuItem, TextField, Switch } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
@@ -27,6 +28,7 @@ export default function SignUpForm(props: SignUpFormProps) {
   })
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
   const { register, errors, handleSubmit, required, watch, control, formState, error } = form
+  const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -35,13 +37,20 @@ export default function SignUpForm(props: SignUpFormProps) {
         <TextField
           variant='outlined'
           type='password'
-          error={!!errors.password}
+          error={!!errors.password || !!inputError}
           id='password'
           name='password'
           label='Password'
           required={required.password}
-          inputRef={register({ required: required.password })}
-          helperText={errors.password?.message}
+          inputRef={register({
+            required: required.password,
+            minLength: { value: 8, message: 'Password must have at least 8 characters' },
+          })}
+          helperText={
+            errors.password?.message ||
+            inputError?.message ||
+            'At least 8 characters long, must contain a symbol'
+          }
           disabled={formState.isSubmitting}
         />
         <TextField
@@ -125,7 +134,7 @@ export default function SignUpForm(props: SignUpFormProps) {
         label='Subscribe to newsletter'
       />
 
-      <ApolloErrorAlert error={error} />
+      <ApolloErrorAlert error={remainingError} />
 
       <div className={classes.actions}>
         <Button
