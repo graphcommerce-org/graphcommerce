@@ -1,7 +1,0 @@
-query usps {
-  usps(where: { identity: "global" }) {
-    productUsps {
-      ...PageLink
-    }
-  }
-}

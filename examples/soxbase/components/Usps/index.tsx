@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import Asset from '../Asset'
-import { UspsQuery } from './ProductUsps.gql'
+import { UspsQuery } from './Usps.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       alignItems: 'center',
       gap: theme.spacings.xs,
       ...theme.typography.body1,
+      '& > *': {
+        display: 'grid',
+        gridAutoFlow: 'column',
+        maxWidth: 'max-content',
+        alignItems: 'center',
+      },
       '& img': {
         width: 38,
         height: 38,
@@ -36,9 +42,9 @@ export default function ProductUsps(props: ProductUspsProps) {
 
   return (
     <>
-      {usps?.productUsps && (
+      {usps?.uspsMultiple && (
         <ul className={classes.root}>
-          {usps?.productUsps.map((usp) => (
+          {usps?.uspsMultiple.map((usp) => (
             <li key={usp.title}>
               {usp.asset && <Asset asset={usp.asset} width={16} />}
               {usp.title}
