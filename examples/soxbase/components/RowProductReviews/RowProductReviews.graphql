@@ -1,0 +1,3 @@
+fragment RowProductReviews on RowProductReviews {
+  title
+}
