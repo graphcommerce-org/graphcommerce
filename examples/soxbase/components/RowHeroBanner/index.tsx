@@ -81,8 +81,8 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
   const { scrollY } = useViewportScroll()
   const actionsAnimWidth = useTransform(
     scrollY,
-    [50, 500],
-    [`calc(100% - ${responsiveVal(0, 0)})`, `calc(100% - ${responsiveVal(30, 60)})`],
+    [10, 150],
+    [`calc(100% - ${responsiveVal(30, 60)})`, `calc(100% - ${responsiveVal(0, 0)})`],
   )
 
   return (
