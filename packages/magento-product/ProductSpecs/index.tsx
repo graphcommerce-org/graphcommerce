@@ -26,15 +26,11 @@ export default function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations } = props
   const classes = useStyles()
 
-  const filter = ['price', 'category_id', 'size', 'new']
-  const specs = aggregations?.filter((attribute) => {
-    if (
-      filter.includes(String(attribute?.attribute_code)) ||
-      (attribute?.options && attribute?.options[0] && attribute?.options[0].value === '0')
-    )
-      return false
-    return true
-  })
+  const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
+  const specs = aggregations?.filter(
+    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
+  )
+
   if (specs?.length === 0) {
     return null
   }
