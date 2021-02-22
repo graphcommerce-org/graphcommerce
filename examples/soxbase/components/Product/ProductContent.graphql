@@ -1,0 +1,21 @@
+fragment ProductContent on Product {
+  url
+  content {
+    ... on Node {
+      id
+    }
+    __typename
+    ...RowColumnOne
+    ...RowColumnTwo
+    ...RowColumnThree
+    ...RowSpecialBanner
+    ...RowContentLinks
+    ...RowProductFeature
+    ...RowProductFeatureBoxed
+    ...RowProductReviews
+    ...RowProductRelated
+    ...RowProductUpsells
+    ...RowProductSpecs
+    ...RowQuote
+  }
+}
