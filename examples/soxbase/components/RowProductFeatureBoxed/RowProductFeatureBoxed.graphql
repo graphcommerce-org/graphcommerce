@@ -1,0 +1,6 @@
+fragment RowProductFeatureBoxed on RowProductFeatureBoxed {
+  topic
+  copy {
+    raw
+  }
+}
