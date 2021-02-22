@@ -6,6 +6,7 @@
       "MagentoCategory",
       "Page",
       "PageLink",
+      "Product",
       "RowBlogContent",
       "RowButtonLinkList",
       "RowColumnOne",
@@ -14,11 +15,18 @@
       "RowContentLinks",
       "RowHeroBanner",
       "RowProductBackstory",
+      "RowProductFeature",
+      "RowProductFeatureBoxed",
       "RowProductGrid",
+      "RowProductRelated",
+      "RowProductReviews",
+      "RowProductSpecs",
+      "RowProductUpsells",
       "RowQuote",
       "RowServiceOptions",
       "RowSpecialBanner",
-      "RowSwipeableGrid"
+      "RowSwipeableGrid",
+      "Usps"
     ],
     "PageContent": [
       "RowBlogContent",
@@ -34,6 +42,20 @@
       "RowServiceOptions",
       "RowSpecialBanner",
       "RowSwipeableGrid"
+    ],
+    "ProductContent": [
+      "RowColumnOne",
+      "RowColumnThree",
+      "RowColumnTwo",
+      "RowContentLinks",
+      "RowProductFeature",
+      "RowProductFeatureBoxed",
+      "RowProductRelated",
+      "RowProductReviews",
+      "RowProductSpecs",
+      "RowProductUpsells",
+      "RowQuote",
+      "RowSpecialBanner"
     ],
     "CartAddressInterface": ["BillingCartAddress", "ShippingCartAddress"],
     "CartItemInterface": [
@@ -62,6 +84,14 @@
     "OrderItemInterface": ["DownloadableOrderItem", "BundleOrderItem", "OrderItem"],
     "InvoiceItemInterface": ["DownloadableInvoiceItem", "BundleInvoiceItem", "InvoiceItem"],
     "ShipmentItemInterface": ["BundleShipmentItem", "ShipmentItem"],
+    "WishlistItemInterface": [
+      "SimpleWishlistItem",
+      "VirtualWishlistItem",
+      "DownloadableWishlistItem",
+      "BundleWishlistItem",
+      "GroupedProductWishlistItem",
+      "ConfigurableWishlistItem"
+    ],
     "AggregationOptionInterface": ["AggregationOption"],
     "LayerFilterItemInterface": ["LayerFilterItem", "SwatchLayerFilterItem"],
     "PhysicalProductInterface": [

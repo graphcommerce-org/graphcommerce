@@ -423,8 +423,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                           ],
                         },
                       },
-                      { kind: 'Field', name: { kind: 'Name', value: 'review_count' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'rating_summary' } },
                     ],
                   },
                 },
@@ -448,14 +446,7 @@ export type ProductPageQuery = {
         Types.Maybe<
           | ({ __typename: 'VirtualProduct' } & Pick<
               Types.VirtualProduct,
-              | 'id'
-              | 'name'
-              | 'sku'
-              | 'url_key'
-              | 'meta_title'
-              | 'meta_description'
-              | 'review_count'
-              | 'rating_summary'
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
             > & {
                 categories?: Types.Maybe<
                   Array<
@@ -553,14 +544,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'SimpleProduct' } & Pick<
               Types.SimpleProduct,
-              | 'id'
-              | 'name'
-              | 'sku'
-              | 'url_key'
-              | 'meta_title'
-              | 'meta_description'
-              | 'review_count'
-              | 'rating_summary'
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
             > & {
                 categories?: Types.Maybe<
                   Array<
@@ -658,14 +642,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'DownloadableProduct' } & Pick<
               Types.DownloadableProduct,
-              | 'id'
-              | 'name'
-              | 'sku'
-              | 'url_key'
-              | 'meta_title'
-              | 'meta_description'
-              | 'review_count'
-              | 'rating_summary'
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
             > & {
                 categories?: Types.Maybe<
                   Array<
@@ -763,14 +740,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'BundleProduct' } & Pick<
               Types.BundleProduct,
-              | 'id'
-              | 'name'
-              | 'sku'
-              | 'url_key'
-              | 'meta_title'
-              | 'meta_description'
-              | 'review_count'
-              | 'rating_summary'
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
             > & {
                 categories?: Types.Maybe<
                   Array<
@@ -868,14 +838,7 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'GroupedProduct' } & Pick<
               Types.GroupedProduct,
-              | 'id'
-              | 'name'
-              | 'sku'
-              | 'url_key'
-              | 'meta_title'
-              | 'meta_description'
-              | 'review_count'
-              | 'rating_summary'
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
             > & {
                 categories?: Types.Maybe<
                   Array<
@@ -973,14 +936,105 @@ export type ProductPageQuery = {
               })
           | ({ __typename: 'ConfigurableProduct' } & Pick<
               Types.ConfigurableProduct,
-              | 'id'
-              | 'name'
-              | 'sku'
-              | 'url_key'
-              | 'meta_title'
-              | 'meta_description'
-              | 'review_count'
-              | 'rating_summary'
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
+            > & {
+                categories?: Types.Maybe<
+                  Array<
+                    Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>
+                  >
+                >
+                short_description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+                description?: Types.Maybe<Pick<Types.ComplexTextValue, 'html'>>
+                media_gallery?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      | ({ __typename: 'ProductImage' } & Pick<
+                          Types.ProductImage,
+                          'url' | 'label' | 'position' | 'disabled'
+                        >)
+                      | ({ __typename: 'ProductVideo' } & Pick<
+                          Types.ProductVideo,
+                          'label' | 'position' | 'disabled'
+                        > & {
+                            video_content?: Types.Maybe<
+                              Pick<
+                                Types.ProductMediaGalleryEntriesVideoContent,
+                                | 'media_type'
+                                | 'video_description'
+                                | 'video_metadata'
+                                | 'video_provider'
+                                | 'video_title'
+                                | 'video_url'
+                              >
+                            >
+                          })
+                    >
+                  >
+                >
+                price_range: {
+                  maximum_price?: Types.Maybe<{
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                    fixed_product_taxes?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.FixedProductTax, 'label'> & {
+                            amount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                          }
+                        >
+                      >
+                    >
+                  }>
+                  minimum_price: {
+                    regular_price: Pick<Types.Money, 'currency' | 'value'>
+                    discount?: Types.Maybe<
+                      Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                    >
+                    final_price: Pick<Types.Money, 'currency' | 'value'>
+                    fixed_product_taxes?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.FixedProductTax, 'label'> & {
+                            amount?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                          }
+                        >
+                      >
+                    >
+                  }
+                }
+                price_tiers?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      Pick<Types.TierPrice, 'quantity'> & {
+                        discount?: Types.Maybe<
+                          Pick<Types.ProductDiscount, 'amount_off' | 'percent_off'>
+                        >
+                        final_price?: Types.Maybe<Pick<Types.Money, 'currency' | 'value'>>
+                      }
+                    >
+                  >
+                >
+                reviews: {
+                  items: Array<
+                    Types.Maybe<
+                      Pick<
+                        Types.ProductReview,
+                        'average_rating' | 'created_at' | 'nickname' | 'summary' | 'text'
+                      > & {
+                        ratings_breakdown: Array<
+                          Types.Maybe<Pick<Types.ProductReviewRating, 'name' | 'value'>>
+                        >
+                      }
+                    >
+                  >
+                }
+              })
+          | ({ __typename: 'GiftCardProduct' } & Pick<
+              Types.GiftCardProduct,
+              'id' | 'name' | 'sku' | 'url_key' | 'meta_title' | 'meta_description'
             > & {
                 categories?: Types.Maybe<
                   Array<
