@@ -9,6 +9,7 @@ query ProductPage($urlKey: String, $reviewPage: Int = 1) {
       ...ProductPageMeta
       ...ProductPagePrice
       ...ProductReview
+      ...ProductReviewSummary
     }
   }
 }
