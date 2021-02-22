@@ -71,7 +71,7 @@ export const OrderCardFragmentDoc: DocumentNode<OrderCardFragment, unknown> = {
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'created_at' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'order_date' } },
         ],
       },
     },
@@ -80,7 +80,7 @@ export const OrderCardFragmentDoc: DocumentNode<OrderCardFragment, unknown> = {
     ...OrderCardItemFragmentDoc.definitions,
   ],
 }
-export type OrderCardFragment = Pick<Types.CustomerOrder, 'status' | 'number' | 'created_at'> & {
+export type OrderCardFragment = Pick<Types.CustomerOrder, 'status' | 'number' | 'order_date'> & {
   shipments?: Types.Maybe<
     Array<Types.Maybe<{ tracking?: Types.Maybe<Array<Types.Maybe<TrackingLinkFragment>>> }>>
   >
