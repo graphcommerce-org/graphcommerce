@@ -58,7 +58,9 @@ export default function RowProductPageDescription(props: RowProductDescriptionPr
         {name ?? ''}
       </Typography>
       {/* eslint-disable-next-line react/no-danger */}
-      <ProductPageDescription description={description} />
+      <div className={classes.description}>
+        <ProductPageDescription description={description} />
+      </div>
       {children && children}
     </Container>
   )
