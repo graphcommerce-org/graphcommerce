@@ -13,18 +13,21 @@ const useStyles = makeStyles(
     },
     wrapper: {
       display: 'grid',
-      height: '60vw',
-      gridTemplateColumns: '1fr 1fr',
+      background: 'rgba(0,0,0,0.03)',
       justifyItems: 'center',
       columnGap: `${theme.spacings.lg}`,
+      padding: `${theme.spacings.lg} 0`,
       [theme.breakpoints.up('md')]: {
-        height: '50vw',
+        padding: 0,
+        background: 'none',
+        gridTemplateColumns: '1fr 1fr',
+        // height: '60vw',
         columnGap: `${theme.spacings.lg}`,
       },
     },
     asset: {
       height: '100%',
-      width: '100%',
+      width: responsiveVal(250, 900),
       '& img': {
         height: '100%',
         width: '100%',
@@ -33,18 +36,18 @@ const useStyles = makeStyles(
     },
     copy: {
       color: theme.palette.text.primary,
+      maxWidth: '80%',
       display: 'grid',
       alignContent: 'center',
       [theme.breakpoints.up('md')]: {
-        maxWidth: '80%',
+        maxWidth: '70%',
       },
       '& > *': {
         maxWidth: 'max-content',
       },
     },
     topic: {
-      textTransform: 'uppercase',
-      color: 'rgba(0,0,0,0.7)',
+      ...theme.typography.caption,
     },
     url: {
       ...theme.typography.body2,
@@ -99,13 +102,14 @@ export default function RowSpecialBanner(props: RowSpecialBannerProps) {
             </Typography>
           )}
           <RichText classes={richTextOneClasses} {...copy} />
-          {pageLinks.map((pageLink) => (
-            <NextUiPageLink href={pageLink.url} key={pageLink.url}>
-              <a href={pageLink.url} className={classes.url}>
-                {pageLink.title}
-              </a>
-            </NextUiPageLink>
-          ))}
+          {pageLinks &&
+            pageLinks.map((pageLink) => (
+              <NextUiPageLink href={pageLink.url} key={pageLink.url}>
+                <a href={pageLink.url} className={classes.url}>
+                  {pageLink.title}
+                </a>
+              </NextUiPageLink>
+            ))}
         </div>
       </div>
     </Container>
