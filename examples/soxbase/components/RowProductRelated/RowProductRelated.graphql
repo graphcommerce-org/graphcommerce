@@ -1,0 +1,4 @@
+fragment RowProductRelated on RowProductRelated {
+  identity
+  title
+}
