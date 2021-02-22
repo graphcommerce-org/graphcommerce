@@ -83,35 +83,32 @@ export default function RowProductFeature(props: ProductFeatureProps) {
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
 
-  if (media_gallery) {
-    const label = media_gallery[2]?.label ? media_gallery[2]?.label : media_gallery[0]?.label
-    const url = media_gallery[2]?.url ? media_gallery[2]?.url : media_gallery[0]?.url
+  const item = media_gallery?.[1] ?? media_gallery?.[0]
+  if (!item) return null
 
-    return (
-      <Container maxWidth={false} className={classes.container}>
-        <div className={classes.wrapper}>
-          {media_gallery && (
-            <div className={classes.asset}>
-              <PictureResponsiveNext
-                alt={label}
-                width={328}
-                height={328}
-                src={url}
-                type='image/jpeg'
-              />
-            </div>
+  return (
+    <Container maxWidth={false} className={classes.container}>
+      <div className={classes.wrapper}>
+        <div className={classes.asset}>
+          {item.__typename === 'ProductImage' && item.url && (
+            <PictureResponsiveNext
+              alt={item.label ?? ''}
+              width={328}
+              height={328}
+              src={item.url}
+              type='image/jpeg'
+            />
           )}
-          <div className={classes.copy}>
-            {topic && (
-              <Typography variant='body2' className={classes.topic}>
-                {topic}
-              </Typography>
-            )}
-            <RichText classes={richTextOneClasses} {...copy} />
-          </div>
         </div>
-      </Container>
-    )
-  }
-  return null
+        <div className={classes.copy}>
+          {topic && (
+            <Typography variant='body2' className={classes.topic}>
+              {topic}
+            </Typography>
+          )}
+          <RichText classes={richTextOneClasses} {...copy} />
+        </div>
+      </div>
+    </Container>
+  )
 }
