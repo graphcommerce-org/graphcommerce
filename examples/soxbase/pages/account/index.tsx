@@ -31,7 +31,7 @@ function AccountIndexPage() {
             <>
               <AccountHeader {...customer} />
               <AccountMenu {...customer} />
-              <AccountLatestOrder {...customer} />
+              <AccountLatestOrder orders={customer?.orders} />
             </>
           )}
         </NoSsr>
