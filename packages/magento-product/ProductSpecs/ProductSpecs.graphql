@@ -1,0 +1,12 @@
+fragment ProductSpecs on Products {
+  aggregations {
+    attribute_code
+    count
+    label
+    options {
+      count
+      label
+      value
+    }
+  }
+}
