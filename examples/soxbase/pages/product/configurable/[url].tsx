@@ -18,6 +18,7 @@ import {
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
+import ProductReviewSummary from '@reachdigital/magento-product/ProductReviewSummary'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -95,6 +96,7 @@ function ProductConfigurable({
           <Container maxWidth={false}>
             <ProductPageGallery {...product}>
               <Typography variant='h1'>{product.name ?? ''}</Typography>
+              <ProductReviewSummary {...product} />
               <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
             </ProductPageGallery>
           </Container>
@@ -103,18 +105,10 @@ function ProductConfigurable({
           </RowProductDescription>
           <Product
             renderer={{
-              RowProductFeature: (props) => (
-                <RowProductFeature {...props} media_gallery={product.media_gallery} />
-              ),
-              RowProductFeatureBoxed: (props) => (
-                <RowProductFeatureBoxed {...props} media_gallery={product.media_gallery} />
-              ),
-              RowProductSpecs: (props) => (
-                <RowProductSpecs {...props} aggregations={aggregations} />
-              ),
-              RowProductReviews: (props) => (
-                <RowProductReviews {...props} reviews={product.reviews} />
-              ),
+              RowProductFeature: (props) => <RowProductFeature {...props} {...product} />,
+              RowProductFeatureBoxed: (props) => <RowProductFeatureBoxed {...props} {...product} />,
+              RowProductSpecs: (props) => <RowProductSpecs {...props} {...productAdditionals} />,
+              RowProductReviews: (props) => <RowProductReviews {...props} {...product} />,
               RowProductRelated: (props) => <RowProductRelated {...props} items={related} />,
               RowProductUpsells: (props) => <RowProductUpsells {...props} items={upsells} />,
             }}

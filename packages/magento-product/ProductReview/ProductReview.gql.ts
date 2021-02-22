@@ -153,21 +153,6 @@ export type ProductReview_ConfigurableProduct_Fragment = {
   }
 }
 
-export type ProductReview_GiftCardProduct_Fragment = {
-  reviews: {
-    items: Array<
-      Types.Maybe<
-        Pick<
-          Types.ProductReview,
-          'average_rating' | 'created_at' | 'nickname' | 'summary' | 'text'
-        > & {
-          ratings_breakdown: Array<Types.Maybe<Pick<Types.ProductReviewRating, 'name' | 'value'>>>
-        }
-      >
-    >
-  }
-}
-
 export type ProductReviewFragment =
   | ProductReview_VirtualProduct_Fragment
   | ProductReview_SimpleProduct_Fragment
@@ -175,4 +160,3 @@ export type ProductReviewFragment =
   | ProductReview_BundleProduct_Fragment
   | ProductReview_GroupedProduct_Fragment
   | ProductReview_ConfigurableProduct_Fragment
-  | ProductReview_GiftCardProduct_Fragment

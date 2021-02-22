@@ -52,11 +52,6 @@ export type ProductReviewSummary_ConfigurableProduct_Fragment = Pick<
   'review_count' | 'rating_summary'
 >
 
-export type ProductReviewSummary_GiftCardProduct_Fragment = Pick<
-  Types.GiftCardProduct,
-  'review_count' | 'rating_summary'
->
-
 export type ProductReviewSummaryFragment =
   | ProductReviewSummary_VirtualProduct_Fragment
   | ProductReviewSummary_SimpleProduct_Fragment
@@ -64,4 +59,3 @@ export type ProductReviewSummaryFragment =
   | ProductReviewSummary_BundleProduct_Fragment
   | ProductReviewSummary_GroupedProduct_Fragment
   | ProductReviewSummary_ConfigurableProduct_Fragment
-  | ProductReviewSummary_GiftCardProduct_Fragment
