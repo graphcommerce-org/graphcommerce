@@ -1,9 +1,6 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import ProductReview, { ProductReviewProps } from '@reachdigital/magento-product/ProductReview'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { RowProductReviewsFragment } from './RowProductReviews.gql'
 
@@ -27,15 +24,13 @@ const useStyles = makeStyles(
   { name: 'ProductReview' },
 )
 
-type RowProductReviewProps = RowProductReviewsFragment & ProductReviewProps
+type RowProductReviewProps = RowProductReviewsFragment & Partial<ProductReviewProps>
 
 export default function RowProductReviews(props: RowProductReviewProps) {
   const { title, reviews } = props
   const classes = useStyles()
 
-  if (!reviews || reviews.items.length === 0) {
-    return null
-  }
+  if (!reviews || reviews?.items.length === 0) return null
 
   return (
     <Container className={classes.container}>
@@ -45,6 +40,4 @@ export default function RowProductReviews(props: RowProductReviewProps) {
       <ProductReview reviews={reviews} />
     </Container>
   )
-
-  return null
 }
