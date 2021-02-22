@@ -83,7 +83,10 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
 
-  if (media_gallery && media_gallery[1]) {
+  if (media_gallery) {
+    const label = media_gallery[1]?.label ? media_gallery[1]?.label : media_gallery[0]?.label
+    const url = media_gallery[1]?.url ? media_gallery[1]?.url : media_gallery[0]?.url
+
     return (
       <Container className={classes.container}>
         <div className={classes.wrapper}>
@@ -98,10 +101,10 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
           {media_gallery && (
             <div className={classes.asset}>
               <PictureResponsiveNext
-                alt={media_gallery[1]?.label ?? ''}
+                alt={label}
                 width={328}
                 height={328}
-                src={media_gallery[1]?.url}
+                src={url}
                 type='image/jpeg'
               />
             </div>
