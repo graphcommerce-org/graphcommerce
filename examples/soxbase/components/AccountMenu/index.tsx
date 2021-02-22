@@ -31,7 +31,6 @@ export default function AccountMenu(props: AccountMenuProps) {
         url='/account/orders'
         label='Orders'
         startIconSrc='/icons/desktop_account_orders.svg'
-        disabled={!hasOrders}
       />
 
       <AccountMenuItem
@@ -50,7 +49,6 @@ export default function AccountMenu(props: AccountMenuProps) {
         url='/account/reviews'
         label='Reviews'
         startIconSrc='/icons/desktop_account_reviews.svg'
-        disabled={!hasReviews}
       />
 
       <AccountMenuItem
