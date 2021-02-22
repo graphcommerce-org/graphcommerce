@@ -17,7 +17,6 @@ import {
 } from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
@@ -35,20 +34,26 @@ import Footer from '../../components/Footer'
 import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
 import HeaderActions from '../../components/HeaderActions/HeaderActions'
 import Logo from '../../components/Logo/Logo'
-import Page from '../../components/Page'
-import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
-import ProductUsps from '../../components/ProductUsps'
-import { UspsDocument, UspsQuery } from '../../components/ProductUsps/ProductUsps.gql'
-import RelatedProducts from '../../components/RelatedProducts'
+import Product from '../../components/Product'
+import { ProductByUrlDocument, ProductByUrlQuery } from '../../components/Product/ProductByUrl.gql'
+import RowProductDescription from '../../components/RowProductDescription'
+import RowProductFeature from '../../components/RowProductFeature'
+import RowProductFeatureBoxed from '../../components/RowProductFeatureBoxed'
+import RowProductRelated from '../../components/RowProductRelated'
+import RowProductReviews from '../../components/RowProductReviews'
+import RowProductSpecs from '../../components/RowProductSpecs'
+import RowProductUpsells from '../../components/RowProductUpsells'
+import ProductUsps from '../../components/Usps'
+import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductPageQuery &
   ProductPageAdditionalQuery &
-  PageByUrlQuery &
+  ProductByUrlQuery &
   ResolveUrlQuery &
   ProductSimpleQuery &
-  UspsQuery &
   PageLayoutQuery &
+  UspsQuery &
   FooterQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -60,9 +65,9 @@ function ProductSimple({
   menu,
   urlResolver,
   footer,
-  simpleProducts,
   usps,
-  pages,
+  simpleProducts,
+  productpages,
 }: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
@@ -70,6 +75,7 @@ function ProductSimple({
   const weight = simpleProducts?.items?.[0]?.weight
   const upsells = productAdditionals?.items?.[0]?.upsell_products
   const related = productAdditionals?.items?.[0]?.related_products
+  const aggregations = productAdditionals?.aggregations
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
@@ -94,16 +100,26 @@ function ProductSimple({
             <ProductWeight weight={weight} />
           </ProductPageGallery>
         </Container>
-        <ProductPageDescription {...product}>
+        <RowProductDescription {...product}>
           <ProductUsps usps={usps} />
-        </ProductPageDescription>
-        {pages?.[0] && <Page {...pages?.[0]} />}
-        {upsells && upsells.length > 0 ? (
-          <RelatedProducts title='Looking for a better fit?' items={upsells} />
-        ) : null}
-        {related && related.length > 0 ? (
-          <RelatedProducts title={`More like this: ${category?.name}`} items={related} />
-        ) : null}
+        </RowProductDescription>
+        <Product
+          renderer={{
+            RowProductFeature: (props) => (
+              <RowProductFeature {...props} media_gallery={product.media_gallery} />
+            ),
+            RowProductFeatureBoxed: (props) => (
+              <RowProductFeatureBoxed {...props} media_gallery={product.media_gallery} />
+            ),
+            RowProductSpecs: (props) => <RowProductSpecs {...props} aggregations={aggregations} />,
+            RowProductReviews: (props) => (
+              <RowProductReviews {...props} reviews={product.reviews} />
+            ),
+            RowProductRelated: (props) => <RowProductRelated {...props} items={related} />,
+            RowProductUpsells: (props) => <RowProductUpsells {...props} items={upsells} />,
+          }}
+          {...productpages?.[0]}
+        />
         <Footer footer={footer} />
       </FullPageUi>
     </>
@@ -134,9 +150,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(localeToStore(locale))
   const config = client.query({ query: StoreConfigDocument })
 
-  const page = staticClient.query({
-    query: PageByUrlDocument,
-    variables: { url: `product/${urlKey}` },
+  const product = staticClient.query({
+    query: ProductByUrlDocument,
+    variables: { url: `product/global` },
   })
   const productPage = staticClient.query({
     query: ProductPageDocument,
@@ -170,9 +186,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await pageLayout).data,
       ...(await footer).data,
       ...(await productPage).data,
-      ...(await page).data,
-      ...(await simpleProduct).data,
+      ...(await product).data,
       ...(await Usps).data,
+      ...(await simpleProduct).data,
       ...(await productAdditionals).data,
       apolloState: client.cache.extract(),
     },
