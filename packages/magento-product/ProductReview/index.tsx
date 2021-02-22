@@ -1,6 +1,4 @@
-import { Chip, IconButton, makeStyles, Theme, Typography } from '@material-ui/core'
-import Button from '@reachdigital/next-ui/Button'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import { Chip, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { ProductReviewFragment } from './ProductReview.gql'
 
