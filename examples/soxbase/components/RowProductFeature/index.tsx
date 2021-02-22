@@ -83,7 +83,7 @@ export default function RowProductFeature(props: ProductFeatureProps) {
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
 
-  const item = media_gallery?.[1] ?? media_gallery?.[0]
+  const item = media_gallery?.[2] ?? media_gallery?.[0]
   if (!item) return null
 
   return (
