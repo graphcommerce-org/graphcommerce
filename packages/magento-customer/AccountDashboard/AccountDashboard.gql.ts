@@ -45,13 +45,6 @@ export const AccountDashboardDocument: DocumentNode<
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'orders' },
-                  arguments: [
-                    {
-                      kind: 'Argument',
-                      name: { kind: 'Name', value: 'pageSize' },
-                      value: { kind: 'IntValue', value: '1' },
-                    },
-                  ],
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
@@ -136,7 +129,7 @@ export const AccountDashboardDocument: DocumentNode<
                                 ],
                               },
                             },
-                            { kind: 'Field', name: { kind: 'Name', value: 'created_at' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'order_date' } },
                           ],
                         },
                       },
@@ -163,7 +156,7 @@ export type AccountDashboardQuery = {
         page_info?: Types.Maybe<Pick<Types.SearchResultPageInfo, 'total_pages'>>
         items: Array<
           Types.Maybe<
-            Pick<Types.CustomerOrder, 'status' | 'number' | 'created_at'> & {
+            Pick<Types.CustomerOrder, 'status' | 'number' | 'order_date'> & {
               shipments?: Types.Maybe<
                 Array<
                   Types.Maybe<{

@@ -32,13 +32,6 @@ export const AccountMenuFragmentDoc: DocumentNode<AccountMenuFragment, unknown> 
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'orders' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pageSize' },
-                value: { kind: 'IntValue', value: '1' },
-              },
-            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
