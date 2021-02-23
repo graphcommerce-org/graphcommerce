@@ -6,6 +6,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import clsx from 'clsx'
 import React from 'react'
 import OrderCardItemImages from '../OrderCardItemImages'
+import OrderStateLabel from '../OrderStateLabel'
 import { OrderCardFragment } from './OrderCard.gql'
 
 const useStyles = makeStyles(
@@ -21,18 +22,6 @@ const useStyles = makeStyles(
     },
     orderRow: {
       marginBottom: `calc(${theme.spacings.xxs} * .5)`,
-    },
-    orderStatus: {
-      fontStyle: 'italic',
-      fontWeight: 'normal',
-    },
-    orderStatusProcessing: {
-      color: theme.palette.secondary.main,
-    },
-    orderStatusShipped: {
-      color: theme.palette.success.main,
-      fontStyle: 'normal',
-      fontWeight: 'bold',
     },
     orderMoney: {
       fontWeight: 'bold',
@@ -61,15 +50,10 @@ const useStyles = makeStyles(
 type OrderCardProps = OrderCardFragment
 
 export default function OrderCard(props: OrderCardProps) {
-  const { status, shipments, total, items, order_date } = props
+  const { shipments, total, items, order_date } = props
   const classes = useStyles()
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
-
-  // TODO: use per-shop configurable values
-  const orderProcessing = status === 'Pending'
-  const orderShipped = status === 'Complete'
-  const orderDelivered = status === 'Delivered'
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -86,20 +70,18 @@ export default function OrderCard(props: OrderCardProps) {
         <span> {dateFormatter.format(new Date(order_date ?? ''))}</span>
       </div>
       <div className={classes.orderRow}>
-        <span
-          className={clsx(classes.orderStatus, {
-            [classes.orderStatusProcessing]: orderProcessing,
-            [classes.orderStatusShipped]: orderShipped,
-          })}
-        >
-          {status && (
-            <>
-              {orderProcessing && 'Your order is being processed'}
-              {orderShipped && 'Your order is on its way!'}
-              {orderDelivered && 'Your order has been delivered'}
-            </>
-          )}
-        </span>
+        <OrderStateLabel
+          items={items}
+          renderer={{
+            Ordered: () => <span>Your order is being processed</span>,
+            Invoiced: () => <span>Your order has been invoiced</span>,
+            Shipped: () => <span>Your order is on its way!</span>,
+            Refunded: () => <span>Your order has been refunded</span>,
+            Canceled: () => <span>Your order has been canceled</span>,
+            Returned: () => <span>Your order has been returned</span>,
+            Partial: () => <span>Your order has been partially processed</span>,
+          }}
+        />
       </div>
       <div className={clsx(classes.orderProducts, classes.orderRow)}>
         <OrderCardItemImages items={items} />
@@ -109,7 +91,7 @@ export default function OrderCard(props: OrderCardProps) {
           {shipments?.[0]?.tracking?.[0] && (
             <>
               <LocationOn />
-              <Link href='#'>{shipments?.[0].tracking?.[0].number}</Link>
+              {shipments?.[0].tracking?.[0].number}
             </>
           )}
         </div>

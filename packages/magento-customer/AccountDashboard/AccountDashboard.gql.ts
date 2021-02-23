@@ -64,7 +64,6 @@ export const AccountDashboardDocument: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'status' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'number' } },
                             {
                               kind: 'Field',
@@ -116,15 +115,29 @@ export const AccountDashboardDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'product_url_key' },
-                                  },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'quantity_ordered' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'quantity_shipped' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'quantity_canceled' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'quantity_invoiced' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'quantity_refunded' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'quantity_returned' },
                                   },
                                 ],
                               },
@@ -156,7 +169,7 @@ export type AccountDashboardQuery = {
         page_info?: Types.Maybe<Pick<Types.SearchResultPageInfo, 'total_pages'>>
         items: Array<
           Types.Maybe<
-            Pick<Types.CustomerOrder, 'status' | 'number' | 'order_date'> & {
+            Pick<Types.CustomerOrder, 'number' | 'order_date'> & {
               shipments?: Types.Maybe<
                 Array<
                   Types.Maybe<{
@@ -174,15 +187,30 @@ export type AccountDashboardQuery = {
                   Types.Maybe<
                     | Pick<
                         Types.DownloadableOrderItem,
-                        'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
+                        | 'quantity_ordered'
+                        | 'quantity_shipped'
+                        | 'quantity_canceled'
+                        | 'quantity_invoiced'
+                        | 'quantity_refunded'
+                        | 'quantity_returned'
                       >
                     | Pick<
                         Types.BundleOrderItem,
-                        'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
+                        | 'quantity_ordered'
+                        | 'quantity_shipped'
+                        | 'quantity_canceled'
+                        | 'quantity_invoiced'
+                        | 'quantity_refunded'
+                        | 'quantity_returned'
                       >
                     | Pick<
                         Types.OrderItem,
-                        'product_name' | 'product_sku' | 'product_url_key' | 'quantity_ordered'
+                        | 'quantity_ordered'
+                        | 'quantity_shipped'
+                        | 'quantity_canceled'
+                        | 'quantity_invoiced'
+                        | 'quantity_refunded'
+                        | 'quantity_returned'
                       >
                   >
                 >

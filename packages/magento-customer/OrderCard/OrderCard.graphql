@@ -1,5 +1,4 @@
 fragment OrderCard on CustomerOrder {
-  status
   number
   shipments {
     tracking {
@@ -11,8 +10,6 @@ fragment OrderCard on CustomerOrder {
       ...Money
     }
   }
-  items {
-    ...OrderCardItem
-  }
+  ...OrderStateLabel
   order_date
 }
