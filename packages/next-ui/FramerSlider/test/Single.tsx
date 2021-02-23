@@ -10,7 +10,6 @@ const useStyles = makeStyles(
     scroller: {
       gap: theme.spacings.sm,
     },
-    item: {},
     bg: {
       padding: 6,
       width: '100%',

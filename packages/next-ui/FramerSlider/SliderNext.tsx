@@ -14,8 +14,7 @@ export default function SliderNext(props: SliderPrevProps) {
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext(scope)
 
-  const itemArr = Object.entries(state.items)
-  const { active } = itemArr[itemArr.length - 1]?.[1] ?? false
+  const visible = state.items[state.items.length - 1]?.visible ?? false
 
   return (
     <m.div layout>
@@ -23,8 +22,8 @@ export default function SliderNext(props: SliderPrevProps) {
         color='inherit'
         className={classes.next}
         size='small'
-        disabled={active}
-        onClick={() => !active && dispatch({ type: 'NAVIGATE_NEXT' })}
+        disabled={visible}
+        onClick={() => !visible && dispatch({ type: 'NAVIGATE_NEXT' })}
       >
         <ArrowForward color='inherit' />
       </Fab>

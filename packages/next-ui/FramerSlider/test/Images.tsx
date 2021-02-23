@@ -10,12 +10,20 @@ const useStyles = makeStyles(
       width: '400px',
       height: '400px',
     },
+    item: {
+      width: '400px',
+      height: '400px',
+      background: 'rgba(0, 0, 0, 0.03)', // thema specifiek
+      borderRadius: 2,
+      pointerEvents: 'none',
+      objectFit: 'contain',
+    },
   }),
   { name: 'ImageGallery' },
 )
 
 export default function Images({ urls }: { urls: string[] }) {
-  const { root, ...classes } = useStyles()
+  const { root, item, ...classes } = useStyles()
 
   return (
     <div className={root}>
@@ -24,6 +32,7 @@ export default function Images({ urls }: { urls: string[] }) {
           <PictureResponsiveNext
             key={url}
             src={url}
+            className={item}
             type='image/jpeg'
             width={500}
             height={500}

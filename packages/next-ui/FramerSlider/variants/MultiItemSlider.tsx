@@ -10,7 +10,6 @@ const useStyles = makeStyles(
   () => ({
     container: {},
     scroller: {},
-    item: {},
   }),
   { name: 'MultiItemSlider' },
 )
@@ -28,15 +27,9 @@ export default function MultiItemSlider(props: MultiItemSliderProps) {
   const scope = useScopeRef()
 
   return (
-    <SliderContext scope={scope}>
-      <SliderContainer scope={scope} containerRef={containerRef} className={classes.container}>
-        <SliderScroller
-          scope={scope}
-          containerRef={containerRef}
-          className={classes.scroller}
-          itemClassName={classes.item}
-          {...sliderScrollerProps}
-        />
+    <SliderContext scope={scope} containerRef={containerRef}>
+      <SliderContainer scope={scope} className={classes.container}>
+        <SliderScroller scope={scope} className={classes.scroller} {...sliderScrollerProps} />
       </SliderContainer>
     </SliderContext>
   )

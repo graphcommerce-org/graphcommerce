@@ -10,7 +10,7 @@ import SliderPrev from '../SliderPrev'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
 import useScopeRef from '../useScopeRef'
 
-type ClassKey = 'container' | 'scroller' | 'nav' | 'item'
+type ClassKey = 'container' | 'scroller' | 'nav'
 type Classes = Partial<Record<ClassKey, string>>
 type StylesProps = { count: number; classes?: Classes }
 
@@ -32,7 +32,6 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
       left: '50%',
       transform: `translateX(-50%)`,
     },
-    item: {},
   }),
   { name: 'SingleItemSlider' },
 )
@@ -50,15 +49,9 @@ export default function SingleItemSlider(props: SingleItemSliderProps) {
   const scope = useScopeRef()
 
   return (
-    <SliderContext scope={scope}>
-      <SliderContainer scope={scope} containerRef={containerRef} className={classesBase.container}>
-        <SliderScroller
-          scope={scope}
-          containerRef={containerRef}
-          className={classesBase.scroller}
-          itemClassName={classesBase.item}
-          {...sliderScrollerProps}
-        >
+    <SliderContext scope={scope} containerRef={containerRef}>
+      <SliderContainer scope={scope} className={classesBase.container}>
+        <SliderScroller scope={scope} className={classesBase.scroller} {...sliderScrollerProps}>
           {children}
         </SliderScroller>
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { Transition, useAnimation } from 'framer-motion'
+import { useAnimation } from 'framer-motion'
 import React, {
   Context,
   createContext,
@@ -26,18 +26,15 @@ export type ScrollSnapSliderProviderProps = PropsWithChildren<
      * To create a named context (to access elsewhere)
      */
     scope: string
-
-    /**
-     * The transition while animating manually
-     */
-    transition?: Transition
-  } & Partial<Pick<SliderState, 'scrollSnapAlign' | 'scrollSnapStop' | 'scrollSnapType'>>
+  } & Partial<SliderState['options']> &
+    Pick<SliderState, 'containerRef'>
 >
 
 export function SliderContext(props: ScrollSnapSliderProviderProps) {
   const {
     children,
     scope,
+    containerRef,
     transition = { type: 'spring', stiffness: 200, mass: 1, damping: 20 },
     scrollSnapAlign = 'center',
     scrollSnapStop = 'normal',
@@ -46,13 +43,10 @@ export function SliderContext(props: ScrollSnapSliderProviderProps) {
 
   const controls = useAnimation()
   const initial = useReducer<SliderReducer>(sliderReducer, {
-    items: {},
+    items: [],
     controls,
-    count: 0,
-    transition,
-    scrollSnapAlign,
-    scrollSnapType,
-    scrollSnapStop,
+    containerRef,
+    options: { transition, scrollSnapAlign, scrollSnapType, scrollSnapStop },
   } as SliderState)
 
   if (!contexts[scope]) {

@@ -19,7 +19,8 @@ export default function SliderPrev(props: SliderPrevProps) {
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext(scope)
 
-  const active = state.firstItem?.active ?? true
+  // const disable = !state.items.some((item) => item.visible)
+  const disabled = state.items[0]?.visible ?? false
 
   return (
     <m.div layout>
@@ -27,8 +28,8 @@ export default function SliderPrev(props: SliderPrevProps) {
         color='inherit'
         className={classes.prev}
         size='small'
-        disabled={active}
-        onClick={() => !active && dispatch({ type: 'NAVIGATE_PREV' })}
+        disabled={disabled}
+        onClick={() => !disabled && dispatch({ type: 'NAVIGATE_PREV' })}
       >
         <ArrowBack color='inherit' />
       </Fab>

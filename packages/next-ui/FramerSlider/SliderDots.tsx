@@ -1,4 +1,4 @@
-import { Fab, makeStyles, Theme } from '@material-ui/core'
+import { Fab, makeStyles, Theme, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React from 'react'
@@ -26,11 +26,8 @@ const useStyles = makeStyles(
       borderRadius: '50%',
       width: 10,
       height: 10,
-      background: theme.palette.action.hover,
     },
-    circleActive: {
-      background: theme.palette.text.primary,
-    },
+    circleActive: {},
   }),
   { name: 'SliderDots' },
 )
@@ -41,6 +38,7 @@ export default function SliderDots(props: SliderDotsProps) {
   const { scope, count } = props
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext(scope)
+  const theme = useTheme()
 
   const items = new Array(count).fill(undefined).map((_, idx) => [idx, state.items?.[idx]] as const)
 
@@ -54,7 +52,14 @@ export default function SliderDots(props: SliderDotsProps) {
           size='small'
           onClick={() => dispatch({ type: 'NAVIGATE', to: idx })}
         >
-          <div className={clsx({ [classes.circle]: true, [classes.circleActive]: item?.active })} />
+          <m.div
+            className={classes.circle}
+            animate={{
+              backgroundColor: item?.visible
+                ? theme.palette.text.primary
+                : theme.palette.action.hover,
+            }}
+          />
         </Fab>
       ))}
     </m.div>
