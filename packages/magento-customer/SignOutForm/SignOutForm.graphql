@@ -1,4 +1,4 @@
-mutation SignOut {
+mutation SignOutForm {
   revokeCustomerToken {
     result
   }
