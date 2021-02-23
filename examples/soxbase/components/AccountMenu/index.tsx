@@ -1,7 +1,14 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { AccountMenuFragment } from '@reachdigital/magento-customer/AccountMenu/AccountMenu.gql'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
+import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
 import React from 'react'
+import addressIcon from './addresses.svg'
+import infoIcon from './info.svg'
+import lockIcon from './lock.svg'
+import ordersIcon from './orders.svg'
+import reviewsIcon from './reviews.svg'
+import wishlistIcon from './wishlist.svg'
 
 export type AccountMenuProps = AccountMenuFragment
 
@@ -20,42 +27,33 @@ const useStyles = makeStyles(
 )
 
 export default function AccountMenu(props: AccountMenuProps) {
-  const { reviews, orders } = props
-  const hasReviews = (reviews.page_info.total_pages ?? 0) > 0
-  const hasOrders = (orders?.page_info?.total_pages ?? 0) > 0
   const classes = useStyles()
 
   return (
     <div className={classes.accountMenuContainer}>
-      <AccountMenuItem
-        url='/account/orders'
-        label='Orders'
-        startIconSrc='/icons/desktop_account_orders.svg'
-      />
+      <AccountMenuItem href='/account/orders' startIconSrc={ordersIcon}>
+        Orders
+      </AccountMenuItem>
 
-      <AccountMenuItem
-        url='/account/personal'
-        label='Personal information'
-        startIconSrc='/icons/desktop_account_info.svg'
-      />
+      <AccountMenuItem href='/account/personal' startIconSrc={infoIcon}>
+        Personal information
+      </AccountMenuItem>
 
-      <AccountMenuItem
-        url='/account/addresses'
-        label='Addresses'
-        startIconSrc='/icons/desktop_account_addresses.svg'
-      />
+      <AccountMenuItem href='/account/addresses' startIconSrc={addressIcon}>
+        Addresses
+      </AccountMenuItem>
 
-      <AccountMenuItem
-        url='/account/reviews'
-        label='Reviews'
-        startIconSrc='/icons/desktop_account_reviews.svg'
-      />
+      <AccountMenuItem href='/account/reviews' startIconSrc={reviewsIcon}>
+        Reviews
+      </AccountMenuItem>
 
-      <AccountMenuItem
-        url='/account/logout'
-        label='Log out'
-        startIconSrc='/icons/desktop_account_lock.svg'
-      />
+      <SignOutForm
+        button={({ formState }) => (
+          <AccountMenuItem startIconSrc={lockIcon} loading={formState.isSubmitting} type='submit'>
+            Sign out
+          </AccountMenuItem>
+        )}
+      ></SignOutForm>
     </div>
   )
 }
