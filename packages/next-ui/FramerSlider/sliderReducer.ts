@@ -61,22 +61,25 @@ export type SliderState = {
   }
 }
 
-type UpdateChildren = { type: 'UPDATE_CHILDREN'; elements: HTMLElement[] }
-type ItemVisibleAction = { type: 'ITEM_VISIBLE'; el: HTMLElement; visible: boolean }
-type NavigateAction = { type: 'NAVIGATE'; to: number }
-type NavigateNextAction = { type: 'NAVIGATE_NEXT' }
-type NavigatePrevAction = { type: 'NAVIGATE_PREV' }
+export type RegisterChildrenAction = { type: 'REGISTER_CHILDREN'; elements: HTMLElement[] }
+export type VisibilityChildrenAction = {
+  type: 'VISIBILITY_CHILDREN'
+  items: { el: HTMLElement; visible: boolean }[]
+}
+export type NavigateAction = { type: 'NAVIGATE'; to: number }
+export type NavigateNextAction = { type: 'NAVIGATE_NEXT' }
+export type NavigatePrevAction = { type: 'NAVIGATE_PREV' }
 type ScrollAction = { type: 'SCROLL'; x: number }
 
-type Actions =
-  | UpdateChildren
-  | ItemVisibleAction
+export type SliderActions =
+  | RegisterChildrenAction
+  | VisibilityChildrenAction
   | NavigateAction
   | NavigateNextAction
   | NavigatePrevAction
   | ScrollAction
 
-export type SliderReducer = Reducer<SliderState, Actions>
+export type SliderReducer = Reducer<SliderState, SliderActions>
 
 type Rect = Omit<DOMRect, 'toJSON'>
 
@@ -100,30 +103,29 @@ function measureItem(item: Item): Rect {
   return rectRelative(rect, parentRect)
 }
 
-const sliderReducer: SliderReducer = (state: SliderState, action: Actions): SliderState => {
-  const newState: SliderState = { ...state, items: [...state.items] }
-
+const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions): SliderState => {
   switch (action.type) {
-    case 'UPDATE_CHILDREN':
-      let isChanged = false
-      action.elements.forEach((el, idx) => {
-        if (newState.items[idx]?.el === el) return
-
-        isChanged = true
-        newState.items[idx] = { el, visible: newState.items[idx]?.visible ?? false }
-      })
-      return isChanged ? newState : state
-    case 'ITEM_VISIBLE':
-      newState.items = state.items.map((i) =>
-        i.el === action.el ? { el: i.el, visible: action.visible } : i,
-      )
-      return newState
+    case 'REGISTER_CHILDREN':
+      return {
+        ...state,
+        items: action.elements.map((el, idx) => ({
+          el,
+          visible: state.items[idx]?.visible ?? false,
+        })),
+      }
+    case 'VISIBILITY_CHILDREN':
+      return {
+        ...state,
+        items: state.items.map((sItem) => {
+          const aItem = action.items.find((i) => i.el === sItem.el)
+          return aItem ? { ...sItem, visible: aItem.visible } : sItem
+        }),
+      }
     case 'NAVIGATE_NEXT':
       const nextItems = state.items.slice().reverse()
       const nextItem = nextItems[nextItems.findIndex((i) => i.visible) - 1]
       if (!nextItem) return state
       return sliderReducer(state, { type: 'SCROLL', x: measureItem(nextItem).left * -1 })
-
     case 'NAVIGATE_PREV':
       const prevItems = state.items.slice().reverse()
       const prevItem = prevItems[prevItems.findIndex((i) => i.visible) + 1]
@@ -161,16 +163,14 @@ const sliderReducer: SliderReducer = (state: SliderState, action: Actions): Slid
             ? 0
             : (scrollerRect.width - containerRect.width) * -1
 
-        console.log(max)
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         state.controls.start({
           x: Math.min(0, Math.max(max, x)),
           transition: state.options.transition,
         })
       })()
+      return state
   }
-
-  return newState
 }
 
 export default sliderReducer

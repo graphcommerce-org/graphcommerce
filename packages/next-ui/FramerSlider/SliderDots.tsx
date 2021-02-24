@@ -32,12 +32,12 @@ const useStyles = makeStyles(
   { name: 'SliderDots' },
 )
 
-type SliderDotsProps = { scope: string; count: number } & UseStyles<typeof useStyles>
+type SliderDotsProps = { count: number } & UseStyles<typeof useStyles>
 
 export default function SliderDots(props: SliderDotsProps) {
-  const { scope, count } = props
+  const { count } = props
   const classes = useStyles(props)
-  const [state, dispatch] = useSliderContext(scope)
+  const [state, dispatch] = useSliderContext()
   const theme = useTheme()
 
   const items = new Array(count).fill(undefined).map((_, idx) => [idx, state.items?.[idx]] as const)

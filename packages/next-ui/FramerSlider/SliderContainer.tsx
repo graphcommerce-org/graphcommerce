@@ -1,27 +1,27 @@
 import { makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
-const useStyles = makeStyles({ container: { overflow: 'hidden' } }, { name: 'SliderContainer' })
+const useStyles = makeStyles(
+  {
+    container: {
+      overflow: 'hidden',
+    },
+  },
+  { name: 'SliderContainer' },
+)
 
-export type SliderContainerStyles = UseStyles<typeof useStyles>
-
-export type SliderContainerProps = PropsWithChildren<{
-  className?: string
-
-  scope: string
-}>
+export type SliderContainerProps = PropsWithChildren<UseStyles<typeof useStyles>>
 
 export default function SliderContainer(props: SliderContainerProps) {
-  const { children, className, scope } = props
+  const { children } = props
   const classes = useStyles(props)
-  const [state] = useSliderContext(scope)
+  const [state] = useSliderContext()
 
   return (
-    <m.div layout ref={state.containerRef} className={clsx(classes.container, className)}>
+    <m.div layout ref={state.containerRef} className={classes.container}>
       {children}
     </m.div>
   )

@@ -1,40 +1,48 @@
 import { makeStyles, Theme, Fab } from '@material-ui/core'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
+import { CSSProperties } from '@material-ui/styles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
-import { UseStyles } from '../../Styles'
+import React, { useRef, useState } from 'react'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
-import useScopeRef from '../useScopeRef'
 
-type ClassKey = 'container' | 'containerZoomed' | 'scroller' | 'bottomCenter' | 'topRight'
+type ClassKey =
+  | 'container'
+  | 'containerZoomed'
+  | 'scroller'
+  | 'scrollerZoomed'
+  | 'bottomCenter'
+  | 'topRight'
 
 type Classes = Partial<Record<ClassKey, string>>
-type StylesProps = { count: number; classes?: Classes }
+
+type StylesProps = { classes?: Classes; size: CSSProperties; zoomedSize: CSSProperties }
 
 const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   (theme: Theme) => ({
-    container: {
+    container: ({ size }) => ({
       position: 'relative',
-      width: '400px',
-      height: '400px',
-      background: '#fff',
-      zIndex: 10,
-    },
-    containerZoomed: {
-      width: '100vw',
-      height: '100vh',
+      ...size,
+    }),
+    containerZoomed: ({ zoomedSize }) => ({
       position: 'fixed',
       top: 0,
       left: 0,
-    },
-    scroller: {},
+      zIndex: 10,
+      ...zoomedSize,
+    }),
+    scroller: ({ size }) => ({
+      '& > *': size,
+    }),
+    scrollerZoomed: ({ zoomedSize }) => ({
+      '& > *': zoomedSize,
+    }),
     bottomCenter: {
       display: 'grid',
       gridAutoFlow: 'column',
@@ -62,32 +70,26 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
 
 type SingleItemSliderProps = Omit<
   SliderScrollerProps,
-  'containerRef' | 'scope' | 'className' | 'itemClassName'
+  'containerRef' | 'className' | 'itemClassName'
 > &
-  UseStyles<typeof useStyles>
+  StylesProps
 
 export default function ExpandableGallery(props: SingleItemSliderProps) {
   const { classes: classesBase, children, ...sliderScrollerProps } = props
-  const classes = useStyles({ count: React.Children.count(children), classes: classesBase })
+  const classes = useStyles(props)
   const containerRef = useRef<HTMLDivElement>(null)
-  const scope = useScopeRef()
   const [zoomed, setZoomed] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
 
   return (
-    <SliderContext
-      scope={scope}
-      scrollSnapStop='always'
-      scrollSnapAlign='center'
-      containerRef={containerRef}
-    >
+    <SliderContext scrollSnapStop='always' scrollSnapAlign='center' containerRef={containerRef}>
       <SliderContainer
-        scope={scope}
-        className={clsx(classes.container, zoomed && classes.containerZoomed)}
+        classes={{
+          container: clsx(classes.container, zoomed && classes.containerZoomed),
+        }}
       >
         <SliderScroller
-          scope={scope}
-          className={classes.scroller}
+          className={clsx(classes.scroller, zoomed && classes.scrollerZoomed)}
           animating={isAnimating}
           {...sliderScrollerProps}
         >
@@ -105,6 +107,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
             onClick={() => {
               setIsAnimating(true)
               setZoomed(!zoomed)
+              document.body.style.overflow = !zoomed ? 'hidden' : ''
             }}
           >
             {zoomed ? <FullscreenExit /> : <Fullscreen />}
@@ -112,9 +115,9 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
         </m.div>
 
         <div className={classes.bottomCenter}>
-          <SliderPrev scope={scope} />
-          <SliderDots scope={scope} count={React.Children.count(children)} />
-          <SliderNext scope={scope} />
+          <SliderPrev />
+          <SliderDots count={React.Children.count(children)} />
+          <SliderNext />
         </div>
       </SliderContainer>
     </SliderContext>

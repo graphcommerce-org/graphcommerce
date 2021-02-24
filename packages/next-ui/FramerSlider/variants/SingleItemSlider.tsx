@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import clsx from 'clsx'
 import React, { useRef } from 'react'
 import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
@@ -8,7 +7,6 @@ import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
-import useScopeRef from '../useScopeRef'
 
 type ClassKey = 'container' | 'scroller' | 'nav'
 type Classes = Partial<Record<ClassKey, string>>
@@ -38,7 +36,7 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
 
 type SingleItemSliderProps = Omit<
   SliderScrollerProps,
-  'containerRef' | 'scope' | 'className' | 'itemClassName'
+  'containerRef' | 'className' | 'itemClassName'
 > &
   UseStyles<typeof useStyles>
 
@@ -46,19 +44,18 @@ export default function SingleItemSlider(props: SingleItemSliderProps) {
   const { classes, children, ...sliderScrollerProps } = props
   const classesBase = useStyles({ count: React.Children.count(children), classes })
   const containerRef = useRef<HTMLDivElement>(null)
-  const scope = useScopeRef()
 
   return (
-    <SliderContext scope={scope} containerRef={containerRef}>
-      <SliderContainer scope={scope} className={classesBase.container}>
-        <SliderScroller scope={scope} className={classesBase.scroller} {...sliderScrollerProps}>
+    <SliderContext containerRef={containerRef}>
+      <SliderContainer classes={{ container: classesBase.container }}>
+        <SliderScroller className={classesBase.scroller} {...sliderScrollerProps}>
           {children}
         </SliderScroller>
 
         <div className={classesBase.nav}>
-          <SliderPrev scope={scope} />
-          <SliderDots scope={scope} count={React.Children.count(children)} />
-          <SliderNext scope={scope} />
+          <SliderPrev />
+          <SliderDots count={React.Children.count(children)} />
+          <SliderNext />
         </div>
       </SliderContainer>
     </SliderContext>

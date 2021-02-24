@@ -1,39 +1,21 @@
 /* eslint-disable no-case-declarations */
 import { useAnimation } from 'framer-motion'
-import React, {
-  Context,
-  createContext,
-  Dispatch,
-  PropsWithChildren,
-  ReducerAction,
-  ReducerState,
-  useContext,
-  useReducer,
-} from 'react'
-import sliderReducer, { SliderReducer, SliderState } from './sliderReducer'
+import { Context, createContext, PropsWithChildren, useContext, useReducer } from 'react'
+import sliderReducer, { SliderActions, SliderReducer, SliderState } from './sliderReducer'
 
-const contexts: {
-  [scope: string]: Context<[ReducerState<SliderReducer>, Dispatch<ReducerAction<SliderReducer>>]>
-} = {}
+let context: Context<[SliderState, React.Dispatch<SliderActions>]>
 
-export function useSliderContext(scope: string) {
-  return useContext(contexts[scope])
+export function useSliderContext() {
+  return useContext(context)
 }
 
 export type ScrollSnapSliderProviderProps = PropsWithChildren<
-  {
-    /**
-     * To create a named context (to access elsewhere)
-     */
-    scope: string
-  } & Partial<SliderState['options']> &
-    Pick<SliderState, 'containerRef'>
+  Partial<SliderState['options']> & Pick<SliderState, 'containerRef'>
 >
 
 export function SliderContext(props: ScrollSnapSliderProviderProps) {
   const {
     children,
-    scope,
     containerRef,
     transition = { type: 'spring', stiffness: 200, mass: 1, damping: 20 },
     scrollSnapAlign = 'center',
@@ -49,11 +31,11 @@ export function SliderContext(props: ScrollSnapSliderProviderProps) {
     options: { transition, scrollSnapAlign, scrollSnapType, scrollSnapStop },
   } as SliderState)
 
-  if (!contexts[scope]) {
-    contexts[scope] = createContext(initial)
-    contexts[scope].displayName = 'ScrollSnapSliderContext'
+  if (!context) {
+    context = createContext(initial)
+    context.displayName = 'ScrollSnapSliderContext'
   }
 
-  const { Provider } = contexts[scope]
+  const { Provider } = context
   return <Provider value={initial}>{children}</Provider>
 }

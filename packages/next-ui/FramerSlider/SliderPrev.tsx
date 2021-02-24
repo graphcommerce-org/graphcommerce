@@ -1,23 +1,13 @@
-import { Fab, makeStyles } from '@material-ui/core'
+import { Fab, FabProps } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import { m } from 'framer-motion'
 import React from 'react'
-import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
-const useStyles = makeStyles(
-  {
-    prev: {},
-  },
-  { name: 'SliderDots' },
-)
-
-type SliderPrevProps = { scope: string } & UseStyles<typeof useStyles>
+type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'>
 
 export default function SliderPrev(props: SliderPrevProps) {
-  const { scope } = props
-  const classes = useStyles(props)
-  const [state, dispatch] = useSliderContext(scope)
+  const [state, dispatch] = useSliderContext()
 
   // const disable = !state.items.some((item) => item.visible)
   const disabled = state.items[0]?.visible ?? false
@@ -26,8 +16,8 @@ export default function SliderPrev(props: SliderPrevProps) {
     <m.div layout>
       <Fab
         color='inherit'
-        className={classes.prev}
         size='small'
+        {...props}
         disabled={disabled}
         onClick={() => !disabled && dispatch({ type: 'NAVIGATE_PREV' })}
       >
