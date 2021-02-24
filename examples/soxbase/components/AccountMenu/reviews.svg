@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>desktop_Account-Reviews</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.800000 0 0 0 0 0.800000 0 0 0 0 0.800000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="desktop_Account-Reviews" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g filter="url(#filter-1)" id="star">
+            <g transform="translate(3.900000, 4.500000)">
+                <polygon id="Path" stroke="#000000" stroke-width="1.5" points="12.1052632 19.0657895 4.63389474 22.9939474 6.06110526 14.674 0.0169473684 8.78236842 8.36957895 7.56942105 12.1052632 0 15.8409474 7.56942105 24.1935789 8.78236842 18.1494211 14.674 19.5766316 22.9939474"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

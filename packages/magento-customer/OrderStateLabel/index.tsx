@@ -1,0 +1,80 @@
+import { makeStyles, Theme } from '@material-ui/core'
+import clsx from 'clsx'
+import { OrderStateLabelFragment } from './OrderStateLabel.gql'
+
+type OrderState =
+  | 'Ordered'
+  | 'Invoiced'
+  | 'Shipped'
+  | 'Refunded'
+  | 'Canceled'
+  | 'Returned'
+  | 'Partial'
+
+type OrderStateLabelPropsBase = OrderStateLabelFragment
+type OrderStateRenderer = Record<
+  OrderState,
+  (props: OrderStateLabelPropsBase) => React.ReactElement | null
+>
+
+type OrderStateLabelProps = {
+  renderer: OrderStateRenderer
+} & OrderStateLabelPropsBase
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    orderStatus: {
+      fontStyle: 'italic',
+      fontWeight: 'normal',
+    },
+    orderStateOrdered: {
+      color: theme.palette.secondary.main,
+    },
+    orderStateInvoiced: {
+      color: theme.palette.secondary.main,
+    },
+    orderStateRefunded: {
+      color: theme.palette.primary.main,
+    },
+    orderStateShipped: {
+      color: theme.palette.success.main,
+      fontStyle: 'normal',
+      fontWeight: 'bold',
+    },
+    orderStateCanceled: {
+      color: theme.palette.primary.main,
+    },
+    orderStateReturned: {
+      color: theme.palette.secondary.main,
+    },
+    orderStatePartial: {
+      color: theme.palette.secondary.main,
+    },
+  }),
+  { name: 'OrderStateLabel' },
+)
+
+export default function OrderStateLabel(props: OrderStateLabelProps) {
+  const { items, renderer, ...orderProps } = props
+  const classes = useStyles()
+
+  let orderState: OrderState = 'Partial'
+  if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))
+    orderState = 'Invoiced'
+  if (items?.every((item) => item?.quantity_ordered === item?.quantity_shipped))
+    orderState = 'Shipped'
+  if (items?.every((item) => item?.quantity_ordered === item?.quantity_refunded))
+    orderState = 'Refunded'
+  if (items?.every((item) => item?.quantity_ordered === item?.quantity_canceled))
+    orderState = 'Canceled'
+  if (items?.every((item) => item?.quantity_ordered === item?.quantity_returned))
+    orderState = 'Returned'
+
+  const StateLabel = renderer[orderState]
+
+  return (
+    <div className={clsx(classes.orderStatus, classes?.[`orderState${orderState}`])}>
+      <StateLabel items={items} {...orderProps} />
+    </div>
+  )
+}

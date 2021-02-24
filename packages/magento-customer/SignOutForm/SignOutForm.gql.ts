@@ -2,13 +2,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const SignOutDocument: DocumentNode<SignOutMutation, SignOutMutationVariables> = {
+export const SignOutFormDocument: DocumentNode<
+  SignOutFormMutation,
+  SignOutFormMutationVariables
+> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'mutation',
-      name: { kind: 'Name', value: 'SignOut' },
+      name: { kind: 'Name', value: 'SignOutForm' },
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -25,8 +28,8 @@ export const SignOutDocument: DocumentNode<SignOutMutation, SignOutMutationVaria
     },
   ],
 }
-export type SignOutMutationVariables = Types.Exact<{ [key: string]: never }>
+export type SignOutFormMutationVariables = Types.Exact<{ [key: string]: never }>
 
-export type SignOutMutation = {
+export type SignOutFormMutation = {
   revokeCustomerToken?: Types.Maybe<Pick<Types.RevokeCustomerTokenOutput, 'result'>>
 }

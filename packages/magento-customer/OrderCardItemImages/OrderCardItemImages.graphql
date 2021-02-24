@@ -1,0 +1,7 @@
+query OrderCardItemImages($urlKeys: [String!]!) {
+  products(filter: { url_key: { in: $urlKeys } }) {
+    items {
+      ...OrderCardItemImage
+    }
+  }
+}

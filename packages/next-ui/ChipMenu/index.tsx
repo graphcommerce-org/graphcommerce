@@ -1,9 +1,10 @@
-import { Chip, Menu, ChipProps, makeStyles, ListSubheader, Theme } from '@material-ui/core'
+import { Chip, ChipProps, makeStyles, Menu, Theme } from '@material-ui/core'
 import RemoveCircle from '@material-ui/icons/Cancel'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
-import React, { useState, PropsWithChildren } from 'react'
+import React, { PropsWithChildren, useState } from 'react'
+import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
 
 export const useChipMenuStyles = makeStyles(
@@ -62,32 +63,6 @@ export const useChipMenuStyles = makeStyles(
         outline: 'none',
       },
     },
-    labelContainer: {
-      paddingLeft: theme.spacings.xxs,
-      paddingRight: theme.spacings.xxs,
-      position: 'relative',
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-    labelInnerContainer: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      paddingBottom: responsiveVal(6, 12),
-    },
-    labelLeft: {
-      ...theme.typography.body2,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-      fontWeight: 500,
-      color: theme.palette.secondary.mutedText,
-    },
-    labelRight: {
-      ...theme.typography.body2,
-      color: theme.palette.text.primary,
-    },
-    actions: {},
   }),
   { name: 'ChipMenu' },
 )
@@ -150,12 +125,7 @@ export default function ChipMenu(props: ChipMenuProps) {
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menuPaper, list: classes.menuList }}
       >
-        <div className={classes.labelContainer}>
-          <div className={classes.labelInnerContainer}>
-            <div className={classes.labelLeft}>{label}</div>
-            <div className={classes.labelRight}>{labelRight}</div>
-          </div>
-        </div>
+        <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
         {children}
       </Menu>
     </>

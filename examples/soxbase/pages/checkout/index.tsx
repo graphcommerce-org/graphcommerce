@@ -56,7 +56,7 @@ function ShippingPage({ countries, footer }: Props) {
       <Container maxWidth='md'>
         <CheckoutStepper steps={3} currentStep={2} />
 
-        <IconTitle iconSrc='/icons/box.svg' title='Shipping' alt='box' />
+        <IconTitle iconSrc='/icons/desktop_checkout_box.svg' title='Shipping' alt='box' size='sm' />
 
         <NoSsr>
           <EmailForm />

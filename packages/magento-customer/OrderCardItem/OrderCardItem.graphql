@@ -1,0 +1,11 @@
+fragment OrderCardItem on OrderItemInterface {
+  product_name
+  product_sku
+  product_url_key
+  quantity_ordered
+  quantity_shipped
+  quantity_canceled
+  quantity_invoiced
+  quantity_refunded
+  quantity_returned
+}

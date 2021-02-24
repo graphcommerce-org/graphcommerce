@@ -1,0 +1,7 @@
+mutation CustomerNewsletterForm($isSubscribed: Boolean!) {
+  updateCustomer(input: { is_subscribed: $isSubscribed }) {
+    customer {
+      is_subscribed
+    }
+  }
+}
