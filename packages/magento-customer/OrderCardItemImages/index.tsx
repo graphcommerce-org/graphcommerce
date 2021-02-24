@@ -1,10 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { ProductImage } from '@reachdigital/magento-graphql'
-import clsx from 'clsx'
 import React from 'react'
 import { OrderCardFragment } from '../OrderCard/OrderCard.gql'
-import OrderCardItemImage from '../OrderCardItemImage'
+import OrderCardItem from '../OrderCardItem'
 import { OrderCardItemImagesDocument } from './OrderCardItemImages.gql'
 
 export type OrderCardItemImagesProps = Pick<OrderCardFragment, 'items'> & {
@@ -33,6 +32,7 @@ const useStyles = makeStyles(
 
 export default function OrderCardItemImages(props: OrderCardItemImagesProps) {
   const { items } = props
+
   const { data } = useQuery(OrderCardItemImagesDocument, {
     variables: {
       urlKeys: items?.map((item) => item?.product_url_key ?? '') ?? [],
@@ -64,10 +64,8 @@ export default function OrderCardItemImages(props: OrderCardItemImagesProps) {
 
   return (
     <div className={classes.images}>
-      {itemsWithImages?.slice(0, maxItemsInRow).map((item) => (
-        <div key={`image-${item?.product_url_key ?? ''}`}>
-          <OrderCardItemImage thumbnail={item?.thumbnail} url_key={item?.product_url_key ?? ''} />
-        </div>
+      {itemsWithImages?.slice(0, maxItemsInRow).map((item, i) => (
+        <div key={`item-${item?.product_url_key ?? i}`}> {item && <OrderCardItem {...item} />}</div>
       ))}
 
       {totalItems > maxItemsInRow && (
