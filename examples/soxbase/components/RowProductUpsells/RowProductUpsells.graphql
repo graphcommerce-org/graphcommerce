@@ -1,0 +1,4 @@
+fragment RowProductUpsells on RowProductUpsells {
+  identity
+  title
+}

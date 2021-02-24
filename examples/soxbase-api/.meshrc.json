@@ -17,7 +17,10 @@
       },
       "transforms": [
         {
-          "filterSchema": ["Query.{pages,footer,usps,productpages,pagesConnection}", "Mutation.none"]
+          "filterSchema": [
+            "Query.{pages,footer,usps,productpages,pagesConnection}",
+            "Mutation.none"
+          ]
         }
       ]
     },

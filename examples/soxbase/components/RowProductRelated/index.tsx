@@ -4,6 +4,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React, { useRef, useState } from 'react'
 import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import ProductListItemsSlider from '../ProductListItems/ProductListItemsSlider'
+import { RowProductRelatedFragment } from './RowProductRelated.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -19,7 +20,7 @@ const useStyles = makeStyles(
     },
     h2: {
       ...theme.typography.h1,
-      fontSize: responsiveVal(20, 40),
+      fontSize: responsiveVal(16, 40),
       marginRight: `${theme.spacings.lg}`,
       marginLeft: theme.page.horizontal,
       [theme.breakpoints.up('md')]: {
@@ -50,16 +51,12 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'RelatedProducts' },
+  { name: 'RowProductRelated' },
 )
 
-type Props = {
-  title?: string
-}
+type RowProductRelatedProps = RowProductRelatedFragment & ProductListItemsProps
 
-type RelatedProductsProps = Props & ProductListItemsProps
-
-export default function RelatedProducts(props: RelatedProductsProps) {
+export default function RowProductRelated(props: RowProductRelatedProps) {
   const { title, items, ...productListItems } = props
   const classes = useStyles()
   const [exPagination, setExPagination] = useState<boolean[]>([])
@@ -76,6 +73,8 @@ export default function RelatedProducts(props: RelatedProductsProps) {
     indexesInViewport.length !== 0
       ? Number(indexesInViewport[indexesInViewport.length - 1]) + 1
       : String(curRef?.current?.innerHTML)
+
+  if (!items || items.length === 0) return null
 
   return (
     <div className={classes.root}>

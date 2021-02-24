@@ -2,6 +2,8 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '../../generated/types'
 
+import { AssetFragment, AssetFragmentDoc } from '../Asset/Asset.gql'
+
 export const PageLinkFragmentDoc: DocumentNode<PageLinkFragment, unknown> = {
   kind: 'Document',
   definitions: [
@@ -22,11 +24,21 @@ export const PageLinkFragmentDoc: DocumentNode<PageLinkFragment, unknown> = {
               selections: [{ kind: 'Field', name: { kind: 'Name', value: 'raw' } }],
             },
           },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'asset' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'Asset' } }],
+            },
+          },
         ],
       },
     },
+    ...AssetFragmentDoc.definitions,
   ],
 }
 export type PageLinkFragment = Pick<Types.PageLink, 'title' | 'url'> & {
   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+  asset?: Types.Maybe<AssetFragment>
 }

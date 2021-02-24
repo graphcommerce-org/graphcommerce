@@ -1,7 +1,8 @@
-import { Container, Theme } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { m, useTransform, useViewportScroll } from 'framer-motion'
 import Button from '../PageLink/Button'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
@@ -19,7 +20,7 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       alignContent: 'center',
       padding: `${theme.spacings.lg} ${theme.spacings.md}`,
-      minHeight: '80vh',
+      minHeight: '90vh',
       '& > *': {
         maxWidth: 'max-content',
       },
@@ -37,7 +38,14 @@ const useStyles = makeStyles(
       zIndex: -1,
       width: '100%',
       height: '100%',
-      objectFit: 'cover',
+      display: 'grid',
+      justifyItems: 'center',
+      overflow: 'hidden',
+      '& video': {
+        objectFit: 'cover',
+        width: '100%',
+        height: '100%',
+      },
       [theme.breakpoints.up('md')]: {
         height: '100%',
       },
@@ -70,8 +78,15 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
   const classes = useStyles()
   const richTextOneClasses = useRichTextOne(props)
 
+  const { scrollY } = useViewportScroll()
+  const actionsAnimWidth = useTransform(
+    scrollY,
+    [10, 150],
+    [`calc(100% - ${responsiveVal(30, 60)})`, `calc(100% - ${responsiveVal(0, 0)})`],
+  )
+
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
           <RichText classes={richTextOneClasses} {...copy} />
@@ -85,8 +100,17 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
             />
           ))}
         </div>
-        <video src={asset.url} autoPlay muted loop playsInline className={classes.asset} />
+        <div className={classes.asset}>
+          <m.video
+            src={asset.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: actionsAnimWidth }}
+          />
+        </div>
       </div>
-    </Container>
+    </div>
   )
 }

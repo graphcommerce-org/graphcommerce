@@ -58,17 +58,12 @@ export const ProductReviewFragmentDoc: DocumentNode<ProductReviewFragment, unkno
               ],
             },
           },
-          { kind: 'Field', name: { kind: 'Name', value: 'review_count' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'rating_summary' } },
         ],
       },
     },
   ],
 }
-export type ProductReview_VirtualProduct_Fragment = Pick<
-  Types.VirtualProduct,
-  'review_count' | 'rating_summary'
-> & {
+export type ProductReview_VirtualProduct_Fragment = {
   reviews: {
     items: Array<
       Types.Maybe<
@@ -83,10 +78,7 @@ export type ProductReview_VirtualProduct_Fragment = Pick<
   }
 }
 
-export type ProductReview_SimpleProduct_Fragment = Pick<
-  Types.SimpleProduct,
-  'review_count' | 'rating_summary'
-> & {
+export type ProductReview_SimpleProduct_Fragment = {
   reviews: {
     items: Array<
       Types.Maybe<
@@ -101,10 +93,7 @@ export type ProductReview_SimpleProduct_Fragment = Pick<
   }
 }
 
-export type ProductReview_DownloadableProduct_Fragment = Pick<
-  Types.DownloadableProduct,
-  'review_count' | 'rating_summary'
-> & {
+export type ProductReview_DownloadableProduct_Fragment = {
   reviews: {
     items: Array<
       Types.Maybe<
@@ -119,10 +108,7 @@ export type ProductReview_DownloadableProduct_Fragment = Pick<
   }
 }
 
-export type ProductReview_BundleProduct_Fragment = Pick<
-  Types.BundleProduct,
-  'review_count' | 'rating_summary'
-> & {
+export type ProductReview_BundleProduct_Fragment = {
   reviews: {
     items: Array<
       Types.Maybe<
@@ -137,10 +123,7 @@ export type ProductReview_BundleProduct_Fragment = Pick<
   }
 }
 
-export type ProductReview_GroupedProduct_Fragment = Pick<
-  Types.GroupedProduct,
-  'review_count' | 'rating_summary'
-> & {
+export type ProductReview_GroupedProduct_Fragment = {
   reviews: {
     items: Array<
       Types.Maybe<
@@ -155,10 +138,7 @@ export type ProductReview_GroupedProduct_Fragment = Pick<
   }
 }
 
-export type ProductReview_ConfigurableProduct_Fragment = Pick<
-  Types.ConfigurableProduct,
-  'review_count' | 'rating_summary'
-> & {
+export type ProductReview_ConfigurableProduct_Fragment = {
   reviews: {
     items: Array<
       Types.Maybe<

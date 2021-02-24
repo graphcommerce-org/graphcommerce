@@ -35,10 +35,10 @@ const useStyles = makeStyles(
         gridColumnGap: theme.spacings.md,
         gridRowGap: theme.spacings.lg,
         alignContent: 'space-around',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(200, 800)}, 1fr))`,
+        gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(200, 900)}, 1fr))`,
       },
       '& > div > div': {
-        minWidth: responsiveVal(200, 800),
+        minWidth: responsiveVal(200, 900),
       },
       '& > div > div > div, & > div > div > a > div > div': {
         // show only images
