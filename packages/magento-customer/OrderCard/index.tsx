@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
-import { Link, makeStyles, Theme } from '@material-ui/core'
-import { LocationOn } from '@material-ui/icons'
+import { makeStyles, Theme } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import clsx from 'clsx'
 import React from 'react'
 import OrderCardItemImages from '../OrderCardItemImages'
 import OrderStateLabel from '../OrderStateLabel'
+import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
 
 const useStyles = makeStyles(
@@ -26,17 +26,6 @@ const useStyles = makeStyles(
     orderMoney: {
       fontWeight: 'bold',
       marginRight: theme.spacings.xxs,
-    },
-    orderActions: {
-      width: '100%',
-      textAlign: 'center',
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    orderAction: {
-      display: 'flex',
-      alignItems: 'center',
-      color: theme.palette.primary.main,
     },
     orderProducts: {
       display: 'flex',
@@ -86,15 +75,8 @@ export default function OrderCard(props: OrderCardProps) {
       <div className={clsx(classes.orderProducts, classes.orderRow)}>
         <OrderCardItemImages items={items} />
       </div>
-      <div className={classes.orderActions}>
-        <div className={classes.orderAction}>
-          {shipments?.[0]?.tracking?.[0] && (
-            <>
-              <LocationOn />
-              {shipments?.[0].tracking?.[0].number}
-            </>
-          )}
-        </div>
+      <div>
+        {shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}
       </div>
     </div>
   )
