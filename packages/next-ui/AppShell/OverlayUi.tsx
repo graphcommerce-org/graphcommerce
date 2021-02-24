@@ -1,4 +1,12 @@
-import { makeStyles, NoSsr, Theme, Typography, TypographyProps } from '@material-ui/core'
+import {
+  makeStyles,
+  NoSsr,
+  Theme,
+  Typography,
+  TypographyProps,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -8,15 +16,15 @@ import PageLink from '../PageTransition/PageLink'
 import { UiFC } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
+import bottomOverlayUiAnimations, {
+  OverlayUiAnimationProps,
+} from './Animations/bottomOverlayUiAnimations'
+import centerOverlayUiAnimations from './Animations/centerOverlayUiAnimations'
+import leftOverlayUiAnimations from './Animations/leftOverlayUiAnimations'
+import rightOverlayUiAnimations from './Animations/rightOverlayUiAnimations'
+import topOverlayUiAnimations from './Animations/topOverlayUiAnimations'
 import BackButton from './BackButton'
 import Backdrop from './Backdrop'
-import useBottomOverlayUiAnimations, {
-  OverlayUiAnimationProps,
-} from './useBottomOverlayUiAnimations'
-import useCenterOverlayUiAnimations from './useCenterOverlayUiAnimations'
-import useLeftOverlayUiAnimations from './useLeftOverlayUiAnimations'
-import useRightOverlayUiAnimations from './useRightOverlayUiAnimations'
-import useTopOverlayUiAnimations from './useTopOverlayUiAnimations'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -194,24 +202,39 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
     back()
   }
 
+  const theme = useTheme()
+  const upMd = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true })
+
   const overlayUiAnimationProps: OverlayUiAnimationProps = {
     dismissed,
     z,
     hold,
+    upMd,
   }
 
-  const topAnimations = useTopOverlayUiAnimations({ ...overlayUiAnimationProps })
-  const rightAnimations = useRightOverlayUiAnimations({ ...overlayUiAnimationProps })
-  const bottomAnimations = useBottomOverlayUiAnimations({ ...overlayUiAnimationProps })
-  const leftAnimations = useLeftOverlayUiAnimations({ ...overlayUiAnimationProps })
-  const centerAnimations = useCenterOverlayUiAnimations({ ...overlayUiAnimationProps })
+  let contentAnimation: MotionProps = {
+    //
+  }
 
-  let contentAnimation: MotionProps = {}
-  if (variant === 'top') contentAnimation = topAnimations
-  if (variant === 'right') contentAnimation = rightAnimations
-  if (variant === 'bottom') contentAnimation = bottomAnimations
-  if (variant === 'left') contentAnimation = leftAnimations
-  if (variant === 'center') contentAnimation = centerAnimations
+  if (variant === 'top') {
+    contentAnimation = topOverlayUiAnimations({ ...overlayUiAnimationProps })
+  }
+
+  if (variant === 'right') {
+    contentAnimation = rightOverlayUiAnimations({ ...overlayUiAnimationProps })
+  }
+
+  if (variant === 'bottom') {
+    contentAnimation = bottomOverlayUiAnimations({ ...overlayUiAnimationProps })
+  }
+
+  if (variant === 'left') {
+    contentAnimation = leftOverlayUiAnimations({ ...overlayUiAnimationProps })
+  }
+
+  if (variant === 'center') {
+    contentAnimation = centerOverlayUiAnimations({ ...overlayUiAnimationProps })
+  }
 
   const [zIndex, setZIndex] = useState(1)
   useEffect(() => setZIndex(thisIdx * 2 + 1), [thisIdx])
