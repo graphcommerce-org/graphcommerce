@@ -115,6 +115,12 @@ export const AccountDashboardDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'product_url_key' },
+                                  },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'quantity_ordered' },
@@ -187,6 +193,9 @@ export type AccountDashboardQuery = {
                   Types.Maybe<
                     | Pick<
                         Types.DownloadableOrderItem,
+                        | 'product_name'
+                        | 'product_sku'
+                        | 'product_url_key'
                         | 'quantity_ordered'
                         | 'quantity_shipped'
                         | 'quantity_canceled'
@@ -196,6 +205,9 @@ export type AccountDashboardQuery = {
                       >
                     | Pick<
                         Types.BundleOrderItem,
+                        | 'product_name'
+                        | 'product_sku'
+                        | 'product_url_key'
                         | 'quantity_ordered'
                         | 'quantity_shipped'
                         | 'quantity_canceled'
@@ -205,6 +217,9 @@ export type AccountDashboardQuery = {
                       >
                     | Pick<
                         Types.OrderItem,
+                        | 'product_name'
+                        | 'product_sku'
+                        | 'product_url_key'
                         | 'quantity_ordered'
                         | 'quantity_shipped'
                         | 'quantity_canceled'

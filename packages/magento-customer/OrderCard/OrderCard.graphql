@@ -10,6 +10,8 @@ fragment OrderCard on CustomerOrder {
       ...Money
     }
   }
-  ...OrderStateLabel
+  items {
+    ...OrderCardItem
+  }
   order_date
 }

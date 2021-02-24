@@ -4,9 +4,11 @@ import * as Types from '@reachdigital/magento-graphql'
 
 import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
 import {
-  OrderStateLabelFragment,
-  OrderStateLabelFragmentDoc,
-} from '../OrderStateLabel/OrderStateLabel.gql'
+  OrderCardItem_DownloadableOrderItem_Fragment,
+  OrderCardItem_BundleOrderItem_Fragment,
+  OrderCardItem_OrderItem_Fragment,
+  OrderCardItemFragmentDoc,
+} from '../OrderCardItem/OrderCardItem.gql'
 import { TrackingLinkFragmentDoc, TrackingLinkFragment } from '../TrackingLink/TrackingLink.gql'
 
 export const OrderCardFragmentDoc: DocumentNode<OrderCardFragment, unknown> = {
@@ -58,14 +60,23 @@ export const OrderCardFragmentDoc: DocumentNode<OrderCardFragment, unknown> = {
               ],
             },
           },
-          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'OrderStateLabel' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'items' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'OrderCardItem' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'order_date' } },
         ],
       },
     },
     ...TrackingLinkFragmentDoc.definitions,
     ...MoneyFragmentDoc.definitions,
-    ...OrderStateLabelFragmentDoc.definitions,
+    ...OrderCardItemFragmentDoc.definitions,
   ],
 }
 export type OrderCardFragment = Pick<Types.CustomerOrder, 'number' | 'order_date'> & {
@@ -73,4 +84,13 @@ export type OrderCardFragment = Pick<Types.CustomerOrder, 'number' | 'order_date
     Array<Types.Maybe<{ tracking?: Types.Maybe<Array<Types.Maybe<TrackingLinkFragment>>> }>>
   >
   total?: Types.Maybe<{ grand_total: MoneyFragment }>
-} & OrderStateLabelFragment
+  items?: Types.Maybe<
+    Array<
+      Types.Maybe<
+        | OrderCardItem_DownloadableOrderItem_Fragment
+        | OrderCardItem_BundleOrderItem_Fragment
+        | OrderCardItem_OrderItem_Fragment
+      >
+    >
+  >
+}
