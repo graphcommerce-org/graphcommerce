@@ -92,7 +92,7 @@ function requestUpgrade(img: HTMLImageElement) {
 const PictureResponsive: React.FC<PictureResponsiveProps> = (props) => {
   const { srcSets, alt, loading = 'lazy', ...imgProps } = props
   const ref = useRef<HTMLImageElement>(null)
-  const { width } = useResizeObserver({ ref })
+  const { width } = useResizeObserver<HTMLImageElement>({ ref: ref.current })
 
   // We get the network type and set it to 4g safari
   const connectionType = useConnectionType()

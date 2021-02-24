@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, PanInfo } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'

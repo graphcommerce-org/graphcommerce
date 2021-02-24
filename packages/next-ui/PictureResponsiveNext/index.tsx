@@ -1,4 +1,3 @@
-import { connect } from 'pm2'
 import React, { useState, useEffect } from 'react'
 import PictureResponsive, { PictureResponsiveProps, ImageMimeTypes } from '../PictureResponsive'
 import useConnectionType from '../PictureResponsive/useConnectionType'
@@ -25,8 +24,8 @@ function PictureResponsiveNext({ src, type, ...imgProps }: PictureResponsiveNext
   const widths = possibleWidths.filter((width) => imgProps.width < width - 50)
   const quality = connectionType === '4g' ? 100 : 80
 
-  const url = (width: number, type: string, add: string = '') =>
-    `${path}?w=${width}&type=${type}&url=${src}&q=${quality}${add} ${width}w`
+  const url = (width: number, imgType: string, add = '') =>
+    `${path}?w=${width}&type=${imgType}&url=${src}&q=${quality}${add} ${width}w`
 
   if (connectionType === '4g') {
     switch (type) {
@@ -36,7 +35,6 @@ function PictureResponsiveNext({ src, type, ...imgProps }: PictureResponsiveNext
         break
       case 'image/apng':
       case 'image/gif':
-        type.split('image/')[1]
         // animate images
         srcSets['image/webp'] = widths.map((width) => url(width, 'webp')).join(', ')
         srcSets[type] = widths.map((width) => url(width, type.split('image/')[1])).join(', ')

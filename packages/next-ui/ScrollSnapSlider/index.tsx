@@ -2,7 +2,7 @@ import { makeStyles, Grow, Fab, FabProps } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ChevronLeft'
 import ArrowForward from '@material-ui/icons/ChevronRight'
 import clsx from 'clsx'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useResizeObserver from 'use-resize-observer'
 import { UseStyles } from '../Styles'
@@ -75,7 +75,8 @@ const ScrollSnapSlider: React.FC<ScrollSnapSliderProps & { children: ReactNode }
     className,
     ...divProps
   } = props
-  const { ref, width = 0 } = useResizeObserver<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
+  const { width = 0 } = useResizeObserver<HTMLDivElement>({ ref: ref.current })
   const [intersects, setIntersects] = useState<boolean[]>([])
   const [isScrolling, setScrolling] = useState<boolean>(false)
   const classes = useStyles(props)

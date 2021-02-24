@@ -9,11 +9,11 @@ export function useSliderContext() {
   return useContext(context)
 }
 
-export type ScrollSnapSliderProviderProps = PropsWithChildren<
+export type SliderContextProps = PropsWithChildren<
   Partial<SliderState['options']> & Pick<SliderState, 'containerRef'>
 >
 
-export function SliderContext(props: ScrollSnapSliderProviderProps) {
+export function SliderContext(props: SliderContextProps) {
   const {
     children,
     containerRef,
