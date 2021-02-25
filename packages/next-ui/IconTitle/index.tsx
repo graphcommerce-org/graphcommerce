@@ -61,7 +61,9 @@ export default function IconTitle(props: IconTitleProps) {
         height={sizes[size].size}
         loading='eager'
       />
-      <Typography variant={sizes[size].variant}>{title}</Typography>
+      <Typography variant={sizes[size].variant} component='h2'>
+        {title}
+      </Typography>
     </div>
   )
 }
