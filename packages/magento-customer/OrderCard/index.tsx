@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
 import Money from '@reachdigital/magento-store/Money'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import clsx from 'clsx'
 import React from 'react'
-import OrderCardItemImages from '../OrderCardItemImages'
+import OrderCardItem from '../OrderCardItem'
+import OrderCardItemImage from '../OrderCardItemImage'
+import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'
 import OrderStateLabel from '../OrderStateLabel'
 import TrackingLink from '../TrackingLink'
 import { OrderCardFragment } from './OrderCard.gql'
@@ -33,10 +33,24 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       flexWrap: 'wrap',
     },
-    root: {
+    skeleton: {
       display: 'inline-block',
       marginLeft: `calc((${theme.spacings.sm} * .5) * -1)`,
       marginRight: theme.spacings.sm,
+    },
+    images: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      marginTop: theme.spacings.xxs,
+    },
+    placeholder: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 88,
+      height: 88,
+      marginBottom: theme.spacings.xxs,
     },
   }),
   { name: 'OrderCard' },
@@ -44,13 +58,12 @@ const useStyles = makeStyles(
 
 type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
-}
+  locale?: string
+} & { images: UseOrderCardItemImages }
 
 export default function OrderCard(props: OrderCardProps) {
-  const { loading, shipments, total, items, order_date } = props
-  const { orderContainer, orderRow, orderMoney, orderProducts, ...skeletonClasses } = useStyles()
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
+  const { loading, shipments, total, items, order_date, locale, images } = props
+  const classes = useStyles()
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -58,24 +71,33 @@ export default function OrderCard(props: OrderCardProps) {
     day: 'numeric',
   })
 
+  const totalItems = items?.length ?? 0
+  const maxItemsInRow = 5
+
   return (
-    <div className={orderContainer}>
-      <div className={orderRow}>
+    <div className={classes.orderContainer}>
+      <div className={classes.orderRow}>
         {!loading ? (
-          <span className={orderMoney}>
+          <span className={classes.orderMoney}>
             <Money {...total?.grand_total} />
           </span>
         ) : (
-          <Skeleton classes={skeletonClasses} variant='text' width={64} />
+          <Skeleton classes={{ root: classes.skeleton }} variant='text' width={64} />
         )}
 
         {!loading ? (
           <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
         ) : (
-          <Skeleton classes={skeletonClasses} variant='text' width={128} />
+          <Skeleton
+            classes={{
+              root: classes.skeleton,
+            }}
+            variant='text'
+            width={128}
+          />
         )}
       </div>
-      <div className={orderRow}>
+      <div className={classes.orderRow}>
         {!loading ? (
           <OrderStateLabel
             items={items}
@@ -90,15 +112,45 @@ export default function OrderCard(props: OrderCardProps) {
             }}
           />
         ) : (
-          <Skeleton classes={skeletonClasses} variant='text' width={280} />
+          <Skeleton
+            classes={{
+              root: classes.skeleton,
+            }}
+            variant='text'
+            width={280}
+          />
         )}
       </div>
-      <div className={clsx(orderProducts, orderRow)}>
+      <div className={clsx(classes.orderProducts, classes.orderRow)}>
         {!loading ? (
-          <OrderCardItemImages items={items} />
+          <div className={classes.images}>
+            {items
+              ?.slice(0, maxItemsInRow)
+              .map(
+                (item) =>
+                  item?.product_url_key &&
+                  images[item.product_url_key] && (
+                    <OrderCardItemImage
+                      key={item.product_url_key}
+                      {...images[item.product_url_key]}
+                    />
+                  ),
+              )}
+
+            {totalItems > maxItemsInRow && (
+              <div className={classes.placeholder}>{`+${totalItems - maxItemsInRow}`}</div>
+            )}
+          </div>
         ) : (
           <>
-            <Skeleton classes={skeletonClasses} variant='rect' width={88} height={88} />
+            <Skeleton
+              classes={{
+                root: classes.skeleton,
+              }}
+              variant='rect'
+              width={88}
+              height={88}
+            />
           </>
         )}
       </div>
@@ -107,7 +159,13 @@ export default function OrderCard(props: OrderCardProps) {
           <>{shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}</>
         ) : (
           <>
-            <Skeleton classes={skeletonClasses} variant='text' width={228} />
+            <Skeleton
+              classes={{
+                root: classes.skeleton,
+              }}
+              variant='text'
+              width={228}
+            />
           </>
         )}
       </div>

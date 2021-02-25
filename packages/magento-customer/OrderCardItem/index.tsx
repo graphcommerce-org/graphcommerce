@@ -8,7 +8,7 @@ export type OrderCardItemProps = OrderCardItemFragment & {
 }
 
 export default function OrderCardItem(props: OrderCardItemProps) {
-  const { product_sku, product_name, product_url_key, thumbnail } = props
+  const { product_sku, product_url_key, thumbnail } = props
 
   return (
     <div key={`orderCardItem-${product_sku ?? ''}`}>

@@ -5,6 +5,7 @@ import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/A
 import NoOrdersFound from '@reachdigital/magento-customer/NoOrdersFound'
 import OrderCard from '@reachdigital/magento-customer/OrderCard'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -28,9 +29,12 @@ const useStyles = makeStyles(
 
 function AccountOrdersPage() {
   const { data } = useQuery(AccountDashboardOrdersDocument)
-  const classes = useStyles()
   const orders = data?.customer?.orders
 
+  const { data: config } = useQuery(StoreConfigDocument)
+  const locale = config?.storeConfig?.locale?.replace('_', '-')
+
+  const classes = useStyles()
   const amountLatestOrders = 2
 
   // whenever it's possible, pick last {amountLatestOrders} items, then reverse the resulting array,
@@ -58,13 +62,13 @@ function AccountOrdersPage() {
             size='large'
           />
           <SectionContainer label='Latest orders'>
-            {latestOrders?.map((order) => order && <OrderCard {...order} />)}
+            {latestOrders?.map((order) => order && <OrderCard {...order} locale={locale} />)}
             {orders?.items && !orders?.items?.length && <NoOrdersFound />}
           </SectionContainer>
 
           {orders?.items && orders?.items?.length >= amountLatestOrders + 1 && (
             <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
-              {restOrders?.map((order) => order && <OrderCard {...order} />)}
+              {restOrders?.map((order) => order && <OrderCard {...order} locale={locale}  />)}
             </SectionContainer>
           )}
         </NoSsr>

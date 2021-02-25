@@ -115,35 +115,10 @@ export const AccountDashboardDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'product_url_key' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_ordered' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_shipped' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_canceled' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_invoiced' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_refunded' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_returned' },
                                   },
                                 ],
                               },
@@ -191,42 +166,9 @@ export type AccountDashboardQuery = {
               items?: Types.Maybe<
                 Array<
                   Types.Maybe<
-                    | Pick<
-                        Types.DownloadableOrderItem,
-                        | 'product_name'
-                        | 'product_sku'
-                        | 'product_url_key'
-                        | 'quantity_ordered'
-                        | 'quantity_shipped'
-                        | 'quantity_canceled'
-                        | 'quantity_invoiced'
-                        | 'quantity_refunded'
-                        | 'quantity_returned'
-                      >
-                    | Pick<
-                        Types.BundleOrderItem,
-                        | 'product_name'
-                        | 'product_sku'
-                        | 'product_url_key'
-                        | 'quantity_ordered'
-                        | 'quantity_shipped'
-                        | 'quantity_canceled'
-                        | 'quantity_invoiced'
-                        | 'quantity_refunded'
-                        | 'quantity_returned'
-                      >
-                    | Pick<
-                        Types.OrderItem,
-                        | 'product_name'
-                        | 'product_sku'
-                        | 'product_url_key'
-                        | 'quantity_ordered'
-                        | 'quantity_shipped'
-                        | 'quantity_canceled'
-                        | 'quantity_invoiced'
-                        | 'quantity_refunded'
-                        | 'quantity_returned'
-                      >
+                    | Pick<Types.DownloadableOrderItem, 'product_sku' | 'product_url_key'>
+                    | Pick<Types.BundleOrderItem, 'product_sku' | 'product_url_key'>
+                    | Pick<Types.OrderItem, 'product_sku' | 'product_url_key'>
                   >
                 >
               >

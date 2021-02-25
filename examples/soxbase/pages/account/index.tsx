@@ -21,6 +21,9 @@ function AccountIndexPage() {
   const { data, loading } = useQuery(AccountDashboardDocument)
   const customer = data?.customer
 
+  const { data: config } = useQuery(StoreConfigDocument)
+  const locale = config?.storeConfig?.locale?.replace('_', '-')
+
   return (
     <OverlayUi title='Account' variant='bottom' fullHeight>
       <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
@@ -29,7 +32,7 @@ function AccountIndexPage() {
         <NoSsr>
           <AccountHeader {...customer} loading={loading} />
           <AccountMenu {...customer} loading={loading} />
-          <AccountLatestOrder orders={customer?.orders} loading={loading} />
+          <AccountLatestOrder orders={customer?.orders} loading={loading} locale={locale} />
         </NoSsr>
       </Container>
     </OverlayUi>
