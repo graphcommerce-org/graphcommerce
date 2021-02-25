@@ -18,7 +18,7 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountIndexPage() {
-  const { data } = useQuery(AccountDashboardDocument)
+  const { data, loading } = useQuery(AccountDashboardDocument)
   const customer = data?.customer
 
   return (
@@ -27,13 +27,9 @@ function AccountIndexPage() {
 
       <Container maxWidth='md'>
         <NoSsr>
-          {customer && (
-            <>
-              <AccountHeader {...customer} />
-              <AccountMenu {...customer} />
-              <AccountLatestOrder orders={customer?.orders} />
-            </>
-          )}
+          <AccountHeader {...customer} loading={loading} />
+          <AccountMenu {...customer} loading={loading} />
+          <AccountLatestOrder orders={customer?.orders} loading={loading} />
         </NoSsr>
       </Container>
     </OverlayUi>

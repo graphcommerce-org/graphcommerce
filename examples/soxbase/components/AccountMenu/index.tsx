@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import Skeleton from '@material-ui/lab/Skeleton'
 import { AccountMenuFragment } from '@reachdigital/magento-customer/AccountMenu/AccountMenu.gql'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
@@ -8,9 +9,10 @@ import infoIcon from './info.svg'
 import lockIcon from './lock.svg'
 import ordersIcon from './orders.svg'
 import reviewsIcon from './reviews.svg'
-import wishlistIcon from './wishlist.svg'
 
-export type AccountMenuProps = AccountMenuFragment
+export type AccountMenuProps = Partial<AccountMenuFragment> & {
+  loading: boolean
+}
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -27,33 +29,52 @@ const useStyles = makeStyles(
 )
 
 export default function AccountMenu(props: AccountMenuProps) {
+  const { loading } = props
   const classes = useStyles()
+  const totalAccountMenuItems = 5
+  const dummyArray = [...Array(totalAccountMenuItems)]
 
   return (
     <div className={classes.accountMenuContainer}>
-      <AccountMenuItem href='/account/orders' startIconSrc={ordersIcon}>
-        Orders
-      </AccountMenuItem>
+      {loading && (
+        <>
+          {dummyArray.map((item, i) => (
+            <Skeleton key={i} variant='text' height={60} />
+          ))}
+        </>
+      )}
 
-      <AccountMenuItem href='/account/personal' startIconSrc={infoIcon}>
-        Personal information
-      </AccountMenuItem>
-
-      <AccountMenuItem href='/account/addresses' startIconSrc={addressIcon}>
-        Addresses
-      </AccountMenuItem>
-
-      <AccountMenuItem href='/account/reviews' startIconSrc={reviewsIcon}>
-        Reviews
-      </AccountMenuItem>
-
-      <SignOutForm
-        button={({ formState }) => (
-          <AccountMenuItem startIconSrc={lockIcon} loading={formState.isSubmitting} type='submit'>
-            Sign out
+      {!loading && (
+        <>
+          <AccountMenuItem href='/account/orders' startIconSrc={ordersIcon}>
+            Orders
           </AccountMenuItem>
-        )}
-      ></SignOutForm>
+
+          <AccountMenuItem href='/account/personal' startIconSrc={infoIcon}>
+            Personal information
+          </AccountMenuItem>
+
+          <AccountMenuItem href='/account/addresses' startIconSrc={addressIcon}>
+            Addresses
+          </AccountMenuItem>
+
+          <AccountMenuItem href='/account/reviews' startIconSrc={reviewsIcon}>
+            Reviews
+          </AccountMenuItem>
+
+          <SignOutForm
+            button={({ formState }) => (
+              <AccountMenuItem
+                startIconSrc={lockIcon}
+                loading={formState.isSubmitting}
+                type='submit'
+              >
+                Sign out
+              </AccountMenuItem>
+            )}
+          />
+        </>
+      )}
     </div>
   )
 }

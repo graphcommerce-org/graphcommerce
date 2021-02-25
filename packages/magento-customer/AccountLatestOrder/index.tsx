@@ -4,10 +4,12 @@ import { AccountOrdersFragment } from '../AccountOrders/AccountOrders.gql'
 import NoOrdersFound from '../NoOrdersFound'
 import OrderCard from '../OrderCard'
 
-type AccountLatestOrderProps = AccountOrdersFragment
+type AccountLatestOrderProps = AccountOrdersFragment & {
+  loading: boolean
+}
 
 export default function AccountLatestOrder(props: AccountLatestOrderProps) {
-  const { orders } = props
+  const { orders, loading } = props
   const latestOrderCard = orders?.items?.[orders?.items?.length - 1]
 
   // TODO: when Magento's fixes their API sorting
@@ -15,8 +17,14 @@ export default function AccountLatestOrder(props: AccountLatestOrderProps) {
 
   return (
     <SectionContainer label='Latest order'>
-      {!latestOrderCard && <NoOrdersFound />}
-      {latestOrderCard && <OrderCard {...latestOrderCard} />}
+      {!loading && (
+        <>
+          {!latestOrderCard && <NoOrdersFound />}
+          {latestOrderCard && <OrderCard {...latestOrderCard} />}
+        </>
+      )}
+
+      {loading && <OrderCard loading />}
     </SectionContainer>
   )
 }
