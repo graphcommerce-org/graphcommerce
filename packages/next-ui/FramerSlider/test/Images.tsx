@@ -1,8 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import { CSSProperties } from '@material-ui/styles'
-import clsx from 'clsx'
 import React from 'react'
-import { ObjectFitWrapper } from '../../ObjectFit'
 import PictureResponsiveNext from '../../PictureResponsiveNext'
 import ExpandableGallery from '../variants/ExpandableGallery'
 
