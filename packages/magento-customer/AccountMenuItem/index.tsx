@@ -10,6 +10,7 @@ const useStyles = makeStyles(
       padding: theme.spacings.xs,
       fontSize: theme.typography.fontSize,
       borderBottom: `1px solid ${theme.palette.divider}`,
+      borderRadius: 0,
       '& > span': {
         display: 'flex',
         justifyContent: 'start',
