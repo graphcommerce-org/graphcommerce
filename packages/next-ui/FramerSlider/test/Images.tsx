@@ -2,6 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { CSSProperties } from '@material-ui/styles'
 import React from 'react'
 import PictureResponsiveNext from '../../PictureResponsiveNext'
+import SliderImage from '../SliderImage'
 import ExpandableGallery from '../variants/ExpandableGallery'
 
 const size: CSSProperties = { width: 400, height: 400 }
@@ -15,43 +16,35 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       ...size,
     },
+    container: {
+      background: '#f8f8f8',
+    },
     scrollerZoomed: {
       '& .image': {
         height: 'min(100vw, 100vh)',
         width: 'min(100vw, 100vh)',
       },
     },
-    item: {
-      background: '#f8f8f8',
-      borderRadius: 2,
-      position: 'relative',
-    },
-    img: {
-      display: 'block',
-      pointerEvents: 'none',
-      maxWidth: '100%',
-      maxHeight: '100%',
-    },
   }),
   { name: 'ImageGallery' },
 )
 
 export default function Images({ urls }: { urls: string[] }) {
-  const { root, item, img, ...classes } = useStyles()
+  const { root, ...classes } = useStyles()
 
   return (
     <div className={root}>
       <ExpandableGallery classes={classes} size={size} zoomedSize={zoomedSize}>
         {urls.map((url) => (
-          <PictureResponsiveNext
-            key={url}
-            src={url}
-            className={img}
-            type='image/jpeg'
-            width={1532}
-            height={1678}
-            alt='img'
-          />
+          <SliderImage key={url} width={1532} height={1678}>
+            <PictureResponsiveNext
+              src={url}
+              type='image/jpeg'
+              width={1532}
+              height={1678}
+              alt='img'
+            />
+          </SliderImage>
         ))}
       </ExpandableGallery>
     </div>

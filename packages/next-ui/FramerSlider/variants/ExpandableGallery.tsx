@@ -69,11 +69,7 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   { name: 'ExandableGallery' },
 )
 
-type SingleItemSliderProps = Omit<
-  SliderScrollerProps,
-  'containerRef' | 'className' | 'itemClassName'
-> &
-  StylesProps
+type SingleItemSliderProps = StylesProps & Pick<SliderScrollerProps, 'children'>
 
 export default function ExpandableGallery(props: SingleItemSliderProps) {
   const { classes: classesBase, children, ...sliderScrollerProps } = props
@@ -91,9 +87,15 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
           animating={isAnimating}
           {...sliderScrollerProps}
         >
-          {React.Children.map(children, (child) => (
-            <SliderImage animating={isAnimating}>{child}</SliderImage>
-          ))}
+          {/**
+           * We're passing the animating prop down to the child component. This allows the inside of the
+           * component to counterscale
+           */}
+          {React.Children.map(children, (child) =>
+            React.isValidElement<{ animating: boolean }>(child)
+              ? React.cloneElement(child, { animating: isAnimating })
+              : child,
+          )}
         </SliderScroller>
 
         <m.div

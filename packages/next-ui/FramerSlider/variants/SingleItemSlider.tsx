@@ -34,7 +34,11 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   { name: 'SingleItemSlider' },
 )
 
-type SingleItemSliderProps = Omit<SliderScrollerProps, 'animating'> & UseStyles<typeof useStyles>
+type SingleItemSliderProps = Omit<
+  SliderScrollerProps,
+  'containerRef' | 'className' | 'itemClassName'
+> &
+  UseStyles<typeof useStyles>
 
 export default function SingleItemSlider(props: SingleItemSliderProps) {
   const { classes, children, ...sliderScrollerProps } = props

@@ -1,9 +1,11 @@
 /* eslint-disable no-case-declarations */
 import { useAnimation } from 'framer-motion'
-import { Context, createContext, PropsWithChildren, useContext, useReducer, useRef } from 'react'
+import { createContext, PropsWithChildren, useContext, useEffect, useReducer, useRef } from 'react'
+import useResizeObserver from 'use-resize-observer'
 import sliderReducer, { SliderActions, SliderReducer, SliderState } from './sliderReducer'
 
-let context: Context<[SliderState, React.Dispatch<SliderActions>]>
+const context = createContext<[Partial<SliderState>, React.Dispatch<SliderActions>]>([{}, () => {}])
+context.displayName = 'ScrollSnapSliderContext'
 
 export function useSliderContext() {
   return useContext(context)
@@ -24,19 +26,23 @@ export function SliderContext(props: SliderContextProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
 
-  const initial = useReducer<SliderReducer>(sliderReducer, {
+  const containerSize = useResizeObserver<HTMLElement>({ ref: containerRef.current })
+  const scrollerSize = useResizeObserver<HTMLDivElement>({ ref: scrollerRef.current })
+
+  const [state, dispatch] = useReducer<SliderReducer>(sliderReducer, {
     items: [],
     controls,
     containerRef,
+    containerSize,
     scrollerRef,
+    scrollerSize,
     options: { transition, scrollSnapAlign, scrollSnapType, scrollSnapStop },
   } as SliderState)
 
-  if (!context) {
-    context = createContext(initial)
-    context.displayName = 'ScrollSnapSliderContext'
-  }
+  useEffect(() => {
+    dispatch({ type: 'RESIZE', containerSize, scrollerSize })
+  }, [containerSize, containerSize.width, scrollerSize, scrollerSize.width])
 
   const { Provider } = context
-  return <Provider value={initial}>{children}</Provider>
+  return <Provider value={[state, dispatch]}>{children}</Provider>
 }

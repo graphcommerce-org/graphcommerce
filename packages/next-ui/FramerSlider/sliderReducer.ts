@@ -23,8 +23,14 @@ export type SliderState = {
   /** Ref to the element that defines the box the scoller resides in. */
   containerRef: React.RefObject<HTMLDivElement>
 
+  /** Width of the containerRef */
+  containerSize: { width?: number; height?: number }
+
   /** Ref to the element that actually scrolls */
   scrollerRef: React.RefObject<HTMLDivElement>
+
+  /** Width of the scrollerRef */
+  scrollerSize: { width?: number; height?: number }
 
   /** Options to control the behavior of the slider */
   options: {
@@ -60,7 +66,8 @@ export type VisibilityChildrenAction = {
 export type NavigateAction = { type: 'NAVIGATE'; to: number }
 export type NavigateNextAction = { type: 'NAVIGATE_NEXT' }
 export type NavigatePrevAction = { type: 'NAVIGATE_PREV' }
-type ScrollAction = { type: 'SCROLL'; x: number; velocity?: number }
+export type ScrollAction = { type: 'SCROLL'; x: number; velocity?: number }
+export type ResizeAction = { type: 'RESIZE' } & Pick<SliderState, 'containerSize' | 'scrollerSize'>
 
 export type SliderActions =
   | RegisterChildrenAction
@@ -69,6 +76,7 @@ export type SliderActions =
   | NavigateNextAction
   | NavigatePrevAction
   | ScrollAction
+  | ResizeAction
 
 export type SliderReducer = Reducer<SliderState, SliderActions>
 
@@ -163,6 +171,12 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
         })
       })()
       return state
+    case 'RESIZE':
+      return {
+        ...state,
+        containerSize: action.containerSize,
+        scrollerSize: action.scrollerSize,
+      }
   }
 }
 
