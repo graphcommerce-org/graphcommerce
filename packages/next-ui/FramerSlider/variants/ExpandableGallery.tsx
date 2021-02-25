@@ -8,6 +8,7 @@ import React, { useRef, useState } from 'react'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
+import SliderImage from '../SliderImage'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
@@ -77,23 +78,22 @@ type SingleItemSliderProps = Omit<
 export default function ExpandableGallery(props: SingleItemSliderProps) {
   const { classes: classesBase, children, ...sliderScrollerProps } = props
   const classes = useStyles(props)
-  const containerRef = useRef<HTMLDivElement>(null)
   const [zoomed, setZoomed] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
 
   return (
-    <SliderContext scrollSnapStop='always' scrollSnapAlign='center' containerRef={containerRef}>
+    <SliderContext scrollSnapStop='always' scrollSnapAlign='center'>
       <SliderContainer
-        classes={{
-          container: clsx(classes.container, zoomed && classes.containerZoomed),
-        }}
+        classes={{ container: clsx(classes.container, zoomed && classes.containerZoomed) }}
       >
         <SliderScroller
-          className={clsx(classes.scroller, zoomed && classes.scrollerZoomed)}
+          classes={{ scroller: clsx(classes.scroller, zoomed && classes.scrollerZoomed) }}
           animating={isAnimating}
           {...sliderScrollerProps}
         >
-          {children}
+          {React.Children.map(children, (child) => (
+            <SliderImage animating={isAnimating}>{child}</SliderImage>
+          ))}
         </SliderScroller>
 
         <m.div

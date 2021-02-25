@@ -2,6 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { CSSProperties } from '@material-ui/styles'
 import clsx from 'clsx'
 import React from 'react'
+import { ObjectFitWrapper } from '../../ObjectFit'
 import PictureResponsiveNext from '../../PictureResponsiveNext'
 import ExpandableGallery from '../variants/ExpandableGallery'
 
@@ -27,11 +28,6 @@ const useStyles = makeStyles(
       borderRadius: 2,
       position: 'relative',
     },
-    imgContainer: {
-      display: 'flex',
-      width: '100%',
-      height: '100%',
-    },
     img: {
       display: 'block',
       pointerEvents: 'none',
@@ -43,24 +39,21 @@ const useStyles = makeStyles(
 )
 
 export default function Images({ urls }: { urls: string[] }) {
-  const { root, item, img, imgContainer, ...classes } = useStyles()
+  const { root, item, img, ...classes } = useStyles()
 
   return (
     <div className={root}>
       <ExpandableGallery classes={classes} size={size} zoomedSize={zoomedSize}>
         {urls.map((url) => (
-          <div className={item} key={url}>
-            <div className={imgContainer}>
-              <PictureResponsiveNext
-                src={url}
-                className={clsx(img, 'image')}
-                type='image/jpeg'
-                width={1532}
-                height={1678}
-                alt='img'
-              />
-            </div>
-          </div>
+          <PictureResponsiveNext
+            key={url}
+            src={url}
+            className={img}
+            type='image/jpeg'
+            width={1532}
+            height={1678}
+            alt='img'
+          />
         ))}
       </ExpandableGallery>
     </div>

@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import React, { useRef } from 'react'
+import React from 'react'
 import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
@@ -34,25 +34,20 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   { name: 'SingleItemSlider' },
 )
 
-type SingleItemSliderProps = Omit<
-  SliderScrollerProps,
-  'containerRef' | 'className' | 'itemClassName'
-> &
-  UseStyles<typeof useStyles>
+type SingleItemSliderProps = Omit<SliderScrollerProps, 'animating'> & UseStyles<typeof useStyles>
 
 export default function SingleItemSlider(props: SingleItemSliderProps) {
   const { classes, children, ...sliderScrollerProps } = props
-  const classesBase = useStyles({ count: React.Children.count(children), classes })
-  const containerRef = useRef<HTMLDivElement>(null)
+  const { container, scroller, nav } = useStyles({ count: React.Children.count(children), classes })
 
   return (
-    <SliderContext containerRef={containerRef}>
-      <SliderContainer classes={{ container: classesBase.container }}>
-        <SliderScroller className={classesBase.scroller} {...sliderScrollerProps}>
+    <SliderContext>
+      <SliderContainer classes={{ container }}>
+        <SliderScroller classes={{ scroller }} {...sliderScrollerProps}>
           {children}
         </SliderScroller>
 
-        <div className={classesBase.nav}>
+        <div className={nav}>
           <SliderPrev />
           <SliderDots count={React.Children.count(children)} />
           <SliderNext />

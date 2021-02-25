@@ -1,10 +1,8 @@
 /* eslint-disable no-case-declarations */
-import { Property, Globals } from 'csstype'
 import { AnimationControls, Transition } from 'framer-motion'
 import { Reducer } from 'react'
-import { Except } from 'type-fest'
 
-type Item = {
+type SliderItem = {
   el: HTMLElement
   visible: boolean
 }
@@ -13,7 +11,7 @@ type ScrollSnapTypeDirection = 'block' | 'both' | 'inline' | 'x' | 'y'
 type ScrollSnapType = 'mandatory' | 'proximity'
 
 export type SliderState = {
-  items: { el: HTMLElement; visible: boolean }[]
+  items: SliderItem[]
 
   /**
    * To animate to a certain position we store an instance of the return type of useAnimation
@@ -22,14 +20,13 @@ export type SliderState = {
    */
   controls: AnimationControls
 
-  /**
-   * Container that the items reside in
-   */
+  /** Ref to the element that defines the box the scoller resides in. */
   containerRef: React.RefObject<HTMLDivElement>
 
-  /**
-   * Options to control the behavior of the slider
-   */
+  /** Ref to the element that actually scrolls */
+  scrollerRef: React.RefObject<HTMLDivElement>
+
+  /** Options to control the behavior of the slider */
   options: {
     /**
      * The bouncyness of the transition can be controlled here
@@ -38,14 +35,10 @@ export type SliderState = {
      */
     transition?: Transition
 
-    /**
-     * https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop
-     */
+    /** https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop */
     scrollSnapStop: 'always' | 'normal'
 
-    /**
-     * https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type
-     */
+    /** https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type */
     scrollSnapType?: ScrollSnapType
 
     // todo(paales): support the direction parameter as well
@@ -54,22 +47,20 @@ export type SliderState = {
     //   | ScrollSnapTypeDirection
     //   | `${ScrollSnapTypeDirection} ${ScrollSnapType}`
 
-    /**
-     * https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align
-     */
-    scrollSnapAlign?: 'center' | 'end' | 'start'
+    /** https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align */
+    scrollSnapAlign?: 'center' | 'end' | 'start' | false
   }
 }
 
 export type RegisterChildrenAction = { type: 'REGISTER_CHILDREN'; elements: HTMLElement[] }
 export type VisibilityChildrenAction = {
   type: 'VISIBILITY_CHILDREN'
-  items: { el: HTMLElement; visible: boolean }[]
+  items: SliderItem[]
 }
 export type NavigateAction = { type: 'NAVIGATE'; to: number }
 export type NavigateNextAction = { type: 'NAVIGATE_NEXT' }
 export type NavigatePrevAction = { type: 'NAVIGATE_PREV' }
-type ScrollAction = { type: 'SCROLL'; x: number }
+type ScrollAction = { type: 'SCROLL'; x: number; velocity?: number }
 
 export type SliderActions =
   | RegisterChildrenAction
@@ -82,7 +73,6 @@ export type SliderActions =
 export type SliderReducer = Reducer<SliderState, SliderActions>
 
 type Rect = Omit<DOMRect, 'toJSON'>
-
 export function rectRelative(rect: Rect, parentRect: Rect): Rect {
   return {
     top: rect.top - parentRect.top,
@@ -96,7 +86,7 @@ export function rectRelative(rect: Rect, parentRect: Rect): Rect {
   }
 }
 
-function measureItem(item: Item): Rect {
+function measureItem(item: SliderItem): Rect {
   const rect = item.el.getBoundingClientRect()
   const parentRect = item.el.parentElement?.getBoundingClientRect()
   if (!rect || !parentRect) throw Error('Not in DOM')
@@ -166,7 +156,10 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         state.controls.start({
           x: Math.min(0, Math.max(max, x)),
-          transition: state.options.transition,
+          transition: {
+            ...state.options.transition,
+            velocity: action.velocity,
+          },
         })
       })()
       return state

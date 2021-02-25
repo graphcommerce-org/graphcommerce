@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import React, { useRef } from 'react'
+import React from 'react'
 import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
@@ -21,13 +21,12 @@ type MultiItemSliderProps = Omit<
 
 export default function MultiItemSlider(props: MultiItemSliderProps) {
   const { classes: _unused, ...sliderScrollerProps } = props
-  const classes = useStyles(props)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const { container, scroller } = useStyles(props)
 
   return (
-    <SliderContext containerRef={containerRef}>
-      <SliderContainer classes={{ container: classes.container }}>
-        <SliderScroller className={classes.scroller} {...sliderScrollerProps} />
+    <SliderContext>
+      <SliderContainer classes={{ container }}>
+        <SliderScroller classes={{ scroller }} {...sliderScrollerProps} />
       </SliderContainer>
     </SliderContext>
   )

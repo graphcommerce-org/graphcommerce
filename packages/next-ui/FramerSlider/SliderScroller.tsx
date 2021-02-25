@@ -1,11 +1,10 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, PanInfo } from 'framer-motion'
+import { m, PanInfo, useMotionValue } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
-import { rectRelative } from './sliderReducer'
 
 const useStyles = makeStyles(
   {
@@ -25,28 +24,18 @@ const useStyles = makeStyles(
 export type SliderScrollerStyles = UseStyles<typeof useStyles>
 
 export type SliderScrollerProps = {
-  /**
-   * Array of items that will be provided
-   */
+  /** Array of items that will be provided */
   children: React.ReactNode
-
-  /**
-   * Pass a className to override styles of the scroller
-   */
-  className?: string
-
-  /**
-   * Enable the layout property temporarily. Must be disabled to handle sliding properly
-   */
+  /** Enable the layout property temporarily. Must be disabled to handle sliding properly */
   animating?: boolean
-}
+} & UseStyles<typeof useStyles>
 
 export default function SliderScroller(props: SliderScrollerProps) {
-  const { children, className, animating } = props
-  const extendedClasses = useStyles(props)
-  const [{ containerRef, controls }, dispatch] = useSliderContext()
+  const { children, animating } = props
+  const classes = useStyles(props)
+  const [{ containerRef, scrollerRef, controls }, dispatch] = useSliderContext()
+  const x = useMotionValue<number>(0)
 
-  const scrollerRef = useRef<HTMLDivElement>(null)
   const { width: containerWidth = 0 } = useResizeObserver<HTMLElement>({
     ref: containerRef.current,
   })
@@ -55,7 +44,15 @@ export default function SliderScroller(props: SliderScrollerProps) {
   })
   const left = scrollerWidth <= containerWidth ? 0 : (scrollerWidth - containerWidth) * -1
 
-  // Measure the intersection of the elements
+  /**
+   * Measure visible items
+   *
+   * We're using the IntersectionObserver to measure if children (the actual slides) of the
+   * SliderScroller are visible.
+   *
+   * We are only measuring the intersection when the SliderScroller is not animating else we run in
+   * to repaints which causes jank.
+   */
   useEffect(() => {
     if (!scrollerRef.current || !containerRef.current || animating) return () => {}
 
@@ -76,27 +73,20 @@ export default function SliderScroller(props: SliderScrollerProps) {
 
     elements.forEach((e) => ro.observe(e))
     return () => ro.disconnect()
-  }, [animating, containerRef, dispatch, scrollerRef.current?.children])
+  }, [animating, containerRef, dispatch, scrollerRef, scrollerRef.current?.children])
 
-  const handleDragEnd = (_: unknown, panInfo: PanInfo) => {
-    const scrollerRect = scrollerRef.current?.getBoundingClientRect()
-    const containerRect = containerRef.current?.getBoundingClientRect()
-
-    if (!scrollerRef.current || !scrollerRect || !containerRect) return
-
-    const rect = rectRelative(scrollerRect, containerRect)
-
-    // todo: for some reason the x position of the rect is 0
-    if (rect.x === 0) {
-      console.warn('[FramerSlider] Can not determine the x-position of the scrollerRef')
-      return
-    }
-
-    const velocityX = panInfo.velocity.x
-    const clamp = panInfo.offset.x * 3
-
-    const velocity = velocityX < 0 ? Math.max(velocityX, clamp) : Math.min(velocityX, clamp)
-    dispatch({ type: 'SCROLL', x: rect.x + velocity })
+  /**
+   * After dragging completes
+   * - Calculate the new x-position with the velocity taken in account.
+   * - We clamp the position for small gestures.
+   *
+   * Todo(paales): It does not actually calculate the x-position super accurately. If we let the
+   * drag handle it we get a different resulting x-position..
+   */
+  const handleDragEnd = (_: unknown, { velocity, offset }: PanInfo) => {
+    const velocityClamp =
+      velocity.x < 0 ? Math.max(velocity.x, offset.x * 2) : Math.min(velocity.x, offset.x * 2)
+    dispatch({ type: 'SCROLL', x: x.get() + velocityClamp, velocity: velocity.x })
   }
 
   return (
@@ -104,11 +94,11 @@ export default function SliderScroller(props: SliderScrollerProps) {
       ref={scrollerRef}
       drag='x'
       dragConstraints={{ left, right: 0 }}
-      className={clsx(extendedClasses.scroller, className)}
-      onDrag={(_, info) => {}}
+      className={clsx(classes.scroller)}
       onDragEnd={handleDragEnd}
       animate={controls}
       layout={animating}
+      style={{ x }}
     >
       {children}
     </m.div>
