@@ -1,5 +1,6 @@
+import useForwardedRef from '@bedrock-layout/use-forwarded-ref'
 import Head from 'next/head'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useResizeObserver from 'use-resize-observer'
 import useConnectionType from './useConnectionType'
 
@@ -34,9 +35,7 @@ export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'src'> &
   height: number
 }
 
-/**
- * Checks whether an image is currently in the viewport
- */
+/** Checks whether an image is currently in the viewport */
 function isInViewport(elem: HTMLImageElement): boolean {
   const { top, right, bottom, left } = elem.getBoundingClientRect()
   return bottom >= 0 && right >= 0 && top <= window.innerHeight && left <= window.innerWidth
@@ -89,57 +88,61 @@ function requestUpgrade(img: HTMLImageElement) {
   })
 }
 
-const PictureResponsive: React.FC<PictureResponsiveProps> = (props) => {
-  const { srcSets, alt, loading = 'lazy', ...imgProps } = props
-  const ref = useRef<HTMLImageElement>(null)
-  const { width } = useResizeObserver<HTMLImageElement>({ ref: ref.current })
+const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsiveProps>(
+  (props, forwardedRef) => {
+    const { srcSets, alt, loading = 'lazy', ...imgProps } = props
+    const ref = useForwardedRef(forwardedRef)
 
-  // We get the network type and set it to 4g safari
-  const connectionType = useConnectionType()
+    const { width } = useResizeObserver<HTMLImageElement>({ ref: ref.current })
 
-  // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
-  const [size, setSize] = useState<number>(Math.round(imgProps.width / 2.6))
+    // We get the network type and set it to 4g safari
+    const connectionType = useConnectionType()
 
-  useEffect(() => {
-    // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
-    if (!ref.current || !width) return
+    // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
+    const [size, setSize] = useState<number>(Math.round(imgProps.width / 2.6))
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    requestUpgrade(ref.current).then(() => {
-      // If the connection is slow, request a lower quality image
-      setSize(Math.round(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
-    })
-  }, [width, connectionType])
+    useEffect(() => {
+      // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
+      if (!ref.current || !width) return
 
-  const types = Object.keys(srcSets)
-  const firstSet = srcSets[types[0]] as string
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      requestUpgrade(ref.current).then(() => {
+        // If the connection is slow, request a lower quality image
+        setSize(Math.round(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
+      })
+    }, [width, connectionType, ref])
 
-  return (
-    <>
-      {types.length === 1 ? (
-        <img ref={ref} alt={alt} {...imgProps} srcSet={firstSet} loading={loading} />
-      ) : (
-        <picture>
-          {Object.entries(srcSets).map(([type, srcSet]) => (
-            <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
-          ))}
-          <img ref={ref} alt={alt} {...imgProps} loading={loading} />
-        </picture>
-      )}
-      {loading === 'eager' && (
-        <Head>
-          <link
-            key={`PictureResponsive-${firstSet}`}
-            rel='preload'
-            as='image'
-            // @ts-expect-error: imagesrcset is not yet in the link element type
-            imagesrcset={firstSet}
-            imagesizes={`${size}px`}
-          />
-        </Head>
-      )}
-    </>
-  )
-}
+    const types = Object.keys(srcSets)
+    const firstSet = srcSets[types[0]] as string
+
+    return (
+      <>
+        {types.length === 1 ? (
+          <img ref={ref} alt={alt} {...imgProps} srcSet={firstSet} loading={loading} />
+        ) : (
+          <picture>
+            {Object.entries(srcSets).map(([type, srcSet]) => (
+              <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
+            ))}
+            <img ref={ref} alt={alt} {...imgProps} loading={loading} />
+          </picture>
+        )}
+        {loading === 'eager' && (
+          <Head>
+            <link
+              key={`PictureResponsive-${firstSet}`}
+              rel='preload'
+              as='image'
+              // @ts-expect-error: imagesrcset is not yet in the link element type
+              imagesrcset={firstSet}
+              imagesizes={`${size}px`}
+            />
+          </Head>
+        )}
+      </>
+    )
+  },
+)
+PictureResponsive.displayName = 'PictureResponsive'
 
 export default PictureResponsive
