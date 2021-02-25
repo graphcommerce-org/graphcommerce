@@ -1,6 +1,5 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { Variant } from '@material-ui/core/styles/createTypography'
-import clsx from 'clsx'
 import React from 'react'
 import responsiveVal from '../Styles/responsiveVal'
 
@@ -19,7 +18,7 @@ const useStyles = makeStyles(
   { name: 'IconTitle' },
 )
 
-type IconTitleVariants = 'xs' | 'sm' | 'lg'
+type IconTitleVariants = 'small' | 'normal' | 'large'
 
 type IconTitleProps = {
   iconSrc: string
@@ -34,19 +33,19 @@ type IconTitleVariantSizePair = {
 }
 
 export default function IconTitle(props: IconTitleProps) {
-  const { iconSrc, alt, title, size = 'lg' } = props
+  const { iconSrc, alt, title, size = 'normal' } = props
   const classes = useStyles()
 
   const sizes: Record<IconTitleVariants, IconTitleVariantSizePair> = {
-    xs: {
+    small: {
       variant: 'h6',
       size: 32,
     },
-    sm: {
+    normal: {
       variant: 'h5',
       size: 32,
     },
-    lg: {
+    large: {
       variant: 'h3',
       size: 56,
     },

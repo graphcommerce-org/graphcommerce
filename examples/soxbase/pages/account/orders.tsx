@@ -51,7 +51,12 @@ function AccountOrdersPage() {
       />
       <Container maxWidth='md'>
         <NoSsr>
-          <IconTitle iconSrc='/icons/desktop_checkout_box.svg' title='Orders' alt='orders' />
+          <IconTitle
+            iconSrc='/icons/desktop_checkout_box.svg'
+            title='Orders'
+            alt='orders'
+            size='large'
+          />
           <SectionContainer label='Latest orders'>
             {latestOrders?.map((order) => order && <OrderCard {...order} />)}
             {orders?.items && !orders?.items?.length && <NoOrdersFound />}
