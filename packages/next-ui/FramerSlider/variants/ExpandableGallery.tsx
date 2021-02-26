@@ -4,11 +4,10 @@ import FullscreenExit from '@material-ui/icons/FullscreenExit'
 import { CSSProperties } from '@material-ui/styles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
-import SliderImage from '../SliderImage'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
 import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
@@ -109,7 +108,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
         <m.div
           layout
           className={classes.topRight}
-          onLayoutAnimationComplete={() => () => setAnimating(false)}
+          onLayoutAnimationComplete={() => setAnimating(false)}
         >
           <Fab
             color='inherit'
