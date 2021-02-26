@@ -4,7 +4,7 @@ import FullscreenExit from '@material-ui/icons/FullscreenExit'
 import { CSSProperties } from '@material-ui/styles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
@@ -75,7 +75,15 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
   const { classes: classesBase, children, ...sliderScrollerProps } = props
   const classes = useStyles(props)
   const [zoomed, setZoomed] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(false)
+
+  /**
+   * Since the layout needs to be properly determined beforehand we start with the isAnimating set
+   * to true and disable it immediately.
+   *
+   * This causes an additional rerender, but should be fine?
+   */
+  const [animating, setAnimating] = useState(true)
+  useEffect(() => setAnimating(false), [])
 
   return (
     <SliderContext scrollSnapStop='always' scrollSnapAlign='center'>
@@ -84,7 +92,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
       >
         <SliderScroller
           classes={{ scroller: clsx(classes.scroller, zoomed && classes.scrollerZoomed) }}
-          animating={isAnimating}
+          animating={animating}
           {...sliderScrollerProps}
         >
           {/**
@@ -93,7 +101,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
            */}
           {React.Children.map(children, (child) =>
             React.isValidElement<{ animating: boolean }>(child)
-              ? React.cloneElement(child, { animating: isAnimating })
+              ? React.cloneElement(child, { animating })
               : child,
           )}
         </SliderScroller>
@@ -101,13 +109,13 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
         <m.div
           layout
           className={classes.topRight}
-          onLayoutAnimationComplete={() => requestAnimationFrame(() => setIsAnimating(false))}
+          onLayoutAnimationComplete={() => () => setAnimating(false)}
         >
           <Fab
             color='inherit'
             size='small'
             onClick={() => {
-              setIsAnimating(true)
+              setAnimating(true)
               setZoomed(!zoomed)
               document.body.style.overflow = !zoomed ? 'hidden' : ''
             }}

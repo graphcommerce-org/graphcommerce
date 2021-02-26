@@ -7,13 +7,7 @@ import { useSliderContext } from './SliderContext'
 
 const useStyles = makeStyles(
   () => ({
-    root: {
-      // '& picture': {
-      // },
-    },
     aspectWrapper: {
-      width: '100%',
-      height: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -60,23 +54,20 @@ export default function SliderImage(props: SliderImageProps) {
 
   const containerRatio = (containerSize?.width ?? 1) / (containerSize?.height ?? 1)
   const ratio = width / height
-
   const portrait = containerRatio > ratio
 
   return (
-    <div className={clsx(classes.root)}>
-      <div className={classes.aspectWrapper}>
-        <m.div
-          layout={animating}
-          className={clsx(classes.aspect, portrait ? classes.portrait : classes.landscape)}
-          style={{
-            ...(portrait && { paddingLeft: `${Math.round((width / height) * 100)}%` }),
-            ...(!portrait && { paddingTop: `${Math.round((height / width) * 100)}%` }),
-          }}
-        >
-          {children}
-        </m.div>
-      </div>
+    <div className={classes.aspectWrapper}>
+      <m.div
+        layout={animating}
+        className={clsx(classes.aspect, portrait ? classes.portrait : classes.landscape)}
+        style={{
+          ...(portrait && { paddingLeft: `${Math.round((width / height) * 100)}%` }),
+          ...(!portrait && { paddingTop: `${Math.round((height / width) * 100)}%` }),
+        }}
+      >
+        {children}
+      </m.div>
     </div>
   )
 }
