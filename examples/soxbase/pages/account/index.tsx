@@ -29,7 +29,7 @@ function AccountIndexPage() {
         <NoSsr>
           <AccountHeader {...customer} loading={loading} />
           <AccountMenu {...customer} loading={loading} />
-          <AccountLatestOrder orders={customer?.orders} loading={loading} />
+          <AccountLatestOrder {...customer} loading={loading} />
         </NoSsr>
       </Container>
     </OverlayUi>
