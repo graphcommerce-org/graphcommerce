@@ -29,13 +29,13 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   (theme: Theme) => ({
     container: ({ size }) => ({
       position: 'relative',
+      zIndex: 10,
       ...size,
     }),
     containerZoomed: ({ zoomedSize }) => ({
       position: 'fixed',
       top: 0,
       left: 0,
-      zIndex: 10,
       ...zoomedSize,
     }),
     scroller: ({ size }) => ({
