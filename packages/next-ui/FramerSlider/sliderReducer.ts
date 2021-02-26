@@ -143,18 +143,22 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
         if (!containerRect || !scrollerRect) return
 
         const align = state.options.scrollSnapAlign
-        const x = state.items
+        const possible = state.items
           .map((item) => rectRelative(item?.el.getBoundingClientRect(), scrollerRect))
+
+          // Calculate the possible left scroll positions based on the alignment of the items
           .map((item) => {
-            if (align === 'center') return item.x + item.width * 0.5 - containerRect.width * 0.5
-            if (align === 'end') return item.x + item.width - containerRect.width
-            return item.x
+            let newX = item.x
+            if (align === 'center') newX = item.x + item.width * 0.5 - containerRect.width * 0.5
+            if (align === 'end') newX = item.x + item.width - containerRect.width
+            return newX * -1
           })
-          .reduce<number>(
-            (prev, curr) =>
-              Math.abs(curr * -1 - action.x) < Math.abs(prev - action.x) ? curr * -1 : prev,
-            0,
-          )
+
+        // Calculate the nearest element
+        const x = possible.reduce<number>(
+          (prev, curr) => (Math.abs(curr - action.x) < Math.abs(prev - action.x) ? curr : prev),
+          0,
+        )
 
         const max =
           scrollerRect.width <= containerRect.width

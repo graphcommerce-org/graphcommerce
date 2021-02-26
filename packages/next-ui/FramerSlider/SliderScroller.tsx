@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, PanInfo, useMotionValue } from 'framer-motion'
 import React, { useEffect } from 'react'
-import useResizeObserver from 'use-resize-observer'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
@@ -27,15 +26,18 @@ export type SliderScrollerProps = {
   /** Array of items that will be provided */
   children: React.ReactNode
   /** Enable the layout property temporarily. Must be disabled to handle sliding properly */
-  animating?: boolean
+  layout?: boolean
 } & UseStyles<typeof useStyles>
 
 export default function SliderScroller(props: SliderScrollerProps) {
-  const { children, animating } = props
+  const { children, layout } = props
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext()
   const { containerRef, containerSize, scrollerRef, scrollerSize, controls } = state
   const x = useMotionValue<number>(0)
+
+  const containerWidth = containerSize.width ?? 0
+  const scrollerWidth = scrollerSize.width ?? 0
 
   /**
    * Measure visible items
@@ -47,7 +49,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
    * to repaints which causes jank.
    */
   useEffect(() => {
-    if (!scrollerRef.current || !containerRef.current || animating) return () => {}
+    if (!scrollerRef.current || !containerRef.current || layout) return () => {}
 
     const elements = Array.from(scrollerRef.current.children) as HTMLElement[]
 
@@ -66,7 +68,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
 
     elements.forEach((e) => ro.observe(e))
     return () => ro.disconnect()
-  }, [animating, containerRef, dispatch, scrollerRef, scrollerRef.current?.children])
+  }, [layout, containerRef, dispatch, scrollerRef, scrollerRef.current?.children])
 
   /**
    * After dragging completes
@@ -76,27 +78,24 @@ export default function SliderScroller(props: SliderScrollerProps) {
    * Todo(paales): It does not actually calculate the x-position super accurately. If we let the
    * drag handle it we get a different resulting x-position..
    */
-  const handleDragEnd = (_: unknown, { velocity, offset }: PanInfo) => {
+  const handleDragSnap = (_: unknown, { velocity, offset }: PanInfo) => {
     const velocityClamp =
       velocity.x < 0 ? Math.max(velocity.x, offset.x * 2) : Math.min(velocity.x, offset.x * 2)
     dispatch({ type: 'SCROLL', x: x.get() + velocityClamp, velocity: velocity.x })
   }
 
-  const contW = containerSize.width ?? 0
-  const scrollW = scrollerSize.width ?? 0
+  /** Calculate the max scroll constraint */
+  const left = scrollerWidth <= containerWidth ? 0 : (scrollerWidth - containerWidth) * -1
 
   return (
     <m.div
       ref={scrollerRef}
       drag='x'
-      dragConstraints={{
-        left: scrollW <= contW ? 0 : (scrollW - contW) * -1,
-        right: 0,
-      }}
+      dragConstraints={{ left, right: 0 }}
       className={clsx(classes.scroller)}
-      onDragEnd={handleDragEnd}
+      onDragEnd={handleDragSnap}
       animate={controls}
-      layout={animating}
+      layout={layout}
       style={{ x }}
     >
       {children}

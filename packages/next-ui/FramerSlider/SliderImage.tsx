@@ -42,7 +42,7 @@ const useStyles = makeStyles(
 )
 
 type SliderImageProps = React.PropsWithChildren<{
-  animating?: boolean
+  layout?: boolean
   width: number
   height: number
 }>
@@ -50,7 +50,7 @@ type SliderImageProps = React.PropsWithChildren<{
 export default function SliderImage(props: SliderImageProps) {
   const classes = useStyles()
   const [{ containerSize }] = useSliderContext()
-  const { children, width, height, animating } = props
+  const { children, width, height, layout } = props
 
   const containerRatio = (containerSize?.width ?? 1) / (containerSize?.height ?? 1)
   const ratio = width / height
@@ -59,7 +59,7 @@ export default function SliderImage(props: SliderImageProps) {
   return (
     <div className={classes.aspectWrapper}>
       <m.div
-        layout={animating}
+        layout={layout}
         className={clsx(classes.aspect, portrait ? classes.portrait : classes.landscape)}
         style={{
           ...(portrait && { paddingLeft: `${Math.round((width / height) * 100)}%` }),

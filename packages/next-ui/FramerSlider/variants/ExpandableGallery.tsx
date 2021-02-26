@@ -91,7 +91,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
       >
         <SliderScroller
           classes={{ scroller: clsx(classes.scroller, zoomed && classes.scrollerZoomed) }}
-          animating={animating}
+          layout={animating}
           {...sliderScrollerProps}
         >
           {/**
@@ -99,8 +99,8 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
            * component to counterscale
            */}
           {React.Children.map(children, (child) =>
-            React.isValidElement<{ animating: boolean }>(child)
-              ? React.cloneElement(child, { animating })
+            React.isValidElement<{ layout: boolean }>(child)
+              ? React.cloneElement(child, { layout: animating })
               : child,
           )}
         </SliderScroller>
