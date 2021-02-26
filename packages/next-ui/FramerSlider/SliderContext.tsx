@@ -1,6 +1,14 @@
 /* eslint-disable no-case-declarations */
 import { useAnimation } from 'framer-motion'
-import { createContext, PropsWithChildren, useContext, useEffect, useReducer, useRef } from 'react'
+import {
+  createContext,
+  Dispatch,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+} from 'react'
 import useResizeObserver from 'use-resize-observer'
 import sliderReducer, { SliderActions, SliderReducer, SliderState } from './sliderReducer'
 
@@ -8,7 +16,7 @@ const context = createContext<[Partial<SliderState>, React.Dispatch<SliderAction
 context.displayName = 'ScrollSnapSliderContext'
 
 export function useSliderContext() {
-  return useContext(context)
+  return useContext(context) as [SliderState, Dispatch<SliderActions>]
 }
 
 export type SliderContextProps = PropsWithChildren<Partial<SliderState['options']>>
