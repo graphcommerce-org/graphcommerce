@@ -24,17 +24,11 @@ export type FragmentRegistry = {
 
 export type DocumentImportResolverOptions = {
   baseDir: string
-  /**
-   * Generates a target file path from the source `document.location`
-   */
+  /** Generates a target file path from the source `document.location` */
   generateFilePath: (location: string) => string
-  /**
-   * Schema base types source
-   */
+  /** Schema base types source */
   schemaTypesSource: string | ImportSource
-  /**
-   * Should `import type` be used
-   */
+  /** Should `import type` be used */
   typesImport: boolean
 }
 
@@ -61,10 +55,12 @@ function getFragmentName(documentFile: Types.DocumentFile) {
 }
 
 /**
- * Transform the preset's provided documents into single-file generator sources, while resolving fragment and user-defined imports
+ * Transform the preset's provided documents into single-file generator sources, while resolving
+ * fragment and user-defined imports
  *
  * Resolves user provided imports and fragment imports using the `DocumentImportResolverOptions`.
- * Does not define specific plugins, but rather returns a string[] of `importStatements` for the calling plugin to make use of
+ * Does not define specific plugins, but rather returns a string[] of `importStatements` for the
+ * calling plugin to make use of
  */
 export function resolveDocumentImports<T>(
   presetOptions: Types.PresetFnArgs<T>,

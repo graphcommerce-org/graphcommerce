@@ -7,12 +7,12 @@ import { UseStyles } from '../Styles'
 /**
  * When navigating, store the previous page.
  *
- * default:
+ * `default`:
  * - Show a back arrow icon
  * - Show the previous page if available
  * - Show the default previous page if not available
  *
- * isOverlay
+ * `isOverlay`:
  * - Show a close icon
  * - Remember the navigation section that the user last was in a certain section.
  * - Show a back arrow when navigating in the same overlay area?

@@ -43,10 +43,10 @@ export default async function createHandler(config: YamlConfig.Config, path: str
   const mesh = await createMesh(config)
 
   /**
-   * todo: Implement tag based caching with X-Magento-Tags
-   * todo: Implement tag based cache invalidation that can handle PURGE requests
-   * todo: Implement redis based caching solution
-   * todo: Disable Varnish backend cachinng and switch to POST for requests
+   * - Todo: Implement tag based caching with X-Magento-Tags
+   * - Todo: Implement tag based cache invalidation that can handle PURGE requests
+   * - Todo: Implement redis based caching solution
+   * - Todo: Disable Varnish backend cachinng and switch to POST for requests
    */
   const apolloServer = new ApolloServer({
     tracing: true,

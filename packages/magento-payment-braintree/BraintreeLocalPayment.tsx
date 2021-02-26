@@ -150,8 +150,8 @@ function PaymentButton(props: PaymentButtonProps) {
 }
 
 /**
- * Local payment methods can be expanded to multiple separate methods
- * logic taken from https://developers.braintreepayments.com/guides/local-payment-methods/client-side-custom/javascript/v3#render-local-payment-method-buttons
+ * Local payment methods can be expanded to multiple separate methods logic taken from
+ * https://developers.braintreepayments.com/guides/local-payment-methods/client-side-custom/javascript/v3#render-local-payment-method-buttons
  */
 const expandMethods: ExpandPaymentMethods = (available, cart) => {
   const address = cart?.shipping_addresses?.[0]

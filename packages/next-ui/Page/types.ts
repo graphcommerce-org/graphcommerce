@@ -19,9 +19,7 @@ export type GetStaticProps<
 
 export type GetStaticPaths<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetStaticPathsNext<Q>
 
-/**
- * Used by _app
- */
+/** Used by _app */
 export type AppProps = Omit<NextAppProps, 'Component' | 'pageProps'> & {
   Component: PageFC
   pageProps: ApolloStateProps

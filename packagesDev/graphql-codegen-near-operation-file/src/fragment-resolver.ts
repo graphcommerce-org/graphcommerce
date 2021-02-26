@@ -32,7 +32,8 @@ export type FragmentRegistry = {
 }
 
 /**
- * Used by `buildFragmentResolver` to  build a mapping of fragmentNames to paths, importNames, and other useful info
+ * Used by `buildFragmentResolver` to build a mapping of fragmentNames to paths, importNames, and
+ * other useful info
  */
 export function buildFragmentRegistry(
   { generateFilePath }: DocumentImportResolverOptions,
@@ -127,9 +128,7 @@ export function buildFragmentRegistry(
   return registry
 }
 
-/**
- *  Builds a fragment "resolver" that collects `externalFragments` definitions and `fragmentImportStatements`
- */
+/** Builds a fragment "resolver" that collects `externalFragments` definitions and `fragmentImportStatements` */
 export default function buildFragmentResolver<T>(
   collectorOptions: DocumentImportResolverOptions,
   presetOptions: Types.PresetFnArgs<T>,

@@ -1,4 +1,3 @@
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import ProductListItemSimpleBase, {
   ProductListItemSimpleProps,
 } from '@reachdigital/magento-product-simple/ProductListItemSimple'

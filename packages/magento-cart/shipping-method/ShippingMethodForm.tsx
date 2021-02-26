@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText } from '@material-ui/core'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'

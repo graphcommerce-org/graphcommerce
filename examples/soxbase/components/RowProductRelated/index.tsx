@@ -61,12 +61,9 @@ export default function RowProductRelated(props: RowProductRelatedProps) {
   const classes = useStyles()
   const [exPagination, setExPagination] = useState<boolean[]>([])
   const curRef = useRef() as React.MutableRefObject<HTMLInputElement>
-  const relatedProductItems = {
-    ...productListItems,
-    items,
-  }
+  const relatedProductItems = { ...productListItems, items }
 
-  const indexesOf = (arr, item) => arr.reduce((acc, v, i) => (v === item && acc.push(i), acc), [])
+  const indexesOf = (arr, item) => arr.reduce((acc, v, i) => v === item && acc.push(i), [])
   const indexesInViewport = indexesOf(exPagination, true)
 
   const current =

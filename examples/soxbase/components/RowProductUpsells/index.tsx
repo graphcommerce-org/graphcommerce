@@ -66,7 +66,7 @@ export default function RowProductUpsells(props: RowProductUpsellsProps) {
     items,
   }
 
-  const indexesOf = (arr, item) => arr.reduce((acc, v, i) => (v === item && acc.push(i), acc), [])
+  const indexesOf = (arr, item) => arr.reduce((acc, v, i) => v === item && acc.push(i), [])
   const indexesInViewport = indexesOf(exPagination, true)
 
   const current =

@@ -5,31 +5,24 @@ export type UseFormPersistOptions<
   Form extends Pick<UseFormMethods<V>, 'watch' | 'setValue' | 'formState'>,
   V extends FieldValues
 > = {
-  /**
-   * Instance of current form
-   */
+  /** Instance of current form */
   form: Form
 
-  /**
-   * Name of the key how it will be stored in the storage.
-   */
+  /** Name of the key how it will be stored in the storage. */
   name: string
 
   /**
-   * sessionStorage: Will not be avaiable when the user returns later (recommended).
-   * localStorage: Will be available when the user returns later.
+   * SessionStorage: Will not be avaiable when the user returns later (recommended). localStorage:
+   * Will be available when the user returns later.
    */
   storage?: 'sessionStorage' | 'localStorage'
 
-  /**
-   *
-   */
   exclude?: string[]
 }
 
 /**
- * Will persist any dirty fields and store it in the sessionStorage/localStorage
- * Will restory any dirty fields when the form is initialized
+ * Will persist any dirty fields and store it in the sessionStorage/localStorage Will restory any
+ * dirty fields when the form is initialized
  */
 export default function useFormPersist<
   Form extends Pick<UseFormMethods<V>, 'watch' | 'setValue' | 'formState'>,
