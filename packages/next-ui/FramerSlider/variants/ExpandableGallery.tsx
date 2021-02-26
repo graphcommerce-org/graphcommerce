@@ -1,48 +1,21 @@
 import { makeStyles, Theme, Fab } from '@material-ui/core'
 import Fullscreen from '@material-ui/icons/Fullscreen'
 import FullscreenExit from '@material-ui/icons/FullscreenExit'
-import { CSSProperties } from '@material-ui/styles'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import React, { PropsWithChildren, useEffect, useState } from 'react'
+import { UseStyles } from '../../Styles'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
-import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
+import SliderScroller from '../SliderScroller'
 
-type ClassKey =
-  | 'container'
-  | 'containerZoomed'
-  | 'scroller'
-  | 'scrollerZoomed'
-  | 'bottomCenter'
-  | 'topRight'
-
-type Classes = Partial<Record<ClassKey, string>>
-
-type StylesProps = { classes?: Classes; size: CSSProperties; zoomedSize: CSSProperties }
-
-const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
+const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: ({ size }) => ({
-      position: 'relative',
-      zIndex: 10,
-      ...size,
-    }),
-    containerZoomed: ({ zoomedSize }) => ({
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      ...zoomedSize,
-    }),
-    scroller: ({ size }) => ({
-      '& > *': size,
-    }),
-    scrollerZoomed: ({ zoomedSize }) => ({
-      '& > *': zoomedSize,
-    }),
+    container: {},
+    containerZoomed: {},
     bottomCenter: {
       display: 'grid',
       gridAutoFlow: 'column',
@@ -68,53 +41,43 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   { name: 'ExandableGallery' },
 )
 
-type SingleItemSliderProps = StylesProps & Pick<SliderScrollerProps, 'children'>
+type SingleItemSliderProps = PropsWithChildren<unknown> & UseStyles<typeof useStyles>
 
 export default function ExpandableGallery(props: SingleItemSliderProps) {
-  const { classes: classesBase, children, ...sliderScrollerProps } = props
+  const { children } = props
   const classes = useStyles(props)
   const [zoomed, setZoomed] = useState(false)
 
   /**
-   * Since the layout needs to be properly determined beforehand we start with the isAnimating set
-   * to true and disable it immediately.
-   *
-   * This causes an additional rerender, but should be fine?
+   * Since the layout needs to be properly determined for the resize we start with `layout` set to
+   * `true` and set it to `false after the first render`
    */
-  const [animating, setAnimating] = useState(true)
-  useEffect(() => setAnimating(false), [])
+  const [layout, setLayout] = useState(true)
+  useEffect(() => setLayout(false), [])
 
   return (
     <SliderContext scrollSnapStop='always' scrollSnapAlign='center'>
       <SliderContainer
         classes={{ container: clsx(classes.container, zoomed && classes.containerZoomed) }}
       >
-        <SliderScroller
-          classes={{ scroller: clsx(classes.scroller, zoomed && classes.scrollerZoomed) }}
-          layout={animating}
-          {...sliderScrollerProps}
-        >
-          {/**
-           * We're passing the animating prop down to the child component. This allows the inside of the
-           * component to counterscale
-           */}
+        <SliderScroller layout={layout}>
           {React.Children.map(children, (child) =>
-            React.isValidElement<{ layout: boolean }>(child)
-              ? React.cloneElement(child, { layout: animating })
-              : child,
+            React.isValidElement<{ layout?: boolean }>(child)
+              ? React.cloneElement(child, { layout })
+              : { child },
           )}
         </SliderScroller>
 
         <m.div
           layout
           className={classes.topRight}
-          onLayoutAnimationComplete={() => setAnimating(false)}
+          onLayoutAnimationComplete={() => setLayout(false)}
         >
           <Fab
             color='inherit'
             size='small'
             onClick={() => {
-              setAnimating(true)
+              setLayout(true)
               setZoomed(!zoomed)
               document.body.style.overflow = !zoomed ? 'hidden' : ''
             }}

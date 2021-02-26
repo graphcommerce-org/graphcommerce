@@ -29,6 +29,10 @@ export type SliderScrollerProps = {
   layout?: boolean
 } & UseStyles<typeof useStyles>
 
+/**
+ * Todo(paales): When the scroller resizes it will not counter scale the x offset. How can we
+ * counter animate this?
+ */
 export default function SliderScroller(props: SliderScrollerProps) {
   const { children, layout } = props
   const classes = useStyles(props)

@@ -1,13 +1,13 @@
 import { makeStyles } from '@material-ui/core'
-import { Portrait } from '@material-ui/icons'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import * as React from 'react'
+import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
 const useStyles = makeStyles(
   () => ({
-    aspectWrapper: {
+    root: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -41,14 +41,15 @@ const useStyles = makeStyles(
   { name: 'SliderImage' },
 )
 
-type SliderImageProps = React.PropsWithChildren<{
+export type SliderImageProps = React.PropsWithChildren<{
   layout?: boolean
   width: number
   height: number
-}>
+}> &
+  UseStyles<typeof useStyles>
 
 export default function SliderImage(props: SliderImageProps) {
-  const classes = useStyles()
+  const classes = useStyles(props)
   const [{ containerSize }] = useSliderContext()
   const { children, width, height, layout } = props
 
@@ -56,14 +57,17 @@ export default function SliderImage(props: SliderImageProps) {
   const ratio = width / height
   const portrait = containerRatio > ratio
 
+  const paddingLeft = Math.round((width / height / containerRatio) * 100)
+  const paddingTop = Math.round((height / width) * 100)
+
   return (
-    <div className={classes.aspectWrapper}>
+    <div className={classes.root} style={containerSize}>
       <m.div
         layout={layout}
         className={clsx(classes.aspect, portrait ? classes.portrait : classes.landscape)}
         style={{
-          ...(portrait && { paddingLeft: `${Math.round((width / height) * 100)}%` }),
-          ...(!portrait && { paddingTop: `${Math.round((height / width) * 100)}%` }),
+          ...(portrait && { paddingLeft: `${paddingLeft}%` }),
+          ...(!portrait && { paddingTop: `${paddingTop}%` }),
         }}
       >
         {children}
