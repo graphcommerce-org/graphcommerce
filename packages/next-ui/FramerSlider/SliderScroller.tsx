@@ -33,16 +33,9 @@ export type SliderScrollerProps = {
 export default function SliderScroller(props: SliderScrollerProps) {
   const { children, animating } = props
   const classes = useStyles(props)
-  const [{ containerRef, scrollerRef, controls }, dispatch] = useSliderContext()
+  const [state, dispatch] = useSliderContext()
+  const { containerRef, containerSize, scrollerRef, scrollerSize, controls } = state
   const x = useMotionValue<number>(0)
-
-  const { width: containerWidth = 0 } = useResizeObserver<HTMLElement>({
-    ref: containerRef.current,
-  })
-  const { width: scrollerWidth = 0 } = useResizeObserver<HTMLDivElement>({
-    ref: scrollerRef.current,
-  })
-  const left = scrollerWidth <= containerWidth ? 0 : (scrollerWidth - containerWidth) * -1
 
   /**
    * Measure visible items
@@ -89,11 +82,17 @@ export default function SliderScroller(props: SliderScrollerProps) {
     dispatch({ type: 'SCROLL', x: x.get() + velocityClamp, velocity: velocity.x })
   }
 
+  const contW = containerSize.width ?? 0
+  const scrollW = scrollerSize.width ?? 0
+
   return (
     <m.div
       ref={scrollerRef}
       drag='x'
-      dragConstraints={{ left, right: 0 }}
+      dragConstraints={{
+        left: scrollW <= contW ? 0 : (scrollW - contW) * -1,
+        right: 0,
+      }}
       className={clsx(classes.scroller)}
       onDragEnd={handleDragEnd}
       animate={controls}
