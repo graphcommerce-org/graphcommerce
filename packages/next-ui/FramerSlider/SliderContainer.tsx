@@ -4,14 +4,7 @@ import { PropsWithChildren } from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
-const useStyles = makeStyles(
-  {
-    container: {
-      overflow: 'hidden',
-    },
-  },
-  { name: 'SliderContainer' },
-)
+const useStyles = makeStyles({ container: {} }, { name: 'SliderContainer' })
 
 export type SliderContainerProps = PropsWithChildren<UseStyles<typeof useStyles>>
 

@@ -18,6 +18,7 @@ const useStyles = makeStyles(
     },
     container: {
       background: '#f8f8f8',
+      overflow: 'hidden',
     },
     scrollerZoomed: {
       '& .image': {
