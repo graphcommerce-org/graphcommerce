@@ -31,24 +31,27 @@ export default function AccountHeader(props: AccountHeaderProps) {
   const { firstname, lastname, loading } = props
   const classes = useStyles()
 
-  return (
-    <div className={classes.header}>
-      {!loading && (
-        <div>
-          <Avatar className={classes.avatar}>
-            {`${firstname?.charAt(0)}${lastname?.charAt(0)}`.toUpperCase()}
-          </Avatar>
-          <Typography variant='h3'>
-            {firstname} {lastname}
-          </Typography>
-        </div>
-      )}
-      {loading && (
+  if (loading) {
+    return (
+      <div className={classes.header}>
         <div>
           <Skeleton className={classes.avatar} variant='circle' width={40} height={40} />
           <Skeleton variant='rect' width={164} height={40} />
         </div>
-      )}
+      </div>
+    )
+  }
+
+  return (
+    <div className={classes.header}>
+      <div>
+        <Avatar className={classes.avatar}>
+          {`${firstname?.charAt(0)}${lastname?.charAt(0)}`.toUpperCase()}
+        </Avatar>
+        <Typography variant='h3'>
+          {firstname} {lastname}
+        </Typography>
+      </div>
     </div>
   )
 }

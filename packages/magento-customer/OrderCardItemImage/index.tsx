@@ -12,8 +12,6 @@ const useStyles = makeStyles(
     image: {
       width: 88,
       height: 88,
-      marginRight: theme.spacings.xxs,
-      marginBottom: theme.spacings.xxs,
     },
     placeholder: {
       display: 'flex',

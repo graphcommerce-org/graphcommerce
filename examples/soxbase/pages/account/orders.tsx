@@ -4,8 +4,8 @@ import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardOrders.gql'
 import NoOrdersFound from '@reachdigital/magento-customer/NoOrdersFound'
 import OrderCard from '@reachdigital/magento-customer/OrderCard'
+import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -30,12 +30,9 @@ const useStyles = makeStyles(
 function AccountOrdersPage() {
   const { data } = useQuery(AccountDashboardOrdersDocument)
   const orders = data?.customer?.orders
-
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
-
   const classes = useStyles()
   const amountLatestOrders = 2
+  const images = useOrderCardItemImages(orders)
 
   // whenever it's possible, pick last {amountLatestOrders} items, then reverse the resulting array,
   // because we want to render the latest order first,
@@ -62,13 +59,13 @@ function AccountOrdersPage() {
             size='large'
           />
           <SectionContainer label='Latest orders'>
-            {latestOrders?.map((order) => order && <OrderCard {...order} locale={locale} />)}
+            {latestOrders?.map((order) => order && <OrderCard {...order} images={images} />)}
             {orders?.items && !orders?.items?.length && <NoOrdersFound />}
           </SectionContainer>
 
           {orders?.items && orders?.items?.length >= amountLatestOrders + 1 && (
             <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
-              {restOrders?.map((order) => order && <OrderCard {...order} locale={locale}  />)}
+              {restOrders?.map((order) => order && <OrderCard {...order} images={images} />)}
             </SectionContainer>
           )}
         </NoSsr>

@@ -1,9 +1,10 @@
+import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
 import Money from '@reachdigital/magento-store/Money'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import clsx from 'clsx'
 import React from 'react'
-import OrderCardItem from '../OrderCardItem'
 import OrderCardItemImage from '../OrderCardItemImage'
 import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'
 import OrderStateLabel from '../OrderStateLabel'
@@ -16,13 +17,14 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('sm')]: {
         padding: theme.spacings.md,
       },
-      textAlign: 'center',
+      display: 'grid',
+      justifyContent: 'center',
       paddingTop: theme.spacings.lg,
       paddingBottom: theme.spacings.lg,
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     orderRow: {
-      marginBottom: `calc(${theme.spacings.xxs} * .5)`,
+      margin: `0 auto calc(${theme.spacings.xxs} * .5) auto`,
     },
     orderMoney: {
       fontWeight: 'bold',
@@ -33,16 +35,11 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       flexWrap: 'wrap',
     },
-    skeleton: {
-      display: 'inline-block',
-      marginLeft: `calc((${theme.spacings.sm} * .5) * -1)`,
-      marginRight: theme.spacings.sm,
-    },
     images: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      marginTop: theme.spacings.xxs,
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gap: theme.spacings.xxs,
+      padding: theme.spacings.xxs,
     },
     placeholder: {
       display: 'flex',
@@ -50,7 +47,6 @@ const useStyles = makeStyles(
       alignItems: 'center',
       width: 88,
       height: 88,
-      marginBottom: theme.spacings.xxs,
     },
   }),
   { name: 'OrderCard' },
@@ -58,12 +54,15 @@ const useStyles = makeStyles(
 
 type OrderCardProps = Partial<OrderCardFragment> & {
   loading?: boolean
-  locale?: string
-} & { images: UseOrderCardItemImages }
+} & { images?: UseOrderCardItemImages }
 
 export default function OrderCard(props: OrderCardProps) {
-  const { loading, shipments, total, items, order_date, locale, images } = props
+  const { shipments, total, items, order_date, images } = props
+  const loading = false
   const classes = useStyles()
+
+  const { data: config } = useQuery(StoreConfigDocument)
+  const locale = config?.storeConfig?.locale?.replace('_', '-')
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: 'numeric',
@@ -74,100 +73,68 @@ export default function OrderCard(props: OrderCardProps) {
   const totalItems = items?.length ?? 0
   const maxItemsInRow = 5
 
+  if (loading) {
+    return (
+      <div className={classes.orderContainer}>
+        <div className={classes.orderRow}>
+          <Skeleton variant='text' width={192} />
+        </div>
+        <div className={classes.orderRow}>
+          <Skeleton variant='text' width={280} />
+        </div>
+        <div className={clsx(classes.orderProducts, classes.orderRow)}>
+          <Skeleton variant='rect' width={88} height={88} />
+        </div>
+        <div className={classes.orderRow}>
+          <Skeleton variant='text' width={228} />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={classes.orderContainer}>
       <div className={classes.orderRow}>
-        {!loading ? (
-          <span className={classes.orderMoney}>
-            <Money {...total?.grand_total} />
-          </span>
-        ) : (
-          <Skeleton classes={{ root: classes.skeleton }} variant='text' width={64} />
-        )}
-
-        {!loading ? (
-          <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
-        ) : (
-          <Skeleton
-            classes={{
-              root: classes.skeleton,
-            }}
-            variant='text'
-            width={128}
-          />
-        )}
+        <span className={classes.orderMoney}>
+          <Money {...total?.grand_total} />
+        </span>
+        <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
       </div>
       <div className={classes.orderRow}>
-        {!loading ? (
-          <OrderStateLabel
-            items={items}
-            renderer={{
-              Ordered: () => <span>Your order is being processed</span>,
-              Invoiced: () => <span>Your order has been invoiced</span>,
-              Shipped: () => <span>Your order is on its way!</span>,
-              Refunded: () => <span>Your order has been refunded</span>,
-              Canceled: () => <span>Your order has been canceled</span>,
-              Returned: () => <span>Your order has been returned</span>,
-              Partial: () => <span>Your order has been partially processed</span>,
-            }}
-          />
-        ) : (
-          <Skeleton
-            classes={{
-              root: classes.skeleton,
-            }}
-            variant='text'
-            width={280}
-          />
-        )}
+        <OrderStateLabel
+          items={items}
+          renderer={{
+            Ordered: () => <span>Your order is being processed</span>,
+            Invoiced: () => <span>Your order has been invoiced</span>,
+            Shipped: () => <span>Your order is on its way!</span>,
+            Refunded: () => <span>Your order has been refunded</span>,
+            Canceled: () => <span>Your order has been canceled</span>,
+            Returned: () => <span>Your order has been returned</span>,
+            Partial: () => <span>Your order has been partially processed</span>,
+          }}
+        />
       </div>
-      <div className={clsx(classes.orderProducts, classes.orderRow)}>
-        {!loading ? (
-          <div className={classes.images}>
-            {items
-              ?.slice(0, maxItemsInRow)
-              .map(
-                (item) =>
-                  item?.product_url_key &&
-                  images[item.product_url_key] && (
-                    <OrderCardItemImage
-                      key={item.product_url_key}
-                      {...images[item.product_url_key]}
-                    />
-                  ),
-              )}
-
-            {totalItems > maxItemsInRow && (
-              <div className={classes.placeholder}>{`+${totalItems - maxItemsInRow}`}</div>
+      <div className={clsx(classes.orderProducts)}>
+        <div className={classes.images}>
+          {items
+            ?.slice(0, maxItemsInRow)
+            .map(
+              (item) =>
+                item?.product_url_key &&
+                images?.[item.product_url_key] && (
+                  <OrderCardItemImage
+                    key={item.product_url_key}
+                    {...images[item.product_url_key]}
+                  />
+                ),
             )}
-          </div>
-        ) : (
-          <>
-            <Skeleton
-              classes={{
-                root: classes.skeleton,
-              }}
-              variant='rect'
-              width={88}
-              height={88}
-            />
-          </>
-        )}
+          {totalItems > maxItemsInRow && (
+            <div className={classes.placeholder}>{`+${totalItems - maxItemsInRow}`}</div>
+          )}
+        </div>
       </div>
-      <div>
-        {!loading ? (
-          <>{shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}</>
-        ) : (
-          <>
-            <Skeleton
-              classes={{
-                root: classes.skeleton,
-              }}
-              variant='text'
-              width={228}
-            />
-          </>
-        )}
+      <div className={classes.orderRow}>
+        {shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}
       </div>
     </div>
   )

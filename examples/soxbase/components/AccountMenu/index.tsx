@@ -31,50 +31,45 @@ const useStyles = makeStyles(
 export default function AccountMenu(props: AccountMenuProps) {
   const { loading } = props
   const classes = useStyles()
-  const totalAccountMenuItems = 5
-  const dummyArray = [...Array(totalAccountMenuItems)]
+
+  if (loading) {
+    const totalAccountMenuItems = 5
+    const dummyArray = [...Array(totalAccountMenuItems)]
+
+    return (
+      <div className={classes.accountMenuContainer}>
+        {dummyArray.map((item, i) => (
+          <Skeleton key={i} variant='text' height={60} />
+        ))}
+      </div>
+    )
+  }
 
   return (
     <div className={classes.accountMenuContainer}>
-      {loading && (
-        <>
-          {dummyArray.map((item, i) => (
-            <Skeleton key={i} variant='text' height={60} />
-          ))}
-        </>
-      )}
+      <AccountMenuItem href='/account/orders' startIconSrc={ordersIcon}>
+        Orders
+      </AccountMenuItem>
 
-      {!loading && (
-        <>
-          <AccountMenuItem href='/account/orders' startIconSrc={ordersIcon}>
-            Orders
+      <AccountMenuItem href='/account/personal' startIconSrc={infoIcon}>
+        Personal information
+      </AccountMenuItem>
+
+      <AccountMenuItem href='/account/addresses' startIconSrc={addressIcon}>
+        Addresses
+      </AccountMenuItem>
+
+      <AccountMenuItem href='/account/reviews' startIconSrc={reviewsIcon}>
+        Reviews
+      </AccountMenuItem>
+
+      <SignOutForm
+        button={({ formState }) => (
+          <AccountMenuItem startIconSrc={lockIcon} loading={formState.isSubmitting} type='submit'>
+            Sign out
           </AccountMenuItem>
-
-          <AccountMenuItem href='/account/personal' startIconSrc={infoIcon}>
-            Personal information
-          </AccountMenuItem>
-
-          <AccountMenuItem href='/account/addresses' startIconSrc={addressIcon}>
-            Addresses
-          </AccountMenuItem>
-
-          <AccountMenuItem href='/account/reviews' startIconSrc={reviewsIcon}>
-            Reviews
-          </AccountMenuItem>
-
-          <SignOutForm
-            button={({ formState }) => (
-              <AccountMenuItem
-                startIconSrc={lockIcon}
-                loading={formState.isSubmitting}
-                type='submit'
-              >
-                Sign out
-              </AccountMenuItem>
-            )}
-          />
-        </>
-      )}
+        )}
+      />
     </div>
   )
 }
