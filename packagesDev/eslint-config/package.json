@@ -7,7 +7,7 @@
     "@next/eslint-plugin-next": "^10.0.6",
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
     "@reachdigital/eslint-config-pwa": "^0.1.0",
-    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.0",
     "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.0",
