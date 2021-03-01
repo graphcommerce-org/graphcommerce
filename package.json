@@ -53,18 +53,18 @@
     }
   },
   "dependencies": {
-    "patch-package": "^6.2.2",
+    "patch-package": "^6.4.0",
     "pm2": "^4.5.5",
     "postinstall-postinstall": "^2.1.0",
     "ts-node": "^9.1.1",
     "type-fest": "^0.21.2",
-    "vercel": "^21.3.0"
+    "vercel": "^21.3.1"
   },
   "devDependencies": {
-    "@babel/compat-data": "^7.13.6",
-    "@babel/core": "^7.13.1",
-    "@commitlint/cli": "^12.0.0",
-    "@commitlint/config-conventional": "^12.0.0",
+    "@babel/compat-data": "^7.13.8",
+    "@babel/core": "^7.13.8",
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "@graphql-codegen/add": "^2.0.2",
     "@graphql-codegen/cli": "^1.21.1",
     "@graphql-codegen/fragment-matcher": "2.0.1",
@@ -92,8 +92,8 @@
     "babel-jest": "^26.6.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^7.20.0",
-    "husky": "^5.1.1",
+    "eslint": "^7.21.0",
+    "husky": "^5.1.2",
     "jest": "^26.6.3",
     "next": "10.0.7",
     "prettier": "^2.2.1",
