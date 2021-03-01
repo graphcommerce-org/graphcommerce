@@ -13,7 +13,6 @@ module.exports = {
     'plugin:@next/eslint-plugin-next/recommended',
     'prettier',
   ],
-  ignorePatterns: ['**/dist/**/*.js'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
