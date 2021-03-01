@@ -16,10 +16,9 @@ export default function ProductListItemsSlider(props: ProductListItemsProps) {
   const { items, exPagination, setExPagination } = props
   return (
     <ScrollSnapSlider nobuttons exPagination={exPagination} setExPagination={setExPagination}>
-      {items?.map((item) => {
-        if (!item) return null
-        return <RenderType key={item.id ?? ''} renderer={renderers} {...item} />
-      })}
+      {items?.map((item) =>
+        item ? <RenderType key={item.id ?? ''} renderer={renderers} {...item} /> : null,
+      )}
     </ScrollSnapSlider>
   )
 }

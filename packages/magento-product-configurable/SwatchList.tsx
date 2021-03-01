@@ -2,7 +2,7 @@ import { Maybe } from '@reachdigital/magento-graphql'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
-import { SwatchTypeRenderer } from './Swatches'
+import { SwatchSize, SwatchTypeRenderer } from './Swatches'
 import ColorSwatchData from './Swatches/ColorSwatchData'
 import ImageSwatchData from './Swatches/ImageSwatchData'
 import TextSwatchData from './Swatches/TextSwatchData'
@@ -28,9 +28,9 @@ export default function SwatchList({ attributes, configurable_options }: SwatchL
               <RenderType
                 key={val?.value_index ?? ''}
                 renderer={renderer}
+                {...val.swatch_data}
                 {...val}
-                {...(val.swatch_data ?? {})}
-                size='small'
+                size={'small' as SwatchSize}
               />
             ) : null,
           )}

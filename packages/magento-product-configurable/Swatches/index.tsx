@@ -5,8 +5,10 @@ import { SwatchDataFragment } from './SwatchData.gql'
 type ConfigurableOption = NonNullable<
   NonNullable<ProductListItemConfigurableFragment['configurable_options']>[0]
 >
-export type ConfigurableOptionValue = NonNullable<ConfigurableOption['values']>[0]
+export type ConfigurableOptionValue = NonNullable<NonNullable<ConfigurableOption['values']>[0]>
 
-export type SwatchDataProps = ConfigurableOptionValue & { size?: 'small' | 'large' }
+export type SwatchSize = 'small' | 'large'
+
+export type SwatchDataProps = ConfigurableOptionValue & { size?: SwatchSize }
 
 export type SwatchTypeRenderer = TypeRenderer<SwatchDataFragment, SwatchDataProps>
