@@ -62,7 +62,7 @@
     "schema-dts": "^0.8.2",
     "sharp": "^0.27.1",
     "ts-node": "^9.1.1",
-    "type-fest": "^0.20.2",
+    "type-fest": "^0.21.2",
     "vercel": "^21.2.3",
     "webpack": "^4.0.0"
   },
