@@ -79,8 +79,8 @@ export default function SliderScroller(props: SliderScrollerProps) {
    * - Calculate the new x-position with the velocity taken in account.
    * - We clamp the position for small gestures.
    *
-   * Todo(paales): It does not actually calculate the x-position super accurately. If we let the
-   * drag handle it we get a different resulting x-position..
+   * Todo(paales): Drag accuracy: It does not actually calculate the x-position after drag completes
+   * super accurately. If we let the drag handle it we get a small difference in the resulting x-position..
    */
   const handleDragSnap = (_: unknown, { velocity, offset }: PanInfo) => {
     const velocityClamp =
