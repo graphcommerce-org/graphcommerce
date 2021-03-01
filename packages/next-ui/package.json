@@ -28,7 +28,7 @@
     "react-hook-form": "^6.14.2",
     "react-is": "^17.0.1",
     "react-spring": "^8.0.27",
-    "sharp": "^0.27.1",
+    "sharp": "^0.27.2",
     "type-fest": "^0.20.2",
     "use-resize-observer": "^6.0.0"
   },
