@@ -15,4 +15,5 @@ fragment OrderCard on CustomerOrder {
   }
   ...OrderStateLabel
   order_date
+  created_at
 }
