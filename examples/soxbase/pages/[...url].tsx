@@ -164,9 +164,9 @@ function CategoryPage(props: Props) {
       )}
       <Page
         renderer={{
-          RowProductBackstory: (props) => <RowProductBackstory {...props} items={productList} />,
-          RowProductGrid: (props) => <RowProductGrid {...props} items={productList} />,
-          RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={productList} />,
+          RowProductBackstory: (p) => <RowProductBackstory {...p} items={productList} />,
+          RowProductGrid: (p) => <RowProductGrid {...p} items={productList} />,
+          RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={productList} />,
         }}
         {...pages?.[0]}
       />

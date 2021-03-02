@@ -36,5 +36,11 @@ export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer>
 
 export default function Page({ content, renderer }: PageProps) {
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
-  return content.map((item) => <RenderType renderer={mergedRenderer} key={item.id} {...item} />)
+  return (
+    <>
+      {content.map((item) => (
+        <RenderType renderer={mergedRenderer} key={item.id} {...item} />
+      ))}
+    </>
+  )
 }
