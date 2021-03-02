@@ -8,6 +8,9 @@ const useStyles = makeStyles(
   {
     container: {
       overflow: 'hidden',
+      '&:focus': {
+        outline: 'none',
+      },
     },
   },
   { name: 'SliderContainer' },
@@ -21,7 +24,8 @@ export default function SliderContainer(props: SliderContainerProps) {
   const [state] = useSliderContext()
 
   return (
-    <m.div layout ref={state.containerRef} className={classes.container}>
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+    <m.div layout ref={state.containerRef} className={classes.container} tabIndex={0}>
       {children}
     </m.div>
   )
