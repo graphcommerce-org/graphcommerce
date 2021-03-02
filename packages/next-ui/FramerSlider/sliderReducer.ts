@@ -10,6 +10,8 @@ type SliderItem = {
 type ScrollSnapTypeDirection = 'block' | 'both' | 'inline' | 'x' | 'y'
 type ScrollSnapType = 'mandatory' | 'proximity'
 
+type Rect = Omit<DOMRect, 'toJSON'>
+
 export type SliderState = {
   items: SliderItem[]
 
@@ -23,14 +25,14 @@ export type SliderState = {
   /** Ref to the element that defines the box the scoller resides in. */
   containerRef: React.RefObject<HTMLDivElement>
 
-  /** Width of the containerRef */
-  containerSize: { width?: number; height?: number }
+  /** Rect of the containerRef */
+  containerSize?: Pick<Rect, 'width' | 'height'> & ResizeObserverSize
 
   /** Ref to the element that actually scrolls */
   scrollerRef: React.RefObject<HTMLDivElement>
 
-  /** Width of the scrollerRef */
-  scrollerSize: { width?: number; height?: number }
+  /** Rect of the scrollerRef */
+  scrollerSize?: Pick<Rect, 'width' | 'height'> & ResizeObserverSize
 
   /** Options to control the behavior of the slider */
   options: {
@@ -67,7 +69,11 @@ export type NavigateAction = { type: 'NAVIGATE'; to: number }
 export type NavigateNextAction = { type: 'NAVIGATE_NEXT' }
 export type NavigatePrevAction = { type: 'NAVIGATE_PREV' }
 export type ScrollAction = { type: 'SCROLL'; x: number; velocity?: number }
-export type ResizeAction = { type: 'RESIZE' } & Pick<SliderState, 'containerSize' | 'scrollerSize'>
+export type ResizeContainerAction = { type: 'RESIZE_CONTAINER' } & Pick<
+  SliderState,
+  'containerSize'
+>
+export type ResizeScrollerAction = { type: 'RESIZE_SCROLLER' } & Pick<SliderState, 'scrollerSize'>
 
 export type SliderActions =
   | RegisterChildrenAction
@@ -76,11 +82,11 @@ export type SliderActions =
   | NavigateNextAction
   | NavigatePrevAction
   | ScrollAction
-  | ResizeAction
+  | ResizeContainerAction
+  | ResizeScrollerAction
 
 export type SliderReducer = Reducer<SliderState, SliderActions>
 
-type Rect = Omit<DOMRect, 'toJSON'>
 export function rectRelative(rect: Rect, parentRect: Rect): Rect {
   return {
     top: rect.top - parentRect.top,
@@ -128,7 +134,14 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
       const prevItems = state.items.slice().reverse()
       const prevItem = prevItems[prevItems.findIndex((i) => i.visible) + 1]
       if (!prevItem) return state
-      return sliderReducer(state, { type: 'SCROLL', x: measureItem(prevItem).left * -1 })
+
+      return sliderReducer(state, {
+        type: 'SCROLL',
+        x:
+          state.options.scrollSnapAlign === false
+            ? measureItem(prevItem).left * -1 + (state.containerSize?.width ?? 0)
+            : measureItem(prevItem).left * -1,
+      })
     case 'NAVIGATE':
       const navItem = state.items?.[action.to]
       if (!navItem) return state
@@ -141,6 +154,7 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
           | undefined)?.getBoundingClientRect()
 
         if (!containerRect || !scrollerRect) return
+        if (!state.containerSize || !state.scrollerSize) return
 
         const align = state.options.scrollSnapAlign
         const possible = state.items
@@ -161,26 +175,21 @@ const sliderReducer: SliderReducer = (state: SliderState, action: SliderActions)
         )
 
         const max =
-          scrollerRect.width <= containerRect.width
+          state.scrollerSize.inlineSize <= state.containerSize.width
             ? 0
-            : (scrollerRect.width - containerRect.width) * -1
+            : (state.scrollerSize.inlineSize - state.containerSize.width) * -1
 
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         state.controls.start({
           x: Math.min(0, Math.max(max, x)),
-          transition: {
-            ...state.options.transition,
-            velocity: action.velocity,
-          },
+          transition: { ...state.options.transition, velocity: action.velocity },
         })
       })()
       return state
-    case 'RESIZE':
-      return {
-        ...state,
-        containerSize: action.containerSize,
-        scrollerSize: action.scrollerSize,
-      }
+    case 'RESIZE_CONTAINER':
+      return { ...state, containerSize: action.containerSize }
+    case 'RESIZE_SCROLLER':
+      return { ...state, scrollerSize: action.scrollerSize }
   }
 }
 

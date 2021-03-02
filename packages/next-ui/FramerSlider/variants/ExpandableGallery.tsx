@@ -58,6 +58,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
   return (
     <SliderContext scrollSnapStop='always' scrollSnapAlign='center'>
       <SliderContainer
+        layout={layout}
         classes={{ container: clsx(classes.container, zoomed && classes.containerZoomed) }}
       >
         <SliderScroller layout={layout}>
@@ -87,9 +88,9 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
         </m.div>
 
         <div className={classes.bottomCenter}>
-          <SliderPrev />
-          <SliderDots count={React.Children.count(children)} />
-          <SliderNext />
+          <SliderPrev layout={layout} />
+          <SliderDots layout={layout} count={React.Children.count(children)} />
+          <SliderNext layout={layout} />
         </div>
       </SliderContainer>
     </SliderContext>

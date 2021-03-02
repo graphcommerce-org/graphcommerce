@@ -32,10 +32,10 @@ const useStyles = makeStyles(
   { name: 'SliderDots' },
 )
 
-type SliderDotsProps = { count: number } & UseStyles<typeof useStyles>
+type SliderDotsProps = { count: number; layout?: boolean } & UseStyles<typeof useStyles>
 
 export default function SliderDots(props: SliderDotsProps) {
-  const { count } = props
+  const { count, layout } = props
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext()
   const theme = useTheme()
@@ -43,7 +43,7 @@ export default function SliderDots(props: SliderDotsProps) {
   const items = new Array(count).fill(undefined).map((_, idx) => [idx, state.items?.[idx]] as const)
 
   return (
-    <m.div layout className={classes.dots}>
+    <m.div layout={layout} className={classes.dots}>
       {items.map(([idx, item]) => (
         <Fab
           color='inherit'

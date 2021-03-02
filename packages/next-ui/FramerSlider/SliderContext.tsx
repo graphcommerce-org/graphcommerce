@@ -9,7 +9,6 @@ import {
   useReducer,
   useRef,
 } from 'react'
-import useResizeObserver from 'use-resize-observer'
 import sliderReducer, { SliderActions, SliderReducer, SliderState } from './sliderReducer'
 
 const context = createContext<[Partial<SliderState>, React.Dispatch<SliderActions>]>([{}, () => {}])
@@ -34,22 +33,51 @@ export function SliderContext(props: SliderContextProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
 
-  const containerSize = useResizeObserver<HTMLDivElement>({ ref: containerRef.current })
-  const scrollerSize = useResizeObserver<HTMLDivElement>({ ref: scrollerRef.current })
-
   const [state, dispatch] = useReducer<SliderReducer>(sliderReducer, {
     items: [],
     controls,
     containerRef,
-    containerSize,
     scrollerRef,
-    scrollerSize,
     options: { transition, scrollSnapAlign, scrollSnapType, scrollSnapStop },
   } as SliderState)
 
   useEffect(() => {
-    dispatch({ type: 'RESIZE', containerSize, scrollerSize })
-  }, [containerSize, containerSize.width, scrollerSize, scrollerSize.width])
+    if (!containerRef.current) return () => {}
+    const ro = new ResizeObserver(([entry]) => {
+      dispatch({
+        type: 'RESIZE_CONTAINER',
+        containerSize: {
+          width: entry.contentRect.width,
+          height: entry.contentRect.height,
+          inlineSize:
+            entry.borderBoxSize?.[0].inlineSize ?? entry.target.getBoundingClientRect().width,
+          blockSize:
+            entry.borderBoxSize?.[0].blockSize ?? entry.target.getBoundingClientRect().height,
+        },
+      })
+    })
+    ro.observe(containerRef.current)
+    return () => ro.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!scrollerRef.current) return () => {}
+    const ro = new ResizeObserver(([entry]) => {
+      dispatch({
+        type: 'RESIZE_SCROLLER',
+        scrollerSize: {
+          width: entry.contentRect.width,
+          height: entry.contentRect.height,
+          inlineSize:
+            entry.borderBoxSize?.[0].inlineSize ?? entry.target.getBoundingClientRect().width,
+          blockSize:
+            entry.borderBoxSize?.[0].blockSize ?? entry.target.getBoundingClientRect().height,
+        },
+      })
+    })
+    ro.observe(scrollerRef.current)
+    return () => ro.disconnect()
+  }, [])
 
   const { Provider } = context
   return <Provider value={[state, dispatch]}>{children}</Provider>

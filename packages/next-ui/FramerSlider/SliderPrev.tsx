@@ -4,9 +4,10 @@ import { m, useDomEvent } from 'framer-motion'
 import React from 'react'
 import { useSliderContext } from './SliderContext'
 
-type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'>
+type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & { layout?: boolean }
 
 export default function SliderPrev(props: SliderPrevProps) {
+  const { layout, className, ...fabProps } = props
   const [{ items, containerRef }, dispatch] = useSliderContext()
 
   // const disable = !state.items.some((item) => item.visible)
@@ -20,8 +21,8 @@ export default function SliderPrev(props: SliderPrevProps) {
   useDomEvent(containerRef, 'keyup', handleArrowLeft, { passive: true })
 
   return (
-    <m.div layout>
-      <Fab color='inherit' size='small' {...props} disabled={disabled} onClick={prev}>
+    <m.div layout={layout} className={className} animate={{ scale: disabled ? 0.001 : 1 }}>
+      <Fab color='inherit' size='small' {...fabProps} onClick={prev}>
         <ArrowBack color='inherit' />
       </Fab>
     </m.div>

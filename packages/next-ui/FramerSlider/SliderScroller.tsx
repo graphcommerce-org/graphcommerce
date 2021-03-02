@@ -44,8 +44,8 @@ export default function SliderScroller(props: SliderScrollerProps) {
   const { containerRef, containerSize, scrollerRef, scrollerSize, controls } = state
   const x = useMotionValue<number>(0)
 
-  const containerWidth = containerSize.width ?? 0
-  const scrollerWidth = scrollerSize.width ?? 0
+  const containerWidth = containerSize?.width ?? 0
+  const scrollerWidth = scrollerSize?.inlineSize ?? 0
 
   /**
    * Measure visible items
@@ -85,8 +85,10 @@ export default function SliderScroller(props: SliderScrollerProps) {
    *
    * Todo(paales): Drag accuracy: It does not actually calculate the x-position after drag completes
    * super accurately. If we let the drag handle it we get a small difference in the resulting x-position..
+   *
+   * Todo(paales): Disable any OnClick while dragging
    */
-  const handleDragSnap = (_: unknown, { velocity, offset }: PanInfo) => {
+  const handleDragSnap = (e: PointerEvent, { velocity, offset }: PanInfo) => {
     const velocityClamp =
       velocity.x < 0 ? Math.max(velocity.x, offset.x * 2) : Math.min(velocity.x, offset.x * 2)
     dispatch({ type: 'SCROLL', x: x.get() + velocityClamp, velocity: velocity.x })
