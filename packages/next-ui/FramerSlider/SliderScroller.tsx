@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionProps, PanInfo, useMotionValue } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
@@ -11,11 +11,17 @@ const useStyles = makeStyles(
       width: 'fit-content',
       display: 'grid',
       gridAutoFlow: 'column',
+      '& *': {
+        'user-drag': 'none',
+      },
     },
     scrollerEnabled: {
       cursor: 'grab',
-      '&:active': {
-        cursor: 'grabbing',
+    },
+    scrollerDragging: {
+      cursor: 'grabbing',
+      '& > *': {
+        pointerEvents: 'none',
       },
     },
   },
@@ -42,10 +48,11 @@ export type SliderScrollerProps = {
  */
 export default function SliderScroller(props: SliderScrollerProps) {
   const { children, layout, ...motionProps } = props
-  const classes = useStyles(props)
+  const { scroller, scrollerDragging, scrollerEnabled } = useStyles(props)
   const [state, dispatch] = useSliderContext()
   const { containerRef, containerSize, scrollerRef, scrollerSize, controls } = state
   const x = useMotionValue<number>(0)
+  const [dragging, setDragging] = useState(false)
 
   const containerWidth = containerSize?.width ?? 0
   const scrollerWidth = scrollerSize?.inlineSize ?? 0
@@ -87,6 +94,7 @@ export default function SliderScroller(props: SliderScrollerProps) {
    * - We clamp the position for small gestures.
    */
   const handleDragSnap = (e: PointerEvent, { velocity, offset }: PanInfo) => {
+    setDragging(false)
     const velocityClamp =
       velocity.x < 0 ? Math.max(velocity.x, offset.x * 2) : Math.min(velocity.x, offset.x * 2)
     dispatch({ type: 'SCROLL', x: x.get() + velocityClamp, velocity: velocity.x })
@@ -101,7 +109,8 @@ export default function SliderScroller(props: SliderScrollerProps) {
       ref={scrollerRef}
       drag={canDrag && 'x'}
       dragConstraints={{ left, right: 0 }}
-      className={clsx(classes.scroller, canDrag && classes.scrollerEnabled)}
+      className={clsx(scroller, canDrag && scrollerEnabled, dragging && scrollerDragging)}
+      onDragStart={() => setDragging(true)}
       onDragEnd={handleDragSnap}
       animate={controls}
       layout={layout}
