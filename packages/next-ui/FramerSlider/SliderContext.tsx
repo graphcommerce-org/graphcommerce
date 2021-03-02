@@ -34,7 +34,7 @@ export function SliderContext(props: SliderContextProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
 
-  const containerSize = useResizeObserver<HTMLElement>({ ref: containerRef.current })
+  const containerSize = useResizeObserver<HTMLDivElement>({ ref: containerRef.current })
   const scrollerSize = useResizeObserver<HTMLDivElement>({ ref: scrollerRef.current })
 
   const [state, dispatch] = useReducer<SliderReducer>(sliderReducer, {

@@ -1,19 +1,19 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import SliderSlide from '../SliderSlide'
 import SingleItemSlider from '../variants/SingleItemSlider'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       padding: `${theme.spacings.sm} 0 ${theme.spacings.lg}`,
+      height: 300,
     },
     scroller: {
       gap: theme.spacings.sm,
     },
-    bg: {
+    slide: {
       padding: 6,
-      width: '100%',
-      height: 200,
       boxShadow: theme.shadows[8],
       display: 'grid',
       justifyContent: 'center',
@@ -30,14 +30,14 @@ const useStyles = makeStyles(
 )
 
 export default function Single() {
-  const { bg, ...classes } = useStyles()
+  const { slide, ...classes } = useStyles()
   return (
     <SingleItemSlider classes={classes}>
-      <div className={bg}>1</div>
-      <div className={bg}>2</div>
-      <div className={bg}>3</div>
-      <div className={bg}>4</div>
-      <div className={bg}>5</div>
+      <SliderSlide classes={{ slide }}>1</SliderSlide>
+      <SliderSlide classes={{ slide }}>2</SliderSlide>
+      <SliderSlide classes={{ slide }}>3</SliderSlide>
+      <SliderSlide classes={{ slide }}>4</SliderSlide>
+      <SliderSlide classes={{ slide }}>5</SliderSlide>
     </SingleItemSlider>
   )
 }

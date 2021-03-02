@@ -6,21 +6,14 @@ import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
 import SliderPrev from '../SliderPrev'
-import SliderScroller, { SliderScrollerProps } from '../SliderScroller'
+import SliderScroller from '../SliderScroller'
 
-type ClassKey = 'container' | 'scroller' | 'nav'
-type Classes = Partial<Record<ClassKey, string>>
-type StylesProps = { count: number; classes?: Classes }
-
-const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
+const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       position: 'relative',
     },
-    scroller: ({ count = 2 }: StylesProps) => ({
-      minWidth: '100%',
-      gridTemplateColumns: `repeat(${count}, 100%)`,
-    }),
+    scroller: {},
     nav: {
       display: 'grid',
       gridAutoFlow: 'column',
@@ -34,24 +27,18 @@ const useStyles = makeStyles<Theme, StylesProps, ClassKey>(
   { name: 'SingleItemSlider' },
 )
 
-type SingleItemSliderProps = Omit<
-  SliderScrollerProps,
-  'containerRef' | 'className' | 'itemClassName'
-> &
-  UseStyles<typeof useStyles>
+type SingleItemSliderProps = { children: React.ReactNode } & UseStyles<typeof useStyles>
 
 export default function SingleItemSlider(props: SingleItemSliderProps) {
-  const { classes, children, ...sliderScrollerProps } = props
-  const { container, scroller, nav } = useStyles({ count: React.Children.count(children), classes })
+  const { children } = props
+  const { scroller, container, ...classes } = useStyles(props)
 
   return (
     <SliderContext>
       <SliderContainer classes={{ container }}>
-        <SliderScroller classes={{ scroller }} {...sliderScrollerProps}>
-          {children}
-        </SliderScroller>
+        <SliderScroller classes={{ scroller }}>{children}</SliderScroller>
 
-        <div className={nav}>
+        <div className={classes.nav}>
           <SliderPrev />
           <SliderDots count={React.Children.count(children)} />
           <SliderNext />

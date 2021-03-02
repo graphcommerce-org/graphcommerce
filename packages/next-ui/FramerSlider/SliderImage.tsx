@@ -4,14 +4,10 @@ import { m } from 'framer-motion'
 import * as React from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
+import SliderSlide from './SliderSlide'
 
 const useStyles = makeStyles(
   () => ({
-    root: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     aspect: {
       overflow: 'hidden',
       position: 'relative',
@@ -61,7 +57,7 @@ export default function SliderImage(props: SliderImageProps) {
   const paddingTop = Math.round((height / width) * 100)
 
   return (
-    <div className={classes.root} style={containerSize}>
+    <SliderSlide>
       <m.div
         layout={layout}
         className={clsx(classes.aspect, portrait ? classes.portrait : classes.landscape)}
@@ -72,6 +68,6 @@ export default function SliderImage(props: SliderImageProps) {
       >
         {children}
       </m.div>
-    </div>
+    </SliderSlide>
   )
 }

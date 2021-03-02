@@ -30,6 +30,10 @@ export type SliderScrollerProps = {
 } & UseStyles<typeof useStyles>
 
 /**
+ * ## `<SliderScroller />`
+ *
+ * Handles the actual scrollable area
+ *
  * Todo(paales): When the scroller resizes it will not counter scale the x offset. How can we
  * counter animate this?
  */
