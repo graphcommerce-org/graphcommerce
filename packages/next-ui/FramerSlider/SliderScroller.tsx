@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, PanInfo, useMotionValue } from 'framer-motion'
+import { m, MotionProps, PanInfo, useMotionValue } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
@@ -11,6 +11,8 @@ const useStyles = makeStyles(
       width: 'fit-content',
       display: 'grid',
       gridAutoFlow: 'column',
+    },
+    scrollerEnabled: {
       cursor: 'grab',
       '&:active': {
         cursor: 'grabbing',
@@ -25,20 +27,21 @@ export type SliderScrollerStyles = UseStyles<typeof useStyles>
 export type SliderScrollerProps = {
   /** Array of items that will be provided */
   children: React.ReactNode
-  /** Enable the layout property temporarily. Must be disabled to handle sliding properly */
-  layout?: boolean
-} & UseStyles<typeof useStyles>
+} & MotionProps &
+  UseStyles<typeof useStyles>
 
 /**
- * ## `<SliderScroller />`
- *
  * Handles the actual scrollable area
  *
- * Todo(paales): When the scroller resizes it will not counter scale the x offset. How can we
- * counter animate this?
+ * **Todo**:
+ *
+ * - When the scroller resizes it will not counter scale the x offset. How can we counter animate this?
+ * - Drag accuracy: It does not actually calculate the x-position after drag completes super
+ *   accurately. If we let the drag handle it we get a small difference in the resulting `x`-position..
+ * - Disable any `onClick` while dragging
  */
 export default function SliderScroller(props: SliderScrollerProps) {
-  const { children, layout } = props
+  const { children, layout, ...motionProps } = props
   const classes = useStyles(props)
   const [state, dispatch] = useSliderContext()
   const { containerRef, containerSize, scrollerRef, scrollerSize, controls } = state
@@ -82,11 +85,6 @@ export default function SliderScroller(props: SliderScrollerProps) {
    * After dragging completes
    * - Calculate the new x-position with the velocity taken in account.
    * - We clamp the position for small gestures.
-   *
-   * Todo(paales): Drag accuracy: It does not actually calculate the x-position after drag completes
-   * super accurately. If we let the drag handle it we get a small difference in the resulting x-position..
-   *
-   * Todo(paales): Disable any OnClick while dragging
    */
   const handleDragSnap = (e: PointerEvent, { velocity, offset }: PanInfo) => {
     const velocityClamp =
@@ -96,17 +94,19 @@ export default function SliderScroller(props: SliderScrollerProps) {
 
   /** Calculate the max scroll constraint */
   const left = scrollerWidth <= containerWidth ? 0 : (scrollerWidth - containerWidth) * -1
+  const canDrag = left < 0
 
   return (
     <m.div
       ref={scrollerRef}
-      drag='x'
+      drag={canDrag && 'x'}
       dragConstraints={{ left, right: 0 }}
-      className={clsx(classes.scroller)}
+      className={clsx(classes.scroller, canDrag && classes.scrollerEnabled)}
       onDragEnd={handleDragSnap}
       animate={controls}
       layout={layout}
-      style={{ x }}
+      style={{ ...motionProps.style, x }}
+      {...motionProps}
     >
       {children}
     </m.div>

@@ -1,7 +1,6 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { Tabs, Tab, makeStyles, Link, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 import CategoryLink from './CategoryLink'
@@ -57,27 +56,25 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
 
   return (
     <>
-      <ScrollSnapSlider classes={{ prevFab: classes.fab, nextFab: classes.fab }}>
-        {children.map((cat) => {
-          if (!cat?.url_path || !cat.id || !cat.name) return null
+      {children.map((cat) => {
+        if (!cat?.url_path || !cat.id || !cat.name) return null
 
-          const linkParams = cloneDeep(params)
-          linkParams.url = cat.url_path
-          delete linkParams.currentPage
+        const linkParams = cloneDeep(params)
+        linkParams.url = cat.url_path
+        delete linkParams.currentPage
 
-          return (
-            <CategoryLink
-              key={cat.id}
-              underline='none'
-              color='inherit'
-              {...linkParams}
-              className={classes.link}
-            >
-              {cat.name}
-            </CategoryLink>
-          )
-        })}
-      </ScrollSnapSlider>
+        return (
+          <CategoryLink
+            key={cat.id}
+            underline='none'
+            color='inherit'
+            {...linkParams}
+            className={classes.link}
+          >
+            {cat.name}
+          </CategoryLink>
+        )
+      })}
     </>
   )
 }

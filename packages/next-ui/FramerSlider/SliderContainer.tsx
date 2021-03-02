@@ -18,14 +18,20 @@ const useStyles = makeStyles(
 export type SliderContainerProps = MotionProps &
   UseStyles<typeof useStyles> & { children: React.ReactNode }
 
+/**
+ * Simple wrapper div
+ *
+ * - Enables focus on the element (which allows for keyboard navigation)
+ * - Registers the containerRef
+ */
 export default function SliderContainer(props: SliderContainerProps) {
   const { children, ...divProps } = props
   const classes = useStyles(props)
-  const [state] = useSliderContext()
+  const [{ containerRef }] = useSliderContext()
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-    <m.div ref={state.containerRef} className={classes.container} tabIndex={0} {...divProps}>
+    <m.div ref={containerRef} className={classes.container} tabIndex={0} {...divProps}>
       {children}
     </m.div>
   )

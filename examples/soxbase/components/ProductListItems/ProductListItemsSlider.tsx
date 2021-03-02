@@ -1,6 +1,6 @@
 import { ProductItemsGridProps } from '@reachdigital/magento-product-types/ProductListItems/ProductListItemsBase'
+import MultiItemSlider from '@reachdigital/next-ui/FramerSlider/variants/MultiItemSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'
-import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import React from 'react'
 import renderers from './renderers'
 
@@ -15,10 +15,10 @@ export type ProductListItemsProps = Props & Omit<ProductItemsGridProps, 'rendere
 export default function ProductListItemsSlider(props: ProductListItemsProps) {
   const { items, exPagination, setExPagination } = props
   return (
-    <ScrollSnapSlider nobuttons exPagination={exPagination} setExPagination={setExPagination}>
+    <MultiItemSlider>
       {items?.map((item) =>
         item ? <RenderType key={item.id ?? ''} renderer={renderers} {...item} /> : null,
       )}
-    </ScrollSnapSlider>
+    </MultiItemSlider>
   )
 }

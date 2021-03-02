@@ -6,6 +6,11 @@ import { useSliderContext } from './SliderContext'
 
 type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & { layout?: boolean }
 
+/**
+ * - Prev button to navigate to the previous slide
+ * - Handles the `ArrowLeft` key
+ * - Hides when disabled
+ */
 export default function SliderPrev(props: SliderPrevProps) {
   const { layout, className, ...fabProps } = props
   const [{ items, containerRef }, dispatch] = useSliderContext()

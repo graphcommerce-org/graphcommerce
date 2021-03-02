@@ -1,27 +1,21 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import MultiItemSlider from '@reachdigital/next-ui/FramerSlider/variants/MultiItemSlider'
 import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      position: 'relative',
-      '& > div': {
-        marginBottom: `${theme.spacings.lg}`,
-        display: 'grid',
-        gridAutoFlow: 'column',
-        justifyContent: 'start',
-        gap: `${theme.spacings.md}`,
-        alignContent: 'center',
-        '& > *': {
-          whiteSpace: 'no-wrap',
-          minWidth: 'max-content',
-        },
-        [theme.breakpoints.up('md')]: {
-          marginBottom: `${theme.spacings.lg}`,
-        },
+      marginBottom: `${theme.spacings.lg}`,
+      display: 'grid',
+      gridAutoFlow: 'column',
+      justifyContent: 'start',
+      gap: `${theme.spacings.md}`,
+      alignContent: 'center',
+      '& > *': {
+        whiteSpace: 'no-wrap',
+        minWidth: 'max-content',
       },
     },
     title: {
@@ -45,8 +39,8 @@ export default function RowContentLinks(props: RowContentLinksProps) {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false} className={classes.container}>
-      <ScrollSnapSlider nobuttons>
+    <Container maxWidth={false}>
+      <MultiItemSlider classes={{ scroller: classes.container }} scrollSnapAlign='start'>
         <Typography variant='h4' className={classes.title}>
           {title}
         </Typography>
@@ -58,7 +52,7 @@ export default function RowContentLinks(props: RowContentLinksProps) {
             </a>
           </NextUiPageLink>
         ))}
-      </ScrollSnapSlider>
+      </MultiItemSlider>
     </Container>
   )
 }

@@ -28,7 +28,6 @@
     "react-focus-lock": "^2.5.0",
     "react-hook-form": "^6.15.4",
     "react-is": "^17.0.1",
-    "react-spring": "^8.0.27",
     "sharp": "^0.27.2",
     "type-fest": "^0.21.2",
     "use-resize-observer": "^7.0.0"

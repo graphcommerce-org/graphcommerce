@@ -12,7 +12,7 @@ import {
 import sliderReducer, { SliderActions, SliderReducer, SliderState } from './sliderReducer'
 
 const context = createContext<[Partial<SliderState>, React.Dispatch<SliderActions>]>([{}, () => {}])
-context.displayName = 'ScrollSnapSliderContext'
+context.displayName = 'SliderContext'
 
 export function useSliderContext() {
   return useContext(context) as [SliderState, Dispatch<SliderActions>]
@@ -75,7 +75,7 @@ export function SliderContext(props: SliderContextProps) {
         },
       })
     })
-    ro.observe(scrollerRef.current)
+    ro.observe(scrollerRef.current, { box: 'border-box' })
     return () => ro.disconnect()
   }, [])
 

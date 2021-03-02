@@ -46,21 +46,17 @@ const useStyles = makeStyles(
 
       columnGap: 6,
     },
-    scrollerSticky: {
-      [theme.breakpoints.down('sm')]: {
-        paddingLeft: '80px',
-      },
-    },
+    scrollerSticky: {},
     sliderPrev: {
       position: 'absolute',
       top: 2,
-      left: -1,
+      left: 2,
       zIndex: 10,
     },
     sliderNext: {
       position: 'absolute',
       top: 2,
-      right: -1,
+      right: 2,
       zIndex: 10,
     },
   }),
@@ -97,8 +93,12 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
 
   useEffect(() => {
     const onCheckStickyChange = (v: number) => {
-      if (isSticky && v <= scrollHalfway) setIsSticky(false)
-      if (!isSticky && v > scrollHalfway) setIsSticky(true)
+      if (isSticky && v <= scrollHalfway) {
+        setIsSticky(false)
+      }
+      if (!isSticky && v > scrollHalfway) {
+        setIsSticky(true)
+      }
     }
     onCheckStickyChange(scrollY.get())
     return scrollY.onChange(onCheckStickyChange)
@@ -109,26 +109,23 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   const filter = useMotionTemplate`
     drop-shadow(0 1px 4px rgba(0,0,0,${opacity}))
     drop-shadow(0 4px 10px rgba(0,0,0,${opacity2}))`
-  const left = useTransform(scrollY, [startPosition, startPosition + spacing], [0, 80])
-
-  const [layout, setLayout] = useState(true)
-  useEffect(() => setLayout(false), [])
 
   return (
     <m.div className={classes.wrapper} ref={wrapperRef}>
       <SliderContext scrollSnapAlign={false}>
-        <SliderPrev className={classes.sliderPrev} layout />
+        <SliderPrev className={classes.sliderPrev} />
         <SliderContainer
           classes={{ container: clsx(classes.container, isSticky && classes.containerSticky) }}
           style={{ filter }}
         >
           <SliderScroller
             classes={{ scroller: clsx(classes.scroller, isSticky && classes.scrollerSticky) }}
+            animate={{ paddingLeft: isSticky ? 80 : 0 }}
           >
             {children}
           </SliderScroller>
         </SliderContainer>
-        <SliderNext className={classes.sliderNext} layout />
+        <SliderNext className={classes.sliderNext} />
       </SliderContext>
     </m.div>
   )

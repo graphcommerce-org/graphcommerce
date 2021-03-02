@@ -17,6 +17,7 @@ slider area to a complex zoomable product gallery.
 
 ## Todo
 
+- Hide prev / next on mobile
 - Support all variants of
   [`scroll-snap-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align)
   and
