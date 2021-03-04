@@ -1,0 +1,12 @@
+query OrderDetailPage($orderNumber: String) {
+  customer {
+    orders(filter: { number: { eq: $orderNumber } }) {
+      items {
+        ...OrderCard
+        items {
+          ...OrderedItem
+        }
+      }
+    }
+  }
+}
