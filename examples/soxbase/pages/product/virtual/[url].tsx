@@ -172,7 +172,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await pageLayout).data,
       ...(await productPage).data,
       ...(await product).data,
-      ...(await page).data,
       ...(await virtualProduct).data,
       ...(await productAdditionals).data,
       apolloState: client.cache.extract(),

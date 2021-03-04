@@ -19,9 +19,9 @@ slider area to a complex zoomable product gallery.
 
 - Hide prev / next on mobile
 - Support all variants of
-  [`scroll-snap-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align)
-  and
-  [`scroll-snap-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type)
+  [`scroll-snap-align`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align),
+  [`scroll-snap-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type),
+  [`scroll-snap-stop`](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop)
 - Keyboard support for: escape zoom + trap focus for full screen handling
 - Mouse click SliderImage to zoom slider
 - Pinch to zoom

@@ -56,7 +56,7 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
   useEffect(() => setLayout(false), [])
 
   return (
-    <SliderContext scrollSnapStop='always' scrollSnapAlign='center'>
+    <SliderContext scrollSnapAlign='center'>
       <SliderContainer
         layout={layout}
         classes={{ container: clsx(classes.container, zoomed && classes.containerZoomed) }}
