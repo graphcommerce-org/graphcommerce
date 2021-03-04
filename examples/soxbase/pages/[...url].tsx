@@ -144,9 +144,9 @@ function CategoryPage(props: Props) {
               description={category.description}
               className={classes.description}
             />
-            <div className={classes.childCategories}>
-              <CategoryChildren params={params}>{category.children}</CategoryChildren>
-            </div>
+            <CategoryChildren classes={{ container: classes.childCategories }} params={params}>
+              {category.children}
+            </CategoryChildren>
 
             <ProductListFiltersContainer>
               <ProductListSort sort_fields={products.sort_fields} />

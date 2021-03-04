@@ -29,8 +29,6 @@ const useCategoryPageStyles = makeStyles(
     },
     childCategories: {
       gridArea: 'children',
-      margin: '0 auto',
-      maxWidth: '100%',
     },
     pagination: {
       gridArea: 'pagination',

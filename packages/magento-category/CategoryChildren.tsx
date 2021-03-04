@@ -1,16 +1,21 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { makeStyles, Theme } from '@material-ui/core'
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import React from 'react'
+import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
+import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
+import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
+import React, { useState } from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 import CategoryLink from './CategoryLink'
 
-type CategoryChildrenProps = CategoryChildrenFragment & {
-  params: ProductListParams
-}
-
-const useSubcategoryMenuStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
+    container: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    scroller: {},
     link: {
       whiteSpace: 'nowrap',
       display: 'block',
@@ -39,42 +44,47 @@ const useSubcategoryMenuStyles = makeStyles(
         },
       },
     },
-    fab: {
-      boxShadow: 'none',
-    },
   }),
   {
     name: 'CategoryChildren',
   },
 )
 
+type CategoryChildrenProps = CategoryChildrenFragment & { params: ProductListParams } & UseStyles<
+    typeof useStyles
+  >
+
 export default function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params } = props
-  const classes = useSubcategoryMenuStyles(props)
+  const classes = useStyles(props)
 
   if (!children || children.length === 0) return null
 
   return (
-    <>
-      {children.map((cat) => {
-        if (!cat?.url_path || !cat.id || !cat.name) return null
+    <SliderContext scrollSnapAlign='start'>
+      <SliderContainer classes={{ container: classes.container }}>
+        <SliderScroller classes={{ scroller: classes.scroller }}>
+          {children.map((cat) => {
+            if (!cat?.url_path || !cat.id || !cat.name) return null
 
-        const linkParams = cloneDeep(params)
-        linkParams.url = cat.url_path
-        delete linkParams.currentPage
+            const linkParams = cloneDeep(params)
+            linkParams.url = cat.url_path
+            delete linkParams.currentPage
 
-        return (
-          <CategoryLink
-            key={cat.id}
-            underline='none'
-            color='inherit'
-            {...linkParams}
-            className={classes.link}
-          >
-            {cat.name}
-          </CategoryLink>
-        )
-      })}
-    </>
+            return (
+              <CategoryLink
+                key={cat.id}
+                underline='none'
+                color='inherit'
+                {...linkParams}
+                className={classes.link}
+              >
+                {cat.name}
+              </CategoryLink>
+            )
+          })}
+        </SliderScroller>
+      </SliderContainer>
+    </SliderContext>
   )
 }

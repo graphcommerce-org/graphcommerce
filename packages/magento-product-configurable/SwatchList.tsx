@@ -28,8 +28,8 @@ export default function SwatchList({ attributes, configurable_options }: SwatchL
               <RenderType
                 key={val?.value_index ?? ''}
                 renderer={renderer}
-                {...val.swatch_data}
                 {...val}
+                {...val.swatch_data}
                 size={'small' as SwatchSize}
               />
             ) : null,
