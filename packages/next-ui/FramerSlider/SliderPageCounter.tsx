@@ -25,7 +25,7 @@ export default function SliderPageCounter(props: SliderPageCounterProps) {
     .map((item, idx) => [idx + 1, item] as const)
     .filter(([, item]) => item.visible)
 
-  let current = items[Math.ceil((items.length - 1) / 2)]?.[0]
+  let current = items[Math.ceil((items.length - 1) / 2)]?.[0] ?? 0
   current = items[0]?.[0] === 1 ? 1 : current
   current = items[items.length - 1]?.[0] === count ? count : current
 

@@ -108,7 +108,11 @@ export type OverlayAreaKeys = 'topLeft' | 'bottomLeft' | 'topRight' | 'bottomRig
 export type OverlayAreas = Partial<Record<OverlayAreaKeys, React.ReactNode>>
 
 type BaseProps = PropsWithChildren<
-  { subTitle?: React.ReactNode; aspectRatio?: [number, number] } & OverlayAreas &
+  {
+    subTitle?: React.ReactNode
+    aspectRatio?: [number, number]
+    imageOnly?: boolean
+  } & OverlayAreas &
     ProductListItemFragment
 >
 
@@ -125,6 +129,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     name,
     price_range,
     children,
+    imageOnly = false,
   } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
@@ -136,16 +141,14 @@ export default function ProductListItem(props: ProductListItemProps) {
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (
-              <>
-                <PictureResponsiveNext
-                  alt={small_image.label ?? ''}
-                  width={328}
-                  height={328}
-                  src={small_image.url ?? ''}
-                  type='image/jpeg'
-                  className={classes.image}
-                />
-              </>
+              <PictureResponsiveNext
+                alt={small_image.label ?? ''}
+                width={328}
+                height={328}
+                src={small_image.url ?? ''}
+                type='image/jpeg'
+                className={classes.image}
+              />
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
             )}
@@ -171,17 +174,21 @@ export default function ProductListItem(props: ProductListItemProps) {
         </MuiLink>
       </PageLink>
 
-      <div className={classes.itemTitleContainer}>
-        <div>
-          <Typography component='h2' className={classes.title}>
-            {name}
-          </Typography>
-          {subTitle}
-        </div>
-        <ProductListPrice {...price_range.minimum_price} />
-      </div>
+      {!imageOnly && (
+        <>
+          <div className={classes.itemTitleContainer}>
+            <div>
+              <Typography component='h2' className={classes.title}>
+                {name}
+              </Typography>
+              {subTitle}
+            </div>
+            <ProductListPrice {...price_range.minimum_price} />
+          </div>
 
-      {children}
+          {children}
+        </>
+      )}
     </div>
   )
 }

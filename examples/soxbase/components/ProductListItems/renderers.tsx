@@ -1,24 +1,69 @@
+import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
+import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
+import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
+import ProductListItemGrouped from '@reachdigital/magento-product-grouped/ProductListItemGrouped'
+import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductListItemSimple'
 import { ProductListItemRendererFragment } from '@reachdigital/magento-product-types/ProductListItems/ProductListItemRenderer.gql'
+import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import { ProductListItemProps } from '@reachdigital/magento-product/ProductListItem'
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
-import ProductListItemBundle from '../ProductListItem/ProductListItemBundle'
-import ProductListItemConfigurable from '../ProductListItem/ProductListItemConfigurable'
-import ProductListItemDownloadable from '../ProductListItem/ProductListItemDownloadable'
-import ProductListItemGiftCard from '../ProductListItem/ProductListItemGiftCard'
-import ProductListItemGrouped from '../ProductListItem/ProductListItemGrouped'
-import ProductListItemSimple from '../ProductListItem/ProductListItemSimple'
-import ProductListItemVirtual from '../ProductListItem/ProductListItemVirtual'
+import React from 'react'
+import Subtitle from '../ProductListItem/Subtitle'
 
 const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps> = {
-  SimpleProduct: ProductListItemSimple,
-  ConfigurableProduct: ProductListItemConfigurable,
-  BundleProduct: ProductListItemBundle,
-  VirtualProduct: ProductListItemVirtual,
-  DownloadableProduct: ProductListItemDownloadable,
-  GroupedProduct: ProductListItemGrouped,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore GiftCardProduct is only available in Commerce
-  GiftCardProduct: ProductListItemGiftCard,
+  SimpleProduct: (props) => (
+    <ProductListItemSimple
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+    />
+  ),
+  ConfigurableProduct: (props) => (
+    <ProductListItemConfigurable
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+      swatchLocations={{
+        topLeft: [],
+        topRight: ['fashion_size'],
+        bottomLeft: ['fashion_color'],
+        bottomRight: [],
+      }}
+    />
+  ),
+  BundleProduct: (props) => (
+    <ProductListItemBundle
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+    />
+  ),
+  VirtualProduct: (props) => (
+    <ProductListItemVirtual
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+    />
+  ),
+  DownloadableProduct: (props) => (
+    <ProductListItemDownloadable
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+    />
+  ),
+  GroupedProduct: (props) => (
+    <ProductListItemGrouped
+      {...props}
+      subTitle={<Subtitle value='By Soxbase' />}
+      aspectRatio={[1, 1]}
+    />
+  ),
+  // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // // @ts-ignore GiftCardProduct is only available in Commerce
+  // GiftCardProduct: (props) => (
+  //   <ProductListItem {...props} subTitle={<Subtitle value='By Soxbase' />} aspectRatio={[1, 1]} />
+  // ),
 }
 
 export default renderer

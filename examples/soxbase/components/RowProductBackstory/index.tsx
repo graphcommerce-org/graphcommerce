@@ -4,7 +4,6 @@ import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
-
 import Asset from '../Asset'
 import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'

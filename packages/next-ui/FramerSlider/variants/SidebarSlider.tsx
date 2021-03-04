@@ -12,7 +12,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'grid',
-      gridTemplateColumns: '25% 75%',
+      gridTemplateColumns: 'minmax(115px, 25%) 1fr',
       maxWidth: '100%',
       marginBottom: `${theme.spacings.xl}`,
     },
