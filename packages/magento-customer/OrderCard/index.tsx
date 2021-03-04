@@ -67,7 +67,7 @@ type OrderCardProps = Partial<OrderCardFragment> & {
 } & { images?: UseOrderCardItemImages }
 
 export default function OrderCard(props: OrderCardProps) {
-  const { number, shipments, total, items, created_at, images, loading } = props
+  const { number, shipments, total, items, order_date, images, loading } = props
   const classes = useStyles()
 
   const { data: config } = useQuery(StoreConfigDocument)
@@ -114,7 +114,7 @@ export default function OrderCard(props: OrderCardProps) {
             <span className={classes.orderMoney}>
               <Money {...total?.grand_total} />
             </span>
-            <span>{dateFormatter.format(new Date(created_at ?? ''))}</span>
+            <span>{dateFormatter.format(new Date(order_date ?? ''))}</span>
           </div>
           <div className={classes.orderRow}>
             <OrderStateLabel
