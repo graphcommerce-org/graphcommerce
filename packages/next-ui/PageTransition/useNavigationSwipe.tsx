@@ -3,9 +3,7 @@ import { useState, useEffect } from 'react'
 
 export type NavigationSwipe = -1 | 0 | 1
 
-/**
- * Detect if iOS user is swiping to a page from the edge of the screen to navigate back or forward.
- */
+/** Detect if iOS user is swiping to a page from the edge of the screen to navigate back or forward. */
 export default function useNavigationSwipe() {
   const router = useRouter()
   const [touchStart, setTouchStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
@@ -37,9 +35,7 @@ export default function useNavigationSwipe() {
       }
     }
 
-    /**
-     * Once we're done with the page transition, reset everything
-     */
+    /** Once we're done with the page transition, reset everything */
     function routeChangeComplete() {
       if (navigationSwipe !== 0) setNavigationSwipe(0)
       if (touchStart.x !== 0 || touchStart.y !== 0) setTouchStart({ x: 0, y: 0 })

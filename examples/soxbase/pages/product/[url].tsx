@@ -73,9 +73,7 @@ function ProductSimple({
 
   const product = products?.items?.[products?.items?.length - 1]
   const weight = simpleProducts?.items?.[0]?.weight
-  const upsells = productAdditionals?.items?.[0]?.upsell_products
-  const related = productAdditionals?.items?.[0]?.related_products
-  const aggregations = productAdditionals?.aggregations
+  const additional = productAdditionals?.items?.[0]
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
@@ -105,20 +103,14 @@ function ProductSimple({
         </RowProductDescription>
         <Product
           renderer={{
-            RowProductFeature: (props) => (
-              <RowProductFeature {...props} media_gallery={product.media_gallery} />
-            ),
-            RowProductFeatureBoxed: (props) => (
-              <RowProductFeatureBoxed {...props} media_gallery={product.media_gallery} />
-            ),
-            RowProductSpecs: (props) => <RowProductSpecs {...props} aggregations={aggregations} />,
-            RowProductReviews: (props) => (
-              <RowProductReviews {...props} reviews={product.reviews} />
-            ),
-            RowProductRelated: (props) => <RowProductRelated {...props} items={related} />,
-            RowProductUpsells: (props) => <RowProductUpsells {...props} items={upsells} />,
+            RowProductFeature: (props) => <RowProductFeature {...props} {...product} />,
+            RowProductFeatureBoxed: (props) => <RowProductFeatureBoxed {...props} {...product} />,
+            RowProductSpecs: (props) => <RowProductSpecs {...props} {...productAdditionals} />,
+            RowProductReviews: (props) => <RowProductReviews {...props} {...product} />,
+            RowProductRelated: (props) => <RowProductRelated {...props} {...additional} />,
+            RowProductUpsells: (props) => <RowProductUpsells {...props} {...additional} />,
           }}
-          {...productpages?.[0]}
+          content={productpages?.[0].content}
         />
         <Footer footer={footer} />
       </FullPageUi>

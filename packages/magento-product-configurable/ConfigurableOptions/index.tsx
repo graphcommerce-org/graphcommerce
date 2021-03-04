@@ -9,7 +9,7 @@ import {
 } from '@reachdigital/react-hook-form/useForm'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
-import { SwatchTypeRenderer } from '../Swatches'
+import { SwatchTypeRenderer, SwatchSize } from '../Swatches'
 import ColorSwatchData from '../Swatches/ColorSwatchData'
 import ImageSwatchData from '../Swatches/ImageSwatchData'
 import TextSwatchData from '../Swatches/TextSwatchData'
@@ -67,7 +67,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                           renderer={renderer}
                           {...val}
                           {...val.swatch_data}
-                          size='large'
+                          size={'large' as SwatchSize}
                         />
                       </ToggleButton>
                     )

@@ -1,7 +1,5 @@
 import React from 'react'
-/**
- * To make renderers customizable we need to be able to provide renders for all types
- */
+/** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
 
 type FilterTypeByTypename<A extends TypeObject, Typename extends string> = A extends unknown
@@ -26,8 +24,8 @@ export type TypeRenderer<
 > = TypeRenderMap<T, T['__typename'], TAdd>
 
 /**
- * A simple array with renderers but with strict typing that validates of the
- * provided Renderer is actually able to render the Type
+ * A simple array with renderers but with strict typing that validates of the provided Renderer is
+ * actually able to render the Type
  */
 export default function RenderType<
   T extends TypeObject,

@@ -12,10 +12,10 @@ export default function ProductWeight(props: ProductWeightFragment) {
   const numberFormatter = useMemo(() => {
     if (!locale) return undefined
     /**
-     * todo: upgrade to browser native unit rendering when:
+     * Todo: upgrade to browser native unit rendering when:
      * - Node 14 is supported upstream
      * - Webkit/Safari supports the unit and unitDisplay option
-     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat#Using_style_and_unit
+     *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat#Using_style_and_unit
      */
     return new Intl.NumberFormat(locale.replace('_', '-'))
   }, [locale])

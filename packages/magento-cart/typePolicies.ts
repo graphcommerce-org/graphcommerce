@@ -2,9 +2,7 @@ import { FieldPolicy, TypePolicies } from '@apollo/client'
 import { Mutation } from '@reachdigital/magento-graphql'
 import { ClientCartDocument } from './ClientCart.gql'
 
-/**
- * When an empty cart is created, we store the cartId separately
- */
+/** When an empty cart is created, we store the cartId separately */
 const createEmptyCart: FieldPolicy<Mutation['createEmptyCart']> = {
   merge(_existing, cartId, options) {
     if (!cartId) return cartId

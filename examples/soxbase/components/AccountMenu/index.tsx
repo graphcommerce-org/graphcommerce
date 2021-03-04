@@ -53,7 +53,7 @@ export default function AccountMenu(props: AccountMenuProps) {
             Sign out
           </AccountMenuItem>
         )}
-      ></SignOutForm>
+      />
     </div>
   )
 }

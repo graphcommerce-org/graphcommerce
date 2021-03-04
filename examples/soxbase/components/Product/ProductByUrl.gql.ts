@@ -49,7 +49,6 @@ export const ProductByUrlDocument: DocumentNode<ProductByUrlQuery, ProductByUrlQ
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'content' },
@@ -355,10 +354,7 @@ export const ProductByUrlDocument: DocumentNode<ProductByUrlQuery, ProductByUrlQ
                         },
                         selectionSet: {
                           kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'identity' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                          ],
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }],
                         },
                       },
                       {
@@ -369,10 +365,7 @@ export const ProductByUrlDocument: DocumentNode<ProductByUrlQuery, ProductByUrlQ
                         },
                         selectionSet: {
                           kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'identity' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                          ],
+                          selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }],
                         },
                       },
                       {
@@ -426,64 +419,56 @@ export type ProductByUrlQueryVariables = Types.Exact<{
 }>
 
 export type ProductByUrlQuery = {
-  productpages: Array<
-    Pick<Types.Product, 'url'> & {
-      content: Array<
-        | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
-              colOne: Pick<Types.RichText, 'raw'>
-            })
-        | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & {
-              colOne: Pick<Types.RichText, 'raw'>
-              colTwo: Pick<Types.RichText, 'raw'>
-              colThree: Pick<Types.RichText, 'raw'>
-            })
-        | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & {
-              colOne: Pick<Types.RichText, 'raw'>
-              colTwo: Pick<Types.RichText, 'raw'>
-            })
-        | ({ __typename: 'RowContentLinks' } & Pick<Types.RowContentLinks, 'id' | 'title'> & {
-              contentLinks: Array<
-                Pick<Types.PageLink, 'title' | 'url'> & {
-                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-                  asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-                  >
-                }
-              >
-            })
-        | ({ __typename: 'RowProductFeature' } & Pick<Types.RowProductFeature, 'id' | 'topic'> & {
-              copy: Pick<Types.RichText, 'raw'>
-            })
-        | ({ __typename: 'RowProductFeatureBoxed' } & Pick<
-            Types.RowProductFeatureBoxed,
-            'id' | 'topic'
-          > & { copy: Pick<Types.RichText, 'raw'> })
-        | ({ __typename: 'RowProductRelated' } & Pick<
-            Types.RowProductRelated,
-            'id' | 'identity' | 'title'
-          >)
-        | ({ __typename: 'RowProductReviews' } & Pick<Types.RowProductReviews, 'id' | 'title'>)
-        | ({ __typename: 'RowProductSpecs' } & Pick<Types.RowProductSpecs, 'id' | 'identity'>)
-        | ({ __typename: 'RowProductUpsells' } & Pick<
-            Types.RowProductUpsells,
-            'id' | 'identity' | 'title'
-          >)
-        | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
-              quote: Pick<Types.RichText, 'raw'>
-            })
-        | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
-              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-              copy: Pick<Types.RichText, 'raw'>
-              pageLinks: Array<
-                Pick<Types.PageLink, 'title' | 'url'> & {
-                  description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-                  asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-                  >
-                }
-              >
-            })
-      >
-    }
-  >
+  productpages: Array<{
+    content: Array<
+      | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & {
+            colOne: Pick<Types.RichText, 'raw'>
+          })
+      | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & {
+            colOne: Pick<Types.RichText, 'raw'>
+            colTwo: Pick<Types.RichText, 'raw'>
+            colThree: Pick<Types.RichText, 'raw'>
+          })
+      | ({ __typename: 'RowColumnTwo' } & Pick<Types.RowColumnTwo, 'id'> & {
+            colOne: Pick<Types.RichText, 'raw'>
+            colTwo: Pick<Types.RichText, 'raw'>
+          })
+      | ({ __typename: 'RowContentLinks' } & Pick<Types.RowContentLinks, 'id' | 'title'> & {
+            contentLinks: Array<
+              Pick<Types.PageLink, 'title' | 'url'> & {
+                description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                asset?: Types.Maybe<
+                  Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                >
+              }
+            >
+          })
+      | ({ __typename: 'RowProductFeature' } & Pick<Types.RowProductFeature, 'id' | 'topic'> & {
+            copy: Pick<Types.RichText, 'raw'>
+          })
+      | ({ __typename: 'RowProductFeatureBoxed' } & Pick<
+          Types.RowProductFeatureBoxed,
+          'id' | 'topic'
+        > & { copy: Pick<Types.RichText, 'raw'> })
+      | ({ __typename: 'RowProductRelated' } & Pick<Types.RowProductRelated, 'id' | 'title'>)
+      | ({ __typename: 'RowProductReviews' } & Pick<Types.RowProductReviews, 'id' | 'title'>)
+      | ({ __typename: 'RowProductSpecs' } & Pick<Types.RowProductSpecs, 'id' | 'identity'>)
+      | ({ __typename: 'RowProductUpsells' } & Pick<Types.RowProductUpsells, 'id' | 'title'>)
+      | ({ __typename: 'RowQuote' } & Pick<Types.RowQuote, 'id'> & {
+            quote: Pick<Types.RichText, 'raw'>
+          })
+      | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
+            asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+            copy: Pick<Types.RichText, 'raw'>
+            pageLinks: Array<
+              Pick<Types.PageLink, 'title' | 'url'> & {
+                description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
+                asset?: Types.Maybe<
+                  Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                >
+              }
+            >
+          })
+    >
+  }>
 }

@@ -37,9 +37,9 @@ const isLighthouse =
     navigator.userAgent.indexOf('Chrome-Lighthouse') > 0)
 
 /**
- * Will return the effective connection type used by the client
- * Will return undefined on the server
- * Will return 4g for non supported browsers
+ * - Will return the effective connection type used by the client
+ * - Will return undefined on the server
+ * - Will return 4g for non supported browsers
  */
 const useConnectionType = (allowDowngrade = false): EffectiveConnectionType | undefined | null => {
   let initialStatus: EffectiveConnectionType

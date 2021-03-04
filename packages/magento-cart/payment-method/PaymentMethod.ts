@@ -11,17 +11,11 @@ export type PaymentMethod = AvailablePaymentMethodFragment & {
 export type PaymentError = { message: React.ReactNode; severity?: Color }
 
 type PaymentEventHandlers = {
-  /**
-   * Disable forms and place shroud over page
-   */
+  /** Disable forms and place shroud over page */
   onPaymentStart: () => void
-  /**
-   * Removes the shroud, enables the forms, renders error if provided
-   */
+  /** Removes the shroud, enables the forms, renders error if provided */
   onPaymentError: (error: PaymentError) => void
-  /**
-   * Calls the placeorder method and redirects to the checkout/success page
-   */
+  /** Calls the placeorder method and redirects to the checkout/success page */
   onPaymentComplete: (message?: React.ReactNode) => void
 }
 

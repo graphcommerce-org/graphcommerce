@@ -28,13 +28,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
-  return requireAuth ? (
-    <PageLink href='/account/signin'>
-      <Button color='primary' variant='contained' {...buttonProps}>
-        Add to Cart
-      </Button>
-    </PageLink>
-  ) : (
+  return (
     <form onSubmit={submitHandler} noValidate>
       <Button
         type='submit'

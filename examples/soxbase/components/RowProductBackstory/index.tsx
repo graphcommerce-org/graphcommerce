@@ -1,13 +1,9 @@
 import { Container, Theme } from '@material-ui/core'
-import { LaptopWindowsRounded } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import Sticky from '@reachdigital/next-ui/Sticky'
-import useIntersectionObserver from '@reachdigital/next-ui/Sticky/useIntersectionObserver'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
-
 import Asset from '../Asset'
 import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 import { RowProductBackstoryFragment } from './RowProductBackstory.gql'

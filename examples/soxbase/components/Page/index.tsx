@@ -1,3 +1,4 @@
+import { Maybe } from '@reachdigital/magento-graphql'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import RowBlogContent from '../Blog/RowBlogContent'
 import RowButtonLinkList from '../RowButtonLinkList'
@@ -32,17 +33,17 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
   RowContentLinks,
 }
 
-export type PageProps = PageFragment & { renderer?: Partial<ContentTypeRenderer> }
+export type PageProps = Partial<PageFragment> & { renderer?: Partial<ContentTypeRenderer> }
 
-export default function Page({ content, renderer }: PageProps) {
-  const mergedRenderer = { ...defaultRenderer, ...renderer }
+export default function Page(props: PageProps) {
+  const { content, renderer } = props
+  const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
 
   return (
     <>
-      {content &&
-        content.map((item) => (
-          <RenderType renderer={mergedRenderer as ContentTypeRenderer} key={item.id} {...item} />
-        ))}
+      {content?.map((item) => (
+        <RenderType renderer={mergedRenderer} key={item.id} {...item} />
+      ))}
     </>
   )
 }

@@ -9,9 +9,7 @@ import {
   FilterRangeTypeInput,
 } from '@reachdigital/magento-graphql'
 
-/**
- * This is mainly based on ProductListQueryVariables
- */
+/** This is mainly based on ProductListQueryVariables */
 export type ProductListParams = Exact<{
   pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>

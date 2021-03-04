@@ -1,6 +1,7 @@
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
+import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
   ProductPageDocument,
@@ -16,35 +17,65 @@ import {
 } from '@reachdigital/magento-product-virtual/ProductVirtual.gql'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
-import ProductPageDescription from '@reachdigital/magento-product/ProductPageDescription'
-import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import { ResolveUrlDocument } from '@reachdigital/magento-store/ResolveUrl.gql'
+import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
+import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
-import Page from '../../../components/Page'
-import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
-import ProductListItems from '../../../components/ProductListItems/ProductListItems'
+import Footer from '../../../components/Footer'
+import { FooterQuery } from '../../../components/Footer/Footer.gql'
+import HeaderActions from '../../../components/HeaderActions/HeaderActions'
+import Logo from '../../../components/Logo/Logo'
+import { PageByUrlDocument } from '../../../components/Page/PageByUrl.gql'
+import Product from '../../../components/Product'
+import {
+  ProductByUrlDocument,
+  ProductByUrlQuery,
+} from '../../../components/Product/ProductByUrl.gql'
+import RowProductDescription from '../../../components/RowProductDescription'
+import RowProductFeature from '../../../components/RowProductFeature'
+import RowProductFeatureBoxed from '../../../components/RowProductFeatureBoxed'
+import RowProductRelated from '../../../components/RowProductRelated'
+import RowProductReviews from '../../../components/RowProductReviews'
+import RowProductSpecs from '../../../components/RowProductSpecs'
+import RowProductUpsells from '../../../components/RowProductUpsells'
+import ProductUsps from '../../../components/Usps'
+import { UspsQuery } from '../../../components/Usps/Usps.gql'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = ProductPageQuery & ProductPageAdditionalQuery & PageByUrlQuery & ProductVirtualQuery
+type Props = ProductPageQuery &
+  ProductPageAdditionalQuery &
+  ProductByUrlQuery &
+  ResolveUrlQuery &
+  ProductVirtualQuery &
+  PageLayoutQuery &
+  UspsQuery &
+  FooterQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductVitual({ products, productAdditionals, virtualProducts, pages }: Props) {
+function ProductVitual({
+  products,
+  productAdditionals,
+  menu,
+  urlResolver,
+  footer,
+  usps,
+  virtualProducts,
+  productpages,
+}: Props) {
   if (!products) return <NextError statusCode={503} title='Loading skeleton' />
 
   const product = products?.items?.[0]
   const asdf = virtualProducts?.items?.[0]?.options
-
-  // console.log(productAdditionals?.items?.[0]?.upsell_products)
+  const additional = productAdditionals?.items?.[0]
 
   if (!product) return <NextError statusCode={404} title='Product not found' />
 
@@ -52,37 +83,35 @@ function ProductVitual({ products, productAdditionals, virtualProducts, pages }:
   return (
     <>
       <ProductPageMeta {...product} />
-      <OverlayUi
-        variant='bottom'
+      <FullPageUi
         title={product.name ?? ''}
-        backFallbackHref={`/${category?.url_path}`}
-        backFallbackTitle={category?.name}
+        menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
+        logo={<Logo />}
+        actions={<HeaderActions />}
       >
         <Container>
           <AddToCartButton
             mutation={ProductAddToCartDocument}
             variables={{ sku: product.sku ?? '', quantity: 1 }}
           />
-          <ProductPageDescription {...product} />
-          <ProductPageGallery {...product} />
-          {pages?.[0] && <Page {...pages?.[0]} />}
+          <RowProductDescription {...product}>
+            <ProductUsps usps={usps} />
+          </RowProductDescription>
 
-          {productAdditionals?.items?.[0]?.upsell_products ? (
-            <>
-              {/* todo: create a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Upsells</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.upsell_products} />
-            </>
-          ) : null}
-          {productAdditionals?.items?.[0]?.related_products ? (
-            <>
-              {/* todo: reate a component where we can compose in the ProductListItems */}
-              <Typography variant='h2'>Related</Typography>
-              <ProductListItems items={productAdditionals?.items?.[0]?.related_products} />
-            </>
-          ) : null}
+          <Product
+            renderer={{
+              RowProductFeature: (props) => <RowProductFeature {...props} {...product} />,
+              RowProductFeatureBoxed: (props) => <RowProductFeatureBoxed {...props} {...product} />,
+              RowProductSpecs: (props) => <RowProductSpecs {...props} {...productAdditionals} />,
+              RowProductReviews: (props) => <RowProductReviews {...props} {...product} />,
+              RowProductRelated: (props) => <RowProductRelated {...props} {...additional} />,
+              RowProductUpsells: (props) => <RowProductUpsells {...props} {...additional} />,
+            }}
+            content={productpages?.[0].content}
+          />
         </Container>
-      </OverlayUi>
+        <Footer footer={footer} />
+      </FullPageUi>
     </>
   )
 }
@@ -111,9 +140,9 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(localeToStore(locale))
   const config = client.query({ query: StoreConfigDocument })
 
-  const page = staticClient.query({
-    query: PageByUrlDocument,
-    variables: { url: `product/${urlKey}` },
+  const product = staticClient.query({
+    query: ProductByUrlDocument,
+    variables: { url: `product/global` },
   })
   const productPage = staticClient.query({
     query: ProductPageDocument,
@@ -142,7 +171,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await resolveUrl).data,
       ...(await pageLayout).data,
       ...(await productPage).data,
-      ...(await page).data,
+      ...(await product).data,
       ...(await virtualProduct).data,
       ...(await productAdditionals).data,
       apolloState: client.cache.extract(),

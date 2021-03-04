@@ -1,38 +1,28 @@
-import { Container, Theme, Typography } from '@material-ui/core'
+import { Container, Link, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
+import MultiItemSlider from '@reachdigital/next-ui/FramerSlider/variants/MultiItemSlider'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      position: 'relative',
-      '& > div': {
-        marginBottom: `${theme.spacings.lg}`,
-        display: 'grid',
-        gridAutoFlow: 'column',
-        justifyContent: 'start',
-        gap: `${theme.spacings.md}`,
-        alignContent: 'center',
-        '& > *': {
-          whiteSpace: 'no-wrap',
-          minWidth: 'max-content',
-        },
-        [theme.breakpoints.up('md')]: {
-          marginBottom: `${theme.spacings.lg}`,
-        },
+    root: {
+      padding: 0,
+    },
+    scroller: {
+      padding: `0 ${theme.page.horizontal}`,
+      marginBottom: `${theme.spacings.lg}`,
+      display: 'grid',
+      gridAutoFlow: 'column',
+      justifyContent: 'start',
+      gap: `${theme.spacings.md}`,
+      alignContent: 'center',
+      '& > *': {
+        minWidth: 'max-content',
       },
     },
     title: {
-      ...theme.typography.body1,
-      color: theme.palette.text.primary,
       fontWeight: 600,
-    },
-    url: {
-      ...theme.typography.body1,
-      color: theme.palette.text.primary,
-      textDecoration: 'none',
     },
   }),
   { name: 'RowContentLinks' },
@@ -45,20 +35,20 @@ export default function RowContentLinks(props: RowContentLinksProps) {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false} className={classes.container}>
-      <ScrollSnapSlider nobuttons>
-        <Typography variant='h4' className={classes.title}>
+    <Container maxWidth={false} className={classes.root}>
+      <MultiItemSlider classes={{ scroller: classes.scroller }} scrollSnapAlign={false}>
+        <Typography variant='body1' component='h4' className={classes.title}>
           {title}
         </Typography>
 
         {contentLinks.map((contentLink) => (
-          <NextUiPageLink href={contentLink.url} key={contentLink.url}>
-            <a key={contentLink.url} href={contentLink.url} className={classes.url}>
+          <PageLink href={contentLink.url} key={contentLink.url}>
+            <Link key={contentLink.url} href={contentLink.url} variant='body1' color='inherit'>
               {contentLink.title}
-            </a>
-          </NextUiPageLink>
+            </Link>
+          </PageLink>
         ))}
-      </ScrollSnapSlider>
+      </MultiItemSlider>
     </Container>
   )
 }

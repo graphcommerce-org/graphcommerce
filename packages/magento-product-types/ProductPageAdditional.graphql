@@ -2,12 +2,8 @@ query ProductPageAdditional($urlKey: String) {
   productAdditionals: products(filter: { url_key: { eq: $urlKey } }) {
     ...ProductSpecs
     items {
-      upsell_products {
-        ...ProductListItemRenderer
-      }
-      related_products {
-        ...ProductListItemRenderer
-      }
+      ...UpsellProducts
+      ...RelatedProducts
     }
   }
 }

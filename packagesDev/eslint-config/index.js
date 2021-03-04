@@ -12,10 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:@next/eslint-plugin-next/recommended',
     'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
   ],
-  ignorePatterns: ['**/dist/**/*.js'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

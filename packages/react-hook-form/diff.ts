@@ -5,9 +5,7 @@ function isArray(val: unknown): val is unknown[] {
   return Array.isArray(val)
 }
 
-/**
- * Simple diff function, retuns the values of the second object.
- */
+/** Simple diff function, retuns the values of the second object. */
 export default function diff(item1: unknown, item2: unknown) {
   const item1Type = typeof item2
   const item2Type = typeof item2

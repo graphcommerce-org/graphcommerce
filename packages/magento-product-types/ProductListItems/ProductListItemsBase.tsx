@@ -32,10 +32,9 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
 
   return (
     <div {...divProps} className={clsx(classes.productList, divProps.className)}>
-      {items?.map((item) => {
-        if (!item) return null
-        return <RenderType key={item.id ?? ''} renderer={renderers} {...item} />
-      })}
+      {items?.map((item) =>
+        item ? <RenderType key={item.id ?? ''} renderer={renderers} {...item} /> : null,
+      )}
     </div>
   )
 }

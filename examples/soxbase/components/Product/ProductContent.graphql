@@ -1,5 +1,4 @@
 fragment ProductContent on Product {
-  url
   content {
     ... on Node {
       id

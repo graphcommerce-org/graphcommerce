@@ -22,7 +22,7 @@ function isImage(asset: AssetFragment): asset is ImageAsset {
 
 type AssetProps = {
   asset: AssetFragment
-} & Omit<PictureResponsiveNextProps, 'type' | 'src' | 'height' | 'alt'>
+} & Omit<PictureResponsiveNextProps, 'type' | 'src' | 'height' | 'alt' | 'ref'>
 
 export default function Asset(props: AssetProps) {
   const { asset, width, ...imgProps } = props

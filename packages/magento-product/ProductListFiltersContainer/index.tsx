@@ -1,14 +1,19 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import ScrollSnapSlider from '@reachdigital/next-ui/ScrollSnapSlider'
+import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
+import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
+import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
+import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
+import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type ProductListFiltersContainerProps = React.PropsWithChildren<unknown>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
+      height: 44,
       gridArea: 'filters',
       position: 'sticky',
       top: theme.page.vertical,
@@ -24,50 +29,35 @@ const useStyles = makeStyles(
         textAlign: 'center',
       },
     },
-    filters: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
+    container: {
+      padding: 6,
       [theme.breakpoints.up('md')]: {
         background: '#fff',
         borderRadius: 22,
         // padding: `0 3px`,
       },
     },
-    filtersSticky: {},
+    containerSticky: {},
     scroller: {
       borderRadius: 22,
-      padding: `6px ${theme.page.horizontal}`,
       [theme.breakpoints.up('md')]: {
-        padding: 6,
+        // padding: 6,
       },
+
       columnGap: 6,
-      '& :last-child': {
-        marginRight: 6, // https://www.brunildo.org/test/overscrollback.html
-      },
     },
-    scrollerSticky: {
-      [theme.breakpoints.down('sm')]: {
-        paddingLeft: '80px',
-      },
+    scrollerSticky: {},
+    sliderPrev: {
+      position: 'absolute',
+      top: 2,
+      left: 2,
+      zIndex: 10,
     },
-    prevFab: {
-      top: 'auto',
-      left: -3,
-      height: 44,
-      width: 44,
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
-      },
-    },
-    nextFab: {
-      top: 'auto',
-      right: -3,
-      height: 44,
-      width: 44,
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
-      },
+    sliderNext: {
+      position: 'absolute',
+      top: 2,
+      right: 2,
+      zIndex: 10,
     },
   }),
   { name: 'ProductListFiltersContainer' },
@@ -79,7 +69,6 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
   const classes = useStyles()
   const { scrollY } = useViewportScroll()
   const [isSticky, setIsSticky] = useState<boolean>(false)
-  const [height, setHeight] = useState(0)
   const [startPosition, setStartPosition] = useState(100)
   const [spacing, setSpacing] = useState(20)
   const scrollHalfway = startPosition + spacing
@@ -97,7 +86,6 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
 
       setSpacing(nextOffset - elemHeigh - offset + 20)
       setStartPosition(offset)
-      setHeight(elemHeigh)
     })
     if (wrapperRef.current) observer.observe(wrapperRef.current)
     return () => observer.disconnect()
@@ -105,8 +93,12 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
 
   useEffect(() => {
     const onCheckStickyChange = (v: number) => {
-      if (isSticky && v <= scrollHalfway) setIsSticky(false)
-      if (!isSticky && v > scrollHalfway) setIsSticky(true)
+      if (isSticky && v <= scrollHalfway) {
+        setIsSticky(false)
+      }
+      if (!isSticky && v > scrollHalfway) {
+        setIsSticky(true)
+      }
     }
     onCheckStickyChange(scrollY.get())
     return scrollY.onChange(onCheckStickyChange)
@@ -119,28 +111,22 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
     drop-shadow(0 4px 10px rgba(0,0,0,${opacity2}))`
 
   return (
-    <m.div
-      layout='position'
-      className={classes.wrapper}
-      ref={wrapperRef}
-      style={{ height: height && isSticky ? height : undefined }}
-    >
-      <m.div
-        layout
-        className={clsx(classes.filters, isSticky && classes.filtersSticky)}
-        style={{ filter }}
-      >
-        <ScrollSnapSlider
-          fabProps={{ size: 'small' }}
-          classes={{
-            prevFab: classes.prevFab,
-            nextFab: classes.nextFab,
-            scroller: clsx(classes.scroller, isSticky && classes.scrollerSticky),
-          }}
+    <m.div className={classes.wrapper} ref={wrapperRef}>
+      <SliderContext scrollSnapAlign={false}>
+        <SliderPrev className={classes.sliderPrev} />
+        <SliderContainer
+          classes={{ container: clsx(classes.container, isSticky && classes.containerSticky) }}
+          style={{ filter }}
         >
-          {children}
-        </ScrollSnapSlider>
-      </m.div>
+          <SliderScroller
+            classes={{ scroller: clsx(classes.scroller, isSticky && classes.scrollerSticky) }}
+            animate={{ paddingLeft: isSticky ? 80 : 0 }}
+          >
+            {children}
+          </SliderScroller>
+        </SliderContainer>
+        <SliderNext className={classes.sliderNext} />
+      </SliderContext>
     </m.div>
   )
 }

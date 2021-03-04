@@ -1,7 +1,6 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import ProductSpecs, { ProductSpecsProps } from '@reachdigital/magento-product/ProductSpecs'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({

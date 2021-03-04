@@ -29,34 +29,32 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const filter = isActive ? {} : ({ in: [option.value] } as FilterIn)
 
   return (
-    <m.div layout='position'>
-      <CategoryLink
-        {...params}
-        filters={{ ...params.filters, [attribute_code]: filter }}
-        currentPage={undefined}
-        noLink
-      >
-        <Chip
-          variant='outlined'
-          color={isActive ? undefined : 'default'}
-          onDelete={
-            isActive
-              ? () => {
-                  const linkParams = cloneDeep(params)
+    <CategoryLink
+      {...params}
+      filters={{ ...params.filters, [attribute_code]: filter }}
+      currentPage={undefined}
+      noLink
+    >
+      <Chip
+        variant='outlined'
+        color={isActive ? undefined : 'default'}
+        onDelete={
+          isActive
+            ? () => {
+                const linkParams = cloneDeep(params)
 
-                  delete linkParams.currentPage
-                  delete linkParams.filters[attribute_code]
+                delete linkParams.currentPage
+                delete linkParams.filters[attribute_code]
 
-                  pushRoute(linkParams)
-                }
-              : undefined
-          }
-          label={label}
-          clickable
-          {...chipProps}
-          className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
-        />
-      </CategoryLink>
-    </m.div>
+                pushRoute(linkParams)
+              }
+            : undefined
+        }
+        label={label}
+        clickable
+        {...chipProps}
+        className={clsx(classes.chip, isActive && classes.chipSelected, chipProps.className)}
+      />
+    </CategoryLink>
   )
 }

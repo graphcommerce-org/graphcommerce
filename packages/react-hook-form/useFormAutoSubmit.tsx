@@ -3,21 +3,13 @@ import { useEffect, useState } from 'react'
 import { FieldValues, UseFormMethods } from 'react-hook-form'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends FieldValues> = {
-  /**
-   * Instance of current form
-   */
+  /** Instance of current form */
   form: Omit<TForm, 'handleSubmit'>
-  /**
-   * submitHandler
-   */
+  /** SubmitHandler */
   submit: ReturnType<TForm['handleSubmit']>
-  /**
-   * milliseconds to wait before updating
-   */
+  /** Milliseconds to wait before updating */
   wait?: number
-  /**
-   * autosubmit only when these field names update
-   */
+  /** Autosubmit only when these field names update */
   fields?: Array<keyof Partial<V>>
 }
 
@@ -30,14 +22,14 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
  * - The form is not already submitting
  * - The form is not currently validating
  *
- * Q: The form keeps submitting in loops:
- * A: formState.isDirty should be false after submission
- *    Make sure that you call `reset(getValues())` after submission.
- *    @see useFormGqlMutation.tsx for an example implementation
+ * Q: The form keeps submitting in loops: A: formState.isDirty should be false after submission Make
+ * sure that you call `reset(getValues())` after submission.
+ *
+ * @see useFormGqlMutation.tsx for an example implementation
  *
  * Q: How to I resubmit if the form is modified during the request?
  *    formState.isDirty should be true after the submission
- *    @see useFormGqlMutation.tsx for an example implementation
+ * @see useFormGqlMutation.tsx for an example implementation
  */
 export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = FieldValues>(
   options: UseFormAutoSubmitOptions<Form, V>,

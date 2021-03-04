@@ -2,6 +2,7 @@ import { Button, Container } from '@material-ui/core'
 import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import { ProductListDocument } from '@reachdigital/magento-product-types/ProductList.gql'
 import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -10,7 +11,6 @@ import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import Sticky from '@reachdigital/next-ui/Sticky'
 import { m } from 'framer-motion'
 import React from 'react'
 import FabMenu from '../../components/FabMenu'
@@ -87,7 +87,6 @@ function AppShellTestIndex({ url, menu, urlResolver, pages, footer }: Props) {
             exit={{ zIndex: 0 }}
           />
         </div>
-        <Sticky />
       </Container>
       {pages?.[0] && <Page {...pages?.[0]} />}n
       <Container>
@@ -125,6 +124,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const footer = staticClient.query({ query: FooterDocument })
   const page = staticClient.query({ query: PageByUrlDocument, variables: { url: `test/${url}` } })
+
   await config
   return {
     props: {
