@@ -1,105 +1,49 @@
 import { Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import { UpsellProductsFragment } from '@reachdigital/magento-product-types/UpsellProducts.gql'
+import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
+import RenderType from '@reachdigital/next-ui/RenderType'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import React, { useRef, useState } from 'react'
-import { ProductListItemsProps } from '../ProductListItems/ProductListItems'
-import ProductListItemsSlider from '../ProductListItems/ProductListItemsSlider'
+import renderers from '../ProductListItems/renderers'
 import { RowProductUpsellsFragment } from './RowProductUpsells.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      display: 'grid',
-      gridTemplateColumns: '25% 75%',
-      maxWidth: '100%',
-      marginBottom: `${theme.spacings.xl}`,
-    },
-    copy: {
-      display: 'grid',
-      alignContent: 'space-between',
-    },
     h2: {
-      ...theme.typography.h1,
       fontSize: responsiveVal(16, 40),
-      marginRight: `${theme.spacings.lg}`,
-      marginLeft: theme.page.horizontal,
-      [theme.breakpoints.up('md')]: {
-        width: '40%',
-        minWidth: 250,
-      },
     },
-    slider: {
-      position: 'relative',
-      '& > div': {
-        display: 'grid',
-        gridColumnGap: theme.spacings.md,
-        gridRowGap: theme.spacings.lg,
-        alignContent: 'space-around',
-        gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(200, 400)}, 1fr))`,
-      },
-      '& > div > div': {
-        minWidth: responsiveVal(200, 400),
-      },
-    },
-    externalpagination: {
-      display: 'none',
-      fontSize: responsiveVal(18, 26),
-      width: 'min-width',
-      fontWeight: 500,
-      [theme.breakpoints.up('md')]: {
-        fontWeight: 500,
-      },
+    item: {
+      minWidth: responsiveVal(200, 400),
     },
   }),
   { name: 'RowProductUpsells' },
 )
 
-type RowProductUpsellsProps = RowProductUpsellsFragment & ProductListItemsProps
+type RowProductUpsellsProps = RowProductUpsellsFragment & UpsellProductsFragment
 
 export default function RowProductUpsells(props: RowProductUpsellsProps) {
-  const { title, items, ...productListItems } = props
+  const { title, upsell_products } = props
   const classes = useStyles()
-  const [exPagination, setExPagination] = useState<boolean[]>([])
-  const curRef = useRef() as React.MutableRefObject<HTMLInputElement>
-  const upsellProductItems = {
-    ...productListItems,
-    items,
-  }
 
-  const indexesOf = (arr, item) => arr.reduce((acc, v, i) => v === item && acc.push(i), [])
-  const indexesInViewport = indexesOf(exPagination, true)
-
-  const current =
-    indexesInViewport.length !== 0
-      ? Number(indexesInViewport[indexesInViewport.length - 1]) + 1
-      : String(curRef?.current?.innerHTML)
-
-  if (!items || items.length === 0) return null
-
+  if (!upsell_products || upsell_products.length === 0) return null
   return (
-    <div className={classes.root}>
-      <div className={classes.copy}>
+    <SidebarSlider
+      sidebar={
         <Typography variant='h2' className={classes.h2}>
           {title}
         </Typography>
-        <div>
-          {exPagination && (
-            <div className={classes.externalpagination}>
-              <span ref={curRef}>{String(current).padStart(2, '0')}</span> —{' '}
-              {String(exPagination.length).padStart(2, '0')}
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className={classes.slider}>
-        <ProductListItemsSlider
-          nobuttons
-          exPagination={exPagination}
-          setExPagination={setExPagination}
-          {...upsellProductItems}
-        />
-      </div>
-    </div>
+      }
+    >
+      {upsell_products.map((item) =>
+        item ? (
+          <RenderType
+            key={item.id ?? ''}
+            renderer={renderers}
+            {...item}
+            classes={{ item: classes.item }}
+          />
+        ) : null,
+      )}
+    </SidebarSlider>
   )
 }

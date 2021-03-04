@@ -44,10 +44,12 @@ export type SliderState = {
     transition?: Transition
 
     /** https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop */
-    scrollSnapStop: 'always' | 'normal'
+    // todo(paales): add scrollSnapStop
+    // scrollSnapStop: 'always' | 'normal'
 
     /** https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type */
-    scrollSnapType?: ScrollSnapType
+    // todo(paales): add scrollSnapType
+    // scrollSnapType?: ScrollSnapType
 
     // todo(paales): support the direction parameter as well
     // scrollSnapType?:

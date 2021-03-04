@@ -75,9 +75,7 @@ function ProductConfigurable({
 
   const product = products?.items?.[0]
   const configurableProduct = configurableProducts?.items?.[0]
-  const upsells = productAdditionals?.items?.[0]?.upsell_products
-  const related = productAdditionals?.items?.[0]?.related_products
-  const aggregations = productAdditionals?.aggregations
+  const additional = productAdditionals?.items?.[0]
 
   if (!product || !configurableProduct?.sku)
     return <NextError statusCode={404} title='Product not found' />
@@ -109,10 +107,10 @@ function ProductConfigurable({
               RowProductFeatureBoxed: (props) => <RowProductFeatureBoxed {...props} {...product} />,
               RowProductSpecs: (props) => <RowProductSpecs {...props} {...productAdditionals} />,
               RowProductReviews: (props) => <RowProductReviews {...props} {...product} />,
-              RowProductRelated: (props) => <RowProductRelated {...props} items={related} />,
-              RowProductUpsells: (props) => <RowProductUpsells {...props} items={upsells} />,
+              RowProductRelated: (props) => <RowProductRelated {...props} {...additional} />,
+              RowProductUpsells: (props) => <RowProductUpsells {...props} {...additional} />,
             }}
-            {...productpages?.[0]}
+            content={productpages?.[0].content}
           />
           <Footer footer={footer} />
         </FullPageUi>

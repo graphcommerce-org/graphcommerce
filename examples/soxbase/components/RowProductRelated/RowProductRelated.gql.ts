@@ -11,12 +11,9 @@ export const RowProductRelatedFragmentDoc: DocumentNode<RowProductRelatedFragmen
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'RowProductRelated' } },
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'identity' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-        ],
+        selections: [{ kind: 'Field', name: { kind: 'Name', value: 'title' } }],
       },
     },
   ],
 }
-export type RowProductRelatedFragment = Pick<Types.RowProductRelated, 'identity' | 'title'>
+export type RowProductRelatedFragment = Pick<Types.RowProductRelated, 'title'>

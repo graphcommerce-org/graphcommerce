@@ -34,7 +34,8 @@ const defaultRenderer: Partial<ContentTypeRenderer> = {
 
 export type ProductProps = ProductContentFragment & { renderer?: Partial<ContentTypeRenderer> }
 
-export default function Product({ content, renderer }: ProductProps) {
+export default function Product(props: ProductProps) {
+  const { content, renderer } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as ContentTypeRenderer
   return (
     <>

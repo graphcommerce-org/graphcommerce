@@ -60,7 +60,6 @@ export const ProductContentFragmentDoc: DocumentNode<ProductContentFragment, unk
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'url' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'content' },
@@ -108,7 +107,7 @@ export const ProductContentFragmentDoc: DocumentNode<ProductContentFragment, unk
     ...RowQuoteFragmentDoc.definitions,
   ],
 }
-export type ProductContentFragment = Pick<Types.Product, 'url'> & {
+export type ProductContentFragment = {
   content: Array<
     | ({ __typename: 'RowColumnOne' } & Pick<Types.RowColumnOne, 'id'> & RowColumnOneFragment)
     | ({ __typename: 'RowColumnThree' } & Pick<Types.RowColumnThree, 'id'> & RowColumnThreeFragment)
