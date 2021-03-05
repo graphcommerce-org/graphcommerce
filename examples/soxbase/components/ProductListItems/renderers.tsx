@@ -25,8 +25,8 @@ const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemPro
       aspectRatio={[1, 1]}
       swatchLocations={{
         topLeft: [],
-        topRight: ['fashion_size'],
-        bottomLeft: ['fashion_color'],
+        topRight: ['size'],
+        bottomLeft: ['color'],
         bottomRight: [],
       }}
     />

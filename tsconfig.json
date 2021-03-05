@@ -8,6 +8,8 @@
     "**/apollo.config.js",
     "**/index.js",
     "**/jest.config.js",
-    "cssTransform.js"
+    "cssTransform.js",
+    "examples/soxbase/next-sitemap.js",
+    "graphql.config.js"
   ]
 }
