@@ -1,6 +1,3 @@
-#import "./cart/CartData.graphql"
-#import "./shipping/CartShippingResult.graphql"
-
 query ClientCart {
   # This cart Query is executed _only_ on the client
   cart(cart_id: "") @client {

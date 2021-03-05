@@ -9,6 +9,7 @@
     "**/index.js",
     "**/jest.config.js",
     "cssTransform.js",
-    "examples/soxbase/next-sitemap.js"
+    "examples/soxbase/next-sitemap.js",
+    "graphql.config.js"
   ]
 }
