@@ -1,3 +1,4 @@
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -15,7 +16,16 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
+const useStyles = makeStyles((theme: Theme) => ({
+  title: {
+    textAlign: 'center',
+    padding: `${theme.spacings.md} 0`,
+  },
+}))
+
 const FaqPage = ({ pages }: Props) => {
+  const classes = useStyles()
+
   if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
   if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const page = pages[0]
@@ -27,6 +37,12 @@ const FaqPage = ({ pages }: Props) => {
         metaDescription={page.title ?? ''}
         metaRobots='INDEX, FOLLOW'
       />
+
+      {page.title && (
+        <Typography variant='h2' component='h1' className={classes.title}>
+          {page.title}
+        </Typography>
+      )}
       <Page {...page} />
     </OverlayUi>
   )
