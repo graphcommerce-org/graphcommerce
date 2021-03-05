@@ -17,13 +17,14 @@ function AccountOrdersPage() {
 
   return (
     <OverlayUi title='Orders' variant='bottom' fullHeight>
-      <PageMeta
-        title='Orders'
-        metaDescription='View all your orders'
-        metaRobots='NOINDEX, FOLLOW'
-      />
       <Container maxWidth='md'>
         <NoSsr>
+          <PageMeta
+            title='Orders'
+            metaDescription='View all your orders'
+            metaRobots='NOINDEX, FOLLOW'
+          />
+
           <IconTitle
             iconSrc='/icons/desktop_checkout_box.svg'
             title='Orders'

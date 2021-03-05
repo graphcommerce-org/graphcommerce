@@ -24,10 +24,13 @@ function AccountIndexPage() {
 
   return (
     <OverlayUi title='Account' variant='bottom' fullHeight>
-      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
-
       <Container maxWidth='md'>
         <NoSsr>
+          <PageMeta
+            title='Account'
+            metaDescription='Account Dashboard'
+            metaRobots='NOINDEX, FOLLOW'
+          />
           <AccountHeader {...customer} loading={loading} />
           <AccountMenu {...customer} loading={loading} />
           <AccountLatestOrder {...customer} loading={loading} />
