@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Description } from '@material-ui/icons'
+import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import Money from '@reachdigital/magento-store/Money'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -29,15 +30,13 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'repeat(2, 1fr)',
       },
     },
-    orderDetailContainer: {
-      '& > span': {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-        fontWeight: 'bold',
-        display: 'block',
-        width: '100%',
-        paddingBottom: responsiveVal(2, 8),
-        marginBottom: theme.spacings.xs,
-      },
+    orderDetailTitle: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      fontWeight: 'bold',
+      display: 'block',
+      width: '100%',
+      paddingBottom: responsiveVal(2, 8),
+      marginBottom: theme.spacings.xs,
     },
     totalsContainer: {
       // borderBottom: `1px solid ${theme.palette.divider}`,
@@ -96,6 +95,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
     total,
     invoices,
     countries,
+    loading,
   } = props
   const classes = useStyles()
 
@@ -108,24 +108,85 @@ export default function OrderDetails(props: OrderDetailsProps) {
     day: 'numeric',
   })
 
+  if (loading) {
+    return (
+      <SectionContainer label='Order details' className={classes.sectionContainer} borderBottom>
+        <div className={classes.orderDetailsInnerContainer}>
+          <div>
+            <Skeleton height={100} />
+          </div>
+          <div>
+            <Skeleton height={100} />
+          </div>
+          <div>
+            <Skeleton height={100} />
+          </div>
+          <div>
+            <Skeleton height={100} />
+          </div>
+          <div>
+            <Skeleton height={100} />
+          </div>
+          <div>
+            <Skeleton height={100} />
+          </div>
+        </div>
+
+        <div className={classes.totalsContainer}>
+          <div className={classes.totalsRow}>
+            <div>Products</div>
+            <div>
+              <Skeleton width={72} />
+            </div>
+          </div>
+
+          {total?.discounts?.map((discount) => (
+            <div key={`discount-${discount?.label}`} className={classes.totalsRow}>
+              <div>{discount?.label}</div>
+              <div>
+                <Skeleton width={72} />
+              </div>
+            </div>
+          ))}
+
+          <div className={classes.totalsRow}>
+            <div>Shipping</div>
+            <div>
+              <Skeleton width={72} />
+            </div>
+          </div>
+
+          <div className={classes.totalsDivider} />
+
+          <div className={clsx(classes.totalsRow, classes.totalsVat)}>
+            <div>Total (incl. VAT)</div>
+            <div>
+              <Skeleton width={72} />
+            </div>
+          </div>
+        </div>
+      </SectionContainer>
+    )
+  }
+
   return (
     <SectionContainer label='Order details' className={classes.sectionContainer} borderBottom>
       <div className={classes.orderDetailsInnerContainer}>
-        <div className={classes.orderDetailContainer}>
-          <span>Order number</span>
+        <div>
+          <span className={classes.orderDetailTitle}>Order number</span>
           <div>{number}</div>
         </div>
 
-        <div className={classes.orderDetailContainer}>
-          <span>Order status</span>
+        <div>
+          <span className={classes.orderDetailTitle}>Order status</span>
           <div>
             Ordered: {order_date && dateFormatter.format(new Date(order_date))}
             {/* Shipped */}
           </div>
         </div>
 
-        <div className={classes.orderDetailContainer}>
-          <span>Shipping method</span>
+        <div>
+          <span className={classes.orderDetailTitle}>Shipping method</span>
           <div>
             {!shipments?.length && (
               <div>
@@ -146,8 +207,8 @@ export default function OrderDetails(props: OrderDetailsProps) {
           </div>
         </div>
 
-        <div className={classes.orderDetailContainer}>
-          <span>Payment method</span>
+        <div>
+          <span className={classes.orderDetailTitle}>Payment method</span>
           <div>
             {!payment_methods?.[0]?.additional_data?.length && (
               <div>
@@ -172,8 +233,8 @@ export default function OrderDetails(props: OrderDetailsProps) {
           </div>
         </div>
 
-        <div className={classes.orderDetailContainer}>
-          <span>Shipping address</span>
+        <div>
+          <span className={classes.orderDetailTitle}>Shipping address</span>
           <div>
             <div>
               {shipping_address?.firstname} {shipping_address?.lastname}
@@ -186,8 +247,8 @@ export default function OrderDetails(props: OrderDetailsProps) {
           </div>
         </div>
 
-        <div className={classes.orderDetailContainer}>
-          <span>Billing address</span>
+        <div>
+          <span className={classes.orderDetailTitle}>Billing address</span>
           <div>
             <div>
               {billing_address?.firstname} {billing_address?.lastname}

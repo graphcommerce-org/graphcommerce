@@ -1,7 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'
@@ -16,6 +18,10 @@ const useStyles = makeStyles(
     },
     orderItemsInnerContainer: {
       borderBottom: `1px solid ${theme.palette.divider}`,
+    },
+    skeletonOrderItem: {
+      marginTop: theme.spacings.xxs,
+      marginBottom: theme.spacings.xxs,
     },
     viewAllButton: {
       margin: `${theme.spacings.xs} auto 0 auto`,
@@ -37,6 +43,28 @@ export default function OrderItems(props: OrderItemsProps) {
   const classes = useStyles()
   const [expanded, setExpanded] = useState<boolean>(false)
   const maxItemsAboveFold = 4
+
+  if (loading) {
+    return (
+      <SectionContainer
+        label='Ordered items'
+        /* endLabel='SHIPPED'*/
+        className={classes.sectionContainer}
+      >
+        <div className={classes.orderItemsInnerContainer}>
+          <div className={classes.skeletonOrderItem}>
+            <Skeleton height={responsiveVal(70, 125)} />
+          </div>
+          <div className={classes.skeletonOrderItem}>
+            <Skeleton height={responsiveVal(70, 125)} />
+          </div>
+          <div className={classes.skeletonOrderItem}>
+            <Skeleton height={responsiveVal(70, 125)} />
+          </div>
+        </div>
+      </SectionContainer>
+    )
+  }
 
   return (
     <SectionContainer
