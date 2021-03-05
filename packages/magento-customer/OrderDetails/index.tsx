@@ -220,7 +220,7 @@ export default function OrderDetails(props: OrderDetailsProps) {
               <>
                 <div>{payment_methods?.[0]?.additional_data?.[0]?.name}</div>
 
-                {invoices?.length > 0 && (
+                {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
                       <Description color='primary' />
