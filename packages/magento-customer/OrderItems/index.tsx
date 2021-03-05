@@ -5,8 +5,8 @@ import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'
-import OrderedItem from '../OrderedItem'
-import { OrderedItemsFragment } from './OrderedItems.gql'
+import OrderItem from '../OrderItem'
+import { OrderItemsFragment } from './OrderItems.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -14,7 +14,7 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.md,
       marginBottom: theme.spacings.md,
     },
-    orderedItemsInnerContainer: {
+    orderItemsInnerContainer: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
     viewAllButton: {
@@ -25,14 +25,14 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'OrderedItems' },
+  { name: 'OrderItems' },
 )
 
-export type OrderedItemsProps = OrderedItemsFragment & { loading?: boolean } & {
+export type OrderItemsProps = OrderItemsFragment & { loading?: boolean } & {
   images?: UseOrderCardItemImages
 }
 
-export default function OrderedItems(props: OrderedItemsProps) {
+export default function OrderItems(props: OrderItemsProps) {
   const { images, items, loading } = props
   const classes = useStyles()
   const [expanded, setExpanded] = useState<boolean>(false)
@@ -44,12 +44,12 @@ export default function OrderedItems(props: OrderedItemsProps) {
       /* endLabel='SHIPPED'*/
       className={classes.sectionContainer}
     >
-      <div className={classes.orderedItemsInnerContainer}>
+      <div className={classes.orderItemsInnerContainer}>
         <AnimatePresence initial={false}>
-          {items?.slice(0, maxItemsAboveFold).map((orderedItem) => (
-            <AnimatedRow key={`orderedItem-${orderedItem?.id}`}>
-              {orderedItem && (
-                <OrderedItem {...orderedItem} {...images?.[orderedItem?.product_url_key ?? '']} />
+          {items?.slice(0, maxItemsAboveFold).map((orderItem) => (
+            <AnimatedRow key={`orderItem-${orderItem?.id}`}>
+              {orderItem && (
+                <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
               )}
             </AnimatedRow>
           ))}
@@ -57,13 +57,10 @@ export default function OrderedItems(props: OrderedItemsProps) {
           {expanded &&
             items
               ?.slice(maxItemsAboveFold, items?.length)
-              .map((orderedItem) => (
-                <AnimatedRow key={`orderedItem-${orderedItem?.id}`}>
-                  {orderedItem && (
-                    <OrderedItem
-                      {...orderedItem}
-                      {...images?.[orderedItem?.product_url_key ?? '']}
-                    />
+              .map((orderItem) => (
+                <AnimatedRow key={`orderItem-${orderItem?.id}`}>
+                  {orderItem && (
+                    <OrderItem {...orderItem} {...images?.[orderItem?.product_url_key ?? '']} />
                   )}
                 </AnimatedRow>
               ))}

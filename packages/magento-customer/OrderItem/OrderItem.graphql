@@ -1,4 +1,4 @@
-fragment OrderedItem on OrderItemInterface {
+fragment OrderItem on OrderItemInterface {
   id
   product_sku
   product_url_key
@@ -6,12 +6,6 @@ fragment OrderedItem on OrderItemInterface {
   selected_options {
     label
     value
-  }
-  discounts {
-    amount {
-      ...Money
-    }
-    label
   }
   quantity_ordered
   product_sale_price {

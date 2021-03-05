@@ -299,33 +299,6 @@ export const OrderDetailPageDocument: DocumentNode<
                                   },
                                   {
                                     kind: 'Field',
-                                    name: { kind: 'Name', value: 'discounts' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: { kind: 'Name', value: 'amount' },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'currency' },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: { kind: 'Name', value: 'value' },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: 'Field',
                                     name: { kind: 'Name', value: 'quantity_ordered' },
                                   },
                                   {
@@ -438,15 +411,6 @@ export type OrderDetailPageQuery = {
                       selected_options?: Types.Maybe<
                         Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>
                       >
-                      discounts?: Types.Maybe<
-                        Array<
-                          Types.Maybe<
-                            Pick<Types.Discount, 'label'> & {
-                              amount: Pick<Types.Money, 'currency' | 'value'>
-                            }
-                          >
-                        >
-                      >
                       product_sale_price: Pick<Types.Money, 'currency' | 'value'>
                     })
                   | (Pick<
@@ -456,15 +420,6 @@ export type OrderDetailPageQuery = {
                       selected_options?: Types.Maybe<
                         Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>
                       >
-                      discounts?: Types.Maybe<
-                        Array<
-                          Types.Maybe<
-                            Pick<Types.Discount, 'label'> & {
-                              amount: Pick<Types.Money, 'currency' | 'value'>
-                            }
-                          >
-                        >
-                      >
                       product_sale_price: Pick<Types.Money, 'currency' | 'value'>
                     })
                   | (Pick<
@@ -473,15 +428,6 @@ export type OrderDetailPageQuery = {
                     > & {
                       selected_options?: Types.Maybe<
                         Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>
-                      >
-                      discounts?: Types.Maybe<
-                        Array<
-                          Types.Maybe<
-                            Pick<Types.Discount, 'label'> & {
-                              amount: Pick<Types.Money, 'currency' | 'value'>
-                            }
-                          >
-                        >
                       >
                       product_sale_price: Pick<Types.Money, 'currency' | 'value'>
                     })

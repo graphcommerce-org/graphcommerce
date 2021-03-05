@@ -5,9 +5,9 @@ import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { OrderCardItemImageFragment } from '../OrderCardItemImage/OrderCardItemImage.gql'
-import { OrderedItemFragment } from './OrderedItem.gql'
+import { OrderItemFragment } from './OrderItem.gql'
 
-type OrderedItemProps = OrderedItemFragment & OrderCardItemImageFragment
+type OrderItemProps = OrderItemFragment & OrderCardItemImageFragment
 
 const rowImageSize = responsiveVal(70, 125)
 const useStyles = makeStyles(
@@ -110,14 +110,13 @@ const useStyles = makeStyles(
       display: 'inline',
     },
   }),
-  { name: 'OrderedItem' },
+  { name: 'OrderItem' },
 )
 
-export default function OrderedItem(props: OrderedItemProps) {
+export default function OrderItem(props: OrderItemProps) {
   const {
     product_url_key,
     selected_options,
-    discounts,
     product_sale_price,
     quantity_ordered,
     product_name,

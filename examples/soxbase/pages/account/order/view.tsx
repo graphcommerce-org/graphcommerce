@@ -8,7 +8,7 @@ import {
 import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
 import { OrderDetailPageDocument } from '@reachdigital/magento-customer/OrderDetailPage/OrderDetailPage.gql'
 import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
-import OrderedItems from '@reachdigital/magento-customer/OrderedItems'
+import OrderItems from '@reachdigital/magento-customer/OrderItems'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -42,7 +42,7 @@ function OrderDetailPage(props: Props) {
       />
       <Container maxWidth='md'>
         <NoSsr>
-          <OrderedItems {...order} loading={loading} images={images} />
+          <OrderItems {...order} loading={loading} images={images} />
           <OrderDetails {...order} loading={loading} countries={countries} />
         </NoSsr>
       </Container>

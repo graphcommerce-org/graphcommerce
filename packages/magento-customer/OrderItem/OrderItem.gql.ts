@@ -4,12 +4,12 @@ import * as Types from '@reachdigital/magento-graphql'
 
 import { MoneyFragment, MoneyFragmentDoc } from '../../magento-store/Money.gql'
 
-export const OrderedItemFragmentDoc: DocumentNode<OrderedItemFragment, unknown> = {
+export const OrderItemFragmentDoc: DocumentNode<OrderItemFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'OrderedItem' },
+      name: { kind: 'Name', value: 'OrderItem' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'OrderItemInterface' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -29,26 +29,6 @@ export const OrderedItemFragmentDoc: DocumentNode<OrderedItemFragment, unknown> 
               ],
             },
           },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'discounts' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'amount' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'Money' } },
-                    ],
-                  },
-                },
-                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-              ],
-            },
-          },
           { kind: 'Field', name: { kind: 'Name', value: 'quantity_ordered' } },
           {
             kind: 'Field',
@@ -64,40 +44,31 @@ export const OrderedItemFragmentDoc: DocumentNode<OrderedItemFragment, unknown> 
     ...MoneyFragmentDoc.definitions,
   ],
 }
-export type OrderedItem_DownloadableOrderItem_Fragment = Pick<
+export type OrderItem_DownloadableOrderItem_Fragment = Pick<
   Types.DownloadableOrderItem,
   'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
 > & {
   selected_options?: Types.Maybe<Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>>
-  discounts?: Types.Maybe<
-    Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
-  >
   product_sale_price: MoneyFragment
 }
 
-export type OrderedItem_BundleOrderItem_Fragment = Pick<
+export type OrderItem_BundleOrderItem_Fragment = Pick<
   Types.BundleOrderItem,
   'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
 > & {
   selected_options?: Types.Maybe<Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>>
-  discounts?: Types.Maybe<
-    Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
-  >
   product_sale_price: MoneyFragment
 }
 
-export type OrderedItem_OrderItem_Fragment = Pick<
+export type OrderItem_OrderItem_Fragment = Pick<
   Types.OrderItem,
   'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
 > & {
   selected_options?: Types.Maybe<Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>>
-  discounts?: Types.Maybe<
-    Array<Types.Maybe<Pick<Types.Discount, 'label'> & { amount: MoneyFragment }>>
-  >
   product_sale_price: MoneyFragment
 }
 
-export type OrderedItemFragment =
-  | OrderedItem_DownloadableOrderItem_Fragment
-  | OrderedItem_BundleOrderItem_Fragment
-  | OrderedItem_OrderItem_Fragment
+export type OrderItemFragment =
+  | OrderItem_DownloadableOrderItem_Fragment
+  | OrderItem_BundleOrderItem_Fragment
+  | OrderItem_OrderItem_Fragment

@@ -3,7 +3,7 @@ query OrderDetailPage($orderNumber: String) {
     orders(filter: { number: { eq: $orderNumber } }) {
       items {
         ...OrderDetails
-        ...OrderedItems
+        ...OrderItems
       }
     }
   }

@@ -3,18 +3,18 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import * as Types from '@reachdigital/magento-graphql'
 
 import {
-  OrderedItem_DownloadableOrderItem_Fragment,
-  OrderedItem_BundleOrderItem_Fragment,
-  OrderedItem_OrderItem_Fragment,
-  OrderedItemFragmentDoc,
-} from '../OrderedItem/OrderedItem.gql'
+  OrderItem_DownloadableOrderItem_Fragment,
+  OrderItem_BundleOrderItem_Fragment,
+  OrderItem_OrderItem_Fragment,
+  OrderItemFragmentDoc,
+} from '../OrderItem/OrderItem.gql'
 
-export const OrderedItemsFragmentDoc: DocumentNode<OrderedItemsFragment, unknown> = {
+export const OrderItemsFragmentDoc: DocumentNode<OrderItemsFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'OrderedItems' },
+      name: { kind: 'Name', value: 'OrderItems' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CustomerOrder' } },
       selectionSet: {
         kind: 'SelectionSet',
@@ -24,24 +24,22 @@ export const OrderedItemsFragmentDoc: DocumentNode<OrderedItemsFragment, unknown
             name: { kind: 'Name', value: 'items' },
             selectionSet: {
               kind: 'SelectionSet',
-              selections: [
-                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'OrderedItem' } },
-              ],
+              selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'OrderItem' } }],
             },
           },
         ],
       },
     },
-    ...OrderedItemFragmentDoc.definitions,
+    ...OrderItemFragmentDoc.definitions,
   ],
 }
-export type OrderedItemsFragment = {
+export type OrderItemsFragment = {
   items?: Types.Maybe<
     Array<
       Types.Maybe<
-        | OrderedItem_DownloadableOrderItem_Fragment
-        | OrderedItem_BundleOrderItem_Fragment
-        | OrderedItem_OrderItem_Fragment
+        | OrderItem_DownloadableOrderItem_Fragment
+        | OrderItem_BundleOrderItem_Fragment
+        | OrderItem_OrderItem_Fragment
       >
     >
   >

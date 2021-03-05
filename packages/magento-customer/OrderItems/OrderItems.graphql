@@ -1,0 +1,5 @@
+fragment OrderItems on CustomerOrder {
+  items {
+    ...OrderItem
+  }
+}
