@@ -34,42 +34,32 @@ function OrderDetailPage(props: Props) {
   })
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
-
   const isLoading = orderId ? loading : true
 
-  if (!order) {
-    return (
-      <OverlayUi title='Orders' variant='bottom' fullHeight>
-        <PageMeta
-          title='Order not found'
-          metaDescription='Order detail page'
-          metaRobots='NOINDEX, FOLLOW'
-        />
-        <Container maxWidth='md'>
-          <NoSsr>
+  return (
+    <OverlayUi title='Orders' variant='bottom' fullHeight>
+      <Container maxWidth='md'>
+        <NoSsr>
+          {!orderId && (
             <IconTitle
               iconSrc='/icons/desktop_checkout_box.svg'
               title='Order not found'
               alt='no order'
               size='large'
             />
-          </NoSsr>
-        </Container>
-      </OverlayUi>
-    )
-  }
+          )}
 
-  return (
-    <OverlayUi title='Orders' variant='bottom' fullHeight>
-      <PageMeta
-        title={`Order Details #${orderId}`}
-        metaDescription={`Order detail page for order #${orderId}`}
-        metaRobots='NOINDEX, FOLLOW'
-      />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <OrderItems {...order} loading={isLoading} images={images} />
-          <OrderDetails {...order} loading={isLoading} countries={countries} />
+          {orderId && (
+            <>
+              <PageMeta
+                title={`Order view #${orderId}`}
+                metaDescription={`Order detail page for order #${orderId}`}
+                metaRobots='NOINDEX, FOLLOW'
+              />
+              <OrderItems {...order} loading={isLoading} images={images} />
+              <OrderDetails {...order} loading={isLoading} countries={countries} />
+            </>
+          )}
         </NoSsr>
       </Container>
     </OverlayUi>
