@@ -81,6 +81,7 @@ export const OrderDetailsFragmentDoc: DocumentNode<OrderDetailsFragment, unknown
                 { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'street' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
               ],
             },
           },
@@ -96,6 +97,7 @@ export const OrderDetailsFragmentDoc: DocumentNode<OrderDetailsFragment, unknown
                 { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'street' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
               ],
             },
           },
@@ -229,13 +231,13 @@ export type OrderDetailsFragment = Pick<Types.CustomerOrder, 'number' | 'order_d
   billing_address?: Types.Maybe<
     Pick<
       Types.OrderAddress,
-      'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code'
+      'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code' | 'region_id'
     >
   >
   shipping_address?: Types.Maybe<
     Pick<
       Types.OrderAddress,
-      'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code'
+      'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code' | 'region_id'
     >
   >
   total?: Types.Maybe<{

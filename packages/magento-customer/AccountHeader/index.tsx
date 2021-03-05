@@ -22,6 +22,9 @@ const useStyles = makeStyles(
     avatar: {
       background: theme.palette.primary.main,
       margin: `0 auto ${theme.spacings.xs} auto`,
+      fontSize: 24,
+      paddingLeft: 1,
+      lineHeight: 'normal',
     },
   }),
   { name: 'AccountHeader' },

@@ -22,7 +22,6 @@ const useStyles = makeStyles(
       justifyContent: 'center',
       paddingTop: theme.spacings.lg,
       paddingBottom: theme.spacings.lg,
-      borderBottom: `1px solid ${theme.palette.divider}`,
       width: '100%',
     },
     orderRow: {
@@ -54,6 +53,7 @@ const useStyles = makeStyles(
       width: '100%',
       boxShadow: 'none',
       marginTop: theme.spacings.xxs,
+      borderBottom: `1px solid ${theme.palette.divider}`,
       '&:hover': {
         background: 'none',
       },

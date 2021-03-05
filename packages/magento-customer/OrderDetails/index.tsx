@@ -3,6 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import { Description } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import { Country, Region } from '@reachdigital/magento-graphql'
 import Money from '@reachdigital/magento-store/Money'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
@@ -76,12 +77,34 @@ export type OrderDetailsProps = Partial<OrderDetailsFragment> & {
   loading?: boolean
 } & CountryRegionsQuery
 
-function countryCodeToName(countries: CountryRegionsQuery['countries'], code: string): string {
-  const country = countries?.filter((c) => c?.two_letter_abbreviation === code)[0]
+function countryCodeToObject(
+  countries: CountryRegionsQuery['countries'],
+  countryCode: string,
+): Country | undefined {
+  const country = countries?.filter((c) => c?.two_letter_abbreviation === countryCode)[0]
 
-  if (!country) return code
+  if (!country) return undefined
 
-  return country.full_name_locale ?? code
+  return country
+}
+
+function regionIdToName(
+  countries: CountryRegionsQuery['countries'],
+  countryCode: string,
+  regionId?: number,
+): Region | undefined {
+  if (!regionId) return undefined
+
+  const country = countryCodeToObject(countries, countryCode)
+
+  if (!country) return undefined
+
+  const region =
+    country.available_regions && country.available_regions.filter((r) => r?.id === regionId)[0]
+
+  if (!region) return undefined
+
+  return region
 }
 
 export default function OrderDetails(props: OrderDetailsProps) {
@@ -243,7 +266,17 @@ export default function OrderDetails(props: OrderDetailsProps) {
             <div>
               {shipping_address?.postcode} {shipping_address?.city}
             </div>
-            <div>{countryCodeToName(countries, shipping_address?.country_code ?? '')}</div>
+            <div>
+              {
+                (regionIdToName(
+                  countries,
+                  shipping_address?.country_code ?? '',
+                  Number(shipping_address?.region_id) ?? undefined,
+                )?.name,
+                countryCodeToObject(countries, shipping_address?.country_code ?? '')
+                  ?.full_name_locale)
+              }
+            </div>
           </div>
         </div>
 
@@ -257,7 +290,17 @@ export default function OrderDetails(props: OrderDetailsProps) {
             <div>
               {billing_address?.postcode} {billing_address?.city}
             </div>
-            <div>{countryCodeToName(countries, billing_address?.country_code ?? '')}</div>
+            <div>
+              {
+                (regionIdToName(
+                  countries,
+                  billing_address?.country_code ?? '',
+                  Number(billing_address?.region_id) ?? undefined,
+                )?.name,
+                countryCodeToObject(countries, billing_address?.country_code ?? '')
+                  ?.full_name_locale)
+              }
+            </div>
           </div>
         </div>
       </div>

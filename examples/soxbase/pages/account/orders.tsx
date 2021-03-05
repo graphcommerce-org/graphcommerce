@@ -10,7 +10,9 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import React from 'react'
 
 function AccountOrdersPage() {
-  const { data } = useQuery(AccountDashboardOrdersDocument)
+  const { data } = useQuery(AccountDashboardOrdersDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
   const customer = data?.customer
 
   return (

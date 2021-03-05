@@ -13,6 +13,7 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
+import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
@@ -28,10 +29,35 @@ function OrderDetailPage(props: Props) {
   const { orderId } = router.query
 
   const { data, loading } = useQuery(OrderDetailPageDocument, {
+    fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
   })
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]
+
+  const isLoading = orderId ? loading : true
+
+  if (!order) {
+    return (
+      <OverlayUi title='Orders' variant='bottom' fullHeight>
+        <PageMeta
+          title='Order not found'
+          metaDescription='Order detail page'
+          metaRobots='NOINDEX, FOLLOW'
+        />
+        <Container maxWidth='md'>
+          <NoSsr>
+            <IconTitle
+              iconSrc='/icons/desktop_checkout_box.svg'
+              title='Order not found'
+              alt='no order'
+              size='large'
+            />
+          </NoSsr>
+        </Container>
+      </OverlayUi>
+    )
+  }
 
   return (
     <OverlayUi title='Orders' variant='bottom' fullHeight>
@@ -42,8 +68,8 @@ function OrderDetailPage(props: Props) {
       />
       <Container maxWidth='md'>
         <NoSsr>
-          <OrderItems {...order} loading={loading} images={images} />
-          <OrderDetails {...order} loading={loading} countries={countries} />
+          <OrderItems {...order} loading={isLoading} images={images} />
+          <OrderDetails {...order} loading={isLoading} countries={countries} />
         </NoSsr>
       </Container>
     </OverlayUi>

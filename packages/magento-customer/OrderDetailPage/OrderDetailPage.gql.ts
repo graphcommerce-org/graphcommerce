@@ -135,6 +135,7 @@ export const OrderDetailPageDocument: DocumentNode<
                                   { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'street' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
                                 ],
                               },
                             },
@@ -150,6 +151,7 @@ export const OrderDetailPageDocument: DocumentNode<
                                   { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'street' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
                                 ],
                               },
                             },
@@ -368,13 +370,25 @@ export type OrderDetailPageQuery = {
             billing_address?: Types.Maybe<
               Pick<
                 Types.OrderAddress,
-                'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code'
+                | 'city'
+                | 'postcode'
+                | 'firstname'
+                | 'lastname'
+                | 'street'
+                | 'country_code'
+                | 'region_id'
               >
             >
             shipping_address?: Types.Maybe<
               Pick<
                 Types.OrderAddress,
-                'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code'
+                | 'city'
+                | 'postcode'
+                | 'firstname'
+                | 'lastname'
+                | 'street'
+                | 'country_code'
+                | 'region_id'
               >
             >
             total?: Types.Maybe<{

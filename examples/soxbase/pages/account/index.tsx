@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
 import AccountHeader from '@reachdigital/magento-customer/AccountHeader'
 import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrder'
@@ -17,7 +17,9 @@ import apolloClient from '../../lib/apolloClient'
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 function AccountIndexPage() {
-  const { data, loading } = useQuery(AccountDashboardDocument)
+  const { data, loading } = useQuery(AccountDashboardDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
   const customer = data?.customer
 
   return (

@@ -32,19 +32,6 @@ export default function AccountMenu(props: AccountMenuProps) {
   const { loading } = props
   const classes = useStyles()
 
-  if (loading) {
-    const totalAccountMenuItems = 5
-    const dummyArray = [...Array(totalAccountMenuItems)]
-
-    return (
-      <div className={classes.accountMenuContainer}>
-        {dummyArray.map((item, i) => (
-          <Skeleton key={i} variant='text' height={60} />
-        ))}
-      </div>
-    )
-  }
-
   return (
     <div className={classes.accountMenuContainer}>
       <AccountMenuItem href='/account/orders' startIconSrc={ordersIcon}>
@@ -65,7 +52,12 @@ export default function AccountMenu(props: AccountMenuProps) {
 
       <SignOutForm
         button={({ formState }) => (
-          <AccountMenuItem startIconSrc={lockIcon} loading={formState.isSubmitting} type='submit'>
+          <AccountMenuItem
+            startIconSrc={lockIcon}
+            loading={formState.isSubmitting}
+            type='submit'
+            disabled={loading}
+          >
             Sign out
           </AccountMenuItem>
         )}

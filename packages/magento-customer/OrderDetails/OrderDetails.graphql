@@ -26,6 +26,7 @@ fragment OrderDetails on CustomerOrder {
     lastname
     street
     country_code
+    region_id
   }
   shipping_address {
     city
@@ -34,6 +35,7 @@ fragment OrderDetails on CustomerOrder {
     lastname
     street
     country_code
+    region_id
   }
   total {
     subtotal {
