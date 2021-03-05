@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next-sitemap",
     "start": "next start"
   },
   "sideEffects": false,
@@ -51,6 +51,7 @@
     "next": "10.0.7",
     "next-images": "^1.7.0",
     "next-pwa": "^5.0.4",
+    "next-sitemap": "^1.5.10",
     "next-transpile-modules": "https://github.com/martpie/next-transpile-modules.git#symlink-resolution",
     "node-fetch": "^2.6.1",
     "postinstall-postinstall": "^2.1.0",
