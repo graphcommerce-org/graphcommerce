@@ -11,7 +11,6 @@ const useStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       color: theme.palette.primary.main,
-      justifyContent: 'center',
     },
   }),
   { name: 'OrderCard' },

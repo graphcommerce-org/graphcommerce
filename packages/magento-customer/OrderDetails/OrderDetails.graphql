@@ -1,0 +1,71 @@
+fragment OrderDetails on CustomerOrder {
+  number
+  order_date
+  invoices {
+    id
+    number
+  }
+  shipments {
+    id
+    tracking {
+      title
+      carrier
+      number
+    }
+  }
+  payment_methods {
+    additional_data {
+      name
+      value
+    }
+  }
+  billing_address {
+    city
+    postcode
+    firstname
+    lastname
+    street
+    country_code
+  }
+  shipping_address {
+    city
+    postcode
+    firstname
+    lastname
+    street
+    country_code
+  }
+  total {
+    subtotal {
+      ...Money
+    }
+    total_shipping {
+      ...Money
+    }
+    # todo
+    # shipping_handling {}
+    discounts {
+      amount {
+        ...Money
+      }
+      label
+    }
+    grand_total {
+      ...Money
+    }
+
+    total_tax {
+      ...Money
+    }
+    taxes {
+      amount {
+        ...Money
+      }
+      rate
+      title
+    }
+    total_shipping {
+      ...Money
+    }
+  }
+}

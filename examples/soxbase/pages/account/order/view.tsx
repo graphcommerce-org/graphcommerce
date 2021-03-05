@@ -1,58 +1,37 @@
 import { useQuery } from '@apollo/client'
-import { Button, Container, Link, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import {
+  CountryRegionsDocument,
+  CountryRegionsQuery,
+} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
 import { OrderDetailPageDocument } from '@reachdigital/magento-customer/OrderDetailPage/OrderDetailPage.gql'
-import OrderedItem from '@reachdigital/magento-customer/OrderedItem'
+import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
+import OrderedItems from '@reachdigital/magento-customer/OrderedItems'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import clsx from 'clsx'
-import { AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React from 'react'
+import apolloClient from '../../../lib/apolloClient'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    sectionContainer: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
-    },
-    orderedItemsInnerContainer: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    viewAllButton: {
-      margin: `${theme.spacings.xs} auto 0 auto`,
-      textAlign: 'center',
-      '& a': {
-        padding: 8,
-      },
-    },
-  }),
-  {
-    name: 'OrderDetailPage',
-  },
-)
+type Props = CountryRegionsQuery
+type GetPageStaticProps = GetStaticProps<Props>
 
-const OrderDetailPage = () => {
+function OrderDetailPage(props: Props) {
+  const { countries } = props
   const router = useRouter()
   const { orderId } = router.query
-  const classes = useStyles()
 
   const { data, loading } = useQuery(OrderDetailPageDocument, {
-    variables: {
-      orderNumber: orderId as string,
-    },
+    variables: { orderNumber: orderId as string },
   })
-
-  const orders = data?.customer?.orders
-  const order = orders?.items?.[0]
-  const maxItemsAboveFold = 4
-
-  const orderedItemsImages = useOrderCardItemImages(orders)
-  const [collapseOrderedItems, setCollapseOrderedItems] = useState<boolean>(true)
+  const images = useOrderCardItemImages(data?.customer?.orders)
+  const order = data?.customer?.orders?.items?.[0]
 
   return (
     <OverlayUi title='Orders' variant='bottom' fullHeight>
@@ -63,56 +42,8 @@ const OrderDetailPage = () => {
       />
       <Container maxWidth='md'>
         <NoSsr>
-          {loading && 'Loading'}
-
-          <SectionContainer
-            label='Ordered items'
-            /* endLabel='SHIPPED'*/ className={classes.sectionContainer}
-          >
-            <div className={classes.orderedItemsInnerContainer}>
-              <AnimatePresence initial={false}>
-                {order?.items?.slice(0, maxItemsAboveFold).map((orderedItem) => (
-                  <AnimatedRow key={`orderedItem-${orderedItem?.product_sku}`}>
-                    {orderedItem && (
-                      <OrderedItem
-                        {...orderedItem}
-                        {...orderedItemsImages[orderedItem?.product_url_key ?? '']}
-                      />
-                    )}
-                  </AnimatedRow>
-                ))}
-
-                {!collapseOrderedItems &&
-                  order?.items
-                    ?.slice(maxItemsAboveFold, order?.items?.length)
-                    .map((orderedItem) => (
-                      <AnimatedRow key={`orderedItem-${orderedItem?.product_sku}`}>
-                        {orderedItem && (
-                          <OrderedItem
-                            {...orderedItem}
-                            {...orderedItemsImages[orderedItem?.product_url_key ?? '']}
-                          />
-                        )}
-                      </AnimatedRow>
-                    ))}
-              </AnimatePresence>
-            </div>
-
-            {order?.items && maxItemsAboveFold < order?.items?.length && (
-              <div className={classes.viewAllButton}>
-                <Link
-                  href='#'
-                  color='primary'
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setCollapseOrderedItems(!collapseOrderedItems)
-                  }}
-                >
-                  View all items
-                </Link>
-              </div>
-            )}
-          </SectionContainer>
+          <OrderedItems {...order} loading={loading} images={images} />
+          <OrderDetails {...order} loading={loading} countries={countries} />
         </NoSsr>
       </Container>
     </OverlayUi>
@@ -121,6 +52,24 @@ const OrderDetailPage = () => {
 
 OrderDetailPage.Layout = PageLayout
 
-registerRouteUi('/account/order', OverlayUi)
+registerRouteUi('/account/order/view', OverlayUi)
 
 export default OrderDetailPage
+
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
+  const config = client.query({ query: StoreConfigDocument })
+
+  const countryRegions = staticClient.query({
+    query: CountryRegionsDocument,
+  })
+
+  await config
+  return {
+    props: {
+      ...(await countryRegions).data,
+      apolloState: client.cache.extract(),
+    },
+  }
+}

@@ -14,6 +14,7 @@ export const OrderedItemFragmentDoc: DocumentNode<OrderedItemFragment, unknown> 
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
           { kind: 'Field', name: { kind: 'Name', value: 'product_url_key' } },
           { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
@@ -65,7 +66,7 @@ export const OrderedItemFragmentDoc: DocumentNode<OrderedItemFragment, unknown> 
 }
 export type OrderedItem_DownloadableOrderItem_Fragment = Pick<
   Types.DownloadableOrderItem,
-  'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
+  'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
 > & {
   selected_options?: Types.Maybe<Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>>
   discounts?: Types.Maybe<
@@ -76,7 +77,7 @@ export type OrderedItem_DownloadableOrderItem_Fragment = Pick<
 
 export type OrderedItem_BundleOrderItem_Fragment = Pick<
   Types.BundleOrderItem,
-  'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
+  'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
 > & {
   selected_options?: Types.Maybe<Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>>
   discounts?: Types.Maybe<
@@ -87,7 +88,7 @@ export type OrderedItem_BundleOrderItem_Fragment = Pick<
 
 export type OrderedItem_OrderItem_Fragment = Pick<
   Types.OrderItem,
-  'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
+  'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
 > & {
   selected_options?: Types.Maybe<Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>>
   discounts?: Types.Maybe<

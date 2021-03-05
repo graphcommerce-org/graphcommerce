@@ -69,24 +69,87 @@ export const OrderDetailPageDocument: DocumentNode<
                           kind: 'SelectionSet',
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'number' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'order_date' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'invoices' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'number' } },
+                                ],
+                              },
+                            },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'shipments' },
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'tracking' },
                                     selectionSet: {
                                       kind: 'SelectionSet',
                                       selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                                         { kind: 'Field', name: { kind: 'Name', value: 'carrier' } },
                                         { kind: 'Field', name: { kind: 'Name', value: 'number' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                                       ],
                                     },
                                   },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'payment_methods' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'additional_data' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'billing_address' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'street' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'shipping_address' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'street' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
                                 ],
                               },
                             },
@@ -96,6 +159,61 @@ export const OrderDetailPageDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'subtotal' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'total_shipping' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'discounts' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'amount' },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'currency' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'value' },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                      ],
+                                    },
+                                  },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'grand_total' },
@@ -110,6 +228,48 @@ export const OrderDetailPageDocument: DocumentNode<
                                       ],
                                     },
                                   },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'total_tax' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'currency' },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'taxes' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'amount' },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'currency' },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: { kind: 'Name', value: 'value' },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'rate' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                                      ],
+                                    },
+                                  },
                                 ],
                               },
                             },
@@ -119,34 +279,11 @@ export const OrderDetailPageDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'product_url_key' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_ordered' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_shipped' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_canceled' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_invoiced' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_refunded' },
-                                  },
-                                  {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'quantity_returned' },
                                   },
                                   { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
                                   {
@@ -189,6 +326,10 @@ export const OrderDetailPageDocument: DocumentNode<
                                   },
                                   {
                                     kind: 'Field',
+                                    name: { kind: 'Name', value: 'quantity_ordered' },
+                                  },
+                                  {
+                                    kind: 'Field',
                                     name: { kind: 'Name', value: 'product_sale_price' },
                                     selectionSet: {
                                       kind: 'SelectionSet',
@@ -204,7 +345,6 @@ export const OrderDetailPageDocument: DocumentNode<
                                 ],
                               },
                             },
-                            { kind: 'Field', name: { kind: 'Name', value: 'order_date' } },
                           ],
                         },
                       },
@@ -229,30 +369,71 @@ export type OrderDetailPageQuery = {
       items: Array<
         Types.Maybe<
           Pick<Types.CustomerOrder, 'number' | 'order_date'> & {
+            invoices: Array<Types.Maybe<Pick<Types.Invoice, 'id' | 'number'>>>
             shipments?: Types.Maybe<
               Array<
+                Types.Maybe<
+                  Pick<Types.OrderShipment, 'id'> & {
+                    tracking?: Types.Maybe<
+                      Array<
+                        Types.Maybe<Pick<Types.ShipmentTracking, 'title' | 'carrier' | 'number'>>
+                      >
+                    >
+                  }
+                >
+              >
+            >
+            payment_methods?: Types.Maybe<
+              Array<
                 Types.Maybe<{
-                  tracking?: Types.Maybe<
-                    Array<Types.Maybe<Pick<Types.ShipmentTracking, 'carrier' | 'number' | 'title'>>>
+                  additional_data?: Types.Maybe<
+                    Array<Types.Maybe<Pick<Types.KeyValue, 'name' | 'value'>>>
                   >
                 }>
               >
             >
-            total?: Types.Maybe<{ grand_total: Pick<Types.Money, 'currency' | 'value'> }>
+            billing_address?: Types.Maybe<
+              Pick<
+                Types.OrderAddress,
+                'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code'
+              >
+            >
+            shipping_address?: Types.Maybe<
+              Pick<
+                Types.OrderAddress,
+                'city' | 'postcode' | 'firstname' | 'lastname' | 'street' | 'country_code'
+              >
+            >
+            total?: Types.Maybe<{
+              subtotal: Pick<Types.Money, 'currency' | 'value'>
+              total_shipping: Pick<Types.Money, 'currency' | 'value'>
+              discounts?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<Types.Discount, 'label'> & {
+                      amount: Pick<Types.Money, 'currency' | 'value'>
+                    }
+                  >
+                >
+              >
+              grand_total: Pick<Types.Money, 'currency' | 'value'>
+              total_tax: Pick<Types.Money, 'currency' | 'value'>
+              taxes?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<Types.TaxItem, 'rate' | 'title'> & {
+                      amount: Pick<Types.Money, 'currency' | 'value'>
+                    }
+                  >
+                >
+              >
+            }>
             items?: Types.Maybe<
               Array<
                 Types.Maybe<
                   | (Pick<
                       Types.DownloadableOrderItem,
-                      | 'product_sku'
-                      | 'product_url_key'
-                      | 'quantity_ordered'
-                      | 'quantity_shipped'
-                      | 'quantity_canceled'
-                      | 'quantity_invoiced'
-                      | 'quantity_refunded'
-                      | 'quantity_returned'
-                      | 'product_name'
+                      'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
                     > & {
                       selected_options?: Types.Maybe<
                         Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>
@@ -270,15 +451,7 @@ export type OrderDetailPageQuery = {
                     })
                   | (Pick<
                       Types.BundleOrderItem,
-                      | 'product_sku'
-                      | 'product_url_key'
-                      | 'quantity_ordered'
-                      | 'quantity_shipped'
-                      | 'quantity_canceled'
-                      | 'quantity_invoiced'
-                      | 'quantity_refunded'
-                      | 'quantity_returned'
-                      | 'product_name'
+                      'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
                     > & {
                       selected_options?: Types.Maybe<
                         Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>
@@ -296,15 +469,7 @@ export type OrderDetailPageQuery = {
                     })
                   | (Pick<
                       Types.OrderItem,
-                      | 'product_sku'
-                      | 'product_url_key'
-                      | 'quantity_ordered'
-                      | 'quantity_shipped'
-                      | 'quantity_canceled'
-                      | 'quantity_invoiced'
-                      | 'quantity_refunded'
-                      | 'quantity_returned'
-                      | 'product_name'
+                      'id' | 'product_sku' | 'product_url_key' | 'product_name' | 'quantity_ordered'
                     > & {
                       selected_options?: Types.Maybe<
                         Array<Types.Maybe<Pick<Types.OrderItemOption, 'label' | 'value'>>>

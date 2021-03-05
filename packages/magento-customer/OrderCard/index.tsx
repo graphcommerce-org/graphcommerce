@@ -58,6 +58,9 @@ const useStyles = makeStyles(
         background: 'none',
       },
     },
+    tracking: {
+      textAlign: 'center',
+    },
   }),
   { name: 'OrderCard' },
 )
@@ -149,7 +152,7 @@ export default function OrderCard(props: OrderCardProps) {
               )}
             </div>
           </div>
-          <div className={classes.orderRow}>
+          <div className={clsx(classes.orderRow, classes.tracking)}>
             {shipments?.[0]?.tracking?.[0] && <TrackingLink {...shipments?.[0].tracking?.[0]} />}
           </div>
         </div>

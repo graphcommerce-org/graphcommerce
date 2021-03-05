@@ -126,12 +126,6 @@ export default function OrderedItem(props: OrderedItemProps) {
   const classes = useStyles()
   const productLink = `/product/${product_url_key}`
 
-  const totalDiscountAmount =
-    (discounts?.length &&
-      discounts?.map((discount) => discount?.amount.value).reduce((a, b) => (a ?? 0) + (b ?? 0))) ||
-    0
-  const discountAmountPerItem = (totalDiscountAmount ?? 0) / (quantity_ordered ?? 0)
-
   return (
     <div className={classes.root}>
       <div className={classes.picture}>
@@ -158,24 +152,7 @@ export default function OrderedItem(props: OrderedItemProps) {
       </PageLink>
 
       <div className={classes.itemPrice}>
-        <div>
-          {discounts?.map((discount) => (
-            <div key={discount?.label ?? ''}>
-              {discount?.label}
-              (
-              <Money
-                currency={discount?.amount.currency}
-                value={(discount?.amount.value ?? 0) * -1}
-              />
-              )
-            </div>
-          ))}
-        </div>
-
-        {/* <Money
-          value={(product_sale_price?.value ?? 0) - (totalDiscountAmount ?? 0)}
-          currency={product_sale_price.currency}
-        /> */}
+        <Money {...product_sale_price} />
       </div>
 
       <div className={classes.quantity}>{`${quantity_ordered}x`}</div>
@@ -183,9 +160,7 @@ export default function OrderedItem(props: OrderedItemProps) {
       <div className={classes.rowPrice}>
         <Money
           currency={product_sale_price.currency}
-          value={
-            (product_sale_price.value ?? 0) * (quantity_ordered ?? 1) - (totalDiscountAmount ?? 0)
-          }
+          value={(product_sale_price.value ?? 0) * (quantity_ordered ?? 1)}
         />
       </div>
 
