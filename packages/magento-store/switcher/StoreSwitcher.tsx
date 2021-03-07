@@ -7,6 +7,7 @@ import {
   ListItemText,
   makeStyles,
   Theme,
+  Avatar,
 } from '@material-ui/core'
 import * as Types from '@reachdigital/magento-graphql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -15,7 +16,6 @@ import React, { useMemo } from 'react'
 import localeToStore, { storeToLocale } from '../localeToStore'
 import { CountryLocaleFragment } from './CountryLocale.gql'
 import { StoreLocaleFragment } from './StoreLocale.gql'
-import countryToFlag from './countryToFlag'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -34,6 +34,14 @@ const useStyles = makeStyles(
     storeChip: {
       fontSize: 'small',
       pointerEvents: 'none',
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+      display: 'inline-block',
+      marginRight: theme.spacing(1),
+      position: 'relative',
+      top: '6px',
     },
   }),
   { name: 'StoreSwitcher' },
@@ -82,36 +90,32 @@ export default function StoreSwitcher(props: StoreSwitcherBaseProps) {
     <List className={classes.list}>
       {groupedStores.map(([code, group]) => (
         <React.Fragment key={code}>
-          <>
-            <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.groupIcon}>
-                {countryToFlag(group.country.two_letter_abbreviation ?? '')}
-              </ListItemIcon>
-              <ListItemText className={classes.groupText}>
-                {group.country.full_name_locale}
-              </ListItemText>
-            </ListItem>
-            {group.languages.map((store) => (
-              <PageLink href='/switch-stores' locale={storeToLocale(store.code)} key={store.code}>
-                <ListItem
-                  component={Link}
-                  selected={localeToStore(locale) === store.code}
-                  color='inherit'
-                  underline='none'
-                  className={classes.listItem}
-                >
-                  <ListItemText className={classes.storeText}>
-                    {store.store_name}{' '}
-                    <Chip
-                      size='small'
-                      label={store.base_currency_code}
-                      className={classes.storeChip}
+          {group.languages.map((store) => (
+            <PageLink href='/switch-stores' locale={storeToLocale(store.code)} key={store.code}>
+              <ListItem
+                component={Link}
+                selected={localeToStore(locale) === store.code}
+                color='inherit'
+                underline='none'
+                className={classes.listItem}
+              >
+                <ListItemText className={classes.storeText}>
+                  <ListItemIcon className={classes.groupIcon}>
+                    <Avatar
+                      className={classes.small}
+                      alt={group.country.two_letter_abbreviation}
+                      src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${
+                        store.code ??
+                        fallbackCountry.two_letter_abbreviation ??
+                        store.locale?.substring(3, 5).toLowerCase()
+                      }.svg`}
                     />
-                  </ListItemText>
-                </ListItem>
-              </PageLink>
-            ))}
-          </>
+                  </ListItemIcon>
+                  {store.store_name}
+                </ListItemText>
+              </ListItem>
+            </PageLink>
+          ))}
         </React.Fragment>
       ))}
     </List>
