@@ -97,9 +97,9 @@ export type QueryCartArgs = {
 }
 
 export type QueryCategoriesArgs = {
+  currentPage?: Maybe<Scalars['Int']>
   filters?: Maybe<CategoryFilterInput>
   pageSize?: Maybe<Scalars['Int']>
-  currentPage?: Maybe<Scalars['Int']>
 }
 
 export type QueryCategoryArgs = {
@@ -145,18 +145,18 @@ export type QueryIsEmailAvailableArgs = {
 
 export type QueryPickupLocationsArgs = {
   area?: Maybe<AreaInput>
-  filters?: Maybe<PickupLocationFilterInput>
-  sort?: Maybe<PickupLocationSortInput>
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  filters?: Maybe<PickupLocationFilterInput>
+  pageSize?: Maybe<Scalars['Int']>
   productsInfo?: Maybe<Array<Maybe<ProductInfoInput>>>
+  sort?: Maybe<PickupLocationSortInput>
 }
 
 export type QueryProductsArgs = {
-  search?: Maybe<Scalars['String']>
+  currentPage?: Maybe<Scalars['Int']>
   filter?: Maybe<ProductAttributeFilterInput>
   pageSize?: Maybe<Scalars['Int']>
-  currentPage?: Maybe<Scalars['Int']>
+  search?: Maybe<Scalars['String']>
   sort?: Maybe<ProductAttributeSortInput>
 }
 
@@ -352,17 +352,6 @@ export type StoreConfig = {
 /** This enumeration display settings for the fixed product tax */
 export type FixedProductTaxDisplaySettings =
   /**
-   * The displayed price includes the FPT amount without displaying the
-   * ProductPrice.fixed_product_taxes values. This value corresponds to 'Including FPT only'
-   */
-  | 'INCLUDE_FPT_WITHOUT_DETAILS'
-  /**
-   * The displayed price includes the FPT amount while displaying the values of
-   * ProductPrice.fixed_product_taxes separately. This value corresponds to 'Including FPT and FPT
-   * description'
-   */
-  | 'INCLUDE_FPT_WITH_DETAILS'
-  /**
    * The displayed price does not include the FPT amount. The values of
    * ProductPrice.fixed_product_taxes and the price including the FPT are displayed separately. This
    * value corresponds to 'Excluding FPT, Including FPT description and final price'
@@ -375,6 +364,17 @@ export type FixedProductTaxDisplaySettings =
   | 'EXCLUDE_FPT_WITHOUT_DETAILS'
   /** The FPT feature is not enabled. You can omit ProductPrice.fixed_product_taxes from your query */
   | 'FPT_DISABLED'
+  /**
+   * The displayed price includes the FPT amount without displaying the
+   * ProductPrice.fixed_product_taxes values. This value corresponds to 'Including FPT only'
+   */
+  | 'INCLUDE_FPT_WITHOUT_DETAILS'
+  /**
+   * The displayed price includes the FPT amount while displaying the values of
+   * ProductPrice.fixed_product_taxes separately. This value corresponds to 'Including FPT and FPT
+   * description'
+   */
+  | 'INCLUDE_FPT_WITH_DETAILS'
 
 export type SendFriendConfiguration = {
   __typename?: 'SendFriendConfiguration'
@@ -518,176 +518,176 @@ export type Money = {
 
 /** The list of available currency codes */
 export type CurrencyEnum =
+  | 'AED'
   | 'AFN'
   | 'ALL'
-  | 'AZN'
-  | 'DZD'
+  | 'AMD'
+  | 'ANG'
   | 'AOA'
   | 'ARS'
-  | 'AMD'
-  | 'AWG'
   | 'AUD'
-  | 'BSD'
-  | 'BHD'
-  | 'BDT'
+  | 'AWG'
+  | 'AZM'
+  | 'AZN'
+  | 'BAM'
   | 'BBD'
+  | 'BDT'
+  | 'BGN'
+  | 'BHD'
+  | 'BIF'
+  | 'BMD'
+  | 'BND'
+  | 'BOB'
+  | 'BRL'
+  | 'BSD'
+  | 'BTN'
+  | 'BUK'
+  | 'BWP'
   | 'BYN'
   | 'BZD'
-  | 'BMD'
-  | 'BTN'
-  | 'BOB'
-  | 'BAM'
-  | 'BWP'
-  | 'BRL'
-  | 'GBP'
-  | 'BND'
-  | 'BGN'
-  | 'BUK'
-  | 'BIF'
-  | 'KHR'
   | 'CAD'
-  | 'CVE'
-  | 'CZK'
-  | 'KYD'
-  | 'GQE'
+  | 'CDF'
+  | 'CHE'
+  | 'CHF'
+  | 'CHW'
   | 'CLP'
   | 'CNY'
   | 'COP'
-  | 'KMF'
-  | 'CDF'
   | 'CRC'
-  | 'HRK'
   | 'CUP'
-  | 'DKK'
+  | 'CVE'
+  | 'CZK'
   | 'DJF'
+  | 'DKK'
   | 'DOP'
-  | 'XCD'
-  | 'EGP'
-  | 'SVC'
-  | 'ERN'
+  | 'DZD'
   | 'EEK'
+  | 'EGP'
+  | 'ERN'
   | 'ETB'
   | 'EUR'
-  | 'FKP'
   | 'FJD'
-  | 'GMD'
+  | 'FKP'
+  | 'GBP'
   | 'GEK'
   | 'GEL'
   | 'GHS'
   | 'GIP'
-  | 'GTQ'
+  | 'GMD'
   | 'GNF'
+  | 'GQE'
+  | 'GTQ'
   | 'GYD'
-  | 'HTG'
-  | 'HNL'
   | 'HKD'
+  | 'HNL'
+  | 'HRK'
+  | 'HTG'
   | 'HUF'
-  | 'ISK'
-  | 'INR'
   | 'IDR'
-  | 'IRR'
-  | 'IQD'
   | 'ILS'
+  | 'INR'
+  | 'IQD'
+  | 'IRR'
+  | 'ISK'
   | 'JMD'
-  | 'JPY'
   | 'JOD'
-  | 'KZT'
+  | 'JPY'
   | 'KES'
-  | 'KWD'
   | 'KGS'
+  | 'KHR'
+  | 'KMF'
+  | 'KPW'
+  | 'KRW'
+  | 'KWD'
+  | 'KYD'
+  | 'KZT'
   | 'LAK'
-  | 'LVL'
   | 'LBP'
-  | 'LSL'
+  | 'LKR'
   | 'LRD'
-  | 'LYD'
-  | 'LTL'
-  | 'MOP'
-  | 'MKD'
-  | 'MGA'
-  | 'MWK'
-  | 'MYR'
-  | 'MVR'
+  | 'LSL'
   | 'LSM'
+  | 'LTL'
+  | 'LVL'
+  | 'LYD'
+  | 'MAD'
+  | 'MDL'
+  | 'MGA'
+  | 'MKD'
+  | 'MMK'
+  | 'MNT'
+  | 'MOP'
   | 'MRO'
   | 'MUR'
+  | 'MVR'
+  | 'MWK'
   | 'MXN'
-  | 'MDL'
-  | 'MNT'
-  | 'MAD'
+  | 'MYR'
   | 'MZN'
-  | 'MMK'
   | 'NAD'
-  | 'NPR'
-  | 'ANG'
-  | 'YTL'
-  | 'NZD'
-  | 'NIC'
   | 'NGN'
-  | 'KPW'
+  | 'NIC'
   | 'NOK'
+  | 'NPR'
+  | 'NZD'
   | 'OMR'
-  | 'PKR'
   | 'PAB'
-  | 'PGK'
-  | 'PYG'
   | 'PEN'
+  | 'PGK'
   | 'PHP'
+  | 'PKR'
   | 'PLN'
+  | 'PYG'
   | 'QAR'
   | 'RHD'
+  | 'ROL'
   | 'RON'
+  | 'RSD'
   | 'RUB'
   | 'RWF'
-  | 'SHP'
-  | 'STD'
   | 'SAR'
-  | 'RSD'
-  | 'SCR'
-  | 'SLL'
-  | 'SGD'
-  | 'SKK'
   | 'SBD'
-  | 'SOS'
-  | 'ZAR'
-  | 'KRW'
-  | 'LKR'
+  | 'SCR'
   | 'SDG'
-  | 'SRD'
-  | 'SZL'
   | 'SEK'
-  | 'CHF'
+  | 'SGD'
+  | 'SHP'
+  | 'SKK'
+  | 'SLL'
+  | 'SOS'
+  | 'SRD'
+  | 'STD'
+  | 'SVC'
   | 'SYP'
-  | 'TWD'
-  | 'TJS'
-  | 'TZS'
+  | 'SZL'
   | 'THB'
-  | 'TOP'
-  | 'TTD'
-  | 'TND'
+  | 'TJS'
   | 'TMM'
-  | 'USD'
-  | 'UGX'
+  | 'TND'
+  | 'TOP'
+  | 'TRL'
+  | 'TRY'
+  | 'TTD'
+  | 'TWD'
+  | 'TZS'
   | 'UAH'
-  | 'AED'
+  | 'UGX'
+  | 'USD'
   | 'UYU'
   | 'UZS'
-  | 'VUV'
   | 'VEB'
   | 'VEF'
   | 'VND'
-  | 'CHE'
-  | 'CHW'
-  | 'XOF'
+  | 'VUV'
   | 'WST'
+  | 'XCD'
+  | 'XOF'
+  | 'XPF'
   | 'YER'
+  | 'YTL'
+  | 'ZAR'
   | 'ZMK'
   | 'ZWD'
-  | 'TRY'
-  | 'AZM'
-  | 'ROL'
-  | 'TRL'
-  | 'XPF'
 
 /**
  * The ProductInterface contains attributes that are common to all types of products. Note that
@@ -875,8 +875,8 @@ export type ProductInterface = {
  * descriptions may not be available for custom and EAV attributes.
  */
 export type ProductInterfaceReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /** CategoryInterface contains the full set of attributes that can be returned in a category search. */
@@ -953,8 +953,8 @@ export type CategoryInterface = {
 
 /** CategoryInterface contains the full set of attributes that can be returned in a category search. */
 export type CategoryInterfaceProductsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
   sort?: Maybe<ProductAttributeSortInput>
 }
 
@@ -1207,7 +1207,7 @@ export type PriceAdjustmentCodesEnum = 'TAX' | 'WEEE' | 'WEEE_TAX'
  * PriceAdjustmentDescriptionEnum is deprecated. This enumeration states whether a price adjustment
  * is included or excluded.
  */
-export type PriceAdjustmentDescriptionEnum = 'INCLUDED' | 'EXCLUDED'
+export type PriceAdjustmentDescriptionEnum = 'EXCLUDED' | 'INCLUDED'
 
 /**
  * Price range for a product. If the product has a single price, the minimum and maximum price will
@@ -1643,8 +1643,8 @@ export type CategoryTree = CategoryInterface & {
 
 /** Category Tree implementation. */
 export type CategoryTreeProductsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
   sort?: Maybe<ProductAttributeSortInput>
 }
 
@@ -1885,15 +1885,15 @@ export type Customer = {
 
 /** Customer defines the customer name and address and other details */
 export type CustomerOrdersArgs = {
-  filter?: Maybe<CustomerOrdersFilterInput>
   currentPage?: Maybe<Scalars['Int']>
+  filter?: Maybe<CustomerOrdersFilterInput>
   pageSize?: Maybe<Scalars['Int']>
 }
 
 /** Customer defines the customer name and address and other details */
 export type CustomerReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /** Customer defines the customer name and address and other details */
@@ -1903,8 +1903,8 @@ export type CustomerWishlist_V2Args = {
 
 /** Customer defines the customer name and address and other details */
 export type CustomerWishlistsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /** CustomerAddress contains detailed information about a customer's billing and shipping addresses */
@@ -1967,492 +1967,492 @@ export type CustomerAddress = {
 
 /** The list of countries codes */
 export type CountryCodeEnum =
-  /** Afghanistan */
-  | 'AF'
-  /** Åland Islands */
-  | 'AX'
-  /** Albania */
-  | 'AL'
-  /** Algeria */
-  | 'DZ'
-  /** American Samoa */
-  | 'AS'
   /** Andorra */
   | 'AD'
-  /** Angola */
-  | 'AO'
-  /** Anguilla */
-  | 'AI'
-  /** Antarctica */
-  | 'AQ'
+  /** United Arab Emirates */
+  | 'AE'
+  /** Afghanistan */
+  | 'AF'
   /** Antigua & Barbuda */
   | 'AG'
-  /** Argentina */
-  | 'AR'
+  /** Anguilla */
+  | 'AI'
+  /** Albania */
+  | 'AL'
   /** Armenia */
   | 'AM'
-  /** Aruba */
-  | 'AW'
-  /** Australia */
-  | 'AU'
+  /** Netherlands Antilles */
+  | 'AN'
+  /** Angola */
+  | 'AO'
+  /** Antarctica */
+  | 'AQ'
+  /** Argentina */
+  | 'AR'
+  /** American Samoa */
+  | 'AS'
   /** Austria */
   | 'AT'
+  /** Australia */
+  | 'AU'
+  /** Aruba */
+  | 'AW'
+  /** Åland Islands */
+  | 'AX'
   /** Azerbaijan */
   | 'AZ'
-  /** Bahamas */
-  | 'BS'
-  /** Bahrain */
-  | 'BH'
-  /** Bangladesh */
-  | 'BD'
-  /** Barbados */
-  | 'BB'
-  /** Belarus */
-  | 'BY'
-  /** Belgium */
-  | 'BE'
-  /** Belize */
-  | 'BZ'
-  /** Benin */
-  | 'BJ'
-  /** Bermuda */
-  | 'BM'
-  /** Bhutan */
-  | 'BT'
-  /** Bolivia */
-  | 'BO'
   /** Bosnia & Herzegovina */
   | 'BA'
-  /** Botswana */
-  | 'BW'
-  /** Bouvet Island */
-  | 'BV'
-  /** Brazil */
-  | 'BR'
-  /** British Indian Ocean Territory */
-  | 'IO'
-  /** British Virgin Islands */
-  | 'VG'
-  /** Brunei */
-  | 'BN'
-  /** Bulgaria */
-  | 'BG'
+  /** Barbados */
+  | 'BB'
+  /** Bangladesh */
+  | 'BD'
+  /** Belgium */
+  | 'BE'
   /** Burkina Faso */
   | 'BF'
+  /** Bulgaria */
+  | 'BG'
+  /** Bahrain */
+  | 'BH'
   /** Burundi */
   | 'BI'
-  /** Cambodia */
-  | 'KH'
-  /** Cameroon */
-  | 'CM'
+  /** Benin */
+  | 'BJ'
+  /** St. Barthélemy */
+  | 'BL'
+  /** Bermuda */
+  | 'BM'
+  /** Brunei */
+  | 'BN'
+  /** Bolivia */
+  | 'BO'
+  /** Brazil */
+  | 'BR'
+  /** Bahamas */
+  | 'BS'
+  /** Bhutan */
+  | 'BT'
+  /** Bouvet Island */
+  | 'BV'
+  /** Botswana */
+  | 'BW'
+  /** Belarus */
+  | 'BY'
+  /** Belize */
+  | 'BZ'
   /** Canada */
   | 'CA'
-  /** Cape Verde */
-  | 'CV'
-  /** Cayman Islands */
-  | 'KY'
-  /** Central African Republic */
-  | 'CF'
-  /** Chad */
-  | 'TD'
-  /** Chile */
-  | 'CL'
-  /** China */
-  | 'CN'
-  /** Christmas Island */
-  | 'CX'
   /** Cocos (Keeling) Islands */
   | 'CC'
-  /** Colombia */
-  | 'CO'
-  /** Comoros */
-  | 'KM'
-  /** Congo-Brazzaville */
-  | 'CG'
   /** Congo-Kinshasa */
   | 'CD'
-  /** Cook Islands */
-  | 'CK'
-  /** Costa Rica */
-  | 'CR'
+  /** Central African Republic */
+  | 'CF'
+  /** Congo-Brazzaville */
+  | 'CG'
+  /** Switzerland */
+  | 'CH'
   /** Côte d’Ivoire */
   | 'CI'
-  /** Croatia */
-  | 'HR'
+  /** Cook Islands */
+  | 'CK'
+  /** Chile */
+  | 'CL'
+  /** Cameroon */
+  | 'CM'
+  /** China */
+  | 'CN'
+  /** Colombia */
+  | 'CO'
+  /** Costa Rica */
+  | 'CR'
   /** Cuba */
   | 'CU'
+  /** Cape Verde */
+  | 'CV'
+  /** Christmas Island */
+  | 'CX'
   /** Cyprus */
   | 'CY'
   /** Czech Republic */
   | 'CZ'
-  /** Denmark */
-  | 'DK'
+  /** Germany */
+  | 'DE'
   /** Djibouti */
   | 'DJ'
+  /** Denmark */
+  | 'DK'
   /** Dominica */
   | 'DM'
   /** Dominican Republic */
   | 'DO'
+  /** Algeria */
+  | 'DZ'
   /** Ecuador */
   | 'EC'
-  /** Egypt */
-  | 'EG'
-  /** El Salvador */
-  | 'SV'
-  /** Equatorial Guinea */
-  | 'GQ'
-  /** Eritrea */
-  | 'ER'
   /** Estonia */
   | 'EE'
+  /** Egypt */
+  | 'EG'
+  /** Western Sahara */
+  | 'EH'
+  /** Eritrea */
+  | 'ER'
+  /** Spain */
+  | 'ES'
   /** Ethiopia */
   | 'ET'
-  /** Falkland Islands */
-  | 'FK'
-  /** Faroe Islands */
-  | 'FO'
-  /** Fiji */
-  | 'FJ'
   /** Finland */
   | 'FI'
+  /** Fiji */
+  | 'FJ'
+  /** Falkland Islands */
+  | 'FK'
+  /** Micronesia */
+  | 'FM'
+  /** Faroe Islands */
+  | 'FO'
   /** France */
   | 'FR'
-  /** French Guiana */
-  | 'GF'
-  /** French Polynesia */
-  | 'PF'
-  /** French Southern Territories */
-  | 'TF'
   /** Gabon */
   | 'GA'
-  /** Gambia */
-  | 'GM'
+  /** United Kingdom */
+  | 'GB'
+  /** Grenada */
+  | 'GD'
   /** Georgia */
   | 'GE'
-  /** Germany */
-  | 'DE'
+  /** French Guiana */
+  | 'GF'
+  /** Guernsey */
+  | 'GG'
   /** Ghana */
   | 'GH'
   /** Gibraltar */
   | 'GI'
-  /** Greece */
-  | 'GR'
   /** Greenland */
   | 'GL'
-  /** Grenada */
-  | 'GD'
-  /** Guadeloupe */
-  | 'GP'
-  /** Guam */
-  | 'GU'
-  /** Guatemala */
-  | 'GT'
-  /** Guernsey */
-  | 'GG'
+  /** Gambia */
+  | 'GM'
   /** Guinea */
   | 'GN'
+  /** Guadeloupe */
+  | 'GP'
+  /** Equatorial Guinea */
+  | 'GQ'
+  /** Greece */
+  | 'GR'
+  /** South Georgia & South Sandwich Islands */
+  | 'GS'
+  /** Guatemala */
+  | 'GT'
+  /** Guam */
+  | 'GU'
   /** Guinea-Bissau */
   | 'GW'
   /** Guyana */
   | 'GY'
-  /** Haiti */
-  | 'HT'
+  /** Hong Kong SAR China */
+  | 'HK'
   /** Heard &amp; McDonald Islands */
   | 'HM'
   /** Honduras */
   | 'HN'
-  /** Hong Kong SAR China */
-  | 'HK'
+  /** Croatia */
+  | 'HR'
+  /** Haiti */
+  | 'HT'
   /** Hungary */
   | 'HU'
-  /** Iceland */
-  | 'IS'
-  /** India */
-  | 'IN'
   /** Indonesia */
   | 'ID'
-  /** Iran */
-  | 'IR'
-  /** Iraq */
-  | 'IQ'
   /** Ireland */
   | 'IE'
-  /** Isle of Man */
-  | 'IM'
   /** Israel */
   | 'IL'
+  /** Isle of Man */
+  | 'IM'
+  /** India */
+  | 'IN'
+  /** British Indian Ocean Territory */
+  | 'IO'
+  /** Iraq */
+  | 'IQ'
+  /** Iran */
+  | 'IR'
+  /** Iceland */
+  | 'IS'
   /** Italy */
   | 'IT'
-  /** Jamaica */
-  | 'JM'
-  /** Japan */
-  | 'JP'
   /** Jersey */
   | 'JE'
+  /** Jamaica */
+  | 'JM'
   /** Jordan */
   | 'JO'
-  /** Kazakhstan */
-  | 'KZ'
+  /** Japan */
+  | 'JP'
   /** Kenya */
   | 'KE'
-  /** Kiribati */
-  | 'KI'
-  /** Kuwait */
-  | 'KW'
   /** Kyrgyzstan */
   | 'KG'
+  /** Cambodia */
+  | 'KH'
+  /** Kiribati */
+  | 'KI'
+  /** Comoros */
+  | 'KM'
+  /** St. Kitts & Nevis */
+  | 'KN'
+  /** North Korea */
+  | 'KP'
+  /** South Korea */
+  | 'KR'
+  /** Kuwait */
+  | 'KW'
+  /** Cayman Islands */
+  | 'KY'
+  /** Kazakhstan */
+  | 'KZ'
   /** Laos */
   | 'LA'
-  /** Latvia */
-  | 'LV'
   /** Lebanon */
   | 'LB'
-  /** Lesotho */
-  | 'LS'
-  /** Liberia */
-  | 'LR'
-  /** Libya */
-  | 'LY'
+  /** St. Lucia */
+  | 'LC'
   /** Liechtenstein */
   | 'LI'
+  /** Sri Lanka */
+  | 'LK'
+  /** Liberia */
+  | 'LR'
+  /** Lesotho */
+  | 'LS'
   /** Lithuania */
   | 'LT'
   /** Luxembourg */
   | 'LU'
-  /** Macau SAR China */
-  | 'MO'
-  /** Macedonia */
-  | 'MK'
+  /** Latvia */
+  | 'LV'
+  /** Libya */
+  | 'LY'
+  /** Morocco */
+  | 'MA'
+  /** Monaco */
+  | 'MC'
+  /** Moldova */
+  | 'MD'
+  /** Montenegro */
+  | 'ME'
+  /** St. Martin */
+  | 'MF'
   /** Madagascar */
   | 'MG'
-  /** Malawi */
-  | 'MW'
-  /** Malaysia */
-  | 'MY'
-  /** Maldives */
-  | 'MV'
-  /** Mali */
-  | 'ML'
-  /** Malta */
-  | 'MT'
   /** Marshall Islands */
   | 'MH'
+  /** Macedonia */
+  | 'MK'
+  /** Mali */
+  | 'ML'
+  /** Myanmar (Burma) */
+  | 'MM'
+  /** Mongolia */
+  | 'MN'
+  /** Macau SAR China */
+  | 'MO'
+  /** Northern Mariana Islands */
+  | 'MP'
   /** Martinique */
   | 'MQ'
   /** Mauritania */
   | 'MR'
-  /** Mauritius */
-  | 'MU'
-  /** Mayotte */
-  | 'YT'
-  /** Mexico */
-  | 'MX'
-  /** Micronesia */
-  | 'FM'
-  /** Moldova */
-  | 'MD'
-  /** Monaco */
-  | 'MC'
-  /** Mongolia */
-  | 'MN'
-  /** Montenegro */
-  | 'ME'
   /** Montserrat */
   | 'MS'
-  /** Morocco */
-  | 'MA'
+  /** Malta */
+  | 'MT'
+  /** Mauritius */
+  | 'MU'
+  /** Maldives */
+  | 'MV'
+  /** Malawi */
+  | 'MW'
+  /** Mexico */
+  | 'MX'
+  /** Malaysia */
+  | 'MY'
   /** Mozambique */
   | 'MZ'
-  /** Myanmar (Burma) */
-  | 'MM'
   /** Namibia */
   | 'NA'
-  /** Nauru */
-  | 'NR'
-  /** Nepal */
-  | 'NP'
-  /** Netherlands */
-  | 'NL'
-  /** Netherlands Antilles */
-  | 'AN'
   /** New Caledonia */
   | 'NC'
-  /** New Zealand */
-  | 'NZ'
-  /** Nicaragua */
-  | 'NI'
   /** Niger */
   | 'NE'
-  /** Nigeria */
-  | 'NG'
-  /** Niue */
-  | 'NU'
   /** Norfolk Island */
   | 'NF'
-  /** Northern Mariana Islands */
-  | 'MP'
-  /** North Korea */
-  | 'KP'
+  /** Nigeria */
+  | 'NG'
+  /** Nicaragua */
+  | 'NI'
+  /** Netherlands */
+  | 'NL'
   /** Norway */
   | 'NO'
+  /** Nepal */
+  | 'NP'
+  /** Nauru */
+  | 'NR'
+  /** Niue */
+  | 'NU'
+  /** New Zealand */
+  | 'NZ'
   /** Oman */
   | 'OM'
-  /** Pakistan */
-  | 'PK'
-  /** Palau */
-  | 'PW'
-  /** Palestinian Territories */
-  | 'PS'
   /** Panama */
   | 'PA'
-  /** Papua New Guinea */
-  | 'PG'
-  /** Paraguay */
-  | 'PY'
   /** Peru */
   | 'PE'
+  /** French Polynesia */
+  | 'PF'
+  /** Papua New Guinea */
+  | 'PG'
   /** Philippines */
   | 'PH'
-  /** Pitcairn Islands */
-  | 'PN'
+  /** Pakistan */
+  | 'PK'
   /** Poland */
   | 'PL'
+  /** St. Pierre & Miquelon */
+  | 'PM'
+  /** Pitcairn Islands */
+  | 'PN'
+  /** Palestinian Territories */
+  | 'PS'
   /** Portugal */
   | 'PT'
+  /** Palau */
+  | 'PW'
+  /** Paraguay */
+  | 'PY'
   /** Qatar */
   | 'QA'
   /** Réunion */
   | 'RE'
   /** Romania */
   | 'RO'
+  /** Serbia */
+  | 'RS'
   /** Russia */
   | 'RU'
   /** Rwanda */
   | 'RW'
-  /** Samoa */
-  | 'WS'
-  /** San Marino */
-  | 'SM'
-  /** São Tomé & Príncipe */
-  | 'ST'
   /** Saudi Arabia */
   | 'SA'
-  /** Senegal */
-  | 'SN'
-  /** Serbia */
-  | 'RS'
-  /** Seychelles */
-  | 'SC'
-  /** Sierra Leone */
-  | 'SL'
-  /** Singapore */
-  | 'SG'
-  /** Slovakia */
-  | 'SK'
-  /** Slovenia */
-  | 'SI'
   /** Solomon Islands */
   | 'SB'
-  /** Somalia */
-  | 'SO'
-  /** South Africa */
-  | 'ZA'
-  /** South Georgia & South Sandwich Islands */
-  | 'GS'
-  /** South Korea */
-  | 'KR'
-  /** Spain */
-  | 'ES'
-  /** Sri Lanka */
-  | 'LK'
-  /** St. Barthélemy */
-  | 'BL'
-  /** St. Helena */
-  | 'SH'
-  /** St. Kitts & Nevis */
-  | 'KN'
-  /** St. Lucia */
-  | 'LC'
-  /** St. Martin */
-  | 'MF'
-  /** St. Pierre & Miquelon */
-  | 'PM'
-  /** St. Vincent & Grenadines */
-  | 'VC'
+  /** Seychelles */
+  | 'SC'
   /** Sudan */
   | 'SD'
-  /** Suriname */
-  | 'SR'
-  /** Svalbard & Jan Mayen */
-  | 'SJ'
-  /** Swaziland */
-  | 'SZ'
   /** Sweden */
   | 'SE'
-  /** Switzerland */
-  | 'CH'
+  /** Singapore */
+  | 'SG'
+  /** St. Helena */
+  | 'SH'
+  /** Slovenia */
+  | 'SI'
+  /** Svalbard & Jan Mayen */
+  | 'SJ'
+  /** Slovakia */
+  | 'SK'
+  /** Sierra Leone */
+  | 'SL'
+  /** San Marino */
+  | 'SM'
+  /** Senegal */
+  | 'SN'
+  /** Somalia */
+  | 'SO'
+  /** Suriname */
+  | 'SR'
+  /** São Tomé & Príncipe */
+  | 'ST'
+  /** El Salvador */
+  | 'SV'
   /** Syria */
   | 'SY'
-  /** Taiwan */
-  | 'TW'
-  /** Tajikistan */
-  | 'TJ'
-  /** Tanzania */
-  | 'TZ'
-  /** Thailand */
-  | 'TH'
-  /** Timor-Leste */
-  | 'TL'
-  /** Togo */
-  | 'TG'
-  /** Tokelau */
-  | 'TK'
-  /** Tonga */
-  | 'TO'
-  /** Trinidad & Tobago */
-  | 'TT'
-  /** Tunisia */
-  | 'TN'
-  /** Turkey */
-  | 'TR'
-  /** Turkmenistan */
-  | 'TM'
+  /** Swaziland */
+  | 'SZ'
   /** Turks & Caicos Islands */
   | 'TC'
+  /** Chad */
+  | 'TD'
+  /** French Southern Territories */
+  | 'TF'
+  /** Togo */
+  | 'TG'
+  /** Thailand */
+  | 'TH'
+  /** Tajikistan */
+  | 'TJ'
+  /** Tokelau */
+  | 'TK'
+  /** Timor-Leste */
+  | 'TL'
+  /** Turkmenistan */
+  | 'TM'
+  /** Tunisia */
+  | 'TN'
+  /** Tonga */
+  | 'TO'
+  /** Turkey */
+  | 'TR'
+  /** Trinidad & Tobago */
+  | 'TT'
   /** Tuvalu */
   | 'TV'
-  /** Uganda */
-  | 'UG'
+  /** Taiwan */
+  | 'TW'
+  /** Tanzania */
+  | 'TZ'
   /** Ukraine */
   | 'UA'
-  /** United Arab Emirates */
-  | 'AE'
-  /** United Kingdom */
-  | 'GB'
+  /** Uganda */
+  | 'UG'
+  /** U.S. Outlying Islands */
+  | 'UM'
   /** United States */
   | 'US'
   /** Uruguay */
   | 'UY'
-  /** U.S. Outlying Islands */
-  | 'UM'
-  /** U.S. Virgin Islands */
-  | 'VI'
   /** Uzbekistan */
   | 'UZ'
-  /** Vanuatu */
-  | 'VU'
   /** Vatican City */
   | 'VA'
+  /** St. Vincent & Grenadines */
+  | 'VC'
   /** Venezuela */
   | 'VE'
+  /** British Virgin Islands */
+  | 'VG'
+  /** U.S. Virgin Islands */
+  | 'VI'
   /** Vietnam */
   | 'VN'
+  /** Vanuatu */
+  | 'VU'
   /** Wallis & Futuna */
   | 'WF'
-  /** Western Sahara */
-  | 'EH'
+  /** Samoa */
+  | 'WS'
   /** Yemen */
   | 'YE'
+  /** Mayotte */
+  | 'YT'
+  /** South Africa */
+  | 'ZA'
   /** Zambia */
   | 'ZM'
   /** Zimbabwe */
@@ -2959,7 +2959,7 @@ export type CartItemSelectedOptionValuePrice = {
 }
 
 /** This enumeration the price type. */
-export type PriceTypeEnum = 'FIXED' | 'PERCENT' | 'DYNAMIC'
+export type PriceTypeEnum = 'DYNAMIC' | 'FIXED' | 'PERCENT'
 
 export type CustomerDownloadableProducts = {
   __typename?: 'CustomerDownloadableProducts'
@@ -2995,7 +2995,7 @@ export type PaymentToken = {
 }
 
 /** The list of available payment token types */
-export type PaymentTokenTypeEnum = 'card' | 'account'
+export type PaymentTokenTypeEnum = 'account' | 'card'
 
 /** The required input to request the secure URL for Payments Pro Hosted Solution payment. */
 export type HostedProUrlInput = {
@@ -3033,7 +3033,7 @@ export type PayflowLinkToken = {
 }
 
 /** Mode for payment: TEST or LIVE. Applies to Payflow Link and Payments Advanced payment methods. */
-export type PayflowLinkMode = 'TEST' | 'LIVE'
+export type PayflowLinkMode = 'LIVE' | 'TEST'
 
 export type IsEmailAvailableOutput = {
   __typename?: 'IsEmailAvailableOutput'
@@ -3435,7 +3435,7 @@ export type EntityUrl = {
 }
 
 /** This enumeration defines the entity type. */
-export type UrlRewriteEntityTypeEnum = 'CMS_PAGE' | 'PRODUCT' | 'CATEGORY'
+export type UrlRewriteEntityTypeEnum = 'CATEGORY' | 'CMS_PAGE' | 'PRODUCT'
 
 /** Deprecated: `Wishlist` type should be used instead */
 export type WishlistOutput = {
@@ -3686,8 +3686,8 @@ export type MutationHandlePayflowProResponseArgs = {
 }
 
 export type MutationMergeCartsArgs = {
-  source_cart_id: Scalars['String']
   destination_cart_id?: Maybe<Scalars['String']>
+  source_cart_id: Scalars['String']
 }
 
 export type MutationPlaceOrderArgs = {
@@ -3721,8 +3721,8 @@ export type MutationRequestPasswordResetEmailArgs = {
 
 export type MutationResetPasswordArgs = {
   email: Scalars['String']
-  resetPasswordToken: Scalars['String']
   newPassword: Scalars['String']
+  resetPasswordToken: Scalars['String']
 }
 
 export type MutationSendEmailToFriendArgs = {
@@ -3896,9 +3896,9 @@ export type CartUserInputError = {
 }
 
 export type CartUserInputErrorType =
-  | 'PRODUCT_NOT_FOUND'
-  | 'NOT_SALABLE'
   | 'INSUFFICIENT_STOCK'
+  | 'NOT_SALABLE'
+  | 'PRODUCT_NOT_FOUND'
   | 'UNDEFINED'
 
 export type AddProductsToCompareListInput = {
@@ -4416,10 +4416,10 @@ export type CheckoutUserInputError = {
 }
 
 export type CheckoutUserInputErrorCodes =
-  | 'REORDER_NOT_AVAILABLE'
-  | 'PRODUCT_NOT_FOUND'
-  | 'NOT_SALABLE'
   | 'INSUFFICIENT_STOCK'
+  | 'NOT_SALABLE'
+  | 'PRODUCT_NOT_FOUND'
+  | 'REORDER_NOT_AVAILABLE'
   | 'UNDEFINED'
 
 export type RevokeCustomerTokenOutput = {
@@ -4705,7 +4705,7 @@ export type SubscribeEmailToNewsletterOutput = {
   status?: Maybe<SubscriptionStatusesEnum>
 }
 
-export type SubscriptionStatusesEnum = 'NOT_ACTIVE' | 'SUBSCRIBED' | 'UNSUBSCRIBED' | 'UNCONFIRMED'
+export type SubscriptionStatusesEnum = 'NOT_ACTIVE' | 'SUBSCRIBED' | 'UNCONFIRMED' | 'UNSUBSCRIBED'
 
 export type UpdateCartItemsInput = {
   cart_id: Scalars['String']
@@ -5200,8 +5200,8 @@ export type CustomizableCheckboxValue = {
 }
 
 /** A virtual product is non-tangible product that does not require shipping and is not kept in inventory. */
-export type VirtualProduct = ProductInterface &
-  CustomizableProductInterface & {
+export type VirtualProduct = CustomizableProductInterface &
+  ProductInterface & {
     __typename?: 'VirtualProduct'
     activity?: Maybe<Scalars['String']>
     /**
@@ -5383,14 +5383,14 @@ export type VirtualProduct = ProductInterface &
 
 /** A virtual product is non-tangible product that does not require shipping and is not kept in inventory. */
 export type VirtualProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /** A simple product is tangible and are usually sold as single units or in fixed quantities. */
-export type SimpleProduct = ProductInterface &
+export type SimpleProduct = CustomizableProductInterface &
   PhysicalProductInterface &
-  CustomizableProductInterface & {
+  ProductInterface & {
     __typename?: 'SimpleProduct'
     activity?: Maybe<Scalars['String']>
     /**
@@ -5574,8 +5574,8 @@ export type SimpleProduct = ProductInterface &
 
 /** A simple product is tangible and are usually sold as single units or in fixed quantities. */
 export type SimpleProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /**
@@ -5884,8 +5884,8 @@ export type DownloadableProductSamples = {
 }
 
 /** DownloadableProduct defines a product that the customer downloads */
-export type DownloadableProduct = ProductInterface &
-  CustomizableProductInterface & {
+export type DownloadableProduct = CustomizableProductInterface &
+  ProductInterface & {
     __typename?: 'DownloadableProduct'
     activity?: Maybe<Scalars['String']>
     /**
@@ -6075,8 +6075,8 @@ export type DownloadableProduct = ProductInterface &
 
 /** DownloadableProduct defines a product that the customer downloads */
 export type DownloadableProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 export type DownloadableOrderItem = OrderItemInterface & {
@@ -6290,9 +6290,9 @@ export type BundleItemOption = {
 }
 
 /** BundleProduct defines basic features of a bundle product and contains multiple BundleItems. */
-export type BundleProduct = ProductInterface &
+export type BundleProduct = CustomizableProductInterface &
   PhysicalProductInterface &
-  CustomizableProductInterface & {
+  ProductInterface & {
     __typename?: 'BundleProduct'
     activity?: Maybe<Scalars['String']>
     /**
@@ -6488,18 +6488,18 @@ export type BundleProduct = ProductInterface &
 
 /** BundleProduct defines basic features of a bundle product and contains multiple BundleItems. */
 export type BundleProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /**
  * This enumeration defines whether a bundle product's price is displayed as the lowest possible
  * value or as a range.
  */
-export type PriceViewEnum = 'PRICE_RANGE' | 'AS_LOW_AS'
+export type PriceViewEnum = 'AS_LOW_AS' | 'PRICE_RANGE'
 
 /** This enumeration defines whether bundle items must be shipped together. */
-export type ShipBundleItemsEnum = 'TOGETHER' | 'SEPARATELY'
+export type ShipBundleItemsEnum = 'SEPARATELY' | 'TOGETHER'
 
 export type BundleOrderItem = OrderItemInterface & {
   __typename?: 'BundleOrderItem'
@@ -6689,8 +6689,8 @@ export type SalesItemInterface = {
 }
 
 /** GroupedProduct defines a grouped product */
-export type GroupedProduct = ProductInterface &
-  PhysicalProductInterface & {
+export type GroupedProduct = PhysicalProductInterface &
+  ProductInterface & {
     __typename?: 'GroupedProduct'
     activity?: Maybe<Scalars['String']>
     /**
@@ -6874,8 +6874,8 @@ export type GroupedProduct = ProductInterface &
 
 /** GroupedProduct defines a grouped product */
 export type GroupedProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /** GroupedProductItem contains information about an individual grouped product item */
@@ -6907,9 +6907,9 @@ export type GroupedProductWishlistItem = WishlistItemInterface & {
 }
 
 /** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
-export type ConfigurableProduct = ProductInterface &
+export type ConfigurableProduct = CustomizableProductInterface &
   PhysicalProductInterface &
-  CustomizableProductInterface & {
+  ProductInterface & {
     __typename?: 'ConfigurableProduct'
     activity?: Maybe<Scalars['String']>
     /**
@@ -7104,8 +7104,8 @@ export type ConfigurableProductConfigurable_Product_Options_SelectionArgs = {
 
 /** ConfigurableProduct defines basic features of a configurable product and its simple product variants */
 export type ConfigurableProductReviewsArgs = {
-  pageSize?: Maybe<Scalars['Int']>
   currentPage?: Maybe<Scalars['Int']>
+  pageSize?: Maybe<Scalars['Int']>
 }
 
 /** ConfigurableProductOptions defines configurable attributes for the specified product */
@@ -7424,21 +7424,21 @@ export type PayflowProToken = {
 
 export type HistoryStatePage = {
   __typename?: 'HistoryStatePage'
-  href: Scalars['String']
   as: Scalars['String']
+  href: Scalars['String']
+  title: Scalars['String']
   x: Scalars['Int']
   y: Scalars['Int']
-  title: Scalars['String']
 }
 
 export type Direction = 'BACK' | 'FORWARD'
 
-export type Phase = 'LOADING' | 'LOCATION_CHANGED' | 'REGISTERED' | 'FINISHED'
+export type Phase = 'FINISHED' | 'LOADING' | 'LOCATION_CHANGED' | 'REGISTERED'
 
 export type HistoryState = {
   __typename?: 'HistoryState'
+  direction: Direction
   idx: Scalars['Int']
   pages: Array<HistoryStatePage>
-  direction: Direction
   phase: Phase
 }
