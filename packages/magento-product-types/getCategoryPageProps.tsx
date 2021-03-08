@@ -86,11 +86,10 @@ async function parseParams(
 type GetCategoryPagePropsArguments = {
   urlPath: string
   urlParams: string[]
-  resolveUrl: Promise<ApolloQueryResult<ResolveUrlQuery>>
 }
 
 const getCategoryPageProps = async (
-  { urlPath, urlParams, resolveUrl }: GetCategoryPagePropsArguments,
+  { urlPath, urlParams }: GetCategoryPagePropsArguments,
   client: ApolloClient<NormalizedCacheObject>,
 ) => {
   const filterTypes = getFilterTypes(client)
@@ -99,12 +98,12 @@ const getCategoryPageProps = async (
 
   const params = parseParams(urlPath, urlParams, filterTypes)
 
-  const rootCategory = String((await resolveUrl).data.urlResolver?.id ?? 0)
+  const rootCategory = (await category).data.categories?.items?.[0]?.uid ?? ''
   const products = client.query({
     query: ProductListDocument,
     variables: {
       ...(await params),
-      filters: { category_id: { eq: rootCategory }, ...(await params).filters },
+      filters: { category_uid: { eq: rootCategory }, ...(await params).filters },
       rootCategory,
     },
   })

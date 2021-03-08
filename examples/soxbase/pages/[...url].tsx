@@ -227,10 +227,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
     const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
     const footer = staticClient.query({ query: FooterDocument })
-    const categoryPage = getCategoryPageProps({ urlPath, urlParams, resolveUrl }, staticClient)
+    const categoryPage = getCategoryPageProps({ urlPath, urlParams }, staticClient)
     const pageLayout = staticClient.query({ query: PageLayoutDocument })
-
-    const cat = String((await config).data.storeConfig?.root_category_id ?? '')
 
     const { urlResolver } = (await resolveUrl).data
 

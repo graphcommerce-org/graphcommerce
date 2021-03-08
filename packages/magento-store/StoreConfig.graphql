@@ -19,7 +19,7 @@ query StoreConfig {
     product_url_suffix
     base_link_url
 
-    root_category_id
+    root_category_uid
 
     weight_unit
   }

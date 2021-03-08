@@ -18,7 +18,7 @@ query ProductList(
     ...ProductListSort
     ...ProductListItems
   }
-  filters: products(filter: { category_id: { eq: $rootCategory } }) {
+  filters: products(filter: { category_uid: { eq: $rootCategory } }) {
     ...ProductListFilters
   }
 }

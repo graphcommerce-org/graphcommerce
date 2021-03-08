@@ -80,10 +80,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const footer = staticClient.query({ query: FooterDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const cat = String((await config).data.storeConfig?.root_category_id ?? '')
+  const cat = String((await config).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { rootCategory: cat, pageSize: 8, filters: { category_id: { eq: '5' } } },
+    variables: { rootCategory: cat, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
   })
 
   await config
