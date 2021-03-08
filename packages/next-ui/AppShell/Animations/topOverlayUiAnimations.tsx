@@ -1,7 +1,8 @@
 import { MotionProps } from 'framer-motion'
-import { OverlayUiAnimationProps } from './useBottomOverlayUiAnimations'
+import { OverlayUiAnimationProps } from './bottomOverlayUiAnimations'
+import nullAnimationObject from './nullAnimationObject'
 
-export default function useTopOverlayUiAnimations(props: OverlayUiAnimationProps): MotionProps {
+export default function topOverlayUiAnimations(props: OverlayUiAnimationProps): MotionProps {
   const { hold, dismissed, z } = props
 
   return !hold
@@ -26,26 +27,5 @@ export default function useTopOverlayUiAnimations(props: OverlayUiAnimationProps
           }),
         },
       }
-    : {
-        initial: {
-          opacity: 1,
-          z,
-          x: 0,
-          y: 0,
-        },
-        animate: {
-          opacity: 1,
-          z,
-          x: 0,
-          y: 0,
-          transition: { type: 'tween', ease: 'easeOut' },
-        },
-        exit: {
-          opacity: 1,
-          z,
-          x: 0,
-          y: 0,
-          transition: { type: 'tween', ease: 'easeIn' },
-        },
-      }
+    : nullAnimationObject(z)
 }

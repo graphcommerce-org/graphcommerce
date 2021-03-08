@@ -12,15 +12,8 @@ export const OrderCardItemFragmentDoc: DocumentNode<OrderCardItemFragment, unkno
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
           { kind: 'Field', name: { kind: 'Name', value: 'product_url_key' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'quantity_ordered' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'quantity_shipped' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'quantity_canceled' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'quantity_invoiced' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'quantity_refunded' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'quantity_returned' } },
         ],
       },
     },
@@ -28,41 +21,17 @@ export const OrderCardItemFragmentDoc: DocumentNode<OrderCardItemFragment, unkno
 }
 export type OrderCardItem_DownloadableOrderItem_Fragment = Pick<
   Types.DownloadableOrderItem,
-  | 'product_name'
-  | 'product_sku'
-  | 'product_url_key'
-  | 'quantity_ordered'
-  | 'quantity_shipped'
-  | 'quantity_canceled'
-  | 'quantity_invoiced'
-  | 'quantity_refunded'
-  | 'quantity_returned'
+  'product_sku' | 'product_url_key'
 >
 
 export type OrderCardItem_BundleOrderItem_Fragment = Pick<
   Types.BundleOrderItem,
-  | 'product_name'
-  | 'product_sku'
-  | 'product_url_key'
-  | 'quantity_ordered'
-  | 'quantity_shipped'
-  | 'quantity_canceled'
-  | 'quantity_invoiced'
-  | 'quantity_refunded'
-  | 'quantity_returned'
+  'product_sku' | 'product_url_key'
 >
 
 export type OrderCardItem_OrderItem_Fragment = Pick<
   Types.OrderItem,
-  | 'product_name'
-  | 'product_sku'
-  | 'product_url_key'
-  | 'quantity_ordered'
-  | 'quantity_shipped'
-  | 'quantity_canceled'
-  | 'quantity_invoiced'
-  | 'quantity_refunded'
-  | 'quantity_returned'
+  'product_sku' | 'product_url_key'
 >
 
 export type OrderCardItemFragment =

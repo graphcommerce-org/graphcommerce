@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import Skeleton from '@material-ui/lab/Skeleton'
 import { AccountMenuFragment } from '@reachdigital/magento-customer/AccountMenu/AccountMenu.gql'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
@@ -8,9 +9,10 @@ import infoIcon from './info.svg'
 import lockIcon from './lock.svg'
 import ordersIcon from './orders.svg'
 import reviewsIcon from './reviews.svg'
-import wishlistIcon from './wishlist.svg'
 
-export type AccountMenuProps = AccountMenuFragment
+export type AccountMenuProps = Partial<AccountMenuFragment> & {
+  loading: boolean
+}
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -27,6 +29,7 @@ const useStyles = makeStyles(
 )
 
 export default function AccountMenu(props: AccountMenuProps) {
+  const { loading } = props
   const classes = useStyles()
 
   return (
@@ -49,7 +52,12 @@ export default function AccountMenu(props: AccountMenuProps) {
 
       <SignOutForm
         button={({ formState }) => (
-          <AccountMenuItem startIconSrc={lockIcon} loading={formState.isSubmitting} type='submit'>
+          <AccountMenuItem
+            startIconSrc={lockIcon}
+            loading={formState.isSubmitting}
+            type='submit'
+            disabled={loading}
+          >
             Sign out
           </AccountMenuItem>
         )}

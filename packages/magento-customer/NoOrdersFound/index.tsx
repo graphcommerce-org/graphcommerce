@@ -20,7 +20,7 @@ export default function NoOrdersFound() {
         iconSrc='/icons/desktop_checkout_box.svg'
         title='No orders found'
         alt='no order'
-        size='xs'
+        size='small'
       />
     </div>
   )

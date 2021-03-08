@@ -1,67 +1,37 @@
 import { useQuery } from '@apollo/client'
-import { Container, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardOrders.gql'
-import NoOrdersFound from '@reachdigital/magento-customer/NoOrdersFound'
-import OrderCard from '@reachdigital/magento-customer/OrderCard'
+import AccountOrders from '@reachdigital/magento-customer/AccountOrders'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import clsx from 'clsx'
 import React from 'react'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    olderOrdersContainer: {
-      [theme.breakpoints.up('md')]: {
-        marginTop: theme.spacings.lg,
-        marginBottom: theme.spacings.lg,
-      },
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.md,
-    },
-  }),
-  { name: 'OrdersPage' },
-)
-
 function AccountOrdersPage() {
-  const { data } = useQuery(AccountDashboardOrdersDocument)
-  const classes = useStyles()
-  const orders = data?.customer?.orders
-
-  const amountLatestOrders = 2
-
-  // whenever it's possible, pick last {amountLatestOrders} items, then reverse the resulting array,
-  // because we want to render the latest order first,
-  // but the API returns the orders in ASC order...
-  const latestOrders = orders?.items
-    .slice(Math.max(orders?.items?.length - 2, 0), orders?.items?.length)
-    .reverse()
-
-  const restOrders = orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
+  const { data } = useQuery(AccountDashboardOrdersDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
+  const customer = data?.customer
 
   return (
     <OverlayUi title='Orders' variant='bottom' fullHeight>
-      <PageMeta
-        title='Orders'
-        metaDescription='View all your orders'
-        metaRobots='NOINDEX, FOLLOW'
-      />
       <Container maxWidth='md'>
         <NoSsr>
-          <IconTitle iconSrc='/icons/desktop_checkout_box.svg' title='Orders' alt='orders' />
-          <SectionContainer label='Latest orders'>
-            {latestOrders?.map((order) => order && <OrderCard {...order} />)}
-            {orders?.items && !orders?.items?.length && <NoOrdersFound />}
-          </SectionContainer>
+          <PageMeta
+            title='Orders'
+            metaDescription='View all your orders'
+            metaRobots='NOINDEX, FOLLOW'
+          />
 
-          {orders?.items && orders?.items?.length >= amountLatestOrders + 1 && (
-            <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
-              {restOrders?.map((order) => order && <OrderCard {...order} />)}
-            </SectionContainer>
-          )}
+          <IconTitle
+            iconSrc='/icons/desktop_checkout_box.svg'
+            title='Orders'
+            alt='orders'
+            size='large'
+          />
+          <AccountOrders {...customer} />
         </NoSsr>
       </Container>
     </OverlayUi>

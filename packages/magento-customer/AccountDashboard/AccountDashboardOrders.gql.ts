@@ -84,7 +84,6 @@ export const AccountDashboardOrdersDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'product_name' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'product_sku' } },
                                   {
                                     kind: 'Field',
@@ -155,7 +154,6 @@ export type AccountDashboardOrdersQuery = {
                 Types.Maybe<
                   | Pick<
                       Types.DownloadableOrderItem,
-                      | 'product_name'
                       | 'product_sku'
                       | 'product_url_key'
                       | 'quantity_ordered'
@@ -167,7 +165,6 @@ export type AccountDashboardOrdersQuery = {
                     >
                   | Pick<
                       Types.BundleOrderItem,
-                      | 'product_name'
                       | 'product_sku'
                       | 'product_url_key'
                       | 'quantity_ordered'
@@ -179,7 +176,6 @@ export type AccountDashboardOrdersQuery = {
                     >
                   | Pick<
                       Types.OrderItem,
-                      | 'product_name'
                       | 'product_sku'
                       | 'product_url_key'
                       | 'quantity_ordered'

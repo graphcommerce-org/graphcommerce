@@ -1,0 +1,7 @@
+fragment UseOrderCardItemImages on CustomerOrders {
+  items {
+    items {
+      product_url_key
+    }
+  }
+}

@@ -13,5 +13,6 @@ fragment OrderCard on CustomerOrder {
   items {
     ...OrderCardItem
   }
+  ...OrderStateLabel
   order_date
 }

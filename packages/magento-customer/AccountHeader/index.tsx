@@ -1,8 +1,11 @@
 import { Avatar, makeStyles, Theme, Typography } from '@material-ui/core'
+import Skeleton from '@material-ui/lab/Skeleton'
 import React from 'react'
 import { AccountHeaderFragment } from './AccountHeader.gql'
 
-export type AccountHeaderProps = AccountHeaderFragment
+export type AccountHeaderProps = AccountHeaderFragment & {
+  loading: boolean
+}
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -18,16 +21,29 @@ const useStyles = makeStyles(
     },
     avatar: {
       background: theme.palette.primary.main,
-      margin: 0,
-      marginBottom: theme.spacings.xs,
+      margin: `0 auto ${theme.spacings.xs} auto`,
+      fontSize: 24,
+      paddingLeft: 1,
+      lineHeight: 'normal',
     },
   }),
   { name: 'AccountHeader' },
 )
 
 export default function AccountHeader(props: AccountHeaderProps) {
-  const { firstname, lastname } = props
+  const { firstname, lastname, loading } = props
   const classes = useStyles()
+
+  if (loading) {
+    return (
+      <div className={classes.header}>
+        <div>
+          <Skeleton className={classes.avatar} variant='circle' width={40} height={40} />
+          <Skeleton variant='rect' width={164} height={40} />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={classes.header}>

@@ -1,0 +1,14 @@
+fragment OrderItem on OrderItemInterface {
+  id
+  product_sku
+  product_url_key
+  product_name
+  selected_options {
+    label
+    value
+  }
+  quantity_ordered
+  product_sale_price {
+    ...Money
+  }
+}

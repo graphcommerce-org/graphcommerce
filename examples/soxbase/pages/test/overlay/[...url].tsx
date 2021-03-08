@@ -36,7 +36,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
       }
       variant='center'
     >
-      <Container maxWidth='md'>yo! yo yoghurt</Container>
+      <Container maxWidth='md'>Content here</Container>
     </OverlayUi>
   )
 }

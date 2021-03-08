@@ -1,13 +1,14 @@
-import { useMediaQuery, useTheme } from '@material-ui/core'
 import { MotionProps } from 'framer-motion'
+import nullAnimationObject from './nullAnimationObject'
 
 export type OverlayUiAnimationProps = {
   hold: boolean
   dismissed: boolean
   z: number
+  upMd: boolean
 }
 
-export default function useBottomOverlayUiAnimations(props: OverlayUiAnimationProps): MotionProps {
+export default function bottomOverlayUiAnimations(props: OverlayUiAnimationProps): MotionProps {
   const { hold, dismissed, z } = props
 
   return !hold
@@ -32,23 +33,5 @@ export default function useBottomOverlayUiAnimations(props: OverlayUiAnimationPr
           }),
         },
       }
-    : {
-        initial: {
-          opacity: 1,
-          z,
-          y: 0,
-        },
-        animate: {
-          opacity: 1,
-          z,
-          y: 0,
-          transition: { type: 'tween', ease: 'easeOut' },
-        },
-        exit: {
-          opacity: 1,
-          y: 0,
-          z,
-          transition: { type: 'tween', ease: 'easeIn' },
-        },
-      }
+    : nullAnimationObject(z)
 }

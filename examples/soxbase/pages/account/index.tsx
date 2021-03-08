@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
 import AccountHeader from '@reachdigital/magento-customer/AccountHeader'
 import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrder'
@@ -15,25 +14,26 @@ import React from 'react'
 import AccountMenu from '../../components/AccountMenu'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<PageLayoutProps>
+type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 function AccountIndexPage() {
-  const { data } = useQuery(AccountDashboardDocument)
+  const { data, loading } = useQuery(AccountDashboardDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
   const customer = data?.customer
 
   return (
     <OverlayUi title='Account' variant='bottom' fullHeight>
-      <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots='NOINDEX, FOLLOW' />
-
       <Container maxWidth='md'>
         <NoSsr>
-          {customer && (
-            <>
-              <AccountHeader {...customer} />
-              <AccountMenu {...customer} />
-              <AccountLatestOrder orders={customer?.orders} />
-            </>
-          )}
+          <PageMeta
+            title='Account'
+            metaDescription='Account Dashboard'
+            metaRobots='NOINDEX, FOLLOW'
+          />
+          <AccountHeader {...customer} loading={loading} />
+          <AccountMenu {...customer} loading={loading} />
+          <AccountLatestOrder {...customer} loading={loading} />
         </NoSsr>
       </Container>
     </OverlayUi>
@@ -48,15 +48,11 @@ export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
-
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
   await config
   return {
     props: {
-      ...(await pageLayout).data,
       apolloState: client.cache.extract(),
     },
   }

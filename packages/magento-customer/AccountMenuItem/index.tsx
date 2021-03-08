@@ -2,15 +2,15 @@ import { makeStyles, Theme } from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import clsx from 'clsx'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    menuButton: {
+    root: {
       width: '100%',
       padding: theme.spacings.xs,
       fontSize: theme.typography.fontSize,
       borderBottom: `1px solid ${theme.palette.divider}`,
+      borderRadius: 0,
       '& > span': {
         display: 'flex',
         justifyContent: 'start',
@@ -28,12 +28,10 @@ const useStyles = makeStyles(
       color: theme.palette.primary.mutedText,
       marginRight: theme.spacings.xxs,
     },
-    menuButtonDisabled: {
-      '&.Mui-disabled': {
-        backgroundColor: '#fff',
-      },
+    disabled: {
+      backgroundColor: '#fff',
     },
-    menuButtonText: {
+    childText: {
       alignSelf: 'flex-start',
     },
   }),
@@ -47,7 +45,7 @@ export type AccountMenuItemProps = {
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
   const { children, startIconSrc, href, disabled, ...buttonProps } = props
-  const classes = useStyles()
+  const { childText, ...classes } = useStyles()
 
   const button = (
     <Button
@@ -71,11 +69,11 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
         />
       }
       disableElevation
-      className={clsx({ [classes.menuButtonDisabled]: disabled }, classes.menuButton)}
-      onClick={() => {}}
+      disabled={disabled}
+      classes={classes}
       {...buttonProps}
     >
-      <span className={classes.menuButtonText}>{children}</span>
+      <span className={childText}>{children}</span>
     </Button>
   )
 
