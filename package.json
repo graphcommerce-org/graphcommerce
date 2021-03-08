@@ -101,7 +101,7 @@
     "semantic-release": "^17.4.0",
     "semantic-release-slack-bot": "^2.1.0",
     "ts-jest": "^26.5.2",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.3"
   },
   "release": {
     "plugins": [
