@@ -21,7 +21,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/styles": "^4.11.3",
-    "@next/bundle-analyzer": "^10.0.7",
+    "@next/bundle-analyzer": "^10.0.8",
     "@reachdigital/graphcms-ui": "0.1.0",
     "@reachdigital/magento-app-shell": "0.1.0",
     "@reachdigital/magento-cart": "0.1.0",
