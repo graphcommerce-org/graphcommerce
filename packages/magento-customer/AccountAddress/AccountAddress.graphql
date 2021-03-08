@@ -1,0 +1,6 @@
+fragment AccountAddress on CustomerAddress {
+  ...CustomerAddress
+  default_billing
+  default_shipping
+  id
+}
