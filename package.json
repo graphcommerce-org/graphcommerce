@@ -66,7 +66,7 @@
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
     "@graphql-codegen/add": "^2.0.2",
-    "@graphql-codegen/cli": "^1.21.1",
+    "@graphql-codegen/cli": "^1.21.2",
     "@graphql-codegen/fragment-matcher": "2.0.1",
     "@graphql-codegen/introspection": "1.18.1",
     "@graphql-codegen/schema-ast": "^1.18.1",
