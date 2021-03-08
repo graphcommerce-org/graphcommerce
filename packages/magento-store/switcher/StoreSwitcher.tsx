@@ -113,7 +113,7 @@ export default function StoreSwitcher(props: StoreSwitcherBaseProps) {
                   <ListItemIcon className={classes.groupIcon}>
                     <Avatar
                       className={classes.small}
-                      alt={group.country.two_letter_abbreviation}
+                      alt={group.country.two_letter_abbreviation ?? ''}
                       src={returnLocationFlags(store, fallbackCountry)}
                     />
                   </ListItemIcon>
