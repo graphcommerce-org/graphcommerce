@@ -80,6 +80,16 @@ function useGroupedStores(props: Omit<StoreSwitcherBaseProps, 'locale'>) {
   }, [stores, countries, fallbackCountry])
 }
 
+function returnLocationFlags(store, fallbackCountry) {
+  const country =
+    store.code !== 'default'
+      ? store.code ??
+        fallbackCountry.two_letter_abbreviation ??
+        store.locale?.substring(3, 5).toLowerCase()
+      : 'eu'
+  return `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${country}.svg`
+}
+
 export default function StoreSwitcher(props: StoreSwitcherBaseProps) {
   const { stores, countries, locale, fallbackCountry } = props
   const classes = useStyles(props)
@@ -104,11 +114,7 @@ export default function StoreSwitcher(props: StoreSwitcherBaseProps) {
                     <Avatar
                       className={classes.small}
                       alt={group.country.two_letter_abbreviation}
-                      src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${
-                        store.code ??
-                        fallbackCountry.two_letter_abbreviation ??
-                        store.locale?.substring(3, 5).toLowerCase()
-                      }.svg`}
+                      src={returnLocationFlags(store, fallbackCountry)}
                     />
                   </ListItemIcon>
                   {store.store_name}
