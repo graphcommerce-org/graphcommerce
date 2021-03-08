@@ -1,0 +1,19 @@
+fragment CartAddress on CartAddressInterface {
+  __typename
+  firstname
+  lastname
+  city
+  company
+  country {
+    code
+    label
+  }
+  postcode
+  region {
+    code
+    label
+    region_id
+  }
+  street
+  telephone
+}

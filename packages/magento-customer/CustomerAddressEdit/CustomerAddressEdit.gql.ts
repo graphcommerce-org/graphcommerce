@@ -7,28 +7,23 @@ import {
   CustomerAddressFragmentDoc,
 } from '../CustomerAddress/CustomerAddress.gql'
 
-export const AccountAddressFragmentDoc: DocumentNode<AccountAddressFragment, unknown> = {
+export const CustomerAddressEditFragmentDoc: DocumentNode<CustomerAddressEditFragment, unknown> = {
   kind: 'Document',
   definitions: [
     {
       kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'AccountAddress' },
+      name: { kind: 'Name', value: 'CustomerAddressEdit' },
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'CustomerAddress' } },
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CustomerAddress' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'default_billing' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'default_shipping' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CustomerAddress' } },
         ],
       },
     },
     ...CustomerAddressFragmentDoc.definitions,
   ],
 }
-export type AccountAddressFragment = Pick<
-  Types.CustomerAddress,
-  'default_billing' | 'default_shipping' | 'id'
-> &
+export type CustomerAddressEditFragment = Pick<Types.CustomerAddress, 'id'> &
   CustomerAddressFragment
