@@ -2,7 +2,10 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-import { CustomerAddressFragment, CustomerAddressFragmentDoc } from './CustomerAddress.gql'
+import {
+  CustomerAddressFragment,
+  CustomerAddressFragmentDoc,
+} from './CustomerAddress/CustomerAddress.gql'
 
 export const CustomerInfoFragmentDoc: DocumentNode<CustomerInfoFragment, unknown> = {
   kind: 'Document',

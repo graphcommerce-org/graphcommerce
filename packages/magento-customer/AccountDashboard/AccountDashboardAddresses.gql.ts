@@ -27,14 +27,15 @@ export const AccountDashboardAddressesDocument: DocumentNode<
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'default_billing' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'default_shipping' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                      { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'prefix' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'middlename' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'suffix' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'company' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
                       {
                         kind: 'Field',
@@ -49,6 +50,11 @@ export const AccountDashboardAddressesDocument: DocumentNode<
                         },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'street' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'vat_id' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'default_billing' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'default_shipping' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                     ],
                   },
                 },
@@ -67,23 +73,28 @@ export type AccountDashboardAddressesQuery = {
     addresses?: Types.Maybe<
       Array<
         Types.Maybe<
-          Pick<
+          { __typename: 'CustomerAddress' } & Pick<
             Types.CustomerAddress,
-            | 'default_billing'
-            | 'default_shipping'
-            | 'country_code'
-            | 'city'
+            | 'prefix'
             | 'firstname'
             | 'middlename'
             | 'lastname'
-            | 'id'
+            | 'suffix'
+            | 'city'
+            | 'company'
+            | 'country_code'
             | 'postcode'
             | 'street'
+            | 'telephone'
+            | 'vat_id'
+            | 'default_billing'
+            | 'default_shipping'
+            | 'id'
           > & {
-            region?: Types.Maybe<
-              Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>
-            >
-          }
+              region?: Types.Maybe<
+                Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>
+              >
+            }
         >
       >
     >

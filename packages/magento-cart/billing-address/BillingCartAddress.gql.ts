@@ -2,6 +2,12 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
+import {
+  CartAddress_BillingCartAddress_Fragment,
+  CartAddress_ShippingCartAddress_Fragment,
+  CartAddressFragmentDoc,
+} from '../cart-address/CartAddress.gql'
+
 export const BillingCartAddressFragmentDoc: DocumentNode<BillingCartAddressFragment, unknown> = {
   kind: 'Document',
   definitions: [
@@ -11,46 +17,10 @@ export const BillingCartAddressFragmentDoc: DocumentNode<BillingCartAddressFragm
       typeCondition: { kind: 'NamedType', name: { kind: 'Name', value: 'BillingCartAddress' } },
       selectionSet: {
         kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'company' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'street' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'country' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'region' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
-              ],
-            },
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
-        ],
+        selections: [{ kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartAddress' } }],
       },
     },
+    ...CartAddressFragmentDoc.definitions,
   ],
 }
-export type BillingCartAddressFragment = Pick<
-  Types.BillingCartAddress,
-  'firstname' | 'lastname' | 'company' | 'city' | 'postcode' | 'street' | 'telephone'
-> & {
-  country: Pick<Types.CartAddressCountry, 'code' | 'label'>
-  region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
-}
+export type BillingCartAddressFragment = CartAddress_BillingCartAddress_Fragment

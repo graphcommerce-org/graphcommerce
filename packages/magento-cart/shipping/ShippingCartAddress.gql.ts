@@ -3,6 +3,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import * as Types from '@reachdigital/magento-graphql'
 
 import {
+  CartAddress_BillingCartAddress_Fragment,
+  CartAddress_ShippingCartAddress_Fragment,
+  CartAddressFragmentDoc,
+} from '../cart-address/CartAddress.gql'
+import {
   AvailableShippingMethodFragment,
   AvailableShippingMethodFragmentDoc,
 } from '../shipping-method/AvailableShippingMethod.gql'
@@ -21,36 +26,7 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'company' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'city' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'street' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'country' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'region' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
-              ],
-            },
-          },
-          { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
+          { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CartAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'customer_notes' } },
           {
             kind: 'Field',
@@ -78,23 +54,12 @@ export const ShippingCartAddressFragmentDoc: DocumentNode<ShippingCartAddressFra
         ],
       },
     },
+    ...CartAddressFragmentDoc.definitions,
     ...SelectedShippingMethodFragmentDoc.definitions,
     ...AvailableShippingMethodFragmentDoc.definitions,
   ],
 }
-export type ShippingCartAddressFragment = Pick<
-  Types.ShippingCartAddress,
-  | 'firstname'
-  | 'lastname'
-  | 'company'
-  | 'city'
-  | 'postcode'
-  | 'street'
-  | 'telephone'
-  | 'customer_notes'
-> & {
-  country: Pick<Types.CartAddressCountry, 'code' | 'label'>
-  region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
+export type ShippingCartAddressFragment = Pick<Types.ShippingCartAddress, 'customer_notes'> & {
   selected_shipping_method?: Types.Maybe<SelectedShippingMethodFragment>
   available_shipping_methods?: Types.Maybe<Array<Types.Maybe<AvailableShippingMethodFragment>>>
-}
+} & CartAddress_ShippingCartAddress_Fragment
