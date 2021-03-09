@@ -1,4 +1,4 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography, Box } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     padding: `${theme.spacings.md} 0`,
   },
+  box: {
+    maxWidth: 820,
+    margin: '0 auto',
+  },
 }))
 
 const FaqPage = ({ pages }: Props) => {
@@ -39,9 +43,11 @@ const FaqPage = ({ pages }: Props) => {
       />
 
       {page.title && (
-        <Typography variant='h2' component='h1' className={classes.title}>
-          {page.title}
-        </Typography>
+        <Box component='div' whiteSpace='normal' className={classes.box}>
+          <Typography variant='h2' component='h1' className={classes.title}>
+            {page.title}
+          </Typography>
+        </Box>
       )}
       <Page {...page} />
     </OverlayUi>
