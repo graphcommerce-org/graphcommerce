@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CartItem from '@reachdigital/magento-cart/cart/CartItem'
 import CartItems from '@reachdigital/magento-cart/cart/CartItems'
@@ -8,6 +8,7 @@ import CartQuickCheckout from '@reachdigital/magento-cart/cart/CartQuickCheckout
 import CartStartCheckout from '@reachdigital/magento-cart/cart/CartStartCheckout'
 import CartTotals from '@reachdigital/magento-cart/cart/CartTotals'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
+import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
 import CouponAccordion from '@reachdigital/magento-cart/coupon/CouponAccordion'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
@@ -24,6 +25,14 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<Props>
 
 function CartPage(props: Props) {
+const useStyles = makeStyles((theme: Theme) => ({
+  title: {
+    textAlign: 'center',
+  },
+}))
+
+function CartPage() {
+  const classes = useStyles()
   const { data } = useQuery(ClientCartDocument)
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
 
@@ -38,16 +47,19 @@ function CartPage(props: Props) {
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <NoSsr>
-          <AnimatePresence initial={false}>
-            <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
+          <Typography variant='h4' component='h1' className={classes.title}>
+            Checkout
+          </Typography>
+          {!hasItems && <EmptyCart />}
 
-            <AnimatedRow key='quick-checkout'>
-              <CartQuickCheckout {...data?.cart?.prices?.grand_total}>
-                {!hasItems && <p>Looks like you did not add anything to your cart yet.</p>}
-              </CartQuickCheckout>
-            </AnimatedRow>
-
-            {hasItems && (
+          {hasItems && (
+            <AnimatePresence initial={false}>
+              <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
+              <AnimatedRow key='quick-checkout'>
+                <CartQuickCheckout {...data?.cart?.prices?.grand_total}>
+                  {!hasItems && <p>Looks like you did not add anything to your cart yet.</p>}
+                </CartQuickCheckout>
+              </AnimatedRow>
               <CartItems
                 id={data?.cart?.id ?? ''}
                 items={data?.cart?.items}
@@ -63,24 +75,17 @@ function CartPage(props: Props) {
                   GiftCardCartItem: CartItem,
                 }}
               />
-            )}
-
-            {hasItems && <CouponAccordion key='couponform' />}
-
-            {hasItems && (
+              <CouponAccordion key='couponform' />
               <CartTotals
                 key='totals'
                 prices={data?.cart?.prices}
                 shipping_addresses={data?.cart?.shipping_addresses ?? []}
               />
-            )}
-
-            {hasItems && (
               <AnimatedRow key='checkout-button'>
                 <CartStartCheckout {...data?.cart?.prices?.grand_total} />
               </AnimatedRow>
-            )}
-          </AnimatePresence>
+            </AnimatePresence>
+          )}
         </NoSsr>
       </Container>
     </OverlayPage>
