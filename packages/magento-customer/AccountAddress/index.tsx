@@ -1,8 +1,11 @@
 import { Checkbox, FormControlLabel, Link, makeStyles, Theme } from '@material-ui/core'
+import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import React, { useState } from 'react'
+import AddressMultiLine from '../AddressMultiLine'
+import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { AccountAddressFragment } from './AccountAddress.gql'
 
-export type AccountAddressProps = AccountAddressFragment
+export type AccountAddressProps = AccountAddressFragment & CountryRegionsQuery
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -25,26 +28,15 @@ const useStyles = makeStyles(
 )
 
 export default function AccountAddress(props: AccountAddressProps) {
-  const {
-    firstname,
-    middlename,
-    lastname,
-    postcode,
-    city,
-    country_code,
-    street,
-    region,
-    id,
-  } = props
+  const { id, countries, default_shipping, default_billing } = props
   const classes = useStyles()
-
-  const [isDeliveryAddress, setIsDeliveryAddress] = useState<boolean>(false)
-  const [isBillingAddress, setIsBillingAddress] = useState<boolean>(false)
+  const [isDeliveryAddress, setIsDeliveryAddress] = useState<boolean>(!!default_shipping)
+  const [isBillingAddress, setIsBillingAddress] = useState<boolean>(!!default_billing)
 
   return (
     <div className={classes.root}>
       <div className={classes.address}>
-        {/* <AddressMultiLine /> */}
+        <AddressMultiLine {...(props as CustomerAddressFragment)} countries={countries} />
 
         <FormControlLabel
           control={
@@ -70,9 +62,7 @@ export default function AccountAddress(props: AccountAddressProps) {
         />
       </div>
       <div className={classes.actions}>
-        <Link href={`/account/address/edit?addressId=${id}`}>
-          <a>Edit</a>
-        </Link>
+        <Link href={`/account/address/edit?addressId=${id}`}>Edit</Link>
       </div>
     </div>
   )
