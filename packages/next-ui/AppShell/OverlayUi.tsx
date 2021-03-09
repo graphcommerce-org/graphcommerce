@@ -43,8 +43,6 @@ const useStyles = makeStyles(
     drawer: {
       background: theme.palette.background.paper,
       color: theme.palette.text.primary,
-      borderTopLeftRadius: theme.spacings.xxs,
-      borderTopRightRadius: theme.spacings.xxs,
       boxShadow: theme.shadows[10],
       width: '100%',
       '&:focus': { outline: 'none' },
@@ -78,10 +76,8 @@ const useStyles = makeStyles(
     drawerLeft: {
       minHeight: `calc(100vh - 50px)`,
       [theme.breakpoints.up('md')]: {
-        width: '70vw',
+        minWidth: theme.breakpoints.values.md,
         minHeight: '100vh',
-      },
-      [theme.breakpoints.up('lg')]: {
         width: '50vw',
       },
     },
@@ -98,11 +94,8 @@ const useStyles = makeStyles(
     drawerRight: {
       minHeight: `calc(100vh - 50px)`,
       [theme.breakpoints.up('md')]: {
-        position: 'absolute',
-        width: '70vw',
+        minWidth: theme.breakpoints.values.md,
         minHeight: '100vh',
-      },
-      [theme.breakpoints.up('lg')]: {
         width: '50vw',
       },
     },
