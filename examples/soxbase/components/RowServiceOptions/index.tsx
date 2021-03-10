@@ -12,9 +12,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       marginBottom: `${theme.spacings.lg}`,
-      [theme.breakpoints.up('md')]: {
-        marginBottom: `${theme.spacings.xl}`,
-      },
+      maxWidth: 820,
     },
     title: {
       marginBottom: `${theme.spacings.md}`,

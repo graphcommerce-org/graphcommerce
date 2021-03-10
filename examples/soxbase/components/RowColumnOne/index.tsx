@@ -8,6 +8,7 @@ import type { RowColumnOneFragment } from './RowColumnOne.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
+      maxWidth: 820,
       marginBottom: theme.spacings.lg,
     },
   }),
@@ -25,7 +26,7 @@ export default function RowColumnOne(props: RowColumnOneProps) {
   const classes = useStyles(props)
 
   return (
-    <Container {...containerProps} className={classes.root}>
+    <Container maxWidth='md' {...containerProps} className={classes.root}>
       <div>
         <RichText {...colOne} classes={richTextOneClasses} />
       </div>
