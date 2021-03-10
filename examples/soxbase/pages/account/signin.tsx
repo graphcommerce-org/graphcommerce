@@ -2,12 +2,11 @@ import { useQuery } from '@apollo/client'
 import {
   CircularProgress,
   Container,
-  FormControl,
+  Link,
   makeStyles,
   TextField,
   Theme,
   Typography,
-  Link,
 } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
@@ -40,7 +39,6 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 const useStyles = makeStyles(
   (theme: Theme) => ({
     titleContainer: {
-      // marginTop: `calc(${theme.spacings.xxs} * -1)`,
       marginBottom: theme.spacings.xs,
     },
   }),
@@ -53,10 +51,20 @@ function AccountSignInPage() {
   const { data: token } = useQuery(CustomerTokenDocument)
   const { data: customerData } = useQuery(CustomerDocument)
 
+  const email = customerData?.customer?.email ?? undefined
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     mode: 'onChange',
-    defaultValues: { email: customerData?.customer?.email ?? undefined },
+    defaultValues: {
+      email,
+    },
+    // disabled text fields won't be added to the form data,
+    // so we have to manually put the e-mail field to the form data.
+    onBeforeSubmit: (formData) => ({
+      ...formData,
+      email: (formData.email || email) ?? '',
+    }),
   })
+
   const {
     handleSubmit,
     formState,
@@ -69,6 +77,7 @@ function AccountSignInPage() {
   } = form
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
+
   const submit = handleSubmit(() => {})
   const autoSubmitting = useFormAutoSubmit({ form, submit })
   const disableFields = formState.isSubmitting && !autoSubmitting
