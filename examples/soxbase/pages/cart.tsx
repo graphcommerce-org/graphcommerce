@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CartItem from '@reachdigital/magento-cart/cart/CartItem'
 import CartItems from '@reachdigital/magento-cart/cart/CartItems'
@@ -24,7 +24,6 @@ import apolloClient from '../lib/apolloClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<Props>
 
-function CartPage(props: Props) {
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
     textAlign: 'center',
@@ -32,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 function CartPage() {
-  const classes = useStyles()
   const { data } = useQuery(ClientCartDocument)
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
 
@@ -47,18 +45,14 @@ function CartPage() {
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <NoSsr>
-          <Typography variant='h4' component='h1' className={classes.title}>
+          <Typography variant='h4' component='h1' style={{ textAlign: 'center' }}>
             Checkout
           </Typography>
-          {!hasItems && <EmptyCart />}
-
-          {hasItems && (
+          {hasItems ? (
             <AnimatePresence initial={false}>
               <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
               <AnimatedRow key='quick-checkout'>
-                <CartQuickCheckout {...data?.cart?.prices?.grand_total}>
-                  {!hasItems && <p>Looks like you did not add anything to your cart yet.</p>}
-                </CartQuickCheckout>
+                <CartQuickCheckout {...data?.cart?.prices?.grand_total} />
               </AnimatedRow>
               <CartItems
                 id={data?.cart?.id ?? ''}
@@ -85,6 +79,8 @@ function CartPage() {
                 <CartStartCheckout {...data?.cart?.prices?.grand_total} />
               </AnimatedRow>
             </AnimatePresence>
+          ) : (
+            <EmptyCart />
           )}
         </NoSsr>
       </Container>
