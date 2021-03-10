@@ -67,7 +67,6 @@ export const defaultTheme = createMuiTheme({
       fontWeight: 400,
       letterSpacing: '0.025em',
       lineHeight: 1.55,
-      textTransform: 'uppercase',
     },
     h1: {
       fontSize: responsiveVal(36, 74),
