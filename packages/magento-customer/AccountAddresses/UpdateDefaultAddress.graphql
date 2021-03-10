@@ -1,0 +1,14 @@
+mutation UpdateDefaultAddress(
+  $addressId: Int!
+  $defaultBilling: Boolean!
+  $defaultShipping: Boolean!
+) {
+  updateCustomerAddress(
+    id: $addressId
+    input: { default_billing: $defaultBilling, default_shipping: $defaultShipping }
+  ) {
+    id
+    default_billing
+    default_shipping
+  }
+}

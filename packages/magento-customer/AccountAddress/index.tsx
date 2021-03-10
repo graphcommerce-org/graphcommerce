@@ -1,8 +1,20 @@
-import { Checkbox, FormControlLabel, Link, makeStyles, Theme } from '@material-ui/core'
+import {
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  Link,
+  makeStyles,
+  Switch,
+  Theme,
+} from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
-import React, { useState } from 'react'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import { Controller } from '@reachdigital/react-hook-form/useForm'
+import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
+import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import React, { useEffect, useMemo } from 'react'
+import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
 import AddressMultiLine from '../AddressMultiLine'
-import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { AccountAddressFragment } from './AccountAddress.gql'
 
 export type AccountAddressProps = AccountAddressFragment & CountryRegionsQuery
@@ -20,6 +32,9 @@ const useStyles = makeStyles(
         display: 'block',
       },
     },
+    switches: {
+      paddingTop: theme.spacings.xxs,
+    },
     actions: {
       //
     },
@@ -30,36 +45,88 @@ const useStyles = makeStyles(
 export default function AccountAddress(props: AccountAddressProps) {
   const { id, countries, default_shipping, default_billing } = props
   const classes = useStyles()
-  const [isDeliveryAddress, setIsDeliveryAddress] = useState<boolean>(!!default_shipping)
-  const [isBillingAddress, setIsBillingAddress] = useState<boolean>(!!default_billing)
+
+  const defaultValues = useMemo(
+    () => ({
+      addressId: id ?? undefined,
+      defaultBilling: !!default_billing,
+      defaultShipping: !!default_shipping,
+    }),
+    [default_billing, default_shipping, id],
+  )
+
+  const form = useFormGqlMutation(UpdateDefaultAddressDocument, {
+    mode: 'onChange',
+    defaultValues,
+  })
+
+  const { errors, handleSubmit, control, error, reset } = form
+
+  const submit = handleSubmit(() => {
+    //
+  })
+  useFormAutoSubmit({ form, submit })
+
+  useEffect(() => {
+    reset(defaultValues)
+  }, [defaultValues, reset])
 
   return (
     <div className={classes.root}>
       <div className={classes.address}>
-        <AddressMultiLine {...(props as CustomerAddressFragment)} countries={countries} />
+        <AddressMultiLine {...props} countries={countries} />
 
-        <FormControlLabel
-          control={
-            <Checkbox
-              color='primary'
-              checked={isDeliveryAddress}
-              onChange={() => {}}
-              name='isDeliveryAddress'
+        <div className={classes.switches}>
+          <form onSubmit={() => {}} noValidate>
+            <Controller
+              name='defaultBilling'
+              control={control}
+              render={({ onChange, value, name, onBlur, ref }) => (
+                <FormControl error={!!errors.defaultBilling}>
+                  <FormControlLabel
+                    control={<Switch color='primary' />}
+                    label='Billing address'
+                    checked={value}
+                    inputRef={ref}
+                    onBlur={onBlur}
+                    name={name}
+                    onChange={(e) =>
+                      onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)
+                    }
+                  />
+
+                  {errors.defaultBilling?.message && (
+                    <FormHelperText>{errors.defaultBilling?.message}</FormHelperText>
+                  )}
+                </FormControl>
+              )}
             />
-          }
-          label='Delivery address'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              color='primary'
-              checked={isBillingAddress}
-              onChange={() => {}}
-              name='isBillingAddress'
+            <Controller
+              name='defaultShipping'
+              control={control}
+              render={({ onChange, value, name, onBlur, ref }) => (
+                <FormControl error={!!errors.defaultShipping}>
+                  <FormControlLabel
+                    control={<Switch color='primary' />}
+                    label='Shipping address'
+                    checked={value}
+                    inputRef={ref}
+                    onBlur={onBlur}
+                    name={name}
+                    onChange={(e) =>
+                      onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)
+                    }
+                  />
+
+                  {errors.defaultShipping?.message && (
+                    <FormHelperText>{errors.defaultShipping?.message}</FormHelperText>
+                  )}
+                </FormControl>
+              )}
             />
-          }
-          label='Billing address'
-        />
+            <ApolloErrorAlert error={error} />
+          </form>
+        </div>
       </div>
       <div className={classes.actions}>
         <Link href={`/account/address/edit?addressId=${id}`}>Edit</Link>

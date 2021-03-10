@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Button, makeStyles, Theme } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
@@ -10,9 +10,14 @@ export type AccountAddressesProps = AccountAddressesFragment & CountryRegionsQue
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      '& > div:not(:last-child)': {
+      '& > div': {
         borderBottom: `1px solid ${theme.palette.divider}`,
       },
+    },
+    button: {
+      display: 'block',
+      margin: `${theme.spacings.md} auto`,
+      padding: `${theme.spacings.xxs} ${theme.spacings.md}`,
     },
   }),
   { name: 'AccountAddresses' },
@@ -23,12 +28,15 @@ export default function AccountAddresses(props: AccountAddressesProps) {
   const classes = useStyles()
 
   return (
-    <SectionContainer label='Shipping addresses' borderBottom>
+    <SectionContainer label='Shipping addresses'>
       <div className={classes.root}>
         {addresses?.map((address) => (
           <AccountAddress key={address?.id} {...address} countries={countries} />
         ))}
       </div>
+      <Button className={classes.button} variant='contained' color='primary'>
+        Add new address
+      </Button>
     </SectionContainer>
   )
 }
