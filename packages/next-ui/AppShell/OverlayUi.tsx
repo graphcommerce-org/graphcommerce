@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import FocusLock from 'react-focus-lock'
 import PageLink from '../PageTransition/PageLink'
-import { UiFC } from '../PageTransition/types'
+import { BackButtonProps, UiFC } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
 import bottomOverlayUiAnimations, {
@@ -149,9 +149,9 @@ export type OverlayUiProps = UseStyles<typeof useStyles> & {
   fullHeight?: boolean
   headerForward?: React.ReactNode
   variant?: OverlayVariants
-}
+} & BackButtonProps
 
-const OverlayUi: UiFC<OverlayUiProps> = (props) => {
+function OverlayUi(props) {
   const classes = useStyles(props)
   const router = useRouter()
   const {
