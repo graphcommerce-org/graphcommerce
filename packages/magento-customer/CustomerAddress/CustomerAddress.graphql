@@ -1,5 +1,4 @@
 fragment CustomerAddress on CustomerAddress {
-  __typename
   prefix
   firstname
   middlename
