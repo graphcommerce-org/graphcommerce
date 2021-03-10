@@ -42,7 +42,7 @@ function AccountAddressesPage(props: Props) {
             alt='addresses'
             size='large'
           />
-          <AccountAddresses {...customer} countries={countries} />
+          <AccountAddresses addresses={customer?.addresses} countries={countries} />
         </NoSsr>
       </Container>
     </OverlayUi>
