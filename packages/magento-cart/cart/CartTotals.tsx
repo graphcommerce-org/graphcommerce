@@ -36,6 +36,10 @@ const useStyles = makeStyles(
     costsDiscount: {
       fontWeight: 600,
     },
+    costsDiscountSub: {
+      color: theme.palette.primary.mutedText,
+      ...theme.typography.body2,
+    },
     costsTax: {
       ...theme.typography.body2,
       fontWeight: 600,
@@ -56,6 +60,8 @@ export default function CartTotals(props: CartTotalsFragment) {
 
   if (!prices) return null
 
+  console.log(prices)
+
   return (
     <AnimatedRow className={classes.costsContainer} key='total-costs'>
       <AnimatePresence initial={false}>
@@ -63,13 +69,27 @@ export default function CartTotals(props: CartTotalsFragment) {
           <AnimatedRow className={classes.costsRow} key='subtotal'>
             <div>Products</div>
             <div>
-              <Money {...prices.subtotal_including_tax} />
+              <Money {...prices.subtotal_excluding_tax} />
             </div>
           </AnimatedRow>
         )}
 
+        <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
+          <div>Product discount</div>
+          <div>
+            {'- '}
+            <Money
+              currency={prices.subtotal_with_discount_excluding_tax?.currency}
+              value={
+                (prices.subtotal_excluding_tax?.value ?? 0) -
+                (prices.subtotal_with_discount_excluding_tax?.value ?? 0)
+              }
+            />
+          </div>
+        </AnimatedRow>
+
         {prices?.discounts?.map((discount) => (
-          <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
+          <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscountSub)} key='discount'>
             <div>{discount?.label}</div>
             <div>
               {discount?.amount && (
@@ -99,9 +119,15 @@ export default function CartTotals(props: CartTotalsFragment) {
             className={clsx(classes.costsRow, classes.costsGrandTotal)}
             key='grand_total'
           >
-            <div>Total</div>
             <div>
-              <Money {...prices.grand_total} />
+              Total {(!prices?.applied_taxes || prices?.applied_taxes.length < 1) && '(excl. VAT)'}
+            </div>
+            <div>
+              <Money
+                {...(!prices?.applied_taxes || prices.applied_taxes.length < 1
+                  ? prices.subtotal_with_discount_excluding_tax
+                  : prices.grand_total)}
+              />
             </div>
           </AnimatedRow>
         )}
