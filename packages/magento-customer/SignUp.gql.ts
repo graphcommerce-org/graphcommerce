@@ -171,7 +171,6 @@ export const SignUpDocument: DocumentNode<SignUpMutation, SignUpMutationVariable
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'prefix' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'middlename' } },
@@ -274,7 +273,7 @@ export type SignUpMutation = {
       addresses?: Types.Maybe<
         Array<
           Types.Maybe<
-            { __typename: 'CustomerAddress' } & Pick<
+            Pick<
               Types.CustomerAddress,
               | 'prefix'
               | 'firstname'
@@ -289,10 +288,10 @@ export type SignUpMutation = {
               | 'telephone'
               | 'vat_id'
             > & {
-                region?: Types.Maybe<
-                  Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>
-                >
-              }
+              region?: Types.Maybe<
+                Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>
+              >
+            }
           >
         >
       >

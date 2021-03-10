@@ -12,7 +12,6 @@ export const CustomerAddressFragmentDoc: DocumentNode<CustomerAddressFragment, u
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
           { kind: 'Field', name: { kind: 'Name', value: 'prefix' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
           { kind: 'Field', name: { kind: 'Name', value: 'middlename' } },
@@ -42,7 +41,7 @@ export const CustomerAddressFragmentDoc: DocumentNode<CustomerAddressFragment, u
     },
   ],
 }
-export type CustomerAddressFragment = { __typename: 'CustomerAddress' } & Pick<
+export type CustomerAddressFragment = Pick<
   Types.CustomerAddress,
   | 'prefix'
   | 'firstname'
@@ -57,5 +56,5 @@ export type CustomerAddressFragment = { __typename: 'CustomerAddress' } & Pick<
   | 'telephone'
   | 'vat_id'
 > & {
-    region?: Types.Maybe<Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>>
-  }
+  region?: Types.Maybe<Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>>
+}
