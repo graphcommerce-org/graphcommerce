@@ -45,7 +45,11 @@ function CartPage() {
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <NoSsr>
-          <Typography variant='h4' component='h1' style={{ textAlign: 'center' }}>
+          <Typography
+            variant='h5'
+            component='h1'
+            style={{ textAlign: 'center', marginTop: '-30px' }}
+          >
             Checkout
           </Typography>
           {hasItems ? (

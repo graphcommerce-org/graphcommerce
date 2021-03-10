@@ -9,12 +9,18 @@ const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      [theme.breakpoints.down('sm')]: {
+        minHeight: '70vh',
+      },
+      [theme.breakpoints.up('md')]: {
+        minHeight: '60vh',
+      },
     },
     img: {
       display: 'block',
       margin: `0 auto ${theme.spacings.xxs} auto`,
-      width: responsiveVal(180, 240),
-      height: responsiveVal(180, 240),
+      width: responsiveVal(120, 180),
+      height: responsiveVal(120, 180),
     },
   }),
   { name: 'EmptyCart' },
@@ -27,12 +33,12 @@ export default function EmptyCart() {
     <Box className={classes.root}>
       <div>
         <img
-          src='/icons/desktop_shopping_bag.svg'
+          src='/icons/desktop_epmty_cart.svg'
           alt='shopping bag'
           className={classes.img}
           loading='eager'
         />
-        <Typography variant='h3' component='h1'>
+        <Typography variant='h3' gutterBottom component='h1'>
           Your cart is empty
         </Typography>
         <Typography variant='subtitle1'>
