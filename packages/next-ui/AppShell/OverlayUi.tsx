@@ -1,19 +1,11 @@
-import {
-  makeStyles,
-  NoSsr,
-  Theme,
-  Typography,
-  TypographyProps,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core'
+import { makeStyles, NoSsr, Theme, useMediaQuery, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import FocusLock from 'react-focus-lock'
 import PageLink from '../PageTransition/PageLink'
-import { UiFC } from '../PageTransition/types'
+import { BackButtonProps } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
 import bottomOverlayUiAnimations, {
@@ -147,11 +139,13 @@ type OverlayVariants = 'top' | 'right' | 'bottom' | 'left' | 'center'
 
 export type OverlayUiProps = UseStyles<typeof useStyles> & {
   fullHeight?: boolean
+  header?: React.ReactNode
   headerForward?: React.ReactNode
   variant?: OverlayVariants
-}
+  children?: React.ReactNode
+} & BackButtonProps
 
-const OverlayUi: UiFC<OverlayUiProps> = (props) => {
+function OverlayUi(props: OverlayUiProps) {
   const classes = useStyles(props)
   const router = useRouter()
   const {
@@ -159,6 +153,7 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
     title,
     backFallbackHref,
     backFallbackTitle,
+    header,
     headerForward,
     fullHeight,
     variant,
@@ -270,6 +265,7 @@ const OverlayUi: UiFC<OverlayUiProps> = (props) => {
               disabled={!inFront && phase === 'FINISHED'}
             >
               <div className={classes.header} role='presentation'>
+                <div className={classes.headerTitleContainer}>{header}</div>
                 <div className={classes.headerBack}>
                   <NoSsr fallback={<BackButton>Home</BackButton>}>
                     {prevPage?.title ? (

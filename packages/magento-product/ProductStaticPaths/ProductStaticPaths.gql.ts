@@ -21,6 +21,14 @@ export const ProductStaticPathsDocument: DocumentNode<
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'pageSize' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -37,7 +45,7 @@ export const ProductStaticPathsDocument: DocumentNode<
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'pageSize' },
-                value: { kind: 'IntValue', value: '1000' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'pageSize' } },
               },
               {
                 kind: 'Argument',
@@ -81,6 +89,7 @@ export const ProductStaticPathsDocument: DocumentNode<
 }
 export type ProductStaticPathsQueryVariables = Types.Exact<{
   currentPage: Types.Scalars['Int']
+  pageSize: Types.Scalars['Int']
 }>
 
 export type ProductStaticPathsQuery = {

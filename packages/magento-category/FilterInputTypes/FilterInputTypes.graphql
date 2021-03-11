@@ -1,0 +1,10 @@
+# query FilterInputTypes {
+#   __type(name: "ProductAttributeFilterInput") {
+#     inputFields {
+#       name
+#       type {
+#         name
+#       }
+#     }
+#   }
+# }

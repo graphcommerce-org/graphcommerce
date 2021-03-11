@@ -1,7 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import {
   CountryRegionsDocument,
@@ -13,7 +12,6 @@ import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAdd
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
@@ -21,14 +19,13 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
-import Footer from '../../components/Footer'
-import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
+import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CountryRegionsQuery & FooterQuery
+type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
-function ShippingPage({ countries, footer }: Props) {
+function ShippingPage({ countries }: Props) {
   const classes = useFormStyles()
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
@@ -45,14 +42,14 @@ function ShippingPage({ countries, footer }: Props) {
   }
 
   return (
-    <OverlayUi
+    <OverlayPage
       variant='bottom'
       backFallbackHref='/cart'
       backFallbackTitle='Cart'
       title='Shipping'
       fullHeight
     >
-      <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+      <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <CheckoutStepper steps={3} currentStep={2} />
 
@@ -80,14 +77,13 @@ function ShippingPage({ countries, footer }: Props) {
           </div>
         </NoSsr>
       </Container>
-      <Footer footer={footer} />
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 ShippingPage.Layout = PageLayout
 
-registerRouteUi('/checkout', OverlayUi)
+registerRouteUi('/checkout', OverlayPage)
 
 export default ShippingPage
 
@@ -96,17 +92,12 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })
-  const footer = staticClient.query({ query: FooterDocument })
 
-  await config
   return {
     props: {
-      ...(await pageLayout).data,
       ...(await countryRegions).data,
-      ...(await footer).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

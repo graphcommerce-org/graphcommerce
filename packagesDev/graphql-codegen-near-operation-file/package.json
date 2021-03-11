@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@graphql-codegen/add": "^2.0.2",
-    "@graphql-codegen/plugin-helpers": "^1.18.2",
-    "@graphql-codegen/visitor-plugin-common": "^1.18.3",
+    "@graphql-codegen/plugin-helpers": "^1.18.3",
+    "@graphql-codegen/visitor-plugin-common": "^1.19.0",
     "@types/parse-filepath": "^1.0.0",
     "graphql": "^15.5.0",
     "parse-filepath": "^1.0.2"

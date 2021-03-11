@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CartItem from '@reachdigital/magento-cart/cart/CartItem'
 import CartItems from '@reachdigital/magento-cart/cart/CartItems'
@@ -15,22 +14,29 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
+import OverlayPage from '../components/AppShell/OverlayUi'
 import apolloClient from '../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<PageLayoutProps>
+type Props = Record<string, unknown>
+type GetPageStaticProps = GetStaticProps<Props>
 
-function CartPage() {
+function CartPage(props: Props) {
   const { data } = useQuery(ClientCartDocument)
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
 
   return (
-    <OverlayUi title='Cart' variant='bottom' fullHeight>
-      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+    <OverlayPage
+      title='Cart'
+      variant='bottom'
+      fullHeight
+      backFallbackTitle='Home'
+      backFallbackHref='/'
+    >
+      <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <NoSsr>
           <AnimatePresence initial={false}>
@@ -78,13 +84,13 @@ function CartPage() {
           </AnimatePresence>
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 CartPage.Layout = PageLayout
 
-registerRouteUi('/cart', OverlayUi)
+registerRouteUi('/cart', OverlayPage)
 
 export default CartPage
 
@@ -93,13 +99,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
-  await config
   return {
     props: {
-      ...(await pageLayout).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

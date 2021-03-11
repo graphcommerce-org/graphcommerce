@@ -19,6 +19,8 @@ function TestOverlayStatic() {
           <ForwardButton color='secondary'>Overlay with gsp</ForwardButton>
         </PageLink>
       }
+      backFallbackHref='/test/index'
+      backFallbackTitle='Test'
     >
       <Container>
         <DebugSpacer />

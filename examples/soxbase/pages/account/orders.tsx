@@ -4,10 +4,16 @@ import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardOrders.gql'
 import AccountOrders from '@reachdigital/magento-customer/AccountOrders'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
+import OverlayPage from '../../components/AppShell/OverlayUi'
+import apolloClient from '../../lib/apolloClient'
+
+type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 function AccountOrdersPage() {
   const { data } = useQuery(AccountDashboardOrdersDocument, {
@@ -16,13 +22,19 @@ function AccountOrdersPage() {
   const customer = data?.customer
 
   return (
-    <OverlayUi title='Orders' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Orders'
+      variant='bottom'
+      fullHeight
+      backFallbackHref='/account'
+      backFallbackTitle='Account'
+    >
       <Container maxWidth='md'>
         <NoSsr>
           <PageMeta
             title='Orders'
             metaDescription='View all your orders'
-            metaRobots='NOINDEX, FOLLOW'
+            metaRobots={['noindex']}
           />
 
           <IconTitle
@@ -34,12 +46,25 @@ function AccountOrdersPage() {
           <AccountOrders {...customer} />
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AccountOrdersPage.Layout = PageLayout
 
-registerRouteUi('/account/orders', OverlayUi)
+registerRouteUi('/account/orders', OverlayPage)
 
 export default AccountOrdersPage
+
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(localeToStore(locale))
+
+  const config = client.query({ query: StoreConfigDocument })
+
+  return {
+    props: {
+      apolloState: await config.then(() => client.cache.extract()),
+    },
+  }
+}

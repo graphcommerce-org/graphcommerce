@@ -1,18 +1,13 @@
-import { makeStyles, NoSsr, Theme, useTheme } from '@material-ui/core'
+import { makeStyles, NoSsr, Theme } from '@material-ui/core'
 import clsx from 'clsx'
-import { m, MotionProps } from 'framer-motion'
+import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useRef } from 'react'
+import React from 'react'
 import PageLink from '../PageTransition/PageLink'
-import { UiFC } from '../PageTransition/types'
+import { BackButtonProps } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
+import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
-
-export type FullPageUiProps = unknown & {
-  logo?: React.ReactNode
-  menu?: React.ReactNode
-  actions?: React.ReactNode
-}
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -59,35 +54,42 @@ const useStyles = makeStyles(
   { name: 'FullPageUi' },
 )
 
-const FullPageUi: UiFC<FullPageUiProps> = (props) => {
-  const { children, title, backFallbackHref, backFallbackTitle, logo, menu, actions } = props
-  const pageTransition = usePageTransition({ title })
-  const { offsetProps, inFront, hold, prevPage } = pageTransition
-  const router = useRouter()
-  const classes = useStyles()
+export type FullPageUiProps = {
+  header?: React.ReactNode
+  children?: React.ReactNode
+} & BackButtonProps &
+  UseStyles<typeof useStyles>
 
-  const headerRef = useRef<HTMLDivElement>(null)
-  const backButtonRef = useRef<HTMLDivElement>(null)
+function FullPageUi(props: FullPageUiProps) {
+  const { children, title, backFallbackHref, backFallbackTitle, header } = props
+  const pageTransition = usePageTransition({ title })
+  const { offsetProps, inFront, prevPage } = pageTransition
+  const router = useRouter()
+  const classes = useStyles(props)
 
   return (
     <>
       <m.div {...offsetProps}>
         <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }}>
           {router.pathname !== '/' && (
-            <m.div
-              className={classes.backButtonRoot}
-              // style={{ left: backButtonAnimLeftTemplate }}
-              ref={backButtonRef}
-            >
-              <NoSsr fallback={<BackButton>{backFallbackTitle ?? 'Home'}</BackButton>}>
+            <m.div className={classes.backButtonRoot}>
+              <NoSsr
+                fallback={
+                  <PageLink href={backFallbackHref}>
+                    <BackButton>
+                      <span className={classes.backButtonText}>{backFallbackTitle}</span>
+                    </BackButton>
+                  </PageLink>
+                }
+              >
                 {prevPage?.title ? (
                   <BackButton onClick={() => router.back()}>
                     <span className={classes.backButtonText}>{prevPage.title}</span>
                   </BackButton>
                 ) : (
-                  <PageLink href={backFallbackHref ?? '/'}>
+                  <PageLink href={backFallbackHref}>
                     <BackButton>
-                      <span className={classes.backButtonText}>{backFallbackTitle ?? 'Home'}</span>
+                      <span className={classes.backButtonText}>{backFallbackTitle}</span>
                     </BackButton>
                   </PageLink>
                 )}
@@ -99,12 +101,9 @@ const FullPageUi: UiFC<FullPageUiProps> = (props) => {
             className={clsx(classes.header)}
             layoutId='header'
             transition={{ type: 'tween' }}
-            ref={headerRef}
             layout='position'
           >
-            {logo}
-            {menu}
-            {actions}
+            {header}
           </m.header>
 
           {children}

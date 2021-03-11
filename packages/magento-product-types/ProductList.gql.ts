@@ -436,7 +436,7 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'category_id' },
+                      name: { kind: 'Name', value: 'category_uid' },
                       value: {
                         kind: 'ObjectValue',
                         fields: [

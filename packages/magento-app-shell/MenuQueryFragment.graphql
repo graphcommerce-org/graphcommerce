@@ -1,0 +1,7 @@
+fragment MenuQueryFragment on Query {
+  menu: categories {
+    items {
+      ...CategoryChildren
+    }
+  }
+}

@@ -1,8 +1,9 @@
-type UiFCBaseProps = {
+export type BackButtonProps = {
   title: string
-  backFallbackHref?: string | null
-  backFallbackTitle?: string | null
+  backFallbackHref: string
+  backFallbackTitle: string
 }
-export type UiFC<T = Record<string, unknown>> = React.FC<UiFCBaseProps & T> & {
+
+export type UiFC<T = Record<string, unknown>> = React.FC<BackButtonProps & T> & {
   holdBackground: boolean
 }

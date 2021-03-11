@@ -8,31 +8,27 @@ type ProductTypenames = NonNullable<
   NonNullable<NonNullable<ProductStaticPathsQuery['products']>['items']>[0]
 >['__typename']
 
-const getProductStaticPaths = async (
+export default async function getProductStaticPaths(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
   typename: ProductTypenames,
-) => {
+) {
   const query = client.query({
     query: ProductStaticPathsDocument,
-    variables: { currentPage: 1 },
+    variables: {
+      currentPage: 1,
+      pageSize: 100000,
+    },
   })
   const pages: Promise<ApolloQueryResult<ProductStaticPathsQuery>>[] = [query]
 
-  const totalPages = (await query).data?.products?.page_info?.total_pages ?? 0
-  if (totalPages > 1) {
-    const pageNrs = Array.from({ length: totalPages - 1 }, (_, i) => i + 2)
-    pageNrs.forEach((currentPage) => {
-      pages.push(client.query({ query: ProductStaticPathsDocument, variables: { currentPage } }))
-    })
-  }
   const paths: Return['paths'] = (await Promise.all(pages))
     .map((q) => q.data.products?.items)
     .flat(1)
     .filter((item) => item?.__typename === typename)
     .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 
-  return paths
+  return (process.env.VERCEL_ENV ?? process.env.NODE_ENV) === 'development'
+    ? paths.slice(0, 1)
+    : paths
 }
-
-export default getProductStaticPaths

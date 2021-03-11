@@ -9,8 +9,7 @@ function TestStatic() {
   const title = `Testpage no GSP`
 
   return (
-    <FullPageUi title={title}>
-      {/* <Header /> */}
+    <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index'>
       <Container>
         <PageLink href='/test/index'>
           <Button variant='outlined' color='secondary'>
@@ -24,7 +23,6 @@ function TestStatic() {
           </Button>
         </PageLink>
       </Container>
-      {/* <Footer /> */}
     </FullPageUi>
   )
 }

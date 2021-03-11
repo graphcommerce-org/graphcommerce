@@ -1,8 +1,8 @@
 import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { PageLayoutQuery } from './PageLayout.gql'
+import { useRouter } from 'next/router'
+import { MenuQueryFragment } from './MenuQueryFragment.gql'
 
 const useTabsStyles = makeStyles(
   (theme: Theme) => ({
@@ -49,19 +49,20 @@ const useTabStyles = makeStyles(
   { name: 'DesktopMenuTab' },
 )
 
-export type MenuTabsProps = PageLayoutQuery &
-  ResolveUrlQuery &
+export type MenuTabsProps = MenuQueryFragment &
   Omit<TabsProps<'menu'>, 'component' | 'value' | 'children'> & {
     tabProps?: Omit<TabProps<'a'>, 'label' | 'component' | 'value'>
   }
 
 export default function MenuTabs(props: MenuTabsProps) {
-  const { menu, urlResolver, tabProps, ...tabsProps } = props
+  const { menu, tabProps, ...tabsProps } = props
   const tabsClasses = useTabsStyles(props)
   const tabClasses = useTabStyles(props)
+  const router = useRouter()
 
-  const selectedId = urlResolver && urlResolver.type === 'CATEGORY' && urlResolver.id
-  const selectedIdx = menu?.items?.[0]?.children?.findIndex((cat) => cat?.id === selectedId) ?? 0
+  const selectedIdx =
+    menu?.items?.[0]?.children?.findIndex((cat) => router.asPath.startsWith(`/${cat?.url_path}`)) ??
+    0
 
   return (
     <Tabs

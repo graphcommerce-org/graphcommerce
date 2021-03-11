@@ -1,48 +1,39 @@
-import { performance } from 'perf_hooks'
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
-import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import getCategoryPageProps, {
+import getFilteredProductList, {
   CategoryPageProps,
-} from '@reachdigital/magento-product-types/getCategoryPageProps'
+  extractUrlQuery,
+} from '@reachdigital/magento-product-types/filteredProductList'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
-import ResultError from '@reachdigital/next-ui/Page/ResultError'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
 import NextError from 'next/error'
 import React from 'react'
+import FullPageUi from '../components/AppShell/FullPageUi'
 import Asset from '../components/Asset'
-import FabMenu from '../components/FabMenu'
-import Footer from '../components/Footer'
-import { FooterDocument, FooterQuery } from '../components/Footer/Footer.gql'
-import HeaderActions from '../components/HeaderActions/HeaderActions'
-import Logo from '../components/Logo/Logo'
-import Page from '../components/Page'
-import { PageByUrlDocument, PageByUrlQuery } from '../components/Page/PageByUrl.gql'
+import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
+import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
 import RowProductBackstory from '../components/RowProductBackstory'
 import RowProductGrid from '../components/RowProductGrid'
 import RowSwipeableGrid from '../components/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageProps & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery & FooterQuery
+type Props = CategoryPageQuery & CategoryPageProps
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -87,47 +78,29 @@ const useProductListStyles = makeStyles(
 function CategoryPage(props: Props) {
   const productListClasses = useProductListStyles(props)
   const classes = useCategoryPageStyles(props)
-  const {
-    categories,
-    products,
-    filters,
-    params,
-    filterTypes,
-    menu,
-    urlResolver,
-    pages,
-    footer,
-  } = props
+  const { categories, products, filters, params, filterTypes, pages } = props
 
-  if (!categories?.items?.[0] || !products || !params || !filters || !filterTypes)
+  const category = categories?.items?.[0]
+  if (!category || !products || !params || !filters || !filterTypes)
     return <NextError statusCode={503} title='Loading skeleton' />
 
-  const category = categories.items[0]
-  const parentCategory = categories.items[0].breadcrumbs?.[0]
-
-  const isLanding =
-    (categories.items[0].level === 2 && categories.items[0].is_anchor === 1) ||
-    categories.items[0].display_mode === 'PAGE'
+  const parentCategory = category.breadcrumbs?.[0]
+  const isLanding = category.display_mode === 'PAGE'
 
   let productList = products?.items
-
-  if (isLanding) {
-    if (productList) {
-      productList = products?.items?.slice(0, 8)
-    }
-  }
+  if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
   return (
     <FullPageUi
       title={category.name ?? ''}
-      backFallbackTitle={parentCategory?.category_name ?? undefined}
-      backFallbackHref={parentCategory?.category_url_path ?? undefined}
-      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
-      logo={<Logo />}
-      actions={<HeaderActions />}
+      backFallbackTitle={parentCategory?.category_name ?? 'Home'}
+      backFallbackHref={parentCategory?.category_url_path ?? '/'}
+      {...props}
     >
-      <FabMenu menu={menu} urlResolver={urlResolver} />
-      <CategoryMeta {...category} />
+      <PageMeta
+        title={category.meta_title ?? category.name ?? ''}
+        metaDescription={category.meta_description ?? ''}
+      />
 
       {isLanding ? (
         <Container className={classes.container} maxWidth={false}>
@@ -162,15 +135,17 @@ function CategoryPage(props: Props) {
           </Container>
         </ProductListParamsProvider>
       )}
-      <Page
-        renderer={{
-          RowProductBackstory: (p) => <RowProductBackstory {...p} items={productList} />,
-          RowProductGrid: (p) => <RowProductGrid {...p} items={productList} />,
-          RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={productList} />,
-        }}
-        {...pages?.[0]}
-      />
-      <Footer footer={footer} />
+
+      {pages?.[0] && (
+        <PageContent
+          renderer={{
+            RowProductBackstory: (p) => <RowProductBackstory {...p} items={productList} />,
+            RowProductGrid: (p) => <RowProductGrid {...p} items={productList} />,
+            RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={productList} />,
+          }}
+          content={pages?.[0]?.content}
+        />
+      )}
     </FullPageUi>
   )
 }
@@ -181,94 +156,36 @@ export default CategoryPage
 
 registerRouteUi('/[...url]', FullPageUi)
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
-  performance.mark(`getStaticPaths-[...url]-start`)
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  // Disable getStaticPaths while in development mode
+  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const localePaths =
-    locales?.map((locale) => {
-      const client = apolloClient(localeToStore(locale))
-      return getCategoryStaticPaths(client, locale)
-    }) ?? []
-  const paths = (await Promise.all(localePaths)).flat(1)
-
-  performance.mark(`getStaticPaths-[...url]-stop`)
-  performance.measure(
-    `getStaticPaths-[...url]`,
-    `getStaticPaths-[...url]-start`,
-    `getStaticPaths-[...url]-stop`,
-  )
-
+  const path = (loc: string) => getCategoryStaticPaths(apolloClient(localeToStore(loc)), loc)
+  const paths = (await Promise.all(locales.map(path))).flat(1)
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  try {
-    if (!params?.url) throw new ResultError({ notFound: true })
+  const [url, query] = extractUrlQuery(params)
+  if (!url || !query) return { notFound: true }
 
-    performance.mark(`getStaticProps-${params.url.join('/')}-start`)
+  const client = apolloClient(localeToStore(locale))
+  const config = client.query({ query: StoreConfigDocument })
 
-    const queryIndex = params.url.findIndex((slug) => slug === 'q')
-    const qIndex = queryIndex < 0 ? params.url.length : queryIndex
-    const urlPath = params.url.slice(0, qIndex).join('/')
-    const urlParams = params.url.slice(qIndex + 1)
+  const staticClient = apolloClient(localeToStore(locale))
 
-    if (queryIndex > 0 && !urlParams.length) throw new ResultError({ notFound: true })
+  const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
+  const rootCategory = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
+  const productList = await getFilteredProductList({ url, query, rootCategory, staticClient })
 
-    const client = apolloClient(localeToStore(locale))
-    const staticClient = apolloClient(localeToStore(locale))
-    const config = client.query({ query: StoreConfigDocument })
-    const suffix = (await config).data?.storeConfig?.category_url_suffix ?? ''
-    const urlKey = `${urlPath}${suffix}`
+  if (!(await rootCategory) || !productList) return { notFound: true }
 
-    const page = staticClient.query({
-      query: PageByUrlDocument,
-      variables: { url: `${params.url}` },
-    })
-
-    const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
-    const footer = staticClient.query({ query: FooterDocument })
-    const categoryPage = getCategoryPageProps({ urlPath, urlParams, resolveUrl }, staticClient)
-    const pageLayout = staticClient.query({ query: PageLayoutDocument })
-
-    const cat = String((await config).data.storeConfig?.root_category_id ?? '')
-
-    const { urlResolver } = (await resolveUrl).data
-
-    // 404 and redirect handling
-    if (urlResolver?.type === 'CMS_PAGE') {
-      throw new ResultError({
-        redirect: { destination: `/page${urlResolver.relative_url}`, permanent: false },
-      })
-    }
-    if (urlResolver?.type === 'PRODUCT') {
-      throw new ResultError({
-        redirect: { destination: `/product${urlResolver.relative_url}`, permanent: false },
-      })
-    }
-    if (!urlResolver?.id) throw new ResultError({ notFound: true })
-
-    const res = {
-      props: {
-        ...(await resolveUrl).data,
-        ...(await footer).data,
-        ...(await pageLayout).data,
-        ...(await categoryPage),
-        ...(await page).data,
-        apolloState: client.cache.extract(),
-      },
-      revalidate: 60 * 20,
-    }
-
-    performance.mark(`getStaticProps-${params.url.join('/')}-stop`)
-    performance.measure(
-      `getStaticProps: /${params.url.join('/')}`,
-      `getStaticProps-${params.url.join('/')}-start`,
-      `getStaticProps-${params.url.join('/')}-stop`,
-    )
-
-    return res
-  } catch (e) {
-    if (e instanceof ResultError) return e.result
-    throw e
+  return {
+    props: {
+      ...(await categoryPage).data,
+      ...productList,
+      apolloState: await config.then(() => client.cache.extract()),
+    },
+    revalidate: 60 * 20,
   }
 }

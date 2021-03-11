@@ -1,0 +1,5 @@
+fragment ProductFilters on Query {
+  filters: products(filter: { category_uid: { eq: $rootCategory } }) {
+    ...ProductListFilters
+  }
+}

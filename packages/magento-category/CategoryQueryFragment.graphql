@@ -1,0 +1,12 @@
+fragment CategoryQueryFragment on Query {
+  categories(filters: { url_path: { eq: $url } }) {
+    items {
+      uid
+      ...CategoryBreadcrumb
+      ...CategoryDescription
+      ...CategoryChildren
+      ...CategoryMeta
+      ...CategoryHeroNav
+    }
+  }
+}

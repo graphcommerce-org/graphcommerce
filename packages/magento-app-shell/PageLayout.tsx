@@ -10,6 +10,7 @@ export type PageLayoutProps = Record<string, unknown>
 
 const PageLayout = ({ children }: PropsWithChildren<PageLayoutProps>) => {
   const theme = useTheme()
+
   const storeConfig = useQuery(StoreConfigDocument)
   const name = storeConfig.data?.storeConfig?.store_name ?? ''
 

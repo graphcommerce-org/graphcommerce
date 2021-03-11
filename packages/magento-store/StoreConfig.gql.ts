@@ -18,7 +18,7 @@ export const StoreConfigDocument: DocumentNode<StoreConfigQuery, StoreConfigQuer
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'store_code' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'store_name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'locale' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'base_currency_code' } },
@@ -32,7 +32,7 @@ export const StoreConfigDocument: DocumentNode<StoreConfigQuery, StoreConfigQuer
                 { kind: 'Field', name: { kind: 'Name', value: 'category_url_suffix' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'product_url_suffix' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'base_link_url' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'root_category_id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'root_category_uid' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'weight_unit' } },
               ],
             },
@@ -48,7 +48,7 @@ export type StoreConfigQuery = {
   storeConfig?: Types.Maybe<
     Pick<
       Types.StoreConfig,
-      | 'id'
+      | 'store_code'
       | 'store_name'
       | 'locale'
       | 'base_currency_code'
@@ -62,7 +62,7 @@ export type StoreConfigQuery = {
       | 'category_url_suffix'
       | 'product_url_suffix'
       | 'base_link_url'
-      | 'root_category_id'
+      | 'root_category_uid'
       | 'weight_unit'
     >
   >

@@ -1,0 +1,21 @@
+fragment ProductPageGroupedQueryFragment on Query {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      ... on GroupedProduct {
+        __typename
+        ...ProductWeight
+        items {
+          position
+          qty
+          product {
+            uid
+            __typename
+            ...ProductListItem
+            ...ProductListItemSimple
+            ...ProductListItemVirtual
+          }
+        }
+      }
+    }
+  }
+}

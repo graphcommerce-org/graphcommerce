@@ -39,15 +39,15 @@
             "Authorization": "{context.req.headers.authorization}"
           }
         }
-      },
-      "transforms": [
+      }
+    }
+  ],
+  "transforms": [
+    {
+      "cache": [
         {
-          "cache": [
-            {
-              "field": "Query.storeConfig",
-              "invalidate": { "ttl": 300 }
-            }
-          ]
+          "field": "Query.storeConfig",
+          "invalidate": { "ttl": 300 }
         }
       ]
     }

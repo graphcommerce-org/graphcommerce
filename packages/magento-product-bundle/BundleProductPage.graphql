@@ -1,0 +1,3 @@
+query BundleProductPage($urlKey: String) {
+  ...ProductPageBundleQueryFragment
+}

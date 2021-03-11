@@ -1,0 +1,22 @@
+fragment ProductPageDownloadableQueryFragment on Query {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      ... on DownloadableProduct {
+        __typename
+        ...ProductCustomizable
+        downloadable_product_links {
+          price
+          sample_url
+          sort_order
+          title
+          uid
+        }
+        downloadable_product_samples {
+          title
+          sort_order
+          sample_url
+        }
+      }
+    }
+  }
+}

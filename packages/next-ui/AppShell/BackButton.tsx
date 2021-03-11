@@ -41,7 +41,7 @@ const useStyles = makeStyles(
 
 export type BackButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
 
-const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
+const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
   const { text, icon, ...classes } = useStyles(props)
   const { children, down, ...fabProps } = props
 
@@ -53,6 +53,7 @@ const BackButton = React.forwardRef((props: BackButtonProps, ref) => {
         pill: classes.root,
       }}
       aria-label='Previous page'
+      ref={ref}
       {...fabProps}
     >
       <ArrowBack

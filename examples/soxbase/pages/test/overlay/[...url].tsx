@@ -1,20 +1,17 @@
 import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
-import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React, { useState } from 'react'
-import Page from '../../../components/Page'
-import { PageByUrlDocument, PageByUrlQuery } from '../../../components/Page/PageByUrl.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = { url: string } & PageByUrlQuery
+type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -35,6 +32,8 @@ function AppShellTextOverlay({ url, pages }: Props) {
         </PageLink>
       }
       variant='center'
+      backFallbackHref='/test/index'
+      backFallbackTitle='Test'
     >
       <Container maxWidth='md'>Content here</Container>
     </OverlayUi>
@@ -49,6 +48,8 @@ export default AppShellTextOverlay
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
   const urls = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
   const paths = locales
@@ -65,19 +66,16 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const page = staticClient.query({
-    query: PageByUrlDocument,
+    query: DefaultPageDocument,
     variables: { url: `test/overlay/${url}` },
   })
 
-  await config
   return {
     props: {
-      ...(await pageLayout).data,
-      ...(await page).data,
       url,
-      apolloState: client.cache.extract(),
+      ...(await page).data,
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

@@ -12,6 +12,16 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'GetCategoryStaticPaths' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'rootCategory' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+      ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -22,7 +32,28 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'filters' },
-                value: { kind: 'ObjectValue', fields: [] },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'parent_category_uid' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'rootCategory' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
               },
             ],
             selectionSet: {
@@ -33,7 +64,42 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
                   name: { kind: 'Name', value: 'items' },
                   selectionSet: {
                     kind: 'SelectionSet',
-                    selections: [{ kind: 'Field', name: { kind: 'Name', value: 'url_path' } }],
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'children' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'children' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'children' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'url_path' },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
                   },
                 },
               ],
@@ -44,10 +110,38 @@ export const GetCategoryStaticPathsDocument: DocumentNode<
     },
   ],
 }
-export type GetCategoryStaticPathsQueryVariables = Types.Exact<{ [key: string]: never }>
+export type GetCategoryStaticPathsQueryVariables = Types.Exact<{
+  rootCategory: Types.Scalars['String']
+}>
 
 export type GetCategoryStaticPathsQuery = {
   categories?: Types.Maybe<{
-    items?: Types.Maybe<Array<Types.Maybe<Pick<Types.CategoryTree, 'url_path'>>>>
+    items?: Types.Maybe<
+      Array<
+        Types.Maybe<
+          Pick<Types.CategoryTree, 'url_path'> & {
+            children?: Types.Maybe<
+              Array<
+                Types.Maybe<
+                  Pick<Types.CategoryTree, 'url_path'> & {
+                    children?: Types.Maybe<
+                      Array<
+                        Types.Maybe<
+                          Pick<Types.CategoryTree, 'url_path'> & {
+                            children?: Types.Maybe<
+                              Array<Types.Maybe<Pick<Types.CategoryTree, 'url_path'>>>
+                            >
+                          }
+                        >
+                      >
+                    >
+                  }
+                >
+              >
+            >
+          }
+        >
+      >
+    >
   }>
 }

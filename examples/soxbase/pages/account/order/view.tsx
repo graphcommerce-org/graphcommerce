@@ -12,12 +12,12 @@ import OrderItems from '@reachdigital/magento-customer/OrderItems'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React from 'react'
+import OverlayPage from '../../../components/AppShell/OverlayUi'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -37,7 +37,13 @@ function OrderDetailPage(props: Props) {
   const isLoading = orderId ? loading : true
 
   return (
-    <OverlayUi title='Orders' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Orders'
+      variant='bottom'
+      fullHeight
+      backFallbackHref='/account/orders'
+      backFallbackTitle='Orders'
+    >
       <Container maxWidth='md'>
         <NoSsr>
           {!orderId && (
@@ -54,7 +60,7 @@ function OrderDetailPage(props: Props) {
               <PageMeta
                 title={`Order view #${orderId}`}
                 metaDescription={`Order detail page for order #${orderId}`}
-                metaRobots='NOINDEX, FOLLOW'
+                metaRobots={['noindex']}
               />
               <OrderItems {...order} loading={isLoading} images={images} />
               <OrderDetails {...order} loading={isLoading} countries={countries} />
@@ -62,13 +68,13 @@ function OrderDetailPage(props: Props) {
           )}
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 OrderDetailPage.Layout = PageLayout
 
-registerRouteUi('/account/order/view', OverlayUi)
+registerRouteUi('/account/order/view', OverlayPage)
 
 export default OrderDetailPage
 
@@ -81,11 +87,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     query: CountryRegionsDocument,
   })
 
-  await config
   return {
     props: {
       ...(await countryRegions).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

@@ -1,0 +1,10 @@
+fragment ProductPageVirtualQueryFragment on Query {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      ... on VirtualProduct {
+        ...ProductCustomizable
+      }
+    }
+  }
+}

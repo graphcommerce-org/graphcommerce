@@ -1,7 +1,0 @@
-query PageLayout {
-  menu: categories {
-    items {
-      ...CategoryChildren
-    }
-  }
-}

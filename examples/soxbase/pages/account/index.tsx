@@ -7,11 +7,11 @@ import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrde
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import AccountMenu from '../../components/AccountMenu'
+import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
@@ -23,26 +23,28 @@ function AccountIndexPage() {
   const customer = data?.customer
 
   return (
-    <OverlayUi title='Account' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Account'
+      variant='bottom'
+      fullHeight
+      backFallbackTitle='Home'
+      backFallbackHref='/'
+    >
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta
-            title='Account'
-            metaDescription='Account Dashboard'
-            metaRobots='NOINDEX, FOLLOW'
-          />
+          <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
           <AccountHeader {...customer} loading={loading} />
           <AccountMenu {...customer} loading={loading} />
           <AccountLatestOrder {...customer} loading={loading} />
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AccountIndexPage.Layout = PageLayout
 
-registerRouteUi('/account', OverlayUi)
+registerRouteUi('/account', OverlayPage)
 
 export default AccountIndexPage
 
@@ -50,10 +52,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(localeToStore(locale))
   const config = client.query({ query: StoreConfigDocument })
 
-  await config
   return {
     props: {
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }
