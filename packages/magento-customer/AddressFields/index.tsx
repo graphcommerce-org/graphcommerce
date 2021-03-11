@@ -120,7 +120,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.postcode.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.postcode.name].postcode &&
+            endAdornment: !errors[fieldOptions.postcode.name] &&
               !!watch(fieldOptions.postcode.name) && <CheckIcon className={classes.checkmark} />,
           }}
         />
