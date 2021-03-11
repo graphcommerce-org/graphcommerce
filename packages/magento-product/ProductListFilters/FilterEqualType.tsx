@@ -67,6 +67,14 @@ const useFilterEqualStyles = makeStyles(
       background: theme.palette.grey['100'],
       marginRight: theme.spacings.xxs,
     },
+    filterAmount: {
+      color: theme.palette.grey[500],
+      marginLeft: 4,
+      display: 'inline',
+    },
+    filterLabel: {
+      display: 'inline',
+    },
   }),
   { name: 'FilterEqual' },
 )
@@ -138,7 +146,11 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               }}
             >
               <div className={classes.listItemInnerContainer}>
-                <ListItemText primary={option?.label} />
+                <ListItemText
+                  primary={option?.label}
+                  classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
+                  secondary={`(${option?.value})`}
+                />
 
                 <Checkbox
                   edge='start'
