@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
 import {
@@ -101,12 +100,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {
     props: {
-      ...(await pageLayout).data,
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
     },

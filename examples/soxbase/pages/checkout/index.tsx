@@ -1,7 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import {
   CountryRegionsDocument,
@@ -20,14 +19,13 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
-import { FooterDocument, FooterQuery } from '../../components/AppShell/Footer.gql'
 import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CountryRegionsQuery & FooterQuery
+type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
-function ShippingPage({ countries, footer }: Props) {
+function ShippingPage({ countries }: Props) {
   const classes = useFormStyles()
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
@@ -94,15 +92,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })
-  const footer = staticClient.query({ query: FooterDocument })
 
   return {
     props: {
-      ...(await pageLayout).data,
       ...(await countryRegions).data,
-      ...(await footer).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
   }

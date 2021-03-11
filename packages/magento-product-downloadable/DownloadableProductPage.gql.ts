@@ -69,6 +69,7 @@ export const DownloadableProductPageDocument: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                             {
                               kind: 'Field',
                               name: { kind: 'Name', value: 'downloadable_product_links' },
@@ -726,142 +727,144 @@ export type DownloadableProductPageQuery = {
   typeProducts?: Types.Maybe<{
     items?: Types.Maybe<
       Array<
-        Types.Maybe<{
-          downloadable_product_links?: Types.Maybe<
-            Array<
-              Types.Maybe<
-                Pick<
-                  Types.DownloadableProductLinks,
-                  'price' | 'sample_url' | 'sort_order' | 'title' | 'uid'
+        Types.Maybe<
+          { __typename: 'DownloadableProduct' } & {
+            downloadable_product_links?: Types.Maybe<
+              Array<
+                Types.Maybe<
+                  Pick<
+                    Types.DownloadableProductLinks,
+                    'price' | 'sample_url' | 'sort_order' | 'title' | 'uid'
+                  >
                 >
               >
             >
-          >
-          downloadable_product_samples?: Types.Maybe<
-            Array<
-              Types.Maybe<
-                Pick<Types.DownloadableProductSamples, 'title' | 'sort_order' | 'sample_url'>
+            downloadable_product_samples?: Types.Maybe<
+              Array<
+                Types.Maybe<
+                  Pick<Types.DownloadableProductSamples, 'title' | 'sort_order' | 'sample_url'>
+                >
               >
             >
-          >
-          options?: Types.Maybe<
-            Array<
-              Types.Maybe<
-                | ({ __typename: 'CustomizableAreaOption' } & Pick<
-                    Types.CustomizableAreaOption,
-                    'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      areaValue?: Types.Maybe<
-                        Pick<
-                          Types.CustomizableAreaValue,
-                          'max_characters' | 'price' | 'price_type' | 'sku' | 'uid'
+            options?: Types.Maybe<
+              Array<
+                Types.Maybe<
+                  | ({ __typename: 'CustomizableAreaOption' } & Pick<
+                      Types.CustomizableAreaOption,
+                      'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        areaValue?: Types.Maybe<
+                          Pick<
+                            Types.CustomizableAreaValue,
+                            'max_characters' | 'price' | 'price_type' | 'sku' | 'uid'
+                          >
                         >
-                      >
-                    })
-                | ({ __typename: 'CustomizableDateOption' } & Pick<
-                    Types.CustomizableDateOption,
-                    'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      dateValue?: Types.Maybe<
-                        Pick<Types.CustomizableDateValue, 'price' | 'price_type' | 'sku' | 'uid'>
-                      >
-                    })
-                | ({ __typename: 'CustomizableDropDownOption' } & Pick<
-                    Types.CustomizableDropDownOption,
-                    'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      dropdownValue?: Types.Maybe<
-                        Array<
-                          Types.Maybe<
-                            Pick<
-                              Types.CustomizableDropDownValue,
-                              | 'option_type_id'
-                              | 'price'
-                              | 'price_type'
-                              | 'sku'
-                              | 'sort_order'
-                              | 'title'
-                              | 'uid'
+                      })
+                  | ({ __typename: 'CustomizableDateOption' } & Pick<
+                      Types.CustomizableDateOption,
+                      'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        dateValue?: Types.Maybe<
+                          Pick<Types.CustomizableDateValue, 'price' | 'price_type' | 'sku' | 'uid'>
+                        >
+                      })
+                  | ({ __typename: 'CustomizableDropDownOption' } & Pick<
+                      Types.CustomizableDropDownOption,
+                      'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        dropdownValue?: Types.Maybe<
+                          Array<
+                            Types.Maybe<
+                              Pick<
+                                Types.CustomizableDropDownValue,
+                                | 'option_type_id'
+                                | 'price'
+                                | 'price_type'
+                                | 'sku'
+                                | 'sort_order'
+                                | 'title'
+                                | 'uid'
+                              >
                             >
                           >
                         >
-                      >
-                    })
-                | ({ __typename: 'CustomizableMultipleOption' } & Pick<
-                    Types.CustomizableMultipleOption,
-                    'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      multipleValue?: Types.Maybe<
-                        Array<
-                          Types.Maybe<
-                            Pick<
-                              Types.CustomizableMultipleValue,
-                              | 'option_type_id'
-                              | 'price'
-                              | 'price_type'
-                              | 'sku'
-                              | 'sort_order'
-                              | 'title'
-                              | 'uid'
+                      })
+                  | ({ __typename: 'CustomizableMultipleOption' } & Pick<
+                      Types.CustomizableMultipleOption,
+                      'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        multipleValue?: Types.Maybe<
+                          Array<
+                            Types.Maybe<
+                              Pick<
+                                Types.CustomizableMultipleValue,
+                                | 'option_type_id'
+                                | 'price'
+                                | 'price_type'
+                                | 'sku'
+                                | 'sort_order'
+                                | 'title'
+                                | 'uid'
+                              >
                             >
                           >
                         >
-                      >
-                    })
-                | ({ __typename: 'CustomizableFieldOption' } & Pick<
-                    Types.CustomizableFieldOption,
-                    'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      fieldValue?: Types.Maybe<
-                        Pick<
-                          Types.CustomizableFieldValue,
-                          'max_characters' | 'price' | 'price_type' | 'sku' | 'uid'
+                      })
+                  | ({ __typename: 'CustomizableFieldOption' } & Pick<
+                      Types.CustomizableFieldOption,
+                      'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        fieldValue?: Types.Maybe<
+                          Pick<
+                            Types.CustomizableFieldValue,
+                            'max_characters' | 'price' | 'price_type' | 'sku' | 'uid'
+                          >
                         >
-                      >
-                    })
-                | ({ __typename: 'CustomizableFileOption' } & Pick<
-                    Types.CustomizableFileOption,
-                    'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      fileValue?: Types.Maybe<
-                        Pick<
-                          Types.CustomizableFileValue,
-                          | 'file_extension'
-                          | 'image_size_x'
-                          | 'image_size_y'
-                          | 'price'
-                          | 'price_type'
-                          | 'sku'
-                          | 'uid'
+                      })
+                  | ({ __typename: 'CustomizableFileOption' } & Pick<
+                      Types.CustomizableFileOption,
+                      'product_sku' | 'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        fileValue?: Types.Maybe<
+                          Pick<
+                            Types.CustomizableFileValue,
+                            | 'file_extension'
+                            | 'image_size_x'
+                            | 'image_size_y'
+                            | 'price'
+                            | 'price_type'
+                            | 'sku'
+                            | 'uid'
+                          >
                         >
-                      >
-                    })
-                | ({ __typename: 'CustomizableRadioOption' } & Pick<
-                    Types.CustomizableRadioOption,
-                    'option_id' | 'required' | 'sort_order' | 'title'
-                  > & {
-                      value?: Types.Maybe<
-                        Array<
-                          Types.Maybe<
-                            Pick<
-                              Types.CustomizableRadioValue,
-                              | 'option_type_id'
-                              | 'price'
-                              | 'price_type'
-                              | 'sku'
-                              | 'sort_order'
-                              | 'title'
-                              | 'uid'
+                      })
+                  | ({ __typename: 'CustomizableRadioOption' } & Pick<
+                      Types.CustomizableRadioOption,
+                      'option_id' | 'required' | 'sort_order' | 'title'
+                    > & {
+                        value?: Types.Maybe<
+                          Array<
+                            Types.Maybe<
+                              Pick<
+                                Types.CustomizableRadioValue,
+                                | 'option_type_id'
+                                | 'price'
+                                | 'price_type'
+                                | 'sku'
+                                | 'sort_order'
+                                | 'title'
+                                | 'uid'
+                              >
                             >
                           >
                         >
-                      >
-                    })
-                | { __typename: 'CustomizableCheckboxOption' }
+                      })
+                  | { __typename: 'CustomizableCheckboxOption' }
+                >
               >
             >
-          >
-        }>
+          }
+        >
       >
     >
   }>

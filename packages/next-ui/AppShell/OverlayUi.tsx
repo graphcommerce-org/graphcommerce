@@ -1,19 +1,11 @@
-import {
-  makeStyles,
-  NoSsr,
-  Theme,
-  Typography,
-  TypographyProps,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core'
+import { makeStyles, NoSsr, Theme, useMediaQuery, useTheme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import FocusLock from 'react-focus-lock'
 import PageLink from '../PageTransition/PageLink'
-import { BackButtonProps, UiFC } from '../PageTransition/types'
+import { BackButtonProps } from '../PageTransition/types'
 import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
 import bottomOverlayUiAnimations, {

@@ -12,14 +12,14 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import RowProductBackstory from '../../components/RowProductBackstory'
 import RowProductGrid from '../../components/RowProductGrid'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = FullPageUiQuery & CmsPageQuery & ProductListQuery
+type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>

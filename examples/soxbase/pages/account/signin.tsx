@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import {
   CircularProgress,
   Container,
-  FormControl,
   makeStyles,
   TextField,
   Theme,
@@ -10,7 +9,6 @@ import {
   Link,
 } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
@@ -35,7 +33,7 @@ import React from 'react'
 import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<PageLayoutProps>
+type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -217,11 +215,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
   return {
     props: {
-      ...(await pageLayout).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
   }

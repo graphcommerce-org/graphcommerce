@@ -45,11 +45,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
   return {
     props: {
-      ...(await pageLayout).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
   }

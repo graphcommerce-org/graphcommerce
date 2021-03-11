@@ -1,6 +1,5 @@
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -11,7 +10,7 @@ import React from 'react'
 import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<PageLayoutProps>
+type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 function AccountForgotPasswordPage() {
   return (
@@ -46,11 +45,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
   return {
     props: {
-      ...(await pageLayout).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
   }

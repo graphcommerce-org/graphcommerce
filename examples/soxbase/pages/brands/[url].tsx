@@ -5,11 +5,11 @@ import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = FullPageUiQuery
+type Props = DefaultPageQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -18,9 +18,8 @@ const BrandPage = (props: Props) => {
   const { pages } = props
   const page = pages[0]
 
-  const title = page.title ?? ''
   return (
-    <FullPageUi title={title} backFallbackHref='/' backFallbackTitle='Home' {...props}>
+    <FullPageUi title={page.title ?? ''} backFallbackHref='/' backFallbackTitle='Home' {...props}>
       <PageContent {...page} />
     </FullPageUi>
   )

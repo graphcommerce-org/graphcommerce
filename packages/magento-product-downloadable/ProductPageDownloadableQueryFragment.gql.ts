@@ -71,6 +71,7 @@ export const ProductPageDownloadableQueryFragmentDoc: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
                             {
                               kind: 'FragmentSpread',
                               name: { kind: 'Name', value: 'ProductCustomizable' },
@@ -121,7 +122,7 @@ export type ProductPageDownloadableQueryFragment = {
     items?: Types.Maybe<
       Array<
         Types.Maybe<
-          {
+          { __typename: 'DownloadableProduct' } & {
             downloadable_product_links?: Types.Maybe<
               Array<
                 Types.Maybe<

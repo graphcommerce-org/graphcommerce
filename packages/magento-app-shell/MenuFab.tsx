@@ -2,7 +2,6 @@ import { Theme, makeStyles, Fab, ListItem, ListItemText, Menu, FabProps } from '
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { Router, useRouter } from 'next/router'
@@ -59,9 +58,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = MenuQueryFragment &
-  ResolveUrlQuery &
-  Omit<FabProps, 'children' | 'onClick' | 'aria-label'>
+export type MenuFabProps = MenuQueryFragment & Omit<FabProps, 'children' | 'onClick' | 'aria-label'>
 
 export default function MenuFab(props: MenuFabProps) {
   const { menu, ...fabProps } = props

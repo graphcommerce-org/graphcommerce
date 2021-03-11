@@ -3,3 +3,7 @@ export type BackButtonProps = {
   backFallbackHref: string
   backFallbackTitle: string
 }
+
+export type UiFC<T = Record<string, unknown>> = React.FC<BackButtonProps & T> & {
+  holdBackground: boolean
+}

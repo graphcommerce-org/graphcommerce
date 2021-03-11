@@ -1,10 +1,8 @@
 import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { useRouter } from 'next/router'
 import { MenuQueryFragment } from './MenuQueryFragment.gql'
-import { PageLayoutQuery } from './PageLayout.gql'
 
 const useTabsStyles = makeStyles(
   (theme: Theme) => ({
