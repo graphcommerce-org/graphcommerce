@@ -1,5 +1,12 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { ListItem, ListItemText, Checkbox, makeStyles, Theme } from '@material-ui/core'
+import {
+  ListItem,
+  ListItemText,
+  Checkbox,
+  makeStyles,
+  Theme,
+  ListItemSecondaryAction,
+} from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
@@ -151,17 +158,18 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
                   classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
                   secondary={`(${option?.value})`}
                 />
-
-                <Checkbox
-                  edge='start'
-                  checked={selectedFilter.in?.includes(option?.value ?? '')}
-                  tabIndex={-1}
-                  size='small'
-                  color='primary'
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                  className={classes.checkbox}
-                />
+                <ListItemSecondaryAction>
+                  <Checkbox
+                    edge='start'
+                    checked={selectedFilter.in?.includes(option?.value ?? '')}
+                    tabIndex={-1}
+                    size='small'
+                    color='primary'
+                    disableRipple
+                    inputProps={{ 'aria-labelledby': labelId }}
+                    className={classes.checkbox}
+                  />
+                </ListItemSecondaryAction>
               </div>
             </ListItem>
           )
