@@ -2,11 +2,12 @@ import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import ApplyCouponCode from './ApplyCouponCode'
-import RemoveCoupon from './RemoveCoupon'
+import CartCoupon from './CartCoupon'
 
 const useStyles = makeStyles((theme: Theme) => ({
   accordion: {
@@ -22,17 +23,29 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     '& .MuiButton-label': {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
+      '& span:last-child': {
+        marginLeft: 'auto',
+      },
     },
     '& > span': {
       display: 'inline',
       '& > h6': {
         textAlign: 'left',
+        marginRight: theme.spacings.sm,
       },
     },
   },
   couponFormWrap: {
+    background: 'rgba(0,0,0,0.04)',
     padding: theme.spacings.xs,
+  },
+  buttonOpen: {
+    '&.MuiButton-root': {
+      background: 'rgba(0,0,0,0.04)',
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
   },
 }))
 
@@ -48,18 +61,20 @@ export default function CouponAccordion() {
         <m.div layout>
           <Button
             onClick={() => setOpen(!open)}
-            className={classes.button}
+            className={clsx(classes.button, { [classes.buttonOpen]: open })}
             endIcon={open ? <ExpandLess /> : <ExpandMore />}
           >
             <Typography variant='h6'>Discount code</Typography>
+
+            {coupon && <CartCoupon {...cartQuery?.cart} />}
           </Button>
         </m.div>
 
         {open && (
           <AnimatedRow key='discount-codes-form-wrap'>
-            <m.div layout className={classes.couponFormWrap}>
+            <m.div layout='position' className={classes.couponFormWrap}>
               {!coupon && <ApplyCouponCode />}
-              {coupon && <RemoveCoupon coupon={coupon} />}
+              {coupon && <i>Only one active coupon allowed</i>}
             </m.div>
           </AnimatedRow>
         )}
