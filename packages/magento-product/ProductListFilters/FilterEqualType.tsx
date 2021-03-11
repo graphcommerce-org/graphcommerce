@@ -77,6 +77,7 @@ const useFilterEqualStyles = makeStyles(
     filterAmount: {
       color: theme.palette.grey[500],
       marginLeft: 4,
+      fontSize: theme.typography.pxToRem(11),
       display: 'inline',
     },
     filterLabel: {
