@@ -1,8 +1,9 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
-import AddressFields from '@reachdigital/magento-customer/AddressInputFields'
+import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
+import NameFields from '@reachdigital/magento-customer/NameFields'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
@@ -79,32 +80,18 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
         <div className={classes.formRow} key='firstname'>
-          <TextField
-            variant='outlined'
-            type='text'
-            name='firstname'
-            label='First Name'
-            required={required.firstname}
-            inputRef={register({ required: required.firstname })}
-            disabled={disableFields}
-            error={!!errors.firstname}
-            helperText={formState.isSubmitted && errors.firstname?.message}
-            InputProps={{
-              endAdornment: !errors.firstname && <CheckIcon className={classes.checkmark} />,
-            }}
-          />
-          <TextField
-            variant='outlined'
-            type='text'
-            error={!!errors.lastname}
-            name='lastname'
-            label='Last Name'
-            required={required.lastname}
-            inputRef={register({ required: required.lastname })}
-            helperText={formState.isSubmitted && errors.lastname?.message}
-            disabled={disableFields}
-            InputProps={{
-              endAdornment: !errors.lastname && <CheckIcon className={classes.checkmark} />,
+          <NameFields
+            {...form}
+            disableFields={disableFields}
+            fieldOptions={{
+              firstname: {
+                name: 'firstname',
+                required: required.firstname,
+              },
+              lastname: {
+                name: 'lastname',
+                required: required.lastname,
+              },
             }}
           />
         </div>
