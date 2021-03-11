@@ -27,24 +27,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const FaqPage = ({ pages }: Props) => {
+function FaqPage({ pages }: Props) {
   const classes = useStyles()
-  const page = pages[0]
-  const title = page.title ?? ''
+
+  const title = pages?.[0].title ?? ''
 
   return (
     <OverlayPage title={title} variant='left' backFallbackTitle='FAQ' backFallbackHref='/faq/index'>
       <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
 
-      {page.title && (
+      {title && (
         <Box component='div' whiteSpace='normal' className={classes.box}>
           <Typography variant='h2' component='h1' className={classes.title}>
-            {page.title}
+            {title}
           </Typography>
         </Box>
       )}
 
-      <PageContent content={page[0].content} />
+      <PageContent {...pages[0]} />
     </OverlayPage>
   )
 }
