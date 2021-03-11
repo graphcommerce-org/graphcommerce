@@ -1,5 +1,0 @@
-query PageByUrl($url: String!) {
-  pages(where: { url: $url }, locales: [en]) {
-    ...Page
-  }
-}

@@ -20,7 +20,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -33,6 +32,7 @@ import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
+import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
@@ -83,11 +83,11 @@ function AccountSignInPage() {
   if (token?.customerToken && token?.customerToken.valid) mode = 'redirect'
 
   return (
-    <OverlayUi title='Sign In' variant='center'>
+    <OverlayPage title='Sign In' variant='center' backFallbackTitle='Home' backFallbackHref='/'>
       <PageMeta
         title='Sign in'
         metaDescription='Sign in to your accoutn'
-        metaRobots='NOINDEX, FOLLOW'
+        metaRobots={['noindex']}
       />
       <Container maxWidth='md'>
         <div className={formClasses.form}>
@@ -202,13 +202,13 @@ function AccountSignInPage() {
           </AnimatePresence>
         </div>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AccountSignInPage.Layout = PageLayout
 
-registerRouteUi('/account/signin', OverlayUi)
+registerRouteUi('/account/signin', OverlayPage)
 
 export default AccountSignInPage
 
@@ -219,11 +219,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
-  await config
   return {
     props: {
       ...(await pageLayout).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

@@ -56,6 +56,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
     playground: true,
     ...mesh,
   })
+
   const corsHandler = cors({
     allowMethods: ['GET', 'POST', 'OPTIONS'],
     allowHeaders: [

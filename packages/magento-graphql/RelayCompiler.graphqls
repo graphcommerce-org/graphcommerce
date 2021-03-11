@@ -1,0 +1,8 @@
+# This file exists to be able to use graphql-codegen-relay-optimizer plugin
+# and still query the __schema and __type defintions
+directive @client on FIELD
+
+# extend type Query {
+#   __schema: __Schema!
+#   __type(name: String!): __Type
+# }

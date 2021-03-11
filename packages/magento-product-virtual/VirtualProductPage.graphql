@@ -1,0 +1,3 @@
+query VirtualProductPage($urlKey: String) {
+  ...ProductPageVirtualQueryFragment
+}

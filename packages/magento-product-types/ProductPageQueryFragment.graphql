@@ -1,0 +1,18 @@
+fragment ProductPageQueryFragment on Query {
+  products(filter: { url_key: { eq: $urlKey } }) {
+    ...ProductSpecs
+    items {
+      __typename
+      uid
+      ...ProductPageCategory
+      ...ProductPageDescription
+      ...ProductPageGallery
+      ...ProductPageMeta
+      ...ProductPagePrice
+      ...ProductReview
+      ...ProductReviewSummary
+      ...UpsellProducts
+      ...RelatedProducts
+    }
+  }
+}

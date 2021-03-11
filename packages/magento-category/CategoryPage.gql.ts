@@ -12,7 +12,7 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'urlPath' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'url' } },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
@@ -41,7 +41,7 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                           {
                             kind: 'ObjectField',
                             name: { kind: 'Name', value: 'eq' },
-                            value: { kind: 'Variable', name: { kind: 'Name', value: 'urlPath' } },
+                            value: { kind: 'Variable', name: { kind: 'Name', value: 'url' } },
                           },
                         ],
                       },
@@ -59,6 +59,7 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'description' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'display_mode' } },
@@ -118,7 +119,7 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
   ],
 }
 export type CategoryPageQueryVariables = Types.Exact<{
-  urlPath: Types.Scalars['String']
+  url: Types.Scalars['String']
 }>
 
 export type CategoryPageQuery = {
@@ -128,6 +129,7 @@ export type CategoryPageQuery = {
         Types.Maybe<
           Pick<
             Types.CategoryTree,
+            | 'uid'
             | 'description'
             | 'name'
             | 'display_mode'

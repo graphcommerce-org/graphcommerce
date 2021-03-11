@@ -5,34 +5,39 @@ import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordFor
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
+import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<PageLayoutProps>
 
 function AccountForgotPasswordPage() {
   return (
-    <OverlayUi title='Forgot Password' variant='center'>
+    <OverlayPage
+      title='Forgot Password'
+      variant='center'
+      backFallbackHref='/account/signin'
+      backFallbackTitle='Sign In'
+    >
       <PageMeta
         title='Forgot Password'
         metaDescription='Forgot password'
-        metaRobots='NOINDEX, FOLLOW'
+        metaRobots={['noindex']}
       />
       <Container maxWidth='xs'>
         <NoSsr>
           <ForgotPasswordForm />
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AccountForgotPasswordPage.Layout = PageLayout
 
-registerRouteUi('/account/forgot-password', OverlayUi)
+registerRouteUi('/account/forgot-password', OverlayPage)
 
 export default AccountForgotPasswordPage
 
@@ -43,11 +48,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
-  await config
   return {
     props: {
       ...(await pageLayout).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

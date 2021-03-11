@@ -1,5 +1,0 @@
-query ProductByUrl($url: String!) {
-  productpages(where: { url: $url }, locales: [en]) {
-    ...ProductContent
-  }
-}

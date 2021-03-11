@@ -19,12 +19,12 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
+import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -44,12 +44,18 @@ function PaymentPage({ countries }: Props) {
   }
 
   return (
-    <OverlayUi title='Payment' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Payment'
+      variant='bottom'
+      fullHeight
+      backFallbackTitle='Shipping'
+      backFallbackHref='/checkout/shipping'
+    >
       <PaymentMethodContextProvider
         modules={{ braintree_local_payment }}
         available_payment_methods={clientCart?.cart?.available_payment_methods}
       >
-        <PageMeta title='Payment' metaDescription='Cart Items' metaRobots='NOINDEX, FOLLOW' />
+        <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
         <Container maxWidth='md'>
           <NoSsr>
             <AnimatePresence initial={false}>
@@ -80,13 +86,13 @@ function PaymentPage({ countries }: Props) {
           </NoSsr>
         </Container>
       </PaymentMethodContextProvider>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 PaymentPage.Layout = PageLayout
 
-registerRouteUi('/checkout/payment', OverlayUi)
+registerRouteUi('/checkout/payment', OverlayPage)
 
 export default PaymentPage
 
@@ -98,12 +104,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
-  await config
   return {
     props: {
       ...(await pageLayout).data,
       ...(await countryRegions).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

@@ -2,13 +2,29 @@ import { useQuery } from '@apollo/client'
 import Head from 'next/head'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
+// https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
+type MetaRobots = (
+  | 'noindex'
+  | 'nofollow'
+  | 'noarchive'
+  | 'nosnippet'
+  | 'notranslate'
+  | 'noimageindex'
+  | `unavailable_after:${string}`
+  | `max-snippet:${number}`
+  | `max-image-preview:${'none' | 'standard' | 'large'}`
+  | `max-video-preview:${number}`
+)[]
+type MetaRobotsAll = ['all' | 'none']
+
 type PageMetaProps = {
   title: string
   metaDescription: string
-  metaRobots: string
+  metaRobots?: MetaRobotsAll | MetaRobots
 }
 
-export default function PageMeta({ title, metaDescription, metaRobots }: PageMetaProps) {
+export default function PageMeta(props: PageMetaProps) {
+  const { title, metaDescription, metaRobots = ['all'] } = props
   const config = useQuery(StoreConfigDocument)
 
   const prefix = config.data?.storeConfig?.title_prefix
@@ -26,7 +42,7 @@ export default function PageMeta({ title, metaDescription, metaRobots }: PageMet
     <Head>
       <title>{pageTitle}</title>
       <meta name='description' content={metaDescription} />
-      <meta name='robots' content={metaRobots} />
+      <meta name='robots' content={metaRobots.join(',')} />
     </Head>
   )
 }

@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import Asset from '../Asset'
-import { UspsQuery } from './Usps.gql'
+import { UspsQueryFragment } from './UspsQueryFragment.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductUspsProps = UspsQuery
+export type ProductUspsProps = UspsQueryFragment
 
 export default function ProductUsps(props: ProductUspsProps) {
   const { usps } = props

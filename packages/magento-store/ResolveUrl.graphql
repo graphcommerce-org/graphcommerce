@@ -1,7 +1,0 @@
-query ResolveUrl($urlKey: String!) {
-  urlResolver(url: $urlKey) {
-    id
-    relative_url
-    type
-  }
-}

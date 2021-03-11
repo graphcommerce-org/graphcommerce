@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import {
   ApolloClient,
   ApolloLink,
@@ -55,7 +57,24 @@ export function createApolloClient(
     return { headers: { ...headers, authorization, store } }
   })
 
+  const roundTripLink = new ApolloLink((operation, forward) => {
+    // Called before operation is sent to server
+    operation.setContext({ start: new Date() })
+    return forward(operation).map((data) => {
+      // Called after server responds
+      const time: number = new Date().valueOf() - (operation.getContext().start as Date).valueOf()
+      const vars =
+        Object.keys(operation.variables).length > 0
+          ? `(${JSON.stringify(operation.variables)})`
+          : ''
+
+      console.log(`query ${`${time}ms`.padEnd(7, ' ')}for '${operation.operationName}${vars}'`)
+      return data
+    })
+  })
+
   const link = ApolloLink.from([
+    roundTripLink,
     // new MutationQueueLink(),
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,

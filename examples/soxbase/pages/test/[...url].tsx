@@ -1,43 +1,29 @@
 import { Button, Container } from '@material-ui/core'
-import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
-import { ProductListDocument } from '@reachdigital/magento-product-types/ProductList.gql'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { m } from 'framer-motion'
 import React from 'react'
-import FabMenu from '../../components/FabMenu'
-import Footer from '../../components/Footer'
-import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
-import HeaderActions from '../../components/HeaderActions/HeaderActions'
-import Logo from '../../components/Logo/Logo'
-import Page from '../../components/Page'
-import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
+import FullPageUi from '../../components/AppShell/FullPageUi'
+import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = { url: string } & FooterQuery & PageLayoutQuery & ResolveUrlQuery & PageByUrlQuery
+type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function AppShellTestIndex({ url, menu, urlResolver, pages, footer }: Props) {
+function AppShellTestIndex(props: Props) {
+  const { url, pages } = props
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
-    <FullPageUi
-      title={title}
-      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
-      logo={<Logo />}
-      actions={<HeaderActions />}
-    >
-      <FabMenu menu={menu} urlResolver={urlResolver} />
+    <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index' {...props}>
       <Container>
         {url === 'index' ? (
           <PageLink href='/test/deeper'>
@@ -88,11 +74,10 @@ function AppShellTestIndex({ url, menu, urlResolver, pages, footer }: Props) {
           />
         </div>
       </Container>
-      {pages?.[0] && <Page {...pages?.[0]} />}n
+      <PageContent {...pages?.[0]} />
       <Container>
         <DebugSpacer height={2000} />
       </Container>
-      <Footer footer={footer} />
     </FullPageUi>
   )
 }
@@ -105,6 +90,8 @@ export default AppShellTestIndex
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
   const urls = ['index', 'other']
 
   const paths = locales
@@ -121,18 +108,16 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
-  const footer = staticClient.query({ query: FooterDocument })
-  const page = staticClient.query({ query: PageByUrlDocument, variables: { url: `test/${url}` } })
+  const defaultPage = staticClient.query({
+    query: DefaultPageDocument,
+    variables: { url: `/test/${url}` },
+  })
 
-  await config
   return {
     props: {
-      ...(await footer).data,
-      ...(await pageLayout).data,
-      ...(await page).data,
       url,
-      apolloState: client.cache.extract(),
+      ...(await defaultPage).data,
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

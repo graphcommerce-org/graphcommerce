@@ -1,0 +1,11 @@
+fragment ProductPageSimpleQueryFragment on Query {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      ... on SimpleProduct {
+        ...ProductWeight
+        ...ProductCustomizable
+      }
+    }
+  }
+}

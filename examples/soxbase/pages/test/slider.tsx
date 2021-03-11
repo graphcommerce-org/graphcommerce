@@ -1,15 +1,11 @@
 import { Container, Typography } from '@material-ui/core'
-import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import Images from '@reachdigital/next-ui/FramerSlider/test/Images'
 import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'
 import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
@@ -17,24 +13,16 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { m } from 'framer-motion'
 import React from 'react'
-import Footer from '../../components/Footer'
-import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
-import HeaderActions from '../../components/HeaderActions/HeaderActions'
-import Logo from '../../components/Logo/Logo'
+import FullPageUi from '../../components/AppShell/FullPageUi'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = FooterQuery & PageLayoutQuery & ResolveUrlQuery & ProductListQuery
+type Props = ProductListQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
-function TestSlider({ menu, urlResolver, footer, products }: Props) {
+function TestSlider({ products }: Props) {
   const images = products?.items?.map((item) => item?.small_image?.url ?? '') ?? []
   return (
-    <FullPageUi
-      title='slider'
-      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
-      logo={<Logo />}
-      actions={<HeaderActions />}
-    >
+    <FullPageUi title='slider' backFallbackTitle='Test' backFallbackHref='/test/index'>
       <Container>
         <Typography variant='h1' style={{ textAlign: 'center' }}>
           Framer Slider
@@ -60,8 +48,6 @@ function TestSlider({ menu, urlResolver, footer, products }: Props) {
           </Typography>
         </m.div>
         <Single />
-
-        <Footer footer={footer} />
       </Container>
     </FullPageUi>
   )
@@ -76,8 +62,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
-  const footer = staticClient.query({ query: FooterDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const cat = String((await config).data.storeConfig?.root_category_uid ?? '')
@@ -86,13 +70,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     variables: { rootCategory: cat, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
   })
 
-  await config
   return {
     props: {
-      ...(await footer).data,
-      ...(await pageLayout).data,
       ...(await productList).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

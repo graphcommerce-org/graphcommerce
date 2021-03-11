@@ -1,7 +1,7 @@
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import FullPageUi from '../components/AppShell/FullPageUi'
 import apolloClient from '../lib/apolloClient'
 import CmsPage, { getStaticProps as getCmsPageStaticProps } from './page/[url]'
 

@@ -1,5 +1,5 @@
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import FullPageUi from '../../components/AppShell/FullPageUi'
 import BlogPage, { getStaticProps } from './page/[page]'
 
 export default BlogPage

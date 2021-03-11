@@ -1,11 +1,3 @@
-query CategoryPage($urlPath: String!) {
-  categories(filters: { url_path: { eq: $urlPath } }) {
-    items {
-      ...CategoryBreadcrumb
-      ...CategoryDescription
-      ...CategoryChildren
-      ...CategoryMeta
-      ...CategoryHeroNav
-    }
-  }
+query CategoryPage($url: String!) {
+  ...CategoryQueryFragment
 }

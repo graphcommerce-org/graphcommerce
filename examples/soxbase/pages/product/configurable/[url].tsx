@@ -23,21 +23,21 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import NextError from 'next/error'
 import React from 'react'
-import FabMenu from '../../../components/FabMenu'
-import Footer from '../../../components/Footer'
-import { FooterDocument, FooterQuery } from '../../../components/Footer/Footer.gql'
-import HeaderActions from '../../../components/HeaderActions/HeaderActions'
-import Logo from '../../../components/Logo/Logo'
-import Product from '../../../components/Product'
+import FabMenu from '../../../components/AppShell/FabMenu'
+import { FooterDocument, FooterQuery } from '../../../components/AppShell/Footer.gql'
+import FullPageUi from '../../../components/AppShell/FullPageUi'
+import HeaderActions from '../../../components/AppShell/HeaderActions'
+import Logo from '../../../components/AppShell/Logo'
+import Footer from '../../../components/Footer/Footer'
+import ProductpagesContent from '../../../components/ProductpagesContent'
 import {
   ProductByUrlDocument,
   ProductByUrlQuery,
-} from '../../../components/Product/ProductByUrl.gql'
+} from '../../../components/ProductpagesContent/ProductByUrl.gql'
 import RowProductDescription from '../../../components/RowProductDescription'
 import RowProductFeature from '../../../components/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/RowProductFeatureBoxed'
@@ -101,7 +101,7 @@ function ProductConfigurable({
           <RowProductDescription {...product}>
             <ProductUsps usps={usps} />
           </RowProductDescription>
-          <Product
+          <ProductpagesContent
             renderer={{
               RowProductFeature: (props) => <RowProductFeature {...props} {...product} />,
               RowProductFeatureBoxed: (props) => <RowProductFeatureBoxed {...props} {...product} />,
@@ -126,6 +126,8 @@ registerRouteUi('/product/configurable/[url]', FullPageUi)
 export default ProductConfigurable
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
+  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
   const localePaths =
     locales?.map((locale) => {
       const client = apolloClient(localeToStore(locale))
@@ -170,7 +172,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const resolveUrl = staticClient.query({
     query: ResolveUrlDocument,
     variables: {
-      urlKey: `${urlKey}${(await config)?.data.storeConfig?.product_url_suffix}`,
+      urlAndSuffix: `${urlKey}${(await config)?.data.storeConfig?.product_url_suffix}`,
     },
   })
 
@@ -184,7 +186,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await Usps).data,
       ...(await configurableProduct).data,
       ...(await productAdditionals).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

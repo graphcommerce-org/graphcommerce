@@ -9,7 +9,7 @@ export default function CmsPageMeta(props: CmsPageMetaFragment) {
     <PageMeta
       title={meta_title ?? title ?? ''}
       metaDescription={meta_description ?? ''}
-      metaRobots='INDEX, FOLLOW'
+      metaRobots={['noindex']}
     />
   )
 }

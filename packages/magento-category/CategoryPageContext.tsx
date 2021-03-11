@@ -1,16 +1,16 @@
 import { ProductListParams } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import { useRouter } from 'next/router'
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, PropsWithChildren } from 'react'
 
 const context = React.createContext<{
   params: ProductListParams
   setParams: React.Dispatch<React.SetStateAction<ProductListParams>>
 }>({ params: { filters: {}, sort: {}, url: '' }, setParams: () => {} })
 
-export const ProductListParamsProvider: React.FC<{ value: ProductListParams }> = ({
+export function ProductListParamsProvider({
   children,
   value,
-}) => {
+}: PropsWithChildren<{ value: ProductListParams }>) {
   const [params, setParams] = useState<ProductListParams>(value)
   const router = useRouter()
 

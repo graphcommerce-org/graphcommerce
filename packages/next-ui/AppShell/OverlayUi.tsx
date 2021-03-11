@@ -147,11 +147,13 @@ type OverlayVariants = 'top' | 'right' | 'bottom' | 'left' | 'center'
 
 export type OverlayUiProps = UseStyles<typeof useStyles> & {
   fullHeight?: boolean
+  header?: React.ReactNode
   headerForward?: React.ReactNode
   variant?: OverlayVariants
+  children?: React.ReactNode
 } & BackButtonProps
 
-function OverlayUi(props) {
+function OverlayUi(props: OverlayUiProps) {
   const classes = useStyles(props)
   const router = useRouter()
   const {
@@ -159,6 +161,7 @@ function OverlayUi(props) {
     title,
     backFallbackHref,
     backFallbackTitle,
+    header,
     headerForward,
     fullHeight,
     variant,
@@ -270,6 +273,7 @@ function OverlayUi(props) {
               disabled={!inFront && phase === 'FINISHED'}
             >
               <div className={classes.header} role='presentation'>
+                <div className={classes.headerTitleContainer}>{header}</div>
                 <div className={classes.headerBack}>
                   <NoSsr fallback={<BackButton>Home</BackButton>}>
                     {prevPage?.title ? (

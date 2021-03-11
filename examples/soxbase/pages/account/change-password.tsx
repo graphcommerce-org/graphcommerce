@@ -1,38 +1,42 @@
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument } from '@reachdigital/magento-app-shell/PageLayout.gql'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
+import OverlayPage from '../../components/AppShell/OverlayUi'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<PageLayoutProps>
+type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 function AccountChangePasswordPage() {
   return (
-    <OverlayUi title='Change Password' variant='center'>
+    <OverlayPage
+      title='Change Password'
+      variant='center'
+      backFallbackHref='/account'
+      backFallbackTitle='Account'
+    >
       <PageMeta
         title='Change Password'
         metaDescription='Change your password'
-        metaRobots='NOINDEX, FOLLOW'
+        metaRobots={['noindex']}
       />
       <Container maxWidth='sm'>
         <NoSsr>
           <ChangePasswordForm />
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AccountChangePasswordPage.Layout = PageLayout
 
-registerRouteUi('/account/change-password', OverlayUi)
+registerRouteUi('/account/change-password', OverlayPage)
 
 export default AccountChangePasswordPage
 
@@ -43,11 +47,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const config = client.query({ query: StoreConfigDocument })
   const pageLayout = staticClient.query({ query: PageLayoutDocument })
 
-  await config
   return {
     props: {
       ...(await pageLayout).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
   }
 }

@@ -1,72 +1,52 @@
-import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import { CmsPageDocument, CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
 import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
-import CmsPageMeta from '@reachdigital/magento-cms/CmsPageMeta'
 import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import NextError from 'next/error'
 import React from 'react'
-import FabMenu from '../../components/FabMenu'
-import Footer from '../../components/Footer'
-import { FooterDocument, FooterQuery } from '../../components/Footer/Footer.gql'
-import HeaderActions from '../../components/HeaderActions/HeaderActions'
-import Logo from '../../components/Logo/Logo'
-import Page from '../../components/Page'
-import { PageByUrlDocument, PageByUrlQuery } from '../../components/Page/PageByUrl.gql'
+import FullPageUi from '../../components/AppShell/FullPageUi'
+import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
+import PageContent from '../../components/PageContent'
 import RowProductBackstory from '../../components/RowProductBackstory'
 import RowProductGrid from '../../components/RowProductGrid'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CmsPageQuery &
-  PageLayoutQuery &
-  ResolveUrlQuery &
-  FooterQuery &
-  PageByUrlQuery &
-  ProductListQuery
+type Props = FullPageUiQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const CmsPage = ({ cmsPage, menu, urlResolver, pages, footer, products }: Props) => {
-  if (!cmsPage) return <NextError statusCode={503} title='Loading skeleton' />
+function CmsPage(props: Props) {
+  const { cmsPage, pages, products } = props
 
-  if (!cmsPage.identifier) return <NextError statusCode={404} title='Page not found' />
-
+  const title = cmsPage?.title ?? ''
   return (
-    <FullPageUi
-      title={cmsPage.title ?? ''}
-      menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
-      logo={<Logo />}
-      actions={<HeaderActions />}
-    >
-      <FabMenu menu={menu} urlResolver={urlResolver} />
-      <CmsPageMeta {...cmsPage} />
+    <FullPageUi title={title} backFallbackTitle='Blog' backFallbackHref='/' {...props}>
+      <PageMeta
+        title={cmsPage?.meta_title ?? title ?? ''}
+        metaDescription={cmsPage?.meta_description ?? ''}
+      />
 
-      {pages?.[0] && (
-        <Page
+      {pages?.[0] ? (
+        <PageContent
           renderer={{
-            RowProductBackstory: (props) => (
-              <RowProductBackstory {...props} items={products?.items} />
-            ),
-            RowProductGrid: (props) => <RowProductGrid {...props} items={products?.items} />,
-            RowSwipeableGrid: (props) => <RowSwipeableGrid {...props} items={products?.items} />,
+            RowProductBackstory: (p) => <RowProductBackstory {...p} items={products?.items} />,
+            RowProductGrid: (p) => <RowProductGrid {...p} items={products?.items} />,
+            RowSwipeableGrid: (p) => <RowSwipeableGrid {...p} items={products?.items} />,
           }}
-          {...pages?.[0]}
+          content={pages?.[0].content}
         />
+      ) : (
+        <CmsPageContent {...cmsPage} />
       )}
-      {!pages?.[0] && <CmsPageContent {...cmsPage} />}
-      <Footer footer={footer} />
     </FullPageUi>
   )
 }
@@ -79,6 +59,8 @@ export default CmsPage
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
+  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
   const urls = ['home', 'no-route']
 
   const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
@@ -92,14 +74,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const resolveUrl = staticClient.query({ query: ResolveUrlDocument, variables: { urlKey } })
-  const pageLayout = staticClient.query({ query: PageLayoutDocument })
-  const footer = staticClient.query({ query: FooterDocument })
-  const cmsPage = staticClient.query({ query: CmsPageDocument, variables: { urlKey } })
-  const page = staticClient.query({
-    query: PageByUrlDocument,
+  const defaultPage = staticClient.query({
+    query: DefaultPageDocument,
     variables: { url: `page/${urlKey}` },
   })
+  const cmsPage = staticClient.query({ query: CmsPageDocument, variables: { urlKey } })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const cat = String((await config).data.storeConfig?.root_category_uid ?? '')
@@ -108,19 +87,12 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     variables: { rootCategory: cat, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
   })
 
-  const { urlResolver } = (await resolveUrl).data
-  if (!urlResolver?.id || urlResolver?.type !== 'CMS_PAGE') return { notFound: true }
-
-  await config
   return {
     props: {
-      ...(await resolveUrl).data,
-      ...(await footer).data,
-      ...(await pageLayout).data,
+      ...(await defaultPage).data,
       ...(await cmsPage).data,
-      ...(await page).data,
       ...(await productList).data,
-      apolloState: client.cache.extract(),
+      apolloState: await config.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

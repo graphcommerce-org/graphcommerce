@@ -5,9 +5,9 @@ import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import { Router } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import React from 'react'
-import { PageLayoutQuery } from './PageLayout.gql'
+import { MenuQueryFragment } from './MenuQueryFragment.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -59,13 +59,14 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = PageLayoutQuery &
+export type MenuFabProps = MenuQueryFragment &
   ResolveUrlQuery &
   Omit<FabProps, 'children' | 'onClick' | 'aria-label'>
 
 export default function MenuFab(props: MenuFabProps) {
-  const { menu, urlResolver, ...fabProps } = props
+  const { menu, ...fabProps } = props
   const classes = useStyles()
+  const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
   Router.events.on('routeChangeStart', () => setOpenEl(null))
@@ -94,11 +95,7 @@ export default function MenuFab(props: MenuFabProps) {
         classes={{ paper: classes.menu }}
       >
         <PageLink href='/'>
-          <ListItem
-            button
-            selected={!!urlResolver && urlResolver.relative_url === 'home'}
-            classes={{ root: classes.menuItem }}
-          >
+          <ListItem button selected={router.asPath === '/'} classes={{ root: classes.menuItem }}>
             <ListItemText classes={{ primary: classes.menuItemText }}>Home</ListItemText>
           </ListItem>
         </PageLink>
@@ -116,9 +113,7 @@ export default function MenuFab(props: MenuFabProps) {
             >
               <ListItem
                 button
-                selected={
-                  !!urlResolver && cat.id === urlResolver.id && urlResolver.type === 'CATEGORY'
-                }
+                selected={router.asPath.startsWith(`/${cat.url_path}`)}
                 classes={{ root: classes.menuItem }}
               >
                 <ListItemText classes={{ primary: classes.menuItemText }}>{cat.name}</ListItemText>
@@ -129,7 +124,7 @@ export default function MenuFab(props: MenuFabProps) {
         <PageLink href='/blog'>
           <ListItem
             button
-            selected={!!urlResolver && urlResolver.relative_url === 'blog'}
+            selected={router.asPath.startsWith(`/blog`)}
             classes={{ root: classes.menuItem }}
           >
             <ListItemText classes={{ primary: classes.menuItemText }}>Blog</ListItemText>

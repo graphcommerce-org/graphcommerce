@@ -2,6 +2,7 @@ import { ApolloError } from '@apollo/client'
 import { GraphQLError } from 'graphql'
 
 export type ErrorCategory =
+  | 'internal'
   | 'graphql-already-exists'
   | 'graphql-authentication'
   | 'graphql-authorization'

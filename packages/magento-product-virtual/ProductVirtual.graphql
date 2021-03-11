@@ -1,9 +1,0 @@
-query ProductVirtual($urlKey: String) {
-  virtualProducts: products(filter: { url_key: { eq: $urlKey } }) {
-    items {
-      ... on VirtualProduct {
-        ...ProductCustomizable
-      }
-    }
-  }
-}

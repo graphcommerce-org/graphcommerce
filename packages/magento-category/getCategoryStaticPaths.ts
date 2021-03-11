@@ -1,6 +1,10 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticPathsResult } from 'next'
-import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.gql'
+import {
+  GetCategoryStaticPathsDocument,
+  GetCategoryStaticPathsQuery,
+} from './GetCategoryStaticPaths.gql'
 
 type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
 
@@ -8,17 +12,24 @@ const getCategoryStaticPaths = async (
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
 ) => {
-  const { data } = await client.query({ query: GetCategoryStaticPathsDocument })
+  const rootCategory =
+    (await client.query({ query: StoreConfigDocument })).data.storeConfig?.root_category_uid ?? ''
 
-  const paths: StaticPathsResult['paths'] =
-    data.categories?.items
-      ?.filter((category) => category?.url_path)
-      .map((category) => ({
-        params: { url: `${category?.url_path}`.split('/') },
-        locale,
-      })) ?? []
+  const { data } = await client.query({
+    query: GetCategoryStaticPathsDocument,
+    variables: { rootCategory },
+  })
 
-  return paths
+  const paths: StaticPathsResult['paths'] = []
+
+  type Category = NonNullable<NonNullable<GetCategoryStaticPathsQuery['categories']>['items']>[0]
+  const add = (cat: Category) => {
+    if (cat?.url_path) paths.push({ params: { url: cat.url_path.split('/') }, locale })
+    if (cat?.children) cat.children.forEach(add)
+  }
+  data.categories?.items?.forEach(add)
+
+  return process.env.VERCEL_ENV === 'development' ? paths.slice(0, 1) : paths
 }
 
 export default getCategoryStaticPaths

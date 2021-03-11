@@ -13,7 +13,7 @@ module.exports = {
   projects: {
     soxbase: {
       schema: 'examples/soxbase-api/generated/schema.graphqls',
-      documents: 'examples/soxbase/components/**/*.graphql',
+      documents: ['examples/**/*.graphql', 'packages/**/*.graphql'],
       extensions: {
         languageService: {
           useSchemaFileDefinitions: true,
@@ -21,20 +21,6 @@ module.exports = {
         endpoints: {
           default: {
             url: 'http://localhost:3001/api/graphql/',
-          },
-        },
-      },
-    },
-    magento: {
-      schema: 'packages/magento-graphql/schema.graphqls',
-      documents: 'packages/**/*.graphql',
-      extensions: {
-        languageService: {
-          useSchemaFileDefinitions: true,
-        },
-        endpoints: {
-          default: {
-            url: 'https://backend.reachdigital.dev/graphql/',
           },
         },
       },
