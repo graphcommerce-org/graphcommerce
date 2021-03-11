@@ -60,8 +60,6 @@ export default function CartTotals(props: CartTotalsFragment) {
 
   if (!prices) return null
 
-  console.log(prices)
-
   return (
     <AnimatedRow className={classes.costsContainer} key='total-costs'>
       <AnimatePresence initial={false}>
@@ -74,19 +72,21 @@ export default function CartTotals(props: CartTotalsFragment) {
           </AnimatedRow>
         )}
 
-        <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
-          <div>Product discount</div>
-          <div>
-            {'- '}
-            <Money
-              currency={prices.subtotal_with_discount_excluding_tax?.currency}
-              value={
-                (prices.subtotal_excluding_tax?.value ?? 0) -
-                (prices.subtotal_with_discount_excluding_tax?.value ?? 0)
-              }
-            />
-          </div>
-        </AnimatedRow>
+        {prices.discounts && prices.discounts.length > 1 && (
+          <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscount)} key='discount'>
+            <div>Product discount</div>
+            <div>
+              {'- '}
+              <Money
+                currency={prices.subtotal_with_discount_excluding_tax?.currency}
+                value={
+                  (prices.subtotal_excluding_tax?.value ?? 0) -
+                  (prices.subtotal_with_discount_excluding_tax?.value ?? 0)
+                }
+              />
+            </div>
+          </AnimatedRow>
+        )}
 
         {prices?.discounts?.map((discount) => (
           <AnimatedRow className={clsx(classes.costsRow, classes.costsDiscountSub)} key='discount'>
