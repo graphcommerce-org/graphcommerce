@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
@@ -59,62 +59,15 @@ export default function AddressFields(props: AddressFieldsProps) {
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors.street}
+          error={!!errors[fieldOptions.street.name]}
           name={fieldOptions.street.name}
           label='Street'
           required={!!required.street}
           inputRef={register({ required: required.street })}
-          helperText={formState.isSubmitted && errors.street?.message}
+          helperText={formState.isSubmitted && errors[fieldOptions.street.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors.street && <CheckIcon className={classes.checkmark} />,
-          }}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.houseNumber}
-          name={fieldOptions.houseNumber.name}
-          label='Housenumber'
-          required={!!required.houseNumber}
-          inputRef={register({
-            required: required.houseNumber,
-            pattern: { value: houseNumber, message: 'Please provide a valid house number' },
-          })}
-          helperText={formState.isSubmitted && errors.houseNumber?.message}
-          disabled={disableFields}
-          InputProps={{
-            endAdornment: !errors.houseNumber && <CheckIcon className={classes.checkmark} />,
-          }}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.addition}
-          required={!!required.addition}
-          name={fieldOptions.addition.name}
-          label='Addition'
-          inputRef={register({ required: required.addition })}
-          helperText={formState.isSubmitted && errors.addition?.message}
-          disabled={disableFields}
-          InputProps={{
-            endAdornment: !errors.addition && <CheckIcon className={classes.checkmark} />,
-          }}
-        />
-      </div>
-      <div className={classes.formRow} key='postcode-city'>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!errors.postcode}
-          required={!!required.postcode}
-          name={fieldOptions.postcode.name}
-          label='Postcode'
-          inputRef={register({ required: required.postcode })}
-          helperText={formState.isSubmitted && errors.postcode?.message}
-          disabled={disableFields}
-          InputProps={{
-            endAdornment: !errors.postcode && !!watch('postcode') && (
+            endAdornment: !errors[fieldOptions.street.name] && (
               <CheckIcon className={classes.checkmark} />
             ),
           }}
@@ -122,15 +75,69 @@ export default function AddressFields(props: AddressFieldsProps) {
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors.city}
+          error={!!errors[fieldOptions.houseNumber.name]}
+          name={fieldOptions.houseNumber.name}
+          label='Housenumber'
+          required={!!required.houseNumber}
+          inputRef={register({
+            required: required.houseNumber,
+            pattern: { value: houseNumber, message: 'Please provide a valid house number' },
+          })}
+          helperText={formState.isSubmitted && errors[fieldOptions.houseNumber.name]?.message}
+          disabled={disableFields}
+          InputProps={{
+            endAdornment: !errors[fieldOptions.houseNumber.name] && (
+              <CheckIcon className={classes.checkmark} />
+            ),
+          }}
+        />
+        <TextField
+          variant='outlined'
+          type='text'
+          error={!!errors[fieldOptions.addition.name]}
+          required={!!required.addition}
+          name={fieldOptions.addition.name}
+          label='Addition'
+          inputRef={register({ required: required.addition })}
+          helperText={formState.isSubmitted && errors[fieldOptions.addition.name]?.message}
+          disabled={disableFields}
+          InputProps={{
+            endAdornment: !errors[fieldOptions.addition.name] && (
+              <CheckIcon className={classes.checkmark} />
+            ),
+          }}
+        />
+      </div>
+      <div className={classes.formRow} key='postcode-city'>
+        <TextField
+          variant='outlined'
+          type='text'
+          error={!!errors[fieldOptions.postcode.name]}
+          required={!!required.postcode}
+          name={fieldOptions.postcode.name}
+          label='Postcode'
+          inputRef={register({ required: required.postcode })}
+          helperText={formState.isSubmitted && errors[fieldOptions.postcode.name]?.message}
+          disabled={disableFields}
+          InputProps={{
+            endAdornment: !errors[fieldOptions.postcode.name].postcode &&
+              !!watch(fieldOptions.postcode.name) && <CheckIcon className={classes.checkmark} />,
+          }}
+        />
+        <TextField
+          variant='outlined'
+          type='text'
+          error={!!errors[fieldOptions.city.name]}
           required={!!required.city}
           name={fieldOptions.city.name}
           label='City'
           inputRef={register({ required: required.city })}
-          helperText={formState.isSubmitted && errors.city?.message}
+          helperText={formState.isSubmitted && errors[fieldOptions.city.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors.city && <CheckIcon className={classes.checkmark} />,
+            endAdornment: !errors[fieldOptions.city.name] && (
+              <CheckIcon className={classes.checkmark} />
+            ),
           }}
         />
       </div>
@@ -150,11 +157,11 @@ export default function AddressFields(props: AddressFieldsProps) {
                 <TextField
                   {...params}
                   variant='outlined'
-                  error={!!errors.countryCode}
+                  error={!!errors[fieldOptions.countryCode.name]}
                   name={name}
                   label='Country'
                   required={!!required.countryCode}
-                  helperText={errors.countryCode?.message}
+                  helperText={errors[fieldOptions.countryCode.name]?.message}
                   disabled={disableFields}
                   onBlur={onBlur}
                 />
@@ -181,11 +188,11 @@ export default function AddressFields(props: AddressFieldsProps) {
                   <TextField
                     {...params}
                     variant='outlined'
-                    error={!!errors.regionId}
+                    error={!!errors[fieldOptions.regionId.name]}
                     name={name}
                     label='Region'
                     required={!!required.regionId}
-                    helperText={errors.regionId?.message}
+                    helperText={errors[fieldOptions.regionId.name]?.message}
                     disabled={disableFields}
                     onBlur={onBlur}
                   />

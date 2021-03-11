@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
-import AddressInputFields from '@reachdigital/magento-customer/AddressInputFields'
+import AddressFields from '@reachdigital/magento-customer/AddressInputFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -109,7 +109,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           />
         </div>
 
-        <AddressInputFields
+        <AddressFields
           {...form}
           countryCode={currentCountryCode}
           countries={countries}
