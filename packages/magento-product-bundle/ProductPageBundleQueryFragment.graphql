@@ -1,7 +1,8 @@
-query ProductBundle($urlKey: String) {
-  bundleProducts: products(filter: { url_key: { eq: $urlKey } }) {
+fragment ProductPageBundleQueryFragment on Query {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     items {
       ... on BundleProduct {
+        __typename
         ...ProductWeight
         ...ProductCustomizable
         ...BundleItems

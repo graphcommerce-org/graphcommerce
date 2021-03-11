@@ -10,7 +10,6 @@ import productPageCategory from '@reachdigital/magento-product/ProductPageCatego
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -35,13 +34,14 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductSimple(props: Props) {
+function ProductVirtual(props: Props) {
   const { products, usps, typeProducts, productpages } = props
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
 
-  if (!product || !typeProduct) return <></>
+  if (product?.__typename !== 'VirtualProduct' || typeProduct?.__typename !== 'VirtualProduct')
+    return <></>
 
   const category = productPageCategory(product)
   return (
@@ -81,17 +81,17 @@ function ProductSimple(props: Props) {
   )
 }
 
-ProductSimple.Layout = PageLayout
+ProductVirtual.Layout = PageLayout
 
 registerRouteUi('/product/[url]', FullPageUi)
 
-export default ProductSimple
+export default ProductVirtual
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const path = (locale: string) =>
-    getProductStaticPaths(apolloClient(localeToStore(locale)), locale, 'SimpleProduct')
+    getProductStaticPaths(apolloClient(localeToStore(locale)), locale, 'VirtualProduct')
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
@@ -109,14 +109,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ProductPageDocument,
     variables: { urlKey, productUrls },
   })
-  const simpleProductPage = staticClient.query({
+  const typeProductPage = staticClient.query({
     query: VirtualProductPageDocument,
     variables: { urlKey },
   })
 
   if (
     (await productPage).data.products?.items?.[0]?.__typename !== 'VirtualProduct' ||
-    (await simpleProductPage).data.typeProducts?.items?.[0]?.__typename !== 'VirtualProduct'
+    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'VirtualProduct'
   ) {
     return { notFound: true }
   }
@@ -124,7 +124,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       ...(await productPage).data,
-      ...(await simpleProductPage).data,
+      ...(await typeProductPage).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

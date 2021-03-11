@@ -1,43 +1,24 @@
 import { Container, Typography } from '@material-ui/core'
-import MenuTabs from '@reachdigital/magento-app-shell/MenuTabs'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { PageLayoutDocument, PageLayoutQuery } from '@reachdigital/magento-app-shell/PageLayout.gql'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
-  ProductDownloadableDocument,
-  ProductDownloadableQuery,
-} from '@reachdigital/magento-product-downloadable/ProductDownloadable.gql'
-import {
-  ProductPageDocument,
-  ProductPageQuery,
-} from '@reachdigital/magento-product-types/ProductPage.gql'
-import {
-  ProductPageAdditionalDocument,
-  ProductPageAdditionalQuery,
-} from '@reachdigital/magento-product-types/ProductPageAdditional.gql'
+  DownloadableProductPageDocument,
+  DownloadableProductPageQuery,
+} from '@reachdigital/magento-product-downloadable/DownloadableProductPage.gql'
 import { ProductAddToCartDocument } from '@reachdigital/magento-product/ProductAddToCart/ProductAddToCart.gql'
 import productPageCategory from '@reachdigital/magento-product/ProductPageCategory'
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import { ResolveUrlDocument, ResolveUrlQuery } from '@reachdigital/magento-store/ResolveUrl.gql'
+import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import NextError from 'next/error'
 import React from 'react'
-import FabMenu from '../../../components/AppShell/FabMenu'
-import { FooterDocument, FooterQuery } from '../../../components/AppShell/Footer.gql'
 import FullPageUi from '../../../components/AppShell/FullPageUi'
-import HeaderActions from '../../../components/AppShell/HeaderActions'
-import Logo from '../../../components/AppShell/Logo'
-import Footer from '../../../components/Footer/Footer'
+import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../../components/ProductpagesContent'
-import {
-  ProductByUrlDocument,
-  ProductByUrlQuery,
-} from '../../../components/ProductpagesContent/ProductByUrl.gql'
 import RowProductDescription from '../../../components/RowProductDescription'
 import RowProductFeature from '../../../components/RowProductFeature'
 import RowProductFeatureBoxed from '../../../components/RowProductFeatureBoxed'
@@ -46,151 +27,118 @@ import RowProductReviews from '../../../components/RowProductReviews'
 import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
 import ProductUsps from '../../../components/Usps'
-import { UspsDocument, UspsQuery } from '../../../components/Usps/Usps.gql'
 import apolloClient from '../../../lib/apolloClient'
 
-type Props = ProductPageQuery &
-  ProductPageAdditionalQuery &
-  ProductByUrlQuery &
-  ResolveUrlQuery &
-  ProductDownloadableQuery &
-  PageLayoutQuery &
-  UspsQuery &
-  FooterQuery
+type Props = ProductPageQuery & DownloadableProductPageQuery
+
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-function ProductDownloadable({
-  products,
-  productAdditionals,
-  menu,
-  urlResolver,
-  footer,
-  usps,
-  downloadableProducts,
-  productpages,
-}: Props) {
-  if (!products) return <NextError statusCode={503} title='Loading skeleton' />
+function ProductDownloadable(props: Props) {
+  const { products, usps, typeProducts, productpages } = props
 
   const product = products?.items?.[0]
-  const options = downloadableProducts?.items?.[0]?.downloadable_product_links
-  const additional = productAdditionals?.items?.[0]
+  const typeProduct = typeProducts?.items?.[0]
 
-  if (!product) return <NextError statusCode={404} title='Product not found' />
+  if (
+    product?.__typename !== 'DownloadableProduct' ||
+    typeProduct?.__typename !== 'DownloadableProduct'
+  )
+    return <></>
 
   const category = productPageCategory(product)
   return (
-    <>
+    <FullPageUi
+      title={product.name ?? ''}
+      backFallbackTitle={category?.name ?? ''}
+      backFallbackHref={`/${category?.url_path}`}
+      {...props}
+    >
       <ProductPageMeta {...product} />
-      <FullPageUi
-        title={product.name ?? ''}
-        menu={<MenuTabs menu={menu} urlResolver={urlResolver} />}
-        logo={<Logo />}
-        actions={<HeaderActions />}
-      >
-        <FabMenu menu={menu} urlResolver={urlResolver} />
-        <Container maxWidth={false}>
-          <ProductPageGallery {...product}>
-            <Typography variant='h1'>{product.name ?? ''}</Typography>
-            {options?.map((option) => (
-              <div key={option?.title}>
-                {option?.title} + {option?.price}
-              </div>
-            ))}
-            <AddToCartButton
-              mutation={ProductAddToCartDocument}
-              variables={{ sku: product.sku ?? '', quantity: 1 }}
-            />
-          </ProductPageGallery>
-        </Container>
-        <RowProductDescription {...product}>
-          <ProductUsps usps={usps} />
-        </RowProductDescription>
-        <ProductpagesContent
-          renderer={{
-            RowProductFeature: (props) => <RowProductFeature {...props} {...product} />,
-            RowProductFeatureBoxed: (props) => <RowProductFeatureBoxed {...props} {...product} />,
-            RowProductSpecs: (props) => <RowProductSpecs {...props} {...productAdditionals} />,
-            RowProductReviews: (props) => <RowProductReviews {...props} {...product} />,
-            RowProductRelated: (props) => <RowProductRelated {...props} {...additional} />,
-            RowProductUpsells: (props) => <RowProductUpsells {...props} {...additional} />,
-          }}
-          content={productpages?.[0].content}
-        />
-        <Footer footer={footer} />
-      </FullPageUi>
-    </>
+      <Container maxWidth={false}>
+        <ProductPageGallery {...product}>
+          <Typography variant='h1'>{product.name ?? ''}</Typography>
+          <AddToCartButton
+            mutation={ProductAddToCartDocument}
+            variables={{ sku: product.sku ?? '', quantity: 1 }}
+          />
+        </ProductPageGallery>
+        {typeProduct.downloadable_product_links?.map((option) => (
+          <div key={option?.title}>
+            {option?.title} + {option?.price}
+          </div>
+        ))}
+        {typeProduct.downloadable_product_samples?.map((sample) => (
+          <div key={sample?.title}>
+            {sample?.title} {sample?.sample_url} {sample?.sort_order}
+          </div>
+        ))}
+      </Container>
+      <RowProductDescription {...product}>
+        <ProductUsps usps={usps} />
+      </RowProductDescription>
+      <ProductpagesContent
+        renderer={{
+          RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,
+          RowProductFeatureBoxed: (rowProps) => (
+            <RowProductFeatureBoxed {...rowProps} {...product} />
+          ),
+          RowProductSpecs: (rowProps) => <RowProductSpecs {...rowProps} {...product} />,
+          RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
+          RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
+          RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
+        }}
+        content={productpages?.[0].content}
+      />
+    </FullPageUi>
   )
 }
 
 ProductDownloadable.Layout = PageLayout
 
-registerRouteUi('/product/downloadable/[url]', FullPageUi)
+registerRouteUi('/product/[url]', FullPageUi)
 
 export default ProductDownloadable
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales }) => {
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const localePaths =
-    locales?.map((locale) => {
-      const client = apolloClient(localeToStore(locale))
-      return getProductStaticPaths(client, locale, 'DownloadableProduct')
-    }) ?? []
-  const paths = (await Promise.all(localePaths)).flat(1)
+  const path = (locale: string) =>
+    getProductStaticPaths(apolloClient(localeToStore(locale)), locale, 'DownloadableProduct')
+  const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const urlKey = params?.url ?? '??'
-
   const client = apolloClient(localeToStore(locale))
   const staticClient = apolloClient(localeToStore(locale))
-  const config = client.query({ query: StoreConfigDocument })
 
-  const product = staticClient.query({
-    query: ProductByUrlDocument,
-    variables: { url: `product/global` },
-  })
+  const urlKey = params?.url ?? '??'
+  const productUrls = [`product/${urlKey}`, 'product/global']
+
+  const config = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
+    variables: { urlKey, productUrls },
+  })
+  const typeProductPage = staticClient.query({
+    query: DownloadableProductPageDocument,
     variables: { urlKey },
-  })
-  const downloadableProduct = staticClient.query({
-    query: ProductDownloadableDocument,
-    variables: { urlKey },
-  })
-  const productAdditionals = staticClient.query({
-    query: ProductPageAdditionalDocument,
-    variables: { urlKey },
-  })
-  const Usps = staticClient.query({
-    query: UspsDocument,
-  })
-  const pageLayout = staticClient.query({
-    query: PageLayoutDocument,
   })
 
-  const footer = staticClient.query({ query: FooterDocument })
-  const resolveUrl = staticClient.query({
-    query: ResolveUrlDocument,
-    variables: {
-      urlAndSuffix: `${urlKey}${(await config)?.data.storeConfig?.product_url_suffix}`,
-    },
-  })
+  if (
+    (await productPage).data.products?.items?.[0]?.__typename !== 'DownloadableProduct' ||
+    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'DownloadableProduct'
+  ) {
+    return { notFound: true }
+  }
 
   return {
     props: {
-      ...(await resolveUrl).data,
-      ...(await pageLayout).data,
-      ...(await footer).data,
       ...(await productPage).data,
-      ...(await product).data,
-      ...(await Usps).data,
-      ...(await downloadableProduct).data,
-      ...(await productAdditionals).data,
+      ...(await typeProductPage).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

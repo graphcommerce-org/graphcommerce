@@ -2,16 +2,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const ProductDownloadableDocument: DocumentNode<
-  ProductDownloadableQuery,
-  ProductDownloadableQueryVariables
+export const DownloadableProductPageDocument: DocumentNode<
+  DownloadableProductPageQuery,
+  DownloadableProductPageQueryVariables
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'ProductDownloadable' },
+      name: { kind: 'Name', value: 'DownloadableProductPage' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
@@ -24,7 +24,7 @@ export const ProductDownloadableDocument: DocumentNode<
         selections: [
           {
             kind: 'Field',
-            alias: { kind: 'Name', value: 'downloadableProducts' },
+            alias: { kind: 'Name', value: 'typeProducts' },
             name: { kind: 'Name', value: 'products' },
             arguments: [
               {
@@ -718,12 +718,12 @@ export const ProductDownloadableDocument: DocumentNode<
     },
   ],
 }
-export type ProductDownloadableQueryVariables = Types.Exact<{
+export type DownloadableProductPageQueryVariables = Types.Exact<{
   urlKey?: Types.Maybe<Types.Scalars['String']>
 }>
 
-export type ProductDownloadableQuery = {
-  downloadableProducts?: Types.Maybe<{
+export type DownloadableProductPageQuery = {
+  typeProducts?: Types.Maybe<{
     items?: Types.Maybe<
       Array<
         Types.Maybe<{

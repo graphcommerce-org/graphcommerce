@@ -61,7 +61,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = apolloClient(localeToStore(locale))
   const limit = 4
   const config = client.query({ query: StoreConfigDocument })
-  const defaultPage = staticClient.query({
+  const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: `blog/${urlKey}` },
   })
@@ -70,11 +70,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     query: BlogListDocument,
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
-      ...(await defaultPage).data,
+      ...(await page).data,
       ...(await blogPosts).data,
       urlEntity: { relative_url: `blog/${urlKey}` },
       apolloState: await config.then(() => client.cache.extract()),

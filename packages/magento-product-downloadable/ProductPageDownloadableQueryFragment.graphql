@@ -1,5 +1,5 @@
-query ProductDownloadable($urlKey: String) {
-  downloadableProducts: products(filter: { url_key: { eq: $urlKey } }) {
+fragment ProductPageDownloadableQueryFragment on Query {
+  typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
     items {
       ... on DownloadableProduct {
         ...ProductCustomizable

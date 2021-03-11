@@ -74,7 +74,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const defaultPage = staticClient.query({
+  const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: `page/${urlKey}` },
   })
@@ -89,7 +89,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
 
   return {
     props: {
-      ...(await defaultPage).data,
+      ...(await page).data,
       ...(await cmsPage).data,
       ...(await productList).data,
       apolloState: await config.then(() => client.cache.extract()),

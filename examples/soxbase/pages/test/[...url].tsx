@@ -108,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const staticClient = apolloClient(localeToStore(locale))
 
   const config = client.query({ query: StoreConfigDocument })
-  const defaultPage = staticClient.query({
+  const page = staticClient.query({
     query: DefaultPageDocument,
     variables: { url: `/test/${url}` },
   })
@@ -116,7 +116,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       url,
-      ...(await defaultPage).data,
+      ...(await page).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
   }

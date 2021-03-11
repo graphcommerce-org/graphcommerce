@@ -41,7 +41,8 @@ function ProductSimple(props: Props) {
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
 
-  if (!product || !typeProduct) return <></>
+  if (product?.__typename !== 'SimpleProduct' || typeProduct?.__typename !== 'SimpleProduct')
+    return <></>
 
   const category = productPageCategory(product)
   return (
@@ -110,14 +111,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     query: ProductPageDocument,
     variables: { urlKey, productUrls },
   })
-  const simpleProductPage = staticClient.query({
+  const typeProductPage = staticClient.query({
     query: SimpleProductPageDocument,
     variables: { urlKey },
   })
 
   if (
     (await productPage).data.products?.items?.[0]?.__typename !== 'SimpleProduct' ||
-    (await simpleProductPage).data.typeProducts?.items?.[0]?.__typename !== 'SimpleProduct'
+    (await typeProductPage).data.typeProducts?.items?.[0]?.__typename !== 'SimpleProduct'
   ) {
     return { notFound: true }
   }
@@ -125,7 +126,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   return {
     props: {
       ...(await productPage).data,
-      ...(await simpleProductPage).data,
+      ...(await typeProductPage).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
