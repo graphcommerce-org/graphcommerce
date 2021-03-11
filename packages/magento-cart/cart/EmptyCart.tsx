@@ -1,4 +1,4 @@
-import { Theme, makeStyles, Typography, Box } from '@material-ui/core'
+import { Theme, makeStyles, Typography } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 
@@ -30,7 +30,7 @@ export default function EmptyCart() {
   const classes = useStyles()
 
   return (
-    <Box className={classes.root}>
+    <div className={classes.root}>
       <div>
         <img
           src='/icons/desktop_epmty_cart.svg'
@@ -45,6 +45,6 @@ export default function EmptyCart() {
           Discover our collection and add items to your basket!
         </Typography>
       </div>
-    </Box>
+    </div>
   )
 }
