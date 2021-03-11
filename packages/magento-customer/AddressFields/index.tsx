@@ -1,4 +1,4 @@
-import { TextField } from '@material-ui/core'
+import { TextField, TextFieldProps } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
@@ -8,7 +8,7 @@ import { houseNumber } from '@reachdigital/react-hook-form/validationPatterns'
 import React, { useMemo } from 'react'
 
 type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
-type AddressInputFieldsProps = Pick<
+type AddressFieldsProps = Pick<
   UseFormMethods,
   'register' | 'watch' | 'errors' | 'formState' | 'control'
 > &
@@ -18,7 +18,7 @@ type AddressInputFieldsProps = Pick<
     fieldOptions: { [key: string]: FieldOptions }
   }
 
-export default function AddressInputFields(props: AddressInputFieldsProps) {
+export default function AddressFields(props: AddressFieldsProps) {
   const {
     errors,
     register,
@@ -32,8 +32,8 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
   } = props
   const classes = useFormStyles()
 
-  const country = watch(fieldOptions.countryCode.name) ?? countryCode // countryCode heet niet altijd zo
-  const regionId = watch(fieldOptions.regionId.name) // regionId heet niet altijd zo
+  const country = watch(fieldOptions.countryCode.name) ?? countryCode
+  const regionId = watch(fieldOptions.regionId.name)
 
   const countryList = useMemo(
     () =>
@@ -60,7 +60,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
           variant='outlined'
           type='text'
           error={!!errors.street}
-          name='street'
+          name={fieldOptions.street.name}
           label='Street'
           required={!!required.street}
           inputRef={register({ required: required.street })}
@@ -74,7 +74,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
           variant='outlined'
           type='text'
           error={!!errors.houseNumber}
-          name='houseNumber'
+          name={fieldOptions.houseNumber.name}
           label='Housenumber'
           required={!!required.houseNumber}
           inputRef={register({
@@ -92,7 +92,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
           type='text'
           error={!!errors.addition}
           required={!!required.addition}
-          name='addition'
+          name={fieldOptions.addition.name}
           label='Addition'
           inputRef={register({ required: required.addition })}
           helperText={formState.isSubmitted && errors.addition?.message}
@@ -108,7 +108,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
           type='text'
           error={!!errors.postcode}
           required={!!required.postcode}
-          name='postcode'
+          name={fieldOptions.postcode.name}
           label='Postcode'
           inputRef={register({ required: required.postcode })}
           helperText={formState.isSubmitted && errors.postcode?.message}
@@ -124,7 +124,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
           type='text'
           error={!!errors.city}
           required={!!required.city}
-          name='city'
+          name={fieldOptions.city.name}
           label='City'
           inputRef={register({ required: required.city })}
           helperText={formState.isSubmitted && errors.city?.message}
@@ -138,7 +138,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
         <Controller
           defaultValue={country ?? ''}
           control={control}
-          name='countryCode'
+          name={fieldOptions.countryCode.name}
           rules={{ required: required.countryCode }}
           render={({ onChange, name, value, onBlur }) => (
             <Autocomplete
@@ -169,7 +169,7 @@ export default function AddressInputFields(props: AddressInputFieldsProps) {
           <Controller
             defaultValue={regionId ?? ''}
             control={control}
-            name='regionId'
+            name={fieldOptions.regionId.name}
             rules={{ required: true }}
             render={({ onChange, name, value, onBlur }) => (
               <Autocomplete
