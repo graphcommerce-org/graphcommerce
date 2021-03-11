@@ -39,8 +39,9 @@
     "eslint:lint": "eslint --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "eslint:fix": "eslint --fix --ignore-path .gitignore '**/{*.js,*.ts,*.tsx}'",
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
-    "tsc:lint": "tsc --noEmit -p .",
-    "config-to-env": "ts-node -O '{\"module\":\"commonjs\"}' --transpile-only packages/magento-store/config-to-env/index.ts"
+    "tsc": "./node_modules/.bin/tsc",
+    "tsc:lint": "yarn tsc --noEmit -p .",
+    "config-to-env": "yarn ts-node -O '{\"module\":\"commonjs\"}' --transpile-only packages/magento-store/config-to-env/index.ts"
   },
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
