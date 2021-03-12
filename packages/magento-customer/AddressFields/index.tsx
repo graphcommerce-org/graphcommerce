@@ -14,6 +14,7 @@ type AddressFieldsProps = Pick<
 > &
   CountryRegionsQuery & {
     countryCode?: string
+    regionId?: number
     disableFields: boolean
     fieldOptions: { [key: string]: FieldOptions }
   }
@@ -26,6 +27,7 @@ export default function AddressFields(props: AddressFieldsProps) {
     formState,
     control,
     countryCode,
+    regionId,
     countries,
     disableFields,
     fieldOptions,
@@ -33,7 +35,7 @@ export default function AddressFields(props: AddressFieldsProps) {
   const classes = useFormStyles()
 
   const country = watch(fieldOptions.countryCode.name) ?? countryCode
-  const regionId = watch(fieldOptions.regionId.name)
+  const region = watch(fieldOptions.regionId.name) ?? regionId
 
   const countryList = useMemo(
     () =>
@@ -169,12 +171,12 @@ export default function AddressFields(props: AddressFieldsProps) {
             />
           )}
           InputProps={{
-            endAdornment: !errors.countryCode && <CheckIcon color='primary' />,
+            endAdornment: !errors[fieldOptions.countryCode.name] && <CheckIcon color='primary' />,
           }}
         />
         {regionList.length > 0 && (
           <Controller
-            defaultValue={regionId ?? ''}
+            defaultValue={region ?? ''}
             control={control}
             name={fieldOptions.regionId.name}
             rules={{ required: true }}

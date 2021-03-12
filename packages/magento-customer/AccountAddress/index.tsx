@@ -129,7 +129,7 @@ export default function AccountAddress(props: AccountAddressProps) {
         </div>
       </div>
       <div className={classes.actions}>
-        <Link href={`/account/address/edit?addressId=${id}`}>Edit</Link>
+        <Link href={`/account/addresses/edit?addressId=${id}`}>Edit</Link>
       </div>
     </div>
   )

@@ -57,8 +57,9 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
           {prefix} {firstname} {middlename} {lastname} {suffix}
         </div>
       </div>
-      <div>{street?.[0]}</div>
-      <div>{street?.slice(1).join(' ')}</div>
+      <div>
+        {street?.[0]} {street?.[1]} {street?.[2]}
+      </div>
       <div>
         {postcode} {city}
       </div>

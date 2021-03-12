@@ -8,49 +8,65 @@ import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackba
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
+import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
 import NameFields from '../NameFields'
 import {
-  CreateCustomerAddressDocument,
-  CreateCustomerAddressMutation,
-  CreateCustomerAddressMutationVariables,
-} from './CreateCustomerAddress.gql'
+  UpdateCustomerAddressDocument,
+  UpdateCustomerAddressMutation,
+  UpdateCustomerAddressMutationVariables,
+} from './UpdateCustomerAddress.gql'
 
-type CreateCustomerAddressFormProps = CountryRegionsQuery
+type EditAddressFormProps = {
+  address?: AccountAddressFragment
+} & CountryRegionsQuery
 
-export default function CreateCustomerAddressForm(props: CreateCustomerAddressFormProps) {
-  const { countries } = props
+export default function EditAddressForm(props: EditAddressFormProps) {
+  const { countries, address } = props
   const classes = useFormStyles()
 
   const form = useFormGqlMutation<
-    CreateCustomerAddressMutation,
-    CreateCustomerAddressMutationVariables
-  >(CreateCustomerAddressDocument, {
+    UpdateCustomerAddressMutation,
+    UpdateCustomerAddressMutationVariables
+  >(UpdateCustomerAddressDocument, {
+    defaultValues: {
+      id: address?.id ?? undefined,
+      firstname: address?.firstname,
+      lastname: address?.lastname,
+      street: address?.street?.[2],
+      postcode: address?.postcode,
+      city: address?.city,
+      countryCode: address?.country_code,
+      telephone: address?.telephone,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      houseNumber: address?.street?.[0],
+      addition: address?.street?.[1],
+    },
     onBeforeSubmit: (formData) => {
       const region = countries
         ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
         ?.available_regions?.find((r) => r?.id === formData.region)
-
-      return {
-        ...formData,
-        street: [(formData as any).houseNumber, (formData as any).addition, formData.street[0]],
+      const regionData = {
         region:
           (region && {
             region: region.name,
             region_code: region.code,
             region_id: region.id,
           }) ??
-          {},
-        defaultBilling: false,
-        defaultShipping: false,
+          null,
+      }
+
+      return {
+        ...formData,
+        ...regionData,
+        street: [(formData as any).houseNumber, (formData as any).addition, formData?.street?.[0]],
       }
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, reset, register } = form
-  const submitHandler = handleSubmit((data, e) => {
-    e?.target.reset()
-  })
+  const { handleSubmit, formState, required, error, errors, register } = form
+  const submitHandler = handleSubmit(() => {})
 
   return (
     <>
@@ -76,6 +92,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
         <AddressFields
           {...form}
           countries={countries}
+          regionId={address?.region?.region_id ?? undefined}
           disableFields={formState.isSubmitting}
           fieldOptions={{
             street: {
@@ -141,6 +158,10 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
           >
             Save changes
           </Button>
+
+          <Button variant='text' color='primary'>
+            Delete this address
+          </Button>
         </div>
       </form>
 
@@ -148,7 +169,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
 
       <MessageSnackbarLoader
         open={formState.isSubmitSuccessful && !error?.message}
-        message={<>Successfully added new address</>}
+        message={<>Changes were saved</>}
       />
     </>
   )
