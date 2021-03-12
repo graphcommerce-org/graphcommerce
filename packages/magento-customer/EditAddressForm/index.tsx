@@ -10,6 +10,7 @@ import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
+import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
 import NameFields from '../NameFields'
 import {
   UpdateCustomerAddressDocument,
@@ -157,10 +158,6 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             loading={formState.isSubmitting}
           >
             Save changes
-          </Button>
-
-          <Button variant='text' color='primary'>
-            Delete this address
           </Button>
         </div>
       </form>

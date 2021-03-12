@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
+import { Box, Container, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
@@ -7,11 +7,13 @@ import {
   CountryRegionsQuery,
 } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
+import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
+import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -23,10 +25,21 @@ import apolloClient from '../../../lib/apolloClient'
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<Props>
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    deleteButton: {
+      margin: `0 auto ${theme.spacings.md} auto`,
+      display: 'block',
+    },
+  }),
+  { name: 'EditAddressPage' },
+)
+
 function EditAddressPage(props: Props) {
   const { countries } = props
   const router = useRouter()
   const { addressId } = router.query
+  const classes = useStyles()
 
   const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
@@ -50,12 +63,14 @@ function EditAddressPage(props: Props) {
 
           <SectionContainer label='Edit address'>
             {!address && !loading && (
-              <IconTitle
-                iconSrc='/icons/desktop_addresses.svg'
-                title='Address not found'
-                alt='address'
-                size='small'
-              />
+              <Box marginTop={3}>
+                <IconTitle
+                  iconSrc='/icons/desktop_addresses.svg'
+                  title='Address not found'
+                  alt='address'
+                  size='small'
+                />
+              </Box>
             )}
 
             {loading && (
@@ -70,6 +85,16 @@ function EditAddressPage(props: Props) {
             )}
 
             {address && !loading && <EditAddressForm countries={countries} address={address} />}
+
+            {address && !loading && (
+              <DeleteCustomerAddressForm
+                button={() => (
+                  <Button variant='text' color='primary' className={classes.deleteButton}>
+                    Delete this address
+                  </Button>
+                )}
+              />
+            )}
           </SectionContainer>
         </NoSsr>
       </Container>
