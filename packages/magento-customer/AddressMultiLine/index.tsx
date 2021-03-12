@@ -63,7 +63,8 @@ export default function AddressMultiLine(props: AddressMultiLineProps) {
         {postcode} {city}
       </div>
       <div>
-        {regionName}, {countryName}
+        {regionName && `${regionName},`}
+        {countryName}
       </div>
     </div>
   )
