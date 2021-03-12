@@ -78,7 +78,7 @@ export function createApolloClient(
       if (data.extensions?.tracing) {
         const tracing = data.extensions?.tracing as TracingFormat
 
-        const minDuration = 300 * 1000 * 1000
+        const minDuration = 2000 * 1000 * 1000
         const slowResolvers = tracing.execution.resolvers
           .filter((resolver) => resolver.duration > minDuration)
           .map(
