@@ -54,6 +54,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       const regionId = countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
+
       return { ...variables, regionId, saveInAddressBook: true, customerNote: '' }
     },
   })
@@ -79,7 +80,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
-        <div className={classes.formRow} key='firstname'>
+        <div key='namefields'>
           <NameFields
             {...form}
             disableFields={disableFields}
@@ -96,42 +97,44 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           />
         </div>
 
-        <AddressFields
-          {...form}
-          countryCode={currentCountryCode}
-          countries={countries}
-          disableFields={disableFields}
-          fieldOptions={{
-            street: {
-              name: 'street',
-              required: required.street,
-            },
-            houseNumber: {
-              name: 'houseNumber',
-              required: required.houseNumber,
-            },
-            addition: {
-              name: 'addition',
-              required: required.addition,
-            },
-            postcode: {
-              name: 'postcode',
-              required: required.postcode,
-            },
-            city: {
-              name: 'city',
-              required: required.city,
-            },
-            countryCode: {
-              name: 'countryCode',
-              required: required.countryCode,
-            },
-            regionId: {
-              name: 'regionId',
-              required: required.regionId,
-            },
-          }}
-        />
+        <div key='address-fields'>
+          <AddressFields
+            {...form}
+            countryCode={currentCountryCode}
+            countries={countries}
+            disableFields={disableFields}
+            fieldOptions={{
+              street: {
+                name: 'street',
+                required: required.street,
+              },
+              houseNumber: {
+                name: 'houseNumber',
+                required: required.houseNumber,
+              },
+              addition: {
+                name: 'addition',
+                required: required.addition,
+              },
+              postcode: {
+                name: 'postcode',
+                required: required.postcode,
+              },
+              city: {
+                name: 'city',
+                required: required.city,
+              },
+              countryCode: {
+                name: 'countryCode',
+                required: required.countryCode,
+              },
+              regionId: {
+                name: 'regionId',
+                required: required.regionId,
+              },
+            }}
+          />
+        </div>
 
         <div className={classes.formRow} key='telephone'>
           <TextField
