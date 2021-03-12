@@ -156,8 +156,8 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               <div className={classes.listItemInnerContainer}>
                 <ListItemText
                   primary={option?.label}
-                  secondary={`(${option?.count})`}
                   classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
+                  secondary={`(${option?.count})`}
                 />
                 <ListItemSecondaryAction>
                   <Checkbox
