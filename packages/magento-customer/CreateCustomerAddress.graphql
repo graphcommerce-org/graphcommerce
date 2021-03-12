@@ -1,17 +1,17 @@
 mutation CreateCustomerAddress(
-  $prefix: String
+  $prefix: String!
   $firstname: String!
   $middlename: String
   $lastname: String!
   $suffix: String
-  $telephone: String
+  $telephone: String!
   $street: [String!]!
   $city: String!
   $postcode: String!
   $region: CustomerAddressRegionInput!
-  $company: String!
+  $company: String
   $countryCode: CountryCodeEnum!
-  $vatId: String!
+  $vatId: String
   $defaultBilling: Boolean!
   $defaultShipping: Boolean!
 ) {
