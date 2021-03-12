@@ -41,7 +41,6 @@ const useStyles = makeStyles(
     avatar: {
       width: theme.spacing(3),
       height: theme.spacing(3),
-      display: 'inline-block',
       marginRight: theme.spacing(1),
       position: 'relative',
       top: '6px',
