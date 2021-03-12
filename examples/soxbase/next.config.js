@@ -6,6 +6,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
+require('dotenv').config()
+
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
 const withTM = require('next-transpile-modules')(

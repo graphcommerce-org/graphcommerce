@@ -14,7 +14,11 @@ import {
 import { PromiseValue } from 'type-fest'
 import { ProductListDocument } from './ProductList.gql'
 
-function parseParams(url: string, query: string[], filterTypes: FilterTypes) {
+export function parseParams(
+  url: string,
+  query: string[],
+  filterTypes: FilterTypes,
+): ProductListParams | false {
   const categoryVariables: ProductListParams = { url, filters: {}, sort: {} }
 
   const typeMap = filterTypes
@@ -98,6 +102,7 @@ type GetCategoryPageProps = {
   url: string
   query: string[]
   rootCategory: Promise<string>
+  filterTypes: FilterTypes
   staticClient: ApolloClient<NormalizedCacheObject>
 }
 
@@ -105,9 +110,9 @@ export default async function getFilteredProductList({
   url,
   query,
   rootCategory,
+  filterTypes,
   staticClient: client,
 }: GetCategoryPageProps) {
-  const filterTypes = await getFilterTypes(client)
   const params = parseParams(url, query, filterTypes)
 
   if (!params || !(await rootCategory)) return undefined

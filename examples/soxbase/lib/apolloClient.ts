@@ -12,7 +12,7 @@ import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
+import localeToStore, { defaultLocale } from '@reachdigital/magento-store/localeToStore'
 import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
 import fragments from '../generated/fragments.json'
@@ -117,7 +117,7 @@ const sharedClient: {
 } = {}
 
 export default function apolloClient(
-  locale: string | undefined,
+  locale: string | undefined = defaultLocale(),
   shared = typeof window !== 'undefined',
   state?: NormalizedCacheObject,
 ): ApolloClient<NormalizedCacheObject> {

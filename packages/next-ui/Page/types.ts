@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 import { NormalizedCacheObject } from '@apollo/client'
-import { GetStaticPaths as GetStaticPathsNext, GetStaticProps as GetStaticPropsNext } from 'next'
+import { GetStaticProps as GetStaticPropsNext } from 'next'
 import { AppProps as NextAppProps } from 'next/app'
 
 type AnyObj = Record<string, unknown>
@@ -16,8 +16,6 @@ export type GetStaticProps<
   P extends AnyObj = AnyObj,
   Q extends ParsedUrlQuery = ParsedUrlQuery
 > = GetStaticPropsNext<P & PL & ApolloStateProps, Q>
-
-export type GetStaticPaths<Q extends ParsedUrlQuery = ParsedUrlQuery> = GetStaticPathsNext<Q>
 
 /** Used by _app */
 export type AppProps = Omit<NextAppProps, 'Component' | 'pageProps'> & {
