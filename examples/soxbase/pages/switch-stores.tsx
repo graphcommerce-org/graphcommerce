@@ -33,7 +33,7 @@ function StoresIndexPage({ availableStores, countries }: Props) {
     <OverlayPage title='Switch Stores' variant='left' backFallbackHref='/' backFallbackTitle='Home'>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
       {availableStores && countries && (
-        <Container maxWidth='xs'>
+        <Container maxWidth='md'>
           <Typography variant='h2' component='h1' className={classes.title}>
             Country
           </Typography>
@@ -44,7 +44,7 @@ function StoresIndexPage({ availableStores, countries }: Props) {
             fallbackCountry={{
               full_name_locale: 'International',
               id: 'EU',
-              two_letter_abbreviation: 'eu',
+              two_letter_abbreviation: 'EU',
             }}
           />
         </Container>
