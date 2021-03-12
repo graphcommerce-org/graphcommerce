@@ -1,5 +1,4 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { CmsPageDocument, CmsPageQuery } from '@reachdigital/magento-cms/CmsPage.gql'
 import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import {
   ProductListDocument,
@@ -7,12 +6,12 @@ import {
 } from '@reachdigital/magento-product-types/ProductList.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
-import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
+import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import RowProductBackstory from '../../components/RowProductBackstory'
 import RowProductGrid from '../../components/RowProductGrid'
@@ -70,15 +69,14 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
 
   const config = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: { url: `page/${urlKey}` },
+    query: CmsPageDocument,
+    variables: { url: `page/${urlKey}`, urlKey },
   })
-  const cmsPage = staticClient.query({ query: CmsPageDocument, variables: { urlKey } })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
   const cat = String((await config).data.storeConfig?.root_category_uid ?? '')
@@ -90,7 +88,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   return {
     props: {
       ...(await page).data,
-      ...(await cmsPage).data,
       ...(await productList).data,
       apolloState: await config.then(() => client.cache.extract()),
     },

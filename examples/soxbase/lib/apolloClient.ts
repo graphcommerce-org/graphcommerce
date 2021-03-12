@@ -12,6 +12,7 @@ import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
+import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
 import fragments from '../generated/fragments.json'
@@ -19,7 +20,7 @@ import fragments from '../generated/fragments.json'
 import typePolicies from './typePolicies'
 
 export function createApolloClient(
-  store: string,
+  locale: string,
   initialState: NormalizedCacheObject = {},
 ): ApolloClient<NormalizedCacheObject> {
   const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -54,15 +55,22 @@ export function createApolloClient(
     // todo: Content-Currency
     // todo: Preview-Version
     // tood: X-Captcha
-    return { headers: { ...headers, authorization, store } }
+    return {
+      headers: {
+        ...headers,
+        authorization,
+        store: localeToStore(locale),
+      },
+    }
   })
 
-  const roundTripLink = new ApolloLink((operation, forward) => {
+  const measurePerformanceLink = new ApolloLink((operation, forward) => {
     // Called before operation is sent to server
-    operation.setContext({ start: new Date() })
+    operation.setContext({ measurePerformanceLinkStart: new Date().valueOf() })
     return forward(operation).map((data) => {
       // Called after server responds
-      const time: number = new Date().valueOf() - (operation.getContext().start as Date).valueOf()
+      const time: number =
+        new Date().valueOf() - (operation.getContext().measurePerformanceLinkStart as number)
       const vars =
         Object.keys(operation.variables).length > 0
           ? `(${JSON.stringify(operation.variables)})`
@@ -74,7 +82,7 @@ export function createApolloClient(
   })
 
   const link = ApolloLink.from([
-    roundTripLink,
+    measurePerformanceLink,
     // new MutationQueueLink(),
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
@@ -104,14 +112,27 @@ export function createApolloClient(
   return new ApolloClient({ link, cache })
 }
 
-let globalClient: ApolloClient<NormalizedCacheObject> | undefined
+const sharedClient: {
+  [locale: string]: ApolloClient<NormalizedCacheObject>
+} = {}
 
 export default function apolloClient(
-  store: string,
-  state: NormalizedCacheObject = {},
+  locale: string | undefined,
+  shared = typeof window !== 'undefined',
+  state?: NormalizedCacheObject,
 ): ApolloClient<NormalizedCacheObject> {
-  if (typeof window === 'undefined') return createApolloClient(store, state)
-  if (globalClient) globalClient.cache.restore(mergeDeep(globalClient.cache.extract(), state))
-  else globalClient = createApolloClient(store, state)
-  return globalClient
+  if (!locale) throw Error('Locale not specified to apolloClient(locale, shared, state)')
+  if (!shared) return createApolloClient(locale, state)
+
+  // Update the shared client with the new state.
+  if (sharedClient[locale] && state) {
+    sharedClient[locale].cache.restore(mergeDeep(sharedClient[locale].cache.extract(), state))
+  }
+
+  // Create a client if it doesn't exist
+  if (!sharedClient[locale]) {
+    sharedClient[locale] = createApolloClient(locale, state)
+  }
+
+  return sharedClient[locale]
 }

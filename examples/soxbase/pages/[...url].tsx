@@ -17,7 +17,6 @@ import ProductListPagination from '@reachdigital/magento-product/ProductListPagi
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
@@ -160,7 +159,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (loc: string) => getCategoryStaticPaths(apolloClient(localeToStore(loc)), loc)
+  const path = (loc: string) => getCategoryStaticPaths(apolloClient(loc), loc)
   const paths = (await Promise.all(locales.map(path))).flat(1)
   return { paths, fallback: 'blocking' }
 }
@@ -169,10 +168,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 
-  const client = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
   const config = client.query({ query: StoreConfigDocument })
 
-  const staticClient = apolloClient(localeToStore(locale))
+  const staticClient = apolloClient(locale)
 
   const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
   const rootCategory = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')

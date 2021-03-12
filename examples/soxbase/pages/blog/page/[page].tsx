@@ -1,7 +1,6 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import Pagination from '@reachdigital/next-ui/Pagination'
@@ -57,7 +56,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = apolloClient(localeToStore(locale))
+    const staticClient = apolloClient(locale)
     const blogPosts = staticClient.query({ query: BlogPathsDocument })
     const total = Math.ceil((await blogPosts).data.pagesConnection.aggregate.count / pageSize)
     const pages: string[] = []
@@ -72,8 +71,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const config = client.query({ query: StoreConfigDocument })
   const defaultPage = staticClient.query({
     query: DefaultPageDocument,

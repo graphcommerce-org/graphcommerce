@@ -1,7 +1,6 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
@@ -44,7 +43,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const staticClient = apolloClient(localeToStore(locale))
+    const staticClient = apolloClient(locale)
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
     const { pages } = (await BlogPostPaths).data
     return (
@@ -57,8 +56,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const urlKey = params?.url ?? '??'
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const limit = 4
   const config = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({

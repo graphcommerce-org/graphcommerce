@@ -11,7 +11,6 @@ import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/Shipp
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
@@ -88,8 +87,8 @@ registerRouteUi('/checkout', OverlayPage)
 export default ShippingPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
 
   const config = client.query({ query: StoreConfigDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })

@@ -16,7 +16,6 @@ import PaymentMethodToggle from '@reachdigital/magento-cart/payment-method/Payme
 import braintree_local_payment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -96,8 +95,8 @@ registerRouteUi('/checkout/payment', OverlayPage)
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
 
   const config = client.query({ query: StoreConfigDocument })
   const countryRegions = staticClient.query({ query: CountryRegionsDocument })

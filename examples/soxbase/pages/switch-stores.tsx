@@ -2,7 +2,6 @@ import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import {
   AvailableStoresDocument,
   AvailableStoresQuery,
@@ -55,8 +54,8 @@ registerRouteUi('/switch-stores', OverlayPage)
 export default StoresIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
 
   const config = client.query({ query: StoreConfigDocument })
   const availableStores = staticClient.query({ query: AvailableStoresDocument })
