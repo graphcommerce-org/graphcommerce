@@ -6,6 +6,7 @@ fragment ProductListFilters on Products {
     options {
       label
       value
+      count
     }
   }
 }

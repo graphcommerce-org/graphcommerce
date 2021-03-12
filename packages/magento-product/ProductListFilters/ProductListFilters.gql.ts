@@ -29,6 +29,7 @@ export const ProductListFiltersFragmentDoc: DocumentNode<ProductListFiltersFragm
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'count' } },
                     ],
                   },
                 },
@@ -46,7 +47,7 @@ export type ProductListFiltersFragment = {
       Types.Maybe<
         Pick<Types.Aggregation, 'label' | 'count' | 'attribute_code'> & {
           options?: Types.Maybe<
-            Array<Types.Maybe<Pick<Types.AggregationOption, 'label' | 'value'>>>
+            Array<Types.Maybe<Pick<Types.AggregationOption, 'label' | 'value' | 'count'>>>
           >
         }
       >

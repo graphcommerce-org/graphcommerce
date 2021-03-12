@@ -475,6 +475,7 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'label' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'count' } },
                           ],
                         },
                       },
@@ -707,7 +708,7 @@ export type ProductListQuery = {
         Types.Maybe<
           Pick<Types.Aggregation, 'label' | 'count' | 'attribute_code'> & {
             options?: Types.Maybe<
-              Array<Types.Maybe<Pick<Types.AggregationOption, 'label' | 'value'>>>
+              Array<Types.Maybe<Pick<Types.AggregationOption, 'label' | 'value' | 'count'>>>
             >
           }
         >
