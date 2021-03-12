@@ -1,5 +1,4 @@
-import { FormControl, FormControlLabel, MenuItem, TextField, Switch } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
+import { FormControlLabel, MenuItem, Switch, TextField } from '@material-ui/core'
 import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
@@ -7,7 +6,6 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
-import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
@@ -29,6 +27,7 @@ export default function SignUpForm(props: SignUpFormProps) {
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
   const { register, errors, handleSubmit, required, watch, control, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
+
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -63,7 +62,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           required
           inputRef={register({
             required: true,
-            validate: (value) => value === watch('password') || "Paswords don't match",
+            validate: (value) => value === watch('password') || "Passwords don't match",
           })}
           helperText={errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
