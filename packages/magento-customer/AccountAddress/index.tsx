@@ -8,6 +8,7 @@ import {
   Theme,
 } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
@@ -129,7 +130,11 @@ export default function AccountAddress(props: AccountAddressProps) {
         </div>
       </div>
       <div className={classes.actions}>
-        <Link href={`/account/addresses/edit?addressId=${id}`}>Edit</Link>
+        <Link href={`/account/addresses/edit?addressId=${id}`}>
+          <Button variant='text' color='primary'>
+            Edit
+          </Button>
+        </Link>
       </div>
     </div>
   )
