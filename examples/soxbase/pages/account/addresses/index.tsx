@@ -15,7 +15,7 @@ import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import apolloClient from '../../lib/apolloClient'
+import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<Props>

@@ -13,7 +13,7 @@ type AddressFieldsProps = Pick<
   'register' | 'watch' | 'errors' | 'formState' | 'control'
 > &
   CountryRegionsQuery & {
-    countryCode: string
+    countryCode?: string
     disableFields: boolean
     fieldOptions: { [key: string]: FieldOptions }
   }
@@ -55,7 +55,7 @@ export default function AddressFields(props: AddressFieldsProps) {
 
   return (
     <>
-      <div className={classes.formRow} key='street'>
+      <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -108,7 +108,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           }}
         />
       </div>
-      <div className={classes.formRow} key='postcode-city'>
+      <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -141,7 +141,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           }}
         />
       </div>
-      <div className={classes.formRow} key='countryRegion'>
+      <div className={classes.formRow}>
         <Controller
           defaultValue={country ?? ''}
           control={control}

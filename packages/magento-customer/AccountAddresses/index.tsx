@@ -1,4 +1,4 @@
-import { Button, makeStyles, Theme } from '@material-ui/core'
+import { Button, Link, makeStyles, Theme } from '@material-ui/core'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
@@ -34,9 +34,12 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           <AccountAddress key={address?.id} {...address} countries={countries} />
         ))}
       </div>
-      <Button className={classes.button} variant='contained' color='primary'>
-        Add new address
-      </Button>
+
+      <Link href='/account/addresses/add'>
+        <Button className={classes.button} variant='contained' color='primary'>
+          Add new address
+        </Button>
+      </Link>
     </SectionContainer>
   )
 }

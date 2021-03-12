@@ -16,7 +16,10 @@ export const CreateCustomerAddressDocument: DocumentNode<
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'prefix' } },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
         },
         {
           kind: 'VariableDefinition',
@@ -47,7 +50,10 @@ export const CreateCustomerAddressDocument: DocumentNode<
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'telephone' } },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
         },
         {
           kind: 'VariableDefinition',
@@ -93,10 +99,7 @@ export const CreateCustomerAddressDocument: DocumentNode<
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'company' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
         {
           kind: 'VariableDefinition',
@@ -109,10 +112,7 @@ export const CreateCustomerAddressDocument: DocumentNode<
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'vatId' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
         {
           kind: 'VariableDefinition',
@@ -234,19 +234,19 @@ export const CreateCustomerAddressDocument: DocumentNode<
   ],
 }
 export type CreateCustomerAddressMutationVariables = Types.Exact<{
-  prefix?: Types.Maybe<Types.Scalars['String']>
+  prefix: Types.Scalars['String']
   firstname: Types.Scalars['String']
   middlename?: Types.Maybe<Types.Scalars['String']>
   lastname: Types.Scalars['String']
   suffix?: Types.Maybe<Types.Scalars['String']>
-  telephone?: Types.Maybe<Types.Scalars['String']>
+  telephone: Types.Scalars['String']
   street: Array<Types.Scalars['String']> | Types.Scalars['String']
   city: Types.Scalars['String']
   postcode: Types.Scalars['String']
   region: Types.CustomerAddressRegionInput
-  company: Types.Scalars['String']
+  company?: Types.Maybe<Types.Scalars['String']>
   countryCode: Types.CountryCodeEnum
-  vatId: Types.Scalars['String']
+  vatId?: Types.Maybe<Types.Scalars['String']>
   defaultBilling: Types.Scalars['Boolean']
   defaultShipping: Types.Scalars['Boolean']
 }>
