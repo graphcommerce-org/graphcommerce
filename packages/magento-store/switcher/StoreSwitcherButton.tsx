@@ -1,45 +1,37 @@
 import { useQuery } from '@apollo/client'
 import { Avatar, makeStyles, Theme } from '@material-ui/core'
+import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { StoreConfigDocument } from '../StoreConfig.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    small: {
+    avatar: {
       width: theme.spacing(3),
       height: theme.spacing(3),
-      display: 'inline-block',
       marginRight: theme.spacing(1),
-      position: 'relative',
-      top: '6px',
     },
   }),
-  { name: 'CountryFlag' },
+  { name: 'StoreSwitcherButton' },
 )
 
 export default function StoreSwitcherButton() {
-  const [userLanguage, setUserLanguage] = useState('eu')
   const config = useQuery(StoreConfigDocument)
   const classes = useStyles()
 
-  useEffect(() => {
-    // Base the store language off of the browser language of the user or from account settings?
-    const lang =
-      config.data?.storeConfig?.locale || navigator.language || (navigator.languages || ['eu'])[0]
-    setUserLanguage(lang.substring(3, 5).toLowerCase())
-  }, [])
+  const country = config.data?.storeConfig?.locale?.split('_')[1].toLowerCase()
 
   return (
     <PageLink href='/switch-stores'>
-      <span>
+      <Button variant='pill' size='medium'>
         <Avatar
-          className={classes.small}
-          alt={userLanguage}
-          src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${userLanguage}.svg`}
+          className={classes.avatar}
+          alt={country}
+          src={`https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/${country}.svg`}
         />
         {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}
-      </span>
+      </Button>
     </PageLink>
   )
 }
