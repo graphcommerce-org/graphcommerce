@@ -15,6 +15,7 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import localeToStore, { defaultLocale } from '@reachdigital/magento-store/localeToStore'
 import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
+import type { TracingFormat } from 'apollo-tracing'
 import fragments from '../generated/fragments.json'
 // import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import typePolicies from './typePolicies'
@@ -72,11 +73,28 @@ export function createApolloClient(
       const time: number =
         new Date().valueOf() - (operation.getContext().measurePerformanceLinkStart as number)
       const vars =
-        Object.keys(operation.variables).length > 0
-          ? `(${JSON.stringify(operation.variables)})`
-          : ''
+        Object.keys(operation.variables).length > 0 ? `${JSON.stringify(operation.variables)}` : ''
 
-      console.log(`query ${`${time}ms`.padEnd(7, ' ')}for '${operation.operationName}${vars}'`)
+      if (data.extensions?.tracing) {
+        const tracing = data.extensions?.tracing as TracingFormat
+
+        const minDuration = 300 * 1000 * 1000
+        const slowResolvers = tracing.execution.resolvers
+          .filter((resolver) => resolver.duration > minDuration)
+          .map(
+            (resolver) =>
+              `${operation.operationName}.${resolver.path.join('.')}[${Math.round(
+                resolver.duration / (1000 * 1000),
+              )}ms]`,
+          )
+          .join(', ')
+
+        if (slowResolvers) {
+          console.info(`[slow] ${operation.operationName}[${time}ms](${vars})`)
+          console.info(`       ${slowResolvers}`)
+        }
+      }
+
       return data
     })
   })
