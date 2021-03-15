@@ -16,7 +16,7 @@ type FlagAvatarProps = {
   flagSrc: string
   alt: string
   className: string
-  fallbackCountry: {}
+  fallbackCountry: unknown
 }
 
 function getFlagSource(flagSource, fallbackCountry) {
