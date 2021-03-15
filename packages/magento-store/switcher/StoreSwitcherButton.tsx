@@ -7,7 +7,7 @@ import React from 'react'
 import { StoreConfigDocument } from '../StoreConfig.gql'
 
 const useStyles = makeStyles(
-  (theme: Theme) => ({
+  () => ({
     avatar: {
       height: 25,
       width: 25,
