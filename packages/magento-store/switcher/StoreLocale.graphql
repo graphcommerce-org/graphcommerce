@@ -3,4 +3,6 @@ fragment StoreLocale on StoreConfig {
   store_name
   locale
   base_currency_code
+  store_group_name
+  store_group_code
 }

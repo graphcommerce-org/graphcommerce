@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -18,19 +18,25 @@ type RouteProps = { country?: string[] }
 type Props = AvailableStoresQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
+const useStyles = makeStyles((theme: Theme) => ({
+  title: {
+    textAlign: 'center',
+    padding: `${theme.spacings.md} 0`,
+  },
+}))
+
 function StoresIndexPage({ availableStores, countries }: Props) {
   const { locale } = useRouter()
+  const classes = useStyles()
 
   return (
-    <OverlayPage
-      title='Switch Stores'
-      variant='bottom'
-      backFallbackHref='/'
-      backFallbackTitle='Home'
-    >
+    <OverlayPage title='Switch Stores' variant='left' backFallbackHref='/' backFallbackTitle='Home'>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
       {availableStores && countries && (
-        <Container maxWidth='xs'>
+        <Container maxWidth='md'>
+          <Typography variant='h2' component='h1' className={classes.title}>
+            Country
+          </Typography>
           <StoreSwitcher
             countries={countries}
             stores={availableStores}

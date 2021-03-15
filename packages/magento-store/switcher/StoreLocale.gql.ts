@@ -16,6 +16,8 @@ export const StoreLocaleFragmentDoc: DocumentNode<StoreLocaleFragment, unknown> 
           { kind: 'Field', name: { kind: 'Name', value: 'store_name' } },
           { kind: 'Field', name: { kind: 'Name', value: 'locale' } },
           { kind: 'Field', name: { kind: 'Name', value: 'base_currency_code' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'store_group_name' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'store_group_code' } },
         ],
       },
     },
@@ -23,5 +25,5 @@ export const StoreLocaleFragmentDoc: DocumentNode<StoreLocaleFragment, unknown> 
 }
 export type StoreLocaleFragment = Pick<
   Types.StoreConfig,
-  'code' | 'store_name' | 'locale' | 'base_currency_code'
+  'code' | 'store_name' | 'locale' | 'base_currency_code' | 'store_group_name' | 'store_group_code'
 >

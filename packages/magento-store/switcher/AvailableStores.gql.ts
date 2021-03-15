@@ -25,6 +25,8 @@ export const AvailableStoresDocument: DocumentNode<
                 { kind: 'Field', name: { kind: 'Name', value: 'store_name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'locale' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'base_currency_code' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'store_group_name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'store_group_code' } },
               ],
             },
           },
@@ -50,7 +52,17 @@ export type AvailableStoresQueryVariables = Types.Exact<{ [key: string]: never }
 export type AvailableStoresQuery = {
   availableStores?: Types.Maybe<
     Array<
-      Types.Maybe<Pick<Types.StoreConfig, 'code' | 'store_name' | 'locale' | 'base_currency_code'>>
+      Types.Maybe<
+        Pick<
+          Types.StoreConfig,
+          | 'code'
+          | 'store_name'
+          | 'locale'
+          | 'base_currency_code'
+          | 'store_group_name'
+          | 'store_group_code'
+        >
+      >
     >
   >
   countries?: Types.Maybe<
