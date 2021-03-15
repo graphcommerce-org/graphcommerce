@@ -1,4 +1,4 @@
-import { TextField } from '@material-ui/core'
+import { makeStyles, TextField } from '@material-ui/core'
 import CheckIcon from '@material-ui/icons/Check'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import Button from '@reachdigital/next-ui/Button'
@@ -7,10 +7,10 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
+import clsx from 'clsx'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
-import DeleteCustomerAddressForm from '../DeleteCustomerAddressForm'
 import NameFields from '../NameFields'
 import {
   UpdateCustomerAddressDocument,
@@ -18,13 +18,23 @@ import {
   UpdateCustomerAddressMutationVariables,
 } from './UpdateCustomerAddress.gql'
 
+const useStyles = makeStyles(
+  () => ({
+    editActions: {
+      paddingBottom: 0,
+    },
+  }),
+  { name: 'EditAddressForm' },
+)
+
 type EditAddressFormProps = {
   address?: AccountAddressFragment
 } & CountryRegionsQuery
 
 export default function EditAddressForm(props: EditAddressFormProps) {
   const { countries, address } = props
-  const classes = useFormStyles()
+  const formClasses = useFormStyles()
+  const classes = useStyles()
 
   const form = useFormGqlMutation<
     UpdateCustomerAddressMutation,
@@ -71,7 +81,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
 
   return (
     <>
-      <form onSubmit={submitHandler} noValidate className={classes.form}>
+      <form onSubmit={submitHandler} noValidate className={formClasses.form}>
         <NameFields
           {...form}
           disableFields={formState.isSubmitting}
@@ -127,7 +137,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
           }}
         />
 
-        <div className={classes.formRow}>
+        <div className={formClasses.formRow}>
           <TextField
             variant='outlined'
             type='text'
@@ -142,14 +152,14 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={formState.isSubmitting}
             InputProps={{
-              endAdornment: !errors.telephone && <CheckIcon className={classes.checkmark} />,
+              endAdornment: !errors.telephone && <CheckIcon className={formClasses.checkmark} />,
             }}
           />
         </div>
 
-        <div className={classes.divider} />
+        <div className={formClasses.divider} />
 
-        <div className={classes.actions}>
+        <div className={clsx(formClasses.actions, classes.editActions)}>
           <Button
             type='submit'
             variant='contained'
