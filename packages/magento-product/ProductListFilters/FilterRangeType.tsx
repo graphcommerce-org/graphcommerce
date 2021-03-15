@@ -141,6 +141,10 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       )
   }
 
+  const applyFilter = () => {
+    pushRoute(priceFilterUrl)
+  }
+
   return (
     <ChipMenu
       variant='outlined'
@@ -149,6 +153,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
       selected={!!currentLabel}
       {...chipProps}
       onDelete={currentLabel ? resetFilter : undefined}
+      onClose={applyFilter}
       labelRight={
         <>
           <Money round value={value[0]} />
@@ -171,18 +176,6 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           valueLabelDisplay='off'
           className={classes.slider}
         />
-
-        <CategoryLink {...priceFilterUrl}>
-          <Button
-            variant='pill'
-            size='small'
-            color='primary'
-            disableElevation
-            className={classes.button}
-          >
-            Apply
-          </Button>
-        </CategoryLink>
 
         <Button
           onClick={resetFilter}
