@@ -12,5 +12,14 @@
   "emmet.showExpandedAbbreviation": "never",
   "editor.wordBasedSuggestions": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "css.validate": false
+  "css.validate": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".yarn": true,
+    "**/.next": true
+  }
 }
