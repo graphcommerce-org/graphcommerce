@@ -20,6 +20,7 @@ import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHel
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { useRouter } from 'next/router'
 import React from 'react'
+import OverlayPage from '../../../components/AppShell/OverlayPage'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -50,14 +51,16 @@ function EditAddressPage(props: Props) {
   const address = addresses?.filter((a) => a?.id === numAddressId)?.[0]
 
   return (
-    <OverlayUi title='Edit address' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Edit address'
+      variant='bottom'
+      fullHeight
+      backFallbackHref='/account/addresses'
+      backFallbackTitle='Addresses'
+    >
+      <PageMeta title='Edit address' metaDescription='Edit an address' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta
-            title='Edit address'
-            metaDescription='Edit an address'
-            metaRobots='NOINDEX, FOLLOW'
-          />
           <IconTitle
             iconSrc='/icons/desktop_addresses.svg'
             title='Addresses'
@@ -108,7 +111,7 @@ function EditAddressPage(props: Props) {
           </SectionContainer>
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 

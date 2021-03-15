@@ -8,12 +8,12 @@ import CreateCustomerAddressForm from '@reachdigital/magento-customer/CreateCust
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
+import OverlayPage from '../../../components/AppShell/OverlayPage'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -23,14 +23,16 @@ function AddNewAddressPage(props: Props) {
   const { countries } = props
 
   return (
-    <OverlayUi title='Add address' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Add address'
+      variant='bottom'
+      fullHeight
+      backFallbackHref='/account/addresses'
+      backFallbackTitle='Addresses'
+    >
+      <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['NOINDEX']} />
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta
-            title='Add address'
-            metaDescription='Add new address'
-            metaRobots='NOINDEX, FOLLOW'
-          />
           <IconTitle
             iconSrc='/icons/desktop_addresses.svg'
             title='Addresses'
@@ -42,13 +44,13 @@ function AddNewAddressPage(props: Props) {
           </SectionContainer>
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AddNewAddressPage.Layout = PageLayout
 
-registerRouteUi('/account/addresses/add', OverlayUi)
+registerRouteUi('/account/addresses/add', OverlayPage)
 
 export default AddNewAddressPage
 

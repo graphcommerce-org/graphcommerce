@@ -9,7 +9,7 @@ import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayUi'
+import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>

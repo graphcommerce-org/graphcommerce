@@ -10,11 +10,11 @@ import { AccountDashboardAddressesDocument } from '@reachdigital/magento-custome
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import localeToStore from '@reachdigital/magento-store/localeToStore'
-import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
+import OverlayPage from '../../../components/AppShell/OverlayPage'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -28,14 +28,20 @@ function AccountAddressesPage(props: Props) {
   const customer = data?.customer
 
   return (
-    <OverlayUi title='Addresses' variant='bottom' fullHeight>
+    <OverlayPage
+      title='Addresses'
+      variant='bottom'
+      fullHeight
+      backFallbackHref='/account'
+      backFallbackTitle='Account'
+    >
+      <PageMeta
+        title='Addresses'
+        metaDescription='View all your addresses'
+        metaRobots={['noindex']}
+      />
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta
-            title='Addresses'
-            metaDescription='View all your addresses'
-            metaRobots='NOINDEX, FOLLOW'
-          />
           <IconTitle
             iconSrc='/icons/desktop_addresses.svg'
             title='Addresses'
@@ -50,13 +56,13 @@ function AccountAddressesPage(props: Props) {
           />
         </NoSsr>
       </Container>
-    </OverlayUi>
+    </OverlayPage>
   )
 }
 
 AccountAddressesPage.Layout = PageLayout
 
-registerRouteUi('/account/addresses', OverlayUi)
+registerRouteUi('/account/addresses', OverlayPage)
 
 export default AccountAddressesPage
 

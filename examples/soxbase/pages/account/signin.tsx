@@ -29,7 +29,7 @@ import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayUi'
+import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
