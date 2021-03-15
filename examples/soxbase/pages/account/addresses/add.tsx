@@ -30,7 +30,7 @@ function AddNewAddressPage(props: Props) {
       backFallbackHref='/account/addresses'
       backFallbackTitle='Addresses'
     >
-      <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['NOINDEX']} />
+      <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
       <Container maxWidth='md'>
         <NoSsr>
           <IconTitle
