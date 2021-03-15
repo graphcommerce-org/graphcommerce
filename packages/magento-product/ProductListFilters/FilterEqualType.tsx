@@ -1,5 +1,12 @@
 import { cloneDeep } from '@apollo/client/utilities'
-import { ListItem, ListItemText, Checkbox, makeStyles, Theme } from '@material-ui/core'
+import {
+  ListItem,
+  ListItemText,
+  Checkbox,
+  makeStyles,
+  Theme,
+  ListItemSecondaryAction,
+} from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
@@ -66,6 +73,15 @@ const useFilterEqualStyles = makeStyles(
     resetButton: {
       background: theme.palette.grey['100'],
       marginRight: theme.spacings.xxs,
+    },
+    filterAmount: {
+      color: theme.palette.grey[500],
+      marginLeft: 4,
+      fontSize: theme.typography.pxToRem(11),
+      display: 'inline',
+    },
+    filterLabel: {
+      display: 'inline',
     },
   }),
   { name: 'FilterEqual' },
@@ -138,18 +154,23 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
               }}
             >
               <div className={classes.listItemInnerContainer}>
-                <ListItemText primary={option?.label} />
-
-                <Checkbox
-                  edge='start'
-                  checked={selectedFilter.in?.includes(option?.value ?? '')}
-                  tabIndex={-1}
-                  size='small'
-                  color='primary'
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                  className={classes.checkbox}
+                <ListItemText
+                  primary={option?.label}
+                  classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
+                  secondary={`(${option?.count})`}
                 />
+                <ListItemSecondaryAction>
+                  <Checkbox
+                    edge='start'
+                    checked={selectedFilter.in?.includes(option?.value ?? '')}
+                    tabIndex={-1}
+                    size='small'
+                    color='primary'
+                    disableRipple
+                    inputProps={{ 'aria-labelledby': labelId }}
+                    className={classes.checkbox}
+                  />
+                </ListItemSecondaryAction>
               </div>
             </ListItem>
           )
