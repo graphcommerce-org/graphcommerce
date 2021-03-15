@@ -11,6 +11,9 @@ export type AccountOrdersProps = AccountOrdersFragment
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    ordersContainer: {
+      marginBottom: theme.spacings.md,
+    },
     olderOrdersContainer: {
       [theme.breakpoints.up('md')]: {
         marginTop: theme.spacings.lg,
@@ -39,7 +42,7 @@ export default function AccountOrders(props: AccountOrdersProps) {
   const restOrders = orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
 
   return (
-    <div>
+    <div className={classes.ordersContainer}>
       <SectionContainer label='Latest orders'>
         {latestOrders?.map((order) => order && <OrderCard {...order} images={images} />)}
         {orders?.items && !orders?.items?.length && <NoOrdersFound />}

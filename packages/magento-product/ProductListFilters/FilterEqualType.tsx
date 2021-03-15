@@ -7,13 +7,12 @@ import {
   Theme,
   ListItemSecondaryAction,
 } from '@material-ui/core'
-import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
+import { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
@@ -93,7 +92,8 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const classes = useFilterEqualStyles()
   const pushRoute = useCategoryPushRoute()
 
-  const currentFilter = (params.filters[attribute_code] ?? { in: [] }) as FilterEqualTypeInput
+  const currentFilter =
+    cloneDeep(params.filters[attribute_code]) ?? ({ in: [] } as FilterEqualTypeInput)
   const [selectedFilter, setSelectedFilter] = useState(currentFilter)
 
   const currentLabels =
@@ -120,11 +120,19 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     pushRoute(linkParams)
   }
 
+  const applyFilter = () => {
+    pushRoute({
+      ...params,
+      filters: { ...params.filters, [attribute_code]: selectedFilter },
+    })
+  }
+
   return (
     <ChipMenu
       variant='outlined'
       {...chipProps}
       label={label}
+      onClose={applyFilter}
       selected={currentLabels.length > 0}
       selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
       onDelete={currentLabels.length > 0 ? removeFilter : undefined}
@@ -176,28 +184,6 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           )
         })}
       </div>
-
-      <CategoryLink
-        {...params}
-        filters={{ ...params.filters, [attribute_code]: selectedFilter }}
-        noLink
-      >
-        <Button
-          variant='pill'
-          size='small'
-          color='primary'
-          disableElevation
-          className={classes.button}
-          onClick={() => {
-            setParams({
-              ...params,
-              filters: { ...params.filters, [attribute_code]: selectedFilter },
-            })
-          }}
-        >
-          Apply
-        </Button>
-      </CategoryLink>
 
       <Button
         onClick={resetFilter}

@@ -1,24 +1,21 @@
 fragment CustomerAddress on CustomerAddress {
-  id
-
   prefix
   firstname
   middlename
   lastname
   suffix
 
-  company
-  vat_id
-
   city
+  company
+  country_code
   postcode
   region {
     region
     region_code
+    region_id
   }
   street
   telephone
 
-  default_billing
-  default_shipping
+  vat_id
 }

@@ -2,11 +2,11 @@ import { useQuery } from '@apollo/client'
 import {
   CircularProgress,
   Container,
+  Link,
   makeStyles,
   TextField,
   Theme,
   Typography,
-  Link,
 } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
@@ -29,7 +29,7 @@ import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayUi'
+import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
@@ -37,7 +37,6 @@ type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 const useStyles = makeStyles(
   (theme: Theme) => ({
     titleContainer: {
-      // marginTop: `calc(${theme.spacings.xxs} * -1)`,
       marginBottom: theme.spacings.xs,
     },
   }),
@@ -50,10 +49,20 @@ function AccountSignInPage() {
   const { data: token } = useQuery(CustomerTokenDocument)
   const { data: customerData } = useQuery(CustomerDocument)
 
+  const email = customerData?.customer?.email ?? undefined
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     mode: 'onChange',
-    defaultValues: { email: customerData?.customer?.email ?? undefined },
+    defaultValues: {
+      email,
+    },
+    // disabled text fields won't be added to the form data,
+    // so we have to manually put the e-mail field to the form data.
+    onBeforeSubmit: (formData) => ({
+      ...formData,
+      email: (formData.email || email) ?? '',
+    }),
   })
+
   const {
     handleSubmit,
     formState,
@@ -66,6 +75,7 @@ function AccountSignInPage() {
   } = form
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
+
   const submit = handleSubmit(() => {})
   const autoSubmitting = useFormAutoSubmit({ form, submit })
   const disableFields = formState.isSubmitting && !autoSubmitting

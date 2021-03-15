@@ -1,0 +1,5 @@
+fragment AccountAddresses on Customer {
+  addresses {
+    ...AccountAddress
+  }
+}

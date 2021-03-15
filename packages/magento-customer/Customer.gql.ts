@@ -26,15 +26,14 @@ export const CustomerDocument: DocumentNode<CustomerQuery, CustomerQueryVariable
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'prefix' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'middlename' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'suffix' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'company' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'vat_id' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'company' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'country_code' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
                       {
                         kind: 'Field',
@@ -44,13 +43,13 @@ export const CustomerDocument: DocumentNode<CustomerQuery, CustomerQueryVariable
                           selections: [
                             { kind: 'Field', name: { kind: 'Name', value: 'region' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'region_code' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
                           ],
                         },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'street' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'default_billing' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'default_shipping' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'vat_id' } },
                     ],
                   },
                 },
@@ -96,22 +95,22 @@ export type CustomerQuery = {
           Types.Maybe<
             Pick<
               Types.CustomerAddress,
-              | 'id'
               | 'prefix'
               | 'firstname'
               | 'middlename'
               | 'lastname'
               | 'suffix'
-              | 'company'
-              | 'vat_id'
               | 'city'
+              | 'company'
+              | 'country_code'
               | 'postcode'
               | 'street'
               | 'telephone'
-              | 'default_billing'
-              | 'default_shipping'
+              | 'vat_id'
             > & {
-              region?: Types.Maybe<Pick<Types.CustomerAddressRegion, 'region' | 'region_code'>>
+              region?: Types.Maybe<
+                Pick<Types.CustomerAddressRegion, 'region' | 'region_code' | 'region_id'>
+              >
             }
           >
         >

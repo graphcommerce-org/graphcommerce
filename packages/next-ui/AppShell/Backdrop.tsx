@@ -1,6 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { m } from 'framer-motion'
-import { HTMLMotionProps } from 'framer-motion/types/render/dom/types'
+import { HTMLMotionProps, m } from 'framer-motion'
 import { forwardRef, useState } from 'react'
 import { UseStyles } from '../Styles'
 

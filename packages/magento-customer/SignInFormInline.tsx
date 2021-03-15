@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { TextField, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'

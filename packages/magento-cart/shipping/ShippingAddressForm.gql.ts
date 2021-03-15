@@ -288,36 +288,6 @@ export const ShippingAddressFormDocument: DocumentNode<
                         selectionSet: {
                           kind: 'SelectionSet',
                           selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'company' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'city' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'street' } },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'country' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                ],
-                              },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'region' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  { kind: 'Field', name: { kind: 'Name', value: 'code' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'label' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'region_id' } },
-                                ],
-                              },
-                            },
-                            { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'customer_notes' } },
                             {
                               kind: 'Field',
@@ -375,6 +345,52 @@ export const ShippingAddressFormDocument: DocumentNode<
                                 ],
                               },
                             },
+                            {
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
+                                name: { kind: 'Name', value: 'CartAddressInterface' },
+                              },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: '__typename' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'firstname' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'lastname' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'city' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'company' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'country' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                      ],
+                                    },
+                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'postcode' } },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'region' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        { kind: 'Field', name: { kind: 'Name', value: 'code' } },
+                                        { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                                        {
+                                          kind: 'Field',
+                                          name: { kind: 'Name', value: 'region_id' },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'street' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'telephone' } },
+                                ],
+                              },
+                            },
                           ],
                         },
                       },
@@ -412,41 +428,41 @@ export type ShippingAddressFormMutation = {
     cart: { __typename: 'Cart' } & Pick<Types.Cart, 'id'> & {
         shipping_addresses: Array<
           Types.Maybe<
-            Pick<
+            { __typename: 'ShippingCartAddress' } & Pick<
               Types.ShippingCartAddress,
               | 'firstname'
               | 'lastname'
-              | 'company'
               | 'city'
+              | 'company'
               | 'postcode'
               | 'street'
               | 'telephone'
               | 'customer_notes'
             > & {
-              country: Pick<Types.CartAddressCountry, 'code' | 'label'>
-              region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
-              selected_shipping_method?: Types.Maybe<
-                Pick<
-                  Types.SelectedShippingMethod,
-                  'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
-                > & { amount: Pick<Types.Money, 'currency' | 'value'> }
-              >
-              available_shipping_methods?: Types.Maybe<
-                Array<
-                  Types.Maybe<
-                    Pick<
-                      Types.AvailableShippingMethod,
-                      | 'available'
-                      | 'carrier_code'
-                      | 'carrier_title'
-                      | 'error_message'
-                      | 'method_code'
-                      | 'method_title'
-                    > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+                country: Pick<Types.CartAddressCountry, 'code' | 'label'>
+                region?: Types.Maybe<Pick<Types.CartAddressRegion, 'code' | 'label' | 'region_id'>>
+                selected_shipping_method?: Types.Maybe<
+                  Pick<
+                    Types.SelectedShippingMethod,
+                    'method_title' | 'method_code' | 'carrier_title' | 'carrier_code'
+                  > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+                >
+                available_shipping_methods?: Types.Maybe<
+                  Array<
+                    Types.Maybe<
+                      Pick<
+                        Types.AvailableShippingMethod,
+                        | 'available'
+                        | 'carrier_code'
+                        | 'carrier_title'
+                        | 'error_message'
+                        | 'method_code'
+                        | 'method_title'
+                      > & { amount: Pick<Types.Money, 'currency' | 'value'> }
+                    >
                   >
                 >
-              >
-            }
+              }
           >
         >
       }

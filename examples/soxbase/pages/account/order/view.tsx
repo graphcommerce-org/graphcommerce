@@ -5,8 +5,8 @@ import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import { OrderDetailPageDocument } from '@reachdigital/magento-customer/AccountDashboard/OrderDetailPage.gql'
 import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
-import { OrderDetailPageDocument } from '@reachdigital/magento-customer/OrderDetailPage/OrderDetailPage.gql'
 import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
 import OrderItems from '@reachdigital/magento-customer/OrderItems'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
@@ -16,7 +16,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayUi'
+import OverlayPage from '../../../components/AppShell/OverlayPage'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -45,7 +45,7 @@ function OrderDetailPage(props: Props) {
     >
       <Container maxWidth='md'>
         <NoSsr>
-          {!orderId && (
+          {(!orderId || !order) && (
             <IconTitle
               iconSrc='/icons/desktop_checkout_box.svg'
               title='Order not found'
@@ -54,7 +54,7 @@ function OrderDetailPage(props: Props) {
             />
           )}
 
-          {orderId && (
+          {orderId && order && (
             <>
               <PageMeta
                 title={`Order view #${orderId}`}

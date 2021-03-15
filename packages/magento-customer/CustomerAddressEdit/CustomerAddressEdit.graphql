@@ -1,0 +1,4 @@
+fragment CustomerAddressEdit on CustomerAddress {
+  id
+  ...CustomerAddress
+}
