@@ -3,6 +3,8 @@ import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
+import { useRouter } from 'next/router'
 import React from 'react'
 import AccountAddress from '../AccountAddress'
 import { AccountAddressesFragment } from './AccountAddresses.gql'
@@ -32,6 +34,9 @@ const useStyles = makeStyles(
 export default function AccountAddresses(props: AccountAddressesProps) {
   const { addresses, countries, loading } = props
   const classes = useStyles()
+  const router = useRouter()
+
+  console.log(router.query.confirm_delete)
 
   if (loading) {
     return (
@@ -55,6 +60,11 @@ export default function AccountAddresses(props: AccountAddressesProps) {
           <AccountAddress key={address?.id} {...address} countries={countries} />
         ))}
       </div>
+
+      <MessageSnackbarLoader
+        open={router.query.confirm_delete !== undefined}
+        message={<>Address was deleted</>}
+      />
 
       <PageLink href='/account/addresses/add'>
         <a className={classes.link}>

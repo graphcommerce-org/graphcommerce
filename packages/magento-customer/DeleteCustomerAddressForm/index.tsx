@@ -18,7 +18,10 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
       id: addressId,
     },
     onComplete: () => {
-      router.push('/account/addresses')
+      router.push({
+        pathname: '/account/addresses',
+        query: 'confirm_delete',
+      })
     },
   })
   const submitHandler = handleSubmit(() => {})

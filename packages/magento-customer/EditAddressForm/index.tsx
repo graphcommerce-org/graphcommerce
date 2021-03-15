@@ -116,7 +116,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             },
             addition: {
               name: 'addition',
-              required: true,
+              required: false,
             },
             postcode: {
               name: 'postcode',

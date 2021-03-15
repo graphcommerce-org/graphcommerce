@@ -88,7 +88,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
             },
             addition: {
               name: 'addition',
-              required: true,
+              required: false,
             },
             postcode: {
               name: 'postcode',
