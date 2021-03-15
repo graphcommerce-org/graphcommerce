@@ -174,20 +174,6 @@ export default function CartItem(props: CartItemProps) {
       </PageLink>
 
       <div className={classes.itemPrice}>
-        <div>
-          {prices?.discounts?.map((discount) => (
-            <div key={discount?.label ?? ''}>
-              {discount?.label}
-              (
-              <Money
-                currency={discount?.amount.currency}
-                value={(discount?.amount.value ?? 0) * -1}
-              />
-              )
-            </div>
-          ))}
-        </div>
-
         <Money {...prices?.price} />
       </div>
 
