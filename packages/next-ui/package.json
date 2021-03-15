@@ -19,7 +19,7 @@
     "@material-ui/styles": "^4.11.3",
     "@reachdigital/magento-graphql": "^0.1.0",
     "clsx": "^1.1.1",
-    "framer-motion": "^3.10.2",
+    "framer-motion": "^3.10.4",
     "graphql": "15.5.0",
     "next": "^10.0.8",
     "node-fetch": "^2.6.1",
