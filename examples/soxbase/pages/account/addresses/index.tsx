@@ -22,13 +22,13 @@ type GetPageStaticProps = GetStaticProps<Props>
 
 function AccountAddressesPage(props: Props) {
   const { countries } = props
-  const { data } = useQuery(AccountDashboardAddressesDocument, {
+  const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
   const customer = data?.customer
 
   return (
-    <OverlayUi title='Orders' variant='bottom' fullHeight>
+    <OverlayUi title='Addresses' variant='bottom' fullHeight>
       <Container maxWidth='md'>
         <NoSsr>
           <PageMeta
@@ -42,7 +42,12 @@ function AccountAddressesPage(props: Props) {
             alt='addresses'
             size='large'
           />
-          <AccountAddresses addresses={customer?.addresses} countries={countries} />
+
+          <AccountAddresses
+            loading={loading}
+            addresses={customer?.addresses}
+            countries={countries}
+          />
         </NoSsr>
       </Container>
     </OverlayUi>

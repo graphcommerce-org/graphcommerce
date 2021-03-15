@@ -23,11 +23,11 @@ function AddNewAddressPage(props: Props) {
   const { countries } = props
 
   return (
-    <OverlayUi title='Orders' variant='bottom' fullHeight>
+    <OverlayUi title='Add address' variant='bottom' fullHeight>
       <Container maxWidth='md'>
         <NoSsr>
           <PageMeta
-            title='Addresses'
+            title='Add address'
             metaDescription='Add new address'
             metaRobots='NOINDEX, FOLLOW'
           />

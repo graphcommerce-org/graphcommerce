@@ -1,11 +1,14 @@
 import { Button, Link, makeStyles, Theme } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
 import AccountAddress from '../AccountAddress'
 import { AccountAddressesFragment } from './AccountAddresses.gql'
 
-export type AccountAddressesProps = AccountAddressesFragment & CountryRegionsQuery
+export type AccountAddressesProps = AccountAddressesFragment &
+  CountryRegionsQuery & { loading: boolean }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -19,13 +22,31 @@ const useStyles = makeStyles(
       margin: `${theme.spacings.md} auto`,
       padding: `${theme.spacings.xxs} ${theme.spacings.md}`,
     },
+    link: {
+      textDecoration: 'none',
+    },
   }),
   { name: 'AccountAddresses' },
 )
 
 export default function AccountAddresses(props: AccountAddressesProps) {
-  const { addresses, countries } = props
+  const { addresses, countries, loading } = props
   const classes = useStyles()
+
+  if (loading) {
+    return (
+      <SectionContainer label='Shipping addresses'>
+        <div className={classes.root}>
+          <Skeleton height={128} />
+          <Skeleton height={128} />
+          <Skeleton height={128} />
+        </div>
+        <Button className={classes.button} variant='contained' color='primary' disabled>
+          Add new address
+        </Button>
+      </SectionContainer>
+    )
+  }
 
   return (
     <SectionContainer label='Shipping addresses'>
@@ -35,11 +56,13 @@ export default function AccountAddresses(props: AccountAddressesProps) {
         ))}
       </div>
 
-      <Link href='/account/addresses/add'>
-        <Button className={classes.button} variant='contained' color='primary'>
-          Add new address
-        </Button>
-      </Link>
+      <PageLink href='/account/addresses/add'>
+        <a className={classes.link}>
+          <Button className={classes.button} variant='contained' color='primary'>
+            Add new address
+          </Button>
+        </a>
+      </PageLink>
     </SectionContainer>
   )
 }

@@ -50,10 +50,14 @@ function EditAddressPage(props: Props) {
   const address = addresses?.filter((a) => a?.id === numAddressId)?.[0]
 
   return (
-    <OverlayUi title='Orders' variant='bottom' fullHeight>
+    <OverlayUi title='Edit address' variant='bottom' fullHeight>
       <Container maxWidth='md'>
         <NoSsr>
-          <PageMeta title='Addresses' metaDescription='Edit address' metaRobots='NOINDEX, FOLLOW' />
+          <PageMeta
+            title='Edit address'
+            metaDescription='Edit an address'
+            metaRobots='NOINDEX, FOLLOW'
+          />
           <IconTitle
             iconSrc='/icons/desktop_addresses.svg'
             title='Addresses'
@@ -89,10 +93,16 @@ function EditAddressPage(props: Props) {
             {address && !loading && (
               <DeleteCustomerAddressForm
                 button={() => (
-                  <Button variant='text' color='primary' className={classes.deleteButton}>
+                  <Button
+                    type='submit'
+                    variant='text'
+                    color='primary'
+                    className={classes.deleteButton}
+                  >
                     Delete this address
                   </Button>
                 )}
+                addressId={address?.id ?? undefined}
               />
             )}
           </SectionContainer>

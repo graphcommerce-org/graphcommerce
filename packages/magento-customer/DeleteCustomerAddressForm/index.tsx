@@ -6,7 +6,7 @@ import React from 'react'
 import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'
 
 export type DeleteCustomerAddressFormProps = {
-  addressId?: string
+  addressId?: number
   button: (props: { formState: FormState<unknown> }) => React.ReactNode
 }
 
@@ -15,7 +15,7 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
   const router = useRouter()
   const { handleSubmit, formState, error } = useFormGqlMutation(DeleteCustomerAddressFormDocument, {
     defaultValues: {
-      id: Number(addressId),
+      id: addressId,
     },
     onComplete: () => {
       router.push('/account/addresses')
