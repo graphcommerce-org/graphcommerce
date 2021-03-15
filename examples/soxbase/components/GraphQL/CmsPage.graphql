@@ -1,0 +1,8 @@
+query CmsPage($url: String!, $urlKey: String!) {
+  ...MenuQueryFragment
+  ...FooterQueryFragment
+  ...PageContentQueryFragment
+
+  # Cms data
+  ...CmsPageQueryFragment
+}

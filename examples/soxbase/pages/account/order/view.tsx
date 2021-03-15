@@ -11,7 +11,6 @@ import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
 import OrderItems from '@reachdigital/magento-customer/OrderItems'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -79,8 +78,8 @@ registerRouteUi('/account/order/view', OverlayPage)
 export default OrderDetailPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
   const config = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({

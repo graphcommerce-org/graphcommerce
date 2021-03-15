@@ -1,3 +1,4 @@
+import { mergeDeep } from '@apollo/client/utilities'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
@@ -5,10 +6,13 @@ import CategoryDescription from '@reachdigital/magento-category/CategoryDescript
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
+import getFilterTypes from '@reachdigital/magento-category/getFilterTypes'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import getFilteredProductList, {
+import { ProductListDocument } from '@reachdigital/magento-product-types/ProductList.gql'
+import {
   CategoryPageProps,
   extractUrlQuery,
+  parseParams,
 } from '@reachdigital/magento-product-types/filteredProductList'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
@@ -17,10 +21,10 @@ import ProductListPagination from '@reachdigital/magento-product/ProductListPagi
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
-import { GetStaticPaths, GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
+import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
 import FullPageUi from '../components/AppShell/FullPageUi'
@@ -160,7 +164,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const path = (loc: string) => getCategoryStaticPaths(apolloClient(localeToStore(loc)), loc)
+  const path = (loc: string) => getCategoryStaticPaths(apolloClient(loc), loc)
   const paths = (await Promise.all(locales.map(path))).flat(1)
   return { paths, fallback: 'blocking' }
 }
@@ -169,21 +173,35 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const [url, query] = extractUrlQuery(params)
   if (!url || !query) return { notFound: true }
 
-  const client = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
   const config = client.query({ query: StoreConfigDocument })
+  const filterTypes = getFilterTypes(client)
 
-  const staticClient = apolloClient(localeToStore(locale))
-
+  const staticClient = apolloClient(locale)
   const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
   const rootCategory = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
-  const productList = await getFilteredProductList({ url, query, rootCategory, staticClient })
 
-  if (!(await rootCategory) || !productList) return { notFound: true }
+  const productListParams = parseParams(url, query, await filterTypes)
+
+  if (!productListParams || !(await rootCategory)) return { notFound: true }
+
+  const products = client.query({
+    query: ProductListDocument,
+    variables: mergeDeep(productListParams, {
+      filters: { category_uid: { eq: await rootCategory } },
+      rootCategory: await rootCategory,
+    }),
+  })
+
+  // assertAllowedParams(await params, (await products).data)
+  if (!(await rootCategory) || !(await products).data) return { notFound: true }
 
   return {
     props: {
       ...(await categoryPage).data,
-      ...productList,
+      ...(await products).data,
+      filterTypes: await filterTypes,
+      params: productListParams,
       apolloState: await config.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

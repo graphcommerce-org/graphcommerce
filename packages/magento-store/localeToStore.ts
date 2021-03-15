@@ -10,6 +10,10 @@ export default function localeToStore(locale?: string) {
   return localeStores?.[locale]
 }
 
+export function defaultLocale() {
+  return Object.keys(localeStores)?.[0] as string
+}
+
 export function storeToLocale(store?: string | null) {
   return Object.entries(localeStores).find(([, s]) => s === store)?.[0]
 }

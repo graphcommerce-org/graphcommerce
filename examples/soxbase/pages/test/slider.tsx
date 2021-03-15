@@ -5,7 +5,6 @@ import {
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import Images from '@reachdigital/next-ui/FramerSlider/test/Images'
 import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'
 import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
@@ -58,8 +57,8 @@ TestSlider.Layout = PageLayout
 registerRouteUi('/test/slider', FullPageUi)
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
 
   const config = client.query({ query: StoreConfigDocument })
 
