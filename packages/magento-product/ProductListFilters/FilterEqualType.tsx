@@ -7,13 +7,12 @@ import {
   Theme,
   ListItemSecondaryAction,
 } from '@material-ui/core'
-import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
+import { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
@@ -93,7 +92,8 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const classes = useFilterEqualStyles()
   const pushRoute = useCategoryPushRoute()
 
-  const currentFilter = (params.filters[attribute_code] ?? { in: [] }) as FilterEqualTypeInput
+  const currentFilter =
+    cloneDeep(params.filters[attribute_code]) ?? ({ in: [] } as FilterEqualTypeInput)
   const [selectedFilter, setSelectedFilter] = useState(currentFilter)
 
   const currentLabels =

@@ -67,7 +67,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
 
   // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: Mark } = {}
-  const paramValues = params.filters[attribute_code]
+  const paramValues = cloneDeep(params.filters[attribute_code])
 
   const [min, maxish] = options
     ?.map((option) => {
@@ -109,7 +109,9 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
     pushRoute(linkParams)
   }
 
-  const currentFilter = params.filters[attribute_code] as FilterRangeTypeInput | undefined
+  const currentFilter = cloneDeep(params.filters[attribute_code]) as
+    | FilterRangeTypeInput
+    | undefined
 
   let currentLabel: React.ReactNode | undefined
 
