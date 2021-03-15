@@ -45,7 +45,7 @@ function OrderDetailPage(props: Props) {
     >
       <Container maxWidth='md'>
         <NoSsr>
-          {!orderId && (
+          {(!orderId || !order) && (
             <IconTitle
               iconSrc='/icons/desktop_checkout_box.svg'
               title='Order not found'
@@ -54,7 +54,7 @@ function OrderDetailPage(props: Props) {
             />
           )}
 
-          {orderId && (
+          {orderId && order && (
             <>
               <PageMeta
                 title={`Order view #${orderId}`}
