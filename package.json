@@ -86,7 +86,7 @@
     "@semantic-release/git": "^9.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "@types/node": "^14.14.31",
+    "@types/node": "^14.14.34",
     "@types/react": "^17.0.2",
     "@types/sharp": "^0.27.1",
     "babel-jest": "^26.6.3",
