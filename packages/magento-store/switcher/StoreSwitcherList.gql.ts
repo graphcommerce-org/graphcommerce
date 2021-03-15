@@ -2,16 +2,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-export const AvailableStoresDocument: DocumentNode<
-  AvailableStoresQuery,
-  AvailableStoresQueryVariables
+export const StoreSwitcherListDocument: DocumentNode<
+  StoreSwitcherListQuery,
+  StoreSwitcherListQueryVariables
 > = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'AvailableStores' },
+      name: { kind: 'Name', value: 'StoreSwitcherList' },
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -21,24 +21,12 @@ export const AvailableStoresDocument: DocumentNode<
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'code' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'store_name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'store_code' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'locale' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'base_currency_code' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'store_group_name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'store_group_code' } },
-              ],
-            },
-          },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'countries' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'two_letter_abbreviation' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'full_name_locale' } },
               ],
             },
           },
@@ -47,16 +35,16 @@ export const AvailableStoresDocument: DocumentNode<
     },
   ],
 }
-export type AvailableStoresQueryVariables = Types.Exact<{ [key: string]: never }>
+export type StoreSwitcherListQueryVariables = Types.Exact<{ [key: string]: never }>
 
-export type AvailableStoresQuery = {
+export type StoreSwitcherListQuery = {
   availableStores?: Types.Maybe<
     Array<
       Types.Maybe<
         Pick<
           Types.StoreConfig,
-          | 'code'
           | 'store_name'
+          | 'store_code'
           | 'locale'
           | 'base_currency_code'
           | 'store_group_name'
@@ -64,8 +52,5 @@ export type AvailableStoresQuery = {
         >
       >
     >
-  >
-  countries?: Types.Maybe<
-    Array<Types.Maybe<Pick<Types.Country, 'id' | 'two_letter_abbreviation' | 'full_name_locale'>>>
   >
 }

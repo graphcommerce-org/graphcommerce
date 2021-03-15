@@ -1,0 +1,10 @@
+query StoreSwitcherList {
+  availableStores {
+    store_name
+    store_code
+    locale
+    base_currency_code
+    store_group_name
+    store_group_code
+  }
+}
