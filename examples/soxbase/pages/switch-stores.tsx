@@ -2,11 +2,11 @@ import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import StoreSwitcherList from '@reachdigital/magento-store/switcher/StoreSwitcherList'
 import {
-  AvailableStoresDocument,
-  AvailableStoresQuery,
-} from '@reachdigital/magento-store/switcher/AvailableStores.gql'
-import StoreSwitcher from '@reachdigital/magento-store/switcher/StoreSwitcher'
+  StoreSwitcherListDocument,
+  StoreSwitcherListQuery,
+} from '@reachdigital/magento-store/switcher/StoreSwitcherList.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
@@ -15,7 +15,7 @@ import OverlayPage from '../components/AppShell/OverlayUi'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
-type Props = AvailableStoresQuery
+type Props = StoreSwitcherListQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -25,30 +25,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-function StoresIndexPage({ availableStores, countries }: Props) {
+function StoresIndexPage({ availableStores }: Props) {
   const { locale } = useRouter()
   const classes = useStyles()
 
   return (
     <OverlayPage title='Switch Stores' variant='left' backFallbackHref='/' backFallbackTitle='Home'>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
-      {availableStores && countries && (
-        <Container maxWidth='md'>
-          <Typography variant='h2' component='h1' className={classes.title}>
-            Country
-          </Typography>
-          <StoreSwitcher
-            countries={countries}
-            stores={availableStores}
-            locale={locale}
-            fallbackCountry={{
-              full_name_locale: 'International',
-              id: 'EU',
-              two_letter_abbreviation: 'EU',
-            }}
-          />
-        </Container>
-      )}
+
+      <Container maxWidth='md'>
+        <Typography variant='h2' component='h1' className={classes.title}>
+          Country
+        </Typography>
+
+        <StoreSwitcherList availableStores={availableStores} locale={locale} />
+      </Container>
     </OverlayPage>
   )
 }
@@ -64,11 +55,11 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(locale)
 
   const config = client.query({ query: StoreConfigDocument })
-  const availableStores = staticClient.query({ query: AvailableStoresDocument })
+  const stores = staticClient.query({ query: StoreSwitcherListDocument })
 
   return {
     props: {
-      ...(await availableStores).data,
+      ...(await stores).data,
       apolloState: await config.then(() => client.cache.extract()),
     },
   }

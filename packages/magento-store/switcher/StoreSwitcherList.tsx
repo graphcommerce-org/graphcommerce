@@ -1,22 +1,18 @@
 import {
-  Link,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   makeStyles,
   Theme,
-  Avatar,
   Collapse,
+  ListItemAvatar,
 } from '@material-ui/core'
-import * as Types from '@reachdigital/magento-graphql'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
-import React, { useMemo } from 'react'
+import React from 'react'
 import localeToStore, { storeToLocale } from '../localeToStore'
-import { CountryLocaleFragment } from './CountryLocale.gql'
-import { StoreLocaleFragment } from './StoreLocale.gql'
+import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -26,7 +22,7 @@ const useStyles = makeStyles(
       cursor: 'pointer',
     },
     listItemIndented: {
-      paddingLeft: theme.spacing(10),
+      paddingLeft: 30,
       cursor: 'pointer',
     },
     groupIcon: {
@@ -35,82 +31,80 @@ const useStyles = makeStyles(
       minWidth: 40,
       color: theme.palette.text.primary,
     },
-    groupText: {},
-    storeText: {
-      paddingLeft: 40,
-    },
     avatar: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
-      display: 'inline-block',
-      marginRight: theme.spacing(1),
-      position: 'relative',
-      top: '6px',
+      width: 30,
+      height: 30,
     },
   }),
   { name: 'StoreSwitcherList' },
 )
 
-type StoreSwitcherBaseProps = {
-  countries: Types.Maybe<CountryLocaleFragment>[]
-  locale: string | undefined
-} & UseStyles<typeof useStyles>
+type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>
 
-function useGroupedStores(props: Omit<Types.Maybe<StoreLocaleFragment>, 'stores'>) {
-  const { stores } = props
-  return useMemo(() => {
-    if (!stores || !stores[0] || !stores[0].code || !stores[0].store_name) return
-    const result = stores.reduce<any>((r, a) => {
-      r[`${a.store_group_code}:${a.store_group_name}`] =
-        r[`${a.store_group_code}:${a.store_group_name}`] || []
-      r[`${a.store_group_code}:${a.store_group_name}`].push(a)
-      return r
-    }, Object.create(null))
+type StoreSwitcherListProps = { locale: string | undefined } & StoreSwitcherListQuery &
+  UseStyles<typeof useStyles>
 
-    return Object.entries(result)
-  }, [stores])
-}
-
-export default function StoreSwitcherList(props: StoreSwitcherBaseProps) {
-  const { stores, locale } = props
+export default function StoreSwitcherList(props: StoreSwitcherListProps) {
+  const { availableStores, locale } = props
   const classes = useStyles(props)
 
-  const groupedStores = useGroupedStores({ stores })
+  const groupedStores = Object.entries(
+    (availableStores ?? []).reduce<{
+      [group: string]: { name: Store['store_group_name']; stores: Store[] }
+    }>((groupedStores, store) => {
+      const code = store?.store_group_code
+      if (!store?.store_group_code || !code) return groupedStores
+
+      if (!groupedStores[code]) groupedStores[code] = { name: store.store_group_name, stores: [] }
+
+      groupedStores[code].stores.push(store)
+      return groupedStores
+    }, {}),
+  )
 
   return (
     <List className={classes.list}>
-      {groupedStores.map(([code, storeGroup]) => (
+      {groupedStores.map(([code, group]) => (
         <React.Fragment key={code}>
-          <ListItem
-            component={Link}
-            selected={storeGroup.length <= 1 && localeToStore(locale) === storeGroup[0].code}
-            color='inherit'
-            underline='always'
-            className={classes.listItem}
+          <PageLink
+            key={group.stores[0].store_code}
+            href='/switch-stores'
+            locale={storeToLocale(group.stores[0].store_code)}
           >
-            <PageLink
-              key={storeGroup[0].code}
-              href='/switch-stores'
-              locale={storeToLocale(storeGroup[0].code)}
+            <ListItem
+              button
+              component='a'
+              selected={
+                group.stores.length <= 1 && localeToStore(locale) === group.stores[0].store_code
+              }
+              color='inherit'
+              className={classes.listItem}
             >
-              <ListItemText className={classes.storeText}>
-                <ListItemIcon className={classes.groupIcon}>
-                  <FlagAvatar flagSrc={code} className={classes.avatar} />
-                </ListItemIcon>
-                {code.split(':')[1]}
-                {storeGroup.length <= 1 && ` — ${storeGroup[0].store_name}`}
+              <ListItemAvatar>
+                <FlagAvatar country={code} classes={{ root: classes.avatar }} />
+              </ListItemAvatar>
+              <ListItemText>
+                {group.name}
+                {group.stores.length <= 1 && ` — ${group.stores[0].store_name}`}
               </ListItemText>
-            </PageLink>
-          </ListItem>
-          {storeGroup.length > 1 && (
+            </ListItem>
+          </PageLink>
+          {group.stores.length > 1 && (
             <Collapse in timeout='auto'>
-              {storeGroup.map((store) => (
-                <PageLink key={store.code} href='/switch-stores' locale={storeToLocale(store.code)}>
+              {group.stores.map((store) => (
+                <PageLink
+                  key={store.store_code}
+                  href='/switch-stores'
+                  locale={storeToLocale(store.store_code)}
+                >
                   <ListItem
-                    selected={localeToStore(locale) === store.code}
+                    button
+                    component='a'
+                    selected={localeToStore(locale) === store.store_code}
+                    color='inherit'
                     className={classes.listItemIndented}
                   >
-                    <ListItemText className={classes.storeText}>{store.store_name}</ListItemText>
+                    <ListItemText inset>{store.store_name}</ListItemText>
                   </ListItem>
                 </PageLink>
               ))}
