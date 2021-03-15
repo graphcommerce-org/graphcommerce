@@ -67,8 +67,8 @@ registerRouteUi('/account/addresses', OverlayPage)
 export default AccountAddressesPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
-  const client = apolloClient(localeToStore(locale))
-  const staticClient = apolloClient(localeToStore(locale))
+  const client = apolloClient(locale)
+  const staticClient = apolloClient(locale)
   const config = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({
