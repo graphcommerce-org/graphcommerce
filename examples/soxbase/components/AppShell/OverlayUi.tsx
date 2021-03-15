@@ -7,7 +7,7 @@ import Logo from './Logo'
 function OverlayPage(props: NextOverlayUiProps) {
   const { children, ...uiProps } = props
   return (
-    <NextOverlayUi {...uiProps} header={<Logo />} variant='left'>
+    <NextOverlayUi variant='left' {...uiProps} header={<Logo />}>
       {children}
     </NextOverlayUi>
   )
