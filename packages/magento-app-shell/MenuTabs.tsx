@@ -7,7 +7,7 @@ import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
+import { m, AnimateSharedLayout } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { MenuQueryFragment } from './MenuQueryFragment.gql'
 
@@ -31,6 +31,9 @@ const useTabsStyles = makeStyles(
       fontSize: '120%',
       whiteSpace: 'nowrap',
       textAlign: 'center',
+      '&:hover': {
+        textDecoration: 'none',
+      },
     },
     line: {
       width: 40,
@@ -81,42 +84,43 @@ export default function MenuTabs(props: MenuTabsProps) {
     0
 
   return (
-    <SliderContext scrollSnapAlign={false}>
-      <SliderPrev className={classes.prevNext} />
-      <SliderContainer classes={{ container: clsx(classes.container) }}>
-        <SliderScroller classes={{ scroller: clsx(classes.scroller) }}>
-          {menu?.items?.[0]?.children?.map((cat) => {
-            if (!cat || !cat.id || !cat.url_path) return null
-            console.log(cat)
-            return (
-              <CategoryLink
-                key={cat.id}
-                url={cat.url_path}
-                filters={{}}
-                sort={{}}
-                color='textPrimary'
-                className={classes.link}
-              >
-                {cat.name}
+    <AnimateSharedLayout>
+      <SliderContext scrollSnapAlign={false}>
+        <SliderPrev className={classes.prevNext} />
+        <SliderContainer classes={{ container: clsx(classes.container) }}>
+          <SliderScroller classes={{ scroller: clsx(classes.scroller) }}>
+            {menu?.items?.[0]?.children?.map((cat) => {
+              if (!cat || !cat.id || !cat.url_path) return null
+              return (
+                <CategoryLink
+                  key={cat.id}
+                  url={cat.url_path}
+                  filters={{}}
+                  sort={{}}
+                  color='textPrimary'
+                  className={classes.link}
+                >
+                  {cat.name}
 
-                {router.asPath.startsWith(`/${cat?.url_path}`) && (
-                  <m.div layout layoutId='lijntje' className={classes.line} />
-                )}
-              </CategoryLink>
-            )
-          })}
-          <CategoryLink
-            url='blog'
-            filters={{}}
-            sort={{}}
-            color='textPrimary'
-            className={classes.link}
-          >
-            Blog
-          </CategoryLink>
-        </SliderScroller>
-      </SliderContainer>
-      <SliderNext className={classes.prevNext} />
-    </SliderContext>
+                  {router.asPath.startsWith(`/${cat?.url_path}`) && (
+                    <m.div layoutId='lijntje' className={classes.line} layout initial />
+                  )}
+                </CategoryLink>
+              )
+            })}
+            <CategoryLink
+              url='blog'
+              filters={{}}
+              sort={{}}
+              color='textPrimary'
+              className={classes.link}
+            >
+              Blog
+            </CategoryLink>
+          </SliderScroller>
+        </SliderContainer>
+        <SliderNext className={classes.prevNext} />
+      </SliderContext>
+    </AnimateSharedLayout>
   )
 }
