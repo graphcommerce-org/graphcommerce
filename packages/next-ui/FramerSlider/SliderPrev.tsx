@@ -17,7 +17,6 @@ export default function SliderPrev(props: SliderPrevProps) {
 
   // const disable = !state.items.some((item) => item.visible)
   const disabled = items[0]?.visible ?? false
-
   const prev = () => !disabled && dispatch({ type: 'NAVIGATE_PREV' })
 
   const handleArrowLeft = (e: KeyboardEvent | Event) => {
