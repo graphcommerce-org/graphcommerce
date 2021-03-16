@@ -7,7 +7,7 @@ import React from 'react'
 type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
 type NameFieldsProps = Pick<UseFormMethods, 'register' | 'errors' | 'formState' | 'control'> & {
   disableFields: boolean
-  fieldOptions: { [key: string]: FieldOptions }
+  fieldOptions: { prefix?: FieldOptions; firstname: FieldOptions; lastname: FieldOptions }
 }
 
 export default function NameFields(props: NameFieldsProps) {
@@ -17,18 +17,18 @@ export default function NameFields(props: NameFieldsProps) {
 
   return (
     <>
-      <div className={classes.formRow}>
+      <div className={classes.formRow} key='namefields-prefix'>
         {fieldOptions.prefix && (
           <Controller
             defaultValue='Dhr.'
             control={control}
-            name={fieldOptions.prefix.name}
+            name={fieldOptions?.prefix.name}
             render={({ onChange, name, value, onBlur }) => (
               <TextField
                 variant='outlined'
                 select
-                error={!!errors[fieldOptions.prefix.name]}
-                id={fieldOptions.prefix.name}
+                error={!!errors[fieldOptions.prefix?.name ?? '']}
+                id={fieldOptions.prefix?.name}
                 name={name}
                 label='Prefix'
                 required={!!required.prefix}
@@ -49,7 +49,7 @@ export default function NameFields(props: NameFieldsProps) {
         )}
       </div>
 
-      <div className={classes.formRow}>
+      <div className={classes.formRow} key='namefields-firstname-lastname'>
         <TextField
           variant='outlined'
           type='text'

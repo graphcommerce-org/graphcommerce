@@ -16,7 +16,15 @@ type AddressFieldsProps = Pick<
     countryCode?: string
     regionId?: number
     disableFields: boolean
-    fieldOptions: { [key: string]: FieldOptions }
+    fieldOptions: {
+      street: FieldOptions
+      houseNumber: FieldOptions
+      addition: FieldOptions
+      countryCode: FieldOptions
+      regionId: FieldOptions
+      postcode: FieldOptions
+      city: FieldOptions
+    }
   }
 
 export default function AddressFields(props: AddressFieldsProps) {
@@ -57,7 +65,7 @@ export default function AddressFields(props: AddressFieldsProps) {
 
   return (
     <>
-      <div className={classes.formRow}>
+      <div className={classes.formRow} key='addressfields-first-row'>
         <TextField
           variant='outlined'
           type='text'
@@ -110,7 +118,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           }}
         />
       </div>
-      <div className={classes.formRow}>
+      <div className={classes.formRow} key='addressfields-second-row'>
         <TextField
           variant='outlined'
           type='text'
@@ -143,7 +151,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           }}
         />
       </div>
-      <div className={classes.formRow}>
+      <div className={classes.formRow} key='addressfields-third-row'>
         <Controller
           defaultValue={country ?? ''}
           control={control}
