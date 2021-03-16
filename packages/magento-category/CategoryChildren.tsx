@@ -65,7 +65,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
       <SliderContainer classes={{ container: classes.container }}>
         <SliderScroller classes={{ scroller: classes.scroller }}>
           {children.map((cat) => {
-            if (!cat?.url_path || !cat.id || !cat.name) return null
+            if (!cat?.url_path || !cat.name) return null
 
             const linkParams = cloneDeep(params)
             linkParams.url = cat.url_path
@@ -73,7 +73,7 @@ export default function CategoryChildren(props: CategoryChildrenProps) {
 
             return (
               <CategoryLink
-                key={cat.id}
+                key={cat.url_path}
                 underline='none'
                 color='inherit'
                 {...linkParams}

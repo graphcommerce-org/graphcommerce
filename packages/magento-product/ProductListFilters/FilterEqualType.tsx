@@ -7,7 +7,7 @@ import {
   Theme,
   ListItemSecondaryAction,
 } from '@material-ui/core'
-import { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
+import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
@@ -16,6 +16,7 @@ import clsx from 'clsx'
 import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'
+import { ProductListParams } from '../ProductListItems/filterTypes'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
 export type FilterIn = SetRequired<Omit<FilterEqualTypeInput, 'eq'>, 'in'>
@@ -127,60 +128,66 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     })
   }
 
+  let selectedLabel = currentLabels.length > 0 ? currentLabels.join(', ') : undefined
+  selectedLabel =
+    currentLabels.length > 1 ? `${currentLabels[0]} +${currentLabels.length - 1}` : selectedLabel
+
   return (
     <ChipMenu
       variant='outlined'
       {...chipProps}
       label={label}
-      onClose={applyFilter}
       selected={currentLabels.length > 0}
-      selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
+      selectedLabel={selectedLabel}
       onDelete={currentLabels.length > 0 ? removeFilter : undefined}
     >
       <div className={classes.linkContainer}>
         {options?.map((option) => {
           const labelId = `filter-equal-${attribute_code}-${option?.value}`
+          let filter = currentFilter
+          if (filter?.in?.includes(option?.value ?? '')) {
+            filter = { ...currentFilter, in: currentFilter?.in?.filter((v) => v !== option?.value) }
+          } else {
+            filter = { ...currentFilter, in: [...(currentFilter.in ?? []), option?.value ?? ''] }
+          }
+          const newParams: ProductListParams = {
+            ...params,
+            filters: { ...params.filters, [attribute_code]: filter },
+          }
+          delete newParams.currentPage
 
           return (
-            <ListItem
-              button
-              key={option?.value}
-              dense
-              className={classes.listItem}
-              onClick={() => {
-                if (selectedFilter?.in?.includes(option?.value ?? '')) {
-                  setSelectedFilter({
-                    ...selectedFilter,
-                    in: selectedFilter?.in?.filter((v) => v !== option?.value),
-                  })
-                } else {
-                  setSelectedFilter({
-                    ...selectedFilter,
-                    in: [...(selectedFilter.in ?? []), option?.value ?? ''],
-                  })
-                }
-              }}
-            >
-              <div className={classes.listItemInnerContainer}>
-                <ListItemText
-                  primary={option?.label}
-                  classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
-                  secondary={`(${option?.count})`}
-                />
-                <ListItemSecondaryAction>
-                  <Checkbox
-                    edge='start'
-                    checked={selectedFilter.in?.includes(option?.value ?? '')}
-                    tabIndex={-1}
-                    size='small'
-                    color='primary'
-                    disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
-                    className={classes.checkbox}
+            <CategoryLink key={option?.value} {...newParams} noLink>
+              <ListItem
+                button
+                component='a'
+                dense
+                className={classes.listItem}
+                onClick={() => {
+                  setParams(newParams)
+                }}
+              >
+                <div className={classes.listItemInnerContainer}>
+                  <ListItemText
+                    primary={option?.label}
+                    classes={{ primary: classes.filterLabel, secondary: classes.filterAmount }}
+                    secondary={`(${option?.count})`}
                   />
-                </ListItemSecondaryAction>
-              </div>
-            </ListItem>
+                  <ListItemSecondaryAction>
+                    <Checkbox
+                      edge='start'
+                      checked={currentFilter.in?.includes(option?.value ?? '')}
+                      tabIndex={-1}
+                      size='small'
+                      color='primary'
+                      disableRipple
+                      inputProps={{ 'aria-labelledby': labelId }}
+                      className={classes.checkbox}
+                    />
+                  </ListItemSecondaryAction>
+                </div>
+              </ListItem>
+            </CategoryLink>
           )
         })}
       </div>

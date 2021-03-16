@@ -63,14 +63,14 @@ export type FullPageUiProps = {
 function FullPageUi(props: FullPageUiProps) {
   const { children, title, backFallbackHref, backFallbackTitle, header } = props
   const pageTransition = usePageTransition({ title })
-  const { offsetProps, inFront, prevPage } = pageTransition
+  const { offsetProps, hold, prevPage } = pageTransition
   const router = useRouter()
   const classes = useStyles(props)
 
   return (
     <>
-      <m.div {...offsetProps}>
-        <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }}>
+      <m.div {...(hold && offsetProps)}>
+        <m.div style={{ pointerEvents: !hold ? 'all' : 'none' }}>
           {router.pathname !== '/' && (
             <m.div className={classes.backButtonRoot}>
               <NoSsr

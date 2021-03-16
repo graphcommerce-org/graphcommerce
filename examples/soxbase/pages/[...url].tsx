@@ -6,17 +6,23 @@ import CategoryDescription from '@reachdigital/magento-category/CategoryDescript
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
-import getFilterTypes from '@reachdigital/magento-category/getFilterTypes'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import { ProductListDocument } from '@reachdigital/magento-product-types/ProductList.gql'
 import {
-  CategoryPageProps,
-  extractUrlQuery,
-  parseParams,
-} from '@reachdigital/magento-product-types/filteredProductList'
+  ProductListDocument,
+  ProductListQuery,
+} from '@reachdigital/magento-product-types/ProductList.gql'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
+import {
+  FilterTypes,
+  ProductListParams,
+} from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import {
+  extractUrlQuery,
+  parseParams,
+} from '@reachdigital/magento-product/ProductListItems/filteredProductList'
+import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
@@ -25,8 +31,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
-import NextError from 'next/error'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import FullPageUi from '../components/AppShell/FullPageUi'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
@@ -37,7 +42,12 @@ import RowProductGrid from '../components/RowProductGrid'
 import RowSwipeableGrid from '../components/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
-type Props = CategoryPageQuery & CategoryPageProps
+
+type Props = CategoryPageQuery &
+  ProductListQuery & {
+    filterTypes: FilterTypes
+    params: ProductListParams
+  }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -85,8 +95,7 @@ function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
 
   const category = categories?.items?.[0]
-  if (!category || !products || !params || !filters || !filterTypes)
-    return <NextError statusCode={503} title='Loading skeleton' />
+  if (!category || !products || !params || !filters || !filterTypes) return null
 
   const parentCategory = category.breadcrumbs?.[0]
   const isLanding = category.display_mode === 'PAGE'
@@ -95,17 +104,11 @@ function CategoryPage(props: Props) {
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
   return (
-    <FullPageUi
-      title={category.name ?? ''}
-      backFallbackTitle={parentCategory?.category_name ?? 'Home'}
-      backFallbackHref={parentCategory?.category_url_path ?? '/'}
-      {...props}
-    >
+    <>
       <PageMeta
         title={category.meta_title ?? category.name ?? ''}
         metaDescription={category.meta_description ?? ''}
       />
-
       {isLanding ? (
         <Container className={classes.container} maxWidth={false}>
           <CategoryHeroNav
@@ -114,32 +117,8 @@ function CategoryPage(props: Props) {
           />
         </Container>
       ) : (
-        <ProductListParamsProvider value={params}>
-          <Container className={classes.container} maxWidth='xl'>
-            <CategoryDescription
-              name={category.name}
-              description={category.description}
-              className={classes.description}
-            />
-            <CategoryChildren classes={{ container: classes.childCategories }} params={params}>
-              {category.children}
-            </CategoryChildren>
-
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products.sort_fields} />
-              <ProductListFilters aggregations={filters.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-
-            <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              items={products.items}
-              className={clsx(classes.items, productListClasses.productList)}
-            />
-            <ProductListPagination page_info={products.page_info} className={classes.pagination} />
-          </Container>
-        </ProductListParamsProvider>
+        <></>
       )}
-
       {pages?.[0] && (
         <PageContent
           renderer={{
@@ -150,11 +129,55 @@ function CategoryPage(props: Props) {
           content={pages?.[0]?.content}
         />
       )}
-    </FullPageUi>
+    </>
   )
 }
 
-CategoryPage.Layout = PageLayout
+function CategoryLayout(props: PropsWithChildren<Props>) {
+  const { children, products, filters, filterTypes, params, categories } = props
+  const productListClasses = useProductListStyles(props)
+  const classes = useCategoryPageStyles(props)
+  const category = categories?.items?.[0]
+  const parentCategory = category?.breadcrumbs?.[0]
+  const isLanding = category?.display_mode === 'PAGE'
+
+  return (
+    <PageLayout {...props}>
+      <FullPageUi
+        title={category?.name ?? ''}
+        backFallbackTitle={parentCategory?.category_name ?? 'Home'}
+        backFallbackHref={`/${parentCategory?.category_url_path}` ?? '/'}
+        {...props}
+      >
+        {!isLanding && (
+          <ProductListParamsProvider value={params}>
+            <Container className={classes.container} maxWidth='xl'>
+              <CategoryDescription {...category} className={classes.description} />
+              <CategoryChildren
+                classes={{ container: classes.childCategories }}
+                params={params}
+                {...category}
+              />
+              <ProductListFiltersContainer>
+                <ProductListSort {...products} />
+                <ProductListFilters {...filters} filterTypes={filterTypes} />
+              </ProductListFiltersContainer>
+              <ProductListCount {...products} />
+              <ProductListItems
+                {...products}
+                className={clsx(classes.items, productListClasses.productList)}
+              />
+              <ProductListPagination {...products} className={classes.pagination} />
+            </Container>
+          </ProductListParamsProvider>
+        )}
+        {children}
+      </FullPageUi>
+    </PageLayout>
+  )
+}
+
+CategoryPage.Layout = CategoryLayout
 
 export default CategoryPage
 
@@ -174,10 +197,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   if (!url || !query) return { notFound: true }
 
   const client = apolloClient(locale, true)
-  const config = client.query({ query: StoreConfigDocument })
+  const staticClient = apolloClient(locale)
+
+  const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
-  const staticClient = apolloClient(locale)
   const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
   const rootCategory = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
 
@@ -185,6 +209,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   if (!productListParams || !(await rootCategory)) return { notFound: true }
 
+  // console.log((await categoryPage).data.menu)
   const products = client.query({
     query: ProductListDocument,
     variables: mergeDeep(productListParams, {
@@ -202,7 +227,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await products).data,
       filterTypes: await filterTypes,
       params: productListParams,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }
