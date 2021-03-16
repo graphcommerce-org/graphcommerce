@@ -12,8 +12,8 @@ import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../../components/AppShell/FullPageUi'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
@@ -86,7 +86,7 @@ function ProductConfigurable(props: Props) {
 
 ProductConfigurable.Layout = PageLayout
 
-registerRouteUi('/product/[url]', FullPageUi)
+registerRouteUi('/product/configurable/[url]', FullPageUi)
 
 export default ProductConfigurable
 

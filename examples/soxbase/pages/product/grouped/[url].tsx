@@ -97,7 +97,7 @@ function ProductGrouped(props: Props) {
 
 ProductGrouped.Layout = PageLayout
 
-registerRouteUi('/product/[url]', FullPageUi)
+registerRouteUi('/product/grouped/[url]', FullPageUi)
 
 export default ProductGrouped
 

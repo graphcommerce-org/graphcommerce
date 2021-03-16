@@ -13,8 +13,8 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../../components/AppShell/FullPageUi'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
@@ -97,7 +97,7 @@ function ProductDownloadable(props: Props) {
 
 ProductDownloadable.Layout = PageLayout
 
-registerRouteUi('/product/[url]', FullPageUi)
+registerRouteUi('/product/downloadable/[url]', FullPageUi)
 
 export default ProductDownloadable
 
