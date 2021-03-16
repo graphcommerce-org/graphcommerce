@@ -114,8 +114,8 @@ export default function SliderScroller(props: SliderScrollerProps) {
       onDragEnd={handleDragSnap}
       animate={controls}
       layout={layout}
-      style={{ ...motionProps.style, x }}
       {...motionProps}
+      style={{ ...motionProps.style, x }}
     >
       {children}
     </m.div>
