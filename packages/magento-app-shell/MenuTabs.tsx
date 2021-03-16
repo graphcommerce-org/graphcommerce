@@ -1,11 +1,10 @@
-import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles, Link } from '@material-ui/core'
+import { Theme, makeStyles } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
 import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
 import { m, AnimateSharedLayout } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -26,6 +25,9 @@ const useTabsStyles = makeStyles(
     },
     prevNext: {
       pointerEvents: 'all',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
     link: {
       fontSize: '120%',
@@ -41,50 +43,20 @@ const useTabsStyles = makeStyles(
       height: 3,
       background: theme.palette.primary.main,
     },
-    // indicator: {
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   backgroundColor: 'transparent',
-    //   '& > span': {
-    //     maxWidth: 40,
-    //     width: '100%',
-    //     backgroundColor: theme.palette.primary.main,
-    //   },
-    // },
   }),
   { name: 'DesktopMenuTabs' },
 )
-
-// const useTabStyles = makeStyles(
-//   (theme: Theme) => ({
-//     root: {
-//       ...theme.typography.body1,
-//       fontWeight: 500,
-//       textTransform: 'unset',
-//       padding: `6px ${theme.spacings.xxs}`,
-//       opacity: 'unset',
-//       [theme.breakpoints.up('sm')]: {
-//         minWidth: 'unset',
-//       },
-//     },
-//   }),
-//   { name: 'DesktopMenuTab' },
-// )
 
 export type MenuTabsProps = MenuQueryFragment
 
 export default function MenuTabs(props: MenuTabsProps) {
   const { menu } = props
+  console.log(menu)
   const classes = useTabsStyles(props)
-  // const tabClasses = useTabStyles(props)
   const router = useRouter()
 
-  const selectedIdx =
-    menu?.items?.[0]?.children?.findIndex((cat) => router.asPath.startsWith(`/${cat?.url_path}`)) ??
-    0
-
   return (
-    <AnimateSharedLayout>
+    <AnimateSharedLayout className={classes.container}>
       <SliderContext scrollSnapAlign={false}>
         <SliderPrev className={classes.prevNext} />
         <SliderContainer classes={{ container: clsx(classes.container) }}>
