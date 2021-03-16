@@ -52,7 +52,7 @@ export default function SignInForm(props: SignInFormProps) {
           variant='outlined'
           type='password'
           error={!!errors.password || !!authError}
-          id='password'
+          id='signin-password'
           name='password'
           label='Password'
           required={required.password}

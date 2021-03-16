@@ -8,7 +8,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
@@ -28,7 +28,7 @@ import useFormGqlQuery from '@reachdigital/react-hook-form/useFormGqlQuery'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
+import React, { useState } from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
 
@@ -48,6 +48,7 @@ function AccountSignInPage() {
   const formClasses = useFormStyles()
   const { data: token } = useQuery(CustomerTokenDocument)
   const { data: customerData } = useQuery(CustomerDocument)
+  const [waitingForAutoSubmit, setWaitForAutoSubmit] = useState<boolean>(false)
 
   const email = customerData?.customer?.email ?? undefined
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
@@ -55,12 +56,9 @@ function AccountSignInPage() {
     defaultValues: {
       email,
     },
-    // disabled text fields won't be added to the form data,
-    // so we have to manually put the e-mail field to the form data.
-    onBeforeSubmit: (formData) => ({
-      ...formData,
-      email: (formData.email || email) ?? '',
-    }),
+    onComplete: () => {
+      if (waitingForAutoSubmit) setWaitForAutoSubmit(false)
+    },
   })
 
   const {
@@ -76,16 +74,34 @@ function AccountSignInPage() {
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
+  const onChange = () => {
+    if (!waitingForAutoSubmit) setWaitForAutoSubmit(true)
+  }
+
   const submit = handleSubmit(() => {})
   const autoSubmitting = useFormAutoSubmit({ form, submit })
   const disableFields = formState.isSubmitting && !autoSubmitting
 
+  if (autoSubmitting && waitingForAutoSubmit) setWaitForAutoSubmit(false)
+
   const hasAccount = emailAvailable?.isEmailAvailable?.is_email_available === false
 
   let mode: 'welcome' | 'signin' | 'signup' | 'redirect' = 'welcome'
-  if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && hasAccount)
+  if (
+    !waitingForAutoSubmit &&
+    formState.isSubmitSuccessful &&
+    formState.isValid &&
+    !formState.isSubmitting &&
+    hasAccount
+  )
     mode = 'signin'
-  if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && !hasAccount)
+  if (
+    !waitingForAutoSubmit &&
+    formState.isSubmitSuccessful &&
+    formState.isValid &&
+    !formState.isSubmitting &&
+    !hasAccount
+  )
     mode = 'signup'
   if (token?.customerToken && token?.customerToken.valid) mode = 'redirect'
 
@@ -93,8 +109,8 @@ function AccountSignInPage() {
     <OverlayPage title='Sign In' variant='center' backFallbackTitle='Home' backFallbackHref='/'>
       <PageMeta
         title='Sign in'
-        metaDescription='Sign in to your accoutn'
         metaRobots={['noindex']}
+        metaDescription='Sign in to your account'
       />
       <Container maxWidth='md'>
         <div className={formClasses.form}>
@@ -148,7 +164,7 @@ function AccountSignInPage() {
 
           <AnimatePresence>
             {mode !== 'redirect' && (
-              <form noValidate onSubmit={submit} key='emailform'>
+              <form noValidate onSubmit={submit} onChange={onChange} key='emailform'>
                 <AnimatePresence initial={false}>
                   <AnimatedRow key='email'>
                     <div className={formClasses.formRow}>
@@ -167,9 +183,9 @@ function AccountSignInPage() {
                           pattern: { value: emailPattern, message: '' },
                         })}
                         autoComplete='off'
-                        disabled={!!token?.customerToken || disableFields}
                         InputProps={{
                           endAdornment: formState.isSubmitting && <CircularProgress />,
+                          readOnly: !!token?.customerToken || disableFields,
                         }}
                       />
                     </div>
