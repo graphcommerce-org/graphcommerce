@@ -16,7 +16,7 @@ export default function SliderPrev(props: SliderPrevProps) {
   const [{ items, containerRef }, dispatch] = useSliderContext()
 
   // const disable = !state.items.some((item) => item.visible)
-  const disabled = items[0]?.visible ?? false
+  const disabled = items[0]?.visible ?? true
   const prev = () => !disabled && dispatch({ type: 'NAVIGATE_PREV' })
 
   const handleArrowLeft = (e: KeyboardEvent | Event) => {
@@ -25,7 +25,7 @@ export default function SliderPrev(props: SliderPrevProps) {
   useDomEvent(containerRef, 'keyup', handleArrowLeft, { passive: true })
 
   return (
-    <m.div layout={layout} className={className} animate={{ scale: !disabled ? 1 : 0.001 }}>
+    <m.div layout={layout} className={className} animate={{ scale: disabled ? 0.001 : 1 }}>
       <Fab color='inherit' size='small' {...fabProps} onClick={prev}>
         <ArrowBack color='inherit' />
       </Fab>

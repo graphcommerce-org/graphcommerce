@@ -15,8 +15,7 @@ export default function SliderNext(props: SliderPrevProps) {
   const { layout, className, ...fabProps } = props
   const [{ items, containerRef }, dispatch] = useSliderContext()
 
-  const disabled = items[items.length - 1]?.visible ?? false
-
+  const disabled = items[items.length - 1]?.visible ?? true
   const next = () => !disabled && dispatch({ type: 'NAVIGATE_NEXT' })
 
   const handleArrowLeft = (e: KeyboardEvent | Event) => {
@@ -25,7 +24,7 @@ export default function SliderNext(props: SliderPrevProps) {
   useDomEvent(containerRef, 'keyup', handleArrowLeft, { passive: true })
 
   return (
-    <m.div layout={layout} className={className} animate={{ scale: !disabled ? 1 : 0.001 }}>
+    <m.div layout={layout} className={className} animate={{ scale: disabled ? 0.001 : 1 }}>
       <Fab color='inherit' size='small' {...fabProps} onClick={next}>
         <ArrowForward color='inherit' />
       </Fab>
