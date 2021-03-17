@@ -36,15 +36,6 @@ const withTM = require('next-transpile-modules')(
   { unstable_webpack5: false },
 )
 
-require('@formatjs/intl-datetimeformat/polyfill')
-require('@formatjs/intl-datetimeformat/locale-data/en')
-require('@formatjs/intl-datetimeformat/locale-data/nl')
-require('@formatjs/intl-datetimeformat/locale-data/fr')
-
-if (process.versions.node.split('.')[0] > 12) {
-  console.warn("'@formatjs/intl-datetimeformat' polyfill isn't required anymore")
-}
-
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
     console.log(`${item.name}: ${Math.round(item.duration)}ms`)
@@ -52,12 +43,6 @@ const obs = new PerformanceObserver((entryList) => {
   performance.clearMarks()
 })
 obs.observe({ entryTypes: ['measure'] })
-
-let domains = []
-if (process.env.IMAGE_DOMAINS) domains = process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim())
-
-const locales = Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))
-const defaultLocale = locales[0]
 
 const nextConfig = {
   webpackStats: process.env.ANALYZE === 'true',
@@ -73,12 +58,12 @@ const nextConfig = {
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
-    domains,
+    domains: process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim()) || [],
     imageSizes: [16, 32, 64, 128, 256, 384],
   },
   i18n: {
-    locales,
-    defaultLocale,
+    locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
+    defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
 }
 
