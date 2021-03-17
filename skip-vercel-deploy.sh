@@ -5,9 +5,13 @@
 # https://vercel.com/docs/platform/projects#ignored-build-step
 # https://vercel.com/support/articles/how-do-i-use-the-ignored-build-step-field-on-vercel
 
-echo "VERCEL_GIT_COMMIT_MESSAGE: $VERCEL_GIT_COMMIT_MESSAGE"
+echo $PWD
+ls
 
-git diff --quiet HEAD^ HEAD ./$1 && echo "🛑 - No changes in subfolder" && exit 1
+if git diff --quiet HEAD^ HEAD ./$1; then 
+  echo "🛑 - No changes in subfolder"
+  exit 1
+fi
 
 if [[ "$VERCEL_GIT_COMMIT_MESSAGE" == "Merge pull request"* ]] ; then
   echo "🛑 - Build skipped, commits starts with 'Merge pull request'"
