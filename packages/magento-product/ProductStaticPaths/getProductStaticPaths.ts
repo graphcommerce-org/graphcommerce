@@ -28,5 +28,5 @@ export default async function getProductStaticPaths(
     .filter((item) => item?.__typename === typename)
     .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 
-  return process.env.VERCEL_ENV === 'development' ? paths.slice(0, 1) : paths
+  return process.env.VERCEL_ENV !== 'production' ? paths.slice(0, 1) : paths
 }
