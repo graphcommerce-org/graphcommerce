@@ -32,7 +32,6 @@ const withTM = require('next-transpile-modules')(
     '@reachdigital/magento-store',
     '@reachdigital/next-ui',
     '@reachdigital/react-hook-form',
-    'framer-motion',
   ],
   { unstable_webpack5: false },
 )
