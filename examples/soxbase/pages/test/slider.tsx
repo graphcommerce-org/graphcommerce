@@ -60,19 +60,19 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
 
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const cat = String((await config).data.storeConfig?.root_category_uid ?? '')
+  const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { categoryUid: cat, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
+    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
   })
 
   return {
     props: {
       ...(await productList).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }
