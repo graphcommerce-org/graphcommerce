@@ -117,7 +117,7 @@ export function createApolloClient(
         return data
       })
     })
-    links.push(measurePerformanceLink)
+    links.unshift(measurePerformanceLink)
   }
 
   const link = ApolloLink.from(links)
