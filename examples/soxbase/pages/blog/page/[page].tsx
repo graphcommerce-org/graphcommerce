@@ -2,9 +2,9 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import Pagination from '@reachdigital/next-ui/Pagination'
+import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -15,6 +15,8 @@ import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/Blog
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../../components/PageContent'
 import apolloClient from '../../../lib/apolloClient'
+
+export const config = { unstable_JsPreload: false }
 
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }

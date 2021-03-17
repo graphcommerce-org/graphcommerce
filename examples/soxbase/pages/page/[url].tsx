@@ -7,8 +7,8 @@ import {
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
@@ -18,6 +18,8 @@ import RowProductBackstory from '../../components/RowProductBackstory'
 import RowProductGrid from '../../components/RowProductGrid'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
+
+export const config = { unstable_JsPreload: false }
 
 type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }

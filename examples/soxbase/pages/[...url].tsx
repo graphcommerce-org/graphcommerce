@@ -37,9 +37,7 @@ import RowProductGrid from '../components/RowProductGrid'
 import RowSwipeableGrid from '../components/RowSwipeableGrid'
 import apolloClient from '../lib/apolloClient'
 
-export const config = {
-  unstable_JsPreload: false,
-}
+export const config = { unstable_JsPreload: false }
 
 type Props = CategoryPageQuery & CategoryPageProps
 type RouteProps = { url: string[] }
