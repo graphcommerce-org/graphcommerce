@@ -68,10 +68,10 @@ export default function MenuTabs(props: MenuTabsProps) {
       <SliderPrev className={classes.prevNext} />
       <SliderContainer classes={{ container: classes.container }}>
         <SliderScroller classes={{ scroller: classes.scroller }}>
-          {menu?.items?.[0]?.children?.map((cat) => {
-            if (!cat || !cat.id || !cat.url_path) return null
+          {menu?.items?.map((cat) => {
+            if (!cat || !cat.url_path || !cat.include_in_menu) return null
             return (
-              <PageLink key={cat.id} href={cat.url_path}>
+              <PageLink key={cat.url_path} href={`/${cat.url_path}`}>
                 <Link className={classes.link}>
                   {cat.name}
                   {router.asPath.startsWith(`/${cat?.url_path}`) && (

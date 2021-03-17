@@ -1,7 +1,9 @@
 fragment MenuQueryFragment on Query {
-  menu: categories {
+  menu: categories(filters: { parent_category_uid: { eq: $rootCategory } }) {
     items {
-      ...CategoryChildren
+      name
+      url_path
+      include_in_menu
     }
   }
 }

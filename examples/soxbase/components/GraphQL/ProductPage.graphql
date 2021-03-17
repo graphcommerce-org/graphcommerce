@@ -1,4 +1,9 @@
-query ProductPage($urlKey: String!, $reviewPage: Int = 1, $productUrls: [String!]!) {
+query ProductPage(
+  $urlKey: String!
+  $rootCategory: String!
+  $reviewPage: Int = 1
+  $productUrls: [String!]!
+) {
   ...MenuQueryFragment
   ...FooterQueryFragment
   ...UspsQueryFragment

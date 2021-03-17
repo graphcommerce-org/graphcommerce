@@ -176,27 +176,30 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   if (!url || !query) return { notFound: true }
 
   const client = apolloClient(locale, true)
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const staticClient = apolloClient(locale)
-  const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
-  const rootCategory = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
+  const categoryPage = staticClient.query({
+    query: CategoryPageDocument,
+    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+  })
+  const categoryUid = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
 
   const productListParams = parseParams(url, query, await filterTypes)
 
-  if (!productListParams || !(await rootCategory)) return { notFound: true }
+  if (!productListParams || !(await categoryUid)) return { notFound: true }
 
   const products = client.query({
     query: ProductListDocument,
     variables: mergeDeep(productListParams, {
-      filters: { category_uid: { eq: await rootCategory } },
-      rootCategory: await rootCategory,
+      filters: { category_uid: { eq: await categoryUid } },
+      categoryUid: await categoryUid,
     }),
   })
 
   // assertAllowedParams(await params, (await products).data)
-  if (!(await rootCategory) || !(await products).data) return { notFound: true }
+  if (!(await categoryUid) || !(await products).data) return { notFound: true }
 
   return {
     props: {
@@ -204,7 +207,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await products).data,
       filterTypes: await filterTypes,
       params: productListParams,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

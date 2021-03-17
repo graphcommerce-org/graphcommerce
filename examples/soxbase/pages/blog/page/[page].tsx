@@ -76,10 +76,13 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const skip = Math.abs((Number(params?.page ?? '1') - 1) * pageSize)
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const defaultPage = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: 'blog' },
+    variables: {
+      url: 'blog',
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
   const blogPosts = staticClient.query({
     query: BlogListDocument,
@@ -97,7 +100,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       urlEntity: { relative_url: `blog` },
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

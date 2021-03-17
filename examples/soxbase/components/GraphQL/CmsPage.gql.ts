@@ -26,6 +26,14 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
         },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'rootCategory' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
       ],
       selectionSet: {
         kind: 'SelectionSet',
@@ -34,6 +42,34 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
             kind: 'Field',
             alias: { kind: 'Name', value: 'menu' },
             name: { kind: 'Name', value: 'categories' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'parent_category_uid' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'rootCategory' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -43,19 +79,9 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'children' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'level' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
-                          ],
-                        },
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'include_in_menu' } },
                     ],
                   },
                 },
@@ -780,18 +806,13 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
 export type CmsPageQueryVariables = Types.Exact<{
   url: Types.Scalars['String']
   urlKey: Types.Scalars['String']
+  rootCategory: Types.Scalars['String']
 }>
 
 export type CmsPageQuery = {
   menu?: Types.Maybe<{
     items?: Types.Maybe<
-      Array<
-        Types.Maybe<{
-          children?: Types.Maybe<
-            Array<Types.Maybe<Pick<Types.CategoryTree, 'id' | 'name' | 'level' | 'url_path'>>>
-          >
-        }>
-      >
+      Array<Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>>
     >
   }>
   footer?: Types.Maybe<

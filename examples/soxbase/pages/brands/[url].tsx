@@ -1,8 +1,8 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -48,7 +48,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const config = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: `brands/${urlKey}` },
+    variables: {
+      url: `brands/${urlKey}`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
