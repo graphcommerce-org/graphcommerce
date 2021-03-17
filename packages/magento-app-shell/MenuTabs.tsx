@@ -10,13 +10,16 @@ import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { MenuQueryFragment } from './MenuQueryFragment.gql'
 
-const useTabsStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       width: '100%',
       display: 'flex',
       pointerEvents: 'all',
-      [theme.breakpoints.down('sm')]: {
+      flexGrow: 1,
+      height: 50,
+      padding: 10,
+      [theme.breakpoints.down('xs')]: {
         display: 'none',
       },
     },
@@ -25,9 +28,12 @@ const useTabsStyles = makeStyles(
     },
     prevNext: {
       pointerEvents: 'all',
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
     link: {
-      fontSize: '120%',
+      ...theme.typography.h6,
       whiteSpace: 'nowrap',
       textAlign: 'center',
       '&:hover': {
@@ -35,10 +41,14 @@ const useTabsStyles = makeStyles(
       },
     },
     line: {
-      width: 40,
-      margin: `0 auto`,
-      height: 3,
+      maxWidth: 40,
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      height: 2,
       background: theme.palette.primary.main,
+      margin: '0 auto',
+      marginTop: 8,
     },
   }),
   { name: 'DesktopMenuTabs' },
@@ -48,7 +58,7 @@ export type MenuTabsProps = MenuQueryFragment
 
 export default function MenuTabs(props: MenuTabsProps) {
   const { menu } = props
-  const classes = useTabsStyles(props)
+  const classes = useStyles()
   const router = useRouter()
 
   return (
