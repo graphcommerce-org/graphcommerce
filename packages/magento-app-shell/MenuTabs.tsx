@@ -74,9 +74,8 @@ export default function MenuTabs(props: MenuTabsProps) {
               <PageLink key={cat.id} href={cat.url_path}>
                 <Link className={classes.link}>
                   {cat.name}
-
                   {router.asPath.startsWith(`/${cat?.url_path}`) && (
-                    <m.div layoutId='menutabs-line' className={classes.line} layout initial />
+                    <m.div className={classes.line} />
                   )}
                 </Link>
               </PageLink>
@@ -85,9 +84,7 @@ export default function MenuTabs(props: MenuTabsProps) {
           <PageLink href='/blog'>
             <Link className={classes.link}>
               Blog
-              {router.asPath.startsWith(`/blog`) && (
-                <m.div layoutId='menutabs-line' className={classes.line} layout initial />
-              )}
+              {router.asPath.startsWith(`/blog`) && <m.div className={classes.line} />}
             </Link>
           </PageLink>
         </SliderScroller>
