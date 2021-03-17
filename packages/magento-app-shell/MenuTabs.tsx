@@ -1,5 +1,4 @@
 import { Theme, makeStyles, Link } from '@material-ui/core'
-import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
@@ -7,7 +6,6 @@ import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { MenuQueryFragment } from './MenuQueryFragment.gql'
 
@@ -15,28 +13,39 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       width: '100%',
-      display: 'flex',
+      position: 'relative',
       pointerEvents: 'all',
-      flexGrow: 1,
       height: 50,
       padding: '10px 0',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
     scroller: {
       columnGap: '40px',
+      padding: '0 40px',
     },
     prevNext: {
       pointerEvents: 'all',
-      [theme.breakpoints.down('xs')]: {
-        display: 'none',
-      },
+      position: 'absolute',
+      background: theme.palette.background.default,
+      top: 5,
+      [theme.breakpoints.down('sm')]: { display: 'none' },
+    },
+    prev: {
+      left: 0,
+    },
+    next: {
+      right: 0,
+    },
+    prevNextFab: {
+      boxShadow: 'none',
     },
     link: {
-      ...theme.typography.h6,
+      ...theme.typography.body1,
+      fontWeight: 500,
+      textTransform: 'unset',
       whiteSpace: 'nowrap',
-      textAlign: 'center',
       color: 'black',
       '&:hover': {
         textDecoration: 'none',
@@ -50,7 +59,7 @@ const useStyles = makeStyles(
       height: 2,
       background: theme.palette.primary.main,
       margin: '0 auto',
-      marginTop: 8,
+      marginTop: 7,
     },
   }),
   { name: 'DesktopMenuTabs' },
@@ -65,7 +74,6 @@ export default function MenuTabs(props: MenuTabsProps) {
 
   return (
     <SliderContext scrollSnapAlign={false}>
-      <SliderPrev className={classes.prevNext} />
       <SliderContainer classes={{ container: classes.container }}>
         <SliderScroller classes={{ scroller: classes.scroller }}>
           {menu?.items?.map((cat) => {
@@ -75,7 +83,7 @@ export default function MenuTabs(props: MenuTabsProps) {
                 <Link className={classes.link}>
                   {cat.name}
                   {router.asPath.startsWith(`/${cat?.url_path}`) && (
-                    <m.div className={classes.line} />
+                    <div className={classes.line} />
                   )}
                 </Link>
               </PageLink>
@@ -84,12 +92,19 @@ export default function MenuTabs(props: MenuTabsProps) {
           <PageLink href='/blog'>
             <Link className={classes.link}>
               Blog
-              {router.asPath.startsWith(`/blog`) && <m.div className={classes.line} />}
+              {router.asPath.startsWith(`/blog`) && <div className={classes.line} />}
             </Link>
           </PageLink>
         </SliderScroller>
+        <SliderPrev
+          className={clsx(classes.prevNext, classes.prev)}
+          classes={{ root: classes.prevNextFab }}
+        />
+        <SliderNext
+          className={clsx(classes.prevNext, classes.next)}
+          classes={{ root: classes.prevNextFab }}
+        />
       </SliderContainer>
-      <SliderNext className={classes.prevNext} />
     </SliderContext>
   )
 }
