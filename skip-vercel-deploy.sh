@@ -7,9 +7,10 @@
 
 echo "VERCEL_GIT_COMMIT_MESSAGE: $VERCEL_GIT_COMMIT_MESSAGE"
 
-if [[ "$VERCEL_GIT_COMMIT_MESSAGE" == *"[skip-ci]" ]] ; then
-  # Don't build
-  echo "🛑 - Build cancelled, commit message ends with [skip-ci]"
+git diff --quiet HEAD^ HEAD ./$1 && echo "🛑 - No changes in subfolder" && exit 1
+
+if [[ "$VERCEL_GIT_COMMIT_MESSAGE" == "Merge pull request"* ]] ; then
+  echo "🛑 - Build skipped, commits starts with 'Merge pull request'"
   exit 0;
 else
   exit 1;
