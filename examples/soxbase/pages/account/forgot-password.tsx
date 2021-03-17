@@ -1,4 +1,4 @@
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@material-ui/core'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
@@ -26,6 +26,12 @@ function AccountForgotPasswordPage() {
       />
       <Container maxWidth='xs'>
         <NoSsr>
+          <Typography variant='h3' align='center'>
+            Forgot password
+          </Typography>
+          <Typography variant='h6' align='center'>
+            Fill in your e-mail to request changing your password
+          </Typography>
           <ForgotPasswordForm />
         </NoSsr>
       </Container>
