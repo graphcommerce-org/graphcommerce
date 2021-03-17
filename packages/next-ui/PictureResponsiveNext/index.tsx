@@ -1,9 +1,9 @@
-import React, { useState, useEffect, forwardRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import PictureResponsive, { PictureResponsiveProps, ImageMimeTypes } from '../PictureResponsive'
 import useConnectionType from '../PictureResponsive/useConnectionType'
 
 // eslint-disable-next-line no-underscore-dangle
-const { deviceSizes, imageSizes, loader, path, domains } = process.env.__NEXT_IMAGE_OPTS
+const { deviceSizes, imageSizes, path } = process.env.__NEXT_IMAGE_OPTS
 
 const possibleWidths = [...imageSizes, ...deviceSizes]
 

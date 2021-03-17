@@ -24,7 +24,7 @@ export type ProductItemsGridProps = {
   items?: Maybe<Array<Maybe<ProductListItemRendererFragment & ProductListItemProps>>>
   renderers: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps>
 } & UseStyles<typeof useProductGridStyles> &
-  React.HTMLAttributes<HTMLDivElement>
+  JSX.IntrinsicElements['div']
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
   const { items, renderers, ...divProps } = props
@@ -32,8 +32,15 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
 
   return (
     <div {...divProps} className={clsx(classes.productList, divProps.className)}>
-      {items?.map((item) =>
-        item ? <RenderType key={item.id ?? ''} renderer={renderers} {...item} /> : null,
+      {items?.map((item, idx) =>
+        item ? (
+          <RenderType
+            key={item.id ?? ''}
+            renderer={renderers}
+            {...item}
+            imageProps={{ loading: idx === 0 ? 'eager' : 'lazy' }}
+          />
+        ) : null,
       )}
     </div>
   )

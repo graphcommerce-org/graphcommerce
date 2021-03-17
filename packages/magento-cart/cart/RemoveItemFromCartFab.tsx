@@ -9,7 +9,7 @@ import {
 } from './RemoveItemFromCart.gql'
 
 type RemoveItemFromCartProps = RemoveItemFromCartMutationVariables &
-  Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit'>
+  Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { cartId, cartItemId, ...formProps } = props

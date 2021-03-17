@@ -1,6 +1,8 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import PictureResponsiveNext, {
+  PictureResponsiveNextProps,
+} from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
@@ -112,6 +114,7 @@ type BaseProps = PropsWithChildren<
     subTitle?: React.ReactNode
     aspectRatio?: [number, number]
     imageOnly?: boolean
+    imageProps?: Partial<PictureResponsiveNextProps>
   } & OverlayAreas &
     ProductListItemFragment
 >
@@ -130,6 +133,7 @@ export default function ProductListItem(props: ProductListItemProps) {
     price_range,
     children,
     imageOnly = false,
+    imageProps,
   } = props
   const classes = useProductListItemStyles(props)
   const productLink = useProductLink(props)
@@ -148,6 +152,7 @@ export default function ProductListItem(props: ProductListItemProps) {
                 src={small_image.url ?? ''}
                 type='image/jpeg'
                 className={classes.image}
+                {...(imageProps ?? {})}
               />
             ) : (
               <div className={clsx(classes.placeholder, classes.image)}>GEEN AFBEELDING</div>
