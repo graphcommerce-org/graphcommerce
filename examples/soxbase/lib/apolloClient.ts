@@ -6,6 +6,7 @@ import {
   HttpLink,
   NormalizedCacheObject,
   InMemoryCache,
+  RequestHandler,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
@@ -65,42 +66,7 @@ export function createApolloClient(
     }
   })
 
-  const measurePerformanceLink = new ApolloLink((operation, forward) => {
-    // Called before operation is sent to server
-    operation.setContext({ measurePerformanceLinkStart: new Date().valueOf() })
-    return forward(operation).map((data) => {
-      // Called after server responds
-      const time: number =
-        new Date().valueOf() - (operation.getContext().measurePerformanceLinkStart as number)
-      const vars =
-        Object.keys(operation.variables).length > 0 ? `${JSON.stringify(operation.variables)}` : ''
-
-      if (data.extensions?.tracing) {
-        const tracing = data.extensions?.tracing as TracingFormat
-
-        const minDuration = 2000 * 1000 * 1000
-        const slowResolvers = tracing.execution.resolvers
-          .filter((resolver) => resolver.duration > minDuration)
-          .map(
-            (resolver) =>
-              `${operation.operationName}.${resolver.path.join('.')}[${Math.round(
-                resolver.duration / (1000 * 1000),
-              )}ms]`,
-          )
-          .join(', ')
-
-        if (slowResolvers) {
-          console.info(`[slow] ${operation.operationName}[${time}ms](${vars})`)
-          console.info(`       ${slowResolvers}`)
-        }
-      }
-
-      return data
-    })
-  })
-
-  const link = ApolloLink.from([
-    measurePerformanceLink,
+  const links: (ApolloLink | RequestHandler)[] = [
     // new MutationQueueLink(),
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
@@ -109,7 +75,52 @@ export function createApolloClient(
       uri: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT,
       credentials: 'same-origin',
     }),
-  ])
+  ]
+
+  if (typeof window === 'undefined') {
+    const measurePerformanceLink = new ApolloLink((operation, forward) => {
+      // Called before operation is sent to server
+      operation.setContext({ measurePerformanceLinkStart: new Date().valueOf() })
+      return forward(operation).map((data) => {
+        // Called after server responds
+        const time: number =
+          new Date().valueOf() - (operation.getContext().measurePerformanceLinkStart as number)
+        const vars =
+          Object.keys(operation.variables).length > 0
+            ? `${JSON.stringify(operation.variables)}`
+            : ''
+
+        if (data.extensions?.tracing) {
+          const tracing = data.extensions?.tracing as TracingFormat
+
+          const slowResolvers = tracing.execution.resolvers
+            .filter((resolver) => resolver.duration > 300 * 1000 * 1000)
+            .map(
+              (resolver) =>
+                `${operation.operationName}.${resolver.path.join('.')}[${Math.round(
+                  resolver.duration / (1000 * 1000),
+                )}ms]`,
+            )
+            .join(', ')
+
+          const duration = Math.round(tracing.duration / (1000 * 1000))
+          if (time > 800) {
+            console.warn(`[slow] ${operation.operationName}[network ${time}ms]`)
+            console.warn(`       ${operation.operationName}[server  ${duration}ms]`)
+            if (slowResolvers) {
+              console.warn(`       ${slowResolvers}`)
+            }
+            console.warn(`       ${vars}`)
+          }
+        }
+
+        return data
+      })
+    })
+    links.push(measurePerformanceLink)
+  }
+
+  const link = ApolloLink.from(links)
 
   let state = initialState
 
