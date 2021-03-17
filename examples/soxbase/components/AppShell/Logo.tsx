@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       pointerEvents: 'all',
       [theme.breakpoints.down('sm')]: {},
       [theme.breakpoints.up('md')]: {
-        marginRight: `${theme.spacings.md}`,
+        marginRight: `${theme.spacings.sm}`,
       },
     },
     logoImg: {

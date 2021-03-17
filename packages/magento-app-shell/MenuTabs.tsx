@@ -1,10 +1,11 @@
-import { Theme, makeStyles } from '@material-ui/core'
+import { Theme, makeStyles, Link } from '@material-ui/core'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
 import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -18,7 +19,7 @@ const useStyles = makeStyles(
       pointerEvents: 'all',
       flexGrow: 1,
       height: 50,
-      padding: 10,
+      padding: '10px 0',
       [theme.breakpoints.down('xs')]: {
         display: 'none',
       },
@@ -36,6 +37,7 @@ const useStyles = makeStyles(
       ...theme.typography.h6,
       whiteSpace: 'nowrap',
       textAlign: 'center',
+      color: 'black',
       '&:hover': {
         textDecoration: 'none',
       },
@@ -69,34 +71,25 @@ export default function MenuTabs(props: MenuTabsProps) {
           {menu?.items?.[0]?.children?.map((cat) => {
             if (!cat || !cat.id || !cat.url_path) return null
             return (
-              <CategoryLink
-                key={cat.id}
-                url={cat.url_path}
-                filters={{}}
-                sort={{}}
-                color='textPrimary'
-                className={classes.link}
-              >
-                {cat.name}
+              <PageLink key={cat.id} href={cat.url_path}>
+                <Link className={classes.link}>
+                  {cat.name}
 
-                {router.asPath.startsWith(`/${cat?.url_path}`) && (
-                  <m.div layoutId='lijntje' className={classes.line} layout initial />
-                )}
-              </CategoryLink>
+                  {router.asPath.startsWith(`/${cat?.url_path}`) && (
+                    <m.div layoutId='menutabs-line' className={classes.line} layout initial />
+                  )}
+                </Link>
+              </PageLink>
             )
           })}
-          <CategoryLink
-            url='blog'
-            filters={{}}
-            sort={{}}
-            color='textPrimary'
-            className={classes.link}
-          >
-            Blog
-            {router.asPath.startsWith(`/blog`) && (
-              <m.div layoutId='lijntje' className={classes.line} layout initial />
-            )}
-          </CategoryLink>
+          <PageLink href='/blog'>
+            <Link className={classes.link}>
+              Blog
+              {router.asPath.startsWith(`/blog`) && (
+                <m.div layoutId='menutabs-line' className={classes.line} layout initial />
+              )}
+            </Link>
+          </PageLink>
         </SliderScroller>
       </SliderContainer>
       <SliderNext className={classes.prevNext} />
