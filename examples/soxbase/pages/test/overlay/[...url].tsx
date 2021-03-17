@@ -50,7 +50,7 @@ export default AppShellTextOverlay
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const urls = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  const urls = ['1']
 
   const paths = locales
     .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
