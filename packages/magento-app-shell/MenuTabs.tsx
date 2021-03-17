@@ -66,8 +66,8 @@ export default function MenuTabs(props: MenuTabsProps) {
   return (
     <SliderContext scrollSnapAlign={false}>
       <SliderPrev className={classes.prevNext} />
-      <SliderContainer classes={{ container: clsx(classes.container) }}>
-        <SliderScroller classes={{ scroller: clsx(classes.scroller) }}>
+      <SliderContainer classes={{ container: classes.container }}>
+        <SliderScroller classes={{ scroller: classes.scroller }}>
           {menu?.items?.[0]?.children?.map((cat) => {
             if (!cat || !cat.id || !cat.url_path) return null
             return (
