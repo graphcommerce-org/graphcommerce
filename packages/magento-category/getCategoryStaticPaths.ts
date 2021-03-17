@@ -29,7 +29,7 @@ const getCategoryStaticPaths = async (
   }
   data.categories?.items?.forEach(add)
 
-  return process.env.VERCEL_ENV === 'development' ? paths.slice(0, 1) : paths
+  return process.env.VERCEL_ENV !== 'production' ? paths.slice(0, 1) : paths
 }
 
 export default getCategoryStaticPaths

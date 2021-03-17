@@ -28,7 +28,7 @@ export type ImageMimeTypes =
   | 'image/tiff'
   | 'image/webp'
 
-export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'src'> & {
+export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'ref' | 'src'> & {
   alt: string
   srcSets: Partial<Record<ImageMimeTypes, string>>
   width: number

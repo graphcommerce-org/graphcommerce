@@ -64,13 +64,17 @@ const nextConfig = {
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
   },
+  experimental: {
+    optimizeImages: true,
+    optimizeFonts: true,
+  },
   pwa: {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
     domains,
-    imageSizes: [16, 32, 64, 128, 256],
+    imageSizes: [16, 32, 64, 128, 256, 384],
   },
   i18n: {
     locales,
