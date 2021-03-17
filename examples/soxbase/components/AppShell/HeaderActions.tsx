@@ -4,6 +4,8 @@ import SearchButton from '@reachdigital/magento-search/SearchButton'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
+import svgAccount from './desktop_account.svg'
+import svgCustomerService from './desktop_customer_service.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -33,24 +35,12 @@ export default function HeaderActions() {
       <SearchButton />
       <PageLink href='/faq/index'>
         <IconButton aria-label='Account' color='inherit' size='medium'>
-          <img
-            src='/icons/desktop_customer_service.svg'
-            alt='account'
-            width={32}
-            height={32}
-            loading='eager'
-          />
+          <img src={svgCustomerService} alt='account' width={32} height={32} loading='eager' />
         </IconButton>
       </PageLink>
 
       <CustomerFab>
-        <img
-          src='/icons/desktop_account.svg'
-          alt='account'
-          width={32}
-          height={32}
-          loading='eager'
-        />
+        <img src={svgAccount} alt='account' width={32} height={32} loading='eager' />
       </CustomerFab>
       <div className={classes.spacer} />
     </div>

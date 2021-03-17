@@ -4,7 +4,6 @@ import {
   ExitFeature,
   AnimateLayoutFeature,
   DragFeature,
-  MotionFeature,
 } from 'framer-motion'
 import React, { useEffect } from 'react'
 import PageTransition from '../PageTransition'

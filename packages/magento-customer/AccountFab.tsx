@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { PropsWithChildren } from 'react'
-import { SetRequired } from 'type-fest'
+import React from 'react'
 import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.gql'
 
 const useBadgeStyles = makeStyles((theme: Theme) => ({
@@ -11,7 +10,7 @@ const useBadgeStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type CustomerFabContentProps = SetRequired<PropsWithChildren<CustomerTokenQuery>, 'children'>
+type CustomerFabContentProps = CustomerTokenQuery & { children: React.ReactNode }
 
 function CustomerFabContent(props: CustomerFabContentProps) {
   const { customerToken, children } = props
