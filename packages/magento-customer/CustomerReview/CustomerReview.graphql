@@ -1,0 +1,20 @@
+fragment CustomerReview on ProductReview {
+  average_rating
+  created_at
+  product {
+    uid
+    url_key
+    name
+    thumbnail {
+      url
+      label
+    }
+  }
+  nickname
+  summary
+  text
+  ratings_breakdown {
+    name
+    value
+  }
+}
