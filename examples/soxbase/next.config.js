@@ -58,7 +58,7 @@ const nextConfig = {
     disable: process.env.NODE_ENV === 'development',
   },
   images: {
-    domains: process.env.IMAGE_DOMAINS.split(',').map((s) => s.trim()) || [],
+    domains: (process.env.IMAGE_DOMAINS ?? '').split(',').map((s) => s.trim()),
     imageSizes: [16, 32, 64, 128, 256, 384],
   },
   i18n: {
