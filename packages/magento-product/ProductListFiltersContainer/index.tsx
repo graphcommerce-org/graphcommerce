@@ -120,7 +120,7 @@ export default function ProductListFiltersContainer(props: ProductListFiltersCon
         >
           <SliderScroller
             classes={{ scroller: clsx(classes.scroller, isSticky && classes.scrollerSticky) }}
-            animate={{ paddingLeft: isSticky ? 80 : 0 }}
+            // animate={{ paddingLeft: isSticky ? 80 : 0 }}
           >
             {children}
           </SliderScroller>
