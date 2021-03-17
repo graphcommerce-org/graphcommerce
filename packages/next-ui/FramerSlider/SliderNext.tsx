@@ -25,12 +25,7 @@ export default function SliderNext(props: SliderPrevProps) {
   useDomEvent(containerRef, 'keyup', handleArrowLeft, { passive: true })
 
   return (
-    <m.div
-      layout={layout}
-      className={className}
-      style={{ visibility: disabled ? 'hidden' : 'visible' }}
-      animate={{ scale: disabled ? 0.001 : 1 }}
-    >
+    <m.div layout={layout} className={className} animate={{ scale: !disabled ? 1 : 0.001 }}>
       <Fab color='inherit' size='small' {...fabProps} onClick={next}>
         <ArrowForward color='inherit' />
       </Fab>
