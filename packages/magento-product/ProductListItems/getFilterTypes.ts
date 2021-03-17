@@ -1,9 +1,6 @@
 import { gql, ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { Exact } from '@reachdigital/magento-graphql'
-import {
-  AllFilterInputTypes,
-  FilterTypes,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import { AllFilterInputTypes, FilterTypes } from './filterTypes'
 
 const allFilterInputTypes: AllFilterInputTypes[] = [
   'FilterEqualTypeInput',

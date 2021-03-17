@@ -10,7 +10,7 @@ registerRouteUi('/', FullPageUi)
 
 export const getStaticProps = async ({ locale, ...rest }) => {
   const client = apolloClient(locale, true)
-  const config = (await client.query({ query: StoreConfigDocument })).data
-  const url = config?.storeConfig?.cms_home_page ?? ''
+  const conf = (await client.query({ query: StoreConfigDocument })).data
+  const url = conf?.storeConfig?.cms_home_page ?? ''
   return getCmsPageStaticProps({ params: { url }, locale, ...rest })
 }

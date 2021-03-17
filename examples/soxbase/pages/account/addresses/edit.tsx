@@ -11,7 +11,6 @@ import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCust
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
@@ -124,17 +123,16 @@ export default EditAddressPage
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale)
   const staticClient = apolloClient(locale)
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
 
   const countryRegions = staticClient.query({
     query: CountryRegionsDocument,
   })
 
-  await config
   return {
     props: {
       ...(await countryRegions).data,
-      apolloState: client.cache.extract(),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

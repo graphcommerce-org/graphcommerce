@@ -18,7 +18,6 @@ export const CategoryBreadcrumbFragmentDoc: DocumentNode<CategoryBreadcrumbFragm
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'category_id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'category_name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'category_url_path' } },
               ],
@@ -31,8 +30,6 @@ export const CategoryBreadcrumbFragmentDoc: DocumentNode<CategoryBreadcrumbFragm
 }
 export type CategoryBreadcrumbFragment = {
   breadcrumbs?: Types.Maybe<
-    Array<
-      Types.Maybe<Pick<Types.Breadcrumb, 'category_id' | 'category_name' | 'category_url_path'>>
-    >
+    Array<Types.Maybe<Pick<Types.Breadcrumb, 'category_name' | 'category_url_path'>>>
   >
 }

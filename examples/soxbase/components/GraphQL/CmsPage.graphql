@@ -1,4 +1,4 @@
-query CmsPage($url: String!, $urlKey: String!) {
+query CmsPage($url: String!, $urlKey: String!, $rootCategory: String!) {
   ...MenuQueryFragment
   ...FooterQueryFragment
   ...PageContentQueryFragment

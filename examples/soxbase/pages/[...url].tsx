@@ -6,17 +6,23 @@ import CategoryDescription from '@reachdigital/magento-category/CategoryDescript
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
-import getFilterTypes from '@reachdigital/magento-category/getFilterTypes'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import { ProductListDocument } from '@reachdigital/magento-product-types/ProductList.gql'
 import {
-  CategoryPageProps,
-  extractUrlQuery,
-  parseParams,
-} from '@reachdigital/magento-product-types/filteredProductList'
+  ProductListDocument,
+  ProductListQuery,
+} from '@reachdigital/magento-product-types/ProductList.gql'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
+import {
+  FilterTypes,
+  ProductListParams,
+} from '@reachdigital/magento-product/ProductListItems/filterTypes'
+import {
+  extractUrlQuery,
+  parseParams,
+} from '@reachdigital/magento-product/ProductListItems/filteredProductList'
+import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
@@ -25,7 +31,6 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
-import NextError from 'next/error'
 import React from 'react'
 import FullPageUi from '../components/AppShell/FullPageUi'
 import Asset from '../components/Asset'
@@ -39,7 +44,11 @@ import apolloClient from '../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
 
-type Props = CategoryPageQuery & CategoryPageProps
+type Props = CategoryPageQuery &
+  ProductListQuery & {
+    filterTypes: FilterTypes
+    params: ProductListParams
+  }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
@@ -87,8 +96,7 @@ function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
 
   const category = categories?.items?.[0]
-  if (!category || !products || !params || !filters || !filterTypes)
-    return <NextError statusCode={503} title='Loading skeleton' />
+  if (!category || !products || !params || !filters || !filterTypes) return null
 
   const parentCategory = category.breadcrumbs?.[0]
   const isLanding = category.display_mode === 'PAGE'
@@ -176,27 +184,30 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   if (!url || !query) return { notFound: true }
 
   const client = apolloClient(locale, true)
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
   const staticClient = apolloClient(locale)
-  const categoryPage = staticClient.query({ query: CategoryPageDocument, variables: { url } })
-  const rootCategory = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
+  const categoryPage = staticClient.query({
+    query: CategoryPageDocument,
+    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+  })
+  const categoryUid = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
 
   const productListParams = parseParams(url, query, await filterTypes)
 
-  if (!productListParams || !(await rootCategory)) return { notFound: true }
+  if (!productListParams || !(await categoryUid)) return { notFound: true }
 
   const products = client.query({
     query: ProductListDocument,
     variables: mergeDeep(productListParams, {
-      filters: { category_uid: { eq: await rootCategory } },
-      rootCategory: await rootCategory,
+      filters: { category_uid: { eq: await categoryUid } },
+      categoryUid: await categoryUid,
     }),
   })
 
   // assertAllowedParams(await params, (await products).data)
-  if (!(await rootCategory) || !(await products).data) return { notFound: true }
+  if (!(await categoryUid) || !(await products).data) return { notFound: true }
 
   return {
     props: {
@@ -204,7 +215,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await products).data,
       filterTypes: await filterTypes,
       params: productListParams,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

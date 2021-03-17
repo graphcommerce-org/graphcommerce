@@ -39,7 +39,7 @@ export const ProductFiltersFragmentDoc: DocumentNode<ProductFiltersFragment, unk
                             name: { kind: 'Name', value: 'eq' },
                             value: {
                               kind: 'Variable',
-                              name: { kind: 'Name', value: 'rootCategory' },
+                              name: { kind: 'Name', value: 'categoryUid' },
                             },
                           },
                         ],

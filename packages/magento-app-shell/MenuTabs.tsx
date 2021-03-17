@@ -1,105 +1,110 @@
-import { Theme, Tabs, Tab, TabsProps, TabProps, makeStyles } from '@material-ui/core'
-import CategoryLink from '@reachdigital/magento-category/CategoryLink'
+import { Theme, makeStyles, Link } from '@material-ui/core'
+import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
+import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
+import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
+import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
+import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { MenuQueryFragment } from './MenuQueryFragment.gql'
 
-const useTabsStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      margin: 0,
-      padding: 0,
+    container: {
+      width: '100%',
+      position: 'relative',
+      pointerEvents: 'all',
+      height: 50,
+      padding: '10px 0',
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
-      [theme.breakpoints.up('md')]: {
-        pointerEvents: 'all',
-        // marginLeft: `calc(${theme.spacings.xxs} * -1)`,
-        // marginRight: `calc(${theme.spacings.xxs} * -1)`,
-        flexGrow: 1,
+    },
+    scroller: {
+      columnGap: '40px',
+      padding: '0 40px',
+    },
+    prevNext: {
+      pointerEvents: 'all',
+      position: 'absolute',
+      background: theme.palette.background.default,
+      top: 5,
+      [theme.breakpoints.down('sm')]: { display: 'none' },
+    },
+    prev: {
+      left: 0,
+    },
+    next: {
+      right: 0,
+    },
+    prevNextFab: {
+      boxShadow: 'none',
+    },
+    link: {
+      ...theme.typography.body1,
+      fontWeight: 500,
+      textTransform: 'unset',
+      whiteSpace: 'nowrap',
+      color: 'black',
+      '&:hover': {
+        textDecoration: 'none',
       },
     },
-    indicator: {
+    line: {
+      maxWidth: 40,
+      width: '100%',
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor: 'transparent',
-      '& > span': {
-        maxWidth: 40,
-        width: '100%',
-        backgroundColor: theme.palette.primary.main,
-      },
+      height: 2,
+      background: theme.palette.primary.main,
+      margin: '0 auto',
+      marginTop: 7,
     },
   }),
   { name: 'DesktopMenuTabs' },
 )
 
-const useTabStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      ...theme.typography.body1,
-      fontWeight: 500,
-      textTransform: 'unset',
-      padding: `6px ${theme.spacings.xxs}`,
-      opacity: 'unset',
-      [theme.breakpoints.up('sm')]: {
-        minWidth: 'unset',
-      },
-    },
-  }),
-  { name: 'DesktopMenuTab' },
-)
-
-export type MenuTabsProps = MenuQueryFragment &
-  Omit<TabsProps<'menu'>, 'component' | 'value' | 'children'> & {
-    tabProps?: Omit<TabProps<'a'>, 'label' | 'component' | 'value'>
-  }
+export type MenuTabsProps = MenuQueryFragment
 
 export default function MenuTabs(props: MenuTabsProps) {
-  const { menu, tabProps, ...tabsProps } = props
-  const tabsClasses = useTabsStyles(props)
-  const tabClasses = useTabStyles(props)
+  const { menu } = props
+  const classes = useStyles()
   const router = useRouter()
 
-  const selectedIdx =
-    menu?.items?.[0]?.children?.findIndex((cat) => router.asPath.startsWith(`/${cat?.url_path}`)) ??
-    0
-
   return (
-    <Tabs
-      component='menu'
-      value={selectedIdx >= 0 ? selectedIdx : false}
-      textColor='inherit'
-      variant='scrollable'
-      scrollButtons='auto'
-      {...tabsProps}
-      classes={{ ...tabsClasses, ...tabsProps.classes }}
-      TabIndicatorProps={{ children: <span /> }}
-    >
-      {menu?.items?.[0]?.children?.map((cat) => {
-        if (!cat || !cat.id || !cat.url_path) return null
-        return (
-          <CategoryLink key={cat.id} url={cat.url_path} filters={{}} sort={{}} noLink>
-            <Tab
-              key={cat.id}
-              label={cat.name}
-              component='a'
-              value={cat.id}
-              {...tabProps}
-              classes={{ ...tabClasses, ...tabProps?.classes }}
-            />
-          </CategoryLink>
-        )
-      })}
-
-      <PageLink href='/blog'>
-        <Tab
-          label='Blog'
-          component='a'
-          value='Blog'
-          {...tabProps}
-          classes={{ ...tabClasses, ...tabProps?.classes }}
+    <SliderContext scrollSnapAlign={false}>
+      <SliderContainer classes={{ container: classes.container }}>
+        <SliderScroller classes={{ scroller: classes.scroller }}>
+          {menu?.items?.map((cat) => {
+            if (!cat || !cat.url_path || !cat.include_in_menu) return null
+            return (
+              <PageLink key={cat.url_path} href={`/${cat.url_path}`}>
+                <Link className={classes.link}>
+                  {cat.name}
+                  {router.asPath.startsWith(`/${cat?.url_path}`) && (
+                    <div className={classes.line} />
+                  )}
+                </Link>
+              </PageLink>
+            )
+          })}
+          <PageLink href='/blog'>
+            <Link className={classes.link}>
+              Blog
+              {router.asPath.startsWith(`/blog`) && <div className={classes.line} />}
+            </Link>
+          </PageLink>
+        </SliderScroller>
+        <SliderPrev
+          className={clsx(classes.prevNext, classes.prev)}
+          classes={{ root: classes.prevNextFab }}
         />
-      </PageLink>
-    </Tabs>
+        <SliderNext
+          className={clsx(classes.prevNext, classes.next)}
+          classes={{ root: classes.prevNextFab }}
+        />
+      </SliderContainer>
+    </SliderContext>
   )
 }

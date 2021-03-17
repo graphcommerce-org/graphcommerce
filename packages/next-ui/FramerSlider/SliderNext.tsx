@@ -15,8 +15,7 @@ export default function SliderNext(props: SliderPrevProps) {
   const { layout, className, ...fabProps } = props
   const [{ items, containerRef }, dispatch] = useSliderContext()
 
-  const disabled = items[items.length - 1]?.visible ?? false
-
+  const disabled = items[items.length - 1]?.visible ?? true
   const next = () => !disabled && dispatch({ type: 'NAVIGATE_NEXT' })
 
   const handleArrowLeft = (e: KeyboardEvent | Event) => {

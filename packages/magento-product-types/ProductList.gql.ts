@@ -42,7 +42,7 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
         },
         {
           kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'rootCategory' } },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'categoryUid' } },
           type: {
             kind: 'NonNullType',
             type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
@@ -445,7 +445,7 @@ export const ProductListDocument: DocumentNode<ProductListQuery, ProductListQuer
                             name: { kind: 'Name', value: 'eq' },
                             value: {
                               kind: 'Variable',
-                              name: { kind: 'Name', value: 'rootCategory' },
+                              name: { kind: 'Name', value: 'categoryUid' },
                             },
                           },
                         ],
@@ -496,7 +496,7 @@ export type ProductListQueryVariables = Types.Exact<{
   filters?: Types.Maybe<Types.ProductAttributeFilterInput>
   sort?: Types.Maybe<Types.ProductAttributeSortInput>
   search?: Types.Maybe<Types.Scalars['String']>
-  rootCategory: Types.Scalars['String']
+  categoryUid: Types.Scalars['String']
 }>
 
 export type ProductListQuery = {

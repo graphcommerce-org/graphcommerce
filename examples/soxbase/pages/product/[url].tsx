@@ -108,10 +108,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const urlKey = params?.url ?? '??'
   const productUrls = [`product/${urlKey}`, 'product/global']
 
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
-    variables: { urlKey, productUrls },
+    variables: {
+      urlKey,
+      productUrls,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
   const typeProductPage = staticClient.query({
     query: SimpleProductPageDocument,
@@ -129,7 +133,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

@@ -8,10 +8,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {
       pointerEvents: 'all',
-      [theme.breakpoints.down('sm')]: {},
-      [theme.breakpoints.up('md')]: {
-        marginRight: `${theme.spacings.md}`,
-      },
     },
     logoImg: {
       height: theme.page.headerInnerHeight.xs,
