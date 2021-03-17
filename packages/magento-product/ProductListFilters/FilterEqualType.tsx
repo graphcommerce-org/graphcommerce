@@ -120,19 +120,11 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
     pushRoute(linkParams)
   }
 
-  const applyFilter = () => {
-    pushRoute({
-      ...params,
-      filters: { ...params.filters, [attribute_code]: selectedFilter },
-    })
-  }
-
   return (
     <ChipMenu
       variant='outlined'
       {...chipProps}
       label={label}
-      onClose={applyFilter}
       selected={currentLabels.length > 0}
       selectedLabel={currentLabels.length > 0 ? currentLabels.join(', ') : undefined}
       onDelete={currentLabels.length > 0 ? removeFilter : undefined}
@@ -184,6 +176,28 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
           )
         })}
       </div>
+
+      <CategoryLink
+        {...params}
+        filters={{ ...params.filters, [attribute_code]: selectedFilter }}
+        noLink
+      >
+        <Button
+          variant='pill'
+          size='small'
+          color='primary'
+          disableElevation
+          className={classes.button}
+          onClick={() => {
+            setParams({
+              ...params,
+              filters: { ...params.filters, [attribute_code]: selectedFilter },
+            })
+          }}
+        >
+          Apply
+        </Button>
+      </CategoryLink>
 
       <Button
         onClick={resetFilter}
