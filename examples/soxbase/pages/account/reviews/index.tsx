@@ -1,0 +1,70 @@
+import { useQuery } from '@apollo/client'
+import { Container, NoSsr } from '@material-ui/core'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { AccountDashboardReviewsDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardReviews.gql'
+import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
+import PageMeta from '@reachdigital/magento-store/PageMeta'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import IconTitle from '@reachdigital/next-ui/IconTitle'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import React from 'react'
+import OverlayPage from '../../../components/AppShell/OverlayPage'
+import apolloClient from '../../../lib/apolloClient'
+
+type Props = any
+type GetPageStaticProps = GetStaticProps<Props>
+
+function AccountReviewsPage(props: Props) {
+  const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
+    fetchPolicy: 'cache-and-network',
+  })
+  const customer = data?.customer
+
+  return (
+    <OverlayPage
+      title='Reviews'
+      variant='bottom'
+      fullHeight
+      backFallbackHref='/account'
+      backFallbackTitle='Account'
+    >
+      <PageMeta title='Reviews' metaDescription='View all your reviews' metaRobots={['noindex']} />
+      <Container maxWidth='md'>
+        <NoSsr>
+          <IconTitle
+            iconSrc='/icons/desktop_reviews.svg'
+            title='Reviews'
+            alt='reviews'
+            size='large'
+          />
+          <AccountReviews {...(customer?.reviews ?? { items: [] })} loading={loading} />
+        </NoSsr>
+      </Container>
+    </OverlayPage>
+  )
+}
+
+AccountReviewsPage.Layout = PageLayout
+
+registerRouteUi('/account/reviews', OverlayPage)
+
+export default AccountReviewsPage
+
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(locale)
+  // const staticClient = apolloClient(locale)
+  const config = client.query({ query: StoreConfigDocument })
+
+  // const countryRegions = staticClient.query({
+  //   query: CountryRegionsDocument,
+  // })
+
+  await config
+  return {
+    props: {
+      // ...(await countryRegions).data,
+      apolloState: client.cache.extract(),
+    },
+  }
+}
