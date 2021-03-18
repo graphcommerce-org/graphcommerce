@@ -11,7 +11,6 @@ import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCust
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'

@@ -35,7 +35,6 @@ function AccountOrdersPage() {
             metaDescription='View all your orders'
             metaRobots={['noindex']}
           />
-
           <IconTitle
             iconSrc='/icons/desktop_checkout_box.svg'
             title='Orders'

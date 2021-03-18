@@ -12,6 +12,7 @@ export type AccountOrdersProps = AccountOrdersFragment
 const useStyles = makeStyles(
   (theme: Theme) => ({
     ordersContainer: {
+      ...theme.typography.body2,
       marginBottom: theme.spacings.md,
     },
     olderOrdersContainer: {
@@ -39,7 +40,7 @@ export default function AccountOrders(props: AccountOrdersProps) {
     .slice(Math.max(orders?.items?.length - 2, 0), orders?.items?.length)
     .reverse()
 
-  const restOrders = orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
+  const olderOrders = orders?.items.slice(0, Math.max(orders?.items?.length - 2, 0)).reverse()
 
   return (
     <div className={classes.ordersContainer}>
@@ -50,7 +51,7 @@ export default function AccountOrders(props: AccountOrdersProps) {
 
       {orders?.items && orders?.items?.length >= amountLatestOrders + 1 && (
         <SectionContainer label='Older' className={clsx(classes.olderOrdersContainer)}>
-          {restOrders?.map((order) => order && <OrderCard {...order} images={images} />)}
+          {olderOrders?.map((order) => order && <OrderCard {...order} images={images} />)}
         </SectionContainer>
       )}
     </div>

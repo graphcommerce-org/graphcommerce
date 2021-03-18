@@ -9,7 +9,6 @@ import AccountAddresses from '@reachdigital/magento-customer/AccountAddresses'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import localeToStore from '@reachdigital/magento-store/localeToStore'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -22,7 +21,7 @@ type GetPageStaticProps = GetStaticProps<Props>
 
 function AccountAddressesPage(props: Props) {
   const { countries } = props
-  const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
+  const { data } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
   const customer = data?.customer
@@ -48,12 +47,7 @@ function AccountAddressesPage(props: Props) {
             alt='addresses'
             size='large'
           />
-
-          <AccountAddresses
-            loading={loading}
-            addresses={customer?.addresses}
-            countries={countries}
-          />
+          <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
         </NoSsr>
       </Container>
     </OverlayPage>
