@@ -130,7 +130,7 @@ defaultTheme.overrides = {
   MuiCssBaseline: {
     '@global': {
       '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
-        fontFamily: 'Graphic',
+        fontFamily: 'Graphik',
         fontWeight,
         fontStyle,
         fontDisplay: 'swap',
