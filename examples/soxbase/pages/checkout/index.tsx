@@ -1,6 +1,9 @@
+import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
+import { Alert } from '@material-ui/lab'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import {
   CountryRegionsDocument,
@@ -29,6 +32,8 @@ function ShippingPage({ countries }: Props) {
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
+  const { data: cartData } = useQuery(ClientCartDocument)
+  const cartExists = typeof cartData?.cart !== 'undefined'
 
   const forceSubmit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -60,20 +65,26 @@ function ShippingPage({ countries }: Props) {
         />
 
         <NoSsr>
-          <EmailForm />
-          <ShippingAddressForm countries={countries} doSubmit={addressForm} />
-          <ShippingMethodForm doSubmit={methodForm} />
-          <div className={classes.actions}>
-            <Button
-              type='submit'
-              color='secondary'
-              variant='pill'
-              size='large'
-              onClick={forceSubmit}
-            >
-              Next <ArrowForwardIos fontSize='inherit' />
-            </Button>
-          </div>
+          {!cartExists && <Alert severity='error'>Cart does not exist</Alert>}
+
+          {cartExists && (
+            <>
+              <EmailForm />
+              <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+              <ShippingMethodForm doSubmit={methodForm} />
+              <div className={classes.actions}>
+                <Button
+                  type='submit'
+                  color='secondary'
+                  variant='pill'
+                  size='large'
+                  onClick={forceSubmit}
+                >
+                  Next <ArrowForwardIos fontSize='inherit' />
+                </Button>
+              </div>
+            </>
+          )}
         </NoSsr>
       </Container>
     </OverlayPage>

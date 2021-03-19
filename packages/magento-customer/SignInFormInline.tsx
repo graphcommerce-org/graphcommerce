@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       gridColumnGap: theme.spacings.xs,
     },
   }),
-  { name: 'SignIn' },
+  { name: 'SignInFormInline' },
 )
 
 type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
@@ -32,10 +32,6 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
   })
   const { register, errors, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
-
-  const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
-
-  if (validToken) return <Alert severity='info'>Already logged in</Alert>
 
   return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
