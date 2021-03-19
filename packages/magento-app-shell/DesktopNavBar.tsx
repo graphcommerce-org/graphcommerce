@@ -59,7 +59,7 @@ const useStyles = makeStyles(
       height: 2,
       background: theme.palette.primary.main,
       margin: '0 auto',
-      marginTop: 7,
+      marginTop: 6,
     },
   }),
   { name: 'DesktopMenuTabs' },
@@ -67,7 +67,7 @@ const useStyles = makeStyles(
 
 export type MenuTabsProps = MenuQueryFragment
 
-export default function MenuTabs(props: MenuTabsProps) {
+export default function DesktopNavBar(props: MenuTabsProps) {
   const { menu } = props
   const classes = useStyles()
   const router = useRouter()
@@ -77,7 +77,7 @@ export default function MenuTabs(props: MenuTabsProps) {
       <SliderContainer classes={{ container: classes.container }}>
         <SliderScroller classes={{ scroller: classes.scroller }}>
           {menu?.items?.map((cat) => {
-            if (!cat || !cat.url_path || !cat.include_in_menu) return null
+            if (!cat?.url_path || !cat.include_in_menu) return null
             return (
               <PageLink key={cat.url_path} href={`/${cat.url_path}`}>
                 <Link className={classes.link}>
@@ -89,12 +89,6 @@ export default function MenuTabs(props: MenuTabsProps) {
               </PageLink>
             )
           })}
-          <PageLink href='/blog'>
-            <Link className={classes.link}>
-              Blog
-              {router.asPath.startsWith(`/blog`) && <div className={classes.line} />}
-            </Link>
-          </PageLink>
         </SliderScroller>
         <SliderPrev
           className={clsx(classes.prevNext, classes.prev)}

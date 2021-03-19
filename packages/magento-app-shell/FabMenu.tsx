@@ -2,7 +2,7 @@ import { Theme, useMediaQuery, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import MenuFab from '@reachdigital/magento-app-shell/MenuFab'
 import { MenuQueryFragment } from '@reachdigital/magento-app-shell/MenuQueryFragment.gql'
-import CartFab from '@reachdigital/magento-cart/CartFab'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
 
@@ -33,18 +33,19 @@ const useStyles = makeStyles(
         bottom: theme.page.vertical,
       },
     },
-    cartFab: {
-      boxShadow: 'none',
-    },
   }),
   { name: 'FabMenu' },
 )
 
-type FabMenuProps = MenuQueryFragment
+type FabMenuProps = MenuQueryFragment & {
+  children?: React.ReactNode
+  cart: React.ReactNode
+  search?: React.ReactNode
+} & UseStyles<typeof useStyles>
 
 export default function FabMenu(props: FabMenuProps) {
-  const { menu } = props
-  const classes = useStyles()
+  const { menu, children, cart, search } = props
+  const classes = useStyles(props)
 
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -65,22 +66,11 @@ export default function FabMenu(props: FabMenuProps) {
         className={classes.menu}
         style={{ opacity: actionsAnimOpacity, translateY: actionsAnimTop, filter }}
       >
-        <MenuFab menu={menu} />
+        <MenuFab menu={menu} search={search}>
+          {children}
+        </MenuFab>
       </m.div>
-      <m.div style={{ filter }}>
-        <CartFab
-          className={classes.cartFab}
-          icon={
-            <img
-              src='/icons/desktop_shopping_bag.svg'
-              alt='shopping bag'
-              width={32}
-              height={32}
-              loading='eager'
-            />
-          }
-        />
-      </m.div>
+      <m.div style={{ filter }}>{cart}</m.div>
     </m.div>
   )
 }
