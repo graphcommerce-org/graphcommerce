@@ -7,7 +7,7 @@ import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
@@ -55,6 +55,7 @@ export default function SignInForm(props: SignInFormProps) {
           id='password'
           name='password'
           label='Password'
+          autoFocus
           required={required.password}
           inputRef={register({ required: required.password })}
           FormHelperTextProps={{

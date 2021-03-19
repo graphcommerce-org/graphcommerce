@@ -72,6 +72,9 @@ export default function GuestEmailForm({
   return (
     <form
       noValidate
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
       {...(canSubmit && { onChange: debounce(() => handleSubmit(() => {})(), 500) })}
       className={classes.form}
     >

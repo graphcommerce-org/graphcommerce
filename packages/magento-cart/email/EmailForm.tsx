@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { Link, makeStyles, TextField, Theme } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
@@ -102,9 +101,6 @@ export default function EmailForm() {
             <div className={formClasses.formRow}>
               <SignInFormInline email={cartData?.cart?.email ?? ''} />
             </div>
-            <PageLink href='/account/forgot-password' key='forgot-password'>
-              <Link color='secondary'>Forgot password?</Link>
-            </PageLink>
           </AnimatedRow>
         )}
 
