@@ -8,7 +8,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
@@ -28,6 +28,7 @@ import useFormGqlQuery from '@reachdigital/react-hook-form/useFormGqlQuery'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router'
 import React from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
@@ -37,7 +38,13 @@ type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 const useStyles = makeStyles(
   (theme: Theme) => ({
     titleContainer: {
+      ...theme.typography.body1,
       marginBottom: theme.spacings.xs,
+    },
+    continueShoppingButton: {
+      display: 'block',
+      margin: `${theme.spacings.md} auto 0 auto`,
+      maxWidth: 'max-content',
     },
   }),
   { name: 'GuestOrderEmailSignIn' },
@@ -88,6 +95,8 @@ function AccountSignInPage() {
   if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && !hasAccount)
     mode = 'signup'
   if (token?.customerToken && token?.customerToken.valid) mode = 'redirect'
+
+  const router = useRouter()
 
   return (
     <OverlayPage title='Sign In' variant='center' backFallbackTitle='Home' backFallbackHref='/'>
@@ -143,6 +152,16 @@ function AccountSignInPage() {
                 </PageLink>
                 .
               </Typography>
+
+              <Button
+                onClick={() => router.back()}
+                color='primary'
+                variant='contained'
+                size='large'
+                className={classes.continueShoppingButton}
+              >
+                Continue shopping
+              </Button>
             </div>
           )}
 
