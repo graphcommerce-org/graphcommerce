@@ -1,5 +1,6 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
