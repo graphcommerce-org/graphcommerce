@@ -5269,8 +5269,7 @@ export type VirtualProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a
-     * new product.
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -5459,8 +5458,7 @@ export type SimpleProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a
-     * new product.
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -5963,8 +5961,7 @@ export type DownloadableProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a
-     * new product.
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6371,8 +6368,7 @@ export type BundleProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a
-     * new product.
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6764,8 +6760,7 @@ export type GroupedProduct = PhysicalProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a
-     * new product.
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6986,8 +6981,7 @@ export type ConfigurableProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a
-     * new product.
+     * The beginning date for new product listings, and determines if the product is featured as a new product.
      *
      * @deprecated The field should not be used on the storefront.
      */

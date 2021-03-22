@@ -1,14 +1,11 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       width: '100%',
-      marginRight: theme.spacings.xxs,
-      [theme.breakpoints.up('md')]: {
-        width: 130,
-      },
       '& fieldset': {
         border: `2px solid rgba(0,0,0,0.1)`,
       },
@@ -20,8 +17,10 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-export default function SearchButton() {
-  const classes = useStyles()
+type SearchButtonProps = UseStyles<typeof useStyles>
+
+export default function SearchButton(props: SearchButtonProps) {
+  const classes = useStyles(props)
   return (
     // <PageLink href='/search'>
     <TextField

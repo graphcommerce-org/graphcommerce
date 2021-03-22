@@ -33,7 +33,7 @@ export default function EmptyCart() {
     <div className={classes.root}>
       <div>
         <img
-          src='/icons/desktop_epmty_cart.svg'
+          src='/icons/desktop_empty_cart.svg'
           alt='shopping bag'
           className={classes.img}
           loading='eager'
