@@ -12,6 +12,7 @@ import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
@@ -62,23 +63,25 @@ function FullPageUi(props: FullPageUiProps) {
 
             <PageLink href='/faq/index'>
               <IconButton aria-label='Account' color='inherit' size='medium'>
-                <img
+                <PictureResponsiveNext
                   src='/icons/desktop_customer_service.svg'
-                  alt=''
+                  alt='Customer Service'
+                  loading='eager'
                   width={32}
                   height={32}
-                  loading='eager'
+                  type='image/svg+xml'
                 />
               </IconButton>
             </PageLink>
 
             <CustomerFab>
-              <img
+              <PictureResponsiveNext
                 src='/icons/desktop_account.svg'
-                alt='account'
+                alt='Account'
+                loading='eager'
                 width={32}
                 height={32}
-                loading='eager'
+                type='image/svg+xml'
               />
             </CustomerFab>
           </DesktopNavActions>
@@ -86,28 +89,34 @@ function FullPageUi(props: FullPageUiProps) {
       }
     >
       <MenuFab {...menuProps} search={<SearchButton />}>
-        <MenuFabSecondaryItem iconSrc='/icons/desktop_account.svg' href='/account'>
+        <MenuFabSecondaryItem src='/icons/desktop_account.svg' type='image/svg+xml' href='/account'>
           Account
         </MenuFabSecondaryItem>
-        <MenuFabSecondaryItem iconSrc='/icons/desktop_customer_service.svg' href='/faq/index'>
+        <MenuFabSecondaryItem
+          src='/icons/desktop_customer_service.svg'
+          type='image/svg+xml'
+          href='/faq/index'
+        >
           Customer Service
         </MenuFabSecondaryItem>
-        <MenuFabSecondaryItem iconSrc='/icons/desktop_wishlist.svg' href='/wishlist'>
+        <MenuFabSecondaryItem
+          src='/icons/desktop_wishlist.svg'
+          type='image/svg+xml'
+          href='/wishlist'
+        >
           Wishlist
         </MenuFabSecondaryItem>
       </MenuFab>
-      <CartFab
-        style={{ boxShadow: 'none' }}
-        icon={
-          <img
-            src='/icons/desktop_shopping_bag.svg'
-            alt='shopping bag'
-            width={32}
-            height={32}
-            loading='eager'
-          />
-        }
-      />
+      <CartFab style={{ boxShadow: 'none' }}>
+        <PictureResponsiveNext
+          src='/icons/desktop_shopping_bag.svg'
+          alt='shopping bag'
+          loading='eager'
+          width={32}
+          height={32}
+          type='image/svg+xml'
+        />
+      </CartFab>
       {children}
       <Footer footer={footer} />
     </NextFullPageUi>
