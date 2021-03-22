@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
-import { Alert } from '@material-ui/lab'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
+import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -55,20 +55,20 @@ function ShippingPage({ countries }: Props) {
     >
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
-        <CheckoutStepper steps={3} currentStep={2} />
-
-        <IconTitle
-          iconSrc='/icons/desktop_checkout_box.svg'
-          title='Shipping'
-          alt='box'
-          size='normal'
-        />
-
         <NoSsr>
-          {!cartExists && <Alert severity='error'>Cart does not exist</Alert>}
+          {!cartExists && <EmptyCart />}
 
           {cartExists && (
             <>
+              <CheckoutStepper steps={3} currentStep={2} />
+
+              <IconTitle
+                iconSrc='/icons/desktop_checkout_box.svg'
+                title='Shipping'
+                alt='box'
+                size='normal'
+              />
+
               <EmailForm />
               <ShippingAddressForm countries={countries} doSubmit={addressForm} />
               <ShippingMethodForm doSubmit={methodForm} />

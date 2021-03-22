@@ -17,7 +17,7 @@ const useStyles = makeStyles(
       gridColumnGap: theme.spacings.xs,
       gridTemplateColumns: '1fr',
       [theme.breakpoints.up('md')]: {
-        gridTemplateColumns: '1fr 0.2fr',
+        gridTemplateColumns: '5fr 1fr',
       },
     },
     button: {
