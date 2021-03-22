@@ -13,7 +13,9 @@ type NameFieldsProps = Pick<UseFormMethods, 'register' | 'errors' | 'formState' 
 export default function NameFields(props: NameFieldsProps) {
   const { errors, register, formState, disableFields, fieldOptions, control } = props
   const classes = useFormStyles()
-  const required = Object.fromEntries(Object.values(fieldOptions).map((r) => [r.name, r.required]))
+  const required = Object.fromEntries(
+    Object.values(fieldOptions).map((r) => [r?.name, r?.required]),
+  )
 
   return (
     <>
