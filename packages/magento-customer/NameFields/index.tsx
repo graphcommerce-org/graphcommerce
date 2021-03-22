@@ -19,7 +19,7 @@ export default function NameFields(props: NameFieldsProps) {
 
   return (
     <>
-      <div className={classes.formRow} key='namefields-prefix'>
+      <div className={classes.formRow}>
         {fieldOptions.prefix && (
           <Controller
             defaultValue='Dhr.'
@@ -39,6 +39,7 @@ export default function NameFields(props: NameFieldsProps) {
                 onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 value={value}
+                key='prefix'
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
                   <MenuItem key={option} value={option}>
@@ -57,6 +58,7 @@ export default function NameFields(props: NameFieldsProps) {
           type='text'
           name={fieldOptions.firstname.name}
           label='First Name'
+          key='firstname'
           required={!!required.firstname}
           inputRef={register({ required: required.firstname })}
           disabled={disableFields}
@@ -74,6 +76,7 @@ export default function NameFields(props: NameFieldsProps) {
           error={!!errors[fieldOptions.lastname.name]}
           name={fieldOptions.lastname.name}
           label='Last Name'
+          key='lastname'
           required={!!required.lastname}
           inputRef={register({ required: required.lastname })}
           helperText={formState.isSubmitted && errors[fieldOptions.lastname.name]?.message}

@@ -65,13 +65,14 @@ export default function AddressFields(props: AddressFieldsProps) {
 
   return (
     <>
-      <div className={classes.formRow} key='addressfields-first-row'>
+      <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='text'
           error={!!errors[fieldOptions.street.name]}
           name={fieldOptions.street.name}
           label='Street'
+          key='street'
           required={!!required.street}
           inputRef={register({ required: required.street })}
           helperText={formState.isSubmitted && errors[fieldOptions.street.name]?.message}
@@ -88,6 +89,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           error={!!errors[fieldOptions.houseNumber.name]}
           name={fieldOptions.houseNumber.name}
           label='Housenumber'
+          key='housenumber'
           required={!!required.houseNumber}
           inputRef={register({
             required: required.houseNumber,
@@ -108,6 +110,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           required={!!required.addition}
           name={fieldOptions.addition.name}
           label='Addition'
+          key='addition'
           inputRef={register({ required: required.addition })}
           helperText={formState.isSubmitted && errors[fieldOptions.addition.name]?.message}
           disabled={disableFields}
@@ -118,7 +121,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           }}
         />
       </div>
-      <div className={classes.formRow} key='addressfields-second-row'>
+      <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -126,6 +129,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           required={!!required.postcode}
           name={fieldOptions.postcode.name}
           label='Postcode'
+          key='postcode'
           inputRef={register({ required: required.postcode })}
           helperText={formState.isSubmitted && errors[fieldOptions.postcode.name]?.message}
           disabled={disableFields}
@@ -141,6 +145,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           required={!!required.city}
           name={fieldOptions.city.name}
           label='City'
+          key='city'
           inputRef={register({ required: required.city })}
           helperText={formState.isSubmitted && errors[fieldOptions.city.name]?.message}
           disabled={disableFields}
@@ -151,7 +156,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           }}
         />
       </div>
-      <div className={classes.formRow} key='addressfields-third-row'>
+      <div className={classes.formRow}>
         <Controller
           defaultValue={country ?? ''}
           control={control}
@@ -170,6 +175,7 @@ export default function AddressFields(props: AddressFieldsProps) {
                   error={!!errors[fieldOptions.countryCode.name]}
                   name={name}
                   label='Country'
+                  key='country'
                   required={!!required.countryCode}
                   helperText={errors[fieldOptions.countryCode.name]?.message}
                   disabled={disableFields}
@@ -201,6 +207,7 @@ export default function AddressFields(props: AddressFieldsProps) {
                     error={!!errors[fieldOptions.regionId.name]}
                     name={name}
                     label='Region'
+                    key='region'
                     required={!!required.regionId}
                     helperText={errors[fieldOptions.regionId.name]?.message}
                     disabled={disableFields}

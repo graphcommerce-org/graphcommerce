@@ -82,6 +82,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       <AnimatePresence initial={false}>
         <NameFields
           {...form}
+          key='namefields'
           disableFields={disableFields}
           fieldOptions={{
             firstname: {
@@ -96,6 +97,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         />
         <AddressFields
           {...form}
+          key='addressfields'
           countryCode={currentCountryCode}
           countries={countries}
           disableFields={disableFields}
