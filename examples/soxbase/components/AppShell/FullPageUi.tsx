@@ -95,10 +95,10 @@ function FullPageUi(props: FullPageUiProps) {
         <FabMenuSecondaryItem iconSrc='/icons/desktop_account.svg' href='/account'>
           Account
         </FabMenuSecondaryItem>
-        <FabMenuSecondaryItem iconSrc='/icons/desktop_customer_service.svg' href='/account'>
+        <FabMenuSecondaryItem iconSrc='/icons/desktop_customer_service.svg' href='/faq/index'>
           Customer Service
         </FabMenuSecondaryItem>
-        <FabMenuSecondaryItem iconSrc='/icons/desktop_wishlist.svg' href='/account'>
+        <FabMenuSecondaryItem iconSrc='/icons/desktop_wishlist.svg' href='/wishlist'>
           Wishlist
         </FabMenuSecondaryItem>
       </FabMenu>
