@@ -7,8 +7,8 @@ import {
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
@@ -18,6 +18,8 @@ import RowProductBackstory from '../../components/RowProductBackstory'
 import RowProductGrid from '../../components/RowProductGrid'
 import RowSwipeableGrid from '../../components/RowSwipeableGrid'
 import apolloClient from '../../lib/apolloClient'
+
+export const config = { unstable_JsPreload: false }
 
 type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
@@ -73,24 +75,28 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
 
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: CmsPageDocument,
-    variables: { url: `page/${urlKey}`, urlKey },
+    variables: {
+      url: `page/${urlKey}`,
+      urlKey,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
 
   // todo(paales): Remove when https://github.com/Urigo/graphql-mesh/issues/1257 is resolved
-  const cat = String((await config).data.storeConfig?.root_category_uid ?? '')
+  const categoryUid = String((await conf).data.storeConfig?.root_category_uid ?? '')
   const productList = staticClient.query({
     query: ProductListDocument,
-    variables: { rootCategory: cat, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
+    variables: { categoryUid, pageSize: 8, filters: { category_uid: { eq: 'NQ==' } } },
   })
 
   return {
     props: {
       ...(await page).data,
       ...(await productList).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

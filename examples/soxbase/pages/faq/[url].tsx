@@ -3,8 +3,8 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -67,15 +67,18 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
 
-  const config = client.query({ query: StoreConfigDocument })
-  const page = staticClient.query({ query: DefaultPageDocument, variables: { url } })
+  const conf = client.query({ query: StoreConfigDocument })
+  const page = staticClient.query({
+    query: DefaultPageDocument,
+    variables: { url, rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '' },
+  })
 
   if (!(await page).data.pages?.[0]) return { notFound: true }
 
   return {
     props: {
       ...(await page).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

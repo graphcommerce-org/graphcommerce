@@ -9,7 +9,7 @@
 #           ref: ${{ github.event.pull_request.head.sha }}
 #       - uses: actions/setup-node@v1
 #         with:
-#           node-version: 12
+#           node-version: 14
 #       - run: npm install -g @lhci/cli@latest
 #       - id: deployment
 #         uses: dorshinar/get-deployment-url@v1.0.6

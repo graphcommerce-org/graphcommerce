@@ -1,18 +1,10 @@
-import { ApolloClient, ApolloError, NormalizedCacheObject } from '@apollo/client'
-import getFilterTypes from '@reachdigital/magento-category/getFilterTypes'
 import {
   FilterEqualTypeInput,
   FilterMatchTypeInput,
   FilterRangeTypeInput,
   SortEnum,
 } from '@reachdigital/magento-graphql'
-import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
-import {
-  FilterTypes,
-  ProductListParams,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import { PromiseValue } from 'type-fest'
-import { ProductListDocument } from './ProductList.gql'
+import { FilterTypes, ProductListParams } from './filterTypes'
 
 export function parseParams(
   url: string,
@@ -69,23 +61,6 @@ export function parseParams(
   return error ? false : categoryVariables
 }
 
-// function assertAllowedParams(params: ProductListParams, productList: ProductListQuery) {
-//   const aggregations = productList.filters?.aggregations
-
-//   Object.entries(params.filters).forEach(([key, val]) => {
-//     const found = aggregations?.some(
-//       (aggregation) =>
-//         aggregation?.attribute_code === key &&
-//         aggregation.options?.some((option) => {
-
-//           console.log(val, option?.value)
-//           return option?.value === val
-//         }),
-//     )
-//     console.log(found, key, val)
-//   })
-// }
-
 export function extractUrlQuery(params?: { url: string[] }) {
   if (!params) return [undefined, undefined] as const
 
@@ -97,37 +72,3 @@ export function extractUrlQuery(params?: { url: string[] }) {
   if (queryIndex > 0 && !query.length) return [undefined, undefined] as const
   return [url, query] as const
 }
-
-type GetCategoryPageProps = {
-  url: string
-  query: string[]
-  rootCategory: Promise<string>
-  filterTypes: FilterTypes
-  staticClient: ApolloClient<NormalizedCacheObject>
-}
-
-export default async function getFilteredProductList({
-  url,
-  query,
-  rootCategory,
-  filterTypes,
-  staticClient: client,
-}: GetCategoryPageProps) {
-  const params = parseParams(url, query, filterTypes)
-
-  if (!params || !(await rootCategory)) return undefined
-
-  const products = client.query({
-    query: ProductListDocument,
-    variables: {
-      ...params,
-      filters: { category_uid: { eq: await rootCategory }, ...params.filters },
-      rootCategory: await rootCategory,
-    },
-  })
-
-  // assertAllowedParams(await params, (await products).data)
-  return { ...(await products).data, params, filterTypes }
-}
-
-export type CategoryPageProps = PromiseValue<ReturnType<typeof getFilteredProductList>>

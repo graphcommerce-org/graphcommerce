@@ -20,6 +20,14 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
         },
         {
           kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'rootCategory' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'reviewPage' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
           defaultValue: { kind: 'IntValue', value: '1' },
@@ -46,6 +54,34 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
             kind: 'Field',
             alias: { kind: 'Name', value: 'menu' },
             name: { kind: 'Name', value: 'categories' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'parent_category_uid' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'rootCategory' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -55,19 +91,9 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'children' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'level' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
-                          ],
-                        },
-                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'include_in_menu' } },
                     ],
                   },
                 },
@@ -1716,6 +1742,7 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
 }
 export type ProductPageQueryVariables = Types.Exact<{
   urlKey: Types.Scalars['String']
+  rootCategory: Types.Scalars['String']
   reviewPage?: Types.Maybe<Types.Scalars['Int']>
   productUrls: Array<Types.Scalars['String']> | Types.Scalars['String']
 }>
@@ -1723,13 +1750,7 @@ export type ProductPageQueryVariables = Types.Exact<{
 export type ProductPageQuery = {
   menu?: Types.Maybe<{
     items?: Types.Maybe<
-      Array<
-        Types.Maybe<{
-          children?: Types.Maybe<
-            Array<Types.Maybe<Pick<Types.CategoryTree, 'id' | 'name' | 'level' | 'url_path'>>>
-          >
-        }>
-      >
+      Array<Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>>
     >
   }>
   footer?: Types.Maybe<

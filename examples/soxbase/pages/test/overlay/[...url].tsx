@@ -50,7 +50,7 @@ export default AppShellTextOverlay
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const urls = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  const urls = ['1']
 
   const paths = locales
     .map((locale) => urls.map((url) => ({ params: { url: [url] }, locale })))
@@ -65,17 +65,20 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
 
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: `test/overlay/${url}` },
+    variables: {
+      url: `test/overlay/${url}`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
 
   return {
     props: {
       url,
       ...(await page).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
   }
 }

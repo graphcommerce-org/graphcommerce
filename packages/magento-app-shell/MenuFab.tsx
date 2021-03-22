@@ -96,11 +96,11 @@ export default function MenuFab(props: MenuFabProps) {
             <ListItemText classes={{ primary: classes.menuItemText }}>Home</ListItemText>
           </ListItem>
         </PageLink>
-        {menu?.items?.[0]?.children?.map((cat) => {
-          if (!cat || !cat.id || !cat.url_path) return null
+        {menu?.items?.map((cat) => {
+          if (!cat || !cat.url_path || !cat.include_in_menu) return null
           return (
             <CategoryLink
-              key={cat.id}
+              key={cat.url_path}
               url={cat.url_path}
               filters={{}}
               sort={{}}

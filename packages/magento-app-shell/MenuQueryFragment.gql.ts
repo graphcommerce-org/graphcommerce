@@ -2,11 +2,6 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
 import * as Types from '@reachdigital/magento-graphql'
 
-import {
-  CategoryChildrenFragment,
-  CategoryChildrenFragmentDoc,
-} from '../magento-category/CategoryChildren.gql'
-
 export const MenuQueryFragmentDoc: DocumentNode<MenuQueryFragment, unknown> = {
   kind: 'Document',
   definitions: [
@@ -21,6 +16,34 @@ export const MenuQueryFragmentDoc: DocumentNode<MenuQueryFragment, unknown> = {
             kind: 'Field',
             alias: { kind: 'Name', value: 'menu' },
             name: { kind: 'Name', value: 'categories' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filters' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'parent_category_uid' },
+                      value: {
+                        kind: 'ObjectValue',
+                        fields: [
+                          {
+                            kind: 'ObjectField',
+                            name: { kind: 'Name', value: 'eq' },
+                            value: {
+                              kind: 'Variable',
+                              name: { kind: 'Name', value: 'rootCategory' },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -30,7 +53,9 @@ export const MenuQueryFragmentDoc: DocumentNode<MenuQueryFragment, unknown> = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
-                      { kind: 'FragmentSpread', name: { kind: 'Name', value: 'CategoryChildren' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'include_in_menu' } },
                     ],
                   },
                 },
@@ -40,9 +65,12 @@ export const MenuQueryFragmentDoc: DocumentNode<MenuQueryFragment, unknown> = {
         ],
       },
     },
-    ...CategoryChildrenFragmentDoc.definitions,
   ],
 }
 export type MenuQueryFragment = {
-  menu?: Types.Maybe<{ items?: Types.Maybe<Array<Types.Maybe<CategoryChildrenFragment>>> }>
+  menu?: Types.Maybe<{
+    items?: Types.Maybe<
+      Array<Types.Maybe<Pick<Types.CategoryTree, 'name' | 'url_path' | 'include_in_menu'>>>
+    >
+  }>
 }

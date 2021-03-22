@@ -13,8 +13,8 @@ import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../../components/AppShell/FullPageUi'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
@@ -28,6 +28,8 @@ import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
 import ProductUsps from '../../../components/Usps'
 import apolloClient from '../../../lib/apolloClient'
+
+export const config = { unstable_JsPreload: false }
 
 type Props = ProductPageQuery & BundleProductPageQuery
 
@@ -106,10 +108,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const urlKey = params?.url ?? '??'
   const productUrls = [`product/${urlKey}`, 'product/global']
 
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient.query({
     query: ProductPageDocument,
-    variables: { urlKey, productUrls },
+    variables: {
+      urlKey,
+      productUrls,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
   const typeProductPage = staticClient.query({
     query: BundleProductPageDocument,
@@ -127,7 +133,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

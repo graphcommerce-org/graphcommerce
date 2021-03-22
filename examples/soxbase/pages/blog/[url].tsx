@@ -2,8 +2,8 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import BlogList from '../../components/Blog'
@@ -13,6 +13,8 @@ import { BlogPostPathsDocument } from '../../components/Blog/BlogPostPaths.gql'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
+
+export const config = { unstable_JsPreload: false }
 
 type Props = DefaultPageQuery & BlogListQuery
 type RouteProps = { url: string }
@@ -41,7 +43,7 @@ registerRouteUi('/blog/[url]', FullPageUi)
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+  if (process.env.VERCEL_ENV !== 'production') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = apolloClient(locale)
@@ -52,7 +54,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     )
   })
   const paths = (await Promise.all(responses)).flat(1)
-  return { paths, fallback: 'blocking' }
+  return {
+    paths: process.env.VERCEL_ENV !== 'production' ? paths.slice(0, 1) : paths,
+    fallback: 'blocking',
+  }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
@@ -60,10 +65,13 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
   const limit = 4
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: `blog/${urlKey}` },
+    variables: {
+      url: `blog/${urlKey}`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
 
   const blogPosts = staticClient.query({
@@ -77,7 +85,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await page).data,
       ...(await blogPosts).data,
       urlEntity: { relative_url: `blog/${urlKey}` },
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

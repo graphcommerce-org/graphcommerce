@@ -1,8 +1,8 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { GetStaticPaths } from 'next'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
@@ -47,16 +47,19 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
 
-  const config = client.query({ query: StoreConfigDocument })
+  const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,
-    variables: { url: `service/${urlKey}` },
+    variables: {
+      url: `service/${urlKey}`,
+      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
+    },
   })
   if (!(await page).data.pages?.[0]) return { notFound: true }
   return {
     props: {
       ...(await page).data,
-      apolloState: await config.then(() => client.cache.extract()),
+      apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,
   }

@@ -10,11 +10,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphql-mesh/cli": "^0.26.0",
-    "@graphql-mesh/config": "^0.14.1",
+    "@graphql-mesh/cli": "^0.26.2",
+    "@graphql-mesh/config": "^0.14.3",
     "@graphql-mesh/graphql": "^0.14.1",
     "@graphql-mesh/merger-stitching": "^0.7.34",
-    "@graphql-mesh/runtime": "^0.11.9",
+    "@graphql-mesh/runtime": "^0.12.0",
     "@graphql-mesh/transform-cache": "^0.8.34",
     "@graphql-mesh/transform-federation": "^0.5.1",
     "@graphql-mesh/transform-filter-schema": "^0.10.3",
@@ -36,7 +36,7 @@
   },
   "sideEffects": false,
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "prettier": "@reachdigital/prettier-config-pwa",
   "browserslist": [
