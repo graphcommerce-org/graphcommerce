@@ -37,7 +37,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           variant='outlined'
           type='password'
           error={!!errors.password || !!inputError}
-          id='password'
+          id='signup-password'
           name='password'
           label='Password'
           required={required.password}

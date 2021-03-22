@@ -7,13 +7,15 @@ import React from 'react'
 type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
 type NameFieldsProps = Pick<UseFormMethods, 'register' | 'errors' | 'formState' | 'control'> & {
   disableFields: boolean
-  fieldOptions: { [key: string]: FieldOptions }
+  fieldOptions: { prefix?: FieldOptions; firstname: FieldOptions; lastname: FieldOptions }
 }
 
 export default function NameFields(props: NameFieldsProps) {
   const { errors, register, formState, disableFields, fieldOptions, control } = props
   const classes = useFormStyles()
-  const required = Object.fromEntries(Object.values(fieldOptions).map((r) => [r.name, r.required]))
+  const required = Object.fromEntries(
+    Object.values(fieldOptions).map((r) => [r?.name, r?.required]),
+  )
 
   return (
     <>
@@ -22,13 +24,13 @@ export default function NameFields(props: NameFieldsProps) {
           <Controller
             defaultValue='Dhr.'
             control={control}
-            name={fieldOptions.prefix.name}
+            name={fieldOptions?.prefix.name}
             render={({ onChange, name, value, onBlur }) => (
               <TextField
                 variant='outlined'
                 select
-                error={!!errors[fieldOptions.prefix.name]}
-                id={fieldOptions.prefix.name}
+                error={!!errors[fieldOptions.prefix?.name ?? '']}
+                id={fieldOptions.prefix?.name}
                 name={name}
                 label='Prefix'
                 required={!!required.prefix}
@@ -37,6 +39,7 @@ export default function NameFields(props: NameFieldsProps) {
                 onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 value={value}
+                key='prefix'
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
                   <MenuItem key={option} value={option}>
@@ -49,12 +52,13 @@ export default function NameFields(props: NameFieldsProps) {
         )}
       </div>
 
-      <div className={classes.formRow}>
+      <div className={classes.formRow} key='namefields-firstname-lastname'>
         <TextField
           variant='outlined'
           type='text'
           name={fieldOptions.firstname.name}
           label='First Name'
+          key='firstname'
           required={!!required.firstname}
           inputRef={register({ required: required.firstname })}
           disabled={disableFields}
@@ -72,6 +76,7 @@ export default function NameFields(props: NameFieldsProps) {
           error={!!errors[fieldOptions.lastname.name]}
           name={fieldOptions.lastname.name}
           label='Last Name'
+          key='lastname'
           required={!!required.lastname}
           inputRef={register({ required: required.lastname })}
           helperText={formState.isSubmitted && errors[fieldOptions.lastname.name]?.message}

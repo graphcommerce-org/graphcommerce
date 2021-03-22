@@ -1,4 +1,4 @@
-import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
+import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
@@ -7,13 +7,24 @@ import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
 import {
+  ForgotPasswordDocument,
   ForgotPasswordMutation,
   ForgotPasswordMutationVariables,
-  ForgotPasswordDocument,
 } from './ForgotPassword.gql'
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    alert: {
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.sm,
+    },
+  }),
+  { name: 'ForgotPasswordForm' },
+)
+
 export default function ForgotPasswordForm() {
-  const classes = useFormStyles()
+  const formClasses = useFormStyles()
+  const classes = useStyles()
   const form = useFormGqlMutation<
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
@@ -23,15 +34,15 @@ export default function ForgotPasswordForm() {
 
   if (formState.isSubmitSuccessful && data) {
     return (
-      <Alert severity='success' variant='standard'>
+      <Alert severity='success' variant='standard' className={classes.alert}>
         We&apos;ve send a password reset link to your account!
       </Alert>
     )
   }
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <div className={classes.formRow}>
+    <form onSubmit={submitHandler} noValidate className={formClasses.form}>
+      <div className={formClasses.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -50,7 +61,7 @@ export default function ForgotPasswordForm() {
         />
       </div>
 
-      <div className={classes.formRow}>
+      <div className={formClasses.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -69,7 +80,7 @@ export default function ForgotPasswordForm() {
       </div>
 
       <ApolloErrorAlert error={error} />
-      <div className={classes.actions}>
+      <div className={formClasses.actions}>
         <Button
           type='submit'
           loading={formState.isSubmitting}
