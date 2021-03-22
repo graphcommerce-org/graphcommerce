@@ -1,7 +1,7 @@
 import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import router from 'next/router'
 import React from 'react'
+import PageLink from '../PageTransition/PageLink'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles(
 
 type FabMenuSecondaryItemProps = { iconSrc: string; href: string; children: React.ReactNode }
 
-export default function FabMenuSecondaryItem(props: FabMenuSecondaryItemProps) {
+export default function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { iconSrc, href, children } = props
   const classes = useStyles()
   return (

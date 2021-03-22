@@ -9,15 +9,30 @@ import {
   Divider,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { m } from 'framer-motion'
 import { Router, useRouter } from 'next/router'
 import React from 'react'
-import { MenuQueryFragment } from './MenuQueryFragment.gql'
+import PageLink from '../PageTransition/PageLink'
+import { UseStyles } from '../Styles'
+import responsiveVal from '../Styles/responsiveVal'
+import { MenuProps } from './Menu'
+import useFabAnimation from './useFabAnimation'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    menuWrapper: {
+      position: 'fixed',
+      zIndex: 8,
+      left: theme.page.horizontal,
+      [theme.breakpoints.down('sm')]: {
+        bottom: theme.page.vertical,
+        transform: 'none !important',
+        opacity: '1 !important',
+      },
+      [theme.breakpoints.up('md')]: {
+        top: theme.page.vertical,
+      },
+    },
     menuFab: {
       background: theme.palette.text.primary,
       boxShadow: theme.shadows[2],
@@ -41,7 +56,7 @@ const useStyles = makeStyles(
   { name: 'Menu' },
 )
 
-export type MenuFabProps = MenuQueryFragment &
+export type MenuFabProps = MenuProps &
   UseStyles<typeof useStyles> & { children?: React.ReactNode; search?: React.ReactNode }
 
 export default function MenuFab(props: MenuFabProps) {
@@ -49,11 +64,12 @@ export default function MenuFab(props: MenuFabProps) {
   const classes = useStyles(props)
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
+  const { filter, opacity, translateY } = useFabAnimation()
 
   Router.events.on('routeChangeStart', () => setOpenEl(null))
 
   return (
-    <>
+    <m.div className={classes.menuWrapper} style={{ opacity, translateY, filter }}>
       <Fab
         color='primary'
         aria-label='Open Menu'
@@ -87,27 +103,24 @@ export default function MenuFab(props: MenuFabProps) {
             </ListItem>
           </PageLink>
 
-          {menu?.items?.map((cat) => {
-            if (!cat?.url_path || !cat.include_in_menu) return null
-            return (
-              <PageLink key={cat.url_path} href={`/${cat.url_path}`}>
-                <ListItem
-                  button
-                  dense
-                  selected={router.asPath.startsWith(`/${cat.url_path}`)}
-                  classes={{ root: classes.menuItem }}
-                >
-                  <ListItemText classes={{ primary: classes.menuItemText }}>
-                    {cat.name}
-                  </ListItemText>
-                </ListItem>
-              </PageLink>
-            )
-          })}
+          {menu.map(({ href, children: itemChildren, ...linkProps }) => (
+            <PageLink key={href.toString()} href={href} {...linkProps}>
+              <ListItem
+                button
+                dense
+                selected={router.asPath.startsWith(href.toString())}
+                classes={{ root: classes.menuItem }}
+              >
+                <ListItemText classes={{ primary: classes.menuItemText }}>
+                  {itemChildren}
+                </ListItemText>
+              </ListItem>
+            </PageLink>
+          ))}
         </List>
         <Divider variant='middle' />
         <List>{children}</List>
       </Menu>
-    </>
+    </m.div>
   )
 }

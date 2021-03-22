@@ -1,13 +1,13 @@
 import { Theme, makeStyles, Link } from '@material-ui/core'
-import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
-import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
-import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
-import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
-import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
-import { MenuQueryFragment } from './MenuQueryFragment.gql'
+import SliderContainer from '../FramerSlider/SliderContainer'
+import { SliderContext } from '../FramerSlider/SliderContext'
+import SliderNext from '../FramerSlider/SliderNext'
+import SliderPrev from '../FramerSlider/SliderPrev'
+import SliderScroller from '../FramerSlider/SliderScroller'
+import PageLink from '../PageTransition/PageLink'
+import { MenuProps } from './Menu'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -65,7 +65,7 @@ const useStyles = makeStyles(
   { name: 'DesktopMenuTabs' },
 )
 
-export type MenuTabsProps = MenuQueryFragment
+export type MenuTabsProps = MenuProps
 
 export default function DesktopNavBar(props: MenuTabsProps) {
   const { menu } = props
@@ -76,19 +76,14 @@ export default function DesktopNavBar(props: MenuTabsProps) {
     <SliderContext scrollSnapAlign={false}>
       <SliderContainer classes={{ container: classes.container }}>
         <SliderScroller classes={{ scroller: classes.scroller }}>
-          {menu?.items?.map((cat) => {
-            if (!cat?.url_path || !cat.include_in_menu) return null
-            return (
-              <PageLink key={cat.url_path} href={`/${cat.url_path}`}>
-                <Link className={classes.link}>
-                  {cat.name}
-                  {router.asPath.startsWith(`/${cat?.url_path}`) && (
-                    <div className={classes.line} />
-                  )}
-                </Link>
-              </PageLink>
-            )
-          })}
+          {menu.map(({ href, children, ...linkProps }) => (
+            <PageLink key={href.toString()} href={href} {...linkProps}>
+              <Link className={classes.link}>
+                {children}
+                {router.asPath.startsWith(href.toString()) && <div className={classes.line} />}
+              </Link>
+            </PageLink>
+          ))}
         </SliderScroller>
         <SliderPrev
           className={clsx(classes.prevNext, classes.prev)}
