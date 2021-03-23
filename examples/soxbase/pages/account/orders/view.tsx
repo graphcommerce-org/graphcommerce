@@ -73,7 +73,7 @@ function OrderDetailPage(props: Props) {
 
 OrderDetailPage.Layout = PageLayout
 
-registerRouteUi('/account/order/view', OverlayPage)
+registerRouteUi('/account/orders/view', OverlayPage)
 
 export default OrderDetailPage
 

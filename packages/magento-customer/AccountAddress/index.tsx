@@ -28,6 +28,7 @@ const useStyles = makeStyles(
       justifyContent: 'space-between',
       paddingTop: theme.spacings.md,
       paddingBottom: theme.spacings.md,
+      ...theme.typography.body2,
     },
     address: {
       '& > span': {

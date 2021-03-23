@@ -1,4 +1,4 @@
-import { Button, Link, makeStyles, Theme } from '@material-ui/core'
+import { Button, makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
@@ -35,8 +35,6 @@ export default function AccountAddresses(props: AccountAddressesProps) {
   const { addresses, countries, loading } = props
   const classes = useStyles()
   const router = useRouter()
-
-  console.log(router.query.confirm_delete)
 
   if (loading) {
     return (

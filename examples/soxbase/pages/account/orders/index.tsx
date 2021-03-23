@@ -9,8 +9,8 @@ import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
-import apolloClient from '../../lib/apolloClient'
+import OverlayPage from '../../../components/AppShell/OverlayPage'
+import apolloClient from '../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
@@ -35,7 +35,6 @@ function AccountOrdersPage() {
             metaDescription='View all your orders'
             metaRobots={['noindex']}
           />
-
           <IconTitle
             iconSrc='/icons/desktop_checkout_box.svg'
             title='Orders'

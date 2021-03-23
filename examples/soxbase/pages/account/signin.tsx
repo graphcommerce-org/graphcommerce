@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import {
   CircularProgress,
   Container,
@@ -8,7 +8,8 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { SetGuestEmailOnCartDocument } from '@reachdigital/magento-cart/email/SetGuestEmailOnCart.gql'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
@@ -28,7 +29,8 @@ import useFormGqlQuery from '@reachdigital/react-hook-form/useFormGqlQuery'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
 
@@ -37,7 +39,13 @@ type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 const useStyles = makeStyles(
   (theme: Theme) => ({
     titleContainer: {
+      ...theme.typography.body1,
       marginBottom: theme.spacings.xs,
+    },
+    continueShoppingButton: {
+      display: 'block',
+      margin: `${theme.spacings.md} auto 0 auto`,
+      maxWidth: 'max-content',
     },
   }),
   { name: 'GuestOrderEmailSignIn' },
@@ -46,60 +54,55 @@ const useStyles = makeStyles(
 function AccountSignInPage() {
   const classes = useStyles()
   const formClasses = useFormStyles()
-  const { data: token } = useQuery(CustomerTokenDocument)
+
   const { data: customerData } = useQuery(CustomerDocument)
+
+  const { data: token } = useQuery(CustomerTokenDocument)
 
   const email = customerData?.customer?.email ?? undefined
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     mode: 'onChange',
-    defaultValues: {
-      email,
-    },
-    // disabled text fields won't be added to the form data,
-    // so we have to manually put the e-mail field to the form data.
-    onBeforeSubmit: (formData) => ({
-      ...formData,
-      email: (formData.email || email) ?? '',
-    }),
+    defaultValues: { email },
   })
-
-  const {
-    handleSubmit,
-    formState,
-    errors,
-    register,
-    required,
-    data: emailAvailable,
-    watch,
-    error,
-  } = form
+  const { handleSubmit, formState, errors, register, required, data, watch, error } = form
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
+  // const [execute] = useMutation(SetGuestEmailOnCartDocument)
+  // const submit = handleSubmit(({ email }) => execute({ variables: { email, cartId: 'adfsasdf' } }))
   const submit = handleSubmit(() => {})
   const autoSubmitting = useFormAutoSubmit({ form, submit })
   const disableFields = formState.isSubmitting && !autoSubmitting
 
-  const hasAccount = emailAvailable?.isEmailAvailable?.is_email_available === false
+  const hasAccount = data?.isEmailAvailable?.is_email_available === false
 
-  let mode: 'welcome' | 'signin' | 'signup' | 'redirect' = 'welcome'
-  if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && hasAccount)
-    mode = 'signin'
-  if (formState.isSubmitSuccessful && formState.isValid && !formState.isSubmitting && !hasAccount)
-    mode = 'signup'
-  if (token?.customerToken && token?.customerToken.valid) mode = 'redirect'
+  const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin'>('email')
+  useEffect(() => {
+    if (formState.isSubmitting) return
+    if (formState.isSubmitSuccessful && formState.isValid && hasAccount) setMode('signin')
+    if (formState.isSubmitSuccessful && formState.isValid && !hasAccount) setMode('signup')
+    if (token?.customerToken && token?.customerToken.valid) setMode('signedin')
+  }, [
+    formState.isSubmitSuccessful,
+    formState.isSubmitting,
+    formState.isValid,
+    hasAccount,
+    token?.customerToken,
+  ])
+
+  const router = useRouter()
 
   return (
     <OverlayPage title='Sign In' variant='center' backFallbackTitle='Home' backFallbackHref='/'>
       <PageMeta
         title='Sign in'
-        metaDescription='Sign in to your accoutn'
         metaRobots={['noindex']}
+        metaDescription='Sign in to your account'
       />
       <Container maxWidth='md'>
         <div className={formClasses.form}>
-          {mode === 'welcome' && (
-            <div className={classes.titleContainer} key='welcome'>
+          {mode === 'email' && (
+            <div className={classes.titleContainer} key='email'>
               <Typography variant='h3' align='center'>
                 Good day!
               </Typography>
@@ -131,7 +134,7 @@ function AccountSignInPage() {
             </div>
           )}
 
-          {mode === 'redirect' && (
+          {mode === 'signedin' && (
             <div className={classes.titleContainer} key='signup'>
               <Typography variant='h3' align='center'>
                 Hi {customerData?.customer?.firstname}! You&apos;re now logged in!
@@ -143,11 +146,21 @@ function AccountSignInPage() {
                 </PageLink>
                 .
               </Typography>
+
+              <Button
+                onClick={() => router.back()}
+                color='primary'
+                variant='contained'
+                size='large'
+                className={classes.continueShoppingButton}
+              >
+                Continue shopping
+              </Button>
             </div>
           )}
 
           <AnimatePresence>
-            {mode !== 'redirect' && (
+            {mode !== 'signedin' && (
               <form noValidate onSubmit={submit} key='emailform'>
                 <AnimatePresence initial={false}>
                   <AnimatedRow key='email'>
@@ -162,14 +175,14 @@ function AccountSignInPage() {
                         name='email'
                         label='E-mail'
                         required={required.email}
+                        disabled={disableFields}
                         inputRef={register({
                           required: required.email,
                           pattern: { value: emailPattern, message: '' },
                         })}
-                        autoComplete='off'
-                        disabled={!!token?.customerToken || disableFields}
                         InputProps={{
                           endAdornment: formState.isSubmitting && <CircularProgress />,
+                          readOnly: !!token?.customerToken,
                         }}
                       />
                     </div>
@@ -177,7 +190,7 @@ function AccountSignInPage() {
 
                   <ApolloErrorAlert error={error} />
 
-                  {mode === 'welcome' && (
+                  {mode === 'email' && (
                     <AnimatedRow key='submit'>
                       <div className={formClasses.actions}>
                         <Button

@@ -1,0 +1,7 @@
+query AccountDashboardReviews {
+  customer {
+    reviews {
+      ...AccountReviews
+    }
+  }
+}

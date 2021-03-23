@@ -105,7 +105,7 @@ export default function OrderCard(props: OrderCardProps) {
   }
 
   return (
-    <PageLink href={`/account/order/view?orderId=${number}`}>
+    <PageLink href={`/account/orders/view?orderId=${number}`}>
       <Button
         variant='contained'
         classes={{

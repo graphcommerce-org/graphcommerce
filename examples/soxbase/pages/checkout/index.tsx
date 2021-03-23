@@ -1,7 +1,10 @@
+import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
+import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -29,6 +32,8 @@ function ShippingPage({ countries }: Props) {
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
+  const { data: cartData } = useQuery(ClientCartDocument)
+  const cartExists = typeof cartData?.cart !== 'undefined'
 
   const forceSubmit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -50,30 +55,36 @@ function ShippingPage({ countries }: Props) {
     >
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
       <Container maxWidth='md'>
-        <CheckoutStepper steps={3} currentStep={2} />
-
-        <IconTitle
-          iconSrc='/icons/desktop_checkout_box.svg'
-          title='Shipping'
-          alt='box'
-          size='normal'
-        />
-
         <NoSsr>
-          <EmailForm />
-          <ShippingAddressForm countries={countries} doSubmit={addressForm} />
-          <ShippingMethodForm doSubmit={methodForm} />
-          <div className={classes.actions}>
-            <Button
-              type='submit'
-              color='secondary'
-              variant='pill'
-              size='large'
-              onClick={forceSubmit}
-            >
-              Next <ArrowForwardIos fontSize='inherit' />
-            </Button>
-          </div>
+          {!cartExists && <EmptyCart />}
+
+          {cartExists && (
+            <>
+              <CheckoutStepper steps={3} currentStep={2} />
+
+              <IconTitle
+                iconSrc='/icons/desktop_checkout_box.svg'
+                title='Shipping'
+                alt='box'
+                size='normal'
+              />
+
+              <EmailForm />
+              <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+              <ShippingMethodForm doSubmit={methodForm} />
+              <div className={classes.actions}>
+                <Button
+                  type='submit'
+                  color='secondary'
+                  variant='pill'
+                  size='large'
+                  onClick={forceSubmit}
+                >
+                  Next <ArrowForwardIos fontSize='inherit' />
+                </Button>
+              </div>
+            </>
+          )}
         </NoSsr>
       </Container>
     </OverlayPage>

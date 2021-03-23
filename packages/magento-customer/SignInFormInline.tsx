@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, TextField, Theme } from '@material-ui/core'
-import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
@@ -16,9 +15,16 @@ const useStyles = makeStyles(
       alignItems: 'center',
       gridRowGap: theme.spacings.sm,
       gridColumnGap: theme.spacings.xs,
+      gridTemplateColumns: '1fr',
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: '5fr 1fr',
+      },
+    },
+    button: {
+      minWidth: 'max-content',
     },
   }),
-  { name: 'SignIn' },
+  { name: 'SignInFormInline' },
 )
 
 type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
@@ -33,10 +39,6 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
   const { register, errors, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
-  const validToken = Boolean(data?.customerToken && data?.customerToken.valid)
-
-  if (validToken) return <Alert severity='info'>Already logged in</Alert>
-
   return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <TextField
@@ -46,27 +48,24 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         id='password'
         name='password'
         label='Password'
+        autoFocus
         required={required.password}
         inputRef={register({ required: required.password })}
-        helperText={errors.password?.message}
+        helperText={error?.message}
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
-            <Button
-              type='submit'
-              loading={formState.isSubmitting}
-              color='secondary'
-              variant='pill'
-              // size='small'
-              style={{ whiteSpace: 'nowrap' }}
-            >
-              Log In
-            </Button>
+            <PageLink href='/account/forgot-password' key='forgot-password'>
+              <Button color='secondary' variant='text' className={classes.button}>
+                Forgot password?
+              </Button>
+            </PageLink>
           ),
         }}
       />
-
-      <ApolloErrorAlert error={error} />
+      <Button type='submit' loading={formState.isSubmitting} color='secondary' variant='pill'>
+        Sign in
+      </Button>
     </form>
   )
 }

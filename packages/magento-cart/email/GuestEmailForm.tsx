@@ -72,6 +72,9 @@ export default function GuestEmailForm({
   return (
     <form
       noValidate
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
       {...(canSubmit && { onChange: debounce(() => handleSubmit(() => {})(), 500) })}
       className={classes.form}
     >
@@ -87,7 +90,6 @@ export default function GuestEmailForm({
           pattern: { value: emailPattern, message: 'Invalid email address' },
         })}
         helperText={formState.isSubmitted && errors.email?.message}
-        autoComplete='off'
         InputProps={{ endAdornment }}
       />
     </form>

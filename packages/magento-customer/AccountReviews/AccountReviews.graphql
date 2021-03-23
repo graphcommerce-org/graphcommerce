@@ -1,0 +1,5 @@
+fragment AccountReviews on ProductReviews {
+  items {
+    ...CustomerReview
+  }
+}
