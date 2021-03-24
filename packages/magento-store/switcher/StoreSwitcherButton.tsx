@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
-import Button from '@reachdigital/next-ui/Button'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
@@ -10,6 +9,7 @@ const useStyles = makeStyles(
   () => ({
     container: {
       display: 'inline-flex',
+      margin: '0 auto',
     },
     avatar: {
       height: 20,
