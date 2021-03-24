@@ -12,6 +12,7 @@ import OverlayPage from '../../../components/AppShell/OverlayPage'
 function AccountReviewsPage() {
   const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
     fetchPolicy: 'cache-and-network',
+    ssr: false,
   })
   const customer = data?.customer
 

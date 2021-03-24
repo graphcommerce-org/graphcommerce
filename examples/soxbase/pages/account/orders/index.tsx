@@ -17,6 +17,7 @@ type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 function AccountOrdersPage() {
   const { data } = useQuery(AccountDashboardOrdersDocument, {
     fetchPolicy: 'cache-and-network',
+    ssr: false,
   })
   const customer = data?.customer
 

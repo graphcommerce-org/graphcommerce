@@ -23,6 +23,7 @@ function AccountAddressesPage(props: Props) {
   const { countries } = props
   const { data } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
+    ssr: false,
   })
   const customer = data?.customer
 
