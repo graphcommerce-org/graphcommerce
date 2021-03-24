@@ -31,7 +31,6 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
-  const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(SignInDocument, {
     defaultValues: { email },
     onComplete: onCompleteSignInUp,

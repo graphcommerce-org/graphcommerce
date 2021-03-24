@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Link, makeStyles, TextField, Theme } from '@material-ui/core'
+import { makeStyles, TextField, Theme } from '@material-ui/core'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
@@ -24,25 +24,24 @@ const useStyles = makeStyles(
 )
 
 export default function EmailForm() {
-  const [expand, setExpand] = useState(false)
   const formClasses = useFormStyles()
   const classes = useStyles()
+  const [expand, setExpand] = useState(false)
+
   const { data: cartData } = useQuery(ClientCartDocument)
   const { data: tokenData } = useQuery(CustomerTokenDocument)
   const { data: emailData } = useQuery(IsEmailAvailableDocument, {
     fetchPolicy: 'cache-only',
     variables: { email: cartData?.cart?.email ?? '' },
   })
-  const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+
+  const { data: customerQuery } = useQuery(CustomerDocument, { ssr: false })
 
   const customer = customerQuery?.customer
 
   const isCustomer = tokenData?.customerToken
-  const canSignIn =
-    Boolean(tokenData?.customerToken && !tokenData?.customerToken.valid) ||
-    emailData?.isEmailAvailable?.is_email_available === false
-
   const isLoggedIn = customer && isCustomer && tokenData?.customerToken?.valid
+  const hasAccount = emailData?.isEmailAvailable?.is_email_available === false
 
   return (
     <div className={clsx(formClasses.form, formClasses.formContained)}>
@@ -77,26 +76,33 @@ export default function EmailForm() {
 
         {!isCustomer && (
           <AnimatedRow key='guest-email-form'>
-            <div className={formClasses.formRow}>
-              <GuestEmailForm
-                key='GuestEmailForm'
-                signInAdornment={
-                  <Button
-                    color='secondary'
-                    style={{ whiteSpace: 'nowrap' }}
-                    onClick={() => setExpand(!expand)}
-                  >
-                    {expand ? 'Close' : 'Sign In'}
-                  </Button>
-                }
-              />
-            </div>
+            <GuestEmailForm
+              key='GuestEmailForm'
+              signInAdornment={
+                <Button
+                  color='secondary'
+                  style={{ whiteSpace: 'nowrap' }}
+                  onClick={() => setExpand(!expand)}
+                >
+                  {expand ? 'Close' : 'Sign In'}
+                </Button>
+              }
+              signUpAdornment={
+                <Button
+                  color='secondary'
+                  style={{ whiteSpace: 'nowrap' }}
+                  onClick={() => setExpand(!expand)}
+                >
+                  {expand ? 'Close' : 'Sign Up'}
+                </Button>
+              }
+            />
           </AnimatedRow>
         )}
 
-        {/* {!isCustomer && expand && <AnimatedRow key='sign-up' />} */}
+        {!isCustomer && expand && !hasAccount && <AnimatedRow key='sign-up' />}
 
-        {!isCustomer && canSignIn && expand && (
+        {!isCustomer && expand && hasAccount && (
           <AnimatedRow key='sign-in'>
             <div className={formClasses.formRow}>
               <SignInFormInline email={cartData?.cart?.email ?? ''} />

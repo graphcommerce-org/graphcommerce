@@ -1,11 +1,4 @@
-import {
-  ApolloClient,
-  ApolloError,
-  FetchResult,
-  TypedDocumentNode,
-  useLazyQuery,
-} from '@apollo/client'
-import { useEffect } from 'react'
+import { ApolloClient, FetchResult, TypedDocumentNode, useLazyQuery } from '@apollo/client'
 import {
   useForm,
   FieldName,
@@ -16,11 +9,6 @@ import {
 } from 'react-hook-form'
 
 import useGqlDocumentHandler from './useGqlDocumentHandler'
-
-export type OnCompleteFn<Q> = (
-  data: FetchResult<Q>,
-  client: ApolloClient<unknown>,
-) => void | Promise<void>
 
 /**
  * Combines useLazyQuery with react-hook-form's useForm:
@@ -34,10 +22,9 @@ export default function useFormGqlLazyQuery<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormOptions<V> & {
     onBeforeSubmit?: (variables: V) => V | Promise<V>
-    onComplete?: OnCompleteFn<Q>
   } = {},
 ) {
-  const { onComplete, onBeforeSubmit, ...useFormProps } = options
+  const { onBeforeSubmit, ...useFormProps } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
 
   const [execute, { data, error, loading }] = useLazyQuery(document)

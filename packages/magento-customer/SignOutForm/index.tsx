@@ -12,6 +12,7 @@ export default function SignOutForm(props: SignOutFormProps) {
   const router = useRouter()
   const { handleSubmit, formState, error } = useFormGqlMutation(SignOutFormDocument, {
     onComplete: () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push('/')
     },
   })
