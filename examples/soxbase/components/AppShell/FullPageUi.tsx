@@ -61,7 +61,7 @@ function FullPageUi(props: FullPageUiProps) {
           <DesktopNavActions>
             <SearchButton classes={{ root: classes.navbarSearch }} />
 
-            <PageLink href='/faq/index'>
+            <PageLink href='/service/index'>
               <IconButton aria-label='Account' color='inherit' size='medium'>
                 <PictureResponsiveNext
                   src='/icons/desktop_customer_service.svg'
@@ -95,7 +95,7 @@ function FullPageUi(props: FullPageUiProps) {
         <MenuFabSecondaryItem
           src='/icons/desktop_customer_service.svg'
           type='image/svg+xml'
-          href='/faq/index'
+          href='/service/index'
         >
           Customer Service
         </MenuFabSecondaryItem>
