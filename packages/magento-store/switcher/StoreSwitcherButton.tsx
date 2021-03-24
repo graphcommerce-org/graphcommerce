@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import React from 'react'
@@ -7,10 +7,6 @@ import { StoreConfigDocument } from '../StoreConfig.gql'
 
 const useStyles = makeStyles(
   () => ({
-    container: {
-      display: 'inline-flex',
-      margin: '0 auto',
-    },
     avatar: {
       height: 20,
       width: 20,
@@ -26,10 +22,10 @@ export default function StoreSwitcherButton() {
   const classes = useStyles()
   return (
     <PageLink href='/switch-stores'>
-      <div className={classes.container}>
+      <Button variant='text' size='medium'>
         <FlagAvatar country={country} classes={{ root: classes.avatar }} />
         {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}
-      </div>
+      </Button>
     </PageLink>
   )
 }
