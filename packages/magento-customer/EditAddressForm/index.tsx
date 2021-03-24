@@ -4,10 +4,10 @@ import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/Countr
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
@@ -35,6 +35,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
   const { countries, address } = props
   const formClasses = useFormStyles()
   const classes = useStyles()
+  const router = useRouter()
 
   const form = useFormGqlMutation<
     UpdateCustomerAddressMutation,
@@ -44,15 +45,15 @@ export default function EditAddressForm(props: EditAddressFormProps) {
       id: address?.id ?? undefined,
       firstname: address?.firstname,
       lastname: address?.lastname,
-      street: address?.street?.[2],
+      street: address?.street?.[0],
       postcode: address?.postcode,
       city: address?.city,
       countryCode: address?.country_code,
       telephone: address?.telephone,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      houseNumber: address?.street?.[0],
-      addition: address?.street?.[1],
+      houseNumber: address?.street?.[1],
+      addition: address?.street?.[2],
     },
     onBeforeSubmit: (formData) => {
       const region = countries
@@ -71,8 +72,11 @@ export default function EditAddressForm(props: EditAddressFormProps) {
       return {
         ...formData,
         ...regionData,
-        street: [(formData as any).houseNumber, (formData as any).addition, formData?.street?.[0]],
       }
+    },
+    onComplete: () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push('/account/addresses')
     },
   })
 
@@ -173,11 +177,6 @@ export default function EditAddressForm(props: EditAddressFormProps) {
       </form>
 
       <ApolloErrorAlert error={error} />
-
-      <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !error?.message}
-        message={<>Changes were saved</>}
-      />
     </>
   )
 }

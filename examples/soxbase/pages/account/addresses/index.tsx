@@ -22,7 +22,7 @@ type GetPageStaticProps = GetStaticProps<Props>
 function AccountAddressesPage(props: Props) {
   const { countries } = props
   const { data } = useQuery(AccountDashboardAddressesDocument, {
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'network-only',
   })
   const customer = data?.customer
 
