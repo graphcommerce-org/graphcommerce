@@ -8,9 +8,12 @@ import { StoreConfigDocument } from '../StoreConfig.gql'
 
 const useStyles = makeStyles(
   () => ({
+    container: {
+      display: 'inline-flex',
+    },
     avatar: {
-      height: 25,
-      width: 25,
+      height: 20,
+      width: 20,
       marginRight: 10,
     },
   }),
@@ -23,10 +26,10 @@ export default function StoreSwitcherButton() {
   const classes = useStyles()
   return (
     <PageLink href='/switch-stores'>
-      <Button variant='pill' size='medium'>
+      <div className={classes.container}>
         <FlagAvatar country={country} classes={{ root: classes.avatar }} />
         {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}
-      </Button>
+      </div>
     </PageLink>
   )
 }
