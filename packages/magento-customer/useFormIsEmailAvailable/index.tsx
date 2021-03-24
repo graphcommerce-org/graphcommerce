@@ -12,9 +12,11 @@ type useFormIsEmailAvailableProps = {
 
 export default function useFormIsEmailAvailable(props: useFormIsEmailAvailableProps) {
   const { email, onSubmitted } = props
-  const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin'>('email')
-
   const { data: token } = useQuery(CustomerTokenDocument)
+
+  const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin'>(
+    token?.customerToken && token?.customerToken.valid ? 'signedin' : 'email',
+  )
 
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     mode: 'onChange',
@@ -24,17 +26,18 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
   const { formState, data, handleSubmit } = form
 
   const submit = handleSubmit(onSubmitted || (() => {}))
-  const autoSubmitting = useFormAutoSubmit({ form, submit })
+  const autoSubmitting = useFormAutoSubmit({ form, submit, mode: 'onMount' })
   const isManualSubmitting = formState.isSubmitting && !autoSubmitting
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
 
   useEffect(() => {
+    if (token?.customerToken && token?.customerToken.valid) setMode('signedin')
     if (formState.isSubmitting) return
+    if (!formState.isValid) setMode('email')
     if (formState.isSubmitted && formState.isSubmitSuccessful && formState.isValid && hasAccount)
       setMode('signin')
     if (formState.isSubmitted && formState.isSubmitSuccessful && formState.isValid && !hasAccount)
       setMode('signup')
-    if (token?.customerToken && token?.customerToken.valid) setMode('signedin')
   }, [
     formState.isSubmitSuccessful,
     formState.isSubmitted,
