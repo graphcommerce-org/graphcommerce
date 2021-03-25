@@ -2,12 +2,11 @@ import {
   DocumentNode,
   LazyQueryHookOptions,
   LazyQueryResult,
-  OperationVariables,
   QueryLazyOptions,
   TypedDocumentNode,
   useLazyQuery,
 } from '@apollo/client'
-import React from 'react'
+import { useEffect, useRef } from 'react'
 import { Promisable } from 'type-fest'
 
 export type LazyQueryTuple<Q, V> = [
@@ -15,30 +14,28 @@ export type LazyQueryTuple<Q, V> = [
   LazyQueryResult<Q, V>,
 ]
 
-export default function useLazyQueryPromise<Q = any, V = OperationVariables>(
+/**
+ * Same API as useLazyQuery, except:
+ * - The execute method is a promise that will return the eventual result
+ */
+export default function useLazyQueryPromise<Q, V>(
   query: DocumentNode | TypedDocumentNode<Q, V>,
   options?: LazyQueryHookOptions<Q, V>,
 ): LazyQueryTuple<Q, V> {
   const [execute, result] = useLazyQuery<Q, V>(query, options)
+  const ref = useRef<(value: Promisable<LazyQueryResult<Q, V>>) => void>()
 
-  const resolveRef = React.useRef<(value: Promisable<LazyQueryResult<Q, V>>) => void>()
-
-  React.useEffect(() => {
-    if (result.called && !result.loading && resolveRef.current) {
-      resolveRef.current(result)
-      resolveRef.current = undefined
-    }
+  useEffect(() => {
+    if (!result.called || result.loading || !ref.current) return
+    ref.current(result)
+    ref.current = undefined
   }, [result])
 
-  const queryLazily = React.useCallback(
-    (executeOptions?: QueryLazyOptions<V>) => {
-      execute(executeOptions)
-      return new Promise<LazyQueryResult<Q, V>>((resolve) => {
-        resolveRef.current = resolve
-      })
-    },
-    [execute],
-  )
-
+  const queryLazily = (executeOptions?: QueryLazyOptions<V>) => {
+    execute(executeOptions)
+    return new Promise<LazyQueryResult<Q, V>>((resolve) => {
+      ref.current = resolve
+    })
+  }
   return [queryLazily, result]
 }

@@ -144,6 +144,8 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): Handler
   return { type, required, defaultVariables, encode }
 }
 
-export default function useGqlDocumentHandler<Q, V>(document: TypedDocumentNode<Q, V>) {
+export default function useGqlDocumentHandler<Q, V>(
+  document: TypedDocumentNode<Q, V>,
+): HandlerFactoryReturn<V> {
   return useMemo(() => handlerFactory<Q, V>(document), [document])
 }
