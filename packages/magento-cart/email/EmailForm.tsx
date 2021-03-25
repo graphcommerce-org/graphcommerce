@@ -36,6 +36,7 @@ export default function EmailForm() {
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
   const { formState, errors, register, required, watch, error, getValues } = form
+  const { data: tokenData } = useQuery(CustomerTokenDocument)
 
   useEffect(() => {
     if (!cartData?.cart?.id) return
@@ -96,11 +97,22 @@ export default function EmailForm() {
             <SignInFormInline email={watch('email')} />
           </AnimatedRow>
         )}
+
         {/* {mode === 'signup' && (
           <AnimatedRow key='signup'>
             <>nog niks</>
           </AnimatedRow>
         )} */}
+
+        {!tokenData?.customerToken && (
+          <AnimatedRow key='helper-list'>
+            <ul className={formClasses.helperList} key='steps'>
+              <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
+              <li>Fill in password fields to create an account.</li>
+              <li>Leave passwords fields empty to order as guest.</li>
+            </ul>
+          </AnimatedRow>
+        )}
       </AnimatePresence>
     </div>
   )
