@@ -14,46 +14,37 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
   const { email, onSubmitted } = props
   const { data: token } = useQuery(CustomerTokenDocument)
 
-  const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin'>(
-    token?.customerToken && token?.customerToken.valid ? 'signedin' : 'email',
-  )
-
   const form = useFormGqlQuery(IsEmailAvailableDocument, {
     mode: 'onChange',
     defaultValues: { email: email ?? undefined },
   })
-
   const { formState, data, handleSubmit } = form
 
   const submit = handleSubmit(onSubmitted || (() => {}))
-  const autoSubmitting = useFormAutoSubmit({ form, submit, mode: 'onMount' })
+  const autoSubmitting = useFormAutoSubmit({ form, submit })
   const isManualSubmitting = formState.isSubmitting && !autoSubmitting
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
+  const { isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid } = formState
+
+  const isLoggedIn = token?.customerToken && token?.customerToken.valid
+
+  const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin'>(
+    token?.customerToken && token?.customerToken.valid ? 'signedin' : 'email',
+  )
 
   useEffect(() => {
-    if (token?.customerToken && token?.customerToken.valid) {
+    if (isLoggedIn) {
       setMode('signedin')
-
       return
     }
-
-    if (formState.isSubmitting) return
-
-    if (!formState.isValid) setMode('email')
-
-    if (formState.isSubmitted && formState.isSubmitSuccessful && formState.isValid && hasAccount)
-      setMode('signin')
-
-    if (formState.isSubmitted && formState.isSubmitSuccessful && formState.isValid && !hasAccount)
-      setMode('signup')
-  }, [
-    formState.isSubmitSuccessful,
-    formState.isSubmitted,
-    formState.isSubmitting,
-    formState.isValid,
-    hasAccount,
-    token?.customerToken,
-  ])
+    if (isSubmitting) return
+    if (!isValid) {
+      setMode('email')
+      return
+    }
+    if (!isDirty && isSubmitted && isSubmitSuccessful && isValid)
+      setMode(hasAccount ? 'signin' : 'signup')
+  }, [hasAccount, isDirty, isLoggedIn, isSubmitSuccessful, isSubmitted, isSubmitting, isValid])
 
   return { mode, form, token, submit, isManualSubmitting, autoSubmitting, hasAccount }
 }
