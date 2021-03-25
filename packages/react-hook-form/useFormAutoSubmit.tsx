@@ -1,5 +1,5 @@
 import { debounce } from '@material-ui/core'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FieldValues, UseFormMethods } from 'react-hook-form'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends FieldValues> = {
@@ -11,15 +11,6 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
   wait?: number
   /** Autosubmit only when these field names update */
   fields?: Array<keyof Partial<V>>
-
-  /**
-   * Different modes:
-   *
-   * - `onMount`: Submit the form when it is mounted and valid
-   * - `onChange` (default): Submit the form after it has been changed
-   * - Todo: `onSubmitted`: Submit the form after it has been manually submitted for the first time
-   */
-  mode?: 'onMount' | 'onChange' // | 'onSubmitted'
 }
 
 /**
@@ -43,36 +34,35 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
 export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = FieldValues>(
   options: UseFormAutoSubmitOptions<Form, V>,
 ) {
-  const { form, submit, wait = 500, fields, mode = 'onChange' } = options
+  const { form, submit, wait = 500, fields } = options
   const { formState } = form
   const [submitting, setSubmitting] = useState(false)
   const values = JSON.stringify(form.watch(fields as string[]))
-  const [oldValues, setOldValues] = useState<string>(mode === 'onMount' ? '' : values)
-  const isDirty = values !== oldValues || (mode !== 'onMount' && formState.isDirty)
+  const [oldValues, setOldValues] = useState<string>(values)
+  const isDirty = values !== oldValues
 
-  const doSubmit = useCallback(async () => {
+  const submitDebounced = debounce(async () => {
     setSubmitting(true)
     await submit()
     setOldValues(values)
     setSubmitting(false)
-  }, [submit, values])
-
-  const submitDebounced = debounce(doSubmit, wait)
+  }, wait)
 
   useEffect(() => {
-    if (formState.isValid && !formState.isSubmitting && !formState.isValidating && isDirty) {
-      if (!formState.isSubmitted) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        doSubmit()
-      }
+    if (
+      formState.isDirty &&
+      formState.isValid &&
+      !formState.isSubmitting &&
+      !formState.isValidating &&
+      isDirty
+    ) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
       return submitDebounced.clear
     }
     return () => {}
   }, [
-    doSubmit,
-    formState.isSubmitted,
+    formState.isDirty,
     formState.isSubmitting,
     formState.isValid,
     formState.isValidating,
