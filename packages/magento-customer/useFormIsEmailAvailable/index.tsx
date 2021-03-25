@@ -31,11 +31,19 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
 
   useEffect(() => {
-    if (token?.customerToken && token?.customerToken.valid) setMode('signedin')
+    if (token?.customerToken && token?.customerToken.valid) {
+      setMode('signedin')
+
+      return
+    }
+
     if (formState.isSubmitting) return
+
     if (!formState.isValid) setMode('email')
+
     if (formState.isSubmitted && formState.isSubmitSuccessful && formState.isValid && hasAccount)
       setMode('signin')
+
     if (formState.isSubmitted && formState.isSubmitSuccessful && formState.isValid && !hasAccount)
       setMode('signup')
   }, [

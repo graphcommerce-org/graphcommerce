@@ -1,35 +1,21 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
-import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
+import { CircularProgress, TextField } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
-import { IsEmailAvailableDocument } from '@reachdigital/magento-customer/IsEmailAvailable.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
 import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
-import GuestEmailForm from './GuestEmailForm'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    changeEmailButton: {
-      minWidth: 'max-content',
-    },
-  }),
-  { name: 'EmailForm' },
-)
 
 export default function EmailForm() {
   const formClasses = useFormStyles()
-  const classes = useStyles()
   const [expand, setExpand] = useState(false)
 
   const { data: cartData } = useQuery(ClientCartDocument)
@@ -40,6 +26,7 @@ export default function EmailForm() {
 
   useEffect(() => {
     if (!cartData?.cart?.id) return
+
     // Customer isn't logged in, but we do have a valid email
     if (mode === 'signin' || mode === 'signup') {
       const { email } = getValues(['email'])
