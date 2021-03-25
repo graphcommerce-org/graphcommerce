@@ -18,10 +18,8 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
       id: addressId,
     },
     onComplete: () => {
-      router.push({
-        pathname: '/account/addresses',
-        query: 'confirm_delete',
-      })
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push({ pathname: '/account/addresses', query: 'confirm_delete' })
     },
   })
   const submitHandler = handleSubmit(() => {})

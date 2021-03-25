@@ -38,7 +38,6 @@ export default function ApplyCouponCode() {
         inputRef={register({ required: required.couponCode })}
         helperText={errors.couponCode?.message}
         disabled={formState.isSubmitting}
-        onChange={() => clearErrors('submission')}
       />
       <FormControl>
         <Button
