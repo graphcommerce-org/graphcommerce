@@ -1,26 +1,14 @@
-import {
-  ApolloClient,
-  ApolloError,
-  FetchResult,
-  TypedDocumentNode,
-  useMutation,
-} from '@apollo/client'
+import { TypedDocumentNode, useApolloClient, useMutation } from '@apollo/client'
 import {
   useForm,
-  FieldName,
   UseFormOptions,
   DeepPartial,
   UnpackNestedValue,
-  SubmitHandler,
   UseFormMethods,
 } from 'react-hook-form'
 import diff from './diff'
+import { OnCompleteFn } from './useFormGql'
 import useGqlDocumentHandler from './useGqlDocumentHandler'
-
-export type OnCompleteFn<Q> = (
-  data: FetchResult<Q>,
-  client: ApolloClient<unknown>,
-) => void | Promise<void>
 
 /**
  * Combines useMutation with react-hook-form's useForm:
@@ -39,41 +27,36 @@ export default function useFormGqlMutation<Q, V>(
 ) {
   const { onComplete, onBeforeSubmit, ...useFormProps } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
-  const [mutate, { data, client, error }] = useMutation(document)
+  const client = useApolloClient()
+  const [execute, { data, error }] = useMutation(document)
 
   type FieldValues = V & { submission?: string }
-  const useFormMethods = useForm<FieldValues>(useFormProps)
+  const form = useForm<FieldValues>(useFormProps)
 
-  const submitMutation: SubmitHandler<V> = async (formValues) => {
-    // Combine defaults with the formValues and encode
-    let variables = encode({
-      ...useFormProps.defaultValues,
-      ...(formValues as Record<string, unknown>),
-    })
+  const handleSubmit: UseFormMethods<V>['handleSubmit'] = (onValid, onInvalid) =>
+    form.handleSubmit(async (formValues, event) => {
+      // Combine defaults with the formValues and encode
+      let variables = encode({
+        ...useFormProps.defaultValues,
+        ...(formValues as Record<string, unknown>),
+      })
 
-    // Wait for the onBeforeSubmit to complete
-    if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
+      // Wait for the onBeforeSubmit to complete
+      if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
 
-    try {
-      // Encode and submit the values
-      const result = await mutate({ variables })
-      if (onComplete && result.data) await onComplete(result, client)
-    } catch (e) {
-      return
-    }
+      try {
+        const result = await execute({ variables })
+        if (onComplete && result.data) await onComplete(result, client)
+      } catch (e) {
+        return
+      }
 
-    // Reset the state of the form if it is unmodified afterwards
-    if (typeof diff(useFormMethods.getValues(), formValues) === 'undefined')
-      useFormMethods.reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
-  }
-
-  type HandleSubmit = UseFormMethods<V>['handleSubmit']
-  const handleSubmit: HandleSubmit = (onValid, onInvalid) =>
-    useFormMethods.handleSubmit(async (values, event) => {
-      await submitMutation(values, event)
+      // Reset the state of the form if it is unmodified afterwards
+      if (typeof diff(form.getValues(), formValues) === 'undefined')
+        form.reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
       // @ts-expect-error For some reason it is not accepting the value here
-      await onValid(values, event)
+      await onValid(formValues, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, ...useFormMethods, handleSubmit, data, error }
+  return { ...gqlDocumentHandler, ...form, handleSubmit, data, error }
 }

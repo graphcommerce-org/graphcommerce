@@ -1,14 +1,16 @@
-import { ApolloClient, FetchResult, TypedDocumentNode, useLazyQuery } from '@apollo/client'
+import { TypedDocumentNode, useApolloClient } from '@apollo/client'
 import {
   useForm,
-  FieldName,
   UseFormOptions,
-  SubmitHandler,
   UseFormMethods,
-  FormStateProxy,
+  DeepPartial,
+  UnpackNestedValue,
 } from 'react-hook-form'
+import diff from './diff'
+import { OnCompleteFn } from './useFormGql'
 
 import useGqlDocumentHandler from './useGqlDocumentHandler'
+import useLazyQueryPromise from './useLazyQueryPromise'
 
 /**
  * Combines useLazyQuery with react-hook-form's useForm:
@@ -22,51 +24,41 @@ export default function useFormGqlLazyQuery<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormOptions<V> & {
     onBeforeSubmit?: (variables: V) => V | Promise<V>
+    onComplete?: OnCompleteFn<Q>
   } = {},
 ) {
-  const { onBeforeSubmit, ...useFormProps } = options
+  const { onComplete, onBeforeSubmit, ...useFormProps } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
-
-  const [execute, { data, error, loading }] = useLazyQuery(document)
+  const client = useApolloClient()
+  const [execute, { data, error }] = useLazyQueryPromise(document)
 
   type FieldValues = V & { submission?: string }
-  const useFormMethods = useForm<FieldValues>(useFormProps)
+  const form = useForm<FieldValues>(useFormProps)
 
-  const formState = new Proxy(useFormMethods.formState, {
-    get(target, prop: keyof FormStateProxy) {
-      if (prop === 'isSubmitting' && loading) return true
-      return target[prop]
-    },
-  })
+  const handleSubmit: UseFormMethods<V>['handleSubmit'] = (onValid, onInvalid) =>
+    form.handleSubmit(async (formValues, event) => {
+      // Combine defaults with the formValues and encode
+      let variables = encode({
+        ...useFormProps.defaultValues,
+        ...(formValues as Record<string, unknown>),
+      })
 
-  const submit: SubmitHandler<V> = async (formValues) => {
-    // Clear submission errors
-    useFormMethods.clearErrors('submission' as FieldName<FieldValues>)
+      // Wait for the onBeforeSubmit to complete
+      if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
 
-    // Combine defaults with the formValues and encode
-    let variables = encode({
-      ...useFormProps.defaultValues,
-      ...(formValues as Record<string, unknown>),
-    })
+      try {
+        const result = await execute({ variables })
+        if (onComplete && result.data) await onComplete(result, client)
+      } catch (e) {
+        return
+      }
 
-    // Wait for the onBeforeSubmit to complete
-    if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
-
-    try {
-      // Encode and submit the values
-      execute({ variables })
-    } catch (e) {
-      //
-    }
-  }
-
-  type HandleSubmit = UseFormMethods<V>['handleSubmit']
-  const handleSubmit: HandleSubmit = (onValid, onInvalid) =>
-    useFormMethods.handleSubmit(async (values, event) => {
-      await submit(values, event)
+      // Reset the state of the form if it is unmodified afterwards
+      if (typeof diff(form.getValues(), formValues) === 'undefined')
+        form.reset(formValues as UnpackNestedValue<DeepPartial<FieldValues>>)
       // @ts-expect-error For some reason it is not accepting the value here
-      await onValid(values, event)
+      await onValid(formValues, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, ...useFormMethods, formState, handleSubmit, data, error }
+  return { ...gqlDocumentHandler, ...form, handleSubmit, data, error }
 }
