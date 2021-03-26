@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { CircularProgress, TextField } from '@material-ui/core'
-import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
+import SignUpFormInline from '@reachdigital/magento-customer/SignUpFormInline'
 import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
@@ -12,6 +12,7 @@ import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
+import EmailFormHelperList from './EmailFormHelperList'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 export default function EmailForm() {
@@ -22,7 +23,6 @@ export default function EmailForm() {
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
   const { formState, errors, register, required, watch, error, getValues } = form
-  const { data: tokenData } = useQuery(CustomerTokenDocument)
 
   useEffect(() => {
     if (!cartData?.cart?.id) return
@@ -44,13 +44,13 @@ export default function EmailForm() {
       </Button>
     )
   }
-  // if (mode === 'signup') {
-  //   endAdornment = (
-  //     <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
-  //       {expand ? 'Close' : 'Sign Up'}
-  //     </Button>
-  //   )
-  // }
+  if (mode === 'signup') {
+    endAdornment = (
+      <Button color='secondary' style={{ whiteSpace: 'nowrap' }} onClick={() => setExpand(!expand)}>
+        {expand ? 'Close' : 'Sign Up'}
+      </Button>
+    )
+  }
   if (formState.isSubmitting) endAdornment = <CircularProgress />
 
   return (
@@ -85,21 +85,9 @@ export default function EmailForm() {
           </AnimatedRow>
         )}
 
-        {/* {mode === 'signup' && (
-          <AnimatedRow key='signup'>
-            <>nog niks</>
-          </AnimatedRow>
-        )} */}
+        {mode === 'signup' && expand && <SignUpFormInline email={watch('email')} />}
 
-        {!tokenData?.customerToken && (
-          <AnimatedRow key='helper-list'>
-            <ul className={formClasses.helperList} key='steps'>
-              <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
-              <li>Fill in password fields to create an account.</li>
-              <li>Leave passwords fields empty to order as guest.</li>
-            </ul>
-          </AnimatedRow>
-        )}
+        {((mode !== 'signup' && expand) || !expand) && <EmailFormHelperList />}
       </AnimatePresence>
     </div>
   )
