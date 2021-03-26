@@ -38,8 +38,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
       lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
-      telephone:
-        currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : undefined,
+      telephone: currentAddress?.telephone,
       city: currentAddress?.city,
       company: currentAddress?.company,
       postcode: currentAddress?.postcode ?? '',
@@ -56,7 +55,13 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
-      return { ...variables, regionId, saveInAddressBook: true, customerNote: '' }
+      return {
+        ...variables,
+        telephone: variables.telephone || '000 - 000 0000',
+        regionId,
+        saveInAddressBook: true,
+        customerNote: '',
+      }
     },
   })
   const { register, errors, handleSubmit, watch, formState, required, error } = form
