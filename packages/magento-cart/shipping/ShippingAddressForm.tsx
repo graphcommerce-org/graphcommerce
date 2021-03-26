@@ -7,6 +7,7 @@ import NameFields from '@reachdigital/magento-customer/NameFields'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
+import useFormCheckmarks from '@reachdigital/react-hook-form/useFormCheckmarks'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
@@ -58,7 +59,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       return { ...variables, regionId, saveInAddressBook: true, customerNote: '' }
     },
   })
-  const { register, errors, handleSubmit, control, formState, required, watch, error } = form
+  const { register, errors, handleSubmit, watch, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -77,12 +78,18 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
   }, [doSubmit, formState.isDirty, submit])
 
+  const { checkmarks } = useFormCheckmarks({
+    formMethods: { watch, required, errors },
+    icon: <CheckIcon className={classes.checkmark} />,
+  })
+
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
         <NameFields
           {...form}
           key='namefields'
+          checkmarks={checkmarks}
           disableFields={disableFields}
           fieldOptions={{
             firstname: {
@@ -98,6 +105,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         <AddressFields
           {...form}
           key='addressfields'
+          checkmarks={checkmarks}
           countryCode={currentCountryCode}
           countries={countries}
           disableFields={disableFields}
@@ -148,7 +156,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={disableFields}
             InputProps={{
-              endAdornment: !errors.telephone && <CheckIcon className={classes.checkmark} />,
+              endAdornment: checkmarks.telephone,
             }}
           />
         </div>

@@ -1,9 +1,9 @@
 import { TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { Controller, RegisterOptions, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
+import { FormCheckmarks } from '@reachdigital/react-hook-form/useFormCheckmarks'
 import { houseNumber } from '@reachdigital/react-hook-form/validationPatterns'
 import React, { useMemo } from 'react'
 
@@ -25,7 +25,7 @@ type AddressFieldsProps = Pick<
       postcode: FieldOptions
       city: FieldOptions
     }
-  }
+  } & FormCheckmarks
 
 export default function AddressFields(props: AddressFieldsProps) {
   const {
@@ -39,6 +39,7 @@ export default function AddressFields(props: AddressFieldsProps) {
     countries,
     disableFields,
     fieldOptions,
+    checkmarks,
   } = props
   const classes = useFormStyles()
 
@@ -78,9 +79,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.street.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.street.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: checkmarks[fieldOptions.street.name],
           }}
         />
         <TextField
@@ -98,9 +97,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.houseNumber.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.houseNumber.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: checkmarks[fieldOptions.houseNumber.name],
           }}
         />
         <TextField
@@ -115,9 +112,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.addition.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.addition.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: checkmarks[fieldOptions.addition.name],
           }}
         />
       </div>
@@ -134,8 +129,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.postcode.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.postcode.name] &&
-              !!watch(fieldOptions.postcode.name) && <CheckIcon className={classes.checkmark} />,
+            endAdornment: checkmarks[fieldOptions.postcode.name],
           }}
         />
         <TextField
@@ -150,9 +144,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.city.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.city.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: checkmarks[fieldOptions.city.name],
           }}
         />
       </div>
@@ -185,7 +177,7 @@ export default function AddressFields(props: AddressFieldsProps) {
             />
           )}
           InputProps={{
-            endAdornment: !errors[fieldOptions.countryCode.name] && <CheckIcon color='primary' />,
+            endAdornment: checkmarks[fieldOptions.countryCode.name],
           }}
         />
         {regionList.length > 0 && (
@@ -216,6 +208,9 @@ export default function AddressFields(props: AddressFieldsProps) {
                 )}
               />
             )}
+            InputProps={{
+              endAdornment: checkmarks[fieldOptions.regionId.name],
+            }}
           />
         )}
       </div>

@@ -1,17 +1,17 @@
 import { MenuItem, TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { Controller, RegisterOptions, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
+import { FormCheckmarks } from '@reachdigital/react-hook-form/useFormCheckmarks'
 import React from 'react'
 
 type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
 type NameFieldsProps = Pick<UseFormMethods, 'register' | 'errors' | 'formState' | 'control'> & {
   disableFields: boolean
   fieldOptions: { prefix?: FieldOptions; firstname: FieldOptions; lastname: FieldOptions }
-}
+} & FormCheckmarks
 
 export default function NameFields(props: NameFieldsProps) {
-  const { errors, register, formState, disableFields, fieldOptions, control } = props
+  const { errors, register, formState, disableFields, fieldOptions, control, checkmarks } = props
   const classes = useFormStyles()
   const required = Object.fromEntries(
     Object.values(fieldOptions).map((r) => [r?.name, r?.required]),
@@ -65,9 +65,7 @@ export default function NameFields(props: NameFieldsProps) {
           error={!!errors[fieldOptions.firstname.name]}
           helperText={formState.isSubmitted && errors[fieldOptions.firstname.name]?.message}
           InputProps={{
-            endAdornment: !errors[fieldOptions.firstname.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: checkmarks[fieldOptions.firstname.name],
           }}
         />
         <TextField
@@ -82,9 +80,7 @@ export default function NameFields(props: NameFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.lastname.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.lastname.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: checkmarks[fieldOptions.lastname.name],
           }}
         />
       </div>

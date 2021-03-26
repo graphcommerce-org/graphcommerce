@@ -5,6 +5,7 @@ import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
+import useFormCheckmarks from '@reachdigital/react-hook-form/useFormCheckmarks'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
@@ -47,9 +48,14 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, reset, register } = form
+  const { handleSubmit, formState, required, error, errors, register, watch } = form
   const submitHandler = handleSubmit((data, e) => {
     e?.target.reset()
+  })
+
+  const { checkmarks } = useFormCheckmarks({
+    formMethods: { watch, required, errors },
+    icon: <CheckIcon className={classes.checkmark} />,
   })
 
   return (
@@ -124,7 +130,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={formState.isSubmitting}
             InputProps={{
-              endAdornment: !errors.telephone && <CheckIcon className={classes.checkmark} />,
+              endAdornment: checkmarks.telephone,
             }}
           />
         </div>
