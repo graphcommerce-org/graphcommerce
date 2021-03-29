@@ -115,11 +115,19 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
     const types = Object.keys(srcSets)
     const firstSet = srcSets[types[0]] as string
 
+    let variant = 'picture'
+    if (types.length === 1) variant = 'srcSet'
+    if (firstSet.split(' ').length === 1) variant = 'src'
+
     return (
       <>
-        {types.length === 1 ? (
+        {variant === 'src' && (
+          <img ref={ref} alt={alt} {...imgProps} src={firstSet} loading={loading} />
+        )}
+        {variant === 'srcSet' && (
           <img ref={ref} alt={alt} {...imgProps} srcSet={firstSet} loading={loading} />
-        ) : (
+        )}
+        {variant === 'picture' && (
           <picture>
             {Object.entries(srcSets).map(([type, srcSet]) => (
               <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
@@ -129,14 +137,11 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
         )}
         {loading === 'eager' && (
           <Head>
-            <link
-              key={`PictureResponsive-${firstSet}`}
-              rel='preload'
-              as='image'
+            {variant === 'src' && <link rel='preload' as='image' href={firstSet} />}
+            {variant !== 'src' && (
               // @ts-expect-error: imagesrcset is not yet in the link element type
-              imagesrcset={firstSet}
-              imagesizes={`${size}px`}
-            />
+              <link rel='preload' as='image' imagesrcset={firstSet} imagesizes={`${size}px`} />
+            )}
           </Head>
         )}
       </>
