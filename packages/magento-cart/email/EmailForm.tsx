@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CircularProgress, TextField } from '@material-ui/core'
+import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
+import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
 import SignUpFormInline from '@reachdigital/magento-customer/SignUpFormInline'
 import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
@@ -12,11 +13,39 @@ import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
-import EmailFormHelperList from './EmailFormHelperList'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    helperList: {
+      marginBottom: 0,
+    },
+  }),
+  { name: 'EmailForm' },
+)
+
+function HelperList(props: { classNames?: string | string[] }) {
+  const { classNames } = props
+  const { data: tokenData } = useQuery(CustomerTokenDocument)
+  const formClasses = useFormStyles()
+
+  return (
+    <>
+      {!tokenData?.customerToken && (
+        <ul className={clsx(formClasses.helperList, classNames)}>
+          <li>E-mail address of existing customers will be recognized, sign in is optional.</li>
+          <li>Fill in password fields to create an account.</li>
+          <li>Leave passwords fields empty to order as guest.</li>
+        </ul>
+      )}
+    </>
+  )
+}
 
 export default function EmailForm() {
   const formClasses = useFormStyles()
+  const classes = useStyles()
+
   const [expand, setExpand] = useState(false)
 
   const { data: cartData } = useQuery(ClientCartDocument)
@@ -80,14 +109,26 @@ export default function EmailForm() {
         </AnimatedRow>
 
         {mode === 'signin' && expand && (
-          <AnimatedRow key='signin'>
+          <AnimatedRow key='signin-form-inline'>
             <SignInFormInline email={watch('email')} />
           </AnimatedRow>
         )}
 
-        {mode === 'signup' && expand && <SignUpFormInline email={watch('email')} />}
+        {mode === 'signup' && expand && (
+          <AnimatedRow key='inline-signup'>
+            <SignUpFormInline
+              helperList={<HelperList key='signup-helper-list' classNames={classes.helperList} />}
+              key='signup-form-inline'
+              email={watch('email')}
+            />
+          </AnimatedRow>
+        )}
 
-        {((mode !== 'signup' && expand) || !expand) && <EmailFormHelperList />}
+        {((mode !== 'signup' && expand) || !expand) && (
+          <AnimatedRow key='email-helperlist'>
+            <HelperList />
+          </AnimatedRow>
+        )}
       </AnimatePresence>
     </div>
   )
