@@ -41,6 +41,13 @@ export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = Fi
   const [oldValues, setOldValues] = useState<string>(values)
   const isDirty = values !== oldValues
 
+  const shouldSubmitPrefilledData =
+    formState.submitCount === 0 &&
+    !isDirty &&
+    formState.isValid &&
+    !formState.isSubmitting &&
+    !formState.isValidating
+
   const submitDebounced = debounce(async () => {
     setSubmitting(true)
     await submit()
@@ -50,11 +57,12 @@ export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = Fi
 
   useEffect(() => {
     if (
-      formState.isDirty &&
-      formState.isValid &&
-      !formState.isSubmitting &&
-      !formState.isValidating &&
-      isDirty
+      shouldSubmitPrefilledData ||
+      (formState.isDirty &&
+        formState.isValid &&
+        !formState.isSubmitting &&
+        !formState.isValidating &&
+        isDirty)
     ) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
@@ -67,6 +75,7 @@ export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = Fi
     formState.isValid,
     formState.isValidating,
     isDirty,
+    shouldSubmitPrefilledData,
     submitDebounced,
   ])
 
