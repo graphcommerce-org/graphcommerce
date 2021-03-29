@@ -17,8 +17,17 @@ const useStyles = makeStyles(
         gridTemplateColumns: 'minmax(200px, 3.5fr) 1fr',
       },
     },
+    form: {
+      padding: 0,
+    },
+    row: {
+      padding: 0,
+    },
     button: {
       minWidth: 'max-content',
+    },
+    buttonContainer: {
+      alignSelf: 'center',
     },
   }),
   { name: 'SignUpFormInline' },
@@ -42,8 +51,8 @@ export default function SignUpFormInline({ email }: PropsWithChildren<SignUpForm
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form onSubmit={submitHandler} noValidate className={formClasses.form}>
-      <AnimatedRow key='inline-signup' className={formClasses.formRow}>
+    <form onSubmit={submitHandler} noValidate className={clsx(formClasses.form, classes.form)}>
+      <AnimatedRow key='inline-signup' className={clsx(formClasses.formRow, classes.row)}>
         <TextField
           variant='outlined'
           type='password'
@@ -79,7 +88,7 @@ export default function SignUpFormInline({ email }: PropsWithChildren<SignUpForm
           <div>
             <EmailFormHelperList />
           </div>
-          <div>
+          <div className={classes.buttonContainer}>
             <Button
               fullWidth
               type='submit'
