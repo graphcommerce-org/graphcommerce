@@ -1,5 +1,5 @@
 import { debounce } from '@material-ui/core'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FieldValues, UseFormMethods } from 'react-hook-form'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends FieldValues> = {
@@ -11,6 +11,12 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
   wait?: number
   /** Autosubmit only when these field names update */
   fields?: Array<keyof Partial<V>>
+
+  /**
+   * Forces the form to submit directly when it is valid, whithout user interaction. Please be aware
+   * that this may cause extra requests
+   */
+  forceInitialSubmit?: boolean
 }
 
 /**
@@ -34,50 +40,36 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
 export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = FieldValues>(
   options: UseFormAutoSubmitOptions<Form, V>,
 ) {
-  const { form, submit, wait = 500, fields } = options
+  const { form, submit, wait = 500, fields, forceInitialSubmit } = options
   const { formState } = form
+
   const [submitting, setSubmitting] = useState(false)
   const values = JSON.stringify(form.watch(fields as string[]))
   const [oldValues, setOldValues] = useState<string>(values)
-  const isDirty = values !== oldValues
 
-  const shouldSubmitPrefilledData =
-    formState.submitCount === 0 &&
-    !isDirty &&
-    formState.isValid &&
-    !formState.isSubmitting &&
-    !formState.isValidating
+  const canSubmit = formState.isValid && !formState.isSubmitting && !formState.isValidating
+  const force = formState.submitCount === 0 && forceInitialSubmit
+  const shouldSubmit = formState.isDirty && values !== oldValues
 
-  const submitDebounced = debounce(async () => {
-    setSubmitting(true)
-    await submit()
-    setOldValues(values)
-    setSubmitting(false)
-  }, wait)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const submitDebounced = useCallback(
+    debounce(async () => {
+      setSubmitting(true)
+      await submit()
+      setOldValues(values)
+      setSubmitting(false)
+    }, wait),
+    [submit],
+  )
 
   useEffect(() => {
-    if (
-      shouldSubmitPrefilledData ||
-      (formState.isDirty &&
-        formState.isValid &&
-        !formState.isSubmitting &&
-        !formState.isValidating &&
-        isDirty)
-    ) {
+    if (canSubmit && (force || shouldSubmit)) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
       return submitDebounced.clear
     }
     return () => {}
-  }, [
-    formState.isDirty,
-    formState.isSubmitting,
-    formState.isValid,
-    formState.isValidating,
-    isDirty,
-    shouldSubmitPrefilledData,
-    submitDebounced,
-  ])
+  }, [canSubmit, force, shouldSubmit, submitDebounced])
 
   return submitting
 }

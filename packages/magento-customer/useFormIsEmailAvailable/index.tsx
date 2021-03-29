@@ -21,7 +21,7 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
   const { formState, data, handleSubmit } = form
 
   const submit = handleSubmit(onSubmitted || (() => {}))
-  const autoSubmitting = useFormAutoSubmit({ form, submit })
+  const autoSubmitting = useFormAutoSubmit({ form, submit, forceInitialSubmit: true })
   const isManualSubmitting = formState.isSubmitting && !autoSubmitting
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
   const { isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid } = formState
