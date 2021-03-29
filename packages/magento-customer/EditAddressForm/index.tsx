@@ -45,7 +45,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
       id: address?.id ?? undefined,
       firstname: address?.firstname,
       lastname: address?.lastname,
-      street: address?.street?.[0],
+      street: address?.street?.[0] ?? undefined,
       postcode: address?.postcode,
       city: address?.city,
       countryCode: address?.country_code,
