@@ -144,6 +144,7 @@ function CategoryPage(props: Props) {
             <ProductListItems
               items={products.items}
               className={clsx(classes.items, productListClasses.productList)}
+              loadingEager={1}
             />
             <ProductListPagination page_info={products.page_info} className={classes.pagination} />
           </Container>

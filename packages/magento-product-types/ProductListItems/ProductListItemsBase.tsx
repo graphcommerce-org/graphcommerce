@@ -23,11 +23,12 @@ export const useProductGridStyles = makeStyles(
 export type ProductItemsGridProps = {
   items?: Maybe<Array<Maybe<ProductListItemRendererFragment & ProductListItemProps>>>
   renderers: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps>
+  loadingEager?: number
 } & UseStyles<typeof useProductGridStyles> &
   JSX.IntrinsicElements['div']
 
 export default function ProductListItemsBase(props: ProductItemsGridProps) {
-  const { items, renderers, ...divProps } = props
+  const { items, renderers, loadingEager = 0, ...divProps } = props
   const classes = useProductGridStyles(props)
 
   return (
@@ -38,7 +39,7 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
             key={item.id ?? ''}
             renderer={renderers}
             {...item}
-            imageProps={{ loading: idx === 0 ? 'eager' : 'lazy' }}
+            imageProps={{ loading: loadingEager > idx ? 'eager' : 'lazy' }}
           />
         ) : null,
       )}
