@@ -39,7 +39,8 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
       lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
-      telephone: currentAddress?.telephone,
+      telephone:
+        currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : undefined,
       city: currentAddress?.city,
       company: currentAddress?.company,
       postcode: currentAddress?.postcode ?? '',
