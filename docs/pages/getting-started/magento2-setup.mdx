@@ -1,0 +1,13 @@
+# Magento 2 configuration
+
+## Links generated from Magento 2 backend
+
+In order to have things such as transactional e-mails (that are generated from the Magento 2 backend) correctly link to
+the PWA for functionality such as password reset, the _Base Link URL_ configuration setting must be set to point to the
+PWA store URL.
+
+When using different URLs for multiple stores (for example https://graphcommerce.vercel.app/nl/,
+https://graphcommerce.vercel.app/be/), be sure to configure this setting at the store scope level.
+
+The setting can be found under **Stores > Configuration > General > Web > Base URLs** and
+**Stores > Configuration > General > Web > Base URLs (Secure)**
