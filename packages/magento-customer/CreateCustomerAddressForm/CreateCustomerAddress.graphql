@@ -5,7 +5,9 @@ mutation CreateCustomerAddress(
   $lastname: String!
   $suffix: String
   $telephone: String!
-  $street: [String!]!
+  $street: String!
+  $houseNumber: String!
+  $addition: String
   $city: String!
   $postcode: String!
   $region: CustomerAddressRegionInput!
@@ -23,7 +25,7 @@ mutation CreateCustomerAddress(
       lastname: $lastname
       telephone: $telephone
       suffix: $suffix
-      street: $street
+      street: [$street, $houseNumber, $addition]
       city: $city
       postcode: $postcode
       region: $region

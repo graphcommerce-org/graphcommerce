@@ -64,6 +64,7 @@ export type Query = {
   getPayflowLinkToken?: Maybe<PayflowLinkToken>
   historyState: HistoryState
   isEmailAvailable?: Maybe<IsEmailAvailableOutput>
+  mollieCustomerOrder?: Maybe<CustomerOrder>
   /** The pickup locations query searches for locations that match the search request requirements. */
   pickupLocations?: Maybe<PickupLocations>
   /** Retrieves metadata required by clients to render the Reviews section. */
@@ -141,6 +142,10 @@ export type QueryGetPayflowLinkTokenArgs = {
 
 export type QueryIsEmailAvailableArgs = {
   email: Scalars['String']
+}
+
+export type QueryMollieCustomerOrderArgs = {
+  hash?: Maybe<Scalars['String']>
 }
 
 export type QueryPickupLocationsArgs = {
@@ -407,6 +412,8 @@ export type Cart = {
   id: Scalars['ID']
   is_virtual: Scalars['Boolean']
   items?: Maybe<Array<Maybe<CartItemInterface>>>
+  /** Available issuers for the selected payment method */
+  mollie_available_issuers?: Maybe<Array<Maybe<MollieIssuer>>>
   prices?: Maybe<CartPrices>
   selected_payment_method?: Maybe<SelectedPaymentMethod>
   shipping_addresses: Array<Maybe<ShippingCartAddress>>
@@ -422,8 +429,25 @@ export type AvailablePaymentMethod = {
   __typename?: 'AvailablePaymentMethod'
   /** The payment method code */
   code: Scalars['String']
+  /** Available issuers for this payment method */
+  mollie_available_issuers?: Maybe<Array<Maybe<MollieIssuer>>>
+  /** Retrieve meta information for this payment method (image) */
+  mollie_meta: MolliePaymentMethodMeta
   /** The payment method title. */
   title: Scalars['String']
+}
+
+export type MollieIssuer = {
+  __typename?: 'MollieIssuer'
+  code?: Maybe<Scalars['String']>
+  image: Scalars['String']
+  name?: Maybe<Scalars['String']>
+  svg: Scalars['String']
+}
+
+export type MolliePaymentMethodMeta = {
+  __typename?: 'MolliePaymentMethodMeta'
+  image?: Maybe<Scalars['String']>
 }
 
 export type BillingCartAddress = CartAddressInterface & {
@@ -1446,6 +1470,8 @@ export type SelectedPaymentMethod = {
   __typename?: 'SelectedPaymentMethod'
   /** The payment method code */
   code: Scalars['String']
+  /** Retrieve meta information for this payment method (image) */
+  mollie_meta: MolliePaymentMethodMeta
   /** The purchase order number. */
   purchase_order_number?: Maybe<Scalars['String']>
   /** The payment method title. */
@@ -3504,6 +3530,7 @@ export type Mutation = {
   createEmptyCart?: Maybe<Scalars['String']>
   /** Creates a Klarna Payments Session. */
   createKlarnaPaymentsSession?: Maybe<CreateKlarnaPaymentsSessionOutput>
+  createMollieTransaction?: Maybe<MollieTransactionOutput>
   /**
    * Initiates a transaction and receives a token. Use this mutation for Payflow Pro and Payments
    * Pro payment methods
@@ -3646,6 +3673,10 @@ export type MutationCreateEmptyCartArgs = {
 
 export type MutationCreateKlarnaPaymentsSessionArgs = {
   input?: Maybe<CreateKlarnaPaymentsSessionInput>
+}
+
+export type MutationCreateMollieTransactionArgs = {
+  input?: Maybe<MollieTransactionInput>
 }
 
 export type MutationCreatePayflowProTokenArgs = {
@@ -4145,6 +4176,16 @@ export type Assets = {
   standard?: Maybe<Scalars['String']>
 }
 
+export type MollieTransactionInput = {
+  issuer?: Maybe<Scalars['String']>
+  payment_token: Scalars['String']
+}
+
+export type MollieTransactionOutput = {
+  __typename?: 'MollieTransactionOutput'
+  checkout_url?: Maybe<Scalars['String']>
+}
+
 /** Input required to fetch payment token information for Payflow Pro and Payments Pro payment methods. */
 export type PayflowProTokenInput = {
   /** The unique ID that identifies the customer's cart */
@@ -4349,6 +4390,7 @@ export type PlaceOrderOutput = {
 
 export type Order = {
   __typename?: 'Order'
+  mollie_payment_token?: Maybe<Scalars['String']>
   /** @deprecated The order_id field is deprecated, use order_number instead. */
   order_id?: Maybe<Scalars['String']>
   /** The unique ID for a `Order` object. */
@@ -5269,7 +5311,8 @@ export type VirtualProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -5458,7 +5501,8 @@ export type SimpleProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -5961,7 +6005,8 @@ export type DownloadableProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6368,7 +6413,8 @@ export type BundleProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6760,7 +6806,8 @@ export type GroupedProduct = PhysicalProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6981,7 +7028,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */

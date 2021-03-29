@@ -28,9 +28,6 @@ const useFormStyles = makeStyles(
       gridAutoFlow: 'column',
       gap: `calc(${theme.spacings.xxs} * 2)`,
     },
-    checkmark: {
-      color: theme.palette.success.main,
-    },
     helperList: {
       ...theme.typography.body2,
       paddingLeft: theme.spacings.xs,

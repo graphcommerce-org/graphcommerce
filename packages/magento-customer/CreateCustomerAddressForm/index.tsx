@@ -1,12 +1,12 @@
 import { TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
-import useFormCheckmarks from '@reachdigital/react-hook-form/useFormCheckmarks'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import React from 'react'
 import AddressFields from '../AddressFields'
@@ -34,7 +34,6 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
 
       return {
         ...formData,
-        street: [(formData as any).houseNumber, (formData as any).addition, formData.street[0]],
         region:
           (region && {
             region: region.name,
@@ -53,16 +52,15 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
     e?.target.reset()
   })
 
-  const { checkmarks } = useFormCheckmarks({
-    formMethods: { watch, required, errors },
-    icon: <CheckIcon className={classes.checkmark} />,
-  })
+  const checkIcon = <InputCheckmark />
+  const validFields = useFormValidFields({ form: { watch, required, errors } })
 
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={classes.form}>
         <NameFields
           {...form}
+          validFields={validFields}
           disableFields={formState.isSubmitting}
           fieldOptions={{
             prefix: {
@@ -81,6 +79,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
         />
         <AddressFields
           {...form}
+          validFields={validFields}
           countries={countries}
           disableFields={formState.isSubmitting}
           fieldOptions={{
@@ -130,7 +129,7 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={formState.isSubmitting}
             InputProps={{
-              endAdornment: checkmarks.telephone,
+              endAdornment: validFields.telephone && checkIcon,
             }}
           />
         </div>

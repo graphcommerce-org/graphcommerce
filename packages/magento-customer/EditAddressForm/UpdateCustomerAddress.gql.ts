@@ -55,12 +55,22 @@ export const UpdateCustomerAddressDocument: DocumentNode<
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
           type: {
-            kind: 'ListType',
-            type: {
-              kind: 'NonNullType',
-              type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-            },
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'houseNumber' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'addition' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
         {
           kind: 'VariableDefinition',
@@ -154,7 +164,14 @@ export const UpdateCustomerAddressDocument: DocumentNode<
                     {
                       kind: 'ObjectField',
                       name: { kind: 'Name', value: 'street' },
-                      value: { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
+                      value: {
+                        kind: 'ListValue',
+                        values: [
+                          { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
+                          { kind: 'Variable', name: { kind: 'Name', value: 'houseNumber' } },
+                          { kind: 'Variable', name: { kind: 'Name', value: 'addition' } },
+                        ],
+                      },
                     },
                     {
                       kind: 'ObjectField',
@@ -218,7 +235,9 @@ export type UpdateCustomerAddressMutationVariables = Types.Exact<{
   lastname?: Types.Maybe<Types.Scalars['String']>
   suffix?: Types.Maybe<Types.Scalars['String']>
   telephone?: Types.Maybe<Types.Scalars['String']>
-  street?: Types.Maybe<Array<Types.Scalars['String']> | Types.Scalars['String']>
+  street: Types.Scalars['String']
+  houseNumber: Types.Scalars['String']
+  addition?: Types.Maybe<Types.Scalars['String']>
   city?: Types.Maybe<Types.Scalars['String']>
   postcode?: Types.Maybe<Types.Scalars['String']>
   region?: Types.Maybe<Types.CustomerAddressRegionInput>

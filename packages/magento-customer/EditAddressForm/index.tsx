@@ -1,12 +1,12 @@
 import { makeStyles, TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
-import useFormCheckmarks from '@reachdigital/react-hook-form/useFormCheckmarks'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import clsx from 'clsx'
 import React from 'react'
@@ -45,15 +45,15 @@ export default function EditAddressForm(props: EditAddressFormProps) {
       id: address?.id ?? undefined,
       firstname: address?.firstname,
       lastname: address?.lastname,
-      street: address?.street?.[2],
+      street: address?.street?.[0],
       postcode: address?.postcode,
       city: address?.city,
       countryCode: address?.country_code,
       telephone: address?.telephone,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      houseNumber: address?.street?.[0],
-      addition: address?.street?.[1],
+      houseNumber: address?.street?.[1],
+      addition: address?.street?.[2],
     },
     onBeforeSubmit: (formData) => {
       const region = countries
@@ -72,7 +72,6 @@ export default function EditAddressForm(props: EditAddressFormProps) {
       return {
         ...formData,
         ...regionData,
-        street: [(formData as any).houseNumber, (formData as any).addition, formData?.street?.[0]],
       }
     },
   })
@@ -80,17 +79,15 @@ export default function EditAddressForm(props: EditAddressFormProps) {
   const { handleSubmit, formState, required, error, errors, register, watch } = form
   const submitHandler = handleSubmit(() => {})
 
-  const { checkmarks } = useFormCheckmarks({
-    formMethods: { watch, required, errors },
-    icon: <CheckIcon className={formClasses.checkmark} />,
-  })
+  const checkIcon = <InputCheckmark />
+  const validFields = useFormValidFields({ form: { watch, required, errors } })
 
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={formClasses.form}>
         <NameFields
           {...form}
-          checkmarks={checkmarks}
+          validFields={validFields}
           disableFields={formState.isSubmitting}
           fieldOptions={{
             prefix: {
@@ -109,7 +106,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
         />
         <AddressFields
           {...form}
-          checkmarks={checkmarks}
+          validFields={validFields}
           countries={countries}
           regionId={address?.region?.region_id ?? undefined}
           disableFields={formState.isSubmitting}
@@ -160,7 +157,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={formState.isSubmitting}
             InputProps={{
-              endAdornment: checkmarks.telephone,
+              endAdornment: validFields.telephone && checkIcon,
             }}
           />
         </div>

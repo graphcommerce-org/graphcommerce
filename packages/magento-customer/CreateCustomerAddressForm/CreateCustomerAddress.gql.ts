@@ -60,14 +60,21 @@ export const CreateCustomerAddressDocument: DocumentNode<
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'ListType',
-              type: {
-                kind: 'NonNullType',
-                type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-              },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
           },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'houseNumber' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'addition' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
         {
           kind: 'VariableDefinition',
@@ -177,7 +184,14 @@ export const CreateCustomerAddressDocument: DocumentNode<
                     {
                       kind: 'ObjectField',
                       name: { kind: 'Name', value: 'street' },
-                      value: { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
+                      value: {
+                        kind: 'ListValue',
+                        values: [
+                          { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
+                          { kind: 'Variable', name: { kind: 'Name', value: 'houseNumber' } },
+                          { kind: 'Variable', name: { kind: 'Name', value: 'addition' } },
+                        ],
+                      },
                     },
                     {
                       kind: 'ObjectField',
@@ -240,7 +254,9 @@ export type CreateCustomerAddressMutationVariables = Types.Exact<{
   lastname: Types.Scalars['String']
   suffix?: Types.Maybe<Types.Scalars['String']>
   telephone: Types.Scalars['String']
-  street: Array<Types.Scalars['String']> | Types.Scalars['String']
+  street: Types.Scalars['String']
+  houseNumber: Types.Scalars['String']
+  addition?: Types.Maybe<Types.Scalars['String']>
   city: Types.Scalars['String']
   postcode: Types.Scalars['String']
   region: Types.CustomerAddressRegionInput
