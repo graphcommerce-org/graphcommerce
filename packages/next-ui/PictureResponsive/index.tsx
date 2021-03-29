@@ -99,7 +99,7 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
     const connectionType = useConnectionType()
 
     // By default (on the server) we scale down the image for the lighthouse test for the Nexus 5X
-    const [size, setSize] = useState<number>(Math.round(imgProps.width / 2.6))
+    const [size, setSize] = useState<number>(Math.ceil(imgProps.width / 3))
 
     useEffect(() => {
       // Excuted on the client, when the image is rendered we can upgrade the image to high resolution.
@@ -108,7 +108,7 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       requestUpgrade(ref.current).then(() => {
         // If the connection is slow, request a lower quality image
-        setSize(Math.round(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
+        setSize(Math.ceil(width / (connectionType === '4g' ? 1 : window.devicePixelRatio)))
       })
     }, [width, connectionType, ref])
 
