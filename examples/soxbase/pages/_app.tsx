@@ -14,7 +14,6 @@ export default function ThemedApp(props: AppProps) {
     <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
       <ThemedProvider>
         <App {...props} />
-        <script src='https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver' />
       </ThemedProvider>
     </ApolloProvider>
   )
