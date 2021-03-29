@@ -23,7 +23,7 @@ const PictureResponsiveNext = React.forwardRef<HTMLImageElement, PictureResponsi
 
     // The smallest possible image is the supplied img size, remove smaller sizes.
     const widths = possibleWidths.filter((width) => imgProps.width < width - 50)
-    const quality = connectionType === '4g' ? 100 : 80
+    const quality = connectionType === '4g' ? 100 : 70
 
     const url = (width: number, imgType: string, add = '') =>
       `${path}?w=${width}&type=${imgType}&url=${src}&q=${quality}${add} ${width}w`
