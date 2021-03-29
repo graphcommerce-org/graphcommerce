@@ -120,7 +120,9 @@ function CategoryPage(props: Props) {
         <Container className={classes.container} maxWidth={false}>
           <CategoryHeroNav
             {...category}
-            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} width={328} />}
+            asset={
+              pages?.[0]?.asset && <Asset asset={pages[0].asset} width={328} loading='eager' />
+            }
           />
         </Container>
       ) : (
@@ -144,6 +146,7 @@ function CategoryPage(props: Props) {
             <ProductListItems
               items={products.items}
               className={clsx(classes.items, productListClasses.productList)}
+              loadingEager={1}
             />
             <ProductListPagination page_info={products.page_info} className={classes.pagination} />
           </Container>
