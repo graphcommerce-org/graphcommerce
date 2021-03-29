@@ -4,9 +4,9 @@ import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/Countr
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { useRouter } from 'next/router'
 import React from 'react'
 import AddressFields from '../AddressFields'
 import NameFields from '../NameFields'
@@ -21,6 +21,7 @@ type CreateCustomerAddressFormProps = CountryRegionsQuery
 export default function CreateCustomerAddressForm(props: CreateCustomerAddressFormProps) {
   const { countries } = props
   const classes = useFormStyles()
+  const router = useRouter()
 
   const form = useFormGqlMutation<
     CreateCustomerAddressMutation,
@@ -33,7 +34,6 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
 
       return {
         ...formData,
-        street: [(formData as any).houseNumber, (formData as any).addition, formData.street[0]],
         region:
           (region && {
             region: region.name,
@@ -41,15 +41,18 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
             region_id: region.id,
           }) ??
           {},
-        defaultBilling: false,
-        defaultShipping: false,
       }
+    },
+    onComplete: (e) => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      router.push(`/account/addresses/edit?addressId=${e.data?.createCustomerAddress?.id}`)
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, reset, register } = form
+  const { handleSubmit, formState, required, error, errors, register } = form
+
   const submitHandler = handleSubmit((data, e) => {
-    e?.target.reset()
+    if (!errors) e?.target.reset()
   })
 
   return (
@@ -145,11 +148,6 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
       </form>
 
       <ApolloErrorAlert error={error} />
-
-      <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !error?.message}
-        message={<>Successfully added new address</>}
-      />
     </>
   )
 }

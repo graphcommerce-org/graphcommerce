@@ -30,6 +30,7 @@ function OrderDetailPage(props: Props) {
   const { data, loading } = useQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
     variables: { orderNumber: orderId as string },
+    ssr: false,
   })
   const images = useOrderCardItemImages(data?.customer?.orders)
   const order = data?.customer?.orders?.items?.[0]

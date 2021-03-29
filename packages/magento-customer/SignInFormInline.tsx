@@ -1,10 +1,8 @@
-import { useQuery } from '@apollo/client'
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { PropsWithChildren } from 'react'
-import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -16,7 +14,7 @@ const useStyles = makeStyles(
       gridRowGap: theme.spacings.sm,
       gridColumnGap: theme.spacings.xs,
       gridTemplateColumns: '1fr',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: '5fr 1fr',
       },
     },
@@ -31,7 +29,6 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
-  const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(SignInDocument, {
     defaultValues: { email },
     onComplete: onCompleteSignInUp,

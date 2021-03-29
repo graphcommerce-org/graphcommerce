@@ -18,8 +18,8 @@ type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 function AccountIndexPage() {
   const { data, loading } = useQuery(AccountDashboardDocument, {
     fetchPolicy: 'cache-and-network',
+    ssr: false,
   })
-  const customer = data?.customer
 
   return (
     <OverlayPage
@@ -32,9 +32,9 @@ function AccountIndexPage() {
       <Container maxWidth='md'>
         <NoSsr>
           <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-          <AccountHeader {...customer} loading={loading} />
-          <AccountMenu {...customer} loading={loading} />
-          <AccountLatestOrder {...customer} loading={loading} />
+          <AccountHeader {...data?.customer} loading={loading} />
+          <AccountMenu {...data?.customer} loading={loading} />
+          <AccountLatestOrder {...data?.customer} loading={loading} />
         </NoSsr>
       </Container>
     </OverlayPage>

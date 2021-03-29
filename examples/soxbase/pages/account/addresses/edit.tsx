@@ -43,6 +43,7 @@ function EditAddressPage(props: Props) {
 
   const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
+    ssr: false,
   })
 
   const numAddressId = Number(addressId)

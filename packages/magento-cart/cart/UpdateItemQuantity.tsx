@@ -2,10 +2,10 @@ import { debounce } from '@material-ui/core'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
-  UpdateItemQuantityMutationVariables,
   UpdateItemQuantityDocument,
+  UpdateItemQuantityMutationVariables,
 } from './UpdateItemQuantity.gql'
 
 export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVariables) {
@@ -14,14 +14,18 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVari
     defaultValues: { cartId, cartItemId, quantity },
     mode: 'onChange',
   })
-  const { register, errors, handleSubmit, required, formState, error } = form
+
+  const { register, errors, required, handleSubmit, formState, error } = form
 
   // @todo TextInputNumber can't handle a callback ref
   const ref = useRef<HTMLInputElement>(null)
-  register(ref.current, { required: required.quantity })
+
+  useEffect(() => {
+    register(ref.current, { required: required.quantity })
+  }, [register, required.quantity])
 
   return (
-    <form noValidate onChange={debounce(() => handleSubmit(() => {})(), 600)}>
+    <form noValidate onChange={debounce(() => handleSubmit(() => {})(), 500)}>
       <TextInputNumber
         size='small'
         variant='outlined'

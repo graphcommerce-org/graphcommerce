@@ -22,7 +22,7 @@ export default function SignUpForm(props: SignUpFormProps) {
     SignUpMutationVariables & { confirmPassword?: string }
   >(SignUpDocument, {
     defaultValues: { email },
-    onComplete: async (result, client) => onCompleteSignInUp(result, client),
+    onComplete: onCompleteSignInUp,
   })
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
   const { register, errors, handleSubmit, required, watch, control, formState, error } = form

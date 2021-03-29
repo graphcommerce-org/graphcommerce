@@ -1,20 +1,19 @@
 import {
-  TextField,
-  makeStyles,
-  Theme,
-  createStyles,
   IconButton,
   IconButtonProps,
+  makeStyles,
+  TextField,
   TextFieldProps,
+  Theme,
 } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import clsx from 'clsx'
-import { useRef, RefObject, useState, useEffect, ChangeEvent, useCallback } from 'react'
+import { ChangeEvent, RefObject, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles(
+  (theme: Theme) => ({
     quantity: {
       width: 120,
     },
@@ -28,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 22,
     },
   }),
+  { name: 'TextInputNumber' },
 )
 
 type IconButtonPropsOmit = Omit<
@@ -51,6 +51,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
   const classes = useStyles(props)
   const internalRef = useRef<HTMLInputElement>()
   const ref = (textFieldProps.inputRef as RefObject<HTMLInputElement>) ?? internalRef
+
   const [direction, setDirection] = useState<'up' | 'down' | 'runUp' | 'runDown' | null>(null)
   const [disabled, setDisabled] = useState<'min' | 'max' | null>(null)
 
@@ -103,6 +104,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     else if (target.value === target.max) setDisabled('max')
     else setDisabled(null)
   }
+
   useEffect(() => {
     if (!ref.current) return
     setTimeout(() => ref.current && updateDisabled(ref.current))

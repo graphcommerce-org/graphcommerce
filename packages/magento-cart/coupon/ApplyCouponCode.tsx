@@ -17,9 +17,6 @@ export default function ApplyCouponCode() {
 
   const form = useFormGqlMutation(ApplyCouponToCartDocument, {
     defaultValues: { cartId: cartQuery?.cart?.id },
-    onComplete: (e) => {
-      //
-    },
   })
   const { errors, handleSubmit, register, formState, required, clearErrors, error } = form
   const submitHandler = handleSubmit(() => {})
@@ -41,7 +38,6 @@ export default function ApplyCouponCode() {
         inputRef={register({ required: required.couponCode })}
         helperText={errors.couponCode?.message}
         disabled={formState.isSubmitting}
-        onChange={() => clearErrors('submission')}
       />
       <FormControl>
         <Button
