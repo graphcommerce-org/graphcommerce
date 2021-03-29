@@ -13,6 +13,7 @@ import onCompleteSignInUp from './onCompleteSignInUp'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     buttonFormRow: {
+      padding: 0,
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: 'minmax(200px, 3.5fr) 1fr',
       },
@@ -28,6 +29,9 @@ const useStyles = makeStyles(
     },
     buttonContainer: {
       alignSelf: 'center',
+    },
+    helperList: {
+      marginBottom: 0,
     },
   }),
   { name: 'SignUpFormInline' },
@@ -86,7 +90,7 @@ export default function SignUpFormInline({ email }: PropsWithChildren<SignUpForm
       <AnimatedRow className={formClasses.formRow} key='signup-submit'>
         <div className={clsx(formClasses.formRow, classes.buttonFormRow)}>
           <div>
-            <EmailFormHelperList />
+            <EmailFormHelperList classNames={classes.helperList} />
           </div>
           <div className={classes.buttonContainer}>
             <Button
