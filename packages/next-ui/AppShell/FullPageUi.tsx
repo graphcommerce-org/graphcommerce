@@ -13,7 +13,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     backButtonRoot: {
       position: 'fixed',
-      zIndex: 10,
+      zIndex: 11,
       [theme.breakpoints.down('sm')]: {
         // top: 4,
       },
