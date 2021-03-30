@@ -1,7 +1,7 @@
 import { TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { Controller, RegisterOptions, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
 import { houseNumber } from '@reachdigital/react-hook-form/validationPatterns'
@@ -25,6 +25,8 @@ type AddressFieldsProps = Pick<
       postcode: FieldOptions
       city: FieldOptions
     }
+  } & {
+    validFields: Record<string, boolean>
   }
 
 export default function AddressFields(props: AddressFieldsProps) {
@@ -39,6 +41,7 @@ export default function AddressFields(props: AddressFieldsProps) {
     countries,
     disableFields,
     fieldOptions,
+    validFields,
   } = props
   const classes = useFormStyles()
 
@@ -62,6 +65,7 @@ export default function AddressFields(props: AddressFieldsProps) {
   }, [country, countryList])
 
   const required = Object.fromEntries(Object.values(fieldOptions).map((r) => [r.name, r.required]))
+  const checkIcon = <InputCheckmark />
 
   return (
     <>
@@ -78,9 +82,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.street.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.street.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: validFields[fieldOptions.street.name] && checkIcon,
           }}
         />
         <TextField
@@ -98,9 +100,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.houseNumber.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.houseNumber.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: validFields[fieldOptions.houseNumber.name] && checkIcon,
           }}
         />
         <TextField
@@ -115,9 +115,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.addition.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.addition.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: validFields[fieldOptions.addition.name] && checkIcon,
           }}
         />
       </div>
@@ -134,8 +132,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.postcode.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.postcode.name] &&
-              !!watch(fieldOptions.postcode.name) && <CheckIcon className={classes.checkmark} />,
+            endAdornment: validFields[fieldOptions.postcode.name] && checkIcon,
           }}
         />
         <TextField
@@ -150,9 +147,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.city.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.city.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: validFields[fieldOptions.city.name] && checkIcon,
           }}
         />
       </div>
@@ -185,7 +180,7 @@ export default function AddressFields(props: AddressFieldsProps) {
             />
           )}
           InputProps={{
-            endAdornment: !errors[fieldOptions.countryCode.name] && <CheckIcon color='primary' />,
+            endAdornment: validFields[fieldOptions.countryCode.name] && checkIcon,
           }}
         />
         {regionList.length > 0 && (
@@ -216,6 +211,9 @@ export default function AddressFields(props: AddressFieldsProps) {
                 )}
               />
             )}
+            InputProps={{
+              endAdornment: validFields[fieldOptions.regionId.name] && checkIcon,
+            }}
           />
         )}
       </div>

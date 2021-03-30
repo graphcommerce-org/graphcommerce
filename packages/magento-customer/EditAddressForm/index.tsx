@@ -1,10 +1,11 @@
 import { makeStyles, TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -80,14 +81,18 @@ export default function EditAddressForm(props: EditAddressFormProps) {
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, register } = form
+  const { handleSubmit, formState, required, error, errors, register, watch } = form
   const submitHandler = handleSubmit(() => {})
+
+  const checkIcon = <InputCheckmark />
+  const validFields = useFormValidFields({ form: { watch, required, errors } })
 
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={formClasses.form}>
         <NameFields
           {...form}
+          validFields={validFields}
           disableFields={formState.isSubmitting}
           fieldOptions={{
             prefix: {
@@ -106,6 +111,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
         />
         <AddressFields
           {...form}
+          validFields={validFields}
           countries={countries}
           regionId={address?.region?.region_id ?? undefined}
           disableFields={formState.isSubmitting}
@@ -156,7 +162,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={formState.isSubmitting}
             InputProps={{
-              endAdornment: !errors.telephone && <CheckIcon className={formClasses.checkmark} />,
+              endAdornment: validFields.telephone && checkIcon,
             }}
           />
         </div>

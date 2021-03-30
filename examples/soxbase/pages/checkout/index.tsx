@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr } from '@material-ui/core'
+import { Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
@@ -27,8 +27,19 @@ import apolloClient from '../../lib/apolloClient'
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    heading: {
+      marginBottom: `calc(${theme.spacings.xxs} * -1)`,
+      marginTop: theme.spacings.xxs,
+    },
+  }),
+  { name: 'ShippingPage' },
+)
+
 function ShippingPage({ countries }: Props) {
-  const classes = useFormStyles()
+  const formClasses = useFormStyles()
+  const classes = useStyles()
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
@@ -71,8 +82,13 @@ function ShippingPage({ countries }: Props) {
 
               <EmailForm />
               <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+
+              <Typography variant='h5' className={classes.heading}>
+                Shipping method
+              </Typography>
               <ShippingMethodForm doSubmit={methodForm} />
-              <div className={classes.actions}>
+
+              <div className={formClasses.actions}>
                 <Button
                   type='submit'
                   color='secondary'

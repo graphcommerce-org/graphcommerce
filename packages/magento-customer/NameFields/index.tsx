@@ -1,5 +1,5 @@
 import { MenuItem, TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
+import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { Controller, RegisterOptions, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
 import React from 'react'
@@ -8,14 +8,17 @@ type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
 type NameFieldsProps = Pick<UseFormMethods, 'register' | 'errors' | 'formState' | 'control'> & {
   disableFields: boolean
   fieldOptions: { prefix?: FieldOptions; firstname: FieldOptions; lastname: FieldOptions }
+} & {
+  validFields: Record<string, boolean>
 }
 
 export default function NameFields(props: NameFieldsProps) {
-  const { errors, register, formState, disableFields, fieldOptions, control } = props
+  const { errors, register, formState, disableFields, fieldOptions, control, validFields } = props
   const classes = useFormStyles()
   const required = Object.fromEntries(
     Object.values(fieldOptions).map((r) => [r?.name, r?.required]),
   )
+  const checkIcon = <InputCheckmark />
 
   return (
     <>
@@ -40,6 +43,9 @@ export default function NameFields(props: NameFieldsProps) {
                 onBlur={onBlur}
                 value={value}
                 key='prefix'
+                InputProps={{
+                  endAdornment: validFields[fieldOptions.prefix?.name || 'prefix'] && checkIcon,
+                }}
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
                   <MenuItem key={option} value={option}>
@@ -65,9 +71,7 @@ export default function NameFields(props: NameFieldsProps) {
           error={!!errors[fieldOptions.firstname.name]}
           helperText={formState.isSubmitted && errors[fieldOptions.firstname.name]?.message}
           InputProps={{
-            endAdornment: !errors[fieldOptions.firstname.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: validFields[fieldOptions.firstname.name] && checkIcon,
           }}
         />
         <TextField
@@ -82,9 +86,7 @@ export default function NameFields(props: NameFieldsProps) {
           helperText={formState.isSubmitted && errors[fieldOptions.lastname.name]?.message}
           disabled={disableFields}
           InputProps={{
-            endAdornment: !errors[fieldOptions.lastname.name] && (
-              <CheckIcon className={classes.checkmark} />
-            ),
+            endAdornment: validFields[fieldOptions.lastname.name] && checkIcon,
           }}
         />
       </div>

@@ -1,14 +1,16 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
+
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
+import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
@@ -55,10 +57,16 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
-      return { ...variables, regionId, saveInAddressBook: true, customerNote: '' }
+      return {
+        ...variables,
+        telephone: variables.telephone || '000 - 000 0000',
+        regionId,
+        saveInAddressBook: true,
+        customerNote: '',
+      }
     },
   })
-  const { register, errors, handleSubmit, control, formState, required, watch, error } = form
+  const { register, errors, handleSubmit, watch, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -77,12 +85,16 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
   }, [doSubmit, formState.isDirty, submit])
 
+  const checkIcon = <InputCheckmark />
+  const validFields = useFormValidFields({ form: { watch, required, errors } })
+
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
         <NameFields
           {...form}
           key='namefields'
+          validFields={validFields}
           disableFields={disableFields}
           fieldOptions={{
             firstname: {
@@ -98,6 +110,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         <AddressFields
           {...form}
           key='addressfields'
+          validFields={validFields}
           countryCode={currentCountryCode}
           countries={countries}
           disableFields={disableFields}
@@ -148,7 +161,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={disableFields}
             InputProps={{
-              endAdornment: !errors.telephone && <CheckIcon className={classes.checkmark} />,
+              endAdornment: validFields.telephone && checkIcon,
             }}
           />
         </div>
