@@ -57,7 +57,9 @@ function ProductSimple(props: Props) {
       <ProductPageMeta {...product} />
       <Container maxWidth={false}>
         <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
+          <Typography component='h1' variant='h2'>
+            {product.name}
+          </Typography>
           <AddToCartButton
             mutation={ProductAddToCartDocument}
             variables={{ sku: product.sku ?? '', quantity: 1 }}
