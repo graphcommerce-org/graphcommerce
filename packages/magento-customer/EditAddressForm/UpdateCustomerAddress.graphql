@@ -6,8 +6,8 @@ mutation UpdateCustomerAddress(
   $lastname: String
   $suffix: String
   $telephone: String
-  $street: String!
-  $houseNumber: String!
+  $street: String
+  $houseNumber: String
   $addition: String
   $city: String
   $postcode: String

@@ -54,18 +54,12 @@ export const UpdateCustomerAddressDocument: DocumentNode<
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'street' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
         {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'houseNumber' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
         },
         {
           kind: 'VariableDefinition',
@@ -235,8 +229,8 @@ export type UpdateCustomerAddressMutationVariables = Types.Exact<{
   lastname?: Types.Maybe<Types.Scalars['String']>
   suffix?: Types.Maybe<Types.Scalars['String']>
   telephone?: Types.Maybe<Types.Scalars['String']>
-  street: Types.Scalars['String']
-  houseNumber: Types.Scalars['String']
+  street?: Types.Maybe<Types.Scalars['String']>
+  houseNumber?: Types.Maybe<Types.Scalars['String']>
   addition?: Types.Maybe<Types.Scalars['String']>
   city?: Types.Maybe<Types.Scalars['String']>
   postcode?: Types.Maybe<Types.Scalars['String']>
