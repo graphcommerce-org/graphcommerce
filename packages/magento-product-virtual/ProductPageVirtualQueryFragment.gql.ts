@@ -10,6 +10,10 @@ import {
   ProductCustomizable_ConfigurableProduct_Fragment,
   ProductCustomizableFragmentDoc,
 } from '../magento-product/ProductCustomizable/ProductCustomizable.gql'
+import {
+  ProductSpecsFragment,
+  ProductSpecsFragmentDoc,
+} from '../magento-product/ProductSpecs/ProductSpecs.gql'
 
 export const ProductPageVirtualQueryFragmentDoc: DocumentNode<
   ProductPageVirtualQueryFragment,
@@ -56,6 +60,7 @@ export const ProductPageVirtualQueryFragmentDoc: DocumentNode<
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductSpecs' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
@@ -88,22 +93,25 @@ export const ProductPageVirtualQueryFragmentDoc: DocumentNode<
         ],
       },
     },
+    ...ProductSpecsFragmentDoc.definitions,
     ...ProductCustomizableFragmentDoc.definitions,
   ],
 }
 export type ProductPageVirtualQueryFragment = {
-  typeProducts?: Types.Maybe<{
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<
-          | ({ __typename: 'VirtualProduct' } & ProductCustomizable_VirtualProduct_Fragment)
-          | { __typename: 'SimpleProduct' }
-          | { __typename: 'DownloadableProduct' }
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'GroupedProduct' }
-          | { __typename: 'ConfigurableProduct' }
+  typeProducts?: Types.Maybe<
+    {
+      items?: Types.Maybe<
+        Array<
+          Types.Maybe<
+            | ({ __typename: 'VirtualProduct' } & ProductCustomizable_VirtualProduct_Fragment)
+            | { __typename: 'SimpleProduct' }
+            | { __typename: 'DownloadableProduct' }
+            | { __typename: 'BundleProduct' }
+            | { __typename: 'GroupedProduct' }
+            | { __typename: 'ConfigurableProduct' }
+          >
         >
       >
-    >
-  }>
+    } & ProductSpecsFragment
+  >
 }

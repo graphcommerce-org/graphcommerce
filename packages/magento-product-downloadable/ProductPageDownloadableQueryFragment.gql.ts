@@ -10,6 +10,10 @@ import {
   ProductCustomizable_ConfigurableProduct_Fragment,
   ProductCustomizableFragmentDoc,
 } from '../magento-product/ProductCustomizable/ProductCustomizable.gql'
+import {
+  ProductSpecsFragment,
+  ProductSpecsFragmentDoc,
+} from '../magento-product/ProductSpecs/ProductSpecs.gql'
 
 export const ProductPageDownloadableQueryFragmentDoc: DocumentNode<
   ProductPageDownloadableQueryFragment,
@@ -56,6 +60,7 @@ export const ProductPageDownloadableQueryFragmentDoc: DocumentNode<
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductSpecs' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
@@ -114,35 +119,38 @@ export const ProductPageDownloadableQueryFragmentDoc: DocumentNode<
         ],
       },
     },
+    ...ProductSpecsFragmentDoc.definitions,
     ...ProductCustomizableFragmentDoc.definitions,
   ],
 }
 export type ProductPageDownloadableQueryFragment = {
-  typeProducts?: Types.Maybe<{
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<
-          { __typename: 'DownloadableProduct' } & {
-            downloadable_product_links?: Types.Maybe<
-              Array<
-                Types.Maybe<
-                  Pick<
-                    Types.DownloadableProductLinks,
-                    'price' | 'sample_url' | 'sort_order' | 'title' | 'uid'
+  typeProducts?: Types.Maybe<
+    {
+      items?: Types.Maybe<
+        Array<
+          Types.Maybe<
+            { __typename: 'DownloadableProduct' } & {
+              downloadable_product_links?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<
+                      Types.DownloadableProductLinks,
+                      'price' | 'sample_url' | 'sort_order' | 'title' | 'uid'
+                    >
                   >
                 >
               >
-            >
-            downloadable_product_samples?: Types.Maybe<
-              Array<
-                Types.Maybe<
-                  Pick<Types.DownloadableProductSamples, 'title' | 'sort_order' | 'sample_url'>
+              downloadable_product_samples?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<Types.DownloadableProductSamples, 'title' | 'sort_order' | 'sample_url'>
+                  >
                 >
               >
-            >
-          } & ProductCustomizable_DownloadableProduct_Fragment
+            } & ProductCustomizable_DownloadableProduct_Fragment
+          >
         >
       >
-    >
-  }>
+    } & ProductSpecsFragment
+  >
 }
