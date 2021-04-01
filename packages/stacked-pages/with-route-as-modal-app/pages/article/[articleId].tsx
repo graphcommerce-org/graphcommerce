@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Article from '../../components/Article'
 import Grid, { data } from '../../components/Grid'
-import { useStackLevel, useStackRouter } from '../_app'
+import { StackOptions, useStackLevel, useStackRouter } from '../_app'
 
-function ArticlePage({ articleId }) {
+function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
   const stackRouter = useStackRouter()
   const stackLevel = useStackLevel()
@@ -31,7 +32,7 @@ function ArticlePage({ articleId }) {
         enter: { y: 0, opacity: 1, x: stackLevel * 40 },
         exit: { y: 0, x: 100, opacity: 0 },
       }}
-      transition={{ ease: 'easeOut' }}
+      transition={{ ease: 'easeIn' }}
     >
       <Article id={articleId} pathname={router.pathname} />
       {stackRouter.pathname}
@@ -51,19 +52,25 @@ function ArticlePage({ articleId }) {
   )
 }
 
-ArticlePage.stack = true
+const stackOptions: StackOptions = {
+  stack: true,
+  scope: ({ router }) => router.pathname,
+}
+ArticlePage.stackOptions = stackOptions
 
 export default ArticlePage
 
-export function getStaticProps({ params: { articleId } }) {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function getStaticProps({
+  params: { articleId },
+}: GetStaticPropsContext<{ articleId: string }>) {
   return { props: { articleId } }
 }
 
-export function getStaticPaths() {
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function getStaticPaths() {
   return {
-    paths: data.map((articleId) => ({
-      params: { articleId: articleId.toString() },
-    })),
+    paths: data.map((articleId) => ({ params: { articleId: articleId.toString() } })),
     fallback: false,
   }
 }
