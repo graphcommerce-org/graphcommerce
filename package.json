@@ -7,7 +7,7 @@
     "docs",
     "packagesDev/*",
     "packages/*",
-    "packages/stacked-pages/with-route-as-modal-app",
+    "packages/framer-next-pages/with-route-as-modal-app",
     "examples/*"
   ],
   "engines": {

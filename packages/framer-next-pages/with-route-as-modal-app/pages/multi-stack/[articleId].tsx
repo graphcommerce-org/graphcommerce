@@ -1,4 +1,4 @@
-import { StackOptions } from '@reachdigital/stacked-pages/types'
+import { StackOptions } from '@reachdigital/framer-next-pages/types'
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import Grid, { data } from '../../components/Grid'

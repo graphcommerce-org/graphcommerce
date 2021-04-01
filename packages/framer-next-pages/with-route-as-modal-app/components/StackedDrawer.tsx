@@ -1,4 +1,4 @@
-import { useStackLevel } from '@reachdigital/stacked-pages'
+import { useStackLevel } from '@reachdigital/framer-next-pages'
 import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 

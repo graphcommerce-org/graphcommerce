@@ -1,5 +1,5 @@
 import '../demo.css'
-import { PageComponent, StackedPages } from '@reachdigital/stacked-pages'
+import { PageComponent, StackedPages } from '@reachdigital/framer-next-pages'
 import { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { Router } from 'next/router'
 

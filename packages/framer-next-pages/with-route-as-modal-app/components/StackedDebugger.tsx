@@ -1,4 +1,4 @@
-import { useStackLevel, useStackRouter } from '@reachdigital/stacked-pages'
+import { useStackLevel, useStackRouter } from '@reachdigital/framer-next-pages'
 import { useEffect, useState } from 'react'
 
 export default function StackDebug() {
