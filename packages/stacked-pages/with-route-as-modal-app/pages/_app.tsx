@@ -69,7 +69,10 @@ function StackedPage(props: StackedPageProps & { idx: number; stackIdx: number; 
   const { Component, pageProps, router, stackIdx, idx, scope } = props
   const isFocus = stackIdx - idx
 
-  const calc = useCallback(() => (!isFocus ? scrollPos(stackIdx).y * -1 : 0), [isFocus, stackIdx])
+  const calc = useCallback(() => (isFocus !== 0 ? scrollPos(stackIdx).y * -1 : 0), [
+    isFocus,
+    stackIdx,
+  ])
   const y = calc()
 
   return (
@@ -77,7 +80,7 @@ function StackedPage(props: StackedPageProps & { idx: number; stackIdx: number; 
       <div
         data-scope={scope}
         data-idx={stackIdx}
-        style={{ position: isFocus ? 'absolute' : 'fixed', top: y, left: 0, right: 0 }}
+        style={{ position: isFocus === 0 ? 'absolute' : 'fixed', top: y, left: 0, right: 0 }}
       >
         <Component {...pageProps} />
       </div>
@@ -97,8 +100,8 @@ function createRouterProxy(router: NextRouter): NextRouter {
   })
 }
 
-function scope(item: StackedPageProps) {
-  return item.Component.stackOptions?.scope(item) ?? item.router.asPath
+function pageScope(item: StackedPageProps) {
+  return item.Component.stackOptions?.scope?.(item) ?? item.router.asPath
 }
 
 export default function StackedPages(props: AppPropsType<Router> & { Component: PageComponent }) {
@@ -124,7 +127,7 @@ export default function StackedPages(props: AppPropsType<Router> & { Component: 
   renderStack = renderStack
     .reverse()
     .filter((stackItem) => {
-      const key = scope(stackItem)
+      const key = pageScope(stackItem)
       if (seen.has(key)) return false
       seen.add(key)
       return true
@@ -134,7 +137,7 @@ export default function StackedPages(props: AppPropsType<Router> & { Component: 
   return (
     <AnimatePresence initial={false}>
       {renderStack.map((stackItem, stackIdx) => {
-        const key = scope(stackItem)
+        const key = pageScope(stackItem)
         return (
           <StackedPage
             key={key}
