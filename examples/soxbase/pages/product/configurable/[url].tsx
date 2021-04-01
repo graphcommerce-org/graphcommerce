@@ -62,7 +62,10 @@ function ProductConfigurable(props: Props) {
         <Container maxWidth={false}>
           <ProductPageGallery {...product}>
             <Typography variant='h1'>{product.name ?? ''}</Typography>
-            <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
+            <ConfigurableProductAddToCart
+              variables={{ sku: product.sku ?? '', quantity: 1 }}
+              product={product}
+            />
           </ProductPageGallery>
         </Container>
         <RowProductDescription {...product}>

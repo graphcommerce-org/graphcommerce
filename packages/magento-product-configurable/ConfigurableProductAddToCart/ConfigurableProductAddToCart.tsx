@@ -1,11 +1,13 @@
 import { useQuery } from '@apollo/client'
-import { FormControl } from '@material-ui/core'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import RenderType from '@reachdigital/next-ui/RenderType'
+import AddToCartSuccessOverlay from '@reachdigital/next-ui/Snackbar/AddToCartSuccessOverlay'
+import AddToCartSuccessSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSuccessSnackbar'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
@@ -19,10 +21,11 @@ import {
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
+  product: Record<string, any>
 }
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { variables, ...buttonProps } = props
+  const { product, variables, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
   const classes = useFormStyles()
 
@@ -91,14 +94,12 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         </Button>
       </div>
 
-      <MessageSnackbarLoader
-        open={formState.isSubmitSuccessful && !error?.message}
-        message={
-          <>
-            Added <em>&lsquo;Product&rsquo;</em> to cart
-          </>
-        }
-      />
+      <MessageSnackbarLoader>
+        <AddToCartSuccessOverlay
+          message={product.name}
+          open={formState.isSubmitSuccessful && !error?.message}
+        />
+      </MessageSnackbarLoader>
     </form>
   )
 }
