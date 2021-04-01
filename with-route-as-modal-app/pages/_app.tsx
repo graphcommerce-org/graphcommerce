@@ -52,22 +52,43 @@ export default function StackedNavigation(
   const stack = useRef<Stack>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
 
+  // We never need to render anything beyong the current idx and we can safely omit everything
   stack.current = stack.current.slice(0, idx)
   stack.current.push({ Component, pageProps, routerProxy: createRouterProxy(router) })
 
   let renderStack = stack.current
 
+  // Find the the last item of a non-stack item
   const plainIdx = stack.current.reduce(
     (acc, item, i) => (item.Component.stack !== true ? i : acc),
     -1,
   )
-  if (plainIdx) renderStack = renderStack.slice(plainIdx)
+  if (plainIdx > -1) renderStack = stack.current.slice(plainIdx)
+
+  // Since a key can only occur once in AnimatePresence, we remove the key
+  const seen = new Set<string>()
+  renderStack = renderStack
+    .reverse()
+    .filter((stackItem) => {
+      const key = stackItem.routerProxy.asPath
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .reverse()
 
   return (
     <AnimatePresence initial={false}>
       {renderStack.map((stackItem, stackIdx) => {
         const key = stackItem.routerProxy.asPath
-        return <StackComponent key={key} {...stackItem} stackIdx={stackIdx} idx={idx} />
+        return (
+          <StackComponent
+            key={key}
+            {...stackItem}
+            stackIdx={stackIdx}
+            idx={renderStack.length - 1}
+          />
+        )
       })}
     </AnimatePresence>
   )
