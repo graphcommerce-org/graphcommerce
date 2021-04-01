@@ -68,6 +68,8 @@ export default function TextInputNumber(props: TextInputNumberProps) {
         stop()
         return
       }
+
+      ref.current?.focus()
       ref.current?.stepDown()
       ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
     }
@@ -77,6 +79,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
         return
       }
 
+      ref.current?.focus()
       ref.current?.stepUp()
       ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
     }
