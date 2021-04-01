@@ -6,7 +6,7 @@ import {
   NextPageContext,
 } from 'next/dist/next-server/lib/utils'
 import { NextRouter, Router } from 'next/router'
-import React, { createContext, useContext, useRef } from 'react'
+import React, { createContext, useCallback, useContext, useRef } from 'react'
 
 type PageComponent = NextComponentType<NextPageContext> & { stack?: boolean }
 type StackItem = AppInitialProps & { routerProxy: NextRouter; Component: PageComponent }
@@ -24,11 +24,26 @@ export function useStackRouter() {
   return useContext(context).routerProxy
 }
 
+function scrollPos(idx: number): { x: number; y: number } {
+  const scroll = global.window?.sessionStorage[`__next_scroll_${idx}`]
+  return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
+}
+
 function StackComponent(props: StackItem & { idx: number; stackIdx: number }) {
-  const { Component, pageProps, routerProxy, stackIdx, idx } = props
+  const { Component, pageProps, routerProxy, stackIdx, idx: maxStackIdx } = props
+  const isFocus = stackIdx - maxStackIdx
+
+  const calc = useCallback(() => (!isFocus ? scrollPos(stackIdx).y * -1 : 0), [isFocus, stackIdx])
+  const y = calc()
+
   return (
-    <context.Provider value={{ routerProxy, level: stackIdx - idx }}>
-      <Component {...pageProps} />
+    <context.Provider value={{ routerProxy, level: stackIdx - maxStackIdx }}>
+      <div
+        data-idx={stackIdx}
+        style={{ position: isFocus ? 'absolute' : 'fixed', top: y, left: 0, right: 0 }}
+      >
+        <Component {...pageProps} />
+      </div>
     </context.Provider>
   )
 }
