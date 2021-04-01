@@ -29,7 +29,7 @@ function ArticlePage({ articleId }) {
       initial='exit'
       variants={{
         enter: { y: 0, opacity: 1, x: stackLevel * 40 },
-        exit: { y: 0, x: '100%', opacity: 0 },
+        exit: { y: 0, x: 100, opacity: 0 },
       }}
       transition={{ ease: 'easeOut' }}
     >
