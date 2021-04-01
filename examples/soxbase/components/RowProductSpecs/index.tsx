@@ -25,6 +25,7 @@ type RowProductSpecsProps = RowProductSpecsFragment & ProductSpecsProps
 export default function RowProductSpecs(props: RowProductSpecsProps) {
   const { aggregations } = props
   const classes = useStyles()
+
   if (!aggregations) {
     return null
   }

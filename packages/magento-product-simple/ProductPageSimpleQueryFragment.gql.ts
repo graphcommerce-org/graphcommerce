@@ -11,6 +11,10 @@ import {
   ProductCustomizableFragmentDoc,
 } from '../magento-product/ProductCustomizable/ProductCustomizable.gql'
 import {
+  ProductSpecsFragment,
+  ProductSpecsFragmentDoc,
+} from '../magento-product/ProductSpecs/ProductSpecs.gql'
+import {
   ProductWeight_SimpleProduct_Fragment,
   ProductWeight_BundleProduct_Fragment,
   ProductWeight_GroupedProduct_Fragment,
@@ -63,6 +67,7 @@ export const ProductPageSimpleQueryFragmentDoc: DocumentNode<
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductSpecs' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
@@ -99,24 +104,27 @@ export const ProductPageSimpleQueryFragmentDoc: DocumentNode<
         ],
       },
     },
+    ...ProductSpecsFragmentDoc.definitions,
     ...ProductWeightFragmentDoc.definitions,
     ...ProductCustomizableFragmentDoc.definitions,
   ],
 }
 export type ProductPageSimpleQueryFragment = {
-  typeProducts?: Types.Maybe<{
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<
-          | { __typename: 'VirtualProduct' }
-          | ({ __typename: 'SimpleProduct' } & ProductWeight_SimpleProduct_Fragment &
-              ProductCustomizable_SimpleProduct_Fragment)
-          | { __typename: 'DownloadableProduct' }
-          | { __typename: 'BundleProduct' }
-          | { __typename: 'GroupedProduct' }
-          | { __typename: 'ConfigurableProduct' }
+  typeProducts?: Types.Maybe<
+    {
+      items?: Types.Maybe<
+        Array<
+          Types.Maybe<
+            | { __typename: 'VirtualProduct' }
+            | ({ __typename: 'SimpleProduct' } & ProductWeight_SimpleProduct_Fragment &
+                ProductCustomizable_SimpleProduct_Fragment)
+            | { __typename: 'DownloadableProduct' }
+            | { __typename: 'BundleProduct' }
+            | { __typename: 'GroupedProduct' }
+            | { __typename: 'ConfigurableProduct' }
+          >
         >
       >
-    >
-  }>
+    } & ProductSpecsFragment
+  >
 }

@@ -1,5 +1,6 @@
 fragment ProductPageVirtualQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    ...ProductSpecs
     items {
       __typename
       ... on VirtualProduct {

@@ -1,5 +1,6 @@
 fragment ProductPageConfigurableQueryFragment on Query {
   typeProducts: products(filter: { url_key: { eq: $urlKey } }) {
+    ...ProductSpecs
     items {
       ... on ConfigurableProduct {
         __typename
