@@ -41,7 +41,8 @@
     "prettier:fix": "yarn prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc": "./node_modules/.bin/tsc",
     "tsc:lint": "yarn tsc --noEmit -p .",
-    "config-to-env": "yarn ts-node -O '{\"module\":\"commonjs\"}' --transpile-only packages/magento-store/config-to-env/index.ts"
+    "config-to-env": "yarn ts-node -O '{\"module\":\"commonjs\"}' --transpile-only packages/magento-store/config-to-env/index.ts",
+    "gen:sitemap": "yarn workspace @reachdigital/soxbase build:sitemap"
   },
   "sideEffects": false,
   "prettier": "@reachdigital/prettier-config-pwa",
