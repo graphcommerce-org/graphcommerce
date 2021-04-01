@@ -6,10 +6,19 @@ export const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 export default function PostCardGrid() {
   return (
     <div className={styles.postCardGridWrapper}>
-      <h2>With Dynamic Routing, and reloads will keep the modal</h2>
+      <h2>Single stack overlays</h2>
       <div className={styles.postCardGrid}>
         {data.map((id) => (
-          <Link key={id} href={`/article/${id}`}>
+          <Link key={id} href={`/single-stack/${id}`}>
+            <a className={styles.postCard}>{id}</a>
+          </Link>
+        ))}
+      </div>
+
+      <h2>Multi stack overlays</h2>
+      <div className={styles.postCardGrid}>
+        {data.map((id) => (
+          <Link key={id} href={`/multi-stack/${id}`}>
             <a className={styles.postCard}>{id}</a>
           </Link>
         ))}
