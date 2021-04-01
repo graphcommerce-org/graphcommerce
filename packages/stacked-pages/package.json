@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "sideEffects": false,
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": "14.x"
   },

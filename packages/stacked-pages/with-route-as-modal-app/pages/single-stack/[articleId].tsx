@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import Grid, { data } from '../../components/Grid'
@@ -9,8 +10,27 @@ function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProp
   return (
     <StackedDrawer>
       <StackDebug />
-      <h1>Single Stack {articleId}</h1>
-      <Grid />
+      <div
+        style={{
+          position: 'relative',
+          overflow: 'hidden',
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        <AnimatePresence initial={false}>
+          <motion.div
+            style={{ position: 'absolute', left: 0, top: 0 }}
+            key={articleId}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+          >
+            <h1>Single Stack {articleId}</h1>
+            <Grid />
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </StackedDrawer>
   )
 }

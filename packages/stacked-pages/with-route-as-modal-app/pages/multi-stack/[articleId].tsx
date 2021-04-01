@@ -1,9 +1,9 @@
+import { StackOptions } from '@reachdigital/stacked-pages/types'
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import Grid, { data } from '../../components/Grid'
 import StackDebug from '../../components/StackedDebugger'
 import StackedDrawer from '../../components/StackedDrawer'
-import { StackOptions } from '../_app'
 
 function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (

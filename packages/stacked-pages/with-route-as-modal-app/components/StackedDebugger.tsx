@@ -1,5 +1,5 @@
+import { useStackLevel, useStackRouter } from '@reachdigital/stacked-pages'
 import { useEffect, useState } from 'react'
-import { useStackRouter, useStackLevel } from '../pages/_app'
 
 export default function StackDebug() {
   const stackRouter = useStackRouter()

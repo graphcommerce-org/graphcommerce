@@ -1,6 +1,6 @@
+import { useStackLevel } from '@reachdigital/stacked-pages'
 import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
-import { useStackLevel } from '../pages/_app'
 
 export default function StackedDrawer({ children }: PropsWithChildren<unknown>) {
   const stackLevel = useStackLevel()
