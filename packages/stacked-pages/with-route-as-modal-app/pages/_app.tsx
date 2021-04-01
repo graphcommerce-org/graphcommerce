@@ -115,15 +115,10 @@ function pageScope(item: StackedPageProps) {
   return item.Component.stackOptions?.scope?.(item) ?? item.router.asPath
 }
 
-function useForceUpdate(): () => void {
-  return React.useReducer(() => ({}), {})[1] as () => void
-}
-
 export default function StackedPages(props: AppPropsType<Router> & { Component: PageComponent }) {
   const { router, Component, pageProps } = props
   const stack = useRef<StackedPageProps[]>([])
   const historyIdx = currentHistoryIdx()
-  const forceUpdate = useForceUpdate()
 
   // We never need to render anything beyong the current idx and we can safely omit everything
   stack.current = stack.current.slice(0, historyIdx)
