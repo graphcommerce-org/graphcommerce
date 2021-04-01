@@ -29,7 +29,7 @@ function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
-function StackComponent(props: StackItem & { idx: number; stackIdx: number }) {
+function StackedPage(props: StackItem & { idx: number; stackIdx: number }) {
   const { Component, pageProps, routerProxy, stackIdx, idx: maxStackIdx } = props
   const isFocus = stackIdx - maxStackIdx
 
@@ -60,9 +60,7 @@ function createRouterProxy(router: NextRouter): NextRouter {
   })
 }
 
-export default function StackedNavigation(
-  props: AppPropsType<Router> & { Component: PageComponent },
-) {
+export default function StackedPages(props: AppPropsType<Router> & { Component: PageComponent }) {
   const { router, Component, pageProps } = props
   const stack = useRef<Stack>([])
   const idx = Number(global.window?.history.state?.idx ?? 0)
@@ -97,12 +95,7 @@ export default function StackedNavigation(
       {renderStack.map((stackItem, stackIdx) => {
         const key = stackItem.routerProxy.asPath
         return (
-          <StackComponent
-            key={key}
-            {...stackItem}
-            stackIdx={stackIdx}
-            idx={renderStack.length - 1}
-          />
+          <StackedPage key={key} {...stackItem} stackIdx={stackIdx} idx={renderStack.length - 1} />
         )
       })}
     </AnimatePresence>
