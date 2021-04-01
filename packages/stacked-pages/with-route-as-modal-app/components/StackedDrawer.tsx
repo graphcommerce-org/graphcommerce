@@ -17,6 +17,7 @@ export default function StackedDrawer({ children }: PropsWithChildren<unknown>) 
         width: 600 + 200,
         boxShadow: `rgba(100, 100, 111, 0.2) 0px 7px 29px 0px`,
         originY: 0,
+        height: 3000,
       }}
       animate='enter'
       exit='exit'

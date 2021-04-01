@@ -1,9 +1,7 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-import Link from 'next/link'
 import React from 'react'
-import Article from '../../components/Article'
 import Grid, { data } from '../../components/Grid'
-import StackDebug from '../../components/StackDebug'
+import StackDebug from '../../components/StackedDebugger'
 import StackedDrawer from '../../components/StackedDrawer'
 import { StackOptions } from '../_app'
 
@@ -11,11 +9,7 @@ function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProp
   return (
     <StackedDrawer>
       <StackDebug />
-      <Article id={articleId} />
-
-      <Link href='/'>
-        <a>Link</a>
-      </Link>
+      <h1>Multi Stack {articleId}</h1>
       <Grid />
     </StackedDrawer>
   )

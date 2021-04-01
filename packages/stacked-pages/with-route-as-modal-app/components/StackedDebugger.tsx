@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useStackRouter, useStackLevel } from '../pages/_app'
 
 export default function StackDebug() {
@@ -30,7 +30,7 @@ export default function StackDebug() {
         stackLevel: {stackLevel}
       </code>
 
-      <div style={{ position: 'absolute', top: 0, left: 0 }}>
+      <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>
         {Array(30)
           .fill(undefined)
           .map((_, k) => k + 1)
@@ -46,7 +46,9 @@ export default function StackDebug() {
                 width: 40,
                 textAlign: 'center',
                 lineHeight: `28px`,
-                color: '#ddd',
+                color: '#ccc',
+                background: `rgba(255,255,255,0.7)`,
+                borderRight: `1px solid #efefef`,
               }}
             >
               <code>{k * 100}</code>

@@ -1,5 +1,5 @@
 import Grid from '../components/Grid'
-import StackDebug from '../components/StackDebug'
+import StackDebug from '../components/StackedDebugger'
 
 function Index() {
   return (

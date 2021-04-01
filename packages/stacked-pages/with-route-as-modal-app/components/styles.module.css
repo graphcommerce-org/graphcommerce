@@ -7,12 +7,11 @@
   display: inline-grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
 }
 
 .postCard {
   width: 150px;
-  height: 150px;
+  height: 50px;
   background-color: lightblue;
   display: flex;
   justify-content: center;
