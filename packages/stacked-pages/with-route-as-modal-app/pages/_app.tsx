@@ -1,4 +1,5 @@
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, useIsPresent } from 'framer-motion'
+import '../demo.css'
 import {
   AppInitialProps,
   AppPropsType,
@@ -6,7 +7,7 @@ import {
   NextPageContext,
 } from 'next/dist/next-server/lib/utils'
 import { NextRouter, Router } from 'next/router'
-import React, { createContext, useCallback, useContext, useRef } from 'react'
+import React, { createContext, useContext, useRef } from 'react'
 
 /**
  * Default:
@@ -47,7 +48,11 @@ type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageCont
   stackOptions?: StackOptions
 }
 
-type StackedPageProps = AppInitialProps & { router: NextRouter; Component: PageComponent }
+type StackedPageProps = AppInitialProps & {
+  router: NextRouter
+  Component: PageComponent
+  historyIdx: number
+}
 
 type StackItemContext = { router: NextRouter; level: number }
 const context = createContext<StackItemContext>(undefined)
@@ -65,22 +70,28 @@ function scrollPos(idx: number): { x: number; y: number } {
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }
 }
 
-function StackedPage(props: StackedPageProps & { idx: number; stackIdx: number; scope: string }) {
-  const { Component, pageProps, router, stackIdx, idx, scope } = props
-  const isFocus = stackIdx - idx
+function currentHistoryIdx() {
+  return Number(global.window?.history.state?.idx ?? 0)
+}
 
-  const calc = useCallback(() => (isFocus !== 0 ? scrollPos(stackIdx).y * -1 : 0), [
-    isFocus,
-    stackIdx,
-  ])
-  const y = calc()
+function StackedPage(props: StackedPageProps & { idx: number; stackIdx: number; scope: string }) {
+  const { Component, pageProps, router, stackIdx, idx, historyIdx: pageIdx, scope } = props
+  const active = stackIdx === idx
+
+  // The active StackedPage doesn't get any special treatment
+  let top = 0
+
+  // If the StackedPage isn't active, we offset the page
+  if (!active) top = scrollPos(pageIdx).y * -1
+
+  // If the StackedPage isn't present as a child of <AnimatePresence/>, but it is still present in the DOM, we change change it's top position.
+  if (!useIsPresent()) top = scrollPos(currentHistoryIdx()).y - scrollPos(stackIdx).y
 
   return (
     <context.Provider value={{ router, level: stackIdx - idx }}>
       <div
         data-scope={scope}
-        data-idx={stackIdx}
-        style={{ position: isFocus === 0 ? 'absolute' : 'fixed', top: y, left: 0, right: 0 }}
+        style={{ position: active ? 'absolute' : 'fixed', top, left: 0, right: 0 }}
       >
         <Component {...pageProps} />
       </div>
@@ -104,27 +115,37 @@ function pageScope(item: StackedPageProps) {
   return item.Component.stackOptions?.scope?.(item) ?? item.router.asPath
 }
 
+function useForceUpdate(): () => void {
+  return React.useReducer(() => ({}), {})[1] as () => void
+}
+
 export default function StackedPages(props: AppPropsType<Router> & { Component: PageComponent }) {
   const { router, Component, pageProps } = props
   const stack = useRef<StackedPageProps[]>([])
-  const idx = Number(global.window?.history.state?.idx ?? 0)
+  const historyIdx = currentHistoryIdx()
+  const forceUpdate = useForceUpdate()
 
   // We never need to render anything beyong the current idx and we can safely omit everything
-  stack.current = stack.current.slice(0, idx)
-  stack.current.push({ Component, pageProps, router: createRouterProxy(router) })
+  stack.current = stack.current.slice(0, historyIdx)
 
-  let renderStack = stack.current
+  // Add the current page
+  stack.current.push({ Component, pageProps, router: createRouterProxy(router), historyIdx })
+
+  let pageStack = stack.current
 
   // Find the the last item of a non-stack item
   const plainIdx = stack.current.reduce(
     (acc, item, i) => (item.Component.stackOptions?.stack === true ? acc : i),
     -1,
   )
-  if (plainIdx > -1) renderStack = stack.current.slice(plainIdx)
 
-  // Since a key can only occur once in AnimatePresence, we remove the key
+  // todo(paales): When there is no plain page found, maybe we can inject a bare page?
+  // if (plainIdx < 0) {}
+  if (plainIdx > -1) pageStack = stack.current.slice(plainIdx)
+
+  // Since a key can only occur once in AnimatePresence, we remove duplicates and maintain the last one as that one has the most recent props.
   const seen = new Set<string>()
-  renderStack = renderStack
+  pageStack = pageStack
     .reverse()
     .filter((stackItem) => {
       const key = pageScope(stackItem)
@@ -136,7 +157,7 @@ export default function StackedPages(props: AppPropsType<Router> & { Component: 
 
   return (
     <AnimatePresence initial={false}>
-      {renderStack.map((stackItem, stackIdx) => {
+      {pageStack.map((stackItem, stackIdx) => {
         const key = pageScope(stackItem)
         return (
           <StackedPage
@@ -144,7 +165,7 @@ export default function StackedPages(props: AppPropsType<Router> & { Component: 
             scope={key}
             {...stackItem}
             stackIdx={stackIdx}
-            idx={renderStack.length - 1}
+            idx={pageStack.length - 1}
           />
         )
       })}
