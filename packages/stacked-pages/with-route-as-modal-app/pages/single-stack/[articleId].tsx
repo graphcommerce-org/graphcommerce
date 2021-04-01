@@ -17,12 +17,6 @@ function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProp
         <a>Link</a>
       </Link>
       <Grid />
-      {Array(100)
-        .fill(undefined)
-        .map((_, idx) => idx)
-        .map((idx) => (
-          <br key={idx} />
-        ))}
     </StackedDrawer>
   )
 }
