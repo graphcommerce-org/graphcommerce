@@ -75,6 +75,7 @@ const useStyles = makeStyles(
       color: theme.palette.text.primary,
       textDecoration: 'none',
       flexWrap: 'nowrap',
+      maxWidth: 'max-content',
     },
     itemPrice: {
       gridArea: 'itemPrice',

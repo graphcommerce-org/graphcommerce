@@ -1,6 +1,7 @@
 import { debounce } from '@material-ui/core'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { useEffect, useRef } from 'react'
 import {
@@ -15,17 +16,19 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVari
     mode: 'onChange',
   })
 
-  const { register, errors, required, handleSubmit, formState, error } = form
+  const { register, errors, required, handleSubmit, error } = form
+
+  const submit = handleSubmit(() => {})
+  useFormAutoSubmit({ form, submit })
 
   // @todo TextInputNumber can't handle a callback ref
   const ref = useRef<HTMLInputElement>(null)
-
   useEffect(() => {
     register(ref.current, { required: required.quantity })
   }, [register, required.quantity])
 
   return (
-    <form noValidate onChange={debounce(() => handleSubmit(() => {})(), 500)}>
+    <form noValidate onSubmit={submit}>
       <TextInputNumber
         size='small'
         variant='outlined'
@@ -36,7 +39,6 @@ export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVari
         required={required.quantity}
         inputRef={ref}
         helperText={errors.quantity?.message}
-        disabled={formState.isSubmitting}
       />
       <ApolloErrorAlert error={error} />
     </form>
