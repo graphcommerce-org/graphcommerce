@@ -76,7 +76,7 @@ function variableType<T extends TypeNode>(type: T): FieldTypes {
   return (type as NamedTypeNode).name.value as keyof Scalars
 }
 
-export type HandlerFactoryReturn<V extends FieldValues> = {
+export type UseGqlDocumentHandler<V extends FieldValues> = {
   type: OperationTypeNode | undefined
   required: IsRequired<V>
   defaultVariables: Partial<Pick<V, OptionalKeys<V>>>
@@ -86,7 +86,7 @@ export type HandlerFactoryReturn<V extends FieldValues> = {
   ) => V
 }
 
-export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): HandlerFactoryReturn<V> {
+export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): UseGqlDocumentHandler<V> {
   type Defaults = Partial<Pick<V, OptionalKeys<V>>>
   type Encoding = { [k in keyof V]: FieldTypes }
   type Required = IsRequired<V>
@@ -146,6 +146,6 @@ export function handlerFactory<Q, V>(document: TypedDocumentNode<Q, V>): Handler
 
 export default function useGqlDocumentHandler<Q, V>(
   document: TypedDocumentNode<Q, V>,
-): HandlerFactoryReturn<V> {
+): UseGqlDocumentHandler<V> {
   return useMemo(() => handlerFactory<Q, V>(document), [document])
 }

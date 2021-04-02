@@ -4,10 +4,11 @@ import {
   TypedDocumentNode,
   useApolloClient,
   MutationTuple,
+  ApolloError,
 } from '@apollo/client'
 import { UseFormOptions, UseFormMethods, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
-import useGqlDocumentHandler from './useGqlDocumentHandler'
+import useGqlDocumentHandler, { UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { LazyQueryTuple } from './useLazyQueryPromise'
 
 export type OnCompleteFn<Q> = (
@@ -21,6 +22,9 @@ type UseFormGraphQLCallbacks<Q, V> = {
 }
 
 export type UseFormGraphQlOptions<Q, V> = UseFormOptions<V> & UseFormGraphQLCallbacks<Q, V>
+
+export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 'type'> &
+  Pick<UseFormMethods<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
 
 /**
  * Combines useMutation/useLazyQueryPromise with react-hook-form's useForm:
@@ -37,7 +41,7 @@ export default function useFormGql<Q, V>(
     tuple: MutationTuple<Q, V> | LazyQueryTuple<Q, V>
     defaultValues?: UseFormOptions<V>['defaultValues']
   } & UseFormGraphQLCallbacks<Q, V>,
-) {
+): UseFormGqlMethods<Q, V> {
   const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error }] = tuple
@@ -69,5 +73,5 @@ export default function useFormGql<Q, V>(
       await onValid(formValues, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, ...form, handleSubmit, data, error }
+  return { ...gqlDocumentHandler, handleSubmit, data, error }
 }

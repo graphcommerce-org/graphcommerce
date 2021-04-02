@@ -1,9 +1,7 @@
 import { UseFormMethods } from 'react-hook-form'
 
 type UseFormValidFieldsProps = {
-  form: Pick<UseFormMethods, 'watch' | 'errors'> & {
-    required: { [key: string]: boolean }
-  }
+  form: Pick<UseFormMethods, 'watch' | 'errors'> & { required: Record<string, boolean> }
 }
 
 /**
