@@ -29,14 +29,26 @@ const useStyles = makeStyles(
       '& > *': {
         pointerEvents: 'all',
       },
+      [theme.breakpoints.down('xs')]: {
+        justifyContent: 'left',
+      },
+    },
+    sliderButtons: {
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
     },
     topRight: {
       display: 'grid',
       gridAutoFlow: 'column',
+      top: theme.spacings.sm,
       gap: theme.spacings.xxs,
       position: 'absolute',
-      top: theme.spacings.sm,
       right: theme.spacings.sm,
+      [theme.breakpoints.down('xs')]: {
+        top: 'auto',
+        bottom: theme.spacings.sm,
+      },
     },
   }),
   { name: 'ExandableGallery' },
@@ -65,13 +77,7 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
           layout={layout}
           classes={{ container: clsx(classes.container, zoomed && classes.containerZoomed) }}
         >
-          <SliderScroller layout={layout}>
-            {React.Children.map(children, (child) =>
-              React.isValidElement<{ layout?: boolean }>(child)
-                ? React.cloneElement(child, { layout })
-                : { child },
-            )}
-          </SliderScroller>
+          <SliderScroller layout={layout}>{children}</SliderScroller>
 
           <m.div
             layout
@@ -92,9 +98,9 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
           </m.div>
 
           <div className={classes.bottomCenter}>
-            <SliderPrev layout={layout} />
+            <SliderPrev layout={layout} classes={{ root: classes.sliderButtons }} />
             <SliderDots layout={layout} count={React.Children.count(children)} />
-            <SliderNext layout={layout} />
+            <SliderNext layout={layout} classes={{ root: classes.sliderButtons }} />
           </div>
         </SliderContainer>
       </SliderContext>

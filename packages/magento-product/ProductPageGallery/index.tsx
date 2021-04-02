@@ -18,7 +18,7 @@ const useStyles = makeStyles(
       },
       background: 'rgba(0,0,0,0.03)',
       marginBottom: theme.spacings.lg,
-      minHeight: responsiveVal(400, 1200),
+      height: responsiveVal(900, 1200),
     },
     container: {
       position: 'relative',
@@ -27,6 +27,9 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       width: '100%',
       height: '100%',
+      [theme.breakpoints.down('sm')]: {
+        maxHeight: '65vh',
+      },
     },
     containerZoomed: {
       zIndex: 12,
@@ -39,8 +42,9 @@ const useStyles = makeStyles(
       right: 0,
     },
     sidebar: {
-      height: '100%',
       width: '100%',
+      minHeight: '20vh',
+      height: '100%',
       display: 'grid',
       justifyItems: 'start',
       alignContent: 'center',
