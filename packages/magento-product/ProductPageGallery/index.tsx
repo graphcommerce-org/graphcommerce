@@ -27,9 +27,6 @@ const useStyles = makeStyles(
       overflow: 'hidden',
       width: '100%',
       height: '100%',
-      [theme.breakpoints.down('sm')]: {
-        maxHeight: '65vh',
-      },
     },
     containerZoomed: {
       zIndex: 12,
