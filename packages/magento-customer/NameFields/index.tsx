@@ -1,51 +1,49 @@
 import { MenuItem, TextField } from '@material-ui/core'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { Controller, RegisterOptions, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
+import { Controller, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
 import React from 'react'
 
-type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
-type NameFieldsProps = Pick<UseFormMethods, 'register' | 'errors' | 'formState' | 'control'> & {
-  disableFields: boolean
-  fieldOptions: { prefix?: FieldOptions; firstname: FieldOptions; lastname: FieldOptions }
-} & {
-  validFields: Record<string, boolean>
+type RequiredFields = 'firstname' | 'lastname'
+type OptionalFields = 'prefix'
+type Fields = Record<RequiredFields, string> & Partial<Record<OptionalFields, string>>
+type Required = Record<RequiredFields, boolean> & Partial<Record<OptionalFields, boolean>>
+
+type NameFieldsProps = Fields & {
+  form: UseFormMethods
+  disabled?: boolean
+  required?: Required
+  validFields: Partial<Record<RequiredFields | OptionalFields, boolean>>
 }
 
 export default function NameFields(props: NameFieldsProps) {
-  const { errors, register, formState, disableFields, fieldOptions, control, validFields } = props
+  const { form, disabled, required, prefix, firstname, lastname, validFields } = props
+  const { errors, register, formState, control } = form
   const classes = useFormStyles()
-  const required = Object.fromEntries(
-    Object.values(fieldOptions).map((r) => [r?.name, r?.required]),
-  )
   const checkIcon = <InputCheckmark />
 
   return (
     <>
       <div className={classes.formRow}>
-        {fieldOptions.prefix && (
+        {prefix && (
           <Controller
             defaultValue='Dhr.'
             control={control}
-            name={fieldOptions?.prefix.name}
+            name={prefix}
             render={({ onChange, name, value, onBlur }) => (
               <TextField
                 variant='outlined'
                 select
-                error={!!errors[fieldOptions.prefix?.name ?? '']}
-                id={fieldOptions.prefix?.name}
+                error={!!errors[prefix]}
                 name={name}
                 label='Prefix'
-                required={!!required.prefix}
+                required={!!required?.prefix}
                 helperText={errors.prefix?.message}
-                disabled={formState.isSubmitting}
+                disabled={disabled}
                 onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 value={value}
-                key='prefix'
-                InputProps={{
-                  endAdornment: validFields[fieldOptions.prefix?.name || 'prefix'] && checkIcon,
-                }}
+                InputProps={{ endAdornment: validFields[prefix] && checkIcon }}
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
                   <MenuItem key={option} value={option}>
@@ -58,36 +56,30 @@ export default function NameFields(props: NameFieldsProps) {
         )}
       </div>
 
-      <div className={classes.formRow} key='namefields-firstname-lastname'>
+      <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='text'
-          name={fieldOptions.firstname.name}
+          name={firstname}
           label='First Name'
-          key='firstname'
-          required={!!required.firstname}
-          inputRef={register({ required: required.firstname })}
-          disabled={disableFields}
-          error={!!errors[fieldOptions.firstname.name]}
-          helperText={formState.isSubmitted && errors[fieldOptions.firstname.name]?.message}
-          InputProps={{
-            endAdornment: validFields[fieldOptions.firstname.name] && checkIcon,
-          }}
+          required={!!required}
+          inputRef={register({ required: required?.firstname })}
+          disabled={disabled}
+          error={!!errors[firstname]}
+          helperText={formState.isSubmitted && errors[firstname]?.message}
+          InputProps={{ endAdornment: validFields[firstname] && checkIcon }}
         />
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[fieldOptions.lastname.name]}
-          name={fieldOptions.lastname.name}
+          error={!!errors[lastname]}
+          name={lastname}
           label='Last Name'
-          key='lastname'
-          required={!!required.lastname}
-          inputRef={register({ required: required.lastname })}
-          helperText={formState.isSubmitted && errors[fieldOptions.lastname.name]?.message}
-          disabled={disableFields}
-          InputProps={{
-            endAdornment: validFields[fieldOptions.lastname.name] && checkIcon,
-          }}
+          required={!!required?.lastname}
+          inputRef={register({ required: required?.lastname })}
+          helperText={formState.isSubmitted && errors[lastname]?.message}
+          disabled={disabled}
+          InputProps={{ endAdornment: validFields[lastname] && checkIcon }}
         />
       </div>
     </>

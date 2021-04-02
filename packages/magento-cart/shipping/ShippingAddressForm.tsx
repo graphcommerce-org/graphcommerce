@@ -92,58 +92,29 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
         <NameFields
-          {...form}
-          key='namefields'
+          key='name'
+          form={form}
           validFields={validFields}
-          disableFields={disableFields}
-          fieldOptions={{
-            firstname: {
-              name: 'firstname',
-              required: required.firstname,
-            },
-            lastname: {
-              name: 'lastname',
-              required: required.lastname,
-            },
-          }}
+          disabled={disableFields}
+          required={required}
+          firstname='firstname'
+          lastname='lastname'
         />
+
         <AddressFields
-          {...form}
+          form={form}
           key='addressfields'
           validFields={validFields}
-          countryCode={currentCountryCode}
           countries={countries}
-          disableFields={disableFields}
-          fieldOptions={{
-            street: {
-              name: 'street',
-              required: required.street,
-            },
-            houseNumber: {
-              name: 'houseNumber',
-              required: required.houseNumber,
-            },
-            addition: {
-              name: 'addition',
-              required: required.addition,
-            },
-            postcode: {
-              name: 'postcode',
-              required: required.postcode,
-            },
-            city: {
-              name: 'city',
-              required: required.city,
-            },
-            countryCode: {
-              name: 'countryCode',
-              required: required.countryCode,
-            },
-            regionId: {
-              name: 'regionId',
-              required: required.regionId,
-            },
-          }}
+          disabled={disableFields}
+          street='street'
+          houseNumber='houseNumber'
+          addition='addition'
+          postcode='postcode'
+          city='city'
+          countryCode='countryCode'
+          regionId='regionId'
+          required={required}
         />
 
         <div className={classes.formRow} key='telephone'>

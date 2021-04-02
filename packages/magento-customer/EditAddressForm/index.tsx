@@ -81,70 +81,36 @@ export default function EditAddressForm(props: EditAddressFormProps) {
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, register, watch } = form
+  const { handleSubmit, formState, required, error, errors, register } = form
   const submitHandler = handleSubmit(() => {})
 
-  const checkIcon = <InputCheckmark />
-  const validFields = useFormValidFields({ form: { watch, required, errors } })
+  const validFields = useFormValidFields({ form })
 
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={formClasses.form}>
         <NameFields
-          {...form}
+          form={form}
+          disabled={formState.isSubmitting}
           validFields={validFields}
-          disableFields={formState.isSubmitting}
-          fieldOptions={{
-            prefix: {
-              name: 'prefix',
-              required: required.prefix,
-            },
-            firstname: {
-              name: 'firstname',
-              required: required.firstname,
-            },
-            lastname: {
-              name: 'lastname',
-              required: required.lastname,
-            },
-          }}
+          required={required}
+          prefix='prefix'
+          firstname='firstname'
+          lastname='lastname'
         />
         <AddressFields
-          {...form}
-          validFields={validFields}
+          form={form}
           countries={countries}
-          regionId={address?.region?.region_id ?? undefined}
-          disableFields={formState.isSubmitting}
-          fieldOptions={{
-            street: {
-              name: 'street',
-              required: required.street,
-            },
-            houseNumber: {
-              name: 'houseNumber',
-              required: true,
-            },
-            addition: {
-              name: 'addition',
-              required: false,
-            },
-            postcode: {
-              name: 'postcode',
-              required: required.postcode,
-            },
-            city: {
-              name: 'city',
-              required: required.city,
-            },
-            countryCode: {
-              name: 'countryCode',
-              required: required.countryCode,
-            },
-            regionId: {
-              name: 'region',
-              required: required.region,
-            },
-          }}
+          disabled={formState.isSubmitting}
+          validFields={validFields}
+          required={required}
+          street='street'
+          houseNumber='houseNumber'
+          addition='addition'
+          postcode='postcode'
+          city='city'
+          countryCode='countryCode'
+          regionId='regionId'
         />
 
         <div className={formClasses.formRow}>
@@ -161,9 +127,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             })}
             helperText={formState.isSubmitted && errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{
-              endAdornment: validFields.telephone && checkIcon,
-            }}
+            InputProps={{ endAdornment: validFields.telephone && <InputCheckmark /> }}
           />
         </div>
 
