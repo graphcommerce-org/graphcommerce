@@ -24,7 +24,7 @@
     "react": "^17.0.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.12",
+    "@apollo/client": "^3.3.13",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -42,9 +42,9 @@
     "@reachdigital/magento-store": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "clsx": "^1.1.1",
-    "next": "^10.0.9",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "type-fest": "^0.21.2"
+    "next": "^10.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "type-fest": "^1.0.1"
   }
 }
