@@ -5,7 +5,7 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
-import { SignUpDocument, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
@@ -42,13 +42,12 @@ export default function SignUpFormInline({
 }: PropsWithChildren<SignUpFormInlineProps>) {
   const classes = useStyles()
   const formClasses = useFormStyles()
-  const form = useFormGqlMutation(SignUpDocument, {
-    defaultValues: {
-      email,
-      prefix: '-',
-      firstname: '-',
-      lastname: '-',
-    },
+  const form = useFormGqlMutation<
+    SignUpMutation,
+    SignUpMutationVariables & { confirmPassword?: string }
+  >(SignUpDocument, {
+    // todo(paales): This causes dirty data to be send to the backend.
+    defaultValues: { email, prefix: '-', firstname: '-', lastname: '-' },
     onComplete: onCompleteSignInUp,
   })
   const { muiRegister, watch, handleSubmit, required, formState, error } = form
@@ -71,14 +70,14 @@ export default function SignUpFormInline({
         <TextField
           variant='outlined'
           type='password'
-          error={!!formState.errors.confirm_password || !!error?.message}
+          error={!!formState.errors.confirmPassword || !!error?.message}
           label='Confirm password'
           required
-          {...muiRegister('confirm_password', {
+          {...muiRegister('confirmPassword', {
             required: true,
             validate: (value) => value === watch('password'),
           })}
-          helperText={!!formState.errors.confirm_password && 'Passwords should match'}
+          helperText={!!formState.errors.confirmPassword && 'Passwords should match'}
           disabled={formState.isSubmitting}
         />
       </div>

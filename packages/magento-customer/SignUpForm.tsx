@@ -7,6 +7,7 @@ import { Controller } from '@reachdigital/react-hook-form/useForm'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
 import React from 'react'
+import NameFields from './NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
@@ -64,57 +65,8 @@ export default function SignUpForm(props: SignUpFormProps) {
           disabled={formState.isSubmitting}
         />
       </div>
-      <div className={classes.formRow}>
-        <Controller
-          defaultValue='Dhr.'
-          control={control}
-          name='prefix'
-          render={({ onChange, name, value, onBlur }) => (
-            <TextField
-              variant='outlined'
-              select
-              error={!!formState.errors.prefix}
-              name={name}
-              label='Prefix'
-              required={required.prefix}
-              helperText={formState.errors.prefix?.message}
-              disabled={formState.isSubmitting}
-              onChange={(e) => onChange(e.target.value)}
-              onBlur={onBlur}
-              value={value}
-            >
-              {['Dhr.', 'Mevr.'].map((option) => (
-                <MenuItem key={option} value={option}>
-                  {option}
-                </MenuItem>
-              ))}
-            </TextField>
-          )}
-        />
-      </div>
 
-      <div className={classes.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.firstname}
-          label='First Name'
-          required={required.firstname}
-          {...muiRegister('firstname', { required: required.firstname })}
-          helperText={formState.errors.firstname?.message}
-          disabled={formState.isSubmitting}
-        />
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.lastname}
-          label='Last Name'
-          required={required.lastname}
-          {...muiRegister('lastname', { required: required.lastname })}
-          helperText={formState.errors.lastname?.message}
-          disabled={formState.isSubmitting}
-        />
-      </div>
+      <NameFields form={form} prefix />
 
       <FormControlLabel
         control={<Switch color='primary' />}
