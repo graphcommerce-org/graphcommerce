@@ -68,7 +68,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}
-            render={({ onChange, value, onBlur }) => (
+            render={({ field: { onChange, value, name, ref, onBlur } }) => (
               <ToggleButtonGroup
                 aria-label='Shipping Method'
                 onChange={(_, val: string) => {

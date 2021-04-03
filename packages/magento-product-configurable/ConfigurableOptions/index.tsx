@@ -39,7 +39,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
             defaultValue={selection[attribute_code] ?? ''}
             name={`${name}[${attribute_code}]`}
             {...controlProps}
-            render={({ onChange, value, onBlur, ref, name: inputName }) => (
+            render={({ field: { onChange, value, name: inputName, ref, onBlur } }) => (
               <>
                 {option?.label}
                 <ToggleButtonGroup

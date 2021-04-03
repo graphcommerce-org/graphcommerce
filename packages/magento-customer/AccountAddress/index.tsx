@@ -84,7 +84,7 @@ export default function AccountAddress(props: AccountAddressProps) {
             <Controller
               name='defaultBilling'
               control={control}
-              render={({ onChange, value, name, onBlur, ref }) => (
+              render={({ field: { onChange, value, name, ref, onBlur } }) => (
                 <FormControl error={!!formState.errors.defaultBilling}>
                   <FormControlLabel
                     control={<Switch color='primary' />}
@@ -107,7 +107,7 @@ export default function AccountAddress(props: AccountAddressProps) {
             <Controller
               name='defaultShipping'
               control={control}
-              render={({ onChange, value, name, onBlur, ref }) => (
+              render={({ field: { onChange, value, name, ref, onBlur } }) => (
                 <FormControl error={!!formState.errors.defaultShipping}>
                   <FormControlLabel
                     control={<Switch color='primary' />}

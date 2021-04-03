@@ -18,7 +18,7 @@ export function assertFormGqlOperation<V, Q = Record<string, unknown>>(
   }
 }
 
-export default function useFormGqlMutation<V, Q>(
+export default function useFormGqlMutation<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> = {},
 ): UseFormGqlOperationReturn<Q, V> {

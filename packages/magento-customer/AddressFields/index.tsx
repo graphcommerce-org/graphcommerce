@@ -127,7 +127,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           control={control}
           name='countryCode'
           rules={{ required: required?.countryCode }}
-          render={({ onChange, name, value, onBlur, ref }) => (
+          render={({ field: { onChange, value, name, ref, onBlur }, fieldState }) => (
             <Autocomplete
               value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
               defaultValue={null}
@@ -138,12 +138,12 @@ export default function AddressFields(props: AddressFieldsProps) {
                 <TextField
                   {...params}
                   variant='outlined'
-                  error={!!formState.errors.countryCode}
+                  error={!!fieldState.error}
                   name={name}
                   label='Country'
                   inputRef={ref}
                   required={!!required?.countryCode}
-                  helperText={formState.errors.countryCode?.message}
+                  helperText={fieldState.error?.message}
                   disabled={disabled}
                   onBlur={onBlur}
                   InputProps={{
@@ -157,9 +157,9 @@ export default function AddressFields(props: AddressFieldsProps) {
         {regionList.length > 0 && (
           <Controller
             control={control}
-            name={regionId}
+            name='regionId'
             rules={{ required: true }}
-            render={({ onChange, name, value, onBlur, ref }) => (
+            render={({ field: { onChange, value, name, ref, onBlur }, fieldState }) => (
               <Autocomplete
                 value={regionList?.find((c) => c?.id === value)}
                 options={regionList}

@@ -54,7 +54,7 @@ export default function PaymentMethodContext() {
             control={control}
             name='paymentMethod'
             rules={{ required: 'Please select a payment method' }}
-            render={({ onChange, value, onBlur }) => (
+            render={({ field: { onChange, value, name, ref, onBlur } }) => (
               <ToggleButtonGroup
                 onChange={(_, val: string) => {
                   onChange(val)
