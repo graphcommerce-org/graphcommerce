@@ -19,12 +19,13 @@ type NameFieldProps = {
 }
 
 export default function NameFields(props: NameFieldProps) {
-  const { disabled, prefix, form } = props
+  const { prefix, form, disabled: _disabled } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, formState, muiRegister, required, valid } = form
   const classes = useFormStyles()
-  const checkIcon = <InputCheckmark />
+
+  const disabled = _disabled ?? formState.isSubmitting
 
   return (
     <>
@@ -45,7 +46,7 @@ export default function NameFields(props: NameFieldProps) {
                 disabled={disabled}
                 onChange={(e) => onChange(e.target.value)}
                 inputRef={ref}
-                InputProps={{ endAdornment: valid.prefix && checkIcon }}
+                InputProps={{ endAdornment: <InputCheckmark show={valid.prefix} /> }}
                 {...field}
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
@@ -68,7 +69,7 @@ export default function NameFields(props: NameFieldProps) {
           disabled={disabled}
           error={!!formState.errors.firstname}
           helperText={formState.isSubmitted && formState.errors.firstname?.message}
-          InputProps={{ endAdornment: valid.firstname && checkIcon }}
+          InputProps={{ endAdornment: <InputCheckmark show={valid.firstname} /> }}
           {...muiRegister('firstname', { required: required?.firstname })}
         />
         <TextField
@@ -79,7 +80,7 @@ export default function NameFields(props: NameFieldProps) {
           required={!!required?.lastname}
           helperText={formState.isSubmitted && formState.errors.lastname?.message}
           disabled={disabled}
-          InputProps={{ endAdornment: valid.lastname && checkIcon }}
+          InputProps={{ endAdornment: <InputCheckmark show={valid.lastname} /> }}
           {...muiRegister('lastname', { required: required?.lastname })}
         />
       </div>

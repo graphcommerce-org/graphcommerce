@@ -61,7 +61,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && formState.errors.street?.message}
           disabled={disabled}
           InputProps={{
-            endAdornment: valid.street && <InputCheckmark />,
+            endAdornment: <InputCheckmark show={valid.street} />,
           }}
         />
         <TextField
@@ -77,7 +77,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && formState.errors.houseNumber?.message}
           disabled={disabled}
           InputProps={{
-            endAdornment: valid.houseNumber && <InputCheckmark />,
+            endAdornment: <InputCheckmark show={valid.houseNumber} />,
           }}
         />
         <TextField
@@ -90,7 +90,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && formState.errors.addition?.message}
           disabled={disabled}
           InputProps={{
-            endAdornment: valid.addition && <InputCheckmark />,
+            endAdornment: <InputCheckmark show={valid.addition} />,
           }}
         />
       </div>
@@ -105,7 +105,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && formState.errors.postcode?.message}
           disabled={disabled}
           InputProps={{
-            endAdornment: validFields.postcode && <InputCheckmark />,
+            endAdornment: <InputCheckmark show={valid.postcode} />,
           }}
         />
         <TextField
@@ -118,7 +118,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           helperText={formState.isSubmitted && formState.errors.city?.message}
           disabled={disabled}
           InputProps={{
-            endAdornment: valid.city && <InputCheckmark />,
+            endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
       </div>
@@ -147,7 +147,7 @@ export default function AddressFields(props: AddressFieldsProps) {
                   disabled={disabled}
                   onBlur={onBlur}
                   InputProps={{
-                    endAdornment: valid.countryCode && <InputCheckmark />,
+                    endAdornment: <InputCheckmark show={valid.countryCode} />,
                   }}
                 />
               )}
@@ -179,7 +179,7 @@ export default function AddressFields(props: AddressFieldsProps) {
                     disabled={disabled}
                     onBlur={onBlur}
                     InputProps={{
-                      endAdornment: valid.regionId && <InputCheckmark />,
+                      endAdornment: <InputCheckmark show={valid.regionId} />,
                     }}
                   />
                 )}

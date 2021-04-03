@@ -95,7 +95,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: valid.telephone && <InputCheckmark /> }}
+            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
           />
         </div>
 

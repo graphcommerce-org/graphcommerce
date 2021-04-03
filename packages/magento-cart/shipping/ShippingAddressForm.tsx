@@ -84,8 +84,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
   }, [doSubmit, formState.isDirty, submit])
 
-  const checkIcon = <InputCheckmark />
-
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
@@ -106,7 +104,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={disableFields}
             InputProps={{
-              endAdornment: valid.telephone && checkIcon,
+              endAdornment: <InputCheckmark show={valid.telephone} />,
             }}
           />
         </div>
