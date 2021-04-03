@@ -61,6 +61,7 @@ function CartPage() {
                 </AnimatedRow>
                 <CartItems
                   items={data?.cart?.items}
+                  id={data?.cart?.id ?? ''}
                   key='cart'
                   renderer={{
                     BundleCartItem: CartItem,
