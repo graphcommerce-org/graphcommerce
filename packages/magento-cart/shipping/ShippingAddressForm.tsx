@@ -89,8 +89,13 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
-        <NameFields key='name' form={form} disabled={disableFields} />
-        <AddressFields form={form} key='addressfields' countries={countries} />
+        <NameFields form={form} key='name' disabled={disableFields} />
+        <AddressFields
+          form={form}
+          key='addressfields'
+          disabled={disableFields}
+          countries={countries}
+        />
 
         <div className={classes.formRow} key='telephone'>
           <TextField

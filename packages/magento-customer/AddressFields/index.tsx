@@ -27,7 +27,7 @@ type AddressFieldsProps = CountryRegionsQuery & {
 }
 
 export default function AddressFields(props: AddressFieldsProps) {
-  const { form, disabled, countries } = props
+  const { form, disabled: _disabled, countries } = props
   assertFormGqlOperation<AddressFieldValues>(form)
 
   const { watch, formState, control, required, muiRegister, valid } = form
@@ -35,6 +35,8 @@ export default function AddressFields(props: AddressFieldsProps) {
 
   const country = watch('countryCode')
   const region = watch('regionId')
+
+  const disabled = _disabled ?? formState.isSubmitting
 
   const countryList = useMemo(
     () =>

@@ -13,7 +13,7 @@ export type UseFormGqlMutationReturn<
 export function assertFormGqlOperation<V, Q = Record<string, unknown>>(
   form: UseFormReturn<V>,
 ): asserts form is UseFormGqlMutationReturn<Q, V> {
-  if (typeof (form as UseFormGqlMutationReturn<Q, V>).muiRegister !== 'undefined') {
+  if (typeof (form as UseFormGqlMutationReturn<Q, V>).muiRegister !== 'function') {
     throw Error(`form must be one of 'useFromGqlMutation' or 'useFormGqlQuery'`)
   }
 }
