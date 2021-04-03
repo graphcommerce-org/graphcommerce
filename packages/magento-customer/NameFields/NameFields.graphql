@@ -1,7 +1,0 @@
-fragment on Input {
-  prefix
-  firstname
-  middlename
-  lastname
-  suffix
-}
