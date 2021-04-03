@@ -1,24 +1,28 @@
 import { MenuItem, TextField } from '@material-ui/core'
+import { Maybe } from '@reachdigital/magento-graphql'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { Controller, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
+import { Controller, UseFormReturn } from '@reachdigital/react-hook-form/useForm'
+import { assertFormGqlOperation } from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React from 'react'
 
-type RequiredFields = 'firstname' | 'lastname'
-type OptionalFields = 'prefix'
-type Fields = Record<RequiredFields, string> & Partial<Record<OptionalFields, string>>
-type Required = Record<RequiredFields, boolean> & Partial<Record<OptionalFields, boolean>>
-
-type NameFieldsProps = Fields & {
-  form: UseFormMethods
-  disabled?: boolean
-  required?: Required
-  validFields: Partial<Record<RequiredFields | OptionalFields, boolean>>
+type NameFieldValues = {
+  firstname?: string
+  lastname?: string
+  prefix?: string
 }
 
-export default function NameFields(props: NameFieldsProps) {
-  const { form, disabled, required, prefix, firstname, lastname, validFields } = props
-  const { errors, register, formState, control } = form
+type NameFieldProps = {
+  form: UseFormReturn<any>
+  disabled?: boolean
+  prefix?: boolean
+}
+
+export default function NameFields(props: NameFieldProps) {
+  const { disabled, prefix, form } = props
+  assertFormGqlOperation<NameFieldValues>(form)
+
+  const { control, formState, muiRegister, required, valid } = form
   const classes = useFormStyles()
   const checkIcon = <InputCheckmark />
 
@@ -29,21 +33,20 @@ export default function NameFields(props: NameFieldsProps) {
           <Controller
             defaultValue='Dhr.'
             control={control}
-            name={prefix}
-            render={({ onChange, name, value, onBlur }) => (
+            name='prefix'
+            render={({ field: { ref, onChange, ...field }, fieldState }) => (
               <TextField
                 variant='outlined'
                 select
-                error={!!errors[prefix]}
-                name={name}
+                error={!!fieldState.error}
                 label='Prefix'
                 required={!!required?.prefix}
-                helperText={errors.prefix?.message}
+                helperText={fieldState.error?.message}
                 disabled={disabled}
                 onChange={(e) => onChange(e.target.value)}
-                onBlur={onBlur}
-                value={value}
-                InputProps={{ endAdornment: validFields[prefix] && checkIcon }}
+                inputRef={ref}
+                InputProps={{ endAdornment: valid.prefix && checkIcon }}
+                {...field}
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
                   <MenuItem key={option} value={option}>
@@ -60,26 +63,24 @@ export default function NameFields(props: NameFieldsProps) {
         <TextField
           variant='outlined'
           type='text'
-          name={firstname}
           label='First Name'
           required={!!required}
-          inputRef={register({ required: required?.firstname })}
           disabled={disabled}
-          error={!!errors[firstname]}
-          helperText={formState.isSubmitted && errors[firstname]?.message}
-          InputProps={{ endAdornment: validFields[firstname] && checkIcon }}
+          error={!!formState.errors.firstname}
+          helperText={formState.isSubmitted && formState.errors.firstname?.message}
+          InputProps={{ endAdornment: valid.firstname && checkIcon }}
+          {...muiRegister('firstname', { required: required?.firstname })}
         />
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[lastname]}
-          name={lastname}
+          error={!!formState.errors.lastname}
           label='Last Name'
           required={!!required?.lastname}
-          inputRef={register({ required: required?.lastname })}
-          helperText={formState.isSubmitted && errors[lastname]?.message}
+          helperText={formState.isSubmitted && formState.errors.lastname?.message}
           disabled={disabled}
-          InputProps={{ endAdornment: validFields[lastname] && checkIcon }}
+          InputProps={{ endAdornment: valid.lastname && checkIcon }}
+          {...muiRegister('lastname', { required: required?.lastname })}
         />
       </div>
     </>

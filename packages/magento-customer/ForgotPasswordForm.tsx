@@ -29,7 +29,7 @@ export default function ForgotPasswordForm() {
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
   >(ForgotPasswordDocument)
-  const { register, errors, handleSubmit, required, watch, data, formState, error } = form
+  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
@@ -46,17 +46,14 @@ export default function ForgotPasswordForm() {
         <TextField
           variant='outlined'
           type='text'
-          // inputProps={{ className: classes.quantityInput, min: 1 }}
-          error={!!errors.email}
-          id='email'
-          name='email'
+          error={!!formState.errors.email}
           label='Email'
           required={required.email}
-          inputRef={register({
+          {...muiRegister('email', {
             required: required.email,
             pattern: { value: emailPattern, message: 'Invalid email address' },
           })}
-          helperText={errors.email?.message}
+          helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
         />
       </div>
@@ -65,16 +62,14 @@ export default function ForgotPasswordForm() {
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors.confirmEmail}
-          id='confirmEmail'
-          name='confirmEmail'
+          error={!!formState.errors.confirmEmail}
           label='Confirm Email'
           required
-          inputRef={register({
+          {...muiRegister('confirmEmail', {
             required: true,
             validate: (value) => value === watch('email') || "Emails don't match",
           })}
-          helperText={errors.confirmEmail?.message}
+          helperText={formState.errors.confirmEmail?.message}
           disabled={formState.isSubmitting}
         />
       </div>

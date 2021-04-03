@@ -60,7 +60,6 @@ function CartPage() {
                   <CartQuickCheckout {...data?.cart?.prices?.grand_total} />
                 </AnimatedRow>
                 <CartItems
-                  id={data?.cart?.id ?? ''}
                   items={data?.cart?.items}
                   key='cart'
                   renderer={{

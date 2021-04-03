@@ -21,7 +21,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     defaultValues: { ...variables } as UnpackNestedValue<DeepPartial<V>>,
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
-  const { handleSubmit, errors, formState, error } = form
+  const { handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)

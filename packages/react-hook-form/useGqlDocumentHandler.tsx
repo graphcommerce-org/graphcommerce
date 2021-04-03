@@ -43,7 +43,7 @@ function isWithValueNode(value: ValueNode | WithValueNode): value is WithValueNo
 
 export type OptionalKeys<T> = { [k in keyof T]-?: undefined extends T[k] ? never : k }[keyof T]
 
-type IsRequired<V> = {
+export type IsRequired<V> = {
   [k in keyof V]-?: undefined extends V[k] ? false : true
 }
 

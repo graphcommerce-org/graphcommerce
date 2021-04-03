@@ -46,7 +46,7 @@ export default function PaymentMethodContext() {
 
   return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <input type='hidden' name='code' ref={register({ required: true })} required />
+      <input type='hidden' {...register('code', { required: true })} required />
       <div className={classes.formRow}>
         <FormControl>
           <Controller

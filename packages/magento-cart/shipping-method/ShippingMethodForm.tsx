@@ -39,7 +39,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { errors, handleSubmit, control, setValue, register, formState, required, error } = form
+  const { handleSubmit, control, setValue, register, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 
   // todo: Move this to a validateAndSubmit method or something?
@@ -53,14 +53,12 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <input
         type='hidden'
-        name='carrier'
-        ref={register({ required: required.carrier })}
+        {...register('carrier', { required: required.carrier })}
         value={defaultMethod}
       />
       <input
         type='hidden'
-        name='method'
-        ref={register({ required: required.method })}
+        {...register('method', { required: required.method })}
         value={defaultCarrier}
       />
       <div className={classes.formRow}>
@@ -100,9 +98,9 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               </ToggleButtonGroup>
             )}
           />
-          {errors.carrier && (
+          {formState.errors.carrier && (
             <FormHelperText error variant='outlined'>
-              {errors.carrier.message}
+              {formState.errors.carrier.message}
             </FormHelperText>
           )}
         </FormControl>

@@ -38,7 +38,7 @@ export default function AccountSignInUpForm() {
   const customerQuery = useQuery(CustomerDocument, { ssr: false })
   const { email, firstname } = customerQuery.data?.customer ?? {}
   const { mode, form, token, isManualSubmitting, submit } = useFormIsEmailAvailable({ email })
-  const { formState, errors, register, required, watch, error } = form
+  const { formState, muiRegister, required, watch, error } = form
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
@@ -112,14 +112,12 @@ export default function AccountSignInUpForm() {
                     key='email'
                     variant='outlined'
                     type='text'
-                    error={formState.isSubmitted && !!errors.email}
-                    helperText={formState.isSubmitted && errors.email?.message}
-                    id='email'
-                    name='email'
+                    error={formState.isSubmitted && !!formState.errors.email}
+                    helperText={formState.isSubmitted && formState.errors.email?.message}
                     label='Email'
                     required={required.email}
                     disabled={isManualSubmitting}
-                    inputRef={register({
+                    {...muiRegister('email', {
                       required: required.email,
                       pattern: { value: emailPattern, message: '' },
                     })}

@@ -33,7 +33,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit, required, formState, error } = form
+  const { muiRegister, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -41,13 +41,11 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
       <TextField
         variant='outlined'
         type='password'
-        error={!!errors.password || !!error?.message}
-        id='password'
-        name='password'
+        error={!!formState.errors.password || !!error?.message}
         label='Password'
         autoFocus
         required={required.password}
-        inputRef={register({ required: required.password })}
+        {...muiRegister('password', { required: required.password })}
         helperText={error?.message}
         disabled={formState.isSubmitting}
         InputProps={{

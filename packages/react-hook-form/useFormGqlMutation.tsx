@@ -1,12 +1,32 @@
 import { TypedDocumentNode, useMutation } from '@apollo/client'
-import { useForm, UseFormMethods } from 'react-hook-form'
-import useFormGql, { UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
+import { FieldValues, useForm, UseFormReturn } from 'react-hook-form'
+import useFormGqlOperation, { UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
+import useFormMuiRegister, { UseMuiFormRegister } from './useFormMaterialRegister'
+import useFormValid, { UseFormValidReturn } from './useFormValidFields'
 
-export default function useFormGqlMutation<Q, V>(
+export type UseFormGqlOperationReturn<
+  Q extends Record<string, any> = Record<string, any>,
+  V extends Record<string, any> = Record<string, any>
+> = UseFormGqlMethods<Q, V> &
+  UseFormReturn<V> & { muiRegister: UseMuiFormRegister<V>; valid: UseFormValidReturn<V> }
+
+export function assertFormGqlOperation<V, Q = Record<string, unknown>>(
+  form: UseFormReturn<V>,
+): asserts form is UseFormGqlOperationReturn<Q, V> {
+  if (typeof (form as UseFormGqlOperationReturn<Q, V>).muiRegister !== 'undefined') {
+    throw Error(`form must be one of 'useFromGqlMutation' or 'useFormGqlQuery'`)
+  }
+}
+
+export default function useFormGqlMutation<V, Q>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> = {},
-): UseFormGqlMethods<Q, V> & UseFormMethods<V> {
+): UseFormGqlOperationReturn<Q, V> {
   const form = useForm<V>(options)
   const tuple = useMutation(document)
-  return { ...form, ...useFormGql({ document, form, tuple, ...options }) }
+  const operation = useFormGqlOperation({ document, form, tuple, ...options })
+  const muiRegister = useFormMuiRegister(form)
+  const valid = useFormValid(form, operation.required)
+
+  return { ...form, ...operation, valid, muiRegister }
 }

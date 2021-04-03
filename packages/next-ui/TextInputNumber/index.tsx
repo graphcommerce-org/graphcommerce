@@ -119,6 +119,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
       type='number'
       inputRef={ref}
       className={clsx(textFieldProps.className, classes.quantity)}
+      autoComplete='off'
       InputProps={{
         ...InputProps,
         startAdornment: (

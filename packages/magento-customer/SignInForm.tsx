@@ -32,7 +32,7 @@ export default function SignInForm(props: SignInFormProps) {
     onComplete: onCompleteSignInUp, // TODO: juiste callback zoeken / bouwen
     defaultValues: { email },
   })
-  const { register, errors, handleSubmit, required, formState, error } = form
+  const { muiRegister, handleSubmit, required, formState, error } = form
   const [remainingError, authError] = graphqlErrorByCategory('graphql-authentication', error)
   const submitHandler = handleSubmit(() => {})
 
@@ -51,13 +51,11 @@ export default function SignInForm(props: SignInFormProps) {
           key='password'
           variant='outlined'
           type='password'
-          error={!!errors.password || !!authError}
-          id='signin-password'
-          name='password'
+          error={!!formState.errors.password || !!authError}
           label='Password'
           autoFocus
           required={required.password}
-          inputRef={register({ required: required.password })}
+          {...muiRegister('password', { required: required.password })}
           FormHelperTextProps={{
             className: classes.forgotPass,
           }}
@@ -68,7 +66,7 @@ export default function SignInForm(props: SignInFormProps) {
               </PageLink>
             ),
           }}
-          helperText={errors.password?.message || authError?.message}
+          helperText={formState.errors.password?.message || authError?.message}
           disabled={formState.isSubmitting}
         />
       </div>

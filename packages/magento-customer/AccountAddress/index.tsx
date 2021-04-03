@@ -63,7 +63,7 @@ export default function AccountAddress(props: AccountAddressProps) {
     defaultValues,
   })
 
-  const { errors, handleSubmit, control, error, reset } = form
+  const { handleSubmit, control, error, reset, formState } = form
 
   const submit = handleSubmit(() => {
     //
@@ -85,7 +85,7 @@ export default function AccountAddress(props: AccountAddressProps) {
               name='defaultBilling'
               control={control}
               render={({ onChange, value, name, onBlur, ref }) => (
-                <FormControl error={!!errors.defaultBilling}>
+                <FormControl error={!!formState.errors.defaultBilling}>
                   <FormControlLabel
                     control={<Switch color='primary' />}
                     label='Billing address'
@@ -98,8 +98,8 @@ export default function AccountAddress(props: AccountAddressProps) {
                     }
                   />
 
-                  {errors.defaultBilling?.message && (
-                    <FormHelperText>{errors.defaultBilling?.message}</FormHelperText>
+                  {formState.errors.defaultBilling?.message && (
+                    <FormHelperText>{formState.errors.defaultBilling?.message}</FormHelperText>
                   )}
                 </FormControl>
               )}
@@ -108,7 +108,7 @@ export default function AccountAddress(props: AccountAddressProps) {
               name='defaultShipping'
               control={control}
               render={({ onChange, value, name, onBlur, ref }) => (
-                <FormControl error={!!errors.defaultShipping}>
+                <FormControl error={!!formState.errors.defaultShipping}>
                   <FormControlLabel
                     control={<Switch color='primary' />}
                     label='Shipping address'
@@ -121,8 +121,8 @@ export default function AccountAddress(props: AccountAddressProps) {
                     }
                   />
 
-                  {errors.defaultShipping?.message && (
-                    <FormHelperText>{errors.defaultShipping?.message}</FormHelperText>
+                  {formState.errors.defaultShipping?.message && (
+                    <FormHelperText>{formState.errors.defaultShipping?.message}</FormHelperText>
                   )}
                 </FormControl>
               )}

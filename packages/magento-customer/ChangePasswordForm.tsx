@@ -16,7 +16,7 @@ export default function ChangePasswordForm() {
     ChangePasswordMutation,
     ChangePasswordMutationVariables & { confirmPassword?: string }
   >(ChangePasswordDocument)
-  const { register, errors, handleSubmit, required, watch, data, formState, error } = form
+  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
@@ -29,14 +29,11 @@ export default function ChangePasswordForm() {
         <TextField
           variant='outlined'
           type='password'
-          // inputProps={{ className: classes.quantityInput, min: 1 }}
-          error={!!errors.currentPassword}
-          id='currentPassword'
-          name='currentPassword'
+          error={!!formState.errors.currentPassword}
           label='Current Password'
           required={required.currentPassword}
-          inputRef={register({ required: required.currentPassword })}
-          helperText={errors.currentPassword?.message}
+          {...muiRegister('currentPassword', { required: required.currentPassword })}
+          helperText={formState.errors.currentPassword?.message}
           disabled={formState.isSubmitting}
         />
       </div>
@@ -45,30 +42,25 @@ export default function ChangePasswordForm() {
         <TextField
           variant='outlined'
           type='password'
-          // inputProps={{ className: classes.quantityInput, min: 1 }}
-          error={!!errors.newPassword}
-          id='newPassword'
-          name='newPassword'
+          error={!!formState.errors.newPassword}
           label='New Password'
           required={required.newPassword}
-          inputRef={register({ required: required.newPassword })}
-          helperText={errors.newPassword?.message}
+          {...muiRegister('newPassword', { required: required.newPassword })}
+          helperText={formState.errors.newPassword?.message}
           disabled={formState.isSubmitting}
         />
 
         <TextField
           variant='outlined'
           type='password'
-          error={!!errors.confirmPassword}
-          id='confirmPassword'
-          name='confirmPassword'
+          error={!!formState.errors.confirmPassword}
           label='Confirm Password'
           required
-          inputRef={register({
+          {...muiRegister('confirmPassword', {
             required: true,
             validate: (value) => value === watch('newPassword') || "Paswords don't match",
           })}
-          helperText={errors.confirmPassword?.message}
+          helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
       </div>

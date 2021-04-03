@@ -48,7 +48,7 @@ export default function GuestEmailForm({
     //   execute({ variables: { email, cartId: cartQuery?.cart?.id ?? '' } }),
   })
 
-  const { formState, errors, register, required, watch, error } = form
+  const { formState, muiRegister, required, watch, error } = form
   const isValidEmail = !!emailPattern.exec(watch('email'))
 
   useEffect(() => {
@@ -69,13 +69,11 @@ export default function GuestEmailForm({
             key='email'
             variant='outlined'
             type='text'
-            error={formState.isSubmitted && !!errors.email}
-            helperText={formState.isSubmitted && errors.email?.message}
-            id='email'
-            name='email'
+            error={formState.isSubmitted && !!formState.errors.email}
+            helperText={formState.isSubmitted && formState.errors.email?.message}
             label='Email'
             required={required.email}
-            inputRef={register({
+            {...muiRegister('email', {
               required: required.email,
               pattern: { value: emailPattern, message: '' },
             })}

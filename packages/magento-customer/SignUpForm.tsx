@@ -25,7 +25,7 @@ export default function SignUpForm(props: SignUpFormProps) {
     onComplete: onCompleteSignInUp,
   })
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
-  const { register, errors, handleSubmit, required, watch, control, formState, error } = form
+  const { muiRegister, handleSubmit, required, watch, control, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
 
   const submitHandler = handleSubmit(() => {})
@@ -36,17 +36,15 @@ export default function SignUpForm(props: SignUpFormProps) {
         <TextField
           variant='outlined'
           type='password'
-          error={!!errors.password || !!inputError}
-          id='signup-password'
-          name='password'
+          error={!!formState.errors.password || !!inputError}
           label='Password'
           required={required.password}
-          inputRef={register({
+          {...muiRegister('password', {
             required: required.password,
             minLength: { value: 8, message: 'Password must have at least 8 characters' },
           })}
           helperText={
-            errors.password?.message ||
+            formState.errors.password?.message ||
             inputError?.message ||
             'At least 8 characters long, must contain a symbol'
           }
@@ -55,16 +53,14 @@ export default function SignUpForm(props: SignUpFormProps) {
         <TextField
           variant='outlined'
           type='password'
-          error={!!errors.confirmPassword}
-          id='confirmPassword'
-          name='confirmPassword'
+          error={!!formState.errors.confirmPassword}
           label='Confirm Password'
           required
-          inputRef={register({
+          {...muiRegister('confirmPassword', {
             required: true,
             validate: (value) => value === watch('password') || "Passwords don't match",
           })}
-          helperText={errors.confirmPassword?.message}
+          helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
         />
       </div>
@@ -77,12 +73,11 @@ export default function SignUpForm(props: SignUpFormProps) {
             <TextField
               variant='outlined'
               select
-              error={!!errors.prefix}
-              id='prefix'
+              error={!!formState.errors.prefix}
               name={name}
               label='Prefix'
               required={required.prefix}
-              helperText={errors.prefix?.message}
+              helperText={formState.errors.prefix?.message}
               disabled={formState.isSubmitting}
               onChange={(e) => onChange(e.target.value)}
               onBlur={onBlur}
@@ -102,33 +97,28 @@ export default function SignUpForm(props: SignUpFormProps) {
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors.firstname}
-          id='firstname'
-          name='firstname'
+          error={!!formState.errors.firstname}
           label='First Name'
           required={required.firstname}
-          inputRef={register({ required: required.firstname })}
-          helperText={errors.firstname?.message}
+          {...muiRegister('firstname', { required: required.firstname })}
+          helperText={formState.errors.firstname?.message}
           disabled={formState.isSubmitting}
         />
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors.lastname}
-          id='lastname'
-          name='lastname'
+          error={!!formState.errors.lastname}
           label='Last Name'
           required={required.lastname}
-          inputRef={register({ required: required.lastname })}
-          helperText={errors.lastname?.message}
+          {...muiRegister('lastname', { required: required.lastname })}
+          helperText={formState.errors.lastname?.message}
           disabled={formState.isSubmitting}
         />
       </div>
 
       <FormControlLabel
         control={<Switch color='primary' />}
-        name='isSubscribed'
-        inputRef={register({ required: required.isSubscribed })}
+        {...muiRegister('isSubscribed', { required: required.isSubscribed })}
         disabled={formState.isSubmitting}
         label='Subscribe to newsletter'
       />

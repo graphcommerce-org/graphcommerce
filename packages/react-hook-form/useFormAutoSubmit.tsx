@@ -1,8 +1,8 @@
 import { debounce } from '@material-ui/core'
 import { useCallback, useEffect, useState } from 'react'
-import { FieldValues, UseFormMethods } from 'react-hook-form'
+import { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form'
 
-export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends FieldValues> = {
+export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
   form: Omit<TForm, 'handleSubmit'>
   /** SubmitHandler */
@@ -10,7 +10,7 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
   /** Milliseconds to wait before updating */
   wait?: number
   /** Autosubmit only when these field names update */
-  fields?: Array<keyof Partial<V>>
+  fields?: FieldPath<V>[]
 
   /**
    * Forces the form to submit directly when it is valid, whithout user interaction. Please be aware
@@ -37,14 +37,14 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormMethods<V>, V extends 
  *    formState.isDirty should be true after the submission
  * @see useFormGqlMutation.tsx for an example implementation
  */
-export default function useFormAutoSubmit<Form extends UseFormMethods<V>, V = FieldValues>(
+export default function useFormAutoSubmit<Form extends UseFormReturn<V>, V = FieldValues>(
   options: UseFormAutoSubmitOptions<Form, V>,
 ) {
   const { form, submit, wait = 500, fields, forceInitialSubmit } = options
   const { formState } = form
 
   const [submitting, setSubmitting] = useState(false)
-  const values = JSON.stringify(form.watch(fields as string[]))
+  const values = JSON.stringify(fields ? form.watch(fields) : form.watch())
   const [oldValues, setOldValues] = useState<string>(values)
 
   const canSubmit = formState.isValid && !formState.isSubmitting && !formState.isValidating

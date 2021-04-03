@@ -5,7 +5,9 @@ import Grid, { data } from '../../components/Grid'
 import StackDebug from '../../components/StackedDebugger'
 import StackedDrawer from '../../components/StackedDrawer'
 
-function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProps>) {
+function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { articleId } = props
+
   return (
     <StackedDrawer>
       <StackDebug />

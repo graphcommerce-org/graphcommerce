@@ -1,12 +1,17 @@
 import { useEffect } from 'react'
-import { FieldName, FieldValues, UseFormMethods, SetFieldValue } from 'react-hook-form'
+import {
+  FieldName,
+  FieldValues,
+  UseFormReturn,
+  SetFieldValue,
+  Path,
+  FieldPathValue,
+  UnpackNestedValue,
+} from 'react-hook-form'
 
-export type UseFormPersistOptions<
-  Form extends Pick<UseFormMethods<V>, 'watch' | 'setValue' | 'formState'>,
-  V extends FieldValues
-> = {
+export type UseFormPersistOptions<V> = {
   /** Instance of current form */
-  form: Form
+  form: Pick<UseFormReturn<V>, 'watch' | 'setValue' | 'formState'>
 
   /** Name of the key how it will be stored in the storage. */
   name: string
@@ -24,13 +29,12 @@ export type UseFormPersistOptions<
  * Will persist any dirty fields and store it in the sessionStorage/localStorage Will restory any
  * dirty fields when the form is initialized
  */
-export default function useFormPersist<
-  Form extends Pick<UseFormMethods<V>, 'watch' | 'setValue' | 'formState'>,
-  V = FieldValues
->(options: UseFormPersistOptions<Form, V>) {
+export default function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [] } = options
   const { setValue, watch, formState } = form
-  const values = watch(Object.keys(formState.dirtyFields).filter((f) => !exclude.includes(f)))
+
+  const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
+  const values = watch(dirtyFieldKeys.filter((f) => !exclude.includes(f)))
 
   // Restore changes
   useEffect(() => {
@@ -41,7 +45,10 @@ export default function useFormPersist<
 
       const storedValues = JSON.parse(storedFormStr) as FieldValues
       if (storedValues) {
-        const entries = Object.entries(storedValues) as [FieldName<V>, SetFieldValue<V>][]
+        const entries = Object.entries(storedValues) as [
+          Path<V>,
+          UnpackNestedValue<FieldPathValue<V, Path<V>>>,
+        ][]
         entries.forEach((entry) => setValue(...entry, { shouldDirty: true, shouldValidate: true }))
       }
     } catch {

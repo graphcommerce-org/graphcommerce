@@ -51,7 +51,7 @@ export default function SignUpFormInline({
     },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, watch, handleSubmit, required, formState, error } = form
+  const { muiRegister, watch, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -60,29 +60,25 @@ export default function SignUpFormInline({
         <TextField
           variant='outlined'
           type='password'
-          error={!!errors.password || !!error?.message}
-          id='password'
-          name='password'
+          error={!!formState.errors.password || !!error?.message}
           label='Password'
           autoFocus
           required={required.password}
-          inputRef={register({ required: required.password })}
+          {...muiRegister('password', { required: required.password })}
           helperText={error?.message}
           disabled={formState.isSubmitting}
         />
         <TextField
           variant='outlined'
           type='password'
-          error={!!(errors as any).confirm_password || !!error?.message}
-          id='confirm_password'
-          name='confirm_password'
+          error={!!formState.errors.confirm_password || !!error?.message}
           label='Confirm password'
           required
-          inputRef={register({
+          {...muiRegister('confirm_password', {
             required: true,
             validate: (value) => value === watch('password'),
           })}
-          helperText={!!(errors as any).confirm_password && 'Passwords should match'}
+          helperText={!!formState.errors.confirm_password && 'Passwords should match'}
           disabled={formState.isSubmitting}
         />
       </div>

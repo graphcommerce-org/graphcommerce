@@ -1,22 +1,22 @@
-import { UseFormMethods } from 'react-hook-form'
+import { FieldValues, Path, UseFormReturn } from 'react-hook-form'
+import { IsRequired } from './useGqlDocumentHandler'
 
-type UseFormValidFieldsProps = {
-  form: Pick<UseFormMethods, 'watch' | 'errors'> & { required: Record<string, boolean> }
-}
+export type UseFormValidReturn<TFieldValues> = Partial<Record<Path<TFieldValues>, boolean>>
 
 /**
- * @param props
- * @returns Key value pair with field names as key and boolean as value indicating whether the field is valid
+ * ### useFromValidFields
+ *
+ * Record field names as key and boolean as value indicating whether the field is valid
  */
-export default function useFormValidFields(
-  props: UseFormValidFieldsProps,
-): Record<string, boolean> {
-  const { form } = props
-  const { required, errors, watch } = form
-  const fields = {}
+export default function useFormValid<TFieldValues extends FieldValues>(
+  form: Pick<UseFormReturn<TFieldValues>, 'watch' | 'formState'>,
+  required: IsRequired<TFieldValues>,
+): UseFormValidReturn<TFieldValues> {
+  const { watch, formState } = form
+  const fields: Partial<Record<Path<TFieldValues>, boolean>> = {}
 
   Object.keys(required).forEach((key) => {
-    fields[key] = !errors[key] && watch(key)
+    fields[key] = !formState.errors[key] && watch(key as Path<TFieldValues>)
   })
 
   return fields

@@ -5,7 +5,6 @@ import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
@@ -13,11 +12,7 @@ import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
 import NameFields from '../NameFields'
-import {
-  UpdateCustomerAddressDocument,
-  UpdateCustomerAddressMutation,
-  UpdateCustomerAddressMutationVariables,
-} from './UpdateCustomerAddress.gql'
+import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
 const useStyles = makeStyles(
   () => ({
@@ -38,10 +33,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
   const classes = useStyles()
   const router = useRouter()
 
-  const form = useFormGqlMutation<
-    UpdateCustomerAddressMutation,
-    UpdateCustomerAddressMutationVariables
-  >(UpdateCustomerAddressDocument, {
+  const form = useFormGqlMutation(UpdateCustomerAddressDocument, {
     defaultValues: {
       id: address?.id ?? undefined,
       firstname: address?.firstname,
@@ -81,53 +73,29 @@ export default function EditAddressForm(props: EditAddressFormProps) {
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, register } = form
+  const { handleSubmit, formState, required, error, muiRegister, valid } = form
   const submitHandler = handleSubmit(() => {})
-
-  const validFields = useFormValidFields({ form })
 
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={formClasses.form}>
-        <NameFields
-          form={form}
-          disabled={formState.isSubmitting}
-          validFields={validFields}
-          required={required}
-          prefix='prefix'
-          firstname='firstname'
-          lastname='lastname'
-        />
-        <AddressFields
-          form={form}
-          countries={countries}
-          disabled={formState.isSubmitting}
-          validFields={validFields}
-          required={required}
-          street='street'
-          houseNumber='houseNumber'
-          addition='addition'
-          postcode='postcode'
-          city='city'
-          countryCode='countryCode'
-          regionId='regionId'
-        />
+        <NameFields form={form} disabled={formState.isSubmitting} prefix />
+        <AddressFields form={form} countries={countries} disabled={formState.isSubmitting} />
 
         <div className={formClasses.formRow}>
           <TextField
             variant='outlined'
             type='text'
-            error={!!errors.telephone}
+            error={!!formState.errors.telephone}
             required={required.telephone}
-            name='telephone'
             label='Telephone'
-            inputRef={register({
+            {...muiRegister('telephone', {
               required: required.telephone,
               pattern: { value: phonePattern, message: 'Invalid phone number' },
             })}
-            helperText={formState.isSubmitted && errors.telephone?.message}
+            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{ endAdornment: validFields.telephone && <InputCheckmark /> }}
+            InputProps={{ endAdornment: valid.telephone && <InputCheckmark /> }}
           />
         </div>
 

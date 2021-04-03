@@ -10,7 +10,6 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
-import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
 import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
@@ -66,7 +65,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       }
     },
   })
-  const { register, errors, handleSubmit, watch, formState, required, error } = form
+  const { muiRegister, handleSubmit, valid, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -81,58 +80,33 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   // todo: Move to a validateAndSubmit method or something?
   useEffect(() => {
-    doSubmit.current = async () =>
+    doSubmit.current = () =>
       !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
   }, [doSubmit, formState.isDirty, submit])
 
   const checkIcon = <InputCheckmark />
-  const validFields = useFormValidFields({ form: { watch, required, errors } })
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
-        <NameFields
-          key='name'
-          form={form}
-          validFields={validFields}
-          disabled={disableFields}
-          required={required}
-          firstname='firstname'
-          lastname='lastname'
-        />
-
-        <AddressFields
-          form={form}
-          key='addressfields'
-          validFields={validFields}
-          countries={countries}
-          disabled={disableFields}
-          street='street'
-          houseNumber='houseNumber'
-          addition='addition'
-          postcode='postcode'
-          city='city'
-          countryCode='countryCode'
-          regionId='regionId'
-          required={required}
-        />
+        <NameFields key='name' form={form} disabled={disableFields} />
+        <AddressFields form={form} key='addressfields' countries={countries} />
 
         <div className={classes.formRow} key='telephone'>
           <TextField
             variant='outlined'
             type='text'
-            error={!!errors.telephone}
+            error={!!formState.errors.telephone}
             required={required.telephone}
-            name='telephone'
             label='Telephone'
-            inputRef={register({
+            {...muiRegister('telephone', {
               required: required.telephone,
               pattern: { value: phonePattern, message: 'Invalid phone number' },
             })}
-            helperText={formState.isSubmitted && errors.telephone?.message}
+            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={disableFields}
             InputProps={{
-              endAdornment: validFields.telephone && checkIcon,
+              endAdornment: valid.telephone && checkIcon,
             }}
           />
         </div>
