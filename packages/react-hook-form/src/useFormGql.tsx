@@ -8,7 +8,7 @@ import {
 } from '@apollo/client'
 import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
-import useGqlDocumentHandler, { UseGqlDocumentHandler } from './useGqlDocumentHandler'
+import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { LazyQueryTuple } from './useLazyQueryPromise'
 
 export type OnCompleteFn<Q> = (
@@ -34,7 +34,7 @@ export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 
  * - Updates the form when the query updates
  * - Resets the form after submitting the form when no modifications are found
  */
-export default function useFormGqlOperation<Q, V>(
+export function useFormGql<Q, V>(
   options: {
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>

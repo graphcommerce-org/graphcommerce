@@ -37,7 +37,7 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
  *    formState.isDirty should be true after the submission
  * @see useFormGqlMutation.tsx for an example implementation
  */
-export default function useFormAutoSubmit<Form extends UseFormReturn<V>, V = FieldValues>(
+export function useFormAutoSubmit<Form extends UseFormReturn<V>, V = FieldValues>(
   options: UseFormAutoSubmitOptions<Form, V>,
 ) {
   const { form, submit, wait = 500, fields, forceInitialSubmit } = options

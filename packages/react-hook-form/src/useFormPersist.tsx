@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
 import {
-  FieldName,
   FieldValues,
   UseFormReturn,
-  SetFieldValue,
   Path,
   FieldPathValue,
   UnpackNestedValue,
@@ -29,7 +27,7 @@ export type UseFormPersistOptions<V> = {
  * Will persist any dirty fields and store it in the sessionStorage/localStorage Will restory any
  * dirty fields when the form is initialized
  */
-export default function useFormPersist<V>(options: UseFormPersistOptions<V>) {
+export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [] } = options
   const { setValue, watch, formState } = form
 

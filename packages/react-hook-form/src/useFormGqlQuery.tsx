@@ -1,14 +1,14 @@
 import { TypedDocumentNode } from '@apollo/client'
 import { useForm } from 'react-hook-form'
-import useFormGql, { UseFormGraphQlOptions } from './useFormGql'
+import { useFormGql, UseFormGraphQlOptions } from './useFormGql'
 import { UseFormGqlMutationReturn } from './useFormGqlMutation'
-import useFormMuiRegister from './useFormMuiRegister'
-import useFormValid from './useFormValidFields'
-import useLazyQueryPromise from './useLazyQueryPromise'
+import { useFormMuiRegister } from './useFormMuiRegister'
+import { useFormValid } from './useFormValidFields'
+import { useLazyQueryPromise } from './useLazyQueryPromise'
 
 export type UseFormGqlQueryReturn<Q, V> = UseFormGqlMutationReturn<Q, V>
 
-export default function useFormGqlQuery<Q, V>(
+export function useFormGqlQuery<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> = {},
 ): UseFormGqlQueryReturn<Q, V> {
