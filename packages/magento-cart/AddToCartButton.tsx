@@ -3,8 +3,7 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import { DeepPartial, UnpackNestedValue } from '@reachdigital/react-hook-form/useForm'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
 

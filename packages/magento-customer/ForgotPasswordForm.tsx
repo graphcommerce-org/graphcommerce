@@ -3,8 +3,7 @@ import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { useFormGqlMutation, emailPattern } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
   ForgotPasswordDocument,

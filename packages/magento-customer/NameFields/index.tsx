@@ -1,9 +1,7 @@
 import { MenuItem, TextField } from '@material-ui/core'
-import { Maybe } from '@reachdigital/magento-graphql'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { Controller, UseFormReturn } from '@reachdigital/react-hook-form/useForm'
-import { assertFormGqlOperation } from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { Controller, UseFormReturn, assertFormGqlOperation } from '@reachdigital/react-hook-form'
 import React from 'react'
 
 type NameFieldValues = {

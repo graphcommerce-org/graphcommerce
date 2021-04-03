@@ -3,9 +3,12 @@ import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { Controller, UseFormReturn } from '@reachdigital/react-hook-form/useForm'
-import { assertFormGqlOperation } from '@reachdigital/react-hook-form/useFormGqlMutation'
-import { houseNumberPattern } from '@reachdigital/react-hook-form/validationPatterns'
+import {
+  Controller,
+  UseFormReturn,
+  assertFormGqlOperation,
+  houseNumberPattern,
+} from '@reachdigital/react-hook-form'
 import React, { useMemo } from 'react'
 
 type AddressFieldValues = {

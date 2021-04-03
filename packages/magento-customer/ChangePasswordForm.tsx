@@ -1,8 +1,8 @@
-import { TextField, makeStyles, Theme, FormControl } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
   ChangePasswordDocument,

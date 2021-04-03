@@ -7,10 +7,12 @@ import NameFields from '@reachdigital/magento-customer/NameFields'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
-import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
+import {
+  useFormAutoSubmit,
+  useFormGqlMutation,
+  useFormPersist,
+  phonePattern,
+} from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'

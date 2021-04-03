@@ -1,12 +1,11 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { emailPattern } from '@reachdigital/react-hook-form'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
-import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

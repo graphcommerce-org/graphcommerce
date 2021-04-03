@@ -1,7 +1,7 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
