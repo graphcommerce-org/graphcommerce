@@ -1,11 +1,11 @@
 import { useIsPresent } from 'framer-motion'
-import { stackedPageContext } from './StackedPageContext'
-import type { StackedPageItem } from './types'
+import { pageContext } from './PageContext'
+import type { PageItem } from './types'
 import { currentHistoryIdx, scrollPos } from './utils'
 
-export default function StackedPage(
-  props: StackedPageItem & { idx: number; stackIdx: number; scope: string },
-) {
+type PageProps = PageItem & { idx: number; stackIdx: number; scope: string }
+
+export default function Page(props: PageProps) {
   const { Component, pageProps, router, stackIdx, idx, historyIdx, scope } = props
   const active = stackIdx === idx
 
@@ -19,13 +19,13 @@ export default function StackedPage(
   if (!useIsPresent()) top = scrollPos(currentHistoryIdx()).y - scrollPos(stackIdx).y
 
   return (
-    <stackedPageContext.Provider value={{ router, level: stackIdx - idx }}>
+    <pageContext.Provider value={{ router, level: stackIdx - idx }}>
       <div
         data-scope={scope}
         style={{ position: active ? 'absolute' : 'fixed', top, left: 0, right: 0 }}
       >
         <Component {...pageProps} />
       </div>
-    </stackedPageContext.Provider>
+    </pageContext.Provider>
   )
 }

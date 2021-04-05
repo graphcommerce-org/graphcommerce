@@ -1,9 +1,9 @@
-import { useStackLevel, useStackRouter } from '@reachdigital/framer-next-pages'
+import { usePageLevel, usePageRouter } from '@reachdigital/framer-next-pages'
 import { useEffect, useState } from 'react'
 
 export default function StackDebug() {
-  const stackRouter = useStackRouter()
-  const stackLevel = useStackLevel()
+  const pageRouter = usePageRouter()
+  const pageLevel = usePageLevel()
   const [color, setColor] = useState<string>()
 
   useEffect(() => {
@@ -23,11 +23,11 @@ export default function StackDebug() {
       >
         <strong>Color change means: This component is recreated</strong>
         <br />
-        asPath: {stackRouter.asPath}
+        asPath: {pageRouter.asPath}
         <br />
-        pathname: {stackRouter.pathname}
+        pathname: {pageRouter.pathname}
         <br />
-        stackLevel: {stackLevel}
+        stackLevel: {pageLevel}
       </code>
 
       <div style={{ position: 'absolute', top: 0, left: 0, pointerEvents: 'none' }}>

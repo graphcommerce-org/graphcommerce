@@ -1,18 +1,18 @@
 import { AnimatePresence } from 'framer-motion'
 import type { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { Router } from 'next/router'
-import React, { useRef } from 'react'
-import StackedPage from './StackedPage'
-import type { PageComponent, StackedPageItem } from './types'
+import { useRef } from 'react'
+import Page from './Page'
+import type { PageComponent, PageItem } from './types'
 import { createRouterProxy, currentHistoryIdx } from './utils'
 
-function pageScope(item: StackedPageItem) {
-  return item.Component.stackOptions?.scope?.(item) ?? item.router.asPath
+function pageScope(item: PageItem) {
+  return item.Component.pageOptions?.scope?.(item) ?? item.router.asPath
 }
 
-export default function StackedPages(props: AppPropsType<Router> & { Component: PageComponent }) {
+export default function Pages(props: AppPropsType<Router> & { Component: PageComponent }) {
   const { router, Component, pageProps } = props
-  const stack = useRef<StackedPageItem[]>([])
+  const stack = useRef<PageItem[]>([])
   const historyIdx = currentHistoryIdx()
 
   // We never need to render anything beyong the current idx and we can safely omit everything
@@ -25,7 +25,7 @@ export default function StackedPages(props: AppPropsType<Router> & { Component: 
 
   // Find the the last item of a non-stack item
   const plainIdx = stack.current.reduce(
-    (acc, item, i) => (item.Component.stackOptions?.stack === true ? acc : i),
+    (acc, item, i) => (item.Component.pageOptions?.stacked === true ? acc : i),
     -1,
   )
 
@@ -50,7 +50,7 @@ export default function StackedPages(props: AppPropsType<Router> & { Component: 
       {pageStack.map((stackItem, stackIdx) => {
         const key = pageScope(stackItem)
         return (
-          <StackedPage
+          <Page
             key={key}
             scope={key}
             {...stackItem}

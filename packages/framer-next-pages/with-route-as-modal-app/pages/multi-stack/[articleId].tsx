@@ -1,5 +1,6 @@
-import { StackOptions } from '@reachdigital/framer-next-pages/types'
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+/* eslint-disable @typescript-eslint/require-await */
+import { PageOptions } from '@reachdigital/framer-next-pages'
+import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import Grid, { data } from '../../components/Grid'
 import StackDebug from '../../components/StackedDebugger'
@@ -17,24 +18,20 @@ function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   )
 }
 
-const stackOptions: StackOptions = {
-  stack: true,
-}
-ArticlePage.stackOptions = stackOptions
+ArticlePage.pageOptions = { stacked: true } as PageOptions
 
 export default ArticlePage
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export async function getStaticProps({
-  params: { articleId },
-}: GetStaticPropsContext<{ articleId: string }>) {
-  return { props: { articleId } }
-}
-
-// eslint-disable-next-line @typescript-eslint/require-await
-export async function getStaticPaths() {
+type ParsedUrlQuery = { articleId: string }
+export async function getStaticPaths(): Promise<GetStaticPathsResult<ParsedUrlQuery>> {
   return {
     paths: data.map((articleId) => ({ params: { articleId: articleId.toString() } })),
     fallback: false,
+  }
+}
+
+export async function getStaticProps(ctx: GetStaticPropsContext<ParsedUrlQuery>) {
+  return {
+    props: ctx.params,
   }
 }
