@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.gql'
-import useFormGqlMutation from '../src/useFormGqlMutation'
+import { useFormGqlMutation } from '../src/useFormGqlMutation'
 
 describe('useFormGqlMutation', () => {
   const { register, required, defaultVariables } = useFormGqlMutation(
