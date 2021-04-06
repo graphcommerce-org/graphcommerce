@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageDepth, usePageDirection } from '@reachdigital/framer-next-pages'
-import { AnimatePresence, AnimationOptions, motion, Variants } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import Grid, { data } from '../../components/Grid'
@@ -18,7 +18,7 @@ function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProp
   }
 
   return (
-    <StackedDrawer>
+    <StackedDrawer variant='left'>
       <StackDebug />
       <div
         style={{
@@ -67,8 +67,8 @@ function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProp
 }
 
 ArticlePage.pageOptions = {
-  stacked: true,
-  scope: ({ router }) => router.pathname,
+  stack: 'left',
+  scope: (router) => router.pathname,
 } as PageOptions
 
 export default ArticlePage

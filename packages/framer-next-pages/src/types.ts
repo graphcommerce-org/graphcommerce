@@ -15,25 +15,26 @@ import { NextRouter } from 'next/router'
  *
  * ```typescript
  * const overlay: PageOptions = {
- *   stack: true,
+ *   stack: 'center',
  *   scope: ({ router }) => router.pathname,
  * }
  * ```
  */
 export type PageOptions = {
   /**
-   * Should the page be stacking? Overlays like modals, etc. should stack the background.
+   * Should the page be stacking? Overlays like modals, etc. should stack.
    *
-   * Default: `false`
+   * Default: `undefined`
    */
-  stacked?: boolean
+  stack?: undefined | false | string
+
   /**
    * By default the scope is set to item.router.asPath, meaning that we create a new entry for each
    * URL. You can change the scope to something else.
    *
-   * Default: ```js ({router}) => router.asPath```
+   * Default: `js ({router}) => router.asPath`
    */
-  scope?: (item: PageItem) => string
+  scope?: (router: NextRouter) => string | undefined
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
@@ -45,4 +46,5 @@ export type PageItem = {
   router: NextRouter
   Component: PageComponent
   historyIdx: number
+  stack?: undefined | false | string
 }

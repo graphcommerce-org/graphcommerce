@@ -1,13 +1,14 @@
 import { AnimatePresence } from 'framer-motion'
 import type { AppPropsType } from 'next/dist/next-server/lib/utils'
-import type { Router } from 'next/router'
+import type { NextRouter, Router } from 'next/router'
 import { useRef } from 'react'
 import Page from './Page'
+import { pageContext } from './PageContext'
 import type { PageComponent, PageItem } from './types'
 import { createRouterProxy, currentHistoryIdx } from './utils'
 
-function pageScope(item: PageItem) {
-  return item.Component.pageOptions?.scope?.(item) ?? item.router.asPath
+function pageScope(Component: PageComponent, router: NextRouter) {
+  return Component.pageOptions?.scope?.(router) ?? router.asPath
 }
 
 export default function Pages(props: AppPropsType<Router> & { Component: PageComponent }) {
@@ -28,7 +29,7 @@ export default function Pages(props: AppPropsType<Router> & { Component: PageCom
 
   /** We need to render back to the last item that doesn't need to be stacked. */
   const plainIdx = stack.current.reduce(
-    (acc, item, i) => (item.Component.pageOptions?.stacked === true ? acc : i),
+    (acc, item, i) => (typeof item.Component.pageOptions?.stack === 'string' ? acc : i),
     -1,
   )
 
@@ -41,33 +42,38 @@ export default function Pages(props: AppPropsType<Router> & { Component: PageCom
   /**
    * A key can only occur once in AnimatePresence, therfor we remove duplicates and maintain the
    * last one as that one has the most recent props.
+   *
+   * We remove all the items that have a stack but aren't the current page's stack
    */
   const seen = new Set<string>()
   pageStack = pageStack
     .reverse()
     .filter((stackItem) => {
-      const key = pageScope(stackItem)
+      const key = pageScope(stackItem.Component, stackItem.router)
       if (seen.has(key)) return false
       seen.add(key)
+
+      if (
+        typeof Component.pageOptions?.stack === 'string' &&
+        typeof stackItem.Component.pageOptions?.stack === 'string' &&
+        Component.pageOptions?.stack !== stackItem.Component.pageOptions?.stack
+      ) {
+        return false
+      }
       return true
     })
     .reverse()
 
   return (
     <AnimatePresence initial={false}>
-      {pageStack.map((stackItem, stackIdx) => {
-        const key = pageScope(stackItem)
-        return (
-          <Page
-            key={key}
-            scope={key}
-            {...stackItem}
-            stackIdx={stackIdx}
-            idx={pageStack.length - 1}
-            direction={direction}
-          />
-        )
-      })}
+      {pageStack.map(({ router: pageRouter, stack: _, ...stackItem }, stackIdx) => (
+        <pageContext.Provider
+          key={pageScope(stackItem.Component, pageRouter)}
+          value={{ pageRouter, depth: stackIdx - (pageStack.length - 1), direction }}
+        >
+          <Page active={stackIdx === pageStack.length - 1} {...stackItem} />
+        </pageContext.Provider>
+      ))}
     </AnimatePresence>
   )
 }

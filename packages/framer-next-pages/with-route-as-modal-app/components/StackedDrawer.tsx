@@ -2,8 +2,11 @@ import { usePageDepth } from '@reachdigital/framer-next-pages'
 import { motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 
-export default function StackedDrawer({ children }: PropsWithChildren<unknown>) {
+export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left' | 'right' }>) {
+  const { children, variant } = props
   const depth = usePageDepth()
+
+  const offset = variant === 'right' ? depth * 40 : depth * -40
 
   return (
     <motion.div
@@ -14,18 +17,26 @@ export default function StackedDrawer({ children }: PropsWithChildren<unknown>) 
         background: '#fff',
         marginBlockEnd: -200,
         overflow: 'hidden',
-        right: 0,
         width: 600,
         boxShadow: `rgba(100, 100, 111, 0.2) 0px 7px 29px 0px`,
         originY: 0,
         height: 3000,
+        [variant]: 0,
       }}
       animate='enter'
       exit='exit'
       initial='exit'
       variants={{
-        enter: { y: 0, opacity: 1, x: depth * 40 },
-        exit: { y: 0, x: 100 + depth * 4, opacity: 0 },
+        enter: {
+          y: 0,
+          opacity: 1,
+          x: offset,
+        },
+        exit: {
+          y: 0,
+          x: (variant === 'right' ? 100 : -100) + offset,
+          opacity: 0,
+        },
       }}
       transition={{ ease: 'easeInOut' }}
     >

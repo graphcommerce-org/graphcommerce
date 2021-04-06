@@ -10,7 +10,7 @@ function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { articleId } = props
 
   return (
-    <StackedDrawer>
+    <StackedDrawer variant='right'>
       <StackDebug />
       <div style={{ padding: 20, paddingLeft: 60 }}>
         <h1>Multi Stack {articleId}</h1>
@@ -20,7 +20,7 @@ function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   )
 }
 
-ArticlePage.pageOptions = { stacked: true } as PageOptions
+ArticlePage.pageOptions = { stack: 'right' } as PageOptions
 
 export default ArticlePage
 
