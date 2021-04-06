@@ -16,7 +16,8 @@ const useStyles = makeStyles(
   { name: 'SliderContainer' },
 )
 
-export type SliderContainerProps = PropsWithChildren<MotionProps & UseStyles<typeof useStyles>>
+export type SliderContainerProps = MotionProps &
+  UseStyles<typeof useStyles> & { children: React.ReactNode }
 
 /**
  * Simple wrapper div

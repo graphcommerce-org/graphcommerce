@@ -28,9 +28,12 @@ export const defaultTheme = createMuiTheme({
     //   contrastText: '#fff',
     //   mutedText: `rgba(1,1,1,0.6)`,
     // },
+    neutral: {
+      default: '#f8f8f8',
+      paper: '#fff',
+    },
     background: {
       default: '#fff',
-      paper: '#f8f8f8',
     },
     divider: 'rgba(0, 0, 0, 0.08)',
     success: {

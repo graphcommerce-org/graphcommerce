@@ -7,6 +7,13 @@ declare module '@material-ui/core/styles/createPalette' {
   // interface Palette {
   //   tertiary: PaletteColor & ColorPartial
   // }
+  interface Palette {
+    neutral: Palette['background']
+  }
+
+  interface PaletteOptions {
+    neutral: Palette['background']
+  }
 
   interface SimplePaletteColorOptions {
     mutedText: string
