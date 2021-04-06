@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/styles'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { SetRequired } from 'type-fest'
-import PageLink from '../PageTransition/PageLink'
 
 type ActionComponent = (props: { close: () => void }) => React.ReactElement
 
