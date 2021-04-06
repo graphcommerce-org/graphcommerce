@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 import { m, MotionProps } from 'framer-motion'
+import { PropsWithChildren } from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
@@ -15,8 +16,7 @@ const useStyles = makeStyles(
   { name: 'SliderContainer' },
 )
 
-export type SliderContainerProps = MotionProps &
-  UseStyles<typeof useStyles> & { children: React.ReactNode }
+export type SliderContainerProps = PropsWithChildren<MotionProps & UseStyles<typeof useStyles>>
 
 /**
  * Simple wrapper div

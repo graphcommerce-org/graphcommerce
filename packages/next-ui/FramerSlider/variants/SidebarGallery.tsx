@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { UseStyles } from '../../Styles'
-import SliderContainer from '../SliderContainer'
+import SliderContainer, { useSliderContainerStyles } from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
 import SliderNext from '../SliderNext'
@@ -14,9 +14,6 @@ import SliderScroller from '../SliderScroller'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {},
-    containerZoomed: {},
-    sidebar: {},
     bottomCenter: {
       display: 'grid',
       gridAutoFlow: 'column',
@@ -50,17 +47,20 @@ const useStyles = makeStyles(
         bottom: theme.spacings.sm,
       },
     },
+    container: {},
+    containerZoomed: {},
   }),
-  { name: 'ExandableGallery' },
+  { name: 'ExpandableGallery' },
 )
 
-type SidebarGalleryProps = { children: React.ReactNode; sidebar: React.ReactNode } & UseStyles<
-  typeof useStyles
->
+type SidebarGalleryProps = {
+  children: React.ReactNode
+  sidebar: React.ReactNode
+} & UseStyles<typeof useStyles>
 
 export default function SidebarGallery(props: SidebarGalleryProps) {
-  const { children, sidebar } = props
-  const classes = useStyles(props)
+  const { children, sidebar, classes } = props
+  const expGalleryClasses = useStyles(props)
   const [zoomed, setZoomed] = useState(false)
 
   /**
@@ -75,13 +75,14 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
       <SliderContext scrollSnapAlign='center'>
         <SliderContainer
           layout={layout}
-          classes={{ container: clsx(classes.container, zoomed && classes.containerZoomed) }}
+          classes={{
+            container: clsx(classes?.container, zoomed && classes?.containerZoomed),
+          }}
         >
           <SliderScroller layout={layout}>{children}</SliderScroller>
-
           <m.div
             layout
-            className={classes.topRight}
+            className={expGalleryClasses.topRight}
             onLayoutAnimationComplete={() => setLayout(false)}
           >
             <Fab
@@ -96,15 +97,15 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
               {zoomed ? <FullscreenExit /> : <Fullscreen />}
             </Fab>
           </m.div>
-
-          <div className={classes.bottomCenter}>
-            <SliderPrev layout={layout} classes={{ root: classes.sliderButtons }} />
+          <div className={expGalleryClasses.bottomCenter}>
+            <SliderPrev layout={layout} classes={{ root: expGalleryClasses.sliderButtons }} />
             <SliderDots layout={layout} count={React.Children.count(children)} />
-            <SliderNext layout={layout} classes={{ root: classes.sliderButtons }} />
+            <SliderNext layout={layout} classes={{ root: expGalleryClasses.sliderButtons }} />
           </div>
         </SliderContainer>
       </SliderContext>
-      <div className={classes.sidebar}>{sidebar}</div>
+
+      {sidebar}
     </>
   )
 }

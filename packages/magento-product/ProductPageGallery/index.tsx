@@ -64,11 +64,10 @@ export default function ProductPageGallery(props: ProductPageGalleryProps) {
   return (
     <div className={classes.root}>
       <SidebarGallery
-        sidebar={children}
+        sidebar={<div className={classes.sidebar}>{children}</div>}
         classes={{
           container: classes.container,
           containerZoomed: classes.containerZoomed,
-          sidebar: classes.sidebar,
         }}
       >
         {media_gallery?.map((item) => {
