@@ -1,5 +1,6 @@
 import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
+import React from 'react'
 
 /**
  * Default:
@@ -26,7 +27,7 @@ export type PageOptions = {
    *
    * Default: `undefined`
    */
-  stack?: undefined | false | string
+  stack?: string
 
   /**
    * By default the scope is set to item.router.asPath, meaning that we create a new entry for each
@@ -42,9 +43,8 @@ export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextP
 }
 
 export type PageItem = {
-  pageProps: Record<string, unknown>
-  router: NextRouter
-  Component: PageComponent
+  children: React.ReactNode
   historyIdx: number
-  stack?: undefined | false | string
+  stack?: string
+  scope: string
 }

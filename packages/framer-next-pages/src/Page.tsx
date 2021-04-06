@@ -1,11 +1,15 @@
 import { useIsPresent } from 'framer-motion'
+import React from 'react'
 import type { PageItem } from './types'
 import { currentHistoryIdx, scrollPos } from './utils'
 
-type PageProps = Pick<PageItem, 'Component' | 'pageProps' | 'historyIdx'> & { active: boolean }
+export type PageProps = Pick<PageItem, 'historyIdx'> & {
+  active: boolean
+  children: React.ReactNode
+}
 
 export default function Page(props: PageProps) {
-  const { Component, pageProps, active, historyIdx } = props
+  const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
 
   /** The active StackedPage doesn't get any special treatment */
@@ -20,9 +24,8 @@ export default function Page(props: PageProps) {
    */
   if (!isPresent) top = scrollPos(currentHistoryIdx()).y - scrollPos(historyIdx).y
 
-  return (
-    <div style={{ position: active ? 'absolute' : 'fixed', top, left: 0, right: 0 }}>
-      <Component {...pageProps} />
-    </div>
-  )
+  const position = active ? 'absolute' : 'fixed'
+  const pointerEvents = !active ? 'none' : undefined
+
+  return <div style={{ position, top, left: 0, right: 0, pointerEvents }}>{children}</div>
 }

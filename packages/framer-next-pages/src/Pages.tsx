@@ -3,33 +3,44 @@ import type { AppPropsType } from 'next/dist/next-server/lib/utils'
 import type { NextRouter, Router } from 'next/router'
 import { useRef } from 'react'
 import Page from './Page'
-import { pageContext } from './PageContext'
-import type { PageComponent, PageItem } from './types'
+import { pageContext, pageRouterContext } from './PageContext'
+import type { PageComponent, PageItem, PageOptions } from './types'
 import { createRouterProxy, currentHistoryIdx } from './utils'
 
-function pageScope(Component: PageComponent, router: NextRouter) {
-  return Component.pageOptions?.scope?.(router) ?? router.asPath
+function pageScope(router: NextRouter, pageOptions?: PageOptions) {
+  return pageOptions?.scope?.(router) ?? router.asPath
 }
 
 export default function Pages(props: AppPropsType<Router> & { Component: PageComponent }) {
   const { router, Component, pageProps } = props
   const stack = useRef<PageItem[]>([])
-  const historyIdx = currentHistoryIdx()
+  const idx = currentHistoryIdx()
   const prevHistory = useRef<number>(-1)
-  const direction = historyIdx > prevHistory.current ? 1 : -1
-  prevHistory.current = historyIdx
+  const direction = idx > prevHistory.current ? 1 : -1
+  prevHistory.current = idx
 
   /** We never need to render anything beyong the current idx and we can safely omit everything */
-  stack.current = stack.current.slice(0, historyIdx)
+  stack.current = stack.current.slice(0, idx)
 
   /** Add the current page to the stack */
-  stack.current.push({ Component, pageProps, router: createRouterProxy(router), historyIdx })
+  const routerProxy = createRouterProxy(router)
+  const newStackItem = {
+    children: (
+      <pageRouterContext.Provider value={routerProxy}>
+        <Component {...pageProps} />
+      </pageRouterContext.Provider>
+    ),
+    scope: pageScope(routerProxy, Component.pageOptions),
+    stack: Component.pageOptions?.stack,
+    historyIdx: idx,
+  }
+  stack.current.push(newStackItem)
 
   let pageStack = stack.current
 
   /** We need to render back to the last item that doesn't need to be stacked. */
   const plainIdx = stack.current.reduce(
-    (acc, item, i) => (typeof item.Component.pageOptions?.stack === 'string' ? acc : i),
+    (acc, item, i) => (typeof item.stack === 'string' ? acc : i),
     -1,
   )
 
@@ -49,14 +60,13 @@ export default function Pages(props: AppPropsType<Router> & { Component: PageCom
   pageStack = pageStack
     .reverse()
     .filter((stackItem) => {
-      const key = pageScope(stackItem.Component, stackItem.router)
-      if (seen.has(key)) return false
-      seen.add(key)
+      if (seen.has(stackItem.scope)) return false
+      seen.add(stackItem.scope)
 
       if (
-        typeof Component.pageOptions?.stack === 'string' &&
-        typeof stackItem.Component.pageOptions?.stack === 'string' &&
-        Component.pageOptions?.stack !== stackItem.Component.pageOptions?.stack
+        typeof newStackItem.stack === 'string' &&
+        typeof stackItem.stack === 'string' &&
+        newStackItem.stack !== stackItem.stack
       ) {
         return false
       }
@@ -66,12 +76,18 @@ export default function Pages(props: AppPropsType<Router> & { Component: PageCom
 
   return (
     <AnimatePresence initial={false}>
-      {pageStack.map(({ router: pageRouter, stack: _, ...stackItem }, stackIdx) => (
+      {pageStack.map(({ children, historyIdx, scope }, stackIdx) => (
         <pageContext.Provider
-          key={pageScope(stackItem.Component, pageRouter)}
-          value={{ pageRouter, depth: stackIdx - (pageStack.length - 1), direction }}
+          key={scope}
+          value={{
+            depth: stackIdx - (pageStack.length - 1),
+            active: stackIdx === pageStack.length - 1,
+            direction,
+          }}
         >
-          <Page active={stackIdx === pageStack.length - 1} {...stackItem} />
+          <Page active={stackIdx === pageStack.length - 1} historyIdx={historyIdx}>
+            {children}
+          </Page>
         </pageContext.Provider>
       ))}
     </AnimatePresence>
