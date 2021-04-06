@@ -12,8 +12,10 @@ function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <StackedDrawer>
       <StackDebug />
-      <h1>Multi Stack {articleId}</h1>
-      <Grid />
+      <div style={{ padding: 20, paddingLeft: 60 }}>
+        <h1>Multi Stack {articleId}</h1>
+        <Grid />
+      </div>
     </StackedDrawer>
   )
 }
