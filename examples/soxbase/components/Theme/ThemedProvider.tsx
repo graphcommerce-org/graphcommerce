@@ -30,6 +30,7 @@ export const defaultTheme = createMuiTheme({
     // },
     background: {
       default: '#fff',
+      paper: '#f8f8f8',
     },
     divider: 'rgba(0, 0, 0, 0.08)',
     success: {
