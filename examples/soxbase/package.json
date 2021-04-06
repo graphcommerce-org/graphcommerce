@@ -8,9 +8,8 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build && yarn run gen:sitemap",
-    "start": "next start",
-    "gen:sitemap": "next-sitemap"
+    "build": "next build && yarn run next-sitemap",
+    "start": "next start"
   },
   "sideEffects": false,
   "dependencies": {
