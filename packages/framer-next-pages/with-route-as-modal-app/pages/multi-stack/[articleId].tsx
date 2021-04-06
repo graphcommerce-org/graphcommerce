@@ -1,22 +1,29 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageDepth } from '@reachdigital/framer-next-pages'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import dynamic from 'next/dynamic'
 import React from 'react'
+import FocusLock from 'react-focus-lock/UI'
 import Grid, { data } from '../../components/Grid'
 import StackDebug from '../../components/StackedDebugger'
 import StackedDrawer from '../../components/StackedDrawer'
 
+const sidecar = dynamic(() => import('react-focus-lock/sidecar'), { ssr: false }) as React.FC
+
 function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { articleId } = props
+  const depth = usePageDepth()
 
   return (
-    <StackedDrawer variant='right'>
-      <StackDebug />
-      <div style={{ padding: 20, paddingLeft: 60 }}>
-        <h1>Multi Stack {articleId}</h1>
-        <Grid />
-      </div>
-    </StackedDrawer>
+    <FocusLock disabled={depth < 0} sideCar={sidecar} returnFocus>
+      <StackedDrawer variant='right'>
+        <StackDebug />
+        <div style={{ padding: 20, paddingLeft: 60 }}>
+          <h1>Multi Stack {articleId}</h1>
+          <Grid />
+        </div>
+      </StackedDrawer>
+    </FocusLock>
   )
 }
 
