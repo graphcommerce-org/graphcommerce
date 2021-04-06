@@ -14,26 +14,34 @@ export default function Pages(props: AppPropsType<Router> & { Component: PageCom
   const { router, Component, pageProps } = props
   const stack = useRef<PageItem[]>([])
   const historyIdx = currentHistoryIdx()
+  const prevHistory = useRef<number>(-1)
+  const direction = historyIdx > prevHistory.current ? 1 : -1
+  prevHistory.current = historyIdx
 
-  // We never need to render anything beyong the current idx and we can safely omit everything
+  /** We never need to render anything beyong the current idx and we can safely omit everything */
   stack.current = stack.current.slice(0, historyIdx)
 
-  // Add the current page
+  /** Add the current page to the stack */
   stack.current.push({ Component, pageProps, router: createRouterProxy(router), historyIdx })
 
   let pageStack = stack.current
 
-  // Find the the last item of a non-stack item
+  /** We need to render back to the last item that doesn't need to be stacked. */
   const plainIdx = stack.current.reduce(
     (acc, item, i) => (item.Component.pageOptions?.stacked === true ? acc : i),
     -1,
   )
 
-  // todo(paales): When there is no plain page found, maybe we can inject a bare page?
-  // if (plainIdx < 0) {}
+  /**
+   * Todo(paales): When there is no plainIdx found, we only have an overlay. It would be nice if
+   * we'd be able to provide a background page in some way. *
+   */
   if (plainIdx > -1) pageStack = stack.current.slice(plainIdx)
 
-  // Since a key can only occur once in AnimatePresence, we remove duplicates and maintain the last one as that one has the most recent props.
+  /**
+   * A key can only occur once in AnimatePresence, therfor we remove duplicates and maintain the
+   * last one as that one has the most recent props.
+   */
   const seen = new Set<string>()
   pageStack = pageStack
     .reverse()
@@ -56,6 +64,7 @@ export default function Pages(props: AppPropsType<Router> & { Component: PageCom
             {...stackItem}
             stackIdx={stackIdx}
             idx={pageStack.length - 1}
+            direction={direction}
           />
         )
       })}
