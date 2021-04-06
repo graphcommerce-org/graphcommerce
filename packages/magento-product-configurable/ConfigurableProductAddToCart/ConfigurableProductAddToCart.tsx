@@ -1,19 +1,21 @@
 import { useQuery } from '@apollo/client'
+import { Fab, Typography } from '@material-ui/core'
+import Checkmark from '@material-ui/icons/Check'
+import Chevron from '@material-ui/icons/ChevronRight'
+import CloseIcon from '@material-ui/icons/Close'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import RenderType from '@reachdigital/next-ui/RenderType'
-import AddToCartSuccessOverlay from '@reachdigital/next-ui/Snackbar/AddToCartSuccessOverlay'
-import AddToCartSuccessSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSuccessSnackbar'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React, { useRef } from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
+
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
@@ -94,12 +96,27 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         </Button>
       </div>
 
-      <MessageSnackbarLoader>
-        <AddToCartSuccessOverlay
-          message={product.name}
-          open={formState.isSubmitSuccessful && !error?.message}
-        />
-      </MessageSnackbarLoader>
+      <MessageSnackbarLoader
+        variant='rounded'
+        icon={<Checkmark />}
+        button={
+          <PageLink href='/cart'>
+            <Fab variant='extended' color='secondary' size='large'>
+              <Typography component='span'>View shopping cart</Typography>
+              <Chevron />
+            </Fab>
+          </PageLink>
+        }
+        size='large'
+        color='white'
+        message={`${product.name} has been added to your shopping cart!`}
+        open={formState.isSubmitSuccessful && !error?.message}
+        closeButton={
+          <Fab aria-label='Close snackbar' size='medium'>
+            <CloseIcon />
+          </Fab>
+        }
+      />
     </form>
   )
 }
