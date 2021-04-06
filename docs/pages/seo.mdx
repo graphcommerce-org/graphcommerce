@@ -5,3 +5,17 @@
 ## Sitemap and robots.txt
 
 Sitemaps are generated with https://github.com/iamvishnusankar/next-sitemap
+
+## Prevent Cumulative Layout Shifts (CLS)
+
+When JavaScript is disabled/loading, elements should not be re-positioned.
+[CLS](https://web.dev/cls/) impacts the app feel & Google Lighthouse score
+negatively. Layout positioning may not depend on JavaScript as this influences
+SEO in a bad way.
+
+Example
+
+- (X) do not use `element.style`, as this manually causes the browser to
+  repaint, instead of React's render cycle.
+
+- (✓) use conditional classes using `clsx`
