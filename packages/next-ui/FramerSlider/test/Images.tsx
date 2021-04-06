@@ -17,7 +17,7 @@ const useStyles = makeStyles(
     container: {
       position: 'relative',
       zIndex: 10,
-      background: theme.palette.background.paper,
+      background: theme.palette.neutral.default,
       overflow: 'hidden',
       width: '100%',
       height: '100%',

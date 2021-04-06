@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core'
 import { m, MotionProps } from 'framer-motion'
-import { PropsWithChildren } from 'react'
 import { UseStyles } from '../Styles'
 import { useSliderContext } from './SliderContext'
 
