@@ -1,10 +1,8 @@
 import { TextField } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
-  Controller,
   UseFormReturn,
   assertFormGqlOperation,
   houseNumberPattern,
@@ -27,16 +25,13 @@ type AddressFieldsProps = CountryRegionsQuery & {
 }
 
 export default function AddressFields(props: AddressFieldsProps) {
-  const { form, disabled: _disabled, countries } = props
+  const { form, countries } = props
   assertFormGqlOperation<AddressFieldValues>(form)
-
-  const { watch, formState, control, required, muiRegister, valid } = form
+  const { watch, formState, required, muiRegister, valid } = form
+  const { disabled = formState.isSubmitting } = props
   const classes = useFormStyles()
 
   const country = watch('countryCode')
-  const region = watch('regionId')
-
-  const disabled = _disabled ?? formState.isSubmitting
 
   const countryList = useMemo(
     () =>
@@ -128,69 +123,55 @@ export default function AddressFields(props: AddressFieldsProps) {
         />
       </div>
       <div className={classes.formRow}>
-        <Controller
-          control={control}
-          name='countryCode'
-          rules={{ required: required?.countryCode }}
-          render={({ field: { onChange, value, name, ref, onBlur }, fieldState }) => (
-            <Autocomplete
-              value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
-              defaultValue={null}
-              options={countryList}
-              getOptionLabel={(option) => `${option?.full_name_locale}`}
-              onChange={(_, input) => onChange(input?.two_letter_abbreviation)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant='outlined'
-                  error={!!fieldState.error}
-                  name={name}
-                  label='Country'
-                  inputRef={ref}
-                  required={!!required?.countryCode}
-                  helperText={fieldState.error?.message}
-                  disabled={disabled}
-                  onBlur={onBlur}
-                  InputProps={{
-                    endAdornment: <InputCheckmark show={valid.countryCode} />,
-                  }}
-                />
-              )}
-            />
-          )}
-        />
+        <TextField
+          select
+          SelectProps={{ native: true }}
+          {...muiRegister('countryCode', { required: required.countryCode })}
+          variant='outlined'
+          error={!!formState.errors.countryCode}
+          label='Country'
+          required={!!required?.countryCode}
+          helperText={formState.errors.countryCode?.message}
+          disabled={disabled}
+          // onBlur={onBlur}
+          InputProps={{
+            endAdornment: <InputCheckmark show={valid.countryCode} />,
+          }}
+        >
+          {countryList.map((c) => {
+            if (!c?.two_letter_abbreviation) return null
+            return (
+              <option key={c.two_letter_abbreviation} value={c.two_letter_abbreviation}>
+                {c.full_name_locale}
+              </option>
+            )
+          })}
+        </TextField>
+
         {regionList.length > 0 && (
-          <Controller
-            control={control}
-            name='regionId'
-            rules={{ required: true }}
-            render={({ field: { onChange, value, name, ref, onBlur }, fieldState }) => (
-              <Autocomplete
-                value={regionList?.find((c) => c?.id === value)}
-                options={regionList}
-                defaultValue={null}
-                getOptionLabel={(option) => `${option?.name}`}
-                onChange={(_, input) => onChange(input?.id)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant='outlined'
-                    error={!!formState.errors.regionId}
-                    name={name}
-                    label='Region'
-                    inputRef={ref}
-                    required={!!required?.regionId}
-                    helperText={formState.errors.regionId?.message}
-                    disabled={disabled}
-                    onBlur={onBlur}
-                    InputProps={{
-                      endAdornment: <InputCheckmark show={valid.regionId} />,
-                    }}
-                  />
-                )}
-              />
-            )}
-          />
+          <TextField
+            select
+            SelectProps={{ native: true }}
+            variant='outlined'
+            error={!!formState.errors.regionId}
+            label='Region'
+            {...muiRegister('regionId', { required: true })}
+            required
+            helperText={formState.errors.regionId?.message}
+            disabled={disabled}
+            InputProps={{
+              endAdornment: <InputCheckmark show={valid.regionId} />,
+            }}
+          >
+            {regionList.map((r) => {
+              if (!r?.id) return null
+              return (
+                <option key={r.id} value={r.id}>
+                  {r.name}
+                </option>
+              )
+            })}
+          </TextField>
         )}
       </div>
     </>

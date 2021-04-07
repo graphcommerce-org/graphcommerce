@@ -9,7 +9,7 @@ import {
 
 export type UseFormPersistOptions<V> = {
   /** Instance of current form */
-  form: Pick<UseFormReturn<V>, 'watch' | 'setValue' | 'formState'>
+  form: UseFormReturn<V>
 
   /** Name of the key how it will be stored in the storage. */
   name: string
@@ -32,7 +32,9 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   const { setValue, watch, formState } = form
 
   const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
-  const values = watch(dirtyFieldKeys.filter((f) => !exclude.includes(f)))
+  const valuesJson = Object.fromEntries(
+    dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, watch(field)]),
+  )
 
   // Restore changes
   useEffect(() => {
@@ -58,10 +60,10 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   useEffect(() => {
     try {
       if (typeof window === 'undefined') return
-      if (values) window[storage][name] = JSON.stringify(values)
+      if (valuesJson) window[storage][name] = JSON.stringify(valuesJson)
       else delete window[storage][name]
     } catch {
       //
     }
-  }, [name, storage, values])
+  }, [name, storage, valuesJson])
 }
