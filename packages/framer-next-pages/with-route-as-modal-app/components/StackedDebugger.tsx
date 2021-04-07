@@ -18,7 +18,7 @@ export default function StackDebug() {
           display: 'block',
           marginLeft: -60,
           padding: 20,
-          paddingInlineStart: 60,
+          paddingInlineStart: 120,
           marginBlockEnd: 20,
         }}
       >

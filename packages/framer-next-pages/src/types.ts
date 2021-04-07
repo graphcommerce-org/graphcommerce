@@ -7,8 +7,8 @@ import React from 'react'
  *
  * ```typescript
  * const default: PageOptions = {
- *   stack: false,
- *   scope: ({ router }) => router.asPath,
+ *   overlay: undefined,
+ *   key: ({ router }) => router.asPath,
  * } as PageOptions
  * ```
  *
@@ -16,26 +16,29 @@ import React from 'react'
  *
  * ```typescript
  * const overlay: PageOptions = {
- *   stack: 'center',
- *   scope: ({ router }) => router.pathname,
+ *   overlay: 'center',
+ *   key: ({ router }) => router.pathname,
  * }
  * ```
  */
 export type PageOptions = {
   /**
-   * Should the page be stacking? Overlays like modals, etc. should stack.
+   * Is the page an overlay? Provide a string to which 'group' they belong
    *
    * Default: `undefined`
+   *
+   * - Example: ``
+   * - Example: `left`
+   * - Example: `customer-support`
    */
-  stack?: string
+  overlay?: string
 
   /**
-   * By default the scope is set to item.router.asPath, meaning that we create a new entry for each
-   * URL. You can change the scope to something else.
+   * By default the key is set to `router.asPath`, meaning that we create a new key for each URL.
    *
    * Default: `js ({router}) => router.asPath`
    */
-  scope?: (router: NextRouter) => string | undefined
+  key?: (router: NextRouter) => string | undefined
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
@@ -45,6 +48,6 @@ export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextP
 export type PageItem = {
   children: React.ReactNode
   historyIdx: number
-  stack?: string
-  scope: string
+  overlay?: string
+  key: string
 }

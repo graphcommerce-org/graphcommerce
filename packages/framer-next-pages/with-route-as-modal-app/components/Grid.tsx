@@ -14,7 +14,7 @@ export default function PostCardGrid() {
         </a>
       </Link>
 
-      <h2>Single stack overlays</h2>
+      <h2>Overlay</h2>
       <div className={styles.postCardGrid}>
         {data.map((id) => (
           <Link key={id} href={`/single-stack/${id}`}>
@@ -29,7 +29,7 @@ export default function PostCardGrid() {
         ))}
       </div>
 
-      <h2>Multi stack overlays</h2>
+      <h2>Stacking multiple overlays on top of each other</h2>
       <div className={styles.postCardGrid}>
         {data.map((id) => (
           <Link key={id} href={`/multi-stack/${id}`}>

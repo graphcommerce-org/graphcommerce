@@ -27,7 +27,7 @@ function ArticlePage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   )
 }
 
-ArticlePage.pageOptions = { stack: 'right' } as PageOptions
+ArticlePage.pageOptions = { overlay: 'right' } as PageOptions
 
 export default ArticlePage
 
