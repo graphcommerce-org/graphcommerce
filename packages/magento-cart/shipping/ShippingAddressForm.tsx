@@ -4,6 +4,7 @@ import { TextField } from '@material-ui/core'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -28,11 +29,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useQuery(ClientCartDocument)
+  const { data: config } = useQuery(StoreConfigDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+
+  const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
-  const currentCountryCode = currentAddress?.country.code ?? 'NLD'
+  const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
 
   const form = useFormGqlMutation(ShippingAddressFormDocument, {
     defaultValues: {
