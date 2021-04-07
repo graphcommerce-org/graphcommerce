@@ -32,8 +32,10 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   const { setValue, watch, formState } = form
 
   const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
-  const valuesJson = Object.fromEntries(
-    dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, watch(field)]),
+  const valuesJson = JSON.stringify(
+    Object.fromEntries(
+      dirtyFieldKeys.filter((f) => !exclude.includes(f)).map((field) => [field, watch(field)]),
+    ),
   )
 
   // Restore changes
@@ -60,7 +62,7 @@ export function useFormPersist<V>(options: UseFormPersistOptions<V>) {
   useEffect(() => {
     try {
       if (typeof window === 'undefined') return
-      if (valuesJson) window[storage][name] = JSON.stringify(valuesJson)
+      if (valuesJson !== '{}') window[storage][name] = valuesJson
       else delete window[storage][name]
     } catch {
       //
