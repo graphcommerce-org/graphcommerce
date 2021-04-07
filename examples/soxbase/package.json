@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build && next-sitemap",
+    "build": "next build && yarn next-sitemap",
     "start": "next start"
   },
   "sideEffects": false,
