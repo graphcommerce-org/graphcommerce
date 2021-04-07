@@ -1,12 +1,11 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormIsEmailAvailable from '@reachdigital/magento-customer/useFormIsEmailAvailable'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { emailPattern } from '@reachdigital/react-hook-form'
 import React, { PropsWithChildren, useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
-import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -48,7 +47,7 @@ export default function GuestEmailForm({
     //   execute({ variables: { email, cartId: cartQuery?.cart?.id ?? '' } }),
   })
 
-  const { formState, errors, register, required, watch, error } = form
+  const { formState, muiRegister, required, watch, error } = form
   const isValidEmail = !!emailPattern.exec(watch('email'))
 
   useEffect(() => {
@@ -69,13 +68,11 @@ export default function GuestEmailForm({
             key='email'
             variant='outlined'
             type='text'
-            error={formState.isSubmitted && !!errors.email}
-            helperText={formState.isSubmitted && errors.email?.message}
-            id='email'
-            name='email'
+            error={formState.isSubmitted && !!formState.errors.email}
+            helperText={formState.isSubmitted && formState.errors.email?.message}
             label='Email'
             required={required.email}
-            inputRef={register({
+            {...muiRegister('email', {
               required: required.email,
               pattern: { value: emailPattern, message: '' },
             })}

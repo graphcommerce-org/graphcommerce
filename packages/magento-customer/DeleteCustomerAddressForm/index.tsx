@@ -1,6 +1,5 @@
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import { FormState } from '@reachdigital/react-hook-form/useForm'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { FormState, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'

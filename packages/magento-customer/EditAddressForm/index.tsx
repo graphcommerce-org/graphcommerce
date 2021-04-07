@@ -4,20 +4,14 @@ import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
-import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { useFormGqlMutation, phonePattern } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import AddressFields from '../AddressFields'
 import NameFields from '../NameFields'
-import {
-  UpdateCustomerAddressDocument,
-  UpdateCustomerAddressMutation,
-  UpdateCustomerAddressMutationVariables,
-} from './UpdateCustomerAddress.gql'
+import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
 const useStyles = makeStyles(
   () => ({
@@ -38,10 +32,7 @@ export default function EditAddressForm(props: EditAddressFormProps) {
   const classes = useStyles()
   const router = useRouter()
 
-  const form = useFormGqlMutation<
-    UpdateCustomerAddressMutation,
-    UpdateCustomerAddressMutationVariables
-  >(UpdateCustomerAddressDocument, {
+  const form = useFormGqlMutation(UpdateCustomerAddressDocument, {
     defaultValues: {
       id: address?.id ?? undefined,
       firstname: address?.firstname,
@@ -81,89 +72,29 @@ export default function EditAddressForm(props: EditAddressFormProps) {
     },
   })
 
-  const { handleSubmit, formState, required, error, errors, register, watch } = form
+  const { handleSubmit, formState, required, error, muiRegister, valid } = form
   const submitHandler = handleSubmit(() => {})
-
-  const checkIcon = <InputCheckmark />
-  const validFields = useFormValidFields({ form: { watch, required, errors } })
 
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={formClasses.form}>
-        <NameFields
-          {...form}
-          validFields={validFields}
-          disableFields={formState.isSubmitting}
-          fieldOptions={{
-            prefix: {
-              name: 'prefix',
-              required: required.prefix,
-            },
-            firstname: {
-              name: 'firstname',
-              required: required.firstname,
-            },
-            lastname: {
-              name: 'lastname',
-              required: required.lastname,
-            },
-          }}
-        />
-        <AddressFields
-          {...form}
-          validFields={validFields}
-          countries={countries}
-          regionId={address?.region?.region_id ?? undefined}
-          disableFields={formState.isSubmitting}
-          fieldOptions={{
-            street: {
-              name: 'street',
-              required: required.street,
-            },
-            houseNumber: {
-              name: 'houseNumber',
-              required: true,
-            },
-            addition: {
-              name: 'addition',
-              required: false,
-            },
-            postcode: {
-              name: 'postcode',
-              required: required.postcode,
-            },
-            city: {
-              name: 'city',
-              required: required.city,
-            },
-            countryCode: {
-              name: 'countryCode',
-              required: required.countryCode,
-            },
-            regionId: {
-              name: 'region',
-              required: required.region,
-            },
-          }}
-        />
+        <NameFields form={form} disabled={formState.isSubmitting} prefix />
+        <AddressFields form={form} countries={countries} disabled={formState.isSubmitting} />
 
         <div className={formClasses.formRow}>
           <TextField
             variant='outlined'
             type='text'
-            error={!!errors.telephone}
+            error={!!formState.errors.telephone}
             required={required.telephone}
-            name='telephone'
             label='Telephone'
-            inputRef={register({
+            {...muiRegister('telephone', {
               required: required.telephone,
               pattern: { value: phonePattern, message: 'Invalid phone number' },
             })}
-            helperText={formState.isSubmitted && errors.telephone?.message}
+            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={formState.isSubmitting}
-            InputProps={{
-              endAdornment: validFields.telephone && checkIcon,
-            }}
+            InputProps={{ endAdornment: <InputCheckmark show={valid.telephone} /> }}
           />
         </div>
 

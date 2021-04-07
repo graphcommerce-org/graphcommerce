@@ -1,48 +1,53 @@
 import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
+import React from 'react'
 
 /**
  * Default:
  *
  * ```typescript
- * const default: StackOptions = {
- *   stack: false,
- *   scope: ({ router }) => router.asPath,
- * } as StackOptions
+ * const default: PageOptions = {
+ *   overlay: undefined,
+ *   key: ({ router }) => router.asPath,
+ * } as PageOptions
  * ```
  *
  * Overlay:
  *
  * ```typescript
- * const overlay: StackOptions = {
- *   stack: true,
- *   scope: ({ router }) => router.pathname,
+ * const overlay: PageOptions = {
+ *   overlay: 'center',
+ *   key: ({ router }) => router.pathname,
  * }
  * ```
  */
-export type StackOptions = {
+export type PageOptions = {
   /**
-   * Should the page be stacking? Overlays like modals, etc. should stack the background.
+   * Is the page an overlay? Provide a string to which 'group' they belong
    *
-   * Default: `false`
+   * Default: `undefined`
+   *
+   * - Example: ``
+   * - Example: `left`
+   * - Example: `customer-support`
    */
-  stack?: boolean
+  overlay?: string
+
   /**
-   * By default the scope is set to item.router.asPath, meaning that we create a new entry for each
-   * URL. You can change the scope to something else.
+   * By default the key is set to `router.asPath`, meaning that we create a new key for each URL.
    *
-   * Default: ```js ({router}) => router.asPath```
+   * Default: `js ({router}) => router.asPath`
    */
-  scope?: (item: StackedPageItem) => string
+  key?: (router: NextRouter) => string | undefined
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
-  stackOptions?: StackOptions
+  pageOptions?: PageOptions
 }
 
-export type StackedPageItem = {
-  pageProps: Record<string, unknown>
-  router: NextRouter
-  Component: PageComponent
+export type PageItem = {
+  children: React.ReactNode
   historyIdx: number
+  overlay?: string
+  key: string
 }

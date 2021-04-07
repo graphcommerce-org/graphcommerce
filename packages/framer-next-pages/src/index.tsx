@@ -1,5 +1,5 @@
-export * as StackedPages from './StackedPages'
+export { default as FramerNextPages } from './Pages'
 
-export { useStackLevel, useStackRouter } from './StackedPageContext'
+export { usePageDirection, usePageDepth, usePageRouter } from './PageContext'
 
-export type { StackOptions, PageComponent } from './types'
+export type { PageOptions, PageComponent } from './types'

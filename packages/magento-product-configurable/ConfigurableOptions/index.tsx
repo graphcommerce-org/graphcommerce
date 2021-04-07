@@ -2,11 +2,7 @@ import { BaseTextFieldProps, FormHelperText } from '@material-ui/core'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import {
-  Controller,
-  FieldErrors,
-  UseControllerOptions,
-} from '@reachdigital/react-hook-form/useForm'
+import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'
@@ -17,13 +13,21 @@ import TextSwatchData from '../Swatches/TextSwatchData'
 type ConfigurableOptionsProps = {
   sku: string
   errors?: FieldErrors
-} & UseControllerOptions &
+} & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'>
 
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
 export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps) {
-  const { sku, FormHelperTextProps, name, defaultValue, errors, ...controlProps } = props
+  const {
+    sku,
+    FormHelperTextProps,
+    name,
+    defaultValue,
+    errors,
+    helperText,
+    ...controlProps
+  } = props
   const { options, selection, select, cheapest } = useConfigurableContext(sku)
 
   return (
@@ -39,7 +43,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
             defaultValue={selection[attribute_code] ?? ''}
             name={`${name}[${attribute_code}]`}
             {...controlProps}
-            render={({ onChange, value, onBlur, ref, name: inputName }) => (
+            render={({ field: { onChange, value, name: inputName, ref, onBlur } }) => (
               <>
                 {option?.label}
                 <ToggleButtonGroup
@@ -73,7 +77,11 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                     )
                   })}
                 </ToggleButtonGroup>
-                {error && <FormHelperText error>Required</FormHelperText>}
+                {error && (
+                  <FormHelperText error {...FormHelperTextProps}>
+                    {helperText}
+                  </FormHelperText>
+                )}
               </>
             )}
           />

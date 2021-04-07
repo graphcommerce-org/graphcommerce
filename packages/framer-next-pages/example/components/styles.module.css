@@ -5,18 +5,24 @@
 
 .postCardGrid {
   display: inline-grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 .postCard {
-  width: 150px;
   height: 50px;
-  background-color: lightblue;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #444;
+  text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: black solid 1px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.postCardActive {
+  background-color: coral;
 }
 
 .post {

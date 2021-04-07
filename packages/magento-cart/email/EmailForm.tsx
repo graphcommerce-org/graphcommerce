@@ -8,7 +8,7 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { emailPattern } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
@@ -51,14 +51,14 @@ export default function EmailForm() {
   const { data: cartData } = useQuery(ClientCartDocument)
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
-  const { formState, errors, register, required, watch, error, getValues } = form
+  const { formState, muiRegister, required, watch, error, getValues } = form
 
   useEffect(() => {
     if (!cartData?.cart?.id) return
 
     // Customer isn't logged in, but we do have a valid email
     if (mode === 'signin' || mode === 'signup') {
-      const { email } = getValues(['email'])
+      const [email] = getValues(['email'])
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       setGuestEmailOnCart({ variables: { email, cartId: cartData.cart.id } })
     }
@@ -91,13 +91,11 @@ export default function EmailForm() {
               <TextField
                 variant='outlined'
                 type='text'
-                error={formState.isSubmitted && !!errors.email}
-                helperText={formState.isSubmitted && errors.email?.message}
-                id='email'
-                name='email'
+                error={formState.isSubmitted && !!formState.errors.email}
+                helperText={formState.isSubmitted && formState.errors.email?.message}
                 label='Email'
                 required={required.email}
-                inputRef={register({
+                {...muiRegister('email', {
                   required: required.email,
                   pattern: { value: emailPattern, message: '' },
                 })}

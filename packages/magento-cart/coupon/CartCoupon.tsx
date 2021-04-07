@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { IconButton } from '@material-ui/core'
 import { Clear } from '@material-ui/icons'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CartCouponFragment } from './CartCoupon.gql'

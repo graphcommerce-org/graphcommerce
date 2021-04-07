@@ -3,8 +3,7 @@ import { FormControl, FormHelperText } from '@material-ui/core'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller } from '@reachdigital/react-hook-form/useForm'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { Controller, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import AvailableShippingMethod from './AvailableShippingMethod'
@@ -39,7 +38,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { errors, handleSubmit, control, setValue, register, formState, required, error } = form
+  const { handleSubmit, control, setValue, register, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 
   // todo: Move this to a validateAndSubmit method or something?
@@ -53,14 +52,12 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <input
         type='hidden'
-        name='carrier'
-        ref={register({ required: required.carrier })}
+        {...register('carrier', { required: required.carrier })}
         value={defaultMethod}
       />
       <input
         type='hidden'
-        name='method'
-        ref={register({ required: required.method })}
+        {...register('method', { required: required.method })}
         value={defaultCarrier}
       />
       <div className={classes.formRow}>
@@ -70,7 +67,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}
-            render={({ onChange, value, onBlur }) => (
+            render={({ field: { onChange, value, name, ref, onBlur } }) => (
               <ToggleButtonGroup
                 aria-label='Shipping Method'
                 onChange={(_, val: string) => {
@@ -100,9 +97,9 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               </ToggleButtonGroup>
             )}
           />
-          {errors.carrier && (
+          {formState.errors.carrier && (
             <FormHelperText error variant='outlined'>
-              {errors.carrier.message}
+              {formState.errors.carrier.message}
             </FormHelperText>
           )}
         </FormControl>

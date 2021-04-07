@@ -8,6 +8,9 @@
   "engines": {
     "node": "14.x"
   },
+  "scripts": {
+    "dev": "tsc -W"
+  },
   "prettier": "@reachdigital/prettier-config-pwa",
   "browserslist": [
     "extends @reachdigital/browserslist-config-pwa"

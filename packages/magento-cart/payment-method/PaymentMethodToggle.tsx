@@ -3,8 +3,7 @@ import { FormControl } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { useForm, Controller } from '@reachdigital/react-hook-form/useForm'
-import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
+import { useForm, Controller, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { usePaymentMethodContext } from './PaymentMethodContext'
@@ -46,7 +45,7 @@ export default function PaymentMethodContext() {
 
   return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <input type='hidden' name='code' ref={register({ required: true })} required />
+      <input type='hidden' {...register('code', { required: true })} required />
       <div className={classes.formRow}>
         <FormControl>
           <Controller
@@ -54,7 +53,7 @@ export default function PaymentMethodContext() {
             control={control}
             name='paymentMethod'
             rules={{ required: 'Please select a payment method' }}
-            render={({ onChange, value, onBlur }) => (
+            render={({ field: { onChange, value, name, ref, onBlur } }) => (
               <ToggleButtonGroup
                 onChange={(_, val: string) => {
                   onChange(val)

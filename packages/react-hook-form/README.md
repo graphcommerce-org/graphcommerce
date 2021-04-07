@@ -33,7 +33,7 @@ export default function MyComponent() {
     <form onSubmit={submit} noValidate>
       <input
         type='text'
-        ref={register({ required: required.couponCode })}
+        {...register('couponCode', { required: required.couponCode })}
         disabled={formState.isSubmitting}
       />
       {errors.couponCode?.message || error?.message}
@@ -67,7 +67,7 @@ export default function MyComponent() {
     <form onSubmit={submit} noValidate>
       <input
         type='text'
-        ref={register({ required: required.couponCode })}
+        {...register('couponCode', { required: required.couponCode })}
         disabled={formState.isSubmitting}
       />
       {errors.couponCode?.message || error?.message}
@@ -102,7 +102,7 @@ export default function MyAutoSubmitForm() {
     <form onSubmit={submit} noValidate>
       <input
         type='text'
-        ref={register({ required: required.couponCode })}
+        {...register('couponCode', { required: required.couponCode })}
         disabled={formState.isSubmitting}
       />
       {errors.couponCode?.message}
@@ -131,7 +131,7 @@ export default function MyAutoSubmitForm() {
     <form onSubmit={submit} noValidate>
       <input
         type='text'
-        ref={register({ required: required.couponCode })}
+        {...register('couponCode', { required: required.couponCode })}
         disabled={disableFields}
       />
       {errors.couponCode?.message}

@@ -18,7 +18,7 @@ export type LazyQueryTuple<Q, V> = [
  * Same API as useLazyQuery, except:
  * - The execute method is a promise that will return the eventual result
  */
-export default function useLazyQueryPromise<Q, V>(
+export function useLazyQueryPromise<Q, V>(
   query: DocumentNode | TypedDocumentNode<Q, V>,
   options?: LazyQueryHookOptions<Q, V>,
 ): LazyQueryTuple<Q, V> {
