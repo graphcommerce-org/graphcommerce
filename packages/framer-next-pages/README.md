@@ -89,9 +89,16 @@ Overlay.pageOptions = {
 } as PageOptions
 ```
 
-## Advanced
+### Defining a fallback
+
+When an overlay is accessed by URL, it will render but it won't render as a
+normal page. You can provide a fallback to render something in this case.
 
 ### Create a fallback when routes aren't provided
+
+..._todo_...
+
+### Workins
 
 Creates a `pageList` containing all the pages that should be rendered on top of
 each other.
