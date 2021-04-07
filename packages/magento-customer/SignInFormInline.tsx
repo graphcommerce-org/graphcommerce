@@ -1,7 +1,7 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React, { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
@@ -33,7 +33,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
     defaultValues: { email },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, handleSubmit, required, formState, error } = form
+  const { muiRegister, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -41,13 +41,11 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
       <TextField
         variant='outlined'
         type='password'
-        error={!!errors.password || !!error?.message}
-        id='password'
-        name='password'
+        error={!!formState.errors.password || !!error?.message}
         label='Password'
         autoFocus
         required={required.password}
-        inputRef={register({ required: required.password })}
+        {...muiRegister('password', { required: required.password })}
         helperText={error?.message}
         disabled={formState.isSubmitting}
         InputProps={{

@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
+
 import {
   ApolloClient,
   ApolloLink,
@@ -78,6 +80,9 @@ export function createApolloClient(
   ]
 
   if (typeof window === 'undefined') {
+    const slowOperationThreshold = 1000
+    const slowResolverThreshold = 300
+
     const measurePerformanceLink = new ApolloLink((operation, forward) => {
       // Called before operation is sent to server
       operation.setContext({ measurePerformanceLinkStart: new Date().valueOf() })
@@ -85,33 +90,32 @@ export function createApolloClient(
         // Called after server responds
         const time: number =
           new Date().valueOf() - (operation.getContext().measurePerformanceLinkStart as number)
-        const vars =
+        let vars =
           Object.keys(operation.variables).length > 0
-            ? `${JSON.stringify(operation.variables)}`
+            ? `(${JSON.stringify(operation.variables)})`
             : ''
+        if (vars.length > 100) {
+          vars = `${vars.substr(0, 100)}…`
+        }
 
-        if (data.extensions?.tracing) {
+        if (data.extensions?.tracing && time > slowOperationThreshold) {
           const tracing = data.extensions?.tracing as TracingFormat
 
-          const slowResolvers = tracing.execution.resolvers
-            .filter((resolver) => resolver.duration > 300 * 1000 * 1000)
-            .map(
-              (resolver) =>
+          const duration = Math.round(tracing.duration / (1000 * 1000))
+
+          console.group(`[slow] ${operation.operationName}${vars}`)
+          console.info(`operations ${duration}ms, mesh: ${time - duration}ms`)
+
+          tracing.execution.resolvers
+            .filter((resolver) => resolver.duration > slowResolverThreshold * 1000 * 1000)
+            .forEach((resolver) =>
+              console.info(
                 `${operation.operationName}.${resolver.path.join('.')}[${Math.round(
                   resolver.duration / (1000 * 1000),
                 )}ms]`,
+              ),
             )
-            .join(', ')
-
-          const duration = Math.round(tracing.duration / (1000 * 1000))
-          if (time > 800) {
-            console.warn(`[slow] ${operation.operationName}[network ${time}ms]`)
-            console.warn(`       ${operation.operationName}[server  ${duration}ms]`)
-            if (slowResolvers) {
-              console.warn(`       ${slowResolvers}`)
-            }
-            console.warn(`       ${vars}`)
-          }
+          console.groupEnd()
         }
 
         return data

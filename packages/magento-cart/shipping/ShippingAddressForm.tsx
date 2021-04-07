@@ -4,14 +4,16 @@ import { TextField } from '@material-ui/core'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
-import useFormValidFields from '@reachdigital/react-hook-form/useFormValidFields'
-import { phonePattern } from '@reachdigital/react-hook-form/validationPatterns'
+import {
+  useFormAutoSubmit,
+  useFormGqlMutation,
+  useFormPersist,
+  phonePattern,
+} from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -27,11 +29,14 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useQuery(ClientCartDocument)
+  const { data: config } = useQuery(StoreConfigDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+
+  const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
-  const currentCountryCode = currentAddress?.country.code ?? 'NLD'
+  const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
 
   const form = useFormGqlMutation(ShippingAddressFormDocument, {
     defaultValues: {
@@ -66,7 +71,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       }
     },
   })
-  const { register, errors, handleSubmit, watch, formState, required, error } = form
+  const { muiRegister, handleSubmit, valid, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -81,87 +86,36 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   // todo: Move to a validateAndSubmit method or something?
   useEffect(() => {
-    doSubmit.current = async () =>
+    doSubmit.current = () =>
       !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
   }, [doSubmit, formState.isDirty, submit])
-
-  const checkIcon = <InputCheckmark />
-  const validFields = useFormValidFields({ form: { watch, required, errors } })
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <AnimatePresence initial={false}>
-        <NameFields
-          {...form}
-          key='namefields'
-          validFields={validFields}
-          disableFields={disableFields}
-          fieldOptions={{
-            firstname: {
-              name: 'firstname',
-              required: required.firstname,
-            },
-            lastname: {
-              name: 'lastname',
-              required: required.lastname,
-            },
-          }}
-        />
+        <NameFields form={form} key='name' disabled={disableFields} />
         <AddressFields
-          {...form}
+          form={form}
           key='addressfields'
-          validFields={validFields}
-          countryCode={currentCountryCode}
+          disabled={disableFields}
           countries={countries}
-          disableFields={disableFields}
-          fieldOptions={{
-            street: {
-              name: 'street',
-              required: required.street,
-            },
-            houseNumber: {
-              name: 'houseNumber',
-              required: required.houseNumber,
-            },
-            addition: {
-              name: 'addition',
-              required: required.addition,
-            },
-            postcode: {
-              name: 'postcode',
-              required: required.postcode,
-            },
-            city: {
-              name: 'city',
-              required: required.city,
-            },
-            countryCode: {
-              name: 'countryCode',
-              required: required.countryCode,
-            },
-            regionId: {
-              name: 'regionId',
-              required: required.regionId,
-            },
-          }}
         />
 
         <div className={classes.formRow} key='telephone'>
           <TextField
             variant='outlined'
             type='text'
-            error={!!errors.telephone}
+            error={!!formState.errors.telephone}
             required={required.telephone}
-            name='telephone'
             label='Telephone'
-            inputRef={register({
+            {...muiRegister('telephone', {
               required: required.telephone,
               pattern: { value: phonePattern, message: 'Invalid phone number' },
             })}
-            helperText={formState.isSubmitted && errors.telephone?.message}
+            helperText={formState.isSubmitted && formState.errors.telephone?.message}
             disabled={disableFields}
             InputProps={{
-              endAdornment: validFields.telephone && checkIcon,
+              endAdornment: <InputCheckmark show={valid.telephone} />,
             }}
           />
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import useForwardedRef from '@bedrock-layout/use-forwarded-ref'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
@@ -90,7 +91,10 @@ function requestUpgrade(img: HTMLImageElement) {
 
 const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsiveProps>(
   (props, forwardedRef) => {
-    const { srcSets, alt, loading = 'lazy', ...imgProps } = props
+    const { srcSets, ...imgProps } = props
+    imgProps.decoding ??= 'async'
+    imgProps.loading ??= 'lazy'
+
     const ref = useForwardedRef(forwardedRef)
 
     const { width } = useResizeObserver<HTMLImageElement>({ ref: ref.current })
@@ -121,24 +125,21 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
 
     return (
       <>
-        {variant === 'src' && (
-          <img ref={ref} alt={alt} {...imgProps} src={firstSet} loading={loading} />
-        )}
-        {variant === 'srcSet' && (
-          <img ref={ref} alt={alt} {...imgProps} srcSet={firstSet} loading={loading} />
-        )}
+        {variant === 'src' && <img ref={ref} {...imgProps} src={firstSet} />}
+        {variant === 'srcSet' && <img ref={ref} {...imgProps} srcSet={firstSet} />}
         {variant === 'picture' && (
           <picture>
             {Object.entries(srcSets).map(([type, srcSet]) => (
               <source key={type} type={type} srcSet={srcSet} sizes={`${size}px`} />
             ))}
-            <img ref={ref} alt={alt} {...imgProps} loading={loading} />
+            <img ref={ref} {...imgProps} />
           </picture>
         )}
-        {loading === 'eager' && (
+        {props.loading === 'eager' && (
           <Head>
-            {variant === 'src' && <link rel='preload' as='image' href={firstSet} />}
-            {variant !== 'src' && (
+            {variant === 'src' ? (
+              <link rel='preload' as='image' href={firstSet} />
+            ) : (
               // @ts-expect-error: imagesrcset is not yet in the link element type
               <link rel='preload' as='image' imagesrcset={firstSet} imagesizes={`${size}px`} />
             )}

@@ -2,10 +2,10 @@ import { makeStyles, TextField, Theme } from '@material-ui/core'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
-import { SignUpDocument, SignUpMutationVariables } from './SignUp.gql'
+import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
 import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
@@ -42,16 +42,15 @@ export default function SignUpFormInline({
 }: PropsWithChildren<SignUpFormInlineProps>) {
   const classes = useStyles()
   const formClasses = useFormStyles()
-  const form = useFormGqlMutation(SignUpDocument, {
-    defaultValues: {
-      email,
-      prefix: '-',
-      firstname: '-',
-      lastname: '-',
-    },
+  const form = useFormGqlMutation<
+    SignUpMutation,
+    SignUpMutationVariables & { confirmPassword?: string }
+  >(SignUpDocument, {
+    // todo(paales): This causes dirty data to be send to the backend.
+    defaultValues: { email, prefix: '-', firstname: '-', lastname: '-' },
     onComplete: onCompleteSignInUp,
   })
-  const { register, errors, watch, handleSubmit, required, formState, error } = form
+  const { muiRegister, watch, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
@@ -60,29 +59,25 @@ export default function SignUpFormInline({
         <TextField
           variant='outlined'
           type='password'
-          error={!!errors.password || !!error?.message}
-          id='password'
-          name='password'
+          error={!!formState.errors.password || !!error?.message}
           label='Password'
           autoFocus
           required={required.password}
-          inputRef={register({ required: required.password })}
+          {...muiRegister('password', { required: required.password })}
           helperText={error?.message}
           disabled={formState.isSubmitting}
         />
         <TextField
           variant='outlined'
           type='password'
-          error={!!(errors as any).confirm_password || !!error?.message}
-          id='confirm_password'
-          name='confirm_password'
+          error={!!formState.errors.confirmPassword || !!error?.message}
           label='Confirm password'
           required
-          inputRef={register({
+          {...muiRegister('confirmPassword', {
             required: true,
             validate: (value) => value === watch('password'),
           })}
-          helperText={!!(errors as any).confirm_password && 'Passwords should match'}
+          helperText={!!formState.errors.confirmPassword && 'Passwords should match'}
           disabled={formState.isSubmitting}
         />
       </div>

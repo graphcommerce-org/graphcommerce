@@ -1,59 +1,43 @@
 import { TextField } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { Controller, RegisterOptions, UseFormMethods } from '@reachdigital/react-hook-form/useForm'
-import { houseNumber } from '@reachdigital/react-hook-form/validationPatterns'
+import {
+  UseFormReturn,
+  assertFormGqlOperation,
+  houseNumberPattern,
+} from '@reachdigital/react-hook-form'
 import React, { useMemo } from 'react'
 
-type FieldOptions = Pick<RegisterOptions, 'required'> & { name: string }
-type AddressFieldsProps = Pick<
-  UseFormMethods,
-  'register' | 'watch' | 'errors' | 'formState' | 'control'
-> &
-  CountryRegionsQuery & {
-    countryCode?: string
-    regionId?: number
-    disableFields: boolean
-    fieldOptions: {
-      street: FieldOptions
-      houseNumber: FieldOptions
-      addition: FieldOptions
-      countryCode: FieldOptions
-      regionId: FieldOptions
-      postcode: FieldOptions
-      city: FieldOptions
-    }
-  } & {
-    validFields: Record<string, boolean>
-  }
+type AddressFieldValues = {
+  street?: string
+  houseNumber?: string
+  addition?: string
+  countryCode?: string
+  regionId?: string
+  postcode?: string
+  city?: string
+}
+
+type AddressFieldsProps = CountryRegionsQuery & {
+  form: UseFormReturn<any>
+  disabled?: boolean
+}
 
 export default function AddressFields(props: AddressFieldsProps) {
-  const {
-    errors,
-    register,
-    watch,
-    formState,
-    control,
-    countryCode,
-    regionId,
-    countries,
-    disableFields,
-    fieldOptions,
-    validFields,
-  } = props
+  const { form, countries } = props
+  assertFormGqlOperation<AddressFieldValues>(form)
+  const { watch, formState, required, muiRegister, valid } = form
+  const { disabled = formState.isSubmitting } = props
   const classes = useFormStyles()
 
-  const country = watch(fieldOptions.countryCode.name) ?? countryCode
-  const region = watch(fieldOptions.regionId.name) ?? regionId
+  const country = watch('countryCode')
 
   const countryList = useMemo(
     () =>
-      countries
+      (countries ?? [])
         ?.filter((c) => c?.full_name_locale)
-        .sort((a, b) => (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? '')) ??
-      [],
+        .sort((a, b) => (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? '')),
     [countries],
   )
   const regionList = useMemo(() => {
@@ -64,58 +48,49 @@ export default function AddressFields(props: AddressFieldsProps) {
     return regions
   }, [country, countryList])
 
-  const required = Object.fromEntries(Object.values(fieldOptions).map((r) => [r.name, r.required]))
-  const checkIcon = <InputCheckmark />
-
   return (
     <>
       <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[fieldOptions.street.name]}
-          name={fieldOptions.street.name}
+          error={!!formState.errors.street}
           label='Street'
-          key='street'
-          required={!!required.street}
-          inputRef={register({ required: required.street })}
-          helperText={formState.isSubmitted && errors[fieldOptions.street.name]?.message}
-          disabled={disableFields}
+          required={!!required?.street}
+          {...muiRegister('street', { required: required?.street })}
+          helperText={formState.isSubmitted && formState.errors.street?.message}
+          disabled={disabled}
           InputProps={{
-            endAdornment: validFields[fieldOptions.street.name] && checkIcon,
+            endAdornment: <InputCheckmark show={valid.street} />,
           }}
         />
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[fieldOptions.houseNumber.name]}
-          name={fieldOptions.houseNumber.name}
+          error={!!formState.errors.houseNumber}
           label='Housenumber'
-          key='housenumber'
-          required={!!required.houseNumber}
-          inputRef={register({
-            required: required.houseNumber,
-            pattern: { value: houseNumber, message: 'Please provide a valid house number' },
+          required={!!required?.houseNumber}
+          {...muiRegister('houseNumber', {
+            required: required?.houseNumber,
+            pattern: { value: houseNumberPattern, message: 'Please provide a valid house number' },
           })}
-          helperText={formState.isSubmitted && errors[fieldOptions.houseNumber.name]?.message}
-          disabled={disableFields}
+          helperText={formState.isSubmitted && formState.errors.houseNumber?.message}
+          disabled={disabled}
           InputProps={{
-            endAdornment: validFields[fieldOptions.houseNumber.name] && checkIcon,
+            endAdornment: <InputCheckmark show={valid.houseNumber} />,
           }}
         />
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[fieldOptions.addition.name]}
-          required={!!required.addition}
-          name={fieldOptions.addition.name}
+          error={!!formState.errors.addition}
+          required={!!required?.addition}
           label='Addition'
-          key='addition'
-          inputRef={register({ required: required.addition })}
-          helperText={formState.isSubmitted && errors[fieldOptions.addition.name]?.message}
-          disabled={disableFields}
+          {...muiRegister('addition', { required: required?.addition })}
+          helperText={formState.isSubmitted && formState.errors.addition?.message}
+          disabled={disabled}
           InputProps={{
-            endAdornment: validFields[fieldOptions.addition.name] && checkIcon,
+            endAdornment: <InputCheckmark show={valid.addition} />,
           }}
         />
       </div>
@@ -123,98 +98,80 @@ export default function AddressFields(props: AddressFieldsProps) {
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[fieldOptions.postcode.name]}
-          required={!!required.postcode}
-          name={fieldOptions.postcode.name}
+          error={!!formState.errors.postcode}
+          required={!!required?.postcode}
           label='Postcode'
-          key='postcode'
-          inputRef={register({ required: required.postcode })}
-          helperText={formState.isSubmitted && errors[fieldOptions.postcode.name]?.message}
-          disabled={disableFields}
+          {...muiRegister('postcode', { required: required?.postcode })}
+          helperText={formState.isSubmitted && formState.errors.postcode?.message}
+          disabled={disabled}
           InputProps={{
-            endAdornment: validFields[fieldOptions.postcode.name] && checkIcon,
+            endAdornment: <InputCheckmark show={valid.postcode} />,
           }}
         />
         <TextField
           variant='outlined'
           type='text'
-          error={!!errors[fieldOptions.city.name]}
-          required={!!required.city}
-          name={fieldOptions.city.name}
+          error={!!formState.errors.city}
+          required={!!required?.city}
           label='City'
-          key='city'
-          inputRef={register({ required: required.city })}
-          helperText={formState.isSubmitted && errors[fieldOptions.city.name]?.message}
-          disabled={disableFields}
+          {...muiRegister('city', { required: required?.city })}
+          helperText={formState.isSubmitted && formState.errors.city?.message}
+          disabled={disabled}
           InputProps={{
-            endAdornment: validFields[fieldOptions.city.name] && checkIcon,
+            endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
       </div>
       <div className={classes.formRow}>
-        <Controller
-          defaultValue={country ?? ''}
-          control={control}
-          name={fieldOptions.countryCode.name}
-          rules={{ required: required.countryCode }}
-          render={({ onChange, name, value, onBlur }) => (
-            <Autocomplete
-              value={countryList?.find((c) => c?.two_letter_abbreviation === value)}
-              options={countryList}
-              getOptionLabel={(option) => `${option?.full_name_locale}`}
-              onChange={(_, input) => onChange(input?.two_letter_abbreviation)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant='outlined'
-                  error={!!errors[fieldOptions.countryCode.name]}
-                  name={name}
-                  label='Country'
-                  key='country'
-                  required={!!required.countryCode}
-                  helperText={errors[fieldOptions.countryCode.name]?.message}
-                  disabled={disableFields}
-                  onBlur={onBlur}
-                />
-              )}
-            />
-          )}
+        <TextField
+          select
+          SelectProps={{ native: true }}
+          {...muiRegister('countryCode', { required: required.countryCode })}
+          variant='outlined'
+          error={!!formState.errors.countryCode}
+          label='Country'
+          required={!!required?.countryCode}
+          helperText={formState.errors.countryCode?.message}
+          disabled={disabled}
+          // onBlur={onBlur}
           InputProps={{
-            endAdornment: validFields[fieldOptions.countryCode.name] && checkIcon,
+            endAdornment: <InputCheckmark show={valid.countryCode} />,
           }}
-        />
+        >
+          {countryList.map((c) => {
+            if (!c?.two_letter_abbreviation) return null
+            return (
+              <option key={c.two_letter_abbreviation} value={c.two_letter_abbreviation}>
+                {c.full_name_locale}
+              </option>
+            )
+          })}
+        </TextField>
+
         {regionList.length > 0 && (
-          <Controller
-            defaultValue={region ?? ''}
-            control={control}
-            name={fieldOptions.regionId.name}
-            rules={{ required: true }}
-            render={({ onChange, name, value, onBlur }) => (
-              <Autocomplete
-                value={regionList?.find((c) => c?.id === value)}
-                options={regionList}
-                getOptionLabel={(option) => `${option?.name}`}
-                onChange={(_, input) => onChange(input?.id)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    variant='outlined'
-                    error={!!errors[fieldOptions.regionId.name]}
-                    name={name}
-                    label='Region'
-                    key='region'
-                    required={!!required.regionId}
-                    helperText={errors[fieldOptions.regionId.name]?.message}
-                    disabled={disableFields}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-            )}
+          <TextField
+            select
+            SelectProps={{ native: true }}
+            variant='outlined'
+            error={!!formState.errors.regionId}
+            label='Region'
+            {...muiRegister('regionId', { required: true })}
+            required
+            helperText={formState.errors.regionId?.message}
+            disabled={disabled}
             InputProps={{
-              endAdornment: validFields[fieldOptions.regionId.name] && checkIcon,
+              endAdornment: <InputCheckmark show={valid.regionId} />,
             }}
-          />
+          >
+            {regionList.map((r) => {
+              if (!r?.id) return null
+              return (
+                <option key={r.id} value={r.id}>
+                  {r.name}
+                </option>
+              )
+            })}
+          </TextField>
         )}
       </div>
     </>

@@ -1,7 +1,7 @@
 import { TestShippingAddressFormDocument } from '../__mocks__/TestShippingAddressForm.gql'
-import { handlerFactory } from '../useGqlDocumentHandler'
+import { handlerFactory } from '../src/useGqlDocumentHandler'
 
-describe('useFormGqlMutation/nestedToFlat', () => {
+describe('useGqlDocumentHandler', () => {
   const { required, defaultVariables: defaults, encode } = handlerFactory(
     TestShippingAddressFormDocument,
   )

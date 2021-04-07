@@ -1,0 +1,18 @@
+{
+  "exclude": ["node_modules", "example", "dist"],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "extends": "@reachdigital/typescript-config-pwa/nextjs.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "outDir": "dist",
+    "noLib": false,
+    "noEmit": false,
+    "sourceMap": true,
+    "declaration": true,
+    "module": "esnext",
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "strict": true
+  }
+}
