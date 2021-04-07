@@ -5,6 +5,7 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import { CartItemFragment } from './CartItem.gql'
 import DeliveryLabel from './DeliveryLabel'
@@ -13,33 +14,48 @@ import UpdateItemQuantity from './UpdateItemQuantity'
 
 type CartItemBaseProps = CartItemFragment & { cartId: string }
 
+const rowImageSize = responsiveVal(70, 125)
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'grid',
       gridTemplate: `
-          "picture itemName itemPrice quantity rowPrice"
-          "picture itemOptions itemPrice quantity rowPrice"
+      "picture itemName itemName itemName"
+      "picture itemOptions itemOptions itemOptions"
+      "picture itemPrice quantity rowPrice"
         `,
-      gridTemplateColumns: `${responsiveVal(70, 125)} auto auto min-content 70px`,
-      // gridTemplateRows: `1fr 1fr`,
+      gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
       columnGap: theme.spacings.sm,
       alignItems: 'center',
       ...theme.typography.body1,
-      marginBottom: theme.spacings.md,
-      [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacings.lg,
+      marginTop: theme.spacings.md,
+      [theme.breakpoints.up('sm')]: {
         gridTemplate: `
-          "picture itemName itemName itemName itemName"
-          "picture itemOptions itemOptions itemOptions itemOptions"
-          "picture itemPrice itemPrice quantity rowPrice"
-        `,
-        marginBottom: theme.spacings.lg,
+        "picture itemName itemName itemName itemName"
+        "picture itemOptions itemPrice quantity rowPrice"
+      `,
+        gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
+        marginBottom: theme.spacings.md,
+      },
+    },
+    itemWithoutOptions: {
+      display: 'grid',
+      gridTemplate: `
+      "picture itemName itemName itemName"
+      "picture itemPrice quantity rowPrice"`,
+      gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
+      [theme.breakpoints.up('sm')]: {
+        gridTemplate: `
+        "picture itemName itemPrice quantity rowPrice"
+      `,
+        gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
       },
     },
     picture: {
       gridArea: 'picture',
-      width: responsiveVal(70, 125),
-      height: responsiveVal(70, 125),
+      width: rowImageSize,
+      height: rowImageSize,
       padding: responsiveVal(5, 10),
       border: `1px solid rgba(0,0,0,0.15)`,
       borderRadius: '50%',
@@ -94,48 +110,48 @@ const useStyles = makeStyles(
       width: '100%',
     },
     itemName: {
-      // ...theme.typography.h5,
-      ...theme.typography.body1,
+      ...theme.typography.h5,
       fontWeight: 500,
       gridArea: 'itemName',
-      alignSelf: 'flex-end',
       color: theme.palette.text.primary,
       textDecoration: 'none',
       flexWrap: 'nowrap',
       maxWidth: 'max-content',
     },
+    itemNameWithOptions: {
+      alignSelf: 'flex-end',
+    },
     itemPrice: {
       gridArea: 'itemPrice',
-      textAlign: 'right',
+      textAlign: 'left',
       color: theme.palette.primary.mutedText,
-      [theme.breakpoints.down('sm')]: {
-        textAlign: 'left',
-      },
     },
     quantity: {
       gridArea: 'quantity',
-      [theme.breakpoints.down('sm')]: {
-        textAlign: 'right',
-      },
+      justifySelf: 'center',
     },
     rowPrice: {
       gridArea: 'rowPrice',
       textAlign: 'right',
     },
+    cellNoOptions: {
+      textAlign: 'left',
+    },
   }),
   { name: 'CartItem' },
 )
 
-export type CartItemProps = PropsWithChildren<CartItemBaseProps> & UseStyles<typeof useStyles>
+export type CartItemProps = PropsWithChildren<CartItemBaseProps> &
+  UseStyles<typeof useStyles> & { withOptions?: boolean }
 
 export default function CartItem(props: CartItemProps) {
-  const { product, cartId, id, prices, quantity, children } = props
+  const { product, cartId, id, prices, quantity, children, withOptions } = props
   const { name } = product
   const classes = useStyles()
   const productLink = useProductLink(product)
 
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
       <Badge
         color='default'
         badgeContent={
@@ -168,7 +184,7 @@ export default function CartItem(props: CartItemProps) {
       </Badge>
 
       <PageLink href={productLink}>
-        <a className={classes.itemName}>
+        <a className={clsx(classes.itemName, withOptions && classes.itemNameWithOptions)}>
           {name}
           <DeliveryLabel />
         </a>

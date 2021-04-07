@@ -3,6 +3,7 @@ import Money from '@reachdigital/magento-store/Money'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import clsx from 'clsx'
 import React from 'react'
 import { OrderCardItemImageFragment } from '../OrderCardItemImage/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
@@ -15,11 +16,11 @@ const useStyles = makeStyles(
     root: {
       display: 'grid',
       gridTemplate: `
-          "picture itemName itemName itemName itemName"
-          "picture itemOptions itemOptions itemOptions itemOptions"
-          "picture itemPrice itemPrice quantity rowPrice"
+      "picture itemName itemName itemName"
+      "picture itemOptions itemOptions itemOptions"
+      "picture itemPrice quantity rowPrice"
         `,
-      gridTemplateColumns: `repeat(1, ${rowImageSize})`,
+      gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
       columnGap: theme.spacings.sm,
       alignItems: 'center',
       ...theme.typography.body1,
@@ -30,8 +31,21 @@ const useStyles = makeStyles(
         "picture itemName itemName itemName itemName"
         "picture itemOptions itemPrice quantity rowPrice"
       `,
-        gridTemplateColumns: `repeat(1, ${rowImageSize})`,
+        gridTemplateColumns: `${rowImageSize} 4fr 1fr 1fr minmax(75px, 1fr)`,
         marginBottom: theme.spacings.md,
+      },
+    },
+    itemWithoutOptions: {
+      display: 'grid',
+      gridTemplate: `
+      "picture itemName itemName itemName"
+      "picture itemPrice quantity rowPrice"`,
+      gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
+      [theme.breakpoints.up('sm')]: {
+        gridTemplate: `
+        "picture itemName itemPrice quantity rowPrice"
+      `,
+        gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
       },
     },
     picture: {
@@ -71,38 +85,30 @@ const useStyles = makeStyles(
       ...theme.typography.h5,
       fontWeight: 500,
       gridArea: 'itemName',
-      alignSelf: 'flex-end',
       color: theme.palette.text.primary,
       textDecoration: 'none',
       flexWrap: 'nowrap',
       maxWidth: 'max-content',
     },
+    itemNameWithOptions: {
+      alignSelf: 'flex-end',
+    },
     itemPrice: {
       gridArea: 'itemPrice',
       textAlign: 'left',
-      alignSelf: 'baseline',
       color: theme.palette.primary.mutedText,
-      [theme.breakpoints.up('sm')]: {
-        textAlign: 'right',
-      },
     },
     quantity: {
       gridArea: 'quantity',
-      alignSelf: 'baseline',
-      textAlign: 'right',
+      justifySelf: 'center',
     },
     rowPrice: {
       gridArea: 'rowPrice',
-      alignSelf: 'baseline',
       textAlign: 'right',
     },
     optionsList: {
       gridArea: 'itemOptions',
-      alignSelf: 'end',
       cursor: 'default',
-      [theme.breakpoints.up('sm')]: {
-        alignSelf: 'baseline',
-      },
     },
     option: {
       color: theme.palette.grey['500'],
@@ -126,8 +132,10 @@ export default function OrderItem(props: OrderItemProps) {
   const classes = useStyles()
   const productLink = `/product/${product_url_key}`
 
+  const hasOptions = selected_options && selected_options.length >= 1
+
   return (
-    <div className={classes.root}>
+    <div className={clsx(classes.root, !hasOptions && classes.itemWithoutOptions)}>
       <div className={classes.picture}>
         <PageLink href={productLink}>
           <a className={classes.productLink}>
@@ -148,30 +156,34 @@ export default function OrderItem(props: OrderItemProps) {
       </div>
 
       <PageLink href={productLink}>
-        <a className={classes.itemName}>{product_name}</a>
+        <a className={clsx(classes.itemName, hasOptions && classes.itemNameWithOptions)}>
+          {product_name}
+        </a>
       </PageLink>
 
-      <div className={classes.itemPrice}>
+      <div className={clsx(classes.itemPrice)}>
         <Money {...product_sale_price} />
       </div>
 
-      <div className={classes.quantity}>{`${quantity_ordered}x`}</div>
+      <div className={clsx(classes.quantity)}>{`${quantity_ordered}x`}</div>
 
-      <div className={classes.rowPrice}>
+      <div className={clsx(classes.rowPrice)}>
         <Money
           currency={product_sale_price.currency}
           value={(product_sale_price.value ?? 0) * (quantity_ordered ?? 1)}
         />
       </div>
 
-      <div className={classes.optionsList}>
-        {selected_options &&
-          selected_options.map((option) => (
-            <div key={option?.label} className={classes.option}>
-              {option?.value}
-            </div>
-          ))}
-      </div>
+      {hasOptions && (
+        <div className={classes.optionsList}>
+          {selected_options &&
+            selected_options.map((option) => (
+              <div key={option?.label} className={classes.option}>
+                {option?.value}
+              </div>
+            ))}
+        </div>
+      )}
     </div>
   )
 }
