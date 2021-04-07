@@ -22,6 +22,7 @@ export default function StackedDrawer(props: PropsWithChildren<{ variant: 'left'
         originY: 0,
         height: 3000,
         [variant]: 0,
+        willChange: `opacity, transform`,
       }}
       animate='enter'
       exit='exit'
