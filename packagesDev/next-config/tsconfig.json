@@ -1,0 +1,14 @@
+{
+  "exclude": ["node_modules", "example", "dist"],
+  "include": ["**/*.ts", "**/*.tsx", "index.js"],
+  "extends": "@reachdigital/typescript-config-pwa/node.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "noLib": false,
+    "noEmit": false,
+    "sourceMap": true,
+    "declaration": true,
+    "strict": true
+  }
+}

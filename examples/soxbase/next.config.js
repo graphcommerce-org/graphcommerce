@@ -8,33 +8,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 require('dotenv').config()
 
+const withGraphCommerce = require('@reachdigital/next-config').withGraphCommerce()
+
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
-const withTM = require('next-transpile-modules')(
-  [
-    '@reachdigital/graphcms-ui',
-    '@reachdigital/magento-app-shell',
-    '@reachdigital/magento-cart',
-    '@reachdigital/magento-category',
-    '@reachdigital/magento-cms',
-    '@reachdigital/magento-customer',
-    '@reachdigital/magento-graphql',
-    '@reachdigital/magento-payment-braintree',
-    '@reachdigital/magento-payment-klarna',
-    '@reachdigital/magento-product',
-    '@reachdigital/magento-product-bundle',
-    '@reachdigital/magento-product-configurable',
-    '@reachdigital/magento-product-downloadable',
-    '@reachdigital/magento-product-simple',
-    '@reachdigital/magento-product-types',
-    '@reachdigital/magento-product-virtual',
-    '@reachdigital/magento-search',
-    '@reachdigital/magento-store',
-    '@reachdigital/next-ui',
-    '@reachdigital/react-hook-form',
-  ],
-  { unstable_webpack5: false },
-)
 
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
@@ -45,6 +22,9 @@ const obs = new PerformanceObserver((entryList) => {
 obs.observe({ entryTypes: ['measure'] })
 
 const nextConfig = {
+  future: {
+    webpack5: true,
+  },
   webpackStats: process.env.ANALYZE === 'true',
   rewrites() {
     return [{ source: '/sitemap.xml', destination: '/api/sitemap' }]
@@ -68,4 +48,4 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(withTM(nextConfig))))
+module.exports = withBundleAnalyzer(withPWA(withImages(withGraphCommerce(nextConfig))))

@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsc --watch --sourceMap --outDir dist",
+    "dev": "tsc --preserveWatchOutput --watch --sourceMap --outDir dist",
     "build": "tsc --target es5 --outDir dist"
   },
   "prettier": "@reachdigital/prettier-config-pwa",
