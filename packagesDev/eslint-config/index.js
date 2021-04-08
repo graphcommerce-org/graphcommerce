@@ -99,6 +99,12 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['*.ts'],
+      rules: {
+        'import/prefer-default-export': 'off',
+      },
+    },
+    {
       files: ['generated/*'],
       rules: {
         '@typescript-eslint/camelcase': 'off',
