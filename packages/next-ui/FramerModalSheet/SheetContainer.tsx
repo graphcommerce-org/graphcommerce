@@ -8,30 +8,27 @@ import { SheetContainerProps } from './types'
 
 const MAX_HEIGHT = 'calc(100% - env(safe-area-inset-top) - 34px)'
 
-const SheetContainer = React.forwardRef<any, SheetContainerProps>(
-  ({ children, style = {}, ...rest }, ref) => {
-    const { y, isOpen, callbacks, snapPoints, initialSnap = 0, sheetRef } = useSheetContext()
+const SheetContainer = React.forwardRef<any, SheetContainerProps>((props, ref) => {
+  const { style = {}, ...rest } = props
+  const { y, isOpen, callbacks, snapPoints, initialSnap = 0, sheetRef } = useSheetContext()
 
-    const { handleAnimationComplete } = useEventCallbacks(isOpen, callbacks)
-    const initialY = snapPoints ? snapPoints[0] - snapPoints[initialSnap] : 0
-    const h = snapPoints ? snapPoints[0] : null
-    const sheetHeight = h ? `min(${h}px, ${MAX_HEIGHT})` : MAX_HEIGHT
+  const { handleAnimationComplete } = useEventCallbacks(isOpen, callbacks)
+  const initialY = snapPoints ? snapPoints[0] - snapPoints[initialSnap] : 0
+  const h = snapPoints ? snapPoints[0] : null
+  const sheetHeight = h ? `min(${h}px, ${MAX_HEIGHT})` : MAX_HEIGHT
 
-    return (
-      <motion.div
-        {...rest}
-        ref={useForkRef(sheetRef, ref)}
-        className='react-modal-sheet-container'
-        style={{ ...styles.container, height: sheetHeight, ...style, y }}
-        initial={{ y: window.innerHeight }}
-        animate={{ y: initialY, transition: { type: 'tween' } }}
-        exit={{ y: window.innerHeight }}
-        onAnimationComplete={handleAnimationComplete}
-      >
-        {children}
-      </motion.div>
-    )
-  },
-)
+  return (
+    <motion.div
+      {...rest}
+      ref={useForkRef(sheetRef, ref)}
+      className='react-modal-sheet-container'
+      style={{ ...styles.container, height: sheetHeight, ...style, y }}
+      initial={{ y: global.window?.innerHeight }}
+      animate={{ y: initialY, transition: { type: 'tween' } }}
+      exit={{ y: global.window?.innerHeight }}
+      onAnimationComplete={handleAnimationComplete}
+    />
+  )
+})
 
 export default SheetContainer

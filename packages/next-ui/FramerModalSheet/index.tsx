@@ -1,27 +1,9 @@
-import SheetBackdrop from './SheetBackdrop'
-import SheetContainer from './SheetContainer'
-import SheetContent from './SheetContent'
-import SheetHeader from './SheetHeader'
-import Sheet from './sheet'
+export { default as SheetBackdrop } from './SheetBackdrop'
+export { default as SheetContainer } from './SheetContainer'
+export { default as SheetContent } from './SheetContent'
+export { default as SheetHeader } from './SheetHeader'
+export { default as Sheet } from './Sheet'
 
 export type SheetRef = {
   snapTo: (index: number) => void
 }
-
-type SheetCompoundComponent = {
-  Container: typeof SheetContainer
-  Header: typeof SheetHeader
-  Content: typeof SheetContent
-  Backdrop: typeof SheetBackdrop
-}
-
-// HACK: this is needed to get the typing to work properly...
-const _Sheet: any = Sheet
-_Sheet.Container = SheetContainer
-_Sheet.Header = SheetHeader
-_Sheet.Content = SheetContent
-_Sheet.Backdrop = SheetBackdrop
-
-const SheetCompound: typeof Sheet & SheetCompoundComponent = _Sheet
-
-export default SheetCompound

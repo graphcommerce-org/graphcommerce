@@ -92,7 +92,7 @@ export default function Pages(props: PagesProps) {
     .reverse()
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence initial>
       {renderItems.map(({ children, historyIdx, key }, itemIdx) => {
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)

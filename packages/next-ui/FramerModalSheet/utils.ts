@@ -1,5 +1,3 @@
-export const isBrowser = typeof window !== 'undefined'
-
 export const getClosest = (nums: number[], goal: number) =>
   nums.reduce((prev, curr) => (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev))
 

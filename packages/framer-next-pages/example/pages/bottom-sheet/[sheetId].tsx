@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions, usePageDepth, usePageRouter } from '@reachdigital/framer-next-pages'
-import Sheet from '@reachdigital/next-ui/FramerModalSheet'
+import {
+  Sheet,
+  SheetContainer,
+  SheetBackdrop,
+  SheetContent,
+  SheetHeader,
+} from '@reachdigital/next-ui/FramerModalSheet'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import { data } from '../../components/Grid'
@@ -12,12 +18,12 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
 
   return (
     <Sheet isOpen onClose={() => console.log('close')} snapPoints={[1000, 400, 200, 0]}>
-      <Sheet.Container>
-        <Sheet.Header />
-        <Sheet.Content>{/* Your sheet content goes here */}</Sheet.Content>
-      </Sheet.Container>
+      <SheetContainer>
+        <SheetHeader />
+        <SheetContent>{/* Your sheet content goes here */}</SheetContent>
+      </SheetContainer>
 
-      <Sheet.Backdrop />
+      <SheetBackdrop />
     </Sheet>
   )
 }

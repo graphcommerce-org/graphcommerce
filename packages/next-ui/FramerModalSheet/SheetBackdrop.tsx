@@ -3,13 +3,14 @@ import * as React from 'react'
 import styles from './styles'
 import { SheetBackdropProps } from './types'
 
-const isClickable = (props: any) => !!props.onClick || !!props.onTap
+const isClickable = (props: Pick<SheetBackdropProps, 'onTap'>) => !!props.onClick || !!props.onTap
 
-const SheetBackdrop = React.forwardRef<any, SheetBackdropProps>(({ style = {}, ...rest }, ref) => {
-  const Comp = isClickable(rest) ? motion.button : motion.div
+const SheetBackdrop = React.forwardRef<any, SheetBackdropProps>((props, ref) => {
+  const { style = {}, ...rest } = props
+  const Component = isClickable(rest) ? motion.button : motion.div
 
   return (
-    <Comp
+    <Component
       {...rest}
       ref={ref}
       className='react-modal-sheet-backdrop'
