@@ -22,7 +22,7 @@ const useStyles = makeStyles(
         `,
       gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
       columnGap: theme.spacings.sm,
-      alignItems: 'center',
+      alignItems: 'baseline',
       ...theme.typography.body1,
       marginBottom: theme.spacings.lg,
       marginTop: theme.spacings.md,
@@ -40,6 +40,7 @@ const useStyles = makeStyles(
       gridTemplate: `
       "picture itemName itemName itemName"
       "picture itemPrice quantity rowPrice"`,
+      alignItems: 'center',
       gridTemplateColumns: `${rowImageSize} repeat(3, 1fr)`,
       [theme.breakpoints.up('sm')]: {
         gridTemplate: `
@@ -161,13 +162,13 @@ export default function OrderItem(props: OrderItemProps) {
         </a>
       </PageLink>
 
-      <div className={clsx(classes.itemPrice)}>
+      <div className={classes.itemPrice}>
         <Money {...product_sale_price} />
       </div>
 
-      <div className={clsx(classes.quantity)}>{`${quantity_ordered}x`}</div>
+      <div className={classes.quantity}>{`${quantity_ordered}x`}</div>
 
-      <div className={clsx(classes.rowPrice)}>
+      <div className={classes.rowPrice}>
         <Money
           currency={product_sale_price.currency}
           value={(product_sale_price.value ?? 0) * (quantity_ordered ?? 1)}
@@ -176,12 +177,11 @@ export default function OrderItem(props: OrderItemProps) {
 
       {hasOptions && (
         <div className={classes.optionsList}>
-          {selected_options &&
-            selected_options.map((option) => (
-              <div key={option?.label} className={classes.option}>
-                {option?.value}
-              </div>
-            ))}
+          {selected_options?.map((option) => (
+            <div key={option?.label} className={classes.option}>
+              {option?.value}
+            </div>
+          ))}
         </div>
       )}
     </div>

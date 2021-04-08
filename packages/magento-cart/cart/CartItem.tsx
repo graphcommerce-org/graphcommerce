@@ -26,7 +26,7 @@ const useStyles = makeStyles(
         `,
       gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
       columnGap: theme.spacings.sm,
-      alignItems: 'center',
+      alignItems: 'baseline',
       ...theme.typography.body1,
       marginBottom: theme.spacings.lg,
       marginTop: theme.spacings.md,
@@ -44,6 +44,7 @@ const useStyles = makeStyles(
       gridTemplate: `
       "picture itemName itemName itemName"
       "picture itemPrice quantity rowPrice"`,
+      alignItems: 'center',
       gridTemplateColumns: `${rowImageSize} 1fr minmax(120px, 1fr) 1fr`,
       [theme.breakpoints.up('sm')]: {
         gridTemplate: `
@@ -97,13 +98,10 @@ const useStyles = makeStyles(
     },
     pictureResponsive: {
       gridColumn: 1,
-      width: '100%',
-      height: 'auto',
       backgroundColor: theme.palette.background.paper,
-      objectFit: 'contain',
+      objectFit: 'cover',
       display: 'block',
-      mixBlendMode: 'multiply',
-      transform: 'scale(1.75)',
+      transform: 'scale(1.1)',
     },
     productLink: {
       display: 'block',
@@ -129,6 +127,9 @@ const useStyles = makeStyles(
     quantity: {
       gridArea: 'quantity',
       justifySelf: 'center',
+    },
+    quantityWithOptions: {
+      transform: 'translateY(-6px)',
     },
     rowPrice: {
       gridArea: 'rowPrice',
@@ -194,7 +195,7 @@ export default function CartItem(props: CartItemProps) {
         <Money {...prices?.price} />
       </div>
 
-      <div className={classes.quantity}>
+      <div className={clsx(classes.quantity, withOptions && classes.quantityWithOptions)}>
         <UpdateItemQuantity cartId={cartId} cartItemId={Number(id)} quantity={quantity} />
       </div>
 
