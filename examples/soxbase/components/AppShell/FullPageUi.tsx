@@ -13,7 +13,8 @@ import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import React from 'react'
+import clsx from 'clsx'
+import React, { useCallback, useState } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
@@ -26,6 +27,12 @@ const useStyles = makeStyles(
         minWidth: 130,
       },
     },
+    fullPageInnerContainer: {
+      transition: 'opacity .25s ease',
+    },
+    innerContainerSearchActive: {
+      opacity: 0.2,
+    },
   }),
   { name: 'FullPageUI' },
 )
@@ -36,6 +43,8 @@ type FullPageUiProps = Omit<DefaultPageQuery, 'pages'> &
 function FullPageUi(props: FullPageUiProps) {
   const { footer, menu: menuData = {}, children, ...uiProps } = props
   const classes = useStyles()
+
+  const [searching, setSearching] = useState<boolean>(false)
 
   const menuProps: MenuProps = {
     menu: [
@@ -51,6 +60,8 @@ function FullPageUi(props: FullPageUiProps) {
     ],
   }
 
+  const onSearchStart = useCallback(() => setSearching(true), [])
+
   return (
     <NextFullPageUi
       {...uiProps}
@@ -59,7 +70,7 @@ function FullPageUi(props: FullPageUiProps) {
           <Logo />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
-            <SearchButton classes={{ root: classes.navbarSearch }} />
+            <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
 
             <PageLink href='/service/index'>
               <IconButton aria-label='Account' color='inherit' size='medium'>
@@ -88,7 +99,7 @@ function FullPageUi(props: FullPageUiProps) {
         </>
       }
     >
-      <MenuFab {...menuProps} search={<SearchButton />}>
+      <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <MenuFabSecondaryItem src='/icons/desktop_account.svg' type='image/svg+xml' href='/account'>
           Account
         </MenuFabSecondaryItem>
@@ -117,7 +128,16 @@ function FullPageUi(props: FullPageUiProps) {
           type='image/svg+xml'
         />
       </CartFab>
-      {children}
+
+      <div
+        className={clsx(
+          classes.fullPageInnerContainer,
+          searching && classes.innerContainerSearchActive,
+        )}
+      >
+        {children}
+      </div>
+
       <Footer footer={footer} />
     </NextFullPageUi>
   )
