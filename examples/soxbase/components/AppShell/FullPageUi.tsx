@@ -41,7 +41,7 @@ type FullPageUiProps = Omit<DefaultPageQuery, 'pages'> &
   Omit<NextFullPageUiProps, 'menu' | 'logo' | 'actions' | 'classes'>
 
 function FullPageUi(props: FullPageUiProps) {
-  const { footer, menu: menuData = {}, children, ...uiProps } = props
+  const { footer, header, menu: menuData = {}, children, ...uiProps } = props
   const classes = useStyles()
 
   const [searching, setSearching] = useState<boolean>(false)
@@ -62,43 +62,42 @@ function FullPageUi(props: FullPageUiProps) {
 
   const onSearchStart = useCallback(() => setSearching(true), [])
 
+  const defaultHeader = (
+    <>
+      <Logo />
+      <DesktopNavBar {...menuProps} />
+      <DesktopNavActions>
+        <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+
+        <PageLink href='/service/index'>
+          <IconButton aria-label='Account' color='inherit' size='medium'>
+            <PictureResponsiveNext
+              src='/icons/desktop_customer_service.svg'
+              alt='Customer Service'
+              loading='eager'
+              width={32}
+              height={32}
+              type='image/svg+xml'
+            />
+          </IconButton>
+        </PageLink>
+
+        <CustomerFab>
+          <PictureResponsiveNext
+            src='/icons/desktop_account.svg'
+            alt='Account'
+            loading='eager'
+            width={32}
+            height={32}
+            type='image/svg+xml'
+          />
+        </CustomerFab>
+      </DesktopNavActions>
+    </>
+  )
+
   return (
-    <NextFullPageUi
-      {...uiProps}
-      header={
-        <>
-          <Logo />
-          <DesktopNavBar {...menuProps} />
-          <DesktopNavActions>
-            <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-
-            <PageLink href='/service/index'>
-              <IconButton aria-label='Account' color='inherit' size='medium'>
-                <PictureResponsiveNext
-                  src='/icons/desktop_customer_service.svg'
-                  alt='Customer Service'
-                  loading='eager'
-                  width={32}
-                  height={32}
-                  type='image/svg+xml'
-                />
-              </IconButton>
-            </PageLink>
-
-            <CustomerFab>
-              <PictureResponsiveNext
-                src='/icons/desktop_account.svg'
-                alt='Account'
-                loading='eager'
-                width={32}
-                height={32}
-                type='image/svg+xml'
-              />
-            </CustomerFab>
-          </DesktopNavActions>
-        </>
-      }
-    >
+    <NextFullPageUi {...uiProps} header={header || defaultHeader}>
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <MenuFabSecondaryItem src='/icons/desktop_account.svg' type='image/svg+xml' href='/account'>
           Account

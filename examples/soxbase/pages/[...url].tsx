@@ -37,6 +37,7 @@ import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
 import PageContent from '../components/PageContent'
 import ProductListItems from '../components/ProductListItems/ProductListItems'
+import useProductListStyles from '../components/ProductListItems/useProductListStyles'
 import RowProductBackstory from '../components/RowProductBackstory'
 import RowProductGrid from '../components/RowProductGrid'
 import RowSwipeableGrid from '../components/RowSwipeableGrid'
@@ -52,43 +53,6 @@ type Props = CategoryPageQuery &
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
-
-const useProductListStyles = makeStyles(
-  (theme: Theme) => ({
-    productList: (props: Props) => {
-      let big = 3
-      let index = 0
-      let toggle = false
-      let selector = ''
-      const count = props.products?.items?.length ?? 0
-      for (index = 0; index <= count; index++) {
-        if (index === big) {
-          selector += `& >:nth-child(${big}),`
-          if (toggle === false) {
-            big = index + 7
-            toggle = !toggle
-          } else {
-            big = index + 11
-            toggle = !toggle
-          }
-        }
-      }
-      selector = selector.slice(0, -1)
-      return {
-        [theme.breakpoints.up('xl')]: {
-          [`${selector}`]: {
-            gridColumn: 'span 2',
-            gridRow: 'span 2;',
-            '& > a > div': {
-              paddingTop: `calc(100% + ${theme.spacings.lg} - 2px)`,
-            },
-          },
-        },
-      }
-    },
-  }),
-  { name: 'ProductList' },
-)
 
 function CategoryPage(props: Props) {
   const productListClasses = useProductListStyles(props)
@@ -198,7 +162,6 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   const categoryUid = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
 
   const productListParams = parseParams(url, query, await filterTypes)
-
   if (!productListParams || !(await categoryUid)) return { notFound: true }
 
   const products = client.query({

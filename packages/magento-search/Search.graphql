@@ -1,0 +1,20 @@
+query Search(
+  $pageSize: Int = 23
+  $currentPage: Int = 1
+  $sort: ProductAttributeSortInput = {}
+  $search: String = ""
+) {
+  categories(filters: { name: { match: $search } }, pageSize: 6) {
+    items {
+      name
+      ...CategoryBreadcrumb
+    }
+  }
+  products(pageSize: $pageSize, currentPage: $currentPage, sort: $sort, search: $search) {
+    ...ProductListCount
+    ...ProductListPagination
+    ...ProductListSort
+    ...ProductListItems
+    ...ProductListFilters
+  }
+}

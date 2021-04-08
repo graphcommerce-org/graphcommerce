@@ -16,7 +16,6 @@ export type ProductListParams = Exact<{
   filters: ProductAttributeFilterInput
   sort: ProductAttributeSortInput
   search?: Maybe<Scalars['String']>
-  url: string
 }>
 
 type AnyFilterType = FilterEqualTypeInput | FilterMatchTypeInput | FilterRangeTypeInput | undefined
