@@ -7,7 +7,7 @@
     "docs",
     "packagesDev/*",
     "packages/*",
-    "packages/framer-next-pages/example",
+    "packages/*/example",
     "examples/*"
   ],
   "engines": {
