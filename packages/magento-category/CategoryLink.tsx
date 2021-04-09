@@ -91,6 +91,6 @@ export const useCategoryPushRoute = () => {
     setParams(params)
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push('/[...url]', `${createCategoryLink(params)}`)
+    Router.push(createCategoryLink(params))
   }
 }

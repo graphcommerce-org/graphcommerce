@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { mergeDeep } from '@apollo/client/utilities'
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
 import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
@@ -46,13 +46,9 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function SearchIndexPage(props: Props) {
-  const { products, categories, params, filterTypes } = props
-  const productListClasses = useProductListStyles(props)
+  const { products, categories, filters, params, filterTypes } = props
+  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const classes = useCategoryPageStyles(props)
-
-  // console.log(products.items, categories.items)
-  // const productListClasses = useProductListStyles(props)
-  // const classes = useCategoryPageStyles(props)
 
   // const formClasses = useFormStyles()
 
@@ -157,12 +153,12 @@ function SearchIndexPage(props: Props) {
       // }
       {...props}
     >
-      <PageMeta title='Search' metaDescription={`Search results for `} />w
+      <PageMeta title='Search' metaDescription='Search results' />
       <ProductListParamsProvider value={params}>
         <Container maxWidth='xl'>
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={products?.aggregations} filterTypes={filterTypes} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
 
           <ProductListCount total_count={products?.total_count} />
@@ -181,7 +177,7 @@ function SearchIndexPage(props: Props) {
 
 SearchIndexPage.Layout = PageLayout
 
-registerRouteUi('/[...url]', FullPageUi)
+registerRouteUi('/search/[...url]', FullPageUi)
 
 export default SearchIndexPage
 
@@ -231,7 +227,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [search = 'sdfjhkfdshjkfadshjklafsdhjkl', query = []] = extractUrlQuery(params)
+  const [search = 'search', query = []] = extractUrlQuery(params)
 
   const client = apolloClient(locale, true)
   const conf = client.query({ query: StoreConfigDocument })
@@ -244,7 +240,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     variables: { url: 'search', rootCategory },
   })
 
-  const productListParams = parseParams(search, query, await filterTypes)
+  const productListParams = parseParams(`search/${search}`, query, await filterTypes)
+
   if (!productListParams) return { notFound: true }
 
   const products = search

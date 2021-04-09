@@ -55,9 +55,9 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
-  const productListClasses = useProductListStyles(props)
-  const classes = useCategoryPageStyles(props)
   const { categories, products, filters, params, filterTypes, pages } = props
+  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
+  const classes = useCategoryPageStyles(props)
 
   const category = categories?.items?.[0]
   if (!category || !products || !params || !filters || !filterTypes) return null

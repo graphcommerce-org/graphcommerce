@@ -1,6 +1,7 @@
 query Search(
   $pageSize: Int = 23
   $currentPage: Int = 1
+  $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
 ) {
@@ -10,11 +11,9 @@ query Search(
       ...CategoryBreadcrumb
     }
   }
-  products(pageSize: $pageSize, currentPage: $currentPage, sort: $sort, search: $search) {
-    ...ProductListCount
-    ...ProductListPagination
-    ...ProductListSort
-    ...ProductListItems
+
+  ...ProductListFragment
+  filters: products(search: $search) {
     ...ProductListFilters
   }
 }

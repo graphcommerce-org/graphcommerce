@@ -24,6 +24,12 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
         },
         {
           kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'filters' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductAttributeFilterInput' } },
+          defaultValue: { kind: 'ObjectValue', fields: [] },
+        },
+        {
+          kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'sort' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'ProductAttributeSortInput' } },
           defaultValue: { kind: 'ObjectValue', fields: [] },
@@ -126,6 +132,11 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'currentPage' },
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'currentPage' } },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'filter' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'filters' } },
               },
               {
                 kind: 'Argument',
@@ -476,6 +487,23 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            alias: { kind: 'Name', value: 'filters' },
+            name: { kind: 'Name', value: 'products' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'search' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'search' } },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'aggregations' },
@@ -511,6 +539,7 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
 export type SearchQueryVariables = Types.Exact<{
   pageSize?: Types.Maybe<Types.Scalars['Int']>
   currentPage?: Types.Maybe<Types.Scalars['Int']>
+  filters?: Types.Maybe<Types.ProductAttributeFilterInput>
   sort?: Types.Maybe<Types.ProductAttributeSortInput>
   search?: Types.Maybe<Types.Scalars['String']>
 }>
@@ -729,17 +758,19 @@ export type SearchQuery = {
           >
         >
       >
-      aggregations?: Types.Maybe<
-        Array<
-          Types.Maybe<
-            Pick<Types.Aggregation, 'label' | 'count' | 'attribute_code'> & {
-              options?: Types.Maybe<
-                Array<Types.Maybe<Pick<Types.AggregationOption, 'label' | 'value' | 'count'>>>
-              >
-            }
-          >
-        >
-      >
     }
   >
+  filters?: Types.Maybe<{
+    aggregations?: Types.Maybe<
+      Array<
+        Types.Maybe<
+          Pick<Types.Aggregation, 'label' | 'count' | 'attribute_code'> & {
+            options?: Types.Maybe<
+              Array<Types.Maybe<Pick<Types.AggregationOption, 'label' | 'value' | 'count'>>>
+            >
+          }
+        >
+      >
+    >
+  }>
 }

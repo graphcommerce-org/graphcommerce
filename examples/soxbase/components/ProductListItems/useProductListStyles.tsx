@@ -1,25 +1,14 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { ProductListQuery } from '@reachdigital/magento-product-types/ProductList.gql'
-import {
-  FilterTypes,
-  ProductListParams,
-} from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import { CategoryPageQuery } from '../GraphQL/CategoryPage.gql'
 
-type UseProductListStylesProps = CategoryPageQuery &
-  ProductListQuery & {
-    filterTypes: FilterTypes
-    params: ProductListParams
-  }
+type UseProductListStylesProps = { count: number }
 
 const useProductListStyles = makeStyles(
   (theme: Theme) => ({
-    productList: (props: UseProductListStylesProps) => {
+    productList: ({ count }: UseProductListStylesProps) => {
       let big = 3
       let index = 0
       let toggle = false
       let selector = ''
-      const count = props.products?.items?.length ?? 0
       for (index = 0; index <= count; index++) {
         if (index === big) {
           selector += `& >:nth-child(${big}),`
