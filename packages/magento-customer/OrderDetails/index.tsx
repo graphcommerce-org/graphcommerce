@@ -5,6 +5,7 @@ import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import Money from '@reachdigital/magento-store/Money'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
@@ -231,7 +232,14 @@ export default function OrderDetails(props: OrderDetailsProps) {
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
-                      <Description color='primary' />
+                      <PictureResponsiveNext
+                        src='/icons/desktop_order_invoice.svg'
+                        alt='order tracker'
+                        loading='eager'
+                        width={24}
+                        height={24}
+                        type='image/svg+xml'
+                      />
                       {invoices?.[0]?.number}
                     </div>
                   </div>

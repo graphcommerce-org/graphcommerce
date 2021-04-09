@@ -53,7 +53,10 @@ export default async function createHandler(config: YamlConfig.Config, path: str
     // engine: { reportSchema: true },
     context: mesh.contextBuilder,
     introspection: true,
-    playground: true,
+    playground: {
+      // @ts-expect-error https://github.com/graphql/graphql-playground/issues/1289
+      shareEnabled: true,
+    },
     ...mesh,
   })
 
@@ -76,6 +79,7 @@ export default async function createHandler(config: YamlConfig.Config, path: str
       'Preview-Version',
       'Content-Currency',
       'X-Captcha',
+      'x-apollo-tracing',
     ],
   })
   const apoloHandler = apolloServer.createHandler({ path })

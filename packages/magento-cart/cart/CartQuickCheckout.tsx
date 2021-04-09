@@ -4,6 +4,7 @@ import Money from '@reachdigital/magento-store/Money'
 import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
 import Button from '@reachdigital/next-ui/Button'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React, { PropsWithChildren } from 'react'
 
@@ -27,20 +28,23 @@ const useStyles = makeStyles(
     },
     button: {
       marginTop: responsiveVal(20, 40),
-      paddingTop: responsiveVal(10, 15),
-      paddingBottom: responsiveVal(10, 15),
-      paddingLeft: responsiveVal(25, 35),
-      paddingRight: responsiveVal(25, 35),
       borderRadius: responsiveVal(40, 50),
       fontSize: 17,
       fontFamily: theme.typography.fontFamily,
       fontWeight: 500,
       marginBottom: theme.spacings.lg,
+      maxHeight: 55,
+      paddingTop: responsiveVal(10, 15),
+      paddingBottom: responsiveVal(10, 15),
+      paddingLeft: responsiveVal(25, 35),
+      paddingRight: responsiveVal(26, 30),
     },
     icon: {
-      '& > svg': {
-        fontSize: responsiveVal(24, 30),
-        fontWeight: 100,
+      marginLeft: 0,
+    },
+    buttonLabel: {
+      '& ~ span.MuiButton-endIcon': {
+        marginLeft: 6,
       },
     },
   }),
@@ -71,10 +75,19 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.button}
-          endIcon={<ArrowForwardIos className={classes.icon} />}
+          endIcon={
+            <PictureResponsiveNext
+              className={classes.icon}
+              alt='desktop_chevron_right_white'
+              width={32}
+              height={32}
+              src='/icons/desktop_chevron_right_white.svg'
+              type='image/svg+xml'
+            />
+          }
           disabled={(value ?? 0) === 0}
         >
-          Start checkout
+          <div className={classes.buttonLabel}>Start checkout</div>
         </Button>
       </PageLink>
       {children}

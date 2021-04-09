@@ -44,7 +44,7 @@ export default function CartItemOptionDropdown(props: CartItemOptionDropdownProp
     <>
       <div className={classes.root}>
         <div className={classes.label}>{label}</div>
-        <Select id={`select-${label}`} value={1} onChange={onChange} className={classes.select}>
+        <Select value={1} onChange={onChange} className={classes.select}>
           <MenuItem value={1}>One</MenuItem>
           <MenuItem value={2}>Two</MenuItem>
           <MenuItem value={3}>Three</MenuItem>

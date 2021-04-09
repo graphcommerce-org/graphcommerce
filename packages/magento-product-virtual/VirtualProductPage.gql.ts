@@ -56,6 +56,30 @@ export const VirtualProductPageDocument: DocumentNode<
               selections: [
                 {
                   kind: 'Field',
+                  name: { kind: 'Name', value: 'aggregations' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'attribute_code' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'count' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'options' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            { kind: 'Field', name: { kind: 'Name', value: 'count' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'label' } },
+                            { kind: 'Field', name: { kind: 'Name', value: 'value' } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
                   selectionSet: {
                     kind: 'SelectionSet',
@@ -699,6 +723,17 @@ export type VirtualProductPageQueryVariables = Types.Exact<{
 
 export type VirtualProductPageQuery = {
   typeProducts?: Types.Maybe<{
+    aggregations?: Types.Maybe<
+      Array<
+        Types.Maybe<
+          Pick<Types.Aggregation, 'attribute_code' | 'count' | 'label'> & {
+            options?: Types.Maybe<
+              Array<Types.Maybe<Pick<Types.AggregationOption, 'count' | 'label' | 'value'>>>
+            >
+          }
+        >
+      >
+    >
     items?: Types.Maybe<
       Array<
         Types.Maybe<

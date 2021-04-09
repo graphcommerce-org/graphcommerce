@@ -5,8 +5,7 @@ import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
-import { DeepPartial, UnpackNestedValue } from '@reachdigital/react-hook-form/useForm'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
 
@@ -24,7 +23,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
     defaultValues: { ...variables } as UnpackNestedValue<DeepPartial<V>>,
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
   })
-  const { handleSubmit, errors, formState, error } = form
+  const { handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)

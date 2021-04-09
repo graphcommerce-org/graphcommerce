@@ -1,7 +1,7 @@
 import { Fab } from '@material-ui/core'
 import Icon from '@material-ui/icons/Close'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
   RemoveItemFromCartMutationVariables,

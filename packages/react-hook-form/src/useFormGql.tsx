@@ -4,10 +4,11 @@ import {
   TypedDocumentNode,
   useApolloClient,
   MutationTuple,
+  ApolloError,
 } from '@apollo/client'
-import { UseFormOptions, UseFormMethods, UnpackNestedValue, DeepPartial } from 'react-hook-form'
+import { UseFormProps, UseFormReturn, UnpackNestedValue, DeepPartial } from 'react-hook-form'
 import diff from './diff'
-import useGqlDocumentHandler from './useGqlDocumentHandler'
+import { useGqlDocumentHandler, UseGqlDocumentHandler } from './useGqlDocumentHandler'
 import { LazyQueryTuple } from './useLazyQueryPromise'
 
 export type OnCompleteFn<Q> = (
@@ -20,7 +21,10 @@ type UseFormGraphQLCallbacks<Q, V> = {
   onComplete?: OnCompleteFn<Q>
 }
 
-export type UseFormGraphQlOptions<Q, V> = UseFormOptions<V> & UseFormGraphQLCallbacks<Q, V>
+export type UseFormGraphQlOptions<Q, V> = UseFormProps<V> & UseFormGraphQLCallbacks<Q, V>
+
+export type UseFormGqlMethods<Q, V> = Omit<UseGqlDocumentHandler<V>, 'encode' | 'type'> &
+  Pick<UseFormReturn<V>, 'handleSubmit'> & { data?: Q | null; error?: ApolloError }
 
 /**
  * Combines useMutation/useLazyQueryPromise with react-hook-form's useForm:
@@ -30,20 +34,20 @@ export type UseFormGraphQlOptions<Q, V> = UseFormOptions<V> & UseFormGraphQLCall
  * - Updates the form when the query updates
  * - Resets the form after submitting the form when no modifications are found
  */
-export default function useFormGql<Q, V>(
+export function useFormGql<Q, V>(
   options: {
     document: TypedDocumentNode<Q, V>
-    form: UseFormMethods<V>
+    form: UseFormReturn<V>
     tuple: MutationTuple<Q, V> | LazyQueryTuple<Q, V>
-    defaultValues?: UseFormOptions<V>['defaultValues']
+    defaultValues?: UseFormProps<V>['defaultValues']
   } & UseFormGraphQLCallbacks<Q, V>,
-) {
+): UseFormGqlMethods<Q, V> {
   const { onComplete, onBeforeSubmit, document, form, tuple, defaultValues } = options
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error }] = tuple
   const client = useApolloClient()
 
-  const handleSubmit: UseFormMethods<V>['handleSubmit'] = (onValid, onInvalid) =>
+  const handleSubmit: UseFormReturn<V>['handleSubmit'] = (onValid, onInvalid) =>
     form.handleSubmit(async (formValues, event) => {
       // Combine defaults with the formValues and encode
       let variables = encode({
@@ -69,5 +73,5 @@ export default function useFormGql<Q, V>(
       await onValid(formValues, event)
     }, onInvalid)
 
-  return { ...gqlDocumentHandler, ...form, handleSubmit, data, error }
+  return { ...gqlDocumentHandler, handleSubmit, data, error }
 }

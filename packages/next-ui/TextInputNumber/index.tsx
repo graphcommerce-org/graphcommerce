@@ -5,11 +5,12 @@ import {
   TextField,
   TextFieldProps,
   Theme,
+  useForkRef,
 } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import clsx from 'clsx'
-import { ChangeEvent, RefObject, useCallback, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
@@ -46,11 +47,12 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     DownProps = {},
     UpProps = {},
     inputProps = {},
+    inputRef,
     ...textFieldProps
   } = props
   const classes = useStyles(props)
-  const internalRef = useRef<HTMLInputElement>()
-  const ref = (textFieldProps.inputRef as RefObject<HTMLInputElement>) ?? internalRef
+  const ref = useRef<HTMLInputElement>(null)
+  const forkRef = useForkRef<HTMLInputElement>(ref, inputRef as Ref<HTMLInputElement>)
 
   const [direction, setDirection] = useState<'up' | 'down' | 'runUp' | 'runDown' | null>(null)
   const [disabled, setDisabled] = useState<'min' | 'max' | null>(null)
@@ -68,6 +70,8 @@ export default function TextInputNumber(props: TextInputNumberProps) {
         stop()
         return
       }
+
+      ref.current?.focus()
       ref.current?.stepDown()
       ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
     }
@@ -77,6 +81,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
         return
       }
 
+      ref.current?.focus()
       ref.current?.stepUp()
       ref.current?.dispatchEvent(new Event('change', { bubbles: true }))
     }
@@ -114,8 +119,9 @@ export default function TextInputNumber(props: TextInputNumberProps) {
     <TextField
       {...textFieldProps}
       type='number'
-      inputRef={ref}
+      inputRef={forkRef}
       className={clsx(textFieldProps.className, classes.quantity)}
+      autoComplete='off'
       InputProps={{
         ...InputProps,
         startAdornment: (

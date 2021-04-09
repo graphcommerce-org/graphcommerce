@@ -8,8 +8,8 @@ import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
-import React, { useRef } from 'react'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
 
@@ -38,15 +38,11 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       selectedOptions: getUids((selectedOptions?.[0] as unknown) as Selected),
     }),
   })
-  const { handleSubmit, errors, formState, register, required, control, error } = form
+  const { handleSubmit, formState, muiRegister, required, control, error } = form
   const submitHandler = handleSubmit(() => {})
 
   const { data: tokenQuery } = useQuery(CustomerTokenDocument)
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
-
-  // @todo TextInputNumber can't handle a callback ref
-  const ref = useRef<HTMLInputElement>(null)
-  register(ref.current, { required: required.quantity })
 
   return requireAuth ? (
     <PageLink href='/account/signin'>
@@ -61,7 +57,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         sku={variables.sku}
         control={control}
         rules={{ required: required.selectedOptions }}
-        errors={errors.selectedOptions}
+        errors={formState.errors.selectedOptions}
       />
 
       <ApolloErrorAlert error={error} />
@@ -69,16 +65,13 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       <div className={classes.actions}>
         <TextInputNumber
           variant='outlined'
-          error={formState.isSubmitted && !!errors.quantity}
-          id='quantity'
-          name='quantity'
+          error={formState.isSubmitted && !!formState.errors.quantity}
           label='Quantity'
           required={required.quantity}
           inputProps={{ min: 1 }}
-          inputRef={ref}
-          helperText={formState.isSubmitted && errors.quantity?.message}
+          {...muiRegister('quantity', { required: required.quantity })}
+          helperText={formState.isSubmitted && formState.errors.quantity?.message}
           // disabled={loading}
-          autoComplete='off'
           size='small'
         />
 

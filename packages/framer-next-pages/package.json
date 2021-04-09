@@ -1,0 +1,36 @@
+{
+  "name": "@reachdigital/framer-next-pages",
+  "version": "0.1.0",
+  "private": true,
+  "sideEffects": false,
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "dev": "tsc -W"
+  },
+  "prettier": "@reachdigital/prettier-config-pwa",
+  "browserslist": [
+    "extends @reachdigital/browserslist-config-pwa"
+  ],
+  "eslintConfig": {
+    "extends": "@reachdigital/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "devDependencies": {
+    "@reachdigital/browserslist-config-pwa": "^0.1.0",
+    "@reachdigital/eslint-config-pwa": "^0.1.0",
+    "@reachdigital/prettier-config-pwa": "^0.1.0",
+    "@reachdigital/typescript-config-pwa": "^0.1.0"
+  },
+  "dependencies": {
+    "framer-motion": "^4.1.0",
+    "next": "^10.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

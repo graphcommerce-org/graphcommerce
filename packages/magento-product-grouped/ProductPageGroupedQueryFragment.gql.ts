@@ -11,21 +11,24 @@ import {
   ProductListItemVirtualFragmentDoc,
 } from '../magento-product-virtual/ProductListItemVirtual.gql'
 import {
-  ProductListItemFragmentDoc,
   ProductListItem_VirtualProduct_Fragment,
   ProductListItem_SimpleProduct_Fragment,
   ProductListItem_DownloadableProduct_Fragment,
   ProductListItem_BundleProduct_Fragment,
   ProductListItem_GroupedProduct_Fragment,
   ProductListItem_ConfigurableProduct_Fragment,
+  ProductListItemFragmentDoc,
 } from '../magento-product/ProductListItem/ProductListItem.gql'
-
 import {
-  ProductWeightFragmentDoc,
+  ProductSpecsFragment,
+  ProductSpecsFragmentDoc,
+} from '../magento-product/ProductSpecs/ProductSpecs.gql'
+import {
   ProductWeight_SimpleProduct_Fragment,
   ProductWeight_BundleProduct_Fragment,
   ProductWeight_GroupedProduct_Fragment,
   ProductWeight_ConfigurableProduct_Fragment,
+  ProductWeightFragmentDoc,
 } from '../magento-product/ProductWeight/ProductWeight.gql'
 
 export const ProductPageGroupedQueryFragmentDoc: DocumentNode<
@@ -73,6 +76,7 @@ export const ProductPageGroupedQueryFragmentDoc: DocumentNode<
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'FragmentSpread', name: { kind: 'Name', value: 'ProductSpecs' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'items' },
@@ -142,6 +146,7 @@ export const ProductPageGroupedQueryFragmentDoc: DocumentNode<
         ],
       },
     },
+    ...ProductSpecsFragmentDoc.definitions,
     ...ProductWeightFragmentDoc.definitions,
     ...ProductListItemFragmentDoc.definitions,
     ...ProductListItemSimpleFragmentDoc.definitions,
@@ -149,44 +154,46 @@ export const ProductPageGroupedQueryFragmentDoc: DocumentNode<
   ],
 }
 export type ProductPageGroupedQueryFragment = {
-  typeProducts?: Types.Maybe<{
-    items?: Types.Maybe<
-      Array<
-        Types.Maybe<
-          { __typename: 'GroupedProduct' } & {
-            items?: Types.Maybe<
-              Array<
-                Types.Maybe<
-                  Pick<Types.GroupedProductItem, 'position' | 'qty'> & {
-                    product?: Types.Maybe<
-                      | ({ __typename: 'VirtualProduct' } & Pick<Types.VirtualProduct, 'uid'> &
-                          ProductListItem_VirtualProduct_Fragment &
-                          ProductListItemVirtualFragment)
-                      | ({ __typename: 'SimpleProduct' } & Pick<Types.SimpleProduct, 'uid'> &
-                          ProductListItem_SimpleProduct_Fragment &
-                          ProductListItemSimpleFragment)
-                      | ({ __typename: 'DownloadableProduct' } & Pick<
-                          Types.DownloadableProduct,
-                          'uid'
-                        > &
-                          ProductListItem_DownloadableProduct_Fragment)
-                      | ({ __typename: 'BundleProduct' } & Pick<Types.BundleProduct, 'uid'> &
-                          ProductListItem_BundleProduct_Fragment)
-                      | ({ __typename: 'GroupedProduct' } & Pick<Types.GroupedProduct, 'uid'> &
-                          ProductListItem_GroupedProduct_Fragment)
-                      | ({ __typename: 'ConfigurableProduct' } & Pick<
-                          Types.ConfigurableProduct,
-                          'uid'
-                        > &
-                          ProductListItem_ConfigurableProduct_Fragment)
-                    >
-                  }
+  typeProducts?: Types.Maybe<
+    {
+      items?: Types.Maybe<
+        Array<
+          Types.Maybe<
+            { __typename: 'GroupedProduct' } & {
+              items?: Types.Maybe<
+                Array<
+                  Types.Maybe<
+                    Pick<Types.GroupedProductItem, 'position' | 'qty'> & {
+                      product?: Types.Maybe<
+                        | ({ __typename: 'VirtualProduct' } & Pick<Types.VirtualProduct, 'uid'> &
+                            ProductListItem_VirtualProduct_Fragment &
+                            ProductListItemVirtualFragment)
+                        | ({ __typename: 'SimpleProduct' } & Pick<Types.SimpleProduct, 'uid'> &
+                            ProductListItem_SimpleProduct_Fragment &
+                            ProductListItemSimpleFragment)
+                        | ({ __typename: 'DownloadableProduct' } & Pick<
+                            Types.DownloadableProduct,
+                            'uid'
+                          > &
+                            ProductListItem_DownloadableProduct_Fragment)
+                        | ({ __typename: 'BundleProduct' } & Pick<Types.BundleProduct, 'uid'> &
+                            ProductListItem_BundleProduct_Fragment)
+                        | ({ __typename: 'GroupedProduct' } & Pick<Types.GroupedProduct, 'uid'> &
+                            ProductListItem_GroupedProduct_Fragment)
+                        | ({ __typename: 'ConfigurableProduct' } & Pick<
+                            Types.ConfigurableProduct,
+                            'uid'
+                          > &
+                            ProductListItem_ConfigurableProduct_Fragment)
+                      >
+                    }
+                  >
                 >
               >
-            >
-          } & ProductWeight_GroupedProduct_Fragment
+            } & ProductWeight_GroupedProduct_Fragment
+          >
         >
       >
-    >
-  }>
+    } & ProductSpecsFragment
+  >
 }

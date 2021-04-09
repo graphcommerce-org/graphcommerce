@@ -5,8 +5,7 @@ import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import useFormPersist from '@reachdigital/react-hook-form/useFormPersist'
-import { emailPattern } from '@reachdigital/react-hook-form/validationPatterns'
+import { useFormPersist, emailPattern } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -38,7 +37,7 @@ export default function AccountSignInUpForm() {
   const customerQuery = useQuery(CustomerDocument, { ssr: false })
   const { email, firstname } = customerQuery.data?.customer ?? {}
   const { mode, form, token, isManualSubmitting, submit } = useFormIsEmailAvailable({ email })
-  const { formState, errors, register, required, watch, error } = form
+  const { formState, muiRegister, required, watch, error } = form
 
   useFormPersist({ form, name: 'IsEmailAvailable' })
 
@@ -112,14 +111,12 @@ export default function AccountSignInUpForm() {
                     key='email'
                     variant='outlined'
                     type='text'
-                    error={formState.isSubmitted && !!errors.email}
-                    helperText={formState.isSubmitted && errors.email?.message}
-                    id='email'
-                    name='email'
+                    error={formState.isSubmitted && !!formState.errors.email}
+                    helperText={formState.isSubmitted && formState.errors.email?.message}
                     label='Email'
                     required={required.email}
                     disabled={isManualSubmitting}
-                    inputRef={register({
+                    {...muiRegister('email', {
                       required: required.email,
                       pattern: { value: emailPattern, message: '' },
                     })}

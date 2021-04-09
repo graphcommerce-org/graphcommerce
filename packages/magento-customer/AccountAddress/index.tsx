@@ -11,9 +11,7 @@ import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/Countr
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { Controller } from '@reachdigital/react-hook-form/useForm'
-import useFormAutoSubmit from '@reachdigital/react-hook-form/useFormAutoSubmit'
-import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
+import { useFormAutoSubmit, useFormGqlMutation, Controller } from '@reachdigital/react-hook-form'
 import React, { useEffect, useMemo } from 'react'
 import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
 import AddressMultiLine from '../AddressMultiLine'
@@ -63,7 +61,7 @@ export default function AccountAddress(props: AccountAddressProps) {
     defaultValues,
   })
 
-  const { errors, handleSubmit, control, error, reset } = form
+  const { handleSubmit, control, error, reset, formState } = form
 
   const submit = handleSubmit(() => {
     //
@@ -84,8 +82,8 @@ export default function AccountAddress(props: AccountAddressProps) {
             <Controller
               name='defaultBilling'
               control={control}
-              render={({ onChange, value, name, onBlur, ref }) => (
-                <FormControl error={!!errors.defaultBilling}>
+              render={({ field: { onChange, value, name, ref, onBlur } }) => (
+                <FormControl error={!!formState.errors.defaultBilling}>
                   <FormControlLabel
                     control={<Switch color='primary' />}
                     label='Billing address'
@@ -98,8 +96,8 @@ export default function AccountAddress(props: AccountAddressProps) {
                     }
                   />
 
-                  {errors.defaultBilling?.message && (
-                    <FormHelperText>{errors.defaultBilling?.message}</FormHelperText>
+                  {formState.errors.defaultBilling?.message && (
+                    <FormHelperText>{formState.errors.defaultBilling?.message}</FormHelperText>
                   )}
                 </FormControl>
               )}
@@ -107,8 +105,8 @@ export default function AccountAddress(props: AccountAddressProps) {
             <Controller
               name='defaultShipping'
               control={control}
-              render={({ onChange, value, name, onBlur, ref }) => (
-                <FormControl error={!!errors.defaultShipping}>
+              render={({ field: { onChange, value, name, ref, onBlur } }) => (
+                <FormControl error={!!formState.errors.defaultShipping}>
                   <FormControlLabel
                     control={<Switch color='primary' />}
                     label='Shipping address'
@@ -121,8 +119,8 @@ export default function AccountAddress(props: AccountAddressProps) {
                     }
                   />
 
-                  {errors.defaultShipping?.message && (
-                    <FormHelperText>{errors.defaultShipping?.message}</FormHelperText>
+                  {formState.errors.defaultShipping?.message && (
+                    <FormHelperText>{formState.errors.defaultShipping?.message}</FormHelperText>
                   )}
                 </FormControl>
               )}

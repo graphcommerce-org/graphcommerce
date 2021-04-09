@@ -9,13 +9,8 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     optionsList: {
       gridArea: 'itemOptions',
-      alignSelf: 'baseline',
       cursor: 'default',
-      [theme.breakpoints.down('sm')]: {
-        alignSelf: 'end',
-        marginLeft: 0,
-        marginBottom: 8,
-      },
+      marginLeft: 0,
     },
     option: {
       borderBottom: `1px solid ${theme.palette.grey['500']}`,

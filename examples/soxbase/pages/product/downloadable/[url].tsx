@@ -41,6 +41,7 @@ function ProductDownloadable(props: Props) {
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
+  const aggregations = typeProducts?.aggregations
 
   if (
     product?.__typename !== 'DownloadableProduct' ||
@@ -86,7 +87,9 @@ function ProductDownloadable(props: Props) {
           RowProductFeatureBoxed: (rowProps) => (
             <RowProductFeatureBoxed {...rowProps} {...product} />
           ),
-          RowProductSpecs: (rowProps) => <RowProductSpecs {...rowProps} {...product} />,
+          RowProductSpecs: (rowProps) => (
+            <RowProductSpecs {...rowProps} {...product} aggregations={aggregations} />
+          ),
           RowProductReviews: (rowProps) => <RowProductReviews {...rowProps} {...product} />,
           RowProductRelated: (rowProps) => <RowProductRelated {...rowProps} {...product} />,
           RowProductUpsells: (rowProps) => <RowProductUpsells {...rowProps} {...product} />,
