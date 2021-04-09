@@ -44,6 +44,7 @@ const baseStyles = makeStyles(
     root: {
       backgroundColor: 'transparent',
       [theme.breakpoints.down('sm')]: {
+        width: '100%',
         right: 0,
         bottom: 0,
       },
