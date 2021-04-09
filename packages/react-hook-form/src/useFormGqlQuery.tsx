@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useFormGql, UseFormGraphQlOptions } from './useFormGql'
 import { UseFormGqlMutationReturn } from './useFormGqlMutation'
 import { useFormMuiRegister } from './useFormMuiRegister'
-import { useFormValid } from './useFormValidFields'
+import { useFormValidFields } from './useFormValidFields'
 import { useLazyQueryPromise } from './useLazyQueryPromise'
 
 export type UseFormGqlQueryReturn<Q, V> = UseFormGqlMutationReturn<Q, V>
@@ -16,7 +16,7 @@ export function useFormGqlQuery<Q, V>(
   const tuple = useLazyQueryPromise(document)
   const operation = useFormGql({ document, form, tuple, ...options })
   const muiRegister = useFormMuiRegister(form)
-  const valid = useFormValid(form, operation.required)
+  const valid = useFormValidFields(form, operation.required)
 
   return { ...form, ...operation, valid, muiRegister }
 }

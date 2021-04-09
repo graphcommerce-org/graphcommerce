@@ -2,7 +2,7 @@ import { TypedDocumentNode, useMutation } from '@apollo/client'
 import { useForm, UseFormReturn } from 'react-hook-form'
 import { useFormGql, UseFormGqlMethods, UseFormGraphQlOptions } from './useFormGql'
 import { useFormMuiRegister, UseMuiFormRegister } from './useFormMuiRegister'
-import { useFormValid, UseFormValidReturn } from './useFormValidFields'
+import { useFormValidFields, UseFormValidReturn } from './useFormValidFields'
 
 export type UseFormGqlMutationReturn<
   Q extends Record<string, any> = Record<string, any>,
@@ -26,7 +26,7 @@ export function useFormGqlMutation<Q, V>(
   const tuple = useMutation(document)
   const operation = useFormGql({ document, form, tuple, ...options })
   const muiRegister = useFormMuiRegister(form)
-  const valid = useFormValid(form, operation.required)
+  const valid = useFormValidFields(form, operation.required)
 
   return { ...form, ...operation, valid, muiRegister }
 }

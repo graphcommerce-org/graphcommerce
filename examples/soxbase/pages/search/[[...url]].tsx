@@ -1,14 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
-import { Container } from '@material-ui/core'
+import { mergeDeep } from '@apollo/client/utilities'
+import { Container, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
-import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import {
-  ProductListDocument,
-  ProductListQuery,
-} from '@reachdigital/magento-product-types/ProductList.gql'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
@@ -26,11 +21,22 @@ import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import {
+  useForm,
+  useFormAutoSubmit,
+  useFormGqlQuery,
+  useFormMuiRegister,
+} from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useRef } from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
@@ -45,178 +51,167 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    closeBtn: {
+      borderRadius: '50%',
+      minWidth: 'unset',
+      width: 40,
+      height: 40,
+    },
+    formContainer: {
+      boxShadow: '0 5px 4px 0 rgb(3 3 3 / 3%)',
+    },
+    title: {
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.xxs,
+    },
+    productsContainer: {
+      marginTop: theme.spacings.md,
+    },
+  }),
+  {
+    name: 'SearchIndexPage',
+  },
+)
+
 function SearchIndexPage(props: Props) {
   const { products, categories, filters, params, filterTypes } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const classes = useCategoryPageStyles(props)
+  const pageClasses = useStyles()
+  const formClasses = useFormStyles()
 
-  // const formClasses = useFormStyles()
+  const search = params.url.split('/')[1]
 
-  // TODO: useMenu()
-  // const menuProps: MenuProps = {
-  //   menu: [
-  //     ...(menuData?.items?.map((item) => ({
-  //       href: `/${item?.url_path}`,
-  //       children: item?.name?.toLowerCase().includes('sale') ? (
-  //         <span style={{ textTransform: 'uppercase', color: 'red' }}>{item.name}</span>
-  //       ) : (
-  //         item?.name ?? ''
-  //       ),
-  //     })) ?? []),
-  //     { href: '/blog', children: 'Blog' },
-  //   ],
-  // }
+  const form = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      search,
+    },
+  })
 
-  // products(
-  //   search: String
-  //   filter: ProductAttributeFilterInput
-  //   pageSize: Int = 20
-  //   currentPage: Int = 1
-  //   sort: ProductAttributeSortInput
-  //   ): Products
+  const { register, handleSubmit, formState, reset, watch, getValues } = form
+  const muiRegister = useFormMuiRegister(form)
 
-  // const form = useFormGqlQuery(ProductListDocument, {
-  //   defaultValues: {
-  //     //
-  //   },
-  //   variables
-  //   mode: 'onChange',
-  // })
+  const router = useRouter()
 
-  // const { muiRegister, handleSubmit, valid, formState, required, error } = form
-  // const submit = handleSubmit(() => {})
+  const submit = handleSubmit((formData) => {
+    reset(getValues())
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    router.replace(`/search/${formData.search}`)
+  })
 
-  // const autoSubmitting = useFormAutoSubmit({ form, submit })
+  useFormAutoSubmit({ form, submit })
 
-  // const term = 'hoodie'
+  const endAdornment = (
+    <Button
+      onClick={() => {
+        reset({
+          search: '',
+        })
+      }}
+      type='submit'
+      variant='text'
+      className={pageClasses.closeBtn}
+    >
+      <PictureResponsiveNext
+        alt='desktop_close'
+        width={24}
+        height={24}
+        src='/icons/desktop_close.svg'
+        type='image/svg+xml'
+      />
+    </Button>
+  )
 
-  // const { data } = useQuery(SearchDocument, {
-  //   variables: {
-  //     search: term,
-  //   },
-  // })
+  console.log(categories)
 
   return (
-    <FullPageUi
-      title='Search'
-      backFallbackHref='/'
-      backFallbackTitle='Home'
-      // header={
-      //   <>
-      //     <Logo />
-      //     <DesktopNavBar {...menuProps} />
-      //     <DesktopNavActions>
-      //       <PageLink href='/service/index'>
-      //         <IconButton aria-label='Account' color='inherit' size='medium'>
-      //           <PictureResponsiveNext
-      //             src='/icons/desktop_customer_service.svg'
-      //             alt='Customer Service'
-      //             loading='eager'
-      //             width={32}
-      //             height={32}
-      //             type='image/svg+xml'
-      //           />
-      //         </IconButton>
-      //       </PageLink>
-
-      //       <CustomerFab>
-      //         <PictureResponsiveNext
-      //           src='/icons/desktop_account.svg'
-      //           alt='Account'
-      //           loading='eager'
-      //           width={32}
-      //           height={32}
-      //           type='image/svg+xml'
-      //         />
-      //       </CustomerFab>
-      //     </DesktopNavActions>
-
-      //     <form noValidate onSubmit={submit}>
-      //       <div className={formClasses.formRow}>
-      //         <TextField
-      //           variant='outlined'
-      //           type='text'
-      //           error={formState.isSubmitted && !!formState.errors.email}
-      //           helperText={formState.isSubmitted && formState.errors.email?.message}
-      //           label='Email'
-      //           required={required.email}
-      //           {...muiRegister('email', {
-      //             required: required.email,
-      //             pattern: { value: emailPattern, message: '' },
-      //           })}
-      //           InputProps={{ endAdornment, readOnly: mode === 'signedin' }}
-      //         />
-      //       </div>
-      //       <ApolloErrorAlert error={error} />
-      //     </form>
-      //   </>
-      // }
-      {...props}
-    >
+    <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
       <PageMeta title='Search' metaDescription='Search results' />
-      <ProductListParamsProvider value={params}>
-        <Container maxWidth='xl'>
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
 
-          <ProductListCount total_count={products?.total_count} />
+      <div className={pageClasses.formContainer}>
+        <Container maxWidth='sm'>
+          <form noValidate onSubmit={submit}>
+            <div className={formClasses.formRow}>
+              <TextField
+                variant='outlined'
+                type='text'
+                autoFocus
+                error={formState.isSubmitted && !!formState.errors.search}
+                helperText={formState.isSubmitted && formState.errors.search?.message}
+                {...muiRegister('search')}
+                InputProps={{ endAdornment: watch('search') && endAdornment }}
+              />
+            </div>
+          </form>
 
-          <ProductListItems
-            items={products?.items}
-            className={clsx(classes.items, productListClasses.productList)}
-            loadingEager={1}
-          />
-          <ProductListPagination page_info={products?.page_info} />
+          {categories?.items?.map((category) => (
+            <Button fullWidth key={`category-${category?.name}`} variant='contained'>
+              {category?.breadcrumbs &&
+                category.breadcrumbs.map((breadcrumb, index) => (
+                  <span key={`breadcrumb-${breadcrumb?.category_url_path}`}>
+                    {' '}
+                    {`${breadcrumb?.category_name} /`}{' '}
+                    {category?.breadcrumbs &&
+                      index + 1 >= category?.breadcrumbs?.length &&
+                      ` ${category.name}`}
+                  </span>
+                ))}
+            </Button>
+          ))}
         </Container>
-      </ProductListParamsProvider>
+      </div>
+
+      <Container maxWidth='xl'>
+        {(!search || !products || (products.items && products?.items?.length <= 0)) && (
+          <div className={pageClasses.title}>
+            <Typography variant='h5' align='center'>
+              No search results to show
+            </Typography>
+          </div>
+        )}
+
+        {search && products && products.items && products?.items?.length > 0 && (
+          <div className={pageClasses.title}>
+            <Typography variant='h2' align='center'>
+              Results for ‘{search}’
+            </Typography>
+          </div>
+        )}
+
+        <ProductListParamsProvider value={params}>
+          {!!products?.total_count && (
+            <ProductListFiltersContainer>
+              <ProductListSort sort_fields={products?.sort_fields} />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+          )}
+
+          {/* {!!products?.total_count && products?.total_count > 0 && (
+            <ProductListCount total_count={products?.total_count} />
+          )} */}
+
+          <div className={pageClasses.productsContainer}>
+            <ProductListItems
+              items={products?.items}
+              className={clsx(classes.items, productListClasses.productList)}
+              loadingEager={1}
+            />
+          </div>
+          <ProductListPagination page_info={products?.page_info} />
+        </ProductListParamsProvider>
+      </Container>
     </FullPageUi>
   )
 }
 
 SearchIndexPage.Layout = PageLayout
 
-registerRouteUi('/search/[...url]', FullPageUi)
+registerRouteUi('/[...url]', FullPageUi)
 
 export default SearchIndexPage
-
-// export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-//   // const [url, query] = extractUrlQuery(params)
-//   // if (!url || !query) return { notFound: true }
-
-//   const client = apolloClient(locale, true)
-//   const conf = client.query({ query: StoreConfigDocument })
-//   const filterTypes = getFilterTypes(client)
-
-//   const staticClient = apolloClient(locale)
-
-//   const categoryPage = staticClient.query({
-//     query: CategoryPageDocument,
-//     variables:
-//       url: 'search',
-//       rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-//     },
-//   })
-//   const categoryUid = categoryPage.then((res) => res.data.categories?.items?.[0]?.uid ?? '')
-
-//   const productListParams = parseParams(url, query, await filterTypes)
-
-//   if (!productListParams || !(await categoryUid)) return { notFound: true }
-
-//   // assertAllowedParams(await params, (await products).data)
-//   if (!(await categoryUid)) return { notFound: true }
-
-//   return {
-//     props: {
-//       ...(await categoryPage).data,
-//       filterTypes: await filterTypes,
-//       params: productListParams,
-//       apolloState: await conf.then(() => client.cache.extract()),
-//     },
-//     revalidate: 60 * 20,
-//   }
-// }
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
@@ -227,7 +222,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
-  const [search = 'search', query = []] = extractUrlQuery(params)
+  const [search = '', query = []] = extractUrlQuery(params)
 
   const client = apolloClient(locale, true)
   const conf = client.query({ query: StoreConfigDocument })

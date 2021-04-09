@@ -12,7 +12,7 @@ import { ProductListFiltersFragment } from './ProductListFilters.gql'
 export type FilterCheckboxTypeProps = NonNullable<
   NonNullable<ProductListFiltersFragment['aggregations']>[0]
 > &
-  Omit<ChipProps, 'selected', 'ref'>
+  Omit<ChipProps, 'selected'>
 
 export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
@@ -36,7 +36,6 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       noLink
     >
       <Chip
-        component='a'
         variant='outlined'
         color={isActive ? undefined : 'default'}
         onDelete={
