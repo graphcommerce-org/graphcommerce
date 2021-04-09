@@ -61,6 +61,7 @@ function ProductSimple(props: Props) {
           <AddToCartButton
             mutation={ProductAddToCartDocument}
             variables={{ sku: product.sku ?? '', quantity: 1 }}
+            product={product.name ?? ''}
           />
           <ProductWeight weight={typeProduct?.weight} />
         </ProductPageGallery>

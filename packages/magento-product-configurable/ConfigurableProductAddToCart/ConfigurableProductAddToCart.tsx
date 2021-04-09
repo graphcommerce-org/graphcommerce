@@ -1,14 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { Fab, Typography } from '@material-ui/core'
-import Checkmark from '@material-ui/icons/Check'
-import Chevron from '@material-ui/icons/ChevronRight'
-import CloseIcon from '@material-ui/icons/Close'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
@@ -23,7 +20,7 @@ import {
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
-  product: Record<string, any>
+  product: string
 }
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
@@ -96,27 +93,16 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         </Button>
       </div>
 
-      <MessageSnackbarLoader
-        variant='rounded'
-        icon={<Checkmark />}
-        button={
-          <PageLink href='/cart'>
-            <Fab variant='extended' color='secondary' size='large'>
-              <Typography component='span'>View shopping cart</Typography>
-              <Chevron />
-            </Fab>
-          </PageLink>
-        }
-        size='large'
-        color='white'
-        message={`${product.name} has been added to your shopping cart!`}
-        open={formState.isSubmitSuccessful && !error?.message}
-        closeButton={
-          <Fab aria-label='Close snackbar' size='medium'>
-            <CloseIcon />
-          </Fab>
-        }
-      />
+      <MessageSnackbarLoader>
+        <AddToCartSnackbar
+          message={product}
+          color='primary'
+          open={formState.isSubmitSuccessful && !error?.message}
+          variant='rounded'
+          size='large'
+          closeButton
+        />
+      </MessageSnackbarLoader>
     </form>
   )
 }

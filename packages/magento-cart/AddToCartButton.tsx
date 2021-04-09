@@ -3,6 +3,8 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
+import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import { DeepPartial, UnpackNestedValue } from '@reachdigital/react-hook-form/useForm'
 import useFormGqlMutation from '@reachdigital/react-hook-form/useFormGqlMutation'
 import React from 'react'
@@ -12,9 +14,10 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
   props: Pick<ProductInterface, 'name'> & {
     mutation: TypedDocumentNode<Q, V>
     variables: Omit<V, 'cartId'>
+    product: string
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, mutation, variables, ...buttonProps } = props
+  const { name, product, mutation, variables, ...buttonProps } = props
 
   const requestCartId = useRequestCartId()
   const form = useFormGqlMutation<Q, V>(mutation, {
@@ -38,6 +41,17 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
       >
         Add to Cart
       </Button>
+
+      <MessageSnackbarLoader>
+        <AddToCartSnackbar
+          message={product}
+          color='primary'
+          open={formState.isSubmitSuccessful && !error?.message}
+          variant='rounded'
+          size='large'
+          closeButton
+        />
+      </MessageSnackbarLoader>
 
       <ApolloErrorAlert error={error} />
     </form>

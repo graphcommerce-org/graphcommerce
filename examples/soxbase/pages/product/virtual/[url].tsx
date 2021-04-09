@@ -60,6 +60,7 @@ function ProductVirtual(props: Props) {
           <AddToCartButton
             mutation={ProductAddToCartDocument}
             variables={{ sku: product.sku ?? '', quantity: 1 }}
+            product={product.name ?? ''}
           />
         </ProductPageGallery>
       </Container>
