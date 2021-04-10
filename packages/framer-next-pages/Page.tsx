@@ -27,5 +27,9 @@ export default function Page(props: PageProps) {
   const position = active ? 'absolute' : 'fixed'
   const pointerEvents = !active ? 'none' : undefined
 
-  return <div style={{ position, top, left: 0, right: 0, pointerEvents }}>{children}</div>
+  return (
+    <div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: '100%' }}>
+      {children}
+    </div>
+  )
 }

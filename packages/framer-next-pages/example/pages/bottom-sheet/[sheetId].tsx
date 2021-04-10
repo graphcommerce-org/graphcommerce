@@ -1,30 +1,21 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { PageOptions, usePageDepth, usePageRouter } from '@reachdigital/framer-next-pages'
-import {
-  Sheet,
-  SheetContainer,
-  SheetBackdrop,
-  SheetContent,
-  SheetHeader,
-} from '@reachdigital/next-ui/FramerModalSheet'
+import { PageOptions } from '@reachdigital/framer-next-pages'
+import { useIsPresent } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React from 'react'
 import { data } from '../../components/Grid'
+import PanScroll from '../../components/PanScroll'
+import StackDebug from '../../components/StackedDebugger'
 
 function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { sheetId } = props
-  const depth = usePageDepth()
-  const router = usePageRouter()
+  const isPresent = useIsPresent()
 
   return (
-    <Sheet isOpen onClose={() => console.log('close')} snapPoints={[1000, 400, 200, 0]}>
-      <SheetContainer>
-        <SheetHeader />
-        <SheetContent>{/* Your sheet content goes here */}</SheetContent>
-      </SheetContainer>
-
-      <SheetBackdrop />
-    </Sheet>
+    <PanScroll open={isPresent}>
+      <StackDebug />
+      <div style={{ height: 3000 }}>{sheetId}</div>
+    </PanScroll>
   )
 }
 

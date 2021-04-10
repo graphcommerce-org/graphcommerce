@@ -9,9 +9,7 @@ export default function PostCardGrid() {
   return (
     <div className={styles.postCardGridWrapper}>
       <Link href='/'>
-        <a className={`${styles.postCard} ${pageRouter.asPath === `/` && styles.postCardActive}`}>
-          Index Page
-        </a>
+        <a className={styles.postCard}>Index Page</a>
       </Link>
 
       <h2>Overlay</h2>
