@@ -2,21 +2,79 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import SheetContext from '@reachdigital/framer-next-pages/Sheet/SheetContext'
 import SheetPanel from '@reachdigital/framer-next-pages/Sheet/SheetPanel'
-import { useIsPresent } from 'framer-motion'
+import { SPRING_ANIM } from '@reachdigital/framer-next-pages/Sheet/animation'
+import { motion, useIsPresent } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-import React from 'react'
+import React, { useState } from 'react'
 import { data } from '../../components/Grid'
-import StackDebug from '../../components/StackedDebugger'
 
 function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { sheetId } = props
   const isPresent = useIsPresent()
 
+  const [expanded, setExpanded] = useState(true)
+
   return (
-    <SheetContext snapPoints={[300, 40, -100]}>
+    <SheetContext snapPoints={[0, 300, 40, -100]}>
       <SheetPanel open={isPresent}>
-        <StackDebug />
-        <div style={{ height: 3000 }}>{sheetId}</div>
+        {/* <StackDebug /> */}
+        <button type='button' onClick={() => setExpanded(!expanded)}>
+          {expanded ? 'collapse' : 'expand'}
+        </button>
+
+        <motion.div
+          style={{ fontFamily: 'sans-serif', overflow: 'hidden' }}
+          variants={{
+            collapsed: { height: 60 },
+            expanded: { height: 'auto' },
+          }}
+          initial='expanded'
+          animate={expanded ? 'expanded' : 'collapsed'}
+          transition={SPRING_ANIM}
+        >
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+          <br /> content
+        </motion.div>
+        <div>{sheetId}</div>
       </SheetPanel>
     </SheetContext>
   )

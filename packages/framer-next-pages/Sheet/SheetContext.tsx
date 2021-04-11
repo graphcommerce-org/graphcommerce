@@ -1,9 +1,16 @@
-import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion'
+import {
+  AnimationControls,
+  MotionValue,
+  useAnimation,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
 import React, { useContext } from 'react'
-import { SnapPoint, useSnapPoint } from './useSnapPoint'
+import { SnapPoint, snapPointPx } from './useSnapPoint'
 
 type SheetContextType = {
   y: MotionValue<number>
+  height: MotionValue<number>
   controls: AnimationControls
   snapPoints: SnapPoint[]
 }
@@ -20,10 +27,15 @@ type SheetContextProps = { children?: React.ReactNode; snapPoints: SnapPoint[] }
 export default function SheetContext(props: SheetContextProps) {
   const { children, snapPoints } = props
 
-  const y = useMotionValue<number>(useSnapPoint(snapPoints[0]).get())
-  const controls = useAnimation()
+  const height = useMotionValue<number>(0)
+  const yInitial = useTransform(height, (h) => snapPointPx(snapPoints[0], h))
 
-  return (
-    <sheetContext.Provider value={{ y, controls, snapPoints }}>{children}</sheetContext.Provider>
-  )
+  const context = {
+    y: useMotionValue<number>(yInitial.get()),
+    height,
+    controls: useAnimation(),
+    snapPoints,
+  }
+
+  return <sheetContext.Provider value={context}>{children}</sheetContext.Provider>
 }

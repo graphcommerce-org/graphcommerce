@@ -1,9 +1,10 @@
 import { motion, PanInfo, Point2D, useTransform } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import DragIndicator from './DragIndicator'
+import SheetContainer from './SheetContainer'
 import { useSheetContext } from './SheetContext'
 import { INERTIA_ANIM, SPRING_ANIM } from './animation'
-import { nearest, nearestPoint as nearestIdx, useSnapPoint } from './useSnapPoint'
+import { nearestIndex } from './useSnapPoint'
 import useSnapPointBottom from './useSnapPointBottom'
 import useSnapPointVariants from './useSnapPointVariants'
 import windowSize from './windowSize'
@@ -20,36 +21,26 @@ function velocityClamp({ velocity, offset }: PanInfo, clamp = 2): Point2D {
 
 export default function SheetPanel(props: { children?: React.ReactNode; open: boolean }) {
   const { children, open } = props
-  const { y, snapPoints, controls } = useSheetContext()
+  const { y, height, snapPoints, controls } = useSheetContext()
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     controls.start(open ? `snapPoint0` : 'closed')
   }, [open, controls])
 
-  const onDragEnd = async (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const target = velocityClamp(info).y + y.get()
-    const idx = nearestIdx(target, snapPoints)
+  const onDragEnd = async (_: never, info: PanInfo) => {
+    const idx = nearestIndex(velocityClamp(info).y + y.get(), snapPoints, height)
     await controls.start(`snapPoint${idx}`)
   }
 
-  const height = useTransform(useSnapPointBottom(), (v) => v - 40)
+  const maxHeight = useTransform(useSnapPointBottom(), (v) => v - 40)
   const variants = useSnapPointVariants()
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-      }}
-    >
+    <SheetContainer>
       <motion.div
         variants={{
-          closed: () => ({ y: windowSize.height.get() + 200 }),
+          closed: () => ({ y: windowSize.height.get() + 100 }),
           ...variants,
         }}
         initial='closed'
@@ -57,7 +48,7 @@ export default function SheetPanel(props: { children?: React.ReactNode; open: bo
         transition={SPRING_ANIM}
         animate={controls}
         drag='y'
-        dragMomentum={false}
+        dragTransition={INERTIA_ANIM}
         onDragEnd={onDragEnd}
         style={{
           backgroundColor: '#fff',
@@ -83,13 +74,12 @@ export default function SheetPanel(props: { children?: React.ReactNode; open: bo
           display: 'flex',
           flexDirection: 'column',
           willChange: `transform`,
-          overflow: 'auto',
-          height,
+          overflowY: 'auto',
           y,
         }}
       >
         {children}
       </motion.div>
-    </div>
+    </SheetContainer>
   )
 }

@@ -1,13 +1,12 @@
 import { useTransform } from 'framer-motion'
 import { useSheetContext } from './SheetContext'
 import { snapPointPx } from './useSnapPoint'
-import windowSize from './windowSize'
 
 export default function useSnapPointTop() {
-  const { snapPoints } = useSheetContext()
-  return useTransform(windowSize.height, (height) =>
+  const { snapPoints, height } = useSheetContext()
+  return useTransform(height, (h) =>
     snapPoints.reduce((prev, curr) => {
-      const point = snapPointPx(curr, height)
+      const point = snapPointPx(curr, g)
       return point < prev ? point : prev
     }, Infinity),
   )
