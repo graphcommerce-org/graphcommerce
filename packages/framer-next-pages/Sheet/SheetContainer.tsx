@@ -1,13 +1,24 @@
-import React, { useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef } from 'react'
 import { useSheetContext } from './SheetContext'
 
+type Props = JSX.IntrinsicElements['div'] & { children: React.ReactNode }
+
+const sheetContainerStyles: CSSProperties = {
+  position: 'absolute',
+  left: 0,
+  bottom: 0,
+  width: '100%',
+  boxSizing: 'border-box',
+  maxHeight: '100%',
+  paddingTop: `24px`,
+}
+
 /**
- * SheetContainer is responsible for the layout constraints of the Sheet.
- *
- * - The height of this container is used to calculate the snapPoints.
+ * SheetContainer is responsible for the layout constraints of the Sheet. Default: the
+ * SheetContainer doesn't have a fixed height, but only a max-height.
  */
-export default function SheetContainer(props: { children: React.ReactNode }) {
-  const { children } = props
+export default function SheetContainer(props: Props) {
+  const { children, style } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const { height } = useSheetContext()
 
@@ -19,7 +30,7 @@ export default function SheetContainer(props: { children: React.ReactNode }) {
   }, [height])
 
   return (
-    <div ref={containerRef} style={{ position: 'absolute', left: 0, bottom: 0, width: '100%' }}>
+    <div {...props} ref={containerRef} style={{ ...sheetContainerStyles, ...style }}>
       {children}
     </div>
   )

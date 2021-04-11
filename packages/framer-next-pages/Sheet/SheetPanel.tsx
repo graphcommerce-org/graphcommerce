@@ -1,23 +1,11 @@
-import { motion, PanInfo, Point2D, useTransform } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
+import { motion, PanInfo, useTransform } from 'framer-motion'
+import React, { useEffect } from 'react'
 import DragIndicator from './DragIndicator'
-import SheetContainer from './SheetContainer'
 import { useSheetContext } from './SheetContext'
 import { INERTIA_ANIM, SPRING_ANIM } from './animation'
 import { nearestIndex } from './useSnapPoint'
-import useSnapPointBottom from './useSnapPointBottom'
 import useSnapPointVariants from './useSnapPointVariants'
-import windowSize from './windowSize'
-
-function velocityClampAxis(velocity: number, offset: number, clamp: number) {
-  return velocity < 0 ? Math.max(velocity, offset * clamp) : Math.min(velocity, offset * clamp)
-}
-function velocityClamp({ velocity, offset }: PanInfo, clamp = 2): Point2D {
-  return {
-    x: velocityClampAxis(velocity.x, offset.x, clamp),
-    y: velocityClampAxis(velocity.y, offset.y, clamp),
-  }
-}
+import { velocityClamp } from './utils'
 
 export default function SheetPanel(props: { children?: React.ReactNode; open: boolean }) {
   const { children, open } = props
@@ -33,15 +21,13 @@ export default function SheetPanel(props: { children?: React.ReactNode; open: bo
     await controls.start(`snapPoint${idx}`)
   }
 
-  const maxHeight = useTransform(useSnapPointBottom(), (v) => v - 40)
-  const variants = useSnapPointVariants()
-
+  const minHeight = useTransform(height, (h) => Math.max(0, h - 40))
   return (
-    <SheetContainer>
+    <>
       <motion.div
         variants={{
-          closed: () => ({ y: windowSize.height.get() + 100 }),
-          ...variants,
+          closed: () => ({ y: height.get() + 100 }),
+          ...useSnapPointVariants(),
         }}
         initial='closed'
         exit='closed'
@@ -75,11 +61,12 @@ export default function SheetPanel(props: { children?: React.ReactNode; open: bo
           flexDirection: 'column',
           willChange: `transform`,
           overflowY: 'auto',
+          minHeight,
           y,
         }}
       >
         {children}
       </motion.div>
-    </SheetContainer>
+    </>
   )
 }
