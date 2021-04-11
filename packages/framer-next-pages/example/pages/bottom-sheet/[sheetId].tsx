@@ -5,21 +5,26 @@ import SheetContainer from '@reachdigital/framer-next-pages/Sheet/SheetContainer
 import SheetContext from '@reachdigital/framer-next-pages/Sheet/SheetContext'
 import SheetPanel from '@reachdigital/framer-next-pages/Sheet/SheetPanel'
 import { SPRING_ANIM } from '@reachdigital/framer-next-pages/Sheet/animation'
-import { motion, useIsPresent } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { usePageRouter } from '../../../PageContext'
 import { data } from '../../components/Grid'
 
 function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { sheetId } = props
-  const isPresent = useIsPresent()
-
   const [expanded, setExpanded] = useState(true)
+  const router = useRouter()
+  const pageRouter = usePageRouter()
+
+  const isActive = router.asPath === pageRouter.asPath
 
   return (
-    <SheetContext snapPoints={[0, 300, 40, -100]}>
+    <SheetContext snapPoints={['top', 'bottom']}>
+      <SheetBackdrop />
       <SheetContainer>
-        <SheetPanel open={isPresent}>
+        <SheetPanel open={isActive} onSnap={(idx) => idx === 1 && router.back()}>
           {/* <StackDebug /> */}
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}
