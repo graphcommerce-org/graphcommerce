@@ -3,22 +3,37 @@ import React, { useEffect } from 'react'
 import DragIndicator from './DragIndicator'
 import { useSheetContext } from './SheetContext'
 import { INERTIA_ANIM, SPRING_ANIM } from './animation'
-import { nearestIndex } from './useSnapPoint'
+import { nearestSnapPointIndex } from './snapPoint'
 import useSnapPointVariants from './useSnapPointVariants'
 import { velocityClamp } from './utils'
+import windowSize from './windowSize'
 
-export default function SheetPanel(props: { children?: React.ReactNode; open: boolean }) {
-  const { children, open } = props
+type SheetPanelProps = {
+  children: React.ReactNode
+  open: boolean
+  onSnap?: (index: number) => void
+}
+export default function SheetPanel(props: SheetPanelProps) {
+  const { children, open, onSnap } = props
   const { y, height, snapPoints, controls } = useSheetContext()
+  const last = snapPoints.length - 1
 
+  // Open/close the panel when the height is calculated
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    controls.start(open ? `snapPoint0` : 'closed')
-  }, [open, controls])
+    let cancel: () => void
+    const init = () => {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      controls.start(open ? `snapPoint0` : `snapPoint${last}`)
+      cancel()
+    }
+    cancel = height.onChange(init)
+    return cancel
+  }, [open, controls, last, height])
 
   const onDragEnd = async (_: never, info: PanInfo) => {
-    const idx = nearestIndex(velocityClamp(info).y + y.get(), snapPoints, height)
-    await controls.start(`snapPoint${idx}`)
+    const index = nearestSnapPointIndex(velocityClamp(info).y + y.get(), snapPoints, height)
+    onSnap?.(index)
+    await controls.start(`snapPoint${index}`)
   }
 
   const minHeight = useTransform(height, (h) => Math.max(0, h - 40))
@@ -26,11 +41,11 @@ export default function SheetPanel(props: { children?: React.ReactNode; open: bo
     <>
       <motion.div
         variants={{
-          closed: () => ({ y: height.get() + 100 }),
+          closed: () => ({ y: windowSize.height.get() }),
           ...useSnapPointVariants(),
         }}
         initial='closed'
-        exit='closed'
+        exit={`snapPoint${last}`}
         transition={SPRING_ANIM}
         animate={controls}
         drag='y'
