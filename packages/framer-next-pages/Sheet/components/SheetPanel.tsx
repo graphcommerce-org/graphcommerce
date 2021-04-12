@@ -5,7 +5,7 @@ import useElementScroll from '../hooks/useElementScroll'
 import useMotionValueValue from '../hooks/useMotionValueValue'
 import useSheetContext from '../hooks/useSheetContext'
 import useSnapPointVariants from '../hooks/useSnapPointVariants'
-import { nearestSnapPointIndex } from '../snapPoint'
+import { nearestSnapPointIndex } from '../utils/snapPoint'
 import { SheetVariant } from '../types'
 import windowSize from '../utils/windowSize'
 
@@ -17,7 +17,7 @@ type DivProps = Omit<
 type Styles = 'header' | 'content'
 export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}`
 
-type SheetPanelProps = {
+export type SheetPanelProps = {
   /**
    * When replacing the header, You need to reimplement <SheetDragIndicator/>
    *

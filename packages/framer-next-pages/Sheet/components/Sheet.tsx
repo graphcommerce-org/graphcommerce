@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import sheetContext from '../context/sheetContext'
 import { SheetContext } from '../types'
 
-type SheetContextProps = {
+export type SheetContextProps = {
   children: React.ReactNode
   /**
    * Open/close the panel

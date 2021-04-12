@@ -1,5 +1,5 @@
 import { MotionValue } from 'framer-motion'
-import { SheetVariant, SnapPoint } from './components/Sheet'
+import { SnapPoint, SheetVariant } from '../types'
 
 export const snapPointToValue = (point: SnapPoint, contain: number, variant: SheetVariant) => {
   const inverse = ['left', 'top'].includes(variant)

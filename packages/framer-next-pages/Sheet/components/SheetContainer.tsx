@@ -6,7 +6,7 @@ import windowSize from '../utils/windowSize'
 
 export type SheetContainerClassKeys = 'container' | `container${SheetVariant}`
 
-type SheetContainerProps = {
+export type SheetContainerProps = {
   children: React.ReactNode
   styles?: Record<SheetContainerClassKeys, CSSProperties>
   classes?: Record<SheetContainerClassKeys, string>

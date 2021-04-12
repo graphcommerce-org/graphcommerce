@@ -8,7 +8,7 @@ type Axis = 'Y' | 'X'
 
 export type SheetDragIndicatorClassKeys = Styles | `${Styles}${Axis}`
 
-type SheetDragIndicatorProps = {
+export type SheetDragIndicatorProps = {
   styles?: Record<SheetDragIndicatorClassKeys, CSSProperties>
   classes?: Record<SheetDragIndicatorClassKeys, string>
 }

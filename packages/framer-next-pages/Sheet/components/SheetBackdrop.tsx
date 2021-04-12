@@ -4,7 +4,7 @@ import useSheetContext from '../hooks/useSheetContext'
 
 export type SheetBackdropClassKeys = 'backdrop'
 
-type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'> & {
+export type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'> & {
   styles?: Record<SheetBackdropClassKeys, CSSProperties>
   classes?: Record<SheetBackdropClassKeys, string>
 }

@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { SPRING_ANIM } from '@reachdigital/framer-next-pages/Sheet/animation'
-import Sheet from '@reachdigital/framer-next-pages/Sheet/components/Sheet'
-import SheetBackdrop from '@reachdigital/framer-next-pages/Sheet/components/SheetBackdrop'
-import SheetContainer from '@reachdigital/framer-next-pages/Sheet/components/SheetContainer'
-import SheetDragIndicator from '@reachdigital/framer-next-pages/Sheet/components/SheetDragIndicator'
-import SheetPanel from '@reachdigital/framer-next-pages/Sheet/components/SheetPanel'
-import styles from '@reachdigital/framer-next-pages/Sheet/styles'
-import { SheetVariant } from '@reachdigital/framer-next-pages/Sheet/types'
+import {
+  Sheet,
+  SheetBackdrop,
+  SheetContainer,
+  SheetDragIndicator,
+  SheetPanel,
+  SheetVariant,
+  styles,
+  SPRING_ANIM,
+} from '@reachdigital/framer-next-pages/Sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
