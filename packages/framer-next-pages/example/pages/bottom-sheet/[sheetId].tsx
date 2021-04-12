@@ -35,7 +35,6 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
       open={isActive}
       onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
       variant={variant}
-      snapPoints={['open', -200, 40, 'closed']}
     >
       <SheetBackdrop onTap={() => router.back()} styles={styles} />
       <SheetContainer styles={styles}>

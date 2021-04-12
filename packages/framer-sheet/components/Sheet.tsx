@@ -13,7 +13,8 @@ export type SheetContextProps = {
    * ```
    */
   open: boolean
-} & Pick<SheetContext, 'snapPoints' | 'variant' | 'onSnap'>
+} & Pick<SheetContext, 'variant' | 'onSnap'> &
+  Partial<Pick<SheetContext, 'snapPoints'>>
 
 export default function Sheet(props: SheetContextProps) {
   const { children, snapPoints = ['open', 'closed'], open, variant, onSnap } = props
