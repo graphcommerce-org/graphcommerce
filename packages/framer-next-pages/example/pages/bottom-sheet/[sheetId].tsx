@@ -26,10 +26,15 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   if (sheetId === '4') variant = 'left'
 
   return (
-    <SheetContext variant={variant} snapPoints={['open', -200, 40, 'closed']}>
+    <SheetContext
+      open={isActive}
+      onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
+      variant={variant}
+      snapPoints={['open', -200, 40, 'closed']}
+    >
       <SheetBackdrop onTap={() => router.back()} />
       <SheetContainer>
-        <SheetPanel open={isActive} onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}>
+        <SheetPanel>
           {/* <StackDebug /> */}
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}

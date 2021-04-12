@@ -1,5 +1,5 @@
 import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion'
-import React, { useContext, useRef } from 'react'
+import React, { useCallback, useContext, useEffect, useRef } from 'react'
 
 export type SheetVariant = 'top' | 'bottom' | 'left' | 'right'
 export type SnapPoint = 'open' | 'closed' | number
@@ -36,6 +36,8 @@ type SheetContextType = {
    * - Negative integer: pixels measured form the most top position of the sheet.
    */
   snapPoints: SnapPoint[]
+  /** @private */
+  onSnap?: (snapPoint: SnapPoint, index: number) => void
 }
 
 const sheetContext = React.createContext((undefined as unknown) as SheetContextType)
@@ -47,24 +49,45 @@ export function useSheetContext() {
 
 type SheetContextProps = {
   children: React.ReactNode
-  variant: SheetVariant
-  snapPoints?: SnapPoint[]
-}
+  /**
+   * Open/close the panel
+   *
+   * ```ts
+   * ;<SheetContext open={true | false} />
+   * ```
+   */
+  open: boolean
+} & Pick<SheetContextType, 'snapPoints' | 'variant' | 'onSnap'>
 
 export default function SheetContext(props: SheetContextProps) {
-  const { children, variant, snapPoints = ['open', 'closed'] } = props
+  const { children, snapPoints = ['open', 'closed'], open, variant, onSnap } = props
 
-  const size = useMotionValue<number>(0)
-  const maxSize = useMotionValue<number>(0)
-  const drag = useMotionValue<number>(0)
-  const controls = useAnimation()
-  const containerRef = useRef<HTMLDivElement>(null)
+  const context: SheetContextType = {
+    drag: useMotionValue<number>(0),
+    size: useMotionValue<number>(0),
+    maxSize: useMotionValue<number>(0),
+    controls: useAnimation(),
+    containerRef: useRef<HTMLDivElement>(null),
+    snapPoints,
+    variant,
+    onSnap,
+  }
 
-  return (
-    <sheetContext.Provider
-      value={{ variant, drag, size, maxSize, controls, snapPoints, containerRef }}
-    >
-      {children}
-    </sheetContext.Provider>
-  )
+  const last = snapPoints.length - 1
+
+  // Open/close the panel when the size is calculated
+  useEffect(() => {
+    let cancel: () => void
+    const init = (v: number) => {
+      if (v === 0) return
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      context.controls.start(open ? `snapPoint0` : `snapPoint${last}`)
+      cancel()
+    }
+    cancel = context.size.onChange(init)
+    init(context.size.get())
+    return cancel
+  }, [open, last, context.size, context.controls])
+
+  return <sheetContext.Provider value={context}>{children}</sheetContext.Provider>
 }
