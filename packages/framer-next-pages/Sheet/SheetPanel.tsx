@@ -1,7 +1,14 @@
-import { DraggableProps, motion, MotionProps, PanInfo, useTransform } from 'framer-motion'
+import {
+  DraggableProps,
+  HTMLMotionProps,
+  motion,
+  MotionProps,
+  PanInfo,
+  useTransform,
+} from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
-import DragIndicator from './DragIndicator'
 import { useSheetContext } from './SheetContext'
+import SheetDragIndicator from './SheetDragIndicator'
 import { INERTIA_ANIM, SPRING_ANIM } from './animation'
 import { nearestSnapPointIndex } from './snapPoint'
 import useSnapPointVariants from './useSnapPointVariants'
@@ -10,13 +17,52 @@ import useElementScroll from './utils/useElementScroll'
 import useMotionValueValue from './utils/useMotionValueValue'
 import windowSize from './windowSize'
 
+type DivProps = Omit<
+  HTMLMotionProps<'div'>,
+  'variants' | 'initial' | 'exit' | 'animate' | 'drag' | 'dragTransition' | 'onDragEnd'
+>
+
 type SheetPanelProps = {
+  /**
+   * Content of the panel
+   *
+   * ```ts
+   * ;<SheetPanel>Content here!</SheetPanel>
+   * ```
+   */
   children: React.ReactNode
+  /**
+   * Open/close the panel
+   *
+   * ```ts
+   * ;<SheetPanel open />
+   * ```
+   */
   open: boolean
+  /**
+   * When replacing the header, You need to reimplement <SheetDragIndicator/>
+   *
+   * ```ts
+   * ;<SheetPanel
+   *   header={
+   *     <>
+   *       Extra content
+   *       <SheetDragIndicator />
+   *     </>
+   *   }
+   * />
+   * ```
+   */
+  header?: React.ReactNode
+  /** Callback when dragging ends */
   onSnap?: (index: number) => void
+
+  headerProps?: DivProps
+  contentProps?: DivProps
 }
+
 export default function SheetPanel(props: SheetPanelProps) {
-  const { children, open, onSnap } = props
+  const { children, header, open, onSnap, contentProps, headerProps } = props
   const { y, height, maxHeight, snapPoints, controls } = useSheetContext()
   const last = snapPoints.length - 1
 
@@ -46,6 +92,7 @@ export default function SheetPanel(props: SheetPanelProps) {
   return (
     <>
       <motion.div
+        {...headerProps}
         {...dragProps}
         {...sharedProps}
         variants={{
@@ -60,29 +107,36 @@ export default function SheetPanel(props: SheetPanelProps) {
           borderTopRightRadius: '8px',
           borderTopLeftRadius: '8px',
           boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
-          flexDirection: 'row',
+          ...headerProps?.style,
+
+          /** There sometimes is a very small gap (<1px) between the header and the content */
+          marginBottom: -1,
+          borderBottom: '1px solid transparent',
+
+          /**
+           * `y` is shared between the header and the content and therefor all animations will
+           * automatically sync.
+           */
           willChange: `transform`,
-          height: 41,
-          marginBottom: -1, // todo: depending on which drawer
-          width: '100%',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           y,
         }}
       >
-        <DragIndicator />
+        {header || <SheetDragIndicator />}
       </motion.div>
       <motion.div
+        {...contentProps}
         {...sharedProps}
         {...(canDrag && dragProps)}
         ref={contentRef}
         style={{
           backgroundColor: '#fff',
-          willChange: `transform`,
+          ...contentProps?.style,
+
+          /** Overlfow handling, set a maxHeight and overflowY auto */
           overflowY: 'auto',
           maxHeight: useTransform(maxHeight, (h) => (h > 0 ? Math.max(0, h - 40) : 10000)),
+
+          willChange: `transform`,
           y,
         }}
       >

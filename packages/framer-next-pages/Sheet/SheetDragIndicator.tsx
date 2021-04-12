@@ -16,7 +16,7 @@ const indicator: MotionStyle = {
   backgroundColor: '#ddd',
 }
 
-export default function DragIndicator() {
+export default function SheetDragIndicator() {
   const { y, height } = useSheetContext()
 
   const vh = useTransform(useVelocity(height), (v) => v * -1)
@@ -34,9 +34,9 @@ export default function DragIndicator() {
   const rotateRight = useSpring(degRight, SPRING_ANIM)
 
   return (
-    <>
-      <motion.span style={{ ...indicator, translateX: 2, rotate: rotateLeft }} />
-      <motion.span style={{ ...indicator, translateX: -2, rotate: rotateRight }} />
-    </>
+    <div style={{ display: 'flex', height: 40, alignItems: 'center', justifyContent: 'center' }}>
+      <motion.div style={{ ...indicator, translateX: 2, rotate: rotateLeft }} />
+      <motion.div style={{ ...indicator, translateX: -2, rotate: rotateRight }} />
+    </div>
   )
 }

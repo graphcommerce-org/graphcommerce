@@ -10,7 +10,7 @@ import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } 
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { usePageRouter } from '../../../PageContext'
-import { data } from '../../components/Grid'
+import Grid, { data } from '../../components/Grid'
 
 function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const { sheetId } = props
@@ -40,47 +40,7 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
             animate={expanded ? 'expanded' : 'collapsed'}
             transition={SPRING_ANIM}
           >
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
-            <br /> content
+            <Grid />
           </motion.div>
           <div>{sheetId}</div>
         </SheetPanel>
