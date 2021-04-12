@@ -12,7 +12,7 @@ interface ScrollMotionValues {
   yMax: MotionValue<number>
 }
 
-function setProgress(offset: number, maxOffset: number, value: MotionValue) {
+const setProgress = (offset: number, maxOffset: number, value: MotionValue) => {
   value.set(!offset || !maxOffset ? 0 : offset / maxOffset)
 }
 
@@ -32,22 +32,15 @@ export default function useElementScroll(ref: RefObject<HTMLElement>): ScrollMot
 
     const updater = () => {
       if (!element) return
-      const {
-        scrollLeft,
-        scrollTop,
-        scrollWidth,
-        scrollHeight,
-        offsetWidth,
-        offsetHeight,
-      } = element
 
-      values.x.set(scrollLeft)
-      values.y.set(scrollTop)
-      values.xMax.set(scrollWidth - offsetWidth)
-      values.yMax.set(scrollHeight - offsetHeight)
+      values.x.set(element.scrollLeft)
+      values.y.set(element.scrollTop)
+      values.xMax.set(element.scrollWidth - element.offsetWidth)
+      values.yMax.set(element.scrollHeight - element.offsetHeight)
+
       // Set 0-1 progress
-      setProgress(scrollLeft, scrollWidth - offsetWidth, values.xProgress)
-      setProgress(scrollTop, scrollHeight - offsetHeight, values.yProgress)
+      setProgress(element.scrollLeft, element.scrollWidth - element.offsetWidth, values.xProgress)
+      setProgress(element.scrollTop, element.scrollHeight - element.offsetHeight, values.yProgress)
     }
 
     element.addEventListener('scroll', updater, { passive: true })
@@ -59,7 +52,7 @@ export default function useElementScroll(ref: RefObject<HTMLElement>): ScrollMot
       element.removeEventListener('scroll', updater)
       ro.disconnect()
     }
-  }, [])
+  }, [ref, values.x, values.xMax, values.xProgress, values.y, values.yMax, values.yProgress])
 
   return values
 }
