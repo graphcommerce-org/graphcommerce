@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/require-await */
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import SheetBackdrop from '@reachdigital/framer-next-pages/Sheet/SheetBackdrop'
-import SheetContainer from '@reachdigital/framer-next-pages/Sheet/SheetContainer'
-import SheetContext, { SheetVariant } from '@reachdigital/framer-next-pages/Sheet/SheetContext'
-import SheetPanel from '@reachdigital/framer-next-pages/Sheet/SheetPanel'
 import { SPRING_ANIM } from '@reachdigital/framer-next-pages/Sheet/animation'
+import Sheet from '@reachdigital/framer-next-pages/Sheet/components/Sheet'
+import SheetBackdrop from '@reachdigital/framer-next-pages/Sheet/components/SheetBackdrop'
+import SheetContainer from '@reachdigital/framer-next-pages/Sheet/components/SheetContainer'
+import SheetDragIndicator from '@reachdigital/framer-next-pages/Sheet/components/SheetDragIndicator'
+import SheetPanel from '@reachdigital/framer-next-pages/Sheet/components/SheetPanel'
 import styles from '@reachdigital/framer-next-pages/Sheet/styles'
+import { SheetVariant } from '@reachdigital/framer-next-pages/Sheet/types'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { usePageRouter } from '../../../PageContext'
-import SheetDragIndicator from '../../../Sheet/SheetDragIndicator'
 import Grid, { data } from '../../components/Grid'
 
 function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -28,7 +29,7 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   if (sheetId === '4') variant = 'left'
 
   return (
-    <SheetContext
+    <Sheet
       open={isActive}
       onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
       variant={variant}
@@ -37,7 +38,6 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
       <SheetBackdrop onTap={() => router.back()} styles={styles} />
       <SheetContainer styles={styles}>
         <SheetPanel styles={styles} header={<SheetDragIndicator styles={styles} />}>
-          {/* <StackDebug /> */}
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}
           </button>
@@ -57,7 +57,7 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
           <div>{sheetId}</div>
         </SheetPanel>
       </SheetContainer>
-    </SheetContext>
+    </Sheet>
   )
 }
 

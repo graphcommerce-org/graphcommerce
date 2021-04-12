@@ -1,7 +1,8 @@
 import React, { CSSProperties, useCallback } from 'react'
-import { SheetVariant, useSheetContext } from './SheetContext'
-import useIsomorphicLayoutEffect from './hooks/useIsomorphicLayoutEffect'
-import windowSize from './utils/windowSize'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
+import useSheetContext from '../hooks/useSheetContext'
+import { SheetVariant } from '../types'
+import windowSize from '../utils/windowSize'
 
 export type SheetContainerClassKeys = 'container' | `container${SheetVariant}`
 
@@ -17,7 +18,6 @@ type SheetContainerProps = {
  */
 export default function SheetContainer(props: SheetContainerProps) {
   const { children, styles, classes } = props
-
   const { variant, size, maxSize, containerRef } = useSheetContext()
 
   const length = ['top', 'bottom'].includes(variant) ? 'height' : 'width'

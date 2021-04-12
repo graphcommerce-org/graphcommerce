@@ -1,7 +1,7 @@
 import { motion, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { CSSProperties } from 'react'
-import { useSheetContext } from './SheetContext'
-import { SPRING_ANIM } from './animation'
+import { SPRING_ANIM } from '../animation'
+import useSheetContext from '../hooks/useSheetContext'
 
 type Styles = 'indicatorRoot' | 'indicator'
 type Axis = 'Y' | 'X'

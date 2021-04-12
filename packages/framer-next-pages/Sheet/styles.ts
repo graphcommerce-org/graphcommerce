@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react'
-import { SheetBackdropClassKeys } from './SheetBackdrop'
-import { SheetContainerClassKeys } from './SheetContainer'
-import { SheetDragIndicatorClassKeys } from './SheetDragIndicator'
-import { SheetPanelClasskey } from './SheetPanel'
+import { SheetBackdropClassKeys } from './components/SheetBackdrop'
+import { SheetContainerClassKeys } from './components/SheetContainer'
+import { SheetDragIndicatorClassKeys } from './components/SheetDragIndicator'
+import { SheetPanelClasskey } from './components/SheetPanel'
 
 type ClassKeys =
   | SheetDragIndicatorClassKeys

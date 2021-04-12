@@ -1,13 +1,13 @@
 import { HTMLMotionProps, motion, PanInfo, useTransform } from 'framer-motion'
 import React, { CSSProperties, useRef } from 'react'
-import { SheetVariant, useSheetContext } from './SheetContext'
-import SheetDragIndicator from './SheetDragIndicator'
-import { INERTIA_ANIM, SPRING_ANIM } from './animation'
-import useElementScroll from './hooks/useElementScroll'
-import useMotionValueValue from './hooks/useMotionValueValue'
-import useSnapPointVariants from './hooks/useSnapPointVariants'
-import { nearestSnapPointIndex } from './snapPoint'
-import windowSize from './utils/windowSize'
+import { INERTIA_ANIM, SPRING_ANIM } from '../animation'
+import useElementScroll from '../hooks/useElementScroll'
+import useMotionValueValue from '../hooks/useMotionValueValue'
+import useSheetContext from '../hooks/useSheetContext'
+import useSnapPointVariants from '../hooks/useSnapPointVariants'
+import { nearestSnapPointIndex } from '../snapPoint'
+import { SheetVariant } from '../types'
+import windowSize from '../utils/windowSize'
 
 type DivProps = Omit<
   HTMLMotionProps<'div'>,

@@ -1,6 +1,6 @@
 import { motion, MotionProps, MotionValue, useTransform } from 'framer-motion'
 import { CSSProperties } from 'react'
-import { useSheetContext } from './SheetContext'
+import useSheetContext from '../hooks/useSheetContext'
 
 export type SheetBackdropClassKeys = 'backdrop'
 
