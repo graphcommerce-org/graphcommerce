@@ -10,7 +10,7 @@ import React, { useEffect, useRef } from 'react'
 import { useSheetContext } from './SheetContext'
 import SheetDragIndicator from './SheetDragIndicator'
 import { INERTIA_ANIM, SPRING_ANIM } from './animation'
-import { nearestSnapPointIndex } from './snapPoint'
+import { nearestSnapPointIndex, SnapPoint } from './snapPoint'
 import useSnapPointVariants from './useSnapPointVariants'
 import { velocityClamp } from './utils'
 import useElementScroll from './utils/useElementScroll'
@@ -55,7 +55,7 @@ type SheetPanelProps = {
    */
   header?: React.ReactNode
   /** Callback when dragging ends */
-  onSnap?: (index: number) => void
+  onSnap?: (snapPoint: SnapPoint, index: number) => void
 
   headerProps?: DivProps
   contentProps?: DivProps
@@ -81,7 +81,7 @@ export default function SheetPanel(props: SheetPanelProps) {
   // Define the drag handling
   const onDragEnd = async (_: never, info: PanInfo) => {
     const index = nearestSnapPointIndex(velocityClamp(info).y + y.get(), snapPoints, height)
-    onSnap?.(index)
+    onSnap?.(snapPoints[index], index)
     await controls.start(`snapPoint${index}`)
   }
   const dragProps: DraggableProps = { drag: 'y', dragTransition: INERTIA_ANIM, onDragEnd }
