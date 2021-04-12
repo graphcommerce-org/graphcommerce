@@ -24,8 +24,9 @@ export default function Page(props: PageProps) {
    */
   if (!isPresent) top = scrollPos(currentHistoryIdx()).y - scrollPos(historyIdx).y
 
-  const position = active ? 'absolute' : 'fixed'
-  const pointerEvents = !active ? 'none' : undefined
+  const activePresent = active && isPresent
+  const position = activePresent ? 'absolute' : 'fixed'
+  const pointerEvents = activePresent ? undefined : 'none'
 
   return (
     <div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: '100%' }}>
