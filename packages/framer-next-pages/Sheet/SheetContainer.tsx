@@ -1,54 +1,22 @@
-import React, { CSSProperties, useCallback, useRef } from 'react'
+import React, { CSSProperties, useCallback } from 'react'
 import { SheetVariant, useSheetContext } from './SheetContext'
 import useIsomorphicLayoutEffect from './hooks/useIsomorphicLayoutEffect'
 import windowSize from './utils/windowSize'
 
-type Props = JSX.IntrinsicElements['div'] & { children: React.ReactNode }
+export type SheetContainerClassKeys = 'container' | `container${SheetVariant}`
 
-const styles: Record<'root' | `${SheetVariant}`, CSSProperties> = {
-  root: {
-    position: 'absolute',
-    maxWidth: '100%',
-    boxSizing: 'border-box',
-    maxHeight: '100%',
-    display: 'flex',
-  },
-  top: {
-    width: '100%',
-    left: 0,
-    top: 0,
-    paddingBottom: 24,
-    flexDirection: 'column-reverse',
-  },
-  bottom: {
-    width: '100%',
-    left: 0,
-    bottom: 0,
-    paddingTop: 24,
-    flexDirection: 'column',
-  },
-  left: {
-    height: '100%',
-    top: 0,
-    left: 0,
-    paddingRight: 24,
-    flexDirection: 'row-reverse',
-  },
-  right: {
-    height: '100%',
-    top: 0,
-    right: 0,
-    paddingLeft: 24,
-    flexDirection: 'row',
-  },
+type SheetContainerProps = {
+  children: React.ReactNode
+  styles?: Record<SheetContainerClassKeys, CSSProperties>
+  classes?: Record<SheetContainerClassKeys, string>
 }
 
 /**
  * SheetContainer is responsible for the layout constraints of the Sheet. Default: the
  * SheetContainer doesn't have a fixed height, but only a max-height.
  */
-export default function SheetContainer(props: Props) {
-  const { children, style } = props
+export default function SheetContainer(props: SheetContainerProps) {
+  const { children, styles, classes } = props
 
   const { variant, size, maxSize, containerRef } = useSheetContext()
 
@@ -77,7 +45,12 @@ export default function SheetContainer(props: Props) {
   useIsomorphicLayoutEffect(() => windowSize[axis].attach(calcMaxSize), [axis, calcMaxSize])
 
   return (
-    <div {...props} ref={containerRef} style={{ ...styles.root, ...styles[variant], ...style }}>
+    <div
+      {...props}
+      ref={containerRef}
+      style={{ ...styles?.container, ...styles?.[`container${variant}`] }}
+      className={`${classes?.container} ${classes?.[`container${variant}`]}`}
+    >
       {children}
     </div>
   )

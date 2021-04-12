@@ -1,6 +1,6 @@
-import { HTMLMotionProps, motion, MotionStyle, PanInfo, useTransform } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
-import { SheetVariant, SnapPoint, useSheetContext } from './SheetContext'
+import { HTMLMotionProps, motion, PanInfo, useTransform } from 'framer-motion'
+import React, { CSSProperties, useRef } from 'react'
+import { SheetVariant, useSheetContext } from './SheetContext'
 import SheetDragIndicator from './SheetDragIndicator'
 import { INERTIA_ANIM, SPRING_ANIM } from './animation'
 import useElementScroll from './hooks/useElementScroll'
@@ -13,6 +13,9 @@ type DivProps = Omit<
   HTMLMotionProps<'div'>,
   'variants' | 'initial' | 'exit' | 'animate' | 'drag' | 'dragTransition' | 'onDragEnd'
 >
+
+type Styles = 'header' | 'content'
+export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}`
 
 type SheetPanelProps = {
   /**
@@ -29,7 +32,7 @@ type SheetPanelProps = {
    * />
    * ```
    */
-  header?: React.ReactNode
+  header: React.ReactNode
 
   /**
    * Content of the panel
@@ -41,55 +44,13 @@ type SheetPanelProps = {
   children: React.ReactNode
   headerProps?: DivProps
   contentProps?: DivProps
-}
 
-type Styles = 'header' | 'content'
-const styles: Record<Styles | `${Styles}${SheetVariant}`, MotionStyle> = {
-  header: {
-    backgroundColor: '#fff',
-    boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
-    willChange: `transform`,
-  },
-  headertop: {
-    borderBottomRightRadius: '8px',
-    borderBottomLeftRadius: '8px',
-  },
-  headerbottom: {
-    borderTopRightRadius: '8px',
-    borderTopLeftRadius: '8px',
-
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginBottom: -1,
-    borderBottom: '1px solid transparent',
-  },
-  headerleft: {
-    borderTopRightRadius: '8px',
-    borderBottomRightRadius: '8px',
-
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginLeft: -1,
-    borderLeft: '1px solid transparent',
-  },
-  headerright: {
-    borderTopLeftRadius: '8px',
-    borderBottomLeftRadius: '8px',
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginRight: -1,
-    borderRight: '1px solid transparent',
-  },
-  content: {
-    backgroundColor: '#fff',
-    willChange: `transform`,
-    overflowY: 'auto',
-  },
-  contenttop: {},
-  contentbottom: {},
-  contentleft: {},
-  contentright: {},
+  styles?: Record<SheetPanelClasskey, CSSProperties>
+  classes?: Record<SheetPanelClasskey, string>
 }
 
 export default function SheetPanel(props: SheetPanelProps) {
-  const { header, children, contentProps, headerProps } = props
+  const { header, children, contentProps, headerProps, styles, classes } = props
   const {
     drag,
     size,
@@ -140,8 +101,8 @@ export default function SheetPanel(props: SheetPanelProps) {
         exit={`snapPoint${last}`}
         animate={controls}
         style={{
-          ...styles.header,
-          ...styles[`header${variant}`],
+          ...styles?.header,
+          ...styles?.[`header${variant}`],
           ...headerProps?.style,
           /**
            * `x|y` is shared between the header and the content and therefor all animations will
@@ -149,8 +110,9 @@ export default function SheetPanel(props: SheetPanelProps) {
            */
           [axis]: drag,
         }}
+        className={`${classes?.header} ${classes?.[`header${variant}`]}`}
       >
-        {header || <SheetDragIndicator />}
+        {header}
       </motion.div>
       <motion.div
         {...contentProps}
@@ -161,13 +123,14 @@ export default function SheetPanel(props: SheetPanelProps) {
         transition={SPRING_ANIM}
         ref={contentRef}
         style={{
-          ...styles.content,
-          ...styles[`content${variant}`],
+          ...styles?.content,
+          ...styles?.[`content${variant}`],
           ...contentProps?.style,
 
           [axis]: drag,
           ...(axis === 'y' && { maxHeight }),
         }}
+        className={`${classes?.content} ${classes?.[`content${variant}`]}`}
       >
         {children}
       </motion.div>

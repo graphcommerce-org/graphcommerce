@@ -1,27 +1,20 @@
-import {
-  motion,
-  MotionStyle,
-  MotionValue,
-  useSpring,
-  useTransform,
-  useVelocity,
-} from 'framer-motion'
+import { motion, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
+import { CSSProperties } from 'react'
 import { useSheetContext } from './SheetContext'
 import { SPRING_ANIM } from './animation'
 
-type Styles = 'root' | 'indicator'
+type Styles = 'indicatorRoot' | 'indicator'
 type Axis = 'Y' | 'X'
 
-const styles: Record<Styles | `${Styles}${Axis}`, MotionStyle> = {
-  root: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  rootY: { height: 40 },
-  rootX: { width: 40 },
-  indicator: { borderRadius: 99, backgroundColor: '#ddd' },
-  indicatorY: { width: 18, height: 4 },
-  indicatorX: { width: 4, height: 18 },
+export type SheetDragIndicatorClassKeys = Styles | `${Styles}${Axis}`
+
+type SheetDragIndicatorProps = {
+  styles?: Record<SheetDragIndicatorClassKeys, CSSProperties>
+  classes?: Record<SheetDragIndicatorClassKeys, string>
 }
 
-export default function SheetDragIndicator() {
+export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
+  const { styles, classes } = props
   const { drag, size, variant } = useSheetContext()
 
   const axis: Axis = ['top', 'bottom'].includes(variant) ? 'Y' : 'X'
@@ -39,11 +32,29 @@ export default function SheetDragIndicator() {
   const rotateLeft = useSpring(degLeft, SPRING_ANIM)
   const rotateRight = useSpring(degRight, SPRING_ANIM)
 
-  const indicator = { ...styles.indicator, ...styles[`indicator${axis}`] }
   return (
-    <div style={{ ...styles.root, ...styles[`root${axis}`] }}>
-      <motion.div style={{ ...indicator, translateX: 2, rotate: rotateLeft }} />
-      <motion.div style={{ ...indicator, translateX: -2, rotate: rotateRight }} />
+    <div
+      style={{ ...styles?.indicatorRoot, ...styles?.[`indicatorRoot${axis}`] }}
+      className={`${classes?.indicatorRoot} ${classes?.[`indicatorRoot${axis}`]}`}
+    >
+      <motion.div
+        style={{
+          ...styles?.indicator,
+          ...styles?.[`indicator${axis}`],
+          translateX: 2,
+          rotate: rotateLeft,
+        }}
+        className={`${classes?.indicator} ${classes?.[`indicator${axis}`]}`}
+      />
+      <motion.div
+        style={{
+          ...styles?.indicator,
+          ...styles?.[`indicator${axis}`],
+          translateX: -2,
+          rotate: rotateRight,
+        }}
+        className={`${classes?.indicator} ${classes?.[`indicator${axis}`]}`}
+      />
     </div>
   )
 }

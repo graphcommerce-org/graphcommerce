@@ -5,11 +5,13 @@ import SheetContainer from '@reachdigital/framer-next-pages/Sheet/SheetContainer
 import SheetContext, { SheetVariant } from '@reachdigital/framer-next-pages/Sheet/SheetContext'
 import SheetPanel from '@reachdigital/framer-next-pages/Sheet/SheetPanel'
 import { SPRING_ANIM } from '@reachdigital/framer-next-pages/Sheet/animation'
+import styles from '@reachdigital/framer-next-pages/Sheet/styles'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { usePageRouter } from '../../../PageContext'
+import SheetDragIndicator from '../../../Sheet/SheetDragIndicator'
 import Grid, { data } from '../../components/Grid'
 
 function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -32,9 +34,9 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
       variant={variant}
       snapPoints={['open', -200, 40, 'closed']}
     >
-      <SheetBackdrop onTap={() => router.back()} />
-      <SheetContainer>
-        <SheetPanel>
+      <SheetBackdrop onTap={() => router.back()} styles={styles} />
+      <SheetContainer styles={styles}>
+        <SheetPanel styles={styles} header={<SheetDragIndicator styles={styles} />}>
           {/* <StackDebug /> */}
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}

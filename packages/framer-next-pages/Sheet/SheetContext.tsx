@@ -1,5 +1,5 @@
 import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion'
-import React, { useCallback, useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 
 export type SheetVariant = 'top' | 'bottom' | 'left' | 'right'
 export type SnapPoint = 'open' | 'closed' | number

@@ -1,23 +1,16 @@
-import { motion, MotionProps, MotionStyle, MotionValue, useTransform } from 'framer-motion'
+import { motion, MotionProps, MotionValue, useTransform } from 'framer-motion'
+import { CSSProperties } from 'react'
 import { useSheetContext } from './SheetContext'
 
-const styles: MotionStyle = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  backgroundColor: 'rgba(51, 51, 51, 0.5)',
-  touchAction: 'none', // Disable iOS body scrolling
-  willChange: 'opacity',
-  border: 0,
-  padding: 0,
+export type SheetBackdropClassKeys = 'backdrop'
+
+type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'> & {
+  styles?: Record<SheetBackdropClassKeys, CSSProperties>
+  classes?: Record<SheetBackdropClassKeys, string>
 }
 
-type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'>
-
 export default function SheetBackdrop(props: SheetBackdropProps) {
-  const { style, onTap } = props
+  const { style, onTap, styles, classes } = props
   const { drag, size, variant } = useSheetContext()
 
   const sign = ['top', 'left'].includes(variant) ? -1 : 1
@@ -31,6 +24,12 @@ export default function SheetBackdrop(props: SheetBackdropProps) {
 
   const Component = onTap ? motion.button : motion.div
   return (
-    <Component onTap={onTap} type='button' {...props} style={{ ...styles, ...style, opacity }} />
+    <Component
+      onTap={onTap}
+      type='button'
+      {...props}
+      style={{ ...styles?.backdrop, ...style, opacity }}
+      className={classes?.backdrop}
+    />
   )
 }
