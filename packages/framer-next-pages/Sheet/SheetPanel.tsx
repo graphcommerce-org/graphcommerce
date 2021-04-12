@@ -70,12 +70,14 @@ export default function SheetPanel(props: SheetPanelProps) {
   // Open/close the panel when the size is calculated
   useEffect(() => {
     let cancel: () => void
-    const init = () => {
+    const init = (v: number) => {
+      if (v === 0) return
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       controls.start(open ? `snapPoint0` : `snapPoint${last}`)
       cancel()
     }
     cancel = size.onChange(init)
+    init(size.get())
     return cancel
   }, [open, controls, last, size])
 
