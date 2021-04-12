@@ -9,7 +9,7 @@ import {
   SheetVariant,
   styles,
   SPRING_ANIM,
-} from '@reachdigital/framer-next-pages/Sheet'
+} from '@reachdigital/framer-sheet'
 import { motion } from 'framer-motion'
 import { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/router'

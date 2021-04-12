@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@reachdigital/framer-next-pages": "^0.1.0",
+    "@reachdigital/framer-sheet": "^0.1.0",
     "@reachdigital/next-config": "0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "framer-motion": "^4.1.3",
