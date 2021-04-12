@@ -1,18 +1,14 @@
-import { HTMLMotionProps, motion, PanInfo, useTransform } from 'framer-motion'
+import { motion, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import React, { CSSProperties, useRef } from 'react'
 import { INERTIA_ANIM, SPRING_ANIM } from '../animation'
 import useElementScroll from '../hooks/useElementScroll'
+import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import useMotionValueValue from '../hooks/useMotionValueValue'
 import useSheetContext from '../hooks/useSheetContext'
 import useSnapPointVariants from '../hooks/useSnapPointVariants'
-import { nearestSnapPointIndex } from '../utils/snapPoint'
 import { SheetVariant } from '../types'
+import { nearestSnapPointIndex } from '../utils/snapPoint'
 import windowSize from '../utils/windowSize'
-
-type DivProps = Omit<
-  HTMLMotionProps<'div'>,
-  'variants' | 'initial' | 'exit' | 'animate' | 'drag' | 'dragTransition' | 'onDragEnd'
->
 
 type Styles = 'header' | 'content'
 export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}`
@@ -42,15 +38,13 @@ export type SheetPanelProps = {
    * ```
    */
   children: React.ReactNode
-  headerProps?: DivProps
-  contentProps?: DivProps
 
   styles?: Record<SheetPanelClasskey, CSSProperties>
   classes?: Record<SheetPanelClasskey, string>
 }
 
 export default function SheetPanel(props: SheetPanelProps) {
-  const { header, children, contentProps, headerProps, styles, classes } = props
+  const { header, children, styles, classes } = props
   const {
     drag,
     size,
@@ -79,14 +73,25 @@ export default function SheetPanel(props: SheetPanelProps) {
     await controls.start(`snapPoint${index}`)
   }
   const contentRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const headerHeight = useMotionValue(0)
 
-  const maxHeight = useTransform(maxSize, (v) => (v > 0 ? Math.max(0, v - 40) : 10000))
+  const maxHeight = useTransform([maxSize, headerHeight] as MotionValue[], ([v, h]: number[]) =>
+    v > 0 ? Math.max(0, v - h) : 10000,
+  )
   const canDrag = useMotionValueValue(useElementScroll(contentRef).yMax, (v) => v === 0)
+
+  useIsomorphicLayoutEffect(() => {
+    if (!containerRef.current) return undefined
+    const ro = new ResizeObserver(([entry]) => headerHeight.set(entry.contentRect.height))
+    ro.observe(containerRef.current)
+    return ro.disconnect
+  }, [containerRef, headerHeight])
 
   return (
     <>
       <motion.div
-        {...headerProps}
+        ref={headerRef}
         drag={axis}
         dragDirectionLock
         onDragEnd={onDragEnd}
@@ -103,7 +108,6 @@ export default function SheetPanel(props: SheetPanelProps) {
         style={{
           ...styles?.header,
           ...styles?.[`header${variant}`],
-          ...headerProps?.style,
           /**
            * `x|y` is shared between the header and the content and therefor all animations will
            * automatically sync.
@@ -115,7 +119,6 @@ export default function SheetPanel(props: SheetPanelProps) {
         {header}
       </motion.div>
       <motion.div
-        {...contentProps}
         drag={(axis !== 'y' || canDrag) && axis}
         dragDirectionLock
         onDragEnd={onDragEnd}
@@ -125,8 +128,6 @@ export default function SheetPanel(props: SheetPanelProps) {
         style={{
           ...styles?.content,
           ...styles?.[`content${variant}`],
-          ...contentProps?.style,
-
           [axis]: drag,
           ...(axis === 'y' && { maxHeight }),
         }}
