@@ -41,15 +41,13 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         Add to Cart
       </Button>
 
-      <MessageSnackbarLoader>
-        <AddToCartSnackbar
-          message={product}
-          color='primary'
-          open={formState.isSubmitSuccessful && !error?.message}
-          variant='rounded'
-          size='large'
-          closeButton
-        />
+      <MessageSnackbarLoader
+        open={formState.isSubmitSuccessful && !error?.message}
+        color='primary'
+        variant='rounded'
+        size='large'
+      >
+        <AddToCartSnackbar message={product} />
       </MessageSnackbarLoader>
 
       <ApolloErrorAlert error={error} />

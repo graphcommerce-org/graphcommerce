@@ -86,15 +86,13 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         </Button>
       </div>
 
-      <MessageSnackbarLoader>
-        <AddToCartSnackbar
-          message={product}
-          color='primary'
-          open={formState.isSubmitSuccessful && !error?.message}
-          variant='rounded'
-          size='large'
-          closeButton
-        />
+      <MessageSnackbarLoader
+        open={formState.isSubmitSuccessful && !error?.message}
+        color='primary'
+        variant='rounded'
+        size='large'
+      >
+        <AddToCartSnackbar message={product} />
       </MessageSnackbarLoader>
     </form>
   )
