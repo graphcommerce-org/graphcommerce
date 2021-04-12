@@ -1,6 +1,6 @@
 import { MotionValue } from 'framer-motion'
 import { useState } from 'react'
-import { useIsomorphicLayoutEffect } from '.'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
 /** Get the MotionValue's value and return the value as a state update. */
 export default function useMotionValueValue<T, R>(

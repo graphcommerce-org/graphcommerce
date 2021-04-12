@@ -1,7 +1,7 @@
 import { motionValue, MotionValue } from 'framer-motion'
 import { RefObject } from 'react'
 import useConstant from './useConstant'
-import { useIsomorphicLayoutEffect } from '.'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
 interface ScrollMotionValues {
   x: MotionValue<number>

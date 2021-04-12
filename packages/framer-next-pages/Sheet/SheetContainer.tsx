@@ -1,18 +1,46 @@
 import React, { CSSProperties, useCallback, useRef } from 'react'
-import { useSheetContext } from './SheetContext'
-import { useIsomorphicLayoutEffect } from './utils'
-import windowSize from './windowSize'
+import { SheetVariant, useSheetContext } from './SheetContext'
+import useIsomorphicLayoutEffect from './hooks/useIsomorphicLayoutEffect'
+import windowSize from './utils/windowSize'
 
 type Props = JSX.IntrinsicElements['div'] & { children: React.ReactNode }
 
-const sheetContainerStyles: CSSProperties = {
-  position: 'absolute',
-  left: 0,
-  bottom: 0,
-  width: '100%',
-  boxSizing: 'border-box',
-  maxHeight: '100%',
-  paddingTop: `24px`,
+const styles: Record<'root' | `${SheetVariant}`, CSSProperties> = {
+  root: {
+    position: 'absolute',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+    maxHeight: '100%',
+    display: 'flex',
+  },
+  top: {
+    width: '100%',
+    left: 0,
+    top: 0,
+    paddingBottom: 24,
+    flexDirection: 'column-reverse',
+  },
+  bottom: {
+    width: '100%',
+    left: 0,
+    bottom: 0,
+    paddingTop: 24,
+    flexDirection: 'column',
+  },
+  left: {
+    height: '100%',
+    top: 0,
+    left: 0,
+    paddingRight: 24,
+    flexDirection: 'row-reverse',
+  },
+  right: {
+    height: '100%',
+    top: 0,
+    right: 0,
+    paddingLeft: 24,
+    flexDirection: 'row',
+  },
 }
 
 /**
@@ -21,32 +49,35 @@ const sheetContainerStyles: CSSProperties = {
  */
 export default function SheetContainer(props: Props) {
   const { children, style } = props
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { height, maxHeight } = useSheetContext()
 
-  const calcMaxHeight = useCallback(() => {
+  const { variant, size, maxSize, containerRef } = useSheetContext()
+
+  const length = ['top', 'bottom'].includes(variant) ? 'height' : 'width'
+  const axis = ['top', 'bottom'].includes(variant) ? 'y' : 'x'
+
+  const calcMaxSize = useCallback(() => {
     const el = containerRef.current
     if (!el) return
 
-    const parentHeight = el.parentElement?.getBoundingClientRect().height ?? 0
-    const offset = el.getBoundingClientRect().height - height.get()
-    maxHeight.set(parentHeight - offset)
-  }, [height, maxHeight])
+    const parentSize = el.parentElement?.getBoundingClientRect()[length] ?? 0
+    const offset = el.getBoundingClientRect()[length] - size.get()
+    maxSize.set(parentSize - offset)
+  }, [containerRef, length, size, maxSize])
 
   useIsomorphicLayoutEffect(() => {
     if (!containerRef.current) return undefined
     const ro = new ResizeObserver(([entry]) => {
-      height.set(entry.contentRect.height)
-      calcMaxHeight()
+      size.set(entry.contentRect[length])
+      calcMaxSize()
     })
     ro.observe(containerRef.current)
     return () => ro.disconnect()
-  }, [calcMaxHeight, height])
+  }, [calcMaxSize, length, size])
 
-  useIsomorphicLayoutEffect(() => windowSize.height.attach(calcMaxHeight), [calcMaxHeight])
+  useIsomorphicLayoutEffect(() => windowSize[axis].attach(calcMaxSize), [axis, calcMaxSize])
 
   return (
-    <div {...props} ref={containerRef} style={{ ...sheetContainerStyles, ...style }}>
+    <div {...props} ref={containerRef} style={{ ...styles.root, ...styles[variant], ...style }}>
       {children}
     </div>
   )

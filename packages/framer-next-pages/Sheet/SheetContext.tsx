@@ -1,20 +1,19 @@
-import {
-  AnimationControls,
-  MotionValue,
-  useAnimation,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion'
-import React, { useContext } from 'react'
-import { SnapPoint, snapPointToValue } from './snapPoint'
+import { AnimationControls, MotionValue, useAnimation, useMotionValue } from 'framer-motion'
+import React, { useContext, useRef } from 'react'
+
+export type SheetVariant = 'top' | 'bottom' | 'left' | 'right'
+export type SnapPoint = 'open' | 'closed' | number
 
 type SheetContextType = {
-  /** `y-position` of the SheetPanel */
-  y: MotionValue<number>
-  /** `height` of the SheetContainer */
-  height: MotionValue<number>
-  /** `maxHeight` determined by the SheetContainer */
-  maxHeight: MotionValue<number>
+  variant: SheetVariant
+  /** `y`/ `x`-position of the Sheet */
+  drag: MotionValue<number>
+  /** `height`/ `width` of the SheetContainer */
+  size: MotionValue<number>
+  /** `maxHeight`/ `maxWidth` determined by the SheetContainer */
+  maxSize: MotionValue<number>
+
+  containerRef: React.RefObject<HTMLDivElement>
 
   /**
    * Animate to a snapPoint:
@@ -46,22 +45,26 @@ export function useSheetContext() {
   return useContext(sheetContext)
 }
 
-type SheetContextProps = { children?: React.ReactNode; snapPoints?: SnapPoint[] }
+type SheetContextProps = {
+  children: React.ReactNode
+  variant: SheetVariant
+  snapPoints?: SnapPoint[]
+}
 
 export default function SheetContext(props: SheetContextProps) {
-  const { children, snapPoints = ['top', 'bottom'] } = props
+  const { children, variant, snapPoints = ['open', 'closed'] } = props
 
-  const height = useMotionValue<number>(0)
-  const maxHeight = useMotionValue<number>(0)
-  const yInitial = useTransform(height, (h) => snapPointToValue(snapPoints[0], h))
+  const size = useMotionValue<number>(0)
+  const maxSize = useMotionValue<number>(0)
+  const drag = useMotionValue<number>(0)
+  const controls = useAnimation()
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  const context = {
-    y: useMotionValue<number>(yInitial.get()),
-    height,
-    maxHeight,
-    controls: useAnimation(),
-    snapPoints,
-  }
-
-  return <sheetContext.Provider value={context}>{children}</sheetContext.Provider>
+  return (
+    <sheetContext.Provider
+      value={{ variant, drag, size, maxSize, controls, snapPoints, containerRef }}
+    >
+      {children}
+    </sheetContext.Provider>
+  )
 }

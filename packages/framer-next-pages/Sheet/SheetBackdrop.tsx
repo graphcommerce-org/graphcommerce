@@ -10,20 +10,27 @@ const styles: MotionStyle = {
   backgroundColor: 'rgba(51, 51, 51, 0.5)',
   touchAction: 'none', // Disable iOS body scrolling
   willChange: 'opacity',
+  border: 0,
+  padding: 0,
 }
 
 type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'>
 
 export default function SheetBackdrop(props: SheetBackdropProps) {
-  const { style } = props
-  const { y, height } = useSheetContext()
+  const { style, onTap } = props
+  const { drag, size, variant } = useSheetContext()
+
+  const sign = ['top', 'left'].includes(variant) ? -1 : 1
 
   // We animate the opacity of the Backdrop based on the position of the sheet
-  const opacity = useTransform([y, height] as MotionValue[], ([yv, hv]: number[]) => {
-    if (hv === 0) return 0
-    if (yv === 0) return 1
-    return 1 - yv / hv
+  const opacity = useTransform([drag, size] as MotionValue[], ([dragv, sizev]: number[]) => {
+    if (sizev === 0) return 0
+    if (dragv === 0) return 1
+    return 1 - (dragv / sizev) * sign
   })
 
-  return <motion.div {...props} style={{ ...styles, ...style, opacity }} />
+  const Component = onTap ? motion.button : motion.div
+  return (
+    <Component onTap={onTap} type='button' {...props} style={{ ...styles, ...style, opacity }} />
+  )
 }

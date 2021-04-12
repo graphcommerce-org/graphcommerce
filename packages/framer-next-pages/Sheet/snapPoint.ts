@@ -1,23 +1,30 @@
 import { MotionValue } from 'framer-motion'
+import { SheetVariant, SnapPoint } from './SheetContext'
 
-export type SnapPoint = 'top' | 'bottom' | number
+export const snapPointToValue = (point: SnapPoint, contain: number, variant: SheetVariant) => {
+  const inverse = ['left', 'top'].includes(variant)
+  if (point === 'open') return 0
 
-export const snapPointToValue = (snapPoint: SnapPoint, containerHeight: number) => {
-  if (snapPoint === 'top') return 0
-  if (snapPoint === 'bottom') return containerHeight + 100
-  return Math.max(0, snapPoint > 0 ? containerHeight - snapPoint : -snapPoint)
+  if (!inverse) {
+    if (point === 'closed') return contain + 100
+    return Math.max(0, point > 0 ? contain - point : -point)
+  }
+
+  if (point === 'closed') return -contain - 100
+  return Math.min(0, point < 0 ? point : -contain + point)
 }
 
 export function nearestSnapPointIndex(
-  y: number,
+  size: number,
   snapPoints: SnapPoint[],
   height: MotionValue<number>,
+  variant: SheetVariant,
 ) {
-  const snapPointsPx = snapPoints.map((point) => snapPointToValue(point, height.get()))
+  const snapPointsPx = snapPoints.map((point) => snapPointToValue(point, height.get(), variant))
   return snapPointsPx.indexOf(
     snapPoints.reduce<number>((prev, point) => {
-      const pointValue = snapPointToValue(point, height.get())
-      return Math.abs(pointValue - y) < Math.abs(prev - y) ? pointValue : prev
+      const pointValue = snapPointToValue(point, height.get(), variant)
+      return Math.abs(pointValue - size) < Math.abs(prev - size) ? pointValue : prev
     }, Infinity),
   )
 }

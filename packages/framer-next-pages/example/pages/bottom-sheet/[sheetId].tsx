@@ -2,7 +2,7 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import SheetBackdrop from '@reachdigital/framer-next-pages/Sheet/SheetBackdrop'
 import SheetContainer from '@reachdigital/framer-next-pages/Sheet/SheetContainer'
-import SheetContext from '@reachdigital/framer-next-pages/Sheet/SheetContext'
+import SheetContext, { SheetVariant } from '@reachdigital/framer-next-pages/Sheet/SheetContext'
 import SheetPanel from '@reachdigital/framer-next-pages/Sheet/SheetPanel'
 import { SPRING_ANIM } from '@reachdigital/framer-next-pages/Sheet/animation'
 import { motion } from 'framer-motion'
@@ -20,11 +20,16 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
 
   const isActive = router.asPath === pageRouter.asPath
 
+  let variant: SheetVariant = 'top'
+  if (sheetId === '2') variant = 'right'
+  if (sheetId === '3') variant = 'bottom'
+  if (sheetId === '4') variant = 'left'
+
   return (
-    <SheetContext snapPoints={['top', 'bottom']}>
-      <SheetBackdrop />
+    <SheetContext variant={variant} snapPoints={['open', -200, 40, 'closed']}>
+      <SheetBackdrop onTap={() => router.back()} />
       <SheetContainer>
-        <SheetPanel open={isActive} onSnap={(snapPoint) => snapPoint === 'bottom' && router.back()}>
+        <SheetPanel open={isActive} onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}>
           {/* <StackDebug /> */}
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}
