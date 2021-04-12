@@ -13,6 +13,8 @@ type SheetContextType = {
   y: MotionValue<number>
   /** `height` of the SheetContainer */
   height: MotionValue<number>
+  /** `maxHeight` determined by the SheetContainer */
+  maxHeight: MotionValue<number>
 
   /**
    * Animate to a snapPoint:
@@ -50,11 +52,13 @@ export default function SheetContext(props: SheetContextProps) {
   const { children, snapPoints = ['top', 'bottom'] } = props
 
   const height = useMotionValue<number>(0)
+  const maxHeight = useMotionValue<number>(0)
   const yInitial = useTransform(height, (h) => snapPointToValue(snapPoints[0], h))
 
   const context = {
     y: useMotionValue<number>(yInitial.get()),
     height,
+    maxHeight,
     controls: useAnimation(),
     snapPoints,
   }

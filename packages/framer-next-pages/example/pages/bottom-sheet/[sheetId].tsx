@@ -21,10 +21,10 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
   const isActive = router.asPath === pageRouter.asPath
 
   return (
-    <SheetContext snapPoints={['top', 'bottom']}>
+    <SheetContext snapPoints={['top', 40, 'bottom']}>
       <SheetBackdrop />
       <SheetContainer>
-        <SheetPanel open={isActive} onSnap={(idx) => idx === 1 && router.back()}>
+        <SheetPanel open={isActive} onSnap={(idx) => idx === 2 && router.back()}>
           {/* <StackDebug /> */}
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}

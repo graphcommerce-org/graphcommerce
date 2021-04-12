@@ -1,5 +1,7 @@
-import React, { CSSProperties, useEffect, useRef } from 'react'
+import React, { CSSProperties, useCallback, useRef } from 'react'
 import { useSheetContext } from './SheetContext'
+import { useIsomorphicLayoutEffect } from './utils'
+import windowSize from './windowSize'
 
 type Props = JSX.IntrinsicElements['div'] & { children: React.ReactNode }
 
@@ -20,14 +22,28 @@ const sheetContainerStyles: CSSProperties = {
 export default function SheetContainer(props: Props) {
   const { children, style } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  const { height } = useSheetContext()
+  const { height, maxHeight } = useSheetContext()
 
-  useEffect(() => {
+  const calcMaxHeight = useCallback(() => {
+    const el = containerRef.current
+    if (!el) return
+
+    const parentHeight = el.parentElement?.getBoundingClientRect().height ?? 0
+    const offset = el.getBoundingClientRect().height - height.get()
+    maxHeight.set(parentHeight - offset)
+  }, [height, maxHeight])
+
+  useIsomorphicLayoutEffect(() => {
     if (!containerRef.current) return undefined
-    const ro = new ResizeObserver(([entry]) => height.set(entry.contentRect.height))
+    const ro = new ResizeObserver(([entry]) => {
+      height.set(entry.contentRect.height)
+      calcMaxHeight()
+    })
     ro.observe(containerRef.current)
     return () => ro.disconnect()
-  }, [height])
+  }, [calcMaxHeight, height])
+
+  useIsomorphicLayoutEffect(() => windowSize.height.attach(calcMaxHeight), [calcMaxHeight])
 
   return (
     <div {...props} ref={containerRef} style={{ ...sheetContainerStyles, ...style }}>
