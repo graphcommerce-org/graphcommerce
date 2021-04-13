@@ -99,33 +99,18 @@ const styles: Styles<ClassKeys> = {
   headertop: {
     borderBottomRightRadius: '8px',
     borderBottomLeftRadius: '8px',
-
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginTop: -1,
-    borderTop: '1px solid transparent',
   },
   headerbottom: {
     borderTopRightRadius: '8px',
     borderTopLeftRadius: '8px',
-
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginBottom: -1,
-    borderBottom: '1px solid transparent',
   },
   headerleft: {
     borderTopRightRadius: '8px',
     borderBottomRightRadius: '8px',
-
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginLeft: -1,
-    borderLeft: '1px solid transparent',
   },
   headerright: {
     borderTopLeftRadius: '8px',
     borderBottomLeftRadius: '8px',
-    /** There sometimes is a very small gap (<1px) between the header and the content */
-    marginRight: -1,
-    borderRight: '1px solid transparent',
   },
   content: {
     backgroundColor: '#fff',

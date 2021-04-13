@@ -115,6 +115,10 @@ export default function SheetPanel(props: SheetPanelProps) {
            * automatically sync.
            */
           [axis]: drag,
+
+          /** There sometimes is a very small gap (<1px) between the header and the content */
+          [`margin-${variant}`]: -1,
+          [`border-${variant}`]: '1px solid transparent',
         }}
       >
         {header}
