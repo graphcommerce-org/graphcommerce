@@ -2,12 +2,11 @@ import clsx from 'clsx'
 import { m, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
+import { SheetVariant } from '../types'
 import { Styled } from '../utils/styled'
 
 type Styles = 'indicatorRoot' | 'indicator'
-type Axis = 'Y' | 'X'
-
-export type SheetDragIndicatorClassKeys = Styles | `${Styles}${Axis}`
+export type SheetDragIndicatorClassKeys = Styles | `${Styles}${SheetVariant}`
 
 export type SheetDragIndicatorProps = Styled<SheetDragIndicatorClassKeys>
 
@@ -15,7 +14,8 @@ export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
   const { styles, classes } = props
   const { drag, size, variant } = useSheetContext()
 
-  const axis: Axis = ['top', 'bottom'].includes(variant) ? 'Y' : 'X'
+  const axis = ['top', 'bottom'].includes(variant) ? 'Y' : 'X'
+
   const vsize = useTransform(useVelocity(size), (v) => v * -1)
   const vdrag = useVelocity(drag)
 
@@ -32,24 +32,24 @@ export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
 
   return (
     <div
-      className={clsx(classes?.indicatorRoot, classes?.[`indicatorRoot${axis}`])}
-      style={{ ...styles?.indicatorRoot, ...styles?.[`indicatorRoot${axis}`] }}
+      className={clsx(classes?.indicatorRoot, classes?.[`indicatorRoot${variant}`])}
+      style={{ ...styles?.indicatorRoot, ...styles?.[`indicatorRoot${variant}`] }}
     >
       <m.div
-        className={clsx(classes?.indicator, classes?.[`indicator${axis}`])}
+        className={clsx(classes?.indicator, classes?.[`indicator${variant}`])}
         style={{
           ...styles?.indicator,
-          ...styles?.[`indicator${axis}`],
-          translateX: 2,
+          ...styles?.[`indicator${variant}`],
+          ...(axis === 'Y' ? { translateX: 2 } : { translateY: -2 }),
           rotate: rotateLeft,
         }}
       />
       <m.div
-        className={clsx(classes?.indicator, classes?.[`indicator${axis}`])}
+        className={clsx(classes?.indicator, classes?.[`indicator${variant}`])}
         style={{
           ...styles?.indicator,
-          ...styles?.[`indicator${axis}`],
-          translateX: -2,
+          ...styles?.[`indicator${variant}`],
+          ...(axis === 'Y' ? { translateX: -2 } : { translateY: 2 }),
           rotate: rotateRight,
         }}
       />

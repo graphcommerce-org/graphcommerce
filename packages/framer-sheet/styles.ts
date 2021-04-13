@@ -17,24 +17,27 @@ const styles: Styles<ClassKeys> = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  indicatorRootY: {
+  indicatorRoottop: {
     height: 40,
   },
-  indicatorRootX: {
+  indicatorRootbottom: {
+    height: 40,
+  },
+  indicatorRootright: {
     width: 40,
+    flexDirection: 'column-reverse',
+    height: '100%',
   },
-  indicator: {
-    borderRadius: 99,
-    backgroundColor: '#ddd',
+  indicatorRootleft: {
+    width: 40,
+    flexDirection: 'column-reverse',
+    height: '100%',
   },
-  indicatorY: {
-    width: 18,
-    height: 4,
-  },
-  indicatorX: {
-    width: 4,
-    height: 18,
-  },
+  indicator: { borderRadius: 99, backgroundColor: '#ddd' },
+  indicatorleft: { width: 4, height: 18 },
+  indicatorright: { width: 4, height: 18 },
+  indicatortop: { width: 18, height: 4 },
+  indicatorbottom: { width: 18, height: 4 },
 
   // SheetBackdropClassKeys
   backdrop: {
