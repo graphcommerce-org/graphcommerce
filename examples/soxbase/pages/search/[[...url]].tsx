@@ -1,6 +1,5 @@
-import { useQuery } from '@apollo/client'
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { Container, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
@@ -22,21 +21,15 @@ import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import Button from '@reachdigital/next-ui/Button'
-import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import {
-  useForm,
-  useFormAutoSubmit,
-  useFormGqlQuery,
-  useFormMuiRegister,
-} from '@reachdigital/react-hook-form'
+import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
@@ -53,7 +46,7 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    closeBtn: {
+    resetBtn: {
       borderRadius: '50%',
       minWidth: 'unset',
       width: 40,
@@ -69,6 +62,30 @@ const useStyles = makeStyles(
     productsContainer: {
       marginTop: theme.spacings.md,
     },
+    categoryLinks: {
+      paddingBottom: theme.spacings.md,
+    },
+    categoryButton: {
+      padding: `${theme.spacings.xs} 16px ${theme.spacings.xs} 16px`,
+      display: 'flex',
+      justifyContent: 'space-between',
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      minWidth: 'calc(100% + 32px)',
+      maxWidth: 'unset',
+      marginLeft: '-16px',
+      borderRadius: '0',
+      '&:focus': {
+        boxShadow: 'none',
+      },
+      '&:hover': {
+        background: '#f8f8f8', // TODO: use theme.background value
+      },
+    },
+    totalProducts: {
+      minWidth: 'max-content',
+      ...theme.typography.caption,
+      paddingRight: 7,
+    },
   }),
   {
     name: 'SearchIndexPage',
@@ -83,6 +100,7 @@ function SearchIndexPage(props: Props) {
   const formClasses = useFormStyles()
 
   const search = params.url.split('/')[1]
+  const searchTerms = search.split(' ')
 
   const form = useForm({
     mode: 'onChange',
@@ -104,28 +122,39 @@ function SearchIndexPage(props: Props) {
 
   useFormAutoSubmit({ form, submit })
 
-  const endAdornment = (
-    <Button
-      onClick={() => {
-        reset({
-          search: '',
-        })
-      }}
-      type='submit'
-      variant='text'
-      className={pageClasses.closeBtn}
-    >
-      <PictureResponsiveNext
-        alt='desktop_close'
-        width={24}
-        height={24}
-        src='/icons/desktop_close.svg'
-        type='image/svg+xml'
-      />
-    </Button>
-  )
+  const transformBySearchTerms = (breadcrumbs: string): React.ReactNode => {
+    const regex = new RegExp(`(${searchTerms.join('|')})/gi`)
 
-  console.log(categories)
+    return breadcrumbs.replace(regex, '<b>$1</b>')
+  }
+
+  const endAdornment = (
+    <>
+      {!!products?.total_count && products?.total_count > 0 && (
+        <div className={pageClasses.totalProducts}>
+          {products?.total_count} {products?.total_count > 1 ? 'products' : 'product'}
+        </div>
+      )}
+      <Button
+        onClick={() => {
+          reset({
+            search: '',
+          })
+        }}
+        type='submit'
+        variant='text'
+        className={pageClasses.resetBtn}
+      >
+        <PictureResponsiveNext
+          alt='desktop_close'
+          width={32}
+          height={32}
+          src='/icons/desktop_close.svg'
+          type='image/svg+xml'
+        />
+      </Button>
+    </>
+  )
 
   return (
     <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
@@ -141,26 +170,49 @@ function SearchIndexPage(props: Props) {
                 autoFocus
                 error={formState.isSubmitted && !!formState.errors.search}
                 helperText={formState.isSubmitted && formState.errors.search?.message}
-                {...muiRegister('search')}
+                {...muiRegister('search', { min: 3 })}
                 InputProps={{ endAdornment: watch('search') && endAdornment }}
               />
             </div>
           </form>
-
-          {categories?.items?.map((category) => (
-            <Button fullWidth key={`category-${category?.name}`} variant='contained'>
-              {category?.breadcrumbs &&
-                category.breadcrumbs.map((breadcrumb, index) => (
-                  <span key={`breadcrumb-${breadcrumb?.category_url_path}`}>
-                    {' '}
-                    {`${breadcrumb?.category_name} /`}{' '}
+          <div className={pageClasses.categoryLinks}>
+            {categories?.items?.map((category, i) => (
+              <Link underline='none' key={category?.url_path} href={`/${category?.url_path ?? ''}`}>
+                <Button
+                  fullWidth
+                  key={`category-${i}`}
+                  variant='contained'
+                  className={pageClasses.categoryButton}
+                  disableElevation
+                  endIcon={
+                    <PictureResponsiveNext
+                      alt='chevron right'
+                      width={24}
+                      height={24}
+                      src='/icons/desktop_chevron_right.svg'
+                      type='image/svg+xml'
+                    />
+                  }
+                >
+                  <div>
                     {category?.breadcrumbs &&
-                      index + 1 >= category?.breadcrumbs?.length &&
-                      ` ${category.name}`}
-                  </span>
-                ))}
-            </Button>
-          ))}
+                      category.breadcrumbs.map((breadcrumb, index) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <span key={`${index}`}>
+                          {transformBySearchTerms(
+                            `${breadcrumb?.category_name} / `.concat(
+                              category?.breadcrumbs && index + 1 >= category?.breadcrumbs?.length
+                                ? ` ${category?.name}`
+                                : ``,
+                            ),
+                          )}
+                        </span>
+                      ))}
+                  </div>
+                </Button>
+              </Link>
+            ))}
+          </div>
         </Container>
       </div>
 
@@ -188,10 +240,6 @@ function SearchIndexPage(props: Props) {
               <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
             </ProductListFiltersContainer>
           )}
-
-          {/* {!!products?.total_count && products?.total_count > 0 && (
-            <ProductListCount total_count={products?.total_count} />
-          )} */}
 
           <div className={pageClasses.productsContainer}>
             <ProductListItems

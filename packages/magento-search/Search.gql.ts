@@ -74,7 +74,7 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'pageSize' },
-                value: { kind: 'IntValue', value: '6' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'pageSize' } },
               },
             ],
             selectionSet: {
@@ -86,6 +86,7 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
                   selectionSet: {
                     kind: 'SelectionSet',
                     selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'url_path' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                       {
                         kind: 'InlineFragment',
@@ -500,6 +501,11 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
                 name: { kind: 'Name', value: 'search' },
                 value: { kind: 'Variable', name: { kind: 'Name', value: 'search' } },
               },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'pageSize' },
+                value: { kind: 'Variable', name: { kind: 'Name', value: 'pageSize' } },
+              },
             ],
             selectionSet: {
               kind: 'SelectionSet',
@@ -549,7 +555,7 @@ export type SearchQuery = {
     items?: Types.Maybe<
       Array<
         Types.Maybe<
-          Pick<Types.CategoryTree, 'name'> & {
+          Pick<Types.CategoryTree, 'url_path' | 'name'> & {
             breadcrumbs?: Types.Maybe<
               Array<Types.Maybe<Pick<Types.Breadcrumb, 'category_name' | 'category_url_path'>>>
             >

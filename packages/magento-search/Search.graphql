@@ -5,15 +5,16 @@ query Search(
   $sort: ProductAttributeSortInput = {}
   $search: String = ""
 ) {
-  categories(filters: { name: { match: $search } }, pageSize: 6) {
+  categories(filters: { name: { match: $search } }, pageSize: $pageSize) {
     items {
+      url_path
       name
       ...CategoryBreadcrumb
     }
   }
 
   ...ProductListFragment
-  filters: products(search: $search) {
+  filters: products(search: $search, pageSize: $pageSize) {
     ...ProductListFilters
   }
 }
