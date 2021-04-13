@@ -10,7 +10,7 @@ export type AccountHeaderProps = AccountHeaderFragment & {
 const useStyles = makeStyles(
   (theme: Theme) => ({
     header: {
-      background: theme.palette.neutral.default,
+      background: theme.palette.background.highlight,
       color: theme.palette.primary.main,
       borderRadius: theme.spacings.xs,
       display: 'flex',
