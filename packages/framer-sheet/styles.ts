@@ -92,25 +92,25 @@ const styles: Styles<ClassKeys> = {
   },
 
   // SheetPanelClasskey
-  header: {
+  dragHandle: {
     backgroundColor: '#fff',
     boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
     willChange: `transform`,
     pointerEvents: 'all',
   },
-  headertop: {
+  dragHandletop: {
     borderBottomRightRadius: '8px',
     borderBottomLeftRadius: '8px',
   },
-  headerbottom: {
+  dragHandlebottom: {
     borderTopRightRadius: '8px',
     borderTopLeftRadius: '8px',
   },
-  headerleft: {
+  dragHandleleft: {
     borderTopRightRadius: '8px',
     borderBottomRightRadius: '8px',
   },
-  headerright: {
+  dragHandleright: {
     borderTopLeftRadius: '8px',
     borderBottomLeftRadius: '8px',
   },

@@ -11,16 +11,16 @@ import { SheetVariant } from '../types'
 import { nearestSnapPointIndex } from '../utils/snapPoint'
 import windowSize from '../utils/windowSize'
 
-type Styles = 'header' | 'content'
+type Styles = 'dragHandle' | 'content'
 export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}`
 
 export type SheetPanelProps = {
   /**
-   * When replacing the header, You need to reimplement <SheetDragIndicator/>
+   * When replacing the dragHandle, You need to reimplement <SheetDragIndicator/>
    *
    * ```ts
    * ;<SheetPanel
-   *   header={
+   *   dragHandle={
    *     <>
    *       Extra content
    *       <SheetDragIndicator />
@@ -29,7 +29,7 @@ export type SheetPanelProps = {
    * />
    * ```
    */
-  header: React.ReactNode
+  dragHandle: React.ReactNode
 
   /**
    * Content of the panel
@@ -45,7 +45,7 @@ export type SheetPanelProps = {
 }
 
 export default function SheetPanel(props: SheetPanelProps) {
-  const { header, children, styles, classes } = props
+  const { dragHandle, children, styles, classes } = props
   const {
     drag,
     size,
@@ -74,25 +74,25 @@ export default function SheetPanel(props: SheetPanelProps) {
     await controls.start(`snapPoint${index}`)
   }
   const contentRef = useRef<HTMLDivElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
-  const headerHeight = useMotionValue(0)
+  const dragHandleRef = useRef<HTMLDivElement>(null)
+  const dragHandleHeight = useMotionValue(0)
 
-  const maxHeight = useTransform([maxSize, headerHeight] as MotionValue[], ([v, h]: number[]) =>
+  const maxHeight = useTransform([maxSize, dragHandleHeight] as MotionValue[], ([v, h]: number[]) =>
     v > 0 ? Math.max(0, v - h) : 10000,
   )
   const canDrag = useMotionValueValue(useElementScroll(contentRef).yMax, (v) => v === 0)
 
   useIsomorphicLayoutEffect(() => {
     if (!containerRef.current) return undefined
-    const ro = new ResizeObserver(([entry]) => headerHeight.set(entry.contentRect.height))
+    const ro = new ResizeObserver(([entry]) => dragHandleHeight.set(entry.contentRect.height))
     ro.observe(containerRef.current)
     return ro.disconnect
-  }, [containerRef, headerHeight])
+  }, [containerRef, dragHandleHeight])
 
   return (
     <>
       <m.div
-        ref={headerRef}
+        ref={dragHandleRef}
         drag={axis}
         dragDirectionLock
         onDragEnd={onDragEnd}
@@ -106,22 +106,22 @@ export default function SheetPanel(props: SheetPanelProps) {
         initial='closed'
         exit={`snapPoint${last}`}
         animate={controls}
-        className={clsx(classes?.header, classes?.[`header${variant}`])}
+        className={clsx(classes?.dragHandle, classes?.[`dragHandle${variant}`])}
         style={{
-          ...styles?.header,
-          ...styles?.[`header${variant}`],
+          ...styles?.dragHandle,
+          ...styles?.[`dragHandle${variant}`],
           /**
-           * `x|y` is shared between the header and the content and therefor all animations will
+           * `x|y` is shared between the dragHandle and the content and therefor all animations will
            * automatically sync.
            */
           [axis]: drag,
 
-          /** There sometimes is a very small gap (<1px) between the header and the content */
+          /** There sometimes is a very small gap (<1px) between the dragHandle and the content */
           [`margin-${variant}`]: -1,
           [`border-${variant}`]: '1px solid transparent',
         }}
       >
-        {header}
+        {dragHandle}
       </m.div>
       <m.div
         drag={(axis !== 'y' || canDrag) && axis}
