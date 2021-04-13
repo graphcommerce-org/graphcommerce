@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { motion, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
+import { m, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
 import { Styled } from '../utils/styled'
@@ -35,7 +35,7 @@ export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
       className={clsx(classes?.indicatorRoot, classes?.[`indicatorRoot${axis}`])}
       style={{ ...styles?.indicatorRoot, ...styles?.[`indicatorRoot${axis}`] }}
     >
-      <motion.div
+      <m.div
         className={clsx(classes?.indicator, classes?.[`indicator${axis}`])}
         style={{
           ...styles?.indicator,
@@ -44,7 +44,7 @@ export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
           rotate: rotateLeft,
         }}
       />
-      <motion.div
+      <m.div
         className={clsx(classes?.indicator, classes?.[`indicator${axis}`])}
         style={{
           ...styles?.indicator,

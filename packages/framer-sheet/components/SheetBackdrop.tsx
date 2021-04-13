@@ -1,4 +1,4 @@
-import { motion, MotionProps, MotionValue, useSpring, useTransform } from 'framer-motion'
+import { m, MotionProps, MotionValue, useSpring, useTransform } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
 import { Styled } from '../utils/styled'
@@ -24,7 +24,7 @@ export default function SheetBackdrop(props: SheetBackdropProps) {
     { ...SPRING_ANIM, restDelta: 0 },
   )
 
-  const Component = onTap ? motion.button : motion.div
+  const Component = onTap ? m.button : m.div
   return (
     <Component
       onTap={onTap}

@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { motion, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
+import { m, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import React, { CSSProperties, useRef } from 'react'
 import { INERTIA_ANIM, SPRING_ANIM } from '../animation'
 import useElementScroll from '../hooks/useElementScroll'
@@ -91,7 +91,7 @@ export default function SheetPanel(props: SheetPanelProps) {
 
   return (
     <>
-      <motion.div
+      <m.div
         ref={headerRef}
         drag={axis}
         dragDirectionLock
@@ -118,8 +118,8 @@ export default function SheetPanel(props: SheetPanelProps) {
         }}
       >
         {header}
-      </motion.div>
-      <motion.div
+      </m.div>
+      <m.div
         drag={(axis !== 'y' || canDrag) && axis}
         dragDirectionLock
         onDragEnd={onDragEnd}
@@ -135,7 +135,7 @@ export default function SheetPanel(props: SheetPanelProps) {
         }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </>
   )
 }
