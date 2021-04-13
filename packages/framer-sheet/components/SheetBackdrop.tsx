@@ -1,14 +1,12 @@
 import { motion, MotionProps, MotionValue, useSpring, useTransform } from 'framer-motion'
-import { CSSProperties } from 'react'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
+import { Styled } from '../utils/styled'
 
 export type SheetBackdropClassKeys = 'backdrop'
 
-export type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'> & {
-  styles?: Record<SheetBackdropClassKeys, CSSProperties>
-  classes?: Record<SheetBackdropClassKeys, string>
-}
+export type SheetBackdropProps = Omit<MotionProps, 'initial' | 'animate' | 'exit'> &
+  Styled<SheetBackdropClassKeys>
 
 export default function SheetBackdrop(props: SheetBackdropProps) {
   const { style, onTap, styles, classes } = props
@@ -32,8 +30,8 @@ export default function SheetBackdrop(props: SheetBackdropProps) {
       onTap={onTap}
       type='button'
       {...props}
-      style={{ ...styles?.backdrop, ...style, opacity }}
       className={classes?.backdrop}
+      style={{ ...styles?.backdrop, ...style, opacity }}
     />
   )
 }

@@ -1,16 +1,14 @@
-import React, { CSSProperties, useCallback } from 'react'
+import clsx from 'clsx'
+import React, { useCallback } from 'react'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import useSheetContext from '../hooks/useSheetContext'
 import { SheetVariant } from '../types'
+import { Styled } from '../utils/styled'
 import windowSize from '../utils/windowSize'
 
 export type SheetContainerClassKeys = 'container' | `container${SheetVariant}`
 
-export type SheetContainerProps = {
-  children: React.ReactNode
-  styles?: Record<SheetContainerClassKeys, CSSProperties>
-  classes?: Record<SheetContainerClassKeys, string>
-}
+export type SheetContainerProps = { children: React.ReactNode } & Styled<SheetContainerClassKeys>
 
 /**
  * SheetContainer is responsible for the layout constraints of the Sheet. Default: the
@@ -46,10 +44,9 @@ export default function SheetContainer(props: SheetContainerProps) {
 
   return (
     <div
-      {...props}
       ref={containerRef}
+      className={clsx(classes?.container, classes?.[`container${variant}`])}
       style={{ ...styles?.container, ...styles?.[`container${variant}`] }}
-      className={`${classes?.container} ${classes?.[`container${variant}`]}`}
     >
       {children}
     </div>

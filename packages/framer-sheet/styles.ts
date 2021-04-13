@@ -1,23 +1,40 @@
-import { CSSProperties } from 'react'
 import { SheetBackdropClassKeys } from './components/SheetBackdrop'
 import { SheetContainerClassKeys } from './components/SheetContainer'
 import { SheetDragIndicatorClassKeys } from './components/SheetDragIndicator'
 import { SheetPanelClasskey } from './components/SheetPanel'
+import { Styles } from './utils/styled'
 
-type ClassKeys =
+export type ClassKeys =
   | SheetDragIndicatorClassKeys
   | SheetBackdropClassKeys
   | SheetContainerClassKeys
   | SheetPanelClasskey
 
-const styles: Record<ClassKeys, CSSProperties> = {
+const styles: Styles<ClassKeys> = {
   // SheetDragIndicatorClassKeys
-  indicatorRoot: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  indicatorRootY: { height: 40 },
-  indicatorRootX: { width: 40 },
-  indicator: { borderRadius: 99, backgroundColor: '#ddd' },
-  indicatorY: { width: 18, height: 4 },
-  indicatorX: { width: 4, height: 18 },
+  indicatorRoot: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  indicatorRootY: {
+    height: 40,
+  },
+  indicatorRootX: {
+    width: 40,
+  },
+  indicator: {
+    borderRadius: 99,
+    backgroundColor: '#ddd',
+  },
+  indicatorY: {
+    width: 18,
+    height: 4,
+  },
+  indicatorX: {
+    width: 4,
+    height: 18,
+  },
 
   // SheetBackdropClassKeys
   backdrop: {
@@ -79,6 +96,10 @@ const styles: Record<ClassKeys, CSSProperties> = {
   headertop: {
     borderBottomRightRadius: '8px',
     borderBottomLeftRadius: '8px',
+
+    /** There sometimes is a very small gap (<1px) between the header and the content */
+    marginTop: -1,
+    borderTop: '1px solid transparent',
   },
   headerbottom: {
     borderTopRightRadius: '8px',

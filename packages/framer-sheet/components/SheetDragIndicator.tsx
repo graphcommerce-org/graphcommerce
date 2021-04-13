@@ -1,17 +1,15 @@
+import clsx from 'clsx'
 import { motion, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
-import { CSSProperties } from 'react'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
+import { Styled } from '../utils/styled'
 
 type Styles = 'indicatorRoot' | 'indicator'
 type Axis = 'Y' | 'X'
 
 export type SheetDragIndicatorClassKeys = Styles | `${Styles}${Axis}`
 
-export type SheetDragIndicatorProps = {
-  styles?: Record<SheetDragIndicatorClassKeys, CSSProperties>
-  classes?: Record<SheetDragIndicatorClassKeys, string>
-}
+export type SheetDragIndicatorProps = Styled<SheetDragIndicatorClassKeys>
 
 export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
   const { styles, classes } = props
@@ -34,26 +32,26 @@ export default function SheetDragIndicator(props: SheetDragIndicatorProps) {
 
   return (
     <div
+      className={clsx(classes?.indicatorRoot, classes?.[`indicatorRoot${axis}`])}
       style={{ ...styles?.indicatorRoot, ...styles?.[`indicatorRoot${axis}`] }}
-      className={`${classes?.indicatorRoot} ${classes?.[`indicatorRoot${axis}`]}`}
     >
       <motion.div
+        className={clsx(classes?.indicator, classes?.[`indicator${axis}`])}
         style={{
           ...styles?.indicator,
           ...styles?.[`indicator${axis}`],
           translateX: 2,
           rotate: rotateLeft,
         }}
-        className={`${classes?.indicator} ${classes?.[`indicator${axis}`]}`}
       />
       <motion.div
+        className={clsx(classes?.indicator, classes?.[`indicator${axis}`])}
         style={{
           ...styles?.indicator,
           ...styles?.[`indicator${axis}`],
           translateX: -2,
           rotate: rotateRight,
         }}
-        className={`${classes?.indicator} ${classes?.[`indicator${axis}`]}`}
       />
     </div>
   )

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { motion, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import React, { CSSProperties, useRef } from 'react'
 import { INERTIA_ANIM, SPRING_ANIM } from '../animation'
@@ -105,6 +106,7 @@ export default function SheetPanel(props: SheetPanelProps) {
         initial='closed'
         exit={`snapPoint${last}`}
         animate={controls}
+        className={clsx(classes?.header, classes?.[`header${variant}`])}
         style={{
           ...styles?.header,
           ...styles?.[`header${variant}`],
@@ -114,7 +116,6 @@ export default function SheetPanel(props: SheetPanelProps) {
            */
           [axis]: drag,
         }}
-        className={`${classes?.header} ${classes?.[`header${variant}`]}`}
       >
         {header}
       </motion.div>
@@ -125,13 +126,13 @@ export default function SheetPanel(props: SheetPanelProps) {
         dragTransition={INERTIA_ANIM}
         transition={SPRING_ANIM}
         ref={contentRef}
+        className={clsx(classes?.content, classes?.[`content${variant}`])}
         style={{
           ...styles?.content,
           ...styles?.[`content${variant}`],
           [axis]: drag,
           ...(axis === 'y' && { maxHeight }),
         }}
-        className={`${classes?.content} ${classes?.[`content${variant}`]}`}
       >
         {children}
       </motion.div>
