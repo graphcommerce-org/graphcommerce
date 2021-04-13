@@ -22,7 +22,7 @@
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "clsx": "^1.1.1",
     "framer-motion": "^4.1.3",
     "react": "^17.0.2",
