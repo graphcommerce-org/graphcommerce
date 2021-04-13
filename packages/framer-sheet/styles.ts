@@ -60,6 +60,7 @@ const styles: Styles<ClassKeys> = {
     boxSizing: 'border-box',
     maxHeight: '100%',
     display: 'flex',
+    pointerEvents: 'none',
   },
   containertop: {
     width: '100%',
@@ -95,6 +96,7 @@ const styles: Styles<ClassKeys> = {
     backgroundColor: '#fff',
     boxShadow: '0px -2px 16px rgba(0, 0, 0, 0.3)',
     willChange: `transform`,
+    pointerEvents: 'all',
   },
   headertop: {
     borderBottomRightRadius: '8px',
@@ -116,6 +118,7 @@ const styles: Styles<ClassKeys> = {
     backgroundColor: '#fff',
     willChange: `transform`,
     overflowY: 'auto',
+    pointerEvents: 'all',
   },
   contenttop: {},
   contentbottom: {},
