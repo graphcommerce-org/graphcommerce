@@ -1,7 +1,7 @@
 import { Fab, Theme, makeStyles } from '@material-ui/core'
 import { ChevronLeft, ChevronRight } from '@material-ui/icons'
 import React from 'react'
-import PageLink from '../PageTransition/PageLink'
+import PageLink from 'next/link'
 
 const useStyles = makeStyles((theme: Theme) => ({
   pagination: {

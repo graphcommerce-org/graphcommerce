@@ -1,5 +1,5 @@
 import NextButton, { ButtonProps } from '@reachdigital/next-ui/Button'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import NextUiPageLink from 'next/link'
 import { PageLinkFragment } from './PageLink.gql'
 
 type PageLinkProps = PageLinkFragment & ButtonProps

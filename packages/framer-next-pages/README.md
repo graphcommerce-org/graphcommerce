@@ -53,9 +53,9 @@ Overlay.pageOptions = {
 } as PageOptions
 ```
 
-### Create an overlay that shares the layout in a dynamic routes:
+### Create an overlay that doesnt the layout in a dynamic routes:
 
-Define `key` as router.pathname in pageOptions.
+Define `key` as router.asPath in pageOptions.
 
 Example route:
 
@@ -66,7 +66,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 
 Overlay.pageOptions = {
   overlay: 'left',
-  key: (router) => router.pathname, // will return pages/overlay/[overlayId]
+  key: (router) => router.asPath, // will return pages/overlay/123
 } as PageOptions
 ```
 

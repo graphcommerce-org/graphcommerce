@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
   CountryRegionsDocument,
@@ -13,7 +14,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
@@ -73,8 +73,9 @@ function OrderDetailPage(props: Props) {
 }
 
 OrderDetailPage.Layout = PageLayout
-
-registerRouteUi('/account/orders/view', OverlayPage)
+OrderDetailPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default OrderDetailPage
 

@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
 import AccountHeader from '@reachdigital/magento-customer/AccountHeader'
@@ -7,7 +8,6 @@ import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrde
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import AccountMenu from '../../components/AccountMenu'
 import OverlayPage from '../../components/AppShell/OverlayPage'
@@ -42,8 +42,9 @@ function AccountIndexPage() {
 }
 
 AccountIndexPage.Layout = PageLayout
-
-registerRouteUi('/account', OverlayPage)
+AccountIndexPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default AccountIndexPage
 

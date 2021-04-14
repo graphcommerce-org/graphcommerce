@@ -9,6 +9,8 @@ import useSheetContext from '../hooks/useSheetContext'
 import useSnapPointVariants from '../hooks/useSnapPointVariants'
 import { SheetVariant } from '../types'
 import { nearestSnapPointIndex } from '../utils/snapPoint'
+import { Styled } from '../utils/styled'
+import variantSizeCss from '../utils/variantSizeCss'
 import windowSize from '../utils/windowSize'
 
 type Styles = 'dragHandle' | 'content'
@@ -39,10 +41,7 @@ export type SheetPanelProps = {
    * ```
    */
   children: React.ReactNode
-
-  styles?: Record<SheetPanelClasskey, CSSProperties>
-  classes?: Record<SheetPanelClasskey, string>
-}
+} & Styled<SheetPanelClasskey>
 
 export default function SheetPanel(props: SheetPanelProps) {
   const { dragHandle, children, styles, classes } = props
@@ -53,6 +52,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     snapPoints,
     controls,
     variant,
+    variantSize,
     containerRef,
     onSnap,
   } = useSheetContext()
@@ -60,6 +60,7 @@ export default function SheetPanel(props: SheetPanelProps) {
 
   const axis = ['top', 'bottom'].includes(variant) ? 'y' : 'x'
   const sign = ['top', 'left'].includes(variant) ? -1 : 1
+  const dimension = ['top', 'bottom'].includes(variant) ? 'height' : 'width'
 
   // Define the drag handling
   const onDragEnd = async (_: never, { velocity, offset }: PanInfo) => {
@@ -89,6 +90,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     return ro.disconnect
   }, [containerRef, dragHandleHeight])
 
+  const Variant = variant[0].toUpperCase() + variant.slice(1)
   return (
     <>
       <m.div
@@ -117,8 +119,8 @@ export default function SheetPanel(props: SheetPanelProps) {
           [axis]: drag,
 
           /** There sometimes is a very small gap (<1px) between the dragHandle and the content */
-          [`margin-${variant}`]: -1,
-          [`border-${variant}`]: '1px solid transparent',
+          [`margin${Variant}`]: -1,
+          [`border${Variant}`]: '1px solid transparent',
         }}
       >
         {dragHandle}
@@ -136,6 +138,7 @@ export default function SheetPanel(props: SheetPanelProps) {
           ...styles?.[`content${variant}`],
           [axis]: drag,
           ...(axis === 'y' && { maxHeight }),
+          [dimension]: variantSizeCss(variantSize),
         }}
       >
         {children}

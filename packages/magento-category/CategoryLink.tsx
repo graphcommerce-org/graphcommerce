@@ -5,7 +5,7 @@ import {
   isFilterTypeMatch,
   isFilterTypeRange,
 } from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import Router from 'next/router'
 import React, { PropsWithChildren } from 'react'
 import { useProductListParamsContext } from './CategoryPageContext'

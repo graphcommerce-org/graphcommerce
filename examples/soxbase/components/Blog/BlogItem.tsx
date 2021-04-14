@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Typography, makeStyles, Theme, Link } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'

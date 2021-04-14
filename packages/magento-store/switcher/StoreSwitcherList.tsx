@@ -8,7 +8,7 @@ import {
   ListItemAvatar,
 } from '@material-ui/core'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import React from 'react'
 import localeToStore, { storeToLocale } from '../localeToStore'

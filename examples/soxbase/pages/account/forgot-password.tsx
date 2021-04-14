@@ -1,10 +1,10 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
@@ -40,8 +40,9 @@ function AccountForgotPasswordPage() {
 }
 
 AccountForgotPasswordPage.Layout = PageLayout
-
-registerRouteUi('/account/forgot-password', OverlayPage)
+AccountForgotPasswordPage.pageOptions = {
+  overlay: 'center',
+} as PageOptions
 
 export default AccountForgotPasswordPage
 

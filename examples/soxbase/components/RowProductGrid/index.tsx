@@ -1,6 +1,6 @@
 import { Container, Typography, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import NextUiPageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'

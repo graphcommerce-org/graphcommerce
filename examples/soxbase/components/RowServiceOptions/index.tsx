@@ -4,7 +4,7 @@ import Email from '@material-ui/icons/EmailOutlined'
 import Phone from '@material-ui/icons/PhoneIphoneOutlined'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
 

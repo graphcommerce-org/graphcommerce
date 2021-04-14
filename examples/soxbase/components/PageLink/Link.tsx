@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import NextUiPageLink from 'next/link'
 import { PageLinkFragment } from './PageLink.gql'
 
 const useStyles = makeStyles({

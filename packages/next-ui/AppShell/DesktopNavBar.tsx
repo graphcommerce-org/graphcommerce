@@ -6,7 +6,7 @@ import { SliderContext } from '../FramerSlider/SliderContext'
 import SliderNext from '../FramerSlider/SliderNext'
 import SliderPrev from '../FramerSlider/SliderPrev'
 import SliderScroller from '../FramerSlider/SliderScroller'
-import PageLink from '../PageTransition/PageLink'
+import PageLink from 'next/link'
 import { MenuProps } from './Menu'
 
 const useStyles = makeStyles(

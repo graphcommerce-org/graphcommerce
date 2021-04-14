@@ -1,9 +1,9 @@
 import { Container } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import PageLink from 'next/link'
 import React from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
 
@@ -30,7 +30,6 @@ function TestOverlayStatic() {
 }
 
 TestOverlayStatic.Layout = PageLayout
-
-registerRouteUi('/test/overlay/static', OverlayPage)
+TestOverlayStatic.pageOptions = { overlay: 'bottom' } as PageOptions
 
 export default TestOverlayStatic

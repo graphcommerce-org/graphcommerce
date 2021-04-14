@@ -1,7 +1,7 @@
 import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
 import router from 'next/router'
 import React from 'react'
-import PageLink from '../PageTransition/PageLink'
+import PageLink from 'next/link'
 import PictureResponsiveNext, { PictureResponsiveNextProps } from '../PictureResponsiveNext'
 
 const useStyles = makeStyles(

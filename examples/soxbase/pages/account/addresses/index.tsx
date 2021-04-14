@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
   CountryRegionsDocument,
@@ -11,7 +12,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
 import apolloClient from '../../../lib/apolloClient'
@@ -56,8 +56,9 @@ function AccountAddressesPage(props: Props) {
 }
 
 AccountAddressesPage.Layout = PageLayout
-
-registerRouteUi('/account/addresses', OverlayPage)
+AccountAddressesPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default AccountAddressesPage
 

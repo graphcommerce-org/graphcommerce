@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardReviewsDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardReviews.gql'
 import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
 
@@ -41,7 +41,8 @@ function AccountReviewsPage() {
 }
 
 AccountReviewsPage.Layout = PageLayout
-
-registerRouteUi('/account/reviews', OverlayPage)
+AccountReviewsPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default AccountReviewsPage

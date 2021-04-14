@@ -9,7 +9,6 @@ import Images from '@reachdigital/next-ui/FramerSlider/test/Images'
 import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'
 import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { m } from 'framer-motion'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
@@ -53,8 +52,6 @@ function TestSlider({ products }: Props) {
 }
 
 TestSlider.Layout = PageLayout
-
-registerRouteUi('/test/slider', FullPageUi)
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)

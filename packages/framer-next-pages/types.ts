@@ -34,9 +34,9 @@ export type PageOptions = {
   overlay?: string
 
   /**
-   * By default the key is set to `router.asPath`, meaning that we create a new key for each URL.
+   * By default the key is set to `router.pathname`, meaning that we create a new key for each pages.
    *
-   * Default: `js ({router}) => router.asPath`
+   * Default: `js ({router}) => router.pathname`
    */
   key?: (router: NextRouter) => string | undefined
 }

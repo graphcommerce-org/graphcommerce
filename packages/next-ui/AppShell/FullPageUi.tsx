@@ -1,11 +1,9 @@
 import { makeStyles, NoSsr, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import PageLink from '../PageTransition/PageLink'
-import { BackButtonProps } from '../PageTransition/types'
-import usePageTransition from '../PageTransition/usePageTransition'
 import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
 
@@ -61,54 +59,49 @@ export type FullPageUiProps = {
   UseStyles<typeof useStyles>
 
 function FullPageUi(props: FullPageUiProps) {
-  const { children, title, backFallbackHref, backFallbackTitle, header } = props
-  const pageTransition = usePageTransition({ title })
-  const { offsetProps, inFront, prevPage } = pageTransition
+  const { children, backFallbackHref, backFallbackTitle, header } = props
   const router = useRouter()
   const classes = useStyles(props)
 
+  const prevPage = false
   return (
     <>
-      <m.div {...offsetProps}>
-        <m.div style={{ pointerEvents: inFront ? 'all' : 'none' }}>
-          {router.pathname !== '/' && (
-            <m.div className={classes.backButtonRoot}>
-              <NoSsr
-                fallback={
-                  <PageLink href={backFallbackHref}>
-                    <BackButton>
-                      <span className={classes.backButtonText}>{backFallbackTitle}</span>
-                    </BackButton>
-                  </PageLink>
-                }
-              >
-                {prevPage?.title ? (
-                  <BackButton onClick={() => router.back()}>
-                    <span className={classes.backButtonText}>{prevPage.title}</span>
-                  </BackButton>
-                ) : (
-                  <PageLink href={backFallbackHref}>
-                    <BackButton>
-                      <span className={classes.backButtonText}>{backFallbackTitle}</span>
-                    </BackButton>
-                  </PageLink>
-                )}
-              </NoSsr>
-            </m.div>
-          )}
-
-          <m.header
-            className={clsx(classes.header)}
-            layoutId='header'
-            transition={{ type: 'tween' }}
-            layout='position'
+      {router.pathname !== '/' && (
+        <m.div className={classes.backButtonRoot}>
+          <NoSsr
+            fallback={
+              <PageLink href={backFallbackHref}>
+                <BackButton>
+                  <span className={classes.backButtonText}>{backFallbackTitle}</span>
+                </BackButton>
+              </PageLink>
+            }
           >
-            {header}
-          </m.header>
-
-          {children}
+            {prevPage?.title ? (
+              <BackButton onClick={() => router.back()}>
+                <span className={classes.backButtonText}>{prevPage.title}</span>
+              </BackButton>
+            ) : (
+              <PageLink href={backFallbackHref}>
+                <BackButton>
+                  <span className={classes.backButtonText}>{backFallbackTitle}</span>
+                </BackButton>
+              </PageLink>
+            )}
+          </NoSsr>
         </m.div>
-      </m.div>
+      )}
+
+      <m.header
+        className={clsx(classes.header)}
+        layoutId='header'
+        transition={{ type: 'tween' }}
+        layout='position'
+      >
+        {header}
+      </m.header>
+
+      {children}
     </>
   )
 }

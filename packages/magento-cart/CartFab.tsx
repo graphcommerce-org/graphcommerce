@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Badge, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import { m } from 'framer-motion'
 import React from 'react'
 import { ClientCartDocument } from './ClientCart.gql'

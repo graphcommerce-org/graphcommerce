@@ -1,4 +1,5 @@
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
   CountryRegionsDocument,
@@ -9,7 +10,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
@@ -48,8 +48,9 @@ function AddNewAddressPage(props: Props) {
 }
 
 AddNewAddressPage.Layout = PageLayout
-
-registerRouteUi('/account/addresses/add', OverlayPage)
+AddNewAddressPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default AddNewAddressPage
 

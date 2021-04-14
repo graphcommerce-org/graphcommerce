@@ -1,5 +1,5 @@
 import { SetRequired } from 'type-fest'
-import { PageLinkProps } from '../PageTransition/PageLink'
+import { PageLinkProps } from 'next/link'
 
 type MenuItemProps = SetRequired<PageLinkProps, 'children'>
 

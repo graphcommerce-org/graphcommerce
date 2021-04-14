@@ -1,10 +1,10 @@
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
 import apolloClient from '../../lib/apolloClient'
@@ -34,8 +34,9 @@ function AccountChangePasswordPage() {
 }
 
 AccountChangePasswordPage.Layout = PageLayout
-
-registerRouteUi('/account/change-password', OverlayPage)
+AccountChangePasswordPage.pageOptions = {
+  overlay: 'center',
+} as PageOptions
 
 export default AccountChangePasswordPage
 

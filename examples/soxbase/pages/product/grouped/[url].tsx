@@ -13,7 +13,6 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../../components/AppShell/FullPageUi'
@@ -101,8 +100,6 @@ function ProductGrouped(props: Props) {
 }
 
 ProductGrouped.Layout = PageLayout
-
-registerRouteUi('/product/[url]', FullPageUi)
 
 export default ProductGrouped
 

@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardOrders.gql'
 import AccountOrders from '@reachdigital/magento-customer/AccountOrders'
@@ -7,7 +8,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
 import apolloClient from '../../../lib/apolloClient'
@@ -50,8 +50,9 @@ function AccountOrdersPage() {
 }
 
 AccountOrdersPage.Layout = PageLayout
-
-registerRouteUi('/account/orders', OverlayPage)
+AccountOrdersPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default AccountOrdersPage
 

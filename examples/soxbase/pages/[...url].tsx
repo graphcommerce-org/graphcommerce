@@ -28,7 +28,6 @@ import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -166,12 +165,9 @@ function CategoryPage(props: Props) {
     </FullPageUi>
   )
 }
-
 CategoryPage.Layout = PageLayout
 
 export default CategoryPage
-
-registerRouteUi('/[...url]', FullPageUi)
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode

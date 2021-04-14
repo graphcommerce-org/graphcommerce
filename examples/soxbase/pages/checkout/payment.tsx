@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
@@ -19,7 +20,6 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
@@ -89,8 +89,7 @@ function PaymentPage({ countries }: Props) {
 }
 
 PaymentPage.Layout = PageLayout
-
-registerRouteUi('/checkout/payment', OverlayPage)
+PaymentPage.pageOptions = { overlay: 'bottom' } as PageOptions
 
 export default PaymentPage
 

@@ -1,9 +1,9 @@
 import { Box, makeStyles, Theme, Typography } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
@@ -58,8 +58,7 @@ const ServicePage = ({ pages }: Props) => {
 }
 
 ServicePage.Layout = PageLayout
-
-registerRouteUi('/service/[url]', FullPageUi)
+ServicePage.pageOptions = { overlay: 'left' } as PageOptions
 
 export default ServicePage
 

@@ -1,7 +1,7 @@
 import { Container, Link, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import MultiItemSlider from '@reachdigital/next-ui/FramerSlider/variants/MultiItemSlider'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 const useStyles = makeStyles(

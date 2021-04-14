@@ -1,7 +1,7 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import NextUiPageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import Asset from '../Asset'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'

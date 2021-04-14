@@ -1,10 +1,16 @@
 import { MotionValue, AnimationControls } from 'framer-motion'
+import { CSSProperties } from 'react'
+import { LiteralUnion } from 'type-fest'
 
 export type SheetVariant = 'top' | 'bottom' | 'left' | 'right'
-export type SnapPoint = 'open' | 'closed' | number
+export type SheetSize = 'min' | 'max' | CSSProperties['height'] | CSSProperties['width']
+export type SnapPoint = LiteralUnion<'open' | 'closed', number>
 
 export type SheetContext = {
   variant: SheetVariant
+
+  variantSize: SheetSize
+
   /** `y`/ `x`-position of the Sheet */
   drag: MotionValue<number>
   /** `height`/ `width` of the SheetContainer */

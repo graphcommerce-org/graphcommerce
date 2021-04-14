@@ -1,11 +1,11 @@
 import { Container } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React, { useState } from 'react'
 import OverlayPage from '../../../components/AppShell/OverlayPage'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
@@ -25,13 +25,12 @@ function AppShellTextOverlay({ url, pages }: Props) {
   const next = Number(url) + 1
   return (
     <OverlayPage
-      title={title}
       headerForward={
         <PageLink href={`/test/overlay/${next}`}>
           <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
         </PageLink>
       }
-      variant='center'
+      variant='bottom'
       backFallbackHref='/test/index'
       backFallbackTitle='Test'
     >
@@ -41,8 +40,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
 }
 
 AppShellTextOverlay.Layout = PageLayout
-
-registerRouteUi('/test/overlay/[...url]', OverlayPage)
+AppShellTextOverlay.pageOptions = { overlay: 'bottom' } as PageOptions
 
 export default AppShellTextOverlay
 

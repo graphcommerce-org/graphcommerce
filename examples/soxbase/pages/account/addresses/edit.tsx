@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Box, Container, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Edit } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
   CountryRegionsDocument,
@@ -15,7 +17,6 @@ import OverlayUi from '@reachdigital/next-ui/AppShell/OverlayUi'
 import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -116,8 +117,9 @@ function EditAddressPage(props: Props) {
 }
 
 EditAddressPage.Layout = PageLayout
-
-registerRouteUi('/account/addresses/edit', OverlayUi)
+EditAddressPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default EditAddressPage
 

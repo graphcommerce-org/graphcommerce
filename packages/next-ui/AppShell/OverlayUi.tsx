@@ -1,12 +1,13 @@
 import { makeStyles, NoSsr, Theme, useMediaQuery, useTheme } from '@material-ui/core'
+import { usePageRouter } from '@reachdigital/framer-next-pages'
+import { SheetVariant } from '@reachdigital/framer-sheet'
 import clsx from 'clsx'
 import { m, MotionProps } from 'framer-motion'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { KeyboardEventHandler, useEffect, useState } from 'react'
 import FocusLock from 'react-focus-lock'
-import PageLink from '../PageTransition/PageLink'
-import { BackButtonProps } from '../PageTransition/types'
-import usePageTransition from '../PageTransition/usePageTransition'
+import SheetPageUi from '../FramerSheet/SheetPage'
 import { UseStyles } from '../Styles'
 import bottomOverlayUiAnimations, {
   OverlayUiAnimationProps,
@@ -15,7 +16,7 @@ import centerOverlayUiAnimations from './Animations/centerOverlayUiAnimations'
 import leftOverlayUiAnimations from './Animations/leftOverlayUiAnimations'
 import rightOverlayUiAnimations from './Animations/rightOverlayUiAnimations'
 import topOverlayUiAnimations from './Animations/topOverlayUiAnimations'
-import BackButton from './BackButton'
+import BackButton, { BackButtonProps } from './BackButton'
 import Backdrop from './Backdrop'
 
 const useStyles = makeStyles(
@@ -135,158 +136,33 @@ const useStyles = makeStyles(
   { name: 'OverlayUiProps' },
 )
 
-type OverlayVariants = 'top' | 'right' | 'bottom' | 'left' | 'center'
-
 export type OverlayUiProps = UseStyles<typeof useStyles> & {
   fullHeight?: boolean
   header?: React.ReactNode
   headerForward?: React.ReactNode
-  variant?: OverlayVariants
+  variant: SheetVariant
   children?: React.ReactNode
-} & BackButtonProps
+  backFallbackHref?: string
+  backFallbackTitle?: string
+}
 
 function OverlayUi(props: OverlayUiProps) {
   const classes = useStyles(props)
-  const router = useRouter()
-  const {
-    children,
-    title,
-    backFallbackHref,
-    backFallbackTitle,
-    header,
-    headerForward,
-    fullHeight,
-    variant,
-  } = props
-
-  const {
-    offsetProps,
-    inFront,
-    inBack,
-    prevPage,
-    upPage,
-    hold,
-    thisIdx,
-    backLevel,
-    phase,
-  } = usePageTransition({ title })
-
-  const [dismissed, dismiss] = useState<boolean>(false)
-  // Reset the dismiss value when navigating back
-  useEffect(() => {
-    if (inFront) dismiss(false)
-  }, [inFront])
-
-  const z = backLevel * -30
-
-  const back = () => {
-    dismiss(true)
-    router.back()
-  }
-
-  const onPressEscape: KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (inBack || e.key !== 'Escape') return
-    e.preventDefault()
-    back()
-  }
-
-  const theme = useTheme()
-  const upMd = useMediaQuery(theme.breakpoints.up('md'), { noSsr: true })
-
-  const overlayUiAnimationProps: OverlayUiAnimationProps = {
-    dismissed,
-    z,
-    hold,
-    upMd,
-  }
-
-  let contentAnimation: MotionProps = {
-    //
-  }
-
-  if (variant === 'top') {
-    contentAnimation = topOverlayUiAnimations({ ...overlayUiAnimationProps })
-  }
-
-  if (variant === 'right') {
-    contentAnimation = rightOverlayUiAnimations({ ...overlayUiAnimationProps })
-  }
-
-  if (variant === 'bottom') {
-    contentAnimation = bottomOverlayUiAnimations({ ...overlayUiAnimationProps })
-  }
-
-  if (variant === 'left') {
-    contentAnimation = leftOverlayUiAnimations({ ...overlayUiAnimationProps })
-  }
-
-  if (variant === 'center') {
-    contentAnimation = centerOverlayUiAnimations({ ...overlayUiAnimationProps })
-  }
-
-  const [zIndex, setZIndex] = useState(1)
-  useEffect(() => setZIndex(thisIdx * 2 + 1), [thisIdx])
+  const { children, backFallbackHref, backFallbackTitle, header, headerForward, variant } = props
 
   return (
-    <>
-      <Backdrop
-        inFront={inFront}
-        classes={{ backdrop: classes.backdrop }}
-        onClick={() => dismiss(true)}
-        role='none'
-        zOffset={zIndex - 1}
-        hold={hold}
-      />
-      <m.div {...offsetProps} style={{ zIndex }}>
-        <m.div
-          className={clsx(classes.drawerContainer, {
-            [classes.drawerContainerCenter]: variant === 'center',
-            [classes.drawerContainerLeft]: variant === 'left',
-            [classes.drawerContainerRight]: variant === 'right',
-            [classes.drawerContainerTop]: variant === 'top',
-          })}
-          onKeyDown={onPressEscape}
-          role='presentation'
-        >
-          <m.section
-            className={clsx(classes.drawer, {
-              [classes.drawerFullHeight]: fullHeight,
-              [classes.drawerCenter]: variant === 'center',
-              [classes.drawerLeft]: variant === 'left',
-              [classes.drawerRight]: variant === 'right',
-              [classes.drawerTop]: variant === 'top',
-            })}
-            {...contentAnimation}
-            tabIndex={-1}
-            style={{ pointerEvents: inFront ? 'all' : 'none' }}
-          >
-            <FocusLock
-              returnFocus={{ preventScroll: true }}
-              disabled={!inFront && phase === 'FINISHED'}
-            >
-              <div className={classes.header} role='presentation'>
-                <div className={classes.headerTitleContainer}>{header}</div>
-                <div className={classes.headerBack}>
-                  <NoSsr fallback={<BackButton>Home</BackButton>}>
-                    {prevPage?.title ? (
-                      <BackButton onClick={back} down={prevPage === upPage}>
-                        {prevPage.title}
-                      </BackButton>
-                    ) : (
-                      <PageLink href={backFallbackHref ?? '/'}>
-                        <BackButton>{backFallbackTitle ?? 'Home'}</BackButton>
-                      </PageLink>
-                    )}
-                  </NoSsr>
-                </div>
-                <div className={classes.headerForward}>{headerForward}</div>
-              </div>
-              {children}
-            </FocusLock>
-          </m.section>
-        </m.div>
-      </m.div>
-    </>
+    <SheetPageUi variant={variant}>
+      {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
+      <div className={classes.header} role='presentation'>
+        <div className={classes.headerTitleContainer}>{header}</div>
+        <div className={classes.headerBack}>
+          <BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>
+        </div>
+        <div className={classes.headerForward}>{headerForward}</div>
+      </div>
+      {children}
+      {/* </FocusLock> */}
+    </SheetPageUi>
   )
 }
 OverlayUi.holdBackground = true

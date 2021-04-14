@@ -1,4 +1,5 @@
 import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -8,7 +9,6 @@ import {
   StoreSwitcherListQuery,
 } from '@reachdigital/magento-store/switcher/StoreSwitcherList.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React from 'react'
 import OverlayPage from '../components/AppShell/OverlayPage'
@@ -45,8 +45,9 @@ function StoresIndexPage({ availableStores }: Props) {
 }
 
 StoresIndexPage.Layout = PageLayout
-
-registerRouteUi('/switch-stores', OverlayPage)
+StoresIndexPage.pageOptions = {
+  overlay: 'left',
+} as PageOptions
 
 export default StoresIndexPage
 

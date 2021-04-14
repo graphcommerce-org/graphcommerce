@@ -1,5 +1,5 @@
 import { Link, Typography } from '@material-ui/core'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import { ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import React from 'react'

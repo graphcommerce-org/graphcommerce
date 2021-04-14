@@ -1,7 +1,6 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
@@ -28,8 +27,6 @@ const LegalPage = ({ pages }: Props) => {
 }
 
 LegalPage.Layout = PageLayout
-
-registerRouteUi('/legal/[url]', FullPageUi)
 
 export default LegalPage
 

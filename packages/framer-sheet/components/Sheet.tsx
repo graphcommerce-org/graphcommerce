@@ -1,7 +1,7 @@
 import { useAnimation, useMotionValue } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import sheetContext from '../context/sheetContext'
-import { SheetContext } from '../types'
+import { SheetContext, SheetSize } from '../types'
 
 export type SheetContextProps = {
   children: React.ReactNode
@@ -13,11 +13,14 @@ export type SheetContextProps = {
    * ```
    */
   open: boolean
+
+  /** Size of the sheet can be min or max or a css value */
+  size?: SheetSize
 } & Pick<SheetContext, 'variant' | 'onSnap'> &
   Partial<Pick<SheetContext, 'snapPoints'>>
 
 export default function Sheet(props: SheetContextProps) {
-  const { children, snapPoints = ['open', 'closed'], open, variant, onSnap } = props
+  const { children, snapPoints = ['open', 'closed'], open, size = 'min', variant, onSnap } = props
 
   const context: SheetContext = {
     drag: useMotionValue<number>(0),
@@ -27,6 +30,7 @@ export default function Sheet(props: SheetContextProps) {
     containerRef: useRef<HTMLDivElement>(null),
     snapPoints,
     variant,
+    variantSize: size,
     onSnap,
   }
 

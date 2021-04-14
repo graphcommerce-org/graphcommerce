@@ -1,7 +1,6 @@
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
@@ -26,8 +25,6 @@ const BrandPage = (props: Props) => {
 }
 
 BrandPage.Layout = PageLayout
-
-registerRouteUi('/brands/[url]', FullPageUi)
 
 export default BrandPage
 

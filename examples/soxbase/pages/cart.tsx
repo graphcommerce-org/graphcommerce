@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CartItem from '@reachdigital/magento-cart/cart/CartItem'
@@ -15,7 +16,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import OverlayPage from '../components/AppShell/OverlayPage'
@@ -95,8 +95,9 @@ function CartPage() {
 }
 
 CartPage.Layout = PageLayout
-
-registerRouteUi('/cart', OverlayPage)
+CartPage.pageOptions = {
+  overlay: 'bottom',
+} as PageOptions
 
 export default CartPage
 

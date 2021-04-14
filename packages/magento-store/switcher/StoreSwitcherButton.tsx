@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles } from '@material-ui/core'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import React from 'react'
 import { StoreConfigDocument } from '../StoreConfig.gql'
 

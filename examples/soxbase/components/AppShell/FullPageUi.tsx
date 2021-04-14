@@ -11,7 +11,7 @@ import NextFullPageUi, {
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'

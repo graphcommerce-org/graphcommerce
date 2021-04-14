@@ -9,9 +9,9 @@ export type Styled<T extends AnyKey> = WithStyles<T> | WithClasses<T>
 
 type WithStyles<T extends AnyKey> = {
   styles: Styles<T>
-  classes?: Classes<T>
+  classes?: Partial<Classes<T>>
 }
 type WithClasses<T extends AnyKey> = {
-  styles?: Styles<T>
+  styles?: Partial<Styles<T>>
   classes: Classes<T>
 }

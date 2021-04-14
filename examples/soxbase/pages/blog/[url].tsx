@@ -2,7 +2,6 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
@@ -37,8 +36,6 @@ function BlogPage(props: Props) {
 }
 
 BlogPage.Layout = PageLayout
-
-registerRouteUi('/blog/[url]', FullPageUi)
 
 export default BlogPage
 

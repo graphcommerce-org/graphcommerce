@@ -1,8 +1,7 @@
 import { Button, Container } from '@material-ui/core'
 import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import PageLink from 'next/link'
 import React from 'react'
 
 function TestStatic() {
@@ -28,7 +27,5 @@ function TestStatic() {
 }
 
 TestStatic.Layout = PageLayout
-
-registerRouteUi('/test/static', FullPageUi)
 
 export default TestStatic

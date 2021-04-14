@@ -7,7 +7,6 @@ import {
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
@@ -54,8 +53,6 @@ function CmsPage(props: Props) {
 }
 
 CmsPage.Layout = PageLayout
-
-registerRouteUi('/page/[url]', FullPageUi)
 
 export default CmsPage
 

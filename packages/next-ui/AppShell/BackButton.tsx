@@ -1,6 +1,7 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
 import clsx from 'clsx'
+import Link from 'next/link'
 import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
@@ -43,27 +44,29 @@ export type BackButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down
 
 const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
   const { text, icon, ...classes } = useStyles(props)
-  const { children, down, ...fabProps } = props
+  const { down, href = '/', children = 'Home', ...fabProps } = props
 
   return (
-    <Button
-      variant='pill'
-      classes={{
-        root: clsx(classes.root, props.className),
-        pill: classes.root,
-      }}
-      aria-label='Previous page'
-      ref={ref}
-      {...fabProps}
-    >
-      <ArrowBack
-        shapeRendering='geometricPrecision'
-        fontSize='inherit'
-        color='inherit'
-        classes={{ root: icon }}
-      />
-      <span className={text}>{children}</span>
-    </Button>
+    <Link href={href} passHref>
+      <Button
+        variant='pill'
+        classes={{
+          root: clsx(classes.root, props.className),
+          pill: classes.root,
+        }}
+        aria-label='Previous page'
+        ref={ref}
+        {...fabProps}
+      >
+        <ArrowBack
+          shapeRendering='geometricPrecision'
+          fontSize='inherit'
+          color='inherit'
+          classes={{ root: icon }}
+        />
+        <span className={text}>{children}</span>
+      </Button>
+    </Link>
   )
 })
 export default BackButton

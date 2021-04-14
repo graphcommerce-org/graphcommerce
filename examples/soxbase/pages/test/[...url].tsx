@@ -3,10 +3,9 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -83,8 +82,6 @@ function AppShellTestIndex(props: Props) {
 }
 
 AppShellTestIndex.Layout = PageLayout
-
-registerRouteUi('/test/[...url]', FullPageUi)
 
 export default AppShellTestIndex
 

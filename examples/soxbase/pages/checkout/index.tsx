@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
@@ -18,7 +19,6 @@ import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
 import OverlayPage from '../../components/AppShell/OverlayPage'
@@ -108,8 +108,7 @@ function ShippingPage({ countries }: Props) {
 }
 
 ShippingPage.Layout = PageLayout
-
-registerRouteUi('/checkout', OverlayPage)
+ShippingPage.pageOptions = { overlay: 'bottom' } as PageOptions
 
 export default ShippingPage
 

@@ -1,25 +1,24 @@
+import { FramerNextPages } from '@reachdigital/framer-next-pages'
 import { LazyMotion } from 'framer-motion'
+import { AppPropsType } from 'next/dist/next-server/lib/utils'
 import React, { useEffect } from 'react'
-import PageTransition from '../PageTransition'
 import { AppProps } from './types'
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { Layout } = Component
-
+export default function App(props: AppProps & AppPropsType) {
+  const {
+    Component: { Layout },
+    pageProps,
+  } = props
   useEffect(() => document.getElementById('jss-server-side')?.remove())
 
   return (
     <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
       {Layout ? (
         <Layout {...pageProps}>
-          <PageTransition {...pageProps}>
-            <Component {...pageProps} />
-          </PageTransition>
+          <FramerNextPages {...props} />
         </Layout>
       ) : (
-        <PageTransition {...pageProps}>
-          <Component {...pageProps} />
-        </PageTransition>
+        <FramerNextPages {...props} />
       )}
     </LazyMotion>
   )

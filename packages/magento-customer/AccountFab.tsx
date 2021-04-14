@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.gql'
 

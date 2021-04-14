@@ -38,7 +38,7 @@ function SheetPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
     >
       <SheetBackdrop onTap={() => router.back()} styles={styles} />
       <SheetContainer styles={styles}>
-        <SheetPanel styles={styles} header={<SheetDragIndicator styles={styles} />}>
+        <SheetPanel styles={styles} dragHandle={<SheetDragIndicator styles={styles} />}>
           <button type='button' onClick={() => setExpanded(!expanded)}>
             {expanded ? 'collapse' : 'expand'}
           </button>

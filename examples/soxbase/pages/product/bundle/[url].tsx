@@ -13,7 +13,6 @@ import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../../components/AppShell/FullPageUi'
@@ -89,8 +88,6 @@ function ProductBundle(props: Props) {
 }
 
 ProductBundle.Layout = PageLayout
-
-registerRouteUi('/product/[url]', FullPageUi)
 
 export default ProductBundle
 
