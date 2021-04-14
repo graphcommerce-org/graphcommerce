@@ -22,6 +22,7 @@ import SearchForm from '@reachdigital/magento-search/SearchForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import Button from '@reachdigital/next-ui/Button'
+import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
@@ -164,7 +165,12 @@ function SearchIndexPage(props: Props) {
         {(!search || !products || (products.items && products?.items?.length <= 0)) && (
           <div className={pageClasses.title}>
             <Typography variant='h5' align='center'>
-              No search results to show
+              <IconTitle
+                iconSrc='/icons/desktop_sad_face.svg'
+                title='No results'
+                alt='no results'
+                size='large'
+              />
             </Typography>
           </div>
         )}
