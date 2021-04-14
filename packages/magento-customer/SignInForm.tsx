@@ -61,7 +61,7 @@ export default function SignInForm(props: SignInFormProps) {
           }}
           InputProps={{
             endAdornment: (
-              <PageLink href='/account/forgot-password' key='forgot-password'>
+              <PageLink href='/account/forgot-password' key='forgot-password' passHref>
                 <Link className={classes.forgotPass}>Forgot password?</Link>
               </PageLink>
             ),

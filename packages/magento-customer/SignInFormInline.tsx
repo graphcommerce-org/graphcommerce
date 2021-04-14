@@ -50,7 +50,7 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         disabled={formState.isSubmitting}
         InputProps={{
           endAdornment: (
-            <PageLink href='/account/forgot-password' key='forgot-password'>
+            <PageLink href='/account/forgot-password' key='forgot-password' passHref>
               <Button color='secondary' variant='text' className={classes.button}>
                 Forgot password?
               </Button>

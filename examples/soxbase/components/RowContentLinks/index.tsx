@@ -42,7 +42,7 @@ export default function RowContentLinks(props: RowContentLinksProps) {
         </Typography>
 
         {contentLinks.map((contentLink) => (
-          <PageLink href={contentLink.url} key={contentLink.url}>
+          <PageLink href={contentLink.url} key={contentLink.url} passHref>
             <Link key={contentLink.url} href={contentLink.url} variant='body1' color='inherit'>
               {contentLink.title}
             </Link>

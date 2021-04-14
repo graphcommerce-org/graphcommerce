@@ -70,7 +70,7 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
     rel = 'nofollow'
 
   return (
-    <PageLink href={categoryLink}>
+    <PageLink href={categoryLink} passHref>
       {noLink ? (
         children
       ) : (

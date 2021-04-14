@@ -1,8 +1,8 @@
 import { Container, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import NextUiPageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import Asset from '../Asset'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
@@ -104,11 +104,11 @@ export default function RowSpecialBanner(props: RowSpecialBannerProps) {
           <RichText classes={richTextOneClasses} {...copy} />
           {pageLinks &&
             pageLinks.map((pageLink) => (
-              <NextUiPageLink href={pageLink.url} key={pageLink.url}>
+              <PageLink href={pageLink.url} key={pageLink.url}>
                 <a href={pageLink.url} className={classes.url}>
                   {pageLink.title}
                 </a>
-              </NextUiPageLink>
+              </PageLink>
             ))}
         </div>
       </div>

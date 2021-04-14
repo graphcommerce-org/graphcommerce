@@ -25,20 +25,20 @@ function AppShellTestIndex(props: Props) {
     <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index' {...props}>
       <Container>
         {url === 'index' ? (
-          <PageLink href='/test/deeper'>
+          <PageLink href='/test/deeper' passHref>
             <Button variant='outlined' color='secondary'>
               Sibling
             </Button>
           </PageLink>
         ) : (
-          <PageLink href='/test/index'>
+          <PageLink href='/test/index' passHref>
             <Button variant='outlined' color='secondary'>
               Index
             </Button>
           </PageLink>
         )}
 
-        <PageLink href='/test/overlay/1'>
+        <PageLink href='/test/overlay/1' passHref>
           <Button variant='outlined' color='secondary'>
             Overlay
           </Button>

@@ -42,7 +42,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
   return requireAuth ? (
-    <PageLink href='/account/signin'>
+    <PageLink href='/account/signin' passHref>
       <Button color='primary' variant='contained' {...buttonProps}>
         Add to Cart
       </Button>

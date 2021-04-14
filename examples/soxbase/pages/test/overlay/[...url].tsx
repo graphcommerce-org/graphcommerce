@@ -26,7 +26,7 @@ function AppShellTextOverlay({ url, pages }: Props) {
   return (
     <OverlayPage
       headerForward={
-        <PageLink href={`/test/overlay/${next}`}>
+        <PageLink href={`/test/overlay/${next}`} passHref>
           <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
         </PageLink>
       }

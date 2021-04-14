@@ -10,9 +10,9 @@ import {
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { m } from 'framer-motion'
+import PageLink from 'next/link'
 import { Router, useRouter } from 'next/router'
 import React from 'react'
-import PageLink from 'next/link'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 import { MenuProps } from './Menu'
@@ -92,7 +92,7 @@ export default function MenuFab(props: MenuFabProps) {
           </List>
         )}
         <List>
-          <PageLink href='/'>
+          <PageLink href='/' passHref>
             <ListItem
               button
               dense
@@ -104,7 +104,7 @@ export default function MenuFab(props: MenuFabProps) {
           </PageLink>
 
           {menu.map(({ href, children: itemChildren, ...linkProps }) => (
-            <PageLink key={href.toString()} href={href} {...linkProps}>
+            <PageLink key={href.toString()} href={href} {...linkProps} passHref>
               <ListItem
                 button
                 dense

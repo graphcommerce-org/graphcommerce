@@ -1,11 +1,11 @@
 import { Typography, makeStyles, Theme, Link as MuiLink } from '@material-ui/core'
-import PageLink from 'next/link'
 import PictureResponsiveNext, {
   PictureResponsiveNextProps,
 } from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
+import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { useProductLink } from '../ProductLink'
 import ProductListPrice from '../ProductListPrice'
@@ -141,7 +141,7 @@ export default function ProductListItem(props: ProductListItemProps) {
 
   return (
     <div className={classes.item}>
-      <PageLink href={productLink}>
+      <PageLink href={productLink} passHref>
         <MuiLink underline='none'>
           <div className={classes.imageContainer}>
             {small_image ? (

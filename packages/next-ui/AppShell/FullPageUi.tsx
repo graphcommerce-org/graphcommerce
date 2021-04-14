@@ -70,7 +70,7 @@ function FullPageUi(props: FullPageUiProps) {
         <m.div className={classes.backButtonRoot}>
           <NoSsr
             fallback={
-              <PageLink href={backFallbackHref}>
+              <PageLink href={backFallbackHref} passHref>
                 <BackButton>
                   <span className={classes.backButtonText}>{backFallbackTitle}</span>
                 </BackButton>
@@ -82,7 +82,7 @@ function FullPageUi(props: FullPageUiProps) {
                 <span className={classes.backButtonText}>{prevPage.title}</span>
               </BackButton>
             ) : (
-              <PageLink href={backFallbackHref}>
+              <PageLink href={backFallbackHref} passHref>
                 <BackButton>
                   <span className={classes.backButtonText}>{backFallbackTitle}</span>
                 </BackButton>

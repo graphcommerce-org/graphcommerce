@@ -8,8 +8,8 @@ import {
   ListItemAvatar,
 } from '@material-ui/core'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
-import PageLink from 'next/link'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
+import PageLink from 'next/link'
 import React from 'react'
 import localeToStore, { storeToLocale } from '../localeToStore'
 import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
@@ -70,6 +70,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
             key={group.stores[0].store_code}
             href='/switch-stores'
             locale={storeToLocale(group.stores[0].store_code)}
+            passHref
           >
             <ListItem
               button
@@ -96,6 +97,7 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
                   key={store.store_code}
                   href='/switch-stores'
                   locale={storeToLocale(store.store_code)}
+                  passHref
                 >
                   <ListItem
                     button

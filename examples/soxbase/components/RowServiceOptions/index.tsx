@@ -4,8 +4,8 @@ import Email from '@material-ui/icons/EmailOutlined'
 import Phone from '@material-ui/icons/PhoneIphoneOutlined'
 import { makeStyles } from '@material-ui/styles'
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import PageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
 
 const useStyles = makeStyles(
@@ -60,7 +60,7 @@ export default function RowServiceOptions(props: RowServiceOptionsFragment) {
 
         <div className={classes.optionsWrapper}>
           {serviceOptions.map((serviceOption) => (
-            <PageLink key={serviceOption.title} href={serviceOption.url}>
+            <PageLink key={serviceOption.title} href={serviceOption.url} passHref>
               <div className={classes.contactOption}>
                 {serviceOption.title.toLowerCase() === 'e-mail' && <Phone color='inherit' />}
                 {serviceOption.title.toLowerCase() === 'phone' && <Email color='inherit' />}

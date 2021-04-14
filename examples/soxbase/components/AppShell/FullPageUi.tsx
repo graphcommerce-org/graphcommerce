@@ -11,8 +11,8 @@ import NextFullPageUi, {
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import PageLink from 'next/link'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import PageLink from 'next/link'
 import React from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
@@ -61,7 +61,7 @@ function FullPageUi(props: FullPageUiProps) {
           <DesktopNavActions>
             <SearchButton classes={{ root: classes.navbarSearch }} />
 
-            <PageLink href='/service/index'>
+            <PageLink href='/service/index' passHref>
               <IconButton aria-label='Account' color='inherit' size='medium'>
                 <PictureResponsiveNext
                   src='/icons/desktop_customer_service.svg'

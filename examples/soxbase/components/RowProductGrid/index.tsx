@@ -1,7 +1,7 @@
-import { Container, Typography, Theme } from '@material-ui/core'
+import { Container, Typography, Theme, Link } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import NextUiPageLink from 'next/link'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import React from 'react'
 import ProductListItems, { ProductListItemsProps } from '../ProductListItems/ProductListItems'
 
@@ -61,11 +61,11 @@ export default function RowProductGrid(props: RowProductGridProps) {
         </Typography>
         <div>
           {pageLinks.map((pageLink) => (
-            <NextUiPageLink href={pageLink.url} key={pageLink.url}>
-              <a href={pageLink.url} className={classes.url}>
+            <PageLink href={pageLink.url} key={pageLink.url} passHref>
+              <Link href={pageLink.url} className={classes.url} underline='always'>
                 {pageLink.title}
-              </a>
-            </NextUiPageLink>
+              </Link>
+            </PageLink>
           ))}
         </div>
       </div>

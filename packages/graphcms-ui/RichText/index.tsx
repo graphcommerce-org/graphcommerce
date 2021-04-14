@@ -1,7 +1,7 @@
 import { Link, Typography } from '@material-ui/core'
-import PageLink from 'next/link'
 import { ImageMimeTypes } from '@reachdigital/next-ui/PictureResponsive'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import PageLink from 'next/link'
 import React from 'react'
 import useRichTextStyles, { UseRichTextStyles } from './useRichTextStyles'
 
@@ -267,7 +267,7 @@ function RenderElement({ classes, ...element }: ElementNode & Required<UseRichTe
       // eslint-disable-next-line no-case-declarations
       const linkElement = element as LinkElement
       return (
-        <PageLink href={linkElement.href}>
+        <PageLink href={linkElement.href} passHref>
           <Link classes={{ root: link }}>
             <RenderChildren {...element} classes={classes} />
           </Link>

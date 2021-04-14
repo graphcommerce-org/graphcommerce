@@ -15,7 +15,7 @@ function TestOverlayStatic() {
       variant='bottom'
       title={title}
       headerForward={
-        <PageLink href='/test/overlay/1'>
+        <PageLink href='/test/overlay/1' passHref>
           <ForwardButton color='secondary'>Overlay with gsp</ForwardButton>
         </PageLink>
       }

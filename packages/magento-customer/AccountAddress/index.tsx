@@ -130,7 +130,7 @@ export default function AccountAddress(props: AccountAddressProps) {
         </div>
       </div>
       <div className={classes.actions}>
-        <PageLink href={`/account/addresses/edit?addressId=${id}`}>
+        <PageLink href={`/account/addresses/edit?addressId=${id}`} passHref>
           <Button variant='text' color='primary'>
             Edit
           </Button>

@@ -80,7 +80,7 @@ export default function BackNavFab(props: BackNavFabProps) {
 
   return (
     <div className={classes.stickyContainer}>
-      <PageLink href={href}>
+      <PageLink href={href} passHref>
         <Fab
           variant='extended'
           size='large'

@@ -77,5 +77,11 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     </Button>
   )
 
-  return href ? <PageLink href={href}>{button}</PageLink> : button
+  return href ? (
+    <PageLink href={href} passHref>
+      {button}
+    </PageLink>
+  ) : (
+    button
+  )
 }

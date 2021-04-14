@@ -10,13 +10,13 @@ function TestStatic() {
   return (
     <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index'>
       <Container>
-        <PageLink href='/test/index'>
+        <PageLink href='/test/index' passHref>
           <Button variant='outlined' color='secondary'>
             Index
           </Button>
         </PageLink>
 
-        <PageLink href='/test/overlay/static'>
+        <PageLink href='/test/overlay/static' passHref>
           <Button variant='outlined' color='secondary'>
             Overlay static
           </Button>

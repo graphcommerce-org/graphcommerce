@@ -83,7 +83,7 @@ export default function AccountSignInUpForm() {
           </Typography>
           <Typography variant='h6' align='center'>
             You can view{' '}
-            <PageLink href='/account'>
+            <PageLink href='/account' passHref>
               <Link>your Account here</Link>
             </PageLink>
             .

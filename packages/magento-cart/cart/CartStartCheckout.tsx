@@ -3,9 +3,9 @@ import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import Money from '@reachdigital/magento-store/Money'
 import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
 import Button from '@reachdigital/next-ui/Button'
-import PageLink from 'next/link'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -45,7 +45,7 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
   const classes = useStyles()
   return (
     <div className={classes.checkoutButtonContainer}>
-      <PageLink href='/checkout'>
+      <PageLink href='/checkout' passHref>
         <Button
           variant='pill'
           color='secondary'

@@ -21,7 +21,7 @@ export default function StoreSwitcherButton() {
   const country = config.data?.storeConfig?.locale?.split('_')?.[1].toLowerCase() ?? ''
   const classes = useStyles()
   return (
-    <PageLink href='/switch-stores'>
+    <PageLink href='/switch-stores' passHref>
       <Button variant='text' size='medium'>
         <FlagAvatar country={country} classes={{ root: classes.avatar }} />
         {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}

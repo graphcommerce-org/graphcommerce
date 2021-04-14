@@ -1,11 +1,10 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import Money from '@reachdigital/magento-store/Money'
 import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
 import Button from '@reachdigital/next-ui/Button'
-import PageLink from 'next/link'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles(
@@ -70,7 +69,7 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
       <span className={classes.total}>
         Cart Total: <Money value={value} currency={currency} />
       </span>
-      <PageLink href='/checkout'>
+      <PageLink href='/checkout' passHref>
         <Button
           variant='pill'
           color='secondary'
@@ -78,7 +77,7 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
           endIcon={
             <PictureResponsiveNext
               className={classes.icon}
-              alt='desktop_chevron_right_white'
+              alt=''
               width={32}
               height={32}
               src='/icons/desktop_chevron_right_white.svg'

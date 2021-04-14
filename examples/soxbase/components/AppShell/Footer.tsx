@@ -1,4 +1,4 @@
-import { makeStyles, Container, Theme, IconButton } from '@material-ui/core'
+import { makeStyles, Container, Theme, IconButton, Link } from '@material-ui/core'
 import Facebook from '@material-ui/icons/Facebook'
 import Instagram from '@material-ui/icons/Instagram'
 import LinkedIn from '@material-ui/icons/LinkedIn'
@@ -41,9 +41,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       order: '3',
       ...theme.typography.body2,
     },
-    '& a': {
-      color: theme.palette.text.primary,
-    },
   },
   support: {
     [theme.breakpoints.up('md')]: {
@@ -74,7 +71,7 @@ export default function Footer(props: FooterProps) {
     <Container maxWidth={false} className={classes.footer}>
       <div className={classes.social}>
         {footer?.socialLinks?.map((link) => (
-          <PageLink key={link.title} href={link.url}>
+          <PageLink key={link.title} href={link.url} passHref>
             <IconButton color='inherit' size='small' disableRipple disableFocusRipple edge='start'>
               {link.title.toLowerCase() === 'instagram' && <Instagram color='inherit' />}
               {link.title.toLowerCase() === 'linkedin' && <LinkedIn color='inherit' />}
@@ -97,8 +94,10 @@ export default function Footer(props: FooterProps) {
       <div className={classes.copyright}>
         <span>{footer?.copyright}</span>
         {footer?.legalLinks?.map((link) => (
-          <PageLink key={link.title} href={link.url}>
-            {link.title}
+          <PageLink key={link.title} href={link.url} passHref>
+            <Link color='textPrimary' underline='always'>
+              {link.title}
+            </Link>
           </PageLink>
         ))}
       </div>
