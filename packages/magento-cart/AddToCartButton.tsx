@@ -1,8 +1,11 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
+import { Typography } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
 import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
 import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
@@ -46,6 +49,28 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         color='primary'
         variant='rounded'
         size='large'
+        action={
+          <PageLink href='/cart'>
+            <Button
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={
+                <PictureResponsiveNext
+                  alt='desktop_chevron_right'
+                  width={28}
+                  height={28}
+                  src='/icons/desktop_chevron_right_white.svg'
+                  type='image/svg+xml'
+                />
+              }
+            >
+              <Typography variant='body2' component='span'>
+                View shopping cart
+              </Typography>
+            </Button>
+          </PageLink>
+        }
       >
         <AddToCartSnackbar message={product} />
       </MessageSnackbarLoader>

@@ -16,24 +16,15 @@ type BaseSnackbarProps = Omit<Parameters<typeof Snackbar>['0'], 'variant' | 'cla
   variant?: 'message' | 'outlined' | 'contained' | 'rounded'
 }
 
-type SnackbarClassKey =
-  | 'root'
-  | 'message'
-  | 'closeButton'
-  | 'rounded'
-  | 'roundedLarge'
-  | 'roundedPrimary'
+type SnackbarClassKey = 'rounded' | 'roundedLarge' | 'roundedPrimary'
 
 type ClassKeys = SnackbarClassKey | MuiSnackbarClassKey
 
-const useStyles = makeStyles<
-  Theme,
-  BaseSnackbarProps & { classes?: { [index in SnackbarClassKey]?: string } },
-  SnackbarClassKey
->(
+const baseStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       backgroundColor: 'transparent',
+      flexWrap: 'inherit',
       [theme.breakpoints.down('sm')]: {
         width: '100%',
         right: 0,
@@ -44,23 +35,48 @@ const useStyles = makeStyles<
       },
     },
     message: {
-      [theme.breakpoints.down('lg')]: {
-        width: '92%',
-      },
-      [theme.breakpoints.down('md')]: {
-        width: '89%',
-      },
+      padding: `${theme.spacings.xxs} 5px`,
+      display: 'flex',
+      flexWrap: 'inherit',
       [theme.breakpoints.down('sm')]: {
+        height: 140,
+        width: '90%',
+      },
+    },
+    action: {
+      [theme.breakpoints.up('md')]: {
+        minWidth: (props: MessageSnackbarProps) => (props.action ? 295 : 'auto'),
+      },
+    },
+    actionContainer: {
+      display: 'flex',
+    },
+    actionButton: {
+      marginRight: 5,
+      '& .MuiPillButton-pill': {
         width: '100%',
       },
-      width: '95%',
+      [theme.breakpoints.down('sm')]: {
+        margin: '30px 0 20px 0',
+        position: 'absolute',
+        bottom: 0,
+        left: 10,
+        right: 10,
+        '& .MuiPillButton-pill': {
+          width: '100%',
+          borderRadius: 0,
+        },
+      },
     },
     closeButton: {
-      marginRight: 10,
+      '& .MuiFab-sizeMedium': {
+        height: 40,
+        width: 40,
+      },
       [theme.breakpoints.down('sm')]: {
         position: 'absolute',
-        top: 15,
-        right: 15,
+        top: 10,
+        right: 0,
         '& .MuiSvgIcon-root': {
           height: 20,
         },
@@ -70,6 +86,16 @@ const useStyles = makeStyles<
         },
       },
     },
+  }),
+  { name: 'BaseMessageSnackbar' },
+)
+
+const useStyles = makeStyles<
+  Theme,
+  BaseSnackbarProps & { classes?: { [index in SnackbarClassKey]?: string } },
+  SnackbarClassKey
+>(
+  (theme: Theme) => ({
     rounded: {
       borderRadius: 50,
       [theme.breakpoints.down('sm')]: {
@@ -104,17 +130,29 @@ export type MessageSnackbarProps = Omit<
   size?: string
   closeButton?: React.ReactNode
   color?: string
+  action?: React.ReactNode
 }
 
 export default function MessageSnackbar(props: MessageSnackbarProps) {
   const [showSnackbar, setSnackbar] = useState<boolean>(false)
   const { classes = {}, ...baseProps } = props
-  const { variant, size, color, children, autoHide, className, open, ...snackbarProps } = baseProps
+  const {
+    variant,
+    size,
+    color,
+    children,
+    autoHide,
+    action,
+    className,
+    open,
+    ...snackbarProps
+  } = baseProps
 
-  const { root, message, closeButton, rounded, roundedLarge, roundedPrimary } = classes
+  const { rounded, roundedLarge, roundedPrimary } = classes
 
+  const baseClasses = baseStyles(props)
   const snackbarClasses = useStyles({
-    classes: { root, message, closeButton, rounded, roundedLarge, roundedPrimary },
+    classes: { rounded, roundedLarge, roundedPrimary },
   })
 
   useEffect(() => {
@@ -127,10 +165,14 @@ export default function MessageSnackbar(props: MessageSnackbarProps) {
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       open={showSnackbar}
       autoHideDuration={autoHide ? 6000 : null}
-      classes={{ root: snackbarClasses.root }}
+      classes={{ root: baseClasses.root }}
     >
       <SnackbarContent
-        classes={{ message: snackbarClasses.message }}
+        classes={{
+          message: baseClasses.message,
+          root: baseClasses.root,
+          action: baseClasses.action,
+        }}
         className={clsx(
           {
             [snackbarClasses.rounded]: variant === 'rounded',
@@ -141,10 +183,13 @@ export default function MessageSnackbar(props: MessageSnackbarProps) {
         )}
         message={children}
         action={
-          <div className={snackbarClasses.closeButton}>
-            <Fab aria-label='Close snackbar' size='medium' onClick={() => setSnackbar(false)}>
-              <CloseIcon />
-            </Fab>
+          <div className={baseClasses.actionContainer}>
+            {action && <div className={baseClasses.actionButton}>{action}</div>}
+            <div className={baseClasses.closeButton}>
+              <Fab aria-label='Close snackbar' size='medium' onClick={() => setSnackbar(false)}>
+                <CloseIcon />
+              </Fab>
+            </div>
           </div>
         }
       />

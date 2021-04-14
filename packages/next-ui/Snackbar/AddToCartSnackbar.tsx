@@ -1,11 +1,8 @@
-import { Theme, SnackbarProps, Typography, Fab } from '@material-ui/core'
+import { Theme, SnackbarProps } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
 import { makeStyles } from '@material-ui/styles'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SetRequired } from 'type-fest'
-import Button from '../Button'
-import PageLink from '../PageTransition/PageLink'
-import PictureResponsiveNext from '../PictureResponsiveNext'
 import responsiveVal from '../Styles/responsiveVal'
 
 export type MessageSnackbarProps = Omit<
@@ -13,60 +10,24 @@ export type MessageSnackbarProps = Omit<
   'autoHideDuration' | 'onClose' | 'anchorOrigin' | 'children' | 'action'
 >
 
-const baseStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
-    snackbarBody: {
-      display: 'flex',
-      alignItems: 'center',
-      [theme.breakpoints.down('sm')]: {
-        flexWrap: 'wrap',
-      },
+    snackbarContent: {
+      display: 'block',
     },
-    snackbarText: {
-      width: '60%',
-      display: 'flex',
-      marginLeft: theme.spacings.xs,
-      [theme.breakpoints.down('sm')]: {
-        flexWrap: 'nowrap',
-        width: '85%',
-        marginLeft: 0,
-      },
+    icon: {
+      top: '.125em',
+      position: 'relative',
+      height: 22,
     },
     messageText: {
       fontWeight: 400,
-      display: 'inline-flex',
+      display: 'flex',
       alignItems: 'center',
       flexWrap: 'wrap',
+      ...theme.typography.body1,
       [theme.breakpoints.down('sm')]: {
         fontSize: responsiveVal(14, 22),
-      },
-      '& .MuiSvgIcon-root': {
-        top: '.125em',
-        position: 'relative',
-        marginRight: 3,
-        [theme.breakpoints.down('sm')]: {
-          height: 20,
-        },
-      },
-    },
-    snackbarButton: {
-      marginLeft: 'auto',
-      [theme.breakpoints.down('sm')]: {
-        margin: '30px 0 20px 0',
-        minWidth: '100%',
-        '& .MuiPillButton-pill': {
-          width: '100%',
-          borderRadius: 0,
-        },
-      },
-    },
-
-    icon: {
-      [theme.breakpoints.down('sm')]: {
-        '& .MuiSvgIcon-root': {
-          width: responsiveVal(20, 28),
-          height: responsiveVal(20, 28),
-        },
       },
     },
   }),
@@ -74,45 +35,19 @@ const baseStyles = makeStyles(
 )
 
 export default function MessageSnackbar(props: MessageSnackbarProps) {
-  const { ...baseProps } = props
-  const { message } = baseProps
-
-  const baseClasses = baseStyles()
+  const { message } = props
+  const classes = useStyles()
 
   return (
-    <div className={baseClasses.snackbarBody}>
-      <div className={baseClasses.snackbarText}>
-        {message && (
-          <Typography component='h2' variant='h4' className={baseClasses.messageText}>
-            <span>
-              <Checkmark />
-              <b>{message}</b>&nbsp;has been added to your shopping cart!
-            </span>
-          </Typography>
-        )}
-      </div>
-      <div className={baseClasses.snackbarButton}>
-        <PageLink href='/cart'>
-          <Button
-            size='medium'
-            variant='pill'
-            color='secondary'
-            endIcon={
-              <PictureResponsiveNext
-                alt='desktop_chevron_right'
-                width={28}
-                height={28}
-                src='/icons/desktop_chevron_right_white.svg'
-                type='image/svg+xml'
-              />
-            }
-          >
-            <Typography variant='body2' component='span'>
-              View shopping cart
-            </Typography>
-          </Button>
-        </PageLink>
-      </div>
+    <div className={classes.snackbarContent}>
+      {message && (
+        <div className={classes.messageText}>
+          <span>
+            <Checkmark className={classes.icon} />
+            <b>{message}</b>&nbsp;has been added to your shopping cart!
+          </span>
+        </div>
+      )}
     </div>
   )
 }
