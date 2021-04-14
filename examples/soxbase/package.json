@@ -3,6 +3,7 @@
   "homepage": "https://soxbase.vercel.app/",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "engines": {
     "node": "14.x"
   },
@@ -11,7 +12,6 @@
     "build": "next build && yarn next-sitemap",
     "start": "next start"
   },
-  "sideEffects": false,
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
     "@apollo/client": "^3.3.14",
