@@ -1,5 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
+import { Container, Link, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
@@ -18,17 +18,15 @@ import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFi
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
+import SearchForm from '@reachdigital/magento-search/SearchForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import Button from '@reachdigital/next-ui/Button'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -46,18 +44,12 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    resetBtn: {
-      borderRadius: '50%',
-      minWidth: 'unset',
-      width: 40,
-      height: 40,
-    },
     formContainer: {
       boxShadow: '0 5px 4px 0 rgb(3 3 3 / 3%)',
     },
     title: {
       marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.xxs,
+      marginBottom: theme.spacings.sm,
     },
     productsContainer: {
       marginTop: theme.spacings.md,
@@ -86,75 +78,41 @@ const useStyles = makeStyles(
       ...theme.typography.caption,
       paddingRight: 7,
     },
+    pagination: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    productListCount: {
+      marginTop: theme.spacings.sm,
+    },
   }),
   {
     name: 'SearchIndexPage',
   },
 )
 
+function Highlight(props: { text: string; highlight: string }) {
+  const { text, highlight } = props
+  const start = text.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase())
+
+  if (start < 0) return <>{text}</>
+
+  return (
+    <>
+      {text.slice(0, start)}
+      <strong>{text.slice(start, highlight.length + start)}</strong>
+      {text.slice(start + highlight.length)}
+    </>
+  )
+}
+
 function SearchIndexPage(props: Props) {
   const { products, categories, filters, params, filterTypes } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const classes = useCategoryPageStyles(props)
   const pageClasses = useStyles()
-  const formClasses = useFormStyles()
-
   const search = params.url.split('/')[1]
-  const searchTerms = search.split(' ')
-
-  const form = useForm({
-    mode: 'onChange',
-    defaultValues: {
-      search,
-    },
-  })
-
-  const { register, handleSubmit, formState, reset, watch, getValues } = form
-  const muiRegister = useFormMuiRegister(form)
-
-  const router = useRouter()
-
-  const submit = handleSubmit((formData) => {
-    reset(getValues())
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.replace(`/search/${formData.search}`)
-  })
-
-  useFormAutoSubmit({ form, submit })
-
-  const transformBySearchTerms = (breadcrumbs: string): React.ReactNode => {
-    const regex = new RegExp(`(${searchTerms.join('|')})/gi`)
-
-    return breadcrumbs.replace(regex, '<b>$1</b>')
-  }
-
-  const endAdornment = (
-    <>
-      {!!products?.total_count && products?.total_count > 0 && (
-        <div className={pageClasses.totalProducts}>
-          {products?.total_count} {products?.total_count > 1 ? 'products' : 'product'}
-        </div>
-      )}
-      <Button
-        onClick={() => {
-          reset({
-            search: '',
-          })
-        }}
-        type='submit'
-        variant='text'
-        className={pageClasses.resetBtn}
-      >
-        <PictureResponsiveNext
-          alt='desktop_close'
-          width={32}
-          height={32}
-          src='/icons/desktop_close.svg'
-          type='image/svg+xml'
-        />
-      </Button>
-    </>
-  )
+  const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
 
   return (
     <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
@@ -162,25 +120,13 @@ function SearchIndexPage(props: Props) {
 
       <div className={pageClasses.formContainer}>
         <Container maxWidth='sm'>
-          <form noValidate onSubmit={submit}>
-            <div className={formClasses.formRow}>
-              <TextField
-                variant='outlined'
-                type='text'
-                autoFocus
-                error={formState.isSubmitted && !!formState.errors.search}
-                helperText={formState.isSubmitted && formState.errors.search?.message}
-                {...muiRegister('search', { min: 3 })}
-                InputProps={{ endAdornment: watch('search') && endAdornment }}
-              />
-            </div>
-          </form>
+          <SearchForm totalResults={totalSearchResults} search={search} />
+
           <div className={pageClasses.categoryLinks}>
-            {categories?.items?.map((category, i) => (
+            {categories?.items?.map((category) => (
               <Link underline='none' key={category?.url_path} href={`/${category?.url_path ?? ''}`}>
                 <Button
                   fullWidth
-                  key={`category-${i}`}
                   variant='contained'
                   className={pageClasses.categoryButton}
                   disableElevation
@@ -195,19 +141,17 @@ function SearchIndexPage(props: Props) {
                   }
                 >
                   <div>
-                    {category?.breadcrumbs &&
-                      category.breadcrumbs.map((breadcrumb, index) => (
-                        // eslint-disable-next-line react/no-array-index-key
-                        <span key={`${index}`}>
-                          {transformBySearchTerms(
-                            `${breadcrumb?.category_name} / `.concat(
-                              category?.breadcrumbs && index + 1 >= category?.breadcrumbs?.length
-                                ? ` ${category?.name}`
-                                : ``,
-                            ),
-                          )}
-                        </span>
-                      ))}
+                    {category?.breadcrumbs?.map((breadcrumb) => (
+                      <React.Fragment key={breadcrumb?.category_url_path}>
+                        <Highlight
+                          key={breadcrumb?.category_url_path}
+                          text={breadcrumb?.category_name ?? ''}
+                          highlight={search}
+                        />
+                        {' / '}
+                      </React.Fragment>
+                    ))}
+                    <Highlight text={category?.name ?? ''} highlight={search} />
                   </div>
                 </Button>
               </Link>
@@ -241,6 +185,12 @@ function SearchIndexPage(props: Props) {
             </ProductListFiltersContainer>
           )}
 
+          <div className={pageClasses.productListCount}>
+            {!!products?.total_count && products?.total_count > 0 && (
+              <ProductListCount total_count={products?.total_count} />
+            )}
+          </div>
+
           <div className={pageClasses.productsContainer}>
             <ProductListItems
               items={products?.items}
@@ -248,7 +198,10 @@ function SearchIndexPage(props: Props) {
               loadingEager={1}
             />
           </div>
-          <ProductListPagination page_info={products?.page_info} />
+
+          <div className={pageClasses.pagination}>
+            <ProductListPagination page_info={products?.page_info} />
+          </div>
         </ProductListParamsProvider>
       </Container>
     </FullPageUi>
@@ -257,7 +210,7 @@ function SearchIndexPage(props: Props) {
 
 SearchIndexPage.Layout = PageLayout
 
-registerRouteUi('/[...url]', FullPageUi)
+registerRouteUi('/search/[[...url]]', FullPageUi)
 
 export default SearchIndexPage
 
@@ -266,6 +219,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const paths = locales.map((loc: string) => ({ params: { url: [] }, loc })).flat(1)
+
   return { paths, fallback: 'blocking' }
 }
 

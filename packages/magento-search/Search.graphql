@@ -1,5 +1,5 @@
 query Search(
-  $pageSize: Int = 23
+  $pageSize: Int = 6
   $currentPage: Int = 1
   $filters: ProductAttributeFilterInput = {}
   $sort: ProductAttributeSortInput = {}
