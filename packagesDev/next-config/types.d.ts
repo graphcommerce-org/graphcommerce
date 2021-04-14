@@ -1,4 +1,6 @@
 declare module 'next-transpile-modules' {
+  import type { NextConfig } from 'next/dist/next-server/server/config'
+
   export default function (
     modules: string[],
     options?: {
@@ -6,5 +8,5 @@ declare module 'next-transpile-modules' {
       debug?: boolean
       __unstable_matcher?: (path: string) => boolean
     },
-  ): (nextConfig) => typeof nextConfig
+  ): (nextConfig: NextConfig) => NextConfig
 }
