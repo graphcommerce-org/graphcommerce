@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "type": "commonjs",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "js/index.js",
+  "typings": "js/index.d.ts",
   "scripts": {
     "dev": "tsc -W --preserveWatchOutput",
     "generate": "node dist/generate.js",
