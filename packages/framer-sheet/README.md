@@ -19,3 +19,46 @@ sure you have set up
 ## Usage
 
 **todo**
+
+## Styling
+
+### Material UI
+
+```tsx
+import { StyleRules, Theme, makeStyles } from '@material-ui/core'
+import { ClassNameMap } from '@material-ui/styles'
+import {
+  Sheet,
+  SheetBackdrop,
+  SheetContainer,
+  SheetDragIndicator,
+  SheetPanel,
+} from '@reachdigital/framer-sheet'
+import styles, { ClassKeys } from '@reachdigital/framer-sheet/styles'
+import React from 'react'
+
+const useSheetStyles = makeStyles<Theme, never, ClassKeys>(() => ({
+  ...(styles as StyleRules<ClassKeys>),
+})) as () => ClassNameMap<ClassKeys>
+
+type Props = { children: React.ReactNode }
+
+export default function SheetPageUi(props: Props) {
+  const classes = useSheetStyles()
+  const { children } = props
+
+  return (
+    <Sheet open variant='top'>
+      <SheetBackdrop classes={classes} />
+      <SheetContainer classes={classes}>
+        <SheetPanel
+          dragHandle={<SheetDragIndicator classes={classes} />}
+          classes={classes}
+        >
+          {children}
+        </SheetPanel>
+      </SheetContainer>
+    </Sheet>
+  )
+}
+```
