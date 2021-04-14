@@ -1,12 +1,53 @@
-import { readFileSync } from 'fs'
+import { execSync } from 'child_process'
+import { createHash } from 'crypto'
+import { readFileSync, writeFileSync } from 'fs'
 import withTranspileModules from 'next-transpile-modules'
+
 import { PackageJson } from 'type-fest'
-import possibleModules from './modules.json'
 
-export function withGraphCommerce(modules: string[] = []) {
-  const packageJson = JSON.parse(readFileSync('package.json', 'utf-8')) as PackageJson
-  const bla = Object.keys(packageJson.dependencies ?? {})
-  const availableModules = possibleModules.filter((path) => bla.includes(path))
+export type WorkspaceInfo = {
+  [name: string]: {
+    location: string
+    workspaceDependencies: string[]
+    mismatchedWorkspaceDependencies: string[]
+  }
+}
 
-  return withTranspileModules([...modules, ...availableModules], { resolveSymlinks: true })
+export function withYarn1Workspaces(modules: string[] = []) {
+  const packageStr = readFileSync('package.json', 'utf-8')
+  const packageJson = JSON.parse(packageStr) as PackageJson
+
+  const hashSum = createHash('sha256').update(packageStr, 'utf-8').digest('hex').slice(0, 10)
+
+  let infoJson: string
+  const cacheKey = `.next/cache/withYarn1Workspaces.${hashSum}.json`
+  try {
+    infoJson = readFileSync(cacheKey, 'utf-8')
+  } catch (e) {
+    infoJson = execSync('yarn workspaces info --json', { encoding: 'utf-8' })
+    try {
+      writeFileSync(cacheKey, infoJson)
+    } catch (er) {
+      // do nothing
+    }
+  }
+
+  const workspaceInfo = JSON.parse(JSON.parse(infoJson).data) as WorkspaceInfo
+
+  const requestedPackages = [
+    ...Object.keys(packageJson.dependencies ?? {}),
+    ...Object.keys(packageJson.devDependencies ?? {}),
+  ]
+
+  const entries = Object.entries((workspaceInfo as unknown) as WorkspaceInfo)
+
+  const m = new Set<string>(modules)
+  entries.forEach(([p, b]) => {
+    if (requestedPackages.includes(p)) {
+      m.add(p)
+      b.workspaceDependencies.forEach((wp) => m.add(wp))
+    }
+  })
+
+  return withTranspileModules([...m.values()], { resolveSymlinks: true })
 }

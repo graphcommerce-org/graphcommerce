@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "tsc -W --preserveWatchOutput",
     "generate": "node dist/generate.js",
-    "build": "tsc && yarn generate"
+    "build": "tsc"
   },
   "dependencies": {
     "next-transpile-modules": "^6.4.0",

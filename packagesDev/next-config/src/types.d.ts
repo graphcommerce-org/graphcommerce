@@ -6,5 +6,5 @@ declare module 'next-transpile-modules' {
       debug?: boolean
       __unstable_matcher?: (path: string) => boolean
     },
-  ): (nextConfig) => nextConfig
+  ): (nextConfig) => typeof nextConfig
 }

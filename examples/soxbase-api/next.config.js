@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withGraphCommerce = require('@reachdigital/next-config').withGraphCommerce()
+const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Workspaces()
 
 const nextConfig = {
   future: {
@@ -11,4 +11,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withGraphCommerce(nextConfig)
+module.exports = withYarn1Workspaces(nextConfig)

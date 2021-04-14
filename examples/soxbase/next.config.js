@@ -8,7 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 require('dotenv').config()
 
-const withGraphCommerce = require('@reachdigital/next-config').withGraphCommerce()
+const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Workspaces()
 
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
@@ -48,4 +48,4 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(withGraphCommerce(nextConfig))))
+module.exports = withBundleAnalyzer(withPWA(withImages(withYarn1Workspaces(nextConfig))))
