@@ -3,7 +3,10 @@ import { CSSProperties } from 'react'
 import { LiteralUnion } from 'type-fest'
 
 export type SheetVariant = 'top' | 'bottom' | 'left' | 'right'
-export type SheetSize = 'min' | 'max' | CSSProperties['height'] | CSSProperties['width']
+export type SheetSize = LiteralUnion<
+  'min' | 'max',
+  CSSProperties['height'] | CSSProperties['width']
+>
 export type SnapPoint = LiteralUnion<'open' | 'closed', number>
 
 export type SheetContext = {

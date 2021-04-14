@@ -26,12 +26,6 @@ const useStyles = makeStyles(
         top: `calc(48px + ${theme.spacings.sm} * 2)`,
       },
     },
-    backButtonText: {
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      maxWidth: 100,
-    },
     header: {
       padding: `${theme.page.vertical} ${theme.page.horizontal} ${theme.spacings.sm}`,
       top: 0,
@@ -44,10 +38,6 @@ const useStyles = makeStyles(
         background: theme.palette.background.default,
       },
     },
-    headerBack: {
-      pointerEvents: 'all',
-      gridArea: 'back',
-    },
   }),
   { name: 'FullPageUi' },
 )
@@ -55,40 +45,20 @@ const useStyles = makeStyles(
 export type FullPageUiProps = {
   header?: React.ReactNode
   children?: React.ReactNode
-} & BackButtonProps &
-  UseStyles<typeof useStyles>
+  backFallbackHref?: string
+  backFallbackTitle?: string
+} & UseStyles<typeof useStyles>
 
 function FullPageUi(props: FullPageUiProps) {
   const { children, backFallbackHref, backFallbackTitle, header } = props
   const router = useRouter()
   const classes = useStyles(props)
 
-  const prevPage = false
   return (
     <>
       {router.pathname !== '/' && (
         <m.div className={classes.backButtonRoot}>
-          <NoSsr
-            fallback={
-              <PageLink href={backFallbackHref} passHref>
-                <BackButton>
-                  <span className={classes.backButtonText}>{backFallbackTitle}</span>
-                </BackButton>
-              </PageLink>
-            }
-          >
-            {prevPage?.title ? (
-              <BackButton onClick={() => router.back()}>
-                <span className={classes.backButtonText}>{prevPage.title}</span>
-              </BackButton>
-            ) : (
-              <PageLink href={backFallbackHref} passHref>
-                <BackButton>
-                  <span className={classes.backButtonText}>{backFallbackTitle}</span>
-                </BackButton>
-              </PageLink>
-            )}
-          </NoSsr>
+          <BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>
         </m.div>
       )}
 
@@ -105,6 +75,5 @@ function FullPageUi(props: FullPageUiProps) {
     </>
   )
 }
-FullPageUi.holdBackground = false
 
 export default FullPageUi

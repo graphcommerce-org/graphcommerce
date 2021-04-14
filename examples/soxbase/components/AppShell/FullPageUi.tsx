@@ -122,6 +122,5 @@ function FullPageUi(props: FullPageUiProps) {
     </NextFullPageUi>
   )
 }
-FullPageUi.holdBackground = false
 
 export default FullPageUi

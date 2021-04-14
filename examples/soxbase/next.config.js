@@ -32,6 +32,7 @@ const nextConfig = {
   experimental: {
     optimizeImages: true,
     optimizeFonts: true,
+    scrollRestoration: true,
   },
   pwa: {
     dest: 'public',

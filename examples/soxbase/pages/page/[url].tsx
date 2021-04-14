@@ -30,7 +30,7 @@ function CmsPage(props: Props) {
 
   const title = cmsPage?.title ?? ''
   return (
-    <FullPageUi title={title} backFallbackTitle='Blog' backFallbackHref='/' {...props}>
+    <FullPageUi title={title} backFallbackTitle='Home' backFallbackHref='/' {...props}>
       <PageMeta
         title={cmsPage?.meta_title ?? title ?? ''}
         metaDescription={cmsPage?.meta_description ?? ''}

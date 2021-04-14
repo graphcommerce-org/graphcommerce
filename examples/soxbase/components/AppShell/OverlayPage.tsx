@@ -4,14 +4,8 @@ import NextOverlayUi, {
 import React from 'react'
 import Logo from './Logo'
 
-function OverlayPage(props: NextOverlayUiProps) {
-  const { children, ...uiProps } = props
-  return (
-    <NextOverlayUi variant='left' {...uiProps} header={<Logo />}>
-      {children}
-    </NextOverlayUi>
-  )
+function OverlayPage(props: Omit<NextOverlayUiProps, 'header'>) {
+  return <NextOverlayUi {...props} header={<Logo />} />
 }
-OverlayPage.holdBackground = false
 
 export default OverlayPage

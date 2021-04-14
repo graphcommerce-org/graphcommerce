@@ -1,23 +1,19 @@
-import { makeStyles, NoSsr, Theme, useMediaQuery, useTheme } from '@material-ui/core'
-import { usePageRouter } from '@reachdigital/framer-next-pages'
-import { SheetVariant } from '@reachdigital/framer-sheet'
-import clsx from 'clsx'
-import { m, MotionProps } from 'framer-motion'
-import PageLink from 'next/link'
+import { makeStyles, Theme } from '@material-ui/core'
+import { usePageDepth, usePageRouter } from '@reachdigital/framer-next-pages'
+import {
+  Sheet,
+  SheetBackdrop,
+  SheetContainer,
+  SheetDragIndicator,
+  SheetPanel,
+  SheetProps,
+} from '@reachdigital/framer-sheet'
 import { useRouter } from 'next/router'
-import React, { KeyboardEventHandler, useEffect, useState } from 'react'
+import React from 'react'
 import FocusLock from 'react-focus-lock'
-import SheetPageUi from '../FramerSheet/SheetPage'
+import useSheetStyles from '../FramerSheet/useSheetStyles'
 import { UseStyles } from '../Styles'
-import bottomOverlayUiAnimations, {
-  OverlayUiAnimationProps,
-} from './Animations/bottomOverlayUiAnimations'
-import centerOverlayUiAnimations from './Animations/centerOverlayUiAnimations'
-import leftOverlayUiAnimations from './Animations/leftOverlayUiAnimations'
-import rightOverlayUiAnimations from './Animations/rightOverlayUiAnimations'
-import topOverlayUiAnimations from './Animations/topOverlayUiAnimations'
 import BackButton, { BackButtonProps } from './BackButton'
-import Backdrop from './Backdrop'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -140,31 +136,56 @@ export type OverlayUiProps = UseStyles<typeof useStyles> & {
   fullHeight?: boolean
   header?: React.ReactNode
   headerForward?: React.ReactNode
-  variant: SheetVariant
   children?: React.ReactNode
   backFallbackHref?: string
   backFallbackTitle?: string
-}
+} & Pick<SheetProps, 'size' | 'variant'>
 
 function OverlayUi(props: OverlayUiProps) {
   const classes = useStyles(props)
-  const { children, backFallbackHref, backFallbackTitle, header, headerForward, variant } = props
+  const {
+    children,
+    backFallbackHref,
+    backFallbackTitle,
+    header,
+    headerForward,
+    variant,
+    size,
+  } = props
+
+  const sheetClasses = useSheetStyles()
+  const router = useRouter()
+  const pageRouter = usePageRouter()
+  const depth = usePageDepth()
+
+  const isActive = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
-    <SheetPageUi variant={variant}>
-      {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
-      <div className={classes.header} role='presentation'>
-        <div className={classes.headerTitleContainer}>{header}</div>
-        <div className={classes.headerBack}>
-          <BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>
-        </div>
-        <div className={classes.headerForward}>{headerForward}</div>
-      </div>
-      {children}
-      {/* </FocusLock> */}
-    </SheetPageUi>
+    <Sheet
+      open={isActive}
+      onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
+      variant={variant}
+    >
+      <SheetBackdrop onTap={() => router.back()} classes={sheetClasses} />
+      <SheetContainer classes={sheetClasses}>
+        <SheetPanel
+          dragHandle={<SheetDragIndicator classes={sheetClasses} />}
+          classes={sheetClasses}
+        >
+          {/* <FocusLock returnFocus={{ preventScroll: true }} disabled={!isActive}> */}
+          <div className={classes.header} role='presentation'>
+            <div className={classes.headerTitleContainer}>{header}</div>
+            <div className={classes.headerBack}>
+              <BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>
+            </div>
+            <div className={classes.headerForward}>{headerForward}</div>
+          </div>
+          {children}
+          {/* </FocusLock> */}
+        </SheetPanel>
+      </SheetContainer>
+    </Sheet>
   )
 }
-OverlayUi.holdBackground = true
 
 export default OverlayUi
