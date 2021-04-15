@@ -38,7 +38,7 @@ export default function SheetContainer(props: SheetContainerProps) {
       calcMaxSize()
     })
     ro.observe(containerRef.current)
-    return ro.disconnect
+    return () => ro.disconnect()
   }, [calcMaxSize, containerRef, dimension, size])
 
   useIsomorphicLayoutEffect(() => windowSize[axis].attach(calcMaxSize), [axis, calcMaxSize])

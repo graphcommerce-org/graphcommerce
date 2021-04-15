@@ -84,11 +84,11 @@ export default function SheetPanel(props: SheetPanelProps) {
   const canDrag = useMotionValueValue(useElementScroll(contentRef).yMax, (v) => v === 0)
 
   useIsomorphicLayoutEffect(() => {
-    if (!containerRef.current) return undefined
+    if (!dragHandleRef.current) return undefined
     const ro = new ResizeObserver(([entry]) => dragHandleHeight.set(entry.contentRect.height))
-    ro.observe(containerRef.current)
-    return ro.disconnect
-  }, [containerRef, dragHandleHeight])
+    ro.observe(dragHandleRef.current)
+    return () => ro.disconnect()
+  }, [dragHandleRef, dragHandleHeight])
 
   const Variant = variant[0].toUpperCase() + variant.slice(1)
   return (

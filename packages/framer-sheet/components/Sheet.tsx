@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import sheetContext from '../context/sheetContext'
 import { SheetContext, SheetSize } from '../types'
 
-export type SheetContextProps = {
+export type SheetProps = {
   children: React.ReactNode
   /**
    * Open/close the panel
@@ -19,8 +19,8 @@ export type SheetContextProps = {
 } & Pick<SheetContext, 'variant' | 'onSnap'> &
   Partial<Pick<SheetContext, 'snapPoints'>>
 
-export default function Sheet(props: SheetContextProps) {
-  const { children, snapPoints = ['open', 'closed'], open, size = 'min', variant, onSnap } = props
+export default function Sheet(props: SheetProps) {
+  const { children, snapPoints = ['open', 'closed'], open, size = 'min', ...contextProps } = props
 
   const context: SheetContext = {
     drag: useMotionValue<number>(0),
@@ -28,10 +28,9 @@ export default function Sheet(props: SheetContextProps) {
     maxSize: useMotionValue<number>(0),
     controls: useAnimation(),
     containerRef: useRef<HTMLDivElement>(null),
-    snapPoints,
-    variant,
     variantSize: size,
-    onSnap,
+    snapPoints,
+    ...contextProps,
   }
 
   const last = snapPoints.length - 1
