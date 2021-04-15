@@ -224,9 +224,10 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const paths = locales.map((loc: string) => ({ params: { url: [] }, loc })).flat(1)
-
-  return { paths, fallback: 'blocking' }
+  return {
+    paths: [{ params: { url: ['search'] } }],
+    fallback: 'blocking',
+  }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => {
