@@ -22,6 +22,7 @@ import SearchForm from '@reachdigital/magento-search/SearchForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import Button from '@reachdigital/next-ui/Button'
+import Highlight from '@reachdigital/next-ui/Highlight'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
@@ -92,21 +93,6 @@ const useStyles = makeStyles(
   },
 )
 
-function Highlight(props: { text: string; highlight: string }) {
-  const { text, highlight } = props
-  const start = text.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase())
-
-  if (start < 0) return <>{text}</>
-
-  return (
-    <>
-      {text.slice(0, start)}
-      <strong>{text.slice(start, highlight.length + start)}</strong>
-      {text.slice(start + highlight.length)}
-    </>
-  )
-}
-
 function SearchIndexPage(props: Props) {
   const { products, categories, filters, params, filterTypes } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
@@ -162,7 +148,7 @@ function SearchIndexPage(props: Props) {
       </div>
 
       <Container maxWidth='xl'>
-        {(!search || !products || (products.items && products?.items?.length <= 0)) && (
+        {search && (!products || (products.items && products?.items?.length <= 0)) && (
           <div className={pageClasses.title}>
             <Typography variant='h5' align='center'>
               <IconTitle

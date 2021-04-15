@@ -1,7 +1,12 @@
 import { Button, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import { useFormMuiRegister, useForm, useFormAutoSubmit } from '@reachdigital/react-hook-form'
+import {
+  useFormMuiRegister,
+  useForm,
+  useFormAutoSubmit,
+  useFormPersist,
+} from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -56,11 +61,8 @@ export default function SearchForm(props: SearchFormProps) {
       )}
       <Button
         onClick={() => {
-          reset({
-            search: '',
-          })
+          reset({ search: '' })
         }}
-        type='submit'
         variant='text'
         className={pageClasses.resetBtn}
       >
