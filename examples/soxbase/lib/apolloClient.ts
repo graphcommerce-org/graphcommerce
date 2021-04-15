@@ -142,7 +142,12 @@ export function createApolloClient(
 
   cache.restore(state)
 
-  return new ApolloClient({ link, cache })
+  return new ApolloClient({
+    link,
+    cache,
+    ssrMode: typeof window === 'undefined',
+    name: typeof window === 'undefined' ? 'ssr' : 'web',
+  })
 }
 
 const sharedClient: {
