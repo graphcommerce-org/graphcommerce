@@ -23,9 +23,7 @@ const useStyles = makeStyles(
       left: theme.page.horizontal,
       top: theme.page.vertical,
       [theme.breakpoints.up('md')]: {
-        // @todo, replace 48 with content height variable.
-
-        top: `calc(48px + ${theme.spacings.sm} * 2)`,
+        top: `calc(${theme.page.headerInnerHeight.sm} + ${theme.spacings.sm} * 2)`,
       },
     },
     backButtonText: {
