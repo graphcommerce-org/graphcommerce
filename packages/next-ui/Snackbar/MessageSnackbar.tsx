@@ -39,7 +39,7 @@ const baseStyles = makeStyles(
       display: 'flex',
       flexWrap: 'inherit',
       [theme.breakpoints.down('sm')]: {
-        height: 140,
+        minHeight: 116,
         width: '90%',
       },
     },
@@ -57,7 +57,7 @@ const baseStyles = makeStyles(
         width: '100%',
       },
       [theme.breakpoints.down('sm')]: {
-        margin: '30px 0 20px 0',
+        margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
         position: 'absolute',
         bottom: 0,
         left: 10,
@@ -76,7 +76,7 @@ const baseStyles = makeStyles(
       [theme.breakpoints.down('sm')]: {
         position: 'absolute',
         top: 10,
-        right: 0,
+        right: 10,
         '& .MuiSvgIcon-root': {
           height: 20,
         },
