@@ -30,6 +30,7 @@ export const defaultTheme = createMuiTheme({
     // },
     background: {
       default: '#fff',
+      highlight: '#f8f8f8',
     },
     divider: 'rgba(0, 0, 0, 0.08)',
     success: {
@@ -77,7 +78,7 @@ export const defaultTheme = createMuiTheme({
       lineHeight: 1.16,
     },
     h2: {
-      fontSize: responsiveVal(12, 48),
+      fontSize: responsiveVal(28, 48),
       fontWeight: 600,
       letterSpacing: '-0.0375em',
       lineHeight: 1.42,
@@ -121,7 +122,7 @@ export const defaultTheme = createMuiTheme({
     vertical: responsiveVal(15, 30),
     headerInnerHeight: {
       xs: responsiveVal(21, 33),
-      sm: `48px`,
+      sm: `56px`,
     },
   },
 })
@@ -129,6 +130,9 @@ export const defaultTheme = createMuiTheme({
 defaultTheme.overrides = {
   MuiCssBaseline: {
     '@global': {
+      body: {
+        overflowY: 'scroll',
+      },
       '@font-face': fonts.map(({ font, fontWeight, fontStyle }) => ({
         fontFamily: 'Graphik',
         fontWeight,

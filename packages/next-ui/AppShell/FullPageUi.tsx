@@ -13,7 +13,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     backButtonRoot: {
       position: 'fixed',
-      zIndex: 10,
+      zIndex: 11,
       [theme.breakpoints.down('sm')]: {
         // top: 4,
       },
@@ -23,9 +23,7 @@ const useStyles = makeStyles(
       left: theme.page.horizontal,
       top: theme.page.vertical,
       [theme.breakpoints.up('md')]: {
-        // @todo, replace 48 with content height variable.
-
-        top: `calc(48px + ${theme.spacings.sm} * 2)`,
+        top: `calc(${theme.page.headerInnerHeight.sm} + ${theme.spacings.sm} * 2)`,
       },
     },
     backButtonText: {

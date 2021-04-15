@@ -9,14 +9,6 @@ const useStyles = makeStyles(
     logo: {
       pointerEvents: 'all',
     },
-    logoImg: {
-      height: theme.page.headerInnerHeight.xs,
-      display: 'block',
-      width: 'auto',
-      paddingBottom: responsiveVal(4, 7), // todo(paales): should be removed when we have a proper logo
-      [theme.breakpoints.down('sm')]: {},
-      [theme.breakpoints.up('md')]: {},
-    },
   }),
   { name: 'Logo' },
 )

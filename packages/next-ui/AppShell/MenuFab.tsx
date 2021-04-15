@@ -22,7 +22,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     menuWrapper: {
       position: 'fixed',
-      zIndex: 8,
+      zIndex: 11,
       left: theme.page.horizontal,
       [theme.breakpoints.down('sm')]: {
         bottom: theme.page.vertical,
