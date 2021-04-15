@@ -2,6 +2,7 @@
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import {
   ApolloClient,
   ApolloLink,
@@ -20,7 +21,6 @@ import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
 import type { TracingFormat } from 'apollo-tracing'
 import fragments from '../generated/fragments.json'
-// import MutationQueueLink from '@adobe/apollo-link-mutation-queue'
 import typePolicies from './typePolicies'
 
 export function createApolloClient(
@@ -69,7 +69,7 @@ export function createApolloClient(
   })
 
   const links: (ApolloLink | RequestHandler)[] = [
-    // new MutationQueueLink(),
+    (new MutationQueueLink() as unknown) as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
     authLink,
