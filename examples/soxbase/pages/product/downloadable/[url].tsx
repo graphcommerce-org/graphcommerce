@@ -38,7 +38,6 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function ProductDownloadable(props: Props) {
   const { products, usps, typeProducts, productpages } = props
-  const classes = useStyles()
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
