@@ -13,8 +13,8 @@ import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import clsx from 'clsx'
-import React, { useCallback, useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
@@ -27,12 +27,6 @@ const useStyles = makeStyles(
         minWidth: 130,
       },
     },
-    fullPageInnerContainer: {
-      transition: 'opacity .25s ease',
-    },
-    innerContainerSearchActive: {
-      opacity: 0.2,
-    },
   }),
   { name: 'FullPageUI' },
 )
@@ -43,8 +37,6 @@ type FullPageUiProps = Omit<DefaultPageQuery, 'pages'> &
 function FullPageUi(props: FullPageUiProps) {
   const { footer, header, menu: menuData = {}, children, ...uiProps } = props
   const classes = useStyles()
-
-  const [searching, setSearching] = useState<boolean>(false)
 
   const menuProps: MenuProps = {
     menu: [
@@ -60,7 +52,8 @@ function FullPageUi(props: FullPageUiProps) {
     ],
   }
 
-  const onSearchStart = useCallback(() => setSearching(true), [])
+  const router = useRouter()
+  const onSearchStart = useCallback(() => router.push('/search'), [])
 
   return (
     <NextFullPageUi
@@ -70,7 +63,9 @@ function FullPageUi(props: FullPageUiProps) {
           <Logo />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
-            <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+            {!router.pathname.startsWith('/search') && (
+              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+            )}
 
             <PageLink href='/service/index'>
               <IconButton aria-label='Account' color='inherit' size='medium'>
@@ -129,14 +124,7 @@ function FullPageUi(props: FullPageUiProps) {
         />
       </CartFab>
 
-      <div
-        className={clsx(
-          classes.fullPageInnerContainer,
-          searching && classes.innerContainerSearchActive,
-        )}
-      >
-        {children}
-      </div>
+      {children}
 
       <Footer footer={footer} />
     </NextFullPageUi>
