@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
@@ -38,6 +38,7 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function ProductDownloadable(props: Props) {
   const { products, usps, typeProducts, productpages } = props
+  const classes = useStyles()
 
   const product = products?.items?.[0]
   const typeProduct = typeProducts?.items?.[0]
@@ -57,14 +58,12 @@ function ProductDownloadable(props: Props) {
       {...props}
     >
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-        </ProductPageGallery>
+      <ProductPageGallery {...product}>
+        <Typography variant='h1'>{product.name ?? ''}</Typography>
+        <AddToCartButton
+          mutation={ProductAddToCartDocument}
+          variables={{ sku: product.sku ?? '', quantity: 1 }}
+        />
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>
             {option?.title} + {option?.price}
@@ -75,7 +74,8 @@ function ProductDownloadable(props: Props) {
             {sample?.title} {sample?.sample_url} {sample?.sort_order}
           </div>
         ))}
-      </Container>
+      </ProductPageGallery>
+
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>

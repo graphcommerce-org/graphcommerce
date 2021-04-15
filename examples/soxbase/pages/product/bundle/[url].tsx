@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import BundleItemsForm from '@reachdigital/magento-product-bundle/BundleItemsForm'
@@ -55,16 +55,14 @@ function ProductBundle(props: Props) {
       {...props}
     >
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-          <BundleItemsForm {...typeProduct} />
-        </ProductPageGallery>
-      </Container>
+      <ProductPageGallery {...product}>
+        <Typography variant='h1'>{product.name ?? ''}</Typography>
+        <AddToCartButton
+          mutation={ProductAddToCartDocument}
+          variables={{ sku: product.sku ?? '', quantity: 1 }}
+        />
+        <BundleItemsForm {...typeProduct} />
+      </ProductPageGallery>
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>

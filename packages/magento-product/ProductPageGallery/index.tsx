@@ -17,7 +17,7 @@ export default function ProductPageGallery(props: ProductPageGalleryProps) {
   const { media_gallery, children } = props
 
   return (
-    <SidebarGallery sidebar={children}>
+    <SidebarGallery sidebar={children} aspectRatio={[1678, 1532]}>
       {media_gallery?.map((item) => {
         if (!item?.position) return null
         return (

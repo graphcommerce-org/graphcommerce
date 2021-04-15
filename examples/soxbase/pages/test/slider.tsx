@@ -39,34 +39,37 @@ function TestSlider({ products }: Props) {
 
         <m.div layout>
           <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Expandable Image Gallery with sidebar
+            Sidebar image gallery
           </Typography>
         </m.div>
-        <SidebarGallery
-          sidebar={
-            <>
-              <h1>Title</h1>
-              <ul>
-                <li>Some product details</li>
-                <li>Or other information</li>
-                <li>Can be displayed here</li>
-              </ul>
-            </>
-          }
-        >
-          {images.map((image) => (
-            <SliderImage key={image} width={1532} height={1678}>
-              <PictureResponsiveNext
-                src={image}
-                type='image/jpeg'
-                width={1532}
-                height={1678}
-                alt='img'
-              />
-            </SliderImage>
-          ))}
-        </SidebarGallery>
+      </Container>
 
+      <SidebarGallery
+        sidebar={
+          <>
+            <h1>Title</h1>
+            <ul>
+              <li>Some product details</li>
+              <li>Or other information</li>
+              <li>Can be displayed here</li>
+            </ul>
+          </>
+        }
+      >
+        {images.map((image) => (
+          <SliderImage key={image} width={1532} height={1678}>
+            <PictureResponsiveNext
+              src={image}
+              type='image/jpeg'
+              width={1532}
+              height={1678}
+              alt='img'
+            />
+          </SliderImage>
+        ))}
+      </SidebarGallery>
+
+      <Container>
         <m.div layout>
           <Typography variant='h2' style={{ textAlign: 'center' }}>
             Multi item slider
