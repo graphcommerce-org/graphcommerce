@@ -10,9 +10,7 @@ Non-goals:
 
 - Provide components that actually stack
 
-## Usage
-
-### Installing
+## Installing
 
 Create a `pages/_app.ts` file:
 
@@ -30,6 +28,8 @@ export default function App({ router, Component, pageProps }: AppPropsType) {
   )
 }
 ```
+
+## Usage
 
 ### Create a page that works as an overlay:
 
@@ -97,6 +97,8 @@ normal page. You can provide a fallback to render something in this case.
 ### Create a fallback when routes aren't provided
 
 ..._todo_...
+
+### Layout support
 
 ### Workins
 
