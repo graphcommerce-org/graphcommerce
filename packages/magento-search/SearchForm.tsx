@@ -1,12 +1,7 @@
 import { Button, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import {
-  useFormMuiRegister,
-  useForm,
-  useFormAutoSubmit,
-  useFormPersist,
-} from '@reachdigital/react-hook-form'
+import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -38,6 +33,7 @@ export default function SearchForm(props: SearchFormProps) {
   const { totalResults, search } = props
   const formClasses = useFormStyles()
   const pageClasses = useStyles()
+  const router = useRouter()
 
   const form = useForm({
     mode: 'onChange',
@@ -45,9 +41,8 @@ export default function SearchForm(props: SearchFormProps) {
   })
 
   const { handleSubmit, formState, reset, watch } = form
-  const muiRegister = useFormMuiRegister(form)
 
-  const router = useRouter()
+  const muiRegister = useFormMuiRegister(form)
 
   const submit = handleSubmit((formData) => router.replace(`/search/${formData.search}`))
   useFormAutoSubmit({ form, submit })
@@ -60,9 +55,7 @@ export default function SearchForm(props: SearchFormProps) {
         </div>
       )}
       <Button
-        onClick={() => {
-          reset({ search: '' })
-        }}
+        onClick={() => router.replace(`/search`)}
         variant='text'
         className={pageClasses.resetBtn}
       >
@@ -86,7 +79,7 @@ export default function SearchForm(props: SearchFormProps) {
           autoFocus
           error={formState.isSubmitted && !!formState.errors.search}
           helperText={formState.isSubmitted && formState.errors.search?.message}
-          {...muiRegister('search', { min: 3 })}
+          {...muiRegister('search', { minLength: 2 })}
           InputProps={{ endAdornment: watch('search') && endAdornment }}
         />
       </div>

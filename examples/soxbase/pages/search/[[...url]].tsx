@@ -1,5 +1,6 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, Link, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { FormatListNumbered } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
@@ -25,10 +26,12 @@ import Button from '@reachdigital/next-ui/Button'
 import Highlight from '@reachdigital/next-ui/Highlight'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -60,19 +63,18 @@ const useStyles = makeStyles(
       paddingBottom: theme.spacings.md,
     },
     categoryButton: {
-      padding: `${theme.spacings.xs} 16px ${theme.spacings.xs} 16px`,
+      padding: `${theme.spacings.xs} 20px ${theme.spacings.xs} 14px`,
       display: 'flex',
       justifyContent: 'space-between',
       borderBottom: `1px solid ${theme.palette.divider}`,
-      minWidth: 'calc(100% + 32px)',
+      minWidth: '100%',
       maxWidth: 'unset',
-      marginLeft: '-16px',
       borderRadius: '0',
       '&:focus': {
         boxShadow: 'none',
       },
       '&:hover': {
-        background: '#f8f8f8', // TODO: use theme.background value
+        background: '#f8f8f8', // TODO: use theme value
       },
     },
     totalProducts: {
@@ -103,7 +105,7 @@ function SearchIndexPage(props: Props) {
 
   return (
     <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
-      <PageMeta title='Search' metaDescription='Search results' />
+      <PageMeta title='Search' metaDescription='Search results' metaRobots={['noindex']} />
 
       <div className={pageClasses.formContainer}>
         <Container maxWidth='sm'>
@@ -111,7 +113,7 @@ function SearchIndexPage(props: Props) {
 
           <div className={pageClasses.categoryLinks}>
             {categories?.items?.map((category) => (
-              <Link underline='none' key={category?.url_path} href={`/${category?.url_path ?? ''}`}>
+              <PageLink key={category?.url_path} href={`/${category?.url_path ?? ''}`}>
                 <Button
                   fullWidth
                   variant='contained'
@@ -141,7 +143,7 @@ function SearchIndexPage(props: Props) {
                     <Highlight text={category?.name ?? ''} highlight={search} />
                   </div>
                 </Button>
-              </Link>
+              </PageLink>
             ))}
           </div>
         </Container>
@@ -211,7 +213,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   return {
-    paths: [{ params: { url: ['search'] } }],
+    paths: [{ params: { url: [] } }],
     fallback: 'blocking',
   }
 }
@@ -234,15 +236,16 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
 
   if (!productListParams) return { notFound: true }
 
-  const products = search
-    ? client.query({
-        query: SearchDocument,
-        variables: mergeDeep(productListParams, {
-          categoryUid: rootCategory,
-          search,
-        }),
-      })
-    : { data: undefined }
+  const products =
+    search && search.length > 2
+      ? client.query({
+          query: SearchDocument,
+          variables: mergeDeep(productListParams, {
+            categoryUid: rootCategory,
+            search,
+          }),
+        })
+      : { data: undefined }
 
   return {
     props: {

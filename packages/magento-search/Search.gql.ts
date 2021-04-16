@@ -14,7 +14,7 @@ export const SearchDocument: DocumentNode<SearchQuery, SearchQueryVariables> = {
           kind: 'VariableDefinition',
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'pageSize' } },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          defaultValue: { kind: 'IntValue', value: '6' },
+          defaultValue: { kind: 'IntValue', value: '23' },
         },
         {
           kind: 'VariableDefinition',
