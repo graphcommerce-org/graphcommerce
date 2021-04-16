@@ -19,10 +19,9 @@ const useStyles = makeStyles(
     snackbarRoot: {},
     anchorOriginBottomCenter: {
       left: 0,
-      right: 'unset',
+      right: 0,
       transform: 'unset',
       bottom: 0,
-      width: '100%',
       pointerEvents: 'none',
       [theme.breakpoints.up('md')]: {
         padding: `${theme.page.vertical} ${theme.page.horizontal}`,
