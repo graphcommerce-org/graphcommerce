@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
@@ -55,16 +55,16 @@ function ProductVirtual(props: Props) {
       {...props}
     >
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-            name={product.name ?? ''}
-          />
-        </ProductPageGallery>
-      </Container>
+      <ProductPageGallery {...product}>
+        <Typography component='h1' variant='h2'>
+          {product.name}
+        </Typography>
+        <AddToCartButton
+          mutation={ProductAddToCartDocument}
+          variables={{ sku: product.sku ?? '', quantity: 1 }}
+          name={product.name ?? ''}
+        />
+      </ProductPageGallery>
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>

@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
@@ -56,29 +56,29 @@ function ProductGrouped(props: Props) {
       {...props}
     >
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <ul>
-            {typeProduct.items?.map(
-              (item) =>
-                item?.product?.sku && (
-                  <li key={item?.product?.name}>
-                    <div>{item?.product?.name}</div>
-                    <div>
-                      <AddToCartButton
-                        mutation={ProductAddToCartDocument}
-                        variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
-                        name={product.name ?? ''}
-                      />
-                    </div>
-                  </li>
-                ),
-            )}
-          </ul>
-          <ProductWeight weight={typeProduct?.weight} />
-        </ProductPageGallery>
-      </Container>
+      <ProductPageGallery {...product}>
+        <Typography component='h1' variant='h2'>
+          {product.name}
+        </Typography>
+        <ul>
+          {typeProduct.items?.map(
+            (item) =>
+              item?.product?.sku && (
+                <li key={item?.product?.name}>
+                  <div>{item?.product?.name}</div>
+                  <div>
+                    <AddToCartButton
+                      mutation={ProductAddToCartDocument}
+                      variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
+                      name={product.name ?? ''}
+                    />
+                  </div>
+                </li>
+              ),
+          )}
+        </ul>
+        <ProductWeight weight={typeProduct?.weight} />
+      </ProductPageGallery>
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>

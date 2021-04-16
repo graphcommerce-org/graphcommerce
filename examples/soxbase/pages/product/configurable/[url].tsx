@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
@@ -60,15 +60,15 @@ function ProductConfigurable(props: Props) {
     >
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
-        <Container maxWidth={false}>
-          <ProductPageGallery {...product}>
-            <Typography variant='h1'>{product.name ?? ''}</Typography>
-            <ConfigurableProductAddToCart
+        <ProductPageGallery {...product}>
+          <Typography component='h1' variant='h2'>
+            {product.name}
+          </Typography>
+          <ConfigurableProductAddToCart
               variables={{ sku: product.sku ?? '', quantity: 1 }}
               name={product.name ?? ''}
             />
-          </ProductPageGallery>
-        </Container>
+        </ProductPageGallery>
         <RowProductDescription {...product}>
           <ProductUsps usps={usps} />
         </RowProductDescription>
