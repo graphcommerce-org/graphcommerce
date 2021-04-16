@@ -44,7 +44,7 @@ export default function SearchForm(props: SearchFormProps) {
 
   const muiRegister = useFormMuiRegister(form)
 
-  const submit = handleSubmit((formData) => router.replace(`/search/${formData.search}`))
+  const submit = handleSubmit((formData) => router.push(`/search/${formData.search}`))
   useFormAutoSubmit({ form, submit })
 
   const endAdornment = (
@@ -55,7 +55,9 @@ export default function SearchForm(props: SearchFormProps) {
         </div>
       )}
       <Button
-        onClick={() => router.replace(`/search`)}
+        onClick={() => {
+          router.replace(`/search`)
+        }}
         variant='text'
         className={pageClasses.resetBtn}
       >

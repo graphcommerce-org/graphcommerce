@@ -36,6 +36,7 @@ const useCategoryPageStyles = makeStyles(
       marginBottom: responsiveVal(40, 80),
       display: 'flex',
       alignItems: 'left',
+      justifyContent: 'center',
       fontSize: 18,
       '& span': {
         padding: '8px 8px 0 10px',

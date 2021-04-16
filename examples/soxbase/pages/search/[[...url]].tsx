@@ -1,5 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
@@ -18,11 +18,12 @@ import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFi
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import CategorySearchResult from '@reachdigital/magento-search/CategorySearchResult'
+import NoSearchResults from '@reachdigital/magento-search/NoSearchResults'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
 import SearchForm from '@reachdigital/magento-search/SearchForm'
+import SearchResultsTitle from '@reachdigital/magento-search/SearchResultsTitle'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import clsx from 'clsx'
@@ -44,25 +45,15 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    formContainer: {
+    containerShadow: {
       boxShadow: '0 5px 4px 0 rgb(3 3 3 / 3%)',
     },
-    title: {
-      marginTop: theme.spacings.md,
-      marginBottom: theme.spacings.sm,
-    },
-    productsContainer: {
-      marginTop: theme.spacings.md,
-    },
-    categoryLinks: {
+    categorySearchResults: {
       paddingBottom: theme.spacings.md,
-    },
-    pagination: {
-      display: 'flex',
-      justifyContent: 'center',
     },
     productListCount: {
       marginTop: theme.spacings.sm,
+      marginBottom: theme.spacings.sm,
     },
   }),
   {
@@ -82,11 +73,11 @@ function SearchIndexPage(props: Props) {
     <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
       <PageMeta title='Search' metaDescription='Search results' metaRobots={['noindex']} />
 
-      <div className={pageClasses.formContainer}>
+      <div className={pageClasses.containerShadow}>
         <Container maxWidth='sm'>
           <SearchForm totalResults={totalSearchResults} search={search} />
 
-          <div className={pageClasses.categoryLinks}>
+          <div className={pageClasses.categorySearchResults}>
             {categories?.items?.map((category) => (
               <CategorySearchResult key={category?.url_path} search={search} {...category} />
             ))}
@@ -96,24 +87,11 @@ function SearchIndexPage(props: Props) {
 
       <Container maxWidth='xl'>
         {search && (!products || (products.items && products?.items?.length <= 0)) && (
-          <div className={pageClasses.title}>
-            <Typography variant='h5' align='center'>
-              <IconTitle
-                iconSrc='/icons/desktop_sad_face.svg'
-                title='No results'
-                alt='no results'
-                size='large'
-              />
-            </Typography>
-          </div>
+          <NoSearchResults />
         )}
 
         {search && products && products.items && products?.items?.length > 0 && (
-          <div className={pageClasses.title}>
-            <Typography variant='h2' align='center'>
-              Results for ‘{search}’
-            </Typography>
-          </div>
+          <SearchResultsTitle search={search} />
         )}
 
         <ProductListParamsProvider value={params}>
@@ -130,17 +108,13 @@ function SearchIndexPage(props: Props) {
             )}
           </div>
 
-          <div className={pageClasses.productsContainer}>
-            <ProductListItems
-              items={products?.items}
-              className={clsx(classes.items, productListClasses.productList)}
-              loadingEager={1}
-            />
-          </div>
+          <ProductListItems
+            items={products?.items}
+            className={clsx(classes.items, productListClasses.productList)}
+            loadingEager={1}
+          />
 
-          <div className={pageClasses.pagination}>
-            <ProductListPagination page_info={products?.page_info} />
-          </div>
+          <ProductListPagination page_info={products?.page_info} className={classes.pagination} />
         </ProductListParamsProvider>
       </Container>
     </FullPageUi>
