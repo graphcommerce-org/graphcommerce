@@ -6,7 +6,6 @@ import {
   Fab,
   Theme,
   PropTypes,
-  SnackbarContentClassKey,
 } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
@@ -14,11 +13,6 @@ import React, { useEffect, useState } from 'react'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
-
-type MessageSnackbarClassKey =
-  | 'snackbarRoot'
-  | SnackbarContentClassKey
-  | `${SnackbarContentClassKey}${Capitalize<Size>}`
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -36,7 +30,7 @@ const useStyles = makeStyles(
     },
     root: {
       pointerEvents: 'all',
-      padding: `${theme.spacings.xxs} ${theme.page.vertical}`,
+      padding: `16px ${theme.page.horizontal} max(16px, env(safe-area-inset-bottom))`,
     },
     rootPill: {
       backgroundColor: theme.palette.background.paper,
@@ -68,10 +62,15 @@ const useStyles = makeStyles(
       gridArea: 'children',
       ...theme.typography.h4,
       fontWeight: 400,
+
+      '& .MuiSvgIcon-root': {
+        position: 'relative',
+        fontSize: '1.1em',
+        top: '0.15em',
+      },
     },
     actionButton: {
       gridArea: 'action',
-      margin: `${theme.spacings.xs} 0`,
       '& .MuiPillButton-pill': {
         width: '100%',
         padding: theme.spacings.xxs,
