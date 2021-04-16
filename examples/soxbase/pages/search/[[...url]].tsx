@@ -1,6 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
-import { FormatListNumbered } from '@material-ui/icons'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
@@ -18,20 +17,16 @@ import {
 import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
+import CategorySearchResult from '@reachdigital/magento-search/CategorySearchResult'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
 import SearchForm from '@reachdigital/magento-search/SearchForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import Button from '@reachdigital/next-ui/Button'
-import Highlight from '@reachdigital/next-ui/Highlight'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
-import { useRouter } from 'next/router'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -113,37 +108,7 @@ function SearchIndexPage(props: Props) {
 
           <div className={pageClasses.categoryLinks}>
             {categories?.items?.map((category) => (
-              <PageLink key={category?.url_path} href={`/${category?.url_path ?? ''}`}>
-                <Button
-                  fullWidth
-                  variant='contained'
-                  className={pageClasses.categoryButton}
-                  disableElevation
-                  endIcon={
-                    <PictureResponsiveNext
-                      alt='chevron right'
-                      width={24}
-                      height={24}
-                      src='/icons/desktop_chevron_right.svg'
-                      type='image/svg+xml'
-                    />
-                  }
-                >
-                  <div>
-                    {category?.breadcrumbs?.map((breadcrumb) => (
-                      <React.Fragment key={breadcrumb?.category_url_path}>
-                        <Highlight
-                          key={breadcrumb?.category_url_path}
-                          text={breadcrumb?.category_name ?? ''}
-                          highlight={search}
-                        />
-                        {' / '}
-                      </React.Fragment>
-                    ))}
-                    <Highlight text={category?.name ?? ''} highlight={search} />
-                  </div>
-                </Button>
-              </PageLink>
+              <CategorySearchResult key={category?.url_path} search={search} {...category} />
             ))}
           </div>
         </Container>

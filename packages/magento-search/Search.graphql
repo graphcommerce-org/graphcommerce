@@ -7,12 +7,9 @@ query Search(
 ) {
   categories(filters: { name: { match: $search } }, pageSize: $pageSize) {
     items {
-      url_path
-      name
-      ...CategoryBreadcrumb
+      ...CategorySearchResult
     }
   }
-
   ...ProductListFragment
   filters: products(search: $search, pageSize: $pageSize) {
     ...ProductListFilters
