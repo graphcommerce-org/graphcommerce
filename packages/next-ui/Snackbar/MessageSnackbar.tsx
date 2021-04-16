@@ -5,192 +5,183 @@ import {
   SnackbarProps,
   Fab,
   Theme,
-  SnackbarClassKey as MuiSnackbarClassKey,
+  PropTypes,
+  SnackbarContentClassKey,
 } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { SetRequired } from 'type-fest'
 
-type BaseSnackbarProps = Omit<Parameters<typeof Snackbar>['0'], 'variant' | 'classes'> & {
-  variant?: 'message' | 'outlined' | 'contained' | 'rounded'
-}
+type Size = 'normal' | 'wide'
+type Variant = 'contained' | 'pill'
 
-type SnackbarClassKey = 'rounded' | 'roundedLarge' | 'roundedPrimary'
+type MessageSnackbarClassKey =
+  | 'snackbarRoot'
+  | SnackbarContentClassKey
+  | `${SnackbarContentClassKey}${Capitalize<Size>}`
 
-type ClassKeys = SnackbarClassKey | MuiSnackbarClassKey
-
-const baseStyles = makeStyles(
+const useStyles = makeStyles(
   (theme: Theme) => ({
+    snackbarRoot: {},
+    anchorOriginBottomCenter: {
+      left: 'unset',
+      right: 'unset',
+      transform: 'unset',
+      bottom: '0',
+      width: '100%',
+      pointerEvents: 'none',
+      [theme.breakpoints.up('md')]: {
+        padding: `${theme.page.vertical} ${theme.page.horizontal}`,
+      },
+    },
     root: {
-      backgroundColor: 'transparent',
-      flexWrap: 'inherit',
-      [theme.breakpoints.down('sm')]: {
-        width: '100%',
-        right: 0,
-        bottom: 0,
+      pointerEvents: 'all',
+      padding: `${theme.spacings.xxs} ${theme.page.vertical}`,
+    },
+    rootPill: {
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+
+      [theme.breakpoints.up('md')]: {
+        borderRadius: 50,
       },
-      [theme.breakpoints.down('xs')]: {
-        left: 0,
-      },
+    },
+    rootPillLarge: {},
+    rootPillColorPrimary: {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
     },
     message: {
-      padding: `${theme.spacings.xxs} 5px`,
-      display: 'flex',
-      flexWrap: 'inherit',
-      [theme.breakpoints.down('sm')]: {
-        minHeight: 116,
-        width: '90%',
-      },
-    },
-    action: {
+      padding: 0,
+      display: 'grid',
+      alignItems: 'center',
+      gap: theme.spacings.xs,
+      gridTemplate: `
+        "children close"
+        "action action"
+      `,
       [theme.breakpoints.up('md')]: {
-        minWidth: (props: MessageSnackbarProps) => (props.action ? 295 : 'auto'),
+        gridTemplate: `"children action close"`,
       },
     },
-    actionContainer: {
-      display: 'flex',
+    children: {
+      gridArea: 'children',
+      ...theme.typography.h4,
+      fontWeight: 400,
     },
     actionButton: {
-      marginRight: 5,
+      gridArea: 'action',
+      margin: `${theme.spacings.xs} 0`,
       '& .MuiPillButton-pill': {
         width: '100%',
+        padding: theme.spacings.xxs,
+        borderRadius: 40,
       },
-      [theme.breakpoints.down('sm')]: {
-        margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
-        position: 'absolute',
-        bottom: 0,
-        left: 10,
-        right: 10,
+      [theme.breakpoints.up('md')]: {
+        margin: 0,
         '& .MuiPillButton-pill': {
           width: '100%',
-          borderRadius: 0,
+          padding: '8px 16px',
         },
       },
     },
     closeButton: {
-      '& .MuiFab-sizeMedium': {
-        height: 40,
-        width: 40,
+      gridArea: 'close',
+      '& .MuiSvgIcon-root': {
+        height: 24,
       },
-      [theme.breakpoints.down('sm')]: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
+      '& .MuiFab-sizeMedium': {
+        height: 36,
+        width: 36,
+      },
+      [theme.breakpoints.up('md')]: {
         '& .MuiSvgIcon-root': {
-          height: 20,
+          height: 28,
         },
         '& .MuiFab-sizeMedium': {
-          height: 38,
-          width: 38,
+          height: 44,
+          width: 44,
         },
       },
-    },
-  }),
-  { name: 'BaseMessageSnackbar' },
-)
-
-const useStyles = makeStyles<
-  Theme,
-  BaseSnackbarProps & { classes?: { [index in SnackbarClassKey]?: string } },
-  SnackbarClassKey
->(
-  (theme: Theme) => ({
-    rounded: {
-      borderRadius: 50,
-      [theme.breakpoints.down('sm')]: {
-        borderRadius: 0,
-      },
-    },
-    roundedLarge: {
-      width: '70vw',
-      [theme.breakpoints.down('sm')]: {
-        width: '100%',
-      },
-    },
-    roundedPrimary: {
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-    },
-    roundedNoElevation: {
-      boxShadow: 'none',
     },
   }),
   { name: 'MessageSnackbar' },
 )
 
 export type MessageSnackbarProps = Omit<
-  SetRequired<SnackbarProps, 'open'>,
-  'autoHideDuration' | 'onClose' | 'anchorOrigin' | 'children'
+  SnackbarProps,
+  'autoHideDuration' | 'onClose' | 'anchorOrigin'
 > & {
-  classes?: { [index in ClassKeys]?: string }
   autoHide?: boolean
-  children?: React.ReactNode
-  variant?: 'message' | 'outlined' | 'contained' | 'rounded'
-  size?: string
-  closeButton?: React.ReactNode
-  color?: string
+  variant?: Variant
+  size?: Size
+  color?: PropTypes.Color
   action?: React.ReactNode
+  children?: React.ReactNode
 }
 
 export default function MessageSnackbar(props: MessageSnackbarProps) {
   const [showSnackbar, setSnackbar] = useState<boolean>(false)
-  const { classes = {}, ...baseProps } = props
+
   const {
-    variant,
-    size,
-    color,
-    children,
+    variant = 'contained',
+    size = 'normal',
+    color = 'default',
     autoHide,
     action,
-    className,
     open,
+    message,
+    children,
     ...snackbarProps
-  } = baseProps
+  } = props
 
-  const { rounded, roundedLarge, roundedPrimary } = classes
-
-  const baseClasses = baseStyles(props)
-  const snackbarClasses = useStyles({
-    classes: { rounded, roundedLarge, roundedPrimary },
-  })
+  const classes = useStyles(props)
 
   useEffect(() => {
     if (open) setSnackbar(open)
   }, [open])
 
+  const clsxBonus = (base: string) => {
+    const Size = size[0].toUpperCase() + size.slice(1)
+    const Color = color[0].toUpperCase() + color.slice(1)
+    const Variant = variant[0].toUpperCase() + variant.slice(1)
+
+    return clsx(
+      classes[base],
+      classes[`${base}${Variant}`],
+      classes[`${base}${Variant}Size${Size}`],
+      classes[`${base}${Variant}Color${Color}`],
+    )
+  }
+
   return (
     <Snackbar
-      message={snackbarProps.message}
+      {...snackbarProps}
+      message={message}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       open={showSnackbar}
       autoHideDuration={autoHide ? 6000 : null}
-      classes={{ root: baseClasses.root }}
+      classes={{
+        root: classes.snackbarRoot,
+        anchorOriginBottomCenter: classes.anchorOriginBottomCenter,
+      }}
     >
       <SnackbarContent
         classes={{
-          message: baseClasses.message,
-          root: baseClasses.root,
-          action: baseClasses.action,
+          root: clsxBonus('root'),
+          message: clsxBonus('message'),
+          action: clsxBonus('action'),
         }}
-        className={clsx(
-          {
-            [snackbarClasses.rounded]: variant === 'rounded',
-            [snackbarClasses.roundedLarge]: variant === 'rounded' && size === 'large',
-            [snackbarClasses.roundedPrimary]: variant === 'rounded' && color === 'primary',
-          },
-          className,
-        )}
-        message={children}
-        action={
-          <div className={baseClasses.actionContainer}>
-            {action && <div className={baseClasses.actionButton}>{action}</div>}
-            <div className={baseClasses.closeButton}>
+        message={
+          <>
+            <div className={classes.children}>{children}</div>
+            {action && <div className={classes.actionButton}>{action}</div>}
+            <div className={classes.closeButton}>
               <Fab aria-label='Close snackbar' size='medium' onClick={() => setSnackbar(false)}>
                 <CloseIcon />
               </Fab>
             </div>
-          </div>
+          </>
         }
       />
     </Snackbar>
