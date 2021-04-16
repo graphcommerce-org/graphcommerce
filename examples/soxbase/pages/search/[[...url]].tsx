@@ -57,26 +57,6 @@ const useStyles = makeStyles(
     categoryLinks: {
       paddingBottom: theme.spacings.md,
     },
-    categoryButton: {
-      padding: `${theme.spacings.xs} 20px ${theme.spacings.xs} 14px`,
-      display: 'flex',
-      justifyContent: 'space-between',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      minWidth: '100%',
-      maxWidth: 'unset',
-      borderRadius: '0',
-      '&:focus': {
-        boxShadow: 'none',
-      },
-      '&:hover': {
-        background: '#f8f8f8', // TODO: use theme value
-      },
-    },
-    totalProducts: {
-      minWidth: 'max-content',
-      ...theme.typography.caption,
-      paddingRight: 7,
-    },
     pagination: {
       display: 'flex',
       justifyContent: 'center',

@@ -11,9 +11,6 @@ type CategorySearchResultProps = CategorySearchResultFragment & { search: string
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    categoryLinks: {
-      paddingBottom: theme.spacings.md,
-    },
     categoryButton: {
       padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
       display: 'flex',
