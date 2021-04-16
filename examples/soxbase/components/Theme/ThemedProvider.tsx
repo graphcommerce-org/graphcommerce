@@ -108,9 +108,9 @@ export const defaultTheme = createMuiTheme({
     fontWeightBold: 600,
   },
   spacings: {
-    xxs: responsiveVal(8, 16),
-    xs: responsiveVal(8, 20),
-    sm: responsiveVal(10, 30),
+    xxs: responsiveVal(10, 16),
+    xs: responsiveVal(12, 20),
+    sm: responsiveVal(14, 30),
     md: responsiveVal(16, 50),
     lg: responsiveVal(24, 80),
     xl: responsiveVal(80, 160),
