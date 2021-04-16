@@ -1,13 +1,12 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { Typography } from '@material-ui/core'
+import Checkmark from '@material-ui/icons/Check'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
+import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
@@ -16,10 +15,10 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
   props: Pick<ProductInterface, 'name'> & {
     mutation: TypedDocumentNode<Q, V>
     variables: Omit<V, 'cartId'>
-    product: string
+    name: string
   } & Omit<ButtonProps, 'type' | 'name'>,
 ) {
-  const { name, product, mutation, variables, ...buttonProps } = props
+  const { name, mutation, variables, ...buttonProps } = props
 
   const requestCartId = useRequestCartId()
   const form = useFormGqlMutation<Q, V>(mutation, {
@@ -44,11 +43,12 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         Add to Cart
       </Button>
 
-      <MessageSnackbarLoader
+      <ApolloErrorAlert error={error} />
+
+      <MessageSnackbar
         open={formState.isSubmitSuccessful && !error?.message}
-        color='primary'
-        variant='rounded'
-        size='large'
+        variant='pill'
+        color='default'
         action={
           <PageLink href='/cart'>
             <Button
@@ -65,17 +65,16 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
                 />
               }
             >
-              <Typography variant='body2' component='span'>
-                View shopping cart
-              </Typography>
+              View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <AddToCartSnackbar message={product} />
-      </MessageSnackbarLoader>
-
-      <ApolloErrorAlert error={error} />
+        <>
+          <Checkmark />
+          <strong>{name}</strong>&nbsp;has been added to your shopping cart!
+        </>
+      </MessageSnackbar>
     </form>
   )
 }

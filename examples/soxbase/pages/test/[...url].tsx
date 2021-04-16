@@ -106,7 +106,7 @@ function AppShellTestIndex(props: Props) {
         }
       >
         <>
-          <Checkmark style={{ top: 4, position: 'relative' }} />
+          <Checkmark />
           <strong>Blissful Brush</strong>&nbsp;has been added to your shopping cart!
         </>
       </MessageSnackbar>

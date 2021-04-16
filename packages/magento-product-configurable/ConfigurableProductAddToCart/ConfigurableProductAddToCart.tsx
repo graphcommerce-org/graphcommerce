@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Typography } from '@material-ui/core'
+import Checkmark from '@material-ui/icons/Check'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
@@ -7,8 +7,7 @@ import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import AddToCartSnackbar from '@reachdigital/next-ui/Snackbar/AddToCartSnackbar'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
+import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
@@ -22,11 +21,11 @@ import {
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
-  product: string
+  name: string
 }
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { product, variables, ...buttonProps } = props
+  const { name, variables, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
   const classes = useFormStyles()
 
@@ -88,11 +87,10 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         </Button>
       </div>
 
-      <MessageSnackbarLoader
+      <MessageSnackbar
         open={formState.isSubmitSuccessful && !error?.message}
-        color='primary'
-        variant='rounded'
-        size='large'
+        variant='pill'
+        color='default'
         action={
           <PageLink href='/cart'>
             <Button
@@ -109,15 +107,16 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
                 />
               }
             >
-              <Typography variant='body2' component='span'>
-                View shopping cart
-              </Typography>
+              View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <AddToCartSnackbar message={product} />
-      </MessageSnackbarLoader>
+        <>
+          <Checkmark />
+          <strong>{name}</strong>&nbsp;has been added to your shopping cart!
+        </>
+      </MessageSnackbar>
     </form>
   )
 }
