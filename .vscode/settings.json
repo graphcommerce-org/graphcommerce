@@ -11,6 +11,7 @@
   "editor.snippetSuggestions": "none",
   "emmet.showExpandedAbbreviation": "never",
   "editor.wordBasedSuggestions": false,
+  "javascript.suggest.names": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "css.validate": false,
   "files.exclude": {
