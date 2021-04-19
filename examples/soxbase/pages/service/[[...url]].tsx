@@ -2,6 +2,7 @@ import { Box, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import FramerNextPagesSlider from '@reachdigital/next-ui/FramerNextPagesSlider'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
@@ -37,7 +38,7 @@ const ServicePage = ({ pages }: Props) => {
   const title = pages?.[0].title ?? ''
 
   return (
-    <>
+    <FramerNextPagesSlider>
       <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
 
       {title && (
@@ -49,9 +50,10 @@ const ServicePage = ({ pages }: Props) => {
       )}
 
       <PageContent {...pages[0]} />
-    </>
+    </FramerNextPagesSlider>
   )
 }
+
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,
