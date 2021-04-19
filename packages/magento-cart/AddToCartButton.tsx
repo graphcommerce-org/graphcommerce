@@ -4,10 +4,10 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import PageLink from 'next/link'
 import React from 'react'
 import useRequestCartId from './useRequestCartId'
 

@@ -1,9 +1,8 @@
 import React from 'react'
 import MessageSnackbar from './MessageSnackbar'
-import { MessageSnackbarProps } from './MessageSnackbarImpl'
+import { MessageSnackbarImplProps } from './MessageSnackbarImpl'
 
-// We provide a loader for the ErrorSnackbar because it will only be required after an action of the user.
-type ErrorSnackbarProps = Omit<MessageSnackbarProps, 'severity' | 'action'>
+type ErrorSnackbarProps = Omit<MessageSnackbarImplProps, 'severity' | 'action'>
 
 export default function ErrorSnackbarImpl(props: ErrorSnackbarProps) {
   return <MessageSnackbar {...props} />
