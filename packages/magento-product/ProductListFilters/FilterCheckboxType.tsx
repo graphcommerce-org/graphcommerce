@@ -19,7 +19,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
   const { params } = useProductListParamsContext()
   const classes = useChipMenuStyles(props)
   const currentFilter = params.filters[attribute_code]
-  const pushRoute = useCategoryPushRoute()
+  const pushRoute = useCategoryPushRoute({ scroll: false })
 
   if (!options?.[0]) return null
 
@@ -34,6 +34,7 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
       filters={{ ...params.filters, [attribute_code]: filter }}
       currentPage={undefined}
       noLink
+      link={{ scroll: false }}
     >
       <Chip
         variant='outlined'

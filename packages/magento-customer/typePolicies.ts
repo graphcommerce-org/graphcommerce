@@ -78,6 +78,8 @@ const typePolicies: TypePolicies = {
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
   Customer: { keyFields: (object) => object.__typename },
   CustomerToken: { keyFields: (object) => object.__typename, fields: { valid } },
+  ProductReviews: { keyFields: (object) => object.__typename },
+  CustomerOrders: { keyFields: (object) => object.__typename },
 }
 
 export default typePolicies

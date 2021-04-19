@@ -91,7 +91,7 @@ export default function FilterEqualType(props: FilterEqualTypeProps) {
   const { attribute_code, count, label, options, ...chipProps } = props
   const { params, setParams } = useProductListParamsContext()
   const classes = useFilterEqualStyles()
-  const pushRoute = useCategoryPushRoute()
+  const pushRoute = useCategoryPushRoute({ scroll: false })
 
   const currentFilter = (params.filters[attribute_code] ?? { in: [] }) as FilterEqualTypeInput
   const [selectedFilter, setSelectedFilter] = useState(currentFilter)
