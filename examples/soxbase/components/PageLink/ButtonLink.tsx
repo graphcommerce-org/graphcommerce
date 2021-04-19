@@ -20,11 +20,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       justifyContent: 'space-between',
       gap: `${theme.spacings.xs}`,
     },
-    '& > * > span': {
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-    },
   },
 }))
 
