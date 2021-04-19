@@ -133,5 +133,7 @@ const styles: Styles<ClassKeys> = {
   contentbottom: {},
   contentleft: {},
   contentright: {},
+  back: { position: 'absolute', left: 12, top: 12 },
+  forward: { position: 'absolute', right: 2, top: 12 },
 }
 export default styles

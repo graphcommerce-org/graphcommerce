@@ -1,0 +1,6 @@
+query PagesStaticPaths($urlStartsWith: String!, $first: Int = 1000) {
+  pages(where: { url_starts_with: $urlStartsWith }, first: $first) {
+    url
+    metaRobots
+  }
+}

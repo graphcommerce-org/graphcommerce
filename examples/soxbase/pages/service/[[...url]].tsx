@@ -10,11 +10,12 @@ import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
+import { PagesStaticPathsDocument } from '../../components/GraphQL/PagesStaticPaths.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = DefaultPageQuery
-type RouteProps = { url: string }
+type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
@@ -65,13 +66,25 @@ export default ServicePage
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
-  const urls = ['index']
-  const paths = locales.map((locale) => urls.map((url) => ({ params: { url }, locale }))).flat(1)
+  const path = async (locale: string) => {
+    const client = apolloClient(locale)
+    const { data } = await client.query({
+      query: PagesStaticPathsDocument,
+      variables: {
+        first: process.env.VERCEL_ENV !== 'production' ? 1 : 1000,
+        urlStartsWith: 'service',
+      },
+    })
+    return data.pages.map((page) => ({ params: { url: [page.url] }, locale }))
+  }
+  const paths = (await Promise.all(locales.map(path))).flat(1)
+
   return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
-  const url = `service/${params?.url}`
+  const url = params?.url ? `service/${params?.url.join('/')}` : `service`
+
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
 

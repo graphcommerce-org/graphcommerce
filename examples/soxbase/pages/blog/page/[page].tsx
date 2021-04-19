@@ -1,11 +1,10 @@
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Pagination from '@reachdigital/next-ui/Pagination'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
-import { useRouter } from 'next/router'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import BlogList from '../../../components/Blog'
@@ -26,7 +25,7 @@ const pageSize = 8
 
 function BlogPage(props: Props) {
   const { pages, blogPosts, pagesConnection } = props
-  const router = useRouter()
+  const router = usePageRouter()
   if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const page = pages[0]
 

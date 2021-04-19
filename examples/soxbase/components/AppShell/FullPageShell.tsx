@@ -68,7 +68,7 @@ function FullPageShell(props: FullPageShellProps) {
           <DesktopNavActions>
             <SearchButton classes={{ root: classes.navbarSearch }} />
 
-            <PageLink href='/service/index' passHref>
+            <PageLink href='/service' passHref>
               <IconButton aria-label='Account' color='inherit' size='medium'>
                 <PictureResponsiveNext
                   src='/icons/desktop_customer_service.svg'
@@ -102,7 +102,7 @@ function FullPageShell(props: FullPageShellProps) {
         <MenuFabSecondaryItem
           src='/icons/desktop_customer_service.svg'
           type='image/svg+xml'
-          href='/service/index'
+          href='/service'
         >
           Customer Service
         </MenuFabSecondaryItem>

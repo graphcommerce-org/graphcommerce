@@ -32,17 +32,14 @@ export default function FramerNextPages(props: PagesProps) {
   items.current = items.current.slice(0, idx)
 
   /** Add the current page to the items */
-  const routerProxy = createRouterProxy(router)
+  const proxy = createRouterProxy(router)
   const activeItem: PageItem = {
-    children: (
-      <pageRouterContext.Provider value={routerProxy}>
-        <Component {...pageProps} />
-      </pageRouterContext.Provider>
-    ),
+    children: <Component {...pageProps} />,
+    routerProxy: proxy,
     SharedComponent: Component.pageOptions?.SharedComponent,
     sharedProps: Component.pageOptions?.sharedProps,
     sharedPageProps: pageProps,
-    sharedKey: Component.pageOptions?.sharedKey?.(routerProxy) ?? routerProxy.pathname,
+    sharedKey: Component.pageOptions?.sharedKey?.(proxy) ?? proxy.pathname,
     overlayGroup: Component.pageOptions?.overlayGroup,
     historyIdx: idx,
   }
@@ -58,15 +55,14 @@ export default function FramerNextPages(props: PagesProps) {
     if (!fallbackKey) {
       throw Error('When defining a fallback you should also provide a fallbackKey')
     }
-    const proxy = createRouterProxy(router)
-    renderItems = [
-      {
-        children: <pageRouterContext.Provider value={proxy}>{fallback}</pageRouterContext.Provider>,
-        sharedKey: fallbackKey,
-        historyIdx: -1,
-      },
-      ...renderItems,
-    ]
+    const fbItem: PageItem = {
+      children: fallback,
+      routerProxy: createRouterProxy(router),
+      sharedKey: fallbackKey,
+      historyIdx: -1,
+    }
+
+    renderItems = [fbItem, ...renderItems]
   }
 
   if (plainIdx > -1) renderItems = items.current.slice(plainIdx)
@@ -106,15 +102,18 @@ export default function FramerNextPages(props: PagesProps) {
           SharedComponent = NoopLayout,
           sharedProps,
           sharedPageProps,
+          routerProxy,
         } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
         return (
           <pageContext.Provider key={sharedKey} value={{ depth, active, direction }}>
             <Page active={active} historyIdx={historyIdx}>
-              <SharedComponent {...sharedPageProps} {...sharedProps}>
-                {children}
-              </SharedComponent>
+              <pageRouterContext.Provider value={routerProxy}>
+                <SharedComponent {...sharedPageProps} {...sharedProps}>
+                  {children}
+                </SharedComponent>
+              </pageRouterContext.Provider>
             </Page>
           </pageContext.Provider>
         )

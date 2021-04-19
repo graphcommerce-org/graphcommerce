@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { m, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
-import React, { CSSProperties, useRef } from 'react'
+import React, { useRef } from 'react'
 import { INERTIA_ANIM, SPRING_ANIM } from '../animation'
 import useElementScroll from '../hooks/useElementScroll'
 import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
@@ -12,10 +12,9 @@ import { nearestSnapPointIndex } from '../utils/snapPoint'
 import { Styled } from '../utils/styled'
 import variantSizeCss from '../utils/variantSizeCss'
 import windowSize from '../utils/windowSize'
-import SheetDragIndicator, { SheetDragIndicatorClassKeys } from './SheetDragIndicator'
 
 type Styles = 'dragHandle' | 'content'
-export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}`
+export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}` | 'back' | 'forward'
 
 export type SheetPanelProps = {
   /**
@@ -129,9 +128,9 @@ export default function SheetPanel(props: SheetPanelProps) {
           [`border${Variant}`]: '1px solid transparent',
         }}
       >
-        <div>{back}</div>
+        {variant === 'bottom' && <div>{back}</div>}
         {header}
-        <div>{forward}</div>
+        {variant === 'bottom' && <div style={{ justifySelf: 'flex-end' }}>{forward}</div>}
       </m.div>
       <m.div
         drag={(axis !== 'y' || canDrag) && axis}
@@ -149,6 +148,16 @@ export default function SheetPanel(props: SheetPanelProps) {
           [dimension]: variantSizeCss(variantSize),
         }}
       >
+        {variant !== 'bottom' && (
+          <div style={styles?.back} className={classes?.back}>
+            {back}
+          </div>
+        )}
+        {variant !== 'bottom' && (
+          <div style={styles?.forward} className={classes?.forward}>
+            {forward}
+          </div>
+        )}
         {children}
       </m.div>
     </>

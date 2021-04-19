@@ -84,8 +84,7 @@ export default function Footer(props: FooterProps) {
       </div>
       <StoreSwitcherButton />
       <Button
-        key='/service/index'
-        url='/service/index'
+        url='/service'
         title='Customer Service'
         variant='pill'
         color='inherit'

@@ -73,8 +73,8 @@ function ArticlePage({ articleId }: InferGetStaticPropsType<typeof getStaticProp
 }
 
 ArticlePage.pageOptions = {
-  overlay: 'left',
-  key: (router) => router.pathname,
+  overlayGroup: 'left',
+  sharedKey: (router) => router.pathname,
 } as PageOptions
 
 export default ArticlePage

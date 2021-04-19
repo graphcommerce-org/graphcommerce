@@ -1,14 +1,13 @@
 # Framer Next Pages
 
-Goals:
-
 - Ability to create pages that are overlays over other pages.
 - Ability to create multiple levels of overlays over other pages.
 - Ability to create entry and exit animations.
+- Ability to maintain a SharedComponent between multiple pages.
+- Handles proper scroll position
 
-Non-goals:
-
-- Provide components that actually stack
+This package does not provide any actual overlays, that is up to the
+implementor.
 
 ## Installing
 
@@ -29,9 +28,19 @@ export default function App({ router, Component, pageProps }: AppPropsType) {
 }
 ```
 
-## Usage
+Enable Next's `scrollRestoration`:
 
-### Create a page that works as an overlay:
+```js
+const config = {
+  experimental: {
+    scrollRestoration: true,
+  },
+}
+```
+
+## Creating overlays
+
+### Create a page that works as an overlayGroup:
 
 Define pageOptions on a page. This can be any static or dynamic page:
 
@@ -44,16 +53,15 @@ Example routes:
 import { PageOptions } from '@reachdigital/framer-next-pages'
 
 export default function Overlay() {
-  // you must implement MyOverlay yourself or use any existing overlays
   return <MyOverlay>blabla</MyOverlay>
 }
 
 Overlay.pageOptions = {
-  overlay: 'left',
+  overlayGroup: 'left',
 } as PageOptions
 ```
 
-### Create an overlay that doesnt the layout in a dynamic routes:
+### Create an overlay that doesn't share the layout in a dynamic routes:
 
 Define `key` as router.asPath in pageOptions.
 
@@ -65,8 +73,8 @@ Example route:
 import { PageOptions } from '@reachdigital/framer-next-pages'
 
 Overlay.pageOptions = {
-  overlay: 'left',
-  key: (router) => router.asPath, // will return pages/overlay/123
+  overlayGroup: 'left',
+  sharedsharedKey: (router) => router.asPath, // will return pages/overlay/123
 } as PageOptions
 ```
 
@@ -84,21 +92,116 @@ Example routes:
 import { PageOptions } from '@reachdigital/framer-next-pages'
 
 Overlay.pageOptions = {
-  overlay: 'left',
-  key: () => 'account',
+  overlayGroup: 'left',
+  sharedKey: () => 'account',
 } as PageOptions
 ```
 
-### Defining a fallback
+## SharedComponent
+
+To create a stable layout between multiple routes we can define a
+SharedComponent.
+
+Example route:
+
+- `pages/overlay/[overlayId]`
+
+```ts
+CmsPage.pageOptions = {
+  SharedComponent: SheetShell,
+} as PageOptions
+```
+
+### Passing props to a SharedComponent with sharedProps
+
+```ts
+CmsPage.pageOptions = {
+  SharedComponent: SheetShell,
+  sharedProps: { variant: 'bottom' },
+} as PageOptions
+```
+
+### Passing props to a SharedComponent with getStaticProps
+
+```ts
+export function getStaticProps() {
+  return {
+    variant: 'bottom',
+  }
+}
+```
+
+### Create a SharedComponent between multiple routes
+
+```ts
+const pageOptions: PageOptions<SheetShellProps> = {
+  SharedComponent: SheetShell,
+  sharedKey: () => 'page',
+}
+```
+
+```ts
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'account',
+}
+```
+
+## Hooks
+
+We have multiple hooks available to animate based on certain states, etc.
+
+```tsx
+export default function MyComponent() {
+  const direction = usePageDirection()
+  const depth = usePageDepth()
+  const pageRouter = usePageRouter()
+}
+```
+
+### usePageRouter
+
+The pageRouter maintains state for the old page.
+
+E.g.:
+
+- `/my-regular-page`:
+  - `useRouter().asPath === '/overlay'`
+  - `usePageRouter().asPath === '/my-regular-page'` We maintain the state
+- `/overlay`: `usePageDepth() === 0`
+  - `useRouter().asPath === '/overlay'`
+  - `usePageRouter().asPath === '/overlay'`
+
+### usePageDepth
+
+If we have multiple pages layered on top of each other we get the depth the page
+has.
+
+E.g.
+
+- `/my-regular-page`: `usePageDepth() === 0`
+
+After navigating to overlay-one:
+
+- `/my-regular-page`: `usePageDepth() === -1`
+- `/overlay-one`: `usePageDepth() === 0`
+
+After navigation to overlay-two
+
+- `/my-regular-page`: `usePageDepth() === -2`
+- `/overlay-one`: `usePageDepth() === -1`
+- `/overlay-two`: `usePageDepth() === 0`
+
+### usePageDirection
+
+- Will return `usePageDirection() === 1` when navigating forward
+- Will return `usePageDirection() === -1` when navigating back
+
+## Fallback routes
 
 When an overlay is accessed by URL, it will render but it won't render as a
 normal page. You can provide a fallback to render something in this case.
-
-### Create a fallback when routes aren't provided
-
-..._todo_...
-
-### Layout support
 
 ### Workins
 
