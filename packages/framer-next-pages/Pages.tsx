@@ -8,7 +8,7 @@ import type { PageComponent, PageItem } from './types'
 import { createRouterProxy, currentHistoryIdx } from './utils'
 
 function findPlainIdx(items: PageItem[]) {
-  return items.reduce((acc, item, i) => (typeof item.overlay === 'string' ? acc : i), -1)
+  return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
 }
 
 type PagesProps = AppPropsType<NextRouter> & {
@@ -17,8 +17,11 @@ type PagesProps = AppPropsType<NextRouter> & {
   fallbackKey?: string
 }
 
-export default function Pages(props: PagesProps) {
+const NoopLayout: React.FC = ({ children }) => <>{children}</>
+
+export default function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps, fallback, fallbackKey } = props
+
   const items = useRef<PageItem[]>([])
   const idx = currentHistoryIdx()
   const prevHistory = useRef<number>(-1)
@@ -30,14 +33,16 @@ export default function Pages(props: PagesProps) {
 
   /** Add the current page to the items */
   const routerProxy = createRouterProxy(router)
-  const activeItem = {
+  const activeItem: PageItem = {
     children: (
       <pageRouterContext.Provider value={routerProxy}>
         <Component {...pageProps} />
       </pageRouterContext.Provider>
     ),
-    key: Component.pageOptions?.key?.(routerProxy) ?? routerProxy.asPath,
-    overlay: Component.pageOptions?.overlay,
+    SharedComponent: Component.pageOptions?.SharedComponent,
+    sharedProps: Component.pageOptions?.sharedProps,
+    sharedKey: Component.pageOptions?.sharedKey?.(routerProxy) ?? routerProxy.pathname,
+    overlayGroup: Component.pageOptions?.overlayGroup,
     historyIdx: idx,
   }
   items.current.push(activeItem)
@@ -56,8 +61,7 @@ export default function Pages(props: PagesProps) {
     renderItems = [
       {
         children: <pageRouterContext.Provider value={proxy}>{fallback}</pageRouterContext.Provider>,
-        key: fallbackKey,
-        overlay: undefined,
+        sharedKey: fallbackKey,
         historyIdx: -1,
       },
       ...renderItems,
@@ -77,13 +81,13 @@ export default function Pages(props: PagesProps) {
   renderItems = renderItems
     .reverse()
     .filter((item) => {
-      if (seen.has(item.key)) return false
-      seen.add(item.key)
+      if (seen.has(item.sharedKey)) return false
+      seen.add(item.sharedKey)
 
       if (
-        typeof activeItem.overlay === 'string' &&
-        typeof item.overlay === 'string' &&
-        activeItem.overlay !== item.overlay
+        typeof activeItem.overlayGroup === 'string' &&
+        typeof item.overlayGroup === 'string' &&
+        activeItem.overlayGroup !== item.overlayGroup
       ) {
         return false
       }
@@ -93,13 +97,14 @@ export default function Pages(props: PagesProps) {
 
   return (
     <AnimatePresence initial={false}>
-      {renderItems.map(({ children, historyIdx, key }, itemIdx) => {
+      {renderItems.map((item, itemIdx) => {
+        const { children, historyIdx, sharedKey, SharedComponent = NoopLayout, sharedProps } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
         return (
-          <pageContext.Provider key={key} value={{ depth, active, direction }}>
+          <pageContext.Provider key={sharedKey} value={{ depth, active, direction }}>
             <Page active={active} historyIdx={historyIdx}>
-              {children}
+              <SharedComponent {...sharedProps}>{children}</SharedComponent>
             </Page>
           </pageContext.Provider>
         )

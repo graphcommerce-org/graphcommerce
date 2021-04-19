@@ -4,11 +4,11 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../components/AppShell/SheetLayout'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -36,12 +36,7 @@ const ServicePage = ({ pages }: Props) => {
   const title = pages?.[0].title ?? ''
 
   return (
-    <OverlayPage
-      title={title}
-      variant='left'
-      backFallbackTitle='Customer Service'
-      backFallbackHref='/service/index'
-    >
+    <>
       <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
 
       {title && (
@@ -53,12 +48,16 @@ const ServicePage = ({ pages }: Props) => {
       )}
 
       <PageContent {...pages[0]} />
-    </OverlayPage>
+    </>
   )
 }
-
-ServicePage.Layout = PageLayout
-ServicePage.pageOptions = { overlay: 'left' } as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'left',
+  SharedComponent: SheetLayout,
+  sharedKey: () => 'service',
+  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+}
+ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 

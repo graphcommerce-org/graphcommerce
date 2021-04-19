@@ -1,3 +1,4 @@
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
@@ -47,7 +48,9 @@ function BlogPage(props: Props) {
   )
 }
 
-BlogPage.Layout = PageLayout
+BlogPage.pageOptions = {
+  SharedComponent: PageLayout,
+} as PageOptions
 
 export default BlogPage
 

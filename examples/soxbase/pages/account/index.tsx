@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import { AccountDashboardDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboard.gql'
 import AccountHeader from '@reachdigital/magento-customer/AccountHeader'
 import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrder'
@@ -10,7 +9,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
 import AccountMenu from '../../components/AccountMenu'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../components/AppShell/SheetLayout'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
@@ -22,29 +21,24 @@ function AccountIndexPage() {
   })
 
   return (
-    <OverlayPage
-      title='Account'
-      variant='bottom'
-      fullHeight
-      backFallbackTitle='Home'
-      backFallbackHref='/'
-    >
-      <Container maxWidth='md'>
-        <NoSsr>
-          <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
-          <AccountHeader {...data?.customer} loading={loading} />
-          <AccountMenu {...data?.customer} loading={loading} />
-          <AccountLatestOrder {...data?.customer} loading={loading} />
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+    <Container maxWidth='md'>
+      <NoSsr>
+        <PageMeta title='Account' metaDescription='Account Dashboard' metaRobots={['noindex']} />
+        <AccountHeader {...data?.customer} loading={loading} />
+        <AccountMenu {...data?.customer} loading={loading} />
+        <AccountLatestOrder {...data?.customer} loading={loading} />
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountIndexPage.Layout = PageLayout
-AccountIndexPage.pageOptions = {
-  overlay: 'bottom',
-} as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetLayout,
+  sharedKey: () => 'account',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+AccountIndexPage.pageOptions = pageOptions
 
 export default AccountIndexPage
 

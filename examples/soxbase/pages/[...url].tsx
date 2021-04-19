@@ -1,5 +1,6 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container, makeStyles, Theme } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
@@ -107,7 +108,7 @@ function CategoryPage(props: Props) {
     <FullPageUi
       title={category.name ?? ''}
       backFallbackTitle={parentCategory?.category_name ?? 'Home'}
-      backFallbackHref={parentCategory?.category_url_path ?? '/'}
+      backFallbackHref={`/${parentCategory?.category_url_path}` ?? '/'}
       {...props}
     >
       <PageMeta
@@ -165,7 +166,10 @@ function CategoryPage(props: Props) {
     </FullPageUi>
   )
 }
-CategoryPage.Layout = PageLayout
+CategoryPage.pageOptions = {
+  SharedComponent: PageLayout,
+  sharedProps: {},
+} as PageOptions
 
 export default CategoryPage
 

@@ -1,36 +1,50 @@
 import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
-import React from 'react'
+import React, { ComponentType, PropsWithChildren } from 'react'
+import { SetRequired } from 'type-fest'
 
 /**
- * Default:
+ * Default (no overlay):
  *
- * ```typescript
+ * ```tsx
  * const default: PageOptions = {
- *   overlay: undefined,
- *   key: ({ router }) => router.pathname,
+ *   overlayGroup: undefined,
+ *   sharedKey: ({ router }) => router.pathname,
  * } as PageOptions
  * ```
  *
  * Overlay:
  *
- * ```typescript
+ * ```tsx
  * const overlay: PageOptions = {
- *   overlay: 'bottom',
- *   key: ({ router }) => router.asPath,
+ *   overlayGroup: 'bottom',
+ *   sharedKey: ({ router }) => router.asPath,
  * }
  * ```
  *
  * Shared overlay between routes:
  *
- * ```typescript
+ * ```tsx
  * const overlay: PageOptions = {
- *   overlay: 'bottom',
- *   key: ({ router }) => 'account',
+ *   overlayGroup: 'bottom',
+ *   sharedKey: ({ router }) => 'account',
+ * }
+ * ```
+ *
+ * SharedComponent between routes:
+ *
+ * ```tsx
+ * function MySharedComponent({children}: {children:React.ReactNode}) {
+ *    return <div>I'm shared {children}</div>
+ * }
+ *
+ * const overlay: PageOptions = {
+ *   sharedKey: ({ router }) => 'account',
+ *   SharedComponent: MySharedComponent
  * }
  * ```
  */
-export type PageOptions = {
+export type PageOptions<T extends Record<string, unknown> = Record<string, unknown>> = {
   /**
    * Is the page an overlay? Provide a string to which 'group' they belong
    *
@@ -38,7 +52,7 @@ export type PageOptions = {
    *
    * Default:
    *
-   * ```ts
+   * ```tsx
    * const overlay: PageOptions = {
    *   overlay: undefined,
    * }
@@ -46,52 +60,73 @@ export type PageOptions = {
    *
    * Stack overlays for the `bottom` area:
    *
-   * ```ts
+   * ```tsx
    * const overlay: PageOptions = {
    *   overlay: 'bottom',
    * }
    * ```
    */
-  overlay?: string
+  overlayGroup?: string
 
   /**
-   * By default the key is set to `router.pathname`, meaning that we create a new key for each pages.
+   * FramerNextPages uses Framer Motion's <AnimatePresence/> to animate pages in and out. From the
+   * [docs](https://www.framer.com/api/motion/animate-presence/#usage):
+   *
+   * *In React, changing a component's key makes React treat it as an entirely new component. So the
+   * old one is unmounted before the new one is mounted. So by changing the key of a single child of
+   * AnimatePresence, we can easily make components like slideshows.*
+   *
+   * **🎉 And not only slideshows, but also animated page transitions!**
    *
    * Default:
    *
-   * ```ts
+   * ```tsx
    * const overlay: PageOptions = {
-   *   key: ({ router }) => router.pathname,
+   *   sharedKey: ({ router }) => router.pathname, // e.g. becomes: pages/page/[id]
    * }
    * ```
    *
-   * Create a separate overlay per URL
+   * Create a separate overlay per URL:
    *
-   * ```ts
+   * ```tsx
    * const overlay: PageOptions = {
-   *   key: ({ router }) => router.asPath,
+   *   sharedKey: ({ router }) => router.asPath, // e.g. becomes: pages/page/123
    * }
    * ```
    *
-   * Create a shared overlay for multiple overlays
+   * Create a shared overlay for multiple routes:
    *
-   * ```ts
+   * ```tsx
    * const overlay: PageOptions = {
-   *   key: () => 'my-shared-key',
+   *   sharedKey: () => 'my-shared-key', // add to multiple pages
    * }
    * ```
    */
-  key?: (router: NextRouter) => string | undefined
+  sharedKey?: (router: NextRouter) => string | undefined
+
+  /**
+   * Create a SharedLayout to share a wrapping component between multiple routes.
+   *
+   * In combination with sharedKey it is probably useful to create a SharedLayout
+   *
+   * To make the `SharedLayout` component work, make sure that those pages have the same `sharedKey`
+   */
+  SharedComponent?: React.FC<any>
+  /** Pass props to the SharedComponent */
+  sharedProps?: Omit<T, 'children'>
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
-  pageOptions?: PageOptions
+  pageOptions?: PageOptions<Record<string, unknown>>
 }
 
+/**
+ * PageItem used to store information about a page
+ *
+ * @private
+ */
 export type PageItem = {
   children: React.ReactNode
-  Layout: React.FC
   historyIdx: number
-  overlay?: string
-  key: string
-}
+  sharedKey: string
+} & Omit<PageOptions<Record<string, unknown>>, 'sharedKey'>

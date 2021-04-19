@@ -4,10 +4,11 @@ import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/Pag
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../../components/AppShell/SheetLayout'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
@@ -23,24 +24,15 @@ function AppShellTextOverlay({ url, pages }: Props) {
   const [cycle, setCycle] = useState(url === 'index' ? 0 : 3)
 
   const next = Number(url) + 1
-  return (
-    <OverlayPage
-      headerForward={
-        <PageLink href={`/test/overlay/${next}`} passHref>
-          <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
-        </PageLink>
-      }
-      variant='bottom'
-      backFallbackHref='/test/index'
-      backFallbackTitle='Test'
-    >
-      <Container maxWidth='md'>Content here</Container>
-    </OverlayPage>
-  )
+  return <Container maxWidth='md'>Content here</Container>
 }
 
-AppShellTextOverlay.Layout = PageLayout
-AppShellTextOverlay.pageOptions = { overlay: 'bottom' } as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'test',
+  SharedComponent: SheetLayout,
+  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+}
+AppShellTextOverlay.pageOptions = pageOptions
 
 export default AppShellTextOverlay
 

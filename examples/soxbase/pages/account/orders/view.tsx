@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -16,7 +15,7 @@ import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../../components/AppShell/SheetLayout'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -37,45 +36,40 @@ function OrderDetailPage(props: Props) {
   const isLoading = orderId ? loading : true
 
   return (
-    <OverlayPage
-      title='Orders'
-      variant='bottom'
-      fullHeight
-      backFallbackHref='/account/orders'
-      backFallbackTitle='Orders'
-    >
-      <Container maxWidth='md'>
-        <NoSsr>
-          {(!orderId || !order) && (
-            <IconTitle
-              iconSrc='/icons/desktop_checkout_box.svg'
-              title='Order not found'
-              alt='no order'
-              size='large'
-            />
-          )}
+    <Container maxWidth='md'>
+      <NoSsr>
+        {(!orderId || !order) && (
+          <IconTitle
+            iconSrc='/icons/desktop_checkout_box.svg'
+            title='Order not found'
+            alt='no order'
+            size='large'
+          />
+        )}
 
-          {orderId && order && (
-            <>
-              <PageMeta
-                title={`Order view #${orderId}`}
-                metaDescription={`Order detail page for order #${orderId}`}
-                metaRobots={['noindex']}
-              />
-              <OrderItems {...order} loading={isLoading} images={images} />
-              <OrderDetails {...order} loading={isLoading} countries={countries} />
-            </>
-          )}
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+        {orderId && order && (
+          <>
+            <PageMeta
+              title={`Order view #${orderId}`}
+              metaDescription={`Order detail page for order #${orderId}`}
+              metaRobots={['noindex']}
+            />
+            <OrderItems {...order} loading={isLoading} images={images} />
+            <OrderDetails {...order} loading={isLoading} countries={countries} />
+          </>
+        )}
+      </NoSsr>
+    </Container>
   )
 }
 
-OrderDetailPage.Layout = PageLayout
-OrderDetailPage.pageOptions = {
-  overlay: 'bottom',
-} as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetLayout,
+  sharedKey: () => 'account-orders',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 

@@ -1,42 +1,37 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../components/AppShell/SheetLayout'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
 
 function AccountChangePasswordPage() {
   return (
-    <OverlayPage
-      title='Change Password'
-      variant='center'
-      backFallbackHref='/account'
-      backFallbackTitle='Account'
-    >
+    <Container maxWidth='sm'>
       <PageMeta
         title='Change Password'
         metaDescription='Change your password'
         metaRobots={['noindex']}
       />
-      <Container maxWidth='sm'>
-        <NoSsr>
-          <ChangePasswordForm />
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <ChangePasswordForm />
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountChangePasswordPage.Layout = PageLayout
-AccountChangePasswordPage.pageOptions = {
-  overlay: 'center',
-} as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetLayout,
+  sharedKey: () => 'account',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+AccountChangePasswordPage.pageOptions = pageOptions
 
 export default AccountChangePasswordPage
 

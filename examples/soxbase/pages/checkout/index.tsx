@@ -21,7 +21,7 @@ import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../components/AppShell/SheetLayout'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -43,7 +43,7 @@ function ShippingPage({ countries }: Props) {
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
-  const { data: cartData } = useQuery(ClientCartDocument)
+  const { data: cartData } = useQuery(ClientCartDocument, { ssr: false })
   const cartExists = typeof cartData?.cart !== 'undefined'
 
   const forceSubmit = () => {
@@ -57,58 +57,55 @@ function ShippingPage({ countries }: Props) {
   }
 
   return (
-    <OverlayPage
-      variant='bottom'
-      backFallbackHref='/cart'
-      backFallbackTitle='Cart'
-      title='Shipping'
-      fullHeight
-    >
+    <Container maxWidth='md'>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
-      <Container maxWidth='md'>
-        <NoSsr>
-          {!cartExists && <EmptyCart />}
+      <NoSsr>
+        {!cartExists && <EmptyCart />}
 
-          {cartExists && (
-            <>
-              <CheckoutStepper steps={3} currentStep={2} />
+        {cartExists && (
+          <>
+            <CheckoutStepper steps={3} currentStep={2} />
 
-              <IconTitle
-                iconSrc='/icons/desktop_checkout_box.svg'
-                title='Shipping'
-                alt='box'
-                size='normal'
-              />
+            <IconTitle
+              iconSrc='/icons/desktop_checkout_box.svg'
+              title='Shipping'
+              alt='box'
+              size='normal'
+            />
 
-              <EmailForm />
-              <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+            <EmailForm />
+            <ShippingAddressForm countries={countries} doSubmit={addressForm} />
 
-              <Typography variant='h5' className={classes.heading}>
-                Shipping method
-              </Typography>
-              <ShippingMethodForm doSubmit={methodForm} />
+            <Typography variant='h5' className={classes.heading}>
+              Shipping method
+            </Typography>
+            <ShippingMethodForm doSubmit={methodForm} />
 
-              <div className={formClasses.actions}>
-                <Button
-                  type='submit'
-                  color='secondary'
-                  variant='pill'
-                  size='large'
-                  onClick={forceSubmit}
-                >
-                  Next <ArrowForwardIos fontSize='inherit' />
-                </Button>
-              </div>
-            </>
-          )}
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+            <div className={formClasses.actions}>
+              <Button
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                onClick={forceSubmit}
+              >
+                Next <ArrowForwardIos fontSize='inherit' />
+              </Button>
+            </div>
+          </>
+        )}
+      </NoSsr>
+    </Container>
   )
 }
 
-ShippingPage.Layout = PageLayout
-ShippingPage.pageOptions = { overlay: 'bottom' } as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'checkout',
+  SharedComponent: SheetLayout,
+  sharedKey: () => 'checkout',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 

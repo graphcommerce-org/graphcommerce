@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -13,7 +12,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetLayout, { SheetLayoutProps } from '../../../components/AppShell/SheetLayout'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -28,37 +27,32 @@ function AccountAddressesPage(props: Props) {
   const customer = data?.customer
 
   return (
-    <OverlayPage
-      title='Addresses'
-      variant='bottom'
-      fullHeight
-      backFallbackHref='/account'
-      backFallbackTitle='Account'
-    >
+    <Container maxWidth='md'>
       <PageMeta
         title='Addresses'
         metaDescription='View all your addresses'
         metaRobots={['noindex']}
       />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <IconTitle
-            iconSrc='/icons/desktop_addresses.svg'
-            title='Addresses'
-            alt='addresses'
-            size='large'
-          />
-          <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <IconTitle
+          iconSrc='/icons/desktop_addresses.svg'
+          title='Addresses'
+          alt='addresses'
+          size='large'
+        />
+        <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountAddressesPage.Layout = PageLayout
-AccountAddressesPage.pageOptions = {
-  overlay: 'bottom',
-} as PageOptions
+const pageOptions: PageOptions<SheetLayoutProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetLayout,
+  sharedKey: () => 'account-addresses',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+AccountAddressesPage.pageOptions = pageOptions
 
 export default AccountAddressesPage
 
