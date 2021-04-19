@@ -92,7 +92,6 @@ function requestUpgrade(img: HTMLImageElement) {
 const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsiveProps>(
   (props, forwardedRef) => {
     const { srcSets, ...imgProps } = props
-    imgProps.decoding ??= 'async'
     imgProps.loading ??= 'lazy'
 
     const ref = useForwardedRef(forwardedRef)
