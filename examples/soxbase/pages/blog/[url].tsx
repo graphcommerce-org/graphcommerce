@@ -1,11 +1,10 @@
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import BlogList from '../../components/Blog'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
@@ -19,7 +18,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & BlogListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function BlogPage(props: Props) {
   const { pages, blogPosts } = props
@@ -27,18 +26,19 @@ function BlogPage(props: Props) {
 
   const title = page.title ?? ''
   return (
-    <FullPageUi title={title} backFallbackTitle='Blog' backFallbackHref='/' {...props}>
+    <>
       <PageMeta title={title} metaDescription={title} />
       <BlogHeader asset={page.asset} />
       <PageContent {...page} />
       <BlogList blogPosts={blogPosts} />
-    </FullPageUi>
+    </>
   )
 }
 
-BlogPage.Layout = PageLayout
-
-registerRouteUi('/blog/[url]', FullPageUi)
+BlogPage.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default BlogPage
 
@@ -84,7 +84,6 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
     props: {
       ...(await page).data,
       ...(await blogPosts).data,
-      urlEntity: { relative_url: `blog/${urlKey}` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

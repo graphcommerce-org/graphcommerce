@@ -3,8 +3,8 @@ import { Button, makeStyles, Theme } from '@material-ui/core'
 import Skeleton from '@material-ui/lab/Skeleton'
 import Money from '@reachdigital/magento-store/Money'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import clsx from 'clsx'
+import PageLink from 'next/link'
 import React from 'react'
 import OrderCardItemImage from '../OrderCardItemImage'
 import { UseOrderCardItemImages } from '../OrderCardItemImage/useOrderCardItemImages'
@@ -105,7 +105,7 @@ export default function OrderCard(props: OrderCardProps) {
   }
 
   return (
-    <PageLink href={`/account/orders/view?orderId=${number}`}>
+    <PageLink href={`/account/orders/view?orderId=${number}`} passHref>
       <Button
         variant='contained'
         classes={{

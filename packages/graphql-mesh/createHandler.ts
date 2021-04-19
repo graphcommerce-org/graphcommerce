@@ -80,8 +80,9 @@ export default async function createHandler(config: YamlConfig.Config, path: str
       'Content-Currency',
       'X-Captcha',
       'x-apollo-tracing',
+      'apollographql-client-name',
     ],
   })
-  const apoloHandler = apolloServer.createHandler({ path })
-  return corsHandler((req, res) => (req.method === 'OPTIONS' ? res.end() : apoloHandler(req, res)))
+  const apolloHandler = apolloServer.createHandler({ path })
+  return corsHandler((req, res) => (req.method === 'OPTIONS' ? res.end() : apolloHandler(req, res)))
 }

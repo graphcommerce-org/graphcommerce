@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import ChevronRight from '@material-ui/icons/ChevronRight'
-import NextButton, { ButtonProps } from '@reachdigital/next-ui/Button'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
+import PageLink from 'next/link'
 import { PageLinkFragment } from './PageLink.gql'
 
 type PageLinkProps = PageLinkFragment & ButtonProps
@@ -20,11 +20,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       justifyContent: 'space-between',
       gap: `${theme.spacings.xs}`,
     },
-    '& > * > span': {
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-    },
   },
 }))
 
@@ -33,11 +28,11 @@ export default function ButtonLink(props: PageLinkProps) {
   const classes = useStyles()
 
   return (
-    <NextUiPageLink href={url}>
-      <NextButton {...buttonProps} className={classes.buttonLink}>
+    <PageLink href={url} passHref>
+      <Button {...buttonProps} className={classes.buttonLink}>
         <span>{title}</span>
         <ChevronRight color='inherit' />
-      </NextButton>
-    </NextUiPageLink>
+      </Button>
+    </PageLink>
   )
 }

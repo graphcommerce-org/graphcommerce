@@ -1,17 +1,9 @@
-import { Button } from '@material-ui/core'
-import MessageSnackbar, { MessageSnackbarProps } from './MessageSnackbar'
+import React from 'react'
+import MessageSnackbar from './MessageSnackbar'
+import { MessageSnackbarImplProps } from './MessageSnackbarImpl'
 
-type ErrorSnackbarProps = Omit<MessageSnackbarProps, 'severity' | 'action'>
+type ErrorSnackbarProps = Omit<MessageSnackbarImplProps, 'severity' | 'action'>
 
-export default function ErrorSnackbar(props: ErrorSnackbarProps) {
-  return (
-    <MessageSnackbar
-      {...props}
-      Action={({ close }) => (
-        <Button size='small' color='inherit' onClick={close}>
-          Dismiss
-        </Button>
-      )}
-    />
-  )
+export default function ErrorSnackbarImpl(props: ErrorSnackbarProps) {
+  return <MessageSnackbar {...props} />
 }

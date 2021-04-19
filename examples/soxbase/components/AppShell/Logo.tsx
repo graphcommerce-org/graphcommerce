@@ -1,21 +1,13 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     logo: {
       pointerEvents: 'all',
-    },
-    logoImg: {
-      height: theme.page.headerInnerHeight.xs,
-      display: 'block',
-      width: 'auto',
-      paddingBottom: responsiveVal(4, 7), // todo(paales): should be removed when we have a proper logo
-      [theme.breakpoints.down('sm')]: {},
-      [theme.breakpoints.up('md')]: {},
     },
   }),
   { name: 'Logo' },

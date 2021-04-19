@@ -18,8 +18,7 @@ const useStyles = makeStyles(
       gridArea: 'categories',
       display: 'grid',
       gridRowGap: `${theme.spacings.lg}`,
-      gridColumnGap: `${theme.spacings.sm}`,
-      gridTemplateColumns: '1fr 1fr',
+      gridColumnGap: `${theme.spacings.xs}`,
       height: 'min-content',
       alignSelf: 'center',
       width: '100%',
@@ -49,7 +48,8 @@ const useStyles = makeStyles(
     [theme.breakpoints.up('md')]: {
       wrapper: {
         paddingTop: '0',
-        gridTemplateColumns: '0.8fr 3fr 0.8fr 8fr',
+        gridColumnGap: '0',
+        gridTemplateColumns: '1fr 3.6fr 0.4fr 8fr',
         gridTemplateAreas: `". categories . placeholder"`,
         gridTemplateRows: 'auto',
       },

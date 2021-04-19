@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
 import {
@@ -19,20 +19,20 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage({ countries }: Props) {
   const classes = useFormStyles()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
-  const { data: clientCart } = useQuery(ClientCartDocument)
+  const { data: clientCart } = useQuery(ClientCartDocument, { ssr: false })
   const forceSubmit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
@@ -42,55 +42,52 @@ function PaymentPage({ countries }: Props) {
   }
 
   return (
-    <OverlayPage
-      title='Payment'
-      variant='bottom'
-      fullHeight
-      backFallbackTitle='Shipping'
-      backFallbackHref='/checkout/shipping'
-    >
+    <Container maxWidth='md'>
       <PaymentMethodContextProvider
         modules={{ braintree_local_payment }}
         available_payment_methods={clientCart?.cart?.available_payment_methods}
       >
         <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
-        <Container maxWidth='md'>
-          <NoSsr>
-            <AnimatePresence initial={false}>
-              <PaymentMethodToggle key='toggle' />
 
-              <PaymentMethodOptions key='options' />
+        <NoSsr>
+          <AnimatePresence initial={false}>
+            <PaymentMethodToggle key='toggle' />
 
-              <PaymentMethodError key='error' />
+            <PaymentMethodOptions key='options' />
 
-              <BillingAddressForm />
+            <PaymentMethodError key='error' />
 
-              <AnimatedRow className={classes.formRow} key='next'>
-                <div className={classes.formRow}>
-                  <PaymentMethodButton
-                    key='button'
-                    type='submit'
-                    color='secondary'
-                    variant='pill'
-                    size='large'
-                    onClick={forceSubmit}
-                    endIcon={<ArrowForwardIos fontSize='inherit' />}
-                  >
-                    Pay
-                  </PaymentMethodButton>
-                </div>
-              </AnimatedRow>
-            </AnimatePresence>
-          </NoSsr>
-        </Container>
+            <BillingAddressForm />
+
+            <AnimatedRow className={classes.formRow} key='next'>
+              <div className={classes.formRow}>
+                <PaymentMethodButton
+                  key='button'
+                  type='submit'
+                  color='secondary'
+                  variant='pill'
+                  size='large'
+                  onClick={forceSubmit}
+                  endIcon={<ArrowForwardIos fontSize='inherit' />}
+                >
+                  Pay
+                </PaymentMethodButton>
+              </div>
+            </AnimatedRow>
+          </AnimatePresence>
+        </NoSsr>
       </PaymentMethodContextProvider>
-    </OverlayPage>
+    </Container>
   )
 }
 
-PaymentPage.Layout = PageLayout
-
-registerRouteUi('/checkout/payment', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'checkout',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'checkout',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+PaymentPage.pageOptions = pageOptions
 
 export default PaymentPage
 

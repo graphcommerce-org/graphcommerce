@@ -1,36 +1,24 @@
 import { Container } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
-import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 
 function TestOverlayStatic() {
   const title = `Overlay static`
 
   return (
-    <OverlayPage
-      variant='bottom'
-      title={title}
-      headerForward={
-        <PageLink href='/test/overlay/1'>
-          <ForwardButton color='secondary'>Overlay with gsp</ForwardButton>
-        </PageLink>
-      }
-      backFallbackHref='/test/index'
-      backFallbackTitle='Test'
-    >
-      <Container>
-        <DebugSpacer />
-      </Container>
-    </OverlayPage>
+    <Container>
+      <DebugSpacer />
+    </Container>
   )
 }
 
-TestOverlayStatic.Layout = PageLayout
-
-registerRouteUi('/test/overlay/static', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'test',
+  SharedComponent: SheetShell,
+  sharedProps: { variant: 'bottom' },
+}
+TestOverlayStatic.pageOptions = pageOptions
 
 export default TestOverlayStatic

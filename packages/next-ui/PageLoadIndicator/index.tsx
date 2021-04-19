@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   { name: 'PageLoadIndicator' },
 )
 
-const PageLoadIndicator: React.FC = () => {
+function PageLoadIndicator() {
   const router = useRouter()
   const classes = useStyles()
   const [loading, setLoading] = useState<boolean>(false)
@@ -34,7 +34,7 @@ const PageLoadIndicator: React.FC = () => {
       router.events.off('routeChangeComplete', hide)
       router.events.off('routeChangeError', hide)
     }
-  }, [router.events, router.pathname, router.query])
+  }, [router.events])
 
   return (
     <Fade in={loading}>

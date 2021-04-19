@@ -1,4 +1,4 @@
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import {
   ProductListDocument,
@@ -7,10 +7,9 @@ import {
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { CmsPageDocument, CmsPageQuery } from '../../components/GraphQL/CmsPage.gql'
 import { DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
@@ -24,14 +23,14 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & CmsPageQuery & ProductListQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
 
   const title = cmsPage?.title ?? ''
   return (
-    <FullPageUi title={title} backFallbackTitle='Blog' backFallbackHref='/' {...props}>
+    <>
       <PageMeta
         title={cmsPage?.meta_title ?? title ?? ''}
         metaDescription={cmsPage?.meta_description ?? ''}
@@ -49,13 +48,14 @@ function CmsPage(props: Props) {
       ) : (
         <CmsPageContent {...cmsPage} />
       )}
-    </FullPageUi>
+    </>
   )
 }
 
-CmsPage.Layout = PageLayout
-
-registerRouteUi('/page/[url]', FullPageUi)
+CmsPage.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default CmsPage
 

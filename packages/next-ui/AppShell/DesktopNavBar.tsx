@@ -1,12 +1,12 @@
 import { Theme, makeStyles, Link } from '@material-ui/core'
 import clsx from 'clsx'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import SliderContainer from '../FramerSlider/SliderContainer'
 import { SliderContext } from '../FramerSlider/SliderContext'
 import SliderNext from '../FramerSlider/SliderNext'
 import SliderPrev from '../FramerSlider/SliderPrev'
 import SliderScroller from '../FramerSlider/SliderScroller'
-import PageLink from '../PageTransition/PageLink'
 import { MenuProps } from './Menu'
 
 const useStyles = makeStyles(
@@ -77,7 +77,7 @@ export default function DesktopNavBar(props: MenuTabsProps) {
       <SliderContainer classes={{ container: classes.container }}>
         <SliderScroller classes={{ scroller: classes.scroller }}>
           {menu.map(({ href, children, ...linkProps }) => (
-            <PageLink key={href.toString()} href={href} {...linkProps}>
+            <PageLink key={href.toString()} href={href} {...linkProps} passHref>
               <Link className={classes.link}>
                 {children}
                 {router.asPath.startsWith(href.toString()) && <div className={classes.line} />}

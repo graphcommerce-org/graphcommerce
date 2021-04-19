@@ -1,5 +1,5 @@
-import { Container, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { Typography } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import BundleItemsForm from '@reachdigital/magento-product-bundle/BundleItemsForm'
 import {
@@ -13,10 +13,9 @@ import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
@@ -35,7 +34,7 @@ type Props = ProductPageQuery & BundleProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductBundle(props: Props) {
   const { products, usps, typeProducts, productpages } = props
@@ -49,23 +48,17 @@ function ProductBundle(props: Props) {
 
   const category = productPageCategory(product)
   return (
-    <FullPageUi
-      title={product.name ?? ''}
-      backFallbackTitle={category?.name ?? ''}
-      backFallbackHref={`/${category?.url_path}`}
-      {...props}
-    >
+    <>
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-          <BundleItemsForm {...typeProduct} />
-        </ProductPageGallery>
-      </Container>
+      <ProductPageGallery {...product}>
+        <Typography variant='h1'>{product.name ?? ''}</Typography>
+        <AddToCartButton
+          mutation={ProductAddToCartDocument}
+          variables={{ sku: product.sku ?? '', quantity: 1 }}
+          name={product.name ?? ''}
+        />
+        <BundleItemsForm {...typeProduct} />
+      </ProductPageGallery>
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>
@@ -84,13 +77,14 @@ function ProductBundle(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </FullPageUi>
+    </>
   )
 }
 
-ProductBundle.Layout = PageLayout
-
-registerRouteUi('/product/[url]', FullPageUi)
+ProductBundle.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default ProductBundle
 
@@ -132,11 +126,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return { notFound: true }
   }
 
+  const category = productPageCategory((await productPage).data?.products?.items?.[0])
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: category?.url_path ? `${category?.url_path}` : undefined,
+      backFallbackTitle: category?.name ?? undefined,
     },
     revalidate: 60 * 20,
   }

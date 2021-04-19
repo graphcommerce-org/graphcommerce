@@ -14,11 +14,11 @@ export function ProductListParamsProvider({
   const [params, setParams] = useState<ProductListParams>(value)
   const router = useRouter()
 
-  const updateParams = () => setParams(value)
   useEffect(() => {
+    const updateParams = () => setParams(value)
     router.events.on('routeChangeComplete', updateParams)
     return () => router.events.off('routeChangeComplete', updateParams)
-  })
+  }, [router.events, value])
 
   return <context.Provider value={{ params, setParams }}>{children}</context.Provider>
 }

@@ -5,7 +5,7 @@ import {
   isFilterTypeMatch,
   isFilterTypeRange,
 } from '@reachdigital/magento-product/ProductListItems/filterTypes'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink, { LinkProps as PageLinkProps } from 'next/link'
 import Router from 'next/router'
 import React, { PropsWithChildren } from 'react'
 import { useProductListParamsContext } from './CategoryPageContext'
@@ -43,7 +43,8 @@ export function useCategoryLink(props: ProductListParams): string {
 }
 
 export type CategoryLinkProps = PropsWithChildren<
-  LinkProps & ProductListParams & { noLink?: boolean }
+  LinkProps &
+    ProductListParams & { noLink?: boolean; link?: Omit<PageLinkProps, 'href' | 'passHref'> }
 >
 
 const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((props, ref) => {
@@ -57,6 +58,7 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
     filters,
     search,
     noLink,
+    link,
     ...linkProps
   } = props
   const newParams = { filters, sort, url, currentPage, pageSize, search }
@@ -70,7 +72,7 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
     rel = 'nofollow'
 
   return (
-    <PageLink href={categoryLink}>
+    <PageLink href={categoryLink} passHref {...link}>
       {noLink ? (
         children
       ) : (
@@ -84,13 +86,20 @@ const CategoryLink = React.forwardRef<HTMLAnchorElement, CategoryLinkProps>((pro
 
 export default CategoryLink
 
-export const useCategoryPushRoute = () => {
+type UseCategoryPushRouteProps = {
+  shallow?: boolean
+  locale?: string | false
+  scroll?: boolean
+}
+
+export const useCategoryPushRoute = (props?: UseCategoryPushRouteProps) => {
   const { setParams } = useProductListParamsContext()
 
   return (params: ProductListParams) => {
     setParams(params)
 
+    const path = createCategoryLink(params)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    Router.push(createCategoryLink(params))
+    Router.push(path, path, props)
   }
 }

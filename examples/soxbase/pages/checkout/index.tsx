@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
@@ -18,14 +18,14 @@ import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -43,7 +43,7 @@ function ShippingPage({ countries }: Props) {
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
-  const { data: cartData } = useQuery(ClientCartDocument)
+  const { data: cartData } = useQuery(ClientCartDocument, { ssr: false })
   const cartExists = typeof cartData?.cart !== 'undefined'
 
   const forceSubmit = () => {
@@ -57,59 +57,55 @@ function ShippingPage({ countries }: Props) {
   }
 
   return (
-    <OverlayPage
-      variant='bottom'
-      backFallbackHref='/cart'
-      backFallbackTitle='Cart'
-      title='Shipping'
-      fullHeight
-    >
+    <Container maxWidth='md'>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
-      <Container maxWidth='md'>
-        <NoSsr>
-          {!cartExists && <EmptyCart />}
+      <NoSsr>
+        {!cartExists && <EmptyCart />}
 
-          {cartExists && (
-            <>
-              <CheckoutStepper steps={3} currentStep={2} />
+        {cartExists && (
+          <>
+            <CheckoutStepper steps={3} currentStep={2} />
 
-              <IconTitle
-                iconSrc='/icons/desktop_checkout_box.svg'
-                title='Shipping'
-                alt='box'
-                size='normal'
-              />
+            <IconTitle
+              iconSrc='/icons/desktop_checkout_box.svg'
+              title='Shipping'
+              alt='box'
+              size='normal'
+            />
 
-              <EmailForm />
-              <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+            <EmailForm />
+            <ShippingAddressForm countries={countries} doSubmit={addressForm} />
 
-              <Typography variant='h5' className={classes.heading}>
-                Shipping method
-              </Typography>
-              <ShippingMethodForm doSubmit={methodForm} />
+            <Typography variant='h5' className={classes.heading}>
+              Shipping method
+            </Typography>
+            <ShippingMethodForm doSubmit={methodForm} />
 
-              <div className={formClasses.actions}>
-                <Button
-                  type='submit'
-                  color='secondary'
-                  variant='pill'
-                  size='large'
-                  onClick={forceSubmit}
-                >
-                  Next <ArrowForwardIos fontSize='inherit' />
-                </Button>
-              </div>
-            </>
-          )}
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+            <div className={formClasses.actions}>
+              <Button
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                onClick={forceSubmit}
+              >
+                Next <ArrowForwardIos fontSize='inherit' />
+              </Button>
+            </div>
+          </>
+        )}
+      </NoSsr>
+    </Container>
   )
 }
 
-ShippingPage.Layout = PageLayout
-
-registerRouteUi('/checkout', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'checkout',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'checkout',
+  sharedProps: { variant: 'bottom', size: 'max' },
+}
+ShippingPage.pageOptions = pageOptions
 
 export default ShippingPage
 

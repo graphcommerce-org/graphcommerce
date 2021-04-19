@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.up('md')]: {
       gridTemplateAreas: `"title ."
       "description usps"`,
-      gridTemplateColumns: '3fr 1fr',
+      gridTemplateColumns: '1fr auto',
       gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
     },
   },

@@ -1,14 +1,17 @@
-import { Button, Container } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { Container } from '@material-ui/core'
+import Checkmark from '@material-ui/icons/Check'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import Button from '@reachdigital/next-ui/Button'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -16,30 +19,30 @@ import apolloClient from '../../lib/apolloClient'
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AppShellTestIndex(props: Props) {
   const { url, pages } = props
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
-    <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index' {...props}>
+    <>
       <Container>
         {url === 'index' ? (
-          <PageLink href='/test/deeper'>
+          <PageLink href='/test/deeper' passHref>
             <Button variant='outlined' color='secondary'>
               Sibling
             </Button>
           </PageLink>
         ) : (
-          <PageLink href='/test/index'>
+          <PageLink href='/test/index' passHref>
             <Button variant='outlined' color='secondary'>
               Index
             </Button>
           </PageLink>
         )}
 
-        <PageLink href='/test/overlay/1'>
+        <PageLink href='/test/overlay/1' passHref>
           <Button variant='outlined' color='secondary'>
             Overlay
           </Button>
@@ -78,13 +81,43 @@ function AppShellTestIndex(props: Props) {
       <Container>
         <DebugSpacer height={2000} />
       </Container>
-    </FullPageUi>
+
+      <MessageSnackbar
+        open
+        variant='pill'
+        color='default'
+        action={
+          <Button
+            size='medium'
+            variant='pill'
+            color='secondary'
+            endIcon={
+              <PictureResponsiveNext
+                alt='desktop_chevron_right'
+                width={28}
+                height={28}
+                src='/icons/desktop_chevron_right_white.svg'
+                type='image/svg+xml'
+              />
+            }
+          >
+            View shopping cart
+          </Button>
+        }
+      >
+        <>
+          <Checkmark />
+          <strong>Blissful Brush</strong>&nbsp;has been added to your shopping cart!
+        </>
+      </MessageSnackbar>
+    </>
   )
 }
 
-AppShellTestIndex.Layout = PageLayout
-
-registerRouteUi('/test/[...url]', FullPageUi)
+AppShellTestIndex.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default AppShellTestIndex
 

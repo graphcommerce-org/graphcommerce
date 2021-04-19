@@ -63,7 +63,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
   const { attribute_code, label, options, ...chipProps } = props
   const classes = useFilterRangeType(props)
   const { params } = useProductListParamsContext()
-  const pushRoute = useCategoryPushRoute()
+  const pushRoute = useCategoryPushRoute({ scroll: false })
 
   // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: Mark } = {}
@@ -172,7 +172,7 @@ export default function FilterRangeType(props: FilterRangeTypeProps) {
           className={classes.slider}
         />
 
-        <CategoryLink {...priceFilterUrl}>
+        <CategoryLink {...priceFilterUrl} link={{ scroll: false }}>
           <Button
             variant='pill'
             size='small'

@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CartItem from '@reachdigital/magento-cart/cart/CartItem'
 import CartItems from '@reachdigital/magento-cart/cart/CartItems'
@@ -15,14 +15,13 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import OverlayPage from '../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<Props>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 const useStyles = makeStyles(
   () => ({
@@ -34,69 +33,64 @@ const useStyles = makeStyles(
 )
 
 function CartPage() {
-  const { data } = useQuery(ClientCartDocument)
+  const { data } = useQuery(ClientCartDocument, { ssr: false })
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
   const classes = useStyles()
 
   return (
-    <OverlayPage
-      title='Cart'
-      variant='bottom'
-      fullHeight
-      backFallbackTitle='Home'
-      backFallbackHref='/'
-    >
+    <Container maxWidth='md'>
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <Typography variant='h5' component='h1' className={classes.title}>
-            Checkout
-          </Typography>
-          <AnimatePresence initial={false}>
-            {hasItems ? (
-              <>
-                <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
-                <AnimatedRow key='quick-checkout'>
-                  <CartQuickCheckout {...data?.cart?.prices?.grand_total} />
-                </AnimatedRow>
-                <CartItems
-                  items={data?.cart?.items}
-                  id={data?.cart?.id ?? ''}
-                  key='cart'
-                  renderer={{
-                    BundleCartItem: CartItem,
-                    ConfigurableCartItem,
-                    DownloadableCartItem: CartItem,
-                    SimpleCartItem: CartItem,
-                    VirtualCartItem: CartItem,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore GiftCardProduct is only available in Commerce
-                    GiftCardCartItem: CartItem,
-                  }}
-                />
-                <CouponAccordion key='couponform' />
-                <CartTotals
-                  key='totals'
-                  prices={data?.cart?.prices}
-                  shipping_addresses={data?.cart?.shipping_addresses ?? []}
-                />
-                <AnimatedRow key='checkout-button'>
-                  <CartStartCheckout {...data?.cart?.prices?.grand_total} />
-                </AnimatedRow>
-              </>
-            ) : (
-              <EmptyCart />
-            )}
-          </AnimatePresence>
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <Typography variant='h5' component='h1' className={classes.title}>
+          Checkout
+        </Typography>
+        <AnimatePresence initial={false}>
+          {hasItems ? (
+            <>
+              <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
+              <AnimatedRow key='quick-checkout'>
+                <CartQuickCheckout {...data?.cart?.prices?.grand_total} />
+              </AnimatedRow>
+              <CartItems
+                items={data?.cart?.items}
+                id={data?.cart?.id ?? ''}
+                key='cart'
+                renderer={{
+                  BundleCartItem: CartItem,
+                  ConfigurableCartItem,
+                  DownloadableCartItem: CartItem,
+                  SimpleCartItem: CartItem,
+                  VirtualCartItem: CartItem,
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore GiftCardProduct is only available in Commerce
+                  GiftCardCartItem: CartItem,
+                }}
+              />
+              <CouponAccordion key='couponform' />
+              <CartTotals
+                key='totals'
+                prices={data?.cart?.prices}
+                shipping_addresses={data?.cart?.shipping_addresses ?? []}
+              />
+              <AnimatedRow key='checkout-button'>
+                <CartStartCheckout {...data?.cart?.prices?.grand_total} />
+              </AnimatedRow>
+            </>
+          ) : (
+            <EmptyCart />
+          )}
+        </AnimatePresence>
+      </NoSsr>
+    </Container>
   )
 }
 
-CartPage.Layout = PageLayout
-
-registerRouteUi('/cart', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'checkout',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'checkout',
+}
+CartPage.pageOptions = pageOptions
 
 export default CartPage
 
@@ -109,6 +103,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
     },
   }
 }

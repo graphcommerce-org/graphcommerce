@@ -1,11 +1,9 @@
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
-import NextError from 'next/error'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -13,23 +11,16 @@ import apolloClient from '../../lib/apolloClient'
 type Props = DefaultPageQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
-const LegalPage = ({ pages }: Props) => {
-  if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
-  if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
-  const page = pages[0]
-
-  return (
-    <FullPageUi title={page.title ?? ''} backFallbackTitle='Home' backFallbackHref='/'>
-      <PageContent {...pages[0]} />
-    </FullPageUi>
-  )
+function LegalPage({ pages }) {
+  return <PageContent {...pages[0]} />
 }
 
-LegalPage.Layout = PageLayout
-
-registerRouteUi('/legal/[url]', FullPageUi)
+LegalPage.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default LegalPage
 

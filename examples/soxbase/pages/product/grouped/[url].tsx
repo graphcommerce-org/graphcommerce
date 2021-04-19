@@ -1,5 +1,5 @@
-import { Container, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { Typography } from '@material-ui/core'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
   GroupedProductPageDocument,
@@ -13,10 +13,9 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
@@ -35,7 +34,7 @@ type Props = ProductPageQuery & GroupedProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductGrouped(props: Props) {
   const { products, usps, typeProducts, productpages } = props
@@ -47,37 +46,32 @@ function ProductGrouped(props: Props) {
   if (product?.__typename !== 'GroupedProduct' || typeProduct?.__typename !== 'GroupedProduct')
     return <></>
 
-  const category = productPageCategory(product)
   return (
-    <FullPageUi
-      title={product.name ?? ''}
-      backFallbackTitle={category?.name ?? ''}
-      backFallbackHref={`/${category?.url_path}`}
-      {...props}
-    >
+    <>
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <ul>
-            {typeProduct.items?.map(
-              (item) =>
-                item?.product?.sku && (
-                  <li key={item?.product?.name}>
-                    <div>{item?.product?.name}</div>
-                    <div>
-                      <AddToCartButton
-                        mutation={ProductAddToCartDocument}
-                        variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
-                      />
-                    </div>
-                  </li>
-                ),
-            )}
-          </ul>
-          <ProductWeight weight={typeProduct?.weight} />
-        </ProductPageGallery>
-      </Container>
+      <ProductPageGallery {...product}>
+        <Typography component='h1' variant='h2'>
+          {product.name}
+        </Typography>
+        <ul>
+          {typeProduct.items?.map(
+            (item) =>
+              item?.product?.sku && (
+                <li key={item?.product?.name}>
+                  <div>{item?.product?.name}</div>
+                  <div>
+                    <AddToCartButton
+                      mutation={ProductAddToCartDocument}
+                      variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
+                      name={product.name ?? ''}
+                    />
+                  </div>
+                </li>
+              ),
+          )}
+        </ul>
+        <ProductWeight weight={typeProduct?.weight} />
+      </ProductPageGallery>
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>
@@ -96,13 +90,14 @@ function ProductGrouped(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </FullPageUi>
+    </>
   )
 }
 
-ProductGrouped.Layout = PageLayout
-
-registerRouteUi('/product/[url]', FullPageUi)
+ProductGrouped.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default ProductGrouped
 
@@ -144,11 +139,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return { notFound: true }
   }
 
+  const category = productPageCategory((await productPage).data?.products?.items?.[0])
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: category?.url_path ? `${category?.url_path}` : undefined,
+      backFallbackTitle: category?.name ?? undefined,
     },
     revalidate: 60 * 20,
   }

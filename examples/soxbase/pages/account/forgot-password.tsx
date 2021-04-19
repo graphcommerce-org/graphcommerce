@@ -1,47 +1,41 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountForgotPasswordPage() {
   return (
-    <OverlayPage
-      title='Forgot Password'
-      variant='center'
-      backFallbackHref='/account/signin'
-      backFallbackTitle='Sign In'
-    >
+    <Container maxWidth='xs'>
       <PageMeta
         title='Forgot Password'
         metaDescription='Forgot password'
         metaRobots={['noindex']}
       />
-      <Container maxWidth='xs'>
-        <NoSsr>
-          <Typography variant='h3' align='center'>
-            Forgot password
-          </Typography>
-          <Typography variant='h6' align='center'>
-            Fill in your e-mail to request changing your password
-          </Typography>
-          <ForgotPasswordForm />
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <Typography variant='h3' align='center'>
+          Forgot password
+        </Typography>
+        <Typography variant='h6' align='center'>
+          Fill in your e-mail to request changing your password
+        </Typography>
+        <ForgotPasswordForm />
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountForgotPasswordPage.Layout = PageLayout
-
-registerRouteUi('/account/forgot-password', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account-public',
+  SharedComponent: SheetShell,
+}
+AccountForgotPasswordPage.pageOptions = pageOptions
 
 export default AccountForgotPasswordPage
 
@@ -54,6 +48,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'top',
+      backFallbackHref: '/account/signin',
+      backFallbackTitle: 'Sign In',
     },
   }
 }

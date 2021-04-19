@@ -4,9 +4,9 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { useFormPersist, emailPattern } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
+import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { CustomerDocument } from '../Customer.gql'
@@ -83,7 +83,7 @@ export default function AccountSignInUpForm() {
           </Typography>
           <Typography variant='h6' align='center'>
             You can view{' '}
-            <PageLink href='/account'>
+            <PageLink href='/account' passHref>
               <Link>your Account here</Link>
             </PageLink>
             .

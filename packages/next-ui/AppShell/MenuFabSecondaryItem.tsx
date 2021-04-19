@@ -1,7 +1,7 @@
 import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@material-ui/core'
+import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
-import PageLink from '../PageTransition/PageLink'
 import PictureResponsiveNext, { PictureResponsiveNextProps } from '../PictureResponsiveNext'
 
 const useStyles = makeStyles(
@@ -21,7 +21,7 @@ export default function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { href, children, ...imgProps } = props
   const classes = useStyles()
   return (
-    <PageLink href={href}>
+    <PageLink href={href} passHref>
       <ListItem dense button selected={router.asPath.startsWith(href)}>
         <ListItemIcon classes={{ root: classes.icon }}>
           <PictureResponsiveNext {...imgProps} alt='' width={24} height={24} loading='lazy' />

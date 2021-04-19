@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.gql'
 
@@ -18,7 +18,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
-    <PageLink href={requireAuth ? '/account/signin' : '/account'}>
+    <PageLink href={requireAuth ? '/account/signin' : '/account'} passHref>
       <IconButton aria-label='Account' color='inherit' size='medium'>
         <Badge
           badgeContent={customerToken?.token ? 1 : 0}

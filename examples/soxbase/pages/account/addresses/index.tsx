@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -11,13 +11,12 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<Props>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AccountAddressesPage(props: Props) {
   const { countries } = props
@@ -28,36 +27,31 @@ function AccountAddressesPage(props: Props) {
   const customer = data?.customer
 
   return (
-    <OverlayPage
-      title='Addresses'
-      variant='bottom'
-      fullHeight
-      backFallbackHref='/account'
-      backFallbackTitle='Account'
-    >
+    <Container maxWidth='md'>
       <PageMeta
         title='Addresses'
         metaDescription='View all your addresses'
         metaRobots={['noindex']}
       />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <IconTitle
-            iconSrc='/icons/desktop_addresses.svg'
-            title='Addresses'
-            alt='addresses'
-            size='large'
-          />
-          <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <IconTitle
+          iconSrc='/icons/desktop_addresses.svg'
+          title='Addresses'
+          alt='addresses'
+          size='large'
+        />
+        <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountAddressesPage.Layout = PageLayout
-
-registerRouteUi('/account/addresses', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'account-addresses',
+}
+AccountAddressesPage.pageOptions = pageOptions
 
 export default AccountAddressesPage
 
@@ -74,6 +68,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account',
+      backFallbackTitle: 'Account',
     },
   }
 }

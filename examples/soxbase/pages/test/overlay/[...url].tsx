@@ -1,20 +1,21 @@
 import { Container } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React, { useState } from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const cycles = [100, 200, 1000, 2000]
 
@@ -23,26 +24,15 @@ function AppShellTextOverlay({ url, pages }: Props) {
   const [cycle, setCycle] = useState(url === 'index' ? 0 : 3)
 
   const next = Number(url) + 1
-  return (
-    <OverlayPage
-      title={title}
-      headerForward={
-        <PageLink href={`/test/overlay/${next}`}>
-          <ForwardButton color='secondary'>Deeper {next}</ForwardButton>
-        </PageLink>
-      }
-      variant='center'
-      backFallbackHref='/test/index'
-      backFallbackTitle='Test'
-    >
-      <Container maxWidth='md'>Content here</Container>
-    </OverlayPage>
-  )
+  return <Container maxWidth='md'>Content here</Container>
 }
 
-AppShellTextOverlay.Layout = PageLayout
-
-registerRouteUi('/test/overlay/[...url]', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'test',
+  SharedComponent: SheetShell,
+  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+}
+AppShellTextOverlay.pageOptions = pageOptions
 
 export default AppShellTextOverlay
 

@@ -43,12 +43,8 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/react-in-jsx-scope': 'off',
-    'no-console': [
-      1,
-      {
-        allow: ['warn', 'error'],
-      },
-    ],
+    'react-hooks/exhaustive-deps': ['error', { additionalHooks: '(useIsomorphicLayoutEffect)' }],
+    'no-console': [1, { allow: ['warn', 'error'] }],
     '@typescript-eslint/semi': 'off',
     'spaced-comment': [
       'error',
@@ -98,6 +94,12 @@ module.exports = {
     '@typescript-eslint/unbound-method': 'off',
   },
   overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        'import/prefer-default-export': 'off',
+      },
+    },
     {
       files: ['generated/*'],
       rules: {
