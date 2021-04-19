@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
-    "@apollo/client": "^3.3.14",
+    "@apollo/client": "^3.3.15",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -45,12 +45,12 @@
     "apollo-cache-persist": "^0.1.1",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
-    "framer-motion": "^4.1.3",
+    "framer-motion": "^4.1.5",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "next": "^10.1.3",
     "next-images": "^1.7.0",
-    "next-pwa": "^5.2.9",
+    "next-pwa": "^5.2.14",
     "next-sitemap": "^1.6.25",
     "node-fetch": "^2.6.1",
     "postinstall-postinstall": "^2.1.0",
@@ -62,16 +62,16 @@
     "schema-dts": "^0.8.2",
     "sharp": "^0.28.1",
     "ts-node": "^9.1.1",
-    "type-fest": "^1.0.1",
+    "type-fest": "^1.0.2",
     "vercel": "^21.3.3",
-    "webpack": "^5.32.0"
+    "webpack": "^5.34.0"
   },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
     "@reachdigital/eslint-config-pwa": "^0.1.0",
     "@reachdigital/prettier-config-pwa": "^0.1.0",
     "@reachdigital/typescript-config-pwa": "^0.1.0",
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "@types/react": "^17.0.2",
     "@types/sharp": "^0.28.0",
     "typescript": "^4.2.4"
