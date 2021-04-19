@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import StoreSwitcherList from '@reachdigital/magento-store/switcher/StoreSwitcherList'
@@ -9,7 +9,6 @@ import {
 } from '@reachdigital/magento-store/switcher/StoreSwitcherList.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 function StoresIndexPage({ availableStores }: Props) {
-  const { locale } = useRouter()
+  const { locale } = usePageRouter()
   const classes = useStyles()
 
   return (

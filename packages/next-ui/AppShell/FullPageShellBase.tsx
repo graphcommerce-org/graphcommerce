@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
@@ -46,7 +47,7 @@ export type FullPageShellBaseProps = {
 
 function FullPageShellBase(props: FullPageShellBaseProps) {
   const { children, backFallbackHref, backFallbackTitle, header, name } = props
-  const router = useRouter()
+  const router = usePageRouter()
   const classes = useStyles(props)
 
   return (

@@ -126,6 +126,7 @@ export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextP
  * @private
  */
 export type PageItem = {
+  routerProxy: NextRouter
   children: React.ReactNode
   historyIdx: number
   sharedKey: string

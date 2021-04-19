@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Box, Container, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -15,7 +15,6 @@ import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
-import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -35,7 +34,7 @@ const useStyles = makeStyles(
 
 function EditAddressPage(props: Props) {
   const { countries } = props
-  const router = useRouter()
+  const router = usePageRouter()
   const { addressId } = router.query
   const classes = useStyles()
 

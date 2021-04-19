@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { PageOptions } from '@reachdigital/framer-next-pages'
+import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -13,7 +13,6 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { useRouter } from 'next/router'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -23,7 +22,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function OrderDetailPage(props: Props) {
   const { countries } = props
-  const router = useRouter()
+  const router = usePageRouter()
   const { orderId } = router.query
 
   const { data, loading } = useQuery(OrderDetailPageDocument, {
