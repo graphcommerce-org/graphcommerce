@@ -1,9 +1,5 @@
 import { NextRouter } from 'next/router'
 
-export function currentHistoryIdx() {
-  return Number(global.window?.history.state?.idx ?? 0)
-}
-
 export function scrollPos(idx: number): { x: number; y: number } {
   const scroll = global.window?.sessionStorage[`__next_scroll_${idx}`]
   return scroll ? JSON.parse(scroll) : { x: 0, y: 0 }

@@ -13,7 +13,7 @@ const useStyles = makeStyles(
       top: 0,
       right: 0,
       height: '100%',
-      overflowY: 'scroll',
+      overflowY: 'auto',
     },
   }),
   { name: 'FramerNextPagesSlider' },

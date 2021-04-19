@@ -18,7 +18,8 @@ const useStyles = makeStyles(
 
 export default function StoreSwitcherButton() {
   const config = useQuery(StoreConfigDocument)
-  const country = config.data?.storeConfig?.locale?.split('_')?.[1].toLowerCase() ?? ''
+  const country = config.data?.storeConfig?.store_code?.split('_')?.[1].toLowerCase() ?? ''
+
   const classes = useStyles()
   return (
     <PageLink href='/switch-stores' passHref>

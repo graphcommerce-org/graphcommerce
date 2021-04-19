@@ -63,16 +63,20 @@ export default function SheetPanel(props: SheetPanelProps) {
   const last = snapPoints.length - 1
 
   const axis = ['top', 'bottom'].includes(variant) ? 'y' : 'x'
+  const crossAxis = ['top', 'bottom'].includes(variant) ? 'x' : 'y'
   const sign = ['top', 'left'].includes(variant) ? -1 : 1
   const dimension = ['top', 'bottom'].includes(variant) ? 'height' : 'width'
 
   // Define the drag handling
-  const onDragEnd = async (_: never, { velocity, offset }: PanInfo) => {
+  const onDragEnd = async (_: never, { velocity, offset, delta }: PanInfo) => {
+    const main = Math.abs(delta[axis] - offset[axis])
+    const cross = Math.abs(delta[crossAxis] - offset[crossAxis])
+
     const clamped =
       velocity[axis] < 0
-        ? Math.max(velocity[axis], offset[axis] * 2)
-        : Math.min(velocity[axis], offset[axis] * 2)
-    const target = clamped + drag.get()
+        ? Math.max(velocity[axis], -Math.abs(offset[axis] * 2))
+        : Math.min(velocity[axis], Math.abs(offset[axis] * 2))
+    const target = cross > main ? drag.get() : clamped + drag.get()
 
     const index = nearestSnapPointIndex(target, snapPoints, size, variant)
     onSnap?.(snapPoints[index], index)
@@ -101,7 +105,6 @@ export default function SheetPanel(props: SheetPanelProps) {
       <m.div
         ref={dragHandleRef}
         drag={axis}
-        dragDirectionLock
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
         dragConstraints={containerRef}
@@ -134,9 +137,9 @@ export default function SheetPanel(props: SheetPanelProps) {
       </m.div>
       <m.div
         drag={(axis !== 'y' || canDrag) && axis}
-        dragDirectionLock
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
+        dragConstraints={containerRef}
         transition={SPRING_ANIM}
         ref={contentRef}
         className={clsx(classes?.content, classes?.[`content${variant}`])}
@@ -144,6 +147,7 @@ export default function SheetPanel(props: SheetPanelProps) {
           ...styles?.content,
           ...styles?.[`content${variant}`],
           [axis]: drag,
+
           ...(axis === 'y' && { maxHeight }),
           [dimension]: variantSizeCss(variantSize),
         }}

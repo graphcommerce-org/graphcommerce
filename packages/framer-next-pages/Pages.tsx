@@ -5,7 +5,7 @@ import React, { useRef } from 'react'
 import Page from './Page'
 import { pageContext, pageRouterContext } from './PageContext'
 import type { PageComponent, PageItem } from './types'
-import { createRouterProxy, currentHistoryIdx } from './utils'
+import { createRouterProxy } from './utils'
 
 function findPlainIdx(items: PageItem[]) {
   return items.reduce((acc, item, i) => (typeof item.overlayGroup === 'string' ? acc : i), -1)
@@ -23,7 +23,7 @@ export default function FramerNextPages(props: PagesProps) {
   const { router, Component, pageProps, fallback, fallbackKey } = props
 
   const items = useRef<PageItem[]>([])
-  const idx = currentHistoryIdx()
+  const idx = Number(global.window?.history.state?.idx ?? 0)
   const prevHistory = useRef<number>(-1)
   const direction = idx > prevHistory.current ? 1 : -1
   prevHistory.current = idx
