@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import useSheetStyles from '../FramerSheet/useSheetStyles'
 import BackButton from './BackButton'
-import PageLayoutBase, { PageLayoutBaseProps } from './ShellBase'
+import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 export type SheetShellBaseProps = {
   header?: React.ReactNode
@@ -41,7 +41,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
   const isActive = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
-    <PageLayoutBase name={name}>
+    <ShellBase name={name}>
       <Sheet
         open={isActive}
         onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
@@ -62,7 +62,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
           </SheetPanel>
         </SheetContainer>
       </Sheet>
-    </PageLayoutBase>
+    </ShellBase>
   )
 }
 

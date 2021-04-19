@@ -1,7 +1,7 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
-import React from 'react'
 import PageLink from 'next/link'
+
 import { UseStyles } from '../Styles'
 
 /**
