@@ -1,7 +1,7 @@
 import { useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from './types'
-import { currentHistoryIdx, scrollPos } from './utils'
+import { scrollPos } from './utils'
 
 export type PageProps = Pick<PageItem, 'historyIdx'> & {
   active: boolean
@@ -22,7 +22,7 @@ export default function Page(props: PageProps) {
    * If the Page isn't present as a child of <AnimatePresence/>, but it is still present in the DOM,
    * we're navigating back, so we need to offset it.
    */
-  if (!isPresent) top = scrollPos(currentHistoryIdx()).y - scrollPos(historyIdx).y
+  if (!isPresent) top = scrollPos(historyIdx).y
 
   const activePresent = active && isPresent
   const position = activePresent ? 'absolute' : 'fixed'
