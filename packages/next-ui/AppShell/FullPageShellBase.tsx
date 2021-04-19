@@ -3,11 +3,11 @@ import { usePageRouter } from '@reachdigital/framer-next-pages'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React from 'react'
+
 import PageLoadIndicator from '../PageLoadIndicator'
 import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
-import PageLayoutBase, { PageLayoutBaseProps } from './ShellBase'
+import ShellBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -51,7 +51,7 @@ function FullPageShellBase(props: FullPageShellBaseProps) {
   const classes = useStyles(props)
 
   return (
-    <PageLayoutBase name={name}>
+    <ShellBase name={name}>
       <PageLoadIndicator />
 
       {router.pathname !== '/' && (
@@ -68,7 +68,7 @@ function FullPageShellBase(props: FullPageShellBaseProps) {
         {header}
       </m.header>
       {children}
-    </PageLayoutBase>
+    </ShellBase>
   )
 }
 

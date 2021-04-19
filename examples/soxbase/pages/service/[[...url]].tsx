@@ -2,6 +2,7 @@ import { Box, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import FramerNextPagesSlider from '@reachdigital/next-ui/FramerNextPagesSlider'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
@@ -30,14 +31,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const ServicePage = ({ pages }: Props) => {
+function ServicePage({ pages }: Props) {
   const classes = useStyles()
-  if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
-  if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const title = pages?.[0].title ?? ''
 
   return (
-    <>
+    <FramerNextPagesSlider>
       <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
 
       {title && (
@@ -49,9 +48,10 @@ const ServicePage = ({ pages }: Props) => {
       )}
 
       <PageContent {...pages[0]} />
-    </>
+    </FramerNextPagesSlider>
   )
 }
+
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
   SharedComponent: SheetShell,

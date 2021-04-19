@@ -5,7 +5,7 @@ import PageLoadIndicator from '../PageLoadIndicator'
 
 export type PageLayoutBaseProps = { name: string; children?: React.ReactNode }
 
-const PageLayoutBase = (props: { name: string; children?: React.ReactNode }) => {
+const ShellBase = (props: { name: string; children?: React.ReactNode }) => {
   const { children, name } = props
   const theme = useTheme()
 
@@ -31,4 +31,4 @@ const PageLayoutBase = (props: { name: string; children?: React.ReactNode }) => 
   )
 }
 
-export default PageLayoutBase
+export default ShellBase

@@ -36,13 +36,18 @@ de maintenance van dat component vermenigvuldigd wordt met het aantal
 installaties dat er zijn. Bijvoorbeeld:
 `100 installaties * 4 uur om te upgraden = 400 uur`
 
-Todo:
-
-- Uitzoeken welke components we allemaal willen abstraheren (zoals ook bij
-  `packages/ecommerce-ui` moet gebeuren).
-- Uitzoeken of de `pages/**/*.ts` folder geen styles bevat.
-- Uitzoeken of de `pages/**/*.ts` folder geen hooks bevat, behalve useQuery,
-  geen useForm hooks
+- Geen `useStyles` gedefinieerd in de soxbase folder, maar alle components
+  moeten wel extendable zijn. Zie [Writing extendable components]()
+- Geen directe React hooks, dus geen `useState`, `useEffect`, `useRef`,
+  verplaatsen naar components (en niet naar hooks).
+- Geen `useMutation` / `useForm*`, dat hoort thuis in components.
+- Wel toegestaan `useQuery(Document, { ssr: false })`
+- Wel toegestaan `useRouter().push` / `usePageRouter()`
+- Geen voorkeur: custom hooks, maar is ok.
+- Pagina's moeten zo assembleerbaar mogelijk zijn. De 'blokken' welkje op de
+  pagina ziet, zou je gemakkelijk moeten kunnen terug vinden in je pages-file.
+- Maak geen 'Assemblage'-components welke zelf niks doen en alleen een simpele
+  renderer heeft. Dat hoort in de `pages/*` van soxbase.
 
 ### `packages/magento-*`
 
@@ -116,9 +121,10 @@ UI generieke components, maar geen eCommerce specifieke components (bijv.
 - Dependency `react-hook-form`
 - Dependency `graphql`
 
-## Components
+## Writing extendable components
 
-Writing extendable components
+A component SHOULD NOT only be an assembly of other components without modifying
+the behavior / styles / layout of children.
 
 ### Component theming and layouts
 

@@ -26,7 +26,6 @@ const pageSize = 8
 function BlogPage(props: Props) {
   const { pages, blogPosts, pagesConnection } = props
   const router = usePageRouter()
-  if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const page = pages[0]
 
   const title = page.title ?? ''
