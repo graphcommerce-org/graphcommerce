@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
@@ -52,14 +52,13 @@ function ProductDownloadable(props: Props) {
   return (
     <>
       <ProductPageMeta {...product} />
-      <Container maxWidth={false}>
-        <ProductPageGallery {...product}>
-          <Typography variant='h1'>{product.name ?? ''}</Typography>
-          <AddToCartButton
-            mutation={ProductAddToCartDocument}
-            variables={{ sku: product.sku ?? '', quantity: 1 }}
-          />
-        </ProductPageGallery>
+      <ProductPageGallery {...product}>
+        <Typography variant='h1'>{product.name ?? ''}</Typography>
+        <AddToCartButton
+          mutation={ProductAddToCartDocument}
+          variables={{ sku: product.sku ?? '', quantity: 1 }}
+          name={product.name ?? ''}
+        />
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>
             {option?.title} + {option?.price}
@@ -70,7 +69,8 @@ function ProductDownloadable(props: Props) {
             {sample?.title} {sample?.sample_url} {sample?.sort_order}
           </div>
         ))}
-      </Container>
+      </ProductPageGallery>
+
       <RowProductDescription {...product}>
         <ProductUsps usps={usps} />
       </RowProductDescription>

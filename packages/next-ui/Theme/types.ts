@@ -14,6 +14,9 @@ declare module '@material-ui/core/styles/createPalette' {
   interface PaletteColor {
     mutedText: string
   }
+  interface TypeBackground {
+    highlight: string
+  }
 }
 
 declare module '@material-ui/core/styles/createMuiTheme' {

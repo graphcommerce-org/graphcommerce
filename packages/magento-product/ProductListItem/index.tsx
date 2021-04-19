@@ -69,7 +69,7 @@ export const useProductListItemStyles = makeStyles(
       height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
       position: 'relative',
       paddingTop: `calc(100% / ${aspectRatio[0]} * ${aspectRatio[1]})`,
-      background: 'rgba(0, 0, 0, 0.03)', // thema specifiek
+      background: theme.palette.background.highlight, // thema specifiek
       borderRadius: 2,
     }),
     placeholder: {

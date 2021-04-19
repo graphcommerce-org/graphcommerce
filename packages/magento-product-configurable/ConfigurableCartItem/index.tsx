@@ -5,7 +5,7 @@ import OptionsList from './OptionsList'
 export default function ConfigurableCartItem(props: ConfigurableCartItemFragment & CartItemProps) {
   const { configurable_options, ...cartItemProps } = props
   return (
-    <CartItem {...cartItemProps}>
+    <CartItem {...cartItemProps} withOptions>
       <OptionsList configurable_options={configurable_options} />
     </CartItem>
   )
