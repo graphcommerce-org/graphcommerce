@@ -8,7 +8,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
-import SheetLayout, { SheetLayoutProps } from '../../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -51,9 +51,9 @@ const ServicePage = ({ pages }: Props) => {
     </>
   )
 }
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedKey: () => 'service',
   sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }

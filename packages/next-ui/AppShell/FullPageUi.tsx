@@ -1,7 +1,6 @@
-import { makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
-import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
@@ -12,17 +11,10 @@ const useStyles = makeStyles(
     backButtonRoot: {
       position: 'fixed',
       zIndex: 10,
-      [theme.breakpoints.down('sm')]: {
-        // top: 4,
-      },
-      [theme.breakpoints.down('xs')]: {
-        // top: 7,
-      },
       left: theme.page.horizontal,
       top: theme.page.vertical,
       [theme.breakpoints.up('md')]: {
         // @todo, replace 48 with content height variable.
-
         top: `calc(48px + ${theme.spacings.sm} * 2)`,
       },
     },

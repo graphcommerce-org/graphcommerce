@@ -8,7 +8,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
-import SheetLayout, { SheetLayoutProps } from '../../../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
 
@@ -27,9 +27,9 @@ function AppShellTextOverlay({ url, pages }: Props) {
   return <Container maxWidth='md'>Content here</Container>
 }
 
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'test',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }
 AppShellTextOverlay.pageOptions = pageOptions

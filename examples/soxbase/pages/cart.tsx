@@ -17,7 +17,7 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import SheetLayout, { SheetLayoutProps } from '../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 
 type Props = Record<string, unknown>
@@ -85,9 +85,9 @@ function CartPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'checkout',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedKey: () => 'checkout',
   sharedProps: { variant: 'bottom', size: 'max' },
 }

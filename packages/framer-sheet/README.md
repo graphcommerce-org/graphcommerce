@@ -18,9 +18,39 @@ sure you have set up
 
 ## Usage
 
-**todo**
+### Inling styles
 
-## Styling
+```tsx
+import {
+  Sheet,
+  SheetBackdrop,
+  SheetContainer,
+  SheetDragIndicator,
+  SheetPanel,
+} from '@reachdigital/framer-sheet'
+import styles from '@reachdigital/framer-sheet/styles'
+import React from 'react'
+
+type Props = { children: React.ReactNode }
+
+export default function SheetPageUi({ children }: Props) {
+  const classes = useSheetStyles()
+
+  return (
+    <Sheet open variant='top'>
+      <SheetBackdrop styles={styles} />
+      <SheetContainer styles={styles}>
+        <SheetPanel
+          dragHandle={<SheetDragIndicator styles={styles} />}
+          styles={styles}
+        >
+          {children}
+        </SheetPanel>
+      </SheetContainer>
+    </Sheet>
+  )
+}
+```
 
 ### Material UI
 
@@ -37,15 +67,14 @@ import {
 import styles, { ClassKeys } from '@reachdigital/framer-sheet/styles'
 import React from 'react'
 
-const useSheetStyles = makeStyles<Theme, never, ClassKeys>(() => ({
-  ...(styles as StyleRules<ClassKeys>),
-})) as () => ClassNameMap<ClassKeys>
+const useSheetStyles = makeStyles<Theme, never, ClassKeys>(
+  styles as StyleRules<ClassKeys>,
+) as () => ClassNameMap<ClassKeys>
 
 type Props = { children: React.ReactNode }
 
-export default function SheetPageUi(props: Props) {
+export default function SheetPageUi({ children }: Props) {
   const classes = useSheetStyles()
-  const { children } = props
 
   return (
     <Sheet open variant='top'>

@@ -44,6 +44,7 @@ export type SheetContext = {
    * - Negative integer: pixels measured form the most top position of the sheet.
    */
   snapPoints: SnapPoint[]
-  /** @private */
+
   onSnap?: (snapPoint: SnapPoint, index: number) => void
+  onSnapEnd?: (snapPoint: SnapPoint, index: number) => void
 }

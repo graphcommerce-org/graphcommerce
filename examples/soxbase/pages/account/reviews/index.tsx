@@ -6,7 +6,7 @@ import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import React from 'react'
-import SheetLayout, { SheetLayoutProps } from '../../../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 
 function AccountReviewsPage() {
   const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
@@ -31,9 +31,9 @@ function AccountReviewsPage() {
   )
 }
 
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedKey: () => 'account',
   sharedProps: { variant: 'bottom', size: 'max' },
 }

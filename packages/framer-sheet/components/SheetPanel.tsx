@@ -12,6 +12,7 @@ import { nearestSnapPointIndex } from '../utils/snapPoint'
 import { Styled } from '../utils/styled'
 import variantSizeCss from '../utils/variantSizeCss'
 import windowSize from '../utils/windowSize'
+import SheetDragIndicator, { SheetDragIndicatorClassKeys } from './SheetDragIndicator'
 
 type Styles = 'dragHandle' | 'content'
 export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}`
@@ -22,7 +23,7 @@ export type SheetPanelProps = {
    *
    * ```ts
    * ;<SheetPanel
-   *   dragHandle={
+   *   header={
    *     <>
    *       Extra content
    *       <SheetDragIndicator />
@@ -31,7 +32,10 @@ export type SheetPanelProps = {
    * />
    * ```
    */
-  dragHandle: React.ReactNode
+  header: React.ReactNode
+
+  forward: React.ReactNode
+  back: React.ReactNode
 
   /**
    * Content of the panel
@@ -44,7 +48,7 @@ export type SheetPanelProps = {
 } & Styled<SheetPanelClasskey>
 
 export default function SheetPanel(props: SheetPanelProps) {
-  const { dragHandle, children, styles, classes } = props
+  const { header, back, forward, children, styles, classes } = props
   const {
     drag,
     size,
@@ -55,6 +59,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     variantSize,
     containerRef,
     onSnap,
+    onSnapEnd,
   } = useSheetContext()
   const last = snapPoints.length - 1
 
@@ -73,6 +78,7 @@ export default function SheetPanel(props: SheetPanelProps) {
     const index = nearestSnapPointIndex(target, snapPoints, size, variant)
     onSnap?.(snapPoints[index], index)
     await controls.start(`snapPoint${index}`)
+    onSnapEnd?.(snapPoints[index], index)
   }
   const contentRef = useRef<HTMLDivElement>(null)
   const dragHandleRef = useRef<HTMLDivElement>(null)
@@ -123,7 +129,9 @@ export default function SheetPanel(props: SheetPanelProps) {
           [`border${Variant}`]: '1px solid transparent',
         }}
       >
-        {dragHandle}
+        <div>{back}</div>
+        {header}
+        <div>{forward}</div>
       </m.div>
       <m.div
         drag={(axis !== 'y' || canDrag) && axis}

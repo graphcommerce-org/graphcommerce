@@ -12,7 +12,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
-import SheetLayout, { SheetLayoutProps } from '../../../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -46,9 +46,9 @@ function AccountAddressesPage(props: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedKey: () => 'account-addresses',
   sharedProps: { variant: 'bottom', size: 'max' },
 }

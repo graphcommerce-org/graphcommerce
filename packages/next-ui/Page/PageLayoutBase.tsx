@@ -1,13 +1,20 @@
+import { useTheme } from '@material-ui/core'
 import Head from 'next/head'
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
+import PageLoadIndicator from '../PageLoadIndicator'
 
-const PageLayoutBase = (props: PropsWithChildren<{ name: string }>) => {
+export type PageLayoutBaseProps = { name: string; children: React.ReactNode }
+
+const PageLayoutBase = (props: { name: string; children: React.ReactNode }) => {
   const { children, name } = props
+  const theme = useTheme()
 
   // todo: update with https://github.com/shadowwalker/next-pwa#step-3-add-head-meta-example
   return (
     <>
+      <PageLoadIndicator />
       <Head>
+        <meta name='theme-color' content={theme.palette.primary.main} />
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
         <meta name='application-name' content={name} />
         <meta name='apple-mobile-web-app-capable' content='yes' />

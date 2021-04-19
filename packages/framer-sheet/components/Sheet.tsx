@@ -16,7 +16,7 @@ export type SheetProps = {
 
   /** Size of the sheet can be min or max or a css value */
   size?: SheetSize
-} & Pick<SheetContext, 'variant' | 'onSnap'> &
+} & Pick<SheetContext, 'variant' | 'onSnap' | 'onSnapEnd'> &
   Partial<Pick<SheetContext, 'snapPoints'>>
 
 export default function Sheet(props: SheetProps) {

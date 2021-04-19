@@ -22,7 +22,7 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
-import SheetLayout, { SheetLayoutProps } from '../../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
@@ -81,9 +81,9 @@ function PaymentPage({ countries }: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'checkout',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedKey: () => 'checkout',
   sharedProps: { variant: 'bottom', size: 'max' },
 }

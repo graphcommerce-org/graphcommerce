@@ -12,7 +12,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { useRouter } from 'next/router'
 import React from 'react'
-import SheetLayout, { SheetLayoutProps } from '../components/AppShell/SheetLayout'
+import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
@@ -42,9 +42,9 @@ function StoresIndexPage({ availableStores }: Props) {
   )
 }
 
-const pageOptions: PageOptions<SheetLayoutProps> = {
+const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'left',
-  SharedComponent: SheetLayout,
+  SharedComponent: SheetShell,
   sharedKey: () => 'switch-stores',
   sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
 }
