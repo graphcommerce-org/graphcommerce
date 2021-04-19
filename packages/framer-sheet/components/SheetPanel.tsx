@@ -74,8 +74,8 @@ export default function SheetPanel(props: SheetPanelProps) {
 
     const clamped =
       velocity[axis] < 0
-        ? Math.max(velocity[axis], offset[axis] * 2)
-        : Math.min(velocity[axis], offset[axis] * 2)
+        ? Math.max(velocity[axis], -Math.abs(offset[axis] * 2))
+        : Math.min(velocity[axis], Math.abs(offset[axis] * 2))
     const target = cross > main ? drag.get() : clamped + drag.get()
 
     const index = nearestSnapPointIndex(target, snapPoints, size, variant)
