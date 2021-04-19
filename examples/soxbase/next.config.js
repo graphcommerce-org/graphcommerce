@@ -21,6 +21,7 @@ const obs = new PerformanceObserver((entryList) => {
 })
 obs.observe({ entryTypes: ['measure'] })
 
+/** @type {import('next/dist/next-server/server/config').NextConfig} */
 const nextConfig = {
   future: {
     webpack5: true,
