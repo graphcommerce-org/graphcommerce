@@ -31,10 +31,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const ServicePage = ({ pages }: Props) => {
+function ServicePage({ pages }: Props) {
   const classes = useStyles()
-  if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
-  if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
   const title = pages?.[0].title ?? ''
 
   return (

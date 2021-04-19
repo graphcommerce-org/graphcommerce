@@ -2,7 +2,6 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
-import NextError from 'next/error'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
@@ -14,16 +13,8 @@ type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
-const LegalPage = ({ pages }: Props) => {
-  if (!pages) return <NextError statusCode={503} title='Loading skeleton' />
-  if (!pages?.[0]) return <NextError statusCode={404} title='Page not found' />
-  const page = pages[0]
-
-  return (
-    <>
-      <PageContent {...pages[0]} />
-    </>
-  )
+function LegalPage({ pages }) {
+  return <PageContent {...pages[0]} />
 }
 
 LegalPage.pageOptions = {
