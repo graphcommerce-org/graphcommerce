@@ -1,16 +1,19 @@
 import { useQuery } from '@apollo/client'
+import Checkmark from '@material-ui/icons/Check'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import MessageSnackbarLoader from '@reachdigital/next-ui/Snackbar/MessageSnackbarLoader'
+import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
+
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
@@ -18,10 +21,11 @@ import {
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
+  name: string
 }
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { variables, ...buttonProps } = props
+  const { name, variables, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
   const classes = useFormStyles()
 
@@ -83,14 +87,36 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         </Button>
       </div>
 
-      <MessageSnackbarLoader
+      <MessageSnackbar
         open={formState.isSubmitSuccessful && !error?.message}
-        message={
-          <>
-            Added <em>&lsquo;Product&rsquo;</em> to cart
-          </>
+        variant='pill'
+        color='default'
+        action={
+          <PageLink href='/cart'>
+            <Button
+              size='medium'
+              variant='pill'
+              color='secondary'
+              endIcon={
+                <PictureResponsiveNext
+                  alt='desktop_chevron_right'
+                  width={28}
+                  height={28}
+                  src='/icons/desktop_chevron_right_white.svg'
+                  type='image/svg+xml'
+                />
+              }
+            >
+              View shopping cart
+            </Button>
+          </PageLink>
         }
-      />
+      >
+        <>
+          <Checkmark />
+          <strong>{name}</strong>&nbsp;has been added to your shopping cart!
+        </>
+      </MessageSnackbar>
     </form>
   )
 }

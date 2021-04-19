@@ -64,7 +64,10 @@ function ProductConfigurable(props: Props) {
           <Typography component='h1' variant='h2'>
             {product.name}
           </Typography>
-          <ConfigurableProductAddToCart variables={{ sku: product.sku ?? '', quantity: 1 }} />
+          <ConfigurableProductAddToCart
+              variables={{ sku: product.sku ?? '', quantity: 1 }}
+              name={product.name ?? ''}
+            />
         </ProductPageGallery>
         <RowProductDescription {...product}>
           <ProductUsps usps={usps} />

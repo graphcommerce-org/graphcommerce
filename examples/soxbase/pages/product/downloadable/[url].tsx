@@ -63,6 +63,7 @@ function ProductDownloadable(props: Props) {
         <AddToCartButton
           mutation={ProductAddToCartDocument}
           variables={{ sku: product.sku ?? '', quantity: 1 }}
+          name={product.name ?? ''}
         />
         {typeProduct.downloadable_product_links?.map((option) => (
           <div key={option?.title}>

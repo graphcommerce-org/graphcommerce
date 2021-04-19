@@ -70,6 +70,7 @@ function ProductGrouped(props: Props) {
                     <AddToCartButton
                       mutation={ProductAddToCartDocument}
                       variables={{ sku: item.product.sku ?? '', quantity: item.qty || 1 }}
+                      name={product.name ?? ''}
                     />
                   </div>
                 </li>
