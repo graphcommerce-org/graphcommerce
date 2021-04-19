@@ -152,6 +152,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   // assertAllowedParams(await params, (await products).data)
   if (!(await categoryUid) || !(await products).data) return { notFound: true }
 
+  const parentCategory = (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0]
+
   return {
     props: {
       ...(await categoryPage).data,
@@ -159,6 +161,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: parentCategory?.category_url_path
+        ? `/${parentCategory?.category_url_path}`
+        : undefined,
+      backFallbackTitle: parentCategory?.category_name ?? undefined,
     },
     revalidate: 60 * 20,
   }

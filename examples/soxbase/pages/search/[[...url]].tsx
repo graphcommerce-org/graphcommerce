@@ -1,5 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import CategoryPageGrid from '@reachdigital/magento-category/CategoryPageGrid'
 import {
   FilterTypes,
@@ -16,10 +16,9 @@ import SearchPageHeader from '@reachdigital/magento-search/SearchPageHeader'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
@@ -31,7 +30,7 @@ type Props = DefaultPageQuery &
   SearchQuery & { filterTypes: FilterTypes; params: ProductListParams }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function SearchIndexPage(props: Props) {
   const { products, categories, params } = props
@@ -40,7 +39,7 @@ function SearchIndexPage(props: Props) {
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
 
   return (
-    <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
+    <>
       <PageMeta title='Search' metaDescription='Search results' metaRobots={['noindex']} />
 
       <SearchPageHeader
@@ -66,13 +65,14 @@ function SearchIndexPage(props: Props) {
       {search && (!products || (products.items && products?.items?.length <= 0)) && (
         <NoSearchResults />
       )}
-    </FullPageUi>
+    </>
   )
 }
 
-SearchIndexPage.Layout = PageLayout
-
-registerRouteUi('/search/[[...url]]', FullPageUi)
+SearchIndexPage.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default SearchIndexPage
 
