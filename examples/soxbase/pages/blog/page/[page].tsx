@@ -1,14 +1,13 @@
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import Pagination from '@reachdigital/next-ui/Pagination'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import { useRouter } from 'next/router'
 import React from 'react'
-import FullPageUi from '../../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
@@ -21,7 +20,7 @@ export const config = { unstable_JsPreload: false }
 type Props = DefaultPageQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const pageSize = 8
 
@@ -34,7 +33,7 @@ function BlogPage(props: Props) {
   const title = page.title ?? ''
 
   return (
-    <FullPageUi title={title} backFallbackHref='/' backFallbackTitle='Home' {...props}>
+    <>
       <PageMeta title={title} metaDescription={title} />
 
       {pages?.[0] && <PageContent content={pages?.[0].content} />}
@@ -44,13 +43,14 @@ function BlogPage(props: Props) {
         page={Number(router.query.page ? router.query.page : 1)}
         url={(p) => (p === 1 ? '/blog' : `/blog/page/${p}`)}
       />
-    </FullPageUi>
+    </>
   )
 }
 
-BlogPage.Layout = PageLayout
-
-registerRouteUi('/blog/page/[page]', FullPageUi)
+BlogPage.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default BlogPage
 
@@ -101,6 +101,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => 
       ...(await blogPaths).data,
       urlEntity: { relative_url: `blog` },
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: '/blog',
+      backFallbackTitle: 'Blog',
     },
     revalidate: 60 * 20,
   }

@@ -1,0 +1,17 @@
+{
+  "name": "@reachdigital/next-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "js/index.js",
+  "typings": "js/index.d.ts",
+  "scripts": {
+    "dev": "tsc -W --preserveWatchOutput",
+    "generate": "node dist/generate.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "next-transpile-modules": "^6.4.0",
+    "type-fest": "^1.0.1"
+  }
+}

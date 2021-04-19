@@ -7,6 +7,6 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@tsconfig/node12": "^1.0.7"
+    "@tsconfig/node14": "^1.0.0"
   }
 }

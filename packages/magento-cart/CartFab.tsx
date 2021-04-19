@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Badge, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import { m } from 'framer-motion'
+import PageLink from 'next/link'
 import React from 'react'
 import { ClientCartDocument } from './ClientCart.gql'
 
@@ -35,7 +35,7 @@ function CartFabContent(props: CartFabProps) {
 
   return (
     <m.div className={classes.cart} style={{ filter }}>
-      <PageLink href='/cart'>
+      <PageLink href='/cart' passHref>
         <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
           <Badge badgeContent={qty || 0} color='primary' variant='dot'>
             {children}

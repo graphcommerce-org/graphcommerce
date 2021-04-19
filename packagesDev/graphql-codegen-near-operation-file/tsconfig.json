@@ -1,5 +1,5 @@
 {
-  "exclude": ["node_modules", "tests"],
+  "exclude": ["**/node_modules", "tests", "**/.*/"],
   "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@reachdigital/typescript-config-pwa/node.json",
   "compilerOptions": {

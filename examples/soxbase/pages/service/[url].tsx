@@ -1,14 +1,14 @@
 import { Box, makeStyles, Theme, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -16,7 +16,7 @@ import apolloClient from '../../lib/apolloClient'
 type Props = DefaultPageQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -36,12 +36,7 @@ const ServicePage = ({ pages }: Props) => {
   const title = pages?.[0].title ?? ''
 
   return (
-    <OverlayPage
-      title={title}
-      variant='left'
-      backFallbackTitle='Customer Service'
-      backFallbackHref='/service/index'
-    >
+    <>
       <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
 
       {title && (
@@ -53,13 +48,16 @@ const ServicePage = ({ pages }: Props) => {
       )}
 
       <PageContent {...pages[0]} />
-    </OverlayPage>
+    </>
   )
 }
-
-ServicePage.Layout = PageLayout
-
-registerRouteUi('/service/[url]', FullPageUi)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'left',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'service',
+  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+}
+ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 

@@ -1,5 +1,5 @@
 import { Container, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   ProductListDocument,
   ProductListQuery,
@@ -11,20 +11,19 @@ import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'
 import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
 import SidebarGallery from '@reachdigital/next-ui/FramerSlider/variants/SidebarGallery'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { m } from 'framer-motion'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function TestSlider({ products }: Props) {
   const images = products?.items?.map((item) => item?.small_image?.url ?? '') ?? []
   return (
-    <FullPageUi title='slider' backFallbackTitle='Test' backFallbackHref='/test/index'>
+    <>
       <Container>
         <Typography variant='h1' style={{ textAlign: 'center' }}>
           Framer Slider
@@ -84,13 +83,15 @@ function TestSlider({ products }: Props) {
         </m.div>
         <Single />
       </Container>
-    </FullPageUi>
+    </>
   )
 }
 
-TestSlider.Layout = PageLayout
-
-registerRouteUi('/test/slider', FullPageUi)
+TestSlider.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
+export default TestSlider
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
@@ -112,5 +113,3 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     },
   }
 }
-
-export default TestSlider

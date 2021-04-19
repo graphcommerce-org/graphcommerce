@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import {
   SimpleProductPageDocument,
@@ -13,10 +13,9 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import ProductWeight from '@reachdigital/magento-product/ProductWeight'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../components/ProductpagesContent'
 import RowProductDescription from '../../components/RowProductDescription'
@@ -35,7 +34,7 @@ type Props = ProductPageQuery & SimpleProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductSimple(props: Props) {
   const { products, usps, typeProducts, productpages } = props
@@ -47,14 +46,8 @@ function ProductSimple(props: Props) {
   if (product?.__typename !== 'SimpleProduct' || typeProduct?.__typename !== 'SimpleProduct')
     return <></>
 
-  const category = productPageCategory(product)
   return (
-    <FullPageUi
-      title={product.name ?? ''}
-      backFallbackTitle={category?.name ?? ''}
-      backFallbackHref={`/${category?.url_path}`}
-      {...props}
-    >
+    <>
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
         <Typography component='h1' variant='h2'>
@@ -85,13 +78,14 @@ function ProductSimple(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </FullPageUi>
+    </>
   )
 }
 
-ProductSimple.Layout = PageLayout
-
-registerRouteUi('/product/[url]', FullPageUi)
+ProductSimple.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default ProductSimple
 
@@ -133,11 +127,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return { notFound: true }
   }
 
+  const category = productPageCategory((await productPage).data?.products?.items?.[0])
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: category?.url_path ? `${category?.url_path}` : undefined,
+      backFallbackTitle: category?.name ?? undefined,
     },
     revalidate: 60 * 20,
   }

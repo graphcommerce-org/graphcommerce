@@ -1,13 +1,17 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardReviewsDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardReviews.gql'
 import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { GetStaticProps } from 'next'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import apolloClient from '../../../lib/apolloClient'
+
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountReviewsPage() {
   const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
@@ -17,31 +21,43 @@ function AccountReviewsPage() {
   const customer = data?.customer
 
   return (
-    <OverlayPage
-      title='Reviews'
-      variant='bottom'
-      fullHeight
-      backFallbackHref='/account'
-      backFallbackTitle='Account'
-    >
+    <Container maxWidth='md'>
       <PageMeta title='Reviews' metaDescription='View all your reviews' metaRobots={['noindex']} />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <IconTitle
-            iconSrc='/icons/desktop_reviews.svg'
-            title='Reviews'
-            alt='reviews'
-            size='large'
-          />
-          {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <IconTitle
+          iconSrc='/icons/desktop_reviews.svg'
+          title='Reviews'
+          alt='reviews'
+          size='large'
+        />
+        {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountReviewsPage.Layout = PageLayout
-
-registerRouteUi('/account/reviews', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'account',
+}
+AccountReviewsPage.pageOptions = pageOptions
 
 export default AccountReviewsPage
+
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
+
+  const conf = client.query({ query: StoreConfigDocument })
+
+  return {
+    props: {
+      apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account',
+      backFallbackTitle: 'Account',
+    },
+  }
+}

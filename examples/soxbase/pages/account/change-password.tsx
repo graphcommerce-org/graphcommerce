@@ -1,41 +1,36 @@
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import React from 'react'
-import OverlayPage from '../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountChangePasswordPage() {
   return (
-    <OverlayPage
-      title='Change Password'
-      variant='center'
-      backFallbackHref='/account'
-      backFallbackTitle='Account'
-    >
+    <Container maxWidth='sm'>
       <PageMeta
         title='Change Password'
         metaDescription='Change your password'
         metaRobots={['noindex']}
       />
-      <Container maxWidth='sm'>
-        <NoSsr>
-          <ChangePasswordForm />
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <ChangePasswordForm />
+      </NoSsr>
+    </Container>
   )
 }
 
-AccountChangePasswordPage.Layout = PageLayout
-
-registerRouteUi('/account/change-password', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'account',
+}
+AccountChangePasswordPage.pageOptions = pageOptions
 
 export default AccountChangePasswordPage
 
@@ -48,6 +43,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account',
+      backFallbackTitle: 'Account',
     },
   }
 }

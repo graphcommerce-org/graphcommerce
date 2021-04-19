@@ -1,5 +1,5 @@
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -9,47 +9,41 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<Props>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AddNewAddressPage(props: Props) {
   const { countries } = props
 
   return (
-    <OverlayPage
-      title='Add address'
-      variant='bottom'
-      fullHeight
-      backFallbackHref='/account/addresses'
-      backFallbackTitle='Addresses'
-    >
+    <Container maxWidth='md'>
       <PageMeta title='Add address' metaDescription='Add new address' metaRobots={['noindex']} />
-      <Container maxWidth='md'>
-        <NoSsr>
-          <IconTitle
-            iconSrc='/icons/desktop_addresses.svg'
-            title='Addresses'
-            alt='addresses'
-            size='large'
-          />
-          <SectionContainer label='Add new address'>
-            <CreateCustomerAddressForm countries={countries} />
-          </SectionContainer>
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+      <NoSsr>
+        <IconTitle
+          iconSrc='/icons/desktop_addresses.svg'
+          title='Addresses'
+          alt='addresses'
+          size='large'
+        />
+        <SectionContainer label='Add new address'>
+          <CreateCustomerAddressForm countries={countries} />
+        </SectionContainer>
+      </NoSsr>
+    </Container>
   )
 }
 
-AddNewAddressPage.Layout = PageLayout
-
-registerRouteUi('/account/addresses/add', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'account-addresses',
+}
+AddNewAddressPage.pageOptions = pageOptions
 
 export default AddNewAddressPage
 
@@ -66,6 +60,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account/addresses',
+      backFallbackTitle: 'Addresses',
     },
   }
 }

@@ -15,7 +15,7 @@ export type GetStaticProps<
   PL extends AnyObj,
   P extends AnyObj = AnyObj,
   Q extends ParsedUrlQuery = ParsedUrlQuery
-> = GetStaticPropsNext<P & PL & ApolloStateProps, Q>
+> = GetStaticPropsNext<P & Omit<PL, 'children'> & ApolloStateProps, Q>
 
 /** Used by _app */
 export type AppProps = Omit<NextAppProps, 'Component' | 'pageProps'> & {

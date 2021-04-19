@@ -1,23 +1,26 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
 import ArrowBack from '@material-ui/icons/ArrowBackIos'
 import React from 'react'
-import PageLink from '../PageTransition/PageLink'
+import PageLink from 'next/link'
 import { UseStyles } from '../Styles'
 
 /**
  * When navigating, store the previous page.
  *
  * `default`:
+ *
  * - Show a back arrow icon
  * - Show the previous page if available
  * - Show the default previous page if not available
  *
  * `isOverlay`:
+ *
  * - Show a close icon
  * - Remember the navigation section that the user last was in a certain section.
  * - Show a back arrow when navigating in the same overlay area?
  *
  * Example sections
+ *
  * - /account or /account/*
  * - /cart or /checkout
  *
@@ -77,7 +80,7 @@ export default function BackNavFab(props: BackNavFabProps) {
 
   return (
     <div className={classes.stickyContainer}>
-      <PageLink href={href}>
+      <PageLink href={href} passHref>
         <Fab
           variant='extended'
           size='large'

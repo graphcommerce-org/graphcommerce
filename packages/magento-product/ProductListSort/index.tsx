@@ -51,7 +51,13 @@ export default function ProductListSort({ sort_fields, ...filterMenuProps }: Pro
             dense
             selected={option?.value === currentSort}
             component={(chipProps) => (
-              <CategoryLink {...chipProps} {...linkParams} color='inherit' underline='none' />
+              <CategoryLink
+                {...chipProps}
+                {...linkParams}
+                color='inherit'
+                underline='none'
+                link={{ scroll: false }}
+              />
             )}
           >
             <ListItemText secondary>{option?.label}</ListItemText>

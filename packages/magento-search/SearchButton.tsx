@@ -22,7 +22,7 @@ type SearchButtonProps = UseStyles<typeof useStyles>
 export default function SearchButton(props: SearchButtonProps) {
   const classes = useStyles(props)
   return (
-    // <PageLink href='/search'>
+    // <PageLink href='/search' passHref>
     <TextField
       variant='outlined'
       size='small'

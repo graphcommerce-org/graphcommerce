@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/styles'
-import NextUiPageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import { makeStyles, Link as MuiLink } from '@material-ui/core'
+import PageLink from 'next/link'
 import { PageLinkFragment } from './PageLink.gql'
 
 const useStyles = makeStyles({
@@ -19,10 +19,10 @@ export default function Link(props: PageLinkProps) {
   const classes = useStyles()
 
   return (
-    <NextUiPageLink href={url}>
-      <a href={url} className={classes.link}>
+    <PageLink href={url} passHref>
+      <MuiLink color='inherit' underline='always' className={classes.link}>
         {title}
-      </a>
-    </NextUiPageLink>
+      </MuiLink>
+    </PageLink>
   )
 }

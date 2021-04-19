@@ -23,14 +23,13 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.13",
+    "@apollo/client": "^3.3.14",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "graphql": "15.5.0",
-    "next": "^10.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.0.0",
+    "react-hook-form": "^7.0.7",
     "type-fest": "^1.0.1"
   }
 }

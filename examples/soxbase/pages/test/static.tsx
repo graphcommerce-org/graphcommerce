@@ -1,34 +1,32 @@
 import { Button, Container } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
-import FullPageUi from '@reachdigital/next-ui/AppShell/FullPageUi'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import { PageOptions } from '@reachdigital/framer-next-pages'
+import PageLink from 'next/link'
 import React from 'react'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 
 function TestStatic() {
   const title = `Testpage no GSP`
 
   return (
-    <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index'>
-      <Container>
-        <PageLink href='/test/index'>
-          <Button variant='outlined' color='secondary'>
-            Index
-          </Button>
-        </PageLink>
+    <Container>
+      <PageLink href='/test/index' passHref>
+        <Button variant='outlined' color='secondary'>
+          Index
+        </Button>
+      </PageLink>
 
-        <PageLink href='/test/overlay/static'>
-          <Button variant='outlined' color='secondary'>
-            Overlay static
-          </Button>
-        </PageLink>
-      </Container>
-    </FullPageUi>
+      <PageLink href='/test/overlay/static' passHref>
+        <Button variant='outlined' color='secondary'>
+          Overlay static
+        </Button>
+      </PageLink>
+    </Container>
   )
 }
 
-TestStatic.Layout = PageLayout
-
-registerRouteUi('/test/static', FullPageUi)
+TestStatic.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default TestStatic

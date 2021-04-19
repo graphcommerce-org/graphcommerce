@@ -5,11 +5,11 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
@@ -46,7 +46,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const requireAuth = Boolean(tokenQuery?.customerToken && !tokenQuery?.customerToken.valid)
 
   return requireAuth ? (
-    <PageLink href='/account/signin'>
+    <PageLink href='/account/signin' passHref>
       <Button color='primary' variant='contained' {...buttonProps}>
         Add to Cart
       </Button>

@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import React from 'react'
 
 const useStyles = makeStyles(

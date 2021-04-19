@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import PageLink from 'next/link'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -77,5 +77,11 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     </Button>
   )
 
-  return href ? <PageLink href={href}>{button}</PageLink> : button
+  return href ? (
+    <PageLink href={href} passHref>
+      {button}
+    </PageLink>
+  ) : (
+    button
+  )
 }

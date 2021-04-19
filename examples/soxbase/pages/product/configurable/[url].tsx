@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
@@ -12,10 +12,9 @@ import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
@@ -34,7 +33,7 @@ type Props = ProductPageQuery & ConfigurableProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, productpages } = props
@@ -50,14 +49,8 @@ function ProductConfigurable(props: Props) {
   )
     return <></>
 
-  const category = productPageCategory(product)
   return (
-    <FullPageUi
-      title={product.name ?? ''}
-      backFallbackTitle={category?.name ?? ''}
-      backFallbackHref={`/${category?.url_path}`}
-      {...props}
-    >
+    <>
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
@@ -65,9 +58,9 @@ function ProductConfigurable(props: Props) {
             {product.name}
           </Typography>
           <ConfigurableProductAddToCart
-              variables={{ sku: product.sku ?? '', quantity: 1 }}
-              name={product.name ?? ''}
-            />
+            variables={{ sku: product.sku ?? '', quantity: 1 }}
+            name={product.name ?? ''}
+          />
         </ProductPageGallery>
         <RowProductDescription {...product}>
           <ProductUsps usps={usps} />
@@ -88,13 +81,14 @@ function ProductConfigurable(props: Props) {
           content={productpages?.[0].content}
         />
       </ConfigurableContextProvider>
-    </FullPageUi>
+    </>
   )
 }
 
-ProductConfigurable.Layout = PageLayout
-
-registerRouteUi('/product/[url]', FullPageUi)
+ProductConfigurable.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default ProductConfigurable
 
@@ -136,11 +130,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return { notFound: true }
   }
 
+  const category = productPageCategory((await productPage).data?.products?.items?.[0])
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: category?.url_path ? `${category?.url_path}` : undefined,
+      backFallbackTitle: category?.name ?? undefined,
     },
     revalidate: 60 * 20,
   }

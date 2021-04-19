@@ -1,7 +1,7 @@
 import { Container, Link, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import MultiItemSlider from '@reachdigital/next-ui/FramerSlider/variants/MultiItemSlider'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
+import PageLink from 'next/link'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
 const useStyles = makeStyles(
@@ -42,7 +42,7 @@ export default function RowContentLinks(props: RowContentLinksProps) {
         </Typography>
 
         {contentLinks.map((contentLink) => (
-          <PageLink href={contentLink.url} key={contentLink.url}>
+          <PageLink href={contentLink.url} key={contentLink.url} passHref>
             <Link key={contentLink.url} href={contentLink.url} variant='body1' color='inherit'>
               {contentLink.title}
             </Link>

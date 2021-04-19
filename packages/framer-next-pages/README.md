@@ -6,13 +6,11 @@ Goals:
 - Ability to create multiple levels of overlays over other pages.
 - Ability to create entry and exit animations.
 
-- Create page transitions
-- Create page overlays
-- Define page scope to define ui transition
+Non-goals:
 
-## Usage
+- Provide components that actually stack
 
-### Installing
+## Installing
 
 Create a `pages/_app.ts` file:
 
@@ -30,6 +28,8 @@ export default function App({ router, Component, pageProps }: AppPropsType) {
   )
 }
 ```
+
+## Usage
 
 ### Create a page that works as an overlay:
 
@@ -53,9 +53,9 @@ Overlay.pageOptions = {
 } as PageOptions
 ```
 
-### Create an overlay that shares the layout in a dynamic routes:
+### Create an overlay that doesnt the layout in a dynamic routes:
 
-Define `key` as router.pathname in pageOptions.
+Define `key` as router.asPath in pageOptions.
 
 Example route:
 
@@ -66,7 +66,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 
 Overlay.pageOptions = {
   overlay: 'left',
-  key: (router) => router.pathname, // will return pages/overlay/[overlayId]
+  key: (router) => router.asPath, // will return pages/overlay/123
 } as PageOptions
 ```
 
@@ -97,6 +97,8 @@ normal page. You can provide a fallback to render something in this case.
 ### Create a fallback when routes aren't provided
 
 ..._todo_...
+
+### Layout support
 
 ### Workins
 

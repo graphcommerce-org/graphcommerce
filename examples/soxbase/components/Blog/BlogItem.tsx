@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Typography, makeStyles, Theme, Link } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import PageLink from '@reachdigital/next-ui/PageTransition/PageLink'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import PageLink from 'next/link'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 
@@ -60,7 +60,7 @@ export default function BlogListItem(props: BlogItemProps) {
 
   return (
     <div className={classes.item}>
-      <PageLink href={`/${url}`}>
+      <PageLink href={`/${url}`} passHref>
         <Link color='inherit'>
           <div className={classes.asset}>
             {asset ? (
@@ -75,7 +75,7 @@ export default function BlogListItem(props: BlogItemProps) {
         {formatter.format(new Date(date))}
       </time>
 
-      <PageLink href={`/${url}`}>
+      <PageLink href={`/${url}`} passHref>
         <Link href={`/${url}`} className={classes.title} color='inherit'>
           <Typography component='h2' variant='h4' color='inherit'>
             {title}

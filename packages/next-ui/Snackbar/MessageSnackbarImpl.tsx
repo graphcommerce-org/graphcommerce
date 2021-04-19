@@ -106,7 +106,10 @@ const useStyles = makeStyles(
   { name: 'Impl' },
 )
 
-export type ImplProps = Omit<SnackbarProps, 'autoHideDuration' | 'onClose' | 'anchorOrigin'> & {
+export type MessageSnackbarImplProps = Omit<
+  SnackbarProps,
+  'autoHideDuration' | 'onClose' | 'anchorOrigin'
+> & {
   autoHide?: boolean
   variant?: Variant
   size?: Size
@@ -115,7 +118,7 @@ export type ImplProps = Omit<SnackbarProps, 'autoHideDuration' | 'onClose' | 'an
   children?: React.ReactNode
 }
 
-export default function MessageSnackbarImpl(props: ImplProps) {
+export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const [showSnackbar, setSnackbar] = useState<boolean>(false)
 
   const {

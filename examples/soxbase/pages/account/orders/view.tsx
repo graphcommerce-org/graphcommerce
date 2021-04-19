@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import PageLayout from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
@@ -13,14 +13,13 @@ import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
 import { useRouter } from 'next/router'
 import React from 'react'
-import OverlayPage from '../../../components/AppShell/OverlayPage'
+import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<Props>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function OrderDetailPage(props: Props) {
   const { countries } = props
@@ -37,44 +36,39 @@ function OrderDetailPage(props: Props) {
   const isLoading = orderId ? loading : true
 
   return (
-    <OverlayPage
-      title='Orders'
-      variant='bottom'
-      fullHeight
-      backFallbackHref='/account/orders'
-      backFallbackTitle='Orders'
-    >
-      <Container maxWidth='md'>
-        <NoSsr>
-          {(!orderId || !order) && (
-            <IconTitle
-              iconSrc='/icons/desktop_checkout_box.svg'
-              title='Order not found'
-              alt='no order'
-              size='large'
-            />
-          )}
+    <Container maxWidth='md'>
+      <NoSsr>
+        {(!orderId || !order) && (
+          <IconTitle
+            iconSrc='/icons/desktop_checkout_box.svg'
+            title='Order not found'
+            alt='no order'
+            size='large'
+          />
+        )}
 
-          {orderId && order && (
-            <>
-              <PageMeta
-                title={`Order view #${orderId}`}
-                metaDescription={`Order detail page for order #${orderId}`}
-                metaRobots={['noindex']}
-              />
-              <OrderItems {...order} loading={isLoading} images={images} />
-              <OrderDetails {...order} loading={isLoading} countries={countries} />
-            </>
-          )}
-        </NoSsr>
-      </Container>
-    </OverlayPage>
+        {orderId && order && (
+          <>
+            <PageMeta
+              title={`Order view #${orderId}`}
+              metaDescription={`Order detail page for order #${orderId}`}
+              metaRobots={['noindex']}
+            />
+            <OrderItems {...order} loading={isLoading} images={images} />
+            <OrderDetails {...order} loading={isLoading} countries={countries} />
+          </>
+        )}
+      </NoSsr>
+    </Container>
   )
 }
 
-OrderDetailPage.Layout = PageLayout
-
-registerRouteUi('/account/orders/view', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'account',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'account-orders',
+}
+OrderDetailPage.pageOptions = pageOptions
 
 export default OrderDetailPage
 
@@ -91,6 +85,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account/orders',
+      backFallbackTitle: 'Orders',
     },
   }
 }

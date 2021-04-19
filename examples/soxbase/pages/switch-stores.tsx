@@ -1,5 +1,5 @@
 import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import StoreSwitcherList from '@reachdigital/magento-store/switcher/StoreSwitcherList'
@@ -8,15 +8,16 @@ import {
   StoreSwitcherListQuery,
 } from '@reachdigital/magento-store/switcher/StoreSwitcherList.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { useRouter } from 'next/router'
 import React from 'react'
-import OverlayPage from '../components/AppShell/OverlayPage'
+import { FullPageShellProps } from '../components/AppShell/FullPageShell'
+import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -30,23 +31,24 @@ function StoresIndexPage({ availableStores }: Props) {
   const classes = useStyles()
 
   return (
-    <OverlayPage title='Switch Stores' variant='left' backFallbackHref='/' backFallbackTitle='Home'>
+    <Container maxWidth='md'>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
+      <Typography variant='h2' component='h1' className={classes.title}>
+        Country
+      </Typography>
 
-      <Container maxWidth='md'>
-        <Typography variant='h2' component='h1' className={classes.title}>
-          Country
-        </Typography>
-
-        <StoreSwitcherList availableStores={availableStores} locale={locale} />
-      </Container>
-    </OverlayPage>
+      <StoreSwitcherList availableStores={availableStores} locale={locale} />
+    </Container>
   )
 }
 
-StoresIndexPage.Layout = PageLayout
-
-registerRouteUi('/switch-stores', OverlayPage)
+const pageOptions: PageOptions<SheetShellProps> = {
+  overlayGroup: 'left',
+  SharedComponent: SheetShell,
+  sharedKey: () => 'switch-stores',
+  sharedProps: { variant: 'left', size: responsiveVal(320, 800) },
+}
+StoresIndexPage.pageOptions = pageOptions
 
 export default StoresIndexPage
 
