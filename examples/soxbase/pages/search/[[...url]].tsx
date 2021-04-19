@@ -1,11 +1,6 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, makeStyles, Theme } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
-import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
-import ProductListCount from '@reachdigital/magento-product/ProductListCount'
-import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
+import CategoryPageGrid from '@reachdigital/magento-category/CategoryPageGrid'
 import {
   FilterTypes,
   ProductListParams,
@@ -15,18 +10,13 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
-import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import CategorySearchResult from '@reachdigital/magento-search/CategorySearchResult'
 import NoSearchResults from '@reachdigital/magento-search/NoSearchResults'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
-import SearchForm from '@reachdigital/magento-search/SearchForm'
-import SearchResultsTitle from '@reachdigital/magento-search/SearchResultsTitle'
+import SearchPageHeader from '@reachdigital/magento-search/SearchPageHeader'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../../components/AppShell/FullPageUi'
@@ -43,29 +33,9 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    containerShadow: {
-      boxShadow: '0 5px 4px 0 rgb(3 3 3 / 3%)',
-    },
-    categorySearchResults: {
-      paddingBottom: theme.spacings.md,
-    },
-    productListCount: {
-      marginTop: theme.spacings.sm,
-      marginBottom: theme.spacings.sm,
-    },
-  }),
-  {
-    name: 'SearchIndexPage',
-  },
-)
-
 function SearchIndexPage(props: Props) {
-  const { products, categories, filters, params, filterTypes } = props
+  const { products, categories, params } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
-  const classes = useCategoryPageStyles(props)
-  const pageClasses = useStyles()
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
 
@@ -73,50 +43,29 @@ function SearchIndexPage(props: Props) {
     <FullPageUi title='Search' backFallbackHref='/' backFallbackTitle='Home' {...props}>
       <PageMeta title='Search' metaDescription='Search results' metaRobots={['noindex']} />
 
-      <div className={pageClasses.containerShadow}>
-        <Container maxWidth='sm'>
-          <SearchForm totalResults={totalSearchResults} search={search} />
+      <SearchPageHeader
+        categories={categories}
+        totalSearchResults={totalSearchResults}
+        search={search}
+      />
 
-          <div className={pageClasses.categorySearchResults}>
-            {categories?.items?.map((category) => (
-              <CategorySearchResult key={category?.url_path} search={search} {...category} />
-            ))}
-          </div>
-        </Container>
-      </div>
+      {products && products.items && products?.items?.length > 0 && (
+        <CategoryPageGrid
+          {...props}
+          title={`Search results for ${search}`}
+          productListItems={
+            <ProductListItems
+              items={products?.items}
+              className={productListClasses.productList}
+              loadingEager={1}
+            />
+          }
+        />
+      )}
 
-      <Container maxWidth='xl'>
-        {search && (!products || (products.items && products?.items?.length <= 0)) && (
-          <NoSearchResults />
-        )}
-
-        {search && products && products.items && products?.items?.length > 0 && (
-          <SearchResultsTitle search={search} />
-        )}
-
-        <ProductListParamsProvider value={params}>
-          {!!products?.total_count && (
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products?.sort_fields} />
-              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-          )}
-
-          <div className={pageClasses.productListCount}>
-            {!!products?.total_count && products?.total_count > 0 && (
-              <ProductListCount total_count={products?.total_count} />
-            )}
-          </div>
-
-          <ProductListItems
-            items={products?.items}
-            className={clsx(classes.items, productListClasses.productList)}
-            loadingEager={1}
-          />
-
-          <ProductListPagination page_info={products?.page_info} className={classes.pagination} />
-        </ProductListParamsProvider>
-      </Container>
+      {search && (!products || (products.items && products?.items?.length <= 0)) && (
+        <NoSearchResults />
+      )}
     </FullPageUi>
   )
 }

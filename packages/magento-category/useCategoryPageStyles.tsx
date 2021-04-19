@@ -16,19 +16,22 @@ const useCategoryPageStyles = makeStyles(
       `,
       gridTemplateColumns: 'minmax(0, 1fr)',
       gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.sm,
     },
     breadcrumb: {
       gridArea: 'breadcrumb',
+      marginBottom: theme.spacings.sm,
     },
     description: {
       gridArea: 'description',
       margin: '0 auto',
       textAlign: 'center',
       maxWidth: 732,
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.sm,
     },
     childCategories: {
       gridArea: 'children',
+      marginBottom: theme.spacings.sm,
     },
     pagination: {
       gridArea: 'pagination',
@@ -66,6 +69,7 @@ const useCategoryPageStyles = makeStyles(
     },
     items: {
       gridArea: 'items',
+      marginBottom: theme.spacings.sm,
     },
   }),
   { name: 'CategoryPageStyles' },

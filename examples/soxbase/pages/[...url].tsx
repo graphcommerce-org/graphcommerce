@@ -1,19 +1,15 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
-import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
-import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
+import CategoryPageGrid from '@reachdigital/magento-category/CategoryPageGrid'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
 import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-import ProductListCount from '@reachdigital/magento-product/ProductListCount'
-import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
 import {
   FilterTypes,
   ProductListParams,
@@ -23,13 +19,10 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
-import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { registerRouteUi } from '@reachdigital/next-ui/PageTransition/historyHelpers'
-import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageUi from '../components/AppShell/FullPageUi'
@@ -56,8 +49,9 @@ type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
-  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const classes = useCategoryPageStyles(props)
+
+  const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
 
   const category = categories?.items?.[0]
   if (!category || !products || !params || !filters || !filterTypes) return null
@@ -91,29 +85,17 @@ function CategoryPage(props: Props) {
         </Container>
       ) : (
         <ProductListParamsProvider value={params}>
-          <Container className={classes.container} maxWidth='xl'>
-            <CategoryDescription
-              name={category.name}
-              description={category.description}
-              className={classes.description}
-            />
-            <CategoryChildren classes={{ container: classes.childCategories }} params={params}>
-              {category.children}
-            </CategoryChildren>
-
-            <ProductListFiltersContainer>
-              <ProductListSort sort_fields={products.sort_fields} />
-              <ProductListFilters aggregations={filters.aggregations} filterTypes={filterTypes} />
-            </ProductListFiltersContainer>
-
-            <ProductListCount total_count={products?.total_count} />
-            <ProductListItems
-              items={products.items}
-              className={clsx(classes.items, productListClasses.productList)}
-              loadingEager={1}
-            />
-            <ProductListPagination page_info={products.page_info} className={classes.pagination} />
-          </Container>
+          <CategoryPageGrid
+            {...props}
+            category={category}
+            productListItems={
+              <ProductListItems
+                items={products?.items}
+                className={productListClasses.productList}
+                loadingEager={1}
+              />
+            }
+          />
         </ProductListParamsProvider>
       )}
 

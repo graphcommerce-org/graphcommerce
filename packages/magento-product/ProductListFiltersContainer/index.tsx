@@ -15,6 +15,7 @@ const useStyles = makeStyles(
     wrapper: {
       height: 44,
       gridArea: 'filters',
+      marginBottom: theme.spacings.sm,
       position: 'sticky',
       top: theme.page.vertical,
       zIndex: 9,

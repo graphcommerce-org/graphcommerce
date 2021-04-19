@@ -12,6 +12,7 @@ const useStyles = makeStyles(
       gridTemplateRows: 'auto 60vw',
       gap: `${theme.spacings.sm}`,
       borderBottom: '1px solid rgba(0,0,0,0.15)',
+      marginBottom: theme.spacings.xl,
     },
     categories: {
       gridArea: 'categories',

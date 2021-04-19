@@ -1,14 +1,16 @@
 import { Typography } from '@material-ui/core'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
+import useCategoryPageStyles from './useCategoryPageStyles'
 
-type CategoryDescriptionProps = CategoryDescriptionFragment & JSX.IntrinsicElements['div']
+type CategoryTitleDescriptionProps = CategoryDescriptionFragment & JSX.IntrinsicElements['div']
 
-export default function CategoryDescription(props: CategoryDescriptionProps) {
+export default function CategoryTitleDescription(props: CategoryTitleDescriptionProps) {
   const { name, description, display_mode, ...divProps } = props
+  const classes = useCategoryPageStyles(props)
 
   return (
-    <div {...divProps}>
+    <div {...divProps} className={classes.description}>
       <Typography variant='h2' component='h1' align='center'>
         {name}
       </Typography>

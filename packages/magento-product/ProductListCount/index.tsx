@@ -1,10 +1,11 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { ProductListCountFragment } from './ProductListCount.gql'
 
 const useProductCountStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
+    productListCount: {
       maxWidth: '100%',
       width: responsiveVal(280, 650),
       margin: '0 auto',
@@ -14,6 +15,7 @@ const useProductCountStyles = makeStyles(
       position: 'relative',
       textAlign: 'center',
       gridArea: 'count',
+      marginBottom: theme.spacings.sm,
     },
     line: {
       background: '#ededed',
@@ -36,14 +38,14 @@ const useProductCountStyles = makeStyles(
   },
 )
 
-type ProductCountProps = ProductListCountFragment
+type ProductCountProps = ProductListCountFragment & UseStyles<typeof useProductCountStyles>
 
 export default function ProductListCount(props: ProductCountProps) {
   const { total_count } = props
   const classes = useProductCountStyles(props)
 
   return (
-    <div className={classes.container}>
+    <div className={classes.productListCount}>
       <div className={classes.line} />
       <div className={classes.count}>
         {total_count} product{(total_count ?? 0) > 1 ? 's' : ''}
