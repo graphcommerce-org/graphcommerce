@@ -1,3 +1,4 @@
+import { usePageRouter, usePageDepth } from '@reachdigital/framer-next-pages'
 import {
   Sheet,
   SheetBackdrop,
@@ -34,15 +35,15 @@ function SheetShellBase(props: SheetShellBaseProps) {
 
   const sheetClasses = useSheetStyles()
   const router = useRouter()
-  // const pageRouter = usePageRouter()
-  // const depth = usePageDepth()
+  const pageRouter = usePageRouter()
+  const depth = usePageDepth()
 
-  // const isActive = depth < 0 || router.asPath === pageRouter.asPath
+  const isActive = depth < 0 || router.asPath === pageRouter.asPath
 
   return (
     <PageLayoutBase name={name}>
       <Sheet
-        open
+        open={isActive}
         onSnap={(snapPoint) => snapPoint === 'closed' && router.back()}
         variant={variant}
         size={size}
@@ -50,11 +51,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
         <SheetBackdrop onTap={() => router.back()} classes={sheetClasses} />
         <SheetContainer classes={sheetClasses}>
           <SheetPanel
-            back={
-              <BackButton href={backFallbackHref} disableElevation>
-                {backFallbackTitle}
-              </BackButton>
-            }
+            back={<BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>}
             forward={headerForward}
             header={<SheetDragIndicator classes={sheetClasses} />}
             classes={sheetClasses}
