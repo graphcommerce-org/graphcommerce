@@ -12,7 +12,7 @@ import AccountMenu from '../../components/AccountMenu'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountIndexPage() {
   const { data, loading } = useQuery(AccountDashboardDocument, {
@@ -36,7 +36,6 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
   sharedKey: () => 'account',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 AccountIndexPage.pageOptions = pageOptions
 
@@ -49,6 +48,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
     },
   }
 }

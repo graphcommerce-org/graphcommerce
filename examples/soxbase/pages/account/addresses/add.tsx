@@ -15,7 +15,7 @@ import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetS
 import apolloClient from '../../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<Props>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function AddNewAddressPage(props: Props) {
   const { countries } = props
@@ -42,7 +42,6 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
   sharedKey: () => 'account-addresses',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 AddNewAddressPage.pageOptions = pageOptions
 
@@ -61,6 +60,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     props: {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account/addresses',
+      backFallbackTitle: 'Addresses',
     },
   }
 }

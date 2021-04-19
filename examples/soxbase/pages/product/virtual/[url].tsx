@@ -45,7 +45,6 @@ function ProductVirtual(props: Props) {
   if (product?.__typename !== 'VirtualProduct' || typeProduct?.__typename !== 'VirtualProduct')
     return <></>
 
-  const category = productPageCategory(product)
   return (
     <>
       <ProductPageMeta {...product} />
@@ -126,11 +125,14 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
     return { notFound: true }
   }
 
+  const category = productPageCategory((await productPage).data?.products?.items?.[0])
   return {
     props: {
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
+      backFallbackHref: category?.url_path ? `${category?.url_path}` : undefined,
+      backFallbackTitle: category?.name ?? undefined,
     },
     revalidate: 60 * 20,
   }

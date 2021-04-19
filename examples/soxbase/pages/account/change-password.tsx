@@ -8,7 +8,7 @@ import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountChangePasswordPage() {
   return (
@@ -29,7 +29,6 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
   sharedKey: () => 'account',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 AccountChangePasswordPage.pageOptions = pageOptions
 
@@ -44,6 +43,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account',
+      backFallbackTitle: 'Account',
     },
   }
 }

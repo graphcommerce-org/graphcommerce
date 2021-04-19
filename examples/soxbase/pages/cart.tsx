@@ -21,7 +21,7 @@ import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 
 type Props = Record<string, unknown>
-type GetPageStaticProps = GetStaticProps<Props>
+type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 const useStyles = makeStyles(
   () => ({
@@ -89,7 +89,6 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'checkout',
   SharedComponent: SheetShell,
   sharedKey: () => 'checkout',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 CartPage.pageOptions = pageOptions
 
@@ -104,6 +103,8 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
     },
   }
 }

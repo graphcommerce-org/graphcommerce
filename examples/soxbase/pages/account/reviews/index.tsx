@@ -4,9 +4,14 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardReviewsDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardReviews.gql'
 import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
+import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
+import apolloClient from '../../../lib/apolloClient'
+
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountReviewsPage() {
   const { data, loading } = useQuery(AccountDashboardReviewsDocument, {
@@ -35,8 +40,24 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
   sharedKey: () => 'account',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 AccountReviewsPage.pageOptions = pageOptions
 
 export default AccountReviewsPage
+
+export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
+  const client = apolloClient(locale, true)
+  const staticClient = apolloClient(locale)
+
+  const conf = client.query({ query: StoreConfigDocument })
+
+  return {
+    props: {
+      apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account',
+      backFallbackTitle: 'Account',
+    },
+  }
+}

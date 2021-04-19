@@ -11,7 +11,7 @@ import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 
-type GetPageStaticProps = GetStaticProps<Record<string, unknown>>
+type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountOrdersPage() {
   const { data } = useQuery(AccountDashboardOrdersDocument, {
@@ -40,7 +40,6 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account',
   SharedComponent: SheetShell,
   sharedKey: () => 'account-orders',
-  sharedProps: { variant: 'bottom', size: 'max' },
 }
 AccountOrdersPage.pageOptions = pageOptions
 
@@ -55,6 +54,10 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
+      variant: 'bottom',
+      size: 'max',
+      backFallbackHref: '/account',
+      backFallbackTitle: 'Account',
     },
   }
 }
