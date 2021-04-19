@@ -1,6 +1,5 @@
 import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import StoreSwitcherList from '@reachdigital/magento-store/switcher/StoreSwitcherList'
@@ -12,12 +11,13 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 
 type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {

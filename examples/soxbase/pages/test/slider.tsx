@@ -1,5 +1,5 @@
 import { Container, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   ProductListDocument,
   ProductListQuery,
@@ -11,47 +11,49 @@ import Single from '@reachdigital/next-ui/FramerSlider/test/Single'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { m } from 'framer-motion'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = ProductListQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function TestSlider({ products }: Props) {
   const images = products?.items?.map((item) => item?.small_image?.url ?? '') ?? []
   return (
-    <FullPageUi title='slider' backFallbackTitle='Test' backFallbackHref='/test/index'>
-      <Container>
-        <Typography variant='h1' style={{ textAlign: 'center' }}>
-          Framer Slider
+    <Container>
+      <Typography variant='h1' style={{ textAlign: 'center' }}>
+        Framer Slider
+      </Typography>
+
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Expandable Image Gallery
         </Typography>
+      </m.div>
+      <Images urls={images} />
 
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Expandable Image Gallery
-          </Typography>
-        </m.div>
-        <Images urls={images} />
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Multi item slider
+        </Typography>
+      </m.div>
+      <Multi />
 
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Multi item slider
-          </Typography>
-        </m.div>
-        <Multi />
-
-        <m.div layout>
-          <Typography variant='h2' style={{ textAlign: 'center' }}>
-            Single item Slider
-          </Typography>
-        </m.div>
-        <Single />
-      </Container>
-    </FullPageUi>
+      <m.div layout>
+        <Typography variant='h2' style={{ textAlign: 'center' }}>
+          Single item Slider
+        </Typography>
+      </m.div>
+      <Single />
+    </Container>
   )
 }
 
-TestSlider.Layout = PageLayout
+TestSlider.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
+export default TestSlider
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
@@ -73,5 +75,3 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
     },
   }
 }
-
-export default TestSlider

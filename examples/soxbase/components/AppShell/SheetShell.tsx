@@ -1,12 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import SheetShellBase, {
-  SheetShellProps as SheetShellPropsBase,
-} from '@reachdigital/next-ui/AppShell/SheetShell'
+import SheetShellBase, { SheetShellBaseProps } from '@reachdigital/next-ui/AppShell/SheetShellBase'
 import React from 'react'
 import Logo from './Logo'
 
-export type SheetShellProps = Omit<SheetShellPropsBase, 'header' | 'name' | 'classes'>
+export type SheetShellProps = Omit<SheetShellBaseProps, 'header' | 'name' | 'classes'>
 
 function SheetShell(props: SheetShellProps) {
   const storeConfig = useQuery(StoreConfigDocument)

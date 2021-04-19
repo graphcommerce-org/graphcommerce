@@ -3,8 +3,10 @@ import clsx from 'clsx'
 import { m } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React from 'react'
+import PageLoadIndicator from '../PageLoadIndicator'
 import { UseStyles } from '../Styles'
 import BackButton from './BackButton'
+import PageLayoutBase, { PageLayoutBaseProps } from './ShellBase'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -34,26 +36,28 @@ const useStyles = makeStyles(
   { name: 'FullPageUi' },
 )
 
-export type FullPageUiProps = {
+export type FullPageShellBaseProps = {
   header?: React.ReactNode
   children?: React.ReactNode
   backFallbackHref?: string
   backFallbackTitle?: string
-} & UseStyles<typeof useStyles>
+} & UseStyles<typeof useStyles> &
+  PageLayoutBaseProps
 
-function FullPageUi(props: FullPageUiProps) {
-  const { children, backFallbackHref, backFallbackTitle, header } = props
+function FullPageShellBase(props: FullPageShellBaseProps) {
+  const { children, backFallbackHref, backFallbackTitle, header, name } = props
   const router = useRouter()
   const classes = useStyles(props)
 
   return (
-    <>
+    <PageLayoutBase name={name}>
+      <PageLoadIndicator />
+
       {router.pathname !== '/' && (
         <m.div className={classes.backButtonRoot}>
           <BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>
         </m.div>
       )}
-
       <m.header
         className={clsx(classes.header)}
         layoutId='header'
@@ -62,10 +66,9 @@ function FullPageUi(props: FullPageUiProps) {
       >
         {header}
       </m.header>
-
       {children}
-    </>
+    </PageLayoutBase>
   )
 }
 
-export default FullPageUi
+export default FullPageShellBase

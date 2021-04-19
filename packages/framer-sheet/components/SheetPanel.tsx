@@ -34,8 +34,8 @@ export type SheetPanelProps = {
    */
   header: React.ReactNode
 
-  forward: React.ReactNode
-  back: React.ReactNode
+  forward?: React.ReactNode
+  back?: React.ReactNode
 
   /**
    * Content of the panel

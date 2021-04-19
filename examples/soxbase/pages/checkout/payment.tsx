@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
 import {
@@ -22,11 +21,12 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
+import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function PaymentPage({ countries }: Props) {
   const classes = useFormStyles()

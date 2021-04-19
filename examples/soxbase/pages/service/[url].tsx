@@ -1,6 +1,5 @@
 import { Box, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -8,6 +7,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import NextError from 'next/error'
 import React from 'react'
+import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
@@ -16,7 +16,7 @@ import apolloClient from '../../lib/apolloClient'
 type Props = DefaultPageQuery
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {

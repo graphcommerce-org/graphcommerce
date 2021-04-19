@@ -9,10 +9,10 @@ import {
 import { useRouter } from 'next/router'
 import React from 'react'
 import useSheetStyles from '../FramerSheet/useSheetStyles'
-import PageLayoutBase, { PageLayoutBaseProps } from '../Page/PageLayoutBase'
 import BackButton from './BackButton'
+import PageLayoutBase, { PageLayoutBaseProps } from './ShellBase'
 
-export type SheetShellProps = {
+export type SheetShellBaseProps = {
   header?: React.ReactNode
   headerForward?: React.ReactNode
   children?: React.ReactNode
@@ -21,7 +21,7 @@ export type SheetShellProps = {
 } & Pick<SheetProps, 'size' | 'variant'> &
   PageLayoutBaseProps
 
-function SheetShell(props: SheetShellProps) {
+function SheetShellBase(props: SheetShellBaseProps) {
   const {
     children,
     backFallbackHref,
@@ -69,4 +69,4 @@ function SheetShell(props: SheetShellProps) {
   )
 }
 
-export default SheetShell
+export default SheetShellBase

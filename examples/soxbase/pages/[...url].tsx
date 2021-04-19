@@ -1,7 +1,6 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
@@ -32,7 +31,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import clsx from 'clsx'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
 import PageContent from '../components/PageContent'
@@ -51,7 +50,7 @@ type Props = CategoryPageQuery &
   }
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const useProductListStyles = makeStyles(
   (theme: Theme) => ({
@@ -105,12 +104,7 @@ function CategoryPage(props: Props) {
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
   return (
-    <FullPageUi
-      title={category.name ?? ''}
-      backFallbackTitle={parentCategory?.category_name ?? 'Home'}
-      backFallbackHref={`/${parentCategory?.category_url_path}` ?? '/'}
-      {...props}
-    >
+    <>
       <PageMeta
         title={category.meta_title ?? category.name ?? ''}
         metaDescription={category.meta_description ?? ''}
@@ -163,12 +157,13 @@ function CategoryPage(props: Props) {
           content={pages?.[0]?.content}
         />
       )}
-    </FullPageUi>
+    </>
   )
 }
+
 CategoryPage.pageOptions = {
-  SharedComponent: PageLayout,
-  sharedProps: {},
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
 } as PageOptions
 
 export default CategoryPage

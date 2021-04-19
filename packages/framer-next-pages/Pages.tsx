@@ -41,6 +41,7 @@ export default function FramerNextPages(props: PagesProps) {
     ),
     SharedComponent: Component.pageOptions?.SharedComponent,
     sharedProps: Component.pageOptions?.sharedProps,
+    sharedPageProps: pageProps,
     sharedKey: Component.pageOptions?.sharedKey?.(routerProxy) ?? routerProxy.pathname,
     overlayGroup: Component.pageOptions?.overlayGroup,
     historyIdx: idx,
@@ -98,13 +99,22 @@ export default function FramerNextPages(props: PagesProps) {
   return (
     <AnimatePresence initial={false}>
       {renderItems.map((item, itemIdx) => {
-        const { children, historyIdx, sharedKey, SharedComponent = NoopLayout, sharedProps } = item
+        const {
+          children,
+          historyIdx,
+          sharedKey,
+          SharedComponent = NoopLayout,
+          sharedProps,
+          sharedPageProps,
+        } = item
         const active = itemIdx === renderItems.length - 1
         const depth = itemIdx - (renderItems.length - 1)
         return (
           <pageContext.Provider key={sharedKey} value={{ depth, active, direction }}>
             <Page active={active} historyIdx={historyIdx}>
-              <SharedComponent {...sharedProps}>{children}</SharedComponent>
+              <SharedComponent {...sharedPageProps} {...sharedProps}>
+                {children}
+              </SharedComponent>
             </Page>
           </pageContext.Provider>
         )

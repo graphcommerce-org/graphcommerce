@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   { name: 'PageLoadIndicator' },
 )
 
-const PageLoadIndicator: React.FC = () => {
+function PageLoadIndicator() {
   const router = useRouter()
   const classes = useStyles()
   const [loading, setLoading] = useState<boolean>(false)

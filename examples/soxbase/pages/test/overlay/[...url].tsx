@@ -1,6 +1,5 @@
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -8,6 +7,7 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React, { useState } from 'react'
+import { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../../lib/apolloClient'
@@ -15,7 +15,7 @@ import apolloClient from '../../../lib/apolloClient'
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 const cycles = [100, 200, 1000, 2000]
 

@@ -1,16 +1,19 @@
+import { useQuery } from '@apollo/client'
 import { IconButton, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import SearchButton from '@reachdigital/magento-search/SearchButton'
+import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
 import DesktopNavBar from '@reachdigital/next-ui/AppShell/DesktopNavBar'
-import NextFullPageUi, {
-  FullPageUiProps as NextFullPageUiProps,
-} from '@reachdigital/next-ui/AppShell/FullPageUi'
+import FullPageShellBase, {
+  FullPageShellBaseProps,
+} from '@reachdigital/next-ui/AppShell/FullPageShellBase'
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
+import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import PageLink from 'next/link'
 import React from 'react'
@@ -30,12 +33,15 @@ const useStyles = makeStyles(
   { name: 'FullPageUI' },
 )
 
-type FullPageUiProps = Omit<DefaultPageQuery, 'pages'> &
-  Omit<NextFullPageUiProps, 'menu' | 'logo' | 'actions' | 'classes'>
+export type FullPageShellProps = Omit<DefaultPageQuery, 'pages'> &
+  Omit<FullPageShellBaseProps, 'menu' | 'logo' | 'actions' | 'classes' | 'name'>
 
-function FullPageUi(props: FullPageUiProps) {
+function FullPageShell(props: FullPageShellProps) {
   const { footer, menu: menuData = {}, children, ...uiProps } = props
   const classes = useStyles()
+
+  const storeConfig = useQuery(StoreConfigDocument)
+  const name = storeConfig.data?.storeConfig?.store_name ?? ''
 
   const menuProps: MenuProps = {
     menu: [
@@ -52,8 +58,9 @@ function FullPageUi(props: FullPageUiProps) {
   }
 
   return (
-    <NextFullPageUi
+    <FullPageShellBase
       {...uiProps}
+      name={name}
       header={
         <>
           <Logo />
@@ -119,8 +126,8 @@ function FullPageUi(props: FullPageUiProps) {
       </CartFab>
       {children}
       <Footer footer={footer} />
-    </NextFullPageUi>
+    </FullPageShellBase>
   )
 }
 
-export default FullPageUi
+export default FullPageShell

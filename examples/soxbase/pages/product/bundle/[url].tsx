@@ -1,5 +1,5 @@
 import { Container, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
 import BundleItemsForm from '@reachdigital/magento-product-bundle/BundleItemsForm'
 import {
@@ -15,7 +15,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
@@ -34,7 +34,7 @@ type Props = ProductPageQuery & BundleProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductBundle(props: Props) {
   const { products, usps, typeProducts, productpages } = props
@@ -48,12 +48,7 @@ function ProductBundle(props: Props) {
 
   const category = productPageCategory(product)
   return (
-    <FullPageUi
-      title={product.name ?? ''}
-      backFallbackTitle={category?.name ?? ''}
-      backFallbackHref={`/${category?.url_path}`}
-      {...props}
-    >
+    <>
       <ProductPageMeta {...product} />
       <Container maxWidth={false}>
         <ProductPageGallery {...product}>
@@ -83,11 +78,14 @@ function ProductBundle(props: Props) {
         }}
         content={productpages?.[0].content}
       />
-    </FullPageUi>
+    </>
   )
 }
 
-ProductBundle.Layout = PageLayout
+ProductBundle.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default ProductBundle
 

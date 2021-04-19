@@ -113,7 +113,7 @@ export type PageOptions<T extends Record<string, unknown> = Record<string, unkno
    */
   SharedComponent?: React.FC<any>
   /** Pass props to the SharedComponent */
-  sharedProps?: Omit<T, 'children'>
+  sharedProps?: Partial<Omit<T, 'children'>>
 }
 
 export type PageComponent<T = Record<string, unknown>> = NextComponentType<NextPageContext, T> & {
@@ -129,4 +129,5 @@ export type PageItem = {
   children: React.ReactNode
   historyIdx: number
   sharedKey: string
+  sharedPageProps?: Record<string, unknown>
 } & Omit<PageOptions<Record<string, unknown>>, 'sharedKey'>

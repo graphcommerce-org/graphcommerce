@@ -3,9 +3,9 @@ import Head from 'next/head'
 import React from 'react'
 import PageLoadIndicator from '../PageLoadIndicator'
 
-export type PageLayoutBaseProps = { name: string; children: React.ReactNode }
+export type PageLayoutBaseProps = { name: string; children?: React.ReactNode }
 
-const PageLayoutBase = (props: { name: string; children: React.ReactNode }) => {
+const PageLayoutBase = (props: { name: string; children?: React.ReactNode }) => {
   const { children, name } = props
   const theme = useTheme()
 

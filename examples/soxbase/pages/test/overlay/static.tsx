@@ -14,7 +14,6 @@ function TestOverlayStatic() {
   )
 }
 
-}
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'test',
   SharedComponent: SheetShell,

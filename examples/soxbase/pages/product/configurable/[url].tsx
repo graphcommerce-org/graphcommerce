@@ -1,5 +1,5 @@
 import { Container, Typography } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
 import {
@@ -14,7 +14,7 @@ import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
-import FullPageUi from '../../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
@@ -33,7 +33,7 @@ type Props = ProductPageQuery & ConfigurableProductPageQuery
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function ProductConfigurable(props: Props) {
   const { products, usps, typeProducts, productpages } = props
@@ -51,12 +51,7 @@ function ProductConfigurable(props: Props) {
 
   const category = productPageCategory(product)
   return (
-    <FullPageUi
-      title={product.name ?? ''}
-      backFallbackTitle={category?.name ?? ''}
-      backFallbackHref={`/${category?.url_path}`}
-      {...props}
-    >
+    <>
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <Container maxWidth={false}>
@@ -84,11 +79,14 @@ function ProductConfigurable(props: Props) {
           content={productpages?.[0].content}
         />
       </ConfigurableContextProvider>
-    </FullPageUi>
+    </>
   )
 }
 
-ProductConfigurable.Layout = PageLayout
+ProductConfigurable.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default ProductConfigurable
 

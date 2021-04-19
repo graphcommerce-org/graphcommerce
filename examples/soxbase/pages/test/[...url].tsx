@@ -1,5 +1,5 @@
 import { Button, Container } from '@material-ui/core'
-import PageLayout, { PageLayoutProps } from '@reachdigital/magento-app-shell/PageLayout'
+import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -7,7 +7,7 @@ import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
 import React from 'react'
-import FullPageUi from '../../components/AppShell/FullPageUi'
+import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
 import apolloClient from '../../lib/apolloClient'
@@ -15,14 +15,14 @@ import apolloClient from '../../lib/apolloClient'
 type Props = { url: string } & DefaultPageQuery
 type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
-type GetPageStaticProps = GetStaticProps<PageLayoutProps, Props, RouteProps>
+type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function AppShellTestIndex(props: Props) {
   const { url, pages } = props
   const title = `Testpage ${url?.charAt(0).toUpperCase() + url?.slice(1)}`
 
   return (
-    <FullPageUi title={title} backFallbackTitle='Test' backFallbackHref='/test/index' {...props}>
+    <>
       <Container>
         {url === 'index' ? (
           <PageLink href='/test/deeper' passHref>
@@ -77,11 +77,14 @@ function AppShellTestIndex(props: Props) {
       <Container>
         <DebugSpacer height={2000} />
       </Container>
-    </FullPageUi>
+    </>
   )
 }
 
-AppShellTestIndex.Layout = PageLayout
+AppShellTestIndex.pageOptions = {
+  SharedComponent: FullPageShell,
+  sharedKey: () => 'page',
+} as PageOptions
 
 export default AppShellTestIndex
 

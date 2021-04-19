@@ -5,12 +5,11 @@ import React, { useEffect } from 'react'
 import { AppProps } from './types'
 
 export default function App(props: AppProps & AppPropsType) {
-  const { Component } = props
   useEffect(() => document.getElementById('jss-server-side')?.remove())
 
   return (
     <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
-      <FramerNextPages {...props} Layout={Component.Layout} />
+      <FramerNextPages {...props} />
     </LazyMotion>
   )
 }
