@@ -56,7 +56,6 @@ export default function SheetPanel(props: SheetPanelProps) {
     controls,
     variant,
     variantSize,
-    containerRef,
     onSnap,
     onSnapEnd,
   } = useSheetContext()
@@ -107,7 +106,6 @@ export default function SheetPanel(props: SheetPanelProps) {
         drag={axis}
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
-        dragConstraints={containerRef}
         transition={SPRING_ANIM}
         variants={{
           closed: () => ({ [axis]: windowSize[axis].get() * sign }),
@@ -139,7 +137,6 @@ export default function SheetPanel(props: SheetPanelProps) {
         drag={(axis !== 'y' || canDrag) && axis}
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
-        dragConstraints={containerRef}
         transition={SPRING_ANIM}
         ref={contentRef}
         className={clsx(classes?.content, classes?.[`content${variant}`])}
