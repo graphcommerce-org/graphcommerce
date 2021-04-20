@@ -1,5 +1,5 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
@@ -16,9 +16,11 @@ import {
 import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
 import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
 import ProductListSort from '@reachdigital/magento-product/ProductListSort'
+import CategorySearchResult from '@reachdigital/magento-search/CategorySearchResult'
 import NoSearchResults from '@reachdigital/magento-search/NoSearchResults'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
-import SearchPageHeader from '@reachdigital/magento-search/SearchPageHeader'
+import SearchDivider from '@reachdigital/magento-search/SearchDivider'
+import SearchForm from '@reachdigital/magento-search/SearchForm'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -48,11 +50,15 @@ function SearchIndexPage(props: Props) {
     <>
       <PageMeta title='Search' metaDescription='Search results' metaRobots={['noindex']} />
 
-      <SearchPageHeader
-        categories={categories}
-        totalSearchResults={totalSearchResults}
-        search={search}
-      />
+      <Container maxWidth='sm'>
+        <SearchForm totalResults={totalSearchResults} search={search} />
+
+        {categories?.items?.map((category) => (
+          <CategorySearchResult key={category?.url_path} search={search} {...category} />
+        ))}
+      </Container>
+
+      <SearchDivider />
 
       {products && products.items && products?.items?.length > 0 && (
         <Container maxWidth='xl'>
