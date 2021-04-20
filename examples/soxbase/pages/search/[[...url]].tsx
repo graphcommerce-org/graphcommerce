@@ -1,6 +1,10 @@
 import { mergeDeep } from '@apollo/client/utilities'
+import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import CategoryPageGrid from '@reachdigital/magento-category/CategoryPageGrid'
+import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
+import ProductListCount from '@reachdigital/magento-product/ProductListCount'
+import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
+import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
 import {
   FilterTypes,
   ProductListParams,
@@ -10,6 +14,8 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
+import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import NoSearchResults from '@reachdigital/magento-search/NoSearchResults'
 import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
 import SearchPageHeader from '@reachdigital/magento-search/SearchPageHeader'
@@ -33,7 +39,7 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function SearchIndexPage(props: Props) {
-  const { products, categories, params } = props
+  const { products, categories, params, filters, filterTypes } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
@@ -49,17 +55,24 @@ function SearchIndexPage(props: Props) {
       />
 
       {products && products.items && products?.items?.length > 0 && (
-        <CategoryPageGrid
-          {...props}
-          title={`Search results for ${search}`}
-          productListItems={
-            <ProductListItems
-              items={products?.items}
-              className={productListClasses.productList}
-              loadingEager={1}
-            />
-          }
-        />
+        <Container maxWidth='xl'>
+          <CategoryDescription name={`Search results for ${search}`} />
+
+          <ProductListFiltersContainer>
+            <ProductListSort sort_fields={products?.sort_fields} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+          </ProductListFiltersContainer>
+
+          <ProductListCount total_count={products?.total_count} />
+
+          <ProductListItems
+            items={products?.items}
+            className={productListClasses.productList}
+            loadingEager={1}
+          />
+
+          <ProductListPagination page_info={products?.page_info} />
+        </Container>
       )}
 
       {search && (!products || (products.items && products?.items?.length <= 0)) && (

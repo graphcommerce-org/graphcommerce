@@ -30,7 +30,6 @@
     "@reachdigital/magento-category": "^0.1.0",
     "@reachdigital/magento-graphql": "^0.1.0",
     "@reachdigital/magento-product": "^0.1.0",
-    "@reachdigital/magento-product-types": "^0.1.0",
     "@reachdigital/magento-product-bundle": "^0.1.0",
     "@reachdigital/magento-product-configurable": "^0.1.0",
     "@reachdigital/magento-product-downloadable": "^0.1.0",

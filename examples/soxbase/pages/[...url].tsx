@@ -1,15 +1,18 @@
 import { mergeDeep } from '@apollo/client/utilities'
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
+import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
-import CategoryPageGrid from '@reachdigital/magento-category/CategoryPageGrid'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
-import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPageStyles'
 import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
+import ProductListCount from '@reachdigital/magento-product/ProductListCount'
+import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
+import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
 import {
   FilterTypes,
   ProductListParams,
@@ -19,6 +22,8 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
+import ProductListSort from '@reachdigital/magento-product/ProductListSort'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -48,14 +53,11 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CategoryPage(props: Props) {
   const { categories, products, filters, params, filterTypes, pages } = props
-  const classes = useCategoryPageStyles(props)
-
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
 
   const category = categories?.items?.[0]
   if (!category || !products || !params || !filters || !filterTypes) return null
 
-  const parentCategory = category.breadcrumbs?.[0]
   const isLanding = category.display_mode === 'PAGE'
 
   let productList = products?.items
@@ -69,7 +71,7 @@ function CategoryPage(props: Props) {
       />
 
       {isLanding ? (
-        <Container className={classes.container} maxWidth={false}>
+        <Container maxWidth={false}>
           <CategoryHeroNav
             {...category}
             asset={
@@ -79,17 +81,26 @@ function CategoryPage(props: Props) {
         </Container>
       ) : (
         <ProductListParamsProvider value={params}>
-          <CategoryPageGrid
-            {...props}
-            category={category}
-            productListItems={
-              <ProductListItems
-                items={products?.items}
-                className={productListClasses.productList}
-                loadingEager={1}
-              />
-            }
-          />
+          <Container maxWidth='xl'>
+            <CategoryDescription name={category?.name} description={category?.description} />
+
+            <CategoryChildren params={params}>{category.children}</CategoryChildren>
+
+            <ProductListFiltersContainer>
+              <ProductListSort sort_fields={products?.sort_fields} />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
+
+            <ProductListCount total_count={products?.total_count} />
+
+            <ProductListItems
+              items={products?.items}
+              className={productListClasses.productList}
+              loadingEager={1}
+            />
+
+            <ProductListPagination page_info={products?.page_info} />
+          </Container>
         </ProductListParamsProvider>
       )}
 
@@ -161,10 +172,10 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: parentCategory?.category_url_path
-        ? `/${parentCategory?.category_url_path}`
-        : undefined,
-      backFallbackTitle: parentCategory?.category_name ?? undefined,
+      ...(parentCategory && {
+        backFallbackHref: `/${parentCategory.category_url_path}`,
+        backFallbackTitle: parentCategory.category_name,
+      }),
     },
     revalidate: 60 * 20,
   }
