@@ -26,7 +26,7 @@ const useStyles = makeStyles(
         height: 40,
         width: 40,
         '& svg': {
-          color: 'theme.palette.text.primary',
+          color: theme.palette.text.primary,
         },
         '&:hover': {
           background: 'rgba(0, 0, 0, 0.04)',
