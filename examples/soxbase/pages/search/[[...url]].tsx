@@ -1,10 +1,14 @@
 import { mergeDeep } from '@apollo/client/utilities'
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
-import ProductListCount from '@reachdigital/magento-product/ProductListCount'
-import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
+import {
+  ProductListCount,
+  ProductListFilters,
+  ProductListFiltersContainer,
+  ProductListPagination,
+  ProductListSort,
+} from '@reachdigital/magento-product'
 import {
   FilterTypes,
   ProductListParams,
@@ -13,16 +17,17 @@ import {
   extractUrlQuery,
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
-import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
-import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import CategorySearchResult from '@reachdigital/magento-search/CategorySearchResult'
-import NoSearchResults from '@reachdigital/magento-search/NoSearchResults'
-import { SearchDocument, SearchQuery } from '@reachdigital/magento-search/Search.gql'
-import SearchDivider from '@reachdigital/magento-search/SearchDivider'
-import SearchForm from '@reachdigital/magento-search/SearchForm'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+
+import {
+  CategorySearchResult,
+  NoSearchResults,
+  SearchDivider,
+  SearchDocument,
+  SearchForm,
+  SearchQuery,
+} from '@reachdigital/magento-search'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'

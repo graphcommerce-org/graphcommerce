@@ -4,17 +4,15 @@ import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderNext from '@reachdigital/next-ui/FramerSlider/SliderNext'
 import SliderPrev from '@reachdigital/next-ui/FramerSlider/SliderPrev'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { m, useMotionTemplate, useTransform, useViewportScroll } from 'framer-motion'
-import React, { useEffect, useRef, useState } from 'react'
-
-type ProductListFiltersContainerProps = React.PropsWithChildren<unknown>
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
       height: 44,
-      gridArea: 'filters',
       marginBottom: theme.spacings.sm,
       position: 'sticky',
       top: theme.page.vertical,
@@ -64,10 +62,12 @@ const useStyles = makeStyles(
   { name: 'ProductListFiltersContainer' },
 )
 
+export type ProductListFiltersContainerProps = PropsWithChildren<UseStyles<typeof useStyles>>
+
 export default function ProductListFiltersContainer(props: ProductListFiltersContainerProps) {
   const { children } = props
 
-  const classes = useStyles()
+  const classes = useStyles(props)
   const { scrollY } = useViewportScroll()
   const [isSticky, setIsSticky] = useState<boolean>(false)
   const [startPosition, setStartPosition] = useState(100)

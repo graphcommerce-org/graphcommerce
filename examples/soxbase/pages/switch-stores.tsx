@@ -1,12 +1,12 @@
 import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
-import StoreSwitcherList from '@reachdigital/magento-store/switcher/StoreSwitcherList'
 import {
+  PageMeta,
+  StoreConfigDocument,
+  StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
-} from '@reachdigital/magento-store/switcher/StoreSwitcherList.gql'
+} from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'

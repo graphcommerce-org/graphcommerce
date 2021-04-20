@@ -13,7 +13,7 @@ const useStyles = makeStyles(
   { name: 'SearchDivider' },
 )
 
-type SearchDividerProps = UseStyles<typeof useStyles>
+export type SearchDividerProps = UseStyles<typeof useStyles>
 
 export default function SearchDivider(props: SearchDividerProps) {
   const classes = useStyles(props)

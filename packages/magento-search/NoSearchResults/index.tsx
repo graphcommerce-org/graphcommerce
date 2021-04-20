@@ -15,6 +15,8 @@ const useStyles = makeStyles(
   },
 )
 
+export type NoSearchResultsProps = Record<string, never>
+
 export default function NoSearchResults() {
   const classes = useStyles()
 

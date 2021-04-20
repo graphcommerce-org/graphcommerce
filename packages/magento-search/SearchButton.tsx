@@ -18,7 +18,7 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-type SearchButtonProps = UseStyles<typeof useStyles> & { onClick?: () => void }
+export type SearchButtonProps = UseStyles<typeof useStyles> & { onClick?: () => void }
 
 export default function SearchButton(props: SearchButtonProps) {
   const { onClick } = props

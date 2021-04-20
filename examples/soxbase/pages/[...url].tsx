@@ -7,12 +7,18 @@ import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import {
+  ProductListCount,
+  ProductListFilters,
+  ProductListFiltersContainer,
+  ProductListPagination,
+  ProductListSort,
+} from '@reachdigital/magento-product'
+
+import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-import ProductListCount from '@reachdigital/magento-product/ProductListCount'
-import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
-import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'
+
 import {
   FilterTypes,
   ProductListParams,
@@ -21,11 +27,9 @@ import {
   extractUrlQuery,
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
-import getFilterTypes from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-import ProductListPagination from '@reachdigital/magento-product/ProductListPagination'
-import ProductListSort from '@reachdigital/magento-product/ProductListSort'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
+
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -163,7 +167,11 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
   // assertAllowedParams(await params, (await products).data)
   if (!(await categoryUid) || !(await products).data) return { notFound: true }
 
-  const parentCategory = (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0]
+  const { category_name, category_url_path } =
+    (await categoryPage).data.categories?.items?.[0]?.breadcrumbs?.[0] ?? {}
+
+  const backFallbackHref = category_url_path ? `/${category_url_path}` : null
+  const backFallbackTitle = category_name || null
 
   return {
     props: {
@@ -172,10 +180,8 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
-      ...(parentCategory && {
-        backFallbackHref: `/${parentCategory.category_url_path}`,
-        backFallbackTitle: parentCategory.category_name,
-      }),
+      backFallbackHref,
+      backFallbackTitle,
     },
     revalidate: 60 * 20,
   }

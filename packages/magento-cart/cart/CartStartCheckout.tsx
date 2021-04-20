@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
-import Money from '@reachdigital/magento-store/Money'
-import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
+import { Money, MoneyFragment } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

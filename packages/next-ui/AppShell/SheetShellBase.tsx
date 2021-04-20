@@ -17,8 +17,8 @@ export type SheetShellBaseProps = {
   header?: React.ReactNode
   headerForward?: React.ReactNode
   children?: React.ReactNode
-  backFallbackHref?: string
-  backFallbackTitle?: string
+  backFallbackHref?: string | null
+  backFallbackTitle?: string | null
 } & Pick<SheetProps, 'size' | 'variant'> &
   PageLayoutBaseProps
 
@@ -51,7 +51,7 @@ function SheetShellBase(props: SheetShellBaseProps) {
         <SheetBackdrop onTap={() => router.back()} classes={sheetClasses} />
         <SheetContainer classes={sheetClasses}>
           <SheetPanel
-            back={<BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>}
+            back={<BackButton href={backFallbackHref ?? undefined}>{backFallbackTitle}</BackButton>}
             forward={headerForward}
             header={<SheetDragIndicator classes={sheetClasses} />}
             classes={sheetClasses}

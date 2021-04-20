@@ -2,12 +2,11 @@ import { makeStyles, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import Highlight from '@reachdigital/next-ui/Highlight'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
 import chevronRightIcon from './chevron_right.svg'
-
-type CategorySearchResultProps = CategorySearchResultFragment & { search: string }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -37,9 +36,12 @@ const useStyles = makeStyles(
   },
 )
 
+export type CategorySearchResultProps = CategorySearchResultFragment &
+  UseStyles<typeof useStyles> & { search: string }
+
 export default function CategorySearchResult(props: CategorySearchResultProps) {
   const { search, ...catProps } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <PageLink href={`/${catProps?.url_path ?? ''}`}>

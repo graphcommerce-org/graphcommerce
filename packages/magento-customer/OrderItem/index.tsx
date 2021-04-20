@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import Money from '@reachdigital/magento-store/Money'
+import { Money } from '@reachdigital/magento-store'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'

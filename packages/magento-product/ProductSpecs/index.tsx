@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { ProductSpecsFragment } from './ProductSpecs.gql'
 
@@ -20,11 +21,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductSpecsProps = ProductSpecsFragment
+export type ProductSpecsProps = ProductSpecsFragment & UseStyles<typeof useStyles>
 
 export default function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(

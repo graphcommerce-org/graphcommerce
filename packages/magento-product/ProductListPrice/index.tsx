@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import Money from '@reachdigital/magento-store/Money'
+import { Money } from '@reachdigital/magento-store'
 import React from 'react'
 import { ProductListPriceFragment } from './ProductListPrice.gql'
 

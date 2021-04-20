@@ -10,7 +10,6 @@ import { ProductListPaginationFragment } from './ProductListPagination.gql'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      gridArea: 'pagination',
       margin: '32px auto 0 auto',
       marginTop: theme.spacings.lg,
       marginBottom: theme.spacings.lg,
@@ -47,7 +46,7 @@ const useStyles = makeStyles(
   },
 )
 
-type ProductPaginationProps = ProductListPaginationFragment &
+export type ProductPaginationProps = ProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'> &
   UseStyles<typeof useStyles>
 

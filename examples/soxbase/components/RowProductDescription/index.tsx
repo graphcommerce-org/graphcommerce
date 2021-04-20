@@ -1,7 +1,5 @@
 import { makeStyles, Container, Theme, Typography } from '@material-ui/core'
-import ProductPageDescription, {
-  ProductPageDescriptionProps,
-} from '@reachdigital/magento-product/ProductPageDescription'
+import { ProductPageDescription, ProductPageDescriptionProps } from '@reachdigital/magento-product'
 import React, { PropsWithChildren } from 'react'
 
 const useStyles = makeStyles((theme: Theme) => ({

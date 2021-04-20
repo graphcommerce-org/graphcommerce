@@ -1,4 +1,4 @@
-import PageMeta from '@reachdigital/magento-store/PageMeta'
+import { PageMeta } from '@reachdigital/magento-store'
 import Head from 'next/head'
 import React from 'react'
 import { useProductLink } from '../ProductLink'

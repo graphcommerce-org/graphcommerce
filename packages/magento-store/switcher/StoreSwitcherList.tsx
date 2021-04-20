@@ -11,7 +11,7 @@ import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import PageLink from 'next/link'
 import React from 'react'
-import localeToStore, { storeToLocale } from '../localeToStore'
+import { localeToStore, storeToLocale } from '../localeToStore'
 import { StoreSwitcherListQuery } from './StoreSwitcherList.gql'
 
 const useStyles = makeStyles(
@@ -41,7 +41,7 @@ const useStyles = makeStyles(
 
 type Store = NonNullable<NonNullable<StoreSwitcherListQuery['availableStores']>[0]>
 
-type StoreSwitcherListProps = { locale: string | undefined } & StoreSwitcherListQuery &
+export type StoreSwitcherListProps = { locale: string | undefined } & StoreSwitcherListQuery &
   UseStyles<typeof useStyles>
 
 export default function StoreSwitcherList(props: StoreSwitcherListProps) {

@@ -4,7 +4,7 @@ import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import SliderImage from '@reachdigital/next-ui/FramerSlider/SliderImage'
 import Images from '@reachdigital/next-ui/FramerSlider/test/Images'
 import Multi from '@reachdigital/next-ui/FramerSlider/test/Multi'

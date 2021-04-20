@@ -6,7 +6,7 @@ import FilterEqualType from './FilterEqualType'
 import FilterRangeType from './FilterRangeType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
 
-type ProductFiltersProps = ProductListFiltersFragment & {
+export type ProductFiltersProps = ProductListFiltersFragment & {
   filterTypes: FilterTypes
 } & Omit<ChipMenuProps, 'selected' | 'selectedLabel' | 'children' | 'label' | 'onDelete'>
 

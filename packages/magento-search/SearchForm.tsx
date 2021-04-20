@@ -1,14 +1,10 @@
 import { Button, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
-
-type SearchFormProps = {
-  totalResults: number
-  search: string
-}
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -29,10 +25,15 @@ const useStyles = makeStyles(
   },
 )
 
+export type SearchFormProps = {
+  totalResults: number
+  search: string
+} & UseStyles<typeof useStyles>
+
 export default function SearchForm(props: SearchFormProps) {
   const { totalResults, search } = props
   const formClasses = useFormStyles()
-  const pageClasses = useStyles()
+  const pageClasses = useStyles(props)
   const router = useRouter()
 
   const form = useForm({
@@ -56,6 +57,7 @@ export default function SearchForm(props: SearchFormProps) {
       )}
       <Button
         onClick={() => {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           router.replace(`/search`)
         }}
         variant='text'

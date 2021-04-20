@@ -1,8 +1,8 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'

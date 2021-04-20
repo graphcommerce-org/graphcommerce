@@ -40,8 +40,8 @@ const useStyles = makeStyles(
 export type FullPageShellBaseProps = {
   header?: React.ReactNode
   children?: React.ReactNode
-  backFallbackHref?: string
-  backFallbackTitle?: string
+  backFallbackHref?: string | null
+  backFallbackTitle?: string | null
 } & UseStyles<typeof useStyles> &
   PageLayoutBaseProps
 
@@ -56,7 +56,7 @@ function FullPageShellBase(props: FullPageShellBaseProps) {
 
       {router.pathname !== '/' && (
         <m.div className={classes.backButtonRoot}>
-          <BackButton href={backFallbackHref}>{backFallbackTitle}</BackButton>
+          <BackButton href={backFallbackHref ?? undefined}>{backFallbackTitle}</BackButton>
         </m.div>
       )}
       <m.header

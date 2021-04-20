@@ -1,6 +1,6 @@
 import { Theme, makeStyles } from '@material-ui/core'
 import { Maybe } from '@reachdigital/magento-graphql'
-import { ProductListItemProps } from '@reachdigital/magento-product/ProductListItem'
+import { ProductListItemProps } from '@reachdigital/magento-product'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

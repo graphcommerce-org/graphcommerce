@@ -38,7 +38,7 @@ const useProductCountStyles = makeStyles(
   },
 )
 
-type ProductCountProps = ProductListCountFragment & UseStyles<typeof useProductCountStyles>
+export type ProductCountProps = ProductListCountFragment & UseStyles<typeof useProductCountStyles>
 
 export default function ProductListCount(props: ProductCountProps) {
   const { total_count } = props
