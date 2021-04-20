@@ -1,4 +1,5 @@
-import { useIsPresent } from 'framer-motion'
+import { useClientSize } from '@reachdigital/framer-utils'
+import { m, useIsPresent } from 'framer-motion'
 import React from 'react'
 import type { PageItem } from './types'
 import { scrollPos } from './utils'
@@ -11,6 +12,7 @@ export type PageProps = Pick<PageItem, 'historyIdx'> & {
 export default function Page(props: PageProps) {
   const { active, historyIdx, children } = props
   const isPresent = useIsPresent()
+  const { y } = useClientSize({ y: '100vh' })
 
   /** The active Page doesn't get any special treatment */
   let top = 0
@@ -29,8 +31,8 @@ export default function Page(props: PageProps) {
   const pointerEvents = activePresent ? undefined : 'none'
 
   return (
-    <div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: '100vh' }}>
+    <m.div style={{ position, top, left: 0, right: 0, pointerEvents, minHeight: y }}>
       {children}
-    </div>
+    </m.div>
   )
 }

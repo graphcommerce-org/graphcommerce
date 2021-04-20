@@ -16,6 +16,9 @@
       "project": "./tsconfig.json"
     }
   },
+  "dependencies": {
+    "@reachdigital/framer-utils": "^0.1.0"
+  },
   "devDependencies": {
     "@reachdigital/browserslist-config-pwa": "^0.1.0",
     "@reachdigital/eslint-config-pwa": "^0.1.0",

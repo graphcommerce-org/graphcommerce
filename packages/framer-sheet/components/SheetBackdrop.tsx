@@ -1,7 +1,7 @@
+import { Styled } from '@reachdigital/framer-utils'
 import { m, MotionProps, MotionValue, useSpring, useTransform } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
-import { Styled } from '../utils/styled'
 
 export type SheetBackdropClassKeys = 'backdrop'
 

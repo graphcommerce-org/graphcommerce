@@ -1,11 +1,9 @@
+import { useIsomorphicLayoutEffect, Styled, clientSize } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
 import React, { useCallback } from 'react'
-import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
 import useSheetContext from '../hooks/useSheetContext'
 import { SheetVariant } from '../types'
-import { Styled } from '../utils/styled'
 import variantSizeCss from '../utils/variantSizeCss'
-import windowSize from '../utils/windowSize'
 
 export type SheetContainerClassKeys = 'container' | `container${SheetVariant}`
 
@@ -41,7 +39,7 @@ export default function SheetContainer(props: SheetContainerProps) {
     return () => ro.disconnect()
   }, [calcMaxSize, containerRef, dimension, size])
 
-  useIsomorphicLayoutEffect(() => windowSize[axis].attach(calcMaxSize), [axis, calcMaxSize])
+  useIsomorphicLayoutEffect(() => clientSize[axis].attach(calcMaxSize), [axis, calcMaxSize])
 
   return (
     <div
