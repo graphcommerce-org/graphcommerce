@@ -1,5 +1,5 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
@@ -24,11 +24,8 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.sm,
       width: '100%',
     },
-    quantityInput: {
-      backgroundColor: theme.palette.background.default,
-    },
   }),
-  { name: 'AccountMenu' },
+  { name: 'AddToCart' },
 )
 
 export default function AddToCartButton<Q, V extends { cartId: string; [index: string]: unknown }>(
@@ -63,7 +60,6 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         helperText={formState.isSubmitted && formState.errors.quantity}
         disabled={formState.isSubmitting}
         size='small'
-        classes={{ quantity: classes.quantityInput }}
       />
 
       <Button

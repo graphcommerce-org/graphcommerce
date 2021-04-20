@@ -1,4 +1,5 @@
 import { useQuery } from '@apollo/client'
+import { makeStyles, Theme } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
@@ -24,10 +25,20 @@ type ConfigurableProductAddToCartProps = {
   name: string
 }
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    button: {
+      marginTop: theme.spacings.sm,
+      width: '100%',
+    },
+  }),
+  { name: 'ConfigurableAddToCart' },
+)
+
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
   const { name, variables, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
-  const classes = useFormStyles()
+  const classes = useStyles()
 
   const requestCartId = useRequestCartId()
   const form = useFormGqlMutation(ConfigurableProductAddToCartDocument, {
@@ -52,7 +63,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
+    <form onSubmit={submitHandler} noValidate>
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
@@ -63,29 +74,29 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
 
       <ApolloErrorAlert error={error} />
 
-      <div className={classes.actions}>
-        <TextInputNumber
-          variant='outlined'
-          error={formState.isSubmitted && !!formState.errors.quantity}
-          label='Quantity'
-          required={required.quantity}
-          inputProps={{ min: 1 }}
-          {...muiRegister('quantity', { required: required.quantity })}
-          helperText={formState.isSubmitted && formState.errors.quantity?.message}
-          // disabled={loading}
-          size='small'
-        />
+      <TextInputNumber
+        variant='outlined'
+        error={formState.isSubmitted && !!formState.errors.quantity}
+        label='Quantity'
+        required={required.quantity}
+        inputProps={{ min: 1 }}
+        {...muiRegister('quantity', { required: required.quantity })}
+        helperText={formState.isSubmitted && formState.errors.quantity?.message}
+        // disabled={loading}
+        size='small'
+      />
 
-        <Button
-          type='submit'
-          loading={formState.isSubmitting}
-          color='primary'
-          variant='contained'
-          {...buttonProps}
-        >
-          Add to Cart
-        </Button>
-      </div>
+      <Button
+        type='submit'
+        loading={formState.isSubmitting}
+        color='primary'
+        variant='pill'
+        size='large'
+        classes={{ root: classes.button }}
+        {...buttonProps}
+      >
+        Add to Cart
+      </Button>
 
       <MessageSnackbar
         open={formState.isSubmitSuccessful && !error?.message}
