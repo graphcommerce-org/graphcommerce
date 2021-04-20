@@ -1,7 +1,6 @@
 import { NextComponentType, NextPageContext } from 'next'
 import { NextRouter } from 'next/router'
-import React, { ComponentType, PropsWithChildren } from 'react'
-import { SetRequired } from 'type-fest'
+import React from 'react'
 
 /**
  * Default (no overlay):
