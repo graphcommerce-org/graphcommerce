@@ -1,17 +1,19 @@
+import {
+  useElementScroll,
+  useIsomorphicLayoutEffect,
+  useMotionValueValue,
+  Styled,
+  clientSize,
+} from '@reachdigital/framer-utils'
 import clsx from 'clsx'
 import { m, MotionValue, PanInfo, useMotionValue, useTransform } from 'framer-motion'
 import React, { useRef } from 'react'
 import { INERTIA_ANIM, SPRING_ANIM } from '../animation'
-import useElementScroll from '../hooks/useElementScroll'
-import useIsomorphicLayoutEffect from '../hooks/useIsomorphicLayoutEffect'
-import useMotionValueValue from '../hooks/useMotionValueValue'
 import useSheetContext from '../hooks/useSheetContext'
 import useSnapPointVariants from '../hooks/useSnapPointVariants'
 import { SheetVariant } from '../types'
 import { nearestSnapPointIndex } from '../utils/snapPoint'
-import { Styled } from '../utils/styled'
 import variantSizeCss from '../utils/variantSizeCss'
-import windowSize from '../utils/windowSize'
 
 type Styles = 'dragHandle' | 'content'
 export type SheetPanelClasskey = Styles | `${Styles}${SheetVariant}` | 'back' | 'forward'
@@ -56,7 +58,6 @@ export default function SheetPanel(props: SheetPanelProps) {
     controls,
     variant,
     variantSize,
-    containerRef,
     onSnap,
     onSnapEnd,
   } = useSheetContext()
@@ -107,10 +108,9 @@ export default function SheetPanel(props: SheetPanelProps) {
         drag={axis}
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
-        dragConstraints={containerRef}
         transition={SPRING_ANIM}
         variants={{
-          closed: () => ({ [axis]: windowSize[axis].get() * sign }),
+          closed: () => ({ [axis]: clientSize[axis].get() * sign }),
           ...useSnapPointVariants(),
         }}
         initial='closed'
@@ -139,7 +139,6 @@ export default function SheetPanel(props: SheetPanelProps) {
         drag={(axis !== 'y' || canDrag) && axis}
         onDragEnd={onDragEnd}
         dragTransition={INERTIA_ANIM}
-        dragConstraints={containerRef}
         transition={SPRING_ANIM}
         ref={contentRef}
         className={clsx(classes?.content, classes?.[`content${variant}`])}

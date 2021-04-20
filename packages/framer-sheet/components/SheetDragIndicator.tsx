@@ -1,9 +1,9 @@
+import { Styled } from '@reachdigital/framer-utils'
 import clsx from 'clsx'
 import { m, MotionValue, useSpring, useTransform, useVelocity } from 'framer-motion'
 import { SPRING_ANIM } from '../animation'
 import useSheetContext from '../hooks/useSheetContext'
 import { SheetVariant } from '../types'
-import { Styled } from '../utils/styled'
 
 type Styles = 'indicatorRoot' | 'indicator'
 export type SheetDragIndicatorClassKeys = Styles | `${Styles}${SheetVariant}`

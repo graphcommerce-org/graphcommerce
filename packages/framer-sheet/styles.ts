@@ -1,8 +1,8 @@
+import { Styles } from '@reachdigital/framer-utils'
 import { SheetBackdropClassKeys } from './components/SheetBackdrop'
 import { SheetContainerClassKeys } from './components/SheetContainer'
 import { SheetDragIndicatorClassKeys } from './components/SheetDragIndicator'
 import { SheetPanelClasskey } from './components/SheetPanel'
-import { Styles } from './utils/styled'
 
 export type ClassKeys =
   | SheetDragIndicatorClassKeys

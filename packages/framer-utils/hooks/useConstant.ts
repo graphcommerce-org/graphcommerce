@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-export default function useConstant<T>(init: () => T) {
+export function useConstant<T>(init: () => T) {
   const ref = useRef<T | null>(null)
   if (ref.current === null) ref.current = init()
   return ref.current

@@ -11,7 +11,7 @@ export const snapPointToValue = (point: SnapPoint, contain: number, variant: She
   }
 
   if (point === 'closed') return -contain - 100
-  return Math.min(0, point < 0 ? point : -contain + point)
+  return Math.min(0, point < 0 ? point : -contain + Number(point))
 }
 
 export function nearestSnapPointIndex(

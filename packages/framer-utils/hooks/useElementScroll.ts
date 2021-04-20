@@ -1,7 +1,7 @@
 import { motionValue, MotionValue } from 'framer-motion'
 import { RefObject } from 'react'
-import useConstant from './useConstant'
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
+import { useConstant } from './useConstant'
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 interface ScrollMotionValues {
   x: MotionValue<number>
@@ -16,7 +16,7 @@ const setProgress = (offset: number, maxOffset: number, value: MotionValue) => {
   value.set(!offset || !maxOffset ? 0 : offset / maxOffset)
 }
 
-export default function useElementScroll(ref: RefObject<HTMLElement>): ScrollMotionValues {
+export function useElementScroll(ref: RefObject<HTMLElement>): ScrollMotionValues {
   const values = useConstant<ScrollMotionValues>(() => ({
     x: motionValue(0),
     y: motionValue(0),
