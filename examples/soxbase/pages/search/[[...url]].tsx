@@ -67,7 +67,7 @@ function SearchIndexPage(props: Props) {
 
       {products && products.items && products?.items?.length > 0 && (
         <Container maxWidth='xl'>
-          <CategoryDescription name={`Search results for ${search}`} />
+          <CategoryDescription name={`Results for '${search}'`} />
 
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={products?.sort_fields} />

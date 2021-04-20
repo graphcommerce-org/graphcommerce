@@ -16,6 +16,7 @@ const useStyles = makeStyles(
     },
     totalProducts: {
       minWidth: 'max-content',
+      color: theme.palette.grey[500],
       ...theme.typography.caption,
       paddingRight: 7,
     },
@@ -45,7 +46,7 @@ export default function SearchForm(props: SearchFormProps) {
 
   const muiRegister = useFormMuiRegister(form)
 
-  const submit = handleSubmit((formData) => router.push(`/search/${formData.search}`))
+  const submit = handleSubmit((formData) => router.replace(`/search/${formData.search}`))
   useFormAutoSubmit({ form, submit })
 
   const endAdornment = (
@@ -57,6 +58,10 @@ export default function SearchForm(props: SearchFormProps) {
       )}
       <Button
         onClick={() => {
+          reset({
+            search: '',
+          })
+
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
           router.replace(`/search`)
         }}

@@ -12,6 +12,8 @@ import React, { PropsWithChildren, useEffect, useRef, useState } from 'react'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     wrapper: {
+      display: 'flex',
+      justifyContent: 'center',
       height: 44,
       marginBottom: theme.spacings.sm,
       position: 'sticky',
