@@ -31,6 +31,9 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.sm,
       width: '100%',
     },
+    quantity: {
+      marginTop: theme.spacings.sm,
+    },
   }),
   { name: 'ConfigurableAddToCart' },
 )
@@ -84,6 +87,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         helperText={formState.isSubmitted && formState.errors.quantity?.message}
         // disabled={loading}
         size='small'
+        className={classes.quantity}
       />
 
       <Button
