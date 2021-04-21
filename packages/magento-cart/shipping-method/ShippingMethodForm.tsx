@@ -3,8 +3,8 @@ import { FormControl, FormHelperText } from '@material-ui/core'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller, useFormGqlMutation } from '@reachdigital/react-hook-form'
-import React, { useEffect } from 'react'
+import { Controller, useFormCompose, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import React from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import AvailableShippingMethod from './AvailableShippingMethod'
 import {
@@ -13,13 +13,10 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-type ShippingMethodFormProps = {
-  doSubmit: React.MutableRefObject<(() => Promise<boolean>) | undefined>
-}
+type ShippingMethodFormProps = Record<string, never>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const classes = useFormStyles()
-  const { doSubmit } = props
   const { data: cartQuery } = useQuery(ClientCartDocument)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
@@ -39,17 +36,11 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   })
 
   const { handleSubmit, control, setValue, register, formState, required, error } = form
-  const submitHandler = handleSubmit(() => {})
-
-  // todo: Move this to a validateAndSubmit method or something?
-  useEffect(() => {
-    doSubmit.current = async () => submitHandler().then(() => true)
-  }, [doSubmit, formState.isValid, submitHandler])
-
-  if (!currentAddress) return null
+  const submit = handleSubmit(() => {})
+  useFormCompose({ form, name: 'ShippingMethodForm', submit })
 
   return (
-    <form onSubmit={submitHandler} noValidate className={classes.form}>
+    <form onSubmit={submit} noValidate className={classes.form}>
       <input
         type='hidden'
         {...register('carrier', { required: required.carrier })}
@@ -77,7 +68,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
 
                   // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
                   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  submitHandler()
+                  submit()
                 }}
                 onBlur={onBlur}
                 value={value}
@@ -85,7 +76,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                 defaultValue={carrierMethod}
                 exclusive
               >
-                {currentAddress.available_shipping_methods?.map((m) => {
+                {currentAddress?.available_shipping_methods?.map((m) => {
                   if (!m) return null
                   const code = `${m?.carrier_code}-${m?.method_code}`
                   return (

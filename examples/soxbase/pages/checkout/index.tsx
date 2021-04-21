@@ -18,8 +18,13 @@ import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import {
+  ComposedForm,
+  ComposedController,
+  ComposedSubmitRenderComponentProps,
+} from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
-import React, { useRef } from 'react'
+import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
@@ -37,24 +42,31 @@ const useStyles = makeStyles(
   { name: 'ShippingPage' },
 )
 
+function SubmitButton({ formState, submit }: ComposedSubmitRenderComponentProps) {
+  const router = useRouter()
+
+  return (
+    <Button
+      type='submit'
+      color='secondary'
+      variant='pill'
+      size='large'
+      loading={formState.isSubmitting || formState.isSubmitSuccessful}
+      onClick={() => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        submit().then(() => router.push('/checkout/payment'))
+      }}
+    >
+      Next <ArrowForwardIos fontSize='inherit' />
+    </Button>
+  )
+}
+
 function ShippingPage({ countries }: Props) {
   const formClasses = useFormStyles()
   const classes = useStyles()
-  const router = useRouter()
-  const addressForm = useRef<() => Promise<boolean>>()
-  const methodForm = useRef<() => Promise<boolean>>()
   const { data: cartData } = useQuery(ClientCartDocument, { ssr: false })
   const cartExists = typeof cartData?.cart !== 'undefined'
-
-  const forceSubmit = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      if (!addressForm.current || !methodForm.current) return
-      await Promise.all([addressForm.current(), methodForm.current()])
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('checkout/payment')
-    })()
-  }
 
   return (
     <Container maxWidth='md'>
@@ -63,7 +75,7 @@ function ShippingPage({ countries }: Props) {
         {!cartExists && <EmptyCart />}
 
         {cartExists && (
-          <>
+          <ComposedForm>
             <CheckoutStepper steps={3} currentStep={2} />
 
             <IconTitle
@@ -74,25 +86,17 @@ function ShippingPage({ countries }: Props) {
             />
 
             <EmailForm />
-            <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+            <ShippingAddressForm countries={countries} />
 
             <Typography variant='h5' className={classes.heading}>
               Shipping method
             </Typography>
-            <ShippingMethodForm doSubmit={methodForm} />
+            <ShippingMethodForm />
 
             <div className={formClasses.actions}>
-              <Button
-                type='submit'
-                color='secondary'
-                variant='pill'
-                size='large'
-                onClick={forceSubmit}
-              >
-                Next <ArrowForwardIos fontSize='inherit' />
-              </Button>
+              <ComposedController RenderComponent={SubmitButton} />
             </div>
-          </>
+          </ComposedForm>
         )}
       </NoSsr>
     </Container>

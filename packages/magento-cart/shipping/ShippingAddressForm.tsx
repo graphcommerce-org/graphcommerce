@@ -13,6 +13,7 @@ import {
   useFormGqlMutation,
   useFormPersist,
   phonePattern,
+  useFormCompose,
 } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
@@ -20,12 +21,10 @@ import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
-type ShippingAddressFormProps = CountryRegionsQuery & {
-  doSubmit: React.MutableRefObject<(() => Promise<boolean>) | undefined>
-}
+type ShippingAddressFormProps = CountryRegionsQuery
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
-  const { countries, doSubmit } = props
+  const { countries } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useQuery(ClientCartDocument)
@@ -75,6 +74,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
+  useFormCompose({ form, name: 'ShippingAddressForm', submit })
 
   const autoSubmitting = useFormAutoSubmit({
     form,
@@ -83,12 +83,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   })
 
   const disableFields = formState.isSubmitting && !autoSubmitting
-
-  // todo: Move to a validateAndSubmit method or something?
-  useEffect(() => {
-    doSubmit.current = () =>
-      !formState.isDirty ? Promise.resolve(true) : submit().then(() => true)
-  }, [doSubmit, formState.isDirty, submit])
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>

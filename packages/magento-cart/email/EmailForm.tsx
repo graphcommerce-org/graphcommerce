@@ -8,7 +8,7 @@ import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { emailPattern } from '@reachdigital/react-hook-form'
+import { emailPattern, useFormCompose } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
@@ -52,6 +52,7 @@ export default function EmailForm() {
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
   const { formState, muiRegister, required, watch, error, getValues } = form
+  useFormCompose({ form, submit, name: 'EmailForm' })
 
   useEffect(() => {
     if (!cartData?.cart?.id) return

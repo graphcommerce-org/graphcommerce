@@ -40,6 +40,7 @@
     "@reachdigital/magento-store": "^0.1.0",
     "@reachdigital/next-config": "0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
+    "@reachdigital/react-hook-form": "^0.1.0",
     "apollo-cache-persist": "^0.1.1",
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
