@@ -2,6 +2,7 @@ import { mergeDeep } from '@apollo/client/utilities'
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
+import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import {
   ProductListCount,
   ProductListFilters,
@@ -18,7 +19,6 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-
 import {
   CategorySearchResult,
   NoSearchResults,
@@ -45,7 +45,7 @@ type RouteProps = { url: string[] }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
-function SearchIndexPage(props: Props) {
+function SearchResultPage(props: Props) {
   const { products, categories, params, filters, filterTypes } = props
   const productListClasses = useProductListStyles({ count: products?.items?.length ?? 0 })
   const search = params.url.split('/')[1]
@@ -53,11 +53,10 @@ function SearchIndexPage(props: Props) {
 
   return (
     <>
-      <PageMeta title='Search' metaDescription='Search results' metaRobots={['noindex']} />
+      <PageMeta title={search ? `Results for '${search}'` : 'Search'} metaRobots={['noindex']} />
 
       <Container maxWidth='sm'>
         <SearchForm totalResults={totalSearchResults} search={search} />
-
         {categories?.items?.map((category) => (
           <CategorySearchResult key={category?.url_path} search={search} {...category} />
         ))}
@@ -66,24 +65,26 @@ function SearchIndexPage(props: Props) {
       <SearchDivider />
 
       {products && products.items && products?.items?.length > 0 && (
-        <Container maxWidth='xl'>
-          <CategoryDescription name={`Results for '${search}'`} />
+        <ProductListParamsProvider value={params}>
+          <Container maxWidth='xl'>
+            <CategoryDescription name={`Results for '${search}'`} />
 
-          <ProductListFiltersContainer>
-            <ProductListSort sort_fields={products?.sort_fields} />
-            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
-          </ProductListFiltersContainer>
+            <ProductListFiltersContainer>
+              <ProductListSort sort_fields={products?.sort_fields} />
+              <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
+            </ProductListFiltersContainer>
 
-          <ProductListCount total_count={products?.total_count} />
+            <ProductListCount total_count={products?.total_count} />
 
-          <ProductListItems
-            items={products?.items}
-            className={productListClasses.productList}
-            loadingEager={1}
-          />
+            <ProductListItems
+              items={products?.items}
+              className={productListClasses.productList}
+              loadingEager={1}
+            />
 
-          <ProductListPagination page_info={products?.page_info} />
-        </Container>
+            <ProductListPagination page_info={products?.page_info} />
+          </Container>
+        </ProductListParamsProvider>
       )}
 
       {search && (!products || (products.items && products?.items?.length <= 0)) && (
@@ -93,12 +94,12 @@ function SearchIndexPage(props: Props) {
   )
 }
 
-SearchIndexPage.pageOptions = {
+SearchResultPage.pageOptions = {
   SharedComponent: FullPageShell,
   sharedKey: () => 'page',
 } as PageOptions
 
-export default SearchIndexPage
+export default SearchResultPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   // Disable getStaticPaths while in development mode

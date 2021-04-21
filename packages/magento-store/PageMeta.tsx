@@ -18,7 +18,7 @@ type MetaRobotsAll = ['all' | 'none']
 
 export type PageMetaProps = {
   title: string
-  metaDescription: string
+  metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
 }
 
@@ -40,7 +40,7 @@ export default function PageMeta(props: PageMetaProps) {
   return (
     <Head>
       <title>{pageTitle}</title>
-      <meta name='description' content={metaDescription} />
+      {metaDescription && <meta name='description' content={metaDescription} />}
       <meta name='robots' content={metaRobots.join(',')} />
     </Head>
   )
