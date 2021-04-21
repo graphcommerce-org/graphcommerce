@@ -5,7 +5,6 @@ import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
@@ -98,7 +97,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         classes={{ root: classes.button }}
         {...buttonProps}
       >
-        <strong>Add to Cart</strong>
+        Add to Cart
       </Button>
 
       <MessageSnackbar

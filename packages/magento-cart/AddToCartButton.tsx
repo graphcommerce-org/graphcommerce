@@ -70,7 +70,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         size='large'
         {...buttonProps}
       >
-        <strong>Add to Cart</strong>
+        Add to Cart
       </Button>
 
       <ApolloErrorAlert error={error} />
