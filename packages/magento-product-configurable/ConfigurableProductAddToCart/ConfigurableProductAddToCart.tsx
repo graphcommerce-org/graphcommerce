@@ -80,7 +80,6 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       <TextInputNumber
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}
-        label='Quantity'
         required={required.quantity}
         inputProps={{ min: 1 }}
         {...muiRegister('quantity', { required: required.quantity })}
@@ -99,7 +98,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         classes={{ root: classes.button }}
         {...buttonProps}
       >
-        Add to Cart
+        <strong>Add to Cart</strong>
       </Button>
 
       <MessageSnackbar

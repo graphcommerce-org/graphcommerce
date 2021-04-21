@@ -53,7 +53,6 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
       <TextInputNumber
         variant='outlined'
         error={formState.isSubmitted && !!formState.errors.quantity}
-        label='Quantity'
         required={required.quantity}
         inputProps={{ min: 1 }}
         {...muiRegister('quantity' as Path<V>, { required: required.quantity })}
@@ -71,7 +70,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         size='large'
         {...buttonProps}
       >
-        Add to Cart
+        <strong>Add to Cart</strong>
       </Button>
 
       <ApolloErrorAlert error={error} />
