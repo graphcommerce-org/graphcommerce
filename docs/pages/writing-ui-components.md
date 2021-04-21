@@ -1,15 +1,14 @@
-# Writing extendable components
+# Writing UI Components
 
-- A component **must** expose a `classes` prop to allow for styling.
-- A component **should** merge and expose the `classes` prop of child
-  components.
-- A component **may** pass-though props of child components by using
-  `Pick<Component, 'prop'>`
-- A component **should not** pass-though all props of a child component
-- A component **must not** only be an assembly of other components without
+- A UI Component **must not** only be an assembly of other components without
   modifying the behavior / styles / layout of children.
+- A UI Component **must not** implement any GraphQL components
 
-## Component theming and layouts
+## Theming solution
+
+## UI Component theming and layouts
+
+- A UI Component **must** expose a `classes` prop to allow for style overrides
 
 For the users of components it’s vital that they are able to customize the theme
 and layout of a component.
@@ -41,7 +40,50 @@ function MyComponent(props: MyComponentProps) {
 }
 ```
 
-## Composing multiple components
+## UI Component styling
+
+- A UI Component **should** use a mobile first development strategy
+- A UI Component **should** use theme variables where possible
+
+```tsx
+const useStyles = makeStyles((theme: Theme) => ({
+  myComponentRoot: {
+    // We should use breakpoints.up() instead of breakpoints.down()
+    width: '100%',
+    padding: theme.spacings.sm,
+    marginBottom: theme.spacings.lg,
+    [theme.breakpoints.up('md')]: {
+      width: '400px',
+    },
+  },
+}))
+```
+
+## UI Component `responsiveVal` and `theme.spacings.\*`
+
+- A UI Component **may** use `responsiveVal` to have responsive pixelvalues
+- A UI Component **must not** use `responsiveVal` in breakpoints.
+- A UI Component **may** use `theme.spacings.*` to have responsive spacing
+- A UI Component **must not** use `theme.spacings.*` in breakpoints.
+
+```tsx
+const useStyles = makeStyles((theme: Theme) => ({
+  myComponentRoot: {
+    width: responsiveVal(280, 600),
+    marginBottom: theme.spacings.md,
+
+    [theme.breakpoints.up('md')]: {
+      width: responsiveVal(500, 1200), // This is not allowed, since we're in a breakpoint
+      marginBottom: theme.spacings.lg, // This is not allowed, since we're in a breakpoint
+    },
+  },
+}))
+```
+
+## Composing multiple UI Component
+
+- A UI Component **should** merge and expose the `classes` prop of child
+  components.
 
 If a component is composed of multiple other components we need to pass through
 all the available `classes` from the parent to the child.
@@ -96,6 +138,11 @@ function MyComponent() {
 ```
 
 ## Exposing props
+
+- A UI Component **may** pass-though props of child components by using
+  `Pick<Component, 'prop'>`
+- A UI Component **should not** pass-though all props of a child component,
+  since this makes the API very large.
 
 We of course are allowed to expose props of `<Button/>` like `variant` etc.
 
