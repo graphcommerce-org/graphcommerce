@@ -6,7 +6,7 @@ import {
   ImportDeclaration,
   ImportSource,
 } from '@graphql-codegen/visitor-plugin-common'
-import { FragmentDefinitionNode, buildASTSchema, GraphQLSchema } from 'graphql'
+import { FragmentDefinitionNode, buildASTSchema, GraphQLSchema, visit } from 'graphql'
 import { resolveDocumentImports, DocumentImportResolverOptions } from './resolve-document-imports'
 import { appendExtensionToFilePath, defineFilepathSubfolder } from './utils'
 
@@ -145,6 +145,23 @@ export type FragmentNameToFile = {
   }
 }
 
+function isFragment(documentFile: Types.DocumentFile) {
+  let name = false
+
+  visit(documentFile.document!, {
+    enter: {
+      FragmentDefinition: () => {
+        name = true
+      },
+    },
+  })
+  return name
+}
+
+function isDocument(documentFiles: Types.DocumentFile[]) {
+  return !documentFiles.every(isFragment)
+}
+
 export const preset: Types.OutputPreset<NearOperationFileConfig> = {
   buildGeneratesSection: (options) => {
     const schemaObject: GraphQLSchema = options.schemaAst
@@ -187,7 +204,7 @@ export const preset: Types.OutputPreset<NearOperationFileConfig> = {
     })
 
     return sources.map<Types.GenerateOptions>(
-      ({ importStatements, externalFragments, fragmentImports, ...source }) => {
+      ({ importStatements, externalFragments, fragmentImports, documents, ...source }) => {
         let fragmentImportsArr = fragmentImports
 
         if (importAllFragmentsFrom) {
@@ -204,12 +221,22 @@ export const preset: Types.OutputPreset<NearOperationFileConfig> = {
           })
         }
 
+        const isDoc = isDocument(documents)
+        const isRelayOptimizer = !!Object.keys(pluginMap).find((plugin) =>
+          plugin.includes('relay-optimizer-plugin'),
+        )
+
         const plugins = [
           // TODO/NOTE I made globalNamespace include schema types - is that correct?
           ...(options.config.globalNamespace
             ? []
             : importStatements.map((importStatement) => ({ add: { content: importStatement } }))),
-          ...options.plugins,
+          ...options.plugins.filter(
+            (pluginOptions) =>
+              !isRelayOptimizer ||
+              isDoc ||
+              !Object.keys(pluginOptions).includes('typed-document-node'),
+          ),
         ]
         const config = {
           ...options.config,
@@ -223,6 +250,7 @@ export const preset: Types.OutputPreset<NearOperationFileConfig> = {
 
         return {
           ...source,
+          documents,
           plugins,
           pluginMap,
           config,
