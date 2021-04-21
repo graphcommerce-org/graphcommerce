@@ -1,5 +1,4 @@
-import { Container, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Container, Theme, makeStyles } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { RowBlogContentFragment } from './RowBlogContent.gql'
 

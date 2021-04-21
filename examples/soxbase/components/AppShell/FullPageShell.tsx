@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { IconButton, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { IconButton, Theme, makeStyles } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import SearchButton from '@reachdigital/magento-search/SearchButton'

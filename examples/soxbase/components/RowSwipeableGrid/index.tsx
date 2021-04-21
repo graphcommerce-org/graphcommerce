@@ -1,5 +1,4 @@
-import { Theme, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Theme, Typography, makeStyles } from '@material-ui/core'
 import { ProductListItemsFragment } from '@reachdigital/magento-product-types/ProductListItems.gql'
 import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'

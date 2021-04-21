@@ -1,5 +1,4 @@
-import { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Theme, makeStyles } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import PageLink from 'next/link'
 import React from 'react'
