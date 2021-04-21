@@ -2,11 +2,11 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
   ...ProductListItem
   configurable_options {
     attribute_code
-    id
+    uid
     label
     values {
       store_label
-      value_index
+      uid
       swatch_data {
         ...SwatchData
       }

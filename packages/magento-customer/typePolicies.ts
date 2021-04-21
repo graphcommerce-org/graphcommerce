@@ -1,5 +1,6 @@
-import { TypePolicies, FieldPolicy, FieldReadFunction } from '@apollo/client'
+import { FieldPolicy, FieldReadFunction } from '@apollo/client'
 import { CustomerToken, Mutation, Query } from '@reachdigital/magento-graphql'
+import type { TypedTypePolicies } from '@reachdigital/magento-graphql/TypedTypePolicies'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 
@@ -73,13 +74,10 @@ const customer: FieldReadFunction<Query['customer']> = (incoming, options) => {
   return incoming
 }
 
-const typePolicies: TypePolicies = {
+const typePolicies: TypedTypePolicies = {
   Query: { fields: { customer } },
   Mutation: { fields: { generateCustomerToken, revokeCustomerToken, createCustomer } },
-  Customer: { keyFields: (object) => object.__typename },
-  CustomerToken: { keyFields: (object) => object.__typename, fields: { valid } },
-  ProductReviews: { keyFields: (object) => object.__typename },
-  CustomerOrders: { keyFields: (object) => object.__typename },
+  CustomerToken: { fields: { valid } },
 }
 
 export default typePolicies

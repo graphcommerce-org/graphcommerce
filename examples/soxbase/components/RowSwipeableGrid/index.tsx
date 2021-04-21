@@ -36,7 +36,7 @@ export default function RowSwipeableGrid(props: RowProductRelatedProps) {
       {items.map((item) =>
         item ? (
           <RenderType
-            key={item.id ?? ''}
+            key={item.uid ?? ''}
             renderer={renderers}
             {...item}
             classes={{ item: classes.item }}

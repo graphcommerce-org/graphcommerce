@@ -1,5 +1,6 @@
 import { FieldPolicy, TypePolicies } from '@apollo/client'
 import { Mutation } from '@reachdigital/magento-graphql'
+import type { TypedTypePolicies } from '@reachdigital/magento-graphql/TypedTypePolicies'
 import { ClientCartDocument } from './ClientCart.gql'
 
 /** When an empty cart is created, we store the cartId separately */
@@ -31,6 +32,7 @@ const createEmptyCart: FieldPolicy<Mutation['createEmptyCart']> = {
           available_payment_methods: [],
           applied_coupons: [],
           selected_payment_method: null,
+          billing_address: null,
         },
       },
     })
@@ -39,13 +41,9 @@ const createEmptyCart: FieldPolicy<Mutation['createEmptyCart']> = {
   },
 }
 
-const typePolicies: TypePolicies = {
+const typePolicies: TypedTypePolicies = {
   Mutation: { fields: { createEmptyCart } },
   Cart: {
-    // Always have a single cart
-    keyFields: (object) => object.__typename,
-
-    // Always use the incoming data when a new cart is loaded
     fields: { items: { merge: (_, incoming) => incoming } },
   },
 }

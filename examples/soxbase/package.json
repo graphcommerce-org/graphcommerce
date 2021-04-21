@@ -26,6 +26,7 @@
     "@reachdigital/magento-category": "^0.1.0",
     "@reachdigital/magento-cms": "^0.1.0",
     "@reachdigital/magento-customer": "^0.1.0",
+    "@reachdigital/magento-graphql": "^0.1.0",
     "@reachdigital/magento-payment-braintree": "^0.1.0",
     "@reachdigital/magento-payment-klarna": "^0.1.0",
     "@reachdigital/magento-product": "^0.1.0",

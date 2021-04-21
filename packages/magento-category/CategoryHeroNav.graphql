@@ -3,7 +3,7 @@ fragment CategoryHeroNav on CategoryTree {
   is_anchor
   name
   children {
-    id
+    uid
     url_path
     name
   }

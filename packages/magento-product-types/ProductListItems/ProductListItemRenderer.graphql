@@ -1,5 +1,5 @@
 fragment ProductListItemRenderer on ProductInterface {
-  id
+  uid
   __typename
   ...ProductListItem
   ...ProductListItemBundle

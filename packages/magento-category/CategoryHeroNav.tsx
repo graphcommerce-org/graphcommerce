@@ -73,7 +73,7 @@ export default function CategoryHeroNav({ children, name, asset }: CategoryHeroN
           {name}
         </Typography>
         {children?.map((category) => {
-          if (!category?.url_path || !category.id || !category.name) return null
+          if (!category?.url_path || !category.uid || !category.name) return null
           return (
             <CategoryLink
               underline='none'
@@ -81,7 +81,7 @@ export default function CategoryHeroNav({ children, name, asset }: CategoryHeroN
               url={category.url_path}
               filters={{}}
               sort={{}}
-              key={category.id}
+              key={category.uid}
             >
               <Typography variant='h4' component='span'>
                 {category.name}

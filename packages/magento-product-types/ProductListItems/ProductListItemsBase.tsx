@@ -36,7 +36,7 @@ export default function ProductListItemsBase(props: ProductItemsGridProps) {
       {items?.map((item, idx) =>
         item ? (
           <RenderType
-            key={item.id ?? ''}
+            key={item.uid ?? ''}
             renderer={renderers}
             {...item}
             imageProps={{ loading: loadingEager > idx ? 'eager' : 'lazy' }}
