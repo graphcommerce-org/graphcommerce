@@ -10,22 +10,11 @@ General
   - If the answer is yes, the component should be split up and data should be
     given via props
 
-GraphQL
-
-- Every GraphQL fragment has a component (Money.gql + Money.tsx)
-- Fragments are as tiny as the fragment you write, they prevent you from making
-  up new props. Encouraging us to reuse code.
-- Queries never have a component
-- Preferably fetch as much as you can in a single query, because of caching
-
 Styling
 
 - Material UI is used mainly because of their amount of research, accessability
   features, and theming functionality
 - CSS-in-JavaScript (JSS) solution
-- Styles are declared mobile first
-  - e.g. always use `theme.breakpoints.up` instead of theme.breakpoints.down
-- Use `responsiveVal` for margins, paddings, etc
 
 Framer Motion
 
