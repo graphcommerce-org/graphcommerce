@@ -1,5 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
+import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
@@ -39,11 +40,11 @@ export type SectionHeaderProps = {
   labelLeft: React.ReactNode
   labelRight?: React.ReactNode
   usePadding?: boolean
-}
+} & UseStyles<typeof useStyles>
 
 export default function SectionHeader(props: SectionHeaderProps) {
   const { labelLeft, labelRight, usePadding } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <div

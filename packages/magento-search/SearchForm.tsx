@@ -11,7 +11,6 @@ const useStyles = makeStyles(
     totalProducts: {
       minWidth: 'max-content',
       color: theme.palette.grey[500],
-      ...theme.typography.caption,
       paddingRight: 7,
     },
   }),

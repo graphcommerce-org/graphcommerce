@@ -1,5 +1,6 @@
 import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
 import ProductReview, { ProductReviewProps } from '@reachdigital/magento-product/ProductReview'
+import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import React from 'react'
 import { RowProductReviewsFragment } from './RowProductReviews.gql'
 
@@ -14,9 +15,7 @@ const useStyles = makeStyles(
         maxWidth: 800,
       },
     },
-    title: {
-      ...theme.typography.caption,
-      borderBottom: `1px solid ${theme.palette.divider}`,
+    labelContainer: {
       paddingBottom: theme.spacings.sm,
     },
   }),
@@ -33,9 +32,7 @@ export default function RowProductReviews(props: RowProductReviewProps) {
 
   return (
     <Container className={classes.container}>
-      <Typography variant='h3' className={classes.title}>
-        {title}
-      </Typography>
+      <SectionHeader labelLeft={title} classes={{ labelContainer: classes.labelContainer }} />
       <ProductReview reviews={reviews} />
     </Container>
   )

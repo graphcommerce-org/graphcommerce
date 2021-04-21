@@ -1,5 +1,6 @@
 import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ProductSpecs, ProductSpecsProps } from '@reachdigital/magento-product'
+import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -7,9 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: `${theme.spacings.xl}`,
     ...theme.typography.body1,
   },
-  title: {
-    ...theme.typography.caption,
-    borderBottom: `1px solid ${theme.palette.divider}`,
+  labelContainer: {
     marginBottom: theme.spacings.sm,
     paddingBottom: theme.spacings.sm,
   },
@@ -31,9 +30,11 @@ export default function RowProductSpecs(props: RowProductSpecsProps) {
 
   return (
     <Container className={classes.root}>
-      <Typography variant='h3' className={classes.title}>
-        Product specifications
-      </Typography>
+      <SectionHeader
+        labelLeft='Product specifications'
+        classes={{ labelContainer: classes.labelContainer }}
+      />
+
       <div className={classes.specs}>
         <ProductSpecs aggregations={aggregations} />
       </div>
