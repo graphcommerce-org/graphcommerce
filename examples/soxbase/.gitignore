@@ -21,3 +21,6 @@ yarn-error.log*
 **/public/sw.js
 **/public/sitemap*.xml
 **/public/robots.txt
+
+generated/
+*.gql.ts
