@@ -9,8 +9,8 @@ import {
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+
 import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'

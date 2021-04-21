@@ -1,14 +1,29 @@
-import { Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
 type CategoryDescriptionProps = CategoryDescriptionFragment & JSX.IntrinsicElements['div']
 
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      gridArea: 'description',
+      margin: '0 auto',
+      textAlign: 'center',
+      maxWidth: 732,
+      marginTop: theme.spacings.md,
+      marginBottom: theme.spacings.sm,
+    },
+  }),
+  { name: 'CategoryDescription' },
+)
+
 export default function CategoryDescription(props: CategoryDescriptionProps) {
   const { name, description, display_mode, ...divProps } = props
+  const classes = useStyles(props)
 
   return (
-    <div {...divProps}>
+    <div {...divProps} className={classes.root}>
       <Typography variant='h2' component='h1' align='center'>
         {name}
       </Typography>

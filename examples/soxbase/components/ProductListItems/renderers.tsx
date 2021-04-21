@@ -1,3 +1,4 @@
+import { ProductListItemProps } from '@reachdigital/magento-product'
 import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
 import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
 import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
@@ -5,7 +6,6 @@ import ProductListItemGrouped from '@reachdigital/magento-product-grouped/Produc
 import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductListItemSimple'
 import { ProductListItemRendererFragment } from '@reachdigital/magento-product-types/ProductListItems/ProductListItemRenderer.gql'
 import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
-import { ProductListItemProps } from '@reachdigital/magento-product/ProductListItem'
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import React from 'react'
 import Subtitle from '../ProductListItem/Subtitle'

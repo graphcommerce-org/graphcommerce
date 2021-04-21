@@ -1,5 +1,5 @@
-import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
-import ProductSpecs, { ProductSpecsProps } from '@reachdigital/magento-product/ProductSpecs'
+import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { ProductSpecs, ProductSpecsProps } from '@reachdigital/magento-product'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({

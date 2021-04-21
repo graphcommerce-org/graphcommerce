@@ -1,6 +1,6 @@
 import { Badge, makeStyles, Theme } from '@material-ui/core'
-import { useProductLink } from '@reachdigital/magento-product/ProductLink'
-import Money from '@reachdigital/magento-store/Money'
+import { useProductLink } from '@reachdigital/magento-product'
+import { Money } from '@reachdigital/magento-store'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

@@ -1,7 +1,7 @@
 import { Box, makeStyles, Theme, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+
 import FramerNextPagesSlider from '@reachdigital/next-ui/FramerNextPagesSlider'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

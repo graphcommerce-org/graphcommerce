@@ -62,13 +62,6 @@ export const defaultTheme = createMuiTheme({
       fontSize: responsiveVal(15, 18),
       lineHeight: 1.8,
     },
-    caption: {
-      color: 'rgba(0,0,0,0.4)',
-      fontSize: responsiveVal(14, 18),
-      fontWeight: 400,
-      letterSpacing: '0.025em',
-      lineHeight: 1.55,
-    },
     h1: {
       fontSize: responsiveVal(36, 74),
       fontWeight: 600,

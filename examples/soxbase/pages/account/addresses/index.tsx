@@ -7,8 +7,8 @@ import {
 } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import AccountAddresses from '@reachdigital/magento-customer/AccountAddresses'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'

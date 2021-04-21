@@ -5,7 +5,7 @@ import SliderContainer from '@reachdigital/next-ui/FramerSlider/SliderContainer'
 import { SliderContext } from '@reachdigital/next-ui/FramerSlider/SliderContext'
 import SliderScroller from '@reachdigital/next-ui/FramerSlider/SliderScroller'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
-import React, { useState } from 'react'
+import React from 'react'
 import { CategoryChildrenFragment } from './CategoryChildren.gql'
 import CategoryLink from './CategoryLink'
 
@@ -14,6 +14,7 @@ const useStyles = makeStyles(
     container: {
       display: 'flex',
       justifyContent: 'center',
+      marginBottom: theme.spacings.sm,
     },
     scroller: {},
     link: {

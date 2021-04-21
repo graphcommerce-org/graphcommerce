@@ -1,9 +1,10 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
-import ProductListItem, {
+import {
+  ProductListItem,
   OverlayAreaKeys,
   ProductListItemProps,
-} from '@reachdigital/magento-product/ProductListItem'
+} from '@reachdigital/magento-product'
 import { isFilterTypeEqual } from '@reachdigital/magento-product/ProductListItems/filterTypes'
 import React, { useState } from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'

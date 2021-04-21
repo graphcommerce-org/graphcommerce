@@ -4,7 +4,6 @@ import { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   description: {
-    gridArea: 'description',
     '& p:first-of-type': {
       marginTop: 0,
     },

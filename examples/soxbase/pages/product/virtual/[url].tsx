@@ -10,7 +10,7 @@ import productPageCategory from '@reachdigital/magento-product/ProductPageCatego
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
