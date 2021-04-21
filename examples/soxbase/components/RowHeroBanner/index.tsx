@@ -1,5 +1,4 @@
-import { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Theme, makeStyles } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { m, useTransform, useViewportScroll } from 'framer-motion'

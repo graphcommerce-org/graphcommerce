@@ -3,22 +3,51 @@
 The GraphCommerce repo is split into multiple packages to achieve upgradability,
 customization and theming.
 
-### `examples/soxbase`:
+To keep technical debt to a minimum we only allow certain dependencies to be
+included for each package.
 
-Deze gehele folder vormt de basis voor élke nieuwe GraphCommerce gebaseerde
+## `examples/soxbase`:
+
+This folder forms the basis for _each_ new GraphCommerce based website.
+
+### Minimal code
+
+This folder _will_ be copied to a project and modified by developers to create
+the their website. Since this is a copy of the `examples/soxbase` folder it
+loses simple `git pull / yarn upgrade` automatic-upgrade possibilities when a
+new release of GraphCommerce is made.
+
+This means that when changes get made to the `examples/soxbase` folder, the
+release notes **must** contain upgrade instructions how to upgrade this folder.
+
+To minimize this, we want as little code as possible in this folder.
+
+### Maximum customizability
+
+The first instinct might be to move as much code to the packages as possible,
+but when doing that the developer is unable to 'compose' or 'assemble' a
 website.
 
-Deze folder wordt gekopieerd naar het project en gemodificeerd om het wenselijke
-thema voor elkaar te krijgen.
+### Disallowed methods
 
-Gezien dit een kopie is verliezen we de mogelijkheid om deze bestanden
-automatisch te upgraden als wij een nieuwe release van GraphCommerce maken.
+The methods are not allowed and should be integrated in components (see
+[Writing extendable components](./writing-extendable-components.md)):
 
-Dit betekent dat we altijd bij de release notes ‘thema upgrade’ instructies
-zullen moeten meesturen.
+- [`makeStyles`](https://material-ui.com/styles/api/#returns-3): styling should
+  go in components.
+- `useStyles` hooks created by `makeStyles`
+- [`useState` / etc](https://reactjs.org/docs/hooks-reference.html) should go in
+  components
+- `useMutation`
+- `useForm` / `useFormGqlMutation` / etc.
 
-Dit is uiteraard niet wenselijk, dus we willen zo min mogelijk code de
-`examples/soxbase` folder hebben vanuit dat perspectief.
+### Allowed methods
+
+- `useQuery(Document, { ssr: false })`
+- `useRouter().push` / `usePageRouter()`
+- custom hooks, depending on the hook
+
+### Working with the `examples/soxbase` folder
 
 Wat gaat dan wel in de soxbase folder?
 
@@ -36,14 +65,6 @@ de maintenance van dat component vermenigvuldigd wordt met het aantal
 installaties dat er zijn. Bijvoorbeeld:
 `100 installaties * 4 uur om te upgraden = 400 uur`
 
-- Geen `useStyles` gedefinieerd in de soxbase folder, maar alle components
-  moeten wel extendable zijn. Zie [Writing extendable components]()
-- Geen directe React hooks, dus geen `useState`, `useEffect`, `useRef`,
-  verplaatsen naar components (en niet naar hooks).
-- Geen `useMutation` / `useForm*`, dat hoort thuis in components.
-- Wel toegestaan `useQuery(Document, { ssr: false })`
-- Wel toegestaan `useRouter().push` / `usePageRouter()`
-- Geen voorkeur: custom hooks, maar is ok.
 - Pagina's moeten zo assembleerbaar mogelijk zijn. De 'blokken' welkje op de
   pagina ziet, zou je gemakkelijk moeten kunnen terug vinden in je pages-file.
 - Maak geen 'Assemblage'-components welke zelf niks doen en alleen een simpele
@@ -51,11 +72,27 @@ installaties dat er zijn. Bijvoorbeeld:
 
 ### `packages/magento-*`
 
-Default Magento compatible code.
+- **Must be** compatible with all Magento backends (for versions that we
+  support)
+- **Must not** include any code that isn't available on all platforms.
 
-Default Magento: Niet alle backends hebben dezelfde GraphQL API. Bijvoorbeeld na
-het installeren van een module komt er een extra API bij. Deze Magento packages
-_moeten_ op alle Magento installaties werken.
+Not all Magento installations have the same GraphQL API. After installing a
+module the GraphQL API can change. Pay extra close attention while developing to
+not include any backend specific code.
+
+### `packages/magento-product*`
+
+- `packages/magento-product` contains only generic product code, like listings,
+  etc.
+  - **must not** depend on `packages/magento-product-types`
+- `pacakges/magneto-product-${type}`: implements product type specific stuff.
+  - **must not** depend on `packages/magento-product-types`
+- `packages/magento-product-types`: implements all Magento Community product
+  types
+  - depends on `packages/magento-product`
+  - depends on `packages/magento-product-${type}`
+
+### `packages/magento-payment-*`
 
 ### `packages/ecommerce-ui`
 
@@ -120,124 +157,6 @@ UI generieke components, maar geen eCommerce specifieke components (bijv.
 - NO dependency `@material-ui/core`
 - Dependency `react-hook-form`
 - Dependency `graphql`
-
-## Writing extendable components
-
-A component SHOULD NOT only be an assembly of other components without modifying
-the behavior / styles / layout of children.
-
-### Component theming and layouts
-
-For the users of components it’s vital that they are able to customize the theme
-and layout of a component.
-
-A lot can be accomplished by modifying the CSS of a component, to make this
-possible we expose the `classes` property of a component. We’re following the
-Material UI guidelines in this ragard:
-https://material-ui.com/styles/advanced/#makestyles
-
-Below is a full typescript example:
-
-```tsx
-import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
-
-const useStyles = makeStyles((theme: Theme) => ({
-  myComponentRoot: {
-    //..your styles
-  },
-}))
-
-export type MyComponentProps = UseStyles<typeof useStyles> & {
-  children?: React.ReactNode
-}
-function MyComponent(props: MyComponentProps) {
-  const classes = useStyles(props)
-  return <div className={classes.myComponentRoot}>{children}</div>
-}
-```
-
-### Composing multiple components
-
-If a component is composed of multiple other components we need to pass through
-all the available `classes` from the parent to the child.
-
-Example that exposes the classes of `MyComponent`
-
-```tsx
-const useStyles = makeStyles((theme: Theme) => ({
-  myWrappingComponentRoot: {
-    //..your styles
-  },
-}))
-
-type MyWrappingComponentProps = UseStyles<typeof useStyles> & {
-  children?: React.ReactNode
-} & Pick<MyComponentProps, 'classes'>
-
-function MyWrappingComponent(props: MyWrappingComponentProps) {
-  const classes = useStyles(props)
-  return (
-    <div className={classes.myWrappingComponentRoot}>
-      <MyComponent classes={classes}>{children}</MyComponent>
-    </div>
-  )
-}
-```
-
-There however is an exception:
-
-### Global Styles: Styling deeply nested Button/TextField/Link/Badge/List/etc. components.
-
-To style these components, we use Material-UI’s global theming functionality:
-https://material-ui.com/customization/globals/#global-css
-
-As a component implementor, you therefor do not need to expose all button
-classes, for example:
-
-If the previous component uses the following renderer instead, we do not need to
-expose all button classes.
-
-```tsx
-function MyComponent() {
-  //...other stuff
-  return (
-    <div className={classes.myWrappingComponentRoot}>
-      <MyComponent classes={classes}>
-        <Button>{children}</Button>
-      </MyComponent>
-    </div>
-  )
-}
-```
-
-We of course are allowed to expose props of `<Button/>` like `variant` etc.
-
-```tsx
-// of course, also add all the UseStyles, etc, see above examples.
-type MyOtherComponentProps = Pick<ButtonProps, 'variant'>
-
-function MyOtherComponent({ variant }: MyOtherComponentProps) {
-  //...other stuff
-  return (
-    <div className={classes.myWrappingComponentRoot}>
-      <MyComponent classes={classes}>
-        <Button variant={variant}>{children}</Button>
-      </MyComponent>
-    </div>
-  )
-}
-```
-
-- Dit houd in dat na de release van GraphCommerce élke change in deze folder een
-  upgrade-instructie vereist in de nieuwe release notes.
-
--
-
-- Bevat de pagina assemblage.
-
-- Als we custom components of styles
--
 
 ##
 

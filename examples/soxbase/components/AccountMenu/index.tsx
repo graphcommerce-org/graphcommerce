@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import Skeleton from '@material-ui/lab/Skeleton'
 import { AccountMenuFragment } from '@reachdigital/magento-customer/AccountMenu/AccountMenu.gql'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'

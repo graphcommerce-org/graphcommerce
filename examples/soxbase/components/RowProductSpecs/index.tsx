@@ -1,5 +1,4 @@
-import { Container, Theme, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
 import ProductSpecs, { ProductSpecsProps } from '@reachdigital/magento-product/ProductSpecs'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 

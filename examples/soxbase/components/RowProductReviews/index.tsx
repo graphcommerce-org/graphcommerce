@@ -1,5 +1,4 @@
-import { Container, Theme, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
 import ProductReview, { ProductReviewProps } from '@reachdigital/magento-product/ProductReview'
 import React from 'react'
 import { RowProductReviewsFragment } from './RowProductReviews.gql'
