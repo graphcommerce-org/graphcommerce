@@ -1,33 +1,28 @@
-import { Button as MuiButton, ButtonClassKey as MuiButtonClassKey, Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import {
+  Button as MuiButton,
+  ButtonBaseProps,
+  ButtonClassKey as MuiButtonClassKey,
+  Theme,
+  makeStyles,
+} from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 
-type BaseButtonProps = Omit<Parameters<typeof MuiButton>['0'], 'variant' | 'classes'> & {
-  variant?: 'text' | 'outlined' | 'contained' | 'pill'
-}
+type Size = 'normal' | 'large'
+type Variant = 'contained' | 'pill' | 'outlined' | 'text'
+type Text = 'normal' | 'bold'
 
-type ButtonClassKey =
-  | 'pill'
-  | 'pillPrimary'
-  | 'pillSecondary'
-  | 'pillSizeLarge'
-  | 'pillSizeSmall'
-  | 'pillNoElevation'
-
-type ClassKeys = ButtonClassKey | MuiButtonClassKey
-
-export type ButtonProps = BaseButtonProps & {
-  classes?: { [index in ClassKeys]?: string }
+export type ButtonProps = {
   loading?: boolean
+  variant?: Variant
+  size?: Size
+  text?: Text
+  children: React.ReactNode
 }
 
-const useStyles = makeStyles<
-  Theme,
-  BaseButtonProps & { classes?: { [index in ButtonClassKey]?: string } },
-  ButtonClassKey
->(
+const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {},
     pill: {
       borderRadius: 40 / 2,
     },
@@ -49,31 +44,31 @@ const useStyles = makeStyles<
         boxShadow: 'none',
       },
     },
+    textBold: {
+      fontWeight: theme.typography.fontWeightBold,
+    },
   }),
   { name: 'MuiPillButton' },
 )
 
-export default React.forwardRef<any, ButtonProps>((props, ref) => {
-  const { classes = {}, ...baseProps } = props
-  const { variant, color, size, className, children, loading, disabled, ...buttonProps } = baseProps
+export default React.forwardRef<ButtonProps, any>((props, ref) => {
   const {
-    pill,
-    pillPrimary,
-    pillSecondary,
-    pillSizeLarge,
-    pillSizeSmall,
-    ...buttonClasses
-  } = classes
+    variant = 'contained',
+    size = 'normal',
+    color = 'default',
+    text = 'normal',
+    loading,
+    className,
+    children,
+    disabled,
+    ...buttonProps
+  } = props
 
-  const pillClasses = useStyles({
-    ...baseProps,
-    classes: { pill, pillPrimary, pillSecondary, pillSizeLarge, pillSizeSmall },
-  })
+  const classes = useStyles(props)
 
   return (
     <MuiButton
       {...buttonProps}
-      classes={buttonClasses}
       color={color}
       variant={variant === 'pill' ? 'contained' : variant}
       size={size}
@@ -81,12 +76,13 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
       disabled={loading || disabled}
       className={clsx(
         {
-          [pillClasses.pill]: variant === 'pill',
-          [pillClasses.pillPrimary]: variant === 'pill' && color === 'primary',
-          [pillClasses.pillSecondary]: variant === 'pill' && color === 'secondary',
-          [pillClasses.pillSizeLarge]: variant === 'pill' && size === 'large',
-          [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
-          [pillClasses.pillNoElevation]: buttonProps.disableElevation,
+          [classes.pill]: variant === 'pill',
+          [classes.pillPrimary]: variant === 'pill' && color === 'primary',
+          [classes.pillSecondary]: variant === 'pill' && color === 'secondary',
+          [classes.pillSizeLarge]: variant === 'pill' && size === 'large',
+          [classes.pillSizeSmall]: variant === 'pill' && size === 'small',
+          [classes.pillNoElevation]: buttonProps.disableElevation,
+          [classes.textBold]: text === 'bold',
         },
         className,
       )}

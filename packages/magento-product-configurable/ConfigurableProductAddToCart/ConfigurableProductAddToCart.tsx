@@ -99,6 +99,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         color='primary'
         variant='pill'
         size='large'
+        text='bold'
         classes={{ root: classes.button }}
         {...buttonProps}
       >
