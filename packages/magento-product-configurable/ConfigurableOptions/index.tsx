@@ -10,7 +10,6 @@ import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
-import clsx from 'clsx'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'
@@ -28,17 +27,22 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     borderBottom: {
       borderBottom: 'none',
+      padding: `${theme.spacings.xxs} 0`,
     },
     toggleButtonGroup: {
       display: 'grid',
       gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
-      gap: `calc(${theme.spacings.xxs} * 2)`,
+      gap: theme.spacings.xxs,
     },
     button: {
-      borderWidth: 2,
+      minHeight: theme.spacings.lg,
+      border: '2px solid transparent',
       backgroundColor: theme.palette.background.default,
+      borderRadius: 4,
+      boxShadow: `0px 0px 2px ${theme.palette.grey[400]}`,
       '&$selected': {
         border: `2px solid ${theme.palette.primary.main}`,
+        boxShadow: `unset`,
       },
     },
   }),
