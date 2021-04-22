@@ -1,7 +1,6 @@
 import { Types } from '@graphql-codegen/plugin-helpers'
 import {
   BaseVisitor,
-  buildScalars,
   FragmentImport,
   getConfigValue,
   getPossibleTypes,
@@ -9,6 +8,7 @@ import {
   ParsedConfig,
   RawConfig,
   ImportDeclaration,
+  buildScalarsFromConfig,
 } from '@graphql-codegen/visitor-plugin-common'
 import { DocumentNode, FragmentDefinitionNode, GraphQLSchema, Kind, print } from 'graphql'
 import { DocumentImportResolverOptions } from './resolve-document-imports'
@@ -41,7 +41,7 @@ export function buildFragmentRegistry(
   schemaObject: GraphQLSchema,
 ): FragmentRegistry {
   const baseVisitor = new BaseVisitor<RawConfig, NearOperationFileParsedConfig>(config, {
-    scalars: buildScalars(schemaObject, config.scalars),
+    scalars: buildScalarsFromConfig(schemaObject, config),
     dedupeOperationSuffix: getConfigValue(config.dedupeOperationSuffix, false),
     omitOperationSuffix: getConfigValue(config.omitOperationSuffix, false),
     fragmentVariablePrefix: getConfigValue(config.fragmentVariablePrefix, ''),
@@ -163,7 +163,7 @@ export default function buildFragmentResolver<T>(
         externalFragments.push({
           level,
           isExternal: true,
-          name: fragmentName as string,
+          name: fragmentName,
           onType: fragmentDetails.onType,
           node: fragmentDetails.node,
         })

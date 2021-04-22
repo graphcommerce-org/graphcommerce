@@ -1,0 +1,2 @@
+directive @injectable on FRAGMENT_DEFINITION
+directive @inject(into: [String!]!) on FRAGMENT_DEFINITION

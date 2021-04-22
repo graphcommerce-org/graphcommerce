@@ -1,0 +1,3 @@
+fragment InjectableFragment on StoreConfig @injectable {
+  store_code
+}
