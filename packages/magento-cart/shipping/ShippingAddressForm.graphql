@@ -6,7 +6,6 @@ mutation ShippingAddressForm(
   $postcode: String!
   $city: String!
   $countryCode: String!
-  $region: String
   $regionId: Int
   $street: String!
   $houseNumber: String!
@@ -27,7 +26,6 @@ mutation ShippingAddressForm(
             postcode: $postcode
             city: $city
             country_code: $countryCode
-            region: $region
             region_id: $regionId
             street: [$street, $houseNumber, $addition]
             telephone: $telephone

@@ -4,18 +4,17 @@ import { composedFormContext } from './context'
 import { ComposedFormContext } from './types'
 
 type Fields = 'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful' | 'isValid'
-const fields: Fields[] = ['isSubmitting', 'isSubmitted', 'isSubmitSuccessful', 'isValid']
 
 type CombinedFormState = Pick<FormState<FieldValues>, Fields>
 function extractFormState(forms: ComposedFormContext): CombinedFormState {
-  const entries = Object.entries(forms)
+  const formState = Object.entries(forms).map(([, { form }]) => form.formState)
 
-  return Object.fromEntries(
-    fields.map((field: keyof CombinedFormState) => [
-      field,
-      entries.some(([, { form }]) => form.formState[field]),
-    ]),
-  ) as CombinedFormState
+  return {
+    isSubmitting: formState.some(({ isSubmitting }) => isSubmitting),
+    isSubmitSuccessful: formState.every(({ isSubmitSuccessful }) => isSubmitSuccessful),
+    isSubmitted: formState.every(({ isSubmitted }) => isSubmitted),
+    isValid: formState.every(({ isValid }) => isValid),
+  }
 }
 
 export type ComposedSubmitRenderComponentProps = {
@@ -34,18 +33,17 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
   const [formState, setFormState] = useState(extractFormState(forms))
 
   const submit = async () => {
-    const state = extractFormState(forms)
-    const promises = Object.entries(forms).map(
-      ([, opts]) => opts.form.formState.isDirty && opts.submit(),
-    )
-    if (promises.every(Boolean)) return state.isSubmitSuccessful
+    const promises = Object.entries(forms).map(([, opts]) => opts.submit())
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    setFormState({ ...state, isSubmitting: true })
+    let formS = extractFormState(forms)
+    if (promises.every(Boolean)) return formS.isSubmitSuccessful
+
+    setFormState({ ...formS, isSubmitting: true })
     await Promise.allSettled(promises)
-    const newState = extractFormState(forms)
-    setFormState(newState)
-    return newState.isSubmitSuccessful
+
+    formS = extractFormState(forms)
+    setFormState(formS)
+    return formS.isSubmitSuccessful
   }
   return <Render formState={formState} submit={submit} />
 }

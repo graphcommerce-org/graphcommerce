@@ -54,7 +54,7 @@ function SubmitButton({ formState, submit }: ComposedSubmitRenderComponentProps)
       loading={formState.isSubmitting || formState.isSubmitSuccessful}
       onClick={() => {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        submit().then(() => router.push('/checkout/payment'))
+        submit().then((success) => success && router.push('/checkout/payment'))
       }}
     >
       Next <ArrowForwardIos fontSize='inherit' />

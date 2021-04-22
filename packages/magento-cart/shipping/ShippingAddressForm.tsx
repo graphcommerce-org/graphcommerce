@@ -16,7 +16,7 @@ import {
   useFormCompose,
 } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
 import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
@@ -51,7 +51,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       street: currentAddress?.street?.[0] ?? undefined,
       houseNumber: currentAddress?.street?.[1] ?? undefined,
       addition: currentAddress?.street?.[2] ?? undefined,
-      region: currentAddress?.region?.label,
       regionId: currentAddress?.region?.region_id,
       countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip
     },

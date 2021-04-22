@@ -85,6 +85,16 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                     </AvailableShippingMethod>
                   )
                 })}
+                {!currentAddress?.available_shipping_methods && (
+                  <AvailableShippingMethod
+                    available={false}
+                    carrier_code='none'
+                    carrier_title='No Shipping methods available'
+                    amount={{ value: 0, currency: 'EUR' }}
+                  >
+                    Please fill in your address to load shipping methods
+                  </AvailableShippingMethod>
+                )}
               </ToggleButtonGroup>
             )}
           />
