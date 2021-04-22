@@ -29,6 +29,4 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
       <ApolloErrorAlert error={error} />
     </form>
   )
-
-  return <>delete customer address</>
 }

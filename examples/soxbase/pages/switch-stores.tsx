@@ -1,4 +1,4 @@
-import { makeStyles, Theme, Typography, Container } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
   PageMeta,
@@ -8,6 +8,7 @@ import {
   StoreSwitcherListQuery,
 } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import SidePaneHeader from '@reachdigital/next-ui/SidePaneHeader'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
@@ -18,24 +19,13 @@ type RouteProps = { country?: string[] }
 type Props = StoreSwitcherListQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
-const useStyles = makeStyles((theme: Theme) => ({
-  title: {
-    textAlign: 'center',
-    padding: `${theme.spacings.md} 0`,
-  },
-}))
-
 function StoresIndexPage({ availableStores }: Props) {
   const { locale } = usePageRouter()
-  const classes = useStyles()
 
   return (
     <Container maxWidth='md'>
       <PageMeta title='Switch stores' metaDescription='Switch stores' metaRobots={['noindex']} />
-      <Typography variant='h2' component='h1' className={classes.title}>
-        Country
-      </Typography>
-
+      <SidePaneHeader>Country</SidePaneHeader>
       <StoreSwitcherList availableStores={availableStores} locale={locale} />
     </Container>
   )
