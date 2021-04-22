@@ -1,6 +1,7 @@
 import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
@@ -49,9 +50,6 @@ const useStyles = makeStyles(
         maxWidth: 'max-content',
       },
     },
-    topic: {
-      ...theme.typography.caption,
-    },
     url: {
       ...theme.typography.body2,
       [theme.breakpoints.up('md')]: {
@@ -89,11 +87,7 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
     <Container className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
-          {topic && (
-            <Typography variant='body2' className={classes.topic}>
-              {topic}
-            </Typography>
-          )}
+          {topic && <SectionHeader labelLeft={topic} />}
           <RichText classes={richTextOneClasses} {...copy} />
         </div>
         <div className={classes.asset}>

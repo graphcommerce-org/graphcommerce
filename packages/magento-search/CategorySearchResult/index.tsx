@@ -27,7 +27,6 @@ const useStyles = makeStyles(
     },
     totalProducts: {
       minWidth: 'max-content',
-      ...theme.typography.caption,
       paddingRight: 7,
     },
   }),

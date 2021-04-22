@@ -1,5 +1,6 @@
 import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
+import SectionHeader from '@reachdigital/next-ui/SectionHeader'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import PageLink from 'next/link'
 import Asset from '../Asset'
@@ -44,9 +45,6 @@ const useStyles = makeStyles(
       '& > *': {
         maxWidth: 'max-content',
       },
-    },
-    topic: {
-      ...theme.typography.caption,
     },
     url: {
       ...theme.typography.body2,
@@ -95,11 +93,7 @@ export default function RowSpecialBanner(props: RowSpecialBannerProps) {
         </div>
 
         <div className={classes.copy}>
-          {topic && (
-            <Typography variant='body2' className={classes.topic}>
-              {topic}
-            </Typography>
-          )}
+          {topic && <SectionHeader labelLeft={topic} />}
           <RichText classes={richTextOneClasses} {...copy} />
           {pageLinks &&
             pageLinks.map((pageLink) => (
