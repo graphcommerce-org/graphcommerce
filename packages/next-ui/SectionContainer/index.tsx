@@ -19,8 +19,6 @@ const useStyles = makeStyles(
     borderBottom: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
-    labelContainer: {},
-    labelContainerSidePadding: {},
     labelInnerContainer: {},
   }),
   { name: 'SectionContainer' },
@@ -35,7 +33,7 @@ export default function SectionContainer(props: SectionContainerProps) {
       <SectionHeader
         labelLeft={label}
         labelRight={endLabel}
-        classes={{ labelContainer: classes.sectionHeader }}
+        classes={{ labelInnerContainer: classes.labelInnerContainer }}
       />
       {children}
     </div>

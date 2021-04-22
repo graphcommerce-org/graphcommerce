@@ -18,6 +18,8 @@ export type ButtonProps = {
   size?: Size
   text?: Text
   children: React.ReactNode
+  disabled?: boolean
+  value?: string
 }
 
 const useStyles = makeStyles(
