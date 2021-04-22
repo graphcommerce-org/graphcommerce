@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Divider, makeStyles, Theme } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
@@ -26,6 +26,9 @@ type ConfigurableProductAddToCartProps = {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    form: {
+      width: '100%',
+    },
     button: {
       marginTop: theme.spacings.sm,
       width: '100%',
@@ -65,7 +68,9 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
       </Button>
     </PageLink>
   ) : (
-    <form onSubmit={submitHandler} noValidate>
+    <form onSubmit={submitHandler} noValidate className={classes.form}>
+      <Divider />
+
       <ConfigurableOptionsInput
         name='selectedOptions'
         sku={variables.sku}
