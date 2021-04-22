@@ -2,6 +2,7 @@ import { makeStyles, Theme } from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import PageLink from 'next/link'
+import iconChevronRight from './desktop_chevron_right.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -55,7 +56,7 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
           alt='desktop_chevron_right'
           width={24}
           height={24}
-          src='/icons/desktop_chevron_right.svg'
+          src={iconChevronRight}
           type='image/svg+xml'
         />
       }
