@@ -1,35 +1,19 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { ColumnOneStyles } from '@reachdigital/next-ui/Row/ColumnOne'
+import ColumnOneSpread from '@reachdigital/next-ui/Row/ColumnOneSpread'
 import React from 'react'
-import RowColumnOne, { RowColumnOneProps } from '.'
+import { RowColumnOneFragment } from './RowColumnOne.gql'
+import { ColumnOneContent } from '.'
 
-const useStyles = makeStyles(
-  ({ breakpoints }: Theme) => ({
-    root: {
-      [breakpoints.up('md')]: {
-        gridTemplateColumns: `1fr 1fr`,
-        gridTemplateAreas: `
-          "one one"
-        `,
-      },
-    },
-  }),
-  { name: 'RowColumnOneSpread' },
-)
+type RowColumnOneSpreadProps = RowColumnOneFragment & ColumnOneStyles
 
-const useRichTextOne = makeStyles(({ typography, spacings, breakpoints }: Theme) => ({
-  h2: typography.h4,
-  paragraph: {
-    [breakpoints.up('md')]: {
-      columnCount: 2,
-      columnGap: spacings.md,
-    },
-  },
-}))
+function RowColumnOneSpread(props: RowColumnOneSpreadProps) {
+  const { colOne } = props
 
-function RowColumnOneSpread(props: RowColumnOneProps) {
-  const classes = useStyles(props)
-  const richTextOneClasses = useRichTextOne(props)
-  return <RowColumnOne {...props} classes={classes} richTextOneClasses={richTextOneClasses} />
+  return (
+    <ColumnOneSpread
+      Content={(richTextProps) => <ColumnOneContent {...colOne} {...richTextProps} />}
+    />
+  )
 }
 
 export default RowColumnOneSpread
