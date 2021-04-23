@@ -7,8 +7,8 @@ import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductL
 import { ProductListItemRendererFragment } from '@reachdigital/magento-product-types/ProductListItems/ProductListItemRenderer.gql'
 import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import Subtitle from '@reachdigital/next-ui/Subtitle'
 import React from 'react'
-import Subtitle from '../ProductListItem/Subtitle'
 
 const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps> = {
   SimpleProduct: (props) => (
