@@ -1,8 +1,6 @@
-import { makeStyles, Container, Theme } from '@material-ui/core'
-import RichText from '@reachdigital/graphcms-ui/RichText'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { ColumnOneProps } from '../ColumnOne'
-import type { RowColumnOneProps } from '.'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -29,6 +27,7 @@ const useStyles = makeStyles(
 export default function ColumnOneCentered(props: ColumnOneProps) {
   const { children } = props
   const classes = useStyles(props)
+
   return (
     <Container>
       <div className={classes.wrapper}>{children}</div>

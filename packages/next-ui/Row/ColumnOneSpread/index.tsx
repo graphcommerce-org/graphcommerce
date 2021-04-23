@@ -28,19 +28,19 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ColumnOneSpreadProps = UseStyles<typeof useStyles> &
+export type ColumnOneSpreadProps = UseStyles<typeof useStyles & typeof useRichTextOne> &
   Omit<ContainerProps, 'children'> & {
-    Content: (props) => React.ReactElement
+    RichContent: (props) => React.ReactElement
   }
 
 function ColumnOneSpread(props: ColumnOneSpreadProps) {
-  const { Content } = props
+  const { RichContent } = props
   const classes = useStyles(props)
   const richTextOneClasses = useRichTextOne(props)
 
   return (
     <ColumnOne {...props} classes={classes}>
-      <Content classes={richTextOneClasses} {...props} />
+      <RichContent classes={richTextOneClasses} {...props} />
     </ColumnOne>
   )
 }

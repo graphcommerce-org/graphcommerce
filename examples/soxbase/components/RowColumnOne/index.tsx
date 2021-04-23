@@ -8,16 +8,6 @@ export type RowColumnOneProps = RowColumnOneFragment & {
   richTextOneClasses?: UseRichTextStyles['classes']
 } & ColumnOneStyles
 
-export function ColumnOneContent(
-  props: {
-    richTextOneClasses?: UseRichTextStyles['classes']
-  } & RowColumnOneFragment,
-) {
-  const { colOne, richTextOneClasses } = props
-
-  return <RichText {...colOne} classes={richTextOneClasses} />
-}
-
 export default function RowColumnOne(props: RowColumnOneProps) {
   const { colOne, richTextOneClasses } = props
 

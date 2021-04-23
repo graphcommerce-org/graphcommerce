@@ -33,13 +33,13 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
 }))
 
 export default function ColumnOneDoubleSpread(props: ColumnOneSpreadProps) {
-  const { Content } = props
+  const { RichContent } = props
   const classes = useStyles(props)
   const richTextOneClasses = useRichTextOne(props)
 
   return (
     <ColumnOne {...props} classes={classes}>
-      <Content classes={richTextOneClasses} {...props} />
+      <RichContent classes={richTextOneClasses} {...props} />
     </ColumnOne>
   )
 }

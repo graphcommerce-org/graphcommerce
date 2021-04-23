@@ -42,7 +42,7 @@ const useStyles = makeStyles(
     colTwo: { gridArea: 'two', zIndex: 2 },
     colThree: { gridArea: 'three', zIndex: 2 },
   }),
-  { name: 'RowColumnThree' },
+  { name: 'ColumnThree' },
 )
 
 export type ColumnThreeProps = UseStyles<typeof useStyles> &

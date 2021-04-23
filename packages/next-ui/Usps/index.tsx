@@ -1,7 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import Asset from '../Asset'
-import { UspsQueryFragment } from './UspsQueryFragment.gql'
+import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,24 +33,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export type ProductUspsProps = UspsQueryFragment
+export type UspsProps = UseStyles<typeof useStyles> & {
+  children: React.ReactNode
+}
 
-export default function ProductUsps(props: ProductUspsProps) {
-  const { usps } = props
+export default function Usps(props: UspsProps) {
+  const { children } = props
   const classes = useStyles()
 
-  return (
-    <>
-      {usps?.uspsMultiple && (
-        <ul className={classes.root}>
-          {usps?.uspsMultiple.map((usp) => (
-            <li key={usp.title}>
-              {usp.asset && <Asset asset={usp.asset} width={16} />}
-              {usp.title}
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
-  )
+  return <ul className={classes.root}>{children}</ul>
 }

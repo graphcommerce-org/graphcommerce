@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import React from 'react'
 import SectionContainer from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
+import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -23,18 +24,35 @@ const useStyles = makeStyles(
   { name: 'ButtonLinkList' },
 )
 
-export type ButtonLinkListProps = UseStyles<typeof useStyles> & {
+const useLinkStyles = makeStyles(
+  (theme: Theme) => ({
+    links: ({ containsBigLinks }: any) => ({
+      display: 'grid',
+      gridTemplateColumns: containsBigLinks
+        ? undefined
+        : `repeat(auto-fill, minmax(${responsiveVal(210, 350)}, 1fr))`,
+      columnGap: theme.spacings.sm,
+    }),
+  }),
+  { name: 'ButtonLinkListLinks' },
+)
+
+export type ButtonLinkListProps = UseStyles<typeof useStyles & typeof useLinkStyles> & {
   title: string
-  children: React.ReactNode
+  links: React.ReactNode
+  containsBigLinks: boolean
 }
 
 export default function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, children } = props
+  const { title, links } = props
   const classes = useStyles(props)
+  const linkClasses = useLinkStyles(props)
 
   return (
     <Container maxWidth='md' className={classes.container}>
-      <SectionContainer label={title}>{children}</SectionContainer>
+      <SectionContainer label={title}>
+        <div className={linkClasses.links}>{links}</div>
+      </SectionContainer>
     </Container>
   )
 }
