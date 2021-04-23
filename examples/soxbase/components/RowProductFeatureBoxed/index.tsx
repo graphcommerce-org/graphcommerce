@@ -28,7 +28,7 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
           />
         )
       }
-      RichContent={(richTextOneClasses) => <RichText classes={richTextOneClasses} {...copy} />}
+      RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...copy} />}
     />
   )
 }
