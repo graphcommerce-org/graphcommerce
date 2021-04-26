@@ -1,0 +1,4 @@
+fragment AvailablePaymentMethod on AvailablePaymentMethod @injectable {
+  code
+  title
+}

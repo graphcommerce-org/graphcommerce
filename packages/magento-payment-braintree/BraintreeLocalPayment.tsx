@@ -11,7 +11,7 @@ import { usePaymentMethodContext } from '@reachdigital/magento-cart/payment-meth
 import Button from '@reachdigital/next-ui/Button'
 import { BraintreeError } from 'braintree-web'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 import { BraintreePaymentMethodDocument } from './BraintreePaymentMethod.gql'
 import { StartPaymentOptions } from './useBraintree'
 import useBraintreeLocalPayment from './useBraintreeLocalPayment'

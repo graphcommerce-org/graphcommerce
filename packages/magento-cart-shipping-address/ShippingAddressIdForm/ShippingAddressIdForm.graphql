@@ -1,0 +1,12 @@
+mutation ShippingAddressIdForm($cartId: String!, $addressId: Int!) {
+  setShippingAddressesOnCart(
+    input: { cart_id: $cartId, shipping_addresses: [{ customer_address_id: $addressId }] }
+  ) {
+    cart {
+      shipping_addresses {
+        ...CartAddress
+      }
+      ...ShippingAddressUpdated
+    }
+  }
+}

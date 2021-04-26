@@ -1,4 +1,5 @@
-import { TypedTypePolicies } from './TypedTypePolicies'
+import { FieldFunctionOptions, FieldPolicy, FieldReadFunction, Reference } from '@apollo/client'
+import { TypedTypePolicies, Query, QueryCartArgs } from './index'
 
 /**
  * By default we don't need to do anything for types with an `id` or without anything to identify.
@@ -37,7 +38,7 @@ const typePolicies: TypedTypePolicies = {
   BundleProduct: { keyFields: ['uid'] },
   // BundleShipmentItem: { keyFields: ['id'] },
   // BundleWishlistItem: { keyFields: ['id'] },
-  Cart: { keyFields: [] },
+  Cart: { keyFields: ['id'] },
   CartAddressCountry: { keyFields: ['code'] },
   // CartAddressInterface: { keyFields: false },
   // CartAddressRegion: { keyFields: false },
@@ -207,7 +208,7 @@ const typePolicies: TypedTypePolicies = {
   // SelectedCustomizableOption: { keyFields: ['id'] },
   // SelectedCustomizableOptionValue: { keyFields: ['id'] },
   // SelectedPaymentMethod: { keyFields: false },
-  // SelectedShippingMethod: { keyFields: false },
+  SelectedShippingMethod: { keyFields: ['carrier_code', 'method_code'] },
   // SendEmailToFriendOutput: { keyFields: false },
   // SendEmailToFriendRecipient: { keyFields: false },
   // SendEmailToFriendSender: { keyFields: false },
@@ -252,7 +253,12 @@ const typePolicies: TypedTypePolicies = {
   // WishlistOutput: { keyFields: false },
   // createKlarnaPaymentsSessionOutput: { keyFields: false },
   // Mutation: { keyFields: false },
-  // Query: { keyFields: false },
+  // Query: {
+  //   fields: {
+  //     cart: (_, { args, toReference }) =>
+  //       toReference({ __typename: 'Cart', id: (args as QueryCartArgs)?.cart_id }),
+  //   },
+  // },
 }
 
 export default typePolicies

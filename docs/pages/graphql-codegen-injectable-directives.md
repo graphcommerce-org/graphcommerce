@@ -109,7 +109,7 @@ a problem:
 
 - CartCount: `packages/magento-cart`
 - MyTotals:`@my/custom-totals`
-- AddSimple: `packages/magento-product-configurable`
+- AddSimple: `packages/magento-product-simple`
 - AddConfigurable: `packages/magento-product-configurable`
 
 `AddConfigurable` isn't supposed to know about `CartCount`, although there is an

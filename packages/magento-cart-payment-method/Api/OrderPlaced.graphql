@@ -1,0 +1,3 @@
+fragment OrderPlaced on Order @injectable {
+  order_number
+}

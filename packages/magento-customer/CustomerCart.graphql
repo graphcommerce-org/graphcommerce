@@ -1,5 +1,6 @@
 query CustomerCart {
   customerCart {
-    ...CartData
+    id
+    __typename
   }
 }

@@ -1,4 +1,0 @@
-fragment ShippingMethodData on Cart {
-  id
-  __typename
-}

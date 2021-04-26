@@ -12,8 +12,8 @@
 module.exports = {
   projects: {
     soxbase: {
-      schema: 'examples/soxbase-api/generated/schema.graphqls',
-      documents: ['examples/**/*.graphql', 'packages/**/*.graphql'],
+      schema: ['examples/soxbase-api/generated/schema.graphqls'],
+      documents: ['examples/**/*.graphql'],
       extensions: {
         languageService: {
           useSchemaFileDefinitions: true,

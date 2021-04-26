@@ -1,4 +1,0 @@
-fragment AvailablePaymentMethod on AvailablePaymentMethod {
-  code
-  title
-}

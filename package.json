@@ -77,6 +77,7 @@
     "@graphql-codegen/schema-ast": "^1.18.2",
     "@graphql-codegen/typed-document-node": "^1.18.5",
     "@graphql-codegen/typescript": "^1.22.0",
+    "@graphql-codegen/typescript-apollo-client-helpers": "^1.1.5",
     "@graphql-codegen/typescript-document-nodes": "1.17.11",
     "@graphql-codegen/typescript-operations": "1.17.16",
     "@graphql-typed-document-node/core": "^3.1.0",

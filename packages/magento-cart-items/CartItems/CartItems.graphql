@@ -1,0 +1,8 @@
+fragment CartItems on Cart {
+  id
+  items {
+    uid
+    __typename
+    ...CartItem
+  }
+}

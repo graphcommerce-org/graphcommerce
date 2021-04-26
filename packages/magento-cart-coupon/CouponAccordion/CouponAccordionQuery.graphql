@@ -1,0 +1,5 @@
+query CouponAccordion($cartId: String!) {
+  cart(cart_id: $cartId) {
+    ...CouponFragment
+  }
+}

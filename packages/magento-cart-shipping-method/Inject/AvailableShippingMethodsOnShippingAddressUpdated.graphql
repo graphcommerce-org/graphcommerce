@@ -1,0 +1,8 @@
+fragment AvailableShippingMethodsOnShippingAddressUpdated on Cart
+@inject(into: ["ShippingAddressUpdated"]) {
+  shipping_addresses {
+    available_shipping_methods {
+      ...AvailableShippingMethod
+    }
+  }
+}

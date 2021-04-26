@@ -106,7 +106,7 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
           }
         },
       })
-      if (!found) throw Error(`into value "${target}" not found`)
+      // if (!found) throw Error(`into value "${target}" not found`)
     })
   })
 }
