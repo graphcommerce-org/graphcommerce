@@ -55,7 +55,13 @@ export const defaultTheme = createMuiTheme({
   shadows,
   typography: {
     fontFamily: ['Graphik', 'sans-serif'].join(', '),
-    subtitle1: {},
+    subtitle1: {
+      fontSize: responsiveVal(12, 14),
+      color: `rgba(0, 0, 0, 0.3)`,
+      fontWeight: 500,
+      letterSpacing: 1,
+      textTransform: 'uppercase',
+    },
     subtitle2: {
       textTransform: 'uppercase',
       fontSize: responsiveVal(11, 13),

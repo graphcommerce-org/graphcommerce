@@ -22,11 +22,7 @@ const useStyles = makeStyles(
       paddingBottom: theme.spacings.xxs,
     },
     labelLeft: {
-      ...theme.typography.body2,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-      fontWeight: 500,
-      color: theme.palette.secondary.mutedText,
+      ...theme.typography.subtitle1,
     },
     labelRight: {
       ...theme.typography.body2,
