@@ -1,3 +1,4 @@
+import { MoneyFragment } from '@reachdigital/magento-store'
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import { ProductListItemConfigurableFragment } from '../ProductListItemConfigurable.gql'
 import { SwatchDataFragment } from './SwatchData.gql'
@@ -9,6 +10,9 @@ export type ConfigurableOptionValue = NonNullable<NonNullable<ConfigurableOption
 
 export type SwatchSize = 'small' | 'large'
 
-export type SwatchDataProps = ConfigurableOptionValue & { size?: SwatchSize }
+export type SwatchDataProps = ConfigurableOptionValue & {
+  size?: SwatchSize
+  price?: MoneyFragment
+}
 
 export type SwatchTypeRenderer = TypeRenderer<SwatchDataFragment, SwatchDataProps>
