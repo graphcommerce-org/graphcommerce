@@ -13,7 +13,6 @@ import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
-
 import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
@@ -22,6 +21,8 @@ import {
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
+  optionSectionEndLabels?: Record<string, React.ReactNode>
+  variants: any // todo(deam): correct type
 }
 
 const useStyles = makeStyles(
@@ -41,7 +42,7 @@ const useStyles = makeStyles(
 )
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, variables, ...buttonProps } = props
+  const { name, variables, optionSectionEndLabels, variants, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
   const classes = useStyles()
 
@@ -77,6 +78,8 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         control={control}
         rules={{ required: required.selectedOptions }}
         errors={formState.errors.selectedOptions}
+        optionSectionEndLabels={optionSectionEndLabels}
+        variants={variants}
       />
 
       <ApolloErrorAlert error={error} />

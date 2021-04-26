@@ -13,6 +13,7 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
@@ -60,6 +61,11 @@ function ProductConfigurable(props: Props) {
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
+            optionSectionEndLabels={{
+              size: <PageLink href='/'>Which size is right?</PageLink>,
+            }}
+            // TODO: filteren op prijs op basis van huidige selectie
+            variants={typeProduct.variants}
           />
         </ProductPageGallery>
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
