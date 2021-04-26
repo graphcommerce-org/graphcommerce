@@ -6,6 +6,7 @@ type ButtonLinkProps = PageLinkFragment & ButtonProps
 
 export default function Button(props: ButtonLinkProps) {
   const { title, url, ...buttonProps } = props
+
   return (
     <Link href={url} passHref>
       <NextButton {...buttonProps}>{title}</NextButton>
