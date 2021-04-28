@@ -1,7 +1,8 @@
+import { Link } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import SpecialBanner from '@reachdigital/next-ui/Row/SpecialBanner'
-import SpecialBannerAnchorLink from '@reachdigital/next-ui/Row/SpecialBannerAnchorLink'
 import PageLink from 'next/link'
+import React from 'react'
 import Asset from '../Asset'
 import { RowSpecialBannerFragment } from './RowSpecialBanner.gql'
 
@@ -16,7 +17,9 @@ export default function RowSpecialBanner(props: RowSpecialBannerProps) {
       asset={<Asset asset={asset} width={328} />}
       pageLinks={pageLinks.map((pageLink) => (
         <PageLink href={pageLink.url} key={pageLink.url}>
-          <SpecialBannerAnchorLink href={pageLink.url} title={pageLink.title} />
+          <Link underline='always' href={pageLink.url} title={pageLink.title}>
+            {pageLink.title}
+          </Link>
         </PageLink>
       ))}
       RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...copy} />}

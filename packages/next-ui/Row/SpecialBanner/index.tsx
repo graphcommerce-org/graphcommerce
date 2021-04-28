@@ -45,6 +45,15 @@ const useStyles = makeStyles(
     topic: {
       ...theme.typography.caption,
     },
+    links: {
+      ...theme.typography.body2,
+      [theme.breakpoints.up('md')]: {
+        ...theme.typography.h4,
+      },
+      '& > *': {
+        color: theme.palette.text.primary,
+      },
+    },
   }),
   { name: 'SpecialBanner' },
 )
@@ -94,7 +103,8 @@ export default function SpecialBanner(props: SpecialBannerProps) {
             </Typography>
           )}
           <RichContent classes={richTextOneClasses} />
-          {pageLinks}
+
+          <div className={classes.links}>{pageLinks}</div>
         </div>
       </div>
     </Container>
