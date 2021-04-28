@@ -64,8 +64,6 @@ function ProductConfigurable(props: Props) {
             optionSectionEndLabels={{
               size: <PageLink href='/'>Which size is right?</PageLink>,
             }}
-            // TODO: filteren op prijs op basis van huidige selectie
-            variants={typeProduct.variants}
           />
         </ProductPageGallery>
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />

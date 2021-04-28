@@ -22,7 +22,6 @@ type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
   optionSectionEndLabels?: Record<string, React.ReactNode>
-  variants: any // todo(deam): correct type
 }
 
 const useStyles = makeStyles(
@@ -42,7 +41,7 @@ const useStyles = makeStyles(
 )
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, variables, optionSectionEndLabels, variants, ...buttonProps } = props
+  const { name, variables, optionSectionEndLabels, ...buttonProps } = props
   const { getUids } = useConfigurableContext(variables.sku)
   const classes = useStyles()
 
@@ -79,7 +78,6 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         rules={{ required: required.selectedOptions }}
         errors={formState.errors.selectedOptions}
         optionSectionEndLabels={optionSectionEndLabels}
-        variants={variants}
       />
 
       <ApolloErrorAlert error={error} />
