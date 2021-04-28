@@ -1,5 +1,0 @@
-fragment BillingCartAddress on Cart {
-  billing_address {
-    ...CartAddress
-  }
-}

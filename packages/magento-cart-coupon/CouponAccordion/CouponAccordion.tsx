@@ -1,13 +1,14 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
+import { useCurrentCartId } from '@reachdigital/magento-cart/CurrentCartId/useCurrentCartId'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import clsx from 'clsx'
 import { m, AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
-import { ClientCartDocument } from '../ClientCart.gql'
+import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
-import ApplyCouponCode from './ApplyCouponCode'
+import { CouponAccordionDocument } from './CouponAccordion.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   accordion: {
@@ -51,9 +52,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function CouponAccordion() {
   const classes = useStyles()
-  const { data: cartQuery } = useQuery(ClientCartDocument)
-  const coupon = cartQuery?.cart?.applied_coupons?.[0]?.code
+  const { data } = useQuery(CouponAccordionDocument, { variables: { cartId: useCurrentCartId() } })
   const [open, setOpen] = useState<boolean>(false)
+
+  if (!data?.cart?.id) return null
+
+  const coupon = data?.cart?.applied_coupons?.[0]?.code
 
   return (
     <AnimatedRow key='discount-codes'>
@@ -65,8 +69,7 @@ export default function CouponAccordion() {
             endIcon={open ? <ExpandLess /> : <ExpandMore />}
           >
             <Typography variant='h6'>Discount code</Typography>
-
-            {coupon && <RemoveCouponForm {...cartQuery?.cart} />}
+            {coupon && <RemoveCouponForm {...data.cart} />}
           </Button>
         </m.div>
 
@@ -74,7 +77,7 @@ export default function CouponAccordion() {
           {open && (
             <AnimatedRow key='discount-codes-form-wrap'>
               <m.div layout='position' className={classes.couponFormWrap}>
-                {!coupon && <ApplyCouponCode />}
+                {!coupon && <ApplyCouponForm {...data.cart} />}
                 {coupon && <i>Only one active coupon allowed</i>}
               </m.div>
             </AnimatedRow>

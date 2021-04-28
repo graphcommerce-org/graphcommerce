@@ -4,10 +4,6 @@ import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import PaymentMethodButton from '@reachdigital/magento-cart/payment-method/PaymentMethodButton'
 import PaymentMethodContextProvider from '@reachdigital/magento-cart/payment-method/PaymentMethodContext'
 import PaymentMethodError from '@reachdigital/magento-cart/payment-method/PaymentMethodError'
@@ -15,6 +11,10 @@ import PaymentMethodOptions from '@reachdigital/magento-cart/payment-method/Paym
 import PaymentMethodToggle from '@reachdigital/magento-cart/payment-method/PaymentMethodToggle'
 import braintree_local_payment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
 import checkmo from '@reachdigital/magento-payment/Checkmo'
+import {
+  CountryRegionsDocument,
+  CountryRegionsQuery,
+} from '@reachdigital/magento-store/CountryRegions.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'

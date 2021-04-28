@@ -1,0 +1,5 @@
+query CurrentCartId {
+  currentCartId {
+    id
+  }
+}

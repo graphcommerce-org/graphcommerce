@@ -1,13 +1,12 @@
-import { useQuery } from '@apollo/client'
-import { FormControl, TextField } from '@material-ui/core'
+import { FormControl, makeStyles, TextField, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import React from 'react'
-import { ClientCartDocument } from '../ClientCart.gql'
-import { ApplyCouponToCartDocument } from './ApplyCouponCode.gql'
+import { CouponFragment } from '../Api/Coupon.gql'
+import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   couponForm: {
@@ -16,14 +15,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function ApplyCouponForm() {
+export default function ApplyCouponForm(props: CouponFragment) {
+  const { id } = props
   const formClasses = useFormStyles()
   const classes = useStyles()
-  const { data: cartQuery } = useQuery(ClientCartDocument)
 
-  const form = useFormGqlMutation(ApplyCouponToCartDocument, {
-    defaultValues: { cartId: cartQuery?.cart?.id },
-  })
+  const form = useFormGqlMutation(ApplyCouponFormDocument, { defaultValues: { cartId: id } })
   const { handleSubmit, muiRegister, formState, required, error } = form
   const submitHandler = handleSubmit(() => {})
 

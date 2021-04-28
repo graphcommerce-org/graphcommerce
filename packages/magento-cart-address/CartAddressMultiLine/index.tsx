@@ -1,5 +1,5 @@
-import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import AddressMultiLine from '@reachdigital/magento-customer/AddressMultiLine'
+import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
 

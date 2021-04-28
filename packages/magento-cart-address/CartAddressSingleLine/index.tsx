@@ -1,8 +1,8 @@
 import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
 import { CountryCodeEnum } from '@reachdigital/magento-graphql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
-import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
 
 type CartAddressSingleLineProps = CartAddressFragment &
   CountryRegionsQuery & { locale?: CountryCodeEnum }

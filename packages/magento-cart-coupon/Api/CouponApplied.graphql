@@ -1,3 +1,0 @@
-fragment CouponApplied on Cart @injectable {
-  id
-}

@@ -1,14 +1,13 @@
 import { useQuery } from '@apollo/client'
-import { IconButton } from '@material-ui/core'
+import { IconButton, makeStyles, Theme } from '@material-ui/core'
 import { Clear } from '@material-ui/icons'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import { CartCouponFragment } from '../CartCoupon.gql'
-import { ClientCartDocument } from '../ClientCart.gql'
-import useCouponFormStyles from '../useCouponFormStyles'
-import { RemoveCouponDocument } from './RemoveCoupon.gql'
+import { CouponFragment } from '../CouponFragment/CouponFragment.gql'
+import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
-type CartCouponProps = CartCouponFragment
+type CartCouponProps = CouponFragment
 
 const useCouponFormStyles = makeStyles((theme: Theme) => ({
   inlineCoupon: {
@@ -33,22 +32,21 @@ const useCouponFormStyles = makeStyles((theme: Theme) => ({
 }))
 
 export default function RemoveCouponForm(props: CartCouponProps) {
-  const { applied_coupons } = props
+  const { applied_coupons, id } = props
   const classes = useCouponFormStyles()
-  const { data: cartQuery } = useQuery(ClientCartDocument)
+  const form = useFormGqlMutation(RemoveCouponFormDocument, { defaultValues: { cartId: id } })
 
-  const form = useFormGqlMutation(RemoveCouponDocument, {
-    defaultValues: { cartId: cartQuery?.cart?.id },
-  })
-  const { handleSubmit } = form
+  const { handleSubmit, error } = form
   const submitHandler = handleSubmit(() => {})
 
   return (
-    <form className={classes.inlineCoupon} onSubmit={submitHandler}>
+    <form className={classes.inlineCoupon} onSubmit={submitHandler} noValidate>
       {applied_coupons?.[0]?.code}
       <IconButton type='submit'>
         <Clear fontSize='small' />
       </IconButton>
+
+      <ApolloErrorAlert error={error} />
     </form>
   )
 }

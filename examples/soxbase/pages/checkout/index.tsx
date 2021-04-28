@@ -5,13 +5,13 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
 import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
+import {
+  CountryRegionsDocument,
+  CountryRegionsQuery,
+} from '@reachdigital/magento-store/CountryRegions.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import Button from '@reachdigital/next-ui/Button'

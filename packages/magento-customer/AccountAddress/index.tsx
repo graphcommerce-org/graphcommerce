@@ -7,7 +7,7 @@ import {
   Switch,
   Theme,
 } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { useFormAutoSubmit, useFormGqlMutation, Controller } from '@reachdigital/react-hook-form'

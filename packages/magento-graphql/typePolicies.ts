@@ -38,7 +38,7 @@ const typePolicies: TypedTypePolicies = {
   BundleProduct: { keyFields: ['uid'] },
   // BundleShipmentItem: { keyFields: ['id'] },
   // BundleWishlistItem: { keyFields: ['id'] },
-  Cart: { keyFields: ['id'] },
+  // Cart: { keyFields: ['id'] },
   CartAddressCountry: { keyFields: ['code'] },
   // CartAddressInterface: { keyFields: false },
   // CartAddressRegion: { keyFields: false },
@@ -253,12 +253,7 @@ const typePolicies: TypedTypePolicies = {
   // WishlistOutput: { keyFields: false },
   // createKlarnaPaymentsSessionOutput: { keyFields: false },
   // Mutation: { keyFields: false },
-  // Query: {
-  //   fields: {
-  //     cart: (_, { args, toReference }) =>
-  //       toReference({ __typename: 'Cart', id: (args as QueryCartArgs)?.cart_id }),
-  //   },
-  // },
+  // Query: { keyFields: false },
 }
 
 export default typePolicies

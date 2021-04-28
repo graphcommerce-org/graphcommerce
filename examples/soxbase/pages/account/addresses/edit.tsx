@@ -2,13 +2,13 @@ import { useQuery } from '@apollo/client'
 import { Box, Container, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
+import {
+  CountryRegionsDocument,
+  CountryRegionsQuery,
+} from '@reachdigital/magento-store/CountryRegions.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import Button from '@reachdigital/next-ui/Button'

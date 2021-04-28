@@ -1,0 +1,15 @@
+extend type Query {
+  currentCartId: CurrentCartId
+}
+
+extend type Mutation {
+  setCurrentCartId(input: RegisterCartIdInput): CurrentCartId!
+}
+
+type CurrentCartId {
+  id: String!
+}
+
+input RegisterCartIdInput {
+  cart_id: String!
+}

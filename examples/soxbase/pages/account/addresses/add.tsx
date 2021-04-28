@@ -1,10 +1,10 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import CreateCustomerAddressForm from '@reachdigital/magento-customer/CreateCustomerAddressForm'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
-import CreateCustomerAddressForm from '@reachdigital/magento-customer/CreateCustomerAddressForm'
+} from '@reachdigital/magento-store/CountryRegions.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
