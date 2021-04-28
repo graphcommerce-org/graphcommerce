@@ -6,8 +6,6 @@ import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
-import cheapestVariant from '../ConfigurableContext/cheapestVariant'
-import { ProductListItemConfigurableFragment } from '../ProductListItemConfigurable.gql'
 import { SwatchTypeRenderer, SwatchSize } from '../Swatches'
 import ColorSwatchData from '../Swatches/ColorSwatchData'
 import ImageSwatchData from '../Swatches/ImageSwatchData'
@@ -19,7 +17,6 @@ type ConfigurableOptionsProps = {
 } & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
     optionSectionEndLabels?: Record<string, React.ReactNode>
-    variants: ProductListItemConfigurableFragment
   }
 
 const useStyles = makeStyles(
@@ -60,9 +57,9 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
     errors,
     helperText,
     optionSectionEndLabels,
-    variants,
     ...controlProps
   } = props
+
   const { options, selection, select, cheapest, getVariants } = useConfigurableContext(sku)
   const classes = useStyles()
 
@@ -109,9 +106,11 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                 >
                   {option?.values?.map((val) => {
                     if (!val?.swatch_data || !val.value_index || !option.attribute_code) return null
-
-                    const itemVariant = cheapestVariant(getVariants(selection))
-                    console.log(itemVariant, 'ITEM', option)
+                    const itemVariant = getVariants(selection).find((variant) =>
+                      variant?.attributes?.find(
+                        (attribute) => attribute?.value_index === val.value_index,
+                      ),
+                    )
 
                     return (
                       <ToggleButton
