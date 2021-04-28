@@ -1,5 +1,5 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
-import NextBlogContent from '@reachdigital/next-ui/Blog/NextBlogContent'
+import BlogContent from '@reachdigital/next-ui/Blog/BlogContent'
 import { RowBlogContentFragment } from './RowBlogContent.gql'
 
 type RowBlogContentProps = RowBlogContentFragment
@@ -7,5 +7,5 @@ type RowBlogContentProps = RowBlogContentFragment
 export default function RowBlogContent(props: RowBlogContentProps) {
   const { content } = props
 
-  return <NextBlogContent content={<RichText raw={content?.raw} />} />
+  return <BlogContent content={<RichText raw={content?.raw} />} />
 }

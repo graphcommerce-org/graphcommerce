@@ -1,5 +1,5 @@
 import { ProductSpecs, ProductSpecsProps } from '@reachdigital/magento-product'
-import NextProductSpecs from '@reachdigital/next-ui/Row/NextProductSpecs'
+import NextProductSpecs from '@reachdigital/next-ui/Row/ProductSpecs'
 import React from 'react'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 

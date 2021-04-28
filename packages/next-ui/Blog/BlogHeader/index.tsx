@@ -43,14 +43,14 @@ const useStyles = makeStyles(
       },
     },
   }),
-  { name: 'NextBlogHeader' },
+  { name: 'BlogHeader' },
 )
 
-type NextBlogHeaderProps = UseStyles<typeof useStyles> & {
+type BlogHeaderProps = UseStyles<typeof useStyles> & {
   asset?: React.ReactNode
 }
 
-export default function NextBlogHeader(props: NextBlogHeaderProps) {
+export default function BlogHeader(props: BlogHeaderProps) {
   const { asset } = props
   const classes = useStyles()
 

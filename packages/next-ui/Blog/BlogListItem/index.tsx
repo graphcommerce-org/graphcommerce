@@ -39,19 +39,26 @@ const useStyles = makeStyles(
       ...theme.typography.h3,
     },
   }),
-  { name: 'NextBlogListItem' },
+  { name: 'BlogListItem' },
 )
 
-export type NextBlogListItemProps = UseStyles<typeof useStyles> & {
+export type BlogListItemProps = UseStyles<typeof useStyles> & {
   asset: React.ReactNode
   url: string
-  Date: (dateClasses) => React.ReactElement
+  date: string
+  locale: string
   title: string
 }
 
-export default function NextBlogListItem(props: NextBlogListItemProps) {
-  const { asset, url, Date, title } = props
+export default function BlogListItem(props: BlogListItemProps) {
+  const { asset, url, date, locale, title } = props
   const classes = useStyles(props)
+
+  const formatter = new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
 
   return (
     <div className={classes.item}>
@@ -61,7 +68,9 @@ export default function NextBlogListItem(props: NextBlogListItemProps) {
         </Link>
       </PageLink>
 
-      <Date {...classes} />
+      <time className={classes.date} dateTime={date}>
+        {formatter.format(new Date(date))}
+      </time>
 
       <PageLink href={`/${url}`} passHref>
         <Link href={`/${url}`} className={classes.title} color='inherit'>

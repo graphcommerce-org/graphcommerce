@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Typography } from '@material-ui/core'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import NextBlogListItem from '@reachdigital/next-ui/Blog/NextBlogListItem'
+import NextBlogListItem from '@reachdigital/next-ui/Blog/BlogListItem'
 import Asset from '../Asset'
 import { BlogItemFragment } from './BlogItem.gql'
 
@@ -13,12 +13,6 @@ export default function BlogItem(props: BlogItemProps) {
   const { data: config } = useQuery(StoreConfigDocument)
   const locale = config?.storeConfig?.locale?.replace('_', '-')
 
-  const formatter = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-
   return (
     <NextBlogListItem
       asset={
@@ -29,11 +23,8 @@ export default function BlogItem(props: BlogItemProps) {
         )
       }
       title={title ?? ''}
-      Date={(classes) => (
-        <time className={classes.date} dateTime={date}>
-          {formatter.format(new Date(date))}
-        </time>
-      )}
+      date={date}
+      locale={locale ?? ''}
       url={url}
     />
   )

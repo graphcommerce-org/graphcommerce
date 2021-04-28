@@ -12,16 +12,16 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.lg,
     },
   }),
-  { name: 'NextBlogList' },
+  { name: 'BlogList' },
 )
 
-type NextBlogListProps = UseStyles<typeof useStyles> & {
-  blogItems: React.ReactElement
+type BlogListProps = UseStyles<typeof useStyles> & {
+  children: React.ReactNode
 }
 
-export default function BlogList(props: NextBlogListProps) {
-  const { blogItems } = props
+export default function BlogList(props: BlogListProps) {
+  const { children } = props
   const classes = useStyles()
 
-  return <Container className={classes.root}>{blogItems}</Container>
+  return <Container className={classes.root}>{children}</Container>
 }

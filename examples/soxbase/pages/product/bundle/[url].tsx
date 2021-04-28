@@ -46,7 +46,6 @@ function ProductBundle(props: Props) {
   if (product?.__typename !== 'BundleProduct' || typeProduct?.__typename !== 'BundleProduct')
     return <></>
 
-  const category = productPageCategory(product)
   return (
     <>
       <ProductPageMeta {...product} />

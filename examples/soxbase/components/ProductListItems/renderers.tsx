@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core'
 import { ProductListItemProps } from '@reachdigital/magento-product'
 import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
 import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
@@ -7,8 +8,17 @@ import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductL
 import { ProductListItemRendererFragment } from '@reachdigital/magento-product-types/ProductListItems/ProductListItemRenderer.gql'
 import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
-import Subtitle from '@reachdigital/next-ui/Subtitle'
 import React from 'react'
+
+const Subtitle = (props: { value: string }) => {
+  const { value } = props
+
+  return (
+    <Typography component='span' variant='subtitle2'>
+      {value}
+    </Typography>
+  )
+}
 
 const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps> = {
   SimpleProduct: (props) => (

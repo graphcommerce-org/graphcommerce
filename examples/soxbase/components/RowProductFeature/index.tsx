@@ -9,8 +9,8 @@ type ProductFeatureProps = RowProductFeatureFragment & ProductFeatureMediaFragme
 
 export default function RowProductFeature(props: ProductFeatureProps) {
   const { copy, topic, media_gallery } = props
-
   const item = media_gallery?.[2] ?? media_gallery?.[0]
+
   if (!item) return null
 
   return (

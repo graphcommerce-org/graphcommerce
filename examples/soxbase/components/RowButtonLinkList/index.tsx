@@ -1,6 +1,6 @@
+import ButtonLink from '@reachdigital/next-ui/ButtonLink'
 import ButtonLinkList from '@reachdigital/next-ui/Row/ButtonLinkList'
 import React from 'react'
-import ButtonLink from '../PageLink/ButtonLink'
 import { RowButtonLinkListFragment } from './RowButtonLinkList.gql'
 
 export type RowButtonLinkListProps = RowButtonLinkListFragment

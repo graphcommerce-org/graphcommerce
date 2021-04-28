@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type NextButtonLinkProps = {
+type ButtonLinkProps = {
   title: string
   url: string
   endIcon?: React.ReactNode
 } & ButtonProps &
   UseStyles<typeof useStyles>
 
-export default function NextButtonLink(props: NextButtonLinkProps) {
+export default function ButtonLink(props: ButtonLinkProps) {
   const { title, url, endIcon, ...buttonProps } = props
   const classes = useStyles(props)
 

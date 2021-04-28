@@ -1,8 +1,8 @@
+import { Box, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import FramerNextPagesSlider from '@reachdigital/next-ui/FramerNextPagesSlider'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import SidePaneHeader from '@reachdigital/next-ui/SidePaneHeader'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -25,7 +25,13 @@ function ServicePage({ pages }: Props) {
     <FramerNextPagesSlider>
       <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
 
-      {title && <SidePaneHeader>{title}</SidePaneHeader>}
+      {title && (
+        <Box pt={4} pb={4}>
+          <Typography variant='h2' component='h1' align='center'>
+            {title}
+          </Typography>
+        </Box>
+      )}
 
       <PageContent {...pages[0]} />
     </FramerNextPagesSlider>
