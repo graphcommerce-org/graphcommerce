@@ -1,4 +1,0 @@
-fragment CartItemsUpdated on Cart @injectable {
-  id
-  __typename
-}

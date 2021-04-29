@@ -6,6 +6,6 @@ query ProductList(
   $search: String = ""
   $categoryUid: String!
 ) {
-  ...ProductListFragment
-  ...ProductFilters
+  ...ProductListQueryFragment
+  ...ProductFiltersQueryFragment
 }

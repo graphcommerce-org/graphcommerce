@@ -1,4 +1,4 @@
-fragment BillingAddress on Cart {
+fragment CartBillingAddress on Cart @injectable {
   id
   __typename
   billing_address {
@@ -7,5 +7,4 @@ fragment BillingAddress on Cart {
   shipping_addresses {
     ...CartAddress
   }
-  ...BillingAddressUpdated
 }

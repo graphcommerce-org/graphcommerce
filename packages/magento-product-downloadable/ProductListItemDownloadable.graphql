@@ -1,3 +1,3 @@
-fragment ProductListItemDownloadable on DownloadableProduct {
-  ...ProductListItem
+fragment ProductListItemDownloadable on DownloadableProduct @inject(into: ["ProductListItem"]) {
+  uid
 }

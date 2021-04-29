@@ -11,6 +11,7 @@ mutation ProductAddToCart(
     cart {
       id
       __typename
+      ...CartSummary
     }
     user_errors {
       code

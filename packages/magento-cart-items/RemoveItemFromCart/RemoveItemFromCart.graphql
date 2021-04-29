@@ -4,7 +4,6 @@ mutation RemoveItemFromCart($cartId: String!, $cartItemId: Int!) {
       id
       __typename
       ...CartItems
-      ...CartItemsUpdated
     }
   }
 }

@@ -8,19 +8,23 @@ import { CurrentCartIdDocument } from './CurrentCartId.gql'
  * Example:
  *
  * ```tsx
- * const { data } = useQueryWithCartId(CartFabQueryDocument)
+ * const { data } = useCartQuery(CartFabQueryDocument)
  * ```
+ *
+ * Since the fetchPolicy is set to cache-first [by
+ * default](https://www.apollographql.com/docs/react/data/queries/#setting-a-fetch-policy) we reduce
+ * server talk
  */
-export const useQueryWithCartId = <Q, V extends { cartId: string; [index: string]: unknown }>(
+export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options?: QueryHookOptions<Q, Omit<V, 'cartId'>>,
-) => {
-  const cartId = useQuery(CurrentCartIdDocument).data?.currentCartId?.id
+) {
+  const cartId = useQuery(CurrentCartIdDocument, { ssr: false }).data?.currentCartId?.id
 
   return useQuery(document, {
     ...options,
     variables: { cartId, ...options?.variables } as V,
     skip: !cartId,
-    fetchPolicy: options?.fetchPolicy ?? 'cache-only',
+    ssr: false,
   })
 }

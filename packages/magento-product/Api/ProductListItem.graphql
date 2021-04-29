@@ -1,4 +1,4 @@
-fragment ProductListItem on ProductInterface {
+fragment ProductListItem on ProductInterface @injectable {
   uid
   ...ProductLink
   sku

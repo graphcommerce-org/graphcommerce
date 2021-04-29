@@ -1,4 +1,15 @@
 fragment CartTotals on Cart {
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_code
+      method_code
+      method_title
+      carrier_title
+      amount {
+        ...Money
+      }
+    }
+  }
   prices {
     __typename
     applied_taxes {

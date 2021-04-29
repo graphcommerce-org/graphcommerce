@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import Checkmark from '@material-ui/icons/Check'
-import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
+import useRequestCartId from '@reachdigital/magento-cart/CurrentCartId/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'

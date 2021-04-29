@@ -1,4 +1,4 @@
-fragment ProductListFragment on Query {
+fragment ProductListQueryFragment on Query {
   products(
     pageSize: $pageSize
     currentPage: $currentPage

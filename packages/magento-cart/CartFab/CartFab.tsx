@@ -3,9 +3,9 @@ import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import { useQueryWithCartId } from '../CurrentCartId/useQueryWithCartId'
-import { CartFabFragment } from './CartFab.gql'
-import { CartFabQueryDocument } from './CartFabQuery.gql'
+import { CartSummaryFragment } from '../Api/CartSummary.gql'
+import { useCartQuery } from '../CurrentCartId/useCartQuery'
+import { CartFabDocument } from './CartFab.gql'
 
 type CartFabProps = {
   children: React.ReactNode
@@ -28,7 +28,7 @@ const useStyles = makeStyles(
   { name: 'CartFab' },
 )
 
-function CartFabContent(props: CartFabProps & CartFabFragment) {
+function CartFabContent(props: CartFabProps & CartSummaryFragment) {
   const { total_quantity, children, ...fabProps } = props
   const classes = useStyles()
   const { filter } = useFabAnimation()
@@ -47,8 +47,9 @@ function CartFabContent(props: CartFabProps & CartFabFragment) {
 }
 
 export default function CartFab(props: CartFabProps) {
-  const { data } = useQueryWithCartId(CartFabQueryDocument)
+  const { data } = useCartQuery(CartFabDocument, { fetchPolicy: 'cache-only' })
   const qty = data?.cart?.total_quantity ?? 0
+
   return (
     <NoSsr fallback={<CartFabContent {...props} total_quantity={qty} />}>
       <CartFabContent total_quantity={qty} {...props} />

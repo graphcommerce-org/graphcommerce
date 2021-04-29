@@ -3,7 +3,7 @@ import CmsPageContent from '@reachdigital/magento-cms/CmsPageContent'
 import {
   ProductListDocument,
   ProductListQuery,
-} from '@reachdigital/magento-product-types/ProductList.gql'
+} from '@reachdigital/magento-product/ProductList/ProductList.gql'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'

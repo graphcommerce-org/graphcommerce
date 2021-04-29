@@ -1,7 +1,0 @@
-mutation CreateEmptyCart($cartId: String!) {
-  createEmptyCart(input: { cart_id: $cartId })
-  setCurrentCartId(input: { cart_id: $cartId }) {
-    id
-    __typename
-  }
-}

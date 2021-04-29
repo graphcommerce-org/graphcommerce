@@ -10,7 +10,7 @@ import useCategoryPageStyles from '@reachdigital/magento-category/useCategoryPag
 import {
   ProductListDocument,
   ProductListQuery,
-} from '@reachdigital/magento-product-types/ProductList.gql'
+} from '@reachdigital/magento-product/ProductList/ProductList.gql'
 import ProductListCount from '@reachdigital/magento-product/ProductListCount'
 import ProductListFilters from '@reachdigital/magento-product/ProductListFilters'
 import ProductListFiltersContainer from '@reachdigital/magento-product/ProductListFiltersContainer'

@@ -1,5 +1,4 @@
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import { MergeCartsDocument } from '@reachdigital/magento-cart/cart/MergeCarts.gql'
+import { MergeCartsDocument } from '@reachdigital/magento-cart/MergeCarts/MergeCarts.gql'
 import { OnCompleteFn } from '@reachdigital/react-hook-form'
 import { CustomerDocument } from './Customer.gql'
 import { CustomerCartDocument } from './CustomerCart.gql'
@@ -27,12 +26,12 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
     else throw Error("Cart can't be initialized")
   }
 
-  // Write the result of the customerCart to the cart query so it can be used
-  client.cache.writeQuery({
-    query: ClientCartDocument,
-    data: { cart: { ...customerCart.customerCart } },
-    broadcast: true,
-  })
+  // // Write the result of the customerCart to the cart query so it can be used
+  // client.cache.writeQuery({
+  //   query: ClientCartDocument,
+  //   data: { cart: { ...customerCart.customerCart } },
+  //   broadcast: true,
+  // })
 
   const { data: currentCart } = await awaitCart
 

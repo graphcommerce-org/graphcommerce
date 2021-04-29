@@ -1,3 +1,3 @@
-fragment ProductListItemBundle on BundleProduct {
-  ...ProductListItem
+fragment ProductListItemBundle on BundleProduct @inject(into: ["ProductListItem"]) {
+  uid
 }

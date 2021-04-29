@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
@@ -20,6 +19,7 @@ import {
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import { BillingAddressFormDocument } from './BillingAddressForm.gql'
+import { BillingAddressQueryDocument } from './BillingAddressQuery.gql'
 
 type BillingAddressFormProps = CountryRegionsQuery
 
@@ -27,13 +27,13 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
   const { countries } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
-  const { data: cartQuery } = useQuery(ClientCartDocument)
+  const { data: cartQuery } = useCartQuery(BillingAddressQueryDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
-  const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
+  const currentAddress = cartQuery?.cart?.billing_address
   const currentShippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'

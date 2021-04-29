@@ -1,0 +1,10 @@
+fragment CartItemsDownloadable on Cart @inject(into: ["CartItems"]) {
+  items {
+    ... on DownloadableCartItem {
+      samples {
+        sample_url
+        title
+      }
+    }
+  }
+}

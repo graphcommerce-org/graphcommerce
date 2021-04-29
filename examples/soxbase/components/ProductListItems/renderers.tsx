@@ -3,14 +3,12 @@ import ProductListItemConfigurable from '@reachdigital/magento-product-configura
 import ProductListItemDownloadable from '@reachdigital/magento-product-downloadable/ProductListItemDownloadable'
 import ProductListItemGrouped from '@reachdigital/magento-product-grouped/ProductListItemGrouped'
 import ProductListItemSimple from '@reachdigital/magento-product-simple/ProductListItemSimple'
-import { ProductListItemRendererFragment } from '@reachdigital/magento-product-types/ProductListItems/ProductListItemRenderer.gql'
 import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
-import { ProductListItemProps } from '@reachdigital/magento-product/ProductListItem'
-import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
+import { ProductListItemRenderer } from '@reachdigital/magento-product/ProductListItems/renderer'
 import React from 'react'
 import Subtitle from '../ProductListItem/Subtitle'
 
-const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps> = {
+const renderers: ProductListItemRenderer = {
   SimpleProduct: (props) => (
     <ProductListItemSimple
       {...props}
@@ -66,4 +64,4 @@ const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemPro
   // ),
 }
 
-export default renderer
+export default renderers

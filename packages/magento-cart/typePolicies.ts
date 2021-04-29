@@ -1,22 +1,12 @@
-import { FieldPolicy } from '@apollo/client'
-import { Mutation } from '@reachdigital/magento-graphql'
-import type { TypedTypePolicies } from '@reachdigital/magento-graphql/index'
-
-/** When an empty cart is created, we store the cartId separately */
-const createEmptyCart: FieldPolicy<Mutation['setCurrentCartId']> = {
-  keyArgs: [],
-  merge(_existing, input, options) {
-    if (!input) return input
-    return { id: input.id, __typename: 'CurrentCartId' }
-  },
-}
+import type { QueryCartArgs, TypedTypePolicies } from '@reachdigital/magento-graphql/index'
 
 const typePolicies: TypedTypePolicies = {
-  Mutation: { fields: { createEmptyCart } },
   CurrentCartId: { keyFields: [] },
   Query: {
     fields: {
       currentCartId: (_, { toReference }) => toReference({ __typename: 'CurrentCartId' }),
+      cart: (_, { args, toReference }) =>
+        toReference({ __typename: 'Cart', id: (args as QueryCartArgs)?.cart_id }),
     },
   },
 }

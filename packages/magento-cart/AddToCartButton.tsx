@@ -9,7 +9,7 @@ import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
-import useRequestCartId from './useRequestCartId'
+import useRequestCartId from './CurrentCartId/useRequestCartId'
 
 export default function AddToCartButton<Q, V extends { cartId: string; [index: string]: unknown }>(
   props: Pick<ProductInterface, 'name'> & {

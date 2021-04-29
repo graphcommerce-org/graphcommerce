@@ -35,7 +35,7 @@ mutation BillingAddressForm(
     }
   ) {
     cart {
-      ...BillingAddress
+      ...CartBillingAddress
     }
   }
 }

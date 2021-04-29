@@ -1,4 +1,4 @@
-fragment CartItems on Cart {
+fragment CartItems on Cart @injectable {
   id
   items {
     uid

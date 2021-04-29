@@ -1,0 +1,10 @@
+fragment CartItemsSimple on Cart @inject(into: ["CartItems"]) {
+  items {
+    ... on SimpleCartItem {
+      uid
+      product {
+        activity
+      }
+    }
+  }
+}

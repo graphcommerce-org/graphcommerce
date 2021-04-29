@@ -1,5 +1,7 @@
 fragment ProductListItems on Products {
   items {
-    ...ProductListItemRenderer
+    __typename
+    uid
+    ...ProductListItem
   }
 }

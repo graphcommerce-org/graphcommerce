@@ -1,12 +1,13 @@
 import { Theme, makeStyles } from '@material-ui/core'
 import { Maybe } from '@reachdigital/magento-graphql'
-import { ProductListItemProps } from '@reachdigital/magento-product/ProductListItem'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
-import { ProductListItemRendererFragment } from './ProductListItemRenderer.gql'
+import { ProductListItemFragment } from '../Api/ProductListItem.gql'
+import { ProductListItemProps } from '../ProductListItem'
+import { ProductListItemRenderer } from './renderer'
 
 export const useProductGridStyles = makeStyles(
   (theme: Theme) => ({
@@ -21,8 +22,8 @@ export const useProductGridStyles = makeStyles(
 )
 
 export type ProductItemsGridProps = {
-  items?: Maybe<Array<Maybe<ProductListItemRendererFragment & ProductListItemProps>>>
-  renderers: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps>
+  items?: Maybe<Array<Maybe<ProductListItemFragment & ProductListItemProps>>>
+  renderers: ProductListItemRenderer
   loadingEager?: number
 } & UseStyles<typeof useProductGridStyles> &
   JSX.IntrinsicElements['div']

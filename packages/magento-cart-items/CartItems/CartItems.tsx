@@ -1,26 +1,29 @@
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
-import { CartItemsFragment } from './CartItems.gql'
+import { CartItemsFragment } from '../Api/CartItems.gql'
+import { CartItemsQueryDocument } from './CartItemsQuery.gql'
 
-type CartItemRenderer = TypeRenderer<
-  NonNullable<NonNullable<CartItemsFragment['items']>[0]>,
-  { cartId: string } // should probably be imported from CartItemBaseProps
->
+type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFragment['items']>[0]>>
 
-type CartProps = CartItemsFragment & { renderer: CartItemRenderer }
+type CartProps = { renderer: CartItemRenderer }
 
 export default function CartItems(props: CartProps) {
-  const { renderer, items, id } = props
+  const { data } = useCartQuery(CartItemsQueryDocument)
+  const { renderer } = props
 
   return (
     <AnimatePresence initial={false}>
-      {items?.map((item) => (
-        <AnimatedRow key={`item-${item?.id}`}>
-          {item && <RenderType renderer={renderer} {...item} cartId={id} />}
-        </AnimatedRow>
-      ))}
+      {data?.cart?.items?.map((item) => {
+        if (!item?.uid || !data.cart?.id) return null
+        return (
+          <AnimatedRow key={item.uid}>
+            <RenderType renderer={renderer} {...item} />
+          </AnimatedRow>
+        )
+      })}
     </AnimatePresence>
   )
 }

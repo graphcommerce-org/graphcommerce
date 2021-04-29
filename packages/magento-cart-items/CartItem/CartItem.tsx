@@ -7,10 +7,10 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
+import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
+import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
 import { CartItemFragment } from './CartItem.gql'
 import DeliveryLabel from './DeliveryLabel'
-import RemoveItemFromCartFab from './RemoveItemFromCartFab'
-import UpdateItemQuantity from './UpdateItemQuantity'
 
 type CartItemBaseProps = CartItemFragment & { cartId: string }
 

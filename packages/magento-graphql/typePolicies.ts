@@ -253,7 +253,6 @@ const typePolicies: TypedTypePolicies = {
   // WishlistOutput: { keyFields: false },
   // createKlarnaPaymentsSessionOutput: { keyFields: false },
   // Mutation: { keyFields: false },
-  // Query: { keyFields: false },
 }
 
 export default typePolicies

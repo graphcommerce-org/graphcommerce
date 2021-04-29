@@ -39,7 +39,7 @@ function throwInjectError(conf: Partial<Inject>, message: string) {
 
   throw Error(
     `${message}
-fragment ${conf.fragment?.name.value} on ${conf.fragment?.typeCondition.name.value} @inject(into: [${val}]) {}`,
+  fragment ${conf.fragment?.name.value} on ${conf.fragment?.typeCondition.name.value} @inject(into: [${val}]) { ... }`,
   )
 }
 
@@ -87,15 +87,11 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
   const { into, fragment } = injectVal
 
   into.forEach((target) => {
+    let found = false
     injectables.forEach((injectable) => {
-      let found = false
       visit(injectable, {
         FragmentDefinition: (frag) => {
           if (frag.name.value === target) {
-            if (frag.typeCondition.name.value !== fragment.typeCondition.name.value) {
-              throwInjectError(injectVal, `Fragment should extend ${frag.typeCondition.name.value}`)
-            }
-
             found = true
 
             const spread: FragmentSpreadNode = {
@@ -106,8 +102,8 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
           }
         },
       })
-      // if (!found) throw Error(`into value "${target}" not found`)
     })
+    if (!found) throwInjectError(injectVal, `${target} is not found or not @injectable`)
   })
 }
 
