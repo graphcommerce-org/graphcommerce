@@ -60,7 +60,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
     ...controlProps
   } = props
 
-  const { options, selection, select, cheapest, getVariants } = useConfigurableContext(sku)
+  const { options, selection, select, getVariants } = useConfigurableContext(sku)
   const classes = useStyles()
 
   return (
@@ -106,7 +106,11 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                 >
                   {option?.values?.map((val) => {
                     if (!val?.swatch_data || !val.value_index || !option.attribute_code) return null
-                    const itemVariant = getVariants(selection).find((variant) =>
+
+                    const copySelection = { ...selection }
+                    delete copySelection[attribute_code]
+
+                    const itemVariant = getVariants(copySelection).find((variant) =>
                       variant?.attributes?.find(
                         (attribute) => attribute?.value_index === val.value_index,
                       ),

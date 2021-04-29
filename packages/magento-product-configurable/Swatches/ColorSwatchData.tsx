@@ -19,7 +19,7 @@ export const useStyles = makeStyles(
       width: 20,
     },
   }),
-  { name: 'Subtitle' },
+  { name: 'ColorSwatchData' },
 )
 
 type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
@@ -27,6 +27,7 @@ type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyle
 export default function ColorSwatchData(props: ColorSwatchDataProps) {
   const classes = useStyles(props)
   const { value, store_label, size } = props
+
   return (
     <div>
       <div
