@@ -21,7 +21,7 @@ type ConfigurableOptionsProps = {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    borderBottom: {
+    labelInnerContainer: {
       borderBottom: 'none',
       padding: `${theme.spacings.xxs} 0`,
     },
@@ -86,7 +86,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                     : undefined
                 }
                 classes={{
-                  labelInnerContainer: classes.borderBottom,
+                  labelInnerContainer: classes.labelInnerContainer,
                 }}
                 borderBottom={false}
               >
