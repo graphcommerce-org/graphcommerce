@@ -1,40 +1,41 @@
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import { RelatedProductsFragment } from '@reachdigital/magento-product-types/RelatedProducts.gql'
+import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'
-import ProductRelated from '@reachdigital/next-ui/Row/ProductRelated'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import React from 'react'
 import renderers from '../ProductListItems/renderers'
 import { RowProductRelatedFragment } from './RowProductRelated.gql'
 
 type RowProductRelatedProps = RowProductRelatedFragment & RelatedProductsFragment
 
-function RelatedProducts(props: RowProductRelatedProps & UseStyles<any>) {
-  const { related_products, classes } = props
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    item: {
+      minWidth: responsiveVal(200, 400),
+    },
+  }),
+  { name: 'ProductRelated' },
+)
+
+export default function RowProductRelated(props: RowProductRelatedProps) {
+  const { title, related_products } = props
+  const classes = useStyles(props)
+
+  if (!related_products || related_products.length === 0) return null
 
   return (
-    <>
+    <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
       {related_products?.map((item) =>
         item ? (
           <RenderType
             key={item.id ?? ''}
             renderer={renderers}
             {...item}
-            classes={{ item: classes?.item }}
+            classes={{ item: classes.item }}
           />
         ) : null,
       )}
-    </>
-  )
-}
-
-export default function RowProductRelated(props: RowProductRelatedProps) {
-  const { title, related_products } = props
-
-  if (!related_products || related_products.length === 0) return null
-
-  return (
-    <ProductRelated
-      title={title}
-      RelatedProducts={(itemClasses) => <RelatedProducts {...itemClasses} {...props} />}
-    />
+    </SidebarSlider>
   )
 }

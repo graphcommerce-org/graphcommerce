@@ -18,11 +18,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
     },
   },
-  name: {
-    ...theme.typography.h1,
-  },
   description: {
     gridArea: 'description',
+
+    /* nested styles because these elements come from graphcms */
     '& p:first-of-type': {
       marginTop: 0,
     },
@@ -59,7 +58,7 @@ export default function ProductDescription(props: ProductDescriptionProps) {
 
   return (
     <Container className={classes.root}>
-      <Typography variant='h2' className={classes.name}>
+      <Typography variant='h1' component='h2' className={classes.name}>
         {name}
       </Typography>
       <div className={classes.description}>{description}</div>

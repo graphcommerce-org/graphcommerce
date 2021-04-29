@@ -1,5 +1,4 @@
-import { Container, ContainerProps, makeStyles, Theme, Typography } from '@material-ui/core'
-import { Maybe } from 'graphql/jsutils/Maybe'
+import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
@@ -75,7 +74,7 @@ const useRichTextOne = makeStyles((theme: Theme) => ({
 }))
 
 type ProductFeatureBoxedProps = UseStyles<typeof useStyles & typeof useRichTextOne> & {
-  topic?: Maybe<string>
+  topic?: string
   RichContent: (props) => React.ReactElement
   item?: React.ReactNode
 }

@@ -1,8 +1,8 @@
 import { Container, makeStyles, Theme } from '@material-ui/core'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
+import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
