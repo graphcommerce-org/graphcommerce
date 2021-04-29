@@ -1,0 +1,4 @@
+fragment EmailForm on Cart {
+  id
+  email
+}

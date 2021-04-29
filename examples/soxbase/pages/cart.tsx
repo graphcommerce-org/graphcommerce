@@ -1,20 +1,20 @@
-import { useQuery } from '@apollo/client'
 import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import CartItem from '@reachdigital/magento-cart/cart/CartItem'
-import CartItems from '@reachdigital/magento-cart/cart/CartItems'
-import CartQuickCheckout from '@reachdigital/magento-cart/cart/CartQuickCheckout'
-import CartStartCheckout from '@reachdigital/magento-cart/cart/CartStartCheckout'
-import CartTotals from '@reachdigital/magento-cart/cart/CartTotals'
-import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
-import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
-import CouponAccordion from '@reachdigital/magento-cart/coupon/CouponAccordion'
+import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
+import CouponAccordion from '@reachdigital/magento-cart-coupon/CouponAccordion/CouponAccordion'
+import CartItem from '@reachdigital/magento-cart-items/CartItem/CartItem'
+import CartItems from '@reachdigital/magento-cart-items/CartItems/CartItems'
+import CartQuickCheckout from '@reachdigital/magento-cart/CartQuickCheckout/CartQuickCheckout'
+import CartStartCheckout from '@reachdigital/magento-cart/CartStartCheckout/CartStartCheckout'
+import CartTotals from '@reachdigital/magento-cart/CartTotals/CartTotals'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import EmptyCart from '@reachdigital/magento-cart/EmptyCart/EmptyCart'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import PageMeta from '@reachdigital/magento-store/PageMeta'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
@@ -33,7 +33,7 @@ const useStyles = makeStyles(
 )
 
 function CartPage() {
-  const { data } = useQuery(ClientCartDocument, { ssr: false })
+  const { data } = useCartQuery(CartPageDocument, { returnPartialData: true })
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
   const classes = useStyles()
 
@@ -47,9 +47,9 @@ function CartPage() {
         <AnimatePresence initial={false}>
           {hasItems ? (
             <>
-              <CheckoutStepper steps={3} currentStep={1} key='checkout-stepper' />
+              <Stepper steps={3} currentStep={1} key='checkout-stepper' />
               <AnimatedRow key='quick-checkout'>
-                <CartQuickCheckout {...data?.cart?.prices?.grand_total} />
+                <CartQuickCheckout {...data?.cart} />
               </AnimatedRow>
               <CartItems
                 items={data?.cart?.items}

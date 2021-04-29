@@ -103,7 +103,11 @@ function injectInjectable(injectables: DocumentNode[], injector: DocumentNode) {
         },
       })
     })
-    if (!found) throwInjectError(injectVal, `${target} is not found or not @injectable`)
+    if (!found)
+      throwInjectError(
+        injectVal,
+        `fragment ${target} @injectable { ... } can not be found or isn't injectable`,
+      )
   })
 }
 

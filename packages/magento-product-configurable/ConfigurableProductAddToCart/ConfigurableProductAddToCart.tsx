@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import Checkmark from '@material-ui/icons/Check'
-import useRequestCartId from '@reachdigital/magento-cart/CurrentCartId/useRequestCartId'
+import useCreateEmptyCart from '@reachdigital/magento-cart/CurrentCartId/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
@@ -29,7 +29,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const { getUids } = useConfigurableContext(variables.sku)
   const classes = useFormStyles()
 
-  const requestCartId = useRequestCartId()
+  const requestCartId = useCreateEmptyCart()
   const form = useFormGqlMutation(ConfigurableProductAddToCartDocument, {
     defaultValues: variables,
     onBeforeSubmit: async ({ selectedOptions, ...vars }) => ({

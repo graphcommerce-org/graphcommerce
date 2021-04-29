@@ -1,3 +1,0 @@
-fragment CartSummary on Cart @injectable {
-  total_quantity
-}

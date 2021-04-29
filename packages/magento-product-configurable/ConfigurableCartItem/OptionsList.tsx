@@ -1,5 +1,5 @@
 import { makeStyles, Menu, Theme } from '@material-ui/core'
-import CartItemOptionDropdown from '@reachdigital/magento-cart/cart/CartItemOptionDropdown'
+import CartItemOptionDropdown from '@reachdigital/magento-cart-items/CartItem/CartItemOptionDropdown'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React, { useState } from 'react'
@@ -83,7 +83,7 @@ export default function OptionsList(props: CartItemOptionsListProps) {
       <div className={classes.optionsList} onClick={handleClick}>
         {configurable_options &&
           configurable_options.map((option) => (
-            <div key={option?.id} className={classes.option}>
+            <div key={option?.configurable_product_option_uid} className={classes.option}>
               {option?.value_label}
             </div>
           ))}

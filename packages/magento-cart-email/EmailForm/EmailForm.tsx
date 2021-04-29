@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import { SetGuestEmailOnCartDocument } from '@reachdigital/magento-cart/email/SetGuestEmailOnCart.gql'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
 import SignUpFormInline from '@reachdigital/magento-customer/SignUpFormInline'
@@ -14,6 +13,9 @@ import { emailPattern, useFormCompose } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
+import { SetGuestEmailOnCartDocument } from '../SetGuestEmailOnCart.gql'
+import { CartEmailDocument } from './CartEmail.gql'
+import { EmailFormFragment } from './EmailForm.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -48,7 +50,7 @@ export default function EmailForm() {
 
   const [expand, setExpand] = useState(false)
 
-  const { data: cartData } = useQuery(ClientCartDocument)
+  const { data: cartData } = useCartQuery(CartEmailDocument)
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
   const { formState, muiRegister, required, watch, error, getValues } = form

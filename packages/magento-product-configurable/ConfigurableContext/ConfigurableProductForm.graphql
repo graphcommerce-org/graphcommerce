@@ -10,7 +10,6 @@ fragment ConfigurableProductForm on ConfigurableProduct {
       uid
       use_default_value
       store_label
-      value_index
       swatch_data {
         __typename
         value
@@ -28,6 +27,7 @@ fragment ConfigurableProductForm on ConfigurableProduct {
       uid
     }
     product {
+      ...ProductListItem
       ...ProductListItemSimple
     }
   }

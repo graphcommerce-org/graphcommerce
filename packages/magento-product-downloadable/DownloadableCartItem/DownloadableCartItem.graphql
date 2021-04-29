@@ -1,0 +1,13 @@
+fragment DownloadableCartItem on DownloadableCartItem @inject(into: ["CartItem"]) {
+  links {
+    uid
+    price
+    sample_url
+    title
+  }
+  samples {
+    sample_url
+    sort_order
+    title
+  }
+}

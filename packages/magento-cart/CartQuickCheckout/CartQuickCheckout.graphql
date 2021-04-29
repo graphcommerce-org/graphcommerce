@@ -1,0 +1,7 @@
+fragment CartQuickCheckout on Cart {
+  prices {
+    grand_total {
+      ...Money
+    }
+  }
+}

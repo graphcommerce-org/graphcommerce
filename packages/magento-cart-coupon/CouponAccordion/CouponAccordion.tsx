@@ -1,14 +1,13 @@
-import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
-import { useCurrentCartId } from '@reachdigital/magento-cart/CurrentCartId/useCurrentCartId'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import clsx from 'clsx'
 import { m, AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
 import ApplyCouponForm from '../ApplyCouponForm/ApplyCouponForm'
 import RemoveCouponForm from '../RemoveCouponForm/RemoveCouponForm'
-import { CouponAccordionDocument } from './CouponAccordion.gql'
+import { GetCouponDocument } from './GetCoupon.gql'
 
 const useStyles = makeStyles((theme: Theme) => ({
   accordion: {
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function CouponAccordion() {
   const classes = useStyles()
-  const { data } = useQuery(CouponAccordionDocument, { variables: { cartId: useCurrentCartId() } })
+  const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)
 
   if (!data?.cart?.id) return null

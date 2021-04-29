@@ -7,12 +7,12 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
+import { CartItemFragment } from '../Api/CartItem.gql'
+import DeliveryLabel from '../DeliveryLabel/DeliveryLabel'
 import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
-import { CartItemFragment } from './CartItem.gql'
-import DeliveryLabel from './DeliveryLabel'
 
-type CartItemBaseProps = CartItemFragment & { cartId: string }
+type CartItemBaseProps = CartItemFragment
 
 const rowImageSize = responsiveVal(70, 125)
 const useStyles = makeStyles(
@@ -146,7 +146,7 @@ export type CartItemProps = PropsWithChildren<CartItemBaseProps> &
   UseStyles<typeof useStyles> & { withOptions?: boolean }
 
 export default function CartItem(props: CartItemProps) {
-  const { product, cartId, uid, prices, quantity, children, withOptions } = props
+  const { product, uid, prices, quantity, children, withOptions } = props
   const { name } = product
   const classes = useStyles()
   const productLink = useProductLink(product)
@@ -155,9 +155,7 @@ export default function CartItem(props: CartItemProps) {
     <div className={clsx(classes.root, !withOptions && classes.itemWithoutOptions)}>
       <Badge
         color='default'
-        badgeContent={
-          <RemoveItemFromCartFab cartId={cartId} cartItemId={uid} className={classes.badge} />
-        }
+        badgeContent={<RemoveItemFromCartFab uid={uid} className={classes.badge} />}
         component='div'
         className={classes.picture}
         overlap='circle'
@@ -192,7 +190,7 @@ export default function CartItem(props: CartItemProps) {
       </div>
 
       <div className={clsx(classes.quantity, withOptions && classes.quantityWithOptions)}>
-        <UpdateItemQuantity cartId={cartId} cartItemId={Number(id)} quantity={quantity} />
+        <UpdateItemQuantity uid={uid} quantity={quantity} />
       </div>
 
       <div className={classes.rowPrice}>

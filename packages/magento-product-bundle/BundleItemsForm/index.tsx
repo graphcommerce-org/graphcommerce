@@ -11,7 +11,7 @@ export default function BundleItemsForm(props: BundleItemsFormProps) {
         const type = item.type as 'radio' | 'checkbox'
 
         return (
-          <div key={item?.option_id ?? ''}>
+          <div key={item?.uid ?? ''}>
             {item?.title}
 
             {item?.required}

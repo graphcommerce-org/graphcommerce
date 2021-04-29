@@ -1,3 +1,5 @@
+import { useQuery } from '@apollo/client'
+import { CurrentCartIdDocument } from '@reachdigital/magento-cart/CurrentCartId/CurrentCartId.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { useFormAutoSubmit, useFormGqlMutation } from '@reachdigital/react-hook-form'
@@ -7,10 +9,13 @@ import {
   UpdateItemQuantityMutationVariables,
 } from './UpdateItemQuantity.gql'
 
-export default function UpdateItemQuantity(props: UpdateItemQuantityMutationVariables) {
-  const { cartId, cartItemId, quantity } = props
+type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 'cartId'>
+
+export default function UpdateItemQuantity(props: UpdateItemQuantityProps) {
+  const { uid, quantity } = props
+  const cartId = useQuery(CurrentCartIdDocument, { ssr: false }).data?.currentCartId?.id
   const form = useFormGqlMutation(UpdateItemQuantityDocument, {
-    defaultValues: { cartId, cartItemId, quantity },
+    defaultValues: { cartId, uid, quantity },
     mode: 'onChange',
   })
 

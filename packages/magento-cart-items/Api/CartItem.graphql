@@ -1,7 +1,8 @@
-fragment CartItem on CartItemInterface {
+fragment CartItem on CartItemInterface @injectable {
   uid
   quantity
   product {
+    uid
     ...ProductLink
     name
     url_key

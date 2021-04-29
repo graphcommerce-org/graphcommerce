@@ -1,6 +1,12 @@
 # Magento Cart Checkout
 
-The standard implementation of the checkout process
+The default implementation of the GraphCommerce checkoutprocess.
+
+- All Pages
+- Cart Page
+- Shipping Page
+- Payment Page
+- Success Page
 
 ```graphql
 fragment AllPagesFragment on Cart {

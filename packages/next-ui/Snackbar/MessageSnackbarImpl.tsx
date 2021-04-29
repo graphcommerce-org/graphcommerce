@@ -136,7 +136,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
   const classes = useStyles(props)
 
   useEffect(() => {
-    if (open) setSnackbar(open)
+    setSnackbar(open)
   }, [open])
 
   const clsxBonus = (base: string) => {

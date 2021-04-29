@@ -9,7 +9,7 @@ import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import { DeepPartial, UnpackNestedValue, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
-import useRequestCartId from './CurrentCartId/useRequestCartId'
+import useCreateEmptyCart from '../CurrentCartId/useCreateEmptyCart'
 
 export default function AddToCartButton<Q, V extends { cartId: string; [index: string]: unknown }>(
   props: Pick<ProductInterface, 'name'> & {
@@ -20,7 +20,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
 ) {
   const { name, mutation, variables, ...buttonProps } = props
 
-  const requestCartId = useRequestCartId()
+  const requestCartId = useCreateEmptyCart()
   const form = useFormGqlMutation<Q, V>(mutation, {
     defaultValues: { ...variables } as UnpackNestedValue<DeepPartial<V>>,
     onBeforeSubmit: async (vars) => ({ ...vars, cartId: await requestCartId() }),
@@ -46,7 +46,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
       <ApolloErrorAlert error={error} />
 
       <MessageSnackbar
-        open={formState.isSubmitSuccessful && !error?.message}
+        open={!formState.isSubmitting && formState.isSubmitSuccessful && !error?.message}
         variant='pill'
         color='default'
         action={

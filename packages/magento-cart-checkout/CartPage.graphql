@@ -1,0 +1,12 @@
+query CartPage($cartId: String!) {
+  cart(cart_id: $cartId) {
+    id
+    __typename
+    total_quantity
+    ...CartQuickCheckout
+    ...CartStartCheckout
+    ...Coupon
+    ...CartItems
+    ...CartTotals
+  }
+}

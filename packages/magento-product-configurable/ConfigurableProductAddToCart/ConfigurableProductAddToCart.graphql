@@ -17,8 +17,7 @@ mutation ConfigurableProductAddToCart(
     ]
   ) {
     cart {
-      id
-      __typename
+      ...CartItemCountChanged
     }
     user_errors {
       code
