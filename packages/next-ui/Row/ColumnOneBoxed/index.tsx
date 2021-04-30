@@ -1,11 +1,9 @@
 import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import Row from '..'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginBottom: theme.spacings.lg,
-    },
     boxed: {
       padding: theme.spacings.lg,
       boxShadow: theme.shadows[24],
@@ -22,8 +20,8 @@ export default function ColumnOneBoxed(props: ContainerProps) {
   const classes = useStyles(props)
 
   return (
-    <Container {...props} className={classes.root}>
+    <Row {...props}>
       <div className={classes.boxed}>{children}</div>
-    </Container>
+    </Row>
   )
 }

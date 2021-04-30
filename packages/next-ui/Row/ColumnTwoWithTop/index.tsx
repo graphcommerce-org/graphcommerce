@@ -1,5 +1,6 @@
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import React, { PropsWithChildren } from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -9,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     gridTemplateAreas: `"top"
     "left"
     "right"`,
-    marginBottom: theme.spacings.xl,
     [theme.breakpoints.up('md')]: {
       gridTemplateAreas: `"top ."
       "left right"`,
@@ -41,10 +41,10 @@ export default function ColumnTwoWithTop(props: ProductDescriptionProps) {
   const classes = useStyles(props)
 
   return (
-    <Container className={classes.root}>
+    <Row className={classes.root}>
       <div className={classes.top}>{top}</div>
       <div className={classes.left}>{left}</div>
       <div className={classes.right}>{right}</div>
-    </Container>
+    </Row>
   )
 }

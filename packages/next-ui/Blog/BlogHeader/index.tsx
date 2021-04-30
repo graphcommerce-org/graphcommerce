@@ -1,11 +1,10 @@
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
+import React from 'react'
+import Row from '../../Row'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: {
-      marginBottom: theme.spacings.lg,
-    },
     header: {
       position: 'relative',
       backgroundColor: 'rgba(0,0,0,0.08)',
@@ -55,11 +54,11 @@ export default function BlogHeader(props: BlogHeaderProps) {
   const classes = useStyles()
 
   return (
-    <Container className={classes.root}>
+    <Row>
       <div className={classes.header}>
         <Typography variant='body1' className={classes.copy} />
         {asset && <div className={classes.asset}>{asset}</div>}
       </div>
-    </Container>
+    </Row>
   )
 }

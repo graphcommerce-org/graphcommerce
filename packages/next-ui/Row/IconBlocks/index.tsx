@@ -1,11 +1,12 @@
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
+import React from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
-      marginBottom: `${theme.spacings.lg}`,
       maxWidth: 820,
     },
     title: {
@@ -44,13 +45,13 @@ export default function ServiceOptions(props: IconBlocksProps) {
   const classes = useStyles(props)
 
   return (
-    <Container className={classes.container}>
+    <Row className={classes.container}>
       <div className={classes.wrapper}>
         <Typography variant='h5' className={classes.title}>
           {title}
         </Typography>
         <div className={classes.optionsWrapper}>{options}</div>
       </div>
-    </Container>
+    </Row>
   )
 }

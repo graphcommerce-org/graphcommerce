@@ -1,6 +1,7 @@
-import { Container, Theme } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
+import Row from '..'
 import SectionContainer from '../../SectionContainer'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
@@ -9,7 +10,6 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     container: {
       maxWidth: 820,
-      marginBottom: theme.spacings.lg,
     },
     h1: {
       textAlign: 'center',
@@ -49,10 +49,10 @@ export default function ButtonLinkList(props: ButtonLinkListProps) {
   const linkClasses = useLinkStyles(props)
 
   return (
-    <Container maxWidth='md' className={classes.container}>
+    <Row maxWidth='md' className={classes.container}>
       <SectionContainer label={title}>
         <div className={linkClasses.links}>{links}</div>
       </SectionContainer>
-    </Container>
+    </Row>
   )
 }

@@ -1,5 +1,6 @@
-import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
@@ -7,7 +8,6 @@ const useStyles = makeStyles(
     root: {
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
-      marginBottom: theme.spacings.lg,
       display: `grid`,
       gridTemplateColumns: `1fr`,
       gridTemplateAreas: `"one" "two"`,
@@ -36,9 +36,9 @@ export default function ColumnTwo(props: ColumnTwoProps) {
   const classes = useStyles(props)
 
   return (
-    <Container maxWidth='lg' {...containerProps} className={classes.root}>
+    <Row maxWidth='lg' {...containerProps} className={classes.root}>
       <div className={classes.colOne}>{colOneContent}</div>
       <div className={classes.colTwo}>{colTwoContent}</div>
-    </Container>
+    </Row>
   )
 }

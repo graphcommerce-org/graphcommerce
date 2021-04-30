@@ -17,13 +17,9 @@ export const AssetFragmentDoc: DocumentNode<AssetFragment, unknown> = {
           { kind: 'Field', name: { kind: 'Name', value: 'height' } },
           { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
           { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
         ],
       },
     },
   ],
 }
-export type AssetFragment = Pick<
-  Types.Asset,
-  'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'
->
+export type AssetFragment = Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>

@@ -1,4 +1,4 @@
-import { Link, makeStyles, Theme } from '@material-ui/core'
+import { Link } from '@material-ui/core'
 import ContainerWithHeader from '@reachdigital/next-ui/ContainerWithHeader'
 import PageLink from 'next/link'
 import React from 'react'
@@ -7,18 +7,8 @@ import { RowProductGridFragment } from './RowProductGrid.gql'
 
 type RowProductGridProps = RowProductGridFragment & ProductListItemsProps
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
-  }),
-  { name: 'RowProductGrid' },
-)
-
 export default function RowProductGrid(props: RowProductGridProps) {
   const { title, pageLinks, magentoCategory, ...productListItems } = props
-  const classes = useStyles(props)
 
   return (
     <ContainerWithHeader
@@ -30,7 +20,6 @@ export default function RowProductGrid(props: RowProductGridProps) {
           </Link>
         </PageLink>
       ))}
-      classes={classes}
     >
       <ProductListItems {...productListItems} size='small' />
     </ContainerWithHeader>

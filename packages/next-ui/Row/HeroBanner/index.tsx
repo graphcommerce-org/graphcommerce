@@ -2,14 +2,12 @@ import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
     wrapper: {
       position: 'relative',
     },
@@ -71,7 +69,7 @@ export default function HeroBanner(props: HeroBannerProps) {
   )
 
   return (
-    <div className={classes.container}>
+    <Row>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
           {children}
@@ -88,6 +86,6 @@ export default function HeroBanner(props: HeroBannerProps) {
           />
         </div>
       </div>
-    </div>
+    </Row>
   )
 }

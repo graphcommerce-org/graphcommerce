@@ -1,12 +1,10 @@
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
     wrapper: {
       display: 'grid',
       background: 'rgba(0,0,0,0.03)',
@@ -90,22 +88,19 @@ export default function SpecialBanner(props: SpecialBannerProps) {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <Row>
       <div className={classes.wrapper}>
         <div className={classes.asset}>{asset}</div>
-
         <div className={classes.copy}>
           {topic && (
             <Typography variant='body2' className={classes.topic}>
               {topic}
             </Typography>
           )}
-
           <div className={classes.textContainer}>{children}</div>
-
           <div className={classes.links}>{pageLinks}</div>
         </div>
       </div>
-    </Container>
+    </Row>
   )
 }

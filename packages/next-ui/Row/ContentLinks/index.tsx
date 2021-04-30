@@ -37,7 +37,7 @@ export default function ContentLinks(props: ContentLinksProps) {
   const classes = useStyles(props)
 
   return (
-    <Container maxWidth={false} className={classes.root}>
+    <Container className={classes.root}>
       <MultiItemSlider classes={{ scroller: classes.scroller }} scrollSnapAlign={false}>
         <Typography variant='body1' component='h4' className={classes.title}>
           {title}

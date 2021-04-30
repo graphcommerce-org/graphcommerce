@@ -1,13 +1,11 @@
 import { Container, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
     wrapper: {
       display: 'grid',
       background: 'rgba(0,0,0,0.03)',
@@ -63,11 +61,11 @@ export default function RowImageText(props: RowImageTextProps) {
   const classes = useStyles(props)
 
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <Row>
       <div className={classes.wrapper}>
         <div className={classes.asset}>{item}</div>
         <div className={classes.copy}>{children}</div>
       </div>
-    </Container>
+    </Row>
   )
 }

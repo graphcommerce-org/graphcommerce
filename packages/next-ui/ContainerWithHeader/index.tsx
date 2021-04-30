@@ -1,10 +1,10 @@
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
+import Row from '../Row'
 import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {},
     head: {
       display: 'grid',
       justifyContent: 'space-between',
@@ -30,7 +30,7 @@ export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
   const classes = useStyles(props)
 
   return (
-    <Container className={classes.container}>
+    <Row>
       <div className={classes.head}>
         <Typography variant='h3' component='h2' className={classes.title}>
           {title}
@@ -38,6 +38,6 @@ export default function ContainerWithHeader(props: ContainerWithHeaderProps) {
         <div>{rightArea}</div>
       </div>
       {children}
-    </Container>
+    </Row>
   )
 }

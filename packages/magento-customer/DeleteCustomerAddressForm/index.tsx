@@ -1,18 +1,26 @@
+import { Button, makeStyles, Theme } from '@material-ui/core'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import { FormState, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'
 
 export type DeleteCustomerAddressFormProps = {
   addressId?: number
-  button: (props: { formState: FormState<unknown> }) => React.ReactNode
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+  button: {
+    display: 'block',
+    margin: `0 auto ${theme.spacings.sm} auto`,
+  },
+}))
+
 export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFormProps) {
-  const { addressId, button } = props
+  const { addressId } = props
   const router = useRouter()
-  const { handleSubmit, formState, error } = useFormGqlMutation(DeleteCustomerAddressFormDocument, {
+  const classes = useStyles()
+  const { handleSubmit, error } = useFormGqlMutation(DeleteCustomerAddressFormDocument, {
     defaultValues: {
       id: addressId,
     },
@@ -25,7 +33,9 @@ export default function DeleteCustomerAddressForm(props: DeleteCustomerAddressFo
 
   return (
     <form onSubmit={submitHandler} noValidate>
-      {button({ formState })}
+      <Button type='submit' variant='text' color='primary' className={classes.button}>
+        Delete this address
+      </Button>
       <ApolloErrorAlert error={error} />
     </form>
   )

@@ -1,13 +1,11 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    container: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
     wrapper: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
@@ -90,7 +88,7 @@ export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSli
   )
 
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <Row>
       <div className={classes.wrapper} ref={wrapper}>
         <div className={classes.backstory}>
           <div className={classes.copy}>{children}</div>
@@ -100,6 +98,6 @@ export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSli
           {slidingItems}
         </m.div>
       </div>
-    </Container>
+    </Row>
   )
 }

@@ -1,12 +1,12 @@
-import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
+import Row from '..'
 import { UseStyles } from '../../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       display: 'grid',
-      marginBottom: theme.spacings.lg,
       gridColumnGap: theme.spacings.md,
       gridRowGap: theme.spacings.lg,
       gridTemplateColumns: `1fr`,
@@ -57,10 +57,10 @@ export default function ColumnThree(props: ColumnThreeProps) {
   const classes = useStyles(props)
 
   return (
-    <Container className={classes.root} {...containerProps}>
+    <Row className={classes.root} {...containerProps}>
       <div className={classes.colOne}>{colOneContent}</div>
       <div className={classes.colTwo}>{colTwoContent}</div>
       <div className={classes.colThree}>{colThreeContent}</div>
-    </Container>
+    </Row>
   )
 }

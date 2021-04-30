@@ -149,7 +149,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                             { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                           ],
                         },
                       },
@@ -184,7 +183,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                             { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                           ],
                         },
                       },
@@ -243,7 +241,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                             { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                           ],
                         },
                       },
@@ -406,7 +403,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                   { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                 ],
                               },
                             },
@@ -452,7 +448,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -505,7 +500,6 @@ export const ProductPageDocument: DocumentNode<ProductPageQuery, ProductPageQuer
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -1758,17 +1752,13 @@ export type ProductPageQuery = {
       socialLinks: Array<
         Pick<Types.PageLink, 'title' | 'url'> & {
           description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-          asset?: Types.Maybe<
-            Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-          >
+          asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
         }
       >
       legalLinks: Array<
         Pick<Types.PageLink, 'title' | 'url'> & {
           description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-          asset?: Types.Maybe<
-            Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-          >
+          asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
         }
       >
     }
@@ -1777,9 +1767,7 @@ export type ProductPageQuery = {
     uspsMultiple: Array<
       Pick<Types.PageLink, 'title' | 'url'> & {
         description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-        asset?: Types.Maybe<
-          Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-        >
+        asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
       }
     >
   }>
@@ -1802,7 +1790,7 @@ export type ProductPageQuery = {
               Pick<Types.PageLink, 'title' | 'url'> & {
                 description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                 asset?: Types.Maybe<
-                  Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                 >
               }
             >
@@ -1822,13 +1810,13 @@ export type ProductPageQuery = {
             quote: Pick<Types.RichText, 'raw'>
           })
       | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
-            asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+            asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
             copy: Pick<Types.RichText, 'raw'>
             pageLinks: Array<
               Pick<Types.PageLink, 'title' | 'url'> & {
                 description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                 asset?: Types.Maybe<
-                  Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                  Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                 >
               }
             >
