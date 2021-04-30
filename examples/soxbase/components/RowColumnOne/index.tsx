@@ -1,12 +1,12 @@
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { UseRichTextStyles } from '@reachdigital/graphcms-ui/RichText/useRichTextStyles'
-import ColumnOne, { ColumnOneStyles } from '@reachdigital/next-ui/Row/ColumnOne'
+import ColumnOne from '@reachdigital/next-ui/Row/ColumnOne'
 import React from 'react'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 
 export type RowColumnOneProps = RowColumnOneFragment & {
   richTextOneClasses?: UseRichTextStyles['classes']
-} & ColumnOneStyles
+}
 
 export default function RowColumnOne(props: RowColumnOneProps) {
   const { colOne, richTextOneClasses } = props

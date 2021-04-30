@@ -16,7 +16,7 @@ const useStyles = makeStyles(
 )
 
 type BlogListProps = UseStyles<typeof useStyles> & {
-  children: React.ReactNode
+  children: React.ReactElement
 }
 
 export default function BlogList(props: BlogListProps) {

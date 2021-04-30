@@ -6,6 +6,7 @@ import { ProductSpecsFragment } from './ProductSpecs.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   specs: {
     display: 'grid',
+    justifyContent: 'start',
     margin: 0,
     padding: 0,
     gap: theme.spacings.xs,

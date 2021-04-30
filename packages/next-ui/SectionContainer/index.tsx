@@ -2,16 +2,12 @@ import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import SectionHeader from '../SectionHeader'
-
-export type SectionContainerProps = PropsWithChildren<{
-  label: React.ReactNode
-  endLabel?: React.ReactNode
-  className?: string
-  borderBottom?: boolean
-}>
+import { UseStyles } from '../Styles'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    root: {},
+    sectionHeader: {},
     borderBottom: {
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
@@ -19,13 +15,25 @@ const useStyles = makeStyles(
   { name: 'SectionContainer' },
 )
 
+export type SectionContainerProps = PropsWithChildren<{
+  label: React.ReactNode
+  endLabel?: React.ReactNode
+  className?: string
+  borderBottom?: boolean
+}> &
+  UseStyles<typeof useStyles>
+
 export default function SectionContainer(props: SectionContainerProps) {
   const { children, label, endLabel, className, borderBottom } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   return (
     <div className={clsx(className, { [classes.borderBottom]: borderBottom })}>
-      <SectionHeader labelLeft={label} labelRight={endLabel} />
+      <SectionHeader
+        labelLeft={label}
+        labelRight={endLabel}
+        classes={{ labelContainer: classes.sectionHeader }}
+      />
       {children}
     </div>
   )
