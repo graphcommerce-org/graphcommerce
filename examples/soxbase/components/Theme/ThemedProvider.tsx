@@ -63,16 +63,10 @@ export const defaultTheme = createMuiTheme({
       textTransform: 'uppercase',
     },
     subtitle2: {
-<<<<<<< HEAD
       textTransform: 'uppercase',
       fontSize: responsiveVal(11, 13),
       fontWeight: 400,
       whiteSpace: 'nowrap',
-=======
-      fontSize: responsiveVal(14, 16),
-      color: `rgba(0, 0, 0, 0.3)`,
-      letterSpacing: 1,
->>>>>>> 4cec2914 (style: add style for subtitle 2)
     },
     fontSize: 16,
     body1: {
