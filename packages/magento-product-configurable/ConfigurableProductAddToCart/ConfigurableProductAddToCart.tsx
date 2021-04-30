@@ -3,6 +3,7 @@ import { Divider, makeStyles, Theme } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
+import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
@@ -12,6 +13,7 @@ import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
+import cheapestVariant from '../ConfigurableContext/cheapestVariant'
 import ConfigurableOptionsInput from '../ConfigurableOptions'
 import {
   ConfigurableProductAddToCartDocument,
@@ -21,7 +23,7 @@ import {
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
   name: string
-  optionSectionEndLabels?: Record<string, React.ReactNode>
+  optionEndLabels?: Record<string, React.ReactNode>
 }
 
 const useStyles = makeStyles(
@@ -33,6 +35,11 @@ const useStyles = makeStyles(
       marginTop: theme.spacings.sm,
       width: '100%',
     },
+    finalPrice: {
+      ...theme.typography.h4,
+      fontWeight: theme.typography.fontWeightBold,
+      marginTop: theme.spacings.sm,
+    },
     quantity: {
       marginTop: theme.spacings.sm,
     },
@@ -41,8 +48,8 @@ const useStyles = makeStyles(
 )
 
 export default function ConfigurableProductAddToCart(props: ConfigurableProductAddToCartProps) {
-  const { name, variables, optionSectionEndLabels, ...buttonProps } = props
-  const { getUids } = useConfigurableContext(variables.sku)
+  const { name, variables, optionEndLabels, ...buttonProps } = props
+  const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
   const classes = useStyles()
 
   const requestCartId = useRequestCartId()
@@ -77,7 +84,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         control={control}
         rules={{ required: required.selectedOptions }}
         errors={formState.errors.selectedOptions}
-        optionSectionEndLabels={optionSectionEndLabels}
+        optionEndLabels={optionEndLabels}
       />
 
       <ApolloErrorAlert error={error} />
@@ -93,6 +100,13 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         size='small'
         className={classes.quantity}
       />
+
+      <div className={classes.finalPrice}>
+        <Money
+          {...cheapestVariant(getVariants(selection))?.product?.price_range.minimum_price
+            .final_price}
+        />
+      </div>
 
       <Button
         type='submit'

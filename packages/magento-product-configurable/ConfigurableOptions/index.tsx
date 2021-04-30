@@ -16,7 +16,7 @@ type ConfigurableOptionsProps = {
   errors?: FieldErrors
 } & UseControllerProps<any> &
   Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
-    optionSectionEndLabels?: Record<string, React.ReactNode>
+    optionEndLabels?: Record<string, React.ReactNode>
   }
 
 const useStyles = makeStyles(
@@ -56,7 +56,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
     defaultValue,
     errors,
     helperText,
-    optionSectionEndLabels,
+    optionEndLabels,
     ...controlProps
   } = props
 
@@ -81,8 +81,8 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
               <SectionContainer
                 label={`choose your ${option?.label}`}
                 endLabel={
-                  optionSectionEndLabels && option?.label
-                    ? optionSectionEndLabels[option.label.toLowerCase()]
+                  optionEndLabels && option?.label
+                    ? optionEndLabels[option.label.toLowerCase()]
                     : undefined
                 }
                 classes={{
