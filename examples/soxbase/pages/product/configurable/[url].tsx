@@ -56,7 +56,7 @@ function ProductConfigurable(props: Props) {
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
           <div>
-            <Typography variant='subtitle1' display='inline'>
+            <Typography variant='subtitle2' display='inline'>
               As low as &nbsp;
             </Typography>
             <Typography variant='h6' display='inline'>
