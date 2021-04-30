@@ -1,5 +1,5 @@
 import UspList from '@reachdigital/next-ui/UspList'
-import UspListItem from '@reachdigital/next-ui/UspListItem'
+import UspListItem from '@reachdigital/next-ui/UspList/UspListItem'
 import React from 'react'
 import Asset from '../Asset'
 import { UspsQueryFragment } from './UspsQueryFragment.gql'
