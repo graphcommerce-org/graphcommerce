@@ -1,4 +1,4 @@
-import { Container, makeStyles, Theme, Typography } from '@material-ui/core'
+import { Container, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
@@ -42,9 +42,6 @@ const useStyles = makeStyles(
         maxWidth: 'max-content',
       },
     },
-    topic: {
-      ...theme.typography.caption,
-    },
     url: {
       ...theme.typography.body2,
       [theme.breakpoints.up('md')]: {
@@ -53,48 +50,23 @@ const useStyles = makeStyles(
       color: theme.palette.text.primary,
     },
   }),
-  { name: 'ProductFeature' },
+  { name: 'RowImageText' },
 )
 
-const useRichTextOne = makeStyles((theme: Theme) => ({
-  h2: {
-    maxWidth: '80%',
-    fontSize: responsiveVal(30, 56),
-    color: theme.palette.text.primary,
-    marginTop: responsiveVal(8, 20),
-    marginBottom: responsiveVal(18, 20),
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '100%',
-    },
-  },
-  paragraph: {
-    ...theme.typography.body1,
-  },
-}))
-
-type ProductFeatureProps = UseStyles<typeof useStyles & typeof useRichTextOne> & {
-  topic?: string
-  RichContent: (props) => React.ReactElement
+type RowImageTextProps = UseStyles<typeof useStyles> & {
   item?: React.ReactNode
+  children: React.ReactNode
 }
 
-export default function ProductFeature(props: ProductFeatureProps) {
-  const { RichContent, topic, item } = props
+export default function RowImageText(props: RowImageTextProps) {
+  const { item, children } = props
   const classes = useStyles(props)
-  const richTextOneClasses = useRichTextOne(props)
 
   return (
     <Container maxWidth={false} className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.asset}>{item}</div>
-        <div className={classes.copy}>
-          {topic && (
-            <Typography variant='body2' className={classes.topic}>
-              {topic}
-            </Typography>
-          )}
-          <RichContent classes={richTextOneClasses} />
-        </div>
+        <div className={classes.copy}>{children}</div>
       </div>
     </Container>
   )

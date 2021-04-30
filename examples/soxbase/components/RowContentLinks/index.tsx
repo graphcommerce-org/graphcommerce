@@ -4,9 +4,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { RowContentLinksFragment } from './RowContentLinks.gql'
 
-type RowContentLinksProps = RowContentLinksFragment
-
-export default function RowContentLinks(props: RowContentLinksProps) {
+export default function RowContentLinks(props: RowContentLinksFragment) {
   const { title, contentLinks } = props
 
   return (

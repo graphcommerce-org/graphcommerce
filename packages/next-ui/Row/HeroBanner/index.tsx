@@ -53,35 +53,15 @@ const useStyles = makeStyles(
   { name: 'HeroBanner' },
 )
 
-const useRichTextOne = makeStyles((theme: Theme) => ({
-  h1: {
-    textTransform: 'uppercase',
-    maxWidth: '70%',
-    textAlign: 'center',
-    fontSize: responsiveVal(42, 50),
-    marginBottom: responsiveVal(22, 32),
-    [theme.breakpoints.up('md')]: {
-      textAlign: 'left',
-      fontSize: responsiveVal(18, 90),
-      maxWidth: '100%',
-    },
-    '& strong': {
-      color: 'transparent',
-      WebkitTextStroke: '1.2px #fff',
-    },
-  },
-}))
-
-type HeroBannerProps = UseStyles<typeof useStyles & typeof useRichTextOne> & {
-  RichContent: (props) => React.ReactElement
+type HeroBannerProps = UseStyles<typeof useStyles> & {
   pageLinks: React.ReactNode
   videoSrc: string
+  children: React.ReactNode
 }
 
 export default function HeroBanner(props: HeroBannerProps) {
-  const { RichContent, pageLinks, videoSrc } = props
+  const { pageLinks, videoSrc, children } = props
   const classes = useStyles(props)
-  const richTextOneClasses = useRichTextOne(props)
 
   const { scrollY } = useViewportScroll()
   const actionsAnimWidth = useTransform(
@@ -94,7 +74,7 @@ export default function HeroBanner(props: HeroBannerProps) {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
-          <RichContent classes={richTextOneClasses} />
+          {children}
           {pageLinks}
         </div>
         <div className={classes.asset}>

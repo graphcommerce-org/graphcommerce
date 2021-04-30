@@ -1,36 +1,22 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, styled } from '@material-ui/core'
 import React from 'react'
-import { ColumnOneProps } from '../ColumnOne'
+import ColumnOne from '../ColumnOne'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    wrapper: {
-      marginBottom: theme.spacings.lg,
-      marginTop: theme.spacings.lg,
-      textAlign: 'center',
-      maxWidth: `calc(1050px + calc(${theme.spacings.md} * 2))`,
-      margin: `0 auto`,
-      position: 'relative',
-    },
-    imageContainer: {
-      margin: `0 auto`,
-      textAlign: `center`,
-      '& img': {
-        width: `100%`,
-        height: `auto`,
-      },
-    },
-  }),
-  { name: 'ColumnOneCentered' },
-)
+const Wrapper = styled('div')(({ theme }) => ({
+  marginBottom: theme.spacings.lg,
+  marginTop: theme.spacings.lg,
+  textAlign: 'center',
+  maxWidth: `calc(1050px + calc(${theme.spacings.md} * 2))`,
+  margin: `0 auto`,
+  position: 'relative',
+}))
 
-export default function ColumnOneCentered(props: ColumnOneProps) {
+export default function ColumnOneCentered(props: ContainerProps) {
   const { children } = props
-  const classes = useStyles(props)
 
   return (
-    <Container>
-      <div className={classes.wrapper}>{children}</div>
-    </Container>
+    <ColumnOne>
+      <Wrapper>{children}</Wrapper>
+    </ColumnOne>
   )
 }

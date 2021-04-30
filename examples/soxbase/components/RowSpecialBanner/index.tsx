@@ -1,5 +1,5 @@
 import { Link } from '@material-ui/core'
-import RichText from '@reachdigital/graphcms-ui/RichText'
+import RichTextHeadingStrongStroked from '@reachdigital/graphcms-ui/RichText/RichTextHeadingStrongStroked'
 import SpecialBanner from '@reachdigital/next-ui/Row/SpecialBanner'
 import PageLink from 'next/link'
 import React from 'react'
@@ -22,7 +22,8 @@ export default function RowSpecialBanner(props: RowSpecialBannerProps) {
           </Link>
         </PageLink>
       ))}
-      RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...copy} />}
-    />
+    >
+      <RichTextHeadingStrongStroked {...copy} />
+    </SpecialBanner>
   )
 }

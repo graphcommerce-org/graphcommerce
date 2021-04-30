@@ -58,9 +58,7 @@ function ProductVirtual(props: Props) {
           name={product.name ?? ''}
         />
       </ProductPageGallery>
-      <RowProductDescription {...product}>
-        <ProductUsps usps={usps} />
-      </RowProductDescription>
+      <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent
         renderer={{
           RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,

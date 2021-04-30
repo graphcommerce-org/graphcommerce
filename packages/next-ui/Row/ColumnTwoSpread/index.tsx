@@ -27,45 +27,15 @@ const useStyles = makeStyles(
   { name: 'ColumnTwoSpread' },
 )
 
-const useRichTextOne = makeStyles(({ spacings, breakpoints }: Theme) => ({
-  paragraph: {
-    [breakpoints.up('md')]: {
-      columnCount: ({ columnCountTwo }: any) => columnCountTwo,
-      columnGap: spacings.md,
-    },
-  },
-}))
-
-const useRichTextTwo = makeStyles(({ spacings, breakpoints }: Theme) => ({
-  paragraph: {
-    [breakpoints.up('md')]: {
-      columnCount: ({ columnCountOne }: any) => columnCountOne,
-      columnGap: spacings.md,
-    },
-  },
-}))
-
 type ColumnTwoSpreadProps = Omit<ContainerProps, 'children'> &
-  UseStyles<typeof useStyles & typeof useRichTextOne & typeof useRichTextTwo> & {
-    columnCountOne: number
-    columnCountTwo: number
-    somethingWithNodeLength: boolean
-    ColContentOne: (props) => React.ReactElement
-    ColContentTwo: (props) => React.ReactElement
+  UseStyles<typeof useStyles> & {
+    nodeLength: boolean
+    colOneContent: React.ReactNode
+    colTwoContent: React.ReactNode
   }
 
 export default function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
-  const { ColContentOne, ColContentTwo } = props
   const classes = useStyles(props)
-  const richTextTwoClasses = useRichTextTwo(props)
-  const richTextOneClasses = useRichTextOne(props)
 
-  return (
-    <ColumnTwo
-      {...props}
-      classes={classes}
-      colOneContent={<ColContentOne classes={richTextOneClasses} />}
-      colTwoContent={<ColContentTwo classes={richTextTwoClasses} />}
-    />
-  )
+  return <ColumnTwo {...props} classes={classes} />
 }

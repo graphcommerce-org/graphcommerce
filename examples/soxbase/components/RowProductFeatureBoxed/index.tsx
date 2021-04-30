@@ -1,6 +1,7 @@
+import { Typography } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import ProductFeatureBoxed from '@reachdigital/next-ui/Row/ProductFeatureBoxed'
+import RowImageTextBoxed from '@reachdigital/next-ui/Row/RowImageTextBoxed'
 import React from 'react'
 import { ProductFeatureMediaBoxedFragment } from './ProductFeatureMediaBoxed.gql'
 import { RowProductFeatureBoxedFragment } from './RowProductFeatureBoxed.gql'
@@ -14,8 +15,7 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
   if (!item) return null
 
   return (
-    <ProductFeatureBoxed
-      topic={topic}
+    <RowImageTextBoxed
       item={
         item.__typename === 'ProductImage' &&
         item.url && (
@@ -28,7 +28,9 @@ export default function RowProductFeatureBoxedBoxed(props: RowProductFeatureBoxe
           />
         )
       }
-      RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...copy} />}
-    />
+    >
+      {topic && <Typography variant='caption'>{topic}</Typography>}
+      <RichText {...copy} />
+    </RowImageTextBoxed>
   )
 }

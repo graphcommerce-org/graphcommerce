@@ -1,6 +1,5 @@
-import { Container, makeStyles, Theme } from '@material-ui/core'
+import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import React from 'react'
-import { ColumnOneProps } from '../ColumnOne'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -18,9 +17,7 @@ const useStyles = makeStyles(
   { name: 'ColumnOneBoxed' },
 )
 
-export type ColumnOneBoxedProps = ColumnOneProps
-
-export default function ColumnOneBoxed(props: ColumnOneBoxedProps) {
+export default function ColumnOneBoxed(props: ContainerProps) {
   const { children } = props
   const classes = useStyles(props)
 

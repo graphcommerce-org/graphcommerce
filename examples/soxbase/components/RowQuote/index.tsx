@@ -1,4 +1,4 @@
-import RichText from '@reachdigital/graphcms-ui/RichText'
+import RichTextQuote from '@reachdigital/graphcms-ui/RichText/RichTextQuote'
 import Quote from '@reachdigital/next-ui/Row/Quote'
 import React from 'react'
 import { RowQuoteFragment } from './RowQuote.gql'
@@ -9,6 +9,8 @@ export default function RowQuote(props: RowQuoteProps) {
   const { quote } = props
 
   return (
-    <Quote RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...quote} />} />
+    <Quote>
+      <RichTextQuote {...quote} />
+    </Quote>
   )
 }

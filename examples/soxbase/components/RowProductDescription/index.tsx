@@ -1,18 +1,24 @@
+import { Typography } from '@material-ui/core'
 import { ProductPageDescription, ProductPageDescriptionProps } from '@reachdigital/magento-product'
-import ProductDescription from '@reachdigital/next-ui/Row/ProductDescription'
-import React, { PropsWithChildren } from 'react'
+import ColumnTwoWithTop from '@reachdigital/next-ui/Row/ColumnTwoWithTop'
+import React from 'react'
 
-type RowProductDescriptionProps = PropsWithChildren<ProductPageDescriptionProps>
+type RowProductDescriptionProps = ProductPageDescriptionProps & {
+  right: React.ReactNode
+}
 
 export default function RowProductPageDescription(props: RowProductDescriptionProps) {
-  const { children, name, description } = props
+  const { right, name, description } = props
 
   return (
-    <ProductDescription
-      name={name}
-      description={<ProductPageDescription description={description} />}
-    >
-      {children}
-    </ProductDescription>
+    <ColumnTwoWithTop
+      top={
+        <Typography variant='h1' component='h2'>
+          {name}
+        </Typography>
+      }
+      left={<ProductPageDescription description={description} />}
+      right={right}
+    />
   )
 }

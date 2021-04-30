@@ -2,7 +2,6 @@ import { Container, makeStyles, Theme } from '@material-ui/core'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -52,74 +51,53 @@ const useStyles = makeStyles(
         width: '50%',
       },
     },
-    product: {
+    slidingItems: {
       maxWidth: '100%',
     },
   }),
-  { name: 'RowProductBackstory' },
+  { name: 'ParagraphWithSidebarSlide' },
 )
 
-const useRichTextOne = makeStyles((theme: Theme) => ({
-  paragraph: {
-    textTransform: 'uppercase',
-    maxWidth: '100%',
-    fontWeight: 600,
-    textAlign: 'left',
-    fontSize: responsiveVal(11, 20),
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '100%',
-      fontSize: responsiveVal(16, 34),
-    },
-    '& strong': {
-      color: 'transparent',
-      WebkitTextStroke: '1.2px #fff',
-    },
-  },
-}))
-
-type ProductBackstoryProps = UseStyles<typeof useStyles & typeof useRichTextOne> & {
-  productListItems: React.ReactNode
-  asset: React.ReactNode
-  RichContent: (props) => React.ReactElement
+type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> & {
+  slidingItems: React.ReactNode
+  background: React.ReactNode
+  children: React.ReactNode
 }
 
-export default function ProductBackstory(props: ProductBackstoryProps) {
-  const { RichContent, asset, productListItems } = props
+export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps) {
+  const { background, slidingItems, children } = props
   const classes = useStyles(props)
-  const richTextOneClasses = useRichTextOne(props)
 
   const [windowHeight, setHeight] = useState(0)
-  const [productY, setProductY] = useState(0)
+  const [itemY, setItemY] = useState(0)
   const [parentHeight, setParentHeight] = useState(0)
-  const productParent = useRef() as React.MutableRefObject<HTMLInputElement>
-  const product = useRef() as React.MutableRefObject<HTMLInputElement>
+  const wrapper = useRef() as React.MutableRefObject<HTMLDivElement>
+  const sidebar = useRef() as React.MutableRefObject<HTMLDivElement>
   const scrollPath = parentHeight > windowHeight / 2 ? windowHeight / 2 : 0
 
   useEffect(() => {
     // todo(erwin): Needs useResizeObserver hook
-    setParentHeight(product?.current?.offsetHeight)
+    setParentHeight(sidebar?.current?.offsetHeight)
     setHeight(window.innerHeight)
-    setProductY(product?.current?.offsetTop)
+    setItemY(sidebar?.current?.offsetTop)
   }, [])
 
   const { scrollY } = useViewportScroll()
   const transformY = useTransform(
     scrollY,
-    [productY - windowHeight / 4, productY + windowHeight / 2],
+    [itemY - windowHeight / 4, itemY + windowHeight / 2],
     [0, scrollPath],
   )
 
   return (
     <Container maxWidth={false} className={classes.container}>
-      <div className={classes.wrapper} ref={productParent}>
+      <div className={classes.wrapper} ref={wrapper}>
         <div className={classes.backstory}>
-          <div className={classes.copy}>
-            <RichContent classes={richTextOneClasses} />
-          </div>
-          {asset}
+          <div className={classes.copy}>{children}</div>
+          {background}
         </div>
-        <m.div ref={product} transition={{ ease: 'linear' }} style={{ y: transformY }}>
-          {productListItems}
+        <m.div ref={sidebar} transition={{ ease: 'linear' }} style={{ y: transformY }}>
+          {slidingItems}
         </m.div>
       </div>
     </Container>

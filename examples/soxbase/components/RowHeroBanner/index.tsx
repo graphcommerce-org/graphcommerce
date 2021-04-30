@@ -1,4 +1,4 @@
-import RichText from '@reachdigital/graphcms-ui/RichText'
+import RichTextHero from '@reachdigital/graphcms-ui/RichText/RichTextHero'
 import HeroBanner from '@reachdigital/next-ui/Row/HeroBanner'
 import React from 'react'
 import Button from '../PageLink/Button'
@@ -9,11 +9,12 @@ export default function RowHeroBanner(props: RowHeroBannerFragment) {
 
   return (
     <HeroBanner
-      RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...copy} />}
       pageLinks={pageLinks.map((pageLink) => (
         <Button key={pageLink.url} {...pageLink} variant='outlined' size='large' color='inherit' />
       ))}
       videoSrc={asset.url}
-    />
+    >
+      <RichTextHero {...copy} />
+    </HeroBanner>
   )
 }

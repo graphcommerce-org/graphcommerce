@@ -5,7 +5,6 @@ import { UseStyles } from '../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      gridArea: 'usps',
       listStyleType: 'none',
       padding: 0,
       margin: 0,

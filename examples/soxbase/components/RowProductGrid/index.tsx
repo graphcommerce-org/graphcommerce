@@ -1,5 +1,4 @@
 import { Container, Link, makeStyles, Theme } from '@material-ui/core'
-import MuiProductGridLink from '@reachdigital/next-ui/Row/MuiProductGridLink'
 import SmallProductGridHeader from '@reachdigital/next-ui/SmallProductGridHeader'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import PageLink from 'next/link'
@@ -14,16 +13,6 @@ const useStyles = makeStyles(
     container: {
       marginBottom: `${theme.spacings.xl}`,
     },
-    productList: {
-      gridColumnGap: theme.spacings.md,
-      gridRowGap: theme.spacings.lg,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 260)}, 1fr))`,
-    },
-    url: {
-      ...theme.typography.body1,
-      fontWeight: 400,
-      color: theme.palette.text.primary,
-    },
   }),
   { name: 'RowProductGrid' },
 )
@@ -32,6 +21,9 @@ export default function RowProductGrid(props: RowProductGridProps) {
   const { title, pageLinks, magentoCategory, ...productListItems } = props
   const classes = useStyles(props)
 
+  // <Row/ContainerWithHeader title={title} rightArea={pageLinks}>
+  // <ProductListItems {...productListItems} classes={{ productList: classes.productList }} />
+  // </Row/ContainerWithHeader>
   return (
     <Container className={classes.container}>
       {title && (
@@ -39,14 +31,14 @@ export default function RowProductGrid(props: RowProductGridProps) {
           title={title}
           pageLinks={pageLinks.map((pageLink) => (
             <PageLink href={pageLink.url} key={pageLink.url} passHref>
-              <Link href={pageLink.url} className={classes.url} underline='always'>
-                {title}
+              <Link color='textPrimary' href={pageLink.url} underline='always'>
+                {pageLink.title}
               </Link>
             </PageLink>
           ))}
         />
       )}
-      <ProductListItems {...productListItems} classes={{ productList: classes.productList }} />
+      <ProductListItems {...productListItems} size='small' />
     </Container>
   )
 }

@@ -13,31 +13,45 @@ const useStyles = makeStyles(
       justifyItems: 'center',
       columnGap: `${theme.spacings.lg}`,
       padding: `${theme.spacings.lg} 0`,
+      justifySelf: 'start',
       [theme.breakpoints.up('md')]: {
         padding: 0,
         background: 'none',
+        justifySelf: 'center',
         gridTemplateColumns: '1fr 1fr',
-        // height: '60vw',
-        columnGap: `${theme.spacings.lg}`,
+        columnGap: `${theme.spacings.md}`,
       },
     },
     asset: {
-      height: '100%',
-      width: responsiveVal(250, 900),
+      width: responsiveVal(200, 900),
+      height: 'auto',
       '& img': {
-        height: '100%',
-        width: '100%',
+        width: responsiveVal(200, 900),
+        height: 'auto',
         objectFit: 'cover',
+      },
+      [theme.breakpoints.up('lg')]: {
+        width: responsiveVal(250, 900),
+        height: 'auto',
+        '& img': {
+          width: responsiveVal(250, 900),
+          height: 'auto',
+          objectFit: 'cover',
+        },
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        width: '100%',
+        '& img': {
+          width: '100%',
+        },
       },
     },
     copy: {
       color: theme.palette.text.primary,
-      maxWidth: '80%',
+      maxWidth: '70%',
       display: 'grid',
       alignContent: 'center',
-      [theme.breakpoints.up('md')]: {
-        maxWidth: '70%',
-      },
+      justifyContent: 'center',
       '& > *': {
         maxWidth: 'max-content',
       },
@@ -54,42 +68,26 @@ const useStyles = makeStyles(
         color: theme.palette.text.primary,
       },
     },
+    textContainer: {
+      maxWidth: '70%',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '100%',
+      },
+    },
   }),
   { name: 'SpecialBanner' },
 )
 
-const useRichTextOne = makeStyles((theme: Theme) => ({
-  h2: {
-    textTransform: 'uppercase',
-    maxWidth: '80%',
-    color: theme.palette.text.primary,
-    WebkitTextStroke: `0.9px ${theme.palette.text.primary}`,
-    fontSize: responsiveVal(18, 50),
-    marginTop: responsiveVal(8, 20),
-    marginBottom: responsiveVal(18, 20),
-    '& strong': {
-      color: 'transparent',
-      WebkitTextStroke: `0.9px ${theme.palette.text.primary}`,
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: responsiveVal(18, 60),
-      maxWidth: '100%',
-      WebkitTextStroke: `1.2x ${theme.palette.text.primary}`,
-    },
-  },
-}))
-
-type SpecialBannerProps = UseStyles<typeof useStyles & typeof useRichTextOne> & {
-  RichContent: (props) => React.ReactElement
+type SpecialBannerProps = UseStyles<typeof useStyles> & {
   asset: React.ReactNode
   pageLinks?: React.ReactNode
   topic: React.ReactNode
+  children: React.ReactNode
 }
 
 export default function SpecialBanner(props: SpecialBannerProps) {
-  const { RichContent, asset, topic, pageLinks } = props
+  const { asset, topic, pageLinks, children } = props
   const classes = useStyles()
-  const richTextOneClasses = useRichTextOne(props)
 
   return (
     <Container maxWidth={false} className={classes.container}>
@@ -102,7 +100,8 @@ export default function SpecialBanner(props: SpecialBannerProps) {
               {topic}
             </Typography>
           )}
-          <RichContent classes={richTextOneClasses} />
+
+          <div className={classes.textContainer}>{children}</div>
 
           <div className={classes.links}>{pageLinks}</div>
         </div>

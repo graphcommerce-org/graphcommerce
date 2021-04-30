@@ -1,6 +1,7 @@
+import { Typography } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
-import ProductFeature from '@reachdigital/next-ui/Row/ProductFeature'
+import RowImageText from '@reachdigital/next-ui/Row/RowImageText'
 import React from 'react'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
 import { RowProductFeatureFragment } from './RowProductFeature.gql'
@@ -14,8 +15,7 @@ export default function RowProductFeature(props: ProductFeatureProps) {
   if (!item) return null
 
   return (
-    <ProductFeature
-      topic={topic}
+    <RowImageText
       item={
         item.__typename === 'ProductImage' &&
         item.url && (
@@ -28,7 +28,9 @@ export default function RowProductFeature(props: ProductFeatureProps) {
           />
         )
       }
-      RichContent={(richTextOneClasses) => <RichText {...richTextOneClasses} {...copy} />}
-    />
+    >
+      {topic && <Typography variant='caption'>{topic}</Typography>}
+      <RichText {...copy} />
+    </RowImageText>
   )
 }

@@ -1,17 +1,15 @@
-import RichText from '@reachdigital/graphcms-ui/RichText'
-import { ColumnOneStyles } from '@reachdigital/next-ui/Row/ColumnOne'
-import ColumnOneDoubleSpread from '@reachdigital/next-ui/Row/ColumnOneDoubleSpread'
+import RichTextDoubleSpread from '@reachdigital/graphcms-ui/RichText/RichTextDoubleSpread'
+import ColumnOne from '@reachdigital/next-ui/Row/ColumnOne'
 import React from 'react'
 import { RowColumnOneFragment } from './RowColumnOne.gql'
 
-type RowColumnOneSpreadProps = RowColumnOneFragment & ColumnOneStyles
+type RowColumnOneDoubleSpreadProps = RowColumnOneFragment
 
-export default function RowColumnOneDoubleSpread(props: RowColumnOneSpreadProps) {
+export default function RowColumnOneDoubleSpread(props: RowColumnOneDoubleSpreadProps) {
   const { colOne } = props
-
   return (
-    <ColumnOneDoubleSpread
-      RichContent={(richTextOneClasses) => <RichText {...colOne} {...richTextOneClasses} />}
-    />
+    <ColumnOne>
+      <RichTextDoubleSpread {...colOne} />
+    </ColumnOne>
   )
 }

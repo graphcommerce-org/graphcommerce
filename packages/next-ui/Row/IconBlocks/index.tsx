@@ -16,7 +16,7 @@ const useStyles = makeStyles(
       gridTemplateColumns: `repeat(auto-fill, minmax(${responsiveVal(150, 280)}, 1fr))`,
       gap: `${theme.spacings.sm}`,
     },
-    contactOption: {
+    block: {
       display: 'grid',
       gridAutoFlow: 'row',
       justifyItems: 'center',
@@ -31,20 +31,20 @@ const useStyles = makeStyles(
       paddingTop: `${theme.spacings.lg}`,
     },
   }),
-  { name: 'ServiceOptions' },
+  { name: 'IconBlocks' },
 )
 
-type ServiceOptionsProps = UseStyles<typeof useStyles> & {
+type IconBlocksProps = UseStyles<typeof useStyles> & {
   title: string
   options: React.ReactNode
 }
 
-export default function ServiceOptions(props: ServiceOptionsProps) {
+export default function ServiceOptions(props: IconBlocksProps) {
   const { title, options } = props
   const classes = useStyles(props)
 
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <Container className={classes.container}>
       <div className={classes.wrapper}>
         <Typography variant='h5' className={classes.title}>
           {title}
