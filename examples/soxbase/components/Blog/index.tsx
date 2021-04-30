@@ -9,9 +9,11 @@ export default function BlogList(props: BlogListProps) {
 
   return (
     <NextBlogList>
-      {blogPosts.map((BlogPost) => (
-        <BlogItem key={BlogPost.title} {...BlogPost} />
-      ))}
+      <>
+        {blogPosts.map((BlogPost) => (
+          <BlogItem key={BlogPost.title} {...BlogPost} />
+        ))}
+      </>
     </NextBlogList>
   )
 }
