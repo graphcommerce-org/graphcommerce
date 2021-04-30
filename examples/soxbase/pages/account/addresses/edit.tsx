@@ -10,10 +10,8 @@ import { AccountDashboardAddressesDocument } from '@reachdigital/magento-custome
 import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import Button from '@reachdigital/next-ui/Button'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import Row from '@reachdigital/next-ui/Row'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -73,16 +71,7 @@ function EditAddressPage(props: Props) {
           {address && !loading && <EditAddressForm countries={countries} address={address} />}
 
           {address && !loading && (
-            <DeleteCustomerAddressForm
-              button={() => (
-                <Row>
-                  <Button type='submit' variant='text' color='primary' align='center'>
-                    Delete this address
-                  </Button>
-                </Row>
-              )}
-              addressId={address?.id ?? undefined}
-            />
+            <DeleteCustomerAddressForm addressId={address?.id ?? undefined} />
           )}
         </SectionContainer>
       </NoSsr>
