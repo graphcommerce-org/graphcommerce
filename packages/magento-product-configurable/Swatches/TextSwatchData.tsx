@@ -48,7 +48,7 @@ export default function TextSwatchData(props: TextSwatchDataProps) {
         <>
           <div className={classes.storeLabel}>{store_label}</div>
           <div className={classes.value}>
-            <Money currency={price?.currency as CurrencyEnum} value={price?.value} />
+            <Money {...price} />
           </div>
           <div className={classes.delivery}>
             {/* TODO: change to actual delivery data */}
