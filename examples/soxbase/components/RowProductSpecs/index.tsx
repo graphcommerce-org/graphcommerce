@@ -31,7 +31,10 @@ export default function RowProductSpecs(props: RowProductSpecsProps) {
 
   return (
     <Row className={classes.root}>
-      <SectionContainer label='Product specifications' classes={classes}>
+      <SectionContainer
+        label='Product specifications'
+        classes={{ sectionHeader: classes.sectionHeader }}
+      >
         <ProductSpecs aggregations={aggregations} />
       </SectionContainer>
     </Row>
