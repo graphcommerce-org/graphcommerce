@@ -55,14 +55,14 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
-          <div>
+          <p>
             <Typography variant='subtitle2' display='inline'>
               As low as &nbsp;
             </Typography>
             <Typography variant='h6' display='inline'>
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
-          </div>
+          </p>
           <Typography component='h1' variant='h2'>
             {product.name}
           </Typography>
