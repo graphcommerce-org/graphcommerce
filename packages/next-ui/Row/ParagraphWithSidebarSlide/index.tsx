@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 import Row from '..'
@@ -56,14 +56,15 @@ const useStyles = makeStyles(
   { name: 'ParagraphWithSidebarSlide' },
 )
 
-type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> & {
-  slidingItems: React.ReactNode
-  background: React.ReactNode
-  children: React.ReactNode
-}
+type ParagraphWithSidebarSlideProps = UseStyles<typeof useStyles> &
+  ContainerProps & {
+    slidingItems: React.ReactNode
+    background: React.ReactNode
+    children: React.ReactNode
+  }
 
 export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSlideProps) {
-  const { background, slidingItems, children } = props
+  const { background, slidingItems, children, ...containerProps } = props
   const classes = useStyles(props)
 
   const [windowHeight, setHeight] = useState(0)
@@ -88,7 +89,7 @@ export default function ParagraphWithSidebarSlide(props: ParagraphWithSidebarSli
   )
 
   return (
-    <Row>
+    <Row maxWidth={false} {...containerProps}>
       <div className={classes.wrapper} ref={wrapper}>
         <div className={classes.backstory}>
           <div className={classes.copy}>{children}</div>

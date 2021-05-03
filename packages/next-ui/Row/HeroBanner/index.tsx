@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core'
+import { ContainerProps, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { m, useTransform, useViewportScroll } from 'framer-motion'
 import React from 'react'
@@ -51,14 +51,15 @@ const useStyles = makeStyles(
   { name: 'HeroBanner' },
 )
 
-type HeroBannerProps = UseStyles<typeof useStyles> & {
-  pageLinks: React.ReactNode
-  videoSrc: string
-  children: React.ReactNode
-}
+type HeroBannerProps = UseStyles<typeof useStyles> &
+  ContainerProps & {
+    pageLinks: React.ReactNode
+    videoSrc: string
+    children: React.ReactNode
+  }
 
 export default function HeroBanner(props: HeroBannerProps) {
-  const { pageLinks, videoSrc, children } = props
+  const { pageLinks, videoSrc, children, ...containerProps } = props
   const classes = useStyles(props)
 
   const { scrollY } = useViewportScroll()
@@ -69,7 +70,7 @@ export default function HeroBanner(props: HeroBannerProps) {
   )
 
   return (
-    <Row>
+    <Row maxWidth={false} {...containerProps}>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
           {children}
