@@ -1,3 +1,4 @@
+import { Typography, TypographyProps } from '@material-ui/core'
 import { ProductListItemProps } from '@reachdigital/magento-product'
 import ProductListItemBundle from '@reachdigital/magento-product-bundle/ProductListItemBundle'
 import ProductListItemConfigurable from '@reachdigital/magento-product-configurable/ProductListItemConfigurable'
@@ -8,20 +9,23 @@ import { ProductListItemRendererFragment } from '@reachdigital/magento-product-t
 import ProductListItemVirtual from '@reachdigital/magento-product-virtual/ProductListItemVirtual'
 import { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import React from 'react'
-import Subtitle from '../ProductListItem/Subtitle'
+
+const Subtitle = (props: TypographyProps) => (
+  <Typography component='span' variant='subtitle2' {...props} />
+)
 
 const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemProps> = {
   SimpleProduct: (props) => (
     <ProductListItemSimple
       {...props}
-      subTitle={<Subtitle value='By Soxbase' />}
+      subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
     />
   ),
   ConfigurableProduct: (props) => (
     <ProductListItemConfigurable
       {...props}
-      subTitle={<Subtitle value='By Soxbase' />}
+      subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
       swatchLocations={{
         topLeft: [],
@@ -34,35 +38,35 @@ const renderer: TypeRenderer<ProductListItemRendererFragment, ProductListItemPro
   BundleProduct: (props) => (
     <ProductListItemBundle
       {...props}
-      subTitle={<Subtitle value='By Soxbase' />}
+      subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
     />
   ),
   VirtualProduct: (props) => (
     <ProductListItemVirtual
       {...props}
-      subTitle={<Subtitle value='By Soxbase' />}
+      subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
     />
   ),
   DownloadableProduct: (props) => (
     <ProductListItemDownloadable
       {...props}
-      subTitle={<Subtitle value='By Soxbase' />}
+      subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
     />
   ),
   GroupedProduct: (props) => (
     <ProductListItemGrouped
       {...props}
-      subTitle={<Subtitle value='By Soxbase' />}
+      subTitle={<Subtitle>By Soxbase</Subtitle>}
       aspectRatio={[1, 1]}
     />
   ),
   // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // // @ts-ignore GiftCardProduct is only available in Commerce
   // GiftCardProduct: (props) => (
-  //   <ProductListItem {...props} subTitle={<Subtitle value='By Soxbase' />} aspectRatio={[1, 1]} />
+  //   <ProductListItem {...props} subTitle={<Subtitle>By Soxbase</Subtitle>} aspectRatio={[1, 1]} />
   // ),
 }
 

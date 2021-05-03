@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Box, Container, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Box, Container, NoSsr } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
@@ -9,9 +9,7 @@ import {
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
-import Button from '@reachdigital/next-ui/Button'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
@@ -22,21 +20,10 @@ import apolloClient from '../../../lib/apolloClient'
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    deleteButton: {
-      margin: `0 auto ${theme.spacings.md} auto`,
-      display: 'block',
-    },
-  }),
-  { name: 'EditAddressPage' },
-)
-
 function EditAddressPage(props: Props) {
   const { countries } = props
   const router = usePageRouter()
   const { addressId } = router.query
-  const classes = useStyles()
 
   const { data, loading } = useQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'network-only',
@@ -84,19 +71,7 @@ function EditAddressPage(props: Props) {
           {address && !loading && <EditAddressForm countries={countries} address={address} />}
 
           {address && !loading && (
-            <DeleteCustomerAddressForm
-              button={() => (
-                <Button
-                  type='submit'
-                  variant='text'
-                  color='primary'
-                  className={classes.deleteButton}
-                >
-                  Delete this address
-                </Button>
-              )}
-              addressId={address?.id ?? undefined}
-            />
+            <DeleteCustomerAddressForm addressId={address?.id ?? undefined} />
           )}
         </SectionContainer>
       </NoSsr>

@@ -129,7 +129,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                             { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                           ],
                         },
                       },
@@ -164,7 +163,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                             { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                             { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                           ],
                         },
                       },
@@ -350,7 +348,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                   { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                 ],
                               },
                             },
@@ -396,7 +393,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -448,7 +444,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -488,7 +483,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                   { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                 ],
                               },
                             },
@@ -534,7 +528,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -608,7 +601,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                   { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                                   { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                  { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                 ],
                               },
                             },
@@ -685,7 +677,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -737,7 +728,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                                           name: { kind: 'Name', value: 'mimeType' },
                                         },
                                         { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                                        { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                                       ],
                                     },
                                   },
@@ -761,7 +751,6 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
                       { kind: 'Field', name: { kind: 'Name', value: 'height' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'size' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'alt' } },
                     ],
                   },
                 },
@@ -879,17 +868,13 @@ export type CategoryPageQuery = {
       socialLinks: Array<
         Pick<Types.PageLink, 'title' | 'url'> & {
           description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-          asset?: Types.Maybe<
-            Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-          >
+          asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
         }
       >
       legalLinks: Array<
         Pick<Types.PageLink, 'title' | 'url'> & {
           description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
-          asset?: Types.Maybe<
-            Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-          >
+          asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
         }
       >
     }
@@ -920,33 +905,33 @@ export type CategoryPageQuery = {
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                   asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                   >
                 }
               >
             })
         | ({ __typename: 'RowHeroBanner' } & Pick<Types.RowHeroBanner, 'id'> & {
-              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
               copy: Pick<Types.RichText, 'raw'>
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                   asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                   >
                 }
               >
             })
         | ({ __typename: 'RowProductBackstory' } & Pick<Types.RowProductBackstory, 'id'> & {
               copy: Pick<Types.RichText, 'raw'>
-              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
             })
         | ({ __typename: 'RowProductGrid' } & Pick<Types.RowProductGrid, 'id' | 'title'> & {
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                   asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                   >
                 }
               >
@@ -962,28 +947,26 @@ export type CategoryPageQuery = {
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                   asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                   >
                 }
               >
             })
         | ({ __typename: 'RowSpecialBanner' } & Pick<Types.RowSpecialBanner, 'id' | 'topic'> & {
-              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+              asset: Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
               copy: Pick<Types.RichText, 'raw'>
               pageLinks: Array<
                 Pick<Types.PageLink, 'title' | 'url'> & {
                   description?: Types.Maybe<Pick<Types.RichText, 'raw'>>
                   asset?: Types.Maybe<
-                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
+                    Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>
                   >
                 }
               >
             })
         | ({ __typename: 'RowSwipeableGrid' } & Pick<Types.RowSwipeableGrid, 'id' | 'title'>)
       >
-      asset?: Types.Maybe<
-        Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size' | 'alt'>
-      >
+      asset?: Types.Maybe<Pick<Types.Asset, 'url' | 'width' | 'height' | 'mimeType' | 'size'>>
     }
   >
   categories?: Types.Maybe<{

@@ -1,65 +1,24 @@
-import { makeStyles, Container, Theme, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { ProductPageDescription, ProductPageDescriptionProps } from '@reachdigital/magento-product'
-import React, { PropsWithChildren } from 'react'
+import ColumnTwoWithTop from '@reachdigital/next-ui/Row/ColumnTwoWithTop'
+import React from 'react'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'grid',
-    gap: `${theme.spacings.lg} 0`,
-    gridTemplateAreas: `"title"
-    "description"
-    "usps"`,
-    marginBottom: theme.spacings.xl,
-    [theme.breakpoints.up('md')]: {
-      gridTemplateAreas: `"title ."
-      "description usps"`,
-      gridTemplateColumns: '1fr auto',
-      gap: `${theme.spacings.sm} ${theme.spacings.xl}`,
-    },
-  },
-  name: {
-    ...theme.typography.h1,
-  },
-  description: {
-    gridArea: 'description',
-    '& p:first-of-type': {
-      marginTop: 0,
-    },
-    '& p, & li': {
-      ...theme.typography.h4,
-      fontWeight: 400,
-      [theme.breakpoints.up('md')]: {
-        ...theme.typography.h3,
-        fontWeight: 400,
-      },
-    },
-    '& ul': {
-      padding: 0,
-      margin: 0,
-      display: 'inline',
-      listStyleType: 'none',
-    },
-    '& li': {
-      display: 'inline',
-    },
-  },
-}))
-
-type RowProductDescriptionProps = ProductPageDescriptionProps & PropsWithChildren<unknown>
+type RowProductDescriptionProps = ProductPageDescriptionProps & {
+  right: React.ReactNode
+}
 
 export default function RowProductPageDescription(props: RowProductDescriptionProps) {
-  const classes = useStyles()
-  const { children, name, description } = props
+  const { right, name, description } = props
+
   return (
-    <Container className={classes.root}>
-      <Typography variant='h2' className={classes.name}>
-        {name ?? ''}
-      </Typography>
-      {/* eslint-disable-next-line react/no-danger */}
-      <div className={classes.description}>
-        <ProductPageDescription description={description} />
-      </div>
-      {children && children}
-    </Container>
+    <ColumnTwoWithTop
+      top={
+        <Typography variant='h1' component='h2'>
+          {name}
+        </Typography>
+      }
+      left={<ProductPageDescription description={description} />}
+      right={right}
+    />
   )
 }

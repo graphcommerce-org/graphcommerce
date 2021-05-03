@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CartItem from '@reachdigital/magento-cart/cart/CartItem'
@@ -11,8 +11,7 @@ import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
 import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
 import CouponAccordion from '@reachdigital/magento-cart/coupon/CouponAccordion'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { AnimatePresence } from 'framer-motion'
@@ -23,27 +22,18 @@ import apolloClient from '../lib/apolloClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
-const useStyles = makeStyles(
-  () => ({
-    title: {
-      textAlign: 'center',
-    },
-  }),
-  { name: 'Cart' },
-)
-
 function CartPage() {
   const { data } = useQuery(ClientCartDocument, { ssr: false })
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
-  const classes = useStyles()
 
   return (
     <Container maxWidth='md'>
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <NoSsr>
-        <Typography variant='h5' component='h1' className={classes.title}>
+        <Typography variant='h5' component='h1' align='center'>
           Checkout
         </Typography>
+
         <AnimatePresence initial={false}>
           {hasItems ? (
             <>

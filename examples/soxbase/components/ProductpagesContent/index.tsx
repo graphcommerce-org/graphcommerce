@@ -9,7 +9,6 @@ import RowProductRelated from '../RowProductRelated'
 import RowProductReviews from '../RowProductReviews'
 import RowProductSpecs from '../RowProductSpecs'
 import RowProductUpsells from '../RowProductUpsells'
-
 import RowQuote from '../RowQuote'
 import RowSpecialBanner from '../RowSpecialBanner'
 import { ProductpagesContentQueryFragment } from './ProductpagesContentQueryFragment.gql'

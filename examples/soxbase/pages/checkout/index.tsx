@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
+import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
@@ -12,10 +12,10 @@ import {
 import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
 import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
@@ -27,19 +27,8 @@ import apolloClient from '../../lib/apolloClient'
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    heading: {
-      marginBottom: `calc(${theme.spacings.xxs} * -1)`,
-      marginTop: theme.spacings.xxs,
-    },
-  }),
-  { name: 'ShippingPage' },
-)
-
 function ShippingPage({ countries }: Props) {
   const formClasses = useFormStyles()
-  const classes = useStyles()
   const router = useRouter()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
@@ -76,9 +65,8 @@ function ShippingPage({ countries }: Props) {
             <EmailForm />
             <ShippingAddressForm countries={countries} doSubmit={addressForm} />
 
-            <Typography variant='h5' className={classes.heading}>
-              Shipping method
-            </Typography>
+            <FormHeader variant='h5'>Shipping method</FormHeader>
+
             <ShippingMethodForm doSubmit={methodForm} />
 
             <div className={formClasses.actions}>

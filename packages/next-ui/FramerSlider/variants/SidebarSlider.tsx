@@ -30,12 +30,12 @@ const useStyles = makeStyles(
       gridRowGap: theme.spacings.lg,
       alignContent: 'space-around',
       paddingRight: theme.page.horizontal,
-    },
-    item: {
-      minWidth: responsiveVal(200, 400),
+      '& > *': {
+        minWidth: responsiveVal(200, 400),
+      },
     },
   }),
-  { name: 'RowProductRelated' },
+  { name: 'SidebarSlider' },
 )
 
 type SidebarSliderProps = { children: ReactNode; sidebar: ReactNode } & UseStyles<typeof useStyles>

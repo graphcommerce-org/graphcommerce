@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { IconButton, Theme, makeStyles } from '@material-ui/core'
+import { IconButton, makeStyles, Theme } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import { SearchButton } from '@reachdigital/magento-search'
@@ -12,7 +12,6 @@ import FullPageShellBase, {
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import PageLoadIndicator from '@reachdigital/next-ui/PageLoadIndicator'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
@@ -25,7 +24,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     navbarSearch: {
       marginRight: theme.spacings.xxs,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         minWidth: 130,
       },
     },
