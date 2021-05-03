@@ -62,7 +62,7 @@ export function parseParams(
 }
 
 export function extractUrlQuery(params?: { url: string[] }) {
-  if (!params) return [undefined, undefined] as const
+  if (!params?.url) return [undefined, undefined] as const
 
   const queryIndex = params.url.findIndex((slug) => slug === 'q')
   const qIndex = queryIndex < 0 ? params.url.length : queryIndex

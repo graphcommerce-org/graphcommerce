@@ -1,6 +1,5 @@
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Pagination from '@reachdigital/next-ui/Pagination'
 import { GetStaticPaths } from 'next'

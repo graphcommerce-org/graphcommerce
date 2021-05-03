@@ -11,12 +11,13 @@ import productPageCategory from '@reachdigital/magento-product/ProductPageCatego
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
+import ProductUsps from '../../../components/ProductUsps'
 import ProductpagesContent from '../../../components/ProductpagesContent'
 import RowProductDescription from '../../../components/RowProductDescription'
 import RowProductFeature from '../../../components/RowProductFeature'
@@ -25,7 +26,6 @@ import RowProductRelated from '../../../components/RowProductRelated'
 import RowProductReviews from '../../../components/RowProductReviews'
 import RowProductSpecs from '../../../components/RowProductSpecs'
 import RowProductUpsells from '../../../components/RowProductUpsells'
-import ProductUsps from '../../../components/Usps'
 import apolloClient from '../../../lib/apolloClient'
 
 export const config = { unstable_JsPreload: false }
@@ -46,7 +46,6 @@ function ProductBundle(props: Props) {
   if (product?.__typename !== 'BundleProduct' || typeProduct?.__typename !== 'BundleProduct')
     return <></>
 
-  const category = productPageCategory(product)
   return (
     <>
       <ProductPageMeta {...product} />
@@ -59,9 +58,7 @@ function ProductBundle(props: Props) {
         />
         <BundleItemsForm {...typeProduct} />
       </ProductPageGallery>
-      <RowProductDescription {...product}>
-        <ProductUsps usps={usps} />
-      </RowProductDescription>
+      <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
       <ProductpagesContent
         renderer={{
           RowProductFeature: (rowProps) => <RowProductFeature {...rowProps} {...product} />,

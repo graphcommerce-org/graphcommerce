@@ -1,4 +1,5 @@
-import { Container, makeStyles, NoSsr, Theme, Typography } from '@material-ui/core'
+import { useQuery } from '@apollo/client'
+import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout/ShippingPage.gql'
@@ -10,11 +11,14 @@ import EmptyCart from '@reachdigital/magento-cart/EmptyCart/EmptyCart'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
-} from '@reachdigital/magento-store/CountryRegions.gql'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
+import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
+import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import CheckoutStepper from '@reachdigital/next-ui/Stepper/Stepper'
@@ -31,16 +35,6 @@ import apolloClient from '../../lib/apolloClient'
 
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    heading: {
-      marginBottom: `calc(${theme.spacings.xxs} * -1)`,
-      marginTop: theme.spacings.xxs,
-    },
-  }),
-  { name: 'ShippingPage' },
-)
 
 function SubmitButton({ formState, submit }: ComposedSubmitRenderComponentProps) {
   const router = useRouter()
@@ -64,7 +58,6 @@ function SubmitButton({ formState, submit }: ComposedSubmitRenderComponentProps)
 
 function ShippingPage({ countries }: Props) {
   const formClasses = useFormStyles()
-  const classes = useStyles()
   const { data: cartData } = useCartQuery(ShippingPageDocument, { returnPartialData: true })
   const cartExists = typeof cartData?.cart !== 'undefined'
 
@@ -88,9 +81,8 @@ function ShippingPage({ countries }: Props) {
             <EmailForm />
             <ShippingAddressForm countries={countries} />
 
-            <Typography variant='h5' className={classes.heading}>
-              Shipping method
-            </Typography>
+            <FormHeader variant='h5'>Shipping method</FormHeader>
+
             <ShippingMethodForm />
 
             <div className={formClasses.actions}>

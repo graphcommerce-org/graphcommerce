@@ -3,43 +3,36 @@ import { UpsellProductsFragment } from '@reachdigital/magento-product/ProductUps
 import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import React from 'react'
 import renderers from '../ProductListItems/renderers'
 import { RowProductUpsellsFragment } from './RowProductUpsells.gql'
 
+type RowProductUpsellsProps = RowProductUpsellsFragment & UpsellProductsFragment
+
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    h2: {
-      fontSize: responsiveVal(16, 40),
-    },
     item: {
       minWidth: responsiveVal(200, 400),
     },
   }),
-  { name: 'RowProductUpsells' },
+  { name: 'ProductUpsells' },
 )
-
-type RowProductUpsellsProps = RowProductUpsellsFragment & UpsellProductsFragment
 
 export default function RowProductUpsells(props: RowProductUpsellsProps) {
   const { title, upsell_products } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   if (!upsell_products || upsell_products.length === 0) return null
+
   return (
-    <SidebarSlider
-      sidebar={
-        <Typography variant='h2' className={classes.h2}>
-          {title}
-        </Typography>
-      }
-    >
-      {upsell_products.map((item) =>
+    <SidebarSlider sidebar={<Typography variant='h2'>{title}</Typography>}>
+      {upsell_products?.map((item) =>
         item ? (
           <RenderType
             key={item.uid ?? ''}
             renderer={renderers}
-            {...item}
             classes={{ item: classes.item }}
+            {...item}
           />
         ) : null,
       )}

@@ -4,11 +4,11 @@ import { IsRequired } from './useGqlDocumentHandler'
 export type UseFormValidReturn<TFieldValues> = Partial<Record<Path<TFieldValues>, boolean>>
 
 /**
- * ### useFromValidFields
+ * ### useFormValidFields
  *
  * Record field names as key and boolean as value indicating whether the field is valid
  */
-export function useFormValid<TFieldValues extends FieldValues>(
+export function useFormValidFields<TFieldValues extends FieldValues>(
   form: Pick<UseFormReturn<TFieldValues>, 'watch' | 'formState'>,
   required: IsRequired<TFieldValues>,
 ): UseFormValidReturn<TFieldValues> {

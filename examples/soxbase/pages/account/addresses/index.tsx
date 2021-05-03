@@ -3,12 +3,11 @@ import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import AccountAddresses from '@reachdigital/magento-customer/AccountAddresses'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-store/CountryRegions.gql'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'

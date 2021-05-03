@@ -2,8 +2,8 @@ import { useQuery } from '@apollo/client'
 import { IconButton, Theme, makeStyles } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
-import SearchButton from '@reachdigital/magento-search/SearchButton'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { SearchButton } from '@reachdigital/magento-search'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import DesktopNavActions from '@reachdigital/next-ui/AppShell/DesktopNavActions'
 import DesktopNavBar from '@reachdigital/next-ui/AppShell/DesktopNavBar'
 import FullPageShellBase, {
@@ -14,7 +14,8 @@ import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import PageLink from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useCallback } from 'react'
 import { DefaultPageQuery } from '../GraphQL/DefaultPage.gql'
 import Footer from './Footer'
 import Logo from './Logo'
@@ -23,7 +24,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     navbarSearch: {
       marginRight: theme.spacings.xxs,
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         minWidth: 130,
       },
     },
@@ -55,6 +56,9 @@ function FullPageShell(props: FullPageShellProps) {
     ],
   }
 
+  const router = useRouter()
+  const onSearchStart = useCallback(() => router.push('/search'), [])
+
   return (
     <FullPageShellBase
       {...uiProps}
@@ -64,7 +68,9 @@ function FullPageShell(props: FullPageShellProps) {
           <Logo />
           <DesktopNavBar {...menuProps} />
           <DesktopNavActions>
-            <SearchButton classes={{ root: classes.navbarSearch }} />
+            {!router.pathname.startsWith('/search') && (
+              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+            )}
 
             <PageLink href='/service' passHref>
               <IconButton aria-label='Account' color='inherit' size='medium'>
@@ -93,7 +99,7 @@ function FullPageShell(props: FullPageShellProps) {
         </>
       }
     >
-      <MenuFab {...menuProps} search={<SearchButton />}>
+      <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <MenuFabSecondaryItem src='/icons/desktop_account.svg' type='image/svg+xml' href='/account'>
           Account
         </MenuFabSecondaryItem>
@@ -122,7 +128,9 @@ function FullPageShell(props: FullPageShellProps) {
           type='image/svg+xml'
         />
       </CartFab>
+
       {children}
+
       <Footer footer={footer} />
     </FullPageShellBase>
   )

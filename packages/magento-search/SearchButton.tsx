@@ -1,6 +1,7 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
+import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -17,22 +18,24 @@ const useStyles = makeStyles(
   { name: 'SearchButton' },
 )
 
-type SearchButtonProps = UseStyles<typeof useStyles>
+export type SearchButtonProps = UseStyles<typeof useStyles> & { onClick?: () => void }
 
 export default function SearchButton(props: SearchButtonProps) {
-  const classes = useStyles(props)
+  const { onClick } = props
+  const classes = useStyles()
+
   return (
-    // <PageLink href='/search' passHref>
     <TextField
       variant='outlined'
       size='small'
       classes={{ root: classes.root }}
       InputProps={{
+        readOnly: true,
         endAdornment: <SearchIcon fontSize='small' />,
         classes: { root: classes.inputRoot },
       }}
       placeholder=''
+      onClick={onClick}
     />
-    // </PageLink>
   )
 }

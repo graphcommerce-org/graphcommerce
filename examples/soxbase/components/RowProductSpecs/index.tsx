@@ -1,25 +1,25 @@
-import { Container, Theme, Typography, makeStyles } from '@material-ui/core'
-import ProductSpecs, { ProductSpecsProps } from '@reachdigital/magento-product/ProductSpecs'
+import { makeStyles, Theme } from '@material-ui/core'
+import { ProductSpecs, ProductSpecsProps } from '@reachdigital/magento-product'
+import Row from '@reachdigital/next-ui/Row'
+import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import React from 'react'
 import { RowProductSpecsFragment } from './RowProductSpecs.gql'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    marginBottom: `${theme.spacings.xl}`,
-    ...theme.typography.body1,
-  },
-  title: {
-    ...theme.typography.caption,
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    marginBottom: theme.spacings.sm,
-    paddingBottom: theme.spacings.sm,
-  },
-  specs: {
-    display: 'grid',
-    justifyContent: 'start',
-  },
-}))
-
 type RowProductSpecsProps = RowProductSpecsFragment & ProductSpecsProps
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      ...theme.typography.body1,
+    },
+    sectionHeader: {
+      marginBottom: theme.spacings.md,
+    },
+  }),
+  {
+    name: 'RowProductSpecs',
+  },
+)
 
 export default function RowProductSpecs(props: RowProductSpecsProps) {
   const { aggregations } = props
@@ -30,13 +30,13 @@ export default function RowProductSpecs(props: RowProductSpecsProps) {
   }
 
   return (
-    <Container className={classes.root}>
-      <Typography variant='h3' className={classes.title}>
-        Product specifications
-      </Typography>
-      <div className={classes.specs}>
+    <Row className={classes.root}>
+      <SectionContainer
+        label='Product specifications'
+        classes={{ sectionHeader: classes.sectionHeader }}
+      >
         <ProductSpecs aggregations={aggregations} />
-      </div>
-    </Container>
+      </SectionContainer>
+    </Row>
   )
 }

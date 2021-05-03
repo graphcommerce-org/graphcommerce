@@ -1,35 +1,19 @@
-import { Container, ContainerProps, makeStyles, Theme } from '@material-ui/core'
 import RichText from '@reachdigital/graphcms-ui/RichText'
 import { UseRichTextStyles } from '@reachdigital/graphcms-ui/RichText/useRichTextStyles'
-import { UseStyles } from '@reachdigital/next-ui/Styles'
+import ColumnOne from '@reachdigital/next-ui/Row/ColumnOne'
 import React from 'react'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {
-      maxWidth: 820,
-      marginBottom: theme.spacings.lg,
-    },
-  }),
-  { name: 'RowColumnOne' },
-)
-
-export type RowColumnOneProps = RowColumnOneFragment &
-  UseStyles<typeof useStyles> &
-  Omit<ContainerProps, 'children'> & {
-    richTextOneClasses?: UseRichTextStyles['classes']
-  }
+export type RowColumnOneProps = RowColumnOneFragment & {
+  richTextOneClasses?: UseRichTextStyles['classes']
+}
 
 export default function RowColumnOne(props: RowColumnOneProps) {
-  const { colOne, richTextOneClasses, ...containerProps } = props
-  const classes = useStyles(props)
+  const { colOne, richTextOneClasses } = props
 
   return (
-    <Container maxWidth='md' {...containerProps} className={classes.root}>
-      <div>
-        <RichText {...colOne} classes={richTextOneClasses} />
-      </div>
-    </Container>
+    <ColumnOne>
+      <RichText {...colOne} classes={richTextOneClasses} />
+    </ColumnOne>
   )
 }

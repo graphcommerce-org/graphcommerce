@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { ProductLinkFragment } from './ProductLink.gql'
 
 export function productLink(link: ProductLinkFragment, base?: string) {

@@ -1,4 +1,4 @@
-import { Container, NoSsr, Typography, makeStyles } from '@material-ui/core'
+import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
 import CouponAccordion from '@reachdigital/magento-cart-coupon/CouponAccordion/CouponAccordion'
@@ -10,8 +10,7 @@ import CartTotals from '@reachdigital/magento-cart/CartTotals/CartTotals'
 import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import EmptyCart from '@reachdigital/magento-cart/EmptyCart/EmptyCart'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
@@ -23,27 +22,18 @@ import apolloClient from '../lib/apolloClient'
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
-const useStyles = makeStyles(
-  () => ({
-    title: {
-      textAlign: 'center',
-    },
-  }),
-  { name: 'Cart' },
-)
-
 function CartPage() {
   const { data } = useCartQuery(CartPageDocument, { returnPartialData: true })
   const hasItems = (data?.cart?.total_quantity ?? 0) > 0
-  const classes = useStyles()
 
   return (
     <Container maxWidth='md'>
       <PageMeta title='Cart' metaDescription='Cart Items' metaRobots={['noindex']} />
       <NoSsr>
-        <Typography variant='h5' component='h1' className={classes.title}>
+        <Typography variant='h5' component='h1' align='center'>
           Checkout
         </Typography>
+
         <AnimatePresence initial={false}>
           {hasItems ? (
             <>

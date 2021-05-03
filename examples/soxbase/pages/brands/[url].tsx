@@ -1,5 +1,5 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'

@@ -32,7 +32,7 @@ const FilterInputTypesDocument = gql`
   }
 `
 
-export default async function getFilterTypes(
+export async function getFilterTypes(
   client: ApolloClient<NormalizedCacheObject>,
 ): Promise<FilterTypes> {
   const filterInputTypes = client.query<FilterInputTypesQuery, FilterInputTypesQueryVariables>({

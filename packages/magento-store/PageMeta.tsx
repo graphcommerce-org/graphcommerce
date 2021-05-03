@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { StoreConfigDocument } from './StoreConfig.gql'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
-type MetaRobots = (
+export type MetaRobots =
   | 'noindex'
   | 'nofollow'
   | 'noarchive'
@@ -14,13 +14,12 @@ type MetaRobots = (
   | `max-snippet:${number}`
   | `max-image-preview:${'none' | 'standard' | 'large'}`
   | `max-video-preview:${number}`
-)[]
 type MetaRobotsAll = ['all' | 'none']
 
-type PageMetaProps = {
+export type PageMetaProps = {
   title: string
-  metaDescription: string
-  metaRobots?: MetaRobotsAll | MetaRobots
+  metaDescription?: string
+  metaRobots?: MetaRobotsAll | MetaRobots[]
 }
 
 export default function PageMeta(props: PageMetaProps) {
@@ -41,7 +40,7 @@ export default function PageMeta(props: PageMetaProps) {
   return (
     <Head>
       <title>{pageTitle}</title>
-      <meta name='description' content={metaDescription} />
+      {metaDescription && <meta name='description' content={metaDescription} />}
       <meta name='robots' content={metaRobots.join(',')} />
     </Head>
   )

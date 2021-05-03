@@ -4,5 +4,4 @@ fragment Asset on Asset {
   height
   mimeType
   size
-  alt
 }

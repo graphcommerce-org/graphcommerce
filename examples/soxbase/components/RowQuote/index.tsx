@@ -1,39 +1,16 @@
-import { Container, Theme, makeStyles } from '@material-ui/core'
-import RichText from '@reachdigital/graphcms-ui/RichText'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import RichTextQuote from '@reachdigital/graphcms-ui/RichText/RichTextQuote'
+import Quote from '@reachdigital/next-ui/Row/Quote'
+import React from 'react'
 import { RowQuoteFragment } from './RowQuote.gql'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    container: {
-      marginBottom: `${theme.spacings.xl}`,
-    },
-  }),
-  { name: 'RowQuote' },
-)
+type RowQuoteProps = RowQuoteFragment
 
-const useRichTextOne = makeStyles((theme: Theme) => ({
-  paragraph: {
-    'font-weight': 600,
-    textTransform: 'uppercase',
-    maxWidth: '80%',
-    textAlign: 'center',
-    margin: '0 auto',
-    fontSize: responsiveVal(14, 26),
-    [theme.breakpoints.up('lg')]: {
-      maxWidth: '50%',
-    },
-  },
-}))
-
-export default function RowQuote(props: RowQuoteFragment) {
+export default function RowQuote(props: RowQuoteProps) {
   const { quote } = props
-  const classes = useStyles()
-  const richTextOneClasses = useRichTextOne(props)
 
   return (
-    <Container maxWidth={false} className={classes.container}>
-      <RichText classes={richTextOneClasses} {...quote} />
-    </Container>
+    <Quote>
+      <RichTextQuote {...quote} />
+    </Quote>
   )
 }

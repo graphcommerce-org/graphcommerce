@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles } from '@material-ui/core'
 import FlagAvatar from '@reachdigital/next-ui/FlagAvatar'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import PageLink from 'next/link'
 import React from 'react'
 import { StoreConfigDocument } from '../StoreConfig.gql'
@@ -16,11 +17,13 @@ const useStyles = makeStyles(
   { name: 'StoreSwitcherButton' },
 )
 
-export default function StoreSwitcherButton() {
+export type StoreSwitcherButtonProps = UseStyles<typeof useStyles>
+
+export default function StoreSwitcherButton(props) {
   const config = useQuery(StoreConfigDocument)
   const country = config.data?.storeConfig?.store_code?.split('_')?.[1].toLowerCase() ?? ''
 
-  const classes = useStyles()
+  const classes = useStyles(props)
   return (
     <PageLink href='/switch-stores' passHref>
       <Button variant='text' size='medium'>

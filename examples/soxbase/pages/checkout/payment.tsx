@@ -11,12 +11,11 @@ import PaymentMethodOptions from '@reachdigital/magento-cart/payment-method/Paym
 import PaymentMethodToggle from '@reachdigital/magento-cart/payment-method/PaymentMethodToggle'
 import braintree_local_payment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
 import checkmo from '@reachdigital/magento-payment/Checkmo'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-store/CountryRegions.gql'
-import PageMeta from '@reachdigital/magento-store/PageMeta'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'

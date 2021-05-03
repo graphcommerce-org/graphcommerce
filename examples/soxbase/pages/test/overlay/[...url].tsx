@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import ForwardButton from '@reachdigital/next-ui/AppShell/ForwardButton'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'

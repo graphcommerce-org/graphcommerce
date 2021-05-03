@@ -1,39 +1,15 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import RichTextDoubleSpread from '@reachdigital/graphcms-ui/RichText/RichTextDoubleSpread'
+import ColumnOne from '@reachdigital/next-ui/Row/ColumnOne'
 import React from 'react'
-import RowColumnOne, { RowColumnOneProps } from '.'
+import { RowColumnOneFragment } from './RowColumnOne.gql'
 
-const useStyles = makeStyles(
-  ({ breakpoints }: Theme) => ({
-    root: {
-      [breakpoints.up('lg')]: {
-        gridTemplateColumns: `1fr 1fr 1fr`,
-        gridTemplateAreas: `
-          "one one one"
-        `,
-      },
-    },
-  }),
-  { name: 'RowColumnOneDoubleSpread' },
-)
+type RowColumnOneDoubleSpreadProps = RowColumnOneFragment
 
-const useRichTextOne = makeStyles(({ typography, spacings, breakpoints }: Theme) => ({
-  h2: typography.h4,
-  paragraph: {
-    [breakpoints.up('sm')]: {
-      columnCount: 2,
-      columnGap: spacings.md,
-    },
-    [breakpoints.up('lg')]: {
-      columnCount: 3,
-      columnGap: spacings.md,
-    },
-  },
-}))
-
-function RowColumnOneDoubleSpread(props: RowColumnOneProps) {
-  const classes = useStyles(props)
-  const richTextOneClasses = useRichTextOne(props)
-  return <RowColumnOne {...props} classes={classes} richTextOneClasses={richTextOneClasses} />
+export default function RowColumnOneDoubleSpread(props: RowColumnOneDoubleSpreadProps) {
+  const { colOne } = props
+  return (
+    <ColumnOne>
+      <RichTextDoubleSpread {...colOne} />
+    </ColumnOne>
+  )
 }
-
-export default RowColumnOneDoubleSpread
