@@ -1,4 +1,4 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
+import { ContainerProps, makeStyles, Theme, Typography } from '@material-ui/core'
 import Row from '..'
 import { UseStyles } from '../../Styles'
 import responsiveVal from '../../Styles/responsiveVal'
@@ -76,19 +76,20 @@ const useStyles = makeStyles(
   { name: 'SpecialBanner' },
 )
 
-type SpecialBannerProps = UseStyles<typeof useStyles> & {
-  asset: React.ReactNode
-  pageLinks?: React.ReactNode
-  topic: React.ReactNode
-  children: React.ReactNode
-}
+type SpecialBannerProps = UseStyles<typeof useStyles> &
+  ContainerProps & {
+    asset: React.ReactNode
+    pageLinks?: React.ReactNode
+    topic: React.ReactNode
+    children: React.ReactNode
+  }
 
 export default function SpecialBanner(props: SpecialBannerProps) {
-  const { asset, topic, pageLinks, children } = props
+  const { asset, topic, pageLinks, children, ...containerProps } = props
   const classes = useStyles()
 
   return (
-    <Row>
+    <Row maxWidth={false} {...containerProps}>
       <div className={classes.wrapper}>
         <div className={classes.asset}>{asset}</div>
         <div className={classes.copy}>
