@@ -30,6 +30,7 @@ export default function SearchButton(props: SearchButtonProps) {
       size='small'
       classes={{ root: classes.root }}
       InputProps={{
+        readOnly: true,
         endAdornment: <SearchIcon fontSize='small' />,
         classes: { root: classes.inputRoot },
       }}
