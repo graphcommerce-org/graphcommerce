@@ -6,7 +6,7 @@ const RichTextQuote = withStyles((theme: Theme) => ({
   paragraph: {
     fontWeight: 600,
     textTransform: 'uppercase',
-    maxWidth: '50%',
+    maxWidth: '60%',
     textAlign: 'center',
     margin: '0 auto',
     fontSize: responsiveVal(14, 26),
