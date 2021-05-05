@@ -1,13 +1,12 @@
-import { useMutation, useQuery as braintree_local_payment } from '@apollo/client'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
+import { useMutation } from '@apollo/client'
 import {
   ExpandPaymentMethods,
   PaymentButtonProps,
   PaymentMethod,
   PaymentModule,
   PaymentOptionsProps,
-} from '@reachdigital/magento-cart/payment-method/PaymentMethod'
-import { usePaymentMethodContext } from '@reachdigital/magento-cart/payment-method/PaymentMethodContext'
+  usePaymentMethodContext,
+} from '@reachdigital/magento-cart-payment-method'
 import Button from '@reachdigital/next-ui/Button'
 import { BraintreeError } from 'braintree-web'
 import { useRouter } from 'next/router'
@@ -36,7 +35,6 @@ function PaymentButton(props: PaymentButtonProps) {
     ...buttonProps
   } = props
 
-  const { data: cartData } = braintree_local_payment(ClientCartDocument)
   const paymentType = child as StartPaymentOptions['paymentType']
   const [execute] = useMutation(BraintreePaymentMethodDocument)
   const router = useRouter()

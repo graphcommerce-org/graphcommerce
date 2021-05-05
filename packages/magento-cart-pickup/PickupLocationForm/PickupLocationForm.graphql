@@ -7,7 +7,7 @@ mutation PickupLocationForm($cartId: String!, $pickupLocationCode: String!) {
         ...CartAddress
         pickup_location_code
       }
-      ...ShippingAddressUpdated
+      ...ShippingAddress
     }
   }
 }

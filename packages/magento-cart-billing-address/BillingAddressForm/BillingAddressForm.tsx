@@ -21,7 +21,7 @@ import React, { useRef } from 'react'
 import { BillingAddressFormDocument } from './BillingAddressForm.gql'
 import { BillingAddressQueryDocument } from './BillingAddressQuery.gql'
 
-type BillingAddressFormProps = CountryRegionsQuery
+export type BillingAddressFormProps = CountryRegionsQuery
 
 export default function BillingAddressForm(props: BillingAddressFormProps) {
   const { countries } = props

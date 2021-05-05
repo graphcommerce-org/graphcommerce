@@ -1,12 +1,12 @@
-import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText } from '@material-ui/core'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller, useFormCompose, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
-import { ClientCartDocument } from '../ClientCart.gql'
+import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import {
   ShippingMethodFormDocument,
   ShippingMethodFormMutation,
@@ -17,7 +17,7 @@ type ShippingMethodFormProps = Record<string, never>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const classes = useFormStyles()
-  const { data: cartQuery } = useQuery(ClientCartDocument)
+  const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
 
   const currentAddress = cartQuery?.cart?.shipping_addresses?.[0]
   const available = currentAddress?.available_shipping_methods
@@ -98,9 +98,9 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               </ToggleButtonGroup>
             )}
           />
-          {formState.errors.carrier && (
+          {formState.errors.carrierMethod && (
             <FormHelperText error variant='outlined'>
-              {formState.errors.carrier.message}
+              {formState.errors.carrierMethod.message}
             </FormHelperText>
           )}
         </FormControl>

@@ -1,0 +1,6 @@
+fragment ShippingAddress on Cart @injectable {
+  id
+  shipping_addresses {
+    ...CartAddress
+  }
+}

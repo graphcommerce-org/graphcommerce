@@ -40,7 +40,7 @@ mutation ShippingAddressForm(
       shipping_addresses {
         ...CartAddress
       }
-      ...ShippingAddressUpdated
+      ...ShippingAddress
     }
   }
 }

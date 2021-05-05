@@ -5,7 +5,6 @@ fragment PageContentQueryFragment on Query {
       ... on Node {
         id
       }
-      __typename
       ...RowColumnOne
       ...RowColumnTwo
       ...RowColumnThree

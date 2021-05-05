@@ -8,7 +8,7 @@ mutation ShippingMethodForm($cartId: String!, $carrier: String!, $method: String
     cart {
       id
       __typename
-      ...ShippingMethodUpdated
+      ...ShippingMethodSelected
     }
   }
 }

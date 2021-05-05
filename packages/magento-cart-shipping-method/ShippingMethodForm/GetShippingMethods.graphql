@@ -1,0 +1,6 @@
+query GetShippingMethods($cartId: String!) {
+  cart(cart_id: $cartId) {
+    id
+    ...AvailableShippingMethods
+  }
+}

@@ -1,6 +1,8 @@
-import { usePaymentMethodContext } from './PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export default function PaymentMethodOptions() {
+export type PaymentMethodOptionsProps = Record<string, unknown>
+
+export default function PaymentMethodOptions(props: PaymentMethodOptionsProps) {
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
   const PaymentOptions = selectedModule?.PaymentOptions
 

@@ -1,10 +1,11 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -17,8 +18,7 @@ import {
 } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
-import { ClientCartDocument } from '../ClientCart.gql'
-import { CountryRegionsQuery } from '../countries/CountryRegions.gql'
+import { GetShippingAddressDocument } from './GetShippingAddress.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
 type ShippingAddressFormProps = CountryRegionsQuery
@@ -27,7 +27,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { countries } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
-  const { data: cartQuery } = useQuery(ClientCartDocument)
+  const { data: cartQuery } = useCartQuery(GetShippingAddressDocument)
   const { data: config } = useQuery(StoreConfigDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
 

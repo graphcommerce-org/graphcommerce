@@ -5,10 +5,11 @@ import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { useForm, Controller, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
-import { ClientCartDocument } from '../ClientCart.gql'
-import { usePaymentMethodContext } from './PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
-export default function PaymentMethodToggle() {
+export type PaymentMethodToggleProps = Record<string, unknown>
+
+export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   const {
     methods,
     loading,
@@ -20,11 +21,10 @@ export default function PaymentMethodToggle() {
   } = usePaymentMethodContext()
 
   const classes = useFormStyles()
-  const { data: cartData } = useQuery(ClientCartDocument)
 
   const form = useForm<{ code: string; paymentMethod?: string }>({
     mode: 'onChange',
-    defaultValues: { code: cartData?.cart?.selected_payment_method?.code },
+    defaultValues: { code: selectedMethod?.code },
   })
   useFormPersist({ form, name: 'PaymentMethodToggle' })
 

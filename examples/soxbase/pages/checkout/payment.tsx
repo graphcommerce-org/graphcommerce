@@ -1,16 +1,16 @@
-import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
-import PaymentMethodButton from '@reachdigital/magento-cart/payment-method/PaymentMethodButton'
-import PaymentMethodContextProvider from '@reachdigital/magento-cart/payment-method/PaymentMethodContext'
-import PaymentMethodError from '@reachdigital/magento-cart/payment-method/PaymentMethodError'
-import PaymentMethodOptions from '@reachdigital/magento-cart/payment-method/PaymentMethodOptions'
-import PaymentMethodToggle from '@reachdigital/magento-cart/payment-method/PaymentMethodToggle'
-import braintree_local_payment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
-import checkmo from '@reachdigital/magento-payment/Checkmo'
+import { BillingAddressForm } from '@reachdigital/magento-cart-billing-address'
+import {
+  PaymentMethodButton,
+  PaymentMethodContextProvider,
+  PaymentMethodError,
+  PaymentMethodOptions,
+  PaymentMethodToggle,
+} from '@reachdigital/magento-cart-payment-method'
+import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
+import { checkmo } from '@reachdigital/magento-payment-included'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   CountryRegionsDocument,
@@ -33,7 +33,6 @@ function PaymentPage({ countries }: Props) {
   const classes = useFormStyles()
   const addressForm = useRef<() => Promise<boolean>>()
   const methodForm = useRef<() => Promise<boolean>>()
-  const { data: clientCart } = useQuery(ClientCartDocument, { ssr: false })
   const forceSubmit = () => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
@@ -45,10 +44,7 @@ function PaymentPage({ countries }: Props) {
   return (
     <Container maxWidth='md'>
       <ComposedForm>
-        <PaymentMethodContextProvider
-          modules={{ braintree_local_payment, checkmo }}
-          available_payment_methods={clientCart?.cart?.available_payment_methods}
-        >
+        <PaymentMethodContextProvider modules={{ braintree_local_payment, checkmo }}>
           <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
 
           <NoSsr>

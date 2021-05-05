@@ -1,8 +1,8 @@
 import { Color } from '@material-ui/lab'
-import { ClientCartQuery } from '@reachdigital/magento-cart/ClientCart.gql'
 import { ButtonProps } from '@reachdigital/next-ui/Button'
 import React from 'react'
 import { AvailablePaymentMethodFragment } from './Api/AvailablePaymentMethod/AvailablePaymentMethod.gql'
+import { PaymentMethodRequestedFragment } from './Api/PaymentMethodRequested.gql'
 
 export type PaymentMethod = AvailablePaymentMethodFragment & {
   child: string
@@ -38,6 +38,5 @@ export interface PaymentModule {
 export type PaymentMethodModules = { [code: string]: PaymentModule }
 
 export type ExpandPaymentMethods = (
-  method: AvailablePaymentMethodFragment,
-  cart: ClientCartQuery['cart'],
+  available: AvailablePaymentMethodFragment,
 ) => Promise<PaymentMethod[]> | PaymentMethod[]

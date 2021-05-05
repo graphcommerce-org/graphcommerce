@@ -1,15 +1,18 @@
 import { useApolloClient, useQuery } from '@apollo/client'
 import { ErrorResponse } from '@apollo/client/link/error'
+import { CurrentCartIdDocument } from '@reachdigital/magento-cart/CurrentCartId/CurrentCartId.gql'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { ClientCartDocument } from '../ClientCart.gql'
 import { OnPaymentComplete, OnPaymentError, OnPaymentStart } from '../PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext'
+import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 import { PaymentMethodButtonDocument } from './PaymentMethodButton.gql'
 
-export default function PaymentMethodButton(props: ButtonProps) {
+export type PaymentMethodButtonProps = ButtonProps
+
+export default function PaymentMethodButton(props: PaymentMethodButtonProps) {
   const {
     selectedMethod,
     selectedModule,
@@ -18,10 +21,10 @@ export default function PaymentMethodButton(props: ButtonProps) {
     loading,
   } = usePaymentMethodContext()
 
-  const { data: cartData } = useQuery(ClientCartDocument)
   const client = useApolloClient()
   const router = useRouter()
   const sadf = useFormGqlMutation(PaymentMethodButtonDocument)
+  const cartId = useQuery(CurrentCartIdDocument, { ssr: false }).data?.currentCartId?.id
 
   const onPaymentStart: OnPaymentStart = () => {
     setLoading(true)
@@ -30,10 +33,10 @@ export default function PaymentMethodButton(props: ButtonProps) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
       try {
-        if (!cartData?.cart?.id) return
+        if (!cartId) return
         await client.mutate({
           mutation: PaymentMethodButtonDocument,
-          variables: { cartId: cartData.cart.id },
+          variables: { cartId },
         })
 
         // eslint-disable-next-line @typescript-eslint/no-floating-promises

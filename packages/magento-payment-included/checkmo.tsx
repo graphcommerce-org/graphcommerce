@@ -1,5 +1,5 @@
-import { PaymentModule } from '@reachdigital/magento-cart/payment-method/PaymentMethod'
-import { usePaymentMethodContext } from '@reachdigital/magento-cart/payment-method/PaymentMethodContext'
+import { usePaymentMethodContext } from '@reachdigital/magento-cart-payment-method'
+import { PaymentModule } from '@reachdigital/magento-cart-payment-method/PaymentMethod'
 import Button from '@reachdigital/next-ui/Button'
 
 const checkmo: PaymentModule = {

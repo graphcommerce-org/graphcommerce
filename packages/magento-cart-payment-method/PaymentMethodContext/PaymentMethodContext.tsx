@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/client'
+import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
-import { ClientCartDocument } from '../ClientCart.gql'
 import { PaymentError, PaymentMethod, PaymentMethodModules, PaymentModule } from '../PaymentMethod'
+import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
 import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
@@ -28,15 +28,12 @@ const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
 })
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
-type PaymentMethodContextProviderProps = PropsWithChildren<
-  PaymentMethodContextFragment & { modules: PaymentMethodModules }
->
+type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMethodModules }>
 
 export default function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
-  const { available_payment_methods, modules, children } = props
+  const { modules, children } = props
 
-  // todo(paales): provide the cart via props to enhance composability
-  const { data: cartData } = useQuery(ClientCartDocument)
+  const { data: cartData } = useCartQuery(GetPaymentMethodContextDocument)
   const [methods, setMethods] = useState<PaymentMethod[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
@@ -48,7 +45,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
     if (!cartData) return // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
       const promises =
-        available_payment_methods?.map(async (method) =>
+        cartData.cart?.available_payment_methods?.map(async (method) =>
           method
             ? modules?.[method.code]?.expandMethods?.(method, cartData.cart) ?? [
                 { ...method, child: '' },
@@ -59,7 +56,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
       setMethods((await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0)))
       setLoading(false)
     })()
-  }, [available_payment_methods, cartData, modules])
+  }, [cartData, modules])
 
   return (
     <paymentMethodContext.Provider

@@ -1,3 +1,0 @@
-fragment ShippingAddressUpdated on Cart @injectable {
-  id
-}

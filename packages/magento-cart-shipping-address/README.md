@@ -2,7 +2,7 @@
 
 ## Provides Injectables
 
-- [`ShippingAddressUpdated`](./Injectable/ShippingAddressUpdated.graphql)
+- [`ShippingAddress`](./Injectable/ShippingAddress.graphql)
 
 ## Injects into
 

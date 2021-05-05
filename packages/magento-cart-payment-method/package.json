@@ -23,7 +23,7 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.12",
+    "@apollo/client": "^3.3.16",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -32,11 +32,12 @@
     "@reachdigital/magento-graphql": "^0.1.0",
     "@reachdigital/magento-store": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
+    "@reachdigital/react-hook-form": "^0.1.0",
     "clsx": "^1.1.1",
-    "framer-motion": "^3.10.5",
-    "next": "^10.0.9",
+    "framer-motion": "^4.1.11",
+    "next": "^10.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "type-fest": "^0.21.3"
+    "type-fest": "^1.0.2"
   }
 }

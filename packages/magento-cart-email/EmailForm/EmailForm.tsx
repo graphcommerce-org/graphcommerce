@@ -13,9 +13,8 @@ import { emailPattern, useFormCompose } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
-import { SetGuestEmailOnCartDocument } from '../SetGuestEmailOnCart.gql'
 import { CartEmailDocument } from './CartEmail.gql'
-import { EmailFormFragment } from './EmailForm.gql'
+import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

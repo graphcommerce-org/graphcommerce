@@ -1,0 +1,9 @@
+fragment ShippingMethodSelected on Cart @injectable {
+  id
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_code
+      method_code
+    }
+  }
+}
