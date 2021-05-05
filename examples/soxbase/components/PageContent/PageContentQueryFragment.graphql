@@ -1,6 +1,9 @@
 fragment PageContentQueryFragment on Query {
   pages(where: { url: $url }) {
     title
+    metaTitle
+    metaDescription
+    metaRobots
     content {
       ... on Node {
         id
