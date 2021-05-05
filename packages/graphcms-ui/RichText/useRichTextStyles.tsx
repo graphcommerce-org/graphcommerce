@@ -66,23 +66,31 @@ const useRichTextStyles = makeStyles(
       width: '100%',
       borderSpacing: '2px',
       borderCollapse: 'collapse',
-      border: '2px solid #ddd',
       marginTop: spacings.md,
       marginBottom: spacings.sm,
 
-      '& thead': {
-        background: '#f5f5f5',
+      '& thead, tbody': {
+        '& td': {
+          padding: '10px 20px',
+        },
       },
 
-      '& tbody, thead': {
+      '& thead': {
+        '& tr': {
+          '& td': {
+            '& p': {
+              fontWeight: 600,
+            },
+          },
+        },
+      },
+      '& tbody': {
         display: 'table-row-group',
         verticalAlign: 'center',
         borderColor: 'inherit',
 
         '& tr': {
-          borderBottom: '1px solid #ececec',
-
-          '&:nth-child(even)': {
+          '&:nth-child(odd)': {
             background: '#f5f5f5',
           },
         },
@@ -92,10 +100,7 @@ const useRichTextStyles = makeStyles(
             minWidth: '150px',
           },
 
-          padding: '5px 6px',
-          minWidth: '100px',
-
-          '& p': { fontSize: 17 },
+          '& p': { fontSize: 15 },
         },
       },
     },
