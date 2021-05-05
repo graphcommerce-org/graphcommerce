@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
+import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
 import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
@@ -40,7 +41,6 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
 
   const form = useFormGqlMutation(BillingAddressFormDocument, {
     defaultValues: {
-      cartId: cartQuery?.cart?.id,
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
       lastname: currentAddress?.lastname ?? currentCustomer?.lastname ?? undefined,
@@ -71,7 +71,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
     },
   })
 
-  const { muiRegister, handleSubmit, valid, formState, required, error } = form
+  const { muiRegister, register, handleSubmit, valid, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'BillingAddressForm' })
@@ -87,6 +87,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
+      <input type='hidden' {...register('cartId')} value={useCartId()} />
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' disabled={disableFields} />
         <AddressFields

@@ -1,4 +1,7 @@
+import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText } from '@material-ui/core'
+import { CurrentCartIdDocument } from '@reachdigital/magento-cart/CurrentCartId/CurrentCartId.gql'
+import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
 import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -31,7 +34,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    defaultValues: { cartId: cartQuery?.cart?.id, carrierMethod },
+    defaultValues: { carrierMethod },
     mode: 'onChange',
   })
 
@@ -41,6 +44,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   return (
     <form onSubmit={submit} noValidate className={classes.form}>
+      <input type='hidden' {...register('cartId')} value={useCartId()} />
       <input
         type='hidden'
         {...register('carrier', { required: required.carrier })}

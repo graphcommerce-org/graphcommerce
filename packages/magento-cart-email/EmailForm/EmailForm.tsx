@@ -61,10 +61,12 @@ export default function EmailForm() {
     // Customer isn't logged in, but we do have a valid email
     if (mode === 'signin' || mode === 'signup') {
       const [email] = getValues(['email'])
+
+      if (cartData.cart.email === email) return
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       setGuestEmailOnCart({ variables: { email, cartId: cartData.cart.id } })
     }
-  }, [mode, getValues, cartData?.cart?.id, setGuestEmailOnCart])
+  }, [mode, getValues, cartData?.cart?.id, setGuestEmailOnCart, cartData?.cart?.email])
 
   let endAdornment: React.ReactNode = null
 

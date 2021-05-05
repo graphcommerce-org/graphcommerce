@@ -1,5 +1,5 @@
 import { useQuery, TypedDocumentNode, QueryHookOptions } from '@apollo/client'
-import { CurrentCartIdDocument } from './CurrentCartId.gql'
+import { useCartId } from './useCartId'
 
 /**
  * Requires the query to have a `$cartId: String!` argument. It will automatically inject the
@@ -19,7 +19,7 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   document: TypedDocumentNode<Q, V>,
   options?: QueryHookOptions<Q, Omit<V, 'cartId'>>,
 ) {
-  const cartId = useQuery(CurrentCartIdDocument, { ssr: false }).data?.currentCartId?.id
+  const cartId = useCartId()
 
   return useQuery(document, {
     ...options,

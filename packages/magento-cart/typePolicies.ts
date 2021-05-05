@@ -1,7 +1,23 @@
-import type { QueryCartArgs, TypedTypePolicies } from '@reachdigital/magento-graphql/index'
+import type {
+  QueryCartArgs,
+  ShippingCartAddress,
+  TypedTypePolicies,
+} from '@reachdigital/magento-graphql/index'
 
 const typePolicies: TypedTypePolicies = {
   CurrentCartId: { keyFields: [] },
+  Cart: {
+    fields: {
+      shipping_addresses: {
+        merge: (
+          existing: ShippingCartAddress[] | undefined,
+          incoming: ShippingCartAddress[],
+          options,
+        ) => [options.mergeObjects(existing?.[0] ?? {}, incoming[0])],
+      },
+    },
+  },
+
   Query: {
     fields: {
       currentCartId: (_, { toReference }) => toReference({ __typename: 'CurrentCartId' }),
