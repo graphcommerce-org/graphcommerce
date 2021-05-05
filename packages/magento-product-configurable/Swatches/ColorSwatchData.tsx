@@ -8,9 +8,9 @@ import { SwatchDataProps } from '.'
 export const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
-      height: responsiveVal(40, 80),
-      width: responsiveVal(40, 80),
-      border: `3px solid ${theme.palette.grey[100]}`,
+      height: responsiveVal(35, 70),
+      width: responsiveVal(35, 70),
+      border: `3px solid ${theme.palette.background.highlight}`,
       boxSizing: 'border-box',
       borderRadius: '50%',
     },
@@ -19,7 +19,7 @@ export const useStyles = makeStyles(
       width: 20,
     },
   }),
-  { name: 'Subtitle' },
+  { name: 'ColorSwatchData' },
 )
 
 type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyles<typeof useStyles>
@@ -27,6 +27,7 @@ type ColorSwatchDataProps = ColorSwatchDataFragment & SwatchDataProps & UseStyle
 export default function ColorSwatchData(props: ColorSwatchDataProps) {
   const classes = useStyles(props)
   const { value, store_label, size } = props
+
   return (
     <div>
       <div

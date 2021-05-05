@@ -4,17 +4,6 @@ import React, { PropsWithChildren } from 'react'
 import SectionHeader from '../SectionHeader'
 import { UseStyles } from '../Styles'
 
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    root: {},
-    sectionHeader: {},
-    borderBottom: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-  }),
-  { name: 'SectionContainer' },
-)
-
 export type SectionContainerProps = PropsWithChildren<{
   label: React.ReactNode
   endLabel?: React.ReactNode
@@ -22,6 +11,18 @@ export type SectionContainerProps = PropsWithChildren<{
   borderBottom?: boolean
 }> &
   UseStyles<typeof useStyles>
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {},
+    sectionHeader: {},
+    borderBottom: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+    },
+    labelInnerContainer: {},
+  }),
+  { name: 'SectionContainer' },
+)
 
 export default function SectionContainer(props: SectionContainerProps) {
   const { children, label, endLabel, className, borderBottom } = props
@@ -32,7 +33,7 @@ export default function SectionContainer(props: SectionContainerProps) {
       <SectionHeader
         labelLeft={label}
         labelRight={endLabel}
-        classes={{ labelContainer: classes.sectionHeader }}
+        classes={{ labelInnerContainer: classes.labelInnerContainer }}
       />
       {children}
     </div>

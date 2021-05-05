@@ -10,9 +10,10 @@ import productPageCategory from '@reachdigital/magento-product/ProductPageCatego
 import ProductPageGallery from '@reachdigital/magento-product/ProductPageGallery'
 import ProductPageMeta from '@reachdigital/magento-product/ProductPageMeta'
 import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPaths/getProductStaticPaths'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
+import PageLink from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
@@ -54,12 +55,23 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
+          <p>
+            <Typography variant='subtitle2' display='inline'>
+              As low as &nbsp;
+            </Typography>
+            <Typography variant='h6' display='inline'>
+              <Money {...product.price_range.minimum_price.regular_price} />
+            </Typography>
+          </p>
           <Typography component='h1' variant='h2'>
             {product.name}
           </Typography>
           <ConfigurableProductAddToCart
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
+            optionEndLabels={{
+              size: <PageLink href='/'>Which size is right?</PageLink>,
+            }}
           />
         </ProductPageGallery>
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />

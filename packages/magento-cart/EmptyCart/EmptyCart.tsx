@@ -41,9 +41,7 @@ export default function EmptyCart() {
         <Typography variant='h3' gutterBottom component='h1'>
           Your cart is empty
         </Typography>
-        <Typography variant='subtitle1'>
-          Discover our collection and add items to your basket!
-        </Typography>
+        <Typography>Discover our collection and add items to your basket!</Typography>
       </div>
     </div>
   )

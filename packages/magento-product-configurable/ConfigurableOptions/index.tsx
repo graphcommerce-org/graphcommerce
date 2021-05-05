@@ -1,5 +1,6 @@
-import { BaseTextFieldProps, FormHelperText } from '@material-ui/core'
+import { BaseTextFieldProps, FormHelperText, makeStyles, Theme } from '@material-ui/core'
 import RenderType from '@reachdigital/next-ui/RenderType'
+import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { Controller, FieldErrors, UseControllerProps } from '@reachdigital/react-hook-form'
@@ -14,7 +15,36 @@ type ConfigurableOptionsProps = {
   sku: string
   errors?: FieldErrors
 } & UseControllerProps<any> &
-  Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'>
+  Pick<BaseTextFieldProps, 'FormHelperTextProps' | 'helperText'> & {
+    optionEndLabels?: Record<string, React.ReactNode>
+  }
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    labelInnerContainer: {
+      borderBottom: 'none',
+      padding: `${theme.spacings.xxs} 0`,
+    },
+    toggleButtonGroup: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: theme.spacings.xxs,
+      marginBottom: theme.spacings.xxs,
+    },
+    button: {
+      minHeight: theme.spacings.lg,
+      border: '2px solid transparent',
+      backgroundColor: theme.palette.background.default,
+      borderRadius: 4,
+      boxShadow: `0px 0px 2px ${theme.palette.grey[400]}`,
+      '&$selected': {
+        border: `2px solid ${theme.palette.primary.main}`,
+        boxShadow: `unset`,
+      },
+    },
+  }),
+  { name: 'ConfigurableOptions' },
+)
 
 const renderer: SwatchTypeRenderer = { TextSwatchData, ImageSwatchData, ColorSwatchData }
 
@@ -26,14 +56,18 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
     defaultValue,
     errors,
     helperText,
+    optionEndLabels,
     ...controlProps
   } = props
-  const { options, selection, select, cheapest } = useConfigurableContext(sku)
+
+  const { options, selection, select, getVariants } = useConfigurableContext(sku)
+  const classes = useStyles()
 
   return (
     <>
       {options?.map((option) => {
         if (!option?.id || !option.attribute_code) return null
+
         const { attribute_code } = option
         const error = errors?.[attribute_code]
 
@@ -44,8 +78,18 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
             name={`${name}[${attribute_code}]`}
             {...controlProps}
             render={({ field: { onChange, value, name: inputName, ref, onBlur } }) => (
-              <>
-                {option?.label}
+              <SectionContainer
+                label={`choose your ${option?.label}`}
+                endLabel={
+                  optionEndLabels && option?.label
+                    ? optionEndLabels[option.label.toLowerCase()]
+                    : undefined
+                }
+                classes={{
+                  labelInnerContainer: classes.labelInnerContainer,
+                }}
+                borderBottom={false}
+              >
                 <ToggleButtonGroup
                   defaultValue={selection[attribute_code] ?? ''}
                   required
@@ -58,19 +102,32 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   ref={ref}
                   onBlur={onBlur}
                   value={value}
+                  classes={{ root: classes.toggleButtonGroup }}
                 >
                   {option?.values?.map((val) => {
                     if (!val?.swatch_data || !val.value_index || !option.attribute_code) return null
+
+                    const copySelection = { ...selection }
+                    delete copySelection[attribute_code]
+
+                    const itemVariant = getVariants(copySelection).find((variant) =>
+                      variant?.attributes?.find(
+                        (attribute) => attribute?.value_index === val.value_index,
+                      ),
+                    )
+
                     return (
                       <ToggleButton
                         key={val.value_index}
                         value={val.value_index ?? ''}
                         name={inputName}
+                        classes={{ root: classes.button }}
                       >
                         <RenderType
                           renderer={renderer}
                           {...val}
                           {...val.swatch_data}
+                          price={itemVariant?.product?.price_range.minimum_price.final_price}
                           size={'large' as SwatchSize}
                         />
                       </ToggleButton>
@@ -82,7 +139,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                     {helperText}
                   </FormHelperText>
                 )}
-              </>
+              </SectionContainer>
             )}
           />
         )
