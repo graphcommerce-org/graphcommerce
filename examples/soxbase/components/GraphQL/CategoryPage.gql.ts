@@ -195,6 +195,9 @@ export const CategoryPageDocument: DocumentNode<CategoryPageQuery, CategoryPageQ
               kind: 'SelectionSet',
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'content' },
@@ -880,7 +883,7 @@ export type CategoryPageQuery = {
     }
   >
   pages: Array<
-    Pick<Types.Page, 'title'> & {
+    Pick<Types.Page, 'title' | 'metaTitle' | 'metaDescription' | 'metaRobots'> & {
       content: Array<
         | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & {
               content?: Types.Maybe<Pick<Types.RichText, 'raw'>>

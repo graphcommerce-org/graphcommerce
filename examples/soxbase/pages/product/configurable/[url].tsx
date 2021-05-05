@@ -70,7 +70,7 @@ function ProductConfigurable(props: Props) {
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
             optionEndLabels={{
-              size: <PageLink href='/'>Which size is right?</PageLink>,
+              size: <PageLink href='/modal/product/global/size'>Which size is right?</PageLink>,
             }}
           />
         </ProductPageGallery>
