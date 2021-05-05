@@ -19,14 +19,10 @@ const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'space-between',
       borderBottom: `1px solid ${theme.palette.divider}`,
-      paddingBottom: responsiveVal(6, 12),
+      paddingBottom: theme.spacings.xxs,
     },
     labelLeft: {
-      ...theme.typography.body2,
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-      fontWeight: 500,
-      color: theme.palette.secondary.mutedText,
+      ...theme.typography.subtitle1,
     },
     labelRight: {
       ...theme.typography.body2,

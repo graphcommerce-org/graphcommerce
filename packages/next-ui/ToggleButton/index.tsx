@@ -16,7 +16,7 @@ export const useStyles = makeStyles(
       '&:hover': {},
 
       '&$selected': {
-        border: `2px solid ${theme.palette.secondary.main}`,
+        border: `2px solid ${theme.palette.primary.main}`,
       },
     },
     disabled: {},

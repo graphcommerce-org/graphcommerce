@@ -14,12 +14,15 @@ type ButtonClassKey =
   | 'pillSizeLarge'
   | 'pillSizeSmall'
   | 'pillNoElevation'
+  | 'textBold'
 
 type ClassKeys = ButtonClassKey | MuiButtonClassKey
+type Text = 'normal' | 'bold'
 
 export type ButtonProps = BaseButtonProps & {
   classes?: { [index in ClassKeys]?: string }
   loading?: boolean
+  text?: Text
 }
 
 const useStyles = makeStyles<
@@ -49,25 +52,39 @@ const useStyles = makeStyles<
         boxShadow: 'none',
       },
     },
+    textBold: {
+      fontWeight: theme.typography.fontWeightBold,
+    },
   }),
   { name: 'MuiPillButton' },
 )
 
 export default React.forwardRef<any, ButtonProps>((props, ref) => {
   const { classes = {}, ...baseProps } = props
-  const { variant, color, size, className, children, loading, disabled, ...buttonProps } = baseProps
+  const {
+    variant,
+    color,
+    size,
+    className,
+    children,
+    loading,
+    disabled,
+    text,
+    ...buttonProps
+  } = baseProps
   const {
     pill,
     pillPrimary,
     pillSecondary,
     pillSizeLarge,
     pillSizeSmall,
+    textBold,
     ...buttonClasses
   } = classes
 
   const pillClasses = useStyles({
     ...baseProps,
-    classes: { pill, pillPrimary, pillSecondary, pillSizeLarge, pillSizeSmall },
+    classes: { pill, pillPrimary, pillSecondary, pillSizeLarge, pillSizeSmall, textBold },
   })
 
   return (
@@ -87,6 +104,7 @@ export default React.forwardRef<any, ButtonProps>((props, ref) => {
           [pillClasses.pillSizeLarge]: variant === 'pill' && size === 'large',
           [pillClasses.pillSizeSmall]: variant === 'pill' && size === 'small',
           [pillClasses.pillNoElevation]: buttonProps.disableElevation,
+          [pillClasses.textBold]: text === 'bold',
         },
         className,
       )}
