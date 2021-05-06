@@ -3,4 +3,7 @@ fragment ShippingAddress on Cart @injectable {
   shipping_addresses {
     ...CartAddress
   }
+  billing_address {
+    ...CartAddress
+  }
 }

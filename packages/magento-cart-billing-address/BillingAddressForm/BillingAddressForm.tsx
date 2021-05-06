@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { TextField } from '@material-ui/core'
+import { FormControlLabel, Switch, TextField } from '@material-ui/core'
 import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
 import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
+import { CountryRegionsDocument } from '@reachdigital/magento-store/CountryRegions.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
@@ -20,22 +20,22 @@ import {
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import { BillingAddressFormDocument } from './BillingAddressForm.gql'
-import { BillingAddressQueryDocument } from './BillingAddressQuery.gql'
+import { GetBillingAddressDocument } from './GetBillingAddress.gql'
 
-export type BillingAddressFormProps = CountryRegionsQuery
+export type BillingAddressFormProps = Record<string, unknown>
 
 export default function BillingAddressForm(props: BillingAddressFormProps) {
-  const { countries } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
-  const { data: cartQuery } = useCartQuery(BillingAddressQueryDocument)
+  const { data: cartQuery } = useCartQuery(GetBillingAddressDocument)
   const { data: config } = useQuery(StoreConfigDocument)
+  const { data: countriesData } = useQuery(CountryRegionsDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
-  const currentAddress = cartQuery?.cart?.billing_address
-  const currentShippingAddress = cartQuery?.cart?.shipping_addresses?.[0]
+  const currentAddress =
+    cartQuery?.cart?.billing_address ?? cartQuery?.cart?.shipping_addresses?.[0]
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
 
@@ -57,7 +57,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
     },
     mode: 'onChange',
     onBeforeSubmit: (variables) => {
-      const regionId = countries
+      const regionId = countriesData?.countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
@@ -71,7 +71,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
     },
   })
 
-  const { muiRegister, register, handleSubmit, valid, formState, required, error } = form
+  const { muiRegister, register, handleSubmit, valid, formState, required, error, watch } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'BillingAddressForm' })
@@ -85,16 +85,27 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
 
   const disableFields = formState.isSubmitting && !autoSubmitting
 
+  const sameAsShipping = watch('sameAsShipping')
+
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <input type='hidden' {...register('cartId')} value={useCartId()} />
+      <FormControlLabel
+        control={<Switch color='primary' />}
+        {...muiRegister('sameAsShipping')}
+        disabled={formState.isSubmitting}
+        label='Use same billing address as shipping address'
+      />
+
+      {sameAsShipping ? 'ssaame' : 'dff'}
+
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' disabled={disableFields} />
         <AddressFields
           form={form}
           key='addressfields'
           disabled={disableFields}
-          countries={countries}
+          countries={countriesData?.countries}
         />
 
         <div className={classes.formRow} key='telephone'>

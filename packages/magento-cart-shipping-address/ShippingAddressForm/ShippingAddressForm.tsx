@@ -6,7 +6,7 @@ import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
+import { CountryRegionsDocument } from '@reachdigital/magento-store/CountryRegions.gql'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -22,14 +22,14 @@ import React, { useRef } from 'react'
 import { GetShippingAddressDocument } from './GetShippingAddress.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
-type ShippingAddressFormProps = CountryRegionsQuery
+type ShippingAddressFormProps = Record<string, unknown>
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
-  const { countries } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useCartQuery(GetShippingAddressDocument)
   const { data: config } = useQuery(StoreConfigDocument)
+  const { data: countriesData } = useQuery(CountryRegionsDocument)
   const { data: customerQuery } = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
@@ -56,7 +56,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     },
     mode: 'onChange',
     onBeforeSubmit: (variables) => {
-      const regionId = countries
+      const regionId = countriesData?.countries
         ?.find((country) => country?.two_letter_abbreviation === variables.countryCode)
         ?.available_regions?.find((region) => region?.id === variables.regionId)?.id
 
@@ -92,7 +92,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
           form={form}
           key='addressfields'
           disabled={disableFields}
-          countries={countries}
+          countries={countriesData?.countries}
         />
 
         <div className={classes.formRow} key='telephone'>

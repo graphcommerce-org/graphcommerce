@@ -1,7 +1,6 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { BillingAddressForm } from '@reachdigital/magento-cart-billing-address'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
@@ -54,8 +53,6 @@ function PaymentPage({ countries }: Props) {
               <PaymentMethodOptions key='options' />
 
               <PaymentMethodError key='error' />
-
-              <BillingAddressForm />
 
               <AnimatedRow className={classes.formRow} key='next'>
                 <div className={classes.formRow}>

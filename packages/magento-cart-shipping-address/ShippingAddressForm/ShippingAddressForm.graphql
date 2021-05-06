@@ -37,9 +37,34 @@ mutation ShippingAddressForm(
     }
   ) {
     cart {
-      shipping_addresses {
-        ...CartAddress
+      id
+      __typename
+      ...ShippingAddress
+    }
+  }
+
+  setBillingAddressOnCart(
+    input: {
+      cart_id: $cartId
+      billing_address: {
+        address: {
+          company: $company
+          firstname: $firstname
+          lastname: $lastname
+          postcode: $postcode
+          city: $city
+          country_code: $countryCode
+          region_id: $regionId
+          street: [$street, $houseNumber, $addition]
+          telephone: $telephone
+          save_in_address_book: $saveInAddressBook
+        }
+        same_as_shipping: true
       }
+    }
+  ) {
+    cart {
+      id
       ...ShippingAddress
     }
   }
