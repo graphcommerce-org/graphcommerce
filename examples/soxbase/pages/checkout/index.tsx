@@ -33,30 +33,11 @@ import apolloClient from '../../lib/apolloClient'
 type Props = CountryRegionsQuery
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function SubmitButton({ formState, submit }: ComposedSubmitRenderComponentProps) {
-  const router = useRouter()
-
-  return (
-    <Button
-      type='submit'
-      color='secondary'
-      variant='pill'
-      size='large'
-      loading={formState.isSubmitting || formState.isSubmitSuccessful}
-      onClick={() => {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        submit().then((success) => success && router.push('/checkout/payment'))
-      }}
-    >
-      Next <ArrowForwardIos fontSize='inherit' />
-    </Button>
-  )
-}
-
-function ShippingPage({ countries }: Props) {
+function ShippingPage() {
   const formClasses = useFormStyles()
   const { data: cartData } = useCartQuery(ShippingPageDocument, { returnPartialData: true })
   const cartExists = typeof cartData?.cart !== 'undefined'
+  const router = useRouter()
 
   return (
     <Container maxWidth='md'>
@@ -75,15 +56,31 @@ function ShippingPage({ countries }: Props) {
               size='normal'
             />
 
-            <EmailForm />
-            <ShippingAddressForm countries={countries} />
+            <EmailForm step={1} />
+            <ShippingAddressForm step={2} />
 
             <FormHeader variant='h5'>Shipping method</FormHeader>
 
-            <ShippingMethodForm />
+            <ShippingMethodForm step={3} />
 
             <div className={formClasses.actions}>
-              <ComposedController RenderComponent={SubmitButton} />
+              <ComposedController
+                RenderComponent={({ formState, submit }: ComposedSubmitRenderComponentProps) => (
+                  <Button
+                    type='submit'
+                    color='secondary'
+                    variant='pill'
+                    size='large'
+                    loading={formState.isSubmitting || formState.isSubmitSuccessful}
+                    onClick={() => {
+                      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                      submit().then((success) => success && router.push('/checkout/payment'))
+                    }}
+                  >
+                    Next <ArrowForwardIos fontSize='inherit' />
+                  </Button>
+                )}
+              />
             </div>
           </ComposedForm>
         )}
@@ -107,11 +104,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {
     props: {
-      ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FormState, FieldValues } from 'react-hook-form'
 import { composedFormContext } from './context'
 import { ComposedFormContext } from './types'
@@ -32,18 +32,19 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
   const forms = useContext(composedFormContext)
   const [formState, setFormState] = useState(extractFormState(forms))
 
-  const submit = async () => {
-    const promises = Object.entries(forms).map(([, opts]) => opts.submit())
-
+  const submitAll = async () => {
     let formS = extractFormState(forms)
-    if (promises.every(Boolean)) return formS.isSubmitSuccessful
-
     setFormState({ ...formS, isSubmitting: true })
-    await Promise.allSettled(promises)
+
+    for (const [, { form, submit }] of Object.entries(forms)) {
+      // eslint-disable-next-line no-await-in-loop
+      await submit()
+    }
 
     formS = extractFormState(forms)
     setFormState(formS)
+
     return formS.isSubmitSuccessful
   }
-  return <Render formState={formState} submit={submit} />
+  return <Render formState={formState} submit={submitAll} />
 }

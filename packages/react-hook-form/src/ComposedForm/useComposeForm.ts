@@ -7,5 +7,5 @@ export function useFormCompose<V extends FieldValues = FieldValues>(
   fields: UseFormComposeOptions<V>,
 ) {
   const context = useContext(composedFormContext)
-  context[fields.name] = fields as UseFormComposeOptions<FieldValues>
+  context[fields.step] = fields as UseFormComposeOptions<FieldValues>
 }

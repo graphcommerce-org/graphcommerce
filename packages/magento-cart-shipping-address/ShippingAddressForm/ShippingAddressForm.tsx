@@ -16,15 +16,17 @@ import {
   useFormPersist,
   phonePattern,
   useFormCompose,
+  UseFormComposeOptions,
 } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import { GetShippingAddressDocument } from './GetShippingAddress.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
-type ShippingAddressFormProps = Record<string, unknown>
+type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
+  const { step } = props
   const classes = useFormStyles()
   const ref = useRef<HTMLFormElement>(null)
   const { data: cartQuery } = useCartQuery(GetShippingAddressDocument)
@@ -73,7 +75,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
-  useFormCompose({ form, name: 'ShippingAddressForm', submit })
+  useFormCompose({ form, step, submit })
 
   const autoSubmitting = useFormAutoSubmit({
     form,

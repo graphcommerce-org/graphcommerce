@@ -6,7 +6,12 @@ import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQu
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import { Controller, useFormCompose, useFormGqlMutation } from '@reachdigital/react-hook-form'
+import {
+  Controller,
+  useFormCompose,
+  UseFormComposeOptions,
+  useFormGqlMutation,
+} from '@reachdigital/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
@@ -16,9 +21,10 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-type ShippingMethodFormProps = Record<string, never>
+type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
+  const { step } = props
   const classes = useFormStyles()
   const { data: cartQuery } = useCartQuery(GetShippingMethodsDocument)
 
@@ -40,7 +46,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   const { handleSubmit, control, setValue, register, formState, required, error } = form
   const submit = handleSubmit(() => {})
-  useFormCompose({ form, name: 'ShippingMethodForm', submit })
+  useFormCompose({ form, step, submit })
 
   return (
     <form onSubmit={submit} noValidate className={classes.form}>
