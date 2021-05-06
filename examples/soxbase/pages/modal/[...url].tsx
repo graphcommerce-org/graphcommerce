@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Typography, Box } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { MetaRobots, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
@@ -31,12 +31,14 @@ function ModalPage(props: Props) {
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
       />
-      <Typography variant='h3' align='center'>
-        {page.title}
-      </Typography>
-      <Typography variant='body1' align='center'>
-        {page.metaDescription ?? ''}
-      </Typography>
+      <Box pt={4}>
+        <Typography variant='h3' align='center'>
+          {page.title}
+        </Typography>
+        <Typography variant='body1' align='center'>
+          {page.metaDescription ?? ''}
+        </Typography>
+      </Box>
 
       <PageContent content={page.content} />
     </>

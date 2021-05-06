@@ -3,7 +3,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 
 const useRichTextStyles = makeStyles(
-  ({ spacings, breakpoints }: Theme) => ({
+  ({ spacings, breakpoints, palette }: Theme) => ({
     root: { '&:empty': { display: 'none' }, '&:last-child': { marginBottom: 0 } },
     paragraph: { marginBottom: '1em', wordBreak: 'break-word' },
     h1: { marginTop: responsiveVal(9, 0), marginBottom: responsiveVal(21, 50) },
@@ -91,7 +91,7 @@ const useRichTextStyles = makeStyles(
 
         '& tr': {
           '&:nth-child(odd)': {
-            background: '#f5f5f5',
+            background: palette.background.highlight,
           },
         },
 
@@ -100,7 +100,7 @@ const useRichTextStyles = makeStyles(
             minWidth: '150px',
           },
 
-          '& p': { fontSize: 15 },
+          '& p': { fontSize: responsiveVal(12, 15) },
         },
       },
     },
