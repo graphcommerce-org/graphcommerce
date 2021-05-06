@@ -27,24 +27,29 @@ type AddressFieldsProps = CountryRegionsQuery & {
 export default function AddressFields(props: AddressFieldsProps) {
   const { form, countries } = props
   assertFormGqlOperation<AddressFieldValues>(form)
-  const { watch, formState, required, muiRegister, valid } = form
+  const { watch, formState, required, muiRegister, register, valid } = form
   const { disabled = formState.isSubmitting } = props
   const classes = useFormStyles()
 
   const country = watch('countryCode')
 
-  const countryList = useMemo(
-    () =>
-      (countries ?? [])
-        ?.filter((c) => c?.full_name_locale)
-        .sort((a, b) => (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? '')),
-    [countries],
-  )
+  const countryList = useMemo(() => {
+    const countriesWithLocale = (countries ?? [])?.filter((c) => c?.full_name_locale)
+    return countriesWithLocale.sort((a, b) =>
+      (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? ''),
+    )
+  }, [countries])
+
   const regionList = useMemo(() => {
-    const regions =
-      countryList
-        .find((c) => c?.two_letter_abbreviation === country)
-        ?.available_regions?.sort((a, b) => (a?.name ?? '')?.localeCompare(b?.name ?? '')) ?? []
+    const availableRegions = Object.values(
+      countryList.find((c) => c?.two_letter_abbreviation === country)?.available_regions ?? {},
+    )
+    type Region = typeof availableRegions[0]
+
+    const compare: (a: Region, b: Region) => number = (a, b) =>
+      (a?.name ?? '')?.localeCompare(b?.name ?? '')
+
+    const regions = availableRegions?.sort(compare)
     return regions
   }, [country, countryList])
 
@@ -148,14 +153,14 @@ export default function AddressFields(props: AddressFieldsProps) {
           })}
         </TextField>
 
-        {regionList.length > 0 && (
+        {regionList.length > 0 ? (
           <TextField
             select
             SelectProps={{ native: true }}
             variant='outlined'
             error={!!formState.errors.regionId}
             label='Region'
-            {...muiRegister('regionId', { required: true })}
+            {...muiRegister('regionId', { required: true, shouldUnregister: true })}
             required
             helperText={formState.errors.regionId?.message}
             disabled={disabled}
@@ -172,6 +177,12 @@ export default function AddressFields(props: AddressFieldsProps) {
               )
             })}
           </TextField>
+        ) : (
+          <input
+            type='hidden'
+            {...register('regionId', { required: false, shouldUnregister: true })}
+            value={undefined}
+          />
         )}
       </div>
     </>
