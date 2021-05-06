@@ -1,7 +1,6 @@
 import { Box, Container, Typography } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
-  PageMeta,
   StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
@@ -11,6 +10,7 @@ import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
+import PageMeta from '../components/AppShell/PageMeta'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 

@@ -13,12 +13,10 @@ import {
   ProductListPagination,
   ProductListSort,
 } from '@reachdigital/magento-product'
-
 import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-
 import {
   FilterTypes,
   ProductListParams,
@@ -28,12 +26,12 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../components/AppShell/FullPageShell'
+import PageMeta from '../components/AppShell/PageMeta'
 import Asset from '../components/Asset'
 import { CategoryPageDocument, CategoryPageQuery } from '../components/GraphQL/CategoryPage.gql'
 import PageContent from '../components/PageContent'
@@ -67,11 +65,15 @@ function CategoryPage(props: Props) {
   let productList = products?.items
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
+  const anyFilterActive = Object.keys(params.filters ?? {}).length > 0
+
   return (
     <>
       <PageMeta
         title={category.meta_title ?? category.name ?? ''}
         metaDescription={category.meta_description ?? ''}
+        metaRobots={anyFilterActive ? ['noindex'] : undefined}
+        urlPath={params.url}
       />
 
       {isLanding ? (

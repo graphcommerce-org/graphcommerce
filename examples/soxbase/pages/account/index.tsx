@@ -7,9 +7,10 @@ import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrde
 import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
+import PageMeta from '../../components/AppShell/PageMeta'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 

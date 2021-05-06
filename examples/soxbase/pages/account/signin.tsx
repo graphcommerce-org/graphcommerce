@@ -1,10 +1,11 @@
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import AccountSignInUpForm from '@reachdigital/magento-customer/AccountSignInUpForm'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
+import PageMeta from '../../components/AppShell/PageMeta'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 

@@ -3,11 +3,11 @@ import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardOrders.gql'
 import AccountOrders from '@reachdigital/magento-customer/AccountOrders'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
+import PageMeta from '../../../components/AppShell/PageMeta'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
 

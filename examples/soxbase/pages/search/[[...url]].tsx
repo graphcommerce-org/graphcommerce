@@ -27,11 +27,12 @@ import {
   SearchForm,
   SearchQuery,
 } from '@reachdigital/magento-search'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import PageMeta from '../../components/AppShell/PageMeta'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import ProductListItems from '../../components/ProductListItems/ProductListItems'
 import useProductListStyles from '../../components/ProductListItems/useProductListStyles'
@@ -51,9 +52,15 @@ function SearchResultPage(props: Props) {
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
 
+  console.log(params.url)
+
   return (
     <>
-      <PageMeta title={search ? `Results for '${search}'` : 'Search'} metaRobots={['noindex']} />
+      <PageMeta
+        title={search ? `Results for '${search}'` : 'Search'}
+        metaRobots={['noindex']}
+        urlPath='/search'
+      />
 
       <Container maxWidth='sm'>
         <SearchForm totalResults={totalSearchResults} search={search} />

@@ -198,6 +198,7 @@ export const DefaultPageDocument: DocumentNode<DefaultPageQuery, DefaultPageQuer
                 { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'content' },
@@ -793,7 +794,7 @@ export type DefaultPageQuery = {
     }
   >
   pages: Array<
-    Pick<Types.Page, 'title' | 'metaTitle' | 'metaDescription' | 'metaRobots'> & {
+    Pick<Types.Page, 'title' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'> & {
       content: Array<
         | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & {
               content?: Types.Maybe<Pick<Types.RichText, 'raw'>>

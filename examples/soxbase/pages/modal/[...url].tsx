@@ -1,9 +1,10 @@
 import { Typography, Box } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { MetaRobots, PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { MetaRobots, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
+import PageMeta from '../../components/AppShell/PageMeta'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import { DefaultPageDocument, DefaultPageQuery } from '../../components/GraphQL/DefaultPage.gql'
 import PageContent from '../../components/PageContent'
@@ -30,6 +31,7 @@ function ModalPage(props: Props) {
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
+        urlPath={page.url}
       />
       <Box pt={4}>
         <Typography variant='h3' align='center'>

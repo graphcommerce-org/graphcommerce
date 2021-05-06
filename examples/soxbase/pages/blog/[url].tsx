@@ -1,10 +1,10 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
+import PageMeta from '../../components/AppShell/PageMeta'
 import BlogList from '../../components/Blog'
 import BlogHeader from '../../components/Blog/BlogHeader'
 import { BlogListDocument, BlogListQuery } from '../../components/Blog/BlogList.gql'
@@ -27,7 +27,7 @@ function BlogPage(props: Props) {
   const title = page.title ?? ''
   return (
     <>
-      <PageMeta title={title} metaDescription={title} />
+      <PageMeta title={title} metaDescription={title} urlPath={page.url} />
       <BlogHeader asset={page.asset} />
       <PageContent {...page} />
       <BlogList blogPosts={blogPosts} />

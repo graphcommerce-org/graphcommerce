@@ -1,11 +1,11 @@
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Pagination from '@reachdigital/next-ui/Pagination'
 import { GetStaticPaths } from 'next'
-import NextError from 'next/error'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
+import PageMeta from '../../../components/AppShell/PageMeta'
 import BlogList from '../../../components/Blog'
 import { BlogListDocument, BlogListQuery } from '../../../components/Blog/BlogList.gql'
 import { BlogPathsDocument, BlogPathsQuery } from '../../../components/Blog/BlogPaths.gql'
@@ -26,12 +26,11 @@ function BlogPage(props: Props) {
   const { pages, blogPosts, pagesConnection } = props
   const router = usePageRouter()
   const page = pages[0]
-
   const title = page.title ?? ''
 
   return (
     <>
-      <PageMeta title={title} metaDescription={title} />
+      <PageMeta title={title} metaDescription={title} urlPath={page.url} />
 
       {pages?.[0] && <PageContent content={pages?.[0].content} />}
       <BlogList blogPosts={blogPosts} />
