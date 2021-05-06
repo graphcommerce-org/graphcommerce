@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>desktop_Account-Lock</title>
-    <defs>
-        <filter id="filter-1">
-            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.800000 0 0 0 0 0.800000 0 0 0 0 0.800000 0 0 0 1.000000 0"></feColorMatrix>
-        </filter>
-    </defs>
-    <g id="desktop_Account-Lock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g filter="url(#filter-1)" id="lock">
-            <g transform="translate(7.100000, 4.500000)">
-                <rect id="Rectangle" stroke="#000000" stroke-width="1.5" x="0" y="10.2222222" width="17.8888889" height="12.7777778" rx="2"></rect>
-                <path d="M3.83333333,10.2222222 L3.83333333,5.11111111 C3.83333333,2.28832239 6.12165572,0 8.94444444,0 C11.7672332,0 14.0555556,2.28832239 14.0555556,5.11111111 L14.0555556,10.2222222" id="Path" stroke="#000000" stroke-width="1.5"></path>
-            </g>
-        </g>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>desktop_Account-Logout</title>
+    <g id="desktop_Account-Logout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.073,8.661 C7.841,11.145 5,15.743 5,21.003 C5,28.902 11.406,35.306 19.308,35.306 C27.211,35.306 33.617,28.902 33.617,21.003 C33.617,15.855 30.896,11.343 26.813,8.823 M19.398,2 L19.398,18.283" id="Stroke-1" stroke="#C7C7C7" stroke-width="1.5"></path>
     </g>
 </svg>
