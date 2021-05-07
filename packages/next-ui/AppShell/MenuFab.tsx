@@ -73,7 +73,7 @@ export default function MenuFab(props: MenuFabProps) {
       <Fab
         color='primary'
         aria-label='Open Menu'
-        size='medium'
+        size='large'
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
