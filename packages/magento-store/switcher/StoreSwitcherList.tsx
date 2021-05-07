@@ -51,14 +51,14 @@ export default function StoreSwitcherList(props: StoreSwitcherListProps) {
   const groupedStores = Object.entries(
     (availableStores ?? []).reduce<{
       [group: string]: { name: Store['store_group_name']; stores: Store[] }
-    }>((groupedStores, store) => {
+    }>((storesGrouped, store) => {
       const code = store?.store_group_code
-      if (!store?.store_group_code || !code) return groupedStores
+      if (!store?.store_group_code || !code) return storesGrouped
 
-      if (!groupedStores[code]) groupedStores[code] = { name: store.store_group_name, stores: [] }
+      if (!storesGrouped[code]) storesGrouped[code] = { name: store.store_group_name, stores: [] }
 
-      groupedStores[code].stores.push(store)
-      return groupedStores
+      storesGrouped[code].stores.push(store)
+      return storesGrouped
     }, {}),
   )
 
