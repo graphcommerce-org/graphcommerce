@@ -29,6 +29,7 @@ const useStyles = makeStyles(
       right: 10,
       width: 10,
       height: 10,
+      borderRadius: '50%',
     },
   }),
   { name: 'CartFab' },
