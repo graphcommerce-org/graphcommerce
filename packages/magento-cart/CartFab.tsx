@@ -24,6 +24,12 @@ const useStyles = makeStyles(
         top: theme.page.vertical,
       },
     },
+    badge: {
+      top: 10,
+      right: 10,
+      width: 10,
+      height: 10,
+    },
   }),
   { name: 'CartFab' },
 )
@@ -37,7 +43,12 @@ function CartFabContent(props: CartFabProps) {
     <m.div className={classes.cart} style={{ filter }}>
       <PageLink href='/cart' passHref>
         <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
-          <Badge badgeContent={qty || 0} color='primary' variant='dot'>
+          <Badge
+            badgeContent={qty || 0}
+            classes={{ badge: classes.badge }}
+            color='primary'
+            variant='dot'
+          >
             {children}
           </Badge>
         </Fab>
