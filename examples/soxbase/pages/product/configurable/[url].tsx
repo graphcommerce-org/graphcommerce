@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Link, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
@@ -55,14 +55,14 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
-          <p>
+          <div>
             <Typography variant='subtitle2' display='inline'>
               As low as &nbsp;
             </Typography>
             <Typography variant='h6' display='inline'>
               <Money {...product.price_range.minimum_price.regular_price} />
             </Typography>
-          </p>
+          </div>
           <Typography component='h1' variant='h2'>
             {product.name}
           </Typography>
@@ -70,7 +70,11 @@ function ProductConfigurable(props: Props) {
             variables={{ sku: product.sku ?? '', quantity: 1 }}
             name={product.name ?? ''}
             optionEndLabels={{
-              size: <PageLink href='/modal/product/global/size'>Which size is right?</PageLink>,
+              size: (
+                <PageLink href='/modal/product/global/size' passHref>
+                  <Link color='primary'>Which size is right?</Link>
+                </PageLink>
+              ),
             }}
           />
         </ProductPageGallery>
