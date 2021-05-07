@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client'
 import { FormControl } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButton from '@reachdigital/next-ui/ToggleButton'
@@ -12,11 +11,9 @@ export type PaymentMethodToggleProps = Record<string, unknown>
 export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   const {
     methods,
-    loading,
     selectedMethod,
     setSelectedMethod,
     setSelectedModule,
-    setError,
     modules,
   } = usePaymentMethodContext()
 
@@ -60,7 +57,6 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
               <ToggleButtonGroup
                 onChange={(_, val: string) => {
                   onChange(val)
-                  setError(undefined)
                   setValue('code', val?.split('___')[0])
                 }}
                 defaultValue=''
@@ -71,11 +67,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
                 exclusive
               >
                 {methods?.map((pm) => (
-                  <ToggleButton
-                    key={`${pm.code}___${pm.child}`}
-                    value={`${pm.code}___${pm.child}`}
-                    disabled={loading}
-                  >
+                  <ToggleButton key={`${pm.code}___${pm.child}`} value={`${pm.code}___${pm.child}`}>
                     {pm?.title}
                   </ToggleButton>
                 ))}

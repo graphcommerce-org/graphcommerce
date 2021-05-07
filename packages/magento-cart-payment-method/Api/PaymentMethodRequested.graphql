@@ -1,3 +1,0 @@
-fragment PaymentMethodRequested on Cart @injectable {
-  id
-}

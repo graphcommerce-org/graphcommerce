@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
 import Checkmark from '@material-ui/icons/Check'
-import useCreateEmptyCart from '@reachdigital/magento-cart/CurrentCartId/useRequestCartId'
+import useCreateEmptyCart from '@reachdigital/magento-cart/CurrentCartId/useCreateEmptyCart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'

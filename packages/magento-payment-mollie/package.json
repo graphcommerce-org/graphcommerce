@@ -29,6 +29,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@reachdigital/magento-cart": "^0.1.0",
+    "@reachdigital/magento-cart-payment-method": "^0.1.0",
     "@reachdigital/magento-graphql": "^0.1.0",
     "@reachdigital/magento-store": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",

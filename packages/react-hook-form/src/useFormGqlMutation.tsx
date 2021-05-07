@@ -10,6 +10,12 @@ export type UseFormGqlMutationReturn<
 > = UseFormGqlMethods<Q, V> &
   UseFormReturn<V> & { muiRegister: UseMuiFormRegister<V>; valid: UseFormValidReturn<V> }
 
+export function isFormGqlOperation<V, Q = Record<string, unknown>>(
+  form: UseFormReturn<V>,
+): form is UseFormGqlMutationReturn<Q, V> {
+  return typeof (form as UseFormGqlMutationReturn<Q, V>).muiRegister === 'function'
+}
+
 export function assertFormGqlOperation<V, Q = Record<string, unknown>>(
   form: UseFormReturn<V>,
 ): asserts form is UseFormGqlMutationReturn<Q, V> {

@@ -5,15 +5,18 @@ import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 import AnimatedRow from '../AnimatedRow'
 
-const useStyles = makeStyles((theme: Theme) => ({
-  alerts: {
-    padding: `calc(${theme.spacings.xxs} / 2) 0`,
-  },
-  alert: {
-    paddingTop: `calc(${theme.spacings.xxs} / 2)`,
-    paddingBottom: `calc(${theme.spacings.xxs} / 2)`,
-  },
-}))
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    alerts: {
+      // padding: `calc(${theme.spacings.xxs} / 2) 0`,
+    },
+    alert: {
+      paddingTop: `calc(${theme.spacings.xxs} / 2)`,
+      paddingBottom: `calc(${theme.spacings.xxs} / 2)`,
+    },
+  }),
+  { name: 'ApolloErrorAlert' },
+)
 
 type ApolloErrorAlertProps = {
   error?: ApolloError

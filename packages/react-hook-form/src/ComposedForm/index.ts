@@ -1,8 +1,8 @@
 export { default as ComposedForm } from './ComposedForm'
 export * from './ComposedForm'
 
-export { default as ComposedController } from './ComposedController'
-export * from './ComposedController'
+export { default as ComposedSubmit } from './ComposedSubmit'
+export * from './ComposedSubmit'
 
 export * from './types'
 export * from './useComposeForm'

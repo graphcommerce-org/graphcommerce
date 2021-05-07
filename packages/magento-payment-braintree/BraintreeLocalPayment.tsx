@@ -20,20 +20,10 @@ function PaymentOptions(props: PaymentOptionsProps) {
 }
 
 function PaymentButton(props: PaymentButtonProps) {
-  const { loading, selectedMethod } = usePaymentMethodContext()
+  const { selectedMethod } = usePaymentMethodContext()
   const localPayment = useBraintreeLocalPayment()
 
-  const {
-    child,
-    title,
-    onPaymentComplete,
-    onPaymentStart,
-    onPaymentError,
-    code,
-    preferred,
-    children,
-    ...buttonProps
-  } = props
+  const { child, title, code, preferred, ...buttonProps } = props
 
   const paymentType = child as StartPaymentOptions['paymentType']
   const [execute] = useMutation(BraintreePaymentMethodDocument)

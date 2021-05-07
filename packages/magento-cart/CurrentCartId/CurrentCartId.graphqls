@@ -3,7 +3,7 @@ extend type Query {
 }
 
 type CurrentCartId {
-  id: String!
+  id: String
 }
 
 input RegisterCartIdInput {

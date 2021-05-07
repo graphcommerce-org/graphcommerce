@@ -1,8 +1,7 @@
 import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import React, { PropsWithChildren, useContext, useEffect, useState } from 'react'
-import { PaymentError, PaymentMethod, PaymentMethodModules, PaymentModule } from '../PaymentMethod'
+import { PaymentMethod, PaymentMethodModules, PaymentModule } from '../Api/PaymentMethod'
 import { GetPaymentMethodContextDocument } from './GetPaymentMethodContext.gql'
-import { PaymentMethodContextFragment } from './PaymentMethodContext.gql'
 
 type PaymentMethodContextProps = {
   methods: PaymentMethod[]
@@ -11,10 +10,6 @@ type PaymentMethodContextProps = {
   modules: PaymentMethodModules
   selectedModule?: PaymentModule
   setSelectedModule(module: PaymentModule | undefined): void
-  loading: boolean
-  setLoading(loading: boolean): void
-  error?: PaymentError
-  setError(error?: PaymentError): void
 }
 
 const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
@@ -22,9 +17,6 @@ const paymentMethodContext = React.createContext<PaymentMethodContextProps>({
   setSelectedMethod: () => {},
   modules: {},
   setSelectedModule: () => {},
-  loading: true,
-  setLoading: () => {},
-  setError: () => {},
 })
 paymentMethodContext.displayName = 'PaymentMethodContext'
 
@@ -35,10 +27,8 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
 
   const { data: cartData } = useCartQuery(GetPaymentMethodContextDocument)
   const [methods, setMethods] = useState<PaymentMethod[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
   const [selectedModule, setSelectedModule] = useState<PaymentModule>()
-  const [error, setError] = useState<PaymentError>()
 
   // Expand the payment methods
   useEffect(() => {
@@ -54,7 +44,6 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         ) ?? []
 
       setMethods((await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0)))
-      setLoading(false)
     })()
   }, [cartData, modules])
 
@@ -67,10 +56,6 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
         modules,
         selectedModule,
         setSelectedModule,
-        loading,
-        setLoading,
-        error,
-        setError,
       }}
     >
       {children}

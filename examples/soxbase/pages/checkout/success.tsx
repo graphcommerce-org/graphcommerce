@@ -20,7 +20,7 @@ import {
   ComposedSubmitRenderComponentProps,
 } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
@@ -29,57 +29,13 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
 function ShippingPage() {
-  const formClasses = useFormStyles()
-  const { data: cartData } = useCartQuery(ShippingPageDocument, { returnPartialData: true })
-  const cartExists = typeof cartData?.cart !== 'undefined'
   const router = useRouter()
+  const cartId = router.query.cartId as string
 
   return (
     <Container maxWidth='md'>
       <PageMeta title='Checkout' metaDescription='Cart Items' metaRobots={['noindex']} />
-      <NoSsr>
-        {!cartExists && <EmptyCart />}
-
-        {cartExists && (
-          <ComposedForm>
-            <CheckoutStepper steps={3} currentStep={2} />
-
-            <IconTitle
-              iconSrc='/icons/desktop_checkout_box.svg'
-              title='Shipping'
-              alt='box'
-              size='normal'
-            />
-
-            <EmailForm step={1} />
-            <ShippingAddressForm step={2} />
-
-            <FormHeader variant='h5'>Shipping method</FormHeader>
-
-            <ShippingMethodForm step={3} />
-
-            <div className={formClasses.actions}>
-              <ComposedSubmit
-                render={({ formState, submit }: ComposedSubmitRenderComponentProps) => (
-                  <Button
-                    type='submit'
-                    color='secondary'
-                    variant='pill'
-                    size='large'
-                    loading={formState.isSubmitting || formState.isSubmitSuccessful}
-                    onClick={() => {
-                      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                      submit().then((success) => success && router.push('/checkout/payment'))
-                    }}
-                  >
-                    Next <ArrowForwardIos fontSize='inherit' />
-                  </Button>
-                )}
-              />
-            </div>
-          </ComposedForm>
-        )}
-      </NoSsr>
+      <NoSsr>Show info about cartId: {cartId}</NoSsr>
     </Container>
   )
 }

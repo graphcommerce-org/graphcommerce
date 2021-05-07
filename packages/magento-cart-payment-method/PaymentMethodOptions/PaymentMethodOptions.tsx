@@ -1,11 +1,18 @@
+import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import { AnimatePresence } from 'framer-motion'
+import { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
-
-export type PaymentMethodOptionsProps = Record<string, unknown>
 
 export default function PaymentMethodOptions(props: PaymentMethodOptionsProps) {
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
-  const PaymentOptions = selectedModule?.PaymentOptions
 
-  if (!PaymentOptions || !selectedMethod?.code) return null
-  return <PaymentOptions {...selectedMethod} />
+  return (
+    <AnimatePresence>
+      {selectedModule && selectedMethod && (
+        <AnimatedRow key={selectedMethod.code}>
+          <selectedModule.PaymentOptions {...selectedMethod} {...props} />
+        </AnimatedRow>
+      )}
+    </AnimatePresence>
+  )
 }

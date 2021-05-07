@@ -4,71 +4,86 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   PaymentMethodButton,
   PaymentMethodContextProvider,
-  PaymentMethodError,
   PaymentMethodOptions,
   PaymentMethodToggle,
+  PaymentMethodPlaceOrder,
 } from '@reachdigital/magento-cart-payment-method'
 import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
-import { checkmo } from '@reachdigital/magento-payment-included'
+import { checkmo, banktransfer, purchaseorder } from '@reachdigital/magento-payment-included'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-store/CountryRegions.gql'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { ComposedForm } from '@reachdigital/react-hook-form'
+import ComposedSubmit from '@reachdigital/react-hook-form/src/ComposedForm/ComposedSubmit'
+import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function PaymentPage({ countries }: Props) {
-  const classes = useFormStyles()
-  const addressForm = useRef<() => Promise<boolean>>()
-  const methodForm = useRef<() => Promise<boolean>>()
-  const forceSubmit = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      if (!addressForm.current || !methodForm.current) return
-      await Promise.all([addressForm.current(), methodForm.current()])
-    })()
-  }
+function PaymentPage(props: Props) {
+  const formClasses = useFormStyles()
 
   return (
     <Container maxWidth='md'>
       <ComposedForm>
-        <PaymentMethodContextProvider modules={{ braintree_local_payment, checkmo }}>
+        <PaymentMethodContextProvider
+          modules={{ braintree_local_payment, checkmo, banktransfer, purchaseorder }}
+        >
           <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
 
           <NoSsr>
             <AnimatePresence initial={false}>
               <PaymentMethodToggle key='toggle' />
 
-              <PaymentMethodOptions key='options' />
+              <PaymentMethodOptions
+                key='options'
+                step={1}
+                Container={({ children }) => (
+                  <div className={clsx(formClasses.form, formClasses.formContained)}>
+                    {children}
+                  </div>
+                )}
+              />
 
-              <PaymentMethodError key='error' />
+              <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-              <AnimatedRow className={classes.formRow} key='next'>
-                <div className={classes.formRow}>
-                  <PaymentMethodButton
-                    key='button'
-                    type='submit'
-                    color='secondary'
-                    variant='pill'
-                    size='large'
-                    onClick={forceSubmit}
-                    endIcon={<ArrowForwardIos fontSize='inherit' />}
-                  >
-                    Pay
-                  </PaymentMethodButton>
-                </div>
-              </AnimatedRow>
+              <ComposedSubmit
+                render={({ submit, formState, error }) => (
+                  <>
+                    <AnimatedRow key='next'>
+                      <div className={formClasses.formRow}>
+                        <PaymentMethodButton
+                          key='button'
+                          type='submit'
+                          color='secondary'
+                          variant='pill'
+                          size='large'
+                          onClick={submit}
+                          disabled={formState.isSubmitting || formState.isSubmitSuccessful}
+                          endIcon={<ArrowForwardIos fontSize='inherit' />}
+                        >
+                          Pay
+                        </PaymentMethodButton>
+                      </div>
+                    </AnimatedRow>
+                    <ApolloErrorAlert
+                      key='error'
+                      error={formState.isSubmitting ? undefined : error}
+                    />
+                  </>
+                )}
+              />
             </AnimatePresence>
           </NoSsr>
         </PaymentMethodContextProvider>

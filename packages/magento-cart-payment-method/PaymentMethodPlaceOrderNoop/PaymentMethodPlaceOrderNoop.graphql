@@ -1,4 +1,4 @@
-mutation PaymentMethodButton($cartId: String!) {
+mutation PaymentMethodPlaceOrderNoop($cartId: String!) {
   placeOrder(input: { cart_id: $cartId }) {
     order {
       order_number

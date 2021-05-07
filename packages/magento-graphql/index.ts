@@ -7083,7 +7083,7 @@ export type ColorSwatchData = SwatchDataInterface & {
 
 export type CurrentCartId = {
   __typename?: 'CurrentCartId';
-  id: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
 };
 
 export type RegisterCartIdInput = {

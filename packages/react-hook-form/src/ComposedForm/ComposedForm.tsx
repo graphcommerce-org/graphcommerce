@@ -12,6 +12,10 @@ export type ComposedFormProps = { children?: React.ReactNode }
 
 export default function ComposedForm(props) {
   const { children } = props
+
   const forms = useConstant<ComposedFormContext>(() => ({}))
+
+  function register() {}
+
   return <composedFormContext.Provider value={forms}>{children}</composedFormContext.Provider>
 }

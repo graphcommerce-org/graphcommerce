@@ -12,4 +12,5 @@ export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
    */
   step: number
 }
+
 export type ComposedFormContext = { [step: number]: UseFormComposeOptions<FieldValues> }
