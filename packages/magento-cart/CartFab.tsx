@@ -25,11 +25,15 @@ const useStyles = makeStyles(
       },
     },
     badge: {
-      top: 10,
-      right: 10,
+      top: 5,
+      right: 5,
       width: 10,
       height: 10,
       borderRadius: '50%',
+      [theme.breakpoints.up('sm')]: {
+        top: 10,
+        right: 10,
+      },
     },
   }),
   { name: 'CartFab' },
