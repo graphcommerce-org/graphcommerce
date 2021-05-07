@@ -5,12 +5,12 @@ import {
   StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
+  PageMeta,
 } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React from 'react'
 import { FullPageShellProps } from '../components/AppShell/FullPageShell'
-import PageMeta from '../components/AppShell/PageMeta'
 import SheetShell, { SheetShellProps } from '../components/AppShell/SheetShell'
 import apolloClient from '../lib/apolloClient'
 

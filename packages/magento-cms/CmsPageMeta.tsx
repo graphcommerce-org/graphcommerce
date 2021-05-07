@@ -1,18 +1,15 @@
-import { useQuery } from '@apollo/client'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { PageMeta } from '@reachdigital/magento-store'
 import React from 'react'
 import { CmsPageMetaFragment } from './CmsPageMeta.gql'
 
 export default function CmsPageMeta(props: CmsPageMetaFragment) {
   const { title, meta_title, meta_description } = props
-  const config = useQuery(StoreConfigDocument)
 
   return (
     <PageMeta
       title={meta_title ?? title ?? ''}
       metaDescription={meta_description ?? ''}
       metaRobots={['noindex']}
-      url={config.data?.storeConfig?.base_link_url ?? ''}
     />
   )
 }

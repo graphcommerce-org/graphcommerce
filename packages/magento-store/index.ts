@@ -1,3 +1,4 @@
+export { default as PageMeta } from './PageMeta'
 export * from './StoreConfig.gql'
 export * from './localeToStore'
 

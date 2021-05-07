@@ -16,41 +16,22 @@ type MetaRobotsAll = ['all' | 'none']
 
 export type PageMetaProps = {
   title: string
-  url: string
+  canonical: `http://${string}` | `https://${string}` | string
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
-  prefix?: string
-  separator?: string
-  defaultTitle?: string
-  suffix?: string
-  urlPath?: string
 }
 
 export default function PageMeta(props: PageMetaProps) {
-  const {
-    title,
-    metaDescription,
-    metaRobots = ['all'],
-    prefix,
-    separator,
-    defaultTitle,
-    suffix,
-    url,
-    urlPath,
-  } = props
-  const canonical = url + (urlPath ?? '')
+  const { title, canonical, metaDescription, metaRobots = ['all'] } = props
 
-  // todo migrate to PageMeta component that accepts the cms page meta as child
-  let pageTitle = prefix ?? ''
-  if (title ?? defaultTitle) pageTitle += ` ${title ?? defaultTitle}`
-  if (separator && suffix) pageTitle += ` ${separator}`
-  if (suffix) pageTitle += ` ${suffix}`
+  if (!canonical.startsWith('http'))
+    throw new Error(`canonical must start with http:// or https://, '${canonical}' given`)
 
   return (
     <Head>
-      <title>{pageTitle}</title>
+      <title>{title.trim()}</title>
       {metaDescription && (
-        <meta name='description' content={metaDescription} key='meta-description' />
+        <meta name='description' content={metaDescription.trim()} key='meta-description' />
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       <link rel='canonical' href={canonical} key='canonical' />
