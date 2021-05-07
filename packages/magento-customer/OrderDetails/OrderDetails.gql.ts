@@ -55,6 +55,8 @@ export const OrderDetailsFragmentDoc: DocumentNode<OrderDetailsFragment, unknown
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'additional_data' },
@@ -223,9 +225,11 @@ export type OrderDetailsFragment = Pick<Types.CustomerOrder, 'number' | 'order_d
   >
   payment_methods?: Types.Maybe<
     Array<
-      Types.Maybe<{
-        additional_data?: Types.Maybe<Array<Types.Maybe<Pick<Types.KeyValue, 'name' | 'value'>>>>
-      }>
+      Types.Maybe<
+        Pick<Types.OrderPaymentMethod, 'name' | 'type'> & {
+          additional_data?: Types.Maybe<Array<Types.Maybe<Pick<Types.KeyValue, 'name' | 'value'>>>>
+        }
+      >
     >
   >
   billing_address?: Types.Maybe<

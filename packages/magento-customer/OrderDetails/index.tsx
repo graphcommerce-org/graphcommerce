@@ -1,9 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
-import { Description } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
-import { StoreConfigDocument, Money } from '@reachdigital/magento-store'
+import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -41,7 +40,6 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.xs,
     },
     totalsContainer: {
-      // borderBottom: `1px solid ${theme.palette.divider}`,
       padding: `${theme.spacings.xxs} 0`,
     },
     totalsRow: {
@@ -218,15 +216,15 @@ export default function OrderDetails(props: OrderDetailsProps) {
         <div>
           <span className={classes.orderDetailTitle}>Payment method</span>
           <div>
-            {!payment_methods?.[0]?.additional_data?.length && (
+            {payment_methods && payment_methods.length < 1 && (
               <div>
                 <i>No payment information</i>
               </div>
             )}
 
-            {payment_methods && payment_methods?.[0]?.additional_data?.[0] && (
+            {payment_methods && payment_methods[0] && (
               <>
-                <div>{payment_methods?.[0]?.additional_data?.[0]?.name}</div>
+                <div>{payment_methods[0].name}</div>
 
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>

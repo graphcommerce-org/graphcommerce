@@ -8,6 +8,10 @@ import responsiveVal from '../../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
+    container: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
     wrapper: {
       position: 'relative',
     },
@@ -70,7 +74,7 @@ export default function HeroBanner(props: HeroBannerProps) {
   )
 
   return (
-    <Row maxWidth={false} {...containerProps}>
+    <Row maxWidth={false} {...containerProps} className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.copy}>
           {children}

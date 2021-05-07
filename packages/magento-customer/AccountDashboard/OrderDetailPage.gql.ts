@@ -109,6 +109,8 @@ export const OrderDetailPageDocument: DocumentNode<
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
+                                  { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                                  { kind: 'Field', name: { kind: 'Name', value: 'type' } },
                                   {
                                     kind: 'Field',
                                     name: { kind: 'Name', value: 'additional_data' },
@@ -360,11 +362,13 @@ export type OrderDetailPageQuery = {
             >
             payment_methods?: Types.Maybe<
               Array<
-                Types.Maybe<{
-                  additional_data?: Types.Maybe<
-                    Array<Types.Maybe<Pick<Types.KeyValue, 'name' | 'value'>>>
-                  >
-                }>
+                Types.Maybe<
+                  Pick<Types.OrderPaymentMethod, 'name' | 'type'> & {
+                    additional_data?: Types.Maybe<
+                      Array<Types.Maybe<Pick<Types.KeyValue, 'name' | 'value'>>>
+                    >
+                  }
+                >
               >
             >
             billing_address?: Types.Maybe<
