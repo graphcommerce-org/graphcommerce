@@ -9,22 +9,33 @@ const ShellBase = (props: { name: string; children?: React.ReactNode }) => {
   const { children, name } = props
   const theme = useTheme()
 
-  // todo: update with https://github.com/shadowwalker/next-pwa#step-3-add-head-meta-example
   return (
     <>
       <PageLoadIndicator />
       <Head>
-        <meta name='theme-color' content={theme.palette.primary.main} />
-        <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-        <meta name='application-name' content={name} />
-        <meta name='apple-mobile-web-app-capable' content='yes' />
-        <meta name='apple-mobile-web-app-status-bar-style' content='default' />
-        <meta name='apple-mobile-web-app-title' content={name} />
-        <meta name='format-detection' content='telephone=no' />
-        <meta name='mobile-web-app-capable' content='yes' />
-        <link rel='apple-touch-icon' href='/manifest/icon-512-512.png' />
-        <link rel='manifest' href='/manifest.webmanifest' />
-        <link rel='shortcut icon' href='/manifest/favicon.ico' />
+        <meta name='theme-color' content={theme.palette.primary.main} key='theme-color' />
+        <meta
+          name='viewport'
+          content='minimum-scale=1, initial-scale=1, width=device-width'
+          key='viewport'
+        />
+        <meta name='application-name' content={name} key='application-name' />
+        <meta
+          name='apple-mobile-web-app-capable'
+          content='yes'
+          key='apple-mobile-web-app-capable'
+        />
+        <meta
+          name='apple-mobile-web-app-status-bar-style'
+          content='default'
+          key='apple-mobile-web-app-status-bar-style'
+        />
+        <meta name='apple-mobile-web-app-title' content={name} key='apple-mobile-web-app-title' />
+        <meta name='format-detection' content='telephone=no' key='format-detection' />
+        <meta name='mobile-web-app-capable' content='yes' key='mobile-web-app-capable' />
+        <link rel='apple-touch-icon' href='/manifest/icon-512-512.png' key='apple-touch-icon' />
+        <link rel='manifest' href='/manifest.webmanifest' key='manifest' />
+        <link rel='shortcut icon' href='/manifest/favicon.ico' key='shortcut icon' />
       </Head>
       {children}
     </>

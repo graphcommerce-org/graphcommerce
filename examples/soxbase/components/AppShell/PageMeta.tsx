@@ -1,9 +1,6 @@
 import { useQuery } from '@apollo/client'
-import {
-  PageMeta as StorePageMeta,
-  PageMetaProps as StorePageMetaProps,
-  StoreConfigDocument,
-} from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
+import StorePageMeta, { PageMetaProps as StorePageMetaProps } from '@reachdigital/next-ui/PageMeta'
 
 type PageMetaProps = Pick<
   Omit<StorePageMetaProps, 'url'>,

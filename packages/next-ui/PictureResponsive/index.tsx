@@ -137,10 +137,16 @@ const PictureResponsive = React.forwardRef<HTMLImageElement, PictureResponsivePr
         {props.loading === 'eager' && (
           <Head>
             {variant === 'src' ? (
-              <link rel='preload' as='image' href={firstSet} />
+              <link rel='preload' as='image' href={firstSet} key={firstSet} />
             ) : (
-              // @ts-expect-error: imagesrcset is not yet in the link element type
-              <link rel='preload' as='image' imagesrcset={firstSet} imagesizes={`${size}px`} />
+              <link
+                rel='preload'
+                as='image'
+                // @ts-expect-error: imagesrcset is not yet in the link element type
+                imagesrcset={firstSet}
+                imagesizes={`${size}px`}
+                key={firstSet}
+              />
             )}
           </Head>
         )}

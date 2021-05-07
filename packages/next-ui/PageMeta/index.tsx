@@ -49,9 +49,11 @@ export default function PageMeta(props: PageMetaProps) {
   return (
     <Head>
       <title>{pageTitle}</title>
-      {metaDescription && <meta name='description' content={metaDescription} />}
-      <meta name='robots' content={metaRobots.join(',')} />
-      <link rel='canonical' href={canonical} />
+      {metaDescription && (
+        <meta name='description' content={metaDescription} key='meta-description' />
+      )}
+      <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
+      <link rel='canonical' href={canonical} key='canonical' />
     </Head>
   )
 }
