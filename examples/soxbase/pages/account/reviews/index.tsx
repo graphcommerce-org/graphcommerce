@@ -4,8 +4,8 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardReviewsDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardReviews.gql'
 import AccountReviews from '@reachdigital/magento-customer/AccountReviews'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
+import { iconStar } from '@reachdigital/next-ui/icons'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
@@ -24,12 +24,7 @@ function AccountReviewsPage() {
     <Container maxWidth='md'>
       <PageMeta title='Reviews' metaDescription='View all your reviews' metaRobots={['noindex']} />
       <NoSsr>
-        <IconTitle
-          iconSrc='/icons/desktop_reviews.svg'
-          title='Reviews'
-          alt='reviews'
-          size='large'
-        />
+        <IconHeader src={iconStar} title='Reviews' alt='reviews' size='large' />
         {customer?.reviews && <AccountReviews {...customer?.reviews} loading={loading} />}
       </NoSsr>
     </Container>
@@ -47,8 +42,6 @@ export default AccountReviewsPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

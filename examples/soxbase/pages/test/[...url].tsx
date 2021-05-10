@@ -5,8 +5,9 @@ import { StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -91,15 +92,7 @@ function AppShellTestIndex(props: Props) {
             size='medium'
             variant='pill'
             color='secondary'
-            endIcon={
-              <PictureResponsiveNext
-                alt='desktop_chevron_right'
-                width={28}
-                height={28}
-                src='/icons/desktop_chevron_right_white.svg'
-                type='image/svg+xml'
-              />
-            }
+            endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='chevron right' />}
           >
             View shopping cart
           </Button>

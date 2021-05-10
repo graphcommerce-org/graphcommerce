@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Badge, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconShoppingBag } from '@reachdigital/next-ui/icons'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -8,7 +10,7 @@ import { ClientCartDocument } from './ClientCart.gql'
 
 type CartFabProps = {
   qty?: number
-  children: React.ReactNode
+  icon?: React.ReactNode
 } & Omit<FabProps, 'children' | 'aria-label'>
 
 const useStyles = makeStyles(
@@ -29,7 +31,7 @@ const useStyles = makeStyles(
 )
 
 function CartFabContent(props: CartFabProps) {
-  const { qty, children, ...fabProps } = props
+  const { qty, icon, ...fabProps } = props
   const classes = useStyles()
   const { filter } = useFabAnimation()
 
@@ -38,7 +40,7 @@ function CartFabContent(props: CartFabProps) {
       <PageLink href='/cart' passHref>
         <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
           <Badge badgeContent={qty || 0} color='primary' variant='dot'>
-            {children}
+            {icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />}
           </Badge>
         </Fab>
       </PageLink>

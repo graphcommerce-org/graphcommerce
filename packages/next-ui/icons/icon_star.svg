@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>desktop_Star_Outline-2</title>
-    <g id="desktop_Star_Outline-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
         <g id="star" transform="translate(3.000000, 4.500000)" stroke="#000000" stroke-width="3.5">
             <polygon id="Path" points="28.9068421 45.5921053 11.0405263 54.9855263 14.4534211 35.09 0 21.0013158 19.9736842 18.1007895 28.9068421 0 37.84 18.1007895 57.8136842 21.0013158 43.3602632 35.09 46.7731579 54.9855263"></polygon>
         </g>

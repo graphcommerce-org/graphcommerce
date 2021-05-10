@@ -1,9 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import { Money, MoneyFragment } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
 
@@ -49,15 +49,7 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.checkoutButton}
-          endIcon={
-            <PictureResponsiveNext
-              alt='desktop_chevron_right_white'
-              width={32}
-              height={32}
-              src='/icons/desktop_chevron_right_white.svg'
-              type='image/svg+xml'
-            />
-          }
+          endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='checkout' />}
         >
           <span className={classes.checkoutButtonLabel}>Start Checkout</span> (
           <Money {...props} />)

@@ -12,7 +12,8 @@ import FullPageShellBase, {
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconPersonAlt, iconCustomerService, iconStar } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
@@ -74,60 +75,43 @@ function FullPageShell(props: FullPageShellProps) {
 
             <PageLink href='/service' passHref>
               <IconButton aria-label='Account' color='inherit' size='medium'>
-                <PictureResponsiveNext
-                  src='/icons/desktop_customer_service.svg'
-                  alt='Customer Service'
-                  loading='eager'
-                  width={32}
-                  height={32}
-                  type='image/svg+xml'
-                />
+                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
               </IconButton>
             </PageLink>
 
-            <CustomerFab>
-              <PictureResponsiveNext
-                src='/icons/desktop_account.svg'
-                alt='Account'
-                loading='eager'
-                width={32}
-                height={32}
-                type='image/svg+xml'
-              />
-            </CustomerFab>
+            <CustomerFab />
           </DesktopNavActions>
         </>
       }
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
-        <MenuFabSecondaryItem src='/icons/desktop_account.svg' type='image/svg+xml' href='/account'>
+        <MenuFabSecondaryItem
+          icon={<SvgImage src={iconPersonAlt} size='small' alt='Account' loading='lazy' />}
+          href='/account'
+        >
           Account
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          src='/icons/desktop_customer_service.svg'
-          type='image/svg+xml'
+          icon={
+            <SvgImage
+              src={iconCustomerService}
+              size='small'
+              alt='Customer Service'
+              loading='lazy'
+            />
+          }
           href='/service'
         >
           Customer Service
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          src='/icons/desktop_wishlist.svg'
-          type='image/svg+xml'
+          icon={<SvgImage src={iconStar} size='small' alt='Wishlist' loading='lazy' />}
           href='/wishlist'
         >
           Wishlist
         </MenuFabSecondaryItem>
       </MenuFab>
-      <CartFab style={{ boxShadow: 'none' }}>
-        <PictureResponsiveNext
-          src='/icons/desktop_shopping_bag.svg'
-          alt='shopping bag'
-          loading='eager'
-          width={32}
-          height={32}
-          type='image/svg+xml'
-        />
-      </CartFab>
+      <CartFab style={{ boxShadow: 'none' }} />
 
       {children}
 

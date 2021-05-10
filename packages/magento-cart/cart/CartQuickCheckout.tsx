@@ -1,9 +1,10 @@
-import { Theme, makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 import Money from '@reachdigital/magento-store/Money'
 import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
 import Button from '@reachdigital/next-ui/Button'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight, iconShoppingBag } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 
@@ -38,9 +39,6 @@ const useStyles = makeStyles(
       paddingLeft: responsiveVal(25, 35),
       paddingRight: responsiveVal(26, 30),
     },
-    icon: {
-      marginLeft: 0,
-    },
     buttonLabel: {
       '& ~ span.MuiButton-endIcon': {
         marginLeft: 6,
@@ -58,14 +56,14 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
 
   return (
     <div className={classes.root}>
-      <img
-        src='/icons/desktop_shopping_bag.svg'
-        alt='shopping bag'
-        className={classes.img}
-        width={64}
-        height={64}
+      <SvgImage
+        src={iconShoppingBag}
+        size='large'
         loading='eager'
+        alt='shopping bag'
+        classes={{ root: classes.img }}
       />
+
       <span className={classes.total}>
         Cart Total: <Money value={value} currency={currency} />
       </span>
@@ -74,16 +72,7 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.button}
-          endIcon={
-            <PictureResponsiveNext
-              className={classes.icon}
-              alt=''
-              width={32}
-              height={32}
-              src='/icons/desktop_chevron_right_white.svg'
-              type='image/svg+xml'
-            />
-          }
+          endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='checkout' />}
           disabled={(value ?? 0) === 0}
         >
           <div className={classes.buttonLabel}>Start checkout</div>

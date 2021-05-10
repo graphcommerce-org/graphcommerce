@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { LocationOn } from '@material-ui/icons'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconLocationRed } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import { TrackingLinkFragment } from './TrackingLink.gql'
 
@@ -18,21 +18,14 @@ const useStyles = makeStyles(
 )
 
 export default function TrackingLink(props: TrackingLinkProps) {
-  const { number, carrier, title } = props
+  const { number } = props
   const classes = useStyles()
 
   return (
     <div className={classes.trackingLink}>
       {number && (
         <>
-          <PictureResponsiveNext
-            src='/icons/desktop_order_tracker.svg'
-            alt='order tracker'
-            loading='eager'
-            width={24}
-            height={24}
-            type='image/svg+xml'
-          />
+          <SvgImage src={iconLocationRed} size='small' loading='eager' alt='order tracker' />
           Follow order
         </>
       )}

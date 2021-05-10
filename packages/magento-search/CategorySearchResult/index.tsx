@@ -1,12 +1,12 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import Button from '@reachdigital/next-ui/Button'
 import Highlight from '@reachdigital/next-ui/Highlight'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
 import { CategorySearchResultFragment } from './CategorySearchResult.gql'
-import chevronRightIcon from './chevron_right.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -22,7 +22,7 @@ const useStyles = makeStyles(
         boxShadow: 'none',
       },
       '&:hover': {
-        background: '#f8f8f8', // TODO: use theme value
+        background: theme.palette.background.highlight,
       },
     },
     totalProducts: {
@@ -50,13 +50,7 @@ export default function CategorySearchResult(props: CategorySearchResultProps) {
         className={classes.categoryButton}
         disableElevation
         endIcon={
-          <PictureResponsiveNext
-            alt='chevron right'
-            width={24}
-            height={24}
-            src={chevronRightIcon}
-            type='image/svg+xml'
-          />
+          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
         }
       >
         <div>

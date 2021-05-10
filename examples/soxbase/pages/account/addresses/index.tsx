@@ -9,8 +9,9 @@ import AccountAddresses from '@reachdigital/magento-customer/AccountAddresses'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { iconAddresses } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -34,12 +35,7 @@ function AccountAddressesPage(props: Props) {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <IconTitle
-          iconSrc='/icons/desktop_addresses.svg'
-          title='Addresses'
-          alt='addresses'
-          size='large'
-        />
+        <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
         <AccountAddresses loading={!data} addresses={customer?.addresses} countries={countries} />
       </NoSsr>
     </Container>

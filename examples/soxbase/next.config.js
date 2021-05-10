@@ -47,6 +47,7 @@ const nextConfig = {
     locales: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES)),
     defaultLocale: Object.keys(JSON.parse(process.env.NEXT_PUBLIC_LOCALE_STORES))[0],
   },
+  inlineImageLimit: false,
   productionBrowserSourceMaps: true,
 }
 

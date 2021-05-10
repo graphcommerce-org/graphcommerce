@@ -2,7 +2,6 @@ import { ListItem, ListItemIcon, ListItemText, makeStyles, Theme } from '@materi
 import PageLink from 'next/link'
 import router from 'next/router'
 import React from 'react'
-import PictureResponsiveNext, { PictureResponsiveNextProps } from '../PictureResponsiveNext'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -15,17 +14,17 @@ const useStyles = makeStyles(
 type FabMenuSecondaryItemProps = {
   href: string
   children: React.ReactNode
-} & Omit<PictureResponsiveNextProps, 'width' | 'height' | 'loading' | 'alt'>
+  icon: React.ReactNode
+}
 
 export default function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
-  const { href, children, ...imgProps } = props
+  const { href, children, icon } = props
   const classes = useStyles()
+
   return (
     <PageLink href={href} passHref>
       <ListItem dense button selected={router.asPath.startsWith(href)}>
-        <ListItemIcon classes={{ root: classes.icon }}>
-          <PictureResponsiveNext {...imgProps} alt='' width={24} height={24} loading='lazy' />
-        </ListItemIcon>
+        <ListItemIcon classes={{ root: classes.icon }}>{icon}</ListItemIcon>
         <ListItemText primary={children} classes={{ primary: classes.listItemText }} />
       </ListItem>
     </PageLink>

@@ -5,13 +5,14 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import {
   DeepPartial,
-  UnpackNestedValue,
   Path,
+  UnpackNestedValue,
   useFormGqlMutation,
 } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
@@ -85,15 +86,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={
-                <PictureResponsiveNext
-                  alt='desktop_chevron_right'
-                  width={28}
-                  height={28}
-                  src='/icons/desktop_chevron_right_white.svg'
-                  type='image/svg+xml'
-                />
-              }
+              endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='chevron right' />}
             >
               View shopping cart
             </Button>

@@ -1,5 +1,7 @@
-import { Theme, makeStyles, Typography } from '@material-ui/core'
+import { makeStyles, Theme, Typography } from '@material-ui/core'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconEmptyCart } from '@reachdigital/next-ui/icons'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -32,11 +34,12 @@ export default function EmptyCart() {
   return (
     <div className={classes.root}>
       <div>
-        <img
-          src='/icons/desktop_empty_cart.svg'
-          alt='shopping bag'
+        <SvgImage
+          src={iconEmptyCart}
+          alt='Empty Cart'
           className={classes.img}
           loading='eager'
+          size='large'
         />
         <Typography variant='h3' gutterBottom component='h1'>
           Your cart is empty

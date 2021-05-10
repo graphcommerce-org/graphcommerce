@@ -1,8 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconPerson } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
-import { CustomerTokenQuery, CustomerTokenDocument } from './CustomerToken.gql'
+import { CustomerTokenQuery, CustomerTokenDocument } from '../CustomerToken.gql'
 
 const useBadgeStyles = makeStyles((theme: Theme) => ({
   colorError: {
@@ -10,11 +12,11 @@ const useBadgeStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-type CustomerFabContentProps = CustomerTokenQuery & { children: React.ReactNode }
+type CustomerFabContentProps = CustomerTokenQuery & { icon?: React.ReactNode }
 
 function CustomerFabContent(props: CustomerFabContentProps) {
-  const { customerToken, children } = props
-  const badgeClasses = useBadgeStyles()
+  const { customerToken, icon } = props
+  const classes = useBadgeStyles()
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
@@ -24,9 +26,9 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
-          classes={badgeClasses}
+          classes={classes}
         >
-          {children}
+          {icon ?? <SvgImage src={iconPerson} alt='Account' loading='eager' />}
         </Badge>
       </IconButton>
     </PageLink>

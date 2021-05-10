@@ -16,8 +16,9 @@ import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { iconBox } from '@reachdigital/next-ui/icons'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -55,12 +56,7 @@ function ShippingPage({ countries }: Props) {
           <>
             <CheckoutStepper steps={3} currentStep={2} />
 
-            <IconTitle
-              iconSrc='/icons/desktop_checkout_box.svg'
-              title='Shipping'
-              alt='box'
-              size='normal'
-            />
+            <IconHeader src={iconBox} title='Shipping' alt='box' size='normal' />
 
             <EmailForm />
             <ShippingAddressForm countries={countries} doSubmit={addressForm} />
