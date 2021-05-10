@@ -5,4 +5,4 @@ export { default as ComposedSubmit } from './ComposedSubmit'
 export * from './ComposedSubmit'
 
 export * from './types'
-export * from './useComposeForm'
+export * from './useFormCompose'

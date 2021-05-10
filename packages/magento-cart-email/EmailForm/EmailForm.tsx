@@ -56,7 +56,7 @@ export default function EmailForm(props: EmailFormProps) {
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { mode, form, submit } = useFormIsEmailAvailable({ email: cartData?.cart?.email })
   const { formState, muiRegister, required, watch, error, getValues } = form
-  useFormCompose({ form, step, submit })
+  useFormCompose({ form, step, submit, key: 'EmailForm' })
 
   useEffect(() => {
     if (!cartData?.cart?.id) return

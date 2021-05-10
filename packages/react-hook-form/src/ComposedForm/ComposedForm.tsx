@@ -1,21 +1,25 @@
-import React, { useRef } from 'react'
+import React, { useReducer } from 'react'
 import { composedFormContext } from './context'
-import { ComposedFormContext } from './types'
-
-function useConstant<T>(init: () => T) {
-  const ref = useRef<T | null>(null)
-  if (ref.current === null) ref.current = init()
-  return ref.current
-}
+import { composedFormReducer } from './reducer'
 
 export type ComposedFormProps = { children?: React.ReactNode }
 
-export default function ComposedForm(props) {
+export default function ComposedForm(props: ComposedFormProps) {
   const { children } = props
 
-  const forms = useConstant<ComposedFormContext>(() => ({}))
+  const [state, dispatch] = useReducer(composedFormReducer, {
+    forms: {},
+    formState: {
+      isSubmitting: false,
+      isSubmitSuccessful: false,
+      isSubmitted: false,
+      isValid: false,
+    },
+  })
 
-  function register() {}
-
-  return <composedFormContext.Provider value={forms}>{children}</composedFormContext.Provider>
+  return (
+    <composedFormContext.Provider value={[state, dispatch]}>
+      {children}
+    </composedFormContext.Provider>
+  )
 }

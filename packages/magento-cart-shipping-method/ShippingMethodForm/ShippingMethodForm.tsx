@@ -1,6 +1,4 @@
-import { useQuery } from '@apollo/client'
 import { FormControl, FormHelperText } from '@material-ui/core'
-import { CurrentCartIdDocument } from '@reachdigital/magento-cart/CurrentCartId/CurrentCartId.gql'
 import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
 import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
@@ -40,27 +38,20 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
-    defaultValues: { carrierMethod },
+    defaultValues: { carrierMethod, carrier: defaultCarrier, method: defaultMethod },
     mode: 'onChange',
   })
 
   const { handleSubmit, control, setValue, register, formState, required, error } = form
   const submit = handleSubmit(() => {})
-  useFormCompose({ form, step, submit })
+  const { isSubmitSuccessful } = useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
+  const disabled = formState.isSubmitting || isSubmitSuccessful
 
   return (
     <form onSubmit={submit} noValidate className={classes.form}>
       <input type='hidden' {...register('cartId')} value={useCartId()} />
-      <input
-        type='hidden'
-        {...register('carrier', { required: required.carrier })}
-        value={defaultMethod}
-      />
-      <input
-        type='hidden'
-        {...register('method', { required: required.method })}
-        value={defaultCarrier}
-      />
+      <input type='hidden' {...register('carrier', { required: required.carrier })} />
+      <input type='hidden' {...register('method', { required: required.method })} />
       <div className={classes.formRow}>
         <FormControl>
           <Controller
@@ -68,44 +59,46 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
             control={control}
             name='carrierMethod'
             rules={{ required: 'Please select a shipping method' }}
-            render={({ field: { onChange, value, name, ref, onBlur } }) => (
-              <ToggleButtonGroup
-                aria-label='Shipping Method'
-                onChange={(_, val: string) => {
-                  onChange(val)
-                  setValue('carrier', val.split('-')?.[0])
-                  setValue('method', val.split('-')?.[1])
+            render={({ field: { onChange, value, onBlur } }) => (
+              <>
+                <ToggleButtonGroup
+                  aria-label='Shipping Method'
+                  onChange={(_, val: string) => {
+                    onChange(val)
+                    setValue('carrier', val.split('-')?.[0])
+                    setValue('method', val.split('-')?.[1])
 
-                  // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
-                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  submit()
-                }}
-                onBlur={onBlur}
-                value={value}
-                required
-                defaultValue={carrierMethod}
-                exclusive
-              >
-                {currentAddress?.available_shipping_methods?.map((m) => {
-                  if (!m) return null
-                  const code = `${m?.carrier_code}-${m?.method_code}`
-                  return (
-                    <AvailableShippingMethod key={code} value={code} {...m}>
-                      Delivery from: Mon - Sat
+                    // todo(paales): what if there are additional options to submit, shouldn't we wait for that or will those always come back from this mutation?
+                    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+                    submit()
+                  }}
+                  onBlur={onBlur}
+                  value={value}
+                  required
+                  defaultValue={carrierMethod}
+                  exclusive
+                >
+                  {currentAddress?.available_shipping_methods?.map((m) => {
+                    if (!m) return null
+                    const code = `${m?.carrier_code}-${m?.method_code}`
+                    return (
+                      <AvailableShippingMethod key={code} value={code} {...m} disabled={disabled}>
+                        Delivery from: Mon - Sat
+                      </AvailableShippingMethod>
+                    )
+                  })}
+                  {!currentAddress?.available_shipping_methods && (
+                    <AvailableShippingMethod
+                      available={false}
+                      carrier_code='none'
+                      carrier_title='No Shipping methods available'
+                      amount={{ value: 0, currency: 'EUR' }}
+                    >
+                      Please fill in your address to load shipping methods
                     </AvailableShippingMethod>
-                  )
-                })}
-                {!currentAddress?.available_shipping_methods && (
-                  <AvailableShippingMethod
-                    available={false}
-                    carrier_code='none'
-                    carrier_title='No Shipping methods available'
-                    amount={{ value: 0, currency: 'EUR' }}
-                  >
-                    Please fill in your address to load shipping methods
-                  </AvailableShippingMethod>
-                )}
-              </ToggleButtonGroup>
+                  )}
+                </ToggleButtonGroup>
+              </>
             )}
           />
           {formState.errors.carrierMethod && (

@@ -9,16 +9,13 @@ import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQu
 import EmptyCart from '@reachdigital/magento-cart/EmptyCart/EmptyCart'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import CheckoutStepper from '@reachdigital/next-ui/Stepper/Stepper'
-import {
-  ComposedForm,
-  ComposedSubmit,
-  ComposedSubmitRenderComponentProps,
-} from '@reachdigital/react-hook-form'
+import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -58,25 +55,29 @@ function ShippingPage() {
 
             <ShippingMethodForm step={3} />
 
-            <div className={formClasses.actions}>
-              <ComposedSubmit
-                render={({ formState, submit }: ComposedSubmitRenderComponentProps) => (
-                  <Button
-                    type='submit'
-                    color='secondary'
-                    variant='pill'
-                    size='large'
-                    loading={formState.isSubmitting || formState.isSubmitSuccessful}
-                    onClick={() => {
-                      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                      submit().then((success) => success && router.push('/checkout/payment'))
-                    }}
-                  >
-                    Next <ArrowForwardIos fontSize='inherit' />
-                  </Button>
-                )}
-              />
-            </div>
+            <ComposedSubmit
+              onSubmitSuccessful={() => router.push('/checkout/payment')}
+              render={({ formState, submit, error }) => (
+                <>
+                  <div className={formClasses.actions}>
+                    <Button
+                      type='submit'
+                      color='secondary'
+                      variant='pill'
+                      size='large'
+                      loading={formState.isSubmitting || formState.isSubmitSuccessful}
+                      onClick={submit}
+                    >
+                      Next <ArrowForwardIos fontSize='inherit' />
+                    </Button>
+                  </div>
+                  <ApolloErrorAlert
+                    key='error'
+                    error={formState.isSubmitting ? undefined : error}
+                  />
+                </>
+              )}
+            />
           </ComposedForm>
         )}
       </NoSsr>

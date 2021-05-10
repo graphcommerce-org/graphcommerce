@@ -21,14 +21,13 @@ type AddressFieldValues = {
 
 type AddressFieldsProps = CountryRegionsQuery & {
   form: UseFormReturn<any>
-  disabled?: boolean
+  readOnly?: boolean
 }
 
 export default function AddressFields(props: AddressFieldsProps) {
-  const { form, countries } = props
+  const { form, countries, readOnly } = props
   assertFormGqlOperation<AddressFieldValues>(form)
   const { watch, formState, required, muiRegister, register, valid } = form
-  const { disabled = formState.isSubmitting } = props
   const classes = useFormStyles()
 
   const country = watch('countryCode')
@@ -64,8 +63,8 @@ export default function AddressFields(props: AddressFieldsProps) {
           required={!!required?.street}
           {...muiRegister('street', { required: required?.street })}
           helperText={formState.isSubmitted && formState.errors.street?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.street} />,
           }}
         />
@@ -80,8 +79,8 @@ export default function AddressFields(props: AddressFieldsProps) {
             pattern: { value: houseNumberPattern, message: 'Please provide a valid house number' },
           })}
           helperText={formState.isSubmitted && formState.errors.houseNumber?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.houseNumber} />,
           }}
         />
@@ -93,8 +92,8 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='Addition'
           {...muiRegister('addition', { required: required?.addition })}
           helperText={formState.isSubmitted && formState.errors.addition?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.addition} />,
           }}
         />
@@ -108,8 +107,8 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='Postcode'
           {...muiRegister('postcode', { required: required?.postcode })}
           helperText={formState.isSubmitted && formState.errors.postcode?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.postcode} />,
           }}
         />
@@ -121,8 +120,8 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='City'
           {...muiRegister('city', { required: required?.city })}
           helperText={formState.isSubmitted && formState.errors.city?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
@@ -137,9 +136,9 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='Country'
           required={!!required?.countryCode}
           helperText={formState.errors.countryCode?.message}
-          disabled={disabled}
           // onBlur={onBlur}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.countryCode} />,
           }}
         >
@@ -163,8 +162,8 @@ export default function AddressFields(props: AddressFieldsProps) {
             {...muiRegister('regionId', { required: true, shouldUnregister: true })}
             required
             helperText={formState.errors.regionId?.message}
-            disabled={disabled}
             InputProps={{
+              readOnly,
               endAdornment: <InputCheckmark show={valid.regionId} />,
             }}
           >

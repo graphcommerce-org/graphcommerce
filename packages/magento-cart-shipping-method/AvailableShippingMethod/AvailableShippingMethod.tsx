@@ -44,13 +44,14 @@ const useStyles = makeStyles(
 )
 
 type AvailableShippingMethodProps = AvailableShippingMethodFragment &
-  Omit<ToggleButtonProps, 'size' | 'disabled'>
+  Omit<ToggleButtonProps, 'size'>
 
 const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodProps>(
   (props, ref) => {
     const {
       amount,
       available,
+      disabled,
       carrier_code,
       carrier_title,
       error_message,
@@ -69,7 +70,13 @@ const AvailableShippingMethod = React.forwardRef<any, AvailableShippingMethodPro
     } = useStyles(props)
 
     return (
-      <ToggleButton {...toggleProps} classes={classes} ref={ref} disabled={!available} size='large'>
+      <ToggleButton
+        {...toggleProps}
+        classes={classes}
+        ref={ref}
+        disabled={!available || disabled}
+        size='large'
+      >
         <div className={methodTitle}>
           {carrier_title} {method_title}
         </div>

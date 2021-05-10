@@ -75,26 +75,25 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
-  useFormCompose({ form, step, submit })
+  useFormCompose({ form, step, submit, key: 'ShippingAddressForm' })
 
   const autoSubmitting = useFormAutoSubmit({
     form,
     submit,
     fields: ['postcode', 'countryCode', 'regionId'],
   })
-
-  const disableFields = formState.isSubmitting && !autoSubmitting
+  const readOnly = (formState.isSubmitting || formState.isSubmitSuccessful) && !autoSubmitting
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
       <input type='hidden' {...register('cartId')} value={useCartId()} />
       <AnimatePresence initial={false}>
-        <NameFields form={form} key='name' disabled={disableFields} />
+        <NameFields form={form} key='name' readOnly={readOnly} />
         <AddressFields
           form={form}
           key='addressfields'
-          disabled={disableFields}
           countries={countriesData?.countries}
+          readOnly={readOnly}
         />
 
         <div className={classes.formRow} key='telephone'>
@@ -109,8 +108,8 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
               pattern: { value: phonePattern, message: 'Invalid phone number' },
             })}
             helperText={formState.isSubmitted && formState.errors.telephone?.message}
-            disabled={disableFields}
             InputProps={{
+              readOnly,
               endAdornment: <InputCheckmark show={valid.telephone} />,
             }}
           />

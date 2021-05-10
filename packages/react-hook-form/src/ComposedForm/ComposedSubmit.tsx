@@ -1,33 +1,11 @@
 import { ApolloError } from '@apollo/client'
-import React, { useContext, useState } from 'react'
-import { FormState, FieldValues } from 'react-hook-form'
+import React, { useContext, useEffect } from 'react'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
-import { ComposedFormContext } from './types'
-
-type Fields = 'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful' | 'isValid'
-
-type CombinedFormState = Pick<FormState<FieldValues>, Fields>
-function extractFormState(forms: ComposedFormContext): CombinedFormState {
-  const formState = Object.entries(forms).map(([, { form }]) => form.formState)
-  const hasState = formState.length > 0
-
-  return {
-    isSubmitting: hasState && formState.some(({ isSubmitting }) => isSubmitting),
-    isSubmitSuccessful: hasState && formState.every(({ isSubmitSuccessful }) => isSubmitSuccessful),
-    isSubmitted: hasState && formState.every(({ isSubmitted }) => isSubmitted),
-    isValid: hasState && formState.every(({ isValid }) => isValid),
-  }
-}
-
-export type ComposedSubmitRenderComponentProps = {
-  submit: () => Promise<CombinedFormState['isSubmitSuccessful']>
-  formState: CombinedFormState
-  error?: ApolloError
-}
+import { ComposedSubmitRenderComponentProps } from './types'
 
 export type ComposedSubmitProps = {
-  onSuccess?: () => void
+  onSubmitSuccessful?: () => void
   render: React.FC<ComposedSubmitRenderComponentProps>
 }
 
@@ -40,42 +18,52 @@ export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {
 }
 
 export default function ComposedSubmit(props: ComposedSubmitProps) {
-  const { render: Render } = props
-  const forms = useContext(composedFormContext)
-  const [formState, setFormState] = useState(extractFormState(forms))
-  const formEntries = Object.entries(forms)
-
-  const submitAll = async () => {
-    setFormState({ ...extractFormState(forms), isSubmitting: true })
-
-    /**
-     * We're executing these steps all in sequence, but there might be a performance optimization to
-     * submit multiple forms at once.
-     */
-    for (const [, { submit }] of formEntries) {
-      // eslint-disable-next-line no-await-in-loop
-      await submit()
-    }
-
-    const formS = extractFormState(forms)
-    setFormState(formS)
-
-    return formS.isSubmitSuccessful
-  }
+  const { render: Render, onSubmitSuccessful } = props
+  const [{ formState, forms }, dispatch] = useContext(composedFormContext)
+  const formEntries = Object.entries(forms).sort((a, b) => a[1].step - b[1].step)
 
   const errors: ApolloError[] = []
   formEntries.forEach(([, { form }]) => {
     if (isFormGqlOperation(form) && form.error) errors.push(form.error)
   })
 
-  return (
-    <Render
-      formState={{
-        ...formState,
-        isSubmitSuccessful: !errors.length && formState.isSubmitSuccessful,
-      }}
-      submit={submitAll}
-      error={mergeErrors(errors)}
-    />
-  )
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) onSubmitSuccessful?.()
+  }, [formState.isSubmitSuccessful, onSubmitSuccessful])
+
+  const submitAll = async () => {
+    /**
+     * If we have forms that are invalid, we don't need to submit anything yet. We can trigger the
+     * submission of the invalid forms and highlight those forms.
+     */
+    let formsToSubmit = formEntries.filter(([, f]) => {
+      if (!f.form.formState.isValid !== Object.keys(f.form.formState.errors).length > 0) {
+        console.warn(`formState.isValid doesn't match formState.errors, missing a ref? ${f.key}?`)
+      }
+      return !f.form.formState.isValid
+    })
+
+    if (!formsToSubmit.length) formsToSubmit = formEntries
+
+    /**
+     * We filter out all the forms that have no dirtyFields and the form does not have isDirty
+     *
+     * Todo: We need to know wheter we are allowed to trigger onSubmitSuccessful, because
+     * isSubmitSuccessful will not be set to true on the redundant forms.
+     */
+    // formsToSubmit.filter(
+    //   ([, f]) => f.form.formState.isDirty || Object.keys(f.form.formState.dirtyFields).length > 0,
+    // )
+
+    /**
+     * We're executing these steps all in sequence, since certain forms can depend on other forms in
+     * the backend.
+     *
+     * Todo: There might be a performance optimization by submitting multiple forms in parallel.
+     */
+    // eslint-disable-next-line no-await-in-loop
+    for (const [, { submit }] of formsToSubmit) await submit()
+  }
+
+  return <Render formState={formState} submit={submitAll} error={mergeErrors(errors)} />
 }
