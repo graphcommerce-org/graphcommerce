@@ -37,6 +37,25 @@ export const composedFormReducer: ComposedFormReducer = (state, action) => {
     case 'UNREGISTER':
       delete state.forms[action.key]
       break
+    case 'SUBMIT':
+      return {
+        ...state,
+        buttonState: { isSubmitting: true, isSubmitted: false, isSubmitSuccessful: false },
+      }
+    case 'SUBMITTED':
+      return {
+        ...state,
+        buttonState: { isSubmitting: true, isSubmitted: true, isSubmitSuccessful: false },
+      }
+    case 'FINISH':
+      return {
+        ...state,
+        buttonState: {
+          isSubmitting: false,
+          isSubmitted: true,
+          isSubmitSuccessful: action.isSubmitSuccessful,
+        },
+      }
     case 'FORMSTATE':
       return updateFormStateIfNecessary(state)
   }

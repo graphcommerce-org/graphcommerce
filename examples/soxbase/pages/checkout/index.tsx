@@ -57,7 +57,7 @@ function ShippingPage() {
 
             <ComposedSubmit
               onSubmitSuccessful={() => router.push('/checkout/payment')}
-              render={({ formState, submit, error }) => (
+              render={({ formState, buttonState, submit, error }) => (
                 <>
                   <div className={formClasses.actions}>
                     <Button
@@ -65,7 +65,7 @@ function ShippingPage() {
                       color='secondary'
                       variant='pill'
                       size='large'
-                      loading={formState.isSubmitting || formState.isSubmitSuccessful}
+                      loading={buttonState.isSubmitting || buttonState.isSubmitSuccessful}
                       onClick={submit}
                     >
                       Next <ArrowForwardIos fontSize='inherit' />
@@ -73,7 +73,7 @@ function ShippingPage() {
                   </div>
                   <ApolloErrorAlert
                     key='error'
-                    error={formState.isSubmitting ? undefined : error}
+                    error={buttonState.isSubmitting ? undefined : error}
                   />
                 </>
               )}

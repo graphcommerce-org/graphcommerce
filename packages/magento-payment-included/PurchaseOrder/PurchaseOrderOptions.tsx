@@ -11,12 +11,16 @@ import React from 'react'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 function PurchaseOrderOptions(props: PaymentOptionsProps) {
-  const { code, step, Container: Render } = props
-  const form = useFormGqlMutation(PurchaseOrderOptionsDocument)
+  const { code, step, selected, Container: Render } = props
+  const form = useFormGqlMutation(PurchaseOrderOptionsDocument, {
+    defaultValues: {
+      poNumber: selected?.purchase_order_number ?? undefined,
+    },
+  })
   const { handleSubmit, register, muiRegister, formState, required } = form
   const submit = handleSubmit(() => {})
 
-  useFormCompose({ form, step, submit })
+  useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
   const valid = useFormValidFields(form, required)
 
   return (

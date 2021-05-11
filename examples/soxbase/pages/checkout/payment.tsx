@@ -58,32 +58,16 @@ function PaymentPage(props: Props) {
 
               <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-              <ComposedSubmit
-                render={({ submit, formState, error }) => (
-                  <>
-                    <AnimatedRow key='next'>
-                      <div className={formClasses.formRow}>
-                        <PaymentMethodButton
-                          key='button'
-                          type='submit'
-                          color='secondary'
-                          variant='pill'
-                          size='large'
-                          onClick={submit}
-                          disabled={formState.isSubmitting || formState.isSubmitSuccessful}
-                          endIcon={<ArrowForwardIos fontSize='inherit' />}
-                        >
-                          Pay
-                        </PaymentMethodButton>
-                      </div>
-                    </AnimatedRow>
-                    <ApolloErrorAlert
-                      key='error'
-                      error={formState.isSubmitting ? undefined : error}
-                    />
-                  </>
-                )}
-              />
+              <PaymentMethodButton
+                key='button'
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                endIcon={<ArrowForwardIos fontSize='inherit' />}
+              >
+                Pay
+              </PaymentMethodButton>
             </AnimatePresence>
           </NoSsr>
         </PaymentMethodContextProvider>

@@ -9,12 +9,18 @@ export default function ComposedForm(props: ComposedFormProps) {
 
   const [state, dispatch] = useReducer(composedFormReducer, {
     forms: {},
+    buttonState: {
+      isSubmitting: false,
+      isSubmitted: false,
+      isSubmitSuccessful: false,
+    },
     formState: {
       isSubmitting: false,
       isSubmitSuccessful: false,
       isSubmitted: false,
       isValid: false,
     },
+    submitted: false,
   })
 
   return (

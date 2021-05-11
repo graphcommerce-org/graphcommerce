@@ -18,27 +18,48 @@ export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
   step: number
 }
 
-type Fields = 'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful' | 'isValid'
-
-export type FormStateComposed = Pick<FormState<FieldValues>, Fields>
+export type FormStateAll = Pick<
+  FormState<FieldValues>,
+  'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful' | 'isValid'
+>
+export type ButtonState = Pick<
+  FormState<FieldValues>,
+  'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful'
+>
 
 export type ComposedSubmitRenderComponentProps = {
   submit: () => Promise<void>
-  formState: FormStateComposed
+  buttonState: ButtonState
+  formState: FormStateAll
   error?: ApolloError
 }
 
 export type ComposedFormState = {
   forms: { [step: number]: UseFormComposeOptions<FieldValues> }
-  formState: FormStateComposed
+  buttonState: ButtonState
+  formState: FormStateAll
+  submitted: boolean
   error?: ApolloError
 }
 
-export type RegisterForm = { type: 'REGISTER' } & UseFormComposeOptions
-export type UnregisterForm = { type: 'UNREGISTER'; key: UseFormComposeOptions['key'] }
-export type UpdateFormState = { type: 'FORMSTATE' }
+/** Register a new form with the useFormCompose hook */
+export type RegisterAction = { type: 'REGISTER' } & UseFormComposeOptions
+/** Cleanup the form if the useFromCompose hook changes */
+export type UnregisterAction = { type: 'UNREGISTER'; key: UseFormComposeOptions['key'] }
+/** Recalculate the combined formstate */
+export type FormStateAction = { type: 'FORMSTATE' }
+/** Submit all forms and call onSubmitComplete?.() when done */
+export type SubmitAction = { type: 'SUBMIT' }
+export type SubmittedAction = { type: 'SUBMITTED' }
+export type FinishSubmissionAction = { type: 'FINISH'; isSubmitSuccessful: boolean }
 
-export type Actions = RegisterForm | UnregisterForm | UpdateFormState
+export type Actions =
+  | RegisterAction
+  | UnregisterAction
+  | FormStateAction
+  | SubmitAction
+  | SubmittedAction
+  | FinishSubmissionAction
 
 export type ComposedFormReducer = React.Reducer<ComposedFormState, Actions>
 
