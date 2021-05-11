@@ -5,7 +5,7 @@ import { PaymentPlaceOrderProps } from '../Api/PaymentMethod'
 import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNoop.gql'
 
 export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
-  const { step, paymentDone } = props
+  const { step, paymentDone, code } = props
   const form = useFormGqlMutation(PaymentMethodPlaceOrderNoopDocument)
   const { handleSubmit, register } = form
   const router = useRouter()
@@ -16,7 +16,7 @@ export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProp
     router.push({ pathname: '/checkout/success', query: { cartId } })
   })
 
-  useFormCompose({ form, step, submit })
+  useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 
   return (
     <form onSubmit={submit}>

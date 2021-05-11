@@ -9,7 +9,7 @@ function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
   const { handleSubmit, register } = form
   const submit = handleSubmit(() => {})
 
-  useFormCompose({ form, step, submit })
+  useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
   return (
     <form onSubmit={submit} style={{ visibility: 'hidden' }}>

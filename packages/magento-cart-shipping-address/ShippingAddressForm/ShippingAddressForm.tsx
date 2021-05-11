@@ -82,7 +82,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
     submit,
     fields: ['postcode', 'countryCode', 'regionId'],
   })
-  const readOnly = (formState.isSubmitting || formState.isSubmitSuccessful) && !autoSubmitting
+  const readOnly = formState.isSubmitting && !autoSubmitting
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>

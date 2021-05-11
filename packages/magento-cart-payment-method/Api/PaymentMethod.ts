@@ -2,10 +2,12 @@ import { ButtonProps } from '@reachdigital/next-ui/Button'
 import { UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { AvailablePaymentMethodFragment } from './AvailablePaymentMethod/AvailablePaymentMethod.gql'
+import { SelectedPaymentMethodFragment } from './SelectedPaymentMethod/SelectedPaymentMethod.gql'
 
 export type PaymentMethod = AvailablePaymentMethodFragment & {
   child: string
   preferred?: boolean
+  selected?: SelectedPaymentMethodFragment
 }
 
 export type PaymentMethodOptionsProps = Pick<UseFormComposeOptions, 'step'> & {

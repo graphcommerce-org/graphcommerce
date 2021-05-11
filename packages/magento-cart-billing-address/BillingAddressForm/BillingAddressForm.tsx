@@ -82,7 +82,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
     submit,
     fields: ['postcode', 'countryCode', 'regionId'],
   })
-  const disableFields = (formState.isSubmitting || formState.isSubmitSuccessful) && !autoSubmitting
+  const disableFields = formState.isSubmitting && !autoSubmitting
 
   const sameAsShipping = watch('sameAsShipping')
 

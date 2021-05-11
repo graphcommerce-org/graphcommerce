@@ -42,10 +42,9 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
     mode: 'onChange',
   })
 
-  const { handleSubmit, control, setValue, register, formState, required, error } = form
+  const { handleSubmit, control, setValue, register, required, error } = form
   const submit = handleSubmit(() => {})
-  const { isSubmitSuccessful } = useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
-  const disabled = formState.isSubmitting || isSubmitSuccessful
+  useFormCompose({ form, step, submit, key: 'ShippingMethodForm' })
 
   return (
     <form onSubmit={submit} noValidate className={classes.form}>
@@ -82,7 +81,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
                     if (!m) return null
                     const code = `${m?.carrier_code}-${m?.method_code}`
                     return (
-                      <AvailableShippingMethod key={code} value={code} {...m} disabled={disabled}>
+                      <AvailableShippingMethod key={code} value={code} {...m}>
                         Delivery from: Mon - Sat
                       </AvailableShippingMethod>
                     )
@@ -101,11 +100,6 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
               </>
             )}
           />
-          {formState.errors.carrierMethod && (
-            <FormHelperText error variant='outlined'>
-              {formState.errors.carrierMethod.message}
-            </FormHelperText>
-          )}
         </FormControl>
       </div>
       <ApolloErrorAlert error={error} />

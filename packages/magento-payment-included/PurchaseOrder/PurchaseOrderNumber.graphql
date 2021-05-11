@@ -1,0 +1,3 @@
+fragment PurchaseOrderNumber on SelectedPaymentMethod @inject(into: ["SelectedPaymentMethod"]) {
+  purchase_order_number
+}
