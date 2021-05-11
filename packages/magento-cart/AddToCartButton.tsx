@@ -1,6 +1,5 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
-import Checkmark from '@material-ui/icons/Check'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
@@ -8,7 +7,7 @@ import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
 import {
   DeepPartial,
   Path,
@@ -94,7 +93,7 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
         }
       >
         <>
-          <Checkmark />
+          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
         </>
       </MessageSnackbar>

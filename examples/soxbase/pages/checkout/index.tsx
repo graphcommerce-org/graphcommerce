@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
@@ -18,7 +17,8 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import { iconBox } from '@reachdigital/next-ui/icons'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconBox, iconChevronRight } from '@reachdigital/next-ui/icons'
 import { useRouter } from 'next/router'
 import React, { useRef } from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -56,7 +56,7 @@ function ShippingPage({ countries }: Props) {
           <>
             <CheckoutStepper steps={3} currentStep={2} />
 
-            <IconHeader src={iconBox} title='Shipping' alt='box' size='normal' />
+            <IconHeader src={iconBox} title='Shipping' alt='box' />
 
             <EmailForm />
             <ShippingAddressForm countries={countries} doSubmit={addressForm} />
@@ -73,7 +73,13 @@ function ShippingPage({ countries }: Props) {
                 size='large'
                 onClick={forceSubmit}
               >
-                Next <ArrowForwardIos fontSize='inherit' />
+                Next{' '}
+                <SvgImage
+                  src={iconChevronRight}
+                  alt='chevron right'
+                  shade='invert'
+                  loading='eager'
+                />
               </Button>
             </div>
           </>

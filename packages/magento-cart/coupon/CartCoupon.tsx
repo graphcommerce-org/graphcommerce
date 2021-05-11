@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { IconButton } from '@material-ui/core'
-import { Clear } from '@material-ui/icons'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconClose } from '@reachdigital/next-ui/icons'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { ClientCartDocument } from '../ClientCart.gql'
@@ -30,7 +31,7 @@ export default function CartCoupon(props: CartCouponProps) {
           return submitHandler()
         }}
       >
-        <Clear fontSize='small' />
+        <SvgImage src={iconClose} size='small' alt='clear' />
       </IconButton>
     </div>
   )

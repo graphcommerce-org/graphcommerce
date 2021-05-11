@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme } from '@material-ui/core'
-import Checkmark from '@material-ui/icons/Check'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { Money } from '@reachdigital/magento-store'
@@ -9,7 +8,7 @@ import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
-import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
@@ -132,7 +131,14 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='chevron right' />}
+              endIcon={
+                <SvgImage
+                  src={iconChevronRight}
+                  shade='invert'
+                  loading='eager'
+                  alt='chevron right'
+                />
+              }
             >
               View shopping cart
             </Button>
@@ -140,7 +146,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         }
       >
         <>
-          <Checkmark />
+          <SvgImage src={iconCheckmark} alt='checkmark' loading='eager' />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
         </>
       </MessageSnackbar>

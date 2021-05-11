@@ -1,7 +1,8 @@
 import { Fab, FabProps } from '@material-ui/core'
-import ArrowBack from '@material-ui/icons/ArrowBack'
 import { m, useDomEvent } from 'framer-motion'
 import React from 'react'
+import SvgImage from '../SvgImage'
+import { iconArrowBack } from '../icons'
 import { useSliderContext } from './SliderContext'
 
 type SliderPrevProps = Omit<FabProps, 'disabled' | 'onClick' | 'children'> & { layout?: boolean }
@@ -27,7 +28,7 @@ export default function SliderPrev(props: SliderPrevProps) {
   return (
     <m.div layout={layout} className={className} animate={{ scale: disabled ? 0.001 : 1 }}>
       <Fab color='inherit' size='small' {...fabProps} onClick={prev}>
-        <ArrowBack color='inherit' />
+        <SvgImage src={iconArrowBack} alt='arrow back' size='small' title='Back' />
       </Fab>
     </m.div>
   )

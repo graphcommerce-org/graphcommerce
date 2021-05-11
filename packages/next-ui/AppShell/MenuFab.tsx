@@ -1,20 +1,21 @@
 import {
-  Theme,
-  makeStyles,
+  Divider,
   Fab,
+  List,
   ListItem,
   ListItemText,
+  makeStyles,
   Menu,
-  List,
-  Divider,
+  Theme,
 } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import { Router, useRouter } from 'next/router'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import responsiveVal from '../Styles/responsiveVal'
+import SvgImage from '../SvgImage'
+import { iconMenu } from '../icons'
 import { MenuProps } from './Menu'
 import useFabAnimation from './useFabAnimation'
 
@@ -77,7 +78,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        <MenuIcon htmlColor='#fff' fontSize='small' />
+        <SvgImage src={iconMenu} shade='invert' alt='menu' size='small' />
       </Fab>
 
       <Menu

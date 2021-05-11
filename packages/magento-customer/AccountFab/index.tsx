@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconPerson } from '@reachdigital/next-ui/icons'
+import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenQuery, CustomerTokenDocument } from '../CustomerToken.gql'
@@ -28,7 +28,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
           variant='dot'
           classes={classes}
         >
-          {icon ?? <SvgImage src={iconPerson} alt='Account' loading='eager' />}
+          {icon ?? <SvgImage src={iconPersonAlt} alt='Account' loading='eager' />}
         </Badge>
       </IconButton>
     </PageLink>

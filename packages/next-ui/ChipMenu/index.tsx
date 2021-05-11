@@ -1,15 +1,14 @@
 import { Chip, ChipProps, makeStyles, Menu, Theme } from '@material-ui/core'
-import RemoveCircle from '@material-ui/icons/Cancel'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 import React, { PropsWithChildren, useState } from 'react'
 import SectionHeader from '../SectionHeader'
 import responsiveVal from '../Styles/responsiveVal'
+import SvgImage from '../SvgImage'
+import { iconChevronDown, iconChevronUp, iconCloseCircle } from '../icons'
 
 export const useChipMenuStyles = makeStyles(
   (theme: Theme) => ({
-    /* 
+    /*
       !importants: ensure background #xxxxxx on hover, focus etc regardless given props to the component 
       otherwise you'll get: ".MuiChip-deletable.MuiChip-outlined:hover" which is prone to changes and thereby a fragile selector
     */
@@ -33,15 +32,9 @@ export const useChipMenuStyles = makeStyles(
       '&:hover': {
         background: `${theme.palette.background.default} !important`,
         borderColor: theme.palette.grey['600'],
-        '& svg': {
-          color: `${theme.palette.grey['600']} !important`,
-        },
       },
       '&:focus': {
         background: `${theme.palette.grey['100']} !important`,
-      },
-      '& svg': {
-        color: ` ${theme.palette.text.primary} !important`,
       },
     },
     menuPaper: {
@@ -88,8 +81,15 @@ export default function ChipMenu(props: ChipMenuProps) {
   const [openEl, setOpenEl] = useState<null | HTMLElement>(null)
   const classes = useChipMenuStyles(props)
 
-  let deleteIcon = selected ? <RemoveCircle fontSize='small' /> : <ExpandMore fontSize='small' />
-  if (openEl) deleteIcon = <ExpandLess fontSize='small' />
+  let deleteIcon = selected ? (
+    <SvgImage size='small' src={iconCloseCircle} alt='close' loading='eager' shade='normal' />
+  ) : (
+    <SvgImage size='small' src={iconChevronDown} alt='chevron down' loading='eager' shade='mute' />
+  )
+  if (openEl)
+    deleteIcon = (
+      <SvgImage size='small' src={iconChevronUp} alt='chevron up' loading='eager' shade='mute' />
+    )
 
   const selectedAndMenuHidden = selected && !openEl && selectedLabel
 
@@ -120,7 +120,7 @@ export default function ChipMenu(props: ChipMenuProps) {
           setOpenEl(null)
         }}
         getContentAnchorEl={null} // https://github.com/mui-org/material-ui/issues/7961#issuecomment-326116559
-        variant='selectedMenu'
+        // variant='selectedMenu'
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         classes={{ paper: classes.menuPaper, list: classes.menuList }}

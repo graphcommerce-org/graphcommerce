@@ -1,11 +1,10 @@
-import { makeStyles, Theme, Fab, Container, ContainerProps } from '@material-ui/core'
-import Fullscreen from '@material-ui/icons/Fullscreen'
-import FullscreenExit from '@material-ui/icons/FullscreenExit'
+import { ContainerProps, Fab, makeStyles, Theme } from '@material-ui/core'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { UseStyles } from '../../Styles'
-import responsiveVal from '../../Styles/responsiveVal'
+import { iconCollapseVertical, iconExpandVertical } from '../../icons'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
@@ -163,7 +162,21 @@ export default function SidebarGallery(props: SidebarGalleryProps) {
                     document.body.style.overflow = !zoomed ? 'hidden' : ''
                   }}
                 >
-                  {zoomed ? <FullscreenExit /> : <Fullscreen />}
+                  {!zoomed ? (
+                    <SvgImage
+                      src={iconExpandVertical}
+                      alt='expand'
+                      title='Zoom in'
+                      loading='eager'
+                    />
+                  ) : (
+                    <SvgImage
+                      src={iconCollapseVertical}
+                      alt='collapse'
+                      title='Zoom out'
+                      loading='eager'
+                    />
+                  )}
                 </Fab>
               </m.div>
               <div className={classes.bottomCenter}>

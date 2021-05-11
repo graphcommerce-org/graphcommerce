@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
-import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
 import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
@@ -18,6 +17,8 @@ import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import { AnimatePresence } from 'framer-motion'
 import React, { useRef } from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
@@ -67,7 +68,7 @@ function PaymentPage({ countries }: Props) {
                   variant='pill'
                   size='large'
                   onClick={forceSubmit}
-                  endIcon={<ArrowForwardIos fontSize='inherit' />}
+                  endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
                 >
                   Pay
                 </PaymentMethodButton>

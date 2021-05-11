@@ -7,14 +7,13 @@ import { UseStyles } from '../Styles'
 const useStyles = makeStyles(
   (theme: Theme) => ({
     root: ({ shade }: any) => ({
-      filter: `invert(${shade}%)`,
+      filter: shade > 0 ? `invert(${shade}%)` : undefined,
     }),
   }),
   { name: 'SvgImage' },
 )
 
-// todo(yvo): find default material ui size type
-export type SvgImageSize = 'small' | 'normal' | 'large'
+export type SvgImageSize = 'small' | 'medium' | 'large'
 
 export type SvgImageShade = 'mute' | 'normal' | 'invert'
 
@@ -26,7 +25,7 @@ export type SvgImageProps = Omit<PictureResponsiveProps, 'srcSets' | 'width' | '
 } & UseStyles<typeof useStyles>
 
 export default function SvgImage(props: SvgImageProps) {
-  const { src, scales, size = 'normal', shade = 'normal', ...pictureResponsiveProps } = props
+  const { src, scales, size = 'medium', shade = 'normal', ...pictureResponsiveProps } = props
 
   const invertFilter: Record<SvgImageShade, number> = {
     mute: 75,
@@ -36,7 +35,7 @@ export default function SvgImage(props: SvgImageProps) {
 
   const scale = {
     small: 0.75,
-    normal: 1,
+    medium: 1,
     large: 2,
     ...scales,
   }

@@ -1,10 +1,10 @@
-import { makeStyles, Theme, Fab } from '@material-ui/core'
-import Fullscreen from '@material-ui/icons/Fullscreen'
-import FullscreenExit from '@material-ui/icons/FullscreenExit'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { PropsWithChildren, useEffect, useState } from 'react'
 import { UseStyles } from '../../Styles'
+import SvgImage from '../../SvgImage'
+import { iconCollapseVertical, iconExpandVertical } from '../../icons'
 import SliderContainer from '../SliderContainer'
 import { SliderContext } from '../SliderContext'
 import SliderDots from '../SliderDots'
@@ -83,7 +83,16 @@ export default function ExpandableGallery(props: SingleItemSliderProps) {
               document.body.style.overflow = !zoomed ? 'hidden' : ''
             }}
           >
-            {zoomed ? <FullscreenExit /> : <Fullscreen />}
+            {!zoomed ? (
+              <SvgImage src={iconExpandVertical} alt='expand' title='Zoom in' loading='eager' />
+            ) : (
+              <SvgImage
+                src={iconCollapseVertical}
+                alt='collapse'
+                title='Zoom out'
+                loading='eager'
+              />
+            )}
           </Fab>
         </m.div>
 

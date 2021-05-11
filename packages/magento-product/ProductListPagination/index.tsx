@@ -1,9 +1,10 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { ChevronLeft, ChevronRight } from '@material-ui/icons'
 import { PaginationProps, usePagination } from '@material-ui/lab'
 import CategoryLink from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronLeft, iconChevronRight } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import { ProductListPaginationFragment } from './ProductListPagination.gql'
 
@@ -25,20 +26,16 @@ const useStyles = makeStyles(
         borderRadius: '100%',
         height: 40,
         width: 40,
-        '& svg': {
-          color: theme.palette.text.primary,
-        },
         '&:hover': {
           background: 'rgba(0, 0, 0, 0.04)',
         },
       },
-      '& svg': {
-        borderRadius: '100%',
-        padding: 6,
-        height: 40,
-        width: 40,
-        color: '#ddd',
-      },
+    },
+    icon: {
+      borderRadius: '100%',
+      padding: 6,
+      height: 40,
+      width: 40,
     },
   }),
   {
@@ -71,8 +68,23 @@ export default function ProductListPagination({
   const prevBtnProps = items[0]
   const nextBtnProps = items[items.length - 1]
 
-  const chevronLeft = <ChevronLeft color='primary' />
-  const chevronRight = <ChevronRight color='primary' />
+  const chevronLeft = (
+    <SvgImage
+      src={iconChevronLeft}
+      alt='chevron left'
+      shade={current_page === 1 ? 'mute' : undefined}
+      classes={{ root: classes.icon }}
+    />
+  )
+
+  const chevronRight = (
+    <SvgImage
+      src={iconChevronRight}
+      alt='chevron right'
+      shade={current_page === total_pages ? 'mute' : undefined}
+      classes={{ root: classes.icon }}
+    />
+  )
 
   return (
     <div className={classes.root}>

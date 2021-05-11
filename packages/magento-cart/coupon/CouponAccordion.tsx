@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client'
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronDown, iconChevronUp } from '@reachdigital/next-ui/icons'
 import clsx from 'clsx'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
@@ -62,7 +63,13 @@ export default function CouponAccordion() {
           <Button
             onClick={() => setOpen(!open)}
             className={clsx(classes.button, { [classes.buttonOpen]: open })}
-            endIcon={open ? <ExpandLess /> : <ExpandMore />}
+            endIcon={
+              open ? (
+                <SvgImage src={iconChevronUp} alt='expand more' loading='eager' />
+              ) : (
+                <SvgImage src={iconChevronDown} alt='expand less' loading='eager' />
+              )
+            }
           >
             <Typography variant='h6'>Discount code</Typography>
 

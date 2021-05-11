@@ -1,8 +1,9 @@
 import { Fab, FabProps, makeStyles, Theme } from '@material-ui/core'
-import ArrowBack from '@material-ui/icons/ArrowBackIos'
 import PageLink from 'next/link'
-
+import React from 'react'
 import { UseStyles } from '../Styles'
+import SvgImage from '../SvgImage'
+import { iconChevronLeft } from '../icons'
 
 /**
  * When navigating, store the previous page.
@@ -58,8 +59,6 @@ const useStyles = makeStyles(
         paddingLeft: `14px`,
       },
     },
-    icon: { fontSize: 18 },
-
     fabText: {
       display: 'none',
       [theme.breakpoints.up('sm')]: {
@@ -88,11 +87,7 @@ export default function BackNavFab(props: BackNavFabProps) {
           aria-label='Previous page'
           {...fabProps}
         >
-          <ArrowBack
-            shapeRendering='geometricPrecision'
-            fontSize='inherit'
-            classes={{ root: classes.icon }}
-          />
+          <SvgImage src={iconChevronLeft} alt='chevron left' loading='eager' size='small' />
           <span className={classes.fabText}>{children}</span>
         </Fab>
       </PageLink>

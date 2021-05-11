@@ -1486,7 +1486,7 @@ export type SelectedPaymentMethod = {
 export type ShippingCartAddress = CartAddressInterface & {
   __typename?: 'ShippingCartAddress'
   available_shipping_methods?: Maybe<Array<Maybe<AvailableShippingMethod>>>
-  /** @deprecated  `cart_items_v2` should be used instead */
+  /** @deprecated `cart_items_v2` should be used instead */
   cart_items?: Maybe<Array<Maybe<CartItemQuantity>>>
   cart_items_v2?: Maybe<Array<Maybe<CartItemInterface>>>
   city: Scalars['String']
@@ -1529,13 +1529,13 @@ export type AvailableShippingMethod = {
 export type CartItemQuantity = {
   __typename?: 'CartItemQuantity'
   /**
-   * @deprecated  `cart_items` field of `ShippingCartAddress` returns now `CartItemInterface`
-   *   instead of `CartItemQuantity`
+   * @deprecated `cart_items` field of `ShippingCartAddress` returns now `CartItemInterface` instead
+   *   of `CartItemQuantity`
    */
   cart_item_id: Scalars['Int']
   /**
-   * @deprecated  `cart_items` field of `ShippingCartAddress` returns now `CartItemInterface`
-   *   instead of `CartItemQuantity`
+   * @deprecated `cart_items` field of `ShippingCartAddress` returns now `CartItemInterface` instead
+   *   of `CartItemQuantity`
    */
   quantity: Scalars['Float']
 }
@@ -5324,7 +5324,8 @@ export type VirtualProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -5518,7 +5519,8 @@ export type SimpleProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -5905,15 +5907,15 @@ export type DownloadableProductLinks = {
   id?: Maybe<Scalars['Int']>
   /** @deprecated This information should not be exposed on frontend */
   is_shareable?: Maybe<Scalars['Boolean']>
-  /** @deprecated  `sample_url` serves to get the downloadable sample */
+  /** @deprecated `sample_url` serves to get the downloadable sample */
   link_type?: Maybe<DownloadableFileTypeEnum>
   /** @deprecated This information should not be exposed on frontend */
   number_of_downloads?: Maybe<Scalars['Int']>
   /** The price of the downloadable product */
   price?: Maybe<Scalars['Float']>
-  /** @deprecated  `sample_url` serves to get the downloadable sample */
+  /** @deprecated `sample_url` serves to get the downloadable sample */
   sample_file?: Maybe<Scalars['String']>
-  /** @deprecated  `sample_url` serves to get the downloadable sample */
+  /** @deprecated `sample_url` serves to get the downloadable sample */
   sample_type?: Maybe<DownloadableFileTypeEnum>
   /** URL to the downloadable sample */
   sample_url?: Maybe<Scalars['String']>
@@ -5932,9 +5934,9 @@ export type DownloadableProductSamples = {
   __typename?: 'DownloadableProductSamples'
   /** @deprecated This information should not be exposed on frontend */
   id?: Maybe<Scalars['Int']>
-  /** @deprecated  `sample_url` serves to get the downloadable sample */
+  /** @deprecated `sample_url` serves to get the downloadable sample */
   sample_file?: Maybe<Scalars['String']>
-  /** @deprecated  `sample_url` serves to get the downloadable sample */
+  /** @deprecated `sample_url` serves to get the downloadable sample */
   sample_type?: Maybe<DownloadableFileTypeEnum>
   /** URL to the downloadable sample */
   sample_url?: Maybe<Scalars['String']>
@@ -6026,7 +6028,8 @@ export type DownloadableProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6438,7 +6441,8 @@ export type BundleProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -6835,7 +6839,8 @@ export type GroupedProduct = PhysicalProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -7091,7 +7096,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
     name?: Maybe<Scalars['String']>
     new?: Maybe<Scalars['Int']>
     /**
-     * The beginning date for new product listings, and determines if the product is featured as a new product.
+     * The beginning date for new product listings, and determines if the product is featured as a
+     * new product.
      *
      * @deprecated The field should not be used on the storefront.
      */
@@ -7251,7 +7257,7 @@ export type ConfigurableProductOptions = {
   /**
    * This is the same as a product's id field
    *
-   * @deprecated  `product_id` is not needed and can be obtained from it's parent
+   * @deprecated `product_id` is not needed and can be obtained from it's parent
    */
   product_id?: Maybe<Scalars['Int']>
   /** The unique ID for a `ConfigurableProductOptions` object */

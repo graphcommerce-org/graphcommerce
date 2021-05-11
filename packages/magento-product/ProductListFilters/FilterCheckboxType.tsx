@@ -3,8 +3,9 @@ import { Chip, ChipProps } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
 import { useChipMenuStyles } from '@reachdigital/next-ui/ChipMenu'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconCloseCircle } from '@reachdigital/next-ui/icons'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
 import React from 'react'
 import { FilterIn } from './FilterEqualType'
 import { ProductListFiltersFragment } from './ProductListFilters.gql'
@@ -50,6 +51,9 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
                 pushRoute(linkParams)
               }
             : undefined
+        }
+        deleteIcon={
+          isActive ? <SvgImage src={iconCloseCircle} alt='remove' size='small' /> : undefined
         }
         label={label}
         clickable

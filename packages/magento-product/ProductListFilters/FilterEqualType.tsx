@@ -1,11 +1,11 @@
 import { cloneDeep } from '@apollo/client/utilities'
 import {
-  ListItem,
-  ListItemText,
   Checkbox,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
   makeStyles,
   Theme,
-  ListItemSecondaryAction,
 } from '@material-ui/core'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
@@ -13,7 +13,6 @@ import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
-import { m } from 'framer-motion'
 import React, { useState } from 'react'
 import { SetRequired } from 'type-fest'
 import ChipMenu, { ChipMenuProps } from '../../next-ui/ChipMenu'

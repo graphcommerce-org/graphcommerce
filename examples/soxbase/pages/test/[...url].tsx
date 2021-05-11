@@ -1,5 +1,4 @@
 import { Container } from '@material-ui/core'
-import Checkmark from '@material-ui/icons/Check'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
@@ -7,7 +6,8 @@ import DebugSpacer from '@reachdigital/next-ui/Debug/DebugSpacer'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
-import { iconChevronRight } from '@reachdigital/next-ui/icons'
+
+import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
 import { m } from 'framer-motion'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
@@ -99,7 +99,7 @@ function AppShellTestIndex(props: Props) {
         }
       >
         <>
-          <Checkmark />
+          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>Blissful Brush</strong>&nbsp;has been added to your shopping cart!
         </>
       </MessageSnackbar>

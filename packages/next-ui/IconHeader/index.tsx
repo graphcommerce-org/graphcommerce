@@ -19,7 +19,7 @@ const useStyles = makeStyles(
 )
 
 // todo(yvo): find default material ui size type
-type IconHeaderSize = 'small' | 'normal' | 'large'
+type IconHeaderSize = 'small' | 'medium' | 'large'
 
 type IconHeaderProps = {
   src: string
@@ -31,16 +31,14 @@ type IconHeaderProps = {
 type IconHeaderHeadings = 'h6' | 'h5' | 'h3'
 
 export default function IconHeader(props: IconHeaderProps) {
-  const { title, size = 'normal', ...svgImageProps } = props
+  const { title, size = 'medium', ...svgImageProps } = props
   const classes = useStyles()
 
   const variants: Record<IconHeaderSize, IconHeaderHeadings> = {
     small: 'h6',
-    normal: 'h5',
+    medium: 'h5',
     large: 'h3',
   }
-
-  // todo(yvo): maybe we just want to use the default scale factors per size (0.5, 1, 2) for consistency..
 
   return (
     <div className={classes.container}>
@@ -49,6 +47,7 @@ export default function IconHeader(props: IconHeaderProps) {
         size={size}
         scales={{
           small: 1,
+          medium: 1.25,
           large: 1.75,
         }}
         loading='eager'
