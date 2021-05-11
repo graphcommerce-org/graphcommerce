@@ -42,19 +42,19 @@ export default function ComposedSubmit(props: ComposedSubmitProps) {
   /** Callback to submit all forms */
   const submitAll = async () => {
     /**
-     * If we have forms that are invalid, we don't need to submit anything yet. We can trigger the
-     * submission of the invalid forms and highlight those forms.
+     * If we have forms that are have errors, we don't need to submit anything yet. We can trigger
+     * the submission of the invalid forms and highlight those forms.
      */
     let formsToSubmit = formEntries.filter(
       ([, f]) => Object.keys(f.form.formState.errors).length > 0,
     )
 
-    if (!formsToSubmit.length) formsToSubmit = formEntries
+    /** If we have invalid forms we can submit those and show errors */
+    if (!formsToSubmit.length)
+      formsToSubmit = formEntries.filter(([, f]) => !f.form.formState.isValid)
 
-    /** We filter out all the forms that have no dirtyFields and the form does not have isDirty */
-    formsToSubmit = formsToSubmit.filter(
-      ([, f]) => f.form.formState.isDirty || Object.keys(f.form.formState.dirtyFields).length > 0,
-    )
+    // We have no errors or invalid forms
+    if (!formsToSubmit.length) formsToSubmit = formEntries
 
     dispatch({ type: 'SUBMIT' })
 

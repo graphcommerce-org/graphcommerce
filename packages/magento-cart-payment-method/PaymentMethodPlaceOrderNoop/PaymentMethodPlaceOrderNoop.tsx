@@ -6,7 +6,12 @@ import { PaymentMethodPlaceOrderNoopDocument } from './PaymentMethodPlaceOrderNo
 
 export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const { step, paymentDone, code } = props
-  const form = useFormGqlMutation(PaymentMethodPlaceOrderNoopDocument)
+
+  const form = useFormGqlMutation(PaymentMethodPlaceOrderNoopDocument, {
+    mode: 'onChange',
+    defaultValues: { cartId: useCartId() },
+  })
+
   const { handleSubmit, register } = form
   const router = useRouter()
 
@@ -20,7 +25,7 @@ export default function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProp
 
   return (
     <form onSubmit={submit}>
-      <input type='hidden' {...register('cartId')} value={useCartId()} />
+      <input type='hidden' {...register('cartId')} />
     </form>
   )
 }
