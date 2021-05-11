@@ -40,16 +40,18 @@ export const composedFormReducer: ComposedFormReducer = (state, action) => {
     case 'SUBMIT':
       return {
         ...state,
-        buttonState: { isSubmitting: true, isSubmitted: false, isSubmitSuccessful: false },
+        buttonState: { ...state.buttonState, isSubmitting: true },
+      }
+    case 'SUBMITTING':
+      return {
+        ...state,
+        isCompleting: true,
+        buttonState: { ...state.buttonState },
       }
     case 'SUBMITTED':
       return {
         ...state,
-        buttonState: { isSubmitting: true, isSubmitted: true, isSubmitSuccessful: false },
-      }
-    case 'FINISH':
-      return {
-        ...state,
+        isCompleting: false,
         buttonState: {
           isSubmitting: false,
           isSubmitted: true,

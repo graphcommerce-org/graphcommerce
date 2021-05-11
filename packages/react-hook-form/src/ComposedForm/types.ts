@@ -22,20 +22,24 @@ export type FormStateAll = Pick<
   FormState<FieldValues>,
   'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful' | 'isValid'
 >
-export type ButtonState = Pick<
-  FormState<FieldValues>,
-  'isSubmitting' | 'isSubmitted' | 'isSubmitSuccessful'
->
+export type ButtonState = {
+  /** When the submit is called, isSubmit will be set to true */
+  isSubmitting: boolean
+  /** After the submission is done, isSubmitted is set to true */
+  isSubmitted: boolean
+  /** After the submission is successful, isSubmitSuccessful will be true */
+  isSubmitSuccessful: boolean
+}
 
 export type ComposedSubmitRenderComponentProps = {
   submit: () => Promise<void>
   buttonState: ButtonState
-  formState: FormStateAll
   error?: ApolloError
 }
 
 export type ComposedFormState = {
   forms: { [step: number]: UseFormComposeOptions<FieldValues> }
+  isCompleting: boolean
   buttonState: ButtonState
   formState: FormStateAll
   submitted: boolean
@@ -50,16 +54,16 @@ export type UnregisterAction = { type: 'UNREGISTER'; key: UseFormComposeOptions[
 export type FormStateAction = { type: 'FORMSTATE' }
 /** Submit all forms and call onSubmitComplete?.() when done */
 export type SubmitAction = { type: 'SUBMIT' }
-export type SubmittedAction = { type: 'SUBMITTED' }
-export type FinishSubmissionAction = { type: 'FINISH'; isSubmitSuccessful: boolean }
+export type SubmittingAction = { type: 'SUBMITTING' }
+export type SubmittedAction = { type: 'SUBMITTED'; isSubmitSuccessful: boolean }
 
 export type Actions =
   | RegisterAction
   | UnregisterAction
   | FormStateAction
   | SubmitAction
+  | SubmittingAction
   | SubmittedAction
-  | FinishSubmissionAction
 
 export type ComposedFormReducer = React.Reducer<ComposedFormState, Actions>
 

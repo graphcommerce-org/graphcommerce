@@ -57,7 +57,7 @@ function ShippingPage() {
 
             <ComposedSubmit
               onSubmitSuccessful={() => router.push('/checkout/payment')}
-              render={({ formState, buttonState, submit, error }) => (
+              render={({ buttonState, submit, error }) => (
                 <>
                   <div className={formClasses.actions}>
                     <Button
