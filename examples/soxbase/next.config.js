@@ -12,6 +12,7 @@ const withYarn1Workspaces = require('@reachdigital/next-config').withYarn1Worksp
 
 const withImages = require('next-images')
 const withPWA = require('next-pwa')
+const withSvgr = require('next-svgr')
 
 const obs = new PerformanceObserver((entryList) => {
   entryList.getEntries().forEach((item) => {
@@ -51,4 +52,4 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
 }
 
-module.exports = withBundleAnalyzer(withPWA(withImages(withYarn1Workspaces(nextConfig))))
+module.exports = withSvgr(withBundleAnalyzer(withPWA(withImages(withYarn1Workspaces(nextConfig)))))

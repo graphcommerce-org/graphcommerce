@@ -50,6 +50,7 @@
     "next-images": "^1.7.0",
     "next-pwa": "^5.2.21",
     "next-sitemap": "^1.6.29",
+    "next-svgr": "^0.0.2",
     "node-fetch": "^2.6.1",
     "postinstall-postinstall": "^2.1.0",
     "react": "^17.0.2",
