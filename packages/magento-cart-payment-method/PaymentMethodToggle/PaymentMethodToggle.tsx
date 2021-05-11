@@ -4,9 +4,17 @@ import ToggleButton from '@reachdigital/next-ui/ToggleButton'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
 import { useForm, Controller, useFormPersist } from '@reachdigital/react-hook-form'
 import React, { useEffect } from 'react'
+import { PaymentMethod, PaymentToggleProps } from '../Api/PaymentMethod'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 
 export type PaymentMethodToggleProps = Record<string, unknown>
+
+function Content(props: PaymentMethod) {
+  const { code } = props
+  const { modules } = usePaymentMethodContext()
+  const Component = modules[code]?.PaymentToggle ?? ((p: PaymentToggleProps) => <>{p.title}</>)
+  return <Component {...props} />
+}
 
 export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
   const {
@@ -68,7 +76,7 @@ export default function PaymentMethodToggle(props: PaymentMethodToggleProps) {
               >
                 {methods?.map((pm) => (
                   <ToggleButton key={`${pm.code}___${pm.child}`} value={`${pm.code}___${pm.child}`}>
-                    {pm?.title}
+                    <Content {...pm} />
                   </ToggleButton>
                 ))}
               </ToggleButtonGroup>

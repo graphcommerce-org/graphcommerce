@@ -5,7 +5,11 @@ import { PaymentMethodOptionsNoopDocument } from './PaymentMethodOptionsNoop.gql
 
 function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
   const { code, step } = props
-  const form = useFormGqlMutation(PaymentMethodOptionsNoopDocument)
+  const cartId = useCartId()
+  const form = useFormGqlMutation(PaymentMethodOptionsNoopDocument, {
+    defaultValues: { cartId, code },
+  })
+
   const { handleSubmit, register } = form
   const submit = handleSubmit(() => {})
 
@@ -13,8 +17,8 @@ function PaymentMethodOptionsNoop(props: PaymentOptionsProps) {
 
   return (
     <form onSubmit={submit} style={{ visibility: 'hidden' }}>
-      <input type='hidden' {...register('cartId')} value={useCartId()} />
-      <input type='hidden' {...register('code')} value={code} />
+      <input type='hidden' {...register('cartId')} />
+      <input type='hidden' {...register('code')} />
     </form>
   )
 }

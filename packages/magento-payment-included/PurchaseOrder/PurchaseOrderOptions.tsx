@@ -13,7 +13,7 @@ import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const formClasses = useFormStyles()
-  const { code, step, selected, Container: Render } = props
+  const { code, step, selected, Container } = props
   const form = useFormGqlMutation(PurchaseOrderOptionsDocument, {
     mode: 'onChange',
     defaultValues: {
@@ -27,7 +27,7 @@ function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const valid = useFormValidFields(form, required)
 
   return (
-    <Render>
+    <Container>
       <form onSubmit={submit} noValidate>
         <input type='hidden' {...register('cartId')} value={useCartId()} />
         <input type='hidden' {...register('code')} value={code} />
@@ -46,10 +46,8 @@ function PurchaseOrderOptions(props: PaymentOptionsProps) {
             }}
           />
         </div>
-
-        <button type='submit'>save</button>
       </form>
-    </Render>
+    </Container>
   )
 }
 

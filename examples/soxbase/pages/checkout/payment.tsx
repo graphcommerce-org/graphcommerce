@@ -10,6 +10,7 @@ import {
 } from '@reachdigital/magento-cart-payment-method'
 import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
 import { checkmo, banktransfer, purchaseorder } from '@reachdigital/magento-payment-included'
+import * as methods from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { CountryRegionsDocument } from '@reachdigital/magento-store/CountryRegions.gql'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -32,7 +33,7 @@ function PaymentPage(props: Props) {
     <Container maxWidth='md'>
       <ComposedForm>
         <PaymentMethodContextProvider
-          modules={{ braintree_local_payment, checkmo, banktransfer, purchaseorder }}
+          modules={{ braintree_local_payment, checkmo, banktransfer, purchaseorder, ...methods }}
         >
           <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
 
