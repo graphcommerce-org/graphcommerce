@@ -72,7 +72,7 @@ export default function ProductListPagination({
     <SvgImage
       src={iconChevronLeft}
       alt='chevron left'
-      shade={current_page === 1 ? 'mute' : undefined}
+      shade={current_page === 1 ? 'muted' : undefined}
       classes={{ root: classes.icon }}
     />
   )
@@ -81,7 +81,7 @@ export default function ProductListPagination({
     <SvgImage
       src={iconChevronRight}
       alt='chevron right'
-      shade={current_page === total_pages ? 'mute' : undefined}
+      shade={current_page === total_pages ? 'muted' : undefined}
       classes={{ root: classes.icon }}
     />
   )

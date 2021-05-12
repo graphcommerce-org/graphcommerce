@@ -18,7 +18,6 @@ const useStyles = makeStyles(
   { name: 'IconHeader' },
 )
 
-// todo(yvo): find default material ui size type
 type IconHeaderSize = 'small' | 'medium' | 'large'
 
 type IconHeaderProps = {
@@ -42,17 +41,7 @@ export default function IconHeader(props: IconHeaderProps) {
 
   return (
     <div className={classes.container}>
-      <SvgImage
-        {...svgImageProps}
-        size={size}
-        scales={{
-          small: 1,
-          medium: 1.25,
-          large: 1.75,
-        }}
-        loading='eager'
-        className={classes.img}
-      />
+      <SvgImage {...svgImageProps} size={size} loading='eager' className={classes.img} />
 
       <Typography variant={variants[size]} component='h2'>
         {title}
