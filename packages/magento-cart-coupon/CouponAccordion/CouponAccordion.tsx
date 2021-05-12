@@ -79,7 +79,7 @@ export default function CouponAccordion(props: CouponAccordionProps) {
           {open && (
             <AnimatedRow key='discount-codes-form-wrap'>
               <m.div layout='position' className={classes.couponFormWrap}>
-                {!coupon && <ApplyCouponForm {...data.cart} />}
+                {!coupon && <ApplyCouponForm />}
                 {coupon && <i>Only one active coupon allowed</i>}
               </m.div>
             </AnimatedRow>

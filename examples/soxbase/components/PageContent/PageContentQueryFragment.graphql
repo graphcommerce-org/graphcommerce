@@ -2,6 +2,7 @@ fragment PageContentQueryFragment on Query {
   pages(where: { url: $url }) {
     title
     content {
+      __typename
       ... on Node {
         id
       }

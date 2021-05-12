@@ -95,13 +95,8 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
       {sameAsShipping ? 'ssaame' : 'dff'}
 
       <AnimatePresence initial={false}>
-        <NameFields form={form} key='name' disabled={disableFields} />
-        <AddressFields
-          form={form}
-          key='addressfields'
-          disabled={disableFields}
-          countries={countriesData?.countries}
-        />
+        <NameFields form={form} key='name' />
+        <AddressFields form={form} key='addressfields' countries={countriesData?.countries} />
 
         <div className={classes.formRow} key='telephone'>
           <TextField

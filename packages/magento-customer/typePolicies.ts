@@ -1,6 +1,6 @@
 import { FieldPolicy, FieldReadFunction } from '@apollo/client'
 import { CustomerToken, Mutation, Query } from '@reachdigital/magento-graphql'
-import type { TypedTypePolicies } from '@reachdigital/magento-graphql/TypedTypePolicies'
+import type { TypedTypePolicies } from '@reachdigital/magento-graphql'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
 

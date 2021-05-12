@@ -66,14 +66,14 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
   return (
     <>
       {options?.map((option) => {
-        if (!option?.id || !option.attribute_code) return null
+        if (!option?.uid || !option.attribute_code) return null
 
         const { attribute_code } = option
         const error = errors?.[attribute_code]
 
         return (
           <Controller
-            key={option.id}
+            key={option.uid}
             defaultValue={selection[attribute_code] ?? ''}
             name={`${name}[${attribute_code}]`}
             {...controlProps}
@@ -105,21 +105,19 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                   classes={{ root: classes.toggleButtonGroup }}
                 >
                   {option?.values?.map((val) => {
-                    if (!val?.swatch_data || !val.value_index || !option.attribute_code) return null
+                    if (!val?.swatch_data || !val.uid || !option.attribute_code) return null
 
                     const copySelection = { ...selection }
                     delete copySelection[attribute_code]
 
                     const itemVariant = getVariants(copySelection).find((variant) =>
-                      variant?.attributes?.find(
-                        (attribute) => attribute?.value_index === val.value_index,
-                      ),
+                      variant?.attributes?.find((attribute) => attribute?.uid === val.uid),
                     )
 
                     return (
                       <ToggleButton
-                        key={val.value_index}
-                        value={val.value_index ?? ''}
+                        key={val.uid}
+                        value={val.uid ?? ''}
                         name={inputName}
                         classes={{ root: classes.button }}
                       >

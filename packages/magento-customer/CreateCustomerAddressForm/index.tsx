@@ -49,8 +49,8 @@ export default function CreateCustomerAddressForm(props: CreateCustomerAddressFo
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={classes.form}>
-        <NameFields form={form} disabled={formState.isSubmitting} prefix />
-        <AddressFields form={form} countries={countries} disabled={formState.isSubmitting} />
+        <NameFields form={form} prefix />
+        <AddressFields form={form} countries={countries} />
 
         <div className={classes.formRow}>
           <TextField
