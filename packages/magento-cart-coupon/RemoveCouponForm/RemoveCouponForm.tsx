@@ -1,10 +1,9 @@
-import { useQuery } from '@apollo/client'
 import { IconButton, makeStyles, Theme } from '@material-ui/core'
 import { Clear } from '@material-ui/icons'
+import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
-import { CouponFragment } from '../CouponFragment/CouponFragment.gql'
+import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
 type CartCouponProps = CouponFragment
@@ -32,9 +31,9 @@ const useCouponFormStyles = makeStyles((theme: Theme) => ({
 }))
 
 export default function RemoveCouponForm(props: CartCouponProps) {
-  const { applied_coupons, id } = props
+  const { applied_coupons } = props
   const classes = useCouponFormStyles()
-  const form = useFormGqlMutation(RemoveCouponFormDocument, { defaultValues: { cartId: id } })
+  const form = useFormGqlMutationCart(RemoveCouponFormDocument)
 
   const { handleSubmit, error } = form
   const submitHandler = handleSubmit(() => {})

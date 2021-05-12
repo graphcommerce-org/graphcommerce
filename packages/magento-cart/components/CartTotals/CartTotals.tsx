@@ -1,5 +1,5 @@
 import { Divider, makeStyles, Theme } from '@material-ui/core'
-import Money from '@reachdigital/magento-store/Money'
+import { Money } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
@@ -53,7 +53,9 @@ const useStyles = makeStyles(
   { name: 'TotalCosts' },
 )
 
-export default function CartTotals(props: CartTotalsFragment) {
+export type CartTotalsProps = CartTotalsFragment
+
+export default function CartTotals(props: CartTotalsProps) {
   const { shipping_addresses, prices } = props
   const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
   const classes = useStyles()

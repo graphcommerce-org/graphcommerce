@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import { Money, MoneyFragment } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
@@ -38,7 +37,7 @@ const useStyles = makeStyles(
   { name: 'Cart' },
 )
 
-type CartStartCheckoutProps = MoneyFragment
+export type CartStartCheckoutProps = MoneyFragment
 
 export default function CartStartCheckout(props: CartStartCheckoutProps) {
   const classes = useStyles()

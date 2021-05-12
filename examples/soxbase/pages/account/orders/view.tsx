@@ -5,11 +5,12 @@ import { OrderDetailPageDocument } from '@reachdigital/magento-customer/AccountD
 import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
 import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
 import OrderItems from '@reachdigital/magento-customer/OrderItems'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
+  PageMeta,
+  StoreConfigDocument,
   CountryRegionsDocument,
   CountryRegionsQuery,
-} from '@reachdigital/magento-store/CountryRegions.gql'
+} from '@reachdigital/magento-store'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'

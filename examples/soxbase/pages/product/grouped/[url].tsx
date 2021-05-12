@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton/AddToCartButton'
+import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   GroupedProductPageDocument,
   GroupedProductPageQuery,

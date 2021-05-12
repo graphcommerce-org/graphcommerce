@@ -1,14 +1,16 @@
 import { Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
+import {
+  useCartQuery,
+  CartQuickCheckout,
+  CartStartCheckout,
+  CartTotals,
+  EmptyCart,
+} from '@reachdigital/magento-cart'
 import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
 import CouponAccordion from '@reachdigital/magento-cart-coupon/CouponAccordion/CouponAccordion'
 import CartItem from '@reachdigital/magento-cart-items/CartItem/CartItem'
 import CartItems from '@reachdigital/magento-cart-items/CartItems/CartItems'
-import CartQuickCheckout from '@reachdigital/magento-cart/CartQuickCheckout/CartQuickCheckout'
-import CartStartCheckout from '@reachdigital/magento-cart/CartStartCheckout/CartStartCheckout'
-import CartTotals from '@reachdigital/magento-cart/CartTotals/CartTotals'
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
-import EmptyCart from '@reachdigital/magento-cart/EmptyCart/EmptyCart'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'

@@ -1,18 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
-import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
-import { CountryRegionsDocument } from '@reachdigital/magento-store/CountryRegions.gql'
-import { StoreConfigDocument } from '@reachdigital/magento-store/StoreConfig.gql'
+import { CountryRegionsDocument, StoreConfigDocument } from '@reachdigital/magento-store'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
   useFormAutoSubmit,
-  useFormGqlMutation,
   useFormPersist,
   phonePattern,
   useFormCompose,
@@ -39,7 +36,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
 
-  const form = useFormGqlMutation(BillingAddressFormDocument, {
+  const form = useFormGqlMutationCart(BillingAddressFormDocument, {
     defaultValues: {
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
@@ -71,7 +68,7 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
     },
   })
 
-  const { muiRegister, register, handleSubmit, valid, formState, required, error, watch } = form
+  const { muiRegister, handleSubmit, valid, formState, required, error, watch } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'BillingAddressForm' })
@@ -88,7 +85,6 @@ export default function BillingAddressForm(props: BillingAddressFormProps) {
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
-      <input type='hidden' {...register('cartId')} value={useCartId()} />
       <FormControlLabel
         control={<Switch color='primary' />}
         {...muiRegister('sameAsShipping')}

@@ -1,6 +1,6 @@
 import { Button, makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import PageLink from 'next/link'

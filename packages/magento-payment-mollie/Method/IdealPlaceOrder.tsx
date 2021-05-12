@@ -1,7 +1,7 @@
 import { useApolloClient } from '@apollo/client'
+import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentPlaceOrderProps } from '@reachdigital/magento-cart-payment-method'
-import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
-import { useFormGqlMutation, useFormCompose } from '@reachdigital/react-hook-form'
+import { useFormCompose } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import { CreateIdealTransactionDocument } from './CreateIdealTransaction.gql'
 import { selectedOption } from './IdealOptions'
@@ -12,9 +12,8 @@ export default function IdealPlaceOrder(props: PaymentPlaceOrderProps) {
   const router = useRouter()
 
   const client = useApolloClient()
-  const form = useFormGqlMutation(PlaceMollieOrderDocument, {
+  const form = useFormGqlMutationCart(PlaceMollieOrderDocument, {
     mode: 'onChange',
-    defaultValues: { cartId: useCartId() },
     onBeforeSubmit: (vars) => {
       if (!selectedOption.issuer) return { cartId: '' }
       return vars
@@ -38,15 +37,11 @@ export default function IdealPlaceOrder(props: PaymentPlaceOrderProps) {
     },
   })
 
-  const { handleSubmit, register } = form
+  const { handleSubmit } = form
 
   const submit = handleSubmit(() => paymentDone())
 
   useFormCompose({ form, step, submit, key: `PaymentMethodPlaceOrder_${code}` })
 
-  return (
-    <form onSubmit={submit}>
-      <input type='hidden' {...register('cartId')} />
-    </form>
-  )
+  return <form onSubmit={submit} />
 }

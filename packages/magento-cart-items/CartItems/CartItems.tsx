@@ -1,4 +1,4 @@
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import { useCartQuery } from '@reachdigital/magento-cart'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import RenderType, { TypeRenderer } from '@reachdigital/next-ui/RenderType'
 import { AnimatePresence } from 'framer-motion'

@@ -1,4 +1,4 @@
-import { useClearCurrentCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
+import { useClearCurrentCartId } from '@reachdigital/magento-cart'
 import { UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import { usePaymentMethodContext } from '../PaymentMethodContext/PaymentMethodContext'
 

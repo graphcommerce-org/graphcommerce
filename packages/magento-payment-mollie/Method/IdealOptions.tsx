@@ -1,23 +1,14 @@
-import { useApolloClient } from '@apollo/client'
-import { TextField } from '@material-ui/core'
-import {
-  PaymentMethodOptionsNoop,
-  PaymentOptionsProps,
-} from '@reachdigital/magento-cart-payment-method'
+import { MenuItem, TextField } from '@material-ui/core'
+import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
+import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import {
   PaymentMethodOptionsNoopDocument,
   PaymentMethodOptionsNoopMutation,
   PaymentMethodOptionsNoopMutationVariables,
 } from '@reachdigital/magento-cart-payment-method/PaymentMethodOptionsNoop/PaymentMethodOptionsNoop.gql'
-import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import {
-  useFormCompose,
-  useFormGqlMutation,
-  useFormPersist,
-  useFormValidFields,
-} from '@reachdigital/react-hook-form'
+import { useFormCompose, useFormPersist, useFormValidFields } from '@reachdigital/react-hook-form'
 import React from 'react'
 
 export const selectedOption: { issuer?: string } = {
@@ -28,14 +19,13 @@ export default function MollieIdealOptions(props: PaymentOptionsProps) {
   const { mollie_available_issuers = [] } = props
   const { code, step, Container } = props
   const formClasses = useFormStyles()
-  const cartId = useCartId()
 
-  const form = useFormGqlMutation<
+  const form = useFormGqlMutationCart<
     PaymentMethodOptionsNoopMutation,
     PaymentMethodOptionsNoopMutationVariables & { issuer?: string }
   >(PaymentMethodOptionsNoopDocument, {
     mode: 'onChange',
-    defaultValues: { cartId, code },
+    defaultValues: { code },
   })
 
   const { handleSubmit, watch, muiRegister, formState, required } = form
@@ -54,7 +44,6 @@ export default function MollieIdealOptions(props: PaymentOptionsProps) {
             <TextField
               variant='outlined'
               select
-              SelectProps={{ native: true }}
               error={formState.isSubmitted && !!formState.errors.issuer}
               helperText={formState.isSubmitted && formState.errors.issuer?.message}
               label='Bank'
@@ -64,13 +53,13 @@ export default function MollieIdealOptions(props: PaymentOptionsProps) {
                 endAdornment: <InputCheckmark show={valid.issuer} />,
               }}
             >
-              <option value='' />
+              <MenuItem value='' />
               {mollie_available_issuers?.map((issuer) => {
                 if (!issuer?.code || !issuer.name) return null
                 return (
-                  <option key={issuer.code} value={issuer.code}>
+                  <MenuItem key={issuer.code} value={issuer.code}>
                     {issuer.name}
-                  </option>
+                  </MenuItem>
                 )
               })}
             </TextField>

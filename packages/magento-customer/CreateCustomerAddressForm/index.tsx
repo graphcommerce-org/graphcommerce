@@ -1,5 +1,5 @@
 import { TextField } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'

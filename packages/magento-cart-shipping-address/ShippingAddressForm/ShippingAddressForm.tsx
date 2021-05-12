@@ -1,18 +1,15 @@
 import { useQuery } from '@apollo/client'
 import { TextField } from '@material-ui/core'
-import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import AddressFields from '@reachdigital/magento-customer/AddressFields'
 import { CustomerDocument } from '@reachdigital/magento-customer/Customer.gql'
 import NameFields from '@reachdigital/magento-customer/NameFields'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
-import { CountryRegionsDocument } from '@reachdigital/magento-store/CountryRegions.gql'
+import { StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
   useFormAutoSubmit,
-  useFormGqlMutation,
   useFormPersist,
   phonePattern,
   useFormCompose,
@@ -40,7 +37,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const currentCustomer = customerQuery?.customer
   const currentCountryCode = currentAddress?.country.code ?? shopCountry ?? 'NLD'
 
-  const form = useFormGqlMutation(ShippingAddressFormDocument, {
+  const form = useFormGqlMutationCart(ShippingAddressFormDocument, {
     defaultValues: {
       // todo(paales): change to something more sustainable
       firstname: currentAddress?.firstname ?? currentCustomer?.firstname ?? undefined, // todo: allow for null values in defaultValues
@@ -71,7 +68,7 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       }
     },
   })
-  const { muiRegister, register, handleSubmit, valid, formState, required, error } = form
+  const { muiRegister, handleSubmit, valid, formState, required, error } = form
   const submit = handleSubmit(() => {})
 
   useFormPersist({ form, name: 'ShippingAddressForm' })
@@ -86,7 +83,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
 
   return (
     <form onSubmit={submit} noValidate className={classes.form} ref={ref}>
-      <input type='hidden' {...register('cartId')} value={useCartId()} />
       <AnimatePresence initial={false}>
         <NameFields form={form} key='name' readOnly={readOnly} />
         <AddressFields

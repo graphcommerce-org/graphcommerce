@@ -1,4 +1,3 @@
-import { MergeCartsDocument } from '@reachdigital/magento-cart/MergeCarts/MergeCarts.gql'
 import { OnCompleteFn } from '@reachdigital/react-hook-form'
 import { CustomerDocument } from './Customer.gql'
 import { CustomerCartDocument } from './CustomerCart.gql'
@@ -34,17 +33,6 @@ const onCompleteSignInUp: OnCompleteSignInUp = async (result, client) => {
   // })
 
   const { data: currentCart } = await awaitCart
-
-  // Merge carts if a customer as a cart
-  if (currentCart?.cart?.id && customerCart.customerCart.id !== currentCart.cart.id) {
-    await client.mutate({
-      mutation: MergeCartsDocument,
-      variables: {
-        sourceCartId: currentCart.cart.id,
-        destinationCartId: customerCart.customerCart.id,
-      },
-    })
-  }
 
   await awaitCustomerQuery
 }

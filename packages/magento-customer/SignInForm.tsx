@@ -29,7 +29,7 @@ export default function SignInForm(props: SignInFormProps) {
   const formClasses = useFormStyles()
   const { data } = useQuery(CustomerTokenDocument)
   const form = useFormGqlMutation(SignInDocument, {
-    onComplete: onCompleteSignInUp, // TODO: juiste callback zoeken / bouwen
+    onComplete: onCompleteSignInUp,
     defaultValues: { email },
   })
   const { muiRegister, handleSubmit, required, formState, error } = form
@@ -54,6 +54,8 @@ export default function SignInForm(props: SignInFormProps) {
           error={!!formState.errors.password || !!authError}
           label='Password'
           autoFocus
+          autoComplete='current-password'
+          id='current-password'
           required={required.password}
           {...muiRegister('password', { required: required.password })}
           FormHelperTextProps={{

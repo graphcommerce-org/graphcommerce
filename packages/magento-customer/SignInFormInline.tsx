@@ -44,6 +44,8 @@ export default function SignInFormInline({ email }: PropsWithChildren<InlineSign
         error={!!formState.errors.password || !!error?.message}
         label='Password'
         autoFocus
+        autoComplete='current-password'
+        id='current-password'
         required={required.password}
         {...muiRegister('password', { required: required.password })}
         helperText={error?.message}

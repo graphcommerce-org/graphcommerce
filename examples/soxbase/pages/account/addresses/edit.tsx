@@ -5,12 +5,12 @@ import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import { AccountDashboardAddressesDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardAddresses.gql'
 import DeleteCustomerAddressForm from '@reachdigital/magento-customer/DeleteCustomerAddressForm'
 import EditAddressForm from '@reachdigital/magento-customer/EditAddressForm'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import {
+  PageMeta,
+  StoreConfigDocument,
   CountryRegionsDocument,
   CountryRegionsQuery,
-} from '@reachdigital/magento-store/CountryRegions.gql'
-import Button from '@reachdigital/next-ui/Button'
+} from '@reachdigital/magento-store'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'

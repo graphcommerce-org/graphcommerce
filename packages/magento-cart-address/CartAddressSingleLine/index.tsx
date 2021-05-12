@@ -1,6 +1,6 @@
 import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
 import { CountryCodeEnum } from '@reachdigital/magento-graphql'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'
 

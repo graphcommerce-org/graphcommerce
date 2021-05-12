@@ -1,20 +1,16 @@
 import { TextField } from '@material-ui/core'
+import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
-import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import {
-  useFormCompose,
-  useFormGqlMutation,
-  useFormValidFields,
-} from '@reachdigital/react-hook-form'
+import { useFormCompose, useFormValidFields } from '@reachdigital/react-hook-form'
 import React from 'react'
 import { PurchaseOrderOptionsDocument } from './PurchaseOrderOptions.gql'
 
 function PurchaseOrderOptions(props: PaymentOptionsProps) {
   const formClasses = useFormStyles()
   const { code, step, selected, Container } = props
-  const form = useFormGqlMutation(PurchaseOrderOptionsDocument, {
+  const form = useFormGqlMutationCart(PurchaseOrderOptionsDocument, {
     mode: 'onChange',
     defaultValues: {
       poNumber: selected?.purchase_order_number ?? undefined,
@@ -29,7 +25,6 @@ function PurchaseOrderOptions(props: PaymentOptionsProps) {
   return (
     <Container>
       <form onSubmit={submit} noValidate>
-        <input type='hidden' {...register('cartId')} value={useCartId()} />
         <input type='hidden' {...register('code')} value={code} />
 
         <div className={formClasses.formRow}>

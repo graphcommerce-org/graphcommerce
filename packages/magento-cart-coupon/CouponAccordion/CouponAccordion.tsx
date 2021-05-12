@@ -1,6 +1,6 @@
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import { useCartQuery } from '@reachdigital/magento-cart'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import clsx from 'clsx'
 import { m, AnimatePresence } from 'framer-motion'

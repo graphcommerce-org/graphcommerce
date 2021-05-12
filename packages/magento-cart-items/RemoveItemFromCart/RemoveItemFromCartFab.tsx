@@ -1,9 +1,7 @@
-import { useQuery } from '@apollo/client'
 import { Fab } from '@material-ui/core'
 import Icon from '@material-ui/icons/Close'
-import { CurrentCartIdDocument } from '@reachdigital/magento-cart/CurrentCartId/CurrentCartId.gql'
+import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
   RemoveItemFromCartMutationVariables,
@@ -15,8 +13,7 @@ type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 'cartId
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   const { uid, ...formProps } = props
-  const cartId = useQuery(CurrentCartIdDocument, { ssr: false }).data?.currentCartId?.id
-  const form = useFormGqlMutation(RemoveItemFromCartDocument, { defaultValues: { cartId, uid } })
+  const form = useFormGqlMutationCart(RemoveItemFromCartDocument)
   const { handleSubmit, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 

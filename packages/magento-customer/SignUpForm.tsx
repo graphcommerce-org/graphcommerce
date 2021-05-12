@@ -37,6 +37,8 @@ export default function SignUpForm(props: SignUpFormProps) {
           type='password'
           error={!!formState.errors.password || !!inputError}
           label='Password'
+          autoFocus
+          autoComplete='new-password'
           required={required.password}
           {...muiRegister('password', {
             required: required.password,
@@ -54,6 +56,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           type='password'
           error={!!formState.errors.confirmPassword}
           label='Confirm Password'
+          autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {
             required: true,

@@ -1,5 +1,5 @@
 import { Region } from '@reachdigital/magento-graphql'
-import { CountryRegionsQuery } from '@reachdigital/magento-store/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import useCountry from './useCountry'
 
 export default function useRegion(

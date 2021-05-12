@@ -1,17 +1,14 @@
-import { useApolloClient, useMutation, useQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
-import { CurrentCartIdDocument } from './CurrentCartId.gql'
-import { useAssignCurrentCartId } from './useCartId'
+import { useAssignCurrentCartId } from './useAssignCurrentCartId'
+import { useCurrentCartId } from './useCartId'
 
-export default function useCreateEmptyCart() {
-  const { data: cartQuery } = useQuery(CurrentCartIdDocument)
-  const { cache } = useApolloClient()
+export function useCartIdCreate() {
+  const cartId = useCurrentCartId()
   const [create] = useMutation(CreateEmptyCartDocument)
   const assignCurrentCartId = useAssignCurrentCartId()
 
-  const cartId = cartQuery?.currentCartId?.id
-
-  async function requestCartId(): Promise<string> {
+  return async (): Promise<string> => {
     if (cartId) return cartId
 
     const { data } = await create()
@@ -22,6 +19,4 @@ export default function useCreateEmptyCart() {
 
     return data.createEmptyCart
   }
-
-  return requestCartId
 }

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { CircularProgress, makeStyles, TextField, Theme } from '@material-ui/core'
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import { useCartQuery } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import SignInFormInline from '@reachdigital/magento-customer/SignInFormInline'
 import SignUpFormInline from '@reachdigital/magento-customer/SignUpFormInline'
@@ -97,7 +97,7 @@ export default function EmailForm(props: EmailFormProps) {
             <div className={formClasses.formRow}>
               <TextField
                 variant='outlined'
-                type='text'
+                type='email'
                 error={formState.isSubmitted && !!formState.errors.email}
                 helperText={formState.isSubmitted && formState.errors.email?.message}
                 label='Email'
@@ -106,7 +106,11 @@ export default function EmailForm(props: EmailFormProps) {
                   required: required.email,
                   pattern: { value: emailPattern, message: '' },
                 })}
-                InputProps={{ endAdornment, readOnly: mode === 'signedin' }}
+                InputProps={{
+                  autoComplete: 'username',
+                  endAdornment,
+                  readOnly: mode === 'signedin',
+                }}
               />
             </div>
             <ApolloErrorAlert error={error} />

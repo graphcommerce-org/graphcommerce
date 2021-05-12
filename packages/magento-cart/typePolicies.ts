@@ -4,7 +4,7 @@ import type {
   TypedTypePolicies,
 } from '@reachdigital/magento-graphql/index'
 
-const typePolicies: TypedTypePolicies = {
+export const typePolicies: TypedTypePolicies = {
   CurrentCartId: { keyFields: [] },
   Cart: {
     fields: {
@@ -26,5 +26,3 @@ const typePolicies: TypedTypePolicies = {
     },
   },
 }
-
-export default typePolicies

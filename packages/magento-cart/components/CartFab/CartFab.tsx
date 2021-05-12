@@ -3,11 +3,11 @@ import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
-import { useCartQuery } from '../CurrentCartId/useCartQuery'
+import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
-type CartFabProps = {
+export type CartFabProps = {
   children: React.ReactNode
 } & Omit<FabProps, 'children' | 'aria-label'>
 

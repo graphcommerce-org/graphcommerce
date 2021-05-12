@@ -1,15 +1,9 @@
-import { FormControl, FormHelperText } from '@material-ui/core'
-import { useCartId } from '@reachdigital/magento-cart/CurrentCartId/useCartId'
-import { useCartQuery } from '@reachdigital/magento-cart/CurrentCartId/useCartQuery'
+import { FormControl } from '@material-ui/core'
+import { useCartQuery, useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import ToggleButtonGroup from '@reachdigital/next-ui/ToggleButtonGroup'
-import {
-  Controller,
-  useFormCompose,
-  UseFormComposeOptions,
-  useFormGqlMutation,
-} from '@reachdigital/react-hook-form'
+import { Controller, useFormCompose, UseFormComposeOptions } from '@reachdigital/react-hook-form'
 import React from 'react'
 import AvailableShippingMethod from '../AvailableShippingMethod/AvailableShippingMethod'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
@@ -33,7 +27,7 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const method = selected?.method_code ?? available?.[0]?.method_code ?? undefined
   const carrierMethod = carrier && method ? `${carrier}-${method}` : undefined
 
-  const form = useFormGqlMutation<
+  const form = useFormGqlMutationCart<
     ShippingMethodFormMutation,
     ShippingMethodFormMutationVariables & { carrierMethod?: string }
   >(ShippingMethodFormDocument, {
@@ -47,7 +41,6 @@ export default function ShippingMethodForm(props: ShippingMethodFormProps) {
 
   return (
     <form onSubmit={submit} noValidate className={classes.form}>
-      <input type='hidden' {...register('cartId')} value={useCartId()} />
       <input type='hidden' {...register('carrier', { required: required.carrier })} />
       <input type='hidden' {...register('method', { required: required.method })} />
       <div className={classes.formRow}>

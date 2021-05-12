@@ -1,5 +1,5 @@
 import { useQuery, TypedDocumentNode, QueryHookOptions } from '@apollo/client'
-import { useCartId } from './useCartId'
+import { useCurrentCartId } from './useCartId'
 
 /**
  * Requires the query to have a `$cartId: String!` argument. It will automatically inject the
@@ -10,16 +10,12 @@ import { useCartId } from './useCartId'
  * ```tsx
  * const { data } = useCartQuery(CartFabQueryDocument)
  * ```
- *
- * Since the fetchPolicy is set to cache-first [by
- * default](https://www.apollographql.com/docs/react/data/queries/#setting-a-fetch-policy) we reduce
- * server talk
  */
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
   options?: QueryHookOptions<Q, Omit<V, 'cartId'>>,
 ) {
-  const cartId = useCartId()
+  const cartId = useCurrentCartId()
 
   return useQuery(document, {
     ...options,

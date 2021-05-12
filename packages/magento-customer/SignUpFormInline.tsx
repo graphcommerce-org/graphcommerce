@@ -1,5 +1,4 @@
 import { makeStyles, TextField, Theme } from '@material-ui/core'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
@@ -62,6 +61,8 @@ export default function SignUpFormInline({
           error={!!formState.errors.password || !!error?.message}
           label='Password'
           autoFocus
+          autoComplete='new-password'
+          id='new-password'
           required={required.password}
           {...muiRegister('password', { required: required.password })}
           helperText={error?.message}
@@ -72,6 +73,7 @@ export default function SignUpFormInline({
           type='password'
           error={!!formState.errors.confirmPassword || !!error?.message}
           label='Confirm password'
+          autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {
             required: true,

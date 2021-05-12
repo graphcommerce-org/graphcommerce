@@ -11,7 +11,7 @@ export type UseFormGqlQueryReturn<Q, V> = UseFormGqlMutationReturn<Q, V>
 export function useFormGqlQuery<Q, V>(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> = {},
-  operationOptions: LazyQueryHookOptions<Q, V>,
+  operationOptions?: LazyQueryHookOptions<Q, V>,
 ): UseFormGqlQueryReturn<Q, V> {
   const form = useForm<V>(options)
   const tuple = useLazyQueryPromise(document, operationOptions)

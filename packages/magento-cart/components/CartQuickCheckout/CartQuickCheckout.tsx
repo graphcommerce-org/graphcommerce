@@ -1,6 +1,5 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import Money from '@reachdigital/magento-store/Money'
-import { MoneyFragment } from '@reachdigital/magento-store/Money.gql'
+import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -51,7 +50,7 @@ const useStyles = makeStyles(
   { name: 'QuickCheckout' },
 )
 
-type CartQuickCheckoutProps = PropsWithChildren<CartQuickCheckoutFragment>
+export type CartQuickCheckoutProps = PropsWithChildren<CartQuickCheckoutFragment>
 
 export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
   const classes = useStyles()
