@@ -139,7 +139,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             {...DownProps}
           >
             {DownProps.children ?? (
-              <SvgImage src={iconMin} size='small' alt='remove' loading='eager' title='Step down' />
+              <SvgImage src={iconMin} size='small' alt='Step down' loading='eager' />
             )}
           </IconButton>
         ),
@@ -157,7 +157,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             {...UpProps}
           >
             {UpProps.children ?? (
-              <SvgImage src={iconPlus} size='small' alt='add' loading='eager' title='Step up' />
+              <SvgImage src={iconPlus} size='small' alt='Step up' loading='eager' />
             )}
           </IconButton>
         ),

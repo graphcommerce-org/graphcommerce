@@ -31,7 +31,6 @@ export type ImageMimeTypes =
 
 export type PictureResponsiveProps = Omit<JSX.IntrinsicElements['img'], 'ref' | 'src'> & {
   alt: string
-  title?: string
   srcSets: Partial<Record<ImageMimeTypes, string>>
   width: number
   height: number

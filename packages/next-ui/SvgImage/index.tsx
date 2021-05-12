@@ -2,15 +2,23 @@ import { makeStyles, Theme } from '@material-ui/core'
 import clsx from 'clsx'
 import React from 'react'
 import PictureResponsive, { PictureResponsiveProps } from '../PictureResponsive'
-import { HTMLElementShade, HTMLElementShades, UseStyles } from '../Styles'
+import { UseStyles } from '../Styles'
 
 export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
 export type SvgImageProps = Omit<PictureResponsiveProps, 'srcSets' | 'width' | 'height'> & {
   src: React.ReactNode
   size?: SvgImageSize | number
-  shade?: HTMLElementShade
+  shade?: SvgImageShade
 } & UseStyles<typeof useStyles>
+
+export type SvgImageShade = 'muted' | 'default' | 'inverted'
+
+export const SvgImageShades: Record<SvgImageShade, number> = {
+  muted: 75,
+  default: 0,
+  inverted: 100,
+}
 
 type UseStylesProps = { shade: number; baseSize: number }
 
@@ -38,7 +46,7 @@ export default function SvgImage(props: SvgImageProps) {
   const classes = useStyles({
     ...props,
     baseSize: baseSizes[size] ?? size,
-    shade: HTMLElementShades[shade],
+    shade: SvgImageShades[shade],
   })
 
   return (

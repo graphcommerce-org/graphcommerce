@@ -2,15 +2,6 @@ import React, { PropsWithChildren } from 'react'
 import SvgImage from '../SvgImage'
 import { iconCheckmarkGreen } from '../icons'
 
-// const useStyles = makeStyles(
-//   (theme: Theme) => ({
-//     checkmark: {
-//       color: theme.palette.success.main,
-//     },
-//   }),
-//   { name: 'InputCheckmark' },
-// )
-
 type InputCheckmarkProps = PropsWithChildren<{ show?: boolean }>
 
 /**
@@ -24,5 +15,5 @@ export default function InputCheckmark(props: InputCheckmarkProps) {
   const { show: valid, children } = props
 
   if (!valid) return <>{children}</>
-  return <SvgImage src={iconCheckmarkGreen} color='green' alt='checkmark' /> // <CheckIcon className={classes.checkmark} />
+  return <SvgImage src={iconCheckmarkGreen} alt='checkmark' />
 }
