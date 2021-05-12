@@ -1,6 +1,4 @@
-import { IconButton, makeStyles, Popover, Theme, Typography } from '@material-ui/core'
-import Button from '@reachdigital/next-ui/Button'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import { IconButton, makeStyles, Popover, Theme } from '@material-ui/core'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -26,7 +24,9 @@ const useStyles = makeStyles(
   { name: 'DeliveryLabel' },
 )
 
-export default function DeliveryLabel() {
+export type DeliveryLabelProps = Record<string, unknown>
+
+export default function DeliveryLabel(props: DeliveryLabelProps) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 

@@ -1,4 +1,4 @@
-import CartItem, { CartItemProps } from '@reachdigital/magento-cart-items/CartItem/CartItem'
+import { CartItem, CartItemProps } from '@reachdigital/magento-cart-items'
 import { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
 import OptionsList from './OptionsList'
 

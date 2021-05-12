@@ -32,7 +32,7 @@ const useStyles = makeStyles(
   { name: 'CartItemOptionDropdown' },
 )
 
-type CartItemOptionDropdownProps = {
+export type CartItemOptionDropdownProps = {
   label: string
 } & Pick<SelectProps, 'onChange'>
 

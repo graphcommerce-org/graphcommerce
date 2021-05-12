@@ -13,7 +13,7 @@ import {
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
 
-type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
+export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingMethodForm(props: ShippingMethodFormProps) {
   const { step } = props

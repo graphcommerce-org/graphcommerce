@@ -1,5 +1,5 @@
 import { makeStyles, Menu, Theme } from '@material-ui/core'
-import CartItemOptionDropdown from '@reachdigital/magento-cart-items/CartItem/CartItemOptionDropdown'
+import { CartItemOptionDropdown } from '@reachdigital/magento-cart-items'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import React, { useState } from 'react'

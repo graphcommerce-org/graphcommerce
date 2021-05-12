@@ -8,7 +8,7 @@ import {
   RemoveItemFromCartDocument,
 } from './RemoveItemFromCart.gql'
 
-type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 'cartId'> &
+export type RemoveItemFromCartProps = Omit<RemoveItemFromCartMutationVariables, 'cartId'> &
   Omit<JSX.IntrinsicElements['form'], 'onSubmit' | 'noValidate'>
 
 export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {

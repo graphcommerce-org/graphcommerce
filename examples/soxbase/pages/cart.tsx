@@ -8,9 +8,8 @@ import {
   EmptyCart,
 } from '@reachdigital/magento-cart'
 import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
-import CouponAccordion from '@reachdigital/magento-cart-coupon/CouponAccordion/CouponAccordion'
-import CartItem from '@reachdigital/magento-cart-items/CartItem/CartItem'
-import CartItems from '@reachdigital/magento-cart-items/CartItems/CartItems'
+import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
+import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'

@@ -8,7 +8,7 @@ import {
   UpdateItemQuantityMutationVariables,
 } from './UpdateItemQuantity.gql'
 
-type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 'cartId'>
+export type UpdateItemQuantityProps = Omit<UpdateItemQuantityMutationVariables, 'cartId'>
 
 export default function UpdateItemQuantity(props: UpdateItemQuantityProps) {
   const { uid, quantity } = props

@@ -1,3 +1,5 @@
+export * from './Api/PaymentMethod'
+
 export * from './PaymentMethodContext/PaymentMethodContext'
 export { default as PaymentMethodContextProvider } from './PaymentMethodContext/PaymentMethodContext'
 
@@ -6,6 +8,7 @@ export { default as PaymentMethodButton } from './PaymentMethodButton/PaymentMet
 
 export { default as PaymentMethodOptions } from './PaymentMethodOptions/PaymentMethodOptions'
 
+export * from './PaymentMethodOptionsNoop/PaymentMethodOptionsNoop.gql'
 export { default as PaymentMethodOptionsNoop } from './PaymentMethodOptionsNoop/PaymentMethodOptionsNoop'
 
 export { default as PaymentMethodPlaceOrder } from './PaymentMethodPlaceOrder/PaymentMethodPlaceOrder'
@@ -13,5 +16,3 @@ export { default as PaymentMethodPlaceOrderNoop } from './PaymentMethodPlaceOrde
 
 export * from './PaymentMethodToggle/PaymentMethodToggle'
 export { default as PaymentMethodToggle } from './PaymentMethodToggle/PaymentMethodToggle'
-
-export * from './Api/PaymentMethod'

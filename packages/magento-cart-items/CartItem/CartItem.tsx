@@ -12,8 +12,6 @@ import DeliveryLabel from '../DeliveryLabel/DeliveryLabel'
 import RemoveItemFromCartFab from '../RemoveItemFromCart/RemoveItemFromCartFab'
 import UpdateItemQuantity from '../UpdateItemQuantity/UpdateItemQuantity'
 
-type CartItemBaseProps = CartItemFragment
-
 const rowImageSize = responsiveVal(70, 125)
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -142,7 +140,7 @@ const useStyles = makeStyles(
   { name: 'CartItem' },
 )
 
-export type CartItemProps = PropsWithChildren<CartItemBaseProps> &
+export type CartItemProps = PropsWithChildren<CartItemFragment> &
   UseStyles<typeof useStyles> & { withOptions?: boolean }
 
 export default function CartItem(props: CartItemProps) {

@@ -20,7 +20,7 @@ import React, { useRef } from 'react'
 import { GetShippingAddressDocument } from './GetShippingAddress.gql'
 import { ShippingAddressFormDocument } from './ShippingAddressForm.gql'
 
-type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
+export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'>
 
 export default function ShippingAddressForm(props: ShippingAddressFormProps) {
   const { step } = props

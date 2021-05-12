@@ -2,6 +2,7 @@ import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
 import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { m, AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
@@ -49,8 +50,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function CouponAccordion() {
-  const classes = useStyles()
+export type CouponAccordionProps = UseStyles<typeof useStyles>
+
+export default function CouponAccordion(props: CouponAccordionProps) {
+  const classes = useStyles(props)
   const { data } = useCartQuery(GetCouponDocument)
   const [open, setOpen] = useState<boolean>(false)
 

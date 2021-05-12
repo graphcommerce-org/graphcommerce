@@ -2,13 +2,12 @@ import { IconButton, makeStyles, Theme } from '@material-ui/core'
 import { Clear } from '@material-ui/icons'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import React from 'react'
 import { CouponFragment } from '../Api/Coupon.gql'
 import { RemoveCouponFormDocument } from './RemoveCouponForm.gql'
 
-type CartCouponProps = CouponFragment
-
-const useCouponFormStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   inlineCoupon: {
     background: `${theme.palette.secondary.main}12`,
     padding: `4px ${theme.spacings.xxs} 4px ${theme.spacings.xxs}`,
@@ -30,9 +29,11 @@ const useCouponFormStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
+export type CartCouponProps = CouponFragment & UseStyles<typeof useStyles>
+
 export default function RemoveCouponForm(props: CartCouponProps) {
   const { applied_coupons } = props
-  const classes = useCouponFormStyles()
+  const classes = useStyles(props)
   const form = useFormGqlMutationCart(RemoveCouponFormDocument)
 
   const { handleSubmit, error } = form

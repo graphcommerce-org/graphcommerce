@@ -1,8 +1,8 @@
 import {
   PaymentMethodOptionsNoop,
   PaymentMethodPlaceOrderNoop,
+  PaymentModule,
 } from '@reachdigital/magento-cart-payment-method'
-import { PaymentModule } from '@reachdigital/magento-cart-payment-method/Api/PaymentMethod'
 
 export const checkmo: PaymentModule = {
   PaymentOptions: PaymentMethodOptionsNoop,

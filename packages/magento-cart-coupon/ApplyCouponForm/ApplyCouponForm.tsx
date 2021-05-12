@@ -3,6 +3,7 @@ import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import React from 'react'
 import { ApplyCouponFormDocument } from './ApplyCouponForm.gql'
@@ -14,9 +15,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export default function ApplyCouponForm() {
+export type ApplyCouponFormProps = UseStyles<typeof useStyles>
+
+export default function ApplyCouponForm(props: ApplyCouponFormProps) {
   const formClasses = useFormStyles()
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   const form = useFormGqlMutationCart(ApplyCouponFormDocument)
   const { handleSubmit, muiRegister, formState, required, error } = form

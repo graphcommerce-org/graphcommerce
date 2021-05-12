@@ -6,9 +6,9 @@ import React from 'react'
 import { CartItemsFragment } from '../Api/CartItems.gql'
 import { CartItemsQueryDocument } from './CartItemsQuery.gql'
 
-type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFragment['items']>[0]>>
+export type CartItemRenderer = TypeRenderer<NonNullable<NonNullable<CartItemsFragment['items']>[0]>>
 
-type CartProps = { renderer: CartItemRenderer }
+export type CartProps = { renderer: CartItemRenderer }
 
 export default function CartItems(props: CartProps) {
   const { data } = useCartQuery(CartItemsQueryDocument)

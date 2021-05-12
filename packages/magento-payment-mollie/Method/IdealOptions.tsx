@@ -1,11 +1,11 @@
 import { MenuItem, TextField } from '@material-ui/core'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
-import { PaymentOptionsProps } from '@reachdigital/magento-cart-payment-method'
 import {
+  PaymentOptionsProps,
   PaymentMethodOptionsNoopDocument,
   PaymentMethodOptionsNoopMutation,
   PaymentMethodOptionsNoopMutationVariables,
-} from '@reachdigital/magento-cart-payment-method/PaymentMethodOptionsNoop/PaymentMethodOptionsNoop.gql'
+} from '@reachdigital/magento-cart-payment-method'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { useFormCompose, useFormPersist, useFormValidFields } from '@reachdigital/react-hook-form'
