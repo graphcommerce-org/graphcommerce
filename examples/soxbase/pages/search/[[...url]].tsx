@@ -51,14 +51,12 @@ function SearchResultPage(props: Props) {
   const search = params.url.split('/')[1]
   const totalSearchResults = (categories?.items?.length ?? 0) + (products?.total_count ?? 0)
 
-  console.log(params.url)
-
   return (
     <>
       <PageMeta
         title={search ? `Results for '${search}'` : 'Search'}
         metaRobots={['noindex']}
-        urlPath='/search'
+        canonical='/search'
       />
 
       <Container maxWidth='sm'>

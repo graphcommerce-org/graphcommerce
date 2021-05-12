@@ -3,11 +3,11 @@ import NextPageMeta, { PageMetaProps as NextPageMetaProps } from '@reachdigital/
 import { StoreConfigDocument } from './StoreConfig.gql'
 
 type PageMetaProps = Pick<NextPageMetaProps, 'title' | 'metaDescription' | 'metaRobots'> & {
-  urlPath?: string
+  canonical?: string
 }
 
 export default function PageMeta(props: PageMetaProps) {
-  const { title, urlPath, ...pageMetaProps } = props
+  const { title, canonical, ...pageMetaProps } = props
   const config = useQuery(StoreConfigDocument)
 
   const prefix = config.data?.storeConfig?.title_prefix ?? ''
@@ -20,10 +20,12 @@ export default function PageMeta(props: PageMetaProps) {
   if (separator && suffix) pageTitle += ` ${separator}`
   if (suffix) pageTitle += ` ${suffix}`
 
+  const urlPath = ((canonical ?? '').startsWith('/') && canonical?.substr(1)) || canonical
+
   return (
     <NextPageMeta
       title={pageTitle ?? ''}
-      canonical={(config.data?.storeConfig?.base_link_url ?? '').concat(urlPath ?? '')}
+      canonical={`${config.data?.storeConfig?.secure_base_link_url ?? ''}${urlPath}`}
       {...pageMetaProps}
     />
   )

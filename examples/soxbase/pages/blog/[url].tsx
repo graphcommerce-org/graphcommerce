@@ -26,7 +26,7 @@ function BlogPage(props: Props) {
   const title = page.title ?? ''
   return (
     <>
-      <PageMeta title={title} metaDescription={title} urlPath={page.url} />
+      <PageMeta title={title} metaDescription={title} canonical={page.url} />
       <BlogHeader asset={page.asset} />
       <PageContent {...page} />
       <BlogList blogPosts={blogPosts} />

@@ -73,7 +73,7 @@ function CategoryPage(props: Props) {
         title={category.meta_title ?? category.name ?? ''}
         metaDescription={category.meta_description ?? ''}
         metaRobots={anyFilterActive ? ['noindex'] : undefined}
-        urlPath={params.url}
+        canonical={params.url}
       />
 
       {isLanding ? (

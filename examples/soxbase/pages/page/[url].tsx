@@ -33,7 +33,7 @@ function CmsPage(props: Props) {
       <PageMeta
         title={cmsPage?.meta_title ?? title ?? ''}
         metaDescription={cmsPage?.meta_description ?? ''}
-        urlPath={cmsPage?.url_key ?? ''}
+        canonical={cmsPage?.url_key ?? ''}
       />
 
       {pages?.[0] ? (

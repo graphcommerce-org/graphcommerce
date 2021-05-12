@@ -17,7 +17,6 @@ query StoreConfig {
     catalog_default_sort_by
     category_url_suffix
     product_url_suffix
-    base_link_url
     secure_base_link_url
 
     root_category_uid

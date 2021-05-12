@@ -29,7 +29,7 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <PageMeta title={title} metaDescription={title} urlPath={page.url} />
+      <PageMeta title={title} metaDescription={title} canonical={page.url} />
 
       {pages?.[0] && <PageContent content={pages?.[0].content} />}
       <BlogList blogPosts={blogPosts} />

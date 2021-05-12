@@ -31,7 +31,7 @@ function ModalPage(props: Props) {
         title={page.metaTitle ?? ''}
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
-        urlPath={page.url}
+        canonical={page.url}
       />
       <Box pt={4}>
         <Typography variant='h3' align='center'>
