@@ -13,7 +13,7 @@ import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconTitle from '@reachdigital/next-ui/IconTitle'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
-import CheckoutStepper from '@reachdigital/next-ui/Stepper/Stepper'
+import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -38,7 +38,7 @@ function ShippingPage() {
 
         {cartExists && (
           <ComposedForm>
-            <CheckoutStepper steps={3} currentStep={2} />
+            <Stepper steps={3} currentStep={2} />
 
             <IconTitle
               iconSrc='/icons/desktop_checkout_box.svg'

@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import React from 'react'
+import responsiveVal from '../Styles/responsiveVal'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -25,7 +25,7 @@ const useStyles = makeStyles(
       background: theme.palette.secondary.main,
     },
   }),
-  { name: 'CheckoutStepper' },
+  { name: 'Stepper' },
 )
 
 type StepperProps = {
