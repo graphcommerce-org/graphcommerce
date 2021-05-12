@@ -3,7 +3,7 @@ import PageLink from 'next/link'
 import React from 'react'
 import { UseStyles } from '../Styles'
 import SvgImage from '../SvgImage'
-import { iconChevronLeft } from '../icons'
+import { iconChevronBack } from '../icons'
 
 /**
  * When navigating, store the previous page.
@@ -87,7 +87,7 @@ export default function BackNavFab(props: BackNavFabProps) {
           aria-label='Previous page'
           {...fabProps}
         >
-          <SvgImage src={iconChevronLeft} alt='chevron left' loading='eager' size='small' />
+          <SvgImage src={iconChevronBack} alt='chevron back' loading='eager' size='small' />
           <span className={classes.fabText}>{children}</span>
         </Fab>
       </PageLink>

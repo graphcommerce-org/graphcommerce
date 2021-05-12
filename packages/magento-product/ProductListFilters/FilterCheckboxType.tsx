@@ -53,7 +53,9 @@ export default function FilterCheckboxType(props: FilterCheckboxTypeProps) {
             : undefined
         }
         deleteIcon={
-          isActive ? <SvgImage src={iconCloseCircle} alt='remove' size='small' /> : undefined
+          isActive ? (
+            <SvgImage src={iconCloseCircle} alt='remove' size='small' loading='eager' />
+          ) : undefined
         }
         label={label}
         clickable

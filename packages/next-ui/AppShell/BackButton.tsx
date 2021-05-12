@@ -32,7 +32,7 @@ const useStyles = makeStyles(
       maxWidth: 100,
     },
   }),
-  { name: 'BackNavFab' },
+  { name: 'BackButton' },
 )
 
 export type BackButtonProps = UseStyles<typeof useStyles> &
@@ -54,7 +54,7 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
         ref={ref}
         {...fabProps}
       >
-        <SvgImage src={iconChevronBack} size='small' alt='chevron left' loading='eager' />
+        <SvgImage src={iconChevronBack} size='small' alt='chevron back' loading='eager' />
         <span className={clsx(classes.text, overflow && classes.textOverflow)}>
           {children ?? 'Home'}
         </span>

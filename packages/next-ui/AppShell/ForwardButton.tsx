@@ -34,12 +34,12 @@ const useStyles = makeStyles(
       pointerEvents: 'none',
     },
   }),
-  { name: 'BackNavFab' },
+  { name: 'ForwardButton' },
 )
 
-export type BackButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
+export type ForwardButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
 
-const ForwardButton = React.forwardRef((props: BackButtonProps, ref) => {
+const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
   const { text, icon, ...classes } = useStyles(props)
   const { children, down, ...fabProps } = props
 
