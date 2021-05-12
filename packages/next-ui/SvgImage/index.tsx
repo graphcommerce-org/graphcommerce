@@ -8,32 +8,25 @@ export type SvgImageSize = 'small' | 'medium' | 'large' | 'extralarge'
 
 export type SvgImageProps = Omit<PictureResponsiveProps, 'srcSets' | 'width' | 'height'> & {
   src: React.ReactNode
-  size?: SvgImageSize
-  pixelSize?: number
+  size?: SvgImageSize | number
   shade?: HTMLElementShade
 } & UseStyles<typeof useStyles>
 
-type UseStylesProps = { shade: number; pixelSize?: number; baseSize: number }
+type UseStylesProps = { shade: number; baseSize: number }
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    root: ({ shade, pixelSize, baseSize }: UseStylesProps) => ({
+    root: ({ shade, baseSize }: UseStylesProps) => ({
       filter: shade > 0 ? `invert(${shade}%)` : undefined,
-      width: pixelSize ?? baseSize,
-      height: pixelSize ?? baseSize,
+      width: baseSize,
+      height: baseSize,
     }),
   }),
   { name: 'SvgImage' },
 )
 
 export default function SvgImage(props: SvgImageProps) {
-  const {
-    src,
-    pixelSize = null,
-    size = 'medium',
-    shade = 'default',
-    ...pictureResponsiveProps
-  } = props
+  const { src, size = 'medium', shade = 'default', ...pictureResponsiveProps } = props
 
   const baseSizes = {
     small: 24,
@@ -44,7 +37,7 @@ export default function SvgImage(props: SvgImageProps) {
 
   const classes = useStyles({
     ...props,
-    baseSize: baseSizes[size],
+    baseSize: baseSizes[size] ?? size,
     shade: HTMLElementShades[shade],
   })
 
@@ -55,8 +48,8 @@ export default function SvgImage(props: SvgImageProps) {
           'image/svg+xml': src as string,
         }}
         className={clsx(classes.root)}
-        height={pixelSize ?? baseSizes[size]}
-        width={pixelSize ?? baseSizes[size]}
+        height={baseSizes[size] ?? size}
+        width={baseSizes[size] ?? size}
         {...pictureResponsiveProps}
       />
     </>
