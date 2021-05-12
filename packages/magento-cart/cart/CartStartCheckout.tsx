@@ -49,7 +49,7 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.checkoutButton}
-          endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='checkout' />}
+          endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='checkout' />}
         >
           <span className={classes.checkoutButtonLabel}>Start Checkout</span> (
           <Money {...props} />)

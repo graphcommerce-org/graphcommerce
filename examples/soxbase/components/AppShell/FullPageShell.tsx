@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { IconButton, makeStyles, Theme } from '@material-ui/core'
+import { Fab, IconButton, makeStyles, Theme } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import { SearchButton } from '@reachdigital/magento-search'
@@ -74,9 +74,9 @@ function FullPageShell(props: FullPageShellProps) {
             )}
 
             <PageLink href='/service' passHref>
-              <IconButton aria-label='Account' color='inherit' size='medium'>
+              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
                 <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
-              </IconButton>
+              </Fab>
             </PageLink>
 
             <CustomerFab />
@@ -111,6 +111,7 @@ function FullPageShell(props: FullPageShellProps) {
           Wishlist
         </MenuFabSecondaryItem>
       </MenuFab>
+
       <CartFab style={{ boxShadow: 'none' }} />
 
       {children}

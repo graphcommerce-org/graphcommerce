@@ -35,6 +35,12 @@ const useStyles = makeStyles(
       },
     },
     menuFab: {
+      // [theme.breakpoints.up('sm')]: {
+      //   width: 60.56,
+      //   height: 60.56,
+      // },
+      // width: 48,
+      // height: 48,
       background: theme.palette.text.primary,
       boxShadow: theme.shadows[2],
       '&:hover, &:focus': {
@@ -78,7 +84,7 @@ export default function MenuFab(props: MenuFabProps) {
         onClick={(event) => setOpenEl(event.currentTarget)}
         className={classes.menuFab}
       >
-        <SvgImage src={iconMenu} shade='invert' alt='menu' size='small' />
+        <SvgImage src={iconMenu} shade='inverted' alt='menu' size='small' />
       </Fab>
 
       <Menu

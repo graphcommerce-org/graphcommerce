@@ -38,7 +38,7 @@ function CartFabContent(props: CartFabProps) {
   return (
     <m.div className={classes.cart} style={{ filter }}>
       <PageLink href='/cart' passHref>
-        <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
+        <Fab aria-label='Cart' color='inherit' size='medium' {...fabProps}>
           <Badge badgeContent={qty || 0} color='primary' variant='dot'>
             {icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />}
           </Badge>

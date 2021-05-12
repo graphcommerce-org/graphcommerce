@@ -52,8 +52,18 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
   const button = (
     <Button
       variant='contained'
-      endIcon={<SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />}
-      startIcon={<SvgImage src={iconSrc} alt={iconSrc} size='small' loading='eager' />}
+      endIcon={
+        <SvgImage
+          src={iconChevronRight}
+          alt='chevron right'
+          size='small'
+          loading='eager'
+          shade='muted'
+        />
+      }
+      startIcon={
+        <SvgImage src={iconSrc} alt={iconSrc} size='small' loading='eager' shade='muted' />
+      }
       disableElevation
       disabled={disabled}
       classes={classes}

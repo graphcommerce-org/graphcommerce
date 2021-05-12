@@ -56,7 +56,7 @@ function ShippingPage({ countries }: Props) {
           <>
             <CheckoutStepper steps={3} currentStep={2} />
 
-            <IconHeader src={iconBox} title='Shipping' alt='box' />
+            <IconHeader src={iconBox} title='Shipping' alt='box' size='large' />
 
             <EmailForm />
             <ShippingAddressForm countries={countries} doSubmit={addressForm} />
@@ -77,7 +77,7 @@ function ShippingPage({ countries }: Props) {
                 <SvgImage
                   src={iconChevronRight}
                   alt='chevron right'
-                  shade='invert'
+                  shade='inverted'
                   loading='eager'
                 />
               </Button>

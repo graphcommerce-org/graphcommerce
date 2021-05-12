@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client'
-import { Badge, IconButton, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import { Badge, Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
-import { CustomerTokenQuery, CustomerTokenDocument } from '../CustomerToken.gql'
+import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
 
-const useBadgeStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
   },
@@ -16,12 +16,13 @@ type CustomerFabContentProps = CustomerTokenQuery & { icon?: React.ReactNode }
 
 function CustomerFabContent(props: CustomerFabContentProps) {
   const { customerToken, icon } = props
-  const classes = useBadgeStyles()
+  const classes = useStyles()
   const requireAuth = Boolean(!customerToken || !customerToken.valid)
 
   return (
     <PageLink href={requireAuth ? '/account/signin' : '/account'} passHref>
-      <IconButton aria-label='Account' color='inherit' size='medium'>
+      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='medium'>
+        {/* <IconButton aria-label='Account' color='inherit' size='medium'> */}
         <Badge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
@@ -30,7 +31,8 @@ function CustomerFabContent(props: CustomerFabContentProps) {
         >
           {icon ?? <SvgImage src={iconPersonAlt} alt='Account' loading='eager' />}
         </Badge>
-      </IconButton>
+      </Fab>
+      {/* </IconButton> */}
     </PageLink>
   )
 }

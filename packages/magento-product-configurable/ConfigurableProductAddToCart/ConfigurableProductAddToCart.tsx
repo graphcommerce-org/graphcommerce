@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
+import { Divider, makeStyles, Theme, Box } from '@material-ui/core'
 import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { Money } from '@reachdigital/magento-store'
@@ -134,7 +134,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               endIcon={
                 <SvgImage
                   src={iconChevronRight}
-                  shade='invert'
+                  shade='inverted'
                   loading='eager'
                   alt='chevron right'
                 />
@@ -145,10 +145,10 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
           </PageLink>
         }
       >
-        <>
-          <SvgImage src={iconCheckmark} alt='checkmark' loading='eager' />
+        <Box alignItems='center' display='flex'>
+          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </>
+        </Box>
       </MessageSnackbar>
     </form>
   )

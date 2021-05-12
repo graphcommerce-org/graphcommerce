@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core'
+import { Container, Box } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
@@ -92,16 +92,16 @@ function AppShellTestIndex(props: Props) {
             size='medium'
             variant='pill'
             color='secondary'
-            endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='chevron right' />}
+            endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='chevron right' />}
           >
             View shopping cart
           </Button>
         }
       >
-        <>
+        <Box alignItems='center' display='flex'>
           <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>Blissful Brush</strong>&nbsp;has been added to your shopping cart!
-        </>
+        </Box>
       </MessageSnackbar>
     </>
   )

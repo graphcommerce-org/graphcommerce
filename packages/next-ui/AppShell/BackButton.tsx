@@ -5,7 +5,7 @@ import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
 import SvgImage from '../SvgImage'
-import { iconChevronLeft } from '../icons'
+import { iconChevronBack } from '../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -54,7 +54,7 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
         ref={ref}
         {...fabProps}
       >
-        <SvgImage src={iconChevronLeft} size='small' alt='chevron left' loading='eager' />
+        <SvgImage src={iconChevronBack} size='small' alt='chevron left' loading='eager' />
         <span className={clsx(classes.text, overflow && classes.textOverflow)}>
           {children ?? 'Home'}
         </span>

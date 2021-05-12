@@ -1,5 +1,5 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { makeStyles, Theme } from '@material-ui/core'
+import { Box, makeStyles, Theme } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
@@ -85,17 +85,17 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='chevron right' />}
+              endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='chevron right' />}
             >
               View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <>
+        <Box alignItems='center' display='flex'>
           <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </>
+        </Box>
       </MessageSnackbar>
     </form>
   )

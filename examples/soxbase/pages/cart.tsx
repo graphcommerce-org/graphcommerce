@@ -86,8 +86,6 @@ export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

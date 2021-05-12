@@ -17,8 +17,8 @@ const useStyles = makeStyles(
     img: {
       display: 'block',
       margin: `0 auto ${theme.spacings.xxs} auto`,
-      width: responsiveVal(48, 64),
-      height: responsiveVal(48, 64),
+      width: responsiveVal(40, 72),
+      height: responsiveVal(40, 72),
     },
     total: {
       fontWeight: 700,
@@ -58,7 +58,7 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
     <div className={classes.root}>
       <SvgImage
         src={iconShoppingBag}
-        size='large'
+        size='extralarge'
         loading='eager'
         alt='shopping bag'
         classes={{ root: classes.img }}
@@ -72,10 +72,10 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.button}
-          endIcon={<SvgImage src={iconChevronRight} shade='invert' alt='checkout' />}
+          endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='checkout' />}
           disabled={(value ?? 0) === 0}
         >
-          <div className={classes.buttonLabel}>Start checkout</div>
+          <div className={classes.buttonLabel}>Start Checkout</div>
         </Button>
       </PageLink>
       {children}

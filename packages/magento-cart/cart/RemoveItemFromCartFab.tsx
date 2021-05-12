@@ -23,7 +23,7 @@ export default function RemoveItemFromCartFab(props: RemoveItemFromCartProps) {
   return (
     <form noValidate onSubmit={submitHandler} {...formProps}>
       <Fab aria-label='Remove Product' size='small' type='submit' disabled={formState.isSubmitting}>
-        <SvgImage src={iconClose} size='small' shade='invert' alt='close' loading='eager' />
+        <SvgImage src={iconClose} size='small' shade='inverted' alt='close' loading='eager' />
       </Fab>
       <ApolloErrorAlert error={error} />
     </form>
