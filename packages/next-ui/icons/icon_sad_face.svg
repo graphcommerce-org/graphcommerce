@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>desktop_SadFace-big</title>
-    <g id="desktop_SadFace-big" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
         <g id="mood-sad" transform="translate(14.000000, 14.000000)" stroke="#000000" stroke-width="2.5">
             <circle id="Oval" cx="18" cy="18" r="18"></circle>
             <line x1="12" y1="14" x2="12.02" y2="14" id="Path"></line>

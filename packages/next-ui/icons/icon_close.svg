@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>desktop_Close-Search</title>
-    <g id="desktop_Close-Search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="" fill="#212121" fill-rule="nonzero" points="24.75 26 26 24.75 17.25 16 26 7.25 24.75 6 16 14.75 7.25 6 6 7.25 14.75 16 6 24.75 7.25 26 16 17.25"></polygon>
     </g>
 </svg>
