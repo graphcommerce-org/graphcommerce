@@ -10,7 +10,6 @@ import { CartFabDocument } from './CartFab.gql'
 import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 export type CartFabProps = {
-  children: React.ReactNode
   qty?: number
   icon?: React.ReactNode
 } & Omit<FabProps, 'children' | 'aria-label'>
@@ -33,7 +32,7 @@ const useStyles = makeStyles(
 )
 
 function CartFabContent(props: CartFabProps & CartTotalQuantityFragment) {
-  const { total_quantity, icon, children, ...fabProps } = props
+  const { total_quantity, icon, ...fabProps } = props
   const classes = useStyles()
   const { filter } = useFabAnimation()
 

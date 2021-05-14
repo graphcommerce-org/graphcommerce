@@ -25,19 +25,22 @@ type PaymentMethodContextProviderProps = PropsWithChildren<{ modules: PaymentMet
 export default function PaymentMethodContextProvider(props: PaymentMethodContextProviderProps) {
   const { modules, children } = props
 
-  const { data: cartData } = useCartQuery(GetPaymentMethodContextDocument)
+  const context = useCartQuery(GetPaymentMethodContextDocument)
+  const cartContext = context?.data?.cart
   const [methods, setMethods] = useState<PaymentMethod[]>([])
   const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>()
   const [selectedModule, setSelectedModule] = useState<PaymentModule>()
 
   // Expand the payment methods
   useEffect(() => {
-    if (!cartData) return // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
+      if (!cartContext) return
+
       const promises =
-        cartData.cart?.available_payment_methods?.map(async (method) =>
+        cartContext.available_payment_methods?.map(async (method) =>
           method
-            ? modules?.[method.code]?.expandMethods?.(method, cartData.cart) ?? [
+            ? modules?.[method.code]?.expandMethods?.(method, cartContext) ?? [
                 { ...method, child: '' },
               ]
             : Promise.resolve([]),
@@ -45,7 +48,7 @@ export default function PaymentMethodContextProvider(props: PaymentMethodContext
 
       setMethods((await Promise.all(promises)).flat(1).sort((a) => (a.preferred ? 1 : 0)))
     })()
-  }, [cartData, modules])
+  }, [cartContext, modules])
 
   return (
     <paymentMethodContext.Provider

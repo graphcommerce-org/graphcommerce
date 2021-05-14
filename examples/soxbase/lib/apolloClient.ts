@@ -20,6 +20,7 @@ import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerTo
 import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
 import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
+import { TracingFormat } from 'apollo-tracing'
 import typePolicies from './typePolicies'
 
 export function createApolloClient(

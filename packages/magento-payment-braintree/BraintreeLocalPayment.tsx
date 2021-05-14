@@ -3,6 +3,9 @@ import {
   ExpandPaymentMethods,
   PaymentButtonProps,
   PaymentMethod,
+  PaymentMethodOptionsNoop,
+  PaymentMethodPlaceOrder,
+  PaymentMethodPlaceOrderNoop,
   PaymentModule,
   PaymentOptionsProps,
   usePaymentMethodContext,
@@ -15,135 +18,132 @@ import { BraintreePaymentMethodDocument } from './BraintreePaymentMethod.gql'
 import { StartPaymentOptions } from './useBraintree'
 import useBraintreeLocalPayment from './useBraintreeLocalPayment'
 
-function PaymentOptions(props: PaymentOptionsProps) {
-  return null
-}
+// function PaymentOptions(props: PaymentOptionsProps) {
+//   return null
+// }
 
-function PaymentButton(props: PaymentButtonProps) {
-  const { selectedMethod } = usePaymentMethodContext()
-  const localPayment = useBraintreeLocalPayment()
+// function PaymentButton(props: PaymentButtonProps) {
+//   const { selectedMethod } = usePaymentMethodContext()
+//   const localPayment = useBraintreeLocalPayment()
+//   const { child, title, code, preferred, ...buttonProps } = props
+//   const paymentType = child as StartPaymentOptions['paymentType']
+//   const [execute] = useMutation(BraintreePaymentMethodDocument)
+//   const router = useRouter()
 
-  const { child, title, code, preferred, ...buttonProps } = props
+//   // When the payment method is initialized
 
-  const paymentType = child as StartPaymentOptions['paymentType']
-  const [execute] = useMutation(BraintreePaymentMethodDocument)
-  const router = useRouter()
+//   // When the window was closed it will open a new window
+//   // const { btLpToken, btLpPaymentId, btLpPayerId } = router.query as Record<string, string>
+//   // useEffect(() => {
+//   //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
+//   //   ;(async () => {
+//   //     if (!cartData || !localPayment || !selectedMethod) return
+//   //     if (!btLpToken || !btLpPaymentId || !btLpPayerId) return
 
-  // When the payment method is initialized
+//   //     const result = await localPayment.tokenize({ btLpToken, btLpPaymentId, btLpPayerId })
+//   //     await execute({
+//   //       variables: {
+//   //         cartId: cartData.cart?.id as string,
+//   //         deviceData: '',
+//   //         isTokenEnabler: false,
+//   //         nonce: result.nonce,
+//   //         code: selectedMethod.code,
+//   //       },
+//   //     })
+//   //     onPaymentComplete()
+//   //   })()
+//   // }, [
+//   //   btLpPayerId,
+//   //   btLpPaymentId,
+//   //   btLpToken,
+//   //   cartData,
+//   //   execute,
+//   //   localPayment,
+//   //   onPaymentComplete,
+//   //   selectedMethod,
+//   // ])
 
-  // When the window was closed it will open a new window
-  // const { btLpToken, btLpPaymentId, btLpPayerId } = router.query as Record<string, string>
-  // useEffect(() => {
-  //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  //   ;(async () => {
-  //     if (!cartData || !localPayment || !selectedMethod) return
-  //     if (!btLpToken || !btLpPaymentId || !btLpPayerId) return
+//   const onClick = useCallback(() => {
+//     // if (!cartData || !localPayment || !paymentType || !selectedMethod) return
+//     // const address = cartData.cart?.shipping_addresses?.[0]
 
-  //     const result = await localPayment.tokenize({ btLpToken, btLpPaymentId, btLpPayerId })
-  //     await execute({
-  //       variables: {
-  //         cartId: cartData.cart?.id as string,
-  //         deviceData: '',
-  //         isTokenEnabler: false,
-  //         nonce: result.nonce,
-  //         code: selectedMethod.code,
-  //       },
-  //     })
-  //     onPaymentComplete()
-  //   })()
-  // }, [
-  //   btLpPayerId,
-  //   btLpPaymentId,
-  //   btLpToken,
-  //   cartData,
-  //   execute,
-  //   localPayment,
-  //   onPaymentComplete,
-  //   selectedMethod,
-  // ])
+//   //   onPaymentStart()
+//   //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
+//   //   ;(async () => {
+//   //     try {
+//   //       const result = await localPayment.startPayment({
+//   //         paymentType,
+//   //         amount: cartData.cart?.prices?.grand_total?.value?.toString() ?? '0.00',
+//   //         fallback: {
+//   //           buttonText: 'Return to website',
+//   //           url: 'http://localhost:3000/checkout/payment',
+//   //         },
+//   //         currencyCode: cartData.cart?.prices?.grand_total?.currency ?? 'EUR',
+//   //         shippingAddressRequired: false,
+//   //         email: cartData?.cart?.email ?? '',
+//   //         phone: address?.telephone ?? '',
+//   //         givenName: address?.firstname ?? '',
+//   //         surname: address?.lastname ?? '',
+//   //         address: {
+//   //           streetAddress: address?.street[0] ?? '',
+//   //           extendedAddress: address?.street.slice(1).join('\n') ?? '',
+//   //           locality: address?.city ?? '',
+//   //           postalCode: address?.postcode ?? '',
+//   //           region: address?.region?.code ?? '',
+//   //           countryCode: address?.country.code ?? '',
+//   //         },
+//   //         onPaymentStart: ({ paymentId }, next) => {
+//   //           // todo what should we do with the payment id?
+//   //           console.log(paymentId)
+//   //           next()
+//   //         },
+//   //       })
 
-  const onClick = useCallback(() => {
-    if (!cartData || !localPayment || !paymentType || !selectedMethod) return
-    const address = cartData.cart?.shipping_addresses?.[0]
+//   //       await execute({
+//   //         variables: {
+//   //           cartId: cartData.cart?.id as string,
+//   //           deviceData: '',
+//   //           isTokenEnabler: false,
+//   //           nonce: result.nonce,
+//   //           code: selectedMethod.code,
+//   //         },
+//   //       })
+//   //       onPaymentComplete()
+//   //     } catch (e) {
+//   //       if (e.name === 'BraintreeError') {
+//   //         const error = e as BraintreeError
+//   //         if (error.type === 'CUSTOMER') {
+//   //           onPaymentError({ message: <>Payment cancelled, please try again</>, severity: 'info' })
+//   //         } else {
+//   //           onPaymentError({ message: error.message, severity: 'error' })
+//   //         }
+//   //       }
+//   //     }
+//   //   })()
+//   // }, [
+//   //   cartData,
+//   //   execute,
+//   //   localPayment,
+//   //   onPaymentComplete,
+//   //   onPaymentError,
+//   //   onPaymentStart,
+//   //   paymentType,
+//   //   selectedMethod,
+//   // ])
 
-    onPaymentStart()
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      try {
-        const result = await localPayment.startPayment({
-          paymentType,
-          amount: cartData.cart?.prices?.grand_total?.value?.toString() ?? '0.00',
-          fallback: {
-            buttonText: 'Return to website',
-            url: 'http://localhost:3000/checkout/payment',
-          },
-          currencyCode: cartData.cart?.prices?.grand_total?.currency ?? 'EUR',
-          shippingAddressRequired: false,
-          email: cartData?.cart?.email ?? '',
-          phone: address?.telephone ?? '',
-          givenName: address?.firstname ?? '',
-          surname: address?.lastname ?? '',
-          address: {
-            streetAddress: address?.street[0] ?? '',
-            extendedAddress: address?.street.slice(1).join('\n') ?? '',
-            locality: address?.city ?? '',
-            postalCode: address?.postcode ?? '',
-            region: address?.region?.code ?? '',
-            countryCode: address?.country.code ?? '',
-          },
-          onPaymentStart: ({ paymentId }, next) => {
-            // todo what should we do with the payment id?
-            console.log(paymentId)
-            next()
-          },
-        })
-
-        await execute({
-          variables: {
-            cartId: cartData.cart?.id as string,
-            deviceData: '',
-            isTokenEnabler: false,
-            nonce: result.nonce,
-            code: selectedMethod.code,
-          },
-        })
-        onPaymentComplete()
-      } catch (e) {
-        if (e.name === 'BraintreeError') {
-          const error = e as BraintreeError
-          if (error.type === 'CUSTOMER') {
-            onPaymentError({ message: <>Payment cancelled, please try again</>, severity: 'info' })
-          } else {
-            onPaymentError({ message: error.message, severity: 'error' })
-          }
-        }
-      }
-    })()
-  }, [
-    cartData,
-    execute,
-    localPayment,
-    onPaymentComplete,
-    onPaymentError,
-    onPaymentStart,
-    paymentType,
-    selectedMethod,
-  ])
-
-  return (
-    <Button {...buttonProps} onClick={onClick} loading={loading || !localPayment}>
-      {children} (<em>{title}</em>)
-    </Button>
-  )
-}
+//   return (
+//     <Button {...buttonProps} onClick={onClick} loading={loading || !localPayment}>
+//       {children} (<em>{title}</em>)
+//     </Button>
+//   )
+// }
 
 /**
  * Local payment methods can be expanded to multiple separate methods logic taken from
  * https://developers.braintreepayments.com/guides/local-payment-methods/client-side-custom/javascript/v3#render-local-payment-method-buttons
  */
 const expandMethods: ExpandPaymentMethods = (available, cart) => {
-  const address = cart?.shipping_addresses?.[0]
-  const countryCode = address?.country.code
+  const countryCode = cart?.shipping_addresses?.[0]?.country.code
   const currency = cart?.prices?.grand_total?.currency
   const isEUR = currency === 'EUR'
   const isGB = currency === 'GBP' && countryCode === 'GB'
@@ -182,7 +182,8 @@ const expandMethods: ExpandPaymentMethods = (available, cart) => {
 }
 
 export default {
-  PaymentOptions,
-  PaymentButton,
+  PaymentOptions: PaymentMethodOptionsNoop,
+  PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
+  // PaymentButton,
   expandMethods,
 } as PaymentModule

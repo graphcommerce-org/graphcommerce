@@ -5,7 +5,7 @@ export default function MollieToggle(props: PaymentToggleProps) {
 
   return (
     <>
-      {mollie_meta.image && <img src={mollie_meta.image} alt={title} />}
+      {mollie_meta?.image && <img src={mollie_meta?.image} alt={title} />}
       &nbsp;
       {title}
     </>

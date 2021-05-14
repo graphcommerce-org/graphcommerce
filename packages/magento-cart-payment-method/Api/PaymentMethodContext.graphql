@@ -1,4 +1,4 @@
-fragment PaymentMethodContext on Cart {
+fragment PaymentMethodContext on Cart @injectable {
   available_payment_methods {
     ...AvailablePaymentMethod
   }
