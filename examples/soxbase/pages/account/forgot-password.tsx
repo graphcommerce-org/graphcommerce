@@ -1,4 +1,4 @@
-import { Container, NoSsr, Typography } from '@material-ui/core'
+import { Box, Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
@@ -11,7 +11,7 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountForgotPasswordPage() {
   return (
-    <Container maxWidth='xs'>
+    <Container maxWidth='sm'>
       <PageMeta
         title='Forgot Password'
         metaDescription='Forgot password'
@@ -19,11 +19,15 @@ function AccountForgotPasswordPage() {
       />
       <NoSsr>
         <Typography variant='h3' align='center'>
-          Forgot password
+          Forgot your password?
         </Typography>
-        <Typography variant='h6' align='center'>
-          Fill in your e-mail to request changing your password
-        </Typography>
+
+        <Box textAlign='center'>
+          <p>
+            No worries! Enter your email address and we will send an email with instructions to
+            reset your password.
+          </p>
+        </Box>
         <ForgotPasswordForm />
       </NoSsr>
     </Container>

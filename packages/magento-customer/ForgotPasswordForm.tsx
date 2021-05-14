@@ -3,7 +3,7 @@ import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { useFormGqlMutation, emailPattern } from '@reachdigital/react-hook-form'
+import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
   ForgotPasswordDocument,
@@ -27,7 +27,12 @@ export default function ForgotPasswordForm() {
   const form = useFormGqlMutation<
     ForgotPasswordMutation,
     ForgotPasswordMutationVariables & { confirmEmail?: string }
-  >(ForgotPasswordDocument)
+  >(ForgotPasswordDocument, {
+    onBeforeSubmit: (data) => ({
+      confirmEmail: data.email,
+      ...data,
+    }),
+  })
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
@@ -57,7 +62,7 @@ export default function ForgotPasswordForm() {
         />
       </div>
 
-      <div className={formClasses.formRow}>
+      {/* <div className={formClasses.formRow}>
         <TextField
           variant='outlined'
           type='text'
@@ -71,7 +76,7 @@ export default function ForgotPasswordForm() {
           helperText={formState.errors.confirmEmail?.message}
           disabled={formState.isSubmitting}
         />
-      </div>
+      </div> */}
 
       <ApolloErrorAlert error={error} />
       <div className={formClasses.actions}>
@@ -82,7 +87,7 @@ export default function ForgotPasswordForm() {
           variant='contained'
           size='large'
         >
-          Send email
+          Send
         </Button>
       </div>
     </form>
