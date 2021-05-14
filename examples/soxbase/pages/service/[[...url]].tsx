@@ -23,7 +23,12 @@ function ServicePage({ pages }: Props) {
 
   return (
     <FramerNextPagesSlider>
-      <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
+      <PageMeta
+        title={title}
+        metaDescription={title}
+        metaRobots={['noindex']}
+        canonical={pages?.[0]?.url ?? ''}
+      />
 
       {title && (
         <Box pt={4} pb={4}>
@@ -70,10 +75,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,

@@ -73,7 +73,9 @@ function CategoryPage(props: Props) {
         title={category.meta_title ?? category.name ?? ''}
         metaDescription={category.meta_description ?? ''}
         metaRobots={anyFilterActive ? ['noindex'] : undefined}
-        canonical={params.url}
+        canonical={`${params.url}${
+          (params?.currentPage ?? 1) > 1 ? `/q/page/${params?.currentPage}` : ''
+        }`}
       />
 
       {isLanding ? (

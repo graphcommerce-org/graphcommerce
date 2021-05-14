@@ -16,7 +16,7 @@ type MetaRobotsAll = ['all' | 'none']
 
 export type PageMetaProps = {
   title: string
-  canonical: `http://${string}` | `https://${string}` | string
+  canonical?: `http://${string}` | `https://${string}` | string
   metaDescription?: string
   metaRobots?: MetaRobotsAll | MetaRobots[]
 }
@@ -24,7 +24,7 @@ export type PageMetaProps = {
 export default function PageMeta(props: PageMetaProps) {
   const { title, canonical, metaDescription, metaRobots = ['all'] } = props
 
-  if (!canonical.startsWith('http'))
+  if (!(canonical ?? 'http').startsWith('http'))
     throw new Error(`canonical must start with http:// or https://, '${canonical}' given`)
 
   return (
@@ -34,7 +34,7 @@ export default function PageMeta(props: PageMetaProps) {
         <meta name='description' content={metaDescription.trim()} key='meta-description' />
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
-      <link rel='canonical' href={canonical} key='canonical' />
+      {canonical && <link rel='canonical' href={canonical} key='canonical' />}
     </Head>
   )
 }
