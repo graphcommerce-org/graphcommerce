@@ -1,5 +1,5 @@
+import { CountryCodeEnum } from '@reachdigital/graphql'
 import AddressMultiLine from '@reachdigital/magento-customer/AddressMultiLine'
-import { CountryCodeEnum } from '@reachdigital/magento-graphql'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import React from 'react'
 import { CartAddressFragment } from '../CartAddress/CartAddress.gql'

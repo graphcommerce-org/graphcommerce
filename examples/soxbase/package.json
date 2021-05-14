@@ -22,6 +22,7 @@
     "@next/bundle-analyzer": "^10.2.0",
     "@reachdigital/framer-next-pages": "^0.1.0",
     "@reachdigital/graphcms-ui": "^0.1.0",
+    "@reachdigital/graphql": "^0.1.0",
     "@reachdigital/magento-cart": "^0.1.0",
     "@reachdigital/magento-cart-address": "^0.1.0",
     "@reachdigital/magento-cart-billing-address": "^0.1.0",

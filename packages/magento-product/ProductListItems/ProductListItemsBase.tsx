@@ -1,5 +1,5 @@
 import { Theme, makeStyles } from '@material-ui/core'
-import { Maybe } from '@reachdigital/magento-graphql'
+import { Maybe } from '@reachdigital/graphql'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

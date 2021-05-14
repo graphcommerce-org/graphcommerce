@@ -1,4 +1,4 @@
-import { Region } from '@reachdigital/magento-graphql'
+import { Region } from '@reachdigital/graphql'
 import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import useCountry from './useCountry'
 

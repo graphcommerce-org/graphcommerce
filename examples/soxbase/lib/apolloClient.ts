@@ -15,12 +15,11 @@ import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
+import { fragments } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
 import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
-import type { TracingFormat } from 'apollo-tracing'
-import fragments from '../generated/fragments.json'
 import typePolicies from './typePolicies'
 
 export function createApolloClient(

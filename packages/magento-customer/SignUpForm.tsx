@@ -1,5 +1,5 @@
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
-import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
+import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'

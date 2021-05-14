@@ -1,12 +1,11 @@
-import { FieldFunctionOptions, FieldPolicy, FieldReadFunction, Reference } from '@apollo/client'
-import { TypedTypePolicies, Query, QueryCartArgs } from './index'
+import { TypedTypePolicies } from '@reachdigital/graphql'
 
 /**
  * By default we don't need to do anything for types with an `id` or without anything to identify.
  *
  * - https://www.apollographql.com/docs/react/caching/cache-configuration/#default-identifier-generation
  */
-const typePolicies: TypedTypePolicies = {
+export const magentoTypePolicies: TypedTypePolicies = {
   // AddBundleProductsToCartOutput: { keyFields: false },
   // AddConfigurableProductsToCartOutput: { keyFields: false },
   // AddDownloadableProductsToCartOutput: { keyFields: false },
@@ -254,5 +253,3 @@ const typePolicies: TypedTypePolicies = {
   // createKlarnaPaymentsSessionOutput: { keyFields: false },
   // Mutation: { keyFields: false },
 }
-
-export default typePolicies

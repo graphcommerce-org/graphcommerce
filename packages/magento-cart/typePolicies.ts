@@ -1,8 +1,4 @@
-import type {
-  QueryCartArgs,
-  ShippingCartAddress,
-  TypedTypePolicies,
-} from '@reachdigital/magento-graphql/index'
+import type { QueryCartArgs, ShippingCartAddress, TypedTypePolicies } from '@reachdigital/graphql'
 
 export const typePolicies: TypedTypePolicies = {
   CurrentCartId: { keyFields: [] },

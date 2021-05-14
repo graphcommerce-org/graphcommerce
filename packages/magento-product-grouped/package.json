@@ -23,7 +23,7 @@
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.0",
     "@reachdigital/magento-cart": "^0.1.0",
-    "@reachdigital/magento-graphql": "^0.1.0",
+    "@reachdigital/graphql": "^0.1.0",
     "@reachdigital/magento-product": "^0.1.0",
     "@reachdigital/magento-product-simple": "^0.1.0",
     "@reachdigital/magento-product-virtual": "^0.1.0",

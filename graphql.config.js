@@ -12,7 +12,7 @@
 module.exports = {
   projects: {
     soxbase: {
-      schema: ['examples/soxbase-api/generated/schema.graphqls'],
+      schema: ['packages/generated/schema.graphqls'],
       documents: ['examples/**/*.graphql'],
       extensions: {
         languageService: {

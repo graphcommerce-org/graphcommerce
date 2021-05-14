@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, FormControl, Link } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
+import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'

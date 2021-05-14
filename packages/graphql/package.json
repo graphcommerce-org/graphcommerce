@@ -1,8 +1,9 @@
 {
-  "name": "@reachdigital/magento-cart-coupon",
+  "name": "@reachdigital/graphql",
   "version": "0.1.0",
   "private": true,
   "sideEffects": false,
+  "main": "index.ts",
   "prettier": "@reachdigital/prettier-config-pwa",
   "browserslist": [
     "extends @reachdigital/browserslist-config-pwa"
@@ -21,17 +22,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
-    "@graphql-typed-document-node/core": "^3.1.0",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
-    "@reachdigital/magento-cart": "^0.1.0",
-    "@reachdigital/graphql": "^0.1.0",
-    "@reachdigital/magento-store": "^0.1.0",
-    "@reachdigital/next-ui": "^0.1.0",
-    "@reachdigital/react-hook-form": "^0.1.0",
-    "clsx": "^1.1.1",
-    "framer-motion": "^4.1.11",
+    "graphql": "15.5.0",
     "next": "^10.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

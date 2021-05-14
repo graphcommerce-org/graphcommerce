@@ -1,4 +1,4 @@
-import { Maybe } from '@reachdigital/magento-graphql'
+import { Maybe } from '@reachdigital/graphql'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'

@@ -27,7 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@reachdigital/magento-cart": "^0.1.0",
     "@reachdigital/magento-cart-shipping-address": "^0.1.0",
-    "@reachdigital/magento-graphql": "^0.1.0",
+    "@reachdigital/graphql": "^0.1.0",
     "@reachdigital/magento-store": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "@reachdigital/react-hook-form": "^0.1.0",

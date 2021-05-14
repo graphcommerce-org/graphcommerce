@@ -1,4 +1,4 @@
-import { ProductImage } from '@reachdigital/magento-graphql'
+import { ProductImage } from '@reachdigital/graphql'
 import React from 'react'
 import OrderCardItemImage from '../OrderCardItemImage'
 import { OrderCardItemFragment } from './OrderCardItem.gql'

@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
+    "@reachdigital/graphql": "^0.1.0",
     "graphql": "15.5.0",
     "next": "^10.2.0",
     "react": "^17.0.2",
