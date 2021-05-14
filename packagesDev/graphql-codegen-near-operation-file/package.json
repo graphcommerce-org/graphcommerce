@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "sideEffects": false,
+  "main": "dist/index.js",
   "engines": {
     "node": "14.x"
   },
