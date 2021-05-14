@@ -28,6 +28,7 @@ export default function SignUpForm(props: SignUpFormProps) {
   const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
 
   const submitHandler = handleSubmit(() => {})
+  const watchPassword = watch('password');
 
   return (
     <form onSubmit={submitHandler} noValidate>
@@ -57,7 +58,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === watch('password') || "Passwords don't match",
+            validate: (value) => value === watchPassword  || "Passwords don't match",
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}
