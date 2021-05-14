@@ -3,7 +3,7 @@ import { UseStyles } from '@reachdigital/next-ui/Styles'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 
 const useRichTextStyles = makeStyles(
-  ({ spacings, breakpoints }: Theme) => ({
+  ({ spacings, breakpoints, palette, typography }: Theme) => ({
     root: { '&:empty': { display: 'none' }, '&:last-child': { marginBottom: 0 } },
     paragraph: { marginBottom: '1em', wordBreak: 'break-word' },
     h1: { marginTop: responsiveVal(9, 0), marginBottom: responsiveVal(21, 50) },
@@ -66,24 +66,32 @@ const useRichTextStyles = makeStyles(
       width: '100%',
       borderSpacing: '2px',
       borderCollapse: 'collapse',
-      border: '2px solid #ddd',
       marginTop: spacings.md,
       marginBottom: spacings.sm,
 
-      '& thead': {
-        background: '#f5f5f5',
+      '& thead, tbody': {
+        '& td': {
+          padding: '10px 20px',
+        },
       },
 
-      '& tbody, thead': {
+      '& thead': {
+        '& tr': {
+          '& td': {
+            '& p': {
+              fontWeight: typography.fontWeightBold,
+            },
+          },
+        },
+      },
+      '& tbody': {
         display: 'table-row-group',
         verticalAlign: 'center',
         borderColor: 'inherit',
 
         '& tr': {
-          borderBottom: '1px solid #ececec',
-
-          '&:nth-child(even)': {
-            background: '#f5f5f5',
+          '&:nth-child(odd)': {
+            background: palette.background.highlight,
           },
         },
 
@@ -92,10 +100,7 @@ const useRichTextStyles = makeStyles(
             minWidth: '150px',
           },
 
-          padding: '5px 6px',
-          minWidth: '100px',
-
-          '& p': { fontSize: 17 },
+          '& p': { fontSize: responsiveVal(12, 15) },
         },
       },
     },

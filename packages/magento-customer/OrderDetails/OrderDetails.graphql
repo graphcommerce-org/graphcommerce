@@ -14,6 +14,8 @@ fragment OrderDetails on CustomerOrder {
     }
   }
   payment_methods {
+    name
+    type
     additional_data {
       name
       value

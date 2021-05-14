@@ -9,6 +9,8 @@ import {
   useMemo,
 } from 'react'
 import { ConfigurableProductFormFragment } from './ConfigurableProductForm.gql'
+
+// todo: fix dependency cycle
 import cheapestVariant from './cheapestVariant'
 
 type ConfigurableProductFormProps = ConfigurableProductFormFragment & { sku: string }
@@ -130,7 +132,7 @@ export default function ConfigurableContextProvider(
   const getVariants: GetVariants = (options: Selected = {}) => traverseAttrTree(options, lookupTree)
 
   const getUids: GetUids = (options: Selected = {}) =>
-    (getVariants((options?.[0] as unknown) as Selected) ?? [])
+    (getVariants((options as unknown) as Selected) ?? [])
       .map((variant) => (variant?.attributes?.map((attr) => attr?.uid) ?? []) as string[])
       .flat()
 

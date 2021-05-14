@@ -39,7 +39,6 @@ const useStyles = makeStyles(
       marginBottom: theme.spacings.xs,
     },
     totalsContainer: {
-      // borderBottom: `1px solid ${theme.palette.divider}`,
       padding: `${theme.spacings.xxs} 0`,
     },
     totalsRow: {
@@ -216,15 +215,15 @@ export default function OrderDetails(props: OrderDetailsProps) {
         <div>
           <span className={classes.orderDetailTitle}>Payment method</span>
           <div>
-            {!payment_methods?.[0]?.additional_data?.length && (
+            {payment_methods && payment_methods.length < 1 && (
               <div>
                 <i>No payment information</i>
               </div>
             )}
 
-            {payment_methods && payment_methods?.[0]?.additional_data?.[0] && (
+            {payment_methods && payment_methods[0] && (
               <>
-                <div>{payment_methods?.[0]?.additional_data?.[0]?.name}</div>
+                <div>{payment_methods[0].name}</div>
 
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>

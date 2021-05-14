@@ -13,7 +13,6 @@ import {
   ProductListPagination,
   ProductListSort,
 } from '@reachdigital/magento-product'
-
 import {
   ProductListDocument,
   ProductListQuery,
