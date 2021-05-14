@@ -11,9 +11,10 @@ import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-store'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
+import { iconAddresses } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -39,18 +40,13 @@ function EditAddressPage(props: Props) {
     <Container maxWidth='md'>
       <PageMeta title='Edit address' metaDescription='Edit an address' metaRobots={['noindex']} />
       <NoSsr>
-        <IconTitle
-          iconSrc='/icons/desktop_addresses.svg'
-          title='Addresses'
-          alt='addresses'
-          size='large'
-        />
+        <IconHeader src={iconAddresses} title='Addresses' alt='addresses' size='large' />
 
         <SectionContainer label='Edit address'>
           {!address && !loading && (
             <Box marginTop={3}>
-              <IconTitle
-                iconSrc='/icons/desktop_addresses.svg'
+              <IconHeader
+                src={iconAddresses}
                 title='Address not found'
                 alt='address'
                 size='small'

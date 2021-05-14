@@ -4,8 +4,9 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import { AccountDashboardOrdersDocument } from '@reachdigital/magento-customer/AccountDashboard/AccountDashboardOrders.gql'
 import AccountOrders from '@reachdigital/magento-customer/AccountOrders'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -23,12 +24,7 @@ function AccountOrdersPage() {
     <Container maxWidth='md'>
       <PageMeta title='Orders' metaDescription='View all your orders' metaRobots={['noindex']} />
       <NoSsr>
-        <IconTitle
-          iconSrc='/icons/desktop_checkout_box.svg'
-          title='Orders'
-          alt='orders'
-          size='large'
-        />
+        <IconHeader src={iconBox} title='Orders' alt='orders' size='large' />
         <AccountOrders {...customer} />
       </NoSsr>
     </Container>
@@ -46,8 +42,6 @@ export default AccountOrdersPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

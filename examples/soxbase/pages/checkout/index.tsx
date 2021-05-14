@@ -1,5 +1,4 @@
 import { Container, NoSsr } from '@material-ui/core'
-import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import { useCartQuery, EmptyCart } from '@reachdigital/magento-cart'
 import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout/ShippingPage.gql'
@@ -11,9 +10,11 @@ import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconBox, iconChevronRight } from '@reachdigital/next-ui/icons'
 import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -40,12 +41,7 @@ function ShippingPage() {
           <ComposedForm>
             <Stepper steps={3} currentStep={2} />
 
-            <IconTitle
-              iconSrc='/icons/desktop_checkout_box.svg'
-              title='Shipping'
-              alt='box'
-              size='normal'
-            />
+            <IconHeader src={iconBox} title='Shipping' alt='box' size='large' />
 
             <EmailForm step={1} />
             <ShippingAddressForm step={2} />
@@ -67,7 +63,13 @@ function ShippingPage() {
                       loading={buttonState.isSubmitting || buttonState.isSubmitSuccessful}
                       onClick={submit}
                     >
-                      Next <ArrowForwardIos fontSize='inherit' />
+                      Next{' '}
+                      <SvgImage
+                        src={iconChevronRight}
+                        alt='chevron right'
+                        shade='inverted'
+                        loading='eager'
+                      />
                     </Button>
                   </div>
                   <ApolloErrorAlert

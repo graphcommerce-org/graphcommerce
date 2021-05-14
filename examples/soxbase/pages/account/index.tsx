@@ -9,6 +9,7 @@ import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { iconBox, iconHome, iconPerson, iconShutdown, iconStar } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
@@ -28,26 +29,26 @@ function AccountIndexPage() {
         <AccountHeader {...data?.customer} loading={loading} />
 
         <AccountMenu>
-          <AccountMenuItem href='/account/orders' startIconSrc='/icons/my_account_orders.svg'>
+          <AccountMenuItem href='/account/orders' iconSrc={iconBox}>
             Orders
           </AccountMenuItem>
 
-          <AccountMenuItem href='/account/personal' startIconSrc='/icons/my_account_info.svg'>
+          <AccountMenuItem href='/account/personal' iconSrc={iconPerson}>
             Personal information
           </AccountMenuItem>
 
-          <AccountMenuItem href='/account/addresses' startIconSrc='/icons/my_account_addresses.svg'>
+          <AccountMenuItem href='/account/addresses' iconSrc={iconHome}>
             Addresses
           </AccountMenuItem>
 
-          <AccountMenuItem href='/account/reviews' startIconSrc='/icons/my_account_reviews.svg'>
+          <AccountMenuItem href='/account/reviews' iconSrc={iconStar}>
             Reviews
           </AccountMenuItem>
 
           <SignOutForm
             button={({ formState }) => (
               <AccountMenuItem
-                startIconSrc='/icons/my_account_lock.svg'
+                iconSrc={iconShutdown}
                 loading={formState.isSubmitting}
                 type='submit'
                 disabled={loading}

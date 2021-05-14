@@ -2,9 +2,10 @@ import { useQuery } from '@apollo/client'
 import { makeStyles, Theme } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { StoreConfigDocument, Money, CountryRegionsQuery } from '@reachdigital/magento-store'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import SectionContainer from '@reachdigital/next-ui/SectionContainer'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconInvoiceRed } from '@reachdigital/next-ui/icons'
 import clsx from 'clsx'
 import React from 'react'
 import TrackingLink from '../TrackingLink'
@@ -228,13 +229,11 @@ export default function OrderDetails(props: OrderDetailsProps) {
                 {invoices && invoices?.length > 0 && (
                   <div className={classes.iconContainer}>
                     <div className={classes.invoice}>
-                      <PictureResponsiveNext
-                        src='/icons/desktop_order_invoice.svg'
+                      <SvgImage
+                        src={iconInvoiceRed}
+                        size='small'
                         alt='order tracker'
                         loading='eager'
-                        width={24}
-                        height={24}
-                        type='image/svg+xml'
                       />
                       {invoices?.[0]?.number}
                     </div>

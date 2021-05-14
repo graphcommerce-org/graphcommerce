@@ -45,14 +45,14 @@ export default function AccountReviews(props: AccountReviewsProps) {
     <div className={classes.reviewsContainer}>
       <SectionContainer label='Latest'>
         {latestReviews?.map(
-          (review, i) => review && <CustomerReview key={`latest-review-${i}`} {...review} />,
+          (review) => review && <CustomerReview key={review.created_at} {...review} />,
         )}
       </SectionContainer>
 
       {items && items.length >= showLatestReviews + 1 && (
         <SectionContainer label='Older' className={classes.olderReviewsContainer}>
           {olderReviews?.map(
-            (review, i) => review && <CustomerReview key={`older-review-${i}`} {...review} />,
+            (review, i) => review && <CustomerReview key={review.created_at} {...review} />,
           )}
         </SectionContainer>
       )}

@@ -11,8 +11,9 @@ import {
   CountryRegionsDocument,
   CountryRegionsQuery,
 } from '@reachdigital/magento-store'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../../components/AppShell/SheetShell'
 import apolloClient from '../../../lib/apolloClient'
@@ -38,12 +39,7 @@ function OrderDetailPage(props: Props) {
     <Container maxWidth='md'>
       <NoSsr>
         {(!orderId || !order) && (
-          <IconTitle
-            iconSrc='/icons/desktop_checkout_box.svg'
-            title='Order not found'
-            alt='no order'
-            size='large'
-          />
+          <IconHeader src={iconBox} title='Order not found' alt='no order' size='large' />
         )}
 
         {orderId && order && (

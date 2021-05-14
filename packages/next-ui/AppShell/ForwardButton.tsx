@@ -1,8 +1,9 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
-import ArrowForward from '@material-ui/icons/ArrowForwardIos'
 import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
+import SvgImage from '../SvgImage'
+import { iconChevronRight } from '../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -24,7 +25,6 @@ const useStyles = makeStyles(
       whiteSpace: 'nowrap',
     },
     icon: {
-      fontSize: 18,
       display: 'none',
       [theme.breakpoints.up('sm')]: {
         display: 'unset',
@@ -34,23 +34,19 @@ const useStyles = makeStyles(
       pointerEvents: 'none',
     },
   }),
-  { name: 'BackNavFab' },
+  { name: 'ForwardButton' },
 )
 
-export type BackButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
+export type ForwardButtonProps = UseStyles<typeof useStyles> & ButtonProps & { down?: boolean }
 
-const ForwardButton = React.forwardRef((props: BackButtonProps, ref) => {
+const ForwardButton = React.forwardRef((props: ForwardButtonProps, ref) => {
   const { text, icon, ...classes } = useStyles(props)
   const { children, down, ...fabProps } = props
 
   return (
     <Button variant='pill' classes={classes} {...fabProps}>
       <span className={text}>{children}</span>
-      <ArrowForward
-        shapeRendering='geometricPrecision'
-        fontSize='inherit'
-        classes={{ root: icon }}
-      />
+      <SvgImage src={iconChevronRight} alt='chevron right' size='small' classes={{ root: icon }} />
     </Button>
   )
 })

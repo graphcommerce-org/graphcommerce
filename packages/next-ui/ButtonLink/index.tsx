@@ -1,9 +1,10 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import ChevronRight from '@material-ui/icons/ChevronRight'
 import PageLink from 'next/link'
 import React from 'react'
 import Button, { ButtonProps } from '../Button'
 import { UseStyles } from '../Styles'
+import SvgImage from '../SvgImage'
+import { iconChevronRight } from '../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
   buttonLink: {
@@ -37,7 +38,7 @@ export default function ButtonLink(props: ButtonLinkProps) {
     <PageLink href={url} passHref>
       <Button {...buttonProps} className={classes.buttonLink}>
         <span>{title}</span>
-        {endIcon ?? <ChevronRight color='inherit' />}
+        {endIcon ?? <SvgImage src={iconChevronRight} alt='chevron right' />}
       </Button>
     </PageLink>
   )

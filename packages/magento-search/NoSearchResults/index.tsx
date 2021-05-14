@@ -1,7 +1,7 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
+import { iconSadFace } from '@reachdigital/next-ui/icons'
 import React from 'react'
-import sadFace from './sad_face.svg'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -23,7 +23,7 @@ export default function NoSearchResults() {
   return (
     <div className={classes.container}>
       <Typography variant='h5' align='center'>
-        <IconTitle iconSrc={sadFace} title='No results' alt='no results' size='large' />
+        <IconHeader src={iconSadFace} title='No results' alt='no results' size='large' />
       </Typography>
     </div>
   )

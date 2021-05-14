@@ -1,13 +1,13 @@
 import { TypedDocumentNode, useQuery } from '@apollo/client'
-import { makeStyles, Theme } from '@material-ui/core'
-import Checkmark from '@material-ui/icons/Check'
+import { Box, makeStyles, Theme } from '@material-ui/core'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { ProductInterface } from '@reachdigital/magento-graphql'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
 import { DeepPartial, UnpackNestedValue, Path } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
@@ -81,25 +81,17 @@ export default function AddToCartButton<Q, V extends { cartId: string; [index: s
               size='medium'
               variant='pill'
               color='secondary'
-              endIcon={
-                <PictureResponsiveNext
-                  alt='desktop_chevron_right'
-                  width={28}
-                  height={28}
-                  src='/icons/desktop_chevron_right_white.svg'
-                  type='image/svg+xml'
-                />
-              }
+              endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='chevron right' />}
             >
               View shopping cart
             </Button>
           </PageLink>
         }
       >
-        <>
-          <Checkmark />
+        <Box alignItems='center' display='flex'>
+          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </>
+        </Box>
       </MessageSnackbar>
     </form>
   )

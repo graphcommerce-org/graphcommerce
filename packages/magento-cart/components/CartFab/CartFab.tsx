@@ -1,5 +1,7 @@
 import { Badge, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconShoppingBag } from '@reachdigital/next-ui/icons'
 import { m } from 'framer-motion'
 import PageLink from 'next/link'
 import React from 'react'
@@ -9,6 +11,8 @@ import { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 export type CartFabProps = {
   children: React.ReactNode
+  qty?: number
+  icon?: React.ReactNode
 } & Omit<FabProps, 'children' | 'aria-label'>
 
 const useStyles = makeStyles(
@@ -29,7 +33,7 @@ const useStyles = makeStyles(
 )
 
 function CartFabContent(props: CartFabProps & CartTotalQuantityFragment) {
-  const { total_quantity, children, ...fabProps } = props
+  const { total_quantity, icon, children, ...fabProps } = props
   const classes = useStyles()
   const { filter } = useFabAnimation()
 
@@ -38,7 +42,7 @@ function CartFabContent(props: CartFabProps & CartTotalQuantityFragment) {
       <PageLink href='/cart' passHref>
         <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
           <Badge badgeContent={total_quantity} color='primary' variant='dot'>
-            {children}
+            {icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />}
           </Badge>
         </Fab>
       </PageLink>

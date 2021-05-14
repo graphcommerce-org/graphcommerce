@@ -1,8 +1,9 @@
 import { Theme, makeStyles } from '@material-ui/core'
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight, iconShoppingBag } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { CartQuickCheckoutFragment } from './CartQuickCheckout.gql'
@@ -16,8 +17,8 @@ const useStyles = makeStyles(
     img: {
       display: 'block',
       margin: `0 auto ${theme.spacings.xxs} auto`,
-      width: responsiveVal(48, 64),
-      height: responsiveVal(48, 64),
+      width: responsiveVal(40, 72),
+      height: responsiveVal(40, 72),
     },
     total: {
       fontWeight: 700,
@@ -38,9 +39,6 @@ const useStyles = makeStyles(
       paddingLeft: responsiveVal(25, 35),
       paddingRight: responsiveVal(26, 30),
     },
-    icon: {
-      marginLeft: 0,
-    },
     buttonLabel: {
       '& ~ span.MuiButton-endIcon': {
         marginLeft: 6,
@@ -58,14 +56,14 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
 
   return (
     <div className={classes.root}>
-      <img
-        src='/icons/desktop_shopping_bag.svg'
-        alt='shopping bag'
-        className={classes.img}
-        width={64}
-        height={64}
+      <SvgImage
+        src={iconShoppingBag}
+        size='extralarge'
         loading='eager'
+        alt='shopping bag'
+        classes={{ root: classes.img }}
       />
+
       <span className={classes.total}>
         Cart Total: <Money {...prices?.grand_total} />
       </span>
@@ -74,19 +72,10 @@ export default function CartQuickCheckout(props: CartQuickCheckoutProps) {
           variant='pill'
           color='secondary'
           className={classes.button}
-          endIcon={
-            <PictureResponsiveNext
-              className={classes.icon}
-              alt=''
-              width={32}
-              height={32}
-              src='/icons/desktop_chevron_right_white.svg'
-              type='image/svg+xml'
-            />
-          }
+          endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='checkout' />}
           disabled={(prices?.grand_total?.value ?? 0) === 0}
         >
-          <div className={classes.buttonLabel}>Start checkout</div>
+          <div className={classes.buttonLabel}>Start Checkout</div>
         </Button>
       </PageLink>
       {children}

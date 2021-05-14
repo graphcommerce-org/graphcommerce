@@ -1,10 +1,11 @@
 import { ButtonProps, makeStyles, Theme } from '@material-ui/core'
-import ArrowBack from '@material-ui/icons/ArrowBackIos'
 import clsx from 'clsx'
 import Link from 'next/link'
 import React from 'react'
 import Button from '../Button'
 import { UseStyles } from '../Styles'
+import SvgImage from '../SvgImage'
+import { iconChevronBack } from '../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -16,12 +17,6 @@ const useStyles = makeStyles(
         width: 40,
         textAlign: 'center',
         minWidth: 'unset',
-      },
-    },
-    icon: {
-      fontSize: 18,
-      [theme.breakpoints.down('sm')]: {
-        paddingLeft: 4,
       },
     },
     text: {
@@ -37,7 +32,7 @@ const useStyles = makeStyles(
       maxWidth: 100,
     },
   }),
-  { name: 'BackNavFab' },
+  { name: 'BackButton' },
 )
 
 export type BackButtonProps = UseStyles<typeof useStyles> &
@@ -50,7 +45,6 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
   return (
     <Link href={href ?? '/'} passHref>
       <Button
-        // disableElevation
         variant='pill'
         classes={{
           root: clsx(classes.root, props.className),
@@ -60,12 +54,7 @@ const BackButton = React.forwardRef<any, BackButtonProps>((props, ref) => {
         ref={ref}
         {...fabProps}
       >
-        <ArrowBack
-          shapeRendering='geometricPrecision'
-          fontSize='inherit'
-          color='inherit'
-          classes={{ root: classes.icon }}
-        />
+        <SvgImage src={iconChevronBack} size='small' alt='chevron back' loading='eager' />
         <span className={clsx(classes.text, overflow && classes.textOverflow)}>
           {children ?? 'Home'}
         </span>

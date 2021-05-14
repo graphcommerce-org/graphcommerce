@@ -1,8 +1,9 @@
 import { Button, makeStyles, Theme, Typography } from '@material-ui/core'
-import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import { useCartQuery } from '@reachdigital/magento-cart'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronDown, iconChevronUp } from '@reachdigital/next-ui/icons'
 import clsx from 'clsx'
 import { m, AnimatePresence } from 'framer-motion'
 import React, { useState } from 'react'
@@ -68,7 +69,13 @@ export default function CouponAccordion(props: CouponAccordionProps) {
           <Button
             onClick={() => setOpen(!open)}
             className={clsx(classes.button, { [classes.buttonOpen]: open })}
-            endIcon={open ? <ExpandLess /> : <ExpandMore />}
+            endIcon={
+              open ? (
+                <SvgImage src={iconChevronUp} alt='expand more' loading='eager' />
+              ) : (
+                <SvgImage src={iconChevronDown} alt='expand less' loading='eager' />
+              )
+            }
           >
             <Typography variant='h6'>Discount code</Typography>
             {coupon && <RemoveCouponForm {...data.cart} />}

@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client'
-import { Divider, makeStyles, Theme } from '@material-ui/core'
-import Checkmark from '@material-ui/icons/Check'
+import { Divider, makeStyles, Theme, Box } from '@material-ui/core'
 import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
+import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
@@ -129,12 +129,11 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
               variant='pill'
               color='secondary'
               endIcon={
-                <PictureResponsiveNext
-                  alt='desktop_chevron_right'
-                  width={28}
-                  height={28}
-                  src='/icons/desktop_chevron_right_white.svg'
-                  type='image/svg+xml'
+                <SvgImage
+                  src={iconChevronRight}
+                  shade='inverted'
+                  loading='eager'
+                  alt='chevron right'
                 />
               }
             >
@@ -143,10 +142,10 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
           </PageLink>
         }
       >
-        <>
-          <Checkmark />
+        <Box alignItems='center' display='flex'>
+          <SvgImage src={iconCheckmark} loading='eager' alt='checkmark' />
           <strong>{name}</strong>&nbsp;has been added to your shopping cart!
-        </>
+        </Box>
       </MessageSnackbar>
     </form>
   )

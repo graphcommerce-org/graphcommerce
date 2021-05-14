@@ -1,5 +1,4 @@
 import { Container, NoSsr } from '@material-ui/core'
-import { ArrowForwardIos } from '@material-ui/icons'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   PaymentMethodButton,
@@ -14,6 +13,8 @@ import * as methods from '@reachdigital/magento-payment-mollie'
 import { PageMeta, StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import { ComposedForm } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
@@ -58,7 +59,7 @@ function PaymentPage(props: Props) {
                 color='secondary'
                 variant='pill'
                 size='large'
-                endIcon={<ArrowForwardIos fontSize='inherit' />}
+                endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
               >
                 Pay
               </PaymentMethodButton>

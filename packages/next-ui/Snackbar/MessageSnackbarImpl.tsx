@@ -1,15 +1,16 @@
 import {
+  Fab,
   makeStyles,
+  PropTypes,
   Snackbar,
   SnackbarContent,
   SnackbarProps,
-  Fab,
   Theme,
-  PropTypes,
 } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
+import SvgImage from '../SvgImage'
+import { iconClose } from '../icons'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -176,7 +177,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarImplProps) {
             {action && <div className={classes.actionButton}>{action}</div>}
             <div className={classes.closeButton}>
               <Fab aria-label='Close snackbar' size='medium' onClick={() => setSnackbar(false)}>
-                <CloseIcon />
+                <SvgImage src={iconClose} size='small' alt='close' />
               </Fab>
             </div>
           </>

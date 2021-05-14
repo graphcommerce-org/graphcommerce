@@ -1,7 +1,8 @@
 import { IconButton, makeStyles, TextField, Theme } from '@material-ui/core'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconClose } from '@reachdigital/next-ui/icons'
 import { useForm, useFormAutoSubmit, useFormMuiRegister } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -56,13 +57,7 @@ export default function SearchForm(props: SearchFormProps) {
         </div>
       )}
       <IconButton onClick={handleReset} size='small'>
-        <PictureResponsiveNext
-          alt='desktop_close'
-          width={24}
-          height={24}
-          src='/icons/desktop_close.svg'
-          type='image/svg+xml'
-        />
+        <SvgImage src={iconClose} alt='close' size='small' loading='eager' />
       </IconButton>
     </>
   )

@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { Fab, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ConfigurableContextProvider from '@reachdigital/magento-product-configurable/ConfigurableContext'
 import ConfigurableProductAddToCart from '@reachdigital/magento-product-configurable/ConfigurableProductAddToCart/ConfigurableProductAddToCart'
@@ -14,7 +14,7 @@ import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import PageLink from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
 import ProductUsps from '../../../components/ProductUsps'
@@ -54,6 +54,7 @@ function ProductConfigurable(props: Props) {
     <>
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
+
         <ProductPageGallery {...product}>
           <p>
             <Typography variant='subtitle2' display='inline'>
@@ -74,6 +75,7 @@ function ProductConfigurable(props: Props) {
             }}
           />
         </ProductPageGallery>
+
         <RowProductDescription {...product} right={<ProductUsps usps={usps} />} />
         <ProductpagesContent
           renderer={{

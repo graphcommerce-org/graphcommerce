@@ -1,7 +1,8 @@
-import { Fab, Theme, makeStyles } from '@material-ui/core'
-import { ChevronLeft, ChevronRight } from '@material-ui/icons'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
+import SvgImage from '../SvgImage'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
   pagination: {
@@ -47,13 +48,13 @@ export default function Pagination(props: PagePaginationProps) {
           disabled
           className={classes.disabled}
         >
-          <ChevronLeft color='inherit' />
+          <SvgImage src={iconChevronLeft} alt='chevron left' />
         </Fab>
       )}
       {page > 1 && (
         <PageLink href={url(page - 1)} passHref>
           <Fab variant='round' size='medium' aria-label='Previous Page' color='inherit'>
-            <ChevronLeft color='inherit' />
+            <SvgImage src={iconChevronLeft} alt='chevron left' />
           </Fab>
         </PageLink>
       )}
@@ -61,7 +62,7 @@ export default function Pagination(props: PagePaginationProps) {
       {page !== count && (
         <PageLink href={url(page + 1)} passHref>
           <Fab variant='round' size='medium' aria-label='Next Page' color='inherit'>
-            <ChevronRight color='inherit' />
+            <SvgImage src={iconChevronRight} alt='chevron left' />
           </Fab>
         </PageLink>
       )}
@@ -74,7 +75,7 @@ export default function Pagination(props: PagePaginationProps) {
           disabled
           className={classes.disabled}
         >
-          <ChevronRight color='inherit' />
+          <SvgImage src={iconChevronRight} alt='chevron left' />
         </Fab>
       )}
     </div>

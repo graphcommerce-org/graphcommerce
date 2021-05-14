@@ -7,11 +7,11 @@ import {
   Theme,
   useForkRef,
 } from '@material-ui/core'
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
 import clsx from 'clsx'
-import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
 import { UseStyles } from '../Styles'
+import SvgImage from '../SvgImage'
+import { iconMin, iconPlus } from '../icons'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -139,11 +139,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             {...DownProps}
           >
             {DownProps.children ?? (
-              <RemoveIcon
-                shapeRendering='geometricPrecision'
-                titleAccess='Step down'
-                fontSize='inherit'
-              />
+              <SvgImage src={iconMin} size='small' alt='Step down' loading='eager' />
             )}
           </IconButton>
         ),
@@ -161,11 +157,7 @@ export default function TextInputNumber(props: TextInputNumberProps) {
             {...UpProps}
           >
             {UpProps.children ?? (
-              <AddIcon
-                shapeRendering='geometricPrecision'
-                titleAccess='Step up'
-                fontSize='inherit'
-              />
+              <SvgImage src={iconPlus} size='small' alt='Step up' loading='eager' />
             )}
           </IconButton>
         ),

@@ -1,8 +1,9 @@
 import { makeStyles, Theme } from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
-import PictureResponsiveNext from '@reachdigital/next-ui/PictureResponsiveNext'
+import SvgImage from '@reachdigital/next-ui/SvgImage'
+import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
-import iconChevronRight from './desktop_chevron_right.svg'
+import React from 'react'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -40,34 +41,28 @@ const useStyles = makeStyles(
 )
 
 export type AccountMenuItemProps = {
-  startIconSrc: string
+  iconSrc: string
   children: React.ReactNode
 } & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'>
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
-  const { children, startIconSrc, href, disabled, ...buttonProps } = props
+  const { children, iconSrc, href, disabled, ...buttonProps } = props
   const { childText, ...classes } = useStyles()
 
   const button = (
     <Button
       variant='contained'
       endIcon={
-        <PictureResponsiveNext
-          alt='desktop_chevron_right'
-          width={24}
-          height={24}
+        <SvgImage
           src={iconChevronRight}
-          type='image/svg+xml'
+          alt='chevron right'
+          size='small'
+          loading='eager'
+          shade='muted'
         />
       }
       startIcon={
-        <PictureResponsiveNext
-          alt={startIconSrc}
-          width={24}
-          height={24}
-          src={startIconSrc}
-          type='image/svg+xml'
-        />
+        <SvgImage src={iconSrc} alt={iconSrc} size='small' loading='eager' shade='muted' />
       }
       disableElevation
       disabled={disabled}

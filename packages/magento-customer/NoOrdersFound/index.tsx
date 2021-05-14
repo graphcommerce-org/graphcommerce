@@ -1,5 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import IconTitle from '@reachdigital/next-ui/IconTitle'
+import IconHeader from '@reachdigital/next-ui/IconHeader'
+import { iconBox } from '@reachdigital/next-ui/icons'
 import React from 'react'
 
 const useStyles = makeStyles(
@@ -16,12 +17,7 @@ export default function NoOrdersFound() {
 
   return (
     <div className={classes.noOrdersContainer}>
-      <IconTitle
-        iconSrc='/icons/desktop_checkout_box.svg'
-        title='No orders found'
-        alt='no order'
-        size='small'
-      />
+      <IconHeader src={iconBox} title='No orders found' alt='no order' size='small' />
     </div>
   )
 }
