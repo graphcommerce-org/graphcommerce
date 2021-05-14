@@ -4,6 +4,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
+import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import {
@@ -65,18 +66,9 @@ function CategoryPage(props: Props) {
   let productList = products?.items
   if (isLanding && productList) productList = products?.items?.slice(0, 8)
 
-  const anyFilterActive = Object.keys(params.filters ?? {}).length > 0
-
   return (
     <>
-      <PageMeta
-        title={category.meta_title ?? category.name ?? ''}
-        metaDescription={category.meta_description ?? ''}
-        metaRobots={anyFilterActive ? ['noindex'] : undefined}
-        canonical={`${params.url}${
-          (params?.currentPage ?? 1) > 1 ? `/q/page/${params?.currentPage}` : ''
-        }`}
-      />
+      <CategoryMeta params={params} {...category} />
 
       {isLanding ? (
         <Container maxWidth={false}>
