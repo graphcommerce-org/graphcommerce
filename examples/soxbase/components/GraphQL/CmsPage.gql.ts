@@ -206,6 +206,7 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
                 { kind: 'Field', name: { kind: 'Name', value: 'metaTitle' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'metaDescription' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'metaRobots' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url' } },
                 {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'content' },
@@ -784,6 +785,7 @@ export const CmsPageDocument: DocumentNode<CmsPageQuery, CmsPageQueryVariables> 
                 { kind: 'Field', name: { kind: 'Name', value: 'identifier' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'content_heading' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'content' } },
@@ -824,7 +826,7 @@ export type CmsPageQuery = {
     }
   >
   pages: Array<
-    Pick<Types.Page, 'title' | 'metaTitle' | 'metaDescription' | 'metaRobots'> & {
+    Pick<Types.Page, 'title' | 'metaTitle' | 'metaDescription' | 'metaRobots' | 'url'> & {
       content: Array<
         | ({ __typename: 'RowBlogContent' } & Pick<Types.RowBlogContent, 'id'> & {
               content?: Types.Maybe<Pick<Types.RichText, 'raw'>>
@@ -916,7 +918,13 @@ export type CmsPageQuery = {
   cmsPage?: Types.Maybe<
     Pick<
       Types.CmsPage,
-      'identifier' | 'meta_title' | 'meta_description' | 'title' | 'content_heading' | 'content'
+      | 'identifier'
+      | 'meta_title'
+      | 'meta_description'
+      | 'url_key'
+      | 'title'
+      | 'content_heading'
+      | 'content'
     >
   >
 }

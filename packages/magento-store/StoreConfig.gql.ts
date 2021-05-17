@@ -31,7 +31,7 @@ export const StoreConfigDocument: DocumentNode<StoreConfigQuery, StoreConfigQuer
                 { kind: 'Field', name: { kind: 'Name', value: 'catalog_default_sort_by' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'category_url_suffix' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'product_url_suffix' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'base_link_url' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'secure_base_link_url' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'root_category_uid' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'weight_unit' } },
               ],
@@ -61,7 +61,7 @@ export type StoreConfigQuery = {
       | 'catalog_default_sort_by'
       | 'category_url_suffix'
       | 'product_url_suffix'
-      | 'base_link_url'
+      | 'secure_base_link_url'
       | 'root_category_uid'
       | 'weight_unit'
     >

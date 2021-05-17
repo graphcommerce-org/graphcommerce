@@ -4,6 +4,7 @@ fragment PageContentQueryFragment on Query {
     metaTitle
     metaDescription
     metaRobots
+    url
     content {
       ... on Node {
         id

@@ -11,7 +11,7 @@ import {
 import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
 import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
 import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'

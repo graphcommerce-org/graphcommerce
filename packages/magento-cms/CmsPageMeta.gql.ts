@@ -14,10 +14,14 @@ export const CmsPageMetaFragmentDoc: DocumentNode<CmsPageMetaFragment, unknown> 
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'meta_title' } },
           { kind: 'Field', name: { kind: 'Name', value: 'meta_description' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'url_key' } },
           { kind: 'Field', name: { kind: 'Name', value: 'title' } },
         ],
       },
     },
   ],
 }
-export type CmsPageMetaFragment = Pick<Types.CmsPage, 'meta_title' | 'meta_description' | 'title'>
+export type CmsPageMetaFragment = Pick<
+  Types.CmsPage,
+  'meta_title' | 'meta_description' | 'url_key' | 'title'
+>

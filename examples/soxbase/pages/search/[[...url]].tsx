@@ -27,7 +27,7 @@ import {
   SearchForm,
   SearchQuery,
 } from '@reachdigital/magento-search'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -53,7 +53,11 @@ function SearchResultPage(props: Props) {
 
   return (
     <>
-      <PageMeta title={search ? `Results for '${search}'` : 'Search'} metaRobots={['noindex']} />
+      <PageMeta
+        title={search ? `Results for '${search}'` : 'Search'}
+        metaRobots={['noindex']}
+        canonical='/search'
+      />
 
       <Container maxWidth='sm'>
         <SearchForm totalResults={totalSearchResults} search={search} />

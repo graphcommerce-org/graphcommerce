@@ -4,8 +4,7 @@ import {
   ProductListDocument,
   ProductListQuery,
 } from '@reachdigital/magento-product-types/ProductList.gql'
-import { PageMeta } from '@reachdigital/magento-store'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -27,8 +26,8 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
-
   const title = cmsPage?.title ?? ''
+
   return (
     <>
       <PageMeta

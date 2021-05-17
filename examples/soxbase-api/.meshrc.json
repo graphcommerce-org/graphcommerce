@@ -41,15 +41,5 @@
         }
       }
     }
-  ],
-  "transforms": [
-    {
-      "cache": [
-        {
-          "field": "Query.storeConfig",
-          "invalidate": { "ttl": 300 }
-        }
-      ]
-    }
   ]
 }

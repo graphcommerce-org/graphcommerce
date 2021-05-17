@@ -1,11 +1,11 @@
 import { Box, Container, Typography } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
 import {
-  PageMeta,
   StoreConfigDocument,
   StoreSwitcherList,
   StoreSwitcherListDocument,
   StoreSwitcherListQuery,
+  PageMeta,
 } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'

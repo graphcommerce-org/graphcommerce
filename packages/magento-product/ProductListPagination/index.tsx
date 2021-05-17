@@ -43,6 +43,12 @@ const useStyles = makeStyles(
   },
 )
 
+/**
+ * Rel="prev" and rel="next" are deprecated by Google.
+ *
+ * Read more: https://ahrefs.com/blog/rel-prev-next-pagination/
+ */
+
 export type ProductPaginationProps = ProductListPaginationFragment &
   Omit<PaginationProps, 'count' | 'defaultPage' | 'page' | 'renderItem'> &
   UseStyles<typeof useStyles>

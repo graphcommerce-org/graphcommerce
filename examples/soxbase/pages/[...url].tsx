@@ -4,6 +4,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import CategoryChildren from '@reachdigital/magento-category/CategoryChildren'
 import CategoryDescription from '@reachdigital/magento-category/CategoryDescription'
 import CategoryHeroNav from '@reachdigital/magento-category/CategoryHeroNav'
+import CategoryMeta from '@reachdigital/magento-category/CategoryMeta'
 import { ProductListParamsProvider } from '@reachdigital/magento-category/CategoryPageContext'
 import getCategoryStaticPaths from '@reachdigital/magento-category/getCategoryStaticPaths'
 import {
@@ -26,7 +27,7 @@ import {
   parseParams,
 } from '@reachdigital/magento-product/ProductListItems/filteredProductList'
 import { getFilterTypes } from '@reachdigital/magento-product/ProductListItems/getFilterTypes'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -66,10 +67,7 @@ function CategoryPage(props: Props) {
 
   return (
     <>
-      <PageMeta
-        title={category.meta_title ?? category.name ?? ''}
-        metaDescription={category.meta_description ?? ''}
-      />
+      <CategoryMeta params={params} {...category} />
 
       {isLanding ? (
         <Container maxWidth={false}>
