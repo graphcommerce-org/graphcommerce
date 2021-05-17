@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Fab, IconButton, makeStyles, Theme } from '@material-ui/core'
+import { Fab, makeStyles, Theme } from '@material-ui/core'
 import CartFab from '@reachdigital/magento-cart/CartFab'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import { SearchButton } from '@reachdigital/magento-search'
@@ -12,6 +12,7 @@ import FullPageShellBase, {
 import { MenuProps } from '@reachdigital/next-ui/AppShell/Menu'
 import MenuFab from '@reachdigital/next-ui/AppShell/MenuFab'
 import MenuFabSecondaryItem from '@reachdigital/next-ui/AppShell/MenuFabSecondaryItem'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconCustomerService, iconPersonAlt, iconStar } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
@@ -28,6 +29,10 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('sm')]: {
         minWidth: 130,
       },
+    },
+    fab: {
+      width: responsiveVal(42, 56),
+      height: responsiveVal(42, 56),
     },
   }),
   { name: 'FullPageUI' },
@@ -74,7 +79,12 @@ function FullPageShell(props: FullPageShellProps) {
             )}
 
             <PageLink href='/service' passHref>
-              <Fab style={{ boxShadow: 'none' }} aria-label='Account' size='medium'>
+              <Fab
+                style={{ boxShadow: 'none' }}
+                aria-label='Account'
+                size='medium'
+                classes={{ root: classes.fab }}
+              >
                 <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
               </Fab>
             </PageLink>

@@ -37,6 +37,8 @@ const useStyles = makeStyles(
     menuFab: {
       background: theme.palette.text.primary,
       boxShadow: theme.shadows[2],
+      width: responsiveVal(42, 56),
+      height: responsiveVal(42, 56),
       '&:hover, &:focus': {
         background: theme.palette.text.primary,
       },
