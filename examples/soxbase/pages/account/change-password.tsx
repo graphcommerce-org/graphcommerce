@@ -25,9 +25,8 @@ function AccountChangePasswordPage() {
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'account',
+  overlayGroup: 'account-public',
   SharedComponent: SheetShell,
-  sharedKey: () => 'account',
 }
 AccountChangePasswordPage.pageOptions = pageOptions
 
@@ -35,8 +34,6 @@ export default AccountChangePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

@@ -25,7 +25,7 @@ function AccountSignInPage() {
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'acount-public',
+  overlayGroup: 'account-public',
   SharedComponent: SheetShell,
 }
 AccountSignInPage.pageOptions = pageOptions
@@ -34,8 +34,6 @@ export default AccountSignInPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

@@ -62,23 +62,8 @@ export default function ForgotPasswordForm() {
         />
       </div>
 
-      {/* <div className={formClasses.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.confirmEmail}
-          label='Confirm Email'
-          required
-          {...muiRegister('confirmEmail', {
-            required: true,
-            validate: (value) => value === watch('email') || "Emails don't match",
-          })}
-          helperText={formState.errors.confirmEmail?.message}
-          disabled={formState.isSubmitting}
-        />
-      </div> */}
-
       <ApolloErrorAlert error={error} />
+
       <div className={formClasses.actions}>
         <Button
           type='submit'
@@ -86,6 +71,7 @@ export default function ForgotPasswordForm() {
           color='primary'
           variant='contained'
           size='large'
+          text='bold'
         >
           Send
         </Button>
