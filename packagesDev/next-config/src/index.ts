@@ -49,5 +49,5 @@ export function withYarn1Workspaces(modules: string[] = []) {
     }
   })
 
-  return withTranspileModules([...m.values()], { resolveSymlinks: true })
+  return withTranspileModules([...m.values()])
 }
