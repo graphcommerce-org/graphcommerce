@@ -13,7 +13,7 @@ import getProductStaticPaths from '@reachdigital/magento-product/ProductStaticPa
 import { Money, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
-import PageLink from 'next/link'
+import Link from 'next/link'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../../components/AppShell/FullPageShell'
 import { ProductPageDocument, ProductPageQuery } from '../../../components/GraphQL/ProductPage.gql'
@@ -72,9 +72,11 @@ function ProductConfigurable(props: Props) {
             name={product.name ?? ''}
             optionEndLabels={{
               size: (
-                <PageLink href='/modal/product/global/size' passHref>
-                  <Link color='primary'>Which size is right?</Link>
-                </PageLink>
+                <Link href='/modal/product/global/size' passHref>
+                  <Typography variant='body2' color='primary'>
+                    Which size is right?
+                  </Typography>
+                </Link>
               ),
             }}
           />
