@@ -36,7 +36,7 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
 
   if (formState.isSubmitSuccessful && data) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    router.replace(`/account/create-password?success=1`)
+    router.replace(`${window.location.href.split('?')[0]}?success=1`)
   }
 
   return (
@@ -70,7 +70,7 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label='Confirm Password'
+          label='Confirm password'
           required
           {...muiRegister('confirmPassword', {
             required: true,

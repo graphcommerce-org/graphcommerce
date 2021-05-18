@@ -6,12 +6,12 @@ import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { useRouter } from 'next/router'
 import React from 'react'
-import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
-import apolloClient from '../../lib/apolloClient'
+import SheetShell, { SheetShellProps } from '../../../../components/AppShell/SheetShell'
+import apolloClient from '../../../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
-function AccountChangePasswordPage() {
+function CustomerAccountCreatePasswordPage() {
   const { query } = useRouter()
   const { token, success } = query
 
@@ -69,9 +69,9 @@ const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account-public',
   SharedComponent: SheetShell,
 }
-AccountChangePasswordPage.pageOptions = pageOptions
+CustomerAccountCreatePasswordPage.pageOptions = pageOptions
 
-export default AccountChangePasswordPage
+export default CustomerAccountCreatePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
