@@ -1,4 +1,4 @@
-import { Container, NoSsr } from '@material-ui/core'
+import { Box, Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
@@ -18,7 +18,9 @@ function AccountChangePasswordPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <ChangePasswordForm />
+        <Box pt={4} pb={4}>
+          <ChangePasswordForm />
+        </Box>
       </NoSsr>
     </Container>
   )
@@ -39,10 +41,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
-      backFallbackHref: '/account',
-      backFallbackTitle: 'Account',
+      variant: 'top',
+      backFallbackHref: '/account/signin',
+      backFallbackTitle: 'Sign In',
     },
   }
 }

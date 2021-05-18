@@ -25,39 +25,41 @@ function AccountChangePasswordPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        {!success && (
-          <Container maxWidth='sm'>
-            <Typography variant='h3' align='center'>
-              Set your new password
-            </Typography>
+        <Box pt={4} pb={4}>
+          {!success && (
+            <Container maxWidth='sm'>
+              <Typography variant='h3' align='center'>
+                Set your new password
+              </Typography>
 
-            <Box textAlign='center'>
-              <p>Fill in your new password, confirm it and click on the save button</p>
-            </Box>
+              <Box textAlign='center'>
+                <p>Fill in your new password, confirm it and click on the save button.</p>
+              </Box>
 
-            <ResetPasswordForm token={(token as string) ?? ''} />
-          </Container>
-        )}
+              <ResetPasswordForm token={(token as string) ?? ''} />
+            </Container>
+          )}
 
-        {success && (
-          <Container>
-            <Typography variant='h3' align='center'>
-              You have now successfully reset your password
-            </Typography>
+          {success && (
+            <Container>
+              <Typography variant='h3' align='center'>
+                You have now successfully reset your password
+              </Typography>
 
-            <Box textAlign='center'>
-              <p>
-                You can view{' '}
-                <Link color='primary' href='/account'>
-                  your account here
-                </Link>
-                .
-              </p>
+              <Box textAlign='center'>
+                <p>
+                  You can view{' '}
+                  <Link color='primary' href='/account'>
+                    your account here
+                  </Link>
+                  .
+                </p>
 
-              <ContinueShoppingButton />
-            </Box>
-          </Container>
-        )}
+                <ContinueShoppingButton />
+              </Box>
+            </Container>
+          )}
+        </Box>
       </NoSsr>
     </>
   )
@@ -78,10 +80,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
-      backFallbackHref: '/account',
-      backFallbackTitle: 'Account',
+      variant: 'top',
+      backFallbackHref: '/account/signin',
+      backFallbackTitle: 'Sign In',
     },
   }
 }

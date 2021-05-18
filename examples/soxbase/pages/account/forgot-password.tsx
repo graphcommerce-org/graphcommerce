@@ -18,17 +18,14 @@ function AccountForgotPasswordPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <Typography variant='h3' align='center'>
-          Forgot your password?
-        </Typography>
-
-        <Box textAlign='center'>
+        <Box pt={4} textAlign='center'>
+          <Typography variant='h3'>Forgot your password?</Typography>
           <p>
             No worries! Enter your email address and we will send an email with instructions to
             reset your password.
           </p>
+          <ForgotPasswordForm />
         </Box>
-        <ForgotPasswordForm />
       </NoSsr>
     </Container>
   )
@@ -44,8 +41,6 @@ export default AccountForgotPasswordPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
