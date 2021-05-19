@@ -43,6 +43,9 @@ const useStyles = makeStyles(
     quantity: {
       marginTop: theme.spacings.sm,
     },
+    divider: {
+      margin: '5px 0',
+    },
   }),
   { name: 'ConfigurableAddToCart' },
 )
@@ -76,7 +79,7 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
     </PageLink>
   ) : (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
-      <Divider />
+      <Divider className={classes.divider} />
 
       <ConfigurableOptionsInput
         name='selectedOptions'
