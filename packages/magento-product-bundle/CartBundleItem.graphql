@@ -1,6 +1,6 @@
 fragment CartItemBundle on BundleCartItem {
   bundle_options {
-    id
+    uid
     label
     type
     values {

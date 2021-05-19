@@ -65,6 +65,7 @@ mutation ShippingAddressForm(
   ) {
     cart {
       id
+      __typename
       ...BillingAddress
     }
   }
