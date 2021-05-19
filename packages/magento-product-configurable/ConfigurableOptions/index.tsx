@@ -77,7 +77,10 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
             defaultValue={selection[attribute_code] ?? ''}
             name={`${name}[${attribute_code}]`}
             {...controlProps}
-            render={({ field: { onChange, value, name: inputName, ref, onBlur } }) => (
+            render={({
+              field: { onChange, value, name: inputName, ref, onBlur },
+              fieldState: { error: errorHelperText },
+            }) => (
               <SectionContainer
                 label={`choose your ${option?.label}`}
                 endLabel={
@@ -136,7 +139,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                 </ToggleButtonGroup>
                 {error && (
                   <FormHelperText error {...FormHelperTextProps}>
-                    {helperText}
+                    {`${attribute_code} is ${errorHelperText?.type}`}
                   </FormHelperText>
                 )}
               </SectionContainer>
