@@ -7,7 +7,7 @@ import AccountLatestOrder from '@reachdigital/magento-customer/AccountLatestOrde
 import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox, iconHome, iconPerson, iconShutdown, iconStar } from '@reachdigital/next-ui/icons'
 import React from 'react'

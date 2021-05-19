@@ -1,6 +1,6 @@
 import { Box, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import FramerNextPagesSlider from '@reachdigital/next-ui/FramerNextPagesSlider'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -23,7 +23,12 @@ function ServicePage({ pages }: Props) {
 
   return (
     <FramerNextPagesSlider>
-      <PageMeta title={title} metaDescription={title} metaRobots={['noindex']} />
+      <PageMeta
+        title={title}
+        metaDescription={title}
+        metaRobots={['noindex']}
+        canonical={pages?.[0]?.url ?? ''}
+      />
 
       {title && (
         <Box pt={4} pb={4}>
@@ -70,10 +75,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async ({ locale, params }) => {
   const url = params?.url ? `service/${params?.url.join('/')}` : `service`
-
   const client = apolloClient(locale, true)
   const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
   const page = staticClient.query({
     query: DefaultPageDocument,

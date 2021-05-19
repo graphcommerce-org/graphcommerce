@@ -1,8 +1,7 @@
-import { Container, NoSsr, Typography } from '@material-ui/core'
+import { Box, Container, NoSsr, Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ForgotPasswordForm from '@reachdigital/magento-customer/ForgotPasswordForm'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -12,20 +11,21 @@ type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountForgotPasswordPage() {
   return (
-    <Container maxWidth='xs'>
+    <Container maxWidth='sm'>
       <PageMeta
         title='Forgot Password'
         metaDescription='Forgot password'
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <Typography variant='h3' align='center'>
-          Forgot password
-        </Typography>
-        <Typography variant='h6' align='center'>
-          Fill in your e-mail to request changing your password
-        </Typography>
-        <ForgotPasswordForm />
+        <Box pt={4} textAlign='center'>
+          <Typography variant='h3'>Forgot your password?</Typography>
+          <p>
+            No worries! Enter your email address and we will send an email with instructions to
+            reset your password.
+          </p>
+          <ForgotPasswordForm />
+        </Box>
       </NoSsr>
     </Container>
   )
@@ -34,6 +34,7 @@ function AccountForgotPasswordPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account-public',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account',
 }
 AccountForgotPasswordPage.pageOptions = pageOptions
 
@@ -41,8 +42,6 @@ export default AccountForgotPasswordPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {

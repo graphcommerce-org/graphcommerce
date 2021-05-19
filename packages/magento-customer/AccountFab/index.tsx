@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { Badge, Fab, makeStyles, NoSsr, Theme } from '@material-ui/core'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
+
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconPersonAlt } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
@@ -9,6 +11,10 @@ import { CustomerTokenDocument, CustomerTokenQuery } from '../CustomerToken.gql'
 const useStyles = makeStyles((theme: Theme) => ({
   colorError: {
     backgroundColor: theme.palette.grey['500'],
+  },
+  fab: {
+    width: responsiveVal(42, 56),
+    height: responsiveVal(42, 56),
   },
 }))
 
@@ -21,18 +27,21 @@ function CustomerFabContent(props: CustomerFabContentProps) {
 
   return (
     <PageLink href={requireAuth ? '/account/signin' : '/account'} passHref>
-      <Fab style={{ boxShadow: 'none' }} aria-label='Open Menu' size='medium'>
-        {/* <IconButton aria-label='Account' color='inherit' size='medium'> */}
+      <Fab
+        style={{ boxShadow: 'none' }}
+        aria-label='Open Menu'
+        size='medium'
+        classes={{ root: classes.fab }}
+      >
         <Badge
           badgeContent={customerToken?.token ? 1 : 0}
           color={customerToken?.valid ? 'primary' : 'error'}
           variant='dot'
-          classes={classes}
+          classes={{ colorError: classes.colorError }}
         >
           {icon ?? <SvgImage src={iconPersonAlt} alt='Account' loading='eager' />}
         </Badge>
       </Fab>
-      {/* </IconButton> */}
     </PageLink>
   )
 }

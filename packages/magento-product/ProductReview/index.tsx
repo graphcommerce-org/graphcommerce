@@ -77,7 +77,8 @@ export default function ProductReview(props: ProductReviewProps) {
           <div className={classes.meta}>
             <div className={classes.nickname}>Written by {review?.nickname}</div>
             <time className={classes.date} dateTime={review?.created_at}>
-              {review?.created_at && formatter.format(new Date(review?.created_at))}
+              {review?.created_at &&
+                formatter.format(new Date(review?.created_at.replace(/-/g, '/')))}
             </time>
           </div>
         </div>

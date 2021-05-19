@@ -3,64 +3,78 @@ import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { useFormGqlMutation } from '@reachdigital/react-hook-form'
+import { useRouter } from 'next/router'
 import React from 'react'
 import {
-  ChangePasswordDocument,
-  ChangePasswordMutation,
-  ChangePasswordMutationVariables,
-} from './ChangePassword.gql'
+  ResetPasswordDocument,
+  ResetPasswordMutation,
+  ResetPasswordMutationVariables,
+} from './ResetPassword.gql'
 
-export default function ChangePasswordForm() {
+type ResetPasswordFormProps = {
+  token: string
+}
+
+export default function ResetPasswordForm(props: ResetPasswordFormProps) {
+  const { token } = props
   const classes = useFormStyles()
   const form = useFormGqlMutation<
-    ChangePasswordMutation,
-    ChangePasswordMutationVariables & { confirmPassword?: string }
-  >(ChangePasswordDocument)
+    ResetPasswordMutation,
+    ResetPasswordMutationVariables & { confirmPassword?: string }
+  >(ResetPasswordDocument, {
+    onBeforeSubmit: (formData) => ({
+      ...formData,
+      resetPasswordToken: token,
+    }),
+  })
+  const router = useRouter()
+
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
-  if (formState.isSubmitSuccessful && data) {
-    return <div>Password changed!</div>
-  }
+  const newPass = watch('newPassword')
 
-  const pass = watch('newPassword')
+  if (formState.isSubmitSuccessful && data) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    router.replace(`${window.location.href.split('?')[0]}?success=1`)
+  }
 
   return (
     <form onSubmit={submitHandler} noValidate className={classes.form}>
       <div className={classes.formRow}>
         <TextField
           variant='outlined'
-          type='password'
-          error={!!formState.errors.currentPassword}
-          label='Current Password'
-          required={required.currentPassword}
-          {...muiRegister('currentPassword', { required: required.currentPassword })}
-          helperText={formState.errors.currentPassword?.message}
+          type='email'
+          error={!!formState.errors.email}
+          label='Email'
+          required={required.email}
+          {...muiRegister('email', { required: required.newPassword })}
+          helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
         />
       </div>
-
       <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='password'
           error={!!formState.errors.newPassword}
-          label='New Password'
+          label='New password'
           required={required.newPassword}
           {...muiRegister('newPassword', { required: required.newPassword })}
           helperText={formState.errors.newPassword?.message}
           disabled={formState.isSubmitting}
         />
-
+      </div>
+      <div className={classes.formRow}>
         <TextField
           variant='outlined'
           type='password'
           error={!!formState.errors.confirmPassword}
-          label='Confirm Password'
+          label='Confirm password'
           required
           {...muiRegister('confirmPassword', {
             required: true,
-            validate: (value) => value === pass || "Passwords don't match",
+            validate: (value) => value === newPass || "Passwords don't match",
           })}
           helperText={formState.errors.confirmPassword?.message}
           disabled={formState.isSubmitting}

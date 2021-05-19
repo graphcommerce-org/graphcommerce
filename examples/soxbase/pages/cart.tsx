@@ -12,7 +12,7 @@ import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.g
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
 import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'

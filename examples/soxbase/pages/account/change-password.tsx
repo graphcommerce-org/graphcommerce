@@ -1,7 +1,7 @@
-import { Container, NoSsr } from '@material-ui/core'
+import { Box, Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import ChangePasswordForm from '@reachdigital/magento-customer/ChangePasswordForm'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -18,14 +18,16 @@ function AccountChangePasswordPage() {
         metaRobots={['noindex']}
       />
       <NoSsr>
-        <ChangePasswordForm />
+        <Box pt={4} pb={4}>
+          <ChangePasswordForm />
+        </Box>
       </NoSsr>
     </Container>
   )
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'account',
+  overlayGroup: 'account-public',
   SharedComponent: SheetShell,
   sharedKey: () => 'account',
 }
@@ -35,17 +37,14 @@ export default AccountChangePasswordPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      variant: 'bottom',
-      size: 'max',
-      backFallbackHref: '/account',
-      backFallbackTitle: 'Account',
+      variant: 'top',
+      backFallbackHref: '/account/signin',
+      backFallbackTitle: 'Sign In',
     },
   }
 }

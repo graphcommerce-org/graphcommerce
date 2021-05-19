@@ -1,5 +1,6 @@
 import { Badge, Fab, FabProps, makeStyles, NoSsr, Theme } from '@material-ui/core'
 import useFabAnimation from '@reachdigital/next-ui/AppShell/useFabAnimation'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconShoppingBag } from '@reachdigital/next-ui/icons'
 import { m } from 'framer-motion'
@@ -16,7 +17,7 @@ export type CartFabProps = {
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
-    cart: {
+    wrapper: {
       position: 'fixed',
       zIndex: 8,
       right: theme.page.horizontal,
@@ -26,6 +27,10 @@ const useStyles = makeStyles(
       [theme.breakpoints.up('md')]: {
         top: theme.page.vertical,
       },
+    },
+    fab: {
+      width: responsiveVal(42, 56),
+      height: responsiveVal(42, 56),
     },
   }),
   { name: 'CartFab' },
@@ -37,9 +42,9 @@ function CartFabContent(props: CartFabProps & CartTotalQuantityFragment) {
   const { filter } = useFabAnimation()
 
   return (
-    <m.div className={classes.cart} style={{ filter }}>
+    <m.div className={classes.wrapper} style={{ filter }}>
       <PageLink href='/cart' passHref>
-        <Fab aria-label='Cart' color='inherit' size='large' {...fabProps}>
+        <Fab aria-label='Cart' color='inherit' size='large' className={classes.fab} {...fabProps}>
           <Badge badgeContent={total_quantity} color='primary' variant='dot'>
             {icon ?? <SvgImage src={iconShoppingBag} alt='Shopping Bag' loading='eager' />}
           </Badge>

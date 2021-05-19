@@ -1,6 +1,5 @@
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
-
+import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { GetStaticPaths } from 'next'
 import React from 'react'
@@ -27,7 +26,7 @@ function BlogPage(props: Props) {
   const title = page.title ?? ''
   return (
     <>
-      <PageMeta title={title} metaDescription={title} />
+      <PageMeta title={title} metaDescription={title} canonical={page.url} />
       <BlogHeader asset={page.asset} />
       <PageContent {...page} />
       <BlogList blogPosts={blogPosts} />

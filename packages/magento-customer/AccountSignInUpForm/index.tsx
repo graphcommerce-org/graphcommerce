@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client'
-import { makeStyles, Theme, Typography, Link, TextField, CircularProgress } from '@material-ui/core'
+import { CircularProgress, Link, makeStyles, TextField, Theme, Typography } from '@material-ui/core'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { useFormPersist, emailPattern } from '@reachdigital/react-hook-form'
+import { emailPattern, useFormPersist } from '@reachdigital/react-hook-form'
 import { AnimatePresence } from 'framer-motion'
 import PageLink from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
+import ContinueShoppingButton from '../ContinueShoppingButton'
 import { CustomerDocument } from '../Customer.gql'
 import SignInForm from '../SignInForm'
 import SignUpForm from '../SignUpForm'
@@ -20,18 +20,12 @@ const useStyles = makeStyles(
       ...theme.typography.body1,
       marginBottom: theme.spacings.xs,
     },
-    continueShoppingButton: {
-      display: 'block',
-      margin: `${theme.spacings.md} auto 0 auto`,
-      maxWidth: 'max-content',
-    },
   }),
   { name: 'GuestOrderEmailSignIn' },
 )
 
 export default function AccountSignInUpForm() {
   const classes = useStyles()
-  const router = useRouter()
   const formClasses = useFormStyles()
 
   const customerQuery = useQuery(CustomerDocument, { ssr: false })
@@ -90,15 +84,7 @@ export default function AccountSignInUpForm() {
             .
           </Typography>
 
-          <Button
-            onClick={() => router.back()}
-            color='primary'
-            variant='contained'
-            size='large'
-            className={classes.continueShoppingButton}
-          >
-            Continue shopping
-          </Button>
+          <ContinueShoppingButton />
         </div>
       )}
 

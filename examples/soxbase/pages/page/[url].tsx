@@ -26,8 +26,8 @@ type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props, RouteProps>
 
 function CmsPage(props: Props) {
   const { cmsPage, pages, products } = props
-
   const title = cmsPage?.title ?? ''
+
   return (
     <>
       <PageMeta

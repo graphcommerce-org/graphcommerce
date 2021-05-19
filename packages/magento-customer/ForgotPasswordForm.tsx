@@ -3,7 +3,7 @@ import { Alert } from '@material-ui/lab'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
-import { useFormGqlMutation, emailPattern } from '@reachdigital/react-hook-form'
+import { emailPattern, useFormGqlMutation } from '@reachdigital/react-hook-form'
 import React from 'react'
 import {
   ForgotPasswordDocument,
@@ -24,11 +24,10 @@ const useStyles = makeStyles(
 export default function ForgotPasswordForm() {
   const formClasses = useFormStyles()
   const classes = useStyles()
-  const form = useFormGqlMutation<
-    ForgotPasswordMutation,
-    ForgotPasswordMutationVariables & { confirmEmail?: string }
-  >(ForgotPasswordDocument)
-  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
+  const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
+    ForgotPasswordDocument,
+  )
+  const { muiRegister, handleSubmit, required, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
@@ -57,23 +56,8 @@ export default function ForgotPasswordForm() {
         />
       </div>
 
-      <div className={formClasses.formRow}>
-        <TextField
-          variant='outlined'
-          type='text'
-          error={!!formState.errors.confirmEmail}
-          label='Confirm Email'
-          required
-          {...muiRegister('confirmEmail', {
-            required: true,
-            validate: (value) => value === watch('email') || "Emails don't match",
-          })}
-          helperText={formState.errors.confirmEmail?.message}
-          disabled={formState.isSubmitting}
-        />
-      </div>
-
       <ApolloErrorAlert error={error} />
+
       <div className={formClasses.actions}>
         <Button
           type='submit'
@@ -81,8 +65,9 @@ export default function ForgotPasswordForm() {
           color='primary'
           variant='contained'
           size='large'
+          text='bold'
         >
-          Send email
+          Send password reset email
         </Button>
       </div>
     </form>

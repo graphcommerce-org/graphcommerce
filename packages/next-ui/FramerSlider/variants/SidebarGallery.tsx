@@ -47,6 +47,7 @@ const useStyles = makeStyles(
         display: 'block',
         height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
         position: 'relative',
+        minHeight: '100%',
         paddingTop: `min(${ratio}, ${maxHeight})`,
         borderRadius: 2,
       }

@@ -2,7 +2,6 @@ import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
 import AccountSignInUpForm from '@reachdigital/magento-customer/AccountSignInUpForm'
 import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
@@ -26,8 +25,9 @@ function AccountSignInPage() {
 }
 
 const pageOptions: PageOptions<SheetShellProps> = {
-  overlayGroup: 'acount-public',
+  overlayGroup: 'account-public',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account',
 }
 AccountSignInPage.pageOptions = pageOptions
 
@@ -35,8 +35,6 @@ export default AccountSignInPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
-
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
