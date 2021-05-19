@@ -4,7 +4,6 @@ import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
 import { SignInDocument, SignInMutationVariables } from './SignIn.gql'
-import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -29,10 +28,7 @@ type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'>
 
 export default function SignInFormInline({ email }: PropsWithChildren<InlineSignInFormProps>) {
   const classes = useStyles()
-  const form = useFormGqlMutation(SignInDocument, {
-    defaultValues: { email },
-    onComplete: onCompleteSignInUp,
-  })
+  const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
   const { muiRegister, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 

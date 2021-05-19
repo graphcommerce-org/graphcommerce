@@ -1,8 +1,8 @@
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
-import { useAssignCurrentCartId } from '../hooks/useAssignCurrentCartId'
-import { useCurrentCartId } from '../hooks/useCartId'
 import { MergeCartsDocument } from './MergeCarts.gql'
+import { useAssignCurrentCartId } from './useAssignCurrentCartId'
+import { useCurrentCartId } from './useCartId'
 
 /**
  * ```tsx
@@ -15,6 +15,8 @@ export function useMergedCart(customerCartId?: string) {
   const sourceCartId = useCurrentCartId()
   const assignCurrentCartId = useAssignCurrentCartId()
   const [merge] = useMutation(MergeCartsDocument)
+
+  // const customerCartId = useCustomer()
 
   useEffect(() => {
     if (!customerCartId) return

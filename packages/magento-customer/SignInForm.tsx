@@ -10,7 +10,6 @@ import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
-import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -28,10 +27,7 @@ export default function SignInForm(props: SignInFormProps) {
   const classes = useStyles()
   const formClasses = useFormStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const form = useFormGqlMutation(SignInDocument, {
-    onComplete: onCompleteSignInUp,
-    defaultValues: { email },
-  })
+  const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
   const { muiRegister, handleSubmit, required, formState, error } = form
   const [remainingError, authError] = graphqlErrorByCategory('graphql-authentication', error)
   const submitHandler = handleSubmit(() => {})

@@ -7,7 +7,6 @@ import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-for
 import React from 'react'
 import NameFields from './NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
-import onCompleteSignInUp from './onCompleteSignInUp'
 
 type SignUpFormProps = {
   email?: string
@@ -19,12 +18,10 @@ export default function SignUpForm(props: SignUpFormProps) {
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
-  >(SignUpDocument, {
-    defaultValues: { email },
-    onComplete: onCompleteSignInUp,
-  })
+  >(SignUpDocument, { defaultValues: { email } })
+
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
-  const { muiRegister, handleSubmit, required, watch, control, formState, error } = form
+  const { muiRegister, handleSubmit, required, watch, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
 
   const submitHandler = handleSubmit(() => {})

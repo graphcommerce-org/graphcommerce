@@ -5,7 +5,6 @@ import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
-import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -47,7 +46,6 @@ export default function SignUpFormInline({
   >(SignUpDocument, {
     // todo(paales): This causes dirty data to be send to the backend.
     defaultValues: { email, prefix: '-', firstname: '-', lastname: '-' },
-    onComplete: onCompleteSignInUp,
   })
   const { muiRegister, watch, handleSubmit, required, formState, error } = form
   const submitHandler = handleSubmit(() => {})

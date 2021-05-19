@@ -70,7 +70,7 @@ export function createApolloClient(
 
   const links: (ApolloLink | RequestHandler)[] = [
     measurePerformanceLink,
-    (new MutationQueueLink() as unknown) as ApolloLink,
+    new MutationQueueLink() as unknown as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
     authLink,
