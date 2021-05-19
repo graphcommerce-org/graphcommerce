@@ -17,8 +17,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # application
-**/public/workbox-*.js
-**/public/sw.js
+**/public/workbox-*.js*
+**/public/sw.js*
 **/public/sitemap*.xml
 **/public/robots.txt
 
