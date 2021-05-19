@@ -35,7 +35,7 @@ const useStyles = makeStyles(
   },
 )
 
-export type CategorySearchResultProps = CategorySearchResultFragment &
+export type CategorySearchResultProps = Omit<CategorySearchResultFragment, 'uid'> &
   UseStyles<typeof useStyles> & { search: string }
 
 export default function CategorySearchResult(props: CategorySearchResultProps) {

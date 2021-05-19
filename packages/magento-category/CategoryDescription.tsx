@@ -2,7 +2,8 @@ import { makeStyles, Theme, Typography } from '@material-ui/core'
 import React from 'react'
 import { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
-type CategoryDescriptionProps = CategoryDescriptionFragment & JSX.IntrinsicElements['div']
+type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
+  JSX.IntrinsicElements['div']
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
