@@ -11,8 +11,13 @@
     "dev": "next",
     "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
     "dev:codegen": "yarn codegen -w",
-    "build": "yarn codegen && next build && yarn next-sitemap",
-    "start": "next start"
+    "build:next-config": "yarn workspace @reachdigital/next-config build",
+    "build:near-operation": "yarn workspace @reachdigital/graphql-codegen-near-operation-file build",
+    "build:relay-optimizer": "yarn workspace @reachdigital/graphql-codegen-relay-optimizer-plugin build",
+    "soxbase-api": "yarn workspace @reachdigital/soxbase-api build && yarn start:soxbase-api",
+    "build": "yarn build:next-config && yarn build:near-operation && yarn build:relay-optimizer && yarn codegen && next build && yarn next-sitemap",
+    "start": "next start",
+    "postinstall": "patch-package && patch-typed-document-node"
   },
   "dependencies": {
     "@adobe/apollo-link-mutation-queue": "^1.0.2",
