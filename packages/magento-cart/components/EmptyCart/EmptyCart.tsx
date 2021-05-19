@@ -28,7 +28,9 @@ const useStyles = makeStyles(
   { name: 'EmptyCart' },
 )
 
-export default function EmptyCart() {
+type EmptyCartProps = { children?: React.ReactNode }
+export default function EmptyCart(props: EmptyCartProps) {
+  const { children } = props
   const classes = useStyles()
 
   return (
@@ -42,10 +44,14 @@ export default function EmptyCart() {
           size='large'
         />
 
-        <Typography variant='h3' gutterBottom component='h1'>
-          Your cart is empty
-        </Typography>
-        <Typography>Discover our collection and add items to your basket!</Typography>
+        {children ?? (
+          <>
+            <Typography variant='h3' gutterBottom component='h1'>
+              Your cart is empty
+            </Typography>
+            <Typography>Discover our collection and add items to your basket!</Typography>
+          </>
+        )}
       </div>
     </div>
   )

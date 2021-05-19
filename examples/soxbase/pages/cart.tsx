@@ -6,6 +6,7 @@ import {
   CartStartCheckout,
   CartTotals,
   EmptyCart,
+  useClearCurrentCartId,
 } from '@reachdigital/magento-cart'
 import { CartPageDocument } from '@reachdigital/magento-cart-checkout/CartPage.gql'
 import { CouponAccordion } from '@reachdigital/magento-cart-coupon'
@@ -13,6 +14,8 @@ import { CartItem, CartItems } from '@reachdigital/magento-cart-items'
 import ConfigurableCartItem from '@reachdigital/magento-product-configurable/ConfigurableCartItem'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import { AnimatePresence } from 'framer-motion'
@@ -24,8 +27,11 @@ type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<SheetShellProps, Props>
 
 function CartPage() {
-  const { data } = useCartQuery(CartPageDocument, { returnPartialData: true })
-  const hasItems = (data?.cart?.total_quantity ?? 0) > 0
+  const { data, error } = useCartQuery(CartPageDocument, { returnPartialData: true })
+  const clear = useClearCurrentCartId()
+  const hasItems =
+    (data?.cart?.total_quantity ?? 0) > 0 &&
+    typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
   return (
     <Container maxWidth='md'>
@@ -39,6 +45,7 @@ function CartPage() {
           {hasItems ? (
             <>
               <Stepper steps={3} currentStep={1} key='checkout-stepper' />
+
               <AnimatedRow key='quick-checkout'>
                 <CartQuickCheckout {...data?.cart} />
               </AnimatedRow>
@@ -63,12 +70,20 @@ function CartPage() {
                 prices={data?.cart?.prices}
                 shipping_addresses={data?.cart?.shipping_addresses ?? []}
               />
+              <ApolloErrorAlert error={error} />
               <AnimatedRow key='checkout-button'>
-                <CartStartCheckout {...data?.cart?.prices?.grand_total} />
+                <CartStartCheckout {...data?.cart} />
               </AnimatedRow>
             </>
           ) : (
-            <EmptyCart />
+            <EmptyCart>
+              {error && (
+                <>
+                  <ApolloErrorAlert error={error} />
+                  <Button onClick={clear}>Reset Cart</Button>
+                </>
+              )}
+            </EmptyCart>
           )}
         </AnimatePresence>
       </NoSsr>

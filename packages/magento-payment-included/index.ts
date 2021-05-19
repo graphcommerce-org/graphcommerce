@@ -1,2 +1,8 @@
-export * from './methods'
-export { default as purchaseorder } from './PurchaseOrder'
+import { purchaseorder } from './PurchaseOrder'
+import { banktransfer, checkmo } from './methods'
+
+export const included_methods = {
+  purchaseorder,
+  banktransfer,
+  checkmo,
+}

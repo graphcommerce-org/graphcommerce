@@ -51,7 +51,8 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
       houseNumber: currentAddress?.street?.[1] ?? undefined,
       addition: currentAddress?.street?.[2] ?? undefined,
       regionId: currentAddress?.region?.region_id,
-      countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip
+      countryCode: currentCountryCode, // todo: replace by the default shipping country of the store + geoip,
+      saveInAddressBook: true,
     },
     mode: 'onChange',
     onBeforeSubmit: (variables) => {
@@ -63,7 +64,6 @@ export default function ShippingAddressForm(props: ShippingAddressFormProps) {
         ...variables,
         telephone: variables.telephone || '000 - 000 0000',
         regionId,
-        saveInAddressBook: true,
         customerNote: '',
       }
     },

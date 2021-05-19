@@ -37,35 +37,33 @@ export default function MollieIdealOptions(props: PaymentOptionsProps) {
   selectedOption.issuer = watch('issuer')
 
   return (
-    <>
-      <Container>
-        <form onSubmit={submit} noValidate>
-          <div className={formClasses.formRow}>
-            <TextField
-              variant='outlined'
-              select
-              error={formState.isSubmitted && !!formState.errors.issuer}
-              helperText={formState.isSubmitted && formState.errors.issuer?.message}
-              label='Bank'
-              required
-              {...muiRegister('issuer', { required: true, minLength: 2 })}
-              InputProps={{
-                endAdornment: <InputCheckmark show={valid.issuer} />,
-              }}
-            >
-              <MenuItem value='' />
-              {mollie_available_issuers?.map((issuer) => {
-                if (!issuer?.code || !issuer.name) return null
-                return (
-                  <MenuItem key={issuer.code} value={issuer.code}>
-                    {issuer.name}
-                  </MenuItem>
-                )
-              })}
-            </TextField>
-          </div>
-        </form>
-      </Container>
-    </>
+    <Container>
+      <form onSubmit={submit} noValidate>
+        <div className={formClasses.formRow}>
+          <TextField
+            variant='outlined'
+            select
+            error={formState.isSubmitted && !!formState.errors.issuer}
+            helperText={formState.isSubmitted && formState.errors.issuer?.message}
+            label='Bank'
+            required
+            {...muiRegister('issuer', { required: true, minLength: 2 })}
+            InputProps={{
+              endAdornment: <InputCheckmark show={valid.issuer} />,
+            }}
+          >
+            <MenuItem value='' />
+            {mollie_available_issuers?.map((issuer) => {
+              if (!issuer?.code || !issuer.name) return null
+              return (
+                <MenuItem key={issuer.code} value={issuer.code}>
+                  {issuer.name}
+                </MenuItem>
+              )
+            })}
+          </TextField>
+        </div>
+      </form>
+    </Container>
   )
 }

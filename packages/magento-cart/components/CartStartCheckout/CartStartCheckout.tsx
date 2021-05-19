@@ -5,7 +5,8 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
+import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -38,9 +39,12 @@ const useStyles = makeStyles(
   { name: 'Cart' },
 )
 
-export type CartStartCheckoutProps = MoneyFragment
+export type CartStartCheckoutProps = PropsWithChildren<CartStartCheckoutFragment>
 
 export default function CartStartCheckout(props: CartStartCheckoutProps) {
+  const { prices, children } = props
+
+  const hasTotals = (prices?.grand_total?.value ?? 0) > 0
   const classes = useStyles()
   return (
     <div className={classes.checkoutButtonContainer}>
@@ -50,11 +54,13 @@ export default function CartStartCheckout(props: CartStartCheckoutProps) {
           color='secondary'
           className={classes.checkoutButton}
           endIcon={<SvgImage src={iconChevronRight} shade='inverted' alt='checkout' />}
+          disabled={!hasTotals}
         >
-          <span className={classes.checkoutButtonLabel}>Start Checkout</span> (
-          <Money {...props} />)
+          <span className={classes.checkoutButtonLabel}>Start Checkout</span>{' '}
+          {hasTotals && <Money {...prices?.grand_total} />}
         </Button>
       </PageLink>
+      {children}
     </div>
   )
 }

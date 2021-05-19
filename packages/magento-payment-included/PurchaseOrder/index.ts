@@ -4,9 +4,7 @@ import {
 } from '@reachdigital/magento-cart-payment-method'
 import PurchaseOrderOptions from './PurchaseOrderOptions'
 
-const PurchaseOrder: PaymentModule = {
+export const purchaseorder: PaymentModule = {
   PaymentOptions: PurchaseOrderOptions,
   PaymentPlaceOrder: PaymentMethodPlaceOrderNoop,
 }
-
-export default PurchaseOrder

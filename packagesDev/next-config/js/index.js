@@ -39,6 +39,6 @@ function withYarn1Workspaces(modules = []) {
             b.workspaceDependencies.forEach((wp) => m.add(wp));
         }
     });
-    return next_transpile_modules_1.default([...m.values()], { resolveSymlinks: true });
+    return next_transpile_modules_1.default([...m.values()]);
 }
 exports.withYarn1Workspaces = withYarn1Workspaces;

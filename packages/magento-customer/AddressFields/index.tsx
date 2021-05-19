@@ -60,6 +60,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.street}
           label='Street'
+          autoComplete='address-line1'
           required={!!required?.street}
           {...muiRegister('street', { required: required?.street })}
           helperText={formState.isSubmitted && formState.errors.street?.message}
@@ -73,6 +74,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.houseNumber}
           label='Housenumber'
+          autoComplete='address-line2'
           required={!!required?.houseNumber}
           {...muiRegister('houseNumber', {
             required: required?.houseNumber,
@@ -90,6 +92,7 @@ export default function AddressFields(props: AddressFieldsProps) {
           error={!!formState.errors.addition}
           required={!!required?.addition}
           label='Addition'
+          autoComplete='address-line3'
           {...muiRegister('addition', { required: required?.addition })}
           helperText={formState.isSubmitted && formState.errors.addition?.message}
           InputProps={{

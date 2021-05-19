@@ -44,6 +44,7 @@ function ShippingPage() {
             <IconHeader src={iconBox} title='Shipping' alt='box' size='large' />
 
             <EmailForm step={1} />
+
             <ShippingAddressForm step={2} />
 
             <FormHeader variant='h5'>Shipping method</FormHeader>
