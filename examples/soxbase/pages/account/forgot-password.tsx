@@ -34,6 +34,7 @@ function AccountForgotPasswordPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account-public',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account',
 }
 AccountForgotPasswordPage.pageOptions = pageOptions
 

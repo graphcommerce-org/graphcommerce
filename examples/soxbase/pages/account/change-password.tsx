@@ -29,6 +29,7 @@ function AccountChangePasswordPage() {
 const pageOptions: PageOptions<SheetShellProps> = {
   overlayGroup: 'account-public',
   SharedComponent: SheetShell,
+  sharedKey: () => 'account',
 }
 AccountChangePasswordPage.pageOptions = pageOptions
 
