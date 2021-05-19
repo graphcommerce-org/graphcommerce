@@ -1,7 +1,7 @@
 import { ApolloError } from '@apollo/client'
 import { FieldValues, FormState, UseFormReturn } from 'react-hook-form'
 
-export type UseFormComposeOptions<V> = {
+export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
   /** The form that is used to submit */
   form: UseFormReturn<V>
   /** Method to submit the form */
@@ -38,7 +38,7 @@ export type ComposedSubmitRenderComponentProps = {
 }
 
 export type ComposedFormState = {
-  forms: { [step: number]: UseFormComposeOptions<FieldValues> }
+  forms: { [step: number]: UseFormComposeOptions }
   isCompleting: boolean
   buttonState: ButtonState
   formState: FormStateAll
@@ -47,11 +47,11 @@ export type ComposedFormState = {
 }
 
 /** Register a new form with the useFormCompose hook */
-export type RegisterAction = { type: 'REGISTER' } & UseFormComposeOptions<FieldValues>
+export type RegisterAction = { type: 'REGISTER' } & UseFormComposeOptions
 /** Cleanup the form if the useFromCompose hook changes */
 export type UnregisterAction = {
   type: 'UNREGISTER'
-  key: UseFormComposeOptions<FieldValues>['key']
+  key: UseFormComposeOptions['key']
 }
 /** Recalculate the combined formstate */
 export type FormStateAction = { type: 'FORMSTATE' }
