@@ -139,7 +139,7 @@ export default function ConfigurableOptionsInput(props: ConfigurableOptionsProps
                 </ToggleButtonGroup>
                 {error && (
                   <FormHelperText error {...FormHelperTextProps}>
-                    {`${attribute_code} is ${errorHelperText?.type}`}
+                    {`${option.label} is ${errorHelperText?.type}`}
                   </FormHelperText>
                 )}
               </SectionContainer>
