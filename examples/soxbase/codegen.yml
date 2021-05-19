@@ -1,25 +1,14 @@
-# todo: make `../../node_modules/@reachdigital` some env variable or resulve dynamically'
+# todo: make `../../node_modules/@reachdigital` some env variable or resolve dynamically'
 generates:
-  # Generate a types package based on a default Magento GraphQL endpoint
-  ../../node_modules/@reachdigital/graphql/generated/types.ts:
-    schema:
-      - '../../node_modules/@reachdigital/graphql-codegen-near-operation-file/src/injectable.graphqls'
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-      - '../../node_modules/@reachdigital/**/*.graphqls'
-      - '!../../node_modules/@reachdigital/graphql/schema.graphqls'
-    plugins:
-      - typescript
-      - typescript-apollo-client-helpers
-      - add
-    config:
-      enumsAsTypes: true
-      content: '/* eslint-disable */'
+  # Generate a schema file
   ../../node_modules/@reachdigital/graphql/generated/schema.graphqls:
     schema:
-      - '../../node_modules/@reachdigital/graphql-codegen-near-operation-file/src/injectable.graphqls'
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-      - '../../node_modules/@reachdigital/**/*.graphqls'
-      - '!../../node_modules/@reachdigital/graphql/schema.graphqls'
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
+      # todo: This is triggering on any file changed: https://d.pr/v/9Rnxo2
+      # - '../../node_modules/@reachdigital/**/*.graphqls'
     plugins:
       - schema-ast
       - add
@@ -27,48 +16,42 @@ generates:
       includeDirectives: true
       commentDescriptions: false
       content: '#'
+  # Generate a types file
+  ../../node_modules/@reachdigital/graphql/generated/types.ts:
+    schema:
+      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
+    plugins:
+      - typescript
+      - typescript-apollo-client-helpers
+      - add
+    config:
+      enumsAsTypes: true
+      content: '/* eslint-disable */'
+  # Generate a fragments.json
   ../../node_modules/@reachdigital/graphql/generated/fragments.json:
     schema:
-      - '../../node_modules/@reachdigital/graphql-codegen-near-operation-file/src/injectable.graphqls'
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-      - '../../node_modules/@reachdigital/**/*.graphqls'
-      - '!../../node_modules/@reachdigital/graphql/schema.graphqls'
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
     plugins:
       - fragment-matcher
     config:
       apolloClientVersion: 3
-  # Generate a .gql.ts files for each GraphQL query
-  ../../node_modules/@reachdigital:
+  # Generate .gql.ts files for each GraphQL file
+  ../../:
     schema:
-      - '../../node_modules/@reachdigital/graphql-codegen-near-operation-file/src/injectable.graphqls'
       - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-      - '../../node_modules/@reachdigital/**/*.graphqls'
-      - '!../../node_modules/@reachdigital/graphql/schema.graphqls'
+      - '**/*.graphqls'
+      - '../../packages/magento-*/**/*.graphqls'
+      - '../../packagesDev/**/*.graphqls'
     documents:
-      - '../../node_modules/@reachdigital/**/*.graphql'
-    plugins:
-      - '@reachdigital/graphql-codegen-relay-optimizer-plugin'
-      - typed-document-node
-      - typescript-operations
-      - add
-    preset: '@reachdigital/graphql-codegen-near-operation-file'
-    presetConfig:
-      extension: .gql.ts
-      baseTypesPath: ~@reachdigital/graphql
-      injectables: true
-    config:
-      skipTypename: true
-      dedupeOperationSuffix: true
-      content: '/* eslint-disable */'
-  # Generate a .gql.ts files for each GraphQL query
-  /:
-    schema:
-      - '../../node_modules/@reachdigital/graphql-codegen-near-operation-file/src/injectable.graphqls'
-      - ${NEXT_PUBLIC_GRAPHQL_ENDPOINT}
-      - '../../node_modules/@reachdigital/**/*.graphqls'
-      - '!../../node_modules/@reachdigital/graphql/schema.graphqls'
-    documents:
-      - '../../node_modules/@reachdigital/**/*.graphql'
+      - '**/*.graphql'
+      - '../../packages/**/*.graphql'
+      # - '../../packagesDev/**/*.graphql'
     plugins:
       - '@reachdigital/graphql-codegen-relay-optimizer-plugin'
       - typed-document-node

@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "next",
-    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
-    "dev:codegen": "CHOKIDAR_USEPOLLING=0 yarn codegen -w",
+    "codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 CHOKIDAR_USEPOLLING=0 node -r dotenv/config node_modules/.bin/graphql-codegen",
+    "dev:codegen": "yarn codegen -w",
     "build": "yarn codegen && next build && yarn next-sitemap",
     "start": "next start"
   },
