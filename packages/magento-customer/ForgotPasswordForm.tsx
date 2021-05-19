@@ -24,16 +24,10 @@ const useStyles = makeStyles(
 export default function ForgotPasswordForm() {
   const formClasses = useFormStyles()
   const classes = useStyles()
-  const form = useFormGqlMutation<
-    ForgotPasswordMutation,
-    ForgotPasswordMutationVariables & { confirmEmail?: string }
-  >(ForgotPasswordDocument, {
-    onBeforeSubmit: (data) => ({
-      confirmEmail: data.email,
-      ...data,
-    }),
-  })
-  const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
+  const form = useFormGqlMutation<ForgotPasswordMutation, ForgotPasswordMutationVariables>(
+    ForgotPasswordDocument,
+  )
+  const { muiRegister, handleSubmit, required, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
   if (formState.isSubmitSuccessful && data) {
@@ -73,7 +67,7 @@ export default function ForgotPasswordForm() {
           size='large'
           text='bold'
         >
-          Send
+          Send password reset email
         </Button>
       </div>
     </form>
