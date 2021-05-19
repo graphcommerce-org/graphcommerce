@@ -1,0 +1,11 @@
+fragment CustomizableCheckboxOption on CustomizableCheckboxOption {
+  ...CustomizableOption
+  checkboxValue: value {
+    price
+    price_type
+    sku
+    uid
+    option_type_id
+    title
+  }
+}
