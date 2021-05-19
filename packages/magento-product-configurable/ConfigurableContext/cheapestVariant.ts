@@ -1,7 +1,8 @@
 import { Variants } from '.'
 
 export default function cheapestVariant(variants: Variants): Variants[0] {
-  const cheapest = variants.reduce((prev, curr) =>
+  if (!variants.length) return null
+  const cheapest = variants?.reduce((prev, curr) =>
     (curr?.product?.price_range.minimum_price.final_price.value ?? 0) <
     (prev?.product?.price_range.minimum_price.final_price.value ?? 0)
       ? curr

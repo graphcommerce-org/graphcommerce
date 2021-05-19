@@ -10,11 +10,11 @@ import { RowServiceOptionsFragment } from './RowServiceOptions.gql'
 type RowServiceOptionsProps = RowServiceOptionsFragment
 
 export default function RowServiceOptions(props: RowServiceOptionsProps) {
-  const { serviceOptionsTitle, serviceOptions } = props
+  const { title, serviceOptions } = props
 
   return (
     <IconBlocks
-      title={serviceOptionsTitle}
+      title={title}
       options={serviceOptions.map((serviceOption) => {
         const iconTitle = serviceOption.title.toLowerCase()
 

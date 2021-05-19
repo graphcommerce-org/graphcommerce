@@ -8,7 +8,7 @@ import React from 'react'
 import { OrderCardItemImageFragment } from '../OrderCardItemImage/OrderCardItemImage.gql'
 import { OrderItemFragment } from './OrderItem.gql'
 
-type OrderItemProps = OrderItemFragment & OrderCardItemImageFragment
+type OrderItemProps = OrderItemFragment & Omit<OrderCardItemImageFragment, 'uid'>
 
 const rowImageSize = responsiveVal(70, 125)
 const useStyles = makeStyles(

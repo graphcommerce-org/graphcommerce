@@ -1,4 +1,5 @@
 fragment OrderCardItemImage on ProductInterface {
+  uid
   thumbnail {
     label
     url

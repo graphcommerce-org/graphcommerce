@@ -1,12 +1,16 @@
 query GetCategoryStaticPaths($rootCategory: String!) {
   categories(filters: { parent_category_uid: { eq: $rootCategory } }) {
     items {
+      uid
       url_path
       children {
+        uid
         url_path
         children {
+          uid
           url_path
           children {
+            uid
             url_path
           }
         }

@@ -1,5 +1,5 @@
 fragment RowServiceOptions on RowServiceOptions {
-  serviceOptionsTitle: title
+  title
   serviceOptions {
     ...PageLink
   }
