@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client'
 import { TextField, makeStyles, Theme, FormControl, Link } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
-import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
+import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -10,7 +10,6 @@ import PageLink from 'next/link'
 import React from 'react'
 import { CustomerTokenDocument } from './CustomerToken.gql'
 import { SignInDocument } from './SignIn.gql'
-import onCompleteSignInUp from './onCompleteSignInUp'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -28,10 +27,7 @@ export default function SignInForm(props: SignInFormProps) {
   const classes = useStyles()
   const formClasses = useFormStyles()
   const { data } = useQuery(CustomerTokenDocument)
-  const form = useFormGqlMutation(SignInDocument, {
-    onComplete: onCompleteSignInUp, // TODO: juiste callback zoeken / bouwen
-    defaultValues: { email },
-  })
+  const form = useFormGqlMutation(SignInDocument, { defaultValues: { email } })
   const { muiRegister, handleSubmit, required, formState, error } = form
   const [remainingError, authError] = graphqlErrorByCategory('graphql-authentication', error)
   const submitHandler = handleSubmit(() => {})
@@ -54,6 +50,8 @@ export default function SignInForm(props: SignInFormProps) {
           error={!!formState.errors.password || !!authError}
           label='Password'
           autoFocus
+          autoComplete='current-password'
+          id='current-password'
           required={required.password}
           {...muiRegister('password', { required: required.password })}
           FormHelperTextProps={{

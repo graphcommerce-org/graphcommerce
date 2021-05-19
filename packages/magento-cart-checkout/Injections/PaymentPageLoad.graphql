@@ -1,0 +1,3 @@
+fragment PaymentPageLoad on Cart {
+  id
+}

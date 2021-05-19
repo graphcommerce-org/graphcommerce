@@ -15,7 +15,7 @@ export type ErrorCategory =
  * It recognizes the errors specified here:
  * https://devdocs.magento.com/guides/v2.4/graphql/develop/exceptions.html
  */
-export default function graphqlErrorByCategory(
+export function graphqlErrorByCategory(
   category: ErrorCategory,
   error?: ApolloError,
 ): [ApolloError | undefined, GraphQLError | undefined] {

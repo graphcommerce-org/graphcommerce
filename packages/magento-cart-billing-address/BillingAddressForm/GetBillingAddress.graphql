@@ -1,0 +1,5 @@
+query GetBillingAddress($cartId: String!) {
+  cart(cart_id: $cartId) {
+    ...CartBillingAddress
+  }
+}

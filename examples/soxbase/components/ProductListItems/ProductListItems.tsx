@@ -1,6 +1,6 @@
 import ProductListItemsBase, {
   ProductItemsGridProps,
-} from '@reachdigital/magento-product-types/ProductListItems/ProductListItemsBase'
+} from '@reachdigital/magento-product/ProductListItems/ProductListItemsBase'
 import renderers from './renderers'
 
 export type ProductListItemsProps = Omit<ProductItemsGridProps, 'renderers'>

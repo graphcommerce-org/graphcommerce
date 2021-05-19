@@ -1,50 +1,35 @@
-import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import CheckoutStepper from '@reachdigital/magento-cart/cart/CheckoutStepper'
-import EmptyCart from '@reachdigital/magento-cart/cart/EmptyCart'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
-import EmailForm from '@reachdigital/magento-cart/email/EmailForm'
-import ShippingMethodForm from '@reachdigital/magento-cart/shipping-method/ShippingMethodForm'
-import ShippingAddressForm from '@reachdigital/magento-cart/shipping/ShippingAddressForm'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
+import { useCartQuery, EmptyCart } from '@reachdigital/magento-cart'
+import { ShippingPageDocument } from '@reachdigital/magento-cart-checkout/ShippingPage.gql'
+import { EmailForm } from '@reachdigital/magento-cart-email'
+import { ShippingAddressForm } from '@reachdigital/magento-cart-shipping-address'
+import { ShippingMethodForm } from '@reachdigital/magento-cart-shipping-method'
+import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
+import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import FormHeader from '@reachdigital/next-ui/FormHeader'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
+import Stepper from '@reachdigital/next-ui/Stepper/Stepper'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconBox, iconChevronRight } from '@reachdigital/next-ui/icons'
+import { ComposedForm, ComposedSubmit } from '@reachdigital/react-hook-form'
 import { useRouter } from 'next/router'
-import React, { useRef } from 'react'
+import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function ShippingPage({ countries }: Props) {
+function ShippingPage() {
   const formClasses = useFormStyles()
-  const router = useRouter()
-  const addressForm = useRef<() => Promise<boolean>>()
-  const methodForm = useRef<() => Promise<boolean>>()
-  const { data: cartData } = useQuery(ClientCartDocument, { ssr: false })
+  const { data: cartData } = useCartQuery(ShippingPageDocument, { returnPartialData: true })
   const cartExists = typeof cartData?.cart !== 'undefined'
-
-  const forceSubmit = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      if (!addressForm.current || !methodForm.current) return
-      await Promise.all([addressForm.current(), methodForm.current()])
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push('checkout/payment')
-    })()
-  }
+  const router = useRouter()
 
   return (
     <Container maxWidth='md'>
@@ -53,36 +38,49 @@ function ShippingPage({ countries }: Props) {
         {!cartExists && <EmptyCart />}
 
         {cartExists && (
-          <>
-            <CheckoutStepper steps={3} currentStep={2} />
+          <ComposedForm>
+            <Stepper steps={3} currentStep={2} />
 
             <IconHeader src={iconBox} title='Shipping' alt='box' size='large' />
 
-            <EmailForm />
-            <ShippingAddressForm countries={countries} doSubmit={addressForm} />
+            <EmailForm step={1} />
+
+            <ShippingAddressForm step={2} />
 
             <FormHeader variant='h5'>Shipping method</FormHeader>
 
-            <ShippingMethodForm doSubmit={methodForm} />
+            <ShippingMethodForm step={3} />
 
-            <div className={formClasses.actions}>
-              <Button
-                type='submit'
-                color='secondary'
-                variant='pill'
-                size='large'
-                onClick={forceSubmit}
-              >
-                Next{' '}
-                <SvgImage
-                  src={iconChevronRight}
-                  alt='chevron right'
-                  shade='inverted'
-                  loading='eager'
-                />
-              </Button>
-            </div>
-          </>
+            <ComposedSubmit
+              onSubmitSuccessful={() => router.push('/checkout/payment')}
+              render={({ buttonState, submit, error }) => (
+                <>
+                  <div className={formClasses.actions}>
+                    <Button
+                      type='submit'
+                      color='secondary'
+                      variant='pill'
+                      size='large'
+                      loading={buttonState.isSubmitting || buttonState.isSubmitSuccessful}
+                      onClick={submit}
+                    >
+                      Next{' '}
+                      <SvgImage
+                        src={iconChevronRight}
+                        alt='chevron right'
+                        shade='inverted'
+                        loading='eager'
+                      />
+                    </Button>
+                  </div>
+                  <ApolloErrorAlert
+                    key='error'
+                    error={buttonState.isSubmitting ? undefined : error}
+                  />
+                </>
+              )}
+            />
+          </ComposedForm>
         )}
       </NoSsr>
     </Container>
@@ -104,11 +102,9 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const staticClient = apolloClient(locale)
 
   const conf = client.query({ query: StoreConfigDocument })
-  const countryRegions = staticClient.query({ query: CountryRegionsDocument })
 
   return {
     props: {
-      ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

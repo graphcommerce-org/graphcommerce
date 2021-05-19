@@ -1,5 +1,5 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { ProductListItemsFragment } from '@reachdigital/magento-product-types/ProductListItems.gql'
+import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { ProductListItemsFragment } from '@reachdigital/magento-product/ProductListItems/ProductListItems.gql'
 import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -31,7 +31,7 @@ export default function RowSwipeableGrid(props: RowSwipeableGridProps) {
       {items?.map((item) =>
         item ? (
           <RenderType
-            key={item.id ?? ''}
+            key={item.uid ?? ''}
             renderer={renderers}
             {...item}
             classes={{ item: classes.item }}

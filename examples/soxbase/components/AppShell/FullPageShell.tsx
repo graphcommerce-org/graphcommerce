@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
-import { Fab, makeStyles, Theme } from '@material-ui/core'
-import CartFab from '@reachdigital/magento-cart/CartFab'
+import { Theme, makeStyles, Fab } from '@material-ui/core'
+import { CartFab } from '@reachdigital/magento-cart'
 import CustomerFab from '@reachdigital/magento-customer/AccountFab'
 import { SearchButton } from '@reachdigital/magento-search'
 import { StoreConfigDocument } from '@reachdigital/magento-store'

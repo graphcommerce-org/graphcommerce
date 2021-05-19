@@ -1,5 +1,5 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { UpsellProductsFragment } from '@reachdigital/magento-product-types/UpsellProducts.gql'
+import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { UpsellProductsFragment } from '@reachdigital/magento-product/ProductUpsells/UpsellProducts.gql'
 import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -29,7 +29,7 @@ export default function RowProductUpsells(props: RowProductUpsellsProps) {
       {upsell_products?.map((item) =>
         item ? (
           <RenderType
-            key={item.id ?? ''}
+            key={item.uid ?? ''}
             renderer={renderers}
             classes={{ item: classes.item }}
             {...item}

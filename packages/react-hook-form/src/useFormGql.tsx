@@ -58,12 +58,8 @@ export function useFormGql<Q, V>(
       // Wait for the onBeforeSubmit to complete
       if (onBeforeSubmit) variables = await onBeforeSubmit(variables)
 
-      try {
-        const result = await execute({ variables })
-        if (onComplete && result.data) await onComplete(result, client)
-      } catch (e) {
-        return
-      }
+      const result = await execute({ variables })
+      if (onComplete && result.data) await onComplete(result, client)
 
       // Reset the state of the form if it is unmodified afterwards
       if (typeof diff(form.getValues(), formValues) === 'undefined')

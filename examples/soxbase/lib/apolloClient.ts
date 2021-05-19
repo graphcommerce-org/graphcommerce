@@ -15,12 +15,12 @@ import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { RetryLink } from '@apollo/client/link/retry'
 import { mergeDeep } from '@apollo/client/utilities'
+import { fragments, measurePerformanceLink } from '@reachdigital/graphql'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { localeToStore, defaultLocale } from '@reachdigital/magento-store'
 import { persistCache } from 'apollo-cache-persist'
 import { PersistentStorage } from 'apollo-cache-persist/types'
-import type { TracingFormat } from 'apollo-tracing'
-import fragments from '../generated/fragments.json'
+import { TracingFormat } from 'apollo-tracing'
 import typePolicies from './typePolicies'
 
 export function createApolloClient(
@@ -69,7 +69,8 @@ export function createApolloClient(
   })
 
   const links: (ApolloLink | RequestHandler)[] = [
-    (new MutationQueueLink() as unknown) as ApolloLink,
+    measurePerformanceLink,
+    new MutationQueueLink() as unknown as ApolloLink,
     new RetryLink({ attempts: { max: 2 } }),
     errorLink,
     authLink,
@@ -78,51 +79,6 @@ export function createApolloClient(
       credentials: 'same-origin',
     }),
   ]
-
-  if (typeof window === 'undefined') {
-    const slowOperationThreshold = 1000
-    const slowResolverThreshold = 300
-
-    const measurePerformanceLink = new ApolloLink((operation, forward) => {
-      // Called before operation is sent to server
-      operation.setContext({ measurePerformanceLinkStart: new Date().valueOf() })
-      return forward(operation).map((data) => {
-        // Called after server responds
-        const time: number =
-          new Date().valueOf() - (operation.getContext().measurePerformanceLinkStart as number)
-        let vars =
-          Object.keys(operation.variables).length > 0
-            ? `(${JSON.stringify(operation.variables)})`
-            : ''
-        if (vars.length > 100) {
-          vars = `${vars.substr(0, 100)}…`
-        }
-
-        if (data.extensions?.tracing && time > slowOperationThreshold) {
-          const tracing = data.extensions?.tracing as TracingFormat
-
-          const duration = Math.round(tracing.duration / (1000 * 1000))
-
-          console.group(`[slow] ${operation.operationName}${vars}`)
-          console.info(`operations ${duration}ms, mesh: ${time - duration}ms`)
-
-          tracing.execution.resolvers
-            .filter((resolver) => resolver.duration > slowResolverThreshold * 1000 * 1000)
-            .forEach((resolver) =>
-              console.info(
-                `${operation.operationName}.${resolver.path.join('.')}[${Math.round(
-                  resolver.duration / (1000 * 1000),
-                )}ms]`,
-              ),
-            )
-          console.groupEnd()
-        }
-
-        return data
-      })
-    })
-    links.unshift(measurePerformanceLink)
-  }
 
   const link = ApolloLink.from(links)
 

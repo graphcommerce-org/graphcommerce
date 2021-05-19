@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/client'
-import { StoreConfigDocument } from '@reachdigital/magento-store'
 import { ProductLinkFragment } from './ProductLink.gql'
 
-export function productLink(link: ProductLinkFragment) {
+type ProductLinkProps = Omit<ProductLinkFragment, 'uid'>
+
+export function productLink(link: ProductLinkProps) {
   const { __typename, url_key } = link
   const productRoute = __typename
     .split(/(?=[A-Z])/)
@@ -15,7 +15,6 @@ export function productLink(link: ProductLinkFragment) {
   return `/${productRoute.join('/')}/${url_key}`
 }
 
-export function useProductLink(props: ProductLinkFragment) {
-  const { data: storeConfigData } = useQuery(StoreConfigDocument)
+export function useProductLink(props: ProductLinkProps) {
   return productLink(props)
 }

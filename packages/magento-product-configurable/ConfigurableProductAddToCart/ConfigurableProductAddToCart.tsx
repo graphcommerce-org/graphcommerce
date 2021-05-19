@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Divider, makeStyles, Theme, Box } from '@material-ui/core'
-import useRequestCartId from '@reachdigital/magento-cart/useRequestCartId'
+import { useFormGqlMutationCart } from '@reachdigital/magento-cart'
 import { CustomerTokenDocument } from '@reachdigital/magento-customer/CustomerToken.gql'
 import { Money } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
@@ -9,7 +9,6 @@ import MessageSnackbar from '@reachdigital/next-ui/Snackbar/MessageSnackbar'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import TextInputNumber from '@reachdigital/next-ui/TextInputNumber'
 import { iconCheckmark, iconChevronRight } from '@reachdigital/next-ui/icons'
-import { useFormGqlMutation } from '@reachdigital/react-hook-form'
 import PageLink from 'next/link'
 import React from 'react'
 import { Selected, useConfigurableContext } from '../ConfigurableContext'
@@ -55,12 +54,10 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
   const { getUids, getVariants, selection } = useConfigurableContext(variables.sku)
   const classes = useStyles()
 
-  const requestCartId = useRequestCartId()
-  const form = useFormGqlMutation(ConfigurableProductAddToCartDocument, {
+  const form = useFormGqlMutationCart(ConfigurableProductAddToCartDocument, {
     defaultValues: variables,
     onBeforeSubmit: async ({ selectedOptions, ...vars }) => ({
       ...vars,
-      cartId: await requestCartId(),
       // todo: selectedOptions should contain the correct values directly
       selectedOptions: getUids((selectedOptions?.[0] as unknown) as Selected),
     }),

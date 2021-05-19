@@ -1,7 +1,0 @@
-mutation PaymentMethodButton($cartId: String!) {
-  placeOrder(input: { cart_id: $cartId }) {
-    order {
-      order_number
-    }
-  }
-}

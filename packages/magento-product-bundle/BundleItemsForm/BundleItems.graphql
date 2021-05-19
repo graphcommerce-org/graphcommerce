@@ -4,7 +4,7 @@ fragment BundleItems on BundleProduct {
   dynamic_price
   dynamic_weight
   items {
-    option_id
+    uid
     position
     required
     sku
@@ -12,7 +12,7 @@ fragment BundleItems on BundleProduct {
     type
     options {
       can_change_quantity
-      id
+      uid
       is_default
       label
       position
@@ -21,7 +21,7 @@ fragment BundleItems on BundleProduct {
       quantity
       uid
       product {
-        id
+        uid
         __typename
         ...ProductListItem
         ...ProductListItemSimple

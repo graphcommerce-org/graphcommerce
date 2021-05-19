@@ -1,4 +1,5 @@
 fragment CategoryDescription on CategoryTree {
+  uid
   description
   name
   display_mode

@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import { CustomerAddressFragment } from '../CustomerAddress/CustomerAddress.gql'
 import { OrderAddressFragment } from '../OrderAddress/OrderAddress.gql'
 import useCountry from '../useCountry'

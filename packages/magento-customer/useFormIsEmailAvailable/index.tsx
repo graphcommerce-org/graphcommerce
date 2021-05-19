@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { useFormAutoSubmit, useFormGqlQuery } from '@reachdigital/react-hook-form'
+import { useFormAutoSubmit, useFormGqlQuery, useFormPersist } from '@reachdigital/react-hook-form'
 import { useEffect, useState } from 'react'
 import { CustomerTokenDocument } from '../CustomerToken.gql'
 import { IsEmailAvailableDocument } from '../IsEmailAvailable.gql'
@@ -20,8 +20,8 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
   const { formState, data, handleSubmit } = form
 
   const submit = handleSubmit(onSubmitted || (() => {}))
-  const autoSubmitting = useFormAutoSubmit({ form, submit, forceInitialSubmit: true })
-  const isManualSubmitting = formState.isSubmitting && !autoSubmitting
+  const autoSubmitting = useFormAutoSubmit({ form, submit })
+
   const hasAccount = data?.isEmailAvailable?.is_email_available === false
   const { isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid } = formState
 
@@ -30,6 +30,8 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
   const [mode, setMode] = useState<'email' | 'signin' | 'signup' | 'signedin'>(
     token?.customerToken && token?.customerToken.valid ? 'signedin' : 'email',
   )
+
+  useFormPersist({ form, name: 'IsEmailAvailable' })
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -45,5 +47,5 @@ export default function useFormIsEmailAvailable(props: useFormIsEmailAvailablePr
       setMode(hasAccount ? 'signin' : 'signup')
   }, [hasAccount, isDirty, isLoggedIn, isSubmitSuccessful, isSubmitted, isSubmitting, isValid])
 
-  return { mode, form, token, submit, isManualSubmitting, autoSubmitting, hasAccount }
+  return { mode, form, token, submit, autoSubmitting, hasAccount }
 }

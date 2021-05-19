@@ -1,3 +1,0 @@
-fragment CartItemGrouped on CartItemInterface {
-  id
-}

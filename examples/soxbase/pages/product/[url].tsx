@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import AddToCartButton from '@reachdigital/magento-cart/AddToCartButton'
+import { AddToCartButton } from '@reachdigital/magento-cart'
 import {
   SimpleProductPageDocument,
   SimpleProductPageQuery,
@@ -131,7 +131,7 @@ export const getStaticProps: GetPageStaticProps = async ({ params, locale }) => 
       ...(await productPage).data,
       ...(await typeProductPage).data,
       apolloState: await conf.then(() => client.cache.extract()),
-      backFallbackHref: category?.url_path ? `${category?.url_path}` : undefined,
+      backFallbackHref: category?.url_path ? `/${category?.url_path}` : undefined,
       backFallbackTitle: category?.name ?? undefined,
     },
     revalidate: 60 * 20,

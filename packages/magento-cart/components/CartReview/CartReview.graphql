@@ -1,0 +1,14 @@
+fragment CartReview on Cart {
+  id
+  __typename
+  selected_payment_method {
+    code
+    title
+  }
+  shipping_addresses {
+    selected_shipping_method {
+      carrier_title
+      method_title
+    }
+  }
+}

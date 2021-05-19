@@ -3,6 +3,7 @@ fragment ProductPageSimpleQueryFragment on Query {
     ...ProductSpecs
     items {
       __typename
+      uid
       ... on SimpleProduct {
         ...ProductWeight
         ...ProductCustomizable

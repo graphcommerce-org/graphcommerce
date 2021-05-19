@@ -1,5 +1,0 @@
-fragment RelatedProducts on ProductInterface {
-  related_products {
-    ...ProductListItemRenderer
-  }
-}

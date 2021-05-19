@@ -1,0 +1,5 @@
+fragment RelatedProducts on ProductInterface {
+  related_products {
+    ...ProductListItem
+  }
+}

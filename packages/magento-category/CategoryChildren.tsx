@@ -51,9 +51,9 @@ const useStyles = makeStyles(
   },
 )
 
-type CategoryChildrenProps = CategoryChildrenFragment & { params: ProductListParams } & UseStyles<
-    typeof useStyles
-  >
+type CategoryChildrenProps = Omit<CategoryChildrenFragment, 'uid'> & {
+  params: ProductListParams
+} & UseStyles<typeof useStyles>
 
 export default function CategoryChildren(props: CategoryChildrenProps) {
   const { children, params } = props

@@ -7,9 +7,9 @@ import {
   makeStyles,
   Theme,
 } from '@material-ui/core'
+import { FilterEqualTypeInput } from '@reachdigital/graphql'
 import CategoryLink, { useCategoryPushRoute } from '@reachdigital/magento-category/CategoryLink'
 import { useProductListParamsContext } from '@reachdigital/magento-category/CategoryPageContext'
-import { FilterEqualTypeInput } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'

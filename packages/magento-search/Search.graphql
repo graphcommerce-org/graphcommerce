@@ -10,7 +10,7 @@ query Search(
       ...CategorySearchResult
     }
   }
-  ...ProductListFragment
+  ...ProductListQueryFragment
   filters: products(search: $search, pageSize: $pageSize) {
     ...ProductListFilters
   }

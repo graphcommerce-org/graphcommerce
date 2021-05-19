@@ -1,0 +1,12 @@
+fragment BraintreePaymentMethodContext on Cart @inject(into: ["PaymentMethodContext"]) {
+  shipping_addresses {
+    country {
+      code
+    }
+  }
+  prices {
+    grand_total {
+      currency
+    }
+  }
+}

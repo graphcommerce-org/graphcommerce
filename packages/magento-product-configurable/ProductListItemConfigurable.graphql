@@ -1,12 +1,13 @@
-fragment ProductListItemConfigurable on ConfigurableProduct {
-  ...ProductListItem
+fragment ProductListItemConfigurable on ConfigurableProduct @inject(into: ["ProductListItem"]) {
+  __typename
+  uid
   configurable_options {
     attribute_code
-    id
+    uid
     label
     values {
       store_label
-      value_index
+      uid
       swatch_data {
         ...SwatchData
       }
@@ -14,10 +15,12 @@ fragment ProductListItemConfigurable on ConfigurableProduct {
   }
   variants {
     attributes {
+      uid
       code
       value_index
     }
     product {
+      uid
       sku
       name
       small_image {

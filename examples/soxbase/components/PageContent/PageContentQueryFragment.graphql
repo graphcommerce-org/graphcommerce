@@ -6,10 +6,10 @@ fragment PageContentQueryFragment on Query {
     metaRobots
     url
     content {
+      __typename
       ... on Node {
         id
       }
-      __typename
       ...RowColumnOne
       ...RowColumnTwo
       ...RowColumnThree

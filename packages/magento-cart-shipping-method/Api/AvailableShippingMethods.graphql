@@ -1,0 +1,11 @@
+fragment AvailableShippingMethods on Cart @injectable @inject(into: ["ShippingAddress"]) {
+  shipping_addresses {
+    available_shipping_methods {
+      ...AvailableShippingMethod
+    }
+    selected_shipping_method {
+      carrier_code
+      method_code
+    }
+  }
+}

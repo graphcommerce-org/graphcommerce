@@ -1,5 +1,6 @@
 fragment FooterQueryFragment on Query {
   footer(where: { identity: "footer" }) {
+    id
     socialLinks {
       ...PageLink
     }

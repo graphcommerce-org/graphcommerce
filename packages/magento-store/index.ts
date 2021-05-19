@@ -13,3 +13,5 @@ export * from './Money'
 export { default as Money } from './Money'
 
 export * from './Money.gql'
+
+export * from './CountryRegions.gql'

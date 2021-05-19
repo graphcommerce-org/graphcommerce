@@ -1,15 +1,16 @@
 import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions, usePageRouter } from '@reachdigital/framer-next-pages'
-import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
 import { OrderDetailPageDocument } from '@reachdigital/magento-customer/AccountDashboard/OrderDetailPage.gql'
 import useOrderCardItemImages from '@reachdigital/magento-customer/OrderCardItemImage/useOrderCardItemImages'
 import OrderDetails from '@reachdigital/magento-customer/OrderDetails'
 import OrderItems from '@reachdigital/magento-customer/OrderItems'
-import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import {
+  PageMeta,
+  StoreConfigDocument,
+  CountryRegionsDocument,
+  CountryRegionsQuery,
+} from '@reachdigital/magento-store'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import { iconBox } from '@reachdigital/next-ui/icons'

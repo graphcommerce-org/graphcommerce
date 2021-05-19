@@ -1,0 +1,11 @@
+query ProductList(
+  $pageSize: Int = 23
+  $currentPage: Int = 1
+  $filters: ProductAttributeFilterInput = {}
+  $sort: ProductAttributeSortInput = {}
+  $search: String = ""
+  $categoryUid: String!
+) {
+  ...ProductListQueryFragment
+  ...ProductFiltersQueryFragment
+}

@@ -1,5 +1,5 @@
 import { FormControlLabel, Switch, TextField } from '@material-ui/core'
-import graphqlErrorByCategory from '@reachdigital/magento-graphql/graphqlErrorByCategory'
+import { graphqlErrorByCategory } from '@reachdigital/magento-graphql'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
@@ -7,7 +7,6 @@ import { useFormGqlMutation, useFormPersist } from '@reachdigital/react-hook-for
 import React from 'react'
 import NameFields from './NameFields'
 import { SignUpDocument, SignUpMutation, SignUpMutationVariables } from './SignUp.gql'
-import onCompleteSignInUp from './onCompleteSignInUp'
 
 type SignUpFormProps = {
   email?: string
@@ -19,12 +18,10 @@ export default function SignUpForm(props: SignUpFormProps) {
   const form = useFormGqlMutation<
     SignUpMutation,
     SignUpMutationVariables & { confirmPassword?: string }
-  >(SignUpDocument, {
-    defaultValues: { email },
-    onComplete: onCompleteSignInUp,
-  })
+  >(SignUpDocument, { defaultValues: { email } })
+
   useFormPersist({ form, name: 'SignUp', exclude: ['password', 'confirmPassword'] })
-  const { muiRegister, handleSubmit, required, watch, control, formState, error } = form
+  const { muiRegister, handleSubmit, required, watch, formState, error } = form
   const [remainingError, inputError] = graphqlErrorByCategory('graphql-input', error)
 
   const submitHandler = handleSubmit(() => {})
@@ -38,6 +35,8 @@ export default function SignUpForm(props: SignUpFormProps) {
           type='password'
           error={!!formState.errors.password || !!inputError}
           label='Password'
+          autoFocus
+          autoComplete='new-password'
           required={required.password}
           {...muiRegister('password', {
             required: required.password,
@@ -55,6 +54,7 @@ export default function SignUpForm(props: SignUpFormProps) {
           type='password'
           error={!!formState.errors.confirmPassword}
           label='Confirm Password'
+          autoComplete='new-password'
           required
           {...muiRegister('confirmPassword', {
             required: true,

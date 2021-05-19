@@ -12,18 +12,16 @@ type NameFieldValues = {
 
 type NameFieldProps = {
   form: UseFormReturn<any>
-  disabled?: boolean
+  readOnly?: boolean
   prefix?: boolean
 }
 
 export default function NameFields(props: NameFieldProps) {
-  const { prefix, form, disabled: _disabled } = props
+  const { prefix, form, readOnly } = props
   assertFormGqlOperation<NameFieldValues>(form)
 
   const { control, formState, muiRegister, required, valid } = form
   const classes = useFormStyles()
-
-  const disabled = _disabled ?? formState.isSubmitting
 
   return (
     <>
@@ -41,10 +39,12 @@ export default function NameFields(props: NameFieldProps) {
                 label='Prefix'
                 required={!!required?.prefix}
                 helperText={fieldState.error?.message}
-                disabled={disabled}
                 onChange={(e) => onChange(e.target.value)}
                 inputRef={ref}
-                InputProps={{ endAdornment: <InputCheckmark show={valid.prefix} /> }}
+                InputProps={{
+                  readOnly,
+                  endAdornment: <InputCheckmark show={valid.prefix} />,
+                }}
                 {...field}
               >
                 {['Dhr.', 'Mevr.'].map((option) => (
@@ -64,10 +64,12 @@ export default function NameFields(props: NameFieldProps) {
           type='text'
           label='First Name'
           required={!!required}
-          disabled={disabled}
           error={!!formState.errors.firstname}
           helperText={formState.isSubmitted && formState.errors.firstname?.message}
-          InputProps={{ endAdornment: <InputCheckmark show={valid.firstname} /> }}
+          InputProps={{
+            readOnly,
+            endAdornment: <InputCheckmark show={valid.firstname} />,
+          }}
           {...muiRegister('firstname', { required: required?.firstname })}
         />
         <TextField
@@ -77,8 +79,10 @@ export default function NameFields(props: NameFieldProps) {
           label='Last Name'
           required={!!required?.lastname}
           helperText={formState.isSubmitted && formState.errors.lastname?.message}
-          disabled={disabled}
-          InputProps={{ endAdornment: <InputCheckmark show={valid.lastname} /> }}
+          InputProps={{
+            readOnly,
+            endAdornment: <InputCheckmark show={valid.lastname} />,
+          }}
           {...muiRegister('lastname', { required: required?.lastname })}
         />
       </div>

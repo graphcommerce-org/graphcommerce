@@ -1,0 +1,7 @@
+fragment CartStartCheckout on Cart {
+  prices {
+    grand_total {
+      ...Money
+    }
+  }
+}

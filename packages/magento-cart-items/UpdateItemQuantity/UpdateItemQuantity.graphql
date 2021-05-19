@@ -1,0 +1,12 @@
+mutation UpdateItemQuantity($cartId: String!, $uid: ID!, $quantity: Float!) {
+  updateCartItems(
+    input: { cart_id: $cartId, cart_items: [{ cart_item_uid: $uid, quantity: $quantity }] }
+  ) {
+    cart {
+      id
+      __typename
+      ...CartItemCountChanged
+      ...CartItems
+    }
+  }
+}

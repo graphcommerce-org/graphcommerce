@@ -17,7 +17,7 @@ import {
 import {
   ProductListDocument,
   ProductListQuery,
-} from '@reachdigital/magento-product-types/ProductList.gql'
+} from '@reachdigital/magento-product/ProductList/ProductList.gql'
 import {
   FilterTypes,
   ProductListParams,

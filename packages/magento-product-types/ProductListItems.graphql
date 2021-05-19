@@ -1,5 +1,0 @@
-fragment ProductListItems on Products {
-  items {
-    ...ProductListItemRenderer
-  }
-}

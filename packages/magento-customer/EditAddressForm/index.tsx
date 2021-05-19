@@ -1,5 +1,5 @@
 import { makeStyles, TextField } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import Button from '@reachdigital/next-ui/Button'
 import ApolloErrorAlert from '@reachdigital/next-ui/Form/ApolloErrorAlert'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
@@ -78,8 +78,8 @@ export default function EditAddressForm(props: EditAddressFormProps) {
   return (
     <>
       <form onSubmit={submitHandler} noValidate className={formClasses.form}>
-        <NameFields form={form} disabled={formState.isSubmitting} prefix />
-        <AddressFields form={form} countries={countries} disabled={formState.isSubmitting} />
+        <NameFields form={form} prefix />
+        <AddressFields form={form} countries={countries} />
 
         <div className={formClasses.formRow}>
           <TextField

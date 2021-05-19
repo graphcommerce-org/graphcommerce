@@ -1,5 +1,6 @@
 fragment ProductPageCategory on ProductInterface {
   categories {
+    uid
     name
     url_path
     include_in_menu

@@ -3,6 +3,7 @@ fragment ProductPageVirtualQueryFragment on Query {
     ...ProductSpecs
     items {
       __typename
+      uid
       ... on VirtualProduct {
         ...ProductCustomizable
       }

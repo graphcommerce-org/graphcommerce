@@ -1,0 +1,6 @@
+fragment PaymentMethodUpdated on Cart @injectable {
+  id
+  selected_payment_method {
+    ...SelectedPaymentMethod
+  }
+}

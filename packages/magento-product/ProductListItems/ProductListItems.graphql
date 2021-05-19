@@ -1,0 +1,7 @@
+fragment ProductListItems on Products {
+  items {
+    __typename
+    uid
+    ...ProductListItem
+  }
+}

@@ -2,6 +2,7 @@ fragment ProductCustomizable on CustomizableProductInterface {
   options {
     __typename
     ...CustomizableAreaOption
+    ...CustomizableCheckboxOption
     ...CustomizableDateOption
     ...CustomizableDropDownOption
     ...CustomizableMultipleOption

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Maybe } from '@reachdigital/magento-graphql'
+import { Maybe } from '@reachdigital/graphql'
 import { OrderCardItemImagesDocument } from '../OrderCardItemImages/OrderCardItemImages.gql'
 import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
 import { UseOrderCardItemImagesFragment } from './UseOrderCardItemImages.gql'

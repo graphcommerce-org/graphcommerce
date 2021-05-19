@@ -1,5 +1,4 @@
 import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { CurrencyEnum } from '@reachdigital/magento-graphql'
 import { Money } from '@reachdigital/magento-store'
 import { UseStyles } from '@reachdigital/next-ui/Styles'
 import React from 'react'

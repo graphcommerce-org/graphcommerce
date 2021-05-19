@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { OrderCardItemImageFragment } from './OrderCardItemImage.gql'
 
-export type OrderCardItemImageProps = OrderCardItemImageFragment
+export type OrderCardItemImageProps = Omit<OrderCardItemImageFragment, 'uid'>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({

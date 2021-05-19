@@ -1,3 +1,0 @@
-fragment CartItemVirtual on VirtualCartItem {
-  id
-}

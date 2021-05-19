@@ -1,4 +1,4 @@
-import { Maybe } from '@reachdigital/magento-graphql'
+import { Maybe } from '@reachdigital/graphql'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import React from 'react'
 import { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
@@ -26,7 +26,7 @@ export default function SwatchList({ attributes, configurable_options }: SwatchL
           {option?.values?.map((val) =>
             val?.swatch_data ? (
               <RenderType
-                key={val?.value_index ?? ''}
+                key={val?.uid ?? ''}
                 renderer={renderer}
                 {...val}
                 {...val.swatch_data}

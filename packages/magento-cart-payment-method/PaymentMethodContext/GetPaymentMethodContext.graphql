@@ -1,0 +1,7 @@
+query GetPaymentMethodContext($cartId: String!) {
+  cart(cart_id: $cartId) {
+    id
+    __typename
+    ...PaymentMethodContext
+  }
+}

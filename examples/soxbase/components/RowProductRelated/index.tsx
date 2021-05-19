@@ -1,5 +1,5 @@
-import { makeStyles, Theme, Typography } from '@material-ui/core'
-import { RelatedProductsFragment } from '@reachdigital/magento-product-types/RelatedProducts.gql'
+import { Theme, Typography, makeStyles } from '@material-ui/core'
+import { RelatedProductsFragment } from '@reachdigital/magento-product/ProductRelated/RelatedProducts.gql'
 import SidebarSlider from '@reachdigital/next-ui/FramerSlider/variants/SidebarSlider'
 import RenderType from '@reachdigital/next-ui/RenderType'
 import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
@@ -29,7 +29,7 @@ export default function RowProductRelated(props: RowProductRelatedProps) {
       {related_products?.map((item) =>
         item ? (
           <RenderType
-            key={item.id ?? ''}
+            key={item.uid ?? ''}
             renderer={renderers}
             {...item}
             classes={{ item: classes.item }}

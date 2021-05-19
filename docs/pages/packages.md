@@ -84,13 +84,7 @@ not include any backend specific code.
 
 - `packages/magento-product` contains only generic product code, like listings,
   etc.
-  - **must not** depend on `packages/magento-product-types`
 - `pacakges/magneto-product-${type}`: implements product type specific stuff.
-  - **must not** depend on `packages/magento-product-types`
-- `packages/magento-product-types`: implements all Magento Community product
-  types
-  - depends on `packages/magento-product`
-  - depends on `packages/magento-product-${type}`
 
 ### `packages/magento-payment-*`
 

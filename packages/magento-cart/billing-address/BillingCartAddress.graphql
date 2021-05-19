@@ -1,3 +1,0 @@
-fragment BillingCartAddress on BillingCartAddress {
-  ...CartAddress
-}

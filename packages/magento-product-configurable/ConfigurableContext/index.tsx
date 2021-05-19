@@ -70,18 +70,17 @@ function generateAttrTree(
   const attributeTree: AttributeTree = { code: attribute.attribute_code, values: {} }
 
   attribute.values?.forEach((val) => {
-    if (!val?.value_index) return
-    const newSelected = { ...selected, [attributeTree.code]: [val.value_index] } as Selected
+    if (!val?.uid) return
+    const newSelected = { ...selected, [attributeTree.code]: [val.uid] } as Selected
 
     const filteredVariants = variants?.filter(
       (variant) =>
         !!variant?.attributes?.find(
-          (attr) =>
-            attr?.code === attribute.attribute_code && val.value_index === attr?.value_index,
+          (attr) => attr?.code === attribute.attribute_code && val.uid === attr?.value_index,
         ),
     )
 
-    attributeTree.values[val.value_index] = {
+    attributeTree.values[val.uid] = {
       variants: filteredVariants ?? [],
       attribute: generateAttrTree(idx + 1, options, filteredVariants, newSelected),
     }

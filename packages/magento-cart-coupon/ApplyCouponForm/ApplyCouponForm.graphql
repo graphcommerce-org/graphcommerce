@@ -1,0 +1,7 @@
+mutation ApplyCouponForm($cartId: String!, $couponCode: String!) {
+  applyCouponToCart(input: { cart_id: $cartId, coupon_code: $couponCode }) {
+    cart {
+      ...Coupon
+    }
+  }
+}

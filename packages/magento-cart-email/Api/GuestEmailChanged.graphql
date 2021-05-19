@@ -1,0 +1,3 @@
+fragment GuestEmailChanged on Cart @injectable {
+  id
+}

@@ -7,9 +7,9 @@ import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import clsx from 'clsx'
 import PageLink from 'next/link'
 import React, { PropsWithChildren } from 'react'
+import { ProductListItemFragment } from '../Api/ProductListItem.gql'
 import { useProductLink } from '../ProductLink'
 import ProductListPrice from '../ProductListPrice'
-import { ProductListItemFragment } from './ProductListItem.gql'
 
 export const useProductListItemStyles = makeStyles(
   (theme: Theme) => ({

@@ -1,8 +1,8 @@
-fragment ConfigurableCartItem on ConfigurableCartItem {
+fragment ConfigurableCartItem on ConfigurableCartItem @inject(into: ["CartItem"]) {
   configurable_options {
-    id
+    configurable_product_option_uid
+    configurable_product_option_value_uid
     option_label
-    value_id
     value_label
   }
 }

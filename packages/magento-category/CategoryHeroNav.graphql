@@ -1,9 +1,10 @@
 fragment CategoryHeroNav on CategoryTree {
+  uid
   level
   is_anchor
   name
   children {
-    id
+    uid
     url_path
     name
   }

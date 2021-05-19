@@ -1,6 +1,7 @@
 fragment CategoryChildren on CategoryTree {
+  uid
   children {
-    id
+    uid
     name
     level
     url_path

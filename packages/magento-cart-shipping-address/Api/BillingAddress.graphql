@@ -1,0 +1,6 @@
+fragment BillingAddress on Cart @injectable {
+  id
+  billing_address {
+    ...CartAddress
+  }
+}

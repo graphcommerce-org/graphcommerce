@@ -9,7 +9,9 @@ mutation ProductAddToCart(
     cartItems: [{ sku: $sku, quantity: $quantity, entered_options: $enteredOptions }]
   ) {
     cart {
-      ...CartData
+      id
+      __typename
+      ...CartItemCountChanged
     }
     user_errors {
       code

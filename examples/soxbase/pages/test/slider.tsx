@@ -3,7 +3,7 @@ import { PageOptions } from '@reachdigital/framer-next-pages'
 import {
   ProductListDocument,
   ProductListQuery,
-} from '@reachdigital/magento-product-types/ProductList.gql'
+} from '@reachdigital/magento-product/ProductList/ProductList.gql'
 import { StoreConfigDocument } from '@reachdigital/magento-store'
 import SliderImage from '@reachdigital/next-ui/FramerSlider/SliderImage'
 import Images from '@reachdigital/next-ui/FramerSlider/test/Images'

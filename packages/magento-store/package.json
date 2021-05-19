@@ -20,15 +20,15 @@
     "@reachdigital/typescript-config-pwa": "^0.1.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.16",
+    "@apollo/client": "^3.3.19",
     "@graphql-typed-document-node/core": "^3.1.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/lab": "^4.0.0-alpha.58",
-    "@reachdigital/magento-graphql": "^0.1.0",
+    "@reachdigital/graphql": "^0.1.0",
     "@reachdigital/next-ui": "^0.1.0",
     "next": "^10.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "type-fest": "^1.0.2"
+    "type-fest": "^1.1.3"
   }
 }

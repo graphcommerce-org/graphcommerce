@@ -1,8 +1,0 @@
-fragment PaymentMethodContext on Cart {
-  available_payment_methods {
-    ...AvailablePaymentMethod
-  }
-  selected_payment_method {
-    ...SelectedPaymentMethod
-  }
-}

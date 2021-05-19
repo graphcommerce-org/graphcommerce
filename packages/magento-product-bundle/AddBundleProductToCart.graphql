@@ -18,7 +18,8 @@ mutation AddBundleProductToCart(
     }
   ) {
     cart {
-      ...CartData
+      id
+      __typename
     }
   }
 }

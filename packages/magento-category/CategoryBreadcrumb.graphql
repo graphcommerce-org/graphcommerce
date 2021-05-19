@@ -1,5 +1,7 @@
 fragment CategoryBreadcrumb on CategoryInterface {
+  uid
   breadcrumbs {
+    category_uid
     category_name
     category_url_path
   }

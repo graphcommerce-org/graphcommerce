@@ -6,7 +6,8 @@ import {
   ImportDeclaration,
   ImportSource,
 } from '@graphql-codegen/visitor-plugin-common'
-import { FragmentDefinitionNode, buildASTSchema, GraphQLSchema } from 'graphql'
+import { FragmentDefinitionNode, buildASTSchema, visit } from 'graphql'
+import { injectInjectables } from './injectable'
 import { resolveDocumentImports, DocumentImportResolverOptions } from './resolve-document-imports'
 import { appendExtensionToFilePath, defineFilepathSubfolder } from './utils'
 
@@ -26,10 +27,7 @@ export type NearOperationFileConfig = {
    * If you wish to use an NPM package or a local workspace package, make sure to prefix the package
    * name with `~`.
    *
-   * @exampleMarkdown
-   *
-   * ```yml
-   * generates:
+   * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
    *   presetConfig:
@@ -45,15 +43,12 @@ export type NearOperationFileConfig = {
    * If you wish to use an NPM package or a local workspace package, make sure to prefix the package
    * name with `~`.
    *
-   * @exampleMarkdown
-   *
-   * ```yml
-   * generates:
+   * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
    *   presetConfig:
    *     baseTypesPath: types.ts
-   *     importAllFragmentsFrom: '@fragments'
+   *     importAllFragmentsFrom: '~types'
    *   plugins:
    *     - typescript-operations
    * ```
@@ -64,10 +59,7 @@ export type NearOperationFileConfig = {
    * are using plugins that requires a different type of extensions (such as `typescript-react-apollo`)
    *
    * @default .generates.ts
-   * @exampleMarkdown
-   *
-   * ```yml
-   * generates:
+   * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
    *   presetConfig:
@@ -84,10 +76,7 @@ export type NearOperationFileConfig = {
    * between files. Use this if your execuion path is not your project root directory.
    *
    * @default process.cwd()
-   * @exampleMarkdown
-   *
-   * ```yml
-   * generates:
+   * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
    *   presetConfig:
@@ -102,10 +91,7 @@ export type NearOperationFileConfig = {
    * Optional, defines a folder, (Relative to the source files) where the generated files will be created.
    *
    * @default ''
-   * @exampleMarkdown
-   *
-   * ```yml
-   * generates:
+   * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
    *   presetConfig:
@@ -120,10 +106,7 @@ export type NearOperationFileConfig = {
    * Optional, override the name of the import namespace used to import from the `baseTypesPath` file.
    *
    * @default Types
-   * @exampleMarkdown
-   *
-   * ```yml
-   * generates:
+   * @exampleMarkdown ```yml generates:
    * src/:
    *   preset: near-operation-file
    *   presetConfig:
@@ -134,6 +117,21 @@ export type NearOperationFileConfig = {
    * ```
    */
   importTypesNamespace?: string
+
+  /**
+   * Enable the injectables
+   *
+   * ```yml
+   * src/:
+   *   preset: near-operation-file
+   *   presetConfig:
+   *     baseTypesPath: types.ts
+   *     injectables: true
+   *   plugins:
+   *     - typescript-operations
+   * ```
+   */
+  injectables?: boolean
 }
 
 export type FragmentNameToFile = {
@@ -145,17 +143,36 @@ export type FragmentNameToFile = {
   }
 }
 
+function isFragment(documentFile: Types.DocumentFile) {
+  let name = false
+
+  visit(documentFile.document!, {
+    enter: {
+      FragmentDefinition: () => {
+        name = true
+      },
+    },
+  })
+  return name
+}
+
+function isDocument(documentFiles: Types.DocumentFile[]) {
+  return !documentFiles.every(isFragment)
+}
+
 export const preset: Types.OutputPreset<NearOperationFileConfig> = {
   buildGeneratesSection: (options) => {
-    const schemaObject: GraphQLSchema = options.schemaAst
-      ? options.schemaAst
-      : buildASTSchema(options.schema, options.config as any)
-    const baseDir = options.presetConfig.cwd || process.cwd()
-    const extension = options.presetConfig.extension || '.generated.ts'
-    const folder = options.presetConfig.folder || ''
-    const importTypesNamespace = options.presetConfig.importTypesNamespace || 'Types'
-    const importAllFragmentsFrom: FragmentImportFromFn | string | null =
-      options.presetConfig.importAllFragmentsFrom || null
+    if (options.presetConfig.injectables) {
+      options.documents = injectInjectables(options.documents)
+    }
+
+    const schemaObject = options.schemaAst ?? buildASTSchema(options.schema, options.config)
+
+    const baseDir = options.presetConfig.cwd ?? process.cwd()
+    const extension = options.presetConfig.extension ?? '.generated.ts'
+    const folder = options.presetConfig.folder ?? ''
+    const importTypesNamespace = options.presetConfig.importTypesNamespace ?? 'Types'
+    const { importAllFragmentsFrom } = options.presetConfig
 
     const { baseTypesPath } = options.presetConfig
 
@@ -187,7 +204,7 @@ export const preset: Types.OutputPreset<NearOperationFileConfig> = {
     })
 
     return sources.map<Types.GenerateOptions>(
-      ({ importStatements, externalFragments, fragmentImports, ...source }) => {
+      ({ importStatements, externalFragments, fragmentImports, documents, ...source }) => {
         let fragmentImportsArr = fragmentImports
 
         if (importAllFragmentsFrom) {
@@ -204,12 +221,22 @@ export const preset: Types.OutputPreset<NearOperationFileConfig> = {
           })
         }
 
+        const isDoc = isDocument(documents)
+        const isRelayOptimizer = !!Object.keys(pluginMap).find((plugin) =>
+          plugin.includes('relay-optimizer-plugin'),
+        )
+
         const plugins = [
           // TODO/NOTE I made globalNamespace include schema types - is that correct?
           ...(options.config.globalNamespace
             ? []
             : importStatements.map((importStatement) => ({ add: { content: importStatement } }))),
-          ...options.plugins,
+          ...options.plugins.filter(
+            (pluginOptions) =>
+              !isRelayOptimizer ||
+              isDoc ||
+              !Object.keys(pluginOptions).includes('typed-document-node'),
+          ),
         ]
         const config = {
           ...options.config,
@@ -223,6 +250,7 @@ export const preset: Types.OutputPreset<NearOperationFileConfig> = {
 
         return {
           ...source,
+          documents,
           plugins,
           pluginMap,
           config,

@@ -2,15 +2,14 @@ fragment ConfigurableProductForm on ConfigurableProduct {
   sku
   configurable_options {
     attribute_code
-    id
+    uid
     label
     position
     use_default
-    product_id
     values {
+      uid
       use_default_value
       store_label
-      value_index
       swatch_data {
         __typename
         value
@@ -28,6 +27,7 @@ fragment ConfigurableProductForm on ConfigurableProduct {
       uid
     }
     product {
+      ...ProductListItem
       ...ProductListItemSimple
     }
   }

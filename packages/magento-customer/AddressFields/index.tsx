@@ -1,5 +1,5 @@
 import { TextField } from '@material-ui/core'
-import { CountryRegionsQuery } from '@reachdigital/magento-cart/countries/CountryRegions.gql'
+import { CountryRegionsQuery } from '@reachdigital/magento-store'
 import InputCheckmark from '@reachdigital/next-ui/Form/InputCheckmark'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import {
@@ -21,30 +21,34 @@ type AddressFieldValues = {
 
 type AddressFieldsProps = CountryRegionsQuery & {
   form: UseFormReturn<any>
-  disabled?: boolean
+  readOnly?: boolean
 }
 
 export default function AddressFields(props: AddressFieldsProps) {
-  const { form, countries } = props
+  const { form, countries, readOnly } = props
   assertFormGqlOperation<AddressFieldValues>(form)
-  const { watch, formState, required, muiRegister, valid } = form
-  const { disabled = formState.isSubmitting } = props
+  const { watch, formState, required, muiRegister, register, valid } = form
   const classes = useFormStyles()
 
   const country = watch('countryCode')
 
-  const countryList = useMemo(
-    () =>
-      (countries ?? [])
-        ?.filter((c) => c?.full_name_locale)
-        .sort((a, b) => (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? '')),
-    [countries],
-  )
+  const countryList = useMemo(() => {
+    const countriesWithLocale = (countries ?? [])?.filter((c) => c?.full_name_locale)
+    return countriesWithLocale.sort((a, b) =>
+      (a?.full_name_locale ?? '')?.localeCompare(b?.full_name_locale ?? ''),
+    )
+  }, [countries])
+
   const regionList = useMemo(() => {
-    const regions =
-      countryList
-        .find((c) => c?.two_letter_abbreviation === country)
-        ?.available_regions?.sort((a, b) => (a?.name ?? '')?.localeCompare(b?.name ?? '')) ?? []
+    const availableRegions = Object.values(
+      countryList.find((c) => c?.two_letter_abbreviation === country)?.available_regions ?? {},
+    )
+    type Region = typeof availableRegions[0]
+
+    const compare: (a: Region, b: Region) => number = (a, b) =>
+      (a?.name ?? '')?.localeCompare(b?.name ?? '')
+
+    const regions = availableRegions?.sort(compare)
     return regions
   }, [country, countryList])
 
@@ -56,11 +60,12 @@ export default function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.street}
           label='Street'
+          autoComplete='address-line1'
           required={!!required?.street}
           {...muiRegister('street', { required: required?.street })}
           helperText={formState.isSubmitted && formState.errors.street?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.street} />,
           }}
         />
@@ -69,14 +74,15 @@ export default function AddressFields(props: AddressFieldsProps) {
           type='text'
           error={!!formState.errors.houseNumber}
           label='Housenumber'
+          autoComplete='address-line2'
           required={!!required?.houseNumber}
           {...muiRegister('houseNumber', {
             required: required?.houseNumber,
             pattern: { value: houseNumberPattern, message: 'Please provide a valid house number' },
           })}
           helperText={formState.isSubmitted && formState.errors.houseNumber?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.houseNumber} />,
           }}
         />
@@ -86,10 +92,11 @@ export default function AddressFields(props: AddressFieldsProps) {
           error={!!formState.errors.addition}
           required={!!required?.addition}
           label='Addition'
+          autoComplete='address-line3'
           {...muiRegister('addition', { required: required?.addition })}
           helperText={formState.isSubmitted && formState.errors.addition?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.addition} />,
           }}
         />
@@ -103,8 +110,8 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='Postcode'
           {...muiRegister('postcode', { required: required?.postcode })}
           helperText={formState.isSubmitted && formState.errors.postcode?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.postcode} />,
           }}
         />
@@ -116,8 +123,8 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='City'
           {...muiRegister('city', { required: required?.city })}
           helperText={formState.isSubmitted && formState.errors.city?.message}
-          disabled={disabled}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.city} />,
           }}
         />
@@ -132,9 +139,9 @@ export default function AddressFields(props: AddressFieldsProps) {
           label='Country'
           required={!!required?.countryCode}
           helperText={formState.errors.countryCode?.message}
-          disabled={disabled}
           // onBlur={onBlur}
           InputProps={{
+            readOnly,
             endAdornment: <InputCheckmark show={valid.countryCode} />,
           }}
         >
@@ -148,18 +155,18 @@ export default function AddressFields(props: AddressFieldsProps) {
           })}
         </TextField>
 
-        {regionList.length > 0 && (
+        {regionList.length > 0 ? (
           <TextField
             select
             SelectProps={{ native: true }}
             variant='outlined'
             error={!!formState.errors.regionId}
             label='Region'
-            {...muiRegister('regionId', { required: true })}
+            {...muiRegister('regionId', { required: true, shouldUnregister: true })}
             required
             helperText={formState.errors.regionId?.message}
-            disabled={disabled}
             InputProps={{
+              readOnly,
               endAdornment: <InputCheckmark show={valid.regionId} />,
             }}
           >
@@ -172,6 +179,12 @@ export default function AddressFields(props: AddressFieldsProps) {
               )
             })}
           </TextField>
+        ) : (
+          <input
+            type='hidden'
+            {...register('regionId', { required: false, shouldUnregister: true })}
+            value={undefined}
+          />
         )}
       </div>
     </>

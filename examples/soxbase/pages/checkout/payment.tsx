@@ -1,82 +1,76 @@
-import { useQuery } from '@apollo/client'
 import { Container, NoSsr } from '@material-ui/core'
 import { PageOptions } from '@reachdigital/framer-next-pages'
-import { ClientCartDocument } from '@reachdigital/magento-cart/ClientCart.gql'
-import BillingAddressForm from '@reachdigital/magento-cart/billing-address/BillingAddressForm'
 import {
-  CountryRegionsDocument,
-  CountryRegionsQuery,
-} from '@reachdigital/magento-cart/countries/CountryRegions.gql'
-import PaymentMethodButton from '@reachdigital/magento-cart/payment-method/PaymentMethodButton'
-import PaymentMethodContextProvider from '@reachdigital/magento-cart/payment-method/PaymentMethodContext'
-import PaymentMethodError from '@reachdigital/magento-cart/payment-method/PaymentMethodError'
-import PaymentMethodOptions from '@reachdigital/magento-cart/payment-method/PaymentMethodOptions'
-import PaymentMethodToggle from '@reachdigital/magento-cart/payment-method/PaymentMethodToggle'
-import braintree_local_payment from '@reachdigital/magento-payment-braintree/BraintreeLocalPayment'
-import { StoreConfigDocument, PageMeta } from '@reachdigital/magento-store'
-import AnimatedRow from '@reachdigital/next-ui/AnimatedRow'
+  PaymentMethodButton,
+  PaymentMethodContextProvider,
+  PaymentMethodOptions,
+  PaymentMethodToggle,
+  PaymentMethodPlaceOrder,
+} from '@reachdigital/magento-cart-payment-method'
+import { braintree_local_payment } from '@reachdigital/magento-payment-braintree'
+import { included_methods } from '@reachdigital/magento-payment-included'
+import { mollie_methods } from '@reachdigital/magento-payment-mollie'
+import { PageMeta, StoreConfigDocument, CountryRegionsDocument } from '@reachdigital/magento-store'
 import useFormStyles from '@reachdigital/next-ui/Form/useFormStyles'
 import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
+import { ComposedForm } from '@reachdigital/react-hook-form'
+import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
-import React, { useRef } from 'react'
+import React from 'react'
 import { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
 
-type Props = CountryRegionsQuery
+type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<FullPageShellProps, Props>
 
-function PaymentPage({ countries }: Props) {
-  const classes = useFormStyles()
-  const addressForm = useRef<() => Promise<boolean>>()
-  const methodForm = useRef<() => Promise<boolean>>()
-  const { data: clientCart } = useQuery(ClientCartDocument, { ssr: false })
-  const forceSubmit = () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    ;(async () => {
-      if (!addressForm.current || !methodForm.current) return
-      await Promise.all([addressForm.current(), methodForm.current()])
-    })()
-  }
+function PaymentPage(props: Props) {
+  const formClasses = useFormStyles()
 
   return (
     <Container maxWidth='md'>
-      <PaymentMethodContextProvider
-        modules={{ braintree_local_payment }}
-        available_payment_methods={clientCart?.cart?.available_payment_methods}
-      >
-        <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
+      <ComposedForm>
+        <PaymentMethodContextProvider
+          modules={{
+            braintree_local_payment,
+            ...included_methods,
+            ...mollie_methods,
+          }}
+        >
+          <PageMeta title='Payment' metaDescription='Cart Items' metaRobots={['noindex']} />
 
-        <NoSsr>
-          <AnimatePresence initial={false}>
-            <PaymentMethodToggle key='toggle' />
+          <NoSsr>
+            <AnimatePresence initial={false}>
+              <PaymentMethodToggle key='toggle' />
 
-            <PaymentMethodOptions key='options' />
+              <PaymentMethodOptions
+                key='options'
+                step={1}
+                Container={({ children }) => (
+                  <div className={clsx(formClasses.form, formClasses.formContained)}>
+                    {children}
+                  </div>
+                )}
+              />
 
-            <PaymentMethodError key='error' />
+              <PaymentMethodPlaceOrder key='placeorder' step={2} />
 
-            <BillingAddressForm />
-
-            <AnimatedRow className={classes.formRow} key='next'>
-              <div className={classes.formRow}>
-                <PaymentMethodButton
-                  key='button'
-                  type='submit'
-                  color='secondary'
-                  variant='pill'
-                  size='large'
-                  onClick={forceSubmit}
-                  endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
-                >
-                  Pay
-                </PaymentMethodButton>
-              </div>
-            </AnimatedRow>
-          </AnimatePresence>
-        </NoSsr>
-      </PaymentMethodContextProvider>
+              <PaymentMethodButton
+                key='button'
+                type='submit'
+                color='secondary'
+                variant='pill'
+                size='large'
+                endIcon={<SvgImage src={iconChevronRight} loading='eager' alt='chevron right' />}
+              >
+                Pay
+              </PaymentMethodButton>
+            </AnimatePresence>
+          </NoSsr>
+        </PaymentMethodContextProvider>
+      </ComposedForm>
     </Container>
   )
 }

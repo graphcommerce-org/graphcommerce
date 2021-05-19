@@ -1,5 +1,5 @@
 fragment CustomizableOption on CustomizableOptionInterface {
-  option_id
+  uid
   required
   sort_order
   title
