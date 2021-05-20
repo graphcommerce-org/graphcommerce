@@ -96,26 +96,19 @@ function FullPageShell(props: FullPageShellProps) {
     >
       <MenuFab {...menuProps} search={<SearchButton onClick={onSearchStart} />}>
         <MenuFabSecondaryItem
-          icon={<SvgImage src={iconPersonAlt} size='small' alt='Account' loading='lazy' />}
+          icon={<SvgImage src={iconPersonAlt} size='small' alt='Account' />}
           href='/account'
         >
           Account
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          icon={
-            <SvgImage
-              src={iconCustomerService}
-              size='small'
-              alt='Customer Service'
-              loading='lazy'
-            />
-          }
+          icon={<SvgImage src={iconCustomerService} size='small' alt='Customer Service' />}
           href='/service'
         >
           Customer Service
         </MenuFabSecondaryItem>
         <MenuFabSecondaryItem
-          icon={<SvgImage src={iconStar} size='small' alt='Wishlist' loading='lazy' />}
+          icon={<SvgImage src={iconStar} size='small' alt='Wishlist' />}
           href='/wishlist'
         >
           Wishlist

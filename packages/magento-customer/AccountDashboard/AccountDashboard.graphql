@@ -3,6 +3,10 @@ query AccountDashboard {
     ...AccountHeader
     ...AccountMenu
     ...AccountOrders
+    reviews {
+      ...AccountReviews
+    }
+    ...AccountAddresses
     ...AccountNewsletter
   }
 }

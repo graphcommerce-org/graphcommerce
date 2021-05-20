@@ -1,5 +1,13 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import {
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  makeStyles,
+  Theme,
+  Typography,
+} from '@material-ui/core'
 import Button, { ButtonProps } from '@reachdigital/next-ui/Button'
+import responsiveVal from '@reachdigital/next-ui/Styles/responsiveVal'
 import SvgImage from '@reachdigital/next-ui/SvgImage'
 import { iconChevronRight } from '@reachdigital/next-ui/icons'
 import PageLink from 'next/link'
@@ -9,32 +17,30 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       width: '100%',
-      padding: theme.spacings.xs,
+      height: responsiveVal(72, 120),
       fontSize: theme.typography.fontSize,
       borderBottom: `1px solid ${theme.palette.divider}`,
       borderRadius: 0,
-      '& > span': {
-        display: 'flex',
-        justifyContent: 'start',
+      '&:hover': {
+        background: theme.palette.background.highlight,
       },
-      '& span.MuiButton-endIcon': {
-        justifyContent: 'flex-end',
-        flex: '1 1',
+      '&:disabled': {
+        background: theme.palette.background.highlight,
       },
       '&:focus': {
         // fix: disableElevation does not work when button is focused
         boxShadow: 'none',
       },
     },
-    startIcon: {
+    heading: {
+      fontWeight: 400,
+    },
+    avatar: {
+      display: 'flex',
+      paddingRight: theme.spacings.xs,
+    },
+    subheading: {
       color: theme.palette.primary.mutedText,
-      marginRight: theme.spacings.xxs,
-    },
-    disabled: {
-      backgroundColor: '#fff',
-    },
-    childText: {
-      alignSelf: 'flex-start',
     },
   }),
   { name: 'AccountMenuItem' },
@@ -42,34 +48,39 @@ const useStyles = makeStyles(
 
 export type AccountMenuItemProps = {
   iconSrc: string
-  children: React.ReactNode
+  title: React.ReactNode
+  subtitle?: React.ReactNode
+  endIcon?: React.ReactNode
 } & Omit<ButtonProps, 'endIcon' | 'startIcon' | 'disableElevation'>
 
 export default function AccountMenuItem(props: AccountMenuItemProps) {
-  const { children, iconSrc, href, disabled, ...buttonProps } = props
-  const { childText, ...classes } = useStyles()
+  const { title, subtitle, iconSrc, endIcon, href, disabled, ...buttonProps } = props
+  const { heading, subheading, avatar, ...buttonClasses } = useStyles()
 
   const button = (
     <Button
       variant='contained'
-      endIcon={
-        <SvgImage
-          src={iconChevronRight}
-          alt='chevron right'
-          size='small'
-          loading='eager'
-          shade='muted'
-        />
-      }
-      startIcon={
-        <SvgImage src={iconSrc} alt={iconSrc} size='small' loading='eager' shade='muted' />
-      }
       disableElevation
       disabled={disabled}
-      classes={classes}
+      classes={buttonClasses}
       {...buttonProps}
     >
-      <span className={childText}>{children}</span>
+      <ListItem>
+        <ListItemAvatar className={avatar}>
+          <SvgImage src={iconSrc} alt={iconSrc} size='large' loading='eager' shade='muted' />
+        </ListItemAvatar>
+        <ListItemText
+          primary={
+            <Typography variant='h5' component='span' className={heading}>
+              {title}
+            </Typography>
+          }
+          secondary={<span className={subheading}>{subtitle}</span>}
+        />
+        {endIcon ?? (
+          <SvgImage src={iconChevronRight} alt='chevron right' size='small' loading='eager' />
+        )}
+      </ListItem>
     </Button>
   )
 
