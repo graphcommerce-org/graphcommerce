@@ -75,9 +75,9 @@ function AccountIndexPage() {
                 <>
                   <DaysAgo date={new Date(latestOrder?.order_date ?? new Date())} />
                   {', '}
-                  {orders?.items && (
+                  {latestOrder?.items && (
                     <OrderStateLabelInline
-                      items={orders?.items} // todo(yvo): fix type error
+                      items={latestOrder?.items}
                       renderer={{
                         Ordered: () => <span>processed</span>,
                         Invoiced: () => <span>invoiced</span>,
