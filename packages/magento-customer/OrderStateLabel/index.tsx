@@ -1,4 +1,5 @@
 import { makeStyles, Theme } from '@material-ui/core'
+import { UseStyles } from '@reachdigital/next-ui/Styles'
 import clsx from 'clsx'
 import { OrderStateLabelFragment } from './OrderStateLabel.gql'
 
@@ -17,9 +18,10 @@ type OrderStateRenderer = Record<
   (props: OrderStateLabelPropsBase) => React.ReactElement | null
 >
 
-type OrderStateLabelProps = {
+export type OrderStateLabelProps = {
   renderer: OrderStateRenderer
-} & OrderStateLabelPropsBase
+} & OrderStateLabelPropsBase &
+  UseStyles<typeof useStyles>
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
@@ -56,7 +58,7 @@ const useStyles = makeStyles(
 
 export default function OrderStateLabel(props: OrderStateLabelProps) {
   const { items, renderer, ...orderProps } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
 
   let orderState: OrderState = 'Partial'
   if (items?.every((item) => item?.quantity_ordered === item?.quantity_invoiced))
