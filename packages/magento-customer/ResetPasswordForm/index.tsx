@@ -17,7 +17,7 @@ type ResetPasswordFormProps = {
 
 export default function ResetPasswordForm(props: ResetPasswordFormProps) {
   const { token } = props
-  const classes = useFormStyles()
+
   const form = useFormGqlMutation<
     ResetPasswordMutation,
     ResetPasswordMutationVariables & { confirmPassword?: string }
@@ -27,8 +27,9 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
       resetPasswordToken: token,
     }),
   })
-  const router = useRouter()
 
+  const router = useRouter()
+  const classes = useFormStyles()
   const { muiRegister, handleSubmit, required, watch, data, formState, error } = form
   const submitHandler = handleSubmit(() => {})
 
@@ -48,7 +49,7 @@ export default function ResetPasswordForm(props: ResetPasswordFormProps) {
           error={!!formState.errors.email}
           label='Email'
           required={required.email}
-          {...muiRegister('email', { required: required.newPassword })}
+          {...muiRegister('email', { required: required.email })}
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
         />
