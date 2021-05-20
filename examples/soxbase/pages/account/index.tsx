@@ -5,10 +5,12 @@ import { AccountDashboardDocument } from '@reachdigital/magento-customer/Account
 import AccountMenu from '@reachdigital/magento-customer/AccountMenu'
 import AccountMenuItem from '@reachdigital/magento-customer/AccountMenuItem'
 import AddressSingleLine from '@reachdigital/magento-customer/AddressSingleLine'
-import OrderStateLabel from '@reachdigital/magento-customer/OrderStateLabel'
+import OrderStateLabelInline from '@reachdigital/magento-customer/OrderStateLabelInline'
 import SignOutForm from '@reachdigital/magento-customer/SignOutForm'
 import { PageMeta, StoreConfigDocument } from '@reachdigital/magento-store'
+import DaysAgo from '@reachdigital/next-ui/DaysAgo'
 import IconHeader from '@reachdigital/next-ui/IconHeader'
+import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import {
   iconBox,
   iconEmailOutline,
@@ -20,7 +22,6 @@ import {
   iconShutdown,
   iconStar,
 } from '@reachdigital/next-ui/icons'
-import { GetStaticProps } from '@reachdigital/next-ui/Page/types'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
 import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
@@ -34,21 +35,11 @@ function AccountIndexPage() {
     ssr: false,
   })
 
-  // todo(yvo): skeleton
-
-  const isLoading = typeof data?.customer === 'undefined'
-
+  const customer = data?.customer
   const address =
-    data?.customer?.addresses?.filter((a) => a.default_shipping)?.[0] ||
-    data?.customer?.addresses?.[0]
-
-  const latestOrder = data?.customer?.orders?.items[data?.customer?.orders?.items.length - 1]
-
-  const totalMsInDay = 1000 * 60 * 60 * 24
-  const today = new Date()
-  const then = new Date(latestOrder?.order_date ?? today)
-  const timeDiff = today.getTime() - then.getTime()
-  const days = Math.floor(timeDiff / totalMsInDay)
+    customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
+  const orders = customer?.orders
+  const latestOrder = orders?.items?.[orders?.items?.length - 1]
 
   return (
     <Container maxWidth='md'>
@@ -60,59 +51,61 @@ function AccountIndexPage() {
             href='/account/name'
             iconSrc={iconId}
             title='Name'
-            subtitle={`${data?.customer?.firstname} ${data?.customer?.lastname}`}
-            // loading={isLoading}
+            subtitle={`${customer.firstname} ${customer?.lastname}`}
           />
           <AccountMenuItem
             href='/account/contact'
             iconSrc={iconEmailOutline}
             title='Contact'
-            subtitle={data?.customer?.email}
-            // loading={isLoading}
+            subtitle={customer?.email}
           />
           <AccountMenuItem
             href='/account/authentication'
             iconSrc={iconLock}
             title='Authentication'
             subtitle='Password'
-            // loading={isLoading}
           />
           <AccountMenuItem
             href='/account/orders'
             iconSrc={iconBox}
             title='Orders'
             subtitle={
-              <>
-                {`${days} days ago`},{' '}
-                <OrderStateLabel // todo(yvo): OrderStateLabelInline component
-                  items={data?.customer?.orders?.items ?? []}
-                  renderer={{
-                    Ordered: () => <span>processed</span>,
-                    Invoiced: () => <span>invoiced</span>,
-                    Shipped: () => <span>shipped</span>,
-                    Refunded: () => <span>refunded</span>,
-                    Canceled: () => <span>canceled</span>,
-                    Returned: () => <span>returned</span>,
-                    Partial: () => <span>partially processed</span>,
-                  }}
-                />
-              </>
+              latestOrder ? (
+                <>
+                  <DaysAgo date={new Date(latestOrder?.order_date ?? new Date())} />
+                  {', '}
+                  {orders?.items && (
+                    <OrderStateLabelInline
+                      items={orders?.items} // todo(yvo): fix type error
+                      renderer={{
+                        Ordered: () => <span>processed</span>,
+                        Invoiced: () => <span>invoiced</span>,
+                        Shipped: () => <span>shipped</span>,
+                        Refunded: () => <span>refunded</span>,
+                        Canceled: () => <span>canceled</span>,
+                        Returned: () => <span>returned</span>,
+                        Partial: () => <span>partially processed</span>,
+                      }}
+                    />
+                  )}
+                </>
+              ) : undefined
             }
-            // loading={isLoading}
           />
           <AccountMenuItem
             href='/account/addresses'
             iconSrc={iconHome}
             title='Addresses'
-            subtitle={<AddressSingleLine {...address} />}
-            // loading={isLoading}
+            subtitle={address ? <AddressSingleLine {...address} /> : undefined}
           />
-          <AccountMenuItem
-            href='/account/reviews'
-            iconSrc={iconStar}
-            title='Reviews'
-            subtitle={`Written ${data?.customer?.reviews.items.length} reviews`}
-          />
+          {customer?.reviews.items.length !== 0 && (
+            <AccountMenuItem
+              href='/account/reviews'
+              iconSrc={iconStar}
+              title='Reviews'
+              subtitle={`Written ${customer?.reviews.items.length} reviews`}
+            />
+          )}
           <AccountMenuItem
             iconSrc={iconNewspaper}
             title='Newsletter'
