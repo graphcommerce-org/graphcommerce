@@ -26,7 +26,6 @@ import {
 } from '@reachdigital/next-ui/icons'
 import React from 'react'
 import FullPageShell, { FullPageShellProps } from '../../components/AppShell/FullPageShell'
-import { DefaultPageDocument } from '../../components/GraphQL/DefaultPage.gql'
 import apolloClient from '../../lib/apolloClient'
 
 type GetPageStaticProps = GetStaticProps<FullPageShellProps>
@@ -53,7 +52,7 @@ function AccountIndexPage() {
             href='/account/name'
             iconSrc={iconId}
             title='Name'
-            subtitle={`${customer.firstname} ${customer?.lastname}`}
+            subtitle={`${customer?.firstname} ${customer?.lastname}`}
           />
           <AccountMenuItem
             href='/account/contact'
@@ -142,20 +141,10 @@ export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
   const client = apolloClient(locale, true)
-  const staticClient = apolloClient(locale)
   const conf = client.query({ query: StoreConfigDocument })
-
-  const page = staticClient.query({
-    query: DefaultPageDocument,
-    variables: {
-      url: `account`,
-      rootCategory: (await conf).data.storeConfig?.root_category_uid ?? '',
-    },
-  })
 
   return {
     props: {
-      ...(await page).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: 60 * 20,

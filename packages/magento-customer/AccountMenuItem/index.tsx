@@ -17,7 +17,7 @@ const useStyles = makeStyles(
   (theme: Theme) => ({
     root: {
       width: '100%',
-      height: responsiveVal(72, 120),
+      height: responsiveVal(72, 112),
       fontSize: theme.typography.fontSize,
       borderBottom: `1px solid ${theme.palette.divider}`,
       borderRadius: 0,
@@ -41,6 +41,7 @@ const useStyles = makeStyles(
     },
     subheading: {
       color: theme.palette.primary.mutedText,
+      ...theme.typography.body2,
     },
   }),
   { name: 'AccountMenuItem' },
@@ -67,11 +68,11 @@ export default function AccountMenuItem(props: AccountMenuItemProps) {
     >
       <ListItem>
         <ListItemAvatar className={avatar}>
-          <SvgImage src={iconSrc} alt={iconSrc} size='large' loading='eager' shade='muted' />
+          <SvgImage src={iconSrc} alt={iconSrc} size='medium' loading='eager' shade='muted' />
         </ListItemAvatar>
         <ListItemText
           primary={
-            <Typography variant='h5' component='span' className={heading}>
+            <Typography variant='h6' component='span' className={heading}>
               {title}
             </Typography>
           }
