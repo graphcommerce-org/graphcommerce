@@ -58,8 +58,11 @@ function FullPageShell(props: FullPageShellProps) {
           item?.name ?? ''
         ),
       })) ?? []),
-      { href: '/blog', children: 'Blog' },
     ],
+  }
+
+  if (menuData) {
+    menuProps.menu.push({ href: '/blog', children: 'Blog' })
   }
 
   const router = useRouter()
@@ -73,24 +76,27 @@ function FullPageShell(props: FullPageShellProps) {
         <>
           <Logo />
           <DesktopNavBar {...menuProps} />
-          <DesktopNavActions>
-            {!router.pathname.startsWith('/search') && (
-              <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
-            )}
 
-            <PageLink href='/service' passHref>
-              <Fab
-                style={{ boxShadow: 'none' }}
-                aria-label='Account'
-                size='medium'
-                classes={{ root: classes.fab }}
-              >
-                <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
-              </Fab>
-            </PageLink>
+          {menuData && (
+            <DesktopNavActions>
+              {!router.pathname.startsWith('/search') && (
+                <SearchButton onClick={onSearchStart} classes={{ root: classes.navbarSearch }} />
+              )}
 
-            <CustomerFab />
-          </DesktopNavActions>
+              <PageLink href='/service' passHref>
+                <Fab
+                  style={{ boxShadow: 'none' }}
+                  aria-label='Account'
+                  size='medium'
+                  classes={{ root: classes.fab }}
+                >
+                  <SvgImage src={iconCustomerService} alt='Customer Service' loading='eager' />
+                </Fab>
+              </PageLink>
+
+              <CustomerFab />
+            </DesktopNavActions>
+          )}
         </>
       }
     >
@@ -115,7 +121,7 @@ function FullPageShell(props: FullPageShellProps) {
         </MenuFabSecondaryItem>
       </MenuFab>
 
-      <CartFab style={{ boxShadow: 'none' }} />
+      {menuData && <CartFab style={{ boxShadow: 'none' }} />}
 
       {children}
 
