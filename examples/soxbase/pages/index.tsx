@@ -4,6 +4,8 @@ import CmsPage, { getStaticProps as getCmsPageStaticProps } from './page/[url]'
 
 export default CmsPage
 
+export const config = { unstable_JsPreload: false }
+
 export const getStaticProps = async ({ locale, ...rest }) => {
   const client = apolloClient(locale, true)
   const conf = (await client.query({ query: StoreConfigDocument })).data
