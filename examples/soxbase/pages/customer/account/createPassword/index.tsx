@@ -48,9 +48,9 @@ function CustomerAccountCreatePasswordPage() {
 
               <Box textAlign='center'>
                 <p>
-                  You can view{' '}
-                  <Link color='primary' href='/account'>
-                    your account here
+                  You can now{' '}
+                  <Link color='primary' href='/account/signin'>
+                    sign in again
                   </Link>
                   .
                 </p>
